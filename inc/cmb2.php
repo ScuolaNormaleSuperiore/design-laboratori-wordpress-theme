@@ -85,7 +85,7 @@ function dsi_get_luoghi_options( $parent = false, $addnone=false) {
 
 	$options = array();
 	if($addnone)
-		$options[0]=__("Nessun luogo","design_scuole_italia");
+		$options[0]=__("Nessun luogo","design_laboratori_italia");
 	if ( $luoghi ) {
 		foreach ( $luoghi as $luogo ) {
 			$options[ $luogo->ID ] = $luogo->post_title;

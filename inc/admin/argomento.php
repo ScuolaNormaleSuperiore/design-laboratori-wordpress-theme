@@ -14,18 +14,18 @@ function dsi_create_argomento_taxonomy() {
     //  http://codex.wordpress.org/Function_Reference/register_taxonomy
     //  http://core.trac.wordpress.org/browser/branches/3.0/wp-includes/taxonomy.php#L350
     $wp_taxonomies['post_tag']->labels = (object)array(
-        'name'              => _x( 'Argomento', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Argomento', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca argomento', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutti gli argomenti', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica argomento', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna argomento', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi un argomento', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuovo argomento', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Argomento', 'design_scuole_italia' ),
-        'separate_items_with_commas' => __( 'Separata gli argomenti con la virgola', 'design_scuole_italia' ),
-        'add_or_remove_items' => __( 'Aggiungi o rimuovi argomenti', 'design_scuole_italia' ),
-        'choose_from_most_used' => __( 'Scegli tra gli argomenti più usati', 'design_scuole_italia' ),
+        'name'              => _x( 'Argomento', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Argomento', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca argomento', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutti gli argomenti', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica argomento', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna argomento', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi un argomento', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuovo argomento', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Argomento', 'design_laboratori_italia' ),
+        'separate_items_with_commas' => __( 'Separata gli argomenti con la virgola', 'design_laboratori_italia' ),
+        'add_or_remove_items' => __( 'Aggiungi o rimuovi argomenti', 'design_laboratori_italia' ),
+        'choose_from_most_used' => __( 'Scegli tra gli argomenti più usati', 'design_laboratori_italia' ),
     );
 
     $wp_taxonomies['post_tag']->label = 'Argomento';

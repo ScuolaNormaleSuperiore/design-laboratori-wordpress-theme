@@ -70,10 +70,10 @@ if(is_array($argomenti) && count($argomenti)) {
 			<div class="row variable-gutters">
 				<div class="col-lg-12">
 
-					<h3 class="mb-4 text-center semi-bold text-gray-primary"><?php _e( "Altri contenuti che potrebbero interessarti", "design_scuole_italia" ); ?></h3>
+					<h3 class="mb-4 text-center semi-bold text-gray-primary"><?php _e( "Altri contenuti che potrebbero interessarti", "design_laboratori_italia" ); ?></h3>
 
 					<div class="badges-wrapper text-center mt-0 mb-4">
-						<small><strong><?php _e( "Contenuti filtrati per:", "design_scuole_italia" ); ?></strong>
+						<small><strong><?php _e( "Contenuti filtrati per:", "design_laboratori_italia" ); ?></strong>
 						</small>
 						<div class="badges mt-3">
 							<?php
@@ -96,7 +96,7 @@ if(is_array($argomenti) && count($argomenti)) {
 													<use xmlns:xlink="http://www.w3.org/1999/xlink"
 													     xlink:href="#svg-gear"></use>
 												</svg>
-												<span><?php _e( "Servizi", "design_scuole_italia" ); ?></span>
+												<span><?php _e( "Servizi", "design_laboratori_italia" ); ?></span>
 											</div><!-- /accordion-header -->
 											<div class="card-content accordion-content">
 												<ul>
@@ -121,7 +121,7 @@ if(is_array($argomenti) && count($argomenti)) {
 													<use xmlns:xlink="http://www.w3.org/1999/xlink"
 													     xlink:href="#svg-news"></use>
 												</svg>
-												<span><?php _e( "Notizie", "design_scuole_italia" ); ?></span>
+												<span><?php _e( "Notizie", "design_laboratori_italia" ); ?></span>
 											</div><!-- /accordion-header -->
 											<div class="card-content accordion-content">
 												<ul>
@@ -147,7 +147,7 @@ if(is_array($argomenti) && count($argomenti)) {
 													<use xmlns:xlink="http://www.w3.org/1999/xlink"
 													     xlink:href="#svg-documents"></use>
 												</svg>
-												<span><?php _e( "Documenti", "design_scuole_italia" ); ?></span>
+												<span><?php _e( "Documenti", "design_laboratori_italia" ); ?></span>
 											</div><!-- /accordion-header -->
 											<div class="card-content accordion-content">
 												<ul>

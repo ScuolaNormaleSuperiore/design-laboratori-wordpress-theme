@@ -12,7 +12,7 @@ if(isset($_REQUEST["archive"]))
         <?php if(isset($archive) && $archive != ""){ ?>
             <input type="hidden" name="archive" value="<?php echo $archive; ?>">
         <?php } ?>
-        <h3 class="h6 text-uppercase"><strong><?php _e("Argomenti", "design_scuole_italia"); ?></strong></h3>
+        <h3 class="h6 text-uppercase"><strong><?php _e("Argomenti", "design_laboratori_italia"); ?></strong></h3>
         <ul>
 			<?php
 			$terms = get_terms( array(

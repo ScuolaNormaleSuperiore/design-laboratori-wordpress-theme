@@ -11,21 +11,21 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                 <div class="col">
                     <div class="responsive-tabs-wrapper padding-top-200">
                         <div class="title-large">
-                            <h1 class="h3"><?php _e("La didattica", "design_scuole_italia"); ?></h1>
-                            <h2 class="h4 text-white label-didattica"><?php _e("la nostra offerta formativa", "design_scuole_italia"); ?></h2>
+                            <h1 class="h3"><?php _e("La didattica", "design_laboratori_italia"); ?></h1>
+                            <h2 class="h4 text-white label-didattica"><?php _e("la nostra offerta formativa", "design_laboratori_italia"); ?></h2>
                         </div><!-- /title-large -->
                         <div class="title-small">
                             <div class="h5"><?php
                                 // se sono più strutture è un istituto, altrimenti una scuola
                                 if(is_array($scuole_didattica) && count($scuole_didattica) == 1)
-                                    _e("La scuola", "design_scuole_italia");
+                                    _e("La scuola", "design_laboratori_italia");
                                 else
-                                    _e("L'Istituto", "design_scuole_italia"); ?></div>
-                            <p><?php _e("A.S.", "design_scuole_italia"); ?> <?php echo dsi_convert_anno_scuola(dsi_get_current_anno_scolastico()) ; ?></p>
+                                    _e("L'Istituto", "design_laboratori_italia"); ?></div>
+                            <p><?php _e("A.S.", "design_laboratori_italia"); ?> <?php echo dsi_convert_anno_scuola(dsi_get_current_anno_scolastico()) ; ?></p>
 
                         </div><!-- /title-section -->
                         <div class="tabs-img">
-                            <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("I cicli", "design_scuole_italia"); ?>" alt="<?php _e("La didattica", "design_scuole_italia"); ?>">
+                            <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("I cicli", "design_laboratori_italia"); ?>" alt="<?php _e("La didattica", "design_laboratori_italia"); ?>">
                         </div>
                         <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                             <ul>
@@ -65,7 +65,7 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                                                         <?php echo wpautop($descrizione); ?>
                                                         <p><a href="<?php echo get_permalink($indirizzo); ?>"
                                                               class="btn btn-bluelectric"
-                                                              style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
+                                                              style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_laboratori_italia"); ?></a>
                                                         </p>
                                                     </div><!-- /accordion-large-content -->
 
@@ -75,13 +75,13 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
 
                                         }else{
                                             echo '<div ><h5 class="text-white">';
-                                            _e("Nessun indirizzo di studi associato a questa scuola.", "design_scuole_italia");
+                                            _e("Nessun indirizzo di studi associato a questa scuola.", "design_laboratori_italia");
                                             echo '</h5></div>';
                                         }
                                         ?>
 
                                         <div class="text-center text-sm-left">
-                                            <a class="btn btn-redbrown mt-4 mb-2" href="<?php echo get_permalink($idstruttura); ?>"><?php _e("Vai alla presentazione della scuola", "design_scuole_italia"); ?></a>
+                                            <a class="btn btn-redbrown mt-4 mb-2" href="<?php echo get_permalink($idstruttura); ?>"><?php _e("Vai alla presentazione della scuola", "design_laboratori_italia"); ?></a>
                                         </div>
 
                                     </div>

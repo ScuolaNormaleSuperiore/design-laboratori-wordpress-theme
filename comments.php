@@ -32,13 +32,13 @@ if ( post_password_required() ) {
 			if ( '1' === $dsi_comment_count ) {
 				printf(
 					/* translators: 1: title. */
-					esc_html__( 'Un commento a &ldquo;%1$s&rdquo;', 'design_scuole_italia' ),
+					esc_html__( 'Un commento a &ldquo;%1$s&rdquo;', 'design_laboratori_italia' ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			} else {
 				printf( // WPCS: XSS OK.
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s commenti a &ldquo;%2$s&rdquo;', '%1$s commenti a &ldquo;%2$s&rdquo;', $dsi_comment_count, 'comments title', 'design_scuole_italia' ) ),
+					esc_html( _nx( '%1$s commenti a &ldquo;%2$s&rdquo;', '%1$s commenti a &ldquo;%2$s&rdquo;', $dsi_comment_count, 'comments title', 'design_laboratori_italia' ) ),
 					number_format_i18n( $dsi_comment_count ),
 					'<span>' . get_the_title() . '</span>'
 				);
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'I commenti sono chiusi.', 'design_scuole_italia' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'I commenti sono chiusi.', 'design_laboratori_italia' ); ?></p>
 			<?php
 		endif;
 

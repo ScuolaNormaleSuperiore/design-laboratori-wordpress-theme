@@ -2,7 +2,7 @@
 
 ?>
 <aside class="aside-list sticky-sidebar search-results-filters">
-        <h3 class="h6 text-uppercase"><strong><?php _e("Percorsi di studio", "design_scuole_italia"); ?></strong></h3>
+        <h3 class="h6 text-uppercase"><strong><?php _e("Percorsi di studio", "design_laboratori_italia"); ?></strong></h3>
     <form role="search" method="get" class="search-form" action="<?php echo home_url(""); ?>">
         <ul>
             <?php

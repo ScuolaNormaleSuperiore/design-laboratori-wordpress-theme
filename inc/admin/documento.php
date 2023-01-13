@@ -7,14 +7,14 @@ function dsi_register_documento_post_type() {
 
     /** documenti **/
     $labels = array(
-        'name'          => _x( 'Documenti', 'Post Type General Name', 'design_scuole_italia' ),
-        'singular_name' => _x( 'Documento', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'add_new'       => _x( 'Aggiungi un Documento', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'add_new_item'  => _x( 'Aggiungi un Documento', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'edit_item'       => _x( 'Modifica il Documento', 'Post Type Singular Name', 'design_scuole_italia' ),
+        'name'          => _x( 'Documenti', 'Post Type General Name', 'design_laboratori_italia' ),
+        'singular_name' => _x( 'Documento', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'add_new'       => _x( 'Aggiungi un Documento', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'add_new_item'  => _x( 'Aggiungi un Documento', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'edit_item'       => _x( 'Modifica il Documento', 'Post Type Singular Name', 'design_laboratori_italia' ),
     );
     $args   = array(
-        'label'         => __( 'Documento', 'design_scuole_italia' ),
+        'label'         => __( 'Documento', 'design_laboratori_italia' ),
         'labels'        => $labels,
         'supports'      => array( 'title', 'editor' , 'thumbnail' ),
         'taxonomies'    => array( 'tipologia' ),
@@ -29,15 +29,15 @@ function dsi_register_documento_post_type() {
     register_post_type( 'documento', $args );
 
     $labels = array(
-        'name'              => _x( 'Tipologia Documento', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Tipologia Documento', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca Tipologia', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutte le tipologie', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica la Tipologia', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna la Tipologia', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuova Tipologia', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Tipologia', 'design_scuole_italia' ),
+        'name'              => _x( 'Tipologia Documento', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Tipologia Documento', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
     );
 
     $args = array(
@@ -58,15 +58,15 @@ function dsi_register_documento_post_type() {
     register_taxonomy( 'tipologia-documento', array( 'documento' ), $args );
 
     $labels = array(
-        'name'              => _x( 'Amministrazione Trasparente', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Amministrazione Trasparente', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca ', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutte', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuova', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Amministrazione Trasparente', 'design_scuole_italia' ),
+        'name'              => _x( 'Amministrazione Trasparente', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Amministrazione Trasparente', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca ', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutte', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuova', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Amministrazione Trasparente', 'design_laboratori_italia' ),
     );
 
     $args = array(
@@ -87,15 +87,15 @@ function dsi_register_documento_post_type() {
     register_taxonomy( 'amministrazione-trasparente', array( 'documento' ), $args );
 
     $labels = array(
-        'name'              => _x( 'Albo on line', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Albo on line', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca ', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutte', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuova', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Albo on line', 'design_scuole_italia' ),
+        'name'              => _x( 'Albo on line', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Albo on line', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca ', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutte', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuova', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Albo on line', 'design_laboratori_italia' ),
     );
 
     $args = array(
@@ -132,7 +132,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_annullato = new_cmb2_box( array(
         'id'           => $prefix . 'box_annullato',
-        'title'        => __( 'Atto Albo Annullato', 'design_scuole_italia' ),
+        'title'        => __( 'Atto Albo Annullato', 'design_laboratori_italia' ),
         'object_types' => array( 'documento' ),
         'context'      => 'after_title',
         'priority'     => 'high',
@@ -140,9 +140,9 @@ function dsi_add_documento_metaboxes() {
 
 
     $cmb_annullato->add_field( array(
-        'name'    => __( 'Atto annullato', 'design_scuole_italia' ),
-        'desc'    => __( 'Descrivi il motivo dell\'annullamento', 'design_scuole_italia' ),
-        'after'    => __( '<br><input type="submit" name="Salva" value="Salva" class="button-secondary ">', 'design_scuole_italia' ),
+        'name'    => __( 'Atto annullato', 'design_laboratori_italia' ),
+        'desc'    => __( 'Descrivi il motivo dell\'annullamento', 'design_laboratori_italia' ),
+        'after'    => __( '<br><input type="submit" name="Salva" value="Salva" class="button-secondary ">', 'design_laboratori_italia' ),
         'id' => $prefix . 'motivo_annullamento',
         'type'             => 'textarea',
     ) );
@@ -150,7 +150,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_tipologia = new_cmb2_box( array(
         'id'           => $prefix . 'box_tipologia',
-        'title'        => __( 'Tipologia', 'design_scuole_italia' ),
+        'title'        => __( 'Tipologia', 'design_laboratori_italia' ),
         'object_types' => array( 'documento' ),
         'context'      => 'side',
         'priority'     => 'high',
@@ -171,8 +171,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_tipologia->add_field( array(
         'id' => $prefix . 'identificativo',
-        'name' => __( "Identificativo Documento", 'design_scuole_italia' ),
-        'after' => __( "ad uso interno", 'design_scuole_italia' ),
+        'name' => __( "Identificativo Documento", 'design_laboratori_italia' ),
+        'after' => __( "ad uso interno", 'design_laboratori_italia' ),
         'type'             => 'text_small',
 
     ) );
@@ -181,7 +181,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_side = new_cmb2_box( array(
         'id'           => $prefix . 'box_side',
-        'title'        => __( 'Scadenza', 'design_scuole_italia' ),
+        'title'        => __( 'Scadenza', 'design_laboratori_italia' ),
         'object_types' => array( 'documento' ),
         'context'      => 'side',
         'priority'     => 'default',
@@ -189,8 +189,8 @@ function dsi_add_documento_metaboxes() {
 
 
     $cmb_side->add_field( array(
-//        'name'       => __('Data Scadenza', 'design_scuole_italia' ),
-        'desc' => __( 'Data di scadenza del documento, una volta raggiunta questo sarà automaticamente archiviato come "Scaduto".' , 'design_scuole_italia' ),
+//        'name'       => __('Data Scadenza', 'design_laboratori_italia' ),
+        'desc' => __( 'Data di scadenza del documento, una volta raggiunta questo sarà automaticamente archiviato come "Scaduto".' , 'design_laboratori_italia' ),
         'id'             => $prefix . 'data_scadenza',
         'type'    => 'text_date_timestamp',
         'date_format' => 'd/m/Y',
@@ -198,7 +198,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_sottotitolo = new_cmb2_box( array(
         'id'           => $prefix . 'box_sottotitolo',
-//		'title'        => __( 'Sottotitolo', 'design_scuole_italia' ),
+//		'title'        => __( 'Sottotitolo', 'design_laboratori_italia' ),
         'object_types' => array( 'documento' ),
         'context'      => 'after_title',
         'priority'     => 'high',
@@ -207,8 +207,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id'         => $prefix . 'descrizione',
-        'name'       => __( 'Descrizione *', 'design_scuole_italia' ),
-        'desc'       => __( 'Indicare una sintetica descrizione del Documento. Vincoli: 160 caratteri spazi inclusi.', 'design_scuole_italia' ),
+        'name'       => __( 'Descrizione *', 'design_laboratori_italia' ),
+        'desc'       => __( 'Indicare una sintetica descrizione del Documento. Vincoli: 160 caratteri spazi inclusi.', 'design_laboratori_italia' ),
         'type'       => 'textarea',
         'attributes' => array(
             'maxlength' => '160',
@@ -218,7 +218,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_sottotitolo->add_field(array(
         'id' => $prefix . 'numerazione_albo',
-        'name' => __('Numerazione Progressiva Annuale', 'design_scuole_italia'),
+        'name' => __('Numerazione Progressiva Annuale', 'design_laboratori_italia'),
         'type' => 'text_small',
         'default' => dsi_get_numerazione_albo(),
         'attributes' => array(
@@ -230,8 +230,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'albo-pretorio',
-        'name'        => __( 'Categoria Albo', 'design_scuole_italia' ),
-        'desc' => __( 'Seleziona se è un Documento generico, Albo pretorio online o altro.' , 'design_scuole_italia' ),
+        'name'        => __( 'Categoria Albo', 'design_laboratori_italia' ),
+        'desc' => __( 'Seleziona se è un Documento generico, Albo pretorio online o altro.' , 'design_laboratori_italia' ),
         'type'             => 'taxonomy_select',
         'taxonomy'       => 'albo-pretorio',
         'show_option_none' => true,
@@ -244,13 +244,13 @@ function dsi_add_documento_metaboxes() {
     ) );
 
     $cmb_sottotitolo->add_field( array(
-        'name'       => __('Responsabile Albo', 'design_scuole_italia' ),
-        'desc' => __( 'Uno o più utenti responsabili del procedimento.  Es link alla scheda del Dirigente scolastico. Inseriscile <a href="edit-tags.php?taxonomy=persona">cliccando qui</a> ' , 'design_scuole_italia' ),
+        'name'       => __('Responsabile Albo', 'design_laboratori_italia' ),
+        'desc' => __( 'Uno o più utenti responsabili del procedimento.  Es link alla scheda del Dirigente scolastico. Inseriscile <a href="edit-tags.php?taxonomy=persona">cliccando qui</a> ' , 'design_laboratori_italia' ),
         'id'             => $prefix . 'responabile_albo',
         'type'    => 'pw_multiselect',
         'options' => dsi_get_user_options(),
         'attributes' => array(
-            'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+            'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             'data-conditional-id' => $prefix . 'tipologia',
             'data-conditional-value' => "albo-online",
         ),
@@ -260,21 +260,21 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_sottotitolo->add_field(array(
         'id' => $prefix . 'is_amministrazione_trasparente',
-        'name' => __('Amministrazione Trasparente *', 'design_scuole_italia'),
-        'desc' => __('Seleziona se il documento fa parte di Amministrazione Trasparente', 'design_scuole_italia'),
+        'name' => __('Amministrazione Trasparente *', 'design_laboratori_italia'),
+        'desc' => __('Seleziona se il documento fa parte di Amministrazione Trasparente', 'design_laboratori_italia'),
         'type' => 'radio_inline',
         'default' => 'false',
         'options' => array(
-            'true' => __('Si', 'design_scuole_italia'),
-            'false' => __('No', 'design_scuole_italia'),
+            'true' => __('Si', 'design_laboratori_italia'),
+            'false' => __('No', 'design_laboratori_italia'),
         ),
     ));
 
 
 
     $cmb_sottotitolo->add_field(array(
-            'name' => __('Tipologia di Amministrazione Trasparente ', 'design_scuole_italia'),
-            'desc' => __('Collega alla sezione di Amministrazione Trasparente. ', 'design_scuole_italia'),
+            'name' => __('Tipologia di Amministrazione Trasparente ', 'design_laboratori_italia'),
+            'desc' => __('Collega alla sezione di Amministrazione Trasparente. ', 'design_laboratori_italia'),
             'id' => $prefix . 'amministrazione_trasparente',
             'taxonomy'       => 'amministrazione-trasparente', //Enter Taxonomy Slug
             'type'           => 'taxonomy_select_hierarchical',
@@ -293,7 +293,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent = new_cmb2_box( array(
         'id'           => $prefix . 'box_elementi_dati',
-        'title'        => __( 'Dati Pubblici', 'design_scuole_italia' ),
+        'title'        => __( 'Dati Pubblici', 'design_laboratori_italia' ),
         'object_types' => array( 'documento' ),
         'context'      => 'normal',
         'priority'     => 'high',
@@ -305,13 +305,13 @@ function dsi_add_documento_metaboxes() {
 
 
     $cmb_aftercontent->add_field( array(
-            'name'       => __('Autore/i ', 'design_scuole_italia' ),
-            'desc' => __( 'Eventuale Lista autori che hanno pubblicato il documento. Es link alla scheda del Dirigente scolastico. Inseriscile <a href="users.php">da qui</a> ' , 'design_scuole_italia' ),
+            'name'       => __('Autore/i ', 'design_laboratori_italia' ),
+            'desc' => __( 'Eventuale Lista autori che hanno pubblicato il documento. Es link alla scheda del Dirigente scolastico. Inseriscile <a href="users.php">da qui</a> ' , 'design_laboratori_italia' ),
             'id'             => $prefix . 'autori',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_user_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             ),
         )
     );
@@ -319,8 +319,8 @@ function dsi_add_documento_metaboxes() {
     /*
         $cmb_aftercontent->add_field( array(
                 'id' => $prefix . 'licenza',
-                'name'       => __('Licenza di distribuzione *', 'design_scuole_italia' ),
-                'desc' => __( 'Licenza con il quale il documento viene distribuito', 'design_scuole_italia' ),
+                'name'       => __('Licenza di distribuzione *', 'design_laboratori_italia' ),
+                'desc' => __( 'Licenza con il quale il documento viene distribuito', 'design_laboratori_italia' ),
                 'type'    => 'text',
                 'attributes' => array(
                     'required' => 'required'
@@ -331,16 +331,16 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'file_documenti',
-        'name'    => __( 'Carica file', 'design_scuole_italia' ),
-        'desc' => __( 'Lista di documenti allegati' , 'design_scuole_italia' ),
+        'name'    => __( 'Carica file', 'design_laboratori_italia' ),
+        'desc' => __( 'Lista di documenti allegati' , 'design_laboratori_italia' ),
         'type' => 'file_list',
         // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
         // 'query_args' => array( 'type' => 'image' ), // Only images attachment
         // Optional, override default text strings
         'text' => array(
-            'add_upload_files_text' => __('Aggiungi un nuovo allegato', 'design_scuole_italia' ), // default: "Add or Upload Files"
-            'remove_image_text' => __('Rimuovi allegato', 'design_scuole_italia' ), // default: "Remove Image"
-            'remove_text' => __('Rimuovi', 'design_scuole_italia' ), // default: "Remove"
+            'add_upload_files_text' => __('Aggiungi un nuovo allegato', 'design_laboratori_italia' ), // default: "Add or Upload Files"
+            'remove_image_text' => __('Rimuovi allegato', 'design_laboratori_italia' ), // default: "Remove Image"
+            'remove_text' => __('Rimuovi', 'design_laboratori_italia' ), // default: "Remove"
         ),
     ) );
 
@@ -348,8 +348,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id'         => $prefix . 'gallery',
-        'name'       => __( 'Galleria', 'design_scuole_italia' ),
-        'desc'       => __( 'Galleria di immagini  significative relative a un documento, corredate da didascalia', 'design_scuole_italia' ),
+        'name'       => __( 'Galleria', 'design_laboratori_italia' ),
+        'desc'       => __( 'Galleria di immagini  significative relative a un documento, corredate da didascalia', 'design_laboratori_italia' ),
         'type' => 'file_list',
         // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
         'query_args' => array( 'type' => 'image' ), // Only images attachment
@@ -361,16 +361,16 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'servizi_collegati',
-        'name'        => __( 'Servizi collegati', 'design_scuole_italia' ),
-        'desc' => __( 'Servizi collegati al documento' , 'design_scuole_italia' ),
+        'name'        => __( 'Servizi collegati', 'design_laboratori_italia' ),
+        'desc' => __( 'Servizi collegati al documento' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
         'options' =>  dsi_get_servizi_options(),
     ) );
 /*
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'link_servizi_collegati',
-        'name'        => __( 'Canale digitale servizio collegato', 'design_scuole_italia' ),
-        'desc' => __( 'Se il servizio ha un canale digitale Link per avviare la procedura di attivazione del servizio. Questo campo mette in relazione "Servizio" con il suo canale digitale di attivazione. Es. Partecipa al bando"' , 'design_scuole_italia' ),
+        'name'        => __( 'Canale digitale servizio collegato', 'design_laboratori_italia' ),
+        'desc' => __( 'Se il servizio ha un canale digitale Link per avviare la procedura di attivazione del servizio. Questo campo mette in relazione "Servizio" con il suo canale digitale di attivazione. Es. Partecipa al bando"' , 'design_laboratori_italia' ),
         'type' => 'text_url'
 
     ) );
@@ -381,12 +381,12 @@ function dsi_add_documento_metaboxes() {
         'id'           => $prefix . 'timeline',
         'type'        => 'group',
         'name'        => '<h1>Fasi</h1>',
-        'desc' => __( 'Suddividere i contenuti del documento in fasi e relative date. Es data di apertura della partecipazione a un bando, data di scadenza della possibilità di partecipare al bando' , 'design_scuole_italia' ),
+        'desc' => __( 'Suddividere i contenuti del documento in fasi e relative date. Es data di apertura della partecipazione a un bando, data di scadenza della possibilità di partecipare al bando' , 'design_laboratori_italia' ),
         'repeatable'  => true,
         'options'     => array(
-            'group_title'   => __( 'Fase {#}', 'design_scuole_italia' ),
-            'add_button'    => __( 'Aggiungi un elemento', 'design_scuole_italia' ),
-            'remove_button' => __( 'Rimuovi l\'elemento ', 'design_scuole_italia' ),
+            'group_title'   => __( 'Fase {#}', 'design_laboratori_italia' ),
+            'add_button'    => __( 'Aggiungi un elemento', 'design_laboratori_italia' ),
+            'remove_button' => __( 'Rimuovi l\'elemento ', 'design_laboratori_italia' ),
             'sortable'      => true,  // Allow changing the order of repeated groups.
         ),
     ) );
@@ -394,7 +394,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_group_field( $timeline_group_id, array(
         'id' => 'data_timeline',
-        'before'        => __( 'Data ', 'design_scuole_italia' ),
+        'before'        => __( 'Data ', 'design_laboratori_italia' ),
         'type' => 'text_date',
         'date_format' => 'd-m-Y',
         'data-datepicker' => json_encode( array(
@@ -404,7 +404,7 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_group_field( $timeline_group_id, array(
         'id' => 'titolo_timeline',
-        'before'        => __( ' Descrizione ', 'design_scuole_italia' ),
+        'before'        => __( ' Descrizione ', 'design_laboratori_italia' ),
         'type' => 'text',
     ) );
 
@@ -413,8 +413,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'ufficio',
-        'name'    => __( 'Strutture organizzative responsabili del documento', 'design_scuole_italia' ),
-        'desc' => __( 'Link alla struttura organizzativa responsabile del documento. Se non la trovi inseriscila <a href="post-new.php?post_type=struttura">cliccando qui</a> ' , 'design_scuole_italia' ),
+        'name'    => __( 'Strutture organizzative responsabili del documento', 'design_laboratori_italia' ),
+        'desc' => __( 'Link alla struttura organizzativa responsabile del documento. Se non la trovi inseriscila <a href="post-new.php?post_type=struttura">cliccando qui</a> ' , 'design_laboratori_italia' ),
         'type'    => 'custom_attached_posts',
         'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
         'options' => array(
@@ -428,8 +428,8 @@ function dsi_add_documento_metaboxes() {
     ) );
 
     $cmb_aftercontent->add_field( array(
-        'name'    => __( 'Ulteriori informazioni', 'design_scuole_italia' ),
-        'desc'    => __( 'Ulteriori informazioni relative alla persona', 'design_scuole_italia' ),
+        'name'    => __( 'Ulteriori informazioni', 'design_laboratori_italia' ),
+        'desc'    => __( 'Ulteriori informazioni relative alla persona', 'design_laboratori_italia' ),
         'id'      => $prefix . 'altre_info',
         'type'    => 'textarea',
         //'attributes'    => array(
@@ -440,8 +440,8 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'riferimenti_normativi',
-        'name'        => __( 'Riferimenti normativi', 'design_scuole_italia' ),
-        'desc' => __( 'Lista di link con riferimenti normativi utili per il documento.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_scuole_italia' ),
+        'name'        => __( 'Riferimenti normativi', 'design_laboratori_italia' ),
+        'desc' => __( 'Lista di link con riferimenti normativi utili per il documento.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_laboratori_italia' ),
         'type' => 'wysiwyg',
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
@@ -453,13 +453,13 @@ function dsi_add_documento_metaboxes() {
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'protocollo',
-        'name'        => __( 'Protocollo', 'design_scuole_italia' ),
+        'name'        => __( 'Protocollo', 'design_laboratori_italia' ),
         'type' => 'text',
     ) );
 
     $cmb_aftercontent->add_field( array(
         'id' => $prefix . 'data_protocollo',
-        'name'        => __( 'Data protocollo', 'design_scuole_italia' ),
+        'name'        => __( 'Data protocollo', 'design_laboratori_italia' ),
         'type' => 'text_date',
         'date_format' => 'd-m-Y',
         'data-datepicker' => json_encode( array(
@@ -477,7 +477,7 @@ function dsi_add_documento_metaboxes() {
 add_action( 'edit_form_after_title', 'sdi_documento_add_content_after_title' );
 function sdi_documento_add_content_after_title($post) {
     if($post->post_type == "documento")
-        _e('<span><i>il <b>Titolo</b> è il <b>Nome del Documento</b></span><br><br>', 'design_scuole_italia' );
+        _e('<span><i>il <b>Titolo</b> è il <b>Nome del Documento</b></span><br><br>', 'design_laboratori_italia' );
 }
 
 
@@ -487,7 +487,7 @@ function sdi_documento_add_content_after_title($post) {
 add_action( 'edit_form_after_editor', 'sdi_documento_add_content_after_editor', 100 );
 function sdi_documento_add_content_after_editor($post) {
     if($post->post_type == "documento")
-        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_scuole_italia' );
+        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_laboratori_italia' );
 }
 
 
@@ -497,7 +497,7 @@ function sdi_documento_add_content_after_editor($post) {
 add_action( 'edit_form_after_title', 'sdi_documento_add_content_before_editor', 100 );
 function sdi_documento_add_content_before_editor($post) {
     if($post->post_type == "documento")
-        _e('<h1>Descrizione Estesa del Documento</h1>', 'design_scuole_italia' );
+        _e('<h1>Descrizione Estesa del Documento</h1>', 'design_laboratori_italia' );
 }
 
 
@@ -506,7 +506,7 @@ function sdi_documento_add_content_before_editor($post) {
 // Register Custom Post Status
 function dsi_register_custom_post_status(){
     register_post_status( 'scaduto', array(
-        'label'                     => _x( 'Scaduto', 'design_scuole_italia' ),
+        'label'                     => _x( 'Scaduto', 'design_laboratori_italia' ),
         'public'                    => true,
         'exclude_from_search'       => false,
         'show_in_admin_all_list'    => true,
@@ -514,7 +514,7 @@ function dsi_register_custom_post_status(){
         'label_count'               => _n_noop( 'Scaduto <span class="count">(%s)</span>', 'Scaduti <span class="count">(%s)</span>' ),
     ) );
     register_post_status( 'annullato', array(
-        'label'                     => _x( 'Annullato', 'design_scuole_italia' ),
+        'label'                     => _x( 'Annullato', 'design_laboratori_italia' ),
         'public'                    => true,
         'exclude_from_search'       => false,
         'show_in_admin_all_list'    => true,

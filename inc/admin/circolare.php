@@ -8,14 +8,14 @@ function dsi_register_circolare_post_type()
 
     /** circolari **/
     $labels = array(
-        'name' => _x('Circolari', 'Post Type General Name', 'design_scuole_italia'),
-        'singular_name' => _x('Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
-        'add_new' => _x('Aggiungi una Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
-        'add_new_item' => _x('Aggiungi una nuova Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
-        'edit_item' => _x('Modifica la Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
+        'name' => _x('Circolari', 'Post Type General Name', 'design_laboratori_italia'),
+        'singular_name' => _x('Circolare', 'Post Type Singular Name', 'design_laboratori_italia'),
+        'add_new' => _x('Aggiungi una Circolare', 'Post Type Singular Name', 'design_laboratori_italia'),
+        'add_new_item' => _x('Aggiungi una nuova Circolare', 'Post Type Singular Name', 'design_laboratori_italia'),
+        'edit_item' => _x('Modifica la Circolare', 'Post Type Singular Name', 'design_laboratori_italia'),
     );
     $args = array(
-        'label' => __('Circolare', 'design_scuole_italia'),
+        'label' => __('Circolare', 'design_laboratori_italia'),
         'labels' => $labels,
         'supports' => array('title', 'editor'),
         'taxonomies' => array('post_tag'),
@@ -31,15 +31,15 @@ function dsi_register_circolare_post_type()
 
 
     $labels = array(
-        'name'              => _x( 'Tipologia Circolare', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Tipologia Circolare', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca Tipologia', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutte le tipologie', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica la Tipologia', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna la Tipologia', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuova Tipologia', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Tipologia', 'design_scuole_italia' ),
+        'name'              => _x( 'Tipologia Circolare', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Tipologia Circolare', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
     );
 
     $args = array(
@@ -80,7 +80,7 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'tipologia',
-        'name'        => '<span class="_dsi_circolare_tipologia">'.__( 'Tipologia circolare *', 'design_scuole_italia' ).'<span>',
+        'name'        => '<span class="_dsi_circolare_tipologia">'.__( 'Tipologia circolare *', 'design_laboratori_italia' ).'<span>',
         'type'             => 'taxonomy_multicheck_inline',
         'taxonomy'       => 'tipologia-circolare',
         'select_all_button' => false,
@@ -91,8 +91,8 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'descrizione',
-        'name'        => __( 'Abstract', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_scuole_italia' ),
+        'name'        => __( 'Abstract', 'design_laboratori_italia' ),
+        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_laboratori_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
             'maxlength'  => '160'
@@ -101,7 +101,7 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_tipologie = new_cmb2_box( array(
         'id'           => $prefix . 'box_sottotitolo',
-//		'title'        => __( 'Sottotitolo', 'design_scuole_italia' ),
+//		'title'        => __( 'Sottotitolo', 'design_laboratori_italia' ),
         'object_types' => array( 'circolare' ),
         'context'      => 'after_title',
         'priority'     => 'high',
@@ -110,34 +110,34 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_tipologie->add_field(array(
         'id' => $prefix . 'numerazione_circolare',
-        'name' => __('Numerazione Circolare', 'design_scuole_italia'),
+        'name' => __('Numerazione Circolare', 'design_laboratori_italia'),
         'type' => 'text_small'
     ));
 
     $cmb_tipologie->add_field(array(
         'id' => $prefix . 'is_pubblica',
-        'name' => __('Visibilità della Circolare sul sito', 'design_scuole_italia'),
-        'desc' => __('Seleziona se il documento è pubblico o visibile solo agli utenti registrati indicati di seguito', 'design_scuole_italia'),
+        'name' => __('Visibilità della Circolare sul sito', 'design_laboratori_italia'),
+        'desc' => __('Seleziona se il documento è pubblico o visibile solo agli utenti registrati indicati di seguito', 'design_laboratori_italia'),
         'type' => 'radio_inline',
         'default' => 'true',
         'options' => array(
-            'true' => __('Pubblica', 'design_scuole_italia'),
-            'false' => __('Personale Scolastico (utenti registrati)', 'design_scuole_italia'),
+            'true' => __('Pubblica', 'design_laboratori_italia'),
+            'false' => __('Personale Scolastico (utenti registrati)', 'design_laboratori_italia'),
         ),
     ));
 
     $cmb_tipologie->add_field(array(
         'id' => $prefix . 'circolare_title',
-        'name' => __('Notifiche agli utenti', 'design_scuole_italia'),
-        'desc' => __('Le circolari inviano notifiche al destinatario, e rendono visibile la circolare sulla sua bacheca utente.<br> NB: Le notifiche vengono inviate <b>al primo salvataggio dell\'articolo in stato "pubblicato"</b>. <b>Da quel momento in poi cambiamenti nei campi che seguono non genereranno notifiche agli utenti</b>.' , 'design_scuole_italia'),
+        'name' => __('Notifiche agli utenti', 'design_laboratori_italia'),
+        'desc' => __('Le circolari inviano notifiche al destinatario, e rendono visibile la circolare sulla sua bacheca utente.<br> NB: Le notifiche vengono inviate <b>al primo salvataggio dell\'articolo in stato "pubblicato"</b>. <b>Da quel momento in poi cambiamenti nei campi che seguono non genereranno notifiche agli utenti</b>.' , 'design_laboratori_italia'),
         'type' => 'title',
     ));
 
 
     $cmb_tipologie->add_field(array(
         'id' => $prefix . 'require_feedback',
-        'name' => __('Richiedi un Feedback agli utenti:', 'design_scuole_italia'),
-        'desc' => __(' Se la circolare è di tipologia "assemblea sindacale" l\'azione richiesta è "Sì/NO. Se la circolare è di tipologia "sciopero" l\'azione richiesta è "Adesione sì/no/presa visione".', 'design_scuole_italia'),
+        'name' => __('Richiedi un Feedback agli utenti:', 'design_laboratori_italia'),
+        'desc' => __(' Se la circolare è di tipologia "assemblea sindacale" l\'azione richiesta è "Sì/NO. Se la circolare è di tipologia "sciopero" l\'azione richiesta è "Adesione sì/no/presa visione".', 'design_laboratori_italia'),
         'type' => 'radio_inline',
         'default' => "false",
         'options' => dsi_get_circolari_feedback_options(),
@@ -145,24 +145,24 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_tipologie->add_field(array(
         'id' => $prefix . 'destinatari_circolari',
-        'name' => __('Destinatari della Circolare', 'design_scuole_italia'),
+        'name' => __('Destinatari della Circolare', 'design_laboratori_italia'),
         'type' => 'radio_inline',
         'default' => 'all',
         'options' => array(
-            'all' => __('Tutta la Scuola', 'design_scuole_italia'),
-            'ruolo' => __('Seleziona in base al ruolo', 'design_scuole_italia'),
-            'gruppo' => __('Seleziona in base al gruppo', 'design_scuole_italia'),
+            'all' => __('Tutta la Scuola', 'design_laboratori_italia'),
+            'ruolo' => __('Seleziona in base al ruolo', 'design_laboratori_italia'),
+            'gruppo' => __('Seleziona in base al gruppo', 'design_laboratori_italia'),
         ),
     ));
 
 
     $cmb_tipologie->add_field( array(
-            'name'       => __('Seleziona i ruoli ', 'design_scuole_italia' ),
+            'name'       => __('Seleziona i ruoli ', 'design_laboratori_italia' ),
             'id' => $prefix . 'ruoli_circolari',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_roles_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Ruoli', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Ruoli', 'design_laboratori_italia' ),
                 'data-conditional-id' => $prefix . 'destinatari_circolari',
                 'data-conditional-value' => "ruolo",
             ),
@@ -170,12 +170,12 @@ function dsi_add_circolare_metaboxes() {
     );
 
     $cmb_tipologie->add_field( array(
-            'name'       => __('Seleziona i gruppi ', 'design_scuole_italia' ),
+            'name'       => __('Seleziona i gruppi ', 'design_laboratori_italia' ),
             'id' => $prefix . 'gruppi_circolari',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_gruppi_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Gruppi', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Gruppi', 'design_laboratori_italia' ),
                 'data-conditional-id' => $prefix . 'destinatari_circolari',
                 'data-conditional-value' => "gruppo",
             ),
@@ -187,7 +187,7 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_undercontent = new_cmb2_box( array(
         'id'           => $prefix . 'box_elementi_articolo',
-        'title'         => __( 'Dettagli Circolare', 'design_scuole_italia' ),
+        'title'         => __( 'Dettagli Circolare', 'design_laboratori_italia' ),
         'object_types' => array( 'circolare' ),
         'context'      => 'normal',
         'priority'     => 'high',
@@ -195,20 +195,20 @@ function dsi_add_circolare_metaboxes() {
     /*
     $cmb_undercontent->add_field( array(
             'id' => $prefix . 'persone',
-            'name'       => __('Persone ', 'design_scuole_italia' ),
-            'desc' => __( 'Link a schede persone dell\'amminisitrazione citate', 'design_scuole_italia' ),
+            'name'       => __('Persone ', 'design_laboratori_italia' ),
+            'desc' => __( 'Link a schede persone dell\'amminisitrazione citate', 'design_laboratori_italia' ),
             'type'    => 'pw_multiselect',
             'options' => dsi_get_user_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             ),
         )
     );
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'luoghi',
-        'name'    => __( 'Luogo', 'design_scuole_italia' ),
-        'desc' => __( 'Link a schede luoghi del sito citati  ' , 'design_scuole_italia' ),
+        'name'    => __( 'Luogo', 'design_laboratori_italia' ),
+        'desc' => __( 'Link a schede luoghi del sito citati  ' , 'design_laboratori_italia' ),
         'type'    => 'custom_attached_posts',
         'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
         'options' => array(
@@ -224,8 +224,8 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'link_schede_documenti',
-        'name'    => __( 'Documenti', 'design_scuole_italia' ),
-        'desc' => __( 'Inserisci qui tutti i documenti che ritieni rilevanti. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_scuole_italia' ),
+        'name'    => __( 'Documenti', 'design_laboratori_italia' ),
+        'desc' => __( 'Inserisci qui tutti i documenti che ritieni rilevanti. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_laboratori_italia' ),
         'type'    => 'custom_attached_posts',
         'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
         'options' => array(
@@ -241,16 +241,16 @@ function dsi_add_circolare_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'file_documenti',
-        'name'    => __( 'Carica documenti', 'design_scuole_italia' ),
-        'desc' => __( 'Se l\'allegato non è descritto da una scheda documento, link all\'allegato. ' , 'design_scuole_italia' ),
+        'name'    => __( 'Carica documenti', 'design_laboratori_italia' ),
+        'desc' => __( 'Se l\'allegato non è descritto da una scheda documento, link all\'allegato. ' , 'design_laboratori_italia' ),
         'type' => 'file_list',
         // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
         // 'query_args' => array( 'type' => 'image' ), // Only images attachment
         // Optional, override default text strings
         'text' => array(
-            'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_scuole_italia' ), // default: "Add or Upload Files"
-            'remove_image_text' => __('Rimuovi Documento', 'design_scuole_italia' ), // default: "Remove Image"
-            'remove_text' => __('Rimuovi', 'design_scuole_italia' ), // default: "Remove"
+            'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_laboratori_italia' ), // default: "Add or Upload Files"
+            'remove_image_text' => __('Rimuovi Documento', 'design_laboratori_italia' ), // default: "Remove Image"
+            'remove_text' => __('Rimuovi', 'design_laboratori_italia' ), // default: "Remove"
         ),
     ) );
 
@@ -455,7 +455,7 @@ add_action('admin_notices', 'dsi_circolari_admin_notice');
 add_action( 'edit_form_after_title', 'sdi_circolare_add_content_after_title' );
 function sdi_circolare_add_content_after_title($post) {
     if($post->post_type == "circolare")
-        _e('<span><>il <b>Titolo</b> è il <b>Nome della Circolare</b></span><br><br>', 'design_scuole_italia' );
+        _e('<span><>il <b>Titolo</b> è il <b>Nome della Circolare</b></span><br><br>', 'design_laboratori_italia' );
 }
 
 
@@ -465,7 +465,7 @@ function sdi_circolare_add_content_after_title($post) {
 add_action( 'edit_form_after_title', 'sdi_circolare_add_content_before_editor', 100 );
 function sdi_circolare_add_content_before_editor($post) {
     if($post->post_type == "circolare")
-        _e('<h1>Testo della Circolare</h1>', 'design_scuole_italia' );
+        _e('<h1>Testo della Circolare</h1>', 'design_laboratori_italia' );
 }
 
 /**
@@ -474,7 +474,7 @@ function sdi_circolare_add_content_before_editor($post) {
 add_action( 'edit_form_after_editor', 'sdi_circolare_add_content_after_editor', 100 );
 function sdi_circolare_add_content_after_editor($post) {
     if($post->post_type == "circolare")
-        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_scuole_italia' );
+        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_laboratori_italia' );
 }
 
 /**
@@ -500,11 +500,11 @@ function dsi_circolare_modify_list_row_actions( $actions, $post ) {
         // Maybe put in some extra arguments based on the post status.
         $pdf_link = add_query_arg( array( 'pdf' => 'true' ), $url );
 
-        $new_actions['pdf'] = sprintf( '<a href="%1$s"><b>%2$s</b></a>', esc_url( $pdf_link ), esc_html( __( 'PDF', 'design_scuole_italia' ) ) );
+        $new_actions['pdf'] = sprintf( '<a href="%1$s"><b>%2$s</b></a>', esc_url( $pdf_link ), esc_html( __( 'PDF', 'design_laboratori_italia' ) ) );
 
         if($notificato) {
             $csv_link = add_query_arg( array( 'csv' => 'true' ), $url );
-            $new_actions['csv'] = sprintf( '<a href="%1$s"><b>%2$s</b></a>', esc_url( $csv_link ), esc_html( __( 'Elenco Firmatari', 'design_scuole_italia' ) ) );
+            $new_actions['csv'] = sprintf( '<a href="%1$s"><b>%2$s</b></a>', esc_url( $csv_link ), esc_html( __( 'Elenco Firmatari', 'design_laboratori_italia' ) ) );
         }
          $actions = array_merge( $actions, $new_actions);
     }

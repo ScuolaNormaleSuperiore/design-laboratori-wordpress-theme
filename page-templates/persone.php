@@ -43,7 +43,7 @@ get_header();
                             <?php if (is_array($responsabile) && count($responsabile) > 0) { ?>
                                 <div class="row variable-gutters mb-4">
                                     <div class="col-lg-3">
-                                        <h3 class="text-lg-right mb-3"><?php _e("Responsabile", "design_scuole_italia"); ?></h3>
+                                        <h3 class="text-lg-right mb-3"><?php _e("Responsabile", "design_laboratori_italia"); ?></h3>
                                     </div><!-- /col-lg-3 -->
                                     <div class="col-lg-9">
                                         <div class="row variable-gutters">
@@ -69,7 +69,7 @@ get_header();
                             <?php if (is_array($persone) && count($persone) > 0) { ?>
                                 <div class="row variable-gutters mb-4">
                                     <div class="col-lg-3">
-                                        <h4 class="text-lg-right mb-3"><?php _e("Persone", "design_scuole_italia"); ?></h4>
+                                        <h4 class="text-lg-right mb-3"><?php _e("Persone", "design_laboratori_italia"); ?></h4>
                                     </div><!-- /col-lg-3 -->
                                     <div class="col-lg-9">
                                         <div class="row variable-gutters">
@@ -95,7 +95,7 @@ get_header();
                             <?php if ($altri_componenti != "") { ?>
                                 <div class="row variable-gutters mb-4">
                                     <div class="col-lg-3">
-                                        <h3 class="h4 text-lg-right mb-3"><?php _e("Componenti esterni", "design_scuole_italia"); ?></h3>
+                                        <h3 class="h4 text-lg-right mb-3"><?php _e("Componenti esterni", "design_laboratori_italia"); ?></h3>
                                     </div><!-- /col-lg-3 -->
                                     <div class="col-lg-9">
                                         <div class="row variable-gutters">

@@ -343,27 +343,27 @@ class Breadcrumb_Trail {
 			// If viewing an archive page.
 			elseif ( is_archive() ) {
                 if(is_post_type_archive(array("luogo", "documento","struttura")))
-                    $this->items[] =  "<a href='".home_url("la-scuola")."'>".__("La Scuola", "design_scuole_italia")."</a>";
+                    $this->items[] =  "<a href='".home_url("la-scuola")."'>".__("La Scuola", "design_laboratori_italia")."</a>";
 
                 else if(is_post_type_archive(array("indirizzo")))
-                    $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", "design_scuole_italia")."</a>";
+                    $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", "design_laboratori_italia")."</a>";
 
                 else if(is_post_type_archive(array("circolare", "evento")))
-                    $this->items[] =  "<a href='".home_url("novita")."'>".__("Novità", "design_scuole_italia")."</a>";
+                    $this->items[] =  "<a href='".home_url("novita")."'>".__("Novità", "design_laboratori_italia")."</a>";
 
                 else if(is_post_type_archive(array("scheda_didattica", "scheda_progetto")))
-                    $this->items[] =  "<a href='".home_url("didattica")."'>".__("Didattica", "design_scuole_italia")."</a>";
+                    $this->items[] =  "<a href='".home_url("didattica")."'>".__("Didattica", "design_laboratori_italia")."</a>";
 
                 if(is_post_type_archive(array("servizio"))){
-                    $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", "design_scuole_italia")."</a>";
-                    $this->items[] =  __("Tutti i Servizi", "design_scuole_italia");
+                    $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", "design_laboratori_italia")."</a>";
+                    $this->items[] =  __("Tutti i Servizi", "design_laboratori_italia");
                 }else if ( is_post_type_archive() ){
                     $this->add_post_type_archive_items();
 
                 }
                 elseif ( is_category() || is_tag() || is_tax() ){
                     if(is_tax(array("tipologia-articolo")))
-                        $this->items[] =  "<a href='".home_url("novita")."'>".__("Novità", "design_scuole_italia")."</a>";
+                        $this->items[] =  "<a href='".home_url("novita")."'>".__("Novità", "design_laboratori_italia")."</a>";
 
                     $this->add_term_archive_items();
                 }

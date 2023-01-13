@@ -48,7 +48,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 // recupero l'anno scolastico di riferimento del progetto
                                 if($anno_scolastico){
                                     ?>
-                                    <i><?php _e("Anno scolastico", "design_scuole_italia"); ?> <?php echo dsi_convert_anno_scuola($anno_scolastico) ?></i>
+                                    <i><?php _e("Anno scolastico", "design_laboratori_italia"); ?> <?php echo dsi_convert_anno_scuola($anno_scolastico) ?></i>
                                     <?php
                                 }
                                 ?>
@@ -75,37 +75,37 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                             <aside class="aside-main aside-sticky">
                                 <div class="aside-title" id="project-legend">
                                     <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e("Indice del progetto", "design_scuole_italia"); ?></span>
+                                        <span><?php _e("Indice del progetto", "design_laboratori_italia"); ?></span>
                                         <svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
                                     </a>
                                 </div>
                                 <div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="project-legend">
                                     <ul class="link-list">
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-cosa" title="Vai al paragrafo <?php _e("Presentazione", "design_scuole_italia"); ?>"><?php _e("Presentazione", "design_scuole_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-cosa" title="Vai al paragrafo <?php _e("Presentazione", "design_laboratori_italia"); ?>"><?php _e("Presentazione", "design_laboratori_italia"); ?></a>
                                         </li>
                                         <?php
                                         if($is_realizzato == "true"){
                                             ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-risultati" title="Vai al paragrafo <?php _e("Risultati", "design_scuole_italia"); ?>"><?php _e("Risultati", "design_scuole_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-risultati" title="Vai al paragrafo <?php _e("Risultati", "design_laboratori_italia"); ?>"><?php _e("Risultati", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) /*|| (is_array($file_documenti) && count($file_documenti)>0)*/){ ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-documenti" title="<?php _e("Vai al paragrafo", "design_scuole_italia"); ?> <?php _e("Documenti", "design_scuole_italia"); ?>"><?php _e("Documenti", "design_scuole_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-documenti" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Documenti", "design_laboratori_italia"); ?>"><?php _e("Documenti", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php }
                                         if ( is_array($posts_array) && count( $posts_array ) )  {   ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-correlati"
-                                                   title="Vai al paragrafo <?php _e("Schede progetto correlate", "design_scuole_italia"); ?>"><?php _e("Schede progetto correlate", "design_scuole_italia"); ?></a>
+                                                   title="Vai al paragrafo <?php _e("Schede progetto correlate", "design_laboratori_italia"); ?>"><?php _e("Schede progetto correlate", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php }                                         
                                         if ( is_array( $gallery ) && count( $gallery ) > 0 ) {
                                             ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-gallery" title="<?php _e("Vai al paragrafo", "design_scuole_italia"); ?> <?php _e("Galleria Immagini", "design_scuole_italia"); ?>"><?php _e("Galleria Immagini", "design_scuole_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-gallery" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Galleria Immagini", "design_laboratori_italia"); ?>"><?php _e("Galleria Immagini", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>
@@ -120,20 +120,20 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 
                                 <div class="row variable-gutters">
                                     <div class="col-lg-9">
-                                        <h3 id="art-par-cosa"><?php _e("Presentazione", "design_scuole_italia"); ?></h3>
-                                        <h4 class="mb-2"><?php _e("Data", "design_scuole_italia"); ?></h4>
+                                        <h3 id="art-par-cosa"><?php _e("Presentazione", "design_laboratori_italia"); ?></h3>
+                                        <h4 class="mb-2"><?php _e("Data", "design_laboratori_italia"); ?></h4>
                                         <p class="text-bluelectric"><strong><?php echo dsi_get_date_evento($post); ?></strong></p>
                                         <?php
                                         if(trim(get_the_content()) != "") {
                                             ?>
                                             <div class="col-lg-12 px-0 wysiwig-text">
-                                            <h4><?php _e("Descrizione del progetto", "design_scuole_italia"); ?></h4>
+                                            <h4><?php _e("Descrizione del progetto", "design_laboratori_italia"); ?></h4>
                                             <?php the_content(); ?>
                                             </div>
                                             <?php
                                         }
                                         ?>
-                                        <h4><?php _e("Obiettivi", "design_scuole_italia"); ?></h4>
+                                        <h4><?php _e("Obiettivi", "design_laboratori_italia"); ?></h4>
                                         <div class="col-lg-12 px-0 wysiwig-text">
                                         <?php
                                         $obiettivi = dsi_get_meta("obiettivi");
@@ -146,7 +146,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     ?>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
-                                            <h4><?php _e( "Luogo", "design_scuole_italia" ); ?></h4>
+                                            <h4><?php _e( "Luogo", "design_laboratori_italia" ); ?></h4>
                                             <?php
                                             $c = 0;
                                             if ( $is_luogo_scuola == "true" && is_array( $link_schede_luoghi ) && count( $link_schede_luoghi ) > 0 ) {
@@ -163,7 +163,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     <?php } ?>
                                 <?php if(is_array($link_strutture)) {
                                     ?>
-                                    <h4><?php _e("Responsabile", "design_scuole_italia"); ?></h4>
+                                    <h4><?php _e("Responsabile", "design_laboratori_italia"); ?></h4>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced mb-2">
@@ -186,7 +186,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 $partecipanti = dsi_get_meta("partecipanti");
                                 if(trim($partecipanti)){
                                     ?>
-                                    <h4><?php _e( "Partecipanti", "design_scuole_italia" ); ?></h4>
+                                    <h4><?php _e( "Partecipanti", "design_laboratori_italia" ); ?></h4>
                                     <div class="row variable-gutters wysiwig-text">
                                         <div class="col-lg-12">
                                             <?php
@@ -221,7 +221,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 $classi = dsi_get_meta("classi");
                                 if(is_array($classi) && count($classi)>0) {
                                     ?>
-                                    <h4><?php _e( "Classi coinvolte", "design_scuole_italia" ); ?></h4>
+                                    <h4><?php _e( "Classi coinvolte", "design_laboratori_italia" ); ?></h4>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
 
@@ -240,7 +240,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 $collaborazione = dsi_get_meta("collaborazione");
                                 if(trim($collaborazione) != "") {
                                     ?>
-                                    <h4><?php _e( "In collaborazione con", "design_scuole_italia" ); ?></h4>
+                                    <h4><?php _e( "In collaborazione con", "design_laboratori_italia" ); ?></h4>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12 wysiwig-text">
                                             <?php echo wpautop($collaborazione); ?>
@@ -252,13 +252,13 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <?php if($is_realizzato == "true"){ ?>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9 wysiwig-text">
-                                            <h4 id="art-par-risultati"><?php _e("Risultati", "design_scuole_italia"); ?></h4>
+                                            <h4 id="art-par-risultati"><?php _e("Risultati", "design_laboratori_italia"); ?></h4>
                                             <?php echo wpautop($risultati); ?>
                                         </div>
                                     </div>
                                 <?php }  ?>
                                 <?php if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) /*|| (is_array($file_documenti) && count($file_documenti)>0)*/){ ?>
-                                    <h4  id="art-par-documenti"><?php _e("Documenti", "design_scuole_italia"); ?></h4>
+                                    <h4  id="art-par-documenti"><?php _e("Documenti", "design_laboratori_italia"); ?></h4>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">
@@ -288,7 +288,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 }
                                 ?>
                                 <?php if($link_schede_servizi){ ?>
-                                    <h4><?php _e("Servizi associati al progetto", "design_scuole_italia"); ?></h4>
+                                    <h4><?php _e("Servizi associati al progetto", "design_laboratori_italia"); ?></h4>
                                     <div class="card-deck card-deck-spaced mb-4">
                                         <?php
                                         foreach ($link_schede_servizi as $idservizio){

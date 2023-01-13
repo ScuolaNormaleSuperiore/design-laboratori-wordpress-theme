@@ -7,20 +7,20 @@ function dsi_register_struttura_post_type() {
 
     /** struttura **/
     $labels = array(
-        'name'          => _x( 'Strutture', 'Post Type General Name', 'design_scuole_italia' ),
-        'singular_name' => _x( 'Struttura', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'add_new'       => _x( 'Aggiungi Struttura Organizzativa', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'add_new_item'  => _x( 'Aggiungi la Struttura Organizzativa', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'edit_item'      => _x( 'Modifica la Struttura Organizzativa', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'view_item'      => _x( 'Visualizza la Struttura Organizzativa', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'featured_image' => __( 'Immagine principale della Struttura', 'design_scuole_italia' ),
+        'name'          => _x( 'Strutture', 'Post Type General Name', 'design_laboratori_italia' ),
+        'singular_name' => _x( 'Struttura', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'add_new'       => _x( 'Aggiungi Struttura Organizzativa', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'add_new_item'  => _x( 'Aggiungi la Struttura Organizzativa', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'edit_item'      => _x( 'Modifica la Struttura Organizzativa', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'view_item'      => _x( 'Visualizza la Struttura Organizzativa', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'featured_image' => __( 'Immagine principale della Struttura', 'design_laboratori_italia' ),
         'set_featured_image' => __( 'Seleziona Immagine' ),
-        'remove_featured_image' => __( 'Rimuovi Immagine' , 'design_scuole_italia' ),
-        'use_featured_image' => __( 'Usa come Immagine della Struttura' , 'design_scuole_italia' ),
+        'remove_featured_image' => __( 'Rimuovi Immagine' , 'design_laboratori_italia' ),
+        'use_featured_image' => __( 'Usa come Immagine della Struttura' , 'design_laboratori_italia' ),
 
     );
     $args   = array(
-        'label'         => __( 'Struttura Organizzativa', 'design_scuole_italia' ),
+        'label'         => __( 'Struttura Organizzativa', 'design_laboratori_italia' ),
         'labels'        => $labels,
         'supports'      => array( 'title', 'editor', 'thumbnail' ),
         'hierarchical'  => true,
@@ -35,15 +35,15 @@ function dsi_register_struttura_post_type() {
 
 
     $labels = array(
-        'name'              => _x( 'Tipologia Struttura', 'taxonomy general name', 'design_scuole_italia' ),
-        'singular_name'     => _x( 'Tipologia Struttura', 'taxonomy singular name', 'design_scuole_italia' ),
-        'search_items'      => __( 'Cerca Tipologia', 'design_scuole_italia' ),
-        'all_items'         => __( 'Tutte le tipologie', 'design_scuole_italia' ),
-        'edit_item'         => __( 'Modifica la Tipologia', 'design_scuole_italia' ),
-        'update_item'       => __( 'Aggiorna la Tipologia', 'design_scuole_italia' ),
-        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_scuole_italia' ),
-        'new_item_name'     => __( 'Nuova Tipologia', 'design_scuole_italia' ),
-        'menu_name'         => __( 'Tipologia', 'design_scuole_italia' ),
+        'name'              => _x( 'Tipologia Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
+        'singular_name'     => _x( 'Tipologia Struttura', 'taxonomy singular name', 'design_laboratori_italia' ),
+        'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+        'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+        'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+        'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+        'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+        'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+        'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
     );
 
     $args = array(
@@ -80,7 +80,7 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo = new_cmb2_box( array(
         'id'           => $prefix . 'box_sottotitolo',
-//		'title'        => __( 'Sottotitolo', 'design_scuole_italia' ),
+//		'title'        => __( 'Sottotitolo', 'design_laboratori_italia' ),
         'object_types' => array( 'struttura' ),
         'context'      => 'after_title',
         'priority'     => 'high',
@@ -89,7 +89,7 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'tipologia',
-        'name'        => __( 'Tipologia struttura', 'design_scuole_italia' ),
+        'name'        => __( 'Tipologia struttura', 'design_laboratori_italia' ),
         'type'             => 'taxonomy_radio_inline',
         'taxonomy'       => 'tipologia-struttura',
         'remove_default' => 'true'
@@ -97,7 +97,7 @@ function dsi_add_struttura_metaboxes() {
 
         $cmb_sottotitolo->add_field( array(
             'id' => $prefix . 'indirizzi',
-            'name'        => __( 'Percorsi di studio della Scuola', 'design_scuole_italia' ),
+            'name'        => __( 'Percorsi di studio della Scuola', 'design_laboratori_italia' ),
             'type'             => 'taxonomy_multicheck_hierarchy_child',
             'select_all_button' => false,
             'taxonomy'       => 'percorsi-di-studio',
@@ -111,8 +111,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'link_servizi_didattici',
-        'name'    => __( 'Indirizzi di studio erogati dalla scuola ', 'design_scuole_italia' ),
-        'desc' => __( 'Se la struttura descritta è una scuola o un istituto link ai percorsi di studio presenti nella scuola Infanzia / Primaria / secondaria primo grado / secondaria di secondo grado ' , 'design_scuole_italia' ),
+        'name'    => __( 'Indirizzi di studio erogati dalla scuola ', 'design_laboratori_italia' ),
+        'desc' => __( 'Se la struttura descritta è una scuola o un istituto link ai percorsi di studio presenti nella scuola Infanzia / Primaria / secondaria primo grado / secondaria di secondo grado ' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
         'options' =>  dsi_get_servizi_didattici_options(),
         'attributes' => array(
@@ -123,8 +123,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'codice_meccanografico',
-        'name'    => __( 'Codice meccanografico ', 'design_scuole_italia' ),
-        'desc' => __( 'Codice meccanografico dalla scuola' , 'design_scuole_italia' ),
+        'name'    => __( 'Codice meccanografico ', 'design_laboratori_italia' ),
+        'desc' => __( 'Codice meccanografico dalla scuola' , 'design_laboratori_italia' ),
         'type'    => 'text',
         'attributes' => array(
             'data-conditional-id' => $prefix . 'tipologia',
@@ -135,8 +135,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'descrizione',
-        'name'        => __( 'Descrizione Breve', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare una sintetica descrizione della struttura (max 160 caratteri) ' , 'design_scuole_italia' ),
+        'name'        => __( 'Descrizione Breve', 'design_laboratori_italia' ),
+        'desc' => __( 'Indicare una sintetica descrizione della struttura (max 160 caratteri) ' , 'design_laboratori_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
             'maxlength'  => '160'
@@ -146,8 +146,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_sottotitolo->add_field( array(
         'id'         => $prefix . 'childof',
-        'name'       => __( 'La struttura dipende da un\'altra  struttura. ', 'design_scuole_italia' ),
-        'desc'       => __( 'Ad esempio se è una scuola di un istituto, seleziona l\'istituto di cui fa parte', 'design_scuole_italia' ),
+        'name'       => __( 'La struttura dipende da un\'altra  struttura. ', 'design_laboratori_italia' ),
+        'desc'       => __( 'Ad esempio se è una scuola di un istituto, seleziona l\'istituto di cui fa parte', 'design_laboratori_italia' ),
         'type'       => 'select',
         'show_option_none' => true,
         'options' => dsi_get_strutture_options(),
@@ -156,7 +156,7 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_undercontent = new_cmb2_box( array(
         'id'           => $prefix . 'box_elementi_struttura',
-        'title'         => __( 'Dettagli Struttura', 'design_scuole_italia' ),
+        'title'         => __( 'Dettagli Struttura', 'design_laboratori_italia' ),
         'object_types' => array( 'struttura' ),
         'context'      => 'normal',
         'priority'     => 'high',
@@ -166,13 +166,13 @@ function dsi_add_struttura_metaboxes() {
     /*
         $group_field_id = $cmb_undercontent->add_field( array(
             'id'          => $prefix . 'didattica',
-            'name'        => __('<h1>Didattica</h1>', 'design_scuole_italia' ),
+            'name'        => __('<h1>Didattica</h1>', 'design_laboratori_italia' ),
             'type'        => 'group',
-            'description' => __( 'Se la struttura descritta è una <scuola> indicazione dei cicli scolastici presenti nella scuola (scuola infanzia / primo ciclo / secondo ciclo) e link alle relative sezioni della sezione didattica', 'design_scuole_italia' ),
+            'description' => __( 'Se la struttura descritta è una <scuola> indicazione dei cicli scolastici presenti nella scuola (scuola infanzia / primo ciclo / secondo ciclo) e link alle relative sezioni della sezione didattica', 'design_laboratori_italia' ),
             'options'     => array(
-                'group_title'    => __( 'Didattica {#}', 'design_scuole_italia' ), // {#} gets replaced by row number
-                'add_button'     => __( 'Aggiungi', 'design_scuole_italia' ),
-                'remove_button'  => __( 'Rimuovi', 'design_scuole_italia' ),
+                'group_title'    => __( 'Didattica {#}', 'design_laboratori_italia' ), // {#} gets replaced by row number
+                'add_button'     => __( 'Aggiungi', 'design_laboratori_italia' ),
+                'remove_button'  => __( 'Rimuovi', 'design_laboratori_italia' ),
                 'sortable'       => true,
                 'closed'      => false, // true to have the groups closed by default
                 //'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
@@ -182,21 +182,21 @@ function dsi_add_struttura_metaboxes() {
 
         $cmb_undercontent->add_group_field( $group_field_id, array(
             'id' => 'nome_ciclo',
-            'name'    => __( 'Il nome del ciclo scolastico (scuola infanzia / primo ciclo / secondo ciclo, etc)', 'design_scuole_italia' ),
+            'name'    => __( 'Il nome del ciclo scolastico (scuola infanzia / primo ciclo / secondo ciclo, etc)', 'design_laboratori_italia' ),
             'type'             => 'text',
         ) );
 
         $cmb_undercontent->add_group_field( $group_field_id, array(
             'id' => 'url_ciclo',
-            'name'    => __( 'Link della relativa sezione didattica', 'design_scuole_italia' ),
+            'name'    => __( 'Link della relativa sezione didattica', 'design_laboratori_italia' ),
             'type'             => 'text_url',
         ) );
     */
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'link_schede_servizi',
-        'name'    => __( 'Servizi di cui la struttura è responsabile ', 'design_scuole_italia' ),
-        'before' => __( '<p>Link alle schede servizio gestite dalla struttura. Es. se la segreteria è responsabile del servizio di delega, ci sarà un link alla scheda "Delega per ingressi e uscite anticipati". Se la dirigenza è responsabile del servizio "Alternanza scuola lavoro" ci sarà un link alla relativa scheda </p>' , 'design_scuole_italia' ),
+        'name'    => __( 'Servizi di cui la struttura è responsabile ', 'design_laboratori_italia' ),
+        'before' => __( '<p>Link alle schede servizio gestite dalla struttura. Es. se la segreteria è responsabile del servizio di delega, ci sarà un link alla scheda "Delega per ingressi e uscite anticipati". Se la dirigenza è responsabile del servizio "Alternanza scuola lavoro" ci sarà un link alla relativa scheda </p>' , 'design_laboratori_italia' ),
         'type'    => 'custom_attached_posts',
         'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
         'options' => array(
@@ -221,8 +221,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'link_schede_progetti',
-        'name'    => __( 'Progetti ', 'design_scuole_italia' ),
-        'before' => __( '<p>Link alle schede progetti gestite dalla struttura. </p>' , 'design_scuole_italia' ),
+        'name'    => __( 'Progetti ', 'design_laboratori_italia' ),
+        'before' => __( '<p>Link alle schede progetti gestite dalla struttura. </p>' , 'design_laboratori_italia' ),
         'type'    => 'custom_attached_posts',
         'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
         'options' => array(
@@ -237,13 +237,13 @@ function dsi_add_struttura_metaboxes() {
 
 
     $cmb_undercontent->add_field( array(
-            'name'       => __('Persone responsabili ', 'design_scuole_italia' ),
-            'desc' => __( 'Link alla scheda responsabile della struttura. ', 'design_scuole_italia' ),
+            'name'       => __('Persone responsabili ', 'design_laboratori_italia' ),
+            'desc' => __( 'Link alla scheda responsabile della struttura. ', 'design_laboratori_italia' ),
             'id' => $prefix . 'responsabile',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_user_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             ),
         )
     );
@@ -251,33 +251,33 @@ function dsi_add_struttura_metaboxes() {
 
 
     $cmb_undercontent->add_field( array(
-            'name'       => __('Persone ', 'design_scuole_italia' ),
-            'desc' => __( 'Eventuale lista delle persone che lavorano nella struttura', 'design_scuole_italia' ),
+            'name'       => __('Persone ', 'design_laboratori_italia' ),
+            'desc' => __( 'Eventuale lista delle persone che lavorano nella struttura', 'design_laboratori_italia' ),
             'id' => $prefix . 'persone',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_user_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             ),
         )
     );
 
 
     $cmb_undercontent->add_field( array(
-            'name'       => __('Persone ', 'design_scuole_italia' ),
-            'desc' => __( 'Eventuale lista delle persone che lavorano nella struttura', 'design_scuole_italia' ),
+            'name'       => __('Persone ', 'design_laboratori_italia' ),
+            'desc' => __( 'Eventuale lista delle persone che lavorano nella struttura', 'design_laboratori_italia' ),
             'id' => $prefix . 'persone',
             'type'    => 'pw_multiselect',
             'options' => dsi_get_user_options(),
             'attributes' => array(
-                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+                'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
             ),
         )
     );
 
     $cmb_undercontent->add_field( array(
-            'name'       => __('Altri Componenti ', 'design_scuole_italia' ),
-            'desc' => __( 'Persone che non fanno parte del personale scolastico, separate da virgola', 'design_scuole_italia' ),
+            'name'       => __('Altri Componenti ', 'design_laboratori_italia' ),
+            'desc' => __( 'Persone che non fanno parte del personale scolastico, separate da virgola', 'design_laboratori_italia' ),
             'id' => $prefix . 'altri_componenti',
             'type'    => 'text',
         )
@@ -288,8 +288,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix .'sedi',
-        'name'    => __( 'Sedi', 'design_scuole_italia' ),
-        'desc' => __( 'Selezione i <a href="edit.php?post_type=luogo">luoghi</a> che rappresentano le sedi della struttura, in ordine di importanza se più di uno. ' , 'design_scuole_italia' ),
+        'name'    => __( 'Sedi', 'design_laboratori_italia' ),
+        'desc' => __( 'Selezione i <a href="edit.php?post_type=luogo">luoghi</a> che rappresentano le sedi della struttura, in ordine di importanza se più di uno. ' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
         'options' =>  dsi_get_luoghi_options(),
     ) );
@@ -297,8 +297,8 @@ function dsi_add_struttura_metaboxes() {
     /*
     $cmb_undercontent->add_field( array(
         'id' => $prefix .'luoghi',
-        'name'    => __( 'Luoghi presenti nella struttura', 'design_scuole_italia' ),
-        'desc' => __( 'Inserire tutti i <a href="edit.php?post_type=luogo">luoghi</a> presenti nella struttura. ' , 'design_scuole_italia' ),
+        'name'    => __( 'Luoghi presenti nella struttura', 'design_laboratori_italia' ),
+        'desc' => __( 'Inserire tutti i <a href="edit.php?post_type=luogo">luoghi</a> presenti nella struttura. ' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
         'options' =>  dsi_get_luoghi_options(),
     ) );
@@ -306,16 +306,16 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id'         => $prefix . 'telefono',
-        'name'       => __( 'Recapito telefonico struttura', 'design_scuole_italia' ),
-        'desc'       => __( 'Numero di telefono della struttura. ', 'design_scuole_italia' ),
+        'name'       => __( 'Recapito telefonico struttura', 'design_laboratori_italia' ),
+        'desc'       => __( 'Numero di telefono della struttura. ', 'design_laboratori_italia' ),
         'type'       => 'text',
     ) );
 
 
     $cmb_undercontent->add_field( array(
         'id'         => $prefix . 'mail',
-        'name'       => __( 'Email della struttura', 'design_scuole_italia' ),
-        'desc'       => __( 'Email della struttura. ', 'design_scuole_italia' ),
+        'name'       => __( 'Email della struttura', 'design_laboratori_italia' ),
+        'desc'       => __( 'Email della struttura. ', 'design_laboratori_italia' ),
         'type'       => 'text_email',
     ) );
 
@@ -323,8 +323,8 @@ function dsi_add_struttura_metaboxes() {
 
     $cmb_undercontent->add_field( array(
         'id' => $prefix . 'altre_info',
-        'name'        => __( 'Ulteriori informazioni', 'design_scuole_italia' ),
-        'desc' => __( 'Ulteriori informazioni sul Servizio, FAQ ed eventuali riferimenti normativi.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_scuole_italia' ),
+        'name'        => __( 'Ulteriori informazioni', 'design_laboratori_italia' ),
+        'desc' => __( 'Ulteriori informazioni sul Servizio, FAQ ed eventuali riferimenti normativi.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_laboratori_italia' ),
         'type'    => 'wysiwyg',
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
@@ -343,7 +343,7 @@ function dsi_add_struttura_metaboxes() {
 add_action( 'edit_form_after_title', 'sdi_struttura_add_content_after_title' );
 function sdi_struttura_add_content_after_title($post) {
     if($post->post_type == "struttura")
-        _e('<span><i>il <b>Titolo</b> è il <b>Nome della struttura organizzativa</b>. es: Presidenza / Segreteria / Scuola del nome istituto</i></span><br><br>', 'design_scuole_italia' );
+        _e('<span><i>il <b>Titolo</b> è il <b>Nome della struttura organizzativa</b>. es: Presidenza / Segreteria / Scuola del nome istituto</i></span><br><br>', 'design_laboratori_italia' );
 }
 
 /**
@@ -352,7 +352,7 @@ function sdi_struttura_add_content_after_title($post) {
 add_action( 'edit_form_after_title', 'sdi_struttura_add_content_before_editor', 100 );
 function sdi_struttura_add_content_before_editor($post) {
     if($post->post_type == "struttura")
-        _e('<h1>Cosa fa </h1> Elenco/descrizione dei compiti assegnati alla struttura', 'design_scuole_italia' );
+        _e('<h1>Cosa fa </h1> Elenco/descrizione dei compiti assegnati alla struttura', 'design_laboratori_italia' );
 }
 
 /**
@@ -361,7 +361,7 @@ function sdi_struttura_add_content_before_editor($post) {
 add_action( 'edit_form_after_editor', 'sdi_struttura_add_content_after_editor', 100 );
 function sdi_struttura_add_content_after_editor($post) {
     if($post->post_type == "struttura")
-        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_scuole_italia' );
+        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_laboratori_italia' );
 }
 
 // relazione bidirezionale struttura / progetti

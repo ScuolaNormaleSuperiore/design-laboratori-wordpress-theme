@@ -8,14 +8,14 @@
 						<div class="row variable-gutters">
 							<div class="col">
 								<h2 class="h2" id="searchModal" >
-									<?php _e("Cerca","design_scuole_italia"); ?>
+									<?php _e("Cerca","design_laboratori_italia"); ?>
 									<button type="button" class="close dismiss" data-dismiss="modal" aria-label="Chiudi">
 										<svg class="svg-cancel-large"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use></svg>
 									</button>
 								</h2>
 								<div class="form-group search-form">
-									<label for="search-input"><?php _e("Cerca","design_scuole_italia"); ?></label>
-									<input type="text" name="s" id="search-input" data-element="search-modal-input" class="form-control" placeholder="<?php _e("Cerca informazioni, servizi, notizie o documenti","design_scuole_italia"); ?>" value="<?php echo get_search_query(); ?>">
+									<label for="search-input"><?php _e("Cerca","design_laboratori_italia"); ?></label>
+									<input type="text" name="s" id="search-input" data-element="search-modal-input" class="form-control" placeholder="<?php _e("Cerca informazioni, servizi, notizie o documenti","design_laboratori_italia"); ?>" value="<?php echo get_search_query(); ?>">
                                     <button type="button" class="clean-input" aria-label="Elimina testo di ricerca">
                                         <svg class="svg-cancel-large" role="presentation">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use>
@@ -34,7 +34,7 @@
                                     if(dsi_count_grouped_posts($post_types)) {
 	                                    ?>
                                         <div class="custom-control custom-submit-redbrown">
-									        <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "school") echo "checked"; ?>" id="scuola" name="type" value="school"><?php _e( "Cerca nella sezione <strong class='text-uppercase text-small-bold'>scuola</strong>", "design_scuole_italia" ); ?></button>
+									        <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "school") echo "checked"; ?>" id="scuola" name="type" value="school"><?php _e( "Cerca nella sezione <strong class='text-uppercase text-small-bold'>scuola</strong>", "design_laboratori_italia" ); ?></button>
                                         </div>
 	                                    <?php }
                                     // check if post type is used
@@ -42,7 +42,7 @@
                                     if(dsi_count_grouped_posts($post_types)) {
                                     ?>
 									<div class="custom-control custom-submit-greendark">
-									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "news") echo "checked"; ?>" id="notizie" name="type" value="news"><?php _e("Cerca tra le <strong class='text-uppercase text-small-bold'>novità</strong>","design_scuole_italia"); ?></button>
+									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "news") echo "checked"; ?>" id="notizie" name="type" value="news"><?php _e("Cerca tra le <strong class='text-uppercase text-small-bold'>novità</strong>","design_laboratori_italia"); ?></button>
 									</div>
 									<?php }
                                     // check if post type is used
@@ -50,7 +50,7 @@
                                     if(dsi_count_grouped_posts($post_types)) {
                                     ?>
 									<div class="custom-control custom-submit-purplelight">
-									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "service") echo "checked"; ?>" id="servizi" name="type" value="service"><?php _e("Cerca nei <strong class='text-uppercase text-small-bold'>servizi</strong>","design_scuole_italia"); ?></button>
+									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "service") echo "checked"; ?>" id="servizi" name="type" value="service"><?php _e("Cerca nei <strong class='text-uppercase text-small-bold'>servizi</strong>","design_laboratori_italia"); ?></button>
                                     </div>
 									<?php }
                                     // check if post type is used
@@ -58,7 +58,7 @@
                                     if(dsi_count_grouped_posts($post_types)) {
                                     ?>
 									<div class="custom-control custom-submit-bluelectric">
-									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "education") echo "checked"; ?>" id="didattica" name="type" value="education"><?php _e("Cerca nella <strong class='text-uppercase text-small-bold'>didattica</strong>","design_scuole_italia"); ?></button>
+									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "education") echo "checked"; ?>" id="didattica" name="type" value="education"><?php _e("Cerca nella <strong class='text-uppercase text-small-bold'>didattica</strong>","design_laboratori_italia"); ?></button>
 									</div>
 									<?php }
                                     // check if post type is used
@@ -68,11 +68,11 @@
                                     ?>
 									<div class="custom-control custom-checkbox custom-checkbox-grey">
 										<input type="submit" class="custom-control-input <?php if(isset($_GET["type"]) && $_GET["type"] == "class") echo "checked"; ?>" id="la-mia-classe" name="type" value="class">
-										<label class="custom-control-label" for="la-mia-classe"><?php _e("La mia classe","design_scuole_italia"); ?></label>
+										<label class="custom-control-label" for="la-mia-classe"><?php _e("La mia classe","design_laboratori_italia"); ?></label>
 									</div>
 									<?php } */ ?>
                                     <div class="custom-control custom-submit-primary">
-									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "any") echo "checked"; ?>" id="tutto" name="type" value="any"><?php _e("Cerca in <strong class='text-uppercase text-small-bold'>tutto il sito</strong>","design_scuole_italia"); ?></button>
+									    <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "any") echo "checked"; ?>" id="tutto" name="type" value="any"><?php _e("Cerca in <strong class='text-uppercase text-small-bold'>tutto il sito</strong>","design_laboratori_italia"); ?></button>
                                     </div>
 								</div>
 							</div>
@@ -122,7 +122,7 @@
                             <div class="row variable-gutters">
                                 <div class="col-lg-12">
                                     <div class="badges-wrapper">
-                                        <h3 class="h4"><?php _e("Potrebbero interessarti","design_scuole_italia"); ?></h3>
+                                        <h3 class="h4"><?php _e("Potrebbero interessarti","design_laboratori_italia"); ?></h3>
                                         <div class="badges">
                                             <?php
                                             foreach ($argomenti as $argomento){

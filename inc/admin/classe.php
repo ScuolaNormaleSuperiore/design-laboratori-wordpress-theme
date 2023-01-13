@@ -5,15 +5,15 @@
 function dsi_register_classe_tax() {
 
 	$labels = array(
-		'name'              => _x( 'Classi', 'taxonomy general name', 'design_scuole_italia' ),
-		'singular_name'     => _x( 'Classe', 'taxonomy singular name', 'design_scuole_italia' ),
-		'search_items'      => __( 'Cerca Classe', 'design_scuole_italia' ),
-		'all_items'         => __( 'Tutte le classi', 'design_scuole_italia' ),
-		'edit_item'         => __( 'Modifica la Classe', 'design_scuole_italia' ),
-		'update_item'       => __( 'Aggiorna la Classe', 'design_scuole_italia' ),
-		'add_new_item'      => __( 'Aggiungi una Classe', 'design_scuole_italia' ),
-		'new_item_name'     => __( 'Nuova Classe', 'design_scuole_italia' ),
-		'menu_name'         => __( 'Classe', 'design_scuole_italia' ),
+		'name'              => _x( 'Classi', 'taxonomy general name', 'design_laboratori_italia' ),
+		'singular_name'     => _x( 'Classe', 'taxonomy singular name', 'design_laboratori_italia' ),
+		'search_items'      => __( 'Cerca Classe', 'design_laboratori_italia' ),
+		'all_items'         => __( 'Tutte le classi', 'design_laboratori_italia' ),
+		'edit_item'         => __( 'Modifica la Classe', 'design_laboratori_italia' ),
+		'update_item'       => __( 'Aggiorna la Classe', 'design_laboratori_italia' ),
+		'add_new_item'      => __( 'Aggiungi una Classe', 'design_laboratori_italia' ),
+		'new_item_name'     => __( 'Nuova Classe', 'design_laboratori_italia' ),
+		'menu_name'         => __( 'Classe', 'design_laboratori_italia' ),
 	);
 
 	$args = array(
@@ -42,7 +42,7 @@ function dsi_register_classe_metabox() {
 	 */
 	$cmb_term = new_cmb2_box( array(
 		'id'               => $prefix . 'edit',
-		'title'            => esc_html__( 'Classe', 'design_scuole_italia' ), // Doesn't output for term boxes
+		'title'            => esc_html__( 'Classe', 'design_laboratori_italia' ), // Doesn't output for term boxes
 		'object_types'     => array( 'term' ), // Tells CMB2 to use term_meta vs post_meta
 		'taxonomies'       => array( 'classe'), // Tells CMB2 which taxonomies should have these fields
 		// 'new_term_section' => true, // Will display in the "Add New Category" section
@@ -53,7 +53,7 @@ function dsi_register_classe_metabox() {
         $options_anno[$i] = $i."/".($i+1);
     }
     $cmb_term->add_field( array(
-        'name'    =>  __( 'Anno scolastico', 'design_scuole_italia' ),
+        'name'    =>  __( 'Anno scolastico', 'design_laboratori_italia' ),
         'id'   => $prefix.'anno_scolastico',
         'type'    => 'pw_select',
         'options' => $options_anno,
@@ -62,16 +62,16 @@ function dsi_register_classe_metabox() {
 
     $cmb_term->add_field(  array(
         'id' => $prefix.'struttura_organizzativa',
-        'name'    => __( 'Seleziona la Scuola  di cui fa parte la classe', 'design_scuole_italia' ),
-        'desc' => __( 'NB: La scuola è una <a href="edit.php?post_type=struttura">Struttura organizzativa</a> di tipologia "Scuola. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_scuole_italia' ),
+        'name'    => __( 'Seleziona la Scuola  di cui fa parte la classe', 'design_laboratori_italia' ),
+        'desc' => __( 'NB: La scuola è una <a href="edit.php?post_type=struttura">Struttura organizzativa</a> di tipologia "Scuola. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_laboratori_italia' ),
         'type'    => 'pw_select',
         'options' => dsi_get_strutture_scuole_options(),
     ) );
 
     $cmb_term->add_field(  array(
         'id' => $prefix.'percorso_studi',
-        'name'    => __( 'Settore, Indirizzo o Percorso specifico', 'design_scuole_italia' ),
-        'desc' => __( 'NB: Puoi selezionare i percorsi di studio che hai associato alle Strutture di tipo scuola' , 'design_scuole_italia' ),
+        'name'    => __( 'Settore, Indirizzo o Percorso specifico', 'design_laboratori_italia' ),
+        'desc' => __( 'NB: Puoi selezionare i percorsi di studio che hai associato alle Strutture di tipo scuola' , 'design_laboratori_italia' ),
         'type'    => 'pw_select',
         'options' => dsi_get_strutture_indirizzo_scuole_options(),
     ) );
@@ -81,18 +81,18 @@ function dsi_register_classe_metabox() {
 /** calendario  **/
     $cmb_term->add_field(
 		array(
-			'name' => __( '<br>Calendario delle Lezioni', 'design_scuole_italia' ),
+			'name' => __( '<br>Calendario delle Lezioni', 'design_laboratori_italia' ),
 			'type' => 'title',
 			'id'   => $prefix.'calendario_title'
 		)
 	);
 	$cmb_term->add_field( array(
-		'name'    =>  __( 'Mostra il Calendario', 'design_scuole_italia' ),
+		'name'    =>  __( 'Mostra il Calendario', 'design_laboratori_italia' ),
 		'id'   => $prefix.'calendario_enabled',
 		'type'    => 'radio_inline',
 		'options' => array(
-			0 => __( 'No', 'design_scuole_italia' ),
-			1   => __( 'Si', 'design_scuole_italia' ),
+			0 => __( 'No', 'design_laboratori_italia' ),
+			1   => __( 'Si', 'design_laboratori_italia' ),
 		),
 		'default' => 0,
 	) );
@@ -104,15 +104,15 @@ function dsi_register_classe_metabox() {
         $group_field_id = $cmb_term->add_field(array(
             'id' => $prefix . $ggkey,
             'type' => 'group',
-            'name' => __(ucfirst($ggvalue), 'design_scuole_italia'),
-            'description' => __('Inserisci gli orari del ' . $ggvalue, 'design_scuole_italia'),
+            'name' => __(ucfirst($ggvalue), 'design_laboratori_italia'),
+            'description' => __('Inserisci gli orari del ' . $ggvalue, 'design_laboratori_italia'),
 
             // 'repeatable'  => false, // use false if you want non-repeatable group
             'options' => array(
-                'group_title' => __('Lezione {#}', 'design_scuole_italia'),
+                'group_title' => __('Lezione {#}', 'design_laboratori_italia'),
                 // since version 1.1.4, {#} gets replaced by row number
-                'add_button' => __('Aggiungi una lezione', 'design_scuole_italia'),
-                'remove_button' => __('Rimuovi', 'design_scuole_italia'),
+                'add_button' => __('Aggiungi una lezione', 'design_laboratori_italia'),
+                'remove_button' => __('Rimuovi', 'design_laboratori_italia'),
                 'sortable' => true,
                  'closed'         => true, // true to have the groups closed by default
                 // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
@@ -124,19 +124,19 @@ function dsi_register_classe_metabox() {
         ));
 
         $cmb_term->add_group_field($group_field_id, array(
-            'name' => __('Ora inizio', 'design_scuole_italia'),
+            'name' => __('Ora inizio', 'design_laboratori_italia'),
             'id' => 'ora_inizio',
             'type' => 'text_time',
         ));
         $cmb_term->add_group_field($group_field_id, array(
-            'name' => __('Ora fine', 'design_scuole_italia'),
+            'name' => __('Ora fine', 'design_laboratori_italia'),
             'id' => 'ora_fine',
             'type' => 'text_time'
         ));
 
 
         $cmb_term->add_group_field($group_field_id, array(
-                'name' => __('Materia', 'design_scuole_italia'),
+                'name' => __('Materia', 'design_laboratori_italia'),
                 'id' => 'materia',
                 'taxonomy' => 'materia', //Enter Taxonomy Slug
                 'type' => 'taxonomy_select',
@@ -152,13 +152,13 @@ function dsi_register_classe_metabox() {
 
     $group_field_id = $cmb_term->add_field( array(
         'id'          => $prefix . 'libri',
-        'name'        => __('<h1>Libri</h1>', 'design_scuole_italia' ),
+        'name'        => __('<h1>Libri</h1>', 'design_laboratori_italia' ),
         'type'        => 'group',
-        'description' => __( 'Lista libri obbligatori', 'design_scuole_italia' ),
+        'description' => __( 'Lista libri obbligatori', 'design_laboratori_italia' ),
         'options'     => array(
-            'group_title'    => __( 'Libro {#}', 'design_scuole_italia' ), // {#} gets replaced by row number
-            'add_button'     => __( 'Aggiungi un libro', 'design_scuole_italia' ),
-            'remove_button'  => __( 'Rimuovi', 'design_scuole_italia' ),
+            'group_title'    => __( 'Libro {#}', 'design_laboratori_italia' ), // {#} gets replaced by row number
+            'add_button'     => __( 'Aggiungi un libro', 'design_laboratori_italia' ),
+            'remove_button'  => __( 'Rimuovi', 'design_laboratori_italia' ),
             'sortable'       => true,
             // 'closed'      => true, // true to have the groups closed by default
             //'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
@@ -167,28 +167,28 @@ function dsi_register_classe_metabox() {
 
     $cmb_term->add_group_field( $group_field_id, array(
         'id' => 'titolo_libro',
-        'description'    => __( 'Titolo del Libro', 'design_scuole_italia' ),
+        'description'    => __( 'Titolo del Libro', 'design_laboratori_italia' ),
         'type'    => 'text'
 
     ) );
 
     $cmb_term->add_group_field( $group_field_id, array(
         'id' => 'autore_libro',
-        'description'    => __( 'Autore del libro', 'design_scuole_italia' ),
+        'description'    => __( 'Autore del libro', 'design_laboratori_italia' ),
         'type'    => 'text'
 
     ) );
 
     $cmb_term->add_group_field( $group_field_id, array(
         'id' => 'editore_libro',
-        'description'    => __( 'Editore del libro', 'design_scuole_italia' ),
+        'description'    => __( 'Editore del libro', 'design_laboratori_italia' ),
         'type'    => 'text'
 
     ) );
 
     $cmb_term->add_group_field( $group_field_id, array(
         'id' => 'isbn_libro',
-        'description'    => __( 'Codice ISBN', 'design_scuole_italia' ),
+        'description'    => __( 'Codice ISBN', 'design_laboratori_italia' ),
         'type'    => 'text'
 
     ) );

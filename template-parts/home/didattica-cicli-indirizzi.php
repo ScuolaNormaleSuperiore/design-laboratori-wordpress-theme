@@ -12,16 +12,16 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
             <div class="col">
                 <div class="responsive-tabs-wrapper padding-top-200">
                     <div class="title-large">
-                        <h1 class="h3"><?php _e("La didattica", "design_scuole_italia"); ?></h1>
-                        <h2 class="h4 text-white label-didattica"><?php _e("la nostra offerta formativa", "design_scuole_italia"); ?></h2>
+                        <h1 class="h3"><?php _e("La didattica", "design_laboratori_italia"); ?></h1>
+                        <h2 class="h4 text-white label-didattica"><?php _e("la nostra offerta formativa", "design_laboratori_italia"); ?></h2>
                     </div><!-- /title-large -->
                     <div class="title-small">
-                        <div class="h5"><?php _e("L'Istituto", "design_scuole_italia"); ?></div>
-                        <p><?php _e("A.S.", "design_scuole_italia"); ?> <?php echo dsi_convert_anno_scuola(dsi_get_current_anno_scolastico()) ; ?></p>
+                        <div class="h5"><?php _e("L'Istituto", "design_laboratori_italia"); ?></div>
+                        <p><?php _e("A.S.", "design_laboratori_italia"); ?> <?php echo dsi_convert_anno_scuola(dsi_get_current_anno_scolastico()) ; ?></p>
 
                     </div><!-- /title-section -->
                     <div class="tabs-img">
-                        <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("Gli indirizzi", "design_scuole_italia"); ?>" alt="<?php _e("La didattica", "design_scuole_italia"); ?>">
+                        <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("Gli indirizzi", "design_laboratori_italia"); ?>" alt="<?php _e("La didattica", "design_laboratori_italia"); ?>">
                     </div>
                     <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                         <ul>
@@ -106,7 +106,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
 
                                                     <a href="<?php echo get_permalink($struttura); ?>"
                                                        class="btn btn-bluelectric"
-                                                       style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
+                                                       style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_laboratori_italia"); ?></a>
                                                 </div>
 
                                                 <?php
@@ -119,7 +119,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
                                     }
                                 } else{
                                     echo '<div ><h5 class="text-white">';
-                                    _e("Nessun istituto associato a questa indirizzo di studi.", "design_scuole_italia");
+                                    _e("Nessun istituto associato a questa indirizzo di studi.", "design_laboratori_italia");
                                     echo '</h5></div>';
                                 }
                                 ?>

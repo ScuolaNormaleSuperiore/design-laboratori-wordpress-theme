@@ -16,7 +16,7 @@ function dsi_welcome_panel(){
     ?>
     <div class="welcome-panel-content" style="padding-bottom:30px;">
         <img src="https://avatars1.githubusercontent.com/u/15377824?s=36&v=4"  style="float:left; margin:0px 20px;" />
-        <h2><?php _e( 'Design Scuole Italia: il tema di Developers Italia per le Scuole Italiane', "design_scuole_italia" ); ?></h2>
+        <h2><?php _e( 'Design Laboratori Italia: il tema di Developers Italia per le Scuole Italiane', "design_laboratori_italia" ); ?></h2>
     </div>
     <?php
 }
@@ -181,7 +181,7 @@ add_action ('admin_menu', function () {
 function dsi_readme_render_manual(){
 echo '<div class="wrap manuale">';
 
-    $response = wp_remote_get( 'https://raw.githubusercontent.com/italia/design-scuole-wordpress-theme/master/README.md?test=1' );
+    $response = wp_remote_get( 'https://raw.githubusercontent.com/italia/design-laboratori-wordpress-theme/master/README.md?test=1' );
 
     if ( is_array( $response ) && ! is_wp_error( $response ) ) {
 

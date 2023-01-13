@@ -1,9 +1,9 @@
 <?php
 $groups = array(
-	"school" => __("Scuola", "design_scuole_italia"),
-	"service" =>  __("Servizi", "design_scuole_italia"),
-	"news" =>  __("Novità", "design_scuole_italia"),
-	"education" =>  __("Didattica", "design_scuole_italia")
+	"school" => __("Scuola", "design_laboratori_italia"),
+	"service" =>  __("Servizi", "design_laboratori_italia"),
+	"news" =>  __("Novità", "design_laboratori_italia"),
+	"education" =>  __("Didattica", "design_laboratori_italia")
 );
 
 

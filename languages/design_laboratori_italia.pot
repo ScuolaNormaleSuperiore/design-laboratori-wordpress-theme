@@ -2,8 +2,8 @@
 # This file is distributed under the AGPL 3.0 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Design Scuole Italia 0.0.1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/design-scuole-wordpress-theme\n"
+"Project-Id-Version: Design Laboratori Italia 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/design-laboratori-wordpress-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
 #. Description of the theme
-msgid "Design Scuole Italia è il tema di WordPress per i siti delle Scuole Italiane. Rispetta le linee guida di design dell’Agenzia per l’Italia digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza Bootstrap Italia."
+msgid "Design Laboratori Italia è il tema di WordPress per i siti delle Scuole Italiane. Rispetta le linee guida di design dell’Agenzia per l’Italia digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza Bootstrap Italia."
 msgstr ""
 
 #. Author of the theme
@@ -3856,7 +3856,7 @@ msgid "Si / No / Presa Visione"
 msgstr ""
 
 #: inc/welcome.php:19
-msgid "Design Scuole Italia: il tema di Developers Italia per le Scuole Italiane"
+msgid "Design Laboratori Italia: il tema di Developers Italia per le Scuole Italiane"
 msgstr ""
 
 #. Template Name of the theme

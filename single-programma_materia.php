@@ -45,7 +45,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         </div><!-- /col-lg-5 col-md-8 -->
                         <div class="col-lg-3 col-md-4 offset-lg-1">
                             <aside class="badges-wrapper badges-main mt-0">
-                                <h2 class="h4"><?php _e("Insegnante", "design_scuole_italia"); ?></h2>
+                                <h2 class="h4"><?php _e("Insegnante", "design_laboratori_italia"); ?></h2>
                                 <div class="card card-avatar card-comments mt-3">
                                     <div class="card-body p-0">
 										<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
@@ -75,27 +75,27 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                             <aside class="aside-main aside-sticky">
                                 <div class="aside-title" id="program-legend">
                                     <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e("Indice del Programma", "design_scuole_italia"); ?></span>
+                                        <span><?php _e("Indice del Programma", "design_laboratori_italia"); ?></span>
                                         <svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
                                     </a>
                                 </div>
                                 <div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="program-legend">
                                     <ul class="link-list">
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-materia" title="Vai al paragrafo <?php _e("La Materia", "design_scuole_italia"); ?>"><?php _e("La Materia", "design_scuole_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-materia" title="Vai al paragrafo <?php _e("La Materia", "design_laboratori_italia"); ?>"><?php _e("La Materia", "design_laboratori_italia"); ?></a>
                                         </li>
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-contenuti" title="Vai al paragrafo <?php _e("I Contenuti", "design_scuole_italia"); ?>"><?php _e("I Contenuti", "design_scuole_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-contenuti" title="Vai al paragrafo <?php _e("I Contenuti", "design_laboratori_italia"); ?>"><?php _e("I Contenuti", "design_laboratori_italia"); ?></a>
                                         </li>
                                 	<?php if(trim($altre_info) != ""){ ?>
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-info" title="Vai al paragrafo <?php _e("Ulteriori Informazioni", "design_scuole_italia"); ?>"><?php _e("Ulteriori Informazioni", "design_scuole_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-info" title="Vai al paragrafo <?php _e("Ulteriori Informazioni", "design_laboratori_italia"); ?>"><?php _e("Ulteriori Informazioni", "design_laboratori_italia"); ?></a>
                                         </li>
                                     <?php } ?>
                                     <?php if ( is_array($posts_array) && count( $posts_array ) )  {   ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-correlati"
-                                                   title="Vai al paragrafo <?php _e("Gli altri programmi della Classe", "design_scuole_italia"); ?>"><?php _e("Gli altri programmi della Classe", "design_scuole_italia"); ?></a>
+                                                   title="Vai al paragrafo <?php _e("Gli altri programmi della Classe", "design_laboratori_italia"); ?>"><?php _e("Gli altri programmi della Classe", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php } ?>
 
@@ -106,7 +106,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         </div>
                         <div class="col-lg-6">
                             <article class="article-wrapper pt-4 px-3">
-                                <h2 class="h4" id="art-par-materia"><?php _e("La Materia", "design_scuole_italia"); ?></h2>
+                                <h2 class="h4" id="art-par-materia"><?php _e("La Materia", "design_laboratori_italia"); ?></h2>
 								<?php the_content(); ?>
 								<?php
 
@@ -116,14 +116,14 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 										<?php echo wp_oembed_get ($video); ?>
                                     </div>
 								<?php } ?>
-                                <div class="h6"><?php _e("Obiettivi", "design_scuole_italia"); ?></div>
+                                <div class="h6"><?php _e("Obiettivi", "design_laboratori_italia"); ?></div>
                                 <div class="col-lg-12 px-0 wysiwig-text">
                                 <?php
 								$obiettivi = dsi_get_meta("obiettivi");
 								echo wpautop($obiettivi);
 								?>
                                 </div>
-                                <div class="h6"><?php _e("Attività", "design_scuole_italia"); ?></div>
+                                <div class="h6"><?php _e("Attività", "design_laboratori_italia"); ?></div>
 
 								<?php
 								$attivita = dsi_get_meta("attivita");
@@ -142,10 +142,10 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 								}
 								?>
 
-                                <h2 class="h4" id="art-par-contenuti"><?php _e("I Contenuti", "design_scuole_italia"); ?></h2>
+                                <h2 class="h4" id="art-par-contenuti"><?php _e("I Contenuti", "design_laboratori_italia"); ?></h2>
 								<?php if((is_array($link_schede_materiale_didattico) && count($link_schede_materiale_didattico)>0) || (is_array($file_documenti) && count($file_documenti)>0)){ ?>
 
-                                    <div class="h6"><?php _e("Risorse", "design_scuole_italia"); ?></div>
+                                    <div class="h6"><?php _e("Risorse", "design_laboratori_italia"); ?></div>
                                     <div class="card-deck card-deck-spaced">
 										<?php
 										if(is_array($link_schede_materiale_didattico) && count($link_schede_materiale_didattico)>0) {
@@ -169,7 +169,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 
 								<?php if ( ( is_array( $link_progetti ) && count( $link_progetti ) > 0 )) {
 								    ?>
-                                <div class="h6"><?php _e("Progetti", "design_scuole_italia"); ?></div>
+                                <div class="h6"><?php _e("Progetti", "design_laboratori_italia"); ?></div>
                                 <div class="card-deck card-deck-spaced">
                                         <?php
 									foreach ( $link_progetti as $link_progetto ) {
@@ -182,7 +182,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <?php
                                 if(trim($altre_info) != ""){
                                 ?>
-                                <h2 class="h4" id="art-par-info"><?php _e("Ulteriori informazioni", "design_scuole_italia"); ?></h2>
+                                <h2 class="h4" id="art-par-info"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h2>
                                 <div class="col-lg-12 px-0 wysiwig-text">
                                 <?php echo wpautop($altre_info); ?>
                                 </div>

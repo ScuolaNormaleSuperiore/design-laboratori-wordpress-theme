@@ -7,7 +7,7 @@
                     <div class="container">
                         <div class="row variable-gutters mb-0 mb-lg-4 mb-xl-5">
                             <div class="col">
-                                <h2 class="d-inline" id="accessModal"><?php _e("Accedi ai servizi", "design_scuole_italia"); ?>
+                                <h2 class="d-inline" id="accessModal"><?php _e("Accedi ai servizi", "design_laboratori_italia"); ?>
                                     <button type="button" class="close dismiss" data-dismiss="modal" aria-label="Chiudi">
                                         <svg class="svg-cancel-large"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use></svg>
                                     </button>
@@ -33,8 +33,8 @@
                             </div>
                             <div class="col-lg-4 offset-lg-2 access-mobile-bg">
                                 <div class="access-login">
-                                    <h3><?php _e("Personale scolastico", "design_scuole_italia"); ?></h3>
-                                    <p class="text-large"><?php _e("Entra nel sito della scuola con le tue credenziali per gestire contenuti, visualizzare circolari e altre funzionalità.", "design_scuole_italia"); ?></p>
+                                    <h3><?php _e("Personale scolastico", "design_laboratori_italia"); ?></h3>
+                                    <p class="text-large"><?php _e("Entra nel sito della scuola con le tue credenziali per gestire contenuti, visualizzare circolari e altre funzionalità.", "design_laboratori_italia"); ?></p>
                                     <div class="access-login-form">
                                         <div class="form-group">
                                             <label for="login-email-field">Email address</label>
@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4">
-                                                <button type="submit" class="btn btn-white btn-block rounded" name="login" value="Accedi"><?php _e("Accedi", "design_scuole_italia"); ?></button>
+                                                <button type="submit" class="btn btn-white btn-block rounded" name="login" value="Accedi"><?php _e("Accedi", "design_laboratori_italia"); ?></button>
                                             </div>
                                         </div>
                                         <!-- <div class="row variable-gutters">

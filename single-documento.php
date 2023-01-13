@@ -80,7 +80,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <div class="aside-title">
                                     <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi"
                                        role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e( "Indice della pagina", "design_scuole_italia" ); ?></span>
+                                        <span><?php _e( "Indice della pagina", "design_laboratori_italia" ); ?></span>
                                         <svg class="icon icon-toggle svg-arrow-down-small">
                                             <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  xlink:href="#svg-arrow-down-small"></use>
@@ -91,43 +91,43 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     <ul class="link-list">
                                         <li>
                                             <a class="list-item scroll-anchor-offset" href="#art-par-descrizione"
-                                               title="Vai al paragrafo <?php _e( "Descrizione", "design_scuole_italia" ); ?>"><?php _e( "Descrizione", "design_scuole_italia" ); ?></a>
+                                               title="Vai al paragrafo <?php _e( "Descrizione", "design_laboratori_italia" ); ?>"><?php _e( "Descrizione", "design_laboratori_italia" ); ?></a>
                                         </li>
                                         <?php if (!post_password_required() && is_array( $file_documenti ) && count( $file_documenti ) > 0 ) { ?>
                                         <li>
                                             <a class="list-item scroll-anchor-offset" href="#art-par-documento"
-                                               title="Vai al paragrafo <?php _e( "Il Documento", "design_scuole_italia" ); ?>"><?php echo _n( 'Il Documento', 'I Documenti', count( $file_documenti ), 'design_scuole_italia' ); ?></a>
+                                               title="Vai al paragrafo <?php _e( "Il Documento", "design_laboratori_italia" ); ?>"><?php echo _n( 'Il Documento', 'I Documenti', count( $file_documenti ), 'design_laboratori_italia' ); ?></a>
                                         </li>
                                         <?php }
                                         if ( !post_password_required() && is_array( $servizi_collegati ) && count($servizi_collegati) > 0 ) { ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-servizio"
-                                                   title="Vai al paragrafo <?php _e( "Servizi collegati", "design_scuole_italia" ); ?>"><?php _e( "Servizi collegati", "design_scuole_italia" ); ?></a>
+                                                   title="Vai al paragrafo <?php _e( "Servizi collegati", "design_laboratori_italia" ); ?>"><?php _e( "Servizi collegati", "design_laboratori_italia" ); ?></a>
                                             </li>
                                         <?php }
                                         if ( !post_password_required() && is_array( $timeline ) && count( $timeline ) > 0 ) { ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-tempi"
-                                                   title="Vai al paragrafo <?php _e( "Tempi e scadenze", "design_scuole_italia" ); ?>"><?php _e( "Tempi e scadenze", "design_scuole_italia" ); ?></a>
+                                                   title="Vai al paragrafo <?php _e( "Tempi e scadenze", "design_laboratori_italia" ); ?>"><?php _e( "Tempi e scadenze", "design_laboratori_italia" ); ?></a>
                                             </li>
                                         <?php }
                                         if ( !post_password_required() && is_array( $ufficio ) && count( $ufficio ) > 0 ) { ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-contatti"
-                                                   title="Vai al paragrafo <?php _e( "Contatti", "design_scuole_italia" ); ?>"><?php _e( "Contatti", "design_scuole_italia" ); ?></a>
+                                                   title="Vai al paragrafo <?php _e( "Contatti", "design_laboratori_italia" ); ?>"><?php _e( "Contatti", "design_laboratori_italia" ); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php if(($altre_info != "") || ($protocollo != "")  || ($riferimenti_normativi != "")) {   ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-info"
-                                                   title="Vai al paragrafo <?php _e( "Ulteriori informazioni", "design_scuole_italia" ); ?>"><?php _e( "Ulteriori informazioni", "design_scuole_italia" ); ?></a>
+                                                   title="Vai al paragrafo <?php _e( "Ulteriori informazioni", "design_laboratori_italia" ); ?>"><?php _e( "Ulteriori informazioni", "design_laboratori_italia" ); ?></a>
                                             </li>
                                         <?php } ?>
 
                                         <?php if (!post_password_required() && is_array($posts_array) && count( $posts_array ) )  {   ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-correlati"
-                                                   title="Vai al paragrafo <?php _e("Circolari, notizie, eventi correlati", "design_scuole_italia"); ?>"><?php _e("Circolari, notizie, eventi correlati", "design_scuole_italia"); ?></a>
+                                                   title="Vai al paragrafo <?php _e("Circolari, notizie, eventi correlati", "design_laboratori_italia"); ?>"><?php _e("Circolari, notizie, eventi correlati", "design_laboratori_italia"); ?></a>
                                             </li>
                                         <?php } ?>
 
@@ -139,7 +139,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         <?php } ?>
                         <div class="col-lg-8 col-md-8 offset-lg-1 pt84">
                             <article class="article-wrapper">
-                                <h2 class="h4" id="art-par-descrizione"><?php _e( "Descrizione", "design_scuole_italia" ); ?></h2>
+                                <h2 class="h4" id="art-par-descrizione"><?php _e( "Descrizione", "design_laboratori_italia" ); ?></h2>
                                 <div class="row variable-gutters">
                                     <div class="col-lg-9">
                                         <div class="article-description-nomove wysiwig-text">
@@ -162,7 +162,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                         $autori = dsi_get_meta( "autori" );
                                         if ( !post_password_required() && is_array( $autori ) && count( $autori ) > 0 ) {
                                             ?>
-                                            <h3 class="h6"><?php _e( "Autori", "design_scuole_italia" ); ?></h3>
+                                            <h3 class="h6"><?php _e( "Autori", "design_laboratori_italia" ); ?></h3>
                                             <div class="card-deck card-deck-spaced mb-2">
                                                 <?php
                                                 foreach ( $autori as $idutente ) {
@@ -185,13 +185,13 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     </div><!-- /col-lg-9 -->
                                 </div><!-- /row -->
                                 <?php if ( !post_password_required() && is_array( $file_documenti ) && count( $file_documenti ) > 0 ) { ?>
-                                    <h3 class="h6" id="art-par-documento"><?php _e("Allegati", "design_scuole_italia"); ?></h3>
+                                    <h3 class="h6" id="art-par-documento"><?php _e("Allegati", "design_laboratori_italia"); ?></h3>
                                     <?php
                                     if (dsi_is_albo($post) && $post->post_status == "annullato") {
                                         ?>
                                         <div class="row variable-gutters mb-4">
                                             <div class="col-lg-12">
-                                                <h5 class="text-redbrown"><?php _e("Allegati non disponibili - Albo Annullato", "design_scuole_italia"); ?></h5>
+                                                <h5 class="text-redbrown"><?php _e("Allegati non disponibili - Albo Annullato", "design_laboratori_italia"); ?></h5>
                                             </div>
                                         </div>
                                         <?php
@@ -215,7 +215,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     }
                                 }
                                 if ( !post_password_required() && is_array( $servizi_collegati ) && count($servizi_collegati) > 0 ) { ?>
-                                    <h2 class="h4" id="art-par-servizio"><?php _e( "Servizi collegati", "design_scuole_italia" ); ?></h2>
+                                    <h2 class="h4" id="art-par-servizio"><?php _e( "Servizi collegati", "design_laboratori_italia" ); ?></h2>
                                     <div class="row variable-gutters mb-4">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">
@@ -230,7 +230,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 }
                                 if ( !post_password_required() && is_array( $timeline ) && count( $timeline ) > 0 ) {
                                     ?>
-                                    <h2 class="h4" id="art-par-tempi"><?php _e( "Tempi e scadenze", "design_scuole_italia" ); ?></h2>
+                                    <h2 class="h4" id="art-par-tempi"><?php _e( "Tempi e scadenze", "design_laboratori_italia" ); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <div class="calendar-vertical mb-5">
@@ -257,8 +257,8 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 }
                                 if ( !post_password_required() && is_array( $ufficio ) && count( $ufficio ) > 0 ) { ?>
 
-                                    <h2 class="h4" id="art-par-contatti"><?php _e( "Contatti", "design_scuole_italia" ); ?></h2>
-                                    <div class="h6"><?php _e( "Ufficio responsabile del documento", "design_scuole_italia" ); ?></div>
+                                    <h2 class="h4" id="art-par-contatti"><?php _e( "Contatti", "design_laboratori_italia" ); ?></h2>
+                                    <div class="h6"><?php _e( "Ufficio responsabile del documento", "design_laboratori_italia" ); ?></div>
                                     <div class="row variable-gutters mb-4">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">
@@ -280,18 +280,18 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 if(!post_password_required() && (($altre_info != "") || ($protocollo != "")  || ($riferimenti_normativi != ""))) {
 
                                     ?>
-                                    <h2 class="h4" id="art-par-info"><?php _e("Ulteriori informazioni", "design_scuole_italia"); ?></h2>
+                                    <h2 class="h4" id="art-par-info"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h2>
                                     <div class="row variable-gutters mb-4">
                                         <div class="col-lg-9">
                                             <?php
                                             if ($altre_info) echo "<p>" . $altre_info . "</p>";
                                             if ($protocollo) {
                                                 echo "<p>";
-                                                _e("Protocollo: ", "design_scuole_italia");
+                                                _e("Protocollo: ", "design_laboratori_italia");
                                                 echo "<strong>" . $protocollo . "</strong>";
                                                 $data_protocollo = dsi_get_meta("data_protocollo");
                                                 if ($data_protocollo) {
-                                                    _e(" del  ", "design_scuole_italia");
+                                                    _e(" del  ", "design_laboratori_italia");
                                                     echo "<strong>" . $data_protocollo . "</strong>";
                                                 }
                                                 echo "</p>";
@@ -299,7 +299,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 
                                             if ($riferimenti_normativi) {
                                                 ?>
-                                                <div class="h6"><?php _e("Riferimenti normativi", "design_scuole_italia"); ?></div>
+                                                <div class="h6"><?php _e("Riferimenti normativi", "design_laboratori_italia"); ?></div>
                                                 <div class="card card-bg bg-color rounded">
                                                     <div class="card-body">
                                                         <?php

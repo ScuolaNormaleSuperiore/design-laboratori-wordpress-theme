@@ -8,7 +8,7 @@ if(is_array($gallery) && count($gallery) > 0){
 	<section class="section bg-white py-5">
 		<div class="container">
 			<div class="title-section text-center mb-4">
-				<h3 class="h4 mb-3"><?php _e("I luoghi della scuola", "design_scuole_italia"); ?></h3>
+				<h3 class="h4 mb-3"><?php _e("I luoghi della scuola", "design_laboratori_italia"); ?></h3>
 				<p class="max-width-620"><?php echo $testoluoghi; ?></p>
 			</div><!-- /title-large -->
 			<div class="row variable-gutters">
@@ -24,7 +24,7 @@ if(is_array($gallery) && count($gallery) > 0){
 			</div><!-- /row -->
 			<div class="row variable-gutters my-5">
 				<div class="col d-flex justify-content-center">
-					<a class="btn btn-redbrown" href="<?php echo get_post_type_archive_link("luogo"); ?>"><?php _e("Vedi tutti i luoghi", "design_scuole_italia"); ?></a>
+					<a class="btn btn-redbrown" href="<?php echo get_post_type_archive_link("luogo"); ?>"><?php _e("Vedi tutti i luoghi", "design_laboratori_italia"); ?></a>
 				</div><!-- /col -->
 			</div><!-- /row -->
 		</div><!-- /container -->

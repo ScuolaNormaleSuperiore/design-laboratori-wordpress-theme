@@ -13,7 +13,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per la scuola
-    $new_page_title    = __( 'La Scuola', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'La Scuola', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/la-scuola.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -39,7 +39,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per La Home di Sezione Notizie
-    $new_page_title    = __( 'Novità', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Novità', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/notizie.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -61,7 +61,7 @@ function dsi_create_pages_on_theme_activation() {
     }
 
     // template page per La Home di Sezione Servizi
-    $new_page_title    = __( 'Servizi', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Servizi', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/servizi.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -83,7 +83,7 @@ function dsi_create_pages_on_theme_activation() {
     }
 
     // template page per La Home di Sezione Didattica
-    $new_page_title    = __( 'Didattica', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Didattica', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/didattica.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -110,7 +110,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per Le Persone
-    $new_page_title    = __( 'Persone', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Persone', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/persone.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -135,7 +135,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per I Numeri
-    $new_page_title    = __( 'I numeri della Scuola', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'I numeri della Scuola', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/numeri.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -160,7 +160,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per Amministrazione Trasparente
-    $new_page_title    = __( 'Amministrazione Trasparente', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Amministrazione Trasparente', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/amministrazione-trasparente.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -188,7 +188,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per Presentazione
-    $new_page_title    = __( 'Presentazione', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Presentazione', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = 'La nostra scuola: identità, insegnamenti e storia.';                           // Content goes here
     $new_page_template = 'page-templates/presentazione.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -216,7 +216,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per La Storia
-    $new_page_title    = __( 'La Storia', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'La Storia', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = 'La nostra storia';                           // Content goes here
     $new_page_template = 'page-templates/storia.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -243,7 +243,7 @@ function dsi_create_pages_on_theme_activation() {
     }
 
     // template page per pagina dei cicli scolastici
-    $new_page_title    = __( 'Offerta formativa', 'design_scuole_italia' ); // Page's title
+    $new_page_title    = __( 'Offerta formativa', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/cicli-scolastici.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -547,7 +547,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Scuola
      */
-    $name = __('La Scuola', "design_scuole_italia");
+    $name = __('La Scuola', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -564,7 +564,7 @@ function dsi_create_pages_on_theme_activation() {
 //echo "---".$presentazione_id;
 //exit();
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Presentazione', "design_scuole_italia"),
+            'menu-item-title' => __('Presentazione', "design_laboratori_italia"),
             'menu-item-object-id' => $presentazione_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',
@@ -573,7 +573,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('I luoghi', "design_scuole_italia"),
+            'menu-item-title' => __('I luoghi', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'luogo',
             'menu-item-type' => 'post_type_archive',
@@ -582,7 +582,7 @@ function dsi_create_pages_on_theme_activation() {
       
         $persone_id = dsi_get_template_page_id("page-templates/persone.php");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Le persone', "design_scuole_italia"),
+            'menu-item-title' => __('Le persone', "design_laboratori_italia"),
             'menu-item-object-id' => $persone_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',
@@ -592,7 +592,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $numeri_id = dsi_get_template_page_id("page-templates/numeri.php");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('I numeri della scuola', "design_scuole_italia"),
+            'menu-item-title' => __('I numeri della scuola', "design_laboratori_italia"),
             'menu-item-object-id' => $numeri_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',
@@ -601,7 +601,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Le carte della scuola', "design_scuole_italia"),
+            'menu-item-title' => __('Le carte della scuola', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'documento',
             'menu-item-type' => 'post_type_archive',
@@ -609,7 +609,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Organizzazione', "design_scuole_italia"),
+            'menu-item-title' => __('Organizzazione', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'struttura',
             'menu-item-type' => 'post_type_archive',
@@ -618,7 +618,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $storia_id = dsi_get_template_page_id("page-templates/storia.php");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('La storia', "design_scuole_italia"),
+            'menu-item-title' => __('La storia', "design_laboratori_italia"),
             'menu-item-object-id' => $storia_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',
@@ -635,7 +635,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Servizi
      */
-    $name = __('Servizi', "design_scuole_italia");
+    $name = __('Servizi', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -650,7 +650,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $term = get_term_by("name", "Personale Scolastico", "tipologia-servizio");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Personale scolastico', "design_scuole_italia"),
+            'menu-item-title' => __('Personale scolastico', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'taxonomy',
             'menu-item-object' => 'tipologia-servizio',
@@ -661,7 +661,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $term = get_term_by("name", "Famiglie e Studenti", "tipologia-servizio");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Famiglie e studenti', "design_scuole_italia"),
+            'menu-item-title' => __('Famiglie e studenti', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'taxonomy',
             'menu-item-object' => 'tipologia-servizio',
@@ -670,7 +670,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Percorsi di studio', "design_scuole_italia"),
+            'menu-item-title' => __('Percorsi di studio', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'indirizzo',
             'menu-item-type' => 'post_type_archive',
@@ -678,7 +678,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Tutti i servizi', "design_scuole_italia"),
+            'menu-item-title' => __('Tutti i servizi', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'servizio',
             'menu-item-type' => 'post_type_archive',
@@ -693,7 +693,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Novità
      */
-    $name = __('Novità', "design_scuole_italia");
+    $name = __('Novità', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -707,7 +707,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $term = get_term_by("name", "Notizie", "tipologia-articolo");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Le notizie', "design_scuole_italia"),
+            'menu-item-title' => __('Le notizie', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'taxonomy',
             'menu-item-object' => 'tipologia-articolo',
@@ -716,7 +716,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Le circolari', "design_scuole_italia"),
+            'menu-item-title' => __('Le circolari', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'circolare',
             'menu-item-type' => 'post_type_archive',
@@ -724,7 +724,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Calendario eventi', "design_scuole_italia"),
+            'menu-item-title' => __('Calendario eventi', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'evento',
             'menu-item-type' => 'post_type_archive',
@@ -733,7 +733,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $term = get_term_by("name", "Albo online", "tipologia-documento");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Albo online', "design_scuole_italia"),
+            'menu-item-title' => __('Albo online', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'taxonomy',
             'menu-item-object' => 'tipologia-documento',
@@ -750,7 +750,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Didattica
      */
-    $name = __('Didattica', "design_scuole_italia");
+    $name = __('Didattica', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -765,7 +765,7 @@ function dsi_create_pages_on_theme_activation() {
 //        $cicli_landing_url = dsi_get_template_page_url("page-templates/cicli-scolastici.php");
         $cicli_id = dsi_get_template_page_id("page-templates/cicli-scolastici.php");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Offerta formativa', "design_scuole_italia"),
+            'menu-item-title' => __('Offerta formativa', "design_laboratori_italia"),
             'menu-item-object-id' => $cicli_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',
@@ -774,7 +774,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Le schede didattiche', "design_scuole_italia"),
+            'menu-item-title' => __('Le schede didattiche', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'scheda_didattica',
             'menu-item-type' => 'post_type_archive',
@@ -782,7 +782,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('I progetti delle classi', "design_scuole_italia"),
+            'menu-item-title' => __('I progetti delle classi', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-object' => 'scheda_progetto',
             'menu-item-type' => 'post_type_archive',
@@ -797,7 +797,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Footer
      */
-    $name = __('Footer', "design_scuole_italia");
+    $name = __('Footer', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -812,7 +812,7 @@ function dsi_create_pages_on_theme_activation() {
         $ammtrasp_landing_url = dsi_get_template_page_url("page-templates/amministrazione-trasparente.php");
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Amministrazione Trasparente', "design_scuole_italia"),
+            'menu-item-title' => __('Amministrazione Trasparente', "design_laboratori_italia"),
             'menu-item-url' => $ammtrasp_landing_url,
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
@@ -821,7 +821,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $term = get_term_by("name", "Albo online", "tipologia-documento");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Albo online', "design_scuole_italia"),
+            'menu-item-title' => __('Albo online', "design_laboratori_italia"),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'taxonomy',
             'menu-item-object' => 'tipologia-documento',
@@ -830,7 +830,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Privacy Policy', "design_scuole_italia"),
+            'menu-item-title' => __('Privacy Policy', "design_laboratori_italia"),
             'menu-item-url' => get_privacy_policy_url(),
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
@@ -838,7 +838,7 @@ function dsi_create_pages_on_theme_activation() {
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Dichiarazione di accessibilità', "design_scuole_italia"),
+            'menu-item-title' => __('Dichiarazione di accessibilità', "design_laboratori_italia"),
             'menu-item-url' => "",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom',
@@ -852,7 +852,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Top
      */
-    $name = __('Top', "design_scuole_italia");
+    $name = __('Top', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -864,7 +864,7 @@ function dsi_create_pages_on_theme_activation() {
         $menu_top = $menu_id;
         /*
             wp_update_nav_menu_item($menu->term_id, 0, array(
-                'menu-item-title' => __('Privacy Policy', "design_scuole_italia"),
+                'menu-item-title' => __('Privacy Policy', "design_laboratori_italia"),
                 'menu-item-url' =>  get_privacy_policy_url(),
                 'menu-item-status' => 'publish',
                 'menu-item-type' => 'custom', // optional
@@ -878,7 +878,7 @@ function dsi_create_pages_on_theme_activation() {
     /**
      * creo il menu Link Esterni
      */
-    $name = __('Link Esterni', "design_scuole_italia");
+    $name = __('Link Esterni', "design_laboratori_italia");
 
     wp_delete_nav_menu($name);
     $menu_object = wp_get_nav_menu_object( $name );
@@ -891,74 +891,74 @@ function dsi_create_pages_on_theme_activation() {
         $menu_link_esterno = $menu_id;
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('MIUR', "design_scuole_italia"),
+            'menu-item-title' => __('MIUR', "design_laboratori_italia"),
             'menu-item-url' => "https://www.miur.gov.it/",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Ministero dell\'Istruzione - MIUR - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Ministero dell\'Istruzione - MIUR - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Ufficio Scolastico Regionale', "design_scuole_italia"),
+            'menu-item-title' => __('Ufficio Scolastico Regionale', "design_laboratori_italia"),
             'menu-item-url' => "#",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Ufficio Scolastico Regionale - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Ufficio Scolastico Regionale - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Ufficio Scolastico Territoriale', "design_scuole_italia"),
+            'menu-item-title' => __('Ufficio Scolastico Territoriale', "design_laboratori_italia"),
             'menu-item-url' => "#",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Ufficio Scolastico Territoriale - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Ufficio Scolastico Territoriale - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Scuola in Chiaro', "design_scuole_italia"),
+            'menu-item-title' => __('Scuola in Chiaro', "design_laboratori_italia"),
             'menu-item-url' => "https://cercalatuascuola.istruzione.it/cercalatuascuola/",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Scuola in Chiaro - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Scuola in Chiaro - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Iscrizioni On Line', "design_scuole_italia"),
+            'menu-item-title' => __('Iscrizioni On Line', "design_laboratori_italia"),
             'menu-item-url' => "https://www.istruzione.it/iscrizionionline//",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Iscrizioni On Line - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Iscrizioni On Line - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Invalsi', "design_scuole_italia"),
+            'menu-item-title' => __('Invalsi', "design_laboratori_italia"),
             'menu-item-url' => "https://www.invalsi.it",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Invalsi - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Invalsi - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
 
 
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('Comune', "design_scuole_italia"),
+            'menu-item-title' => __('Comune', "design_laboratori_italia"),
             'menu-item-url' => "#",
             'menu-item-status' => 'publish',
             'menu-item-type' => 'custom', // optional
             'menu-item-target' => '_blank',
             'menu-item-classes' => 'footer-link',
-            'menu-item-attr-title' => __('Comune - link esterno - apertura nuova scheda', "design_scuole_italia"),
+            'menu-item-attr-title' => __('Comune - link esterno - apertura nuova scheda', "design_laboratori_italia"),
         ));
     }
 

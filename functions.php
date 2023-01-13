@@ -1,6 +1,6 @@
 <?php
 /**
- * Design Scuole Italia functions and definitions
+ * Design Laboratori Italia functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -113,10 +113,10 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Design Scuole Italia, use a find and replace
-		 * to change 'design_scuole_italia' to the name of your theme in all the template files.
+		 * If you're building a theme based on Design Laboratori Italia, use a find and replace
+		 * to change 'design_laboratori_italia' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'design_scuole_italia', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
 
 
         load_theme_textdomain( 'easy-appointments', get_template_directory() . '/languages' );
@@ -151,13 +151,13 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 
         // This theme uses wp_nav_menu()
 		register_nav_menus( array(
-			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Scuola"', 'design_scuole_italia' ),
-			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_scuole_italia' ),
-			'menu-notizie' => esc_html__( 'Sottovoci del menu principale, voce "Novità"', 'design_scuole_italia' ),
-			'menu-didattica' => esc_html__( 'Sottovoci del menu principale, voce "Didattica"', 'design_scuole_italia' ),
-			/*'menu-classe' => esc_html__( 'Sottovoci del menu principale, voce "La mia classe"', 'design_scuole_italia' ),*/
-			'menu-topright' => esc_html__( 'Menu secondario (in alto a destra)', 'design_scuole_italia' ),
-			'menu-footer' => esc_html__( 'Menu a piè di pagina', 'design_scuole_italia' ),
+			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Scuola"', 'design_laboratori_italia' ),
+			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_laboratori_italia' ),
+			'menu-notizie' => esc_html__( 'Sottovoci del menu principale, voce "Novità"', 'design_laboratori_italia' ),
+			'menu-didattica' => esc_html__( 'Sottovoci del menu principale, voce "Didattica"', 'design_laboratori_italia' ),
+			/*'menu-classe' => esc_html__( 'Sottovoci del menu principale, voce "La mia classe"', 'design_laboratori_italia' ),*/
+			'menu-topright' => esc_html__( 'Menu secondario (in alto a destra)', 'design_laboratori_italia' ),
+			'menu-footer' => esc_html__( 'Menu a piè di pagina', 'design_laboratori_italia' ),
 		) );
 
 	}
@@ -171,36 +171,36 @@ add_action( 'after_setup_theme', 'dsi_setup' );
  */
 function dsi_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 1', 'design_scuole_italia' ),
+		'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
 		'id'            => 'footer-1',
-		'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_scuole_italia' ),
+		'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
 		'before_widget' => '<div class="footer-list">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="h3">',
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 2', 'design_scuole_italia' ),
+		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
 		'id'            => 'footer-2',
-		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_scuole_italia' ),
+		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
 		'before_widget' => '<div class="footer-list">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="h3">',
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 3', 'design_scuole_italia' ),
+		'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
 		'id'            => 'footer-3',
-		'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_scuole_italia' ),
+		'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
 		'before_widget' => '<div class="footer-list">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="h3">',
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 4', 'design_scuole_italia' ),
+		'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
 		'id'            => 'footer-4',
-		'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_scuole_italia' ),
+		'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
 		'before_widget' => '<div class="footer-list">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="h3">',
@@ -219,7 +219,7 @@ function dsi_scripts() {
 	wp_enqueue_style( 'dsi-wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'dsi-font', get_template_directory_uri() . '/assets/css/fonts.css');
 	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia.css');
-	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/scuole.css');
+	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/laboratori.css');
 	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
 	wp_enqueue_style( 'dsi-carousel-style', get_template_directory_uri() . '/assets/css/carousel-style-double.css');
 	wp_enqueue_style( 'dsi-splide-min', get_template_directory_uri() . '/assets/css/splide.min.css');
@@ -250,7 +250,7 @@ function dsi_scripts() {
 		wp_enqueue_script( 'dsi-leaflet-js', get_template_directory_uri() . '/assets/js/components/leaflet/leaflet.js', array(), false, true);
     }
 
-	wp_enqueue_script( 'dsi-scuole-js', get_template_directory_uri() . '/assets/js/scuole.js', array(), false, true);
+	wp_enqueue_script( 'dsi-scuole-js', get_template_directory_uri() . '/assets/js/laboratori.js', array(), false, true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

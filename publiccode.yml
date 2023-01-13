@@ -8,7 +8,7 @@ categories:
 description:
   it:
     documentation: >-
-      https://github.com/italia/design-scuole-wordpress-theme/blob/master/README.md
+      https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/master/README.md
     features:
       - Popolamento automatico dell'architettura del sito
       - Gestione delle circolari con notifica e feedback utente
@@ -19,7 +19,7 @@ description:
       - Gestione di articoli e news
       - Gestione degli indirizzi di studio
     genericName: Tema Wordpress
-    localisedName: Design Scuole Italia 
+    localisedName: Design Laboratori Italia 
     longDescription: >
       E' basato sul modello di siti per le scuole italiane, creato nell’ambito
       del progetto **Designers Italia del Team per la Trasformazione Digitale
@@ -40,9 +40,9 @@ description:
       l’atmosfera che caratterizza la vita di una scuola.
     screenshots:
       - >-
-        https://raw.githubusercontent.com/italia/design-scuole-wordpress-theme/master/screenshot.png
+        https://raw.githubusercontent.com/italia/design-laboratori-wordpress-theme/master/screenshot.png
     shortDescription: >-
-        Design Scuole Italia è un tema WordPress per i siti delle Scuole Italiane. 
+        Design Laboratori Italia è un tema WordPress per i siti delle Scuole Italiane. 
 developmentStatus: stable
 intendedAudience:
   countries:
@@ -77,7 +77,7 @@ maintenance:
     - email: marco.buttarini@gmail.com
       name: Marco Buttarini
   type: community
-name: Design Scuole Italia
+name: Design Laboratori Italia
 platforms:
   - web
   - windows
@@ -85,4 +85,4 @@ platforms:
 releaseDate: '2019-12-06'
 softwareType: addon
 softwareVersion: '1.0'
-url: 'https://github.com/italia/design-scuole-wordpress-theme'
+url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'

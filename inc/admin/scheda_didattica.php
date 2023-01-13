@@ -7,15 +7,15 @@ function dsi_register_scheda_didattica_post_type() {
 
 	/** scheda **/
 	$labels = array(
-		'name'          => _x( 'Schede Didattiche', 'Post Type General Name', 'design_scuole_italia' ),
-		'singular_name' => _x( 'Scheda Didattica', 'Post Type Singular Name', 'design_scuole_italia' ),
-		'add_new'       => _x( 'Aggiungi una Scheda', 'Post Type Singular Name', 'design_scuole_italia' ),
-		'add_new_item'  => _x( 'Aggiungi una nuova Scheda', 'Post Type Singular Name', 'design_scuole_italia' ),
-        'edit_item'       => _x( 'Modifica la Scheda', 'Post Type Singular Name', 'design_scuole_italia' ),
-		'featured_image' => __( 'Immagine di riferimento della scheda', 'design_scuole_italia' ),
+		'name'          => _x( 'Schede Didattiche', 'Post Type General Name', 'design_laboratori_italia' ),
+		'singular_name' => _x( 'Scheda Didattica', 'Post Type Singular Name', 'design_laboratori_italia' ),
+		'add_new'       => _x( 'Aggiungi una Scheda', 'Post Type Singular Name', 'design_laboratori_italia' ),
+		'add_new_item'  => _x( 'Aggiungi una nuova Scheda', 'Post Type Singular Name', 'design_laboratori_italia' ),
+        'edit_item'       => _x( 'Modifica la Scheda', 'Post Type Singular Name', 'design_laboratori_italia' ),
+		'featured_image' => __( 'Immagine di riferimento della scheda', 'design_laboratori_italia' ),
 	);
 	$args   = array(
-		'label'         => __( 'Scheda Didattica', 'design_scuole_italia' ),
+		'label'         => __( 'Scheda Didattica', 'design_laboratori_italia' ),
 		'labels'        => $labels,
 		'supports'      => array( 'title', 'editor', 'author', 'thumbnail'),
 		'taxonomies'    => array( 'post_tag' ),
@@ -27,7 +27,7 @@ function dsi_register_scheda_didattica_post_type() {
         'capability_type' => array('scheda_didattica', 'schede_didattica'),
         'rewrite' => array('slug' => 'scheda-didattica','with_front' => false),
         'map_meta_cap'    => true,
-        'description'    => __( "Approfondimenti tematici, guide e esercizi creati dai docenti della scuola e a disposizione di tutti.", 'design_scuole_italia' ),
+        'description'    => __( "Approfondimenti tematici, guide e esercizi creati dai docenti della scuola e a disposizione di tutti.", 'design_laboratori_italia' ),
 	);
 	register_post_type( 'scheda_didattica', $args );
 
@@ -53,8 +53,8 @@ function dsi_add_scheda_didattica_metaboxes() {
 
 	$cmb_sottotitolo->add_field( array(
 		'id' => $prefix . 'descrizione',
-		'name'        => __( 'Descrizione *', 'design_scuole_italia' ),
-		'desc' => __( 'Breve descrizione del contenuti della scheda (max 160 caratteri) Vincoli: 160 caratteri spazi inclusi.' , 'design_scuole_italia' ),
+		'name'        => __( 'Descrizione *', 'design_laboratori_italia' ),
+		'desc' => __( 'Breve descrizione del contenuti della scheda (max 160 caratteri) Vincoli: 160 caratteri spazi inclusi.' , 'design_laboratori_italia' ),
 		'type' => 'textarea',
 		'attributes'    => array(
 			'maxlength'  => '160',
@@ -65,8 +65,8 @@ function dsi_add_scheda_didattica_metaboxes() {
 
 	$cmb_sottotitolo->add_field( array(
 		'id' => $prefix . 'obiettivi',
-		'name'        => __( 'Obiettivi *', 'design_scuole_italia' ),
-		'desc' => __( 'Obiettivi del progetto.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_scuole_italia' ),
+		'name'        => __( 'Obiettivi *', 'design_laboratori_italia' ),
+		'desc' => __( 'Obiettivi del progetto.<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.' , 'design_laboratori_italia' ),
 		'type' => 'wysiwyg',
 		'options' => array(
 			'media_buttons' => false, // show insert/upload button(s)
@@ -82,17 +82,17 @@ function dsi_add_scheda_didattica_metaboxes() {
 
 	$cmb_sottotitolo->add_field( array(
 		'id' => $prefix . 'tempo_apprendimento',
-		'name'        => __( 'Tempo di apprendimento', 'design_scuole_italia' ),
-		'desc' => __( 'Tempo di apprendimento' , 'design_scuole_italia' ),
+		'name'        => __( 'Tempo di apprendimento', 'design_laboratori_italia' ),
+		'desc' => __( 'Tempo di apprendimento' , 'design_laboratori_italia' ),
 		'type' => 'text'
 	) );
 
 
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'livello',
-        'name'        => __( 'Livello', 'design_scuole_italia' ),
+        'name'        => __( 'Livello', 'design_laboratori_italia' ),
         'desc'        => __( 'Indicazione dei cicli scolastici per i quali la scheda è utile: scuola primaria / scuola secondaria di primo grado /  
-scuola secondaria secondo grado / percorsi di istruzione e formazione professionale', 'design_scuole_italia' ),
+scuola secondaria secondo grado / percorsi di istruzione e formazione professionale', 'design_laboratori_italia' ),
         'type'             => 'taxonomy_multicheck_hierarchy_child',
         'select_all_button' => false,
         'taxonomy'       => 'percorsi-di-studio',
@@ -105,7 +105,7 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 
     $cmb_undercontent = new_cmb2_box( array(
 		'id'           => $prefix . 'box_elementi_scheda',
-		'title'         => __( 'Dettagli Scheda Didattica', 'design_scuole_italia' ),
+		'title'         => __( 'Dettagli Scheda Didattica', 'design_laboratori_italia' ),
 		'object_types' => array( 'scheda_didattica' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
@@ -113,15 +113,15 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'descrizione_attivita',
-		'name'        => __( 'Descrizione dell\'attività', 'design_scuole_italia' ),
+		'name'        => __( 'Descrizione dell\'attività', 'design_laboratori_italia' ),
 		'desc' => __( 'Descrizione dell\'attività. Es. "Dopo aver letto la scheda, rispondi alle domande di verifica" oppure, "Di seguito trovi i passi da seguire per seminare una pianta in primavera"
-' , 'design_scuole_italia' ),
+' , 'design_laboratori_italia' ),
 		'type' => 'textarea'
 	) );
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'fasi_attivita',
-		'name'        => __( 'Fasi attività', 'design_scuole_italia' ),
-		'desc' => __( 'lista di task da svolgere' , 'design_scuole_italia' ),
+		'name'        => __( 'Fasi attività', 'design_laboratori_italia' ),
+		'desc' => __( 'lista di task da svolgere' , 'design_laboratori_italia' ),
 		'type' => 'textarea',
 		'repeatable'  => true,
 		'options'     => array(
@@ -132,8 +132,8 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'fasi_verifica',
-		'name'        => __( 'Verifica apprendimento', 'design_scuole_italia' ),
-		'desc' => __( 'lista  di domande o di fasi di un compito da svolgere' , 'design_scuole_italia' ),
+		'name'        => __( 'Verifica apprendimento', 'design_laboratori_italia' ),
+		'desc' => __( 'lista  di domande o di fasi di un compito da svolgere' , 'design_laboratori_italia' ),
 		'type' => 'textarea',
 		'repeatable'  => true,
 		'options'     => array(
@@ -144,8 +144,8 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'link_schede_materiale_didattico',
-		'name'    => __( 'Materiali didattici', 'design_scuole_italia' ),
-		'desc' => __( 'Inserisci qui tutti i documenti creati come Materiale Didattico. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_scuole_italia' ),
+		'name'    => __( 'Materiali didattici', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui tutti i documenti creati come Materiale Didattico. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_laboratori_italia' ),
 		'type'    => 'custom_attached_posts',
 		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
 		'options' => array(
@@ -161,16 +161,16 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'file_documenti',
-		'name'    => __( 'Carica documenti', 'design_scuole_italia' ),
-		'desc' => __( 'Se il Materiale Didattico non è descritto da una scheda documento, link al materiale didattivo. ' , 'design_scuole_italia' ),
+		'name'    => __( 'Carica documenti', 'design_laboratori_italia' ),
+		'desc' => __( 'Se il Materiale Didattico non è descritto da una scheda documento, link al materiale didattivo. ' , 'design_laboratori_italia' ),
 		'type' => 'file_list',
 		// 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
 		// 'query_args' => array( 'type' => 'image' ), // Only images attachment
 		// Optional, override default text strings
 		'text' => array(
-			'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_scuole_italia' ), // default: "Add or Upload Files"
-			'remove_image_text' => __('Rimuovi Documento', 'design_scuole_italia' ), // default: "Remove Image"
-			'remove_text' => __('Rimuovi', 'design_scuole_italia' ), // default: "Remove"
+			'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_laboratori_italia' ), // default: "Add or Upload Files"
+			'remove_image_text' => __('Rimuovi Documento', 'design_laboratori_italia' ), // default: "Remove Image"
+			'remove_text' => __('Rimuovi', 'design_laboratori_italia' ), // default: "Remove"
 		),
 	) );
 
@@ -184,7 +184,7 @@ scuola secondaria secondo grado / percorsi di istruzione e formazione profession
 add_action( 'edit_form_after_title', 'sdi_scheda_didattica_add_content_after_title' );
 function sdi_scheda_didattica_add_content_after_title($post) {
 	if($post->post_type == "scheda_didattica")
-		_e('<span><i>il <b>Titolo</b> è il <b>Nome della Scheda Didattica</b>.  Vincoli: massimo 60 caratteri spazi inclusi</i></span><br><br>', 'design_scuole_italia' );
+		_e('<span><i>il <b>Titolo</b> è il <b>Nome della Scheda Didattica</b>.  Vincoli: massimo 60 caratteri spazi inclusi</i></span><br><br>', 'design_laboratori_italia' );
 }
 
 
@@ -194,7 +194,7 @@ function sdi_scheda_didattica_add_content_after_title($post) {
 add_action( 'edit_form_after_title', 'sdi_scheda_didattica_add_content_before_editor', 100 );
 function sdi_scheda_didattica_add_content_before_editor($post) {
 	if($post->post_type == "scheda_didattica")
-		_e('<h1>L\'argomento della scheda</h1>', 'design_scuole_italia' );
+		_e('<h1>L\'argomento della scheda</h1>', 'design_laboratori_italia' );
 }
 
 /**
@@ -203,5 +203,5 @@ function sdi_scheda_didattica_add_content_before_editor($post) {
 add_action( 'edit_form_after_editor', 'sdi_scheda_didattica_add_content_after_editor', 100 );
 function sdi_scheda_didattica_add_content_after_editor($post) {
     if($post->post_type == "scheda_didattica")
-        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_scuole_italia' );
+        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_laboratori_italia' );
 }

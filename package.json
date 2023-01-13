@@ -1,5 +1,5 @@
 {
-  "name": "design-scuole-wordpress-theme",
+  "name": "design-laboratori-wordpress-theme",
   "version": "2.1.6",
   "description": "Tema Wordpress delle Scuole Italiane",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/italia/design-scuole-wordpress-theme.git"
+    "url": "git+https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git"
   },
   "author": "Presidenza del Consiglio dei Ministri",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/italia/design-scuole-wordpress-theme/issues"
+    "url": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues"
   },
-  "homepage": "https://github.com/italia/design-scuole-wordpress-theme#readme",
+  "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
     "bootstrap-italia": "^2.0.9"
   },

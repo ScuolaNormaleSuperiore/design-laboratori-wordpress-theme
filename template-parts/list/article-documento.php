@@ -36,10 +36,10 @@ $numerazione_albo =  dsi_get_meta("numerazione_albo", "", $post->ID);
             <?php if(dsi_is_albo($post)){ ?>
                 <small class="h6 text-redbrown"><?php echo $numerazione_albo; ?></small>
                 <?php if($post->post_status == "annullato"){ ?>
-                    <span class="bg-redbrown p-1 ml-4"><?php _e("Annullato", "design_scuole_italia"); ?></span>
+                    <span class="bg-redbrown p-1 ml-4"><?php _e("Annullato", "design_laboratori_italia"); ?></span>
                     <?php
                 } else if($post->post_status == "scaduto"){ ?>
-                    <span class="bg-redbrown p-1 ml-4"><?php _e("Scaduto", "design_scuole_italia"); ?></span>
+                    <span class="bg-redbrown p-1 ml-4"><?php _e("Scaduto", "design_laboratori_italia"); ?></span>
                     <?php
                 }
             } ?>
@@ -48,7 +48,7 @@ $numerazione_albo =  dsi_get_meta("numerazione_albo", "", $post->ID);
             <?php /* if(is_array($argomenti) && count($argomenti)) { ?>
                     <div class="badges">
                         <?php foreach ( $argomenti as $item ) { ?>
-                            <a href="<?php echo get_term_link($item); ?>" title="<?php _e("Vai all'argomento", "design_scuole_italia"); ?>: <?php echo $item->name; ?>"
+                            <a href="<?php echo get_term_link($item); ?>" title="<?php _e("Vai all'argomento", "design_laboratori_italia"); ?>: <?php echo $item->name; ?>"
                                class="badge badge-sm badge-pill badge-outline-<?php echo $class; ?>"><?php echo $item->name; ?></a>
                         <?php } ?>
                     </div><!-- /badges -->

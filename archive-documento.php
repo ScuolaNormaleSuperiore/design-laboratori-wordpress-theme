@@ -52,7 +52,7 @@ global $documento;
                                         <?php } ?>
                                     </div><!-- /row -->
                                     <div class="pt3 text-center">
-                                        <a class="text-underline" href="<?php echo get_term_link($tipologia_documento) ?>"><strong><?php _e("Vedi tutti", "design_scuole_italia"); ?></strong></a>
+                                        <a class="text-underline" href="<?php echo get_term_link($tipologia_documento) ?>"><strong><?php _e("Vedi tutti", "design_laboratori_italia"); ?></strong></a>
                                     </div>
                                     <?php
                                 }

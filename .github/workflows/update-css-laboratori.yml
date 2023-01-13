@@ -19,15 +19,15 @@ jobs:
         uses: fregante/setup-git-user@v1
       - name: Run assets update
         run: | 
-          git clone https://github.com/italia/design-scuole-pagine-statiche
-          cd design-scuole-pagine-statiche && npm i && npm run build && cd ..
-          cp ./design-scuole-pagine-statiche/dist/assets/css/scuole.css ./assets/css/scuole.css
-          cp ./design-scuole-pagine-statiche/dist/assets/js/scuole.js ./assets/js/scuole.js
-          rm -rf design-scuole-pagine-statiche
-          git add assets/css/scuole.css assets/js/scuole.js
+          git clone https://github.com/italia/design-laboratori-pagine-statiche
+          cd design-laboratori-pagine-statiche && npm i && npm run build && cd ..
+          cp ./design-laboratori-pagine-statiche/dist/assets/css/laboratori.css ./assets/css/laboratori.css
+          cp ./design-laboratori-pagine-statiche/dist/assets/js/laboratori.js ./assets/js/laboratori.js
+          rm -rf design-laboratori-pagine-statiche
+          git add assets/css/laboratori.css assets/js/laboratori.js
           git commit -m "chore(deps): update assets"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "chore(deps) update scuole.css"
+          title: "chore(deps) update laboratori.css"
           branch: feature/update-scuole-css

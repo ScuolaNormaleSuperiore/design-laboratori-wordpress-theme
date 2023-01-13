@@ -12,14 +12,14 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                 <div class="col">
                     <div class="responsive-tabs-wrapper padding-top-200">
                         <div class="title-large">
-                            <h2 class="h3"><?php _e("La didattica", "design_scuole_italia"); ?></h2>
-                            <div class="h4 text-white"><?php _e("Cicli scolastici e percorsi di studio e formazione che trovi nell'istituto.", "design_scuole_italia"); ?></div>
+                            <h2 class="h3"><?php _e("La didattica", "design_laboratori_italia"); ?></h2>
+                            <div class="h4 text-white"><?php _e("Cicli scolastici e percorsi di studio e formazione che trovi nell'istituto.", "design_laboratori_italia"); ?></div>
                         </div><!-- /title-large -->
                         <div class="title-small">
                             <div class="h5">L'Istituto</div>
                         </div><!-- /title-section -->
                         <div class="tabs-img">
-                            <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("Le classi", "design_scuole_italia"); ?>" alt="<?php _e("La didattica", "design_scuole_italia"); ?>">
+                            <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("Le classi", "design_laboratori_italia"); ?>" alt="<?php _e("La didattica", "design_laboratori_italia"); ?>">
                         </div>
                         <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                             <ul>
@@ -90,12 +90,12 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                                             }
                                         }else{
                                             echo '<div ><h5 class="text-white">';
-                                            _e("Nessun percorso di studi associato a questa scuola.", "design_scuole_italia");
+                                            _e("Nessun percorso di studi associato a questa scuola.", "design_laboratori_italia");
                                             echo '</h5></div>';
                                         }
                                         ?>
 
-                                        <a class="btn btn-redbrown mt-4" href="<?php echo get_permalink($idstruttura); ?>"><?php _e("Vai alla presentazione della Scuola", "design_scuole_italia"); ?></a>
+                                        <a class="btn btn-redbrown mt-4" href="<?php echo get_permalink($idstruttura); ?>"><?php _e("Vai alla presentazione della Scuola", "design_laboratori_italia"); ?></a>
 
                                     </div>
                                 </div>

@@ -382,7 +382,7 @@ function dsi_get_date_evento($post){
 	$timestamp_fine= dsi_get_meta("timestamp_fine", $prefix, $post->ID);
 	if($timestamp_inizio >= $timestamp_fine){
 		$ret .=  date_i18n("j F Y", $timestamp_inizio);
-		//$ret .= __(" alle ", "design_scuole_italia");
+		//$ret .= __(" alle ", "design_laboratori_italia");
 		//$ret .=  date_i18n("H:i", $timestamp_inizio);
 		return $ret;
 	}
@@ -392,30 +392,30 @@ function dsi_get_date_evento($post){
 	$ora_inizio = date_i18n("H:i", $timestamp_inizio);
 	$ora_fine = date_i18n("H:i", $timestamp_fine);
 	if($data_inizio == $data_fine){
-		$ret .= __("Il ", "design_scuole_italia");
+		$ret .= __("Il ", "design_laboratori_italia");
 		$ret .= $data_inizio;
 		/*
 		if($post->post_type == "evento"){
-			$ret .= __(" dalle ", "design_scuole_italia");
+			$ret .= __(" dalle ", "design_laboratori_italia");
 			$ret .= $ora_inizio;
-			$ret .= __(" alle ", "design_scuole_italia");
+			$ret .= __(" alle ", "design_laboratori_italia");
 			$ret .= $ora_fine;
 
 		}*/
 
 	}else{
-		$ret .= __("dal ", "design_scuole_italia");
+		$ret .= __("dal ", "design_laboratori_italia");
 		$ret .= $data_inizio;
 		/*
 		if($post->post_type == "evento") {
-			$ret .= __( " alle ", "design_scuole_italia" );
+			$ret .= __( " alle ", "design_laboratori_italia" );
 			$ret .= $ora_inizio;
 		}*/
-		$ret .= __(" al ", "design_scuole_italia");
+		$ret .= __(" al ", "design_laboratori_italia");
 		$ret .= $data_fine;
 		/*
 		if($post->post_type == "evento") {
-			$ret .= __( " alle ", "design_scuole_italia" );
+			$ret .= __( " alle ", "design_laboratori_italia" );
 			$ret .= $ora_fine;
 		}*/
 	}
@@ -681,10 +681,10 @@ function dsi_get_template_page_id($TEMPLATE_NAME){
  */
 function dsi_get_circolari_feedback_options(){
     return array(
-        "false" => __('Nessun Feedback ', 'design_scuole_italia'),
-        'presa_visione' => __('Presa Visione', 'design_scuole_italia'),
-        'si_no' => __('Si / No', 'design_scuole_italia'),
-        'si_no_visione' => __('Si / No / Presa Visione', 'design_scuole_italia'),
+        "false" => __('Nessun Feedback ', 'design_laboratori_italia'),
+        'presa_visione' => __('Presa Visione', 'design_laboratori_italia'),
+        'si_no' => __('Si / No', 'design_laboratori_italia'),
+        'si_no_visione' => __('Si / No / Presa Visione', 'design_laboratori_italia'),
     );
 }
 

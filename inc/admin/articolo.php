@@ -3,15 +3,15 @@ add_action( 'init', 'dsi_register_articolo_post_tax', 0 );
 function dsi_register_articolo_post_tax() {
 
 	$labels = array(
-		'name'              => _x( 'Tipologia Articolo ', 'taxonomy general name', 'design_scuole_italia' ),
-		'singular_name'     => _x( 'Tipologia Articolo', 'taxonomy singular name', 'design_scuole_italia' ),
-		'search_items'      => __( 'Cerca Tipologia', 'design_scuole_italia' ),
-		'all_items'         => __( 'Tutte le tipologie', 'design_scuole_italia' ),
-		'edit_item'         => __( 'Modifica la Tipologia', 'design_scuole_italia' ),
-		'update_item'       => __( 'Aggiorna la Tipologia', 'design_scuole_italia' ),
-		'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_scuole_italia' ),
-		'new_item_name'     => __( 'Nuova Tipologia', 'design_scuole_italia' ),
-		'menu_name'         => __( 'Tipologia', 'design_scuole_italia' ),
+		'name'              => _x( 'Tipologia Articolo ', 'taxonomy general name', 'design_laboratori_italia' ),
+		'singular_name'     => _x( 'Tipologia Articolo', 'taxonomy singular name', 'design_laboratori_italia' ),
+		'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+		'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+		'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+		'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+		'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+		'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+		'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
 	);
 
 	$args = array(
@@ -51,7 +51,7 @@ function dsi_add_articolo_metaboxes() {
 
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'tipologia',
-        'name'        => __( 'Tipologia articolo *', 'design_scuole_italia' ),
+        'name'        => __( 'Tipologia articolo *', 'design_laboratori_italia' ),
         'type'             => 'taxonomy_radio_inline',
         'show_option_none' => false,
         'taxonomy'       => 'tipologia-articolo',
@@ -65,8 +65,8 @@ function dsi_add_articolo_metaboxes() {
 
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'descrizione',
-        'name'        => __( 'Abstract', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_scuole_italia' ),
+        'name'        => __( 'Abstract', 'design_laboratori_italia' ),
+        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_laboratori_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
             'maxlength'  => '160'
@@ -75,27 +75,27 @@ function dsi_add_articolo_metaboxes() {
 
     $cmb_undercontent = new_cmb2_box( array(
 		'id'           => $prefix . 'box_elementi_articolo',
-		'title'         => __( 'Dettagli Articolo', 'design_scuole_italia' ),
+		'title'         => __( 'Dettagli Articolo', 'design_laboratori_italia' ),
 		'object_types' => array( 'post' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
 	) );
 	$cmb_undercontent->add_field( array(
 			'id' => $prefix . 'persone',
-			'name'       => __('Persone ', 'design_scuole_italia' ),
-			'desc' => __( 'Link a schede persone dell\'amminsitrazione citate', 'design_scuole_italia' ),
+			'name'       => __('Persone ', 'design_laboratori_italia' ),
+			'desc' => __( 'Link a schede persone dell\'amminsitrazione citate', 'design_laboratori_italia' ),
 			'type'    => 'pw_multiselect',
 			'options' => dsi_get_user_options(),
 			'attributes' => array(
-				'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_scuole_italia' ),
+				'placeholder' =>  __( 'Seleziona uno o più persone / utenti', 'design_laboratori_italia' ),
 			),
 		)
 	);
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'luoghi',
-		'name'    => __( 'Luogo', 'design_scuole_italia' ),
-		'desc' => __( 'Link a schede luoghi del sito citati  ' , 'design_scuole_italia' ),
+		'name'    => __( 'Luogo', 'design_laboratori_italia' ),
+		'desc' => __( 'Link a schede luoghi del sito citati  ' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
         'options' => dsi_get_luoghi_options(),
 	) );
@@ -103,8 +103,8 @@ function dsi_add_articolo_metaboxes() {
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'link_schede_documenti',
-		'name'    => __( 'Documenti', 'design_scuole_italia' ),
-		'desc' => __( 'Inserisci qui tutti i documenti che ritieni rilevanti. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_scuole_italia' ),
+		'name'    => __( 'Documenti', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui tutti i documenti che ritieni rilevanti. Se devi caricare il documento <a href="post-new.php?post_type=documento">puoi creare una breve scheda di presentazione</a> (soluzione consigliata e più efficace per gli utenti del sito) oppure caricarlo direttamente nei campi che seguono. ' , 'design_laboratori_italia' ),
 		'type'    => 'custom_attached_posts',
 		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
 		'options' => array(
@@ -120,16 +120,16 @@ function dsi_add_articolo_metaboxes() {
 
 	$cmb_undercontent->add_field( array(
 		'id' => $prefix . 'file_documenti',
-		'name'    => __( 'Carica documenti', 'design_scuole_italia' ),
-		'desc' => __( 'Se l\'allegato non è descritto da una scheda documento, link all\'allegato. ' , 'design_scuole_italia' ),
+		'name'    => __( 'Carica documenti', 'design_laboratori_italia' ),
+		'desc' => __( 'Se l\'allegato non è descritto da una scheda documento, link all\'allegato. ' , 'design_laboratori_italia' ),
 		'type' => 'file_list',
 		// 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
 		// 'query_args' => array( 'type' => 'image' ), // Only images attachment
 		// Optional, override default text strings
 		'text' => array(
-			'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_scuole_italia' ), // default: "Add or Upload Files"
-			'remove_image_text' => __('Rimuovi Documento', 'design_scuole_italia' ), // default: "Remove Image"
-			'remove_text' => __('Rimuovi', 'design_scuole_italia' ), // default: "Remove"
+			'add_upload_files_text' => __('Aggiungi un nuovo Documento', 'design_laboratori_italia' ), // default: "Add or Upload Files"
+			'remove_image_text' => __('Rimuovi Documento', 'design_laboratori_italia' ), // default: "Remove Image"
+			'remove_text' => __('Rimuovi', 'design_laboratori_italia' ), // default: "Remove"
 		),
 	) );
 
@@ -142,5 +142,5 @@ function dsi_add_articolo_metaboxes() {
 add_action( 'edit_form_after_editor', 'sdi_articolo_add_content_after_editor', 100 );
 function sdi_articolo_add_content_after_editor($post) {
     if($post->post_type == "post")
-        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_scuole_italia' );
+        _e('<br>Se si desidera inserire un video di YouTube è necessaria l\'opzione "Enable privacy-enhanced mode" che permette di pubblicare il video in modalità youtube-nocookie.<br><br>', 'design_laboratori_italia' );
 }
