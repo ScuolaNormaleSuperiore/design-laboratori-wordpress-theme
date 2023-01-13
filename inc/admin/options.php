@@ -173,24 +173,6 @@ function dsi_register_main_options_metabox() {
 
     $home_options = new_cmb2_box( $args );
 
-/*
-    $home_options->add_field( array(
-        'id' => $prefix . 'home_istruzioni_0',
-        'name'        => __( 'La Scuola', 'design_laboratori_italia' ),
-        'type' => 'title',
-    ) );
-
-
-    $home_options->add_field(  array(
-        'id' => $prefix.'scuola_principale',
-        'name'    => __( 'Seleziona la scuola da linkare in home page', 'design_laboratori_italia' ),
-        'desc' => __( 'NB: La scuola è una <a href="edit.php?post_type=struttura">Struttura organizzativa</a> di tipologia "Scuola. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_laboratori_italia' ),
-        'type'    => 'pw_select',
-        'options' => dsi_get_strutture_scuole_options(),
-    ) );
-*/
-
-
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_1',
         'name'        => __( 'Sezione Notizie', 'design_laboratori_italia' ),
@@ -381,7 +363,7 @@ function dsi_register_main_options_metabox() {
 
     $main_options->add_field( array(
         'id' => $prefix . 'scuola_istruzioni',
-        'name'        => __( 'Sezione La Scuola', 'design_laboratori_italia' ),
+        'name'        => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
         'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Scuola</a>.' , 'design_laboratori_italia' ),
         'type' => 'title',
         ) );
@@ -594,7 +576,7 @@ function dsi_register_main_options_metabox() {
 	) );
 
 	$main_options->add_field( array(
-		'name'        => __( 'I numeri della Scuola', 'design_laboratori_italia' ),
+		'name'        => __( 'I numeri del Laboratorio', 'design_laboratori_italia' ),
 		'desc' => __('Inserisci il numero di studenti e classi della Scuola', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_numeri',

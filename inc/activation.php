@@ -135,7 +135,7 @@ function dsi_create_pages_on_theme_activation() {
 
 
     // template page per I Numeri
-    $new_page_title    = __( 'I numeri della Scuola', 'design_laboratori_italia' ); // Page's title
+    $new_page_title    = __( 'I numeri del Laboratorio', 'design_laboratori_italia' ); // Page's title
     $new_page_content  = '';                           // Content goes here
     $new_page_template = 'page-templates/numeri.php';       // The template to use for the page
     $page_check        = get_page_by_title( $new_page_title );   // Check if the page already exists
@@ -592,7 +592,7 @@ function dsi_create_pages_on_theme_activation() {
 
         $numeri_id = dsi_get_template_page_id("page-templates/numeri.php");
         wp_update_nav_menu_item($menu->term_id, 0, array(
-            'menu-item-title' => __('I numeri della scuola', "design_laboratori_italia"),
+            'menu-item-title' => __('I numeri del Laboratorio', "design_laboratori_italia"),
             'menu-item-object-id' => $numeri_id,
             'menu-item-object' => 'page',
             'menu-item-status' => 'publish',

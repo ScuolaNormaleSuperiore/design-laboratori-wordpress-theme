@@ -151,11 +151,10 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 
         // This theme uses wp_nav_menu()
 		register_nav_menus( array(
-			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Scuola"', 'design_laboratori_italia' ),
+			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Laboratorio"', 'design_laboratori_italia' ),
 			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_laboratori_italia' ),
 			'menu-notizie' => esc_html__( 'Sottovoci del menu principale, voce "Novità"', 'design_laboratori_italia' ),
 			'menu-didattica' => esc_html__( 'Sottovoci del menu principale, voce "Didattica"', 'design_laboratori_italia' ),
-			/*'menu-classe' => esc_html__( 'Sottovoci del menu principale, voce "La mia classe"', 'design_laboratori_italia' ),*/
 			'menu-topright' => esc_html__( 'Menu secondario (in alto a destra)', 'design_laboratori_italia' ),
 			'menu-footer' => esc_html__( 'Menu a piè di pagina', 'design_laboratori_italia' ),
 		) );
