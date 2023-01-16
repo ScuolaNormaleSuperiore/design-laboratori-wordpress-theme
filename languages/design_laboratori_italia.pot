@@ -386,7 +386,7 @@ msgstr ""
 
 #: inc/activation.php:138
 #: inc/admin/options.php:461
-msgid "I numeri della Scuola"
+msgid "I numeri del Laboratorio"
 msgstr ""
 
 #. Template Name of the theme
@@ -428,7 +428,7 @@ msgid "Le persone"
 msgstr ""
 
 #: inc/activation.php:605
-msgid "I numeri della scuola"
+msgid "I numeri del Laboratorio"
 msgstr ""
 
 #: inc/activation.php:615
@@ -2506,7 +2506,7 @@ msgid "Seleziona per mostrare automaticamente i servizi (mostra gli ultimi)"
 msgstr ""
 
 #: inc/admin/options.php:240
-msgid "Sezione La Scuola"
+msgid "Sezione Il Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:241

@@ -100,13 +100,6 @@
 
 	<config name="testVersion" value="5.2-99.0"/>
 	<rule ref="PHPCompatibility">
-		<!-- Whitelist PHP native classes, interfaces, functions and constants which
-			 are back-filled by WP.
-
-			 Based on:
-			 * /wp-includes/compat.php
-			 * /wp-includes/random_compat/random.php
-		-->
 		<exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
 		<exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
 
@@ -120,13 +113,6 @@
 		<exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
 
 		<exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
-	</rule>
-
-	<!-- Whitelist the WP Core mysql_to_rfc3339() function. -->
-	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
-		<properties>
-			<property name="functionWhitelist" type="array" value="mysql_to_rfc3339"/>
-		</properties>
 	</rule>
 
 </ruleset>
