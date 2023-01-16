@@ -101,6 +101,37 @@ require get_template_directory() . '/inc/dompdf.php';
 
 
 
+/**
+ * Check plugin dependencies.
+ *
+ * @return boolean
+ */
+function check_dependencies() {
+	$result = true;
+	if ( ! class_exists( 'ACF' ) ) {
+		error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://www.advancedcustomfields.com' );
+		$result = false;
+	}
+	return $result;
+}
+
+if ( check_dependencies() ) {
+
+	// SETUP THE PLUGIN.
+
+	if ( ! class_exists( 'LabManager' ) ) {
+		include_once 'classes/class-labmanager.php';
+	}
+
+	global $emt_manager;
+	$emt_manager = new LabManager();
+	$emt_manager->plugin_setup();
+
+}
+
+
+
+
 if ( ! function_exists( 'dsi_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
