@@ -86,15 +86,20 @@ function dsi_register_required_plugins() {
 
 		// This is an example of how to include a plugin from the WordPress Plugin Repository.
 		array(
+			'name'     => 'Advanced Custom Fields',
+			'slug'     => 'advanced-custom-fields',
+			'required' => true,
+		),
+		array(
 			'name'     => 'Disable Gutenberg',
 			'slug'     => 'disable-gutenberg',
 			'required' => true,
 		),
-        array(
-            'name'     => 'Members',
-            'slug'     => 'members',
-            'required' => true,
-        ),
+		array(
+			'name'     => 'Members',
+			'slug'     => 'members',
+			'required' => true,
+		),
 		array(
 			'name'     => 'Italia - Amministrazione Aperta',
 			'slug'     => 'italia-amministrazione-aperta',
@@ -127,52 +132,6 @@ function dsi_register_required_plugins() {
             'slug'     => 'contact-form-cfdb7',
             'required' => true,
         ),
-         /*
-         array(
-            'name'     => 'WP QuickLaTeX',
-            'slug'     => 'wp-quicklatex',
-            'required' => false,
-        ),
-         array(
-            'name'     => 'WP Super Cache',
-            'slug'     => 'wp-super-cache',
-            'required' => false,
-        ),*/
-
-        /*
-        array(
-            'name'     => 'EU Cookie Law (GDPR)',
-            'slug'     => 'eu-cookie-law',
-            'required' => false,
-        ),
-*/
-
-
-        /* array(
-             'name'     => 'Amministrazione Trasparente',
-             'slug'     => 'amministrazione-trasparente',
-             'required' => true,
-         ),*/
-
-		/*
-		array(
-			'name'     => 'Albo Pretorio On line',
-			'slug'     => 'albo-pretorio-on-line',
-			'required' => false,
-		),*/
-/*
-		// This is an example of the use of 'is_callable' functionality. A user could - for instance -
-		// have WPSEO installed *or* WPSEO Premium. The slug would in that last case be different, i.e.
-		// 'wordpress-seo-premium'.
-		// By setting 'is_callable' to either a function from that plugin or a class method
-		// `array( 'class', 'method' )` similar to how you hook in to actions and filters, TGMPA can still
-		// recognize the plugin as being installed.
-		array(
-			'name'        => 'WordPress SEO by Yoast',
-			'slug'        => 'wordpress-seo',
-			'is_callable' => 'wpseo_init',
-		),
-*/
 	);
 
 	/*
@@ -205,83 +164,6 @@ function dsi_register_required_plugins() {
 		// Automatically activate plugins after installation or not.
 		'message'      => '',
 		// Message to output right before the plugins table.
-
-		/*
-		'strings'      => array(
-			'page_title'                      => __( 'Install Required Plugins', 'design_laboratori_italia' ),
-			'menu_title'                      => __( 'Install Plugins', 'design_laboratori_italia' ),
-			/* translators: %s: plugin name. * /
-			'installing'                      => __( 'Installing Plugin: %s', 'design_laboratori_italia' ),
-			/* translators: %s: plugin name. * /
-			'updating'                        => __( 'Updating Plugin: %s', 'design_laboratori_italia' ),
-			'oops'                            => __( 'Something went wrong with the plugin API.', 'design_laboratori_italia' ),
-			'notice_can_install_required'     => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'This theme requires the following plugin: %1$s.',
-				'This theme requires the following plugins: %1$s.',
-				'design_laboratori_italia'
-			),
-			'notice_can_install_recommended'  => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'This theme recommends the following plugin: %1$s.',
-				'This theme recommends the following plugins: %1$s.',
-				'design_laboratori_italia'
-			),
-			'notice_ask_to_update'            => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
-				'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
-				'design_laboratori_italia'
-			),
-			'notice_ask_to_update_maybe'      => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'There is an update available for: %1$s.',
-				'There are updates available for the following plugins: %1$s.',
-				'design_laboratori_italia'
-			),
-			'notice_can_activate_required'    => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following required plugin is currently inactive: %1$s.',
-				'The following required plugins are currently inactive: %1$s.',
-				'design_laboratori_italia'
-			),
-			'notice_can_activate_recommended' => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following recommended plugin is currently inactive: %1$s.',
-				'The following recommended plugins are currently inactive: %1$s.',
-				'design_laboratori_italia'
-			),
-			'install_link'                    => _n_noop(
-				'Begin installing plugin',
-				'Begin installing plugins',
-				'design_laboratori_italia'
-			),
-			'update_link' 					  => _n_noop(
-				'Begin updating plugin',
-				'Begin updating plugins',
-				'design_laboratori_italia'
-			),
-			'activate_link'                   => _n_noop(
-				'Begin activating plugin',
-				'Begin activating plugins',
-				'design_laboratori_italia'
-			),
-			'return'                          => __( 'Return to Required Plugins Installer', 'design_laboratori_italia' ),
-			'plugin_activated'                => __( 'Plugin activated successfully.', 'design_laboratori_italia' ),
-			'activated_successfully'          => __( 'The following plugin was activated successfully:', 'design_laboratori_italia' ),
-			/* translators: 1: plugin name. * /
-			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'design_laboratori_italia' ),
-			/* translators: 1: plugin name. * /
-			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'design_laboratori_italia' ),
-			/* translators: 1: dashboard link. * /
-			'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'design_laboratori_italia' ),
-			'dismiss'                         => __( 'Dismiss this notice', 'design_laboratori_italia' ),
-			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'design_laboratori_italia' ),
-			'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'design_laboratori_italia' ),
-
-			'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
-		),
-		*/
 	);
 
 	tgmpa( $plugins, $config );
