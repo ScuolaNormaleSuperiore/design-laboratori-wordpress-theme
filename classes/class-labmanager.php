@@ -9,6 +9,10 @@ if ( ! class_exists( 'StructureManager' ) ) {
 	include_once 'class-structuremanager.php';
 }
 
+if(! class_exists('Project_Manager')) {
+    include_once 'class-projectmanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -49,6 +53,10 @@ class LabManager {
 
 		// Setup of the People post type.
 		// ...
+
+        //Setup del post type Progetti
+        $ctProgetti = new Project_Manager();
+        $ctProgetti->setup();
 	}
 
 }
