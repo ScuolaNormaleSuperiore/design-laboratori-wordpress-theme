@@ -65,7 +65,7 @@ require get_template_directory() . '/inc/breadcrumb.php';
 /**
  * Activation Hooks
  */
-require get_template_directory() . '/inc/activation.php';
+// require get_template_directory() . '/inc/activation.php';
 
 /**
  * Actions & Hooks
@@ -116,17 +116,15 @@ function check_dependencies() {
 }
 
 if ( check_dependencies() ) {
-
-	// SETUP THE PLUGIN.
+	// SETUP THE POST TYPES  USED BY THE THEME.
 
 	if ( ! class_exists( 'LabManager' ) ) {
 		include_once 'classes/class-labmanager.php';
 	}
 
-	global $emt_manager;
-	$emt_manager = new LabManager();
-	$emt_manager->plugin_setup();
-
+	global $lab_manager;
+	$lab_manager = new LabManager();
+	$lab_manager->plugin_setup();
 }
 
 
@@ -148,11 +146,9 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 * to change 'design_laboratori_italia' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'easy-appointments', get_template_directory() . '/languages' );
 
-
-        load_theme_textdomain( 'easy-appointments', get_template_directory() . '/languages' );
-
-        // Add default posts and comments RSS feed links to head.
+		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
 		/*
@@ -170,17 +166,16 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-        // image size
-        if ( function_exists( 'add_image_size' ) ) {
-            add_image_size( 'article-simple-thumb', 500, 384 , true);
-            add_image_size( 'item-thumb', 280, 280 , true);
-            add_image_size( 'item-gallery', 730, 485 , true);
-            add_image_size( 'vertical-card', 190, 290 , true);
+		// image size
+		if ( function_exists( 'add_image_size' ) ) {
+			add_image_size( 'article-simple-thumb', 500, 384 , true);
+			add_image_size( 'item-thumb', 280, 280 , true);
+			add_image_size( 'item-gallery', 730, 485 , true);
+			add_image_size( 'vertical-card', 190, 290 , true);
+			add_image_size( 'banner', 600, 250 , false);
+		}
 
-            add_image_size( 'banner', 600, 250 , false);
-        }
-
-        // This theme uses wp_nav_menu()
+		// This theme uses wp_nav_menu()
 		register_nav_menus( array(
 			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Laboratorio"', 'design_laboratori_italia' ),
 			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_laboratori_italia' ),
@@ -244,7 +239,7 @@ add_action( 'widgets_init', 'dsi_widgets_init' );
  */
 function dsi_scripts() {
 
-    //wp_deregister_script('jquery');
+	//wp_deregister_script('jquery');
 
 	wp_enqueue_style( 'dsi-wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'dsi-font', get_template_directory_uri() . '/assets/css/fonts.css');
@@ -257,14 +252,14 @@ function dsi_scripts() {
 	wp_enqueue_script( 'dsi-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js');
 	
 	// print css
-    	wp_enqueue_style('dsi-print-style', get_template_directory_uri() . '/print.css', array(),'20190912','print' );
+	wp_enqueue_style('dsi-print-style', get_template_directory_uri() . '/print.css', array(),'20190912','print' );
 
 	// footer
 	wp_enqueue_script( 'dsi-boostrap-italia-js', get_template_directory_uri() . '/assets/js/bootstrap-italia.js', array(), false, true);
 	wp_enqueue_script( 'dsi-splide-min', get_template_directory_uri() . '/assets/js/splide.min.js', array(), null, true);
 
 
-    /*TODO: da definire se minifizzare*/
+	/*TODO: da definire se minifizzare*/
 	wp_enqueue_script( 'dsi-jquery-easing', get_template_directory_uri() . '/assets/js/components/jquery-easing/jquery.easing.js', array(), false, true);
 	wp_enqueue_script( 'dsi-jquery-scrollto', get_template_directory_uri() . '/assets/js/components/jquery.scrollto/jquery.scrollTo.js', array(), false, true);
 	wp_enqueue_script( 'dsi-jquery-responsive-dom', get_template_directory_uri() . '/assets/js/components/ResponsiveDom/js/jquery.responsive-dom.js', array(), false, true);

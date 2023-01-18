@@ -100,28 +100,28 @@ function dsi_register_required_plugins() {
 			'slug'     => 'members',
 			'required' => true,
 		),
-		array(
-			'name'     => 'Italia - Amministrazione Aperta',
-			'slug'     => 'italia-amministrazione-aperta',
-			'source'     => 'https://github.com/italia/plugin_wp_amministrazione_aperta/archive/refs/heads/master.zip',
-			'required' => true,
-		),
-		array(
-			'name'   => 'Italia - XML Bandi di Gara',
-			'slug'   => 'italia-anac-xml-bandi-gara',
-			'source' => 'https://github.com/italia/plugin_wp_anac_xml_bandi_gara/archive/refs/heads/master.zip',
-			'required' => true,
-		),
+		// array(
+		// 	'name'     => 'Italia - Amministrazione Aperta',
+		// 	'slug'     => 'italia-amministrazione-aperta',
+		// 	'source'     => 'https://github.com/italia/plugin_wp_amministrazione_aperta/archive/refs/heads/master.zip',
+		// 	'required' => true,
+		// ),
+		// array(
+		// 	'name'   => 'Italia - XML Bandi di Gara',
+		// 	'slug'   => 'italia-anac-xml-bandi-gara',
+		// 	'source' => 'https://github.com/italia/plugin_wp_anac_xml_bandi_gara/archive/refs/heads/master.zip',
+		// 	'required' => true,
+		// ),
 		array(
 			'name'     => 'Better aria label support',
 			'slug'     => 'better-aria-label-support',
 			'required' => true,
 		),
-			array(
-					'name'     => 'ANAC XML Viewer',
-					'slug'     => 'anac-xml-viewer',
-					'required' => true,
-			),
+			// array(
+			// 		'name'     => 'ANAC XML Viewer',
+			// 		'slug'     => 'anac-xml-viewer',
+			// 		'required' => true,
+			// ),
 			array(
 					'name'     => 'Contact Form 7',
 					'slug'     => 'contact-form-7',
