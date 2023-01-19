@@ -4,13 +4,46 @@
         "title": "Campi Persona",
         "fields": [
             {
-                "key": "field_63c808f420306",
-                "label": "Cognome",
-                "name": "cognome",
+                "key": "field_63c958fb0e14f",
+                "label": "Titolo",
+                "name": "titolo",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "Dott.": "Dott.",
+                    "Dott.ssa": "Dott.ssa",
+                    "Dr.": "Dr.",
+                    "Prof.": "Prof.",
+                    "Prof.ssa": "Prof.ssa",
+                    "Ing.": "Ing.",
+                    "Avv.": "Avv.",
+                    "Sig.": "Sig.",
+                    "Sig.ra": "Sig.ra"
+                },
+                "default_value": false,
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 1,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_63c958b563559",
+                "label": "Nome",
+                "name": "nome",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -22,6 +55,49 @@
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
+            },
+            {
+                "key": "field_63c808f420306",
+                "label": "Cognome",
+                "name": "cognome",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_63c814db68f0a",
+                "label": "Categoria di appartenenza",
+                "name": "categoria",
+                "aria-label": "",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "tipo-persona",
+                "add_term": 0,
+                "save_terms": 0,
+                "load_terms": 0,
+                "return_format": "id",
+                "field_type": "select",
+                "allow_null": 0,
+                "multiple": 0
             },
             {
                 "key": "field_63c8090f20307",
@@ -122,30 +198,7 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
-            },
-            {
-                "key": "field_63c814db68f0a",
-                "label": "Categoria di appartenenza",
-                "name": "categoria",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "taxonomy": "tipo-persona",
-                "add_term": 0,
-                "save_terms": 0,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "select",
-                "allow_null": 0,
-                "multiple": 0
+                "placeholder": "https:\/\/"
             },
             {
                 "key": "field_63c8152d68f0b",
@@ -162,7 +215,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "scheda_progetto"
+                    "progetto"
                 ],
                 "taxonomy": "",
                 "return_format": "object",

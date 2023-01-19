@@ -23,8 +23,11 @@ class Structure_Manager {
 		// Register the taxonomies used by this post type.
 		add_action( 'init', array( $this, 'add_structure_taxonomies' ) );
 
-		// Register the post type of this plugin.
+		// Register the post type.
 		add_action( 'init', array( $this, 'add_structure_post_type' ) );
+
+		// Customize the post type layout of the admin interface.
+		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
 	/**
@@ -48,8 +51,8 @@ class Structure_Manager {
 		$args = array(
 			'hierarchical'      => true,
 			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
+			'show_ui'           => false,
+			'show_admin_column' => false,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipologia-struttura' ),
 			'capabilities'      => array(
@@ -87,19 +90,282 @@ class Structure_Manager {
 			'label'           => __( 'Struttura Organizzativa', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			'hierarchical'    => true,
+			// 'hierarchical'    => true,
 			'public'          => true,
-			// 'menu_position'   => 2,
+			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-networking',
 			'has_archive'     => true,
-			'capability_type' => array( 'struttura', 'strutture' ),
-			'map_meta_cap'    => true,
+			'show_in_rest'    => true,
+			'rewrite'         => array('slug' => 'strutture'),
+			// 'map_meta_cap'    => true,
 		);
 
-		// Needed to refrewsh permalinks
-		// Same as: Admin->Settings->Permalinks->Save.
-		flush_rewrite_rules();
 		register_post_type( STRUCTURE_POST_TYPE, $args );
+
+		// Add the custom fields.
+		$this->add_fields();
+	}
+
+	/**
+	 * Customize the layout of the admin interface.
+	 *
+	 * @param Object $post - The custom post.
+	 * @return string
+	 */
+	public function custom_layout( $post ) {
+		if ( STRUCTURE_POST_TYPE === $post->post_type ) {
+			_e( '<h1>Cosa fa </h1> Elenco/descrizione dei compiti assegnati alla struttura', 'design_laboratori_italia' );
+		}
+	}
+
+
+	/**
+	 * Add the custom fields of the custom post-type.
+	 *
+	 * @return void
+	 */
+	function add_fields() {
+		if( function_exists( 'acf_add_local_field_group' ) ) {
+			acf_add_local_field_group(array(
+				'key' => 'group_63c7d0d3cca8a',
+				'title' => 'Campi Struttura',
+				'fields' => array(
+					array(
+						'key' => 'field_63c7dcd4ac6bf',
+						'label' => 'Descrizione breve',
+						'name' => 'descrizione_breve',
+						'aria-label' => '',
+						'type' => 'textarea',
+						'instructions' => '',
+						'required' => 1,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'maxlength' => '',
+						'rows' => '',
+						'placeholder' => '',
+						'new_lines' => '',
+					),
+					array(
+						'key' => 'field_63c7d0d5ac6be',
+						'label' => 'Tipologia',
+						'name' => 'tipologia',
+						'aria-label' => '',
+						'type' => 'taxonomy',
+						'instructions' => '',
+						'required' => 1,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'taxonomy' => 'tipo-struttura',
+						'add_term' => 0,
+						'save_terms' => 0,
+						'load_terms' => 0,
+						'return_format' => 'id',
+						'field_type' => 'radio',
+						'allow_null' => 0,
+						'multiple' => 0,
+					),
+					array(
+						'key' => 'field_63c7dd01ac6c0',
+						'label' => 'La struttura dipende da un\'altra struttura.',
+						'name' => 'dipendenza',
+						'aria-label' => '',
+						'type' => 'post_object',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'struttura',
+						),
+						'taxonomy' => '',
+						'return_format' => 'object',
+						'multiple' => 0,
+						'allow_null' => 0,
+						'ui' => 1,
+					),
+					array(
+						'key' => 'field_63c7ed1a64563',
+						'label' => 'Progetti',
+						'name' => 'progetti',
+						'aria-label' => '',
+						'type' => 'post_object',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'progetto',
+						),
+						'taxonomy' => '',
+						'return_format' => 'object',
+						'multiple' => 1,
+						'allow_null' => 0,
+						'ui' => 1,
+					),
+					array(
+						'key' => 'field_63c7ed4d64564',
+						'label' => 'Persone responsabili',
+						'name' => 'persone_responsabili',
+						'aria-label' => '',
+						'type' => 'post_object',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'persona',
+						),
+						'taxonomy' => '',
+						'return_format' => 'object',
+						'multiple' => 1,
+						'allow_null' => 0,
+						'ui' => 1,
+					),
+					array(
+						'key' => 'field_63c7ed8264565',
+						'label' => 'Persone',
+						'name' => 'persone',
+						'aria-label' => '',
+						'type' => 'post_object',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'persona',
+						),
+						'taxonomy' => '',
+						'return_format' => 'object',
+						'multiple' => 1,
+						'allow_null' => 0,
+						'ui' => 1,
+					),
+					array(
+						'key' => 'field_63c7edb564566',
+						'label' => 'Altri componenti',
+						'name' => 'altri_componenti',
+						'aria-label' => '',
+						'type' => 'text',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'maxlength' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+					),
+					array(
+						'key' => 'field_63c7edc564567',
+						'label' => 'Sede',
+						'name' => 'sede',
+						'aria-label' => '',
+						'type' => 'text',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'maxlength' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+					),
+					array(
+						'key' => 'field_63c7ede464568',
+						'label' => 'Recapito telefonico struttura',
+						'name' => 'recapito_telefonico_struttura',
+						'aria-label' => '',
+						'type' => 'text',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'maxlength' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+					),
+					array(
+						'key' => 'field_63c7edff64569',
+						'label' => 'Email della struttura',
+						'name' => 'email_della_struttura',
+						'aria-label' => '',
+						'type' => 'email',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+					),
+				),
+				'location' => array(
+					array(
+						array(
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'struttura',
+						),
+					),
+				),
+				'menu_order' => 0,
+				'position' => 'normal',
+				'style' => 'default',
+				'label_placement' => 'top',
+				'instruction_placement' => 'label',
+				'hide_on_screen' => '',
+				'active' => true,
+				'description' => '',
+				'show_in_rest' => 0,
+			));
+		}
+
 	}
 
 }

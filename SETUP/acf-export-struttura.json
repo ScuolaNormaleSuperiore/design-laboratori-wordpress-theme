@@ -10,7 +10,7 @@
                 "aria-label": "",
                 "type": "textarea",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -30,7 +30,7 @@
                 "aria-label": "",
                 "type": "taxonomy",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -84,11 +84,11 @@
                     "id": ""
                 },
                 "post_type": [
-                    "struttura"
+                    "progetto"
                 ],
                 "taxonomy": "",
                 "return_format": "object",
-                "multiple": 0,
+                "multiple": 1,
                 "allow_null": 0,
                 "ui": 1
             },
@@ -107,7 +107,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "struttura"
+                    "persona"
                 ],
                 "taxonomy": "",
                 "return_format": "object",
@@ -130,7 +130,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "struttura"
+                    "persona"
                 ],
                 "taxonomy": "",
                 "return_format": "object",
