@@ -12,6 +12,10 @@ if ( ! class_exists( 'PeopleManager' ) ) {
 	include_once 'class-peoplemanager.php';
 }
 
+if(! class_exists('Project_Manager')) {
+    include_once 'class-projectmanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -53,6 +57,9 @@ class LabManager {
 		// Setup of the People post type.
 		$ctm = new People_Manager();
 		$ctm->setup();
+        //Setup del post type Progetti
+        $ctProgetti = new Project_Manager();
+        $ctProgetti->setup();
 	}
 
 }
