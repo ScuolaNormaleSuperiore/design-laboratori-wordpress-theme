@@ -21,10 +21,10 @@ class Structure_Manager {
 	 */
 	public function setup() {
 		// Register the taxonomies used by this post type.
-		add_action( 'init', array( $this, 'add_structure_taxonomies' ) );
+		add_action( 'init', array( $this, 'add_taxonomies' ) );
 
 		// Register the post type.
-		add_action( 'init', array( $this, 'add_structure_post_type' ) );
+		add_action( 'init', array( $this, 'add_post_type' ) );
 
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
@@ -35,7 +35,7 @@ class Structure_Manager {
 	 *
 	 * @return void
 	 */
-	public function add_structure_taxonomies() {
+	public function add_taxonomies() {
 		$labels = array(
 			'name'              => _x( 'Tipologia Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
 			'singular_name'     => _x( 'Tipologia Struttura', 'taxonomy singular name', 'design_laboratori_italia' ),
@@ -71,7 +71,7 @@ class Structure_Manager {
 	 *
 	 * @return void
 	 */
-	public function add_structure_post_type() {
+	public function add_post_type() {
 
 		$labels = array(
 			'name'                  => _x( 'Strutture', 'Post Type General Name', 'design_laboratori_italia' ),
@@ -103,7 +103,7 @@ class Structure_Manager {
 		register_post_type( STRUCTURE_POST_TYPE, $args );
 
 		// Add the custom fields.
-		$this->add_fields();
+		// $this->add_fields();
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Structure_Manager {
 						'label' => 'La struttura dipende da un\'altra struttura.',
 						'name' => 'dipendenza',
 						'aria-label' => '',
-						'type' => 'post_object',
+						'type' => 'relationship',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -168,17 +168,20 @@ class Structure_Manager {
 							0 => 'struttura',
 						),
 						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
 						'return_format' => 'object',
-						'multiple' => 0,
-						'allow_null' => 0,
-						'ui' => 1,
+						'min' => '',
+						'max' => '',
+						'elements' => '',
 					),
 					array(
 						'key' => 'field_63c7ed1a64563',
 						'label' => 'Progetti',
 						'name' => 'progetti',
 						'aria-label' => '',
-						'type' => 'post_object',
+						'type' => 'relationship',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -191,17 +194,20 @@ class Structure_Manager {
 							0 => 'progetto',
 						),
 						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
 						'return_format' => 'object',
-						'multiple' => 1,
-						'allow_null' => 0,
-						'ui' => 1,
+						'min' => '',
+						'max' => '',
+						'elements' => '',
 					),
 					array(
 						'key' => 'field_63c7ed4d64564',
 						'label' => 'Persone responsabili',
 						'name' => 'persone_responsabili',
 						'aria-label' => '',
-						'type' => 'post_object',
+						'type' => 'relationship',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -214,17 +220,20 @@ class Structure_Manager {
 							0 => 'persona',
 						),
 						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
 						'return_format' => 'object',
-						'multiple' => 1,
-						'allow_null' => 0,
-						'ui' => 1,
+						'min' => '',
+						'max' => '',
+						'elements' => '',
 					),
 					array(
 						'key' => 'field_63c7ed8264565',
 						'label' => 'Persone',
 						'name' => 'persone',
 						'aria-label' => '',
-						'type' => 'post_object',
+						'type' => 'relationship',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -237,10 +246,13 @@ class Structure_Manager {
 							0 => 'persona',
 						),
 						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
 						'return_format' => 'object',
-						'multiple' => 1,
-						'allow_null' => 0,
-						'ui' => 1,
+						'min' => '',
+						'max' => '',
+						'elements' => '',
 					),
 					array(
 						'key' => 'field_63c7edb564566',
@@ -342,7 +354,6 @@ class Structure_Manager {
 				'show_in_rest' => 0,
 			));
 		}
-
 	}
 
 }

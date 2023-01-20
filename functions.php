@@ -109,7 +109,11 @@ require get_template_directory() . '/inc/dompdf.php';
 function check_dependencies() {
 	$result = true;
 	if ( ! class_exists( 'ACF' ) ) {
-		error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://www.advancedcustomfields.com' );
+		error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://wordpress.org/plugins/advanced-custom-fields' );
+		$result = false;
+	}
+	if ( ! class_exists( 'Members_Plugin' ) ) {
+		error_log( 'The plugin Members is missing, please install and activate it: https://wordpress.org/plugins/members' );
 		$result = false;
 	}
 	return $result;

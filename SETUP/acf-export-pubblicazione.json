@@ -182,7 +182,7 @@
                 "label": "Progetti correlati",
                 "name": "progetti_correlati",
                 "aria-label": "",
-                "type": "relationship",
+                "type": "post_object",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -195,13 +195,10 @@
                     "progetto"
                 ],
                 "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
                 "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 1
             },
             {
                 "key": "field_63c8159068f0c",
@@ -228,7 +225,7 @@
                 "label": "Pubblicazioni",
                 "name": "pubblicazioni",
                 "aria-label": "",
-                "type": "relationship",
+                "type": "post_object",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -238,16 +235,13 @@
                     "id": ""
                 },
                 "post_type": [
-                    "pubblicazione"
+                    "scheda_progetto"
                 ],
                 "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
                 "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 1
             }
         ],
         "location": [

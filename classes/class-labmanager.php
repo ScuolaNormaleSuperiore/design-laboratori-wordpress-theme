@@ -11,9 +11,11 @@ if ( ! class_exists( 'StructureManager' ) ) {
 if ( ! class_exists( 'PeopleManager' ) ) {
 	include_once 'class-peoplemanager.php';
 }
-
-if(! class_exists('Project_Manager')) {
-    include_once 'class-projectmanager.php';
+if ( ! class_exists( 'Project_Manager' ) ) {
+	include_once 'class-projectmanager.php';
+}
+if ( ! class_exists( 'Publication_Manager' ) ) {
+	include_once 'class-publicationmanager.php';
 }
 
 /**
@@ -48,18 +50,23 @@ class LabManager {
 	 */
 	public function plugin_setup() {
 
-		// Setup the custom post types and their taxonomies.
+		// Setup dei post type personalizzati e delle tassonomie associate.
 
-		// Setup of the Structure post type.
+		// Setup del post type Struttura.
 		$ctm = new Structure_Manager();
 		$ctm->setup();
 
-		// Setup of the People post type.
-		$ctm = new People_Manager();
-		$ctm->setup();
-        //Setup del post type Progetti
-        $ctProgetti = new Project_Manager();
-        $ctProgetti->setup();
+		// Setup del post type Persona.
+		$cpm = new People_Manager();
+		$cpm->setup();
+
+		// Setup del post type Progetto.
+		$ctprm = new Project_Manager();
+		$ctprm->setup();
+
+		// Setup del post type Pubblicazione.
+		$publm = new Publication_Manager();
+		$publm->setup();
 	}
 
 }

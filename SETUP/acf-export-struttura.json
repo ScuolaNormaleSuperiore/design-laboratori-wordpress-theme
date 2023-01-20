@@ -28,7 +28,7 @@
                 "label": "La struttura dipende da un'altra struttura.",
                 "name": "dipendenza",
                 "aria-label": "",
-                "type": "post_object",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -41,17 +41,20 @@
                     "struttura"
                 ],
                 "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
                 "return_format": "object",
-                "multiple": 0,
-                "allow_null": 0,
-                "ui": 1
+                "min": "",
+                "max": "",
+                "elements": ""
             },
             {
                 "key": "field_63c7ed1a64563",
                 "label": "Progetti",
                 "name": "progetti",
                 "aria-label": "",
-                "type": "post_object",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -64,17 +67,20 @@
                     "progetto"
                 ],
                 "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
                 "return_format": "object",
-                "multiple": 1,
-                "allow_null": 0,
-                "ui": 1
+                "min": "",
+                "max": "",
+                "elements": ""
             },
             {
                 "key": "field_63c7ed4d64564",
                 "label": "Persone responsabili",
                 "name": "persone_responsabili",
                 "aria-label": "",
-                "type": "post_object",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -87,17 +93,20 @@
                     "persona"
                 ],
                 "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
                 "return_format": "object",
-                "multiple": 1,
-                "allow_null": 0,
-                "ui": 1
+                "min": "",
+                "max": "",
+                "elements": ""
             },
             {
                 "key": "field_63c7ed8264565",
                 "label": "Persone",
                 "name": "persone",
                 "aria-label": "",
-                "type": "post_object",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -110,10 +119,13 @@
                     "persona"
                 ],
                 "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
                 "return_format": "object",
-                "multiple": 1,
-                "allow_null": 0,
-                "ui": 1
+                "min": "",
+                "max": "",
+                "elements": ""
             },
             {
                 "key": "field_63c7edb564566",

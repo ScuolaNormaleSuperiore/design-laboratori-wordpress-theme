@@ -1,14 +1,11 @@
 <?php
 // Post Types.
-define( 'PEOPLE_POST_TYPE', 'persona' );
-
-// Taxonomies
-define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
+define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 
 /**
  * The manager that setups Course post types.
  */
-class People_Manager {
+class Publication_Manager {
 	/**
 	 * Constructor of the Manager.
 	 */
@@ -20,50 +17,8 @@ class People_Manager {
 	 * @return void
 	 */
 	public function setup() {
-		// Register the taxonomies used by this post type.
-		add_action( 'init', array( $this, 'add_taxonomies' ) );
-
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
-		// Customize the post type layout of the admin interface.
-		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
-	}
-
-	/**
-	 * Register the taxonomies.
-	 *
-	 * @return void
-	 */
-	public function add_taxonomies() {
-		$labels = array(
-			'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
-			'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
-			'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
-			'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
-			'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
-			'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
-			'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
-			'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
-			'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
-		);
-
-		$args = array(
-			'hierarchical'      => true,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'tipologia-persona' ),
-			'capabilities'      => array(
-				'manage_terms' => 'manage_tipologia_persone',
-				'edit_terms'   => 'edit_tipologia_persone',
-				'delete_terms' => 'delete_tipologia_persone',
-				'assign_terms' => 'assign_tipologia_persone',
-			),
-		);
-
-		register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
 	}
 
 	/**
@@ -74,52 +29,36 @@ class People_Manager {
 	public function add_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'Persone', 'Post Type General Name', 'design_laboratori_italia' ),
-			'singular_name'         => _x( 'Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'add_new'               => _x( 'Aggiungi Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'add_new_item'          => _x( 'Aggiungi la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'edit_item'             => _x( 'Modifica la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'view_item'             => _x( 'Visualizza la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'featured_image'        => __( 'Immagine principale della Persona', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine' ),
-			'remove_featured_image' => __( 'Rimuovi Immagine' . 'design_laboratori_italia' ),
-			'use_featured_image'    => __( 'Usa come Immagine della Persona' . 'design_laboratori_italia' ),
+			'name'                  => _x( 'Pubblicazioni', 'Post Type General Name', 'design_laboratori_italia' ),
+			'singular_name'         => _x( 'Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'add_new'               => _x( 'Aggiungi Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'add_new_item'          => _x( 'Aggiungi la Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'edit_item'             => _x( 'Modifica la Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'view_item'             => _x( 'Visualizza la Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' ),
 		);
 
 		$args   = array(
-			'label'           => __( 'Persona', 'design_laboratori_italia' ),
+			'label'           => __( 'Pubblicazione', 'design_laboratori_italia' ),
 			'labels'          => $labels,
-			'supports'        => array( 'title', 'editor', 'thumbnail' ),
+			'supports'        => array( 'title', ),
 			// 'hierarchical'    => true,
 			'public'          => true,
-			'show_in_menu'    => true,
-			'show_in_rest'    => true,
 			'menu_position'   => 2,
-			'menu_icon'       => 'dashicons-businessperson',
+			'menu_icon'       => 'dashicons-book',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array('slug' => 'persone'),
+			'rewrite'         => array(
+				'slug' => 'strutture',
+			),
 			// 'map_meta_cap'    => true,
 		);
 
-		register_post_type( PEOPLE_POST_TYPE, $args );
+		register_post_type( PUBLICATION_POST_TYPE, $args );
 
 		// Add the custom fields.
 		$this->add_fields();
 	}
 
-	/**
-	 * Customize the layout of the admin interface.
-	 *
-	 * @param Object $post - The custom post.
-	 * @return string
-	 */
-	public function custom_layout( $post ) {
-		if ( PEOPLE_POST_TYPE === $post->post_type ) {
-			_e( '<span><i>Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca.</i></span>','design_laboratori_italia' );
-			_e( '<h1>Biografia</h1> Biografia della persona', 'design_laboratori_italia' );
-		}
-	}
 
 	/**
 	 * Add the custom fields of the custom post-type.
@@ -311,7 +250,7 @@ class People_Manager {
 						'label' => 'Progetti correlati',
 						'name' => 'progetti_correlati',
 						'aria-label' => '',
-						'type' => 'relationship',
+						'type' => 'post_object',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -324,13 +263,10 @@ class People_Manager {
 							0 => 'progetto',
 						),
 						'taxonomy' => '',
-						'filters' => array(
-							0 => 'search',
-						),
 						'return_format' => 'object',
-						'min' => '',
-						'max' => '',
-						'elements' => '',
+						'multiple' => 0,
+						'allow_null' => 0,
+						'ui' => 1,
 					),
 					array(
 						'key' => 'field_63c8159068f0c',
@@ -357,7 +293,7 @@ class People_Manager {
 						'label' => 'Pubblicazioni',
 						'name' => 'pubblicazioni',
 						'aria-label' => '',
-						'type' => 'relationship',
+						'type' => 'post_object',
 						'instructions' => '',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -367,16 +303,13 @@ class People_Manager {
 							'id' => '',
 						),
 						'post_type' => array(
-							0 => 'pubblicazione',
+							0 => 'scheda_progetto',
 						),
 						'taxonomy' => '',
-						'filters' => array(
-							0 => 'search',
-						),
 						'return_format' => 'object',
-						'min' => '',
-						'max' => '',
-						'elements' => '',
+						'multiple' => 0,
+						'allow_null' => 0,
+						'ui' => 1,
 					),
 				),
 				'location' => array(
