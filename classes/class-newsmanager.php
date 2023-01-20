@@ -1,11 +1,11 @@
 <?php
 // Post Types.
-define( 'EVENT_POST_TYPE', 'evento' );
+define( 'NEWS_POST_TYPE', 'notizia' );
 
 /**
  * The manager that setups Course post types.
  */
-class Event_Manager {
+class News_Manager {
 	/**
 	 * Constructor of the Manager.
 	 */
@@ -32,35 +32,35 @@ class Event_Manager {
 	public function add_post_type() {
 
 		$labels = array(
-			'name'                  => _x( 'Eventi', 'Post Type General Name', 'design_laboratori_italia' ),
-			'singular_name'         => _x( 'Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'add_new'               => _x( 'Aggiungi un Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'add_new_item'          => _x( 'Aggiungi un Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'edit_item'             => _x( 'Modifica il Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'view_item'             => _x( 'Visualizza il Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'featured_image'        => __( 'Logo Identificativo del Evento', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine Evento' ),
-			'remove_featured_image' => __( 'Rimuovi Immagine Evento' , 'design_laboratori_italia' ),
-			'use_featured_image'    => __( 'Usa come Immagine Evento' , 'design_laboratori_italia' ),
+			'name'                  => _x( 'Notizie', 'Post Type General Name', 'design_laboratori_italia' ),
+			'singular_name'         => _x( 'Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'add_new'               => _x( 'Aggiungi una Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'add_new_item'          => _x( 'Aggiungi una Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'edit_item'             => _x( 'Modifica la Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'view_item'             => _x( 'Visualizza la Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
+			'featured_image'        => __( 'Logo Identificativo della Notizia', 'design_laboratori_italia' ),
+			'set_featured_image'    => __( 'Seleziona Immagine Notizia' ),
+			'remove_featured_image' => __( 'Rimuovi Immagine Notizia' , 'design_laboratori_italia' ),
+			'use_featured_image'    => __( 'Usa come Immagine Notizia' , 'design_laboratori_italia' ),
 		);
 
 		$args   = array(
-			'label'           => __( 'Evento', 'design_laboratori_italia' ),
+			'label'           => __( 'Notizia', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			// 'hierarchical'    => true,
 			'public'          => true,
 			'menu_position'   => 2,
-			'menu_icon'       => 'dashicons-calendar',
+			'menu_icon'       => 'dashicons-welcome-widgets-menus',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
 			'rewrite'         => array(
-				'slug' => 'eventi',
+				'slug' => 'notizie',
 			),
 			// 'map_meta_cap'    => true,
 		);
 
-		register_post_type( EVENT_POST_TYPE, $args );
+		register_post_type( NEWS_POST_TYPE, $args );
 
 		// Add the custom fields.
 		$this->add_fields();
@@ -73,8 +73,8 @@ class Event_Manager {
 	 * @return string
 	 */
 	public function custom_layout( $post ) {
-		if ( EVENT_POST_TYPE === $post->post_type ) {
-			_e( '<h1>Descrizione evento</h1>', 'design_laboratori_italia' );
+		if ( NEWS_POST_TYPE === $post->post_type ) {
+			_e( '<h1>Descrizione notizia</h1>', 'design_laboratori_italia' );
 		}
 	}
 
@@ -86,11 +86,11 @@ class Event_Manager {
 	function add_fields() {
 		if( function_exists( 'acf_add_local_field_group' ) ) {
 			acf_add_local_field_group(array(
-				'key' => 'group_63ca9a68be429',
-				'title' => 'Campi Evento',
+				'key' => 'group_63cab53e5eb0e',
+				'title' => 'Campi Notizia',
 				'fields' => array(
 					array(
-						'key' => 'field_63cab1657e109',
+						'key' => 'field_63cab53e63c56',
 						'label' => 'Descrizione breve',
 						'name' => 'descrizione_breve',
 						'aria-label' => '',
@@ -110,83 +110,7 @@ class Event_Manager {
 						'new_lines' => '',
 					),
 					array(
-						'key' => 'field_63ca9a6ae7e55',
-						'label' => 'Data inizio',
-						'name' => 'data_inizio',
-						'aria-label' => '',
-						'type' => 'date_time_picker',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'display_format' => 'd/m/Y g:i a',
-						'return_format' => 'Y-m-d H:i:s',
-						'first_day' => 1,
-					),
-					array(
-						'key' => 'field_63ca9adab8fce',
-						'label' => 'Data fine',
-						'name' => 'data_fine',
-						'aria-label' => '',
-						'type' => 'date_time_picker',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'display_format' => 'd/m/Y g:i a',
-						'return_format' => 'Y-m-d H:i:s',
-						'first_day' => 1,
-					),
-					array(
-						'key' => 'field_63ca9b49b8fcf',
-						'label' => 'Luogo',
-						'name' => 'luogo',
-						'aria-label' => '',
-						'type' => 'text',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'default_value' => '',
-						'maxlength' => '',
-						'placeholder' => '',
-						'prepend' => '',
-						'append' => '',
-					),
-					array(
-						'key' => 'field_63cab17d7e10a',
-						'label' => 'Contatti di riferimento',
-						'name' => 'contatti',
-						'aria-label' => '',
-						'type' => 'text',
-						'instructions' => '',
-						'required' => 0,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'default_value' => '',
-						'maxlength' => '',
-						'placeholder' => '',
-						'prepend' => '',
-						'append' => '',
-					),
-					array(
-						'key' => 'field_63ca9bdcb8fd0',
+						'key' => 'field_63cab53e76998',
 						'label' => 'Promuovi in hero',
 						'name' => 'promuovi_in_hero',
 						'aria-label' => '',
@@ -206,7 +130,7 @@ class Event_Manager {
 						'ui_off_text' => '',
 					),
 					array(
-						'key' => 'field_63ca9c03b8fd1',
+						'key' => 'field_63cab53e7a489',
 						'label' => 'Progetto',
 						'name' => 'progetto',
 						'aria-label' => '',
@@ -232,7 +156,7 @@ class Event_Manager {
 						'elements' => '',
 					),
 					array(
-						'key' => 'field_63ca9c28b8fd2',
+						'key' => 'field_63cab53e7de3e',
 						'label' => 'Indirizzo di ricerca',
 						'name' => 'indirizzo_di_ricerca',
 						'aria-label' => '',
@@ -263,7 +187,7 @@ class Event_Manager {
 						array(
 							'param' => 'post_type',
 							'operator' => '==',
-							'value' => 'evento',
+							'value' => 'notizia',
 						),
 					),
 				),

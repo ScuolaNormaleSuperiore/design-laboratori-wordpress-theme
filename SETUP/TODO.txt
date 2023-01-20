@@ -1,6 +1,6 @@
 
-1) CT Eventi
-2) CT News
+*** TODO ***
+
 3) Togliere pt superflui
 4) Logo in configurazione (options.php)
 5) Plugin per traduzione post e gestione multilingua
@@ -19,3 +19,9 @@
 18) Produzione e traduzione etichette in inglese
 19) Aggiunta campo OpenStreetMap in Evento (https://wordpress.org/plugins/acf-openstreetmap-field/)
 20)
+
+
+
+* Fatti *
+1) CT Eventi
+2) CT News

@@ -282,7 +282,7 @@ add_action( 'pre_get_posts', 'dsi_circolari_filters' );
 add_filter( 'get_the_archive_title', function ($title) {
 global $wp_query;
     if ( is_tag() ) {
-        $title = __("Argomento", "design_scuole_italia").": ".single_cat_title( '', false );
+        $title = __("Argomento", "design_laboratori_italia").": ".single_cat_title( '', false );
     } elseif ( is_tag() ) {
         $title = single_tag_title( '', false );
     } elseif ( is_tax("tipologia-articolo") ) {
@@ -298,26 +298,26 @@ global $wp_query;
         //$title .= single_term_title('', false);
         $title = single_term_title('', false);
     } elseif ( is_post_type_archive("servizio") ) {
-        $title = __("Tutti i servizi", "design_scuole_italia");
+        $title = __("Tutti i servizi", "design_laboratori_italia");
     } elseif ( is_post_type_archive("evento") ) {
-        $title = __("Calendario", "design_scuole_italia");
+        $title = __("Calendario", "design_laboratori_italia");
     } elseif ( is_tax("tipologia-servizio") ) {
-        // $title = __("Servizi per ", "design_scuole_italia").": ".single_term_title('', false);
+        // $title = __("Servizi per ", "design_laboratori_italia").": ".single_term_title('', false);
         $title = single_term_title('', false);
     }elseif ( is_tax("tipologia-circolare") ) {
-        // $title = __("Servizi per ", "design_scuole_italia").": ".single_term_title('', false);
+        // $title = __("Servizi per ", "design_laboratori_italia").": ".single_term_title('', false);
         $title = single_term_title('', false);
     }elseif ( is_tax("tipologia-luogo") ) {
-        // $title = __("Servizi per ", "design_scuole_italia").": ".single_term_title('', false);
+        // $title = __("Servizi per ", "design_laboratori_italia").": ".single_term_title('', false);
         $title = single_term_title('', false);
     } elseif ( is_tax("tipologia-progetto") ) {
         $title = single_term_title('', false);
     }elseif ( is_post_type_archive("luogo") ) {
-        $title = __("I luoghi della scuola", "design_scuole_italia");
+        $title = __("I luoghi della scuola", "design_laboratori_italia");
     } elseif ( is_post_type_archive("struttura") ) {
-        $title = __("Organizzazione", "design_scuole_italia");
+        $title = __("Organizzazione", "design_laboratori_italia");
     } elseif ( is_post_type_archive("evento") ) {
-        $title = __("Eventi", "design_scuole_italia");
+        $title = __("Eventi", "design_laboratori_italia");
         if(isset($_GET["date"]) && $_GET["date"] != ""){
             $title .= " del ".$_GET["date"];
         }
@@ -578,7 +578,7 @@ function dsi_admin_bar_customize_header() {
         $wp_admin_bar->add_menu(
             array(
                 'id'     => 'design-scuole-conf',
-                'title' => __( '<div class="dashicons-before dashicons-admin-tools" style="float:left; padding-top: 6px; padding-right:4px;"> </div>Configurazione', "design_scuole_italia" ),
+                'title' => __( '<div class="dashicons-before dashicons-admin-tools" style="float:left; padding-top: 6px; padding-right:4px;"> </div>Configurazione', "design_laboratori_italia" ),
                 'href'   => admin_url("admin.php?page=homepage")
             )
         );

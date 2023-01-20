@@ -1,10 +1,10 @@
 [
     {
-        "key": "group_63ca9a68be429",
-        "title": "Campi Evento",
+        "key": "group_63cab53e5eb0e",
+        "title": "Campi Notizia",
         "fields": [
             {
-                "key": "field_63cab1657e109",
+                "key": "field_63cab53e63c56",
                 "label": "Descrizione breve",
                 "name": "descrizione_breve",
                 "aria-label": "",
@@ -24,83 +24,7 @@
                 "new_lines": ""
             },
             {
-                "key": "field_63ca9a6ae7e55",
-                "label": "Data inizio",
-                "name": "data_inizio",
-                "aria-label": "",
-                "type": "date_time_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y g:i a",
-                "return_format": "Y-m-d H:i:s",
-                "first_day": 1
-            },
-            {
-                "key": "field_63ca9adab8fce",
-                "label": "Data fine",
-                "name": "data_fine",
-                "aria-label": "",
-                "type": "date_time_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y g:i a",
-                "return_format": "Y-m-d H:i:s",
-                "first_day": 1
-            },
-            {
-                "key": "field_63ca9b49b8fcf",
-                "label": "Luogo",
-                "name": "luogo",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63cab17d7e10a",
-                "label": "Contatti di riferimento",
-                "name": "contatti",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63ca9bdcb8fd0",
+                "key": "field_63cab53e76998",
                 "label": "Promuovi in hero",
                 "name": "promuovi_in_hero",
                 "aria-label": "",
@@ -120,7 +44,7 @@
                 "ui_off_text": ""
             },
             {
-                "key": "field_63ca9c03b8fd1",
+                "key": "field_63cab53e7a489",
                 "label": "Progetto",
                 "name": "progetto",
                 "aria-label": "",
@@ -146,7 +70,7 @@
                 "elements": ""
             },
             {
-                "key": "field_63ca9c28b8fd2",
+                "key": "field_63cab53e7de3e",
                 "label": "Indirizzo di ricerca",
                 "name": "indirizzo_di_ricerca",
                 "aria-label": "",
@@ -177,7 +101,7 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "evento"
+                    "value": "notizia"
                 }
             ]
         ],
