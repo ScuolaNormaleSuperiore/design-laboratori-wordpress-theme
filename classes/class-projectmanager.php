@@ -21,21 +21,29 @@ class Project_Manager {
 	}
 
     function dsi_register_progetto_post_type() {
-        register_post_type('progetto', array(
-            'has_archive' => true,
+        $labels = array(
+            'name'          => _x( 'Progetti', 'Post Type General Name', 'design_laboratori_italia' ),
+            'singular_name' => _x( 'Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
+            'add_new'       => _x( 'Aggiungi un Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
+            'add_new_item'  => _x( 'Aggiungi una nuovo Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
+            'edit_item'       => _x( 'Modifica il Progetto', 'Post Type Singular Name', 'design_laboratori_italia' )
+        );
+
+        $args   = array(
+            'label'         => __( 'Progetto', 'design_laboratori_italia' ),
+            'labels'        => $labels,
+            'supports'      => array( 'title', 'editor', 'excerpt'),
+            'public'        => true,
             'show_in_rest' => true,
-            'supports' => array('title', 'editor', 'excerpt'),
+            'menu_position' => 2,
+            'menu_icon'     => 'dashicons-media-document',
+            'has_archive'   => true,
             'rewrite' => array('slug' => 'progetti'),
-            'public' => true,
-            'labels' => array(
-                'name' => 'Progetti',
-                'add_new_item' => 'Aggiungi un nuovo Progetto',
-                'edit_item' => 'Modifica il Progetto',
-                'all_items' => 'Tutti i Progetti',
-                'singular_name' => 'Progetto'
-            ),
-            'menu_icon' => 'dashicons-media-document'
-        ));
+        );
+
+        register_post_type( 'progetto', $args );
+
+        // Add the custom fields.
         $this->add_fields();
     }
 
