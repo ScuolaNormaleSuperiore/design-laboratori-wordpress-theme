@@ -32,7 +32,7 @@ class Project_Manager {
         $args   = array(
             'label'         => __( 'Progetto', 'design_laboratori_italia' ),
             'labels'        => $labels,
-            'supports'      => array( 'title', 'editor', 'excerpt'),
+            'supports'      => array( 'title'),
             'public'        => true,
             'show_in_rest' => true,
             'menu_position' => 2,
