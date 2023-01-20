@@ -48,7 +48,7 @@ class ResearchActivities_Manager {
 		}
 
 		function add_fields() {
-			if( function_exists('acf_add_local_field_group') ){
+			if( function_exists('acf_add_local_field_group') ) {
 
 				acf_add_local_field_group(array(
 					'key' => 'group_63ca9591d0d91',
@@ -233,5 +233,4 @@ class ResearchActivities_Manager {
 				));
 			}
 		}
-
 }
