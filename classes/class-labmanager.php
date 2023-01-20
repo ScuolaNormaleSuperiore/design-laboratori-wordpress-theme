@@ -17,6 +17,9 @@ if ( ! class_exists( 'Project_Manager' ) ) {
 if ( ! class_exists( 'Publication_Manager' ) ) {
 	include_once 'class-publicationmanager.php';
 }
+if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
+	include_once 'class-researchactivitiesmanager.php';
+}
 
 /**
  * The manager that builds the tool and configures Wordpress.
@@ -67,6 +70,10 @@ class LabManager {
 		// Setup del post type Pubblicazione.
 		$publm = new Publication_Manager();
 		$publm->setup();
+
+		// Setup del post type Indirizzo di ricerca.
+		$ctram = new ResearchActivities_Manager();
+		$ctram->setup();
 	}
 
 }
