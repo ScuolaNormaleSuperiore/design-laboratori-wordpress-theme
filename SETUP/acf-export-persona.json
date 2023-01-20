@@ -77,29 +77,6 @@
                 "append": ""
             },
             {
-                "key": "field_63c814db68f0a",
-                "label": "Categoria di appartenenza",
-                "name": "categoria",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "taxonomy": "tipo-persona",
-                "add_term": 0,
-                "save_terms": 0,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "select",
-                "allow_null": 0,
-                "multiple": 0
-            },
-            {
                 "key": "field_63c8090f20307",
                 "label": "Email",
                 "name": "email",

@@ -24,29 +24,6 @@
                 "new_lines": ""
             },
             {
-                "key": "field_63c7d0d5ac6be",
-                "label": "Tipologia",
-                "name": "tipologia",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "taxonomy": "tipo-struttura",
-                "add_term": 0,
-                "save_terms": 0,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "radio",
-                "allow_null": 0,
-                "multiple": 0
-            },
-            {
                 "key": "field_63c7dd01ac6c0",
                 "label": "La struttura dipende da un'altra struttura.",
                 "name": "dipendenza",
