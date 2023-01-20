@@ -124,11 +124,12 @@ if ( check_dependencies() ) {
 
 	if ( ! class_exists( 'LabManager' ) ) {
 		include_once 'classes/class-labmanager.php';
+
+		global $lab_manager;
+		$lab_manager = new LabManager();
+		$lab_manager->plugin_setup();
 	}
 
-	global $lab_manager;
-	$lab_manager = new LabManager();
-	$lab_manager->plugin_setup();
 }
 
 
