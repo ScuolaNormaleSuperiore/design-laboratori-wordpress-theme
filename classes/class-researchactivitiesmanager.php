@@ -124,7 +124,7 @@ class ResearchActivities_Manager {
 							'label' => 'Contatti di riferimento',
 							'name' => 'contatti_di_riferimento',
 							'aria-label' => '',
-							'type' => 'textarea',
+							'type' => 'relationship',
 							'instructions' => '',
 							'required' => 0,
 							'conditional_logic' => 0,
@@ -133,11 +133,17 @@ class ResearchActivities_Manager {
 								'class' => '',
 								'id' => '',
 							),
-							'default_value' => '',
-							'maxlength' => '',
-							'rows' => '',
-							'placeholder' => '',
-							'new_lines' => '',
+							'post_type' => array(
+								0 => 'contatto',
+							),
+							'taxonomy' => '',
+							'filters' => array(
+								0 => 'search',
+							),
+							'return_format' => 'object',
+							'min' => '',
+							'max' => '',
+							'elements' => '',
 						),
 						array(
 							'key' => 'field_63ca969ca16ff',
@@ -231,6 +237,6 @@ class ResearchActivities_Manager {
 					'description' => '',
 					'show_in_rest' => 0,
 				));
-			}
+			}	
 		}
 }
