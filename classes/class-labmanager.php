@@ -20,9 +20,14 @@ if ( ! class_exists( 'Publication_Manager' ) ) {
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
-	if ( ! class_exists( 'Event_Manager' ) ) {
+if ( ! class_exists( 'Event_Manager' ) ) {
 	include_once 'class-eventmanager.php';
 }
+
+if(! class_exists('Contact_Manager')) {
+	include_once 'class-contactmanager.php';
+}
+
 
 /**
  * The manager that builds the tool and configures Wordpress.
@@ -81,5 +86,9 @@ class LabManager {
 		// Setup del post type Evento.
 		$evm = new Event_Manager();
 		$evm->setup();
+
+		//Setup del post type Contatto.
+		$cm = new Contact_Manager();
+		$cm->setup();
 	}
 }
