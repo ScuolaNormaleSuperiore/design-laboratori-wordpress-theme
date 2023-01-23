@@ -5,9 +5,6 @@
  * @package design-laboratori-wordpress-theme
  */
 
-if ( ! class_exists( 'StructureManager' ) ) {
-	include_once 'class-structuremanager.php';
-}
 if ( ! class_exists( 'PeopleManager' ) ) {
 	include_once 'class-peoplemanager.php';
 }
@@ -62,10 +59,6 @@ class LabManager {
 	public function plugin_setup() {
 
 		// Setup dei post type personalizzati e delle tassonomie associate.
-
-		// Setup del post type Struttura.
-		$ctm = new Structure_Manager();
-		$ctm->setup();
 
 		// Setup del post type Persona.
 		$cpm = new People_Manager();

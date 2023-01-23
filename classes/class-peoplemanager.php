@@ -5,8 +5,10 @@ define( 'PEOPLE_POST_TYPE', 'persona' );
 // Taxonomies
 define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
 
+define ('STRUCTURE_TAXONOMY', 'struttura');
+
 /**
- * The manager that setups Course post types.
+ * The manager that setups People post types.
  */
 class People_Manager {
 	/**
@@ -36,6 +38,7 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
+		//aggiungo la tassonomia tipo persona
 		$labels = array(
 			'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
 			'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
@@ -64,6 +67,37 @@ class People_Manager {
 		);
 
 		register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
+
+		//aggiungo la tassonomia struttura
+
+		$structure_labels = array(
+			'name'              => _x( 'Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
+			'singular_name'     => _x( 'Struttura', 'taxonomy singular name', 'design_laboratori_italia' ),
+			'search_items'      => __( 'Cerca Struttura', 'design_laboratori_italia' ),
+			'all_items'         => __( 'Tutte le strutture', 'design_laboratori_italia' ),
+			'edit_item'         => __( 'Modifica la Struttura', 'design_laboratori_italia' ),
+			'update_item'       => __( 'Aggiorna la Struttura', 'design_laboratori_italia' ),
+			'add_new_item'      => __( 'Aggiungi una Struttura', 'design_laboratori_italia' ),
+			'new_item_name'     => __( 'Nuova Struttura', 'design_laboratori_italia' ),
+			'menu_name'         => __( 'Struttura', 'design_laboratori_italia' ),
+		);
+
+		$structure_args = array(
+			'hierarchical'      => true,
+			'labels'            => $structure_labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'struttura' ),
+			'capabilities'      => array(
+				'manage_terms' => 'manage_strutture',
+				'edit_terms'   => 'edit_strutture',
+				'delete_terms' => 'delete_strutture',
+				'assign_terms' => 'assign_strutture'
+			),
+		);
+
+		register_taxonomy( STRUCTURE_TAXONOMY, array( PEOPLE_POST_TYPE ), $structure_args );
 	}
 
 	/**
@@ -90,7 +124,6 @@ class People_Manager {
 			'label'           => __( 'Persona', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			// 'hierarchical'    => true,
 			'public'          => true,
 			'show_in_menu'    => true,
 			'show_in_rest'    => true,
@@ -99,7 +132,6 @@ class People_Manager {
 			'has_archive'     => true,
 			'show_in_rest'    => true,
 			'rewrite'         => array('slug' => 'persone'),
-			// 'map_meta_cap'    => true,
 		);
 
 		register_post_type( PEOPLE_POST_TYPE, $args );
@@ -127,7 +159,8 @@ class People_Manager {
 	 * @return void
 	 */
 	function add_fields() {
-		if( function_exists( 'acf_add_local_field_group' ) ) {
+		if( function_exists('acf_add_local_field_group') ) {
+
 			acf_add_local_field_group(array(
 				'key' => 'group_63c808f35b51a',
 				'title' => 'Campi Persona',
@@ -290,6 +323,26 @@ class People_Manager {
 						'ui_off_text' => '',
 					),
 					array(
+						'key' => 'field_63ceb5a83d83e',
+						'label' => 'Disattiva pagina dettaglio',
+						'name' => 'disattiva_pagina_dettaglio',
+						'aria-label' => '',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => 'Disattiva il link alla pagina di dettaglio della persona',
+						'default_value' => 0,
+						'ui' => 0,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
+					),
+					array(
 						'key' => 'field_63c814c668f09',
 						'label' => 'Sito web',
 						'name' => 'sito_web',
@@ -353,6 +406,26 @@ class People_Manager {
 						'mime_types' => 'pdf',
 					),
 					array(
+						'key' => 'field_63ceb661fa3b1',
+						'label' => 'Altri allegati',
+						'name' => 'altri_allegati',
+						'aria-label' => '',
+						'type' => 'file',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'return_format' => 'array',
+						'library' => 'uploadedTo',
+						'min_size' => '',
+						'max_size' => '',
+						'mime_types' => '',
+					),
+					array(
 						'key' => 'field_63c815d868f0d',
 						'label' => 'Pubblicazioni',
 						'name' => 'pubblicazioni',
@@ -398,6 +471,7 @@ class People_Manager {
 				'description' => '',
 				'show_in_rest' => 1,
 			));
+			
 		}
 	}
 
