@@ -83,6 +83,7 @@ class People_Manager {
 		);
 
 		$structure_args = array(
+			'hierarchical'      => true,
 			'labels'            => $structure_labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
@@ -302,29 +303,6 @@ class People_Manager {
 						'append' => '',
 					),
 					array(
-						'key' => 'field_63ceafa69a09c',
-						'label' => 'Struttura',
-						'name' => 'struttura',
-						'aria-label' => '',
-						'type' => 'taxonomy',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'taxonomy' => 'struttura',
-						'add_term' => 0,
-						'save_terms' => 0,
-						'load_terms' => 0,
-						'return_format' => 'object',
-						'field_type' => 'multi_select',
-						'allow_null' => 0,
-						'multiple' => 0,
-					),
-					array(
 						'key' => 'field_63c8146368f08',
 						'label' => 'Escludi da elenco',
 						'name' => 'escludi_da_elenco',
@@ -493,6 +471,7 @@ class People_Manager {
 				'description' => '',
 				'show_in_rest' => 1,
 			));
+			
 		}
 	}
 
