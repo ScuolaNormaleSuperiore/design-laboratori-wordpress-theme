@@ -24,6 +24,11 @@ if ( ! class_exists( 'News_Manager' ) ) {
 	include_once 'class-newsmanager.php';
 }
 
+if(! class_exists('Contact_Manager')) {
+	include_once 'class-contactmanager.php';
+}
+
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -85,5 +90,9 @@ class LabManager {
 		// Setup del post type News.
 		$newsm = new News_Manager();
 		$newsm->setup();
+
+		//Setup del post type Contatto.
+		$cm = new Contact_Manager();
+		$cm->setup();
 	}
 }

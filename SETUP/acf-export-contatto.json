@@ -1,0 +1,102 @@
+[
+	{
+			"key": "group_63ce5d9c8654b",
+			"title": "Campi Contatto",
+			"fields": [
+					{
+							"key": "field_63ce5d9d8d851",
+							"label": "Label",
+							"name": "label",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63ce5db38d852",
+							"label": "Mail",
+							"name": "mail",
+							"aria-label": "",
+							"type": "email",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63ce5dbe8d853",
+							"label": "Telefono",
+							"name": "telefono",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63ce5dcb8d854",
+							"label": "URL",
+							"name": "url",
+							"aria-label": "",
+							"type": "url",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "contatto"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 0
+	}
+]
