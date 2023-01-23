@@ -133,8 +133,6 @@ if ( check_dependencies() ) {
 }
 
 
-
-
 if ( ! function_exists( 'dsi_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.

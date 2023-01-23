@@ -20,9 +20,6 @@ if ( ! class_exists( 'Publication_Manager' ) ) {
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
-if ( ! class_exists( 'Event_Manager' ) ) {
-	include_once 'class-eventmanager.php';
-}
 if ( ! class_exists( 'News_Manager' ) ) {
 	include_once 'class-newsmanager.php';
 }
@@ -84,10 +81,6 @@ class LabManager {
 		// Setup del post type Progetti.
 		$ctprog = new Project_Manager();
 		$ctprog->setup();
-
-		// Setup del post type Evento.
-		$evm = new Event_Manager();
-		$evm->setup();
 
 		// Setup del post type News.
 		$newsm = new News_Manager();

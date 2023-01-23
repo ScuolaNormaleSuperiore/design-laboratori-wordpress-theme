@@ -31,35 +31,35 @@ function dsi_get_user_options( $query_args = false) {
 
 
 function dsi_get_roles_options() {
-    if ( ! function_exists( 'get_editable_roles' ) ) {
-        require_once ABSPATH . 'wp-admin/includes/user.php';
-    }
-    $editable_roles = get_editable_roles();
-    $options = array();
+		if ( ! function_exists( 'get_editable_roles' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/user.php';
+		}
+		$editable_roles = get_editable_roles();
+		$options = array();
 
-    foreach ($editable_roles as $role => $details) {
-        $options[ esc_attr($role) ] = translate_user_role($details['name']);
-    }
+		foreach ($editable_roles as $role => $details) {
+				$options[ esc_attr($role) ] = translate_user_role($details['name']);
+		}
 
-    return $options;
+		return $options;
 }
 
 
 function dsi_get_gruppi_options( $query_args = false) {
 
-    $gruppi = get_terms( array(
-        'taxonomy' => 'gruppo-utente',
-        'hide_empty' => false,
-    ));
+		$gruppi = get_terms( array(
+				'taxonomy' => 'gruppo-utente',
+				'hide_empty' => false,
+		));
 
-    $options = array();
-    if ( $gruppi ) {
-        foreach ( $gruppi as $gruppo ) {
-            $options[ $gruppo->term_id ] = $gruppo->name;
-        }
-    }
+		$options = array();
+		if ( $gruppi ) {
+				foreach ( $gruppi as $gruppo ) {
+						$options[ $gruppo->term_id ] = $gruppo->name;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 /* // todo: programma materia
 function dsi_get_program_options( $query_args = false) {
@@ -110,18 +110,39 @@ function dsi_get_strutture_options( ) {
 	return $options;
 }
 
+function dsi_get_progetti_options( ) {
+	$items = get_posts("post_type=progetto&posts_per_page=-1&orderby=title&order=ASC");
+	$options = array();
+	if ( $items ) {
+		foreach ( $items as $item ) {
+			$options[ $item->ID ] = $item->post_title;
+		}
+	}
+	return $options;
+}
+
+function dsi_get_indirizziricerca_options( ) {
+	$items = get_posts("post_type=indirizzi-di-ricerca&posts_per_page=-1&orderby=title&order=ASC");
+	$options = array();
+	if ( $items ) {
+		foreach ( $items as $item ) {
+			$options[ $item->ID ] = $item->post_title;
+		}
+	}
+}
+
 function dsi_get_strutture_scuole_options( ) {
 
-    $programs = get_posts("post_type=struttura&tipologia-struttura=scuola&posts_per_page=-1&orderby=title&order=ASC");
+		$programs = get_posts("post_type=struttura&tipologia-struttura=scuola&posts_per_page=-1&orderby=title&order=ASC");
 
-    $options = array();
-    if ( $programs ) {
-        foreach ( $programs as $program ) {
-            $options[ $program->ID ] = $program->post_title;
-        }
-    }
+		$options = array();
+		if ( $programs ) {
+				foreach ( $programs as $program ) {
+						$options[ $program->ID ] = $program->post_title;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 
@@ -130,15 +151,15 @@ function dsi_get_strutture_scuole_options( ) {
  */
 function dsi_get_servizi_options( ) {
 
-    $programs = get_posts("post_type=servizio&posts_per_page=-1&orderby=title&order=ASC");
+		$programs = get_posts("post_type=servizio&posts_per_page=-1&orderby=title&order=ASC");
 
-    $options = array();
-    if ( $programs ) {
-        foreach ( $programs as $program ) {
-            $options[ $program->ID ] = $program->post_title;
-        }
-    }
-    return $options;
+		$options = array();
+		if ( $programs ) {
+				foreach ( $programs as $program ) {
+						$options[ $program->ID ] = $program->post_title;
+				}
+		}
+		return $options;
 }
 
 /**
@@ -146,52 +167,52 @@ function dsi_get_servizi_options( ) {
  */
 function dsi_get_servizi_didattici_options( ) {
 
-    $programs = get_posts("post_type=indirizzo&posts_per_page=-1&orderby=title&order=ASC");
+		$programs = get_posts("post_type=indirizzo&posts_per_page=-1&orderby=title&order=ASC");
 
-    $options = array();
-    if ( $programs ) {
-        foreach ( $programs as $program ) {
-            $options[ $program->ID ] = $program->post_title;
-        }
-    }
-    return $options;
+		$options = array();
+		if ( $programs ) {
+				foreach ( $programs as $program ) {
+						$options[ $program->ID ] = $program->post_title;
+				}
+		}
+		return $options;
 }
 
 
 function dsi_get_tipologie_strutture_options( ) {
 
-    $tipologie = get_terms( array(
-        'taxonomy' => 'tipologia-struttura',
-        'hide_empty' => false,
-    ));
+		$tipologie = get_terms( array(
+				'taxonomy' => 'tipologia-struttura',
+				'hide_empty' => false,
+		));
 
-    $options = array();
-    if ( $tipologie ) {
-        foreach ( $tipologie as $tipologia ) {
-            $options[ $tipologia->term_id ] = $tipologia->name;
-        }
-    }
+		$options = array();
+		if ( $tipologie ) {
+				foreach ( $tipologie as $tipologia ) {
+						$options[ $tipologia->term_id ] = $tipologia->name;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 
 
 function dsi_get_tipologie_luoghi_options( ) {
 
-    $tipologie = get_terms( array(
-        'taxonomy' => 'tipologia-luogo',
-        'hide_empty' => false,
-    ));
+		$tipologie = get_terms( array(
+				'taxonomy' => 'tipologia-luogo',
+				'hide_empty' => false,
+		));
 
-    $options = array();
-    if ( $tipologie ) {
-        foreach ( $tipologie as $tipologia ) {
-            $options[ $tipologia->term_id ] = $tipologia->name;
-        }
-    }
+		$options = array();
+		if ( $tipologie ) {
+				foreach ( $tipologie as $tipologia ) {
+						$options[ $tipologia->term_id ] = $tipologia->name;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 
@@ -199,44 +220,44 @@ function dsi_get_tipologie_luoghi_options( ) {
 
 function dsi_get_tipologie_documenti_options( ) {
 
-    $tipologie = get_terms( array(
-        'taxonomy' => 'tipologia-documento',
-        'hide_empty' => false,
-    ));
+		$tipologie = get_terms( array(
+				'taxonomy' => 'tipologia-documento',
+				'hide_empty' => false,
+		));
 
-    $options = array();
-    if ( $tipologie ) {
-        foreach ( $tipologie as $tipologia ) {
-            $options[ $tipologia->term_id ] = $tipologia->name;
-        }
-    }
+		$options = array();
+		if ( $tipologie ) {
+				foreach ( $tipologie as $tipologia ) {
+						$options[ $tipologia->term_id ] = $tipologia->name;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 function dsi_get_strutture_indirizzo_scuole_options( ) {
 
-    $strutture = get_posts("post_type=struttura&tipologia-struttura=scuola&posts_per_page=-1&orderby=title&order=ASC");
+		$strutture = get_posts("post_type=struttura&tipologia-struttura=scuola&posts_per_page=-1&orderby=title&order=ASC");
 
-    $options = array();
-    if ( $strutture ) {
-        foreach ( $strutture as $struttura ) {
-            // per ogni scuola seleziono i percorsi abilitati
-               $percorsi = dsi_get_meta("percorsi", "", $struttura->ID);
-        //    print_r($percorsi);
-               if(is_array($percorsi) && count($percorsi) > 0){
-                   foreach ($percorsi as $percorso){
+		$options = array();
+		if ( $strutture ) {
+				foreach ( $strutture as $struttura ) {
+						// per ogni scuola seleziono i percorsi abilitati
+							$percorsi = dsi_get_meta("percorsi", "", $struttura->ID);
+				//    print_r($percorsi);
+							if(is_array($percorsi) && count($percorsi) > 0){
+									foreach ($percorsi as $percorso){
 
-                       $term_indirizzo = get_term_by("slug", $percorso, "percorsi-di-studio");
-                       if($term_indirizzo)
-                           $options[ $term_indirizzo->term_id ] = $term_indirizzo->name;
-                   }
+											$term_indirizzo = get_term_by("slug", $percorso, "percorsi-di-studio");
+											if($term_indirizzo)
+													$options[ $term_indirizzo->term_id ] = $term_indirizzo->name;
+									}
 
-               }
-        }
-    }
+							}
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 
@@ -247,26 +268,26 @@ function dsi_get_strutture_indirizzo_scuole_options( ) {
  */
 function dsi_get_approfondimenti_options( ) {
 
-    $args = array(
-        "post_type" => array("post", "circolare"),
-        "posts_per_page" => 200
-    );
-    $items = get_posts($args);
+		$args = array(
+				"post_type" => array("post", "circolare"),
+				"posts_per_page" => 200
+		);
+		$items = get_posts($args);
 
-    $options = array();
-    if ( $items ) {
-        foreach ( $items as $item) {
-            $options[ $item->ID ] = $item->post_title;
-        }
-    }
+		$options = array();
+		if ( $items ) {
+				foreach ( $items as $item) {
+						$options[ $item->ID ] = $item->post_title;
+				}
+		}
 
-    return $options;
+		return $options;
 }
 
 
 /*
 
- // todo: programma materia
+// todo: programma materia
 function dsi_get_classe_options( $query_args = false) {
 
 	$classi = get_terms( array(
@@ -286,21 +307,21 @@ function dsi_get_classe_options( $query_args = false) {
 */
 function dsi_get_tipologie_amministrazione_trasparente( $query_args = false) {
 
-    $tipologie = get_terms( array(
-        'taxonomy' => 'amministrazione-trasparente',
-        'hide_empty' => false,
-    ));
+		$tipologie = get_terms( array(
+				'taxonomy' => 'amministrazione-trasparente',
+				'hide_empty' => false,
+		));
 
-    $options = array();
-    if ( $tipologie ) {
-        foreach ( $tipologie as $tipologia ) {
-            if($tipologia->parent != 0)
-                $options[ $tipologia->term_id ] = $tipologia->name;
-        }
-    }
-    sort($options);
+		$options = array();
+		if ( $tipologie ) {
+				foreach ( $tipologie as $tipologia ) {
+						if($tipologia->parent != 0)
+								$options[ $tipologia->term_id ] = $tipologia->name;
+				}
+		}
+		sort($options);
 
-    return $options;
+		return $options;
 }
 
 
@@ -399,10 +420,10 @@ class dsi_bidirectional_cmb2 {
 		foreach ( $unbind_posts as $value => $id ) {
 			$post_values = get_post_meta( $id, $this->post_field_from, true );
 			if(is_array($post_values)){
-                $pos = array_search( $post_ID, $post_values );
-                unset( $post_values[ $pos ] );
-                update_post_meta( $id, $this->post_field_from, $post_values );
-            }
+								$pos = array_search( $post_ID, $post_values );
+								unset( $post_values[ $pos ] );
+								update_post_meta( $id, $this->post_field_from, $post_values );
+						}
 
 		}
 	}
@@ -413,8 +434,8 @@ class dsi_bidirectional_cmb2 {
 			return;
 		}
 		// getting old values
-        if(isset($field->args['old_values']))
-    		$old_values = $field->args['old_values'];
+				if(isset($field->args['old_values']))
+				$old_values = $field->args['old_values'];
 		// getting current post id
 		$object_id = $field->object_id;
 		// getting meta key
