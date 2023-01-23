@@ -48,8 +48,7 @@ class ResearchActivities_Manager {
 		}
 
 		function add_fields() {
-			if( function_exists('acf_add_local_field_group') ) {
-
+			if( function_exists('acf_add_local_field_group') ){
 				acf_add_local_field_group(array(
 					'key' => 'group_63ca9591d0d91',
 					'title' => 'Campi Indirizzo di ricerca',
@@ -124,7 +123,7 @@ class ResearchActivities_Manager {
 							'label' => 'Contatti di riferimento',
 							'name' => 'contatti_di_riferimento',
 							'aria-label' => '',
-							'type' => 'textarea',
+							'type' => 'group',
 							'instructions' => '',
 							'required' => 0,
 							'conditional_logic' => 0,
@@ -133,11 +132,85 @@ class ResearchActivities_Manager {
 								'class' => '',
 								'id' => '',
 							),
-							'default_value' => '',
-							'maxlength' => '',
-							'rows' => '',
-							'placeholder' => '',
-							'new_lines' => '',
+							'layout' => 'block',
+							'sub_fields' => array(
+								array(
+									'key' => 'field_63ce434aa0440',
+									'label' => 'Label',
+									'name' => 'label',
+									'aria-label' => '',
+									'type' => 'text',
+									'instructions' => '',
+									'required' => 0,
+									'conditional_logic' => 0,
+									'wrapper' => array(
+										'width' => '',
+										'class' => '',
+										'id' => '',
+									),
+									'default_value' => '',
+									'maxlength' => '',
+									'placeholder' => '',
+									'prepend' => '',
+									'append' => '',
+								),
+								array(
+									'key' => 'field_63ce4357a0441',
+									'label' => 'Mail',
+									'name' => 'mail',
+									'aria-label' => '',
+									'type' => 'email',
+									'instructions' => '',
+									'required' => 0,
+									'conditional_logic' => 0,
+									'wrapper' => array(
+										'width' => '',
+										'class' => '',
+										'id' => '',
+									),
+									'default_value' => '',
+									'placeholder' => '',
+									'prepend' => '',
+									'append' => '',
+								),
+								array(
+									'key' => 'field_63ce438aa0442',
+									'label' => 'Telefono',
+									'name' => 'telefono',
+									'aria-label' => '',
+									'type' => 'text',
+									'instructions' => '',
+									'required' => 0,
+									'conditional_logic' => 0,
+									'wrapper' => array(
+										'width' => '',
+										'class' => '',
+										'id' => '',
+									),
+									'default_value' => '',
+									'maxlength' => '',
+									'placeholder' => '',
+									'prepend' => '',
+									'append' => '',
+								),
+								array(
+									'key' => 'field_63ce439ca0443',
+									'label' => 'Url',
+									'name' => 'url',
+									'aria-label' => '',
+									'type' => 'url',
+									'instructions' => '',
+									'required' => 0,
+									'conditional_logic' => 0,
+									'wrapper' => array(
+										'width' => '',
+										'class' => '',
+										'id' => '',
+									),
+									'default_value' => '',
+									'placeholder' => '',
+								),
+							),
 						),
 						array(
 							'key' => 'field_63ca969ca16ff',
@@ -232,5 +305,5 @@ class ResearchActivities_Manager {
 					'show_in_rest' => 0,
 				));
 			}
-		}
+	}
 }
