@@ -4659,3 +4659,7 @@ msgstr ""
 #: template-parts/single/related.php:76
 msgid "Contenuti filtrati per:"
 msgstr ""
+
+#: page-templates/persone.php:28
+msgid "Filtra per"
+msgstr ""
