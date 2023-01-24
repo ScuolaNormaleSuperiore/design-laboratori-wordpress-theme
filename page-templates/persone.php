@@ -71,25 +71,29 @@ get_header();
 										<?php if ($persone->have_posts()) { ?>
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-3">
-													<h4 class="text-lg-right mb-3"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h4>
+													<h3 class="text-lg-right mb-3"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h3>
 												</div><!-- /col-lg-3 -->
 												<div class="col-lg-9">
 													<div class="row variable-gutters">
 														<?php
 															while($persone->have_posts()) {
 																$persone->the_post();
-																$nome = get_field('nome');
-																$cognome = get_field('cognome');
-																$foto = get_field('foto');
-																$ID = get_the_ID();?> 
-																<div class="col-lg-4">
-																	<div class="card card-bg bg-white card-avatar rounded mb-3">
-																		<div class="card-body">
-																			<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
-																		</div><!-- /card-body -->
-																	</div><!-- /card card-bg card-avatar rounded -->
-																</div><!-- /col-lg-4 -->
+																$escludi_da_elenco = get_field('escludi_da_elenco');
+																if(!$escludi_da_elenco) {
+																	$nome = get_field('nome');
+																	$cognome = get_field('cognome');
+																	$foto = get_field('foto');
+																	$disattiva_pagina_dettaglio = get_field('disattiva_pagina_dettaglio');
+																	$ID = get_the_ID();?> 
+																	<div class="col-lg-4">
+																		<div class="card card-bg bg-white card-avatar rounded mb-3">
+																			<div class="card-body">
+																				<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
+																			</div><!-- /card-body -->
+																		</div><!-- /card card-bg card-avatar rounded -->
+																	</div><!-- /col-lg-4 -->
 																<?php
+																}
 															}
 															?>
 													</div><!-- /row -->
