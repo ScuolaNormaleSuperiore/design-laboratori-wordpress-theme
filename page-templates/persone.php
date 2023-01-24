@@ -49,33 +49,20 @@ get_header();
 
 							$categoria_id = get_the_ID();
 
-							// // recupero la lista delle persone
-							// $persone= new WP_Query(array(
-							// 	'posts_per_page' => -1,
-							// 	'post_type' => 'persona',
-							// 	'meta_key' => 'categoria_appartenenza',
-							// 	'orderby' => 'cognome',
-							// 	'order' => 'ASC',
-							// 	'meta_query' => array(
-							// 				array(
-							// 					'key' => 'categoria_appartenenza', 
-							// 					'compare' => '=',
-							// 					'value' => "'" . $categoria_id . "'"
-							// 				)
-							// 	 )
-							// ));
-
 							// recupero la lista delle persone
 							$persone= new WP_Query(array(
 								'posts_per_page' => -1,
 								'post_type' => 'persona',
 								'orderby' => 'cognome',
 								'order' => 'ASC',
+								'meta_query' => array(
+											array(
+												'key' => 'categoria_appartenenza', 
+												'compare' => 'LIKE',
+												'value' => '"' . $categoria_id . '"',
+											)
+								 )
 							));
-
-							$persone->the_post();
-							print_r(get_field('categoria_appartenenza'));
-
 
 							if($persone) {
 								?>
@@ -84,7 +71,7 @@ get_header();
 										<?php if ($persone->have_posts()) { ?>
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-3">
-													<h4 class="text-lg-right mb-3"><?php _e($categoria_appartenenza, "design_laboratori_italia"); ?></h4>
+													<h4 class="text-lg-right mb-3"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h4>
 												</div><!-- /col-lg-3 -->
 												<div class="col-lg-9">
 													<div class="row variable-gutters">
