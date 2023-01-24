@@ -347,7 +347,7 @@ class People_Manager {
 						'filters' => array(
 							0 => 'search',
 						),
-						'return_format' => 'object',
+						'return_format' => 'id',
 						'min' => '',
 						'max' => '',
 						'elements' => '',

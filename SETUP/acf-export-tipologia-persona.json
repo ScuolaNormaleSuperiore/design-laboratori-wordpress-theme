@@ -1,88 +1,88 @@
 [
-    {
-        "key": "group_63cfb5b25e045",
-        "title": "Campi Tipologia Persona",
-        "fields": [
-            {
-                "key": "field_63cfb5b3bd2e0",
-                "label": "Nome",
-                "name": "nome",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63cfb5c6bd2e1",
-                "label": "Descrizione",
-                "name": "descrizione",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63cfb5cdbd2e2",
-                "label": "Priorità",
-                "name": "priorita",
-                "aria-label": "",
-                "type": "number",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "min": 1,
-                "max": "",
-                "placeholder": "",
-                "step": "",
-                "prepend": "",
-                "append": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "tipologia-persona"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 0
-    }
+	{
+			"key": "group_63cfb5b25e045",
+			"title": "Campi Tipologia Persona",
+			"fields": [
+					{
+							"key": "field_63cfb5b3bd2e0",
+							"label": "Nome",
+							"name": "nome",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63cfb5c6bd2e1",
+							"label": "Descrizione",
+							"name": "descrizione",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63cfb5cdbd2e2",
+							"label": "Priorità",
+							"name": "priorita",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"min": 1,
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "tipologia-persona"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 0
+	}
 ]

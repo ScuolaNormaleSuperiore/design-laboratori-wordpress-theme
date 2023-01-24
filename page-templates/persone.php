@@ -29,58 +29,92 @@ get_header();
 								<a href="<?php echo $struttura->name ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
 							<?php } ?>
 						</div>
-						<?php
-						// recupero la lista delle persone
-						$persone= new WP_Query(array(
-							'posts_per_page' => -1,
-							'post_type' => 'persona',
-							'orderby' => 'title',
-							'order' => 'ASC',
-							// 'meta_query' => array(
-							// 		array(
-							// 				'key' => 'related_programs', 
-							// 				'compare' => 'LIKE',
-							// 				'value' => '"' . get_the_ID() . '"',
-							// 		)
-							// )
-					));
 
-					if($persone) {
-					?>
-					<section class="section bg-white py-5">
-						<div class="container">
-            	<?php if ($persone->have_posts()) { ?>
-              	<div class="row variable-gutters mb-4">
-									<div class="col-lg-3">
-										<h4 class="text-lg-right mb-3"><?php _e("Persone", "design_laboratori_italia"); ?></h4>
-									</div><!-- /col-lg-3 -->
-									<div class="col-lg-9">
-										<div class="row variable-gutters">
-											<?php
-												while($persone->have_posts()) {
-													$persone->the_post();
-													$nome = get_field('nome');
-													$cognome = get_field('cognome');
-													$foto = get_field('foto');
-													$ID = get_the_ID();?> 
-													<div class="col-lg-4">
-														<div class="card card-bg bg-white card-avatar rounded mb-3">
-															<div class="card-body">
-																<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
-															</div><!-- /card-body -->
-														</div><!-- /card card-bg card-avatar rounded -->
-													</div><!-- /col-lg-4 -->
-													<?php
-												}
-												?>
-										</div><!-- /row -->
-									</div><!-- /col-lg-9 -->
-								</div><!-- /row -->
-							<?php } ?>
-						</div><!-- /container -->
-					</section><!-- /section -->
-					<?php
-					}
+						<?php
+
+						//recupero tutte le categorie
+						$categorie_persone= new WP_Query(array(
+							'posts_per_page' => -1,
+							'post_type' => 'tipologia-persona',
+							'meta_key' => 'priorita',
+							'orderby' => 'meta_value_num',
+							'order' => 'ASC'
+						));
+
+						while($categorie_persone->have_posts()) {
+							$categorie_persone->the_post();
+							print_r($categorie_persone->get_the_post());
+							$nome_categoria = get_field('nome');
+							
+
+							$categoria_id = get_the_ID();
+
+							// // recupero la lista delle persone
+							// $persone= new WP_Query(array(
+							// 	'posts_per_page' => -1,
+							// 	'post_type' => 'persona',
+							// 	'meta_key' => 'categoria_appartenenza',
+							// 	'orderby' => 'cognome',
+							// 	'order' => 'ASC',
+							// 	'meta_query' => array(
+							// 				array(
+							// 					'key' => 'categoria_appartenenza', 
+							// 					'compare' => '=',
+							// 					'value' => "'" . $categoria_id . "'"
+							// 				)
+							// 	 )
+							// ));
+
+							// recupero la lista delle persone
+							$persone= new WP_Query(array(
+								'posts_per_page' => -1,
+								'post_type' => 'persona',
+								'orderby' => 'cognome',
+								'order' => 'ASC',
+							));
+
+							$persone->the_post();
+							print_r(get_field('categoria_appartenenza'));
+
+
+							if($persone) {
+								?>
+								<section class="section bg-white py-5">
+									<div class="container">
+										<?php if ($persone->have_posts()) { ?>
+											<div class="row variable-gutters mb-4">
+												<div class="col-lg-3">
+													<h4 class="text-lg-right mb-3"><?php _e($categoria_appartenenza, "design_laboratori_italia"); ?></h4>
+												</div><!-- /col-lg-3 -->
+												<div class="col-lg-9">
+													<div class="row variable-gutters">
+														<?php
+															while($persone->have_posts()) {
+																$persone->the_post();
+																$nome = get_field('nome');
+																$cognome = get_field('cognome');
+																$foto = get_field('foto');
+																$ID = get_the_ID();?> 
+																<div class="col-lg-4">
+																	<div class="card card-bg bg-white card-avatar rounded mb-3">
+																		<div class="card-body">
+																			<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
+																		</div><!-- /card-body -->
+																	</div><!-- /card card-bg card-avatar rounded -->
+																</div><!-- /col-lg-4 -->
+																<?php
+															}
+															?>
+													</div><!-- /row -->
+												</div><!-- /col-lg-9 -->
+											</div><!-- /row -->
+										<?php } ?>
+									</div><!-- /container -->
+								</section><!-- /section -->
+								<?php
+								}
+								wp_reset_postdata();
+						}
 
 				} // End of the loop.
 				?>
