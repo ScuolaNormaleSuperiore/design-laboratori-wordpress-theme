@@ -994,6 +994,19 @@ function dsi_get_display_name($user_id){
 
 
 /**
+ * funzione per la gestione del nome persona
+ */
+
+ function dsi_get_persona_display_name($nome, $cognome, $title){
+	if(($nome != "") && ($cognome != ""))
+			return $nome." ".$cognome;
+	else
+			return $title;
+
+}
+
+
+/**
  *  Funzione per la ricerca di un valore in un array multiplo
  *  * @since  0.1.0
  * @param  string $search_for  Value to search

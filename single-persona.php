@@ -9,11 +9,18 @@
 
 get_header();
 
+while(have_posts()) {
+	the_post();
+	$ID = get_the_ID();
+	$foto = get_field('foto');
+	$title = get_the_title($ID);
+	$image_url = dsi_get_persona_avatar($foto, $ID);
+	$bio = get_the_content();
+	$categoria_appartenenza = get_field('categoria_appartenenza')[0]->nome;
+}
 
-$authordata = (isset($_GET['persona-nome'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
 
-$author_id = $authordata->ID;
-$bio = get_the_author_meta( 'description');
+
 //$nome = get_the_author_meta('first_name');
 //$cognome = get_the_author_meta('last_name');
 
@@ -21,7 +28,6 @@ $bio = get_the_author_meta( 'description');
 //$foto_url = get_the_author_meta('_dsi_persona_foto');
 //$foto_id = attachment_url_to_postid($foto_url);
 //$image = wp_get_attachment_image($foto_id, "item-thumb");
-$image_url = dsi_get_user_avatar($authordata);
 
 $ruolo_scuola = get_the_author_meta('_dsi_persona_ruolo_scuola');
 $ruolo_docente = get_the_author_meta('_dsi_persona_ruolo_docente');
@@ -38,98 +44,32 @@ $altre_info = get_the_author_meta('_dsi_persona_altre_info');
 $email_pubblico = get_the_author_meta('_dsi_persona_email_pubblico');
 $telefono_pubblico = get_the_author_meta('_dsi_persona_telefono_pubblico');
 
-$str_ruolo = "";
-if($ruolo_scuola == "dirigente"){
-    $str_ruolo .= "Dirigente Scolastico ";
-}else if($ruolo_scuola == "docente"){
-    $str_ruolo .= "Docente ";
-
-    if($tipo_posto == "sostegno"){
-        /*
-        if($tipo_supplenza == "annuale")
-            $str_ruolo .= "annuale di sostegno ";
-        else if($tipo_supplenza == "termine")
-            $str_ruolo .= "<strong>di sostegno</strong> fino a termine ";
-        else if($tipo_supplenza == "data"){
-            $str_ruolo .= "<strong>di sostegno</strong> " ;
-            if($durata_supplenza != "")
-                $str_ruolo .= "fino al  ".$durata_supplenza." ";
-
-        }
-        else*/
-        $str_ruolo .= "di sostegno ";
-    }
-
-    if($ruolo_docente == "infanzia"){
-        $str_ruolo .= "della <strong>scuola dell'infanzia</strong>";
-    }else if($ruolo_docente == "primaria"){
-        $str_ruolo .= "di <strong>scuola primaria</strong>";
-    }else if($ruolo_docente == "secondaria1"){
-        $str_ruolo .= "di <strong>scuola secondaria I grado</strong>";
-    }else if($ruolo_docente == "secondaria2"){
-        $str_ruolo .= "di <strong>scuola secondaria II grado</strong>";
-    }else if($ruolo_docente == "formazione"){
-        $str_ruolo .= "dei <strong>percorsi di istruzione e formazione professionale</strong>";
-    }
-
-    if($incarico_docente == "determinato"){
-        $str_ruolo .= " con incarico a tempo determinato ";
-
-        if($durata_incarico_docente != ""){
-            $str_ruolo .= " <small>(termine incarico: ".$durata_incarico_docente.")</small>";
-        }
-
-    }else if($incarico_docente == "indeterminato"){
-        $str_ruolo .= " con incarico a tempo indeterminato ";
-    }
-
-
-
-
-}else if($ruolo_scuola == "personaleata"){
-
-    if($ruolo_non_docente == "direttore-amministrativo"){
-        $str_ruolo .= "Direttore amministrativo ";
-    }else if($ruolo_non_docente == "tecnico"){
-        $str_ruolo .= "Personale tecnico ";
-    }else if($ruolo_non_docente == "amministrativo"){
-        $str_ruolo .= "Personale amministrativo ";
-    }else if($ruolo_non_docente == "collaboratore"){
-        $str_ruolo .= "Collaboratore scolastico";
-    }else{
-        $str_ruolo .= "Non docente ";
-    }
-
-
-}
-
-
 // recupero le schede didattiche e di progetto e i documenti che hanno questo utente come autore
 
 $args = array(
-    'author' =>  $author_id,
-    'posts_per_page' => -1,
-    'post_type' => 'scheda_didattica'
+	'author' =>  $author_id,
+	'posts_per_page' => -1,
+	'post_type' => 'scheda_didattica'
 );
 $schede_didattiche = get_posts($args);
 
 $args = array(
-    'author' =>  $author_id,
-    'posts_per_page' => -1,
-    'post_type' => 'scheda_progetto'
+		'author' =>  $author_id,
+		'posts_per_page' => -1,
+		'post_type' => 'scheda_progetto'
 );
 $schede_progetto = get_posts($args);
 
 $args = array(
-    'posts_per_page' => -1,
-    'post_type' => 'struttura'
+		'posts_per_page' => -1,
+		'post_type' => 'struttura'
 );
 $strutture = get_posts($args);
 
 function filter_my_structures($structure) {
-    if ( !empty( get_post_meta( $document->ID, "_dsi_documento_autori", true ) ) ) {
-        return in_array(
-            (string)$GLOBALS['author_id'],
+	if ( !empty( get_post_meta( $document->ID, "_dsi_documento_autori", true ) ) ) {
+		return in_array(
+			(string)$GLOBALS['author_id'],
             get_post_meta( $structure->ID, "_dsi_struttura_persone", true )
         );
     }
@@ -162,27 +102,27 @@ $args = array(
 $posts = get_posts($args);
 
 ?>
-    <main id="main-container" class="main-container petrol">
-        <?php get_template_part("template-parts/common/breadcrumb"); ?>
-        <section class="section bg-petrol py-3 py-lg-3 py-xl-5">
-            <div class="container">
-                <div class="row variable-gutters">
-                    <div class="col-12 col-sm-3 col-lg-3 d-none d-sm-block">
-                        <div class="section-thumb thumb-large mx-3">
-                            <?php if($image_url) {
-                                echo "<img src='".$image_url."' alt=''/>";
-                            } ?>
-                        </div><!-- /section-thumb -->
-                    </div><!-- /col-lg-2 -->
-                    <div class="col-12 col-sm-9 col-md-8 col-lg-8 offset-lg-1 d-flex align-items-center">
-                        <div class="section-title">
-                            <h2 class="mb-3"><?php echo dsi_get_display_name($author_id); ?></h2>
-                            <p><?php echo $str_ruolo; ?></p>
-                        </div><!-- /title-section -->
-                    </div><!-- /col-lg-5 col-md-8 -->
-                </div><!-- /row -->
-            </div><!-- /container -->
-        </section><!-- /section -->
+		<main id="main-container" class="main-container petrol">
+				<?php get_template_part("template-parts/common/breadcrumb"); ?>
+				<section class="section bg-petrol py-3 py-lg-3 py-xl-5">
+						<div class="container">
+        			<div class="row variable-gutters">
+									<div class="col-12 col-sm-3 col-lg-3 d-none d-sm-block">
+											<div class="section-thumb thumb-large mx-3">
+													<?php if($image_url) {
+														echo "<img src='".$image_url."' alt=''/>";
+													} ?>
+											</div><!-- /section-thumb -->
+									</div><!-- /col-lg-2 -->
+									<div class="col-12 col-sm-9 col-md-8 col-lg-8 offset-lg-1 d-flex align-items-center">
+										<div class="section-title">
+											<h2 class="mb-3"><?php echo dsi_get_persona_display_name(get_field('nome'), get_field('cognome'), $title);?></h2>
+											<p><?php echo $categoria_appartenenza; ?></p>
+                  	</div><!-- /title-section -->
+									</div><!-- /col-lg-5 col-md-8 -->
+							</div><!-- /row -->
+						</div><!-- /container -->
+				</section><!-- /section -->
 
         <section class="section bg-white">
             <div class="container container-border-top">
@@ -202,27 +142,17 @@ $posts = get_posts($args);
                                             <a class="list-item scroll-anchor-offset" href="#art-par-bio" title="Vai al paragrafo <?php _e("Biografia", "design_laboratori_italia"); ?>"><?php _e("Biografia", "design_laboratori_italia"); ?></a>
                                         </li>
                                     <?php } ?>
-                                    <?php if(is_array($schede_didattiche) && count($schede_didattiche) > 0)  { ?>
-                                        <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-didattica" title="Vai al paragrafo <?php _e("Schede didattiche", "design_laboratori_italia"); ?>"><?php _e("Schede didattiche", "design_laboratori_italia"); ?></a>
-                                        </li>
-                                    <?php } ?>
                                     <?php if(is_array($schede_progetto) && count($schede_progetto) > 0)  { ?>
                                         <li>
                                             <a class="list-item scroll-anchor-offset" href="#art-par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
                                         </li>
                                     <?php } ?>
-                                    <?php if(is_array($documenti) && count($documenti) > 0)  { ?>
+																		<?php if(is_array($schede_progetto) && count($schede_progetto) > 0)  { ?>
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-documenti" title="Vai al paragrafo <?php _e("Documenti", "design_laboratori_italia"); ?>"><?php _e("Documenti", "design_laboratori_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
                                         </li>
                                     <?php } ?>
-                                    <?php if(is_array($posts) && count($posts) > 0)  { ?>
-                                        <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-articoli" title="Vai al paragrafo <?php _e("Articoli", "design_laboratori_italia"); ?>"><?php _e("Articoli", "design_laboratori_italia"); ?></a>
-                                        </li>
-                                    <?php } ?>
-
+                                    
                                     <?php
                                     if(trim($altre_info) != ""){
                                         ?>
