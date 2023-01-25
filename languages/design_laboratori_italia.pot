@@ -4660,6 +4660,10 @@ msgstr ""
 msgid "Contenuti filtrati per:"
 msgstr ""
 
-#: page-templates/persone.php:28
+#: page-templates/persone.php:32
 msgid "Filtra per"
+msgstr ""
+
+#: page-templates/persone.php:34
+msgid "Disattiva filtri"
 msgstr ""
