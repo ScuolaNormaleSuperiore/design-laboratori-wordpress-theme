@@ -24,55 +24,6 @@ get_header();
 						]);
 						//visualizzo i filtri sulle strutture solo se ne esistono almeno 2
 						if(count($strutture) >= 1) {
-							<?php
-							//TODO: aggiungere logica filtro
-							foreach ( $strutture as $struttura ) { ?>
-								<a href="<?php echo $struttura->name ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
-							<?php } ?>
-						</div>
-						$categorie_persone= new WP_Query(array(
-							'posts_per_page' => -1,
-							'post_type' => 'tipologia-persona',
-							'meta_key' => 'priorita',
-							'orderby' => 'meta_value_num',
-							'order' => 'ASC'
-						));
-
-						while($categorie_persone->have_posts()) {
-							$categorie_persone->the_post();
-							print_r($categorie_persone->get_the_post());
-							$nome_categoria = get_field('nome');
-							
-
-							$categoria_id = get_the_ID();
-
-							// // recupero la lista delle persone
-							$persone= new WP_Query(array(
-								'posts_per_page' => -1,
-								'post_type' => 'persona',
-								// 'meta_key' => 'categoria_appartenenza',
-								'orderby' => 'cognome',
-								'order' => 'ASC',
-								'meta_query' => array(
-											array(
-												'key' => 'categoria_appartenenza', 
-												'compare' => 'LIKE',
-												'value' => '"' . $categoria_id . '"'
-											)
-								 )
-							));
-
-							// recupero la lista delle persone
-							// $persone= new WP_Query(array(
-							// 	'posts_per_page' => -1,
-							// 	'post_type' => 'persona',
-							// 	'orderby' => 'cognome',
-							// 	'order' => 'ASC',
-							// ));
-
-							$persone->the_post();
-							print_r(get_field('categoria_appartenenza'));
-							if($persone) {
 						?>
 							<aside class="badges-wrapper badges-main text-center">
 								<div class="badges">
@@ -86,6 +37,7 @@ get_header();
 							<section class="section bg-white py-5">
 								<?php
 								}
+
 								//recupero tutte le categorie
 								$categorie_persone= new WP_Query(array(
 									'posts_per_page' => -1,
