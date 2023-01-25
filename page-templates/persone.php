@@ -21,16 +21,20 @@ get_header();
 							'taxonomy' => 'struttura',
 							'hide_empty' => false,
 						]);
+						//visualizzo i filtri sulle strutture solo se ne esistono almeno 2
+						if(count($strutture) >= 1) {
 						?>
-						<div class="card-top badge-container mb-3">
-							<?php
-							//TODO: aggiungere logica filtro
-							foreach ( $strutture as $struttura ) { ?>
-								<a href="<?php echo $struttura->name ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
-							<?php } ?>
-						</div>
-
+							<aside class="badges-wrapper badges-main text-center">
+								<div class="badges">
+									<?php
+									//TODO: aggiungere logica filtro
+									foreach ( $strutture as $struttura ) { ?>
+										<a href="<?php echo $struttura->name ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
+									<?php } ?>
+								</div><!-- /badges -->
+              </aside>
 						<?php
+						}
 
 						//recupero tutte le categorie
 						$categorie_persone= new WP_Query(array(
