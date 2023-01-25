@@ -9,6 +9,7 @@ global $post;
 get_header();
 
 ?>
+<form action="<?php $_SERVER['PHP_SELF'] ?>" id="personeform" method="GET">
 		<main id="main-container" class="main-container bluelectric">
 				<?php get_template_part("template-parts/common/breadcrumb"); ?>
 				<?php
@@ -27,11 +28,10 @@ get_header();
 							<aside class="badges-wrapper badges-main text-center">
 								<div class="badges">
 									<?php
-									//TODO: aggiungere logica filtro
 									foreach ( $strutture as $struttura ) { ?>
-										<a href="<?php echo $struttura->name ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
+										<a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
 									<?php } ?>
-									<a href="#" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php _e("Disattiva filtri", "design_laboratori_italia"); ?></a>
+									<a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php _e("Disattiva filtri", "design_laboratori_italia"); ?></a>
 								</div><!-- /badges -->
               </aside>
 							<section class="section bg-white py-5">
@@ -47,6 +47,8 @@ get_header();
 									'order' => 'ASC'
 								));
 
+								wp_reset_postdata();
+
 								while($categorie_persone->have_posts()) {
 									$categorie_persone->the_post();
 									print_r($categorie_persone->get_the_post());
@@ -54,21 +56,46 @@ get_header();
 									
 
 									$categoria_id = get_the_ID();
-
-									// recupero la lista delle persone
-									$persone= new WP_Query(array(
-										'posts_per_page' => -1,
-										'post_type' => 'persona',
-										'orderby' => 'cognome',
-										'order' => 'ASC',
-										'meta_query' => array(
+									if (isset($_GET['struttura']) && $_GET['struttura'] != "" ) {
+										$struttura = $_GET['struttura'];
+										// recupero la lista delle persone filtrate per struttura
+										$persone= new WP_Query(array(
+											'posts_per_page' => -1,
+											'post_type' => 'persona',
+											'orderby' => 'cognome',
+											'order' => 'ASC',
+											'meta_query' => array(
 													array(
 														'key' => 'categoria_appartenenza', 
 														'compare' => 'LIKE',
 														'value' => '"' . $categoria_id . '"',
 													)
-										)
-									));
+												),
+											'tax_query' => array(
+												array(
+													'taxonomy' => 'struttura',
+													'field'    => 'slug',
+													'terms'    => "'" . $struttura . "'"
+												),
+											)
+										));
+									}
+									else {
+										// recupero la lista delle persone
+										$persone= new WP_Query(array(
+											'posts_per_page' => -1,
+											'post_type' => 'persona',
+											'orderby' => 'cognome',
+											'order' => 'ASC',
+											'meta_query' => array(
+														array(
+															'key' => 'categoria_appartenenza', 
+															'compare' => 'LIKE',
+															'value' => '"' . $categoria_id . '"',
+														)
+											)
+										));
+									}
 
 									if($persone) {
 										?>
@@ -104,7 +131,8 @@ get_header();
 															</div><!-- /row -->
 														</div><!-- /col-lg-9 -->
 													</div><!-- /row -->
-												<?php } ?>
+												<?php }
+												wp_reset_postdata(); ?>
 											</div><!-- /container -->
 										<?php
 									}
@@ -114,7 +142,7 @@ get_header();
 				?>
 				</section><!-- /section -->
 		</main>
-
+</form>
 <?php
 get_footer();
 
