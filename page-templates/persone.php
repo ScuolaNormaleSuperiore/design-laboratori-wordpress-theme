@@ -116,7 +116,8 @@ get_header();
 																			$cognome = get_field('cognome');
 																			$foto = get_field('foto');
 																			$disattiva_pagina_dettaglio = get_field('disattiva_pagina_dettaglio');
-																			$ID = get_the_ID();?> 
+																			$ID = get_the_ID();
+																			$link_persona = get_the_permalink($ID)?> 
 																			<div class="col-lg-4">
 																				<div class="card card-bg bg-white card-avatar rounded mb-3">
 																					<div class="card-body">
