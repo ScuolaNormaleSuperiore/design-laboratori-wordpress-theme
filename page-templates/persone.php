@@ -9,140 +9,115 @@ global $post;
 get_header();
 
 ?>
-<form action="<?php $_SERVER['PHP_SELF'] ?>" id="personeform" method="GET">
-		<main id="main-container" class="main-container bluelectric">
-				<?php get_template_part("template-parts/common/breadcrumb"); ?>
-				<?php
-					while ( have_posts() ) {
-						the_post();
-						get_template_part("template-parts/hero/persone");
+    <main id="main-container" class="main-container bluelectric">
+        <?php get_template_part("template-parts/common/breadcrumb"); ?>
+        <?php
+        while ( have_posts() ) :
+            the_post();
+			get_template_part("template-parts/hero/persone");
 
-						//recupero i termini della tassonomia struttura
-						$strutture = get_terms([
-							'taxonomy' => 'struttura',
-							'hide_empty' => false,
-						]);
-						//visualizzo i filtri sulle strutture solo se ne esistono almeno 2
-						if(count($strutture) >= 1) {
-						?>
-							<aside class="badges-wrapper badges-main text-center">
-								<div class="badges">
-									<?php
-									foreach ( $strutture as $struttura ) { ?>
-										<a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
-									<?php } ?>
-									<a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php _e("Disattiva filtri", "design_laboratori_italia"); ?></a>
-								</div><!-- /badges -->
-              </aside>
-							<section class="section bg-white py-5">
-								<?php
-								}
+			// recupero la lista delle strutture
+            $i=0;
+            $strutture_persone = dsi_get_option("strutture_persone", "persone");
+            if($strutture_persone) {
+                foreach ($strutture_persone as $idstruttura) {
+                    $i++;
+                    $struttura = get_post($idstruttura);
 
-								//recupero tutte le categorie
-								$categorie_persone= new WP_Query(array(
-									'posts_per_page' => -1,
-									'post_type' => 'tipologia-persona',
-									'meta_key' => 'priorita',
-									'orderby' => 'meta_value_num',
-									'order' => 'ASC'
-								));
+                    $classcolor = "bg-white";
+                    if ($i % 2)
+                        $classcolor = "bg-gray-light";
 
-								wp_reset_postdata();
+                    $responsabile = dsi_get_meta("responsabile", "_dsi_struttura_", $struttura->ID);
+                    $persone = dsi_get_meta("persone", "_dsi_struttura_", $struttura->ID);
+                    $altri_componenti = dsi_get_meta("altri_componenti", "_dsi_struttura_", $struttura->ID);
 
-								while($categorie_persone->have_posts()) {
-									$categorie_persone->the_post();
-									print_r($categorie_persone->get_the_post());
-									$nome_categoria = get_field('nome');
-									
+                    ?>
+                    <section class="section <?php echo $classcolor; ?> py-5">
+                        <div class="container">
+                            <div class="title-section text-center mb-5">
+                                <h2 class="h4"><a
+                                            href="<?php echo get_permalink($struttura); ?>"><?php echo $struttura->post_title; ?></a>
+                                </h2>
+                            </div><!-- /title-large -->
+                            <?php if (is_array($responsabile) && count($responsabile) > 0) { ?>
+                                <div class="row variable-gutters mb-4">
+                                    <div class="col-lg-3">
+                                        <h3 class="text-lg-right mb-3"><?php _e("Responsabile", "design_laboratori_italia"); ?></h3>
+                                    </div><!-- /col-lg-3 -->
+                                    <div class="col-lg-9">
+                                        <div class="row variable-gutters">
+                                            <?php
+                                            foreach ($responsabile as $idutente) {
+                                                $autore = get_user_by("ID", $idutente);
+                                                ?>
+                                                <div class="col-lg-4">
+                                                    <div class="card card-bg bg-color bg-dark card-avatar rounded mb-3">
+                                                        <div class="card-body">
+                                                            <?php get_template_part("template-parts/autore/card", "insegnante"); ?>
+                                                        </div><!-- /card-body -->
+                                                    </div><!-- /card card-bg card-avatar rounded -->
+                                                </div><!-- /col-lg-4 -->
+                                                <?php
+                                            }
+                                            ?>
+                                        </div><!-- /row -->
+                                    </div><!-- /col-lg-9 -->
+                                </div><!-- /row -->
+                            <?php } ?>
 
-									$categoria_id = get_the_ID();
-									if (isset($_GET['struttura']) && $_GET['struttura'] != "" ) {
-										$struttura = $_GET['struttura'];
-										// recupero la lista delle persone filtrate per struttura
-										$persone= new WP_Query(array(
-											'posts_per_page' => -1,
-											'post_type' => 'persona',
-											'orderby' => 'cognome',
-											'order' => 'ASC',
-											'meta_query' => array(
-													array(
-														'key' => 'categoria_appartenenza', 
-														'compare' => 'LIKE',
-														'value' => '"' . $categoria_id . '"',
-													)
-												),
-											'tax_query' => array(
-												array(
-													'taxonomy' => 'struttura',
-													'field'    => 'slug',
-													'terms'    => "'" . $struttura . "'"
-												),
-											)
-										));
-									}
-									else {
-										// recupero la lista delle persone
-										$persone= new WP_Query(array(
-											'posts_per_page' => -1,
-											'post_type' => 'persona',
-											'orderby' => 'cognome',
-											'order' => 'ASC',
-											'meta_query' => array(
-														array(
-															'key' => 'categoria_appartenenza', 
-															'compare' => 'LIKE',
-															'value' => '"' . $categoria_id . '"',
-														)
-											)
-										));
-									}
+                            <?php if (is_array($persone) && count($persone) > 0) { ?>
+                                <div class="row variable-gutters mb-4">
+                                    <div class="col-lg-3">
+                                        <h4 class="text-lg-right mb-3"><?php _e("Persone", "design_laboratori_italia"); ?></h4>
+                                    </div><!-- /col-lg-3 -->
+                                    <div class="col-lg-9">
+                                        <div class="row variable-gutters">
+                                            <?php
+                                            foreach ($persone as $idutente) {
+                                                $autore = get_user_by("ID", $idutente);
+                                                ?>
+                                                <div class="col-lg-4">
+                                                    <div class="card card-bg bg-white card-avatar rounded mb-3">
+                                                        <div class="card-body">
+                                                            <?php get_template_part("template-parts/autore/card", "insegnante"); ?>
+                                                        </div><!-- /card-body -->
+                                                    </div><!-- /card card-bg card-avatar rounded -->
+                                                </div><!-- /col-lg-4 -->
+                                                <?php
+                                            }
+                                            ?>
+                                        </div><!-- /row -->
+                                    </div><!-- /col-lg-9 -->
+                                </div><!-- /row -->
+                            <?php } ?>
 
-									if($persone) {
-										?>
-											<div class="container">
-												<?php if ($persone->have_posts()) { ?>
-													<div class="row variable-gutters mb-4">
-														<div class="col-lg-3">
-															<h3 class="text-lg-right mb-3"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h3>
-														</div><!-- /col-lg-3 -->
-														<div class="col-lg-9">
-															<div class="row variable-gutters">
-																<?php
-																	while($persone->have_posts()) {
-																		$persone->the_post();
-																		$escludi_da_elenco = get_field('escludi_da_elenco');
-																		if(!$escludi_da_elenco) {
-																			$nome = get_field('nome');
-																			$cognome = get_field('cognome');
-																			$foto = get_field('foto');
-																			$disattiva_pagina_dettaglio = get_field('disattiva_pagina_dettaglio');
-																			$ID = get_the_ID();?> 
-																			<div class="col-lg-4">
-																				<div class="card card-bg bg-white card-avatar rounded mb-3">
-																					<div class="card-body">
-																						<?php get_template_part("template-parts/autore/card", "insegnante"); ?>
-																					</div><!-- /card-body -->
-																				</div><!-- /card card-bg card-avatar rounded -->
-																			</div><!-- /col-lg-4 -->
-																		<?php
-																		}
-																	}
-																	?>
-															</div><!-- /row -->
-														</div><!-- /col-lg-9 -->
-													</div><!-- /row -->
-												<?php }
-												wp_reset_postdata(); ?>
-											</div><!-- /container -->
-										<?php
-									}
-									wp_reset_postdata();
-								}
-					} // End of the loop.
-				?>
-				</section><!-- /section -->
-		</main>
-</form>
+                            <?php if ($altri_componenti != "") { ?>
+                                <div class="row variable-gutters mb-4">
+                                    <div class="col-lg-3">
+                                        <h3 class="h4 text-lg-right mb-3"><?php _e("Componenti esterni", "design_laboratori_italia"); ?></h3>
+                                    </div><!-- /col-lg-3 -->
+                                    <div class="col-lg-9">
+                                        <div class="row variable-gutters">
+                                            <span class="h5 text-lg-right mb-3 pt-1 pl-4">
+                                                <?php echo $altri_componenti; ?>
+                                            </span>
+                                        </div><!-- /row -->
+                                    </div><!-- /col-lg-9 -->
+                                </div><!-- /row -->
+                            <?php } ?>
+
+                        </div><!-- /container -->
+                    </section><!-- /section -->
+                    <?php
+
+                }
+            }
+
+        endwhile; // End of the loop.
+        ?>
+    </main>
+
 <?php
 get_footer();
 

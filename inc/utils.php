@@ -108,48 +108,30 @@ if(!function_exists("dsi_get_term_meta")){
 
     }
 }
- /**
-  * Wrapper function for user avatar
-  * @param object user
-  * @return string url
-  */
- if(!function_exists("dsi_get_user_avatar")){
- 	function dsi_get_user_avatar( $user = false, $size=250 ) {
- 		if(!$user && is_user_logged_in()){
- 			$user = wp_get_current_user();
- 		}
-         $foto_id = null;
- 		$foto_url = get_the_author_meta('_dsi_persona_foto', $user->ID);
- 		if($foto_url)
-             $foto_id = attachment_url_to_postid($foto_url);
-
-         if(isset($foto_id) && $foto_id)
-             $avatar = wp_get_attachment_image_url($foto_id, "item-thumb");
- 		else
- 		    $avatar = get_avatar_url( $user->ID, array("size" => $size) );
-
- 		$avatar = apply_filters("dsi_avatar_url", $avatar, $user);
- 		return $avatar;
- 	}
- }
-
 /**
- * Wrapper function for persona avatar
- * @param object $foto
- * @param object $foto
+ * Wrapper function for user avatar
+ * @param object user
  * @return string url
  */
-if(!function_exists("dsi_get_persona_avatar")){
-	function dsi_get_persona_avatar( $foto, $ID, $size=250 ) {
-
-		$thumbnail = $foto['sizes']['thumbnail'];
-		if(!$thumbnail) {
-			$thumbnail = get_avatar_url( $ID, array("size" => $size) ); 
+if(!function_exists("dsi_get_user_avatar")){
+	function dsi_get_user_avatar( $user = false, $size=250 ) {
+		if(!$user && is_user_logged_in()){
+			$user = wp_get_current_user();
 		}
-		return $thumbnail;
+        $foto_id = null;
+		$foto_url = get_the_author_meta('_dsi_persona_foto', $user->ID);
+		if($foto_url)
+            $foto_id = attachment_url_to_postid($foto_url);
+
+        if(isset($foto_id) && $foto_id)
+            $avatar = wp_get_attachment_image_url($foto_id, "item-thumb");
+		else
+		    $avatar = get_avatar_url( $user->ID, array("size" => $size) );
+
+		$avatar = apply_filters("dsi_avatar_url", $avatar, $user);
+		return $avatar;
 	}
 }
-
 
 
 add_filter( 'get_avatar' , 'dsi_custom_avatar' , 1 , 5 );

@@ -8,9 +8,6 @@
 if ( ! class_exists( 'PeopleManager' ) ) {
 	include_once 'class-peoplemanager.php';
 }
-if ( ! class_exists( 'PeopleType_Manager' ) ) {
-	include_once 'class-peopletypemanager.php';
-}
 if ( ! class_exists( 'Project_Manager' ) ) {
 	include_once 'class-projectmanager.php';
 }
@@ -66,10 +63,6 @@ class LabManager {
 		// Setup del post type Persona.
 		$cpm = new People_Manager();
 		$cpm->setup();
-
-		// Setup del post type Tipologia Persona.
-		$cptm = new PeopleType_Manager();
-		$cptm->setup();
 
 		// Setup del post type Progetto.
 		$ctprm = new Project_Manager();

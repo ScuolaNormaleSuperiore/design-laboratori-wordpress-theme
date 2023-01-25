@@ -15,7 +15,7 @@ require get_template_directory() . '/inc/define.php';
 /**
  * Vocabolario
  */
-// require get_template_directory() . '/inc/vocabolario.php';
+require get_template_directory() . '/inc/vocabolario.php';
 
 /**
  * Extend User Taxonomy
@@ -29,12 +29,12 @@ require get_template_directory() . '/inc/theme-dependencies.php';
 
 
 /**
- * Header menu walker
+ * header menu walker
  */
 require get_template_directory() . '/walkers/header-walker.php';
 
 /**
- * Footer menu walker
+ * footer menu walker
  */
 require get_template_directory() . '/walkers/footer-walker.php';
 
@@ -65,7 +65,7 @@ require get_template_directory() . '/inc/breadcrumb.php';
 /**
  * Activation Hooks
  */
-require get_template_directory() . '/inc/activation.php';
+// require get_template_directory() . '/inc/activation.php';
 
 /**
  * Actions & Hooks
@@ -133,8 +133,6 @@ if ( check_dependencies() ) {
 }
 
 
-
-
 if ( ! function_exists( 'dsi_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -182,7 +180,7 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 
 		// This theme uses wp_nav_menu()
 		register_nav_menus( array(
-			'menu-laboratorio' => esc_html__( 'Sottovoci del menu principale, voce "Laboratorio"', 'design_laboratori_italia' ),
+			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Laboratorio"', 'design_laboratori_italia' ),
 			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_laboratori_italia' ),
 			'menu-notizie' => esc_html__( 'Sottovoci del menu principale, voce "Novità"', 'design_laboratori_italia' ),
 			'menu-didattica' => esc_html__( 'Sottovoci del menu principale, voce "Didattica"', 'design_laboratori_italia' ),

@@ -2,6 +2,9 @@
 // Post Types.
 define( 'PEOPLE_POST_TYPE', 'persona' );
 
+// Taxonomies
+define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
+
 define ('STRUCTURE_TAXONOMY', 'struttura');
 
 /**
@@ -35,6 +38,36 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
+		//aggiungo la tassonomia tipo persona
+		$labels = array(
+			'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
+			'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
+			'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+			'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+			'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+			'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+			'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+			'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+			'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'tipologia-persona' ),
+			'capabilities'      => array(
+				'manage_terms' => 'manage_tipologia_persone',
+				'edit_terms'   => 'edit_tipologia_persone',
+				'delete_terms' => 'delete_tipologia_persone',
+				'assign_terms' => 'assign_tipologia_persone',
+			),
+		);
+
+		register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
+
 		//aggiungo la tassonomia struttura
 
 		$structure_labels = array(
@@ -327,32 +360,6 @@ class People_Manager {
 						'placeholder' => 'https://',
 					),
 					array(
-						'key' => 'field_63cfb60b96994',
-						'label' => 'Categoria di appartenenza',
-						'name' => 'categoria_appartenenza',
-						'aria-label' => '',
-						'type' => 'relationship',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'post_type' => array(
-							0 => 'tipologia-persona',
-						),
-						'taxonomy' => '',
-						'filters' => array(
-							0 => 'search',
-						),
-						'return_format' => 'object',
-						'min' => '',
-						'max' => '',
-						'elements' => '',
-					),
-					array(
 						'key' => 'field_63c8152d68f0b',
 						'label' => 'Progetti correlati',
 						'name' => 'progetti_correlati',
@@ -465,7 +472,7 @@ class People_Manager {
 				'show_in_rest' => 1,
 			));
 			
-			
 		}
 	}
+
 }
