@@ -51,6 +51,8 @@ get_header();
                                             foreach ($responsabile as $idutente) {
                                                 $autore = get_user_by("ID", $idutente);
                                                 ?>
+																			$ID = get_the_ID();
+																			$link_persona = get_the_permalink($ID)?> 
                                                 <div class="col-lg-4">
                                                     <div class="card card-bg bg-color bg-dark card-avatar rounded mb-3">
                                                         <div class="card-body">
