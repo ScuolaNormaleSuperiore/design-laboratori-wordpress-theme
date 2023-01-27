@@ -3,7 +3,7 @@
  * The template part for Amministrazione Trasparente filters compatibility
  * https://it.wordpress.org/plugins/amministrazione-trasparente
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 
 $post_type = get_query_var("post_type");

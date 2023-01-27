@@ -3,7 +3,7 @@
  *
  * didattica template file
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 
 get_header();

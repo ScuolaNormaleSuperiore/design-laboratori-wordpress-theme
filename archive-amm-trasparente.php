@@ -5,7 +5,7 @@
  * 
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#archive
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 
 $class = "petrol";

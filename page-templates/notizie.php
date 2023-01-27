@@ -3,7 +3,7 @@
  *
  * notizie template file
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 global $post, $tipologia_notizia, $ct;
 get_header();

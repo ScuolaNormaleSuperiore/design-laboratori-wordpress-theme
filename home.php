@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 
 get_header();

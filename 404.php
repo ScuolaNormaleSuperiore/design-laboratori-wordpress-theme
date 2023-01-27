@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 
 

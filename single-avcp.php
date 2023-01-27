@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 global $post;
 get_template_part("template-parts/single/related-posts","post");
