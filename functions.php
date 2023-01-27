@@ -179,10 +179,10 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		register_nav_menus(
 			array(
-				'menu-lab'          => esc_html__( 'Menu principale con link (in alto a destra)', 'design_laboratori_italia' ),
-				'menu-headerright'  => esc_html__( 'Menu header right con link', 'design_laboratori_italia' ),
-				'menu-topright'     => esc_html__( 'Menu secondario multilevel (in alto a destra)', 'design_laboratori_italia' ),
-				'menu-footer'       => esc_html__( 'Menu a piè di pagina', 'design_laboratori_italia' ),
+				'menu-lab'          => esc_html__( 'Menu principale di link (a sinistra)', 'design_laboratori_italia' ),
+				'menu-right'        => esc_html__( 'Menu secondario multilevel (a destra)', 'design_laboratori_italia' ),
+				'menu-header-right' => esc_html__( 'Menu header di link (in alto a destra)', 'design_laboratori_italia' ),
+				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link (footer)', 'design_laboratori_italia' ),
 			)
 		);
 

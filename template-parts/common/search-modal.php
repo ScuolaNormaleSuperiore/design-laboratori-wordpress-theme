@@ -30,11 +30,11 @@
 								<div class="cat-filters">
                                     <?php
                                     // check if post type is used
-                                    $post_types = dsi_get_post_types_grouped("school");
+                                    $post_types = dsi_get_post_types_grouped("laboratory");
                                     if(dsi_count_grouped_posts($post_types)) {
 	                                    ?>
                                         <div class="custom-control custom-submit-redbrown">
-									        <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "school") echo "checked"; ?>" id="scuola" name="type" value="school"><?php _e( "Cerca nella sezione <strong class='text-uppercase text-small-bold'>scuola</strong>", "design_laboratori_italia" ); ?></button>
+									        <button type="submit" class="custom-control-submit <?php if(isset($_GET["type"]) && $_GET["type"] == "laboratory") echo "checked"; ?>" id="scuola" name="type" value="laboratory"><?php _e( "Cerca nella sezione <strong class='text-uppercase text-small-bold'>scuola</strong>", "design_laboratori_italia" ); ?></button>
                                         </div>
 	                                    <?php }
                                     // check if post type is used

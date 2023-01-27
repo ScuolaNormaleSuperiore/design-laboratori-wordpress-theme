@@ -1,13 +1,13 @@
 <?php
 $groups = array(
-	"school" => __("Scuola", "design_laboratori_italia"),
+	"laboratory" => __("Laboratorio", "design_laboratori_italia"),
 	"service" =>  __("Servizi", "design_laboratori_italia"),
 	"news" =>  __("Novità", "design_laboratori_italia"),
 	"education" =>  __("Didattica", "design_laboratori_italia")
 );
 
 
-$allowed_types = array( "any", "school", "news", "education", "service" );
+$allowed_types = array( "any", "laboratory", "news", "education", "service" );
 if ( isset( $_GET["type"] ) && in_array( $_GET["type"], $allowed_types ) ) {
 	$type = $_GET["type"];
 	// associazione tra types e post_type

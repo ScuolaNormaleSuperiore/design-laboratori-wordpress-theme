@@ -1,5 +1,5 @@
 <?php
-/* Template Name: la Scuola
+/* Template Name: Il Laboratorio.
  *
  * la scuola template file
  *

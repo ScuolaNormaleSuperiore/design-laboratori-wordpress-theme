@@ -106,9 +106,9 @@ function dsi_add_eventi_metaboxes() {
 	);
 
 	$cmb_sottotitolo->add_field( array(
-		'name' => 'Luogo della Scuola *',
+		'name' => 'Luogo del Laboratorio *',
 				'id' =>  $prefix . 'is_luogo_scuola',
-		'desc' => __( 'Seleziona un luogo se questo è un <a href="edit.php?post_type=luogo">Luogo della Scuola</a>', 'design_laboratori_italia' ),
+		'desc' => __( 'Seleziona un luogo se questo è un <a href="edit.php?post_type=luogo">Luogo del Laboratorio</a>', 'design_laboratori_italia' ),
 				'type'    => 'radio_inline',
 				'options' => array(
 						'true' => __( 'Si', 'design_laboratori_italia' ),
@@ -123,7 +123,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id' =>  $prefix . 'link_schede_luoghi',
 		'name'    => __( 'Luogo', 'design_laboratori_italia' ),
-		'desc' => __( 'Selezione il <a href="edit.php?post_type=luogo">luogo della Scuola</a> in cui viene organizzato l\'evento. ' , 'design_laboratori_italia' ),
+		'desc' => __( 'Selezione il <a href="edit.php?post_type=luogo">luogo del Laboratorio</a> in cui viene organizzato l\'evento. ' , 'design_laboratori_italia' ),
 				'type'    => 'pw_multiselect',
 				'options' =>  dsi_get_luoghi_options(),
 				'attributes'    => array(
@@ -136,7 +136,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id' =>  $prefix . 'nome_luogo_custom',
 		'name'    => __( 'Nome del luogo ', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci il nome del luogo (lascia vuoto hai selezionato un Luogo della Scuola )' , 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci il nome del luogo (lascia vuoto hai selezionato un Luogo del Laboratorio )' , 'design_laboratori_italia' ),
 		'type'    => 'text',
 				'attributes'    => array(
 						'data-conditional-id'     => $prefix.'is_luogo_scuola',
@@ -147,7 +147,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id'         => $prefix . 'indirizzo_luogo_custom',
 		'name'       => __( 'Indirizzo Completo ', 'design_laboratori_italia' ),
-		'desc'       => __( 'Indirizzo completo del luogo: Via, civico, cap, città e Provincia (es: Via Vaglia, 6, 00139 - Roma RM) (lascia vuoto hai selezionato un Luogo della Scuola )', 'design_laboratori_italia' ),
+		'desc'       => __( 'Indirizzo completo del luogo: Via, civico, cap, città e Provincia (es: Via Vaglia, 6, 00139 - Roma RM) (lascia vuoto hai selezionato un Luogo del Laboratorio )', 'design_laboratori_italia' ),
 		'type'       => 'text',
 				'attributes'    => array(
 						'data-conditional-id'     => $prefix.'is_luogo_scuola',
@@ -158,7 +158,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id'         => $prefix . 'posizione_gps_luogo_custom',
 				'name'       => __( 'Posizione GPS <br><small>NB: clicca sulla lente di ingandimento e cerca l\'indirizzo, anche se lo hai già inserito nel campo precedente.<br>Questo permetterà una corretta georeferenziazione del luogo</small>', 'design_laboratori_italia' ),
-		'desc'       => __( 'Georeferenziazione del luogo e link a posizione in mappa.  (lascia vuoto hai selezionato un Luogo della Scuola )', 'design_laboratori_italia' ),
+		'desc'       => __( 'Georeferenziazione del luogo e link a posizione in mappa.  (lascia vuoto hai selezionato un Luogo del Laboratorio )', 'design_laboratori_italia' ),
 		'type'       => 'leaflet_map',
 		'attributes' => array(
 			'searchbox_position'  => 'topleft', // topright, bottomright, topleft, bottomleft,
@@ -179,7 +179,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id'         => $prefix . 'quartiere_luogo_custom',
 		'name'       => __( 'Quartiere ', 'design_laboratori_italia' ),
-		'desc'       => __( 'Se il territorio è mappato in quartieri, riportare il Quartiere dove si svolge l\'evento (lascia vuoto hai selezionato un Luogo della Scuola )', 'design_laboratori_italia' ),
+		'desc'       => __( 'Se il territorio è mappato in quartieri, riportare il Quartiere dove si svolge l\'evento (lascia vuoto hai selezionato un Luogo del Laboratorio )', 'design_laboratori_italia' ),
 		'type'       => 'text',
 				'attributes'    => array(
 						'data-conditional-id'     => $prefix.'is_luogo_scuola',
@@ -190,7 +190,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id'         => $prefix . 'circoscrizione_luogo_custom',
 		'name'       => __( 'Circoscrizione', 'design_laboratori_italia' ),
-		'desc'       => __( 'Se il territorio è mappato in circoscrizioni, riportare la Circoscrizione dove si svolge l\'evento (lascia vuoto hai selezionato un Luogo della Scuola )', 'design_laboratori_italia' ),
+		'desc'       => __( 'Se il territorio è mappato in circoscrizioni, riportare la Circoscrizione dove si svolge l\'evento (lascia vuoto hai selezionato un Luogo del Laboratorio )', 'design_laboratori_italia' ),
 		'type'       => 'text',
 				'attributes'    => array(
 						'data-conditional-id'     => $prefix.'is_luogo_scuola',

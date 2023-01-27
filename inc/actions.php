@@ -67,7 +67,7 @@ add_action( 'admin_enqueue_scripts', 'dsi_admin_css_load' );
  */
 function dsi_search_filters( $query ) {
 		if ( ! is_admin() && $query->is_main_query() && $query->is_search ) {
-				$allowed_types = array( "any", "school", "news", "education", "service" );
+				$allowed_types = array( "any", "laboratory", "news", "education", "service" );
 				if ( isset( $_GET["type"] ) && in_array( $_GET["type"], $allowed_types ) ) {
 						$type = $_GET["type"];
 						$post_types = dsi_get_post_types_grouped( $type );

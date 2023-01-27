@@ -13,6 +13,8 @@ get_template_part("template-parts/single/related-posts","circolari");
 get_header();
 
 ?>
+*** SINGLE DI DEFAULT ***
+
     <main id="main-container" class="main-container greendark">
 		<?php get_template_part("template-parts/common/breadcrumb"); ?>
 

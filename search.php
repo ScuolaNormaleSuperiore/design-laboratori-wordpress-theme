@@ -33,7 +33,7 @@ get_header();
 								if(isset($_GET["type"]) && $_GET["type"] != "") {
 									if ( $_GET["type"] == "any" ) {
 										$str = __( "su <span>tutto il sito</span>", "design_laboratori_italia" );
-									} else if ( $_GET["type"] == "school" ) {
+									} else if ( $_GET["type"] == "laboratory" ) {
 										$str = __( "nel <span>materiale relativo alla scuola</span>", "design_laboratori_italia" );
 									} else if ( $_GET["type"] == "news" ) {
 										$str = __( "in <span>notizie ed eventi</span>", "design_laboratori_italia" );

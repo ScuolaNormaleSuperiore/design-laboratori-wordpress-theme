@@ -343,7 +343,7 @@ class Breadcrumb_Trail {
 			// If viewing an archive page.
 			elseif ( is_archive() ) {
                 if(is_post_type_archive(array("luogo", "documento","struttura")))
-                    $this->items[] =  "<a href='".home_url("la-scuola")."'>".__("La Scuola", "design_laboratori_italia")."</a>";
+                    $this->items[] =  "<a href='".home_url("la-scuola")."'>".__("Il Laboratorio", "design_laboratori_italia")."</a>";
 
                 else if(is_post_type_archive(array("indirizzo")))
                     $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", "design_laboratori_italia")."</a>";

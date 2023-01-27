@@ -526,7 +526,7 @@ function dsi_bootstrap_pagination( \WP_Query $wp_query = null, $echo = true ) {
 function dsi_get_post_types_grouped($type = "", $tag = false){
 	if($type == "")
 		$type = "any";
-	if($type === "school")
+	if($type === "laboratory")
 		$post_types = array("documento", "luogo", "struttura", "page");
 	else if($type === "news")
 		$post_types = array("evento", "post", "circolare");
@@ -559,7 +559,7 @@ function dsi_get_post_types_grouped($type = "", $tag = false){
 function dsi_get_post_types_group($post_type){
 	$group = "news";
 	if(in_array($post_type, array("documento", "luogo", "struttura", "page"))) // todo: programma materia if(in_array($post_type, array("documento", "luogo", "programma_materia", "struttura", "page")))
-		$group = "school";
+		$group = "laboratory";
 	else if(in_array($post_type, array("programma", "scheda_didattica", "scheda_progetto")))
 		$group = "education";
 	else if(in_array($post_type, array("servizio", "indirizzo")))
@@ -577,8 +577,8 @@ function dsi_get_post_types_group($post_type){
  */
 function dsi_get_italian_name_group($group) {
 	$gruppo = "Novità";
-	if($group == "school")
-		$gruppo = "La Scuola";
+	if($group == "laboratory")
+		$gruppo = "Il Laboratorio";
 	else if($group == "education")
 		$gruppo = "Didattica";
 	else if($group == "service")
@@ -596,7 +596,7 @@ function dsi_get_italian_name_group($group) {
 function dsi_get_post_types_color_class($post_type) {
 	$class = "greendark";
 	$group = dsi_get_post_types_group($post_type);
-	if($group == "school")
+	if($group == "laboratory")
 		$class = "redbrown";
 	else if($group == "education")
 		$class = "bluelectric";
@@ -614,10 +614,10 @@ function dsi_get_post_types_color_class($post_type) {
 function dsi_get_post_types_icon_class($post_type) {
 	$icon = "newspaper";
 	$group = dsi_get_post_types_group($post_type);
-	if($group == "school")
+	if($group == "laboratory")
 		$icon = "school-building";
 	else if($group == "education")
-		$icon = "school";
+		$icon = "laboratory";
 	else if($group == "service")
 		$icon = "hand-point-up";
 
@@ -877,7 +877,7 @@ if(!function_exists("dsi_pluralize_string")) {
             $string = "Segreterie";
             break;
 
-        case "Scuola":
+        case "Laboratorio":
             $string = "Scuole";
             break;
 
@@ -962,7 +962,7 @@ if(!function_exists("dsi_pluralize_string")) {
             $string = "Indirizzi di studio";
             break;
 
-        case "Scuola / Istituto":
+        case "Laboratorio / Istituto":
             $string = "Scuole / Istituti";
             break;
 

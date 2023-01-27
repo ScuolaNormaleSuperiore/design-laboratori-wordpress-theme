@@ -26,7 +26,7 @@ function dsi_register_main_options_metabox() {
 
 		$header_options->add_field( array(
 				'id' => $prefix . 'home_istruzioni',
-				'name'        => __( 'Configurazione Scuola', 'design_laboratori_italia' ),
+				'name'        => __( 'Configurazione Laboratorio', 'design_laboratori_italia' ),
 				'desc' => __( 'Area di configurazione delle informazioni di base' , 'design_laboratori_italia' ),
 				'type' => 'title',
 		) );
@@ -44,8 +44,8 @@ function dsi_register_main_options_metabox() {
 
 	$header_options->add_field( array(
 		'id' => $prefix . 'nome_scuola',
-		'name'        => __( 'Nome Scuola *', 'design_laboratori_italia' ),
-		'desc' => __( 'Il Nome della Scuola' , 'design_laboratori_italia' ),
+		'name'        => __( 'Nome Laboratorio *', 'design_laboratori_italia' ),
+		'desc' => __( 'Il Nome della Laboratorio' , 'design_laboratori_italia' ),
 		'type' => 'text',
 		'attributes'    => array(
 			'required'    => 'required'
@@ -55,7 +55,7 @@ function dsi_register_main_options_metabox() {
 	$header_options->add_field( array(
 		'id'   => $prefix . 'luogo_scuola',
 		'name' => __( 'Città *', 'design_laboratori_italia' ),
-		'desc' => __( 'La città dove risiede la Scuola' , 'design_laboratori_italia' ),
+		'desc' => __( 'La città dove risiede la Laboratorio' , 'design_laboratori_italia' ),
 		'type' => 'text',
 		'attributes'    => array(
 			'required'    => 'required'
@@ -359,15 +359,15 @@ function dsi_register_main_options_metabox() {
 
 
 		/**
-	 * Registers options page "La Scuola".
+	 * Registers options page "Il Laboratorio".
 	 */
 	$args = array(
 		'id'           => 'dsi_options_la_scuola',
-		'title'        => esc_html__( 'La Scuola', 'design_laboratori_italia' ),
+		'title'        => esc_html__( 'Il Laboratorio', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 				'capability'    => 'manage_options',
 				'option_key'   => 'la_scuola',
-		'tab_title'    => __('Scuola', "design_laboratori_italia"),
+		'tab_title'    => __('Laboratorio', "design_laboratori_italia"),
 		'parent_slug'  => 'dsi_options',
 		'tab_group'    => 'dsi_options',
 
@@ -387,12 +387,12 @@ function dsi_register_main_options_metabox() {
 	 */
 
 
-		$scuola_landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
+		$scuola_landing_url = dsi_get_template_page_url("page-templates/il-laboratorio.php");
 
 		$main_options->add_field( array(
 				'id' => $prefix . 'scuola_istruzioni',
 				'name'        => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Scuola</a>.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Laboratorio</a>.' , 'design_laboratori_italia' ),
 				'type' => 'title',
 				) );
 
@@ -435,7 +435,7 @@ function dsi_register_main_options_metabox() {
 
 	$main_options->add_field( array(
 		'name'        => __( 'La Storia', 'design_laboratori_italia' ),
-		'desc' => __('Timeline della Scuola', 'design_laboratori_italia' ),
+		'desc' => __('Timeline della Laboratorio', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_storia',
 	) );
@@ -542,7 +542,7 @@ function dsi_register_main_options_metabox() {
 */
 	$main_options->add_field( array(
 		'name'        => __( 'I Luoghi', 'design_laboratori_italia' ),
-		'desc' => __('Immagini dei luoghi della Scuola', 'design_laboratori_italia' ),
+		'desc' => __('Immagini dei luoghi della Laboratorio', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_luoghi_storia',
 	) );
@@ -605,7 +605,7 @@ function dsi_register_main_options_metabox() {
 
 	$main_options->add_field( array(
 		'name'        => __( 'I numeri del Laboratorio', 'design_laboratori_italia' ),
-		'desc' => __('Inserisci il numero di studenti e classi della Scuola', 'design_laboratori_italia' ),
+		'desc' => __('Inserisci il numero di studenti e classi della Laboratorio', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_numeri',
 	) );
@@ -686,14 +686,14 @@ function dsi_register_main_options_metabox() {
 
 		$presentazione_options->add_field( array(
 				'id' => $prefix . 'presentazione_istruzioni',
-				'name'        => __( 'Presenta la Scuola', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona i contenuti che meglio rappresentano l\'Istituto scolastico</a>. Saranno mostrati nella  <a href="'.$presentazione_landing_url.'"> pagina di Presentazione della Scuola</a>' , 'design_laboratori_italia' ),
+				'name'        => __( 'Presenta la Laboratorio', 'design_laboratori_italia' ),
+				'desc' => __( 'Seleziona i contenuti che meglio rappresentano l\'Istituto scolastico</a>. Saranno mostrati nella  <a href="'.$presentazione_landing_url.'"> pagina di Presentazione della Laboratorio</a>' , 'design_laboratori_italia' ),
 				'type' => 'title',
 		) );
 
 		$presentazione_options->add_field(array(
 						'name' => __('Selezione articoli ', 'design_laboratori_italia'),
-						'desc' => __('Seleziona gli articoli da mostrare nella pagina di Presentazione della Scuola.  ', 'design_laboratori_italia'),
+						'desc' => __('Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  ', 'design_laboratori_italia'),
 						'id' => $prefix . 'articoli_presentazione',
 						'type'    => 'custom_attached_posts',
 						'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
@@ -870,7 +870,7 @@ function dsi_register_main_options_metabox() {
 		$didattica_options->add_field(  array(
 				'id' => $prefix.'scuole_didattica',
 				'name'    => __( 'Seleziona e ordina le scuole che vuoi mostrare nella sezione didattica', 'design_laboratori_italia' ),
-				'desc' => __( 'NB: La scuola è una Struttura organizzativa di tipologia "Scuola. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_laboratori_italia' ),
+				'desc' => __( 'NB: La scuola è una Struttura organizzativa di tipologia "Laboratorio. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_laboratori_italia' ),
 				'type'    => 'pw_multiselect',
 				'options' => dsi_get_strutture_scuole_options(),
 				'attributes' => array(

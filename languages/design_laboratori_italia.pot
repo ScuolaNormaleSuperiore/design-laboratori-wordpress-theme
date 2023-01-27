@@ -381,8 +381,8 @@ msgstr ""
 #: inc/activation.php:548
 #: inc/admin/options.php:212
 #: inc/breadcrumb.php:346
-msgid "La Scuola"
-msgstr ""
+msgid "Il Laboratorio"
+msgstr "The Laboratory"
 
 #. Template Name of the theme
 #: inc/activation.php:113

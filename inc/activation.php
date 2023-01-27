@@ -286,70 +286,110 @@ function dli_create_pages_on_theme_activation() {
 	 */
 	$name = __( 'Presentazione', 'design_laboratori_italia' );
 
-	// wp_delete_nav_menu( $name );
-	// $menu_object = wp_get_nav_menu_object( $name );
-	// if( $menu_object ) {
-	// 	$menu_presentazione = $menu_object->term_id;
-	// } else {
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_presentazione = $menu_object->term_id;
+	} else {
 
-	// 	$menu_id            = wp_create_nav_menu( $name );
-	// 	$menu               = get_term_by( 'id', $menu_id, 'nav_menu' );
-	// 	$menu_presentazione = $menu_id;
+		$menu_id            = wp_create_nav_menu( $name );
+		$menu               = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_presentazione = $menu_id;
 
-	// 	$cicli_id = dsi_get_template_page_id( 'page-templates/cicli-scolastici.php' );
-	// 	// wp_update_nav_menu_item(
-	// 	// 	$menu->term_id,
-	// 	// 	0,
-	// 	// 	array(
-	// 	// 		'menu-item-title'     => __( 'Offerta formativa', 'design_laboratori_italia' ),
-	// 	// 		'menu-item-object-id' => $cicli_id,
-	// 	// 		'menu-item-object'    => 'page',
-	// 	// 		'menu-item-status'    => 'publish',
-	// 	// 		'menu-item-type'      => 'post_type',
-	// 	// 		'menu-item-classes'   => 'footer-link',
-	// 	// 	)
-	// 	// );
+		$servizi_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Servizi', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $servizi_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
 
-	// 	$locations_primary_arr                   = get_theme_mod( 'nav_menu_locations' );
-	// 	$locations_primary_arr['menu-didattica'] = $menu->term_id;
-	// 	set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
-	// 	update_option( 'menu_check', true );
-	// }
+		$locations_primary_arr               = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-right'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
 
 	/**
 	 * 3 - Creazione del menu NOTIZIE.
 	 */
-	$name = __( 'Notizie', 'design_laboratori_italia' );
+	$name = __( 'Novità', 'design_laboratori_italia' );
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_novita = $menu_object->term_id;
+	} else {
 
+		$menu_id     = wp_create_nav_menu( $name );
+		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_novita = $menu_id;
+
+		$servizi_id = dsi_get_template_page_id( 'page-templates/notizie.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $servizi_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr               = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-header-right'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
+
+
+
+	// Associazione dei menu ai widget del footer e ai menù di navigazione.
+
+	/**
+	* MENU DI NAVIGAZIONE
+	*/
+	// $nav_menu[0] = array(
+	// 	'title'             => 'Il Laboratorio',
+	// 	'nav_menu'          => $menu_lab,
+	// 	'menu-item-classes' => 'footer-link',
+	// );
+	// $nav_menu[1] = array(
+	// 	'title'             => 'Presentazione',
+	// 	'nav_menu'          => $menu_presentazione,
+	// 	'menu-item-classes' => 'footer-link',
+	// );
+	// $nav_menu[2] = array(
+	// 	'title'             => 'Novità',
+	// 	'nav_menu'          => $menu_novita
+	// 	'menu-item-classes' => 'footer-link',
+	// );
+	// update_option( 'widget_nav_menu', $nav_menu );
 
 	/**
 		* Aggiungo i menu come widget: menu del footer (4 colonne) da rivedere??
 		*/
 	// $active_widgets                = get_option( 'sidebars_widgets' );
 	// $active_widgets['footer-1'][0] = 'nav_menu-0';
-	$nav_menu[0] = array(
-		'title'             => 'Il Laboratorio',
-		'nav_menu'          => $menu_link_esterno,
-		'menu-item-classes' => 'footer-link',
-	);
+
 	// unset( $active_widgets['footer-1'][1] );
 	// unset( $active_widgets['footer-1'][2] );
 
 	// $active_widgets['footer-2'][0] = 'nav_menu-1';
-	$nav_menu[1] = array(
-		'title'             => 'Presentazione',
-		'nav_menu'          => $menu_lab,
-		'menu-item-classes' => 'footer-link',
-	);
+
 
 	// $active_widgets['footer-3'][0] = 'nav_menu-2';
 	// $active_widgets['footer-3'][1] = 'nav_menu-5';
 
-	$nav_menu[ 2 ] = array (
-			'title'        => 'I Servizi',
-			'nav_menu'     => $menu_servizi,
-			'menu-item-classes' => 'footer-link',
-	);
+
 	// $nav_menu[ 5 ] = array (
 	// 		'title'        => 'Didattica',
 	// 		'nav_menu'     => $menu_presentazione,
@@ -367,8 +407,6 @@ function dli_create_pages_on_theme_activation() {
 	// 		'title'        => '',
 	// 		'nav_menu'     => $menu_top,
 	// );
-
-	update_option( 'widget_nav_menu', $nav_menu );
 	// update_option( 'sidebars_widgets', $active_widgets );
 
 	global $wp_rewrite;

@@ -3,7 +3,7 @@ global $post;
 
 $img_identita = dsi_get_option("immagine", "la_scuola");
 //$id_scuola_principale = dsi_get_option("scuola_principale", "homepage");
-$landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
+$landing_url = dsi_get_template_page_url("page-templates/il-laboratorio.php");
 
 $colid=6;
 $showimage = true;
