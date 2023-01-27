@@ -55,6 +55,7 @@ $progetti= new WP_Query(array(
 	)
 ));
 
+
 //recupero la lista degli indirizzi di ricerca
 $indirizzi_di_ricerca= new WP_Query(array(
 	'posts_per_page' => -1,
@@ -174,7 +175,7 @@ $posts = get_posts($args);
 													<a class="list-item scroll-anchor-offset" href="#par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
 												</li>
 											<?php } ?>
-											<?php if(is_array($schede_progetto) && count($schede_progetto) > 0)  { ?>
+											<?php if($progetti && $progetti->have_posts())  { ?>
 												<li>
 													<a class="list-item scroll-anchor-offset" href="#par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?>"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></a>
 												</li>
@@ -218,10 +219,17 @@ $posts = get_posts($args);
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-12">
 													<div	iv class="card-deck card-deck-spaced">
-													<?php while ($progetti->have_posts()) {
+													<?php
+													$indirizzi_di_ricerca = array();
+													while ($progetti->have_posts()) {
 														$progetti->the_post();
 														$ID = get_the_ID();
 														$title = get_the_title($ID);
+														$indirizzi = get_field('elenco_indirizzi_di_ricerca_correlati');
+														foreach($indirizzi as $indirizzo) {
+															array_push($indirizzi_di_ricerca, $indirizzo);
+														}
+														$indirizzi_di_ricerca = array_unique($indirizzi_di_ricerca, SORT_REGULAR);
 														?>
 														<div class="card card-bg card-icon rounded">
 															<div class="card-body">
@@ -251,6 +259,33 @@ $posts = get_posts($args);
 												</div><!-- /col-lg-12 -->
 											</div><!-- /row -->
 											<?php }
+											if (is_array($indirizzi_di_ricerca) && count($indirizzi_di_ricerca) >0) {
+												?>
+												<h3 id="par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></h3>
+												<div class="row variable-gutters mb-4">
+													<div class="col-lg-12">
+														<div	iv class="card-deck card-deck-spaced">
+														<?php foreach ($indirizzi_di_ricerca as $indirizzo_di_ricerca) {
+															$title = $indirizzo_di_ricerca->post_title;
+															?>
+															<div class="card card-bg card-icon rounded">
+																<div class="card-body">
+																	<svg class="icon svg-project">
+																		<use xmlns:xlink="http://www.w3.org/1999/xlink"
+																		xlink:href="#svg-project"></use>
+																	</svg>
+																	<div class="card-icon-content">
+																		<p>
+																			<strong><a href="<?php echo get_permalink($indirizzo_di_ricerca); ?>"><?php echo $title; ?></a></strong>
+																		</p>
+																	</div><!-- /card-icon-content -->
+																</div><!-- /card-body -->
+															</div><!-- /card card-bg card-icon rounded -->
+															<?php } ?>
+														</div><!-- /card-deck card-deck-spaced -->
+													</div><!-- /col-lg-12 -->
+												</div><!-- /row -->
+												<?php }
 											if ($pubblicazioni && $pubblicazioni->have_posts()) {
 													?>
 													<h3 id="par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></h3>
