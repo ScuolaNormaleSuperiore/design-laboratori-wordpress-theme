@@ -1455,26 +1455,26 @@ function dsi_options_assets() {
 }
 add_action( 'admin_enqueue_scripts', 'dsi_options_assets' );
 
-if (! wp_next_scheduled ( 'dsi_cron_options' )) {
-		wp_schedule_event(time(), 'daily', 'dsi_cron_options');
-}
-add_action('dsi_cron_options', 'dsi_check_cron_options');
+// if (! wp_next_scheduled ( 'dsi_cron_options' )) {
+// 		wp_schedule_event(time(), 'daily', 'dsi_cron_options');
+// }
+// add_action('dsi_cron_options', 'dsi_check_cron_options');
 
-function dsi_check_cron_options() {
-		$update = false;
-		$messages = dsi_get_option( "messages", "home_messages" );
+// function dsi_check_cron_options() {
+// 		$update = false;
+// 		$messages = dsi_get_option( "messages", "home_messages" );
 
-		foreach ($messages as $key => $message) {
-				$message_date = strtotime($message['data_message']);
-				$now = strtotime("now");
-				if($message_date <= $now) {
-						$update = true;
-						unset($messages[$key]);
-				}
-		}
+// 		foreach ($messages as $key => $message) {
+// 				$message_date = strtotime($message['data_message']);
+// 				$now = strtotime("now");
+// 				if($message_date <= $now) {
+// 						$update = true;
+// 						unset($messages[$key]);
+// 				}
+// 		}
 
-		if($update) {
-				$to_update['messages'] = array_values($messages);
-				update_option('home_messages', $to_update, true);
-		}
-}
+// 		if($update) {
+// 				$to_update['messages'] = array_values($messages);
+// 				update_option('home_messages', $to_update, true);
+// 		}
+// }

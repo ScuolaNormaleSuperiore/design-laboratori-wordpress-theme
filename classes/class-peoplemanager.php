@@ -74,7 +74,7 @@ class People_Manager {
 
 		register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
 
-		//aggiungo la tassonomia struttura
+		// Aggiungo la tassonomia struttura.
 
 		$structure_labels = array(
 			'name'              => _x( 'Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
@@ -126,7 +126,7 @@ class People_Manager {
 			'use_featured_image'    => __( 'Usa come Immagine della Persona' . 'design_laboratori_italia' ),
 		);
 
-		$args   = array(
+		$args = array(
 			'label'           => __( 'Persona', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
@@ -135,9 +135,11 @@ class People_Manager {
 			'show_in_rest'    => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-businessperson',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
-			'rewrite'         => array('slug' => 'persone'),
+			'hierarchical'    => false,
+			'capability_type' => array( 'persona', 'persone' ),
+			'rewrite'         => array( 'slug' => 'persone' ),
 		);
 
 		register_post_type( PEOPLE_POST_TYPE, $args );

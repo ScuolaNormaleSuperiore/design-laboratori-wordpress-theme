@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row variable-gutters">
             <div class="col-6">
-                <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">
-                    <strong>Ministero dell'Istruzione</strong>
+                <a href="https://www.sns.it/" target="_blank" aria-label="Scuola Normale Superiore - Collegamento esterno - Apre su nuova scheda">
+                    <strong>Scuola Normale superiore</strong>
                 </a>
             </div><!-- /col-6 -->
             <div class="col-6 header-utils-wrapper">

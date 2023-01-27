@@ -73,8 +73,8 @@ if(is_search() || is_archive())
                                 <ul class="dl-menu nav-list nav-list-primary" data-element="menu">
                                     <?php
                                     // check if scuola has menu
-                                    $theme_location = "menu-scuola";
-                                    $option_location = "item_menu_scuola";
+                                    $theme_location = "menu-lab";
+                                    $option_location = "item_menu_lab";
                                     unset($menu_obj);
                                     if(isset($theme_locations[$theme_location]))
                                         $menu_obj = get_term( $theme_locations[$theme_location], 'nav_menu' );
@@ -264,8 +264,8 @@ if(is_search() || is_archive())
                             <ul class="dl-menu nav-list nav-list-primary" data-element="menu">
                                 <?php
                                 // check if scuola has menu
-                                $theme_location = "menu-scuola";
-                                $option_location = "item_menu_scuola";
+                                $theme_location = "menu-lab";
+                                $option_location = "item_menu_lab";
                                 unset($menu_obj);
                                 if(isset($theme_locations[$theme_location]))
                                     $menu_obj = get_term( $theme_locations[$theme_location], 'nav_menu' );

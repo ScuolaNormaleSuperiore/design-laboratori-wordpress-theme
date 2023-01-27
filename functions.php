@@ -13,11 +13,6 @@
 require get_template_directory() . '/inc/define.php';
 
 /**
- * Vocabolario
- */
-require get_template_directory() . '/inc/vocabolario.php';
-
-/**
  * Extend User Taxonomy
  */
 require get_template_directory() . '/inc/extend-tax-to-user.php';
@@ -169,7 +164,7 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// image size
+		// Image size.
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'article-simple-thumb', 500, 384 , true);
 			add_image_size( 'item-thumb', 280, 280 , true);
@@ -178,15 +173,18 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 			add_image_size( 'banner', 600, 250 , false);
 		}
 
-		// This theme uses wp_nav_menu()
-		register_nav_menus( array(
-			'menu-scuola' => esc_html__( 'Sottovoci del menu principale, voce "Laboratorio"', 'design_laboratori_italia' ),
-			'menu-servizi' => esc_html__( 'Sottovoci del menu principale, voce "Servizi"', 'design_laboratori_italia' ),
-			'menu-notizie' => esc_html__( 'Sottovoci del menu principale, voce "Novità"', 'design_laboratori_italia' ),
-			'menu-didattica' => esc_html__( 'Sottovoci del menu principale, voce "Didattica"', 'design_laboratori_italia' ),
-			'menu-topright' => esc_html__( 'Menu secondario (in alto a destra)', 'design_laboratori_italia' ),
-			'menu-footer' => esc_html__( 'Menu a piè di pagina', 'design_laboratori_italia' ),
-		) );
+		/**
+		 * This theme uses wp_nav_menu().
+		 * Definizione delle locations dei menu: wp-admin/nav-menus.php?action=locations.
+		 */
+		register_nav_menus(
+			array(
+				'menu-lab'          => esc_html__( 'Menu principale con link (in alto a destra)', 'design_laboratori_italia' ),
+				'menu-headerright'  => esc_html__( 'Menu header right con link', 'design_laboratori_italia' ),
+				'menu-topright'     => esc_html__( 'Menu secondario multilevel (in alto a destra)', 'design_laboratori_italia' ),
+				'menu-footer'       => esc_html__( 'Menu a piè di pagina', 'design_laboratori_italia' ),
+			)
+		);
 
 	}
 endif;

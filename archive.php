@@ -16,7 +16,7 @@ if(is_post_type_archive("scheda_didattica")){
 }
 get_header();
 ?>
-
+*** DEFAULT ARCHIVE ***
 <main id="main-container" class="main-container <?php echo $class; ?>>">
 	<?php get_template_part("template-parts/common/breadcrumb"); ?>
 	
