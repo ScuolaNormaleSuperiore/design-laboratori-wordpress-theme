@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
 #. Description of the theme
-msgid "Design Laboratori Italia è il tema di WordPress per i siti delle Scuole Italiane. Rispetta le linee guida di design dell’Agenzia per l’Italia digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza Bootstrap Italia."
+msgid "Design Laboratori Italia è il tema di WordPress per i siti delle Laboratori Italiane. Rispetta le linee guida di design dell’Agenzia per l’Italia digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza Bootstrap Italia."
 msgstr ""
 
 #. Author of the theme
@@ -228,7 +228,7 @@ msgid "I commenti sono chiusi."
 msgstr ""
 
 #: functions.php:125
-msgid "Sottovoci del menu principale, voce \"Scuola\""
+msgid "Sottovoci del menu principale, voce \"Laboratorio\""
 msgstr ""
 
 #: functions.php:126
@@ -306,7 +306,7 @@ msgstr ""
 #: template-parts/search/filters-category.php:3
 #: template-parts/search/filters-tag.php:3
 #: template-parts/search/filters.php:3
-msgid "Scuola"
+msgid "Laboratorio"
 msgstr ""
 
 #. Template Name of the theme
@@ -514,7 +514,7 @@ msgid "Ufficio Scolastico Territoriale"
 msgstr ""
 
 #: inc/activation.php:888
-msgid "Scuola in Chiaro"
+msgid "Laboratorio in Chiaro"
 msgstr ""
 
 #: inc/activation.php:896
@@ -864,7 +864,7 @@ msgid "Destinatari della Circolare"
 msgstr ""
 
 #: inc/admin/circolare.php:154
-msgid "Tutta la Scuola"
+msgid "Tutta la Laboratorio"
 msgstr ""
 
 #: inc/admin/circolare.php:155
@@ -944,11 +944,11 @@ msgid "Anno scolastico"
 msgstr ""
 
 #: inc/admin/classe.php:65
-msgid "Seleziona la Scuola  di cui fa parte la classe"
+msgid "Seleziona la Laboratorio  di cui fa parte la classe"
 msgstr ""
 
 #: inc/admin/classe.php:66
-msgid "NB: La scuola è una <a href=\"edit.php?post_type=struttura\">Struttura organizzativa</a> di tipologia \"Scuola. Se non esiste creala prima <a href=\"edit.php?post_type=struttura\">qui</a>\""
+msgid "NB: La scuola è una <a href=\"edit.php?post_type=struttura\">Struttura organizzativa</a> di tipologia \"Laboratorio. Se non esiste creala prima <a href=\"edit.php?post_type=struttura\">qui</a>\""
 msgstr ""
 
 #: inc/admin/classe.php:73
@@ -1406,11 +1406,11 @@ msgid "Indicare una sintetica descrizione del Evento. Vincoli: 160 caratteri spa
 msgstr ""
 
 #: inc/admin/evento.php:104
-msgid "Seleziona un luogo se questo è un <a href=\"edit.php?post_type=luogo\">Luogo della Scuola</a>"
+msgid "Seleziona un luogo se questo è un <a href=\"edit.php?post_type=luogo\">Luogo della Laboratorio</a>"
 msgstr ""
 
 #: inc/admin/evento.php:118
-msgid "Selezione il <a href=\"edit.php?post_type=luogo\">luogo della Scuola</a> in cui viene organizzato l'evento. "
+msgid "Selezione il <a href=\"edit.php?post_type=luogo\">luogo della Laboratorio</a> in cui viene organizzato l'evento. "
 msgstr ""
 
 #: inc/admin/evento.php:138
@@ -1419,7 +1419,7 @@ msgstr ""
 
 #: inc/admin/evento.php:139
 #: inc/admin/scheda_progetto.php:205
-msgid "Inserisci il nome del luogo (lascia vuoto hai selezionato un Luogo della Scuola )"
+msgid "Inserisci il nome del luogo (lascia vuoto hai selezionato un Luogo della Laboratorio )"
 msgstr ""
 
 #: inc/admin/evento.php:150
@@ -1428,7 +1428,7 @@ msgstr ""
 
 #: inc/admin/evento.php:151
 #: inc/admin/scheda_progetto.php:218
-msgid "Indirizzo completo del luogo: Via, civico, cap, città e Provincia (es: Via Vaglia, 6, 00139 - Roma RM) (lascia vuoto hai selezionato un Luogo della Scuola )"
+msgid "Indirizzo completo del luogo: Via, civico, cap, città e Provincia (es: Via Vaglia, 6, 00139 - Roma RM) (lascia vuoto hai selezionato un Luogo della Laboratorio )"
 msgstr ""
 
 #: inc/admin/evento.php:162
@@ -1438,7 +1438,7 @@ msgstr ""
 
 #: inc/admin/evento.php:163
 #: inc/admin/scheda_progetto.php:230
-msgid "Georeferenziazione del luogo e link a posizione in mappa.  (lascia vuoto hai selezionato un Luogo della Scuola )"
+msgid "Georeferenziazione del luogo e link a posizione in mappa.  (lascia vuoto hai selezionato un Luogo della Laboratorio )"
 msgstr ""
 
 #: inc/admin/evento.php:168
@@ -1459,7 +1459,7 @@ msgstr ""
 
 #: inc/admin/evento.php:187
 #: inc/admin/scheda_progetto.php:253
-msgid "Se il territorio è mappato in quartieri, riportare il Quartiere dove si svolge l'evento (lascia vuoto hai selezionato un Luogo della Scuola )"
+msgid "Se il territorio è mappato in quartieri, riportare il Quartiere dove si svolge l'evento (lascia vuoto hai selezionato un Luogo della Laboratorio )"
 msgstr ""
 
 #: inc/admin/evento.php:198
@@ -1468,7 +1468,7 @@ msgstr ""
 
 #: inc/admin/evento.php:199
 #: inc/admin/scheda_progetto.php:265
-msgid "Se il territorio è mappato in circoscrizioni, riportare la Circoscrizione dove si svolge l'evento (lascia vuoto hai selezionato un Luogo della Scuola )"
+msgid "Se il territorio è mappato in circoscrizioni, riportare la Circoscrizione dove si svolge l'evento (lascia vuoto hai selezionato un Luogo della Laboratorio )"
 msgstr ""
 
 #: inc/admin/evento.php:211
@@ -2420,7 +2420,7 @@ msgid "Opzioni di base"
 msgstr ""
 
 #: inc/admin/options.php:30
-msgid "Configurazione Scuola"
+msgid "Configurazione Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:31
@@ -2436,11 +2436,11 @@ msgid "La Tipologia della scuola. Es: \"Liceo Scientifico Statale\""
 msgstr ""
 
 #: inc/admin/options.php:48
-msgid "Nome Scuola *"
+msgid "Nome Laboratorio *"
 msgstr ""
 
 #: inc/admin/options.php:49
-msgid "Il Nome della Scuola"
+msgid "Il Nome della Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:58
@@ -2448,7 +2448,7 @@ msgid "Città *"
 msgstr ""
 
 #: inc/admin/options.php:59
-msgid "La città dove risiede la Scuola"
+msgid "La città dove risiede la Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:73
@@ -2547,7 +2547,7 @@ msgid "Breve (compresa tra 70 e 140 caratteri spazi inclusi) frase identificativ
 msgstr ""
 
 #: inc/admin/options.php:286
-msgid "Timeline della Scuola"
+msgid "Timeline della Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:297
@@ -2588,7 +2588,7 @@ msgid "I Luoghi"
 msgstr ""
 
 #: inc/admin/options.php:396
-msgid "Immagini dei luoghi della Scuola"
+msgid "Immagini dei luoghi della Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:405
@@ -2618,7 +2618,7 @@ msgid "Inserisci qui tutti i documenti che ritieni utili per presentare la scuol
 msgstr ""
 
 #: inc/admin/options.php:462
-msgid "Inserisci il numero di studenti e classi della Scuola"
+msgid "Inserisci il numero di studenti e classi della Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:470
@@ -2650,7 +2650,7 @@ msgid "Link alla scheda della scuola all'interno di \"scuola in chiaro\""
 msgstr ""
 
 #: inc/admin/options.php:543
-msgid "Presenta la Scuola"
+msgid "Presenta la Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:544
@@ -2658,7 +2658,7 @@ msgid "Seleziona i contenuti che meglio rappresentano l'Istituto scolastico</a>.
 msgstr ""
 
 #: inc/admin/options.php:550
-msgid "Seleziona gli articoli da mostrare nella pagina di Presentazione della Scuola.  "
+msgid "Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  "
 msgstr ""
 
 #: inc/admin/options.php:572
@@ -2731,11 +2731,11 @@ msgid "Scegli se mostrare a sinistra le scuole e a destra gli indirizzi di studi
 msgstr ""
 
 #: inc/admin/options.php:723
-msgid "Scuole / Percorsi"
+msgid "Laboratori / Percorsi"
 msgstr ""
 
 #: inc/admin/options.php:724
-msgid "Indirizzi / Scuole"
+msgid "Indirizzi / Laboratori"
 msgstr ""
 
 #: inc/admin/options.php:730
@@ -2743,7 +2743,7 @@ msgid "Seleziona e ordina le scuole che vuoi mostrare nella sezione didattica"
 msgstr ""
 
 #: inc/admin/options.php:731
-msgid "NB: La scuola è una Struttura organizzativa di tipologia \"Scuola. Se non esiste creala prima <a href=\"edit.php?post_type=struttura\">qui</a>\""
+msgid "NB: La scuola è una Struttura organizzativa di tipologia \"Laboratorio. Se non esiste creala prima <a href=\"edit.php?post_type=struttura\">qui</a>\""
 msgstr ""
 
 #: inc/admin/options.php:743
@@ -3017,19 +3017,19 @@ msgid "Seleziona la tipologia di ruolo docente"
 msgstr ""
 
 #: inc/admin/persona.php:174
-msgid "Scuola Infanzia"
+msgid "Laboratorio Infanzia"
 msgstr ""
 
 #: inc/admin/persona.php:175
-msgid "Scuola Primaria"
+msgid "Laboratorio Primaria"
 msgstr ""
 
 #: inc/admin/persona.php:176
-msgid "Scuola Secondaria I grado"
+msgid "Laboratorio Secondaria I grado"
 msgstr ""
 
 #: inc/admin/persona.php:177
-msgid "Scuola Secondaria II grado"
+msgid "Laboratorio Secondaria II grado"
 msgstr ""
 
 #: inc/admin/persona.php:178
@@ -3459,7 +3459,7 @@ msgid "Luogo, Strutture, Documenti, Gallery"
 msgstr ""
 
 #: inc/admin/scheda_progetto.php:176
-msgid "Seleziona se il progetto viene svolto in un <a href=\"edit.php?post_type=luogo\">Luogo della Scuola</a>"
+msgid "Seleziona se il progetto viene svolto in un <a href=\"edit.php?post_type=luogo\">Luogo della Laboratorio</a>"
 msgstr ""
 
 #: inc/admin/scheda_progetto.php:192
@@ -3631,7 +3631,7 @@ msgid "Seleziona la struttura responsabile del servizio "
 msgstr ""
 
 #: inc/admin/servizio.php:272
-msgid "Scuola a cui il servizio appartiene"
+msgid "Laboratorio a cui il servizio appartiene"
 msgstr ""
 
 #: inc/admin/servizio.php:273
@@ -3719,7 +3719,7 @@ msgid "Tipologia struttura"
 msgstr ""
 
 #: inc/admin/struttura.php:100
-msgid "Percorsi di studio della Scuola"
+msgid "Percorsi di studio della Laboratorio"
 msgstr ""
 
 #: inc/admin/struttura.php:114
@@ -3822,7 +3822,7 @@ msgid "Email della struttura se risulta diversa dalla email della sede. "
 msgstr ""
 
 #: inc/admin/struttura.php:346
-msgid "<span><i>il <b>Titolo</b> è il <b>Nome della struttura organizzativa</b>. es: Presidenza / Segreteria / Scuola del nome istituto</i></span><br><br>"
+msgid "<span><i>il <b>Titolo</b> è il <b>Nome della struttura organizzativa</b>. es: Presidenza / Segreteria / Laboratorio del nome istituto</i></span><br><br>"
 msgstr ""
 
 #: inc/admin/struttura.php:356
@@ -3866,7 +3866,7 @@ msgid "Si / No / Presa Visione"
 msgstr ""
 
 #: inc/welcome.php:19
-msgid "Design Laboratori Italia: il tema di Developers Italia per le Scuole Italiane"
+msgid "Design Laboratori Italia: il tema di Developers Italia per le Laboratori Italiane"
 msgstr ""
 
 #. Template Name of the theme
@@ -3874,7 +3874,7 @@ msgid "Cicli Scolastici"
 msgstr ""
 
 #. Template Name of the theme
-msgid "la Scuola"
+msgid "la Laboratorio"
 msgstr ""
 
 #. Template Name of the theme
@@ -4377,7 +4377,7 @@ msgid "Documento Scaduto"
 msgstr ""
 
 #: template-parts/hero/documenti.php:13
-msgid "Le carte della Scuola"
+msgid "Le carte della Laboratorio"
 msgstr ""
 
 #: template-parts/hero/home.php:41
@@ -4385,7 +4385,7 @@ msgid "Vai alla scuola"
 msgstr ""
 
 #: template-parts/hero/luoghi.php:13
-msgid "I luoghi della Scuola"
+msgid "I luoghi della Laboratorio"
 msgstr ""
 
 #: template-parts/home/articoli-eventi.php:64
@@ -4454,7 +4454,7 @@ msgid "Nessun percorso di studi associato a questa scuola."
 msgstr ""
 
 #: template-parts/home/didattica-cicli-classi.php:98
-msgid "Vai alla presentazione della Scuola"
+msgid "Vai alla presentazione della Laboratorio"
 msgstr ""
 
 #: template-parts/home/didattica-cicli-indirizzi.php:16

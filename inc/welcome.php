@@ -16,7 +16,7 @@ function dsi_welcome_panel(){
     ?>
     <div class="welcome-panel-content" style="padding-bottom:30px;">
         <img src="https://avatars1.githubusercontent.com/u/15377824?s=36&v=4"  style="float:left; margin:0px 20px;" />
-        <h2><?php _e( 'Design Laboratori Italia: il tema di Developers Italia per le Scuole Italiane', "design_laboratori_italia" ); ?></h2>
+        <h2><?php _e( 'Design Laboratori Italia: il tema di Developers Italia per i Laboratori Italiani', "design_laboratori_italia" ); ?></h2>
     </div>
     <?php
 }
@@ -175,7 +175,7 @@ add_filter('get_user_option_screen_layout_dashboard', 'dsi_screen_layout_dashboa
 
 
 add_action ('admin_menu', function () {
-  //  add_management_page('Manuale Tema Scuole', 'Manuale Tema Scuole', 'read', 'manuale-scuole', 'dsi_readme_render_manual', '');
+  //  add_management_page('Manuale Tema Laboratori', 'Manuale Tema Laboratori', 'read', 'manuale-scuole', 'dsi_readme_render_manual', '');
 });
 
 function dsi_readme_render_manual(){

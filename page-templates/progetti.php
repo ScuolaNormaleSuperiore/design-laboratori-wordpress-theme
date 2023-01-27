@@ -1,7 +1,7 @@
 <?php
 /* Template Name: I progetti.
 *
-* @package Design_Scuole_Italia
+* @package Design_Laboratori_Italia
 */
 global $post;
 get_header();

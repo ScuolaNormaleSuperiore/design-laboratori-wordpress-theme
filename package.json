@@ -1,7 +1,7 @@
 {
   "name": "design-laboratori-wordpress-theme",
   "version": "2.1.6",
-  "description": "Tema Wordpress delle Scuole Italiane",
+  "description": "Tema Wordpress dei Laboratori Italiani",
   "main": "index.js",
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",

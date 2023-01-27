@@ -878,7 +878,7 @@ if(!function_exists("dsi_pluralize_string")) {
             break;
 
         case "Laboratorio":
-            $string = "Scuole";
+            $string = "Laboratori";
             break;
 
         case "Commissione":
@@ -963,7 +963,7 @@ if(!function_exists("dsi_pluralize_string")) {
             break;
 
         case "Laboratorio / Istituto":
-            $string = "Scuole / Istituti";
+            $string = "Laboratori / Istituti";
             break;
 
         case "":

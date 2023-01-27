@@ -3,7 +3,7 @@
  *
  * la scuola template file
  *
- * @package Design_Scuole_Italia
+ * @package Design_Laboratori_Italia
  */
 global $post, $gallery, $struttura;
 get_header();

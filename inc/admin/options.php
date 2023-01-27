@@ -862,8 +862,8 @@ function dsi_register_main_options_metabox() {
 				'desc' => __( 'Scegli se mostrare a sinistra le scuole e a destra gli indirizzi di studio, oppure se mostrare a sinistra gli indirizzi di studio e a destra le scuole che ne fanno parte' , 'design_laboratori_italia' ),
 				'type'    => 'radio_inline',
 				'options' => array(
-						'scuole' => __( 'Scuole / Percorsi', 'design_laboratori_italia' ),
-						'indirizzi'   => __( 'Indirizzi / Scuole', 'design_laboratori_italia' ),
+						'scuole' => __( 'Laboratori / Percorsi', 'design_laboratori_italia' ),
+						'indirizzi'   => __( 'Indirizzi / Laboratori', 'design_laboratori_italia' ),
 				),
 		) );
 
