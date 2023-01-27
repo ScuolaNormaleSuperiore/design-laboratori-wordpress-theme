@@ -138,12 +138,22 @@ msgid "Schede didattiche"
 msgstr ""
 
 #: author.php:260
+#: single-persona.php: 137
 #: inc/admin/programma_materia.php:241
 #: single-programma_materia.php:163
 #: single-struttura.php:202
 #: template-parts/home/didattica-risorse.php:36
 msgid "Progetti"
 msgstr ""
+
+#: single-persona.php: 142
+msgid "Indirizzi di ricerca"
+msgstr ""
+
+#: single-persona.php: 147
+msgid "Pubblicazioni"
+msgstr ""
+
 
 #: author.php:287
 #: inc/admin/articolo.php:100
