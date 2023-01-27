@@ -1,4 +1,9 @@
 <?php
+/**
+ * Creazione del post type Indirizzi di ricerca.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 /**
 	* Il manager che fa il setup del custom type Indirizzo di Ricerca.

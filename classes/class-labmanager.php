@@ -2,7 +2,7 @@
 /**
  * Definition of the LabManager used to create the custom content types.
  *
- * @package design-laboratori-wordpress-theme
+ * @package Design_Laboratori_Italia
  */
 
 if ( ! class_exists( 'PeopleManager' ) ) {

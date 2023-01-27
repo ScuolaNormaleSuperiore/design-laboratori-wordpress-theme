@@ -1,4 +1,10 @@
 <?php
+/**
+ * Creazione del post type News.
+ *
+ * @package Design_Laboratori_Italia
+ */
+
 // Post Types.
 define( 'NEWS_POST_TYPE', 'notizia' );
 

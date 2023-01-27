@@ -1,4 +1,10 @@
 <?php
+/**
+ * Creazione del post type Pubblicazioni.
+ *
+ * @package Design_Laboratori_Italia
+ */
+
 // Post Types.
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 

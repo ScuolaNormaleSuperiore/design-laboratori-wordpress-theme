@@ -1,4 +1,10 @@
 <?php
+/**
+ * Creazione dei post types Persona e Struttura.
+ *
+ * @package Design_Laboratori_Italia
+ */
+
 // Post Types.
 define( 'PEOPLE_POST_TYPE', 'persona' );
 

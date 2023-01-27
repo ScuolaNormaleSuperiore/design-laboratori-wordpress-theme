@@ -1,8 +1,10 @@
 <?php
-
 /**
-	* Il manager che fa il setup del custom type Progetto.
-	*/
+ * Il manager che fa il setup del custom type Progetto.
+ *
+ * @package Design_Laboratori_Italia
+ */
+
 class Project_Manager {
 	/**
 	 * Constructor of the Manager.

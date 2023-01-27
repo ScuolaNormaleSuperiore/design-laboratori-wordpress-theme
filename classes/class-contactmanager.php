@@ -1,8 +1,10 @@
 <?php
-
 /**
-	* Il manager che fa il setup del custom type Contatto.
+ * Il manager che fa il setup del custom type Contatto.
+ *
+ * @package Design_Laboratori_Italia
  */
+
 class Contact_Manager {
 	/**
 	 * Constructor of the Manager.
