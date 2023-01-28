@@ -19,7 +19,7 @@
 16) Produzione e traduzione etichette in inglese
 17) Aggiunta campo OpenStreetMap in Evento (https://wordpress.org/plugins/acf-openstreetmap-field/)
 18) Aggiunta sitemap
-
+19) Creazione Dockerfile.
 
 * Fatti *
 - CT Eventi
