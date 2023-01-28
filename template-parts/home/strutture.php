@@ -1,6 +1,6 @@
 <?php
-$descrizione_strutture = dsi_get_option("descrizione_strutture", "la_scuola");
-$link_strutture_evidenza = dsi_get_option("link_strutture_evidenza", "la_scuola");
+$descrizione_strutture = dli_get_option("descrizione_strutture", "la_scuola");
+$link_strutture_evidenza = dli_get_option("link_strutture_evidenza", "la_scuola");
 
 global $struttura;
 ?>
@@ -55,7 +55,7 @@ global $struttura;
 		</div><!-- /row -->
         <div class="row variable-gutters my-5">
             <div class="col d-flex justify-content-center">
-                <a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo get_post_type_archive_link("struttura"); ?>"><?php _e("Tutta l’organizzazione", "design_laboratori_italia"); ?></a>
+                <a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo get_post_type_archive_link("struttura"); ?>"><?php _e("Tutta l’organizzazione", 'design_laboratori_italia'); ?></a>
             </div><!-- /col-lg-4 -->
         </div><!-- /row -->
 	</div><!-- /container -->

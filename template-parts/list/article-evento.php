@@ -34,7 +34,7 @@ $timestamp_fine= dsi_get_meta("timestamp_fine", "_dsi_evento_", $post->ID);
             <?php /* if(is_array($argomenti) && count($argomenti)) { ?>
                     <div class="badges">
                         <?php foreach ( $argomenti as $item ) { ?>
-                            <a href="<?php echo get_term_link($item); ?>" title="<?php _e("Vai all'argomento", "design_laboratori_italia"); ?>: <?php echo $item->name; ?>"
+                            <a href="<?php echo get_term_link($item); ?>" title="<?php _e("Vai all'argomento", 'design_laboratori_italia'); ?>: <?php echo $item->name; ?>"
                                class="badge badge-sm badge-pill badge-outline-<?php echo $class; ?>"><?php echo $item->name; ?></a>
                         <?php } ?>
                     </div><!-- /badges -->

@@ -12,7 +12,7 @@ if(is_array($posts) && count($posts)) {
             <div class="row variable-gutters">
                 <div class="col">
                     <div class="section-title mb-5">
-                        <h3><?php _e("Schede didattiche", "design_laboratori_italia"); ?></h3>
+                        <h3><?php _e("Schede didattiche", 'design_laboratori_italia'); ?></h3>
                     </div>
 
                     <div class="splide splide-double mb-5" data-bs-carousel-splide>
@@ -34,7 +34,7 @@ if(is_array($posts) && count($posts)) {
 
         </div><!-- /container -->
         <div class="pb-5 text-center mt-4">
-            <a class="text-underline" href="<?php echo get_post_type_archive_link("scheda_didattica") ?>"><strong><?php _e("Vedi tutte le schede didattiche", "design_laboratori_italia"); ?></strong></a>
+            <a class="text-underline" href="<?php echo get_post_type_archive_link("scheda_didattica") ?>"><strong><?php _e("Vedi tutte le schede didattiche", 'design_laboratori_italia'); ?></strong></a>
         </div>
     </section><!-- /section --><?php
 }

@@ -6,8 +6,8 @@
  * @param  mixed  $default Optional default value
  * @return mixed           Option value
  */
-if(!function_exists("dsi_get_option")) {
-	function dsi_get_option( $key = '', $type = "dsi_options", $default = false ) {
+if(!function_exists("dli_get_option")) {
+	function dli_get_option( $key = '', $type = "dli_options", $default = false ) {
 		if ( function_exists( 'cmb2_get_option' ) ) {
 			// Use cmb2_get_option as it passes through some key filters.
 			return cmb2_get_option( $type, $key, $default );
@@ -375,7 +375,7 @@ if(!function_exists("dsi_get_mapbox_access_token")) {
 	function dsi_get_mapbox_access_token() {
 		global $post;
 
-		$accesstoken = dsi_get_option( "mapbox_key", "setup" );
+		$accesstoken = dli_get_option( "mapbox_key", "setup" );
 		if ( trim( $accesstoken ) == "" ) {
 			$accesstoken = DSI_ACCESSTOKEN_MAPBOX;
 		}
@@ -400,7 +400,7 @@ function dsi_get_date_evento($post){
 	$timestamp_fine= dsi_get_meta("timestamp_fine", $prefix, $post->ID);
 	if($timestamp_inizio >= $timestamp_fine){
 		$ret .=  date_i18n("j F Y", $timestamp_inizio);
-		//$ret .= __(" alle ", "design_laboratori_italia");
+		//$ret .= __(" alle ", 'design_laboratori_italia');
 		//$ret .=  date_i18n("H:i", $timestamp_inizio);
 		return $ret;
 	}
@@ -410,30 +410,30 @@ function dsi_get_date_evento($post){
 	$ora_inizio = date_i18n("H:i", $timestamp_inizio);
 	$ora_fine = date_i18n("H:i", $timestamp_fine);
 	if($data_inizio == $data_fine){
-		$ret .= __("Il ", "design_laboratori_italia");
+		$ret .= __("Il ", 'design_laboratori_italia');
 		$ret .= $data_inizio;
 		/*
 		if($post->post_type == "evento"){
-			$ret .= __(" dalle ", "design_laboratori_italia");
+			$ret .= __(" dalle ", 'design_laboratori_italia');
 			$ret .= $ora_inizio;
-			$ret .= __(" alle ", "design_laboratori_italia");
+			$ret .= __(" alle ", 'design_laboratori_italia');
 			$ret .= $ora_fine;
 
 		}*/
 
 	}else{
-		$ret .= __("dal ", "design_laboratori_italia");
+		$ret .= __("dal ", 'design_laboratori_italia');
 		$ret .= $data_inizio;
 		/*
 		if($post->post_type == "evento") {
-			$ret .= __( " alle ", "design_laboratori_italia" );
+			$ret .= __( " alle ", 'design_laboratori_italia' );
 			$ret .= $ora_inizio;
 		}*/
-		$ret .= __(" al ", "design_laboratori_italia");
+		$ret .= __(" al ", 'design_laboratori_italia');
 		$ret .= $data_fine;
 		/*
 		if($post->post_type == "evento") {
-			$ret .= __( " alle ", "design_laboratori_italia" );
+			$ret .= __( " alle ", 'design_laboratori_italia' );
 			$ret .= $ora_fine;
 		}*/
 	}
@@ -654,7 +654,7 @@ function dsi_count_grouped_posts($post_types){
  *
  * @return string|null
  */
-function dsi_get_template_page_url($TEMPLATE_NAME){
+function dli_get_template_page_url($TEMPLATE_NAME){
 	$pages = get_pages(array(
 		'meta_key' => '_wp_page_template',
 		'meta_value' => $TEMPLATE_NAME,
@@ -830,7 +830,7 @@ function dsi_get_current_anno_scolastico($year = true){
  * @param $field
  * @return int|string
  */
-function dsi_sanitize_int( $value, $field_args, $field ) {
+function dli_sanitize_int( $value, $field_args, $field ) {
 		// Don't keep anything that's not numeric
 		if ( ! is_numeric( $value ) ) {
 				$sanitized_value = '';

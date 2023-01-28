@@ -2,77 +2,87 @@
 /**
  * Hook in and register a metabox to handle a theme options page and adds a menu item.
  */
-function dsi_register_main_options_metabox() {
+function dli_register_main_options_metabox() {
 	$prefix = '';
 
 	$args = array(
-		'id'           => 'dsi_options_header',
+		'id'           => 'dli_options_header',
 		'title'        => esc_html__( 'Configurazione', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
-		'option_key'   => 'dsi_options',
-		'tab_group'    => 'dsi_options',
-		'tab_title'    => __('Opzioni di base', "design_laboratori_italia"),
-				'capability'    => 'manage_options',
-		'position'        => 2, // Menu position. Only applicable if 'parent_slug' is left empty.
-		'icon_url'        => 'dashicons-admin-tools', // Menu icon. Only applicable if 'parent_slug' is left empty.
+		'option_key'   => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Opzioni di base', 'design_laboratori_italia' ),
+		'capability'   => 'manage_options',
+		'position'     => 2, // Menu position. Only applicable if 'parent_slug' is left empty.
+		'icon_url'     => 'dashicons-admin-tools', // Menu icon. Only applicable if 'parent_slug' is left empty.
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
 	$header_options = new_cmb2_box( $args );
 
-		$header_options->add_field( array(
-				'id' => $prefix . 'home_istruzioni',
-				'name'        => __( 'Configurazione Laboratorio', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione delle informazioni di base' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
+	/**
+	 * Registers options page "Opzioni di base".
+	 */
+	$header_options->add_field(
+		array(
+			'id'   => $prefix . 'home_istruzioni',
+			'name' => __( 'Configurazione Laboratorio', 'design_laboratori_italia' ),
+			'desc' => __( 'Area di configurazione delle informazioni di base' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
 
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'tipologia_scuola',
+			'name'       => __( 'Tipologia *', 'design_laboratori_italia' ),
+			'desc'       => __( 'La Tipologia del Laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
 
-	$header_options->add_field( array(
-		'id' => $prefix . 'tipologia_scuola',
-		'name'        => __( 'Tipologia *', 'design_laboratori_italia' ),
-		'desc' => __( 'La Tipologia della scuola. Es: "Liceo Scientifico Statale"' , 'design_laboratori_italia' ),
-		'type' => 'text',
-		'attributes'    => array(
-			'required'    => 'required'
-		),
-	) );
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'nome_laboratorio',
+			'name'       => __( 'Nome Laboratorio *', 'design_laboratori_italia' ),
+			'desc'       => __( 'Il Nome della Laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required'   => 'required',
+			),
+		)
+	);
 
-	$header_options->add_field( array(
-		'id' => $prefix . 'nome_scuola',
-		'name'        => __( 'Nome Laboratorio *', 'design_laboratori_italia' ),
-		'desc' => __( 'Il Nome della Laboratorio' , 'design_laboratori_italia' ),
-		'type' => 'text',
-		'attributes'    => array(
-			'required'    => 'required'
-		),
-	) );
-
-	$header_options->add_field( array(
-		'id'   => $prefix . 'luogo_scuola',
-		'name' => __( 'Città *', 'design_laboratori_italia' ),
-		'desc' => __( 'La città dove risiede la Laboratorio' , 'design_laboratori_italia' ),
-		'type' => 'text',
-		'attributes'    => array(
-			'required'    => 'required'
-		),
-	) );
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'luogo_laboratorio',
+			'name'       => __( 'Città *', 'design_laboratori_italia' ),
+			'desc'       => __( 'La città dove risiede la Laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		) 
+	);
 
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'logo_laboratorio',
-			'name'       => __('Logo', 'design_laboratori_italia' ),
+			'name'       => __( 'Logo', 'design_laboratori_italia' ),
 			'desc'       => __( 'Il logo del laboratorio. Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
-						'image/svg',
-				)
-			)
+					'image/svg',
+				),
+			),
 		)
 	);
 
@@ -83,124 +93,128 @@ function dsi_register_main_options_metabox() {
 			'desc'         => __( 'Utilizzare questo campo per caricare un\'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile). Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),
 			'type'         => 'file',
 			'query_args'   => array(
-			'type' => array(
+				'type' => array(
 					'image/svg',
-			)
-			)
+				),
+			),
 		)
 	);
 
+	/**
+	 * 1 - Registers options page "Avvisi in Home".
+	 */
+
+	$args = array(
+		'id'           => 'dli_options_messages',
+		'title'        => esc_html__( 'Messaggi', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'home_messages',
+		'capability'   => 'manage_options',
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Avvisi in Home', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$alerts_options = new_cmb2_box( $args );
+
+	$alerts_options->add_field( array(
+			'id' => $prefix . 'messages_istruzioni',
+			'name'        => __( 'Avvisi di allerta in home page', 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage.' , 'design_laboratori_italia' ),
+			'type' => 'title',
+	) );
+
+	$alerts_group_id = $alerts_options->add_field( array(
+			'id'           => $prefix . 'messages',
+			'type'        => 'group',
+			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale).' , 'design_laboratori_italia' ),
+			'repeatable'  => true,
+			'options'     => array(
+					'group_title'   => __( 'Messaggio {#}', 'design_laboratori_italia' ),
+					'add_button'    => __( 'Aggiungi un messaggio', 'design_laboratori_italia' ),
+					'remove_button' => __( 'Rimuovi il messaggio', 'design_laboratori_italia' ),
+					'sortable'      => true,  // Allow changing the order of repeated groups.
+			),
+	) );
+
+	$alerts_options->add_group_field( $alerts_group_id, array(
+			'name'    => 'Selezione colore del messaggio',
+			'id'      => 'colore_message',
+			'type'    => 'radio_inline',
+			'options' => array(
+					'red'   => __( '<span class="radio-color red"></span>Rosso', 'design_laboratori_italia' ),
+					'yellow' => __( '<span class="radio-color yellow"></span>Giallo', 'design_laboratori_italia' ),
+					'green'     => __( '<span class="radio-color green"></span>Verde', 'design_laboratori_italia' ),
+					'blue'     => __( '<span class="radio-color blue"></span>Blu', 'design_laboratori_italia' ),
+					'purple'     => __( '<span class="radio-color purple"></span>Viola', 'design_laboratori_italia' ),
+			),
+			'default' => 'yellow',
+	) );
+
+	$alerts_options->add_group_field( $alerts_group_id, array(
+			'name' => 'Visualizza icona',
+			'id'   => 'icona_message',
+			'type' => 'checkbox',
+	) );
+
+	$alerts_options->add_group_field( $alerts_group_id, array(
+			'id' => $prefix . 'data_message',
+			'name'        => __( 'Data fine', 'design_laboratori_italia' ),
+			'type' => 'text_date',
+			'date_format' => 'd-m-Y',
+			'data-datepicker' => json_encode( array(
+					'yearRange' => '-100:+0',
+			) ),
+	) );
+
+	$alerts_options->add_group_field( $alerts_group_id, array(
+			'id' => $prefix . 'testo_message',
+			'name'        => __( 'Testo', 'design_laboratori_italia' ),
+			'desc' => __( 'Massimo 140 caratteri' , 'design_laboratori_italia' ),
+			'type' => 'textarea_small',
+			'attributes'    => array(
+					'rows'  => 3,
+					'maxlength'  => '140',
+			),
+	) );
+
+	$alerts_options->add_group_field( $alerts_group_id, array(
+			'id' => $prefix . 'link_message',
+			'name'        => __( 'Collegamento', 'design_laboratori_italia' ),
+			'desc' => __( 'Link al una pagina di approfondimento anche esterna al sito' , 'design_laboratori_italia' ),
+			'type' => 'text_url',
+	) );
+
+
 		/**
-		 * Registers options page "Alerts".
+		 * 2 - Registers options page "Home".
 		 */
 
 		$args = array(
-				'id'           => 'dsi_options_messages',
-				'title'        => esc_html__( 'Messaggi', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'home_messages',
-				'capability'    => 'manage_options',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'tab_title'    => __('Avvisi in Home', "design_laboratori_italia"),	);
-
-		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
-		}
-
-		$alerts_options = new_cmb2_box( $args );
-
-		$alerts_options->add_field( array(
-				'id' => $prefix . 'messages_istruzioni',
-				'name'        => __( 'Avvisi di allerta in home page', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$alerts_group_id = $alerts_options->add_field( array(
-				'id'           => $prefix . 'messages',
-				'type'        => 'group',
-				'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale).' , 'design_laboratori_italia' ),
-				'repeatable'  => true,
-				'options'     => array(
-						'group_title'   => __( 'Messaggio {#}', 'design_laboratori_italia' ),
-						'add_button'    => __( 'Aggiungi un messaggio', 'design_laboratori_italia' ),
-						'remove_button' => __( 'Rimuovi il messaggio', 'design_laboratori_italia' ),
-						'sortable'      => true,  // Allow changing the order of repeated groups.
-				),
-		) );
-
-		$alerts_options->add_group_field( $alerts_group_id, array(
-				'name'    => 'Selezione colore del messaggio',
-				'id'      => 'colore_message',
-				'type'    => 'radio_inline',
-				'options' => array(
-						'red'   => __( '<span class="radio-color red"></span>Rosso', 'design_laboratori_italia' ),
-						'yellow' => __( '<span class="radio-color yellow"></span>Giallo', 'design_laboratori_italia' ),
-						'green'     => __( '<span class="radio-color green"></span>Verde', 'design_laboratori_italia' ),
-						'blue'     => __( '<span class="radio-color blue"></span>Blu', 'design_laboratori_italia' ),
-						'purple'     => __( '<span class="radio-color purple"></span>Viola', 'design_laboratori_italia' ),
-				),
-				'default' => 'yellow',
-		) );
-
-		$alerts_options->add_group_field( $alerts_group_id, array(
-				'name' => 'Visualizza icona',
-				'id'   => 'icona_message',
-				'type' => 'checkbox',
-		) );
-
-		$alerts_options->add_group_field( $alerts_group_id, array(
-				'id' => $prefix . 'data_message',
-				'name'        => __( 'Data fine', 'design_laboratori_italia' ),
-				'type' => 'text_date',
-				'date_format' => 'd-m-Y',
-				'data-datepicker' => json_encode( array(
-						'yearRange' => '-100:+0',
-				) ),
-		) );
-
-		$alerts_options->add_group_field( $alerts_group_id, array(
-				'id' => $prefix . 'testo_message',
-				'name'        => __( 'Testo', 'design_laboratori_italia' ),
-				'desc' => __( 'Massimo 140 caratteri' , 'design_laboratori_italia' ),
-				'type' => 'textarea_small',
-				'attributes'    => array(
-						'rows'  => 3,
-						'maxlength'  => '140',
-				),
-		) );
-
-		$alerts_options->add_group_field( $alerts_group_id, array(
-				'id' => $prefix . 'link_message',
-				'name'        => __( 'Collegamento', 'design_laboratori_italia' ),
-				'desc' => __( 'Link al una pagina di approfondimento anche esterna al sito' , 'design_laboratori_italia' ),
-				'type' => 'text_url',
-		) );
-
-
-		/**
-		 * Registers options page "Home".
-		 */
-
-		$args = array(
-				'id'           => 'dsi_options_home',
+				'id'           => 'dli_options_home',
 				'title'        => esc_html__( 'Home Page', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'homepage',
 				'capability'    => 'manage_options',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'tab_title'    => __('Home', "design_laboratori_italia"),	);
+				'parent_slug'  => 'dli_options',
+				'tab_group'    => 'dli_options',
+				'tab_title'    => __('Home', 'design_laboratori_italia'),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
+				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
 		$home_options = new_cmb2_box( $args );
 
+		/**
+		* 3 - Registers options page "Home".
+		*/
 		$home_options->add_field( array(
 				'id' => $prefix . 'home_istruzioni_1',
 				'name'        => __( 'Sezione Notizie', 'design_laboratori_italia' ),
@@ -358,43 +372,36 @@ function dsi_register_main_options_metabox() {
 		);
 
 
-		/**
-	 * Registers options page "Il Laboratorio".
-	 */
+	/**
+	* 4 - Registers options page "Laboratorio".
+	*/
 	$args = array(
-		'id'           => 'dsi_options_la_scuola',
+		'id'           => 'dli_options_la_scuola',
 		'title'        => esc_html__( 'Il Laboratorio', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 				'capability'    => 'manage_options',
 				'option_key'   => 'la_scuola',
-		'tab_title'    => __('Laboratorio', "design_laboratori_italia"),
-		'parent_slug'  => 'dsi_options',
-		'tab_group'    => 'dsi_options',
+		'tab_title'    => __('Laboratorio', 'design_laboratori_italia'),
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
 
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
 	$main_options = new_cmb2_box( $args );
 
-	/**
-	 * Options fields ids only need
-	 * to be unique within this box.
-	 * Prefix is not needed.
-	 */
+	$scuola_landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
 
-
-		$scuola_landing_url = dsi_get_template_page_url("page-templates/il-laboratorio.php");
-
-		$main_options->add_field( array(
-				'id' => $prefix . 'scuola_istruzioni',
-				'name'        => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Laboratorio</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-				) );
+	$main_options->add_field( array(
+			'id' => $prefix . 'scuola_istruzioni',
+			'name'        => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Laboratorio</a>.' , 'design_laboratori_italia' ),
+			'type' => 'title',
+			) );
 
 
 		$main_options->add_field( array(
@@ -515,31 +522,6 @@ function dsi_register_main_options_metabox() {
 		),
 	) );
 
-/*
-	$main_options->add_field( array(
-		'name'        => __( 'Commissioni', 'design_laboratori_italia' ),
-		'desc' => __('Commissioni e Gruppi di Lavoro', 'design_laboratori_italia' ),
-		'type' => 'title',
-		'id' => $prefix . 'prefisso_commissioni_scuola',
-	) );
-
-
-	$main_options->add_field( array(
-		'id' => $prefix . 'link_strutture_commissioni',
-		'name'    => __( 'Commissioni e Gruppi di Lavoro', 'design_laboratori_italia' ),
-		'desc' => __( 'Seleziona qui le principali strutture organizzative di tipo Commissione o Gruppo di lavoro.  <a href="post-new.php?post_type=struttura">Qui puoi creare una struttura.</a> ' , 'design_laboratori_italia' ),
-		'type'    => 'custom_attached_posts',
-		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
-		'options' => array(
-			'show_thumbnails' => false, // Show thumbnails on the left
-			'filter_boxes'    => true, // Show a text box for filtering the results
-			'query_args'      => array(
-				'posts_per_page' => -1,
-				'post_type'      => 'struttura',
-			), // override the get_posts args
-		),
-	) );
-*/
 	$main_options->add_field( array(
 		'name'        => __( 'I Luoghi', 'design_laboratori_italia' ),
 		'desc' => __('Immagini dei luoghi della Laboratorio', 'design_laboratori_italia' ),
@@ -661,99 +643,54 @@ function dsi_register_main_options_metabox() {
 
 
 
-		/**
-		 * Registers options page "Presentazione".
-		 */
-		// $args = array(
-		// 		'id'           => 'dsi_options_presentazione',
-		// 		'title'        => esc_html__( 'Presentazione', 'design_laboratori_italia' ),
-		// 		'object_types' => array( 'options-page' ),
-		// 		'option_key'   => 'presentazione',
-		// 		'capability'    => 'manage_options',
-		// 		'tab_title'    => __('Presentazione', "design_laboratori_italia"),
-		// 		'parent_slug'  => 'dsi_options',
-		// 		'tab_group'    => 'dsi_options',
-
-		// );
-
-		// 'tab_group' property is supported in > 2.4.0.
-		// if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		// 		$args['display_cb'] = 'dsi_options_display_with_tabs';
-		// }
-
-		// $presentazione_options = new_cmb2_box( $args );
-		// $presentazione_landing_url = dsi_get_template_page_url("page-templates/presentazione.php");
-
-		// $presentazione_options->add_field( array(
-		// 		'id' => $prefix . 'presentazione_istruzioni',
-		// 		'name'        => __( 'Presenta la Laboratorio', 'design_laboratori_italia' ),
-		// 		'desc' => __( 'Seleziona i contenuti che meglio rappresentano l\'Istituto scolastico</a>. Saranno mostrati nella  <a href="'.$presentazione_landing_url.'"> pagina di Presentazione della Laboratorio</a>' , 'design_laboratori_italia' ),
-		// 		'type' => 'title',
-		// ) );
-
-		// $presentazione_options->add_field(array(
-		// 				'name' => __('Selezione articoli ', 'design_laboratori_italia'),
-		// 				'desc' => __('Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  ', 'design_laboratori_italia'),
-		// 				'id' => $prefix . 'articoli_presentazione',
-		// 				'type'    => 'custom_attached_posts',
-		// 				'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
-		// 				'options' => array(
-		// 						'show_thumbnails' => false, // Show thumbnails on the left
-		// 						'filter_boxes'    => true, // Show a text box for filtering the results
-		// 						'query_args'      => array(
-		// 								'posts_per_page' => -1,
-		// 								'post_type'      => array('post', 'page', 'evento', 'documento', 'struttura', 'servizio','indirizzo'),
-		// 						), // override the get_posts args
-		// 				)
-		// 		)
-		// );
-
-
 	/**
-	 * Registers Servizi option page.
-	 */
-
+	* 5 - Registers options page "Servizi".
+	*/
+	// Intestazione della sezione.
 	$args = array(
-		'id'           => 'dsi_options_servizi',
+		'id'           => 'dli_options_servizi',
 		'title'        => esc_html__( 'I Servizi', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'servizi',
-		'parent_slug'  => 'dsi_options',
-				'capability'    => 'manage_options',
-				'tab_group'    => 'dsi_options',
-		'tab_title'    => __('Servizi', "design_laboratori_italia"),	);
-
+		'parent_slug'  => 'dli_options',
+		'capability'   => 'manage_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __('Servizi', 'design_laboratori_italia'),
+	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
-
 	$servizi_options = new_cmb2_box( $args );
-
-		$servizi_landing_url = dsi_get_template_page_url("page-templates/servizi.php");
-		$servizi_options->add_field( array(
-				'id' => $prefix . 'servizi_istruzioni',
-				'name'        => __( 'Sezione I Servizi', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$servizi_landing_url.'">la pagina di panoramica dei Servizi</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$servizi_options->add_field( array(
-		'id' => $prefix . 'testo_servizi',
-		'name'        => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-		'desc' => __( 'es: "I servizi offerti dal liceo scientifico Enriques dedicati a tutti i genitori, studenti, personale ATA e docenti"' , 'design_laboratori_italia' ),
-		'type' => 'textarea',
-		'attributes'    => array(
-			'maxlength'  => '140'
-		),
-	) );
-
-	$servizi_options->add_field( array(
+	$servizi_landing_url = dli_get_template_page_url( 'page-templates/servizi.php' );
+	$servizi_options->add_field(
+		array(
+		'id'   => $prefix . 'servizi_istruzioni',
+		'name' => __( 'Sezione I Servizi', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$servizi_landing_url.'">la pagina di panoramica dei Servizi</a>.' , 'design_laboratori_italia' ),
+		'type' => 'title',
+		)
+	);
+	// Campo descrizione della sezione.
+	$servizi_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_servizi',
+			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "I servizi offerti dal liceo scientifico Enriques dedicati a tutti i genitori, studenti, personale ATA e docenti"' , 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140'
+			),
+		)
+	);
+	// Campo filtro contenuto mostrato per tipologia.
+	$servizi_options->add_field(
+		array(
 			'name'       => __('Tipologie Servizi', 'design_laboratori_italia' ),
-			'desc' => __( 'Servizi aggregati per tipologie. Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
-			'id' => $prefix . 'tipologie_servizi',
-			'type'    => 'pw_multiselect',
-			'options' => dsi_get_tipologia_servizi_options(),
+			'desc'       => __( 'Servizi aggregati per tipologie. Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
+			'id'         => $prefix . 'tipologie_servizi',
+			'type'       => 'pw_multiselect',
+			'options'    => dli_get_tipologia_servizi_options(),
 			'attributes' => array(
 				'placeholder' =>  __( 'Seleziona e ordina le tipologie di servizi da mostrare nella HomePage di sezione', 'design_laboratori_italia' ),
 			),
@@ -762,27 +699,26 @@ function dsi_register_main_options_metabox() {
 
 
 	/**
-	 * Registers Notizie option page.
-	 */
-
+	* 6 - Registers options page "Novità".
+	*/
 	$args = array(
-		'id'           => 'dsi_options_notizie',
+		'id'           => 'dli_options_notizie',
 		'title'        => esc_html__( 'Le Novità', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'notizie',
 				'capability'    => 'manage_options',
-				'parent_slug'  => 'dsi_options',
-		'tab_group'    => 'dsi_options',
-		'tab_title'    => __('Novità', "design_laboratori_italia"),	);
+				'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __('Novità', 'design_laboratori_italia'),	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
 	$notizie_options = new_cmb2_box( $args );
 
-		$notizie_landing_url = dsi_get_template_page_url("page-templates/notizie.php");
+		$notizie_landing_url = dli_get_template_page_url("page-templates/notizie.php");
 		$notizie_options->add_field( array(
 				'id' => $prefix . 'notizie_istruzioni',
 				'name'        => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
@@ -805,228 +741,203 @@ function dsi_register_main_options_metabox() {
 			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
 			'id' => $prefix . 'tipologie_notizie',
 			'type'    => 'pw_multiselect',
-			'options' => dsi_get_tipologia_articoli_options(),
+			'options' => dli_get_tipologia_articoli_options(),
 			'attributes' => array(
 				'placeholder' =>  __( 'Seleziona e ordina le tipologie di articoli da mostrare nella HomePage di sezione', 'design_laboratori_italia' ),
 			),
 		)
 	);
 
-
 	/**
-	 * Registers Didattica option page.
-	 */
-
+	* 7 - Registers options page "Persone".
+	*/
 	$args = array(
-		'id'           => 'dsi_options_didattica',
-		'title'        => esc_html__( 'La Didattica', 'design_laboratori_italia' ),
+		'id'           => 'dli_options_persone',
+		'title'        => esc_html__( 'Persone', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
-		'option_key'   => 'didattica',
-		'parent_slug'  => 'dsi_options',
-		'tab_group'    => 'dsi_options',
-				'capability'    => 'manage_options',
-				'tab_title'    => __('Didattica', "design_laboratori_italia"),	);
-
+		'option_key'   => 'persone',
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'capability'    => 'manage_options',
+		'tab_title'    => __('Persone', 'design_laboratori_italia'),	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+			$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
-		$didattica_options = new_cmb2_box( $args );
+	$persone_options = new_cmb2_box( $args );
 
-		$didattica_landing_url = dsi_get_template_page_url("page-templates/didattica.php");
-		$didattica_options->add_field( array(
-				'id' => $prefix . 'didattica_istruzioni',
-				'name'        => __( 'Sezione Didattica', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$didattica_landing_url.'">la pagina di panoramica della Didattica</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-
-/*
-		$didattica_options->add_field( array(
-				'id' => $prefix . 'testo_didattica',
-				'name'        => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "La didattica del liceo scientifico Enriques ' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
-				),
-		) );
-*/
+	$persone_landing_url = dli_get_template_page_url("page-templates/persone.php");
+	$persone_options->add_field( array(
+			'id' => $prefix . 'persone_istruzioni',
+			'name'        => __( 'Sezione Persone', 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$persone_landing_url.'">la pagina delle Persone</a>.' , 'design_laboratori_italia' ),
+			'type' => 'title',
+	) );
 
 
-		$didattica_options->add_field(  array(
-				'id' => $prefix.'visualizzazione_didattica',
-				'name'    => __( 'Seleziona il tipo di visualizzazione da mostrare nella didattica', 'design_laboratori_italia' ),
-				'desc' => __( 'Scegli se mostrare a sinistra le scuole e a destra gli indirizzi di studio, oppure se mostrare a sinistra gli indirizzi di studio e a destra le scuole che ne fanno parte' , 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
-				'options' => array(
-						'scuole' => __( 'Laboratori / Percorsi', 'design_laboratori_italia' ),
-						'indirizzi'   => __( 'Indirizzi / Laboratori', 'design_laboratori_italia' ),
-				),
-		) );
-
-		$didattica_options->add_field(  array(
-				'id' => $prefix.'scuole_didattica',
-				'name'    => __( 'Seleziona e ordina le scuole che vuoi mostrare nella sezione didattica', 'design_laboratori_italia' ),
-				'desc' => __( 'NB: La scuola è una Struttura organizzativa di tipologia "Laboratorio. Se non esiste creala prima <a href="edit.php?post_type=struttura">qui</a>"' , 'design_laboratori_italia' ),
-				'type'    => 'pw_multiselect',
-				'options' => dsi_get_strutture_scuole_options(),
-				'attributes' => array(
-					'data-conditional-id'    => $prefix . 'visualizzazione_didattica',
-					'data-conditional-value' => 'scuole',
+	$persone_options->add_field( array(
+			'id' => $prefix . 'testo_sezione_persone',
+			'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
+			'desc' => __( 'es: "Le persone del liceo scientifico xxx, insegnanti, personale ATA e docenti' , 'design_laboratori_italia' ),
+			'type' => 'textarea',
+			'attributes'    => array(
+					'maxlength'  => '140'
 			),
-		) );
+	) );
 
-		$didattica_options->add_field(  array(
-				'id' => $prefix.'indirizzi_didattica',
-				'name'    => __( 'Seleziona gli indirizzi di studio da mostrare nella sezione didattica', 'design_laboratori_italia' ),
-				'type'             => 'taxonomy_multicheck_hierarchy_child',
-				'select_all_button' => false,
-				'taxonomy'       => 'percorsi-di-studio',
-				'remove_default' => 'true',
-				'attributes' => array(
-						'data-only-parent' => true,
-						'data-conditional-id'    => $prefix . 'visualizzazione_didattica',
-						'data-conditional-value' => 'indirizzi',
-				),
-		) );
+	$persone_options->add_field( array(
+			'id' => $prefix . 'strutture_persone',
+			'name'        => __( 'Seleziona e ordina le strutture organizzative a cui fanno capo le persone', 'design_laboratori_italia' ),
+			'desc' => __( 'Seleziona le strutture organizzative di cui vuoi mostrare le persone. <a href="'.$persone_landing_url.'">La pagina con la lista delle persone sarà popolata automaticamente</a>. ' , 'design_laboratori_italia' ),
+			'type'    => 'pw_multiselect',
+			'options' => dli_get_strutture_options(),
+			'attributes' => array(
+					'placeholder' =>  __( 'Seleziona e ordina le strutture di cui mostrare le persone', 'design_laboratori_italia' ),
+			),
+	) );
+
+	/**
+	* 8 - Registers options page "Pubblicazioni".
+	*/
+	// Intestazione della sezione.
+	$args = array(
+		'id'           => 'dli_options_pubblicazioni',
+		'title'        => esc_html__( 'Le pubblicazioni', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'pubblicazioni',
+		'parent_slug'  => 'dli_options',
+		'capability'   => 'manage_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __('Pubblicazioni', 'design_laboratori_italia'),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$pubblicazioni_options = new_cmb2_box( $args );
+	$pubblicazioni_landing_url = dli_get_template_page_url( 'page-templates/pubblicazioni.php' );
+	$pubblicazioni_options->add_field(
+		array(
+		'id'   => $prefix . 'pubblicazioni_istruzioni',
+		'name' => __( 'Sezione I Pubblicazioni', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$pubblicazioni_landing_url.'">la pagina di panoramica delle Pubblicazioni</a>.' , 'design_laboratori_italia' ),
+		'type' => 'title',
+		)
+	);
+	// Campo descrizione della sezione.
+	$pubblicazioni_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_pubblicazioni',
+			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Pubblicazioni dei membri del Laboratorio.' , 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140'
+			),
+		)
+	);
+
+	/**
+	* 9 - Registers options page "Progetti".
+	*/
+	// Intestazione della sezione.
+	$args = array(
+		'id'           => 'dli_options_progetti',
+		'title'        => esc_html__( 'Le progetti', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'progetti',
+		'parent_slug'  => 'dli_options',
+		'capability'   => 'manage_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __('Progetti', 'design_laboratori_italia'),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$progetti_options = new_cmb2_box( $args );
+	$progetti_landing_url = dli_get_template_page_url( 'page-templates/progetti.php' );
+	$progetti_options->add_field(
+		array(
+		'id'   => $prefix . 'progetti_istruzioni',
+		'name' => __( 'Sezione I Progetti', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$progetti_landing_url.'">la pagina di panoramica dei Progetti</a>.' , 'design_laboratori_italia' ),
+		'type' => 'title',
+		)
+	);
+	// Campo descrizione della sezione.
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_progetti',
+			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "I progetti del Laboratorio"' , 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140'
+			),
+		)
+	);
+
+	/**
+	* 10 - Registers options page "Attività di ricerca".
+	*/
+	$args = array(
+		'id'           => 'dli_options_ricerca',
+		'title'        => esc_html__( 'Indirizzi di ricerca', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'ricerca',
+		'parent_slug'  => 'dli_options',
+		'capability'   => 'manage_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __('Indirizzi di ricerca', 'design_laboratori_italia'),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$ricerca_options = new_cmb2_box( $args );
+	$ricerca_landing_url = dli_get_template_page_url( 'page-templates/ricerca.php' );
+	$ricerca_options->add_field(
+		array(
+		'id'   => $prefix . 'ricerca_istruzioni',
+		'name' => __( 'Sezione Indirizzi Ricerca', 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$ricerca_landing_url.'">la pagina di panoramica degli Indirizzi di ricerca</a>.' , 'design_laboratori_italia' ),
+		'type' => 'title',
+		)
+	);
+	// Campo descrizione della sezione.
+	$ricerca_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_ricerca',
+			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Gli indirizzi di ricerca del Laboratorio"' , 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140'
+			),
+		)
+	);
 
 
 
-/*
-		$didattica_options->add_field( array(
-				'id' => $prefix . 'testo_sezione_progetti',
-				'name'        => __( 'Descrizione Sezione Progetti', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "Scopri i progetti della scuola divisi per anno scolastico e per materia' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
-				),
-		) );
-*/
 
-		/**
-		 * Persone
-		 */
-
+	/**
+	* 11 - Registers options page "Attività di ricerca".
+	*/
 		$args = array(
-				'id'           => 'dsi_options_persone',
-				'title'        => esc_html__( 'Persone', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'persone',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'capability'    => 'manage_options',
-				'tab_title'    => __('Persone', "design_laboratori_italia"),	);
-
-		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
-		}
-
-		$persone_options = new_cmb2_box( $args );
-
-		$persone_landing_url = dsi_get_template_page_url("page-templates/persone.php");
-		$persone_options->add_field( array(
-				'id' => $prefix . 'persone_istruzioni',
-				'name'        => __( 'Sezione Persone', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$persone_landing_url.'">la pagina delle Persone</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-
-		$persone_options->add_field( array(
-				'id' => $prefix . 'testo_sezione_persone',
-				'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "Le persone del liceo scientifico xxx, insegnanti, personale ATA e docenti' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
-				),
-		) );
-
-		$persone_options->add_field( array(
-				'id' => $prefix . 'strutture_persone',
-				'name'        => __( 'Seleziona e ordina le strutture organizzative a cui fanno capo le persone', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona le strutture organizzative di cui vuoi mostrare le persone. <a href="'.$persone_landing_url.'">La pagina con la lista delle persone sarà popolata automaticamente</a>. ' , 'design_laboratori_italia' ),
-				'type'    => 'pw_multiselect',
-				'options' => dsi_get_strutture_options(),
-				'attributes' => array(
-						'placeholder' =>  __( 'Seleziona e ordina le strutture di cui mostrare le persone', 'design_laboratori_italia' ),
-				),
-		) );
-
-
-		/**
-		 * Organizzazione
-		 */
-
-		$args = array(
-				'id'           => 'dsi_options_organizzazione',
-				'title'        => esc_html__( 'Organizzazione', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'organizzazione',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'capability'    => 'manage_options',
-				'tab_title'    => __('Organizzazione', "design_laboratori_italia"),	);
-
-		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
-		}
-
-		$organizzazione_options = new_cmb2_box( $args );
-
-		$organizzazione_options->add_field( array(
-				'id' => $prefix . 'organizzazione_istruzioni',
-				'name'        => __( 'Sezione Organizzazione', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.get_post_type_archive_link("struttura").'">la pagina dell\'Organizzazione scolastica</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$organizzazione_options->add_field( array(
-				'id' => $prefix . 'testo_sezione_organizzazione',
-				'name'        => __( 'Descrizione Sezione Organizzazione', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "Questa la nostra organizzazione scolastica"' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
-				),
-		) );
-
-		$organizzazione_options->add_field( array(
-				'id' => $prefix . 'strutture_organizzazione',
-				'name'        => __( 'Seleziona e ordina le tipologie di strutture organizzative da mostrare', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona le tipologie di strutture organizzative di cui vuoi mostrare. ' , 'design_laboratori_italia' ),
-				'type'    => 'pw_multiselect',
-				'options' => dsi_get_tipologie_strutture_options(),
-				'attributes' => array(
-						'placeholder' =>  __( 'Seleziona e ordina le tipologie di strutture da mostrare nella pagina Organizzazione', 'design_laboratori_italia' ),
-				),
-		) );
-
-
-
-		/**
-		 * Luoghi
-		 */
-
-		$args = array(
-				'id'           => 'dsi_options_luoghi',
+				'id'           => 'dli_options_luoghi',
 				'title'        => esc_html__( 'Luoghi', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'luoghi',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
+				'parent_slug'  => 'dli_options',
+				'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
-				'tab_title'    => __('Luoghi', "design_laboratori_italia"),	);
+				'tab_title'    => __('Luoghi', 'design_laboratori_italia'),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
+				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
 		$luoghi_options = new_cmb2_box( $args );
@@ -1053,7 +964,7 @@ function dsi_register_main_options_metabox() {
 				'name'        => __( 'Seleziona e ordina le tipologie di luoghi  da mostrare', 'design_laboratori_italia' ),
 				'desc' => __( 'Seleziona le tipologie di luoghi che vuoi mostrare. ' , 'design_laboratori_italia' ),
 				'type'    => 'pw_multiselect',
-				'options' => dsi_get_tipologie_luoghi_options(),
+				'options' => dli_get_tipologie_luoghi_options(),
 				'attributes' => array(
 						'placeholder' =>  __( ' Seleziona e ordina le tipologie di luoghi da mostrare nella pagina Luoghi', 'design_laboratori_italia' ),
 				),
@@ -1093,74 +1004,23 @@ function dsi_register_main_options_metabox() {
 				'escape_cb'       => 'absint',
 		) );
 
-
-		/**
-		 * Documenti
-		 */
-
+	/**
+	* 12 - Registers options page "Servizi esterni".
+	*/
 		$args = array(
-				'id'           => 'dsi_options_documenti',
-				'title'        => esc_html__( 'Documenti', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'documenti',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'capability'    => 'manage_options',
-				'tab_title'    => __('Documenti', "design_laboratori_italia"),	);
-
-		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
-		}
-
-		$luoghi_options = new_cmb2_box( $args );
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'documenti_istruzioni',
-				'name'        => __( 'Sezione Documenti', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.get_post_type_archive_link("documento").'">la pagina dei documenti scolastici</a>.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'testo_sezione_documenti',
-				'name'        => __( 'Descrizione Sezione Documenti', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "Questi i documenti della scuola"' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
-				),
-		) );
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'strutture_documenti',
-				'name'        => __( 'Seleziona e ordina le tipologie di documenti  da mostrare', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona le tipologie di documenti che vuoi mostrare. ' , 'design_laboratori_italia' ),
-				'type'    => 'pw_multiselect',
-				'options' => dsi_get_tipologie_documenti_options(),
-				'attributes' => array(
-						'placeholder' =>  __( 'Seleziona e ordina le tipologie di documenti da mostrare nella pagina Documenti', 'design_laboratori_italia' ),
-				),
-		) );
-
-		// pagina opzioni
-		/**
-		 * Registers main options page menu item and form.
-		 */
-		$args = array(
-				'id'           => 'dsi_login_menu',
+				'id'           => 'dli_login_menu',
 				'title'        => esc_html__( 'Login', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'login',
-				'tab_title'    => __('Servizi esterni', "design_laboratori_italia"),
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
+				'tab_title'    => __('Servizi esterni', 'design_laboratori_italia'),
+				'parent_slug'  => 'dli_options',
+				'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
 		);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
+				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
 		$login_options = new_cmb2_box( $args );
@@ -1207,23 +1067,22 @@ function dsi_register_main_options_metabox() {
 		) );
 
 
-		/**
-		 * Registers options page "Socials".
-		 */
-
+	/**
+	* 13 - Registers options page "Social media".
+	*/
 		$args = array(
-				'id'           => 'dsi_options_socials',
+				'id'           => 'dli_options_socials',
 				'title'        => esc_html__( 'Socialmedia', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'socials',
 				'capability'    => 'manage_options',
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
-				'tab_title'    => __('Socialmedia', "design_laboratori_italia"),	);
+				'parent_slug'  => 'dli_options',
+				'tab_group'    => 'dli_options',
+				'tab_title'    => __('Socialmedia', 'design_laboratori_italia'),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
+				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
 		$social_options = new_cmb2_box( $args );
@@ -1281,24 +1140,23 @@ function dsi_register_main_options_metabox() {
 		) );
 
 
-		// pagina opzioni
 	/**
-	 * Registers main options page menu item and form.
-	 */
+	* 14 - Registers options page "Altro".
+	*/
 	$args = array(
-		'id'           => 'dsi_setup_menu',
+		'id'           => 'dli_setup_menu',
 		'title'        => esc_html__( 'Altro', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'setup',
-		'tab_title'    => __('Altro', "design_laboratori_italia"),
-		'parent_slug'  => 'dsi_options',
-		'tab_group'    => 'dsi_options',
+		'tab_title'    => __('Altro', 'design_laboratori_italia'),
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
 		);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
 	$setup_options = new_cmb2_box( $args );
@@ -1350,7 +1208,7 @@ function dsi_register_main_options_metabox() {
 				'id' => $prefix . 'mail_circolare_oggetto',
 				'name' => 'Oggetto della mail',
 				'type' => 'text',
-				'default' => 'Nuova circolare dalla scuola '.dsi_get_option("nome_scuola")
+				'default' => 'Nuova circolare dalla scuola '.dli_get_option("nome_laboratorio")
 		) );
 
 		$setup_options->add_field( array(
@@ -1377,20 +1235,20 @@ function dsi_register_main_options_metabox() {
 						'pattern' => '\d*',
 						'min' => 0,
 				),
-				'sanitization_cb' => 'dsi_sanitize_int',
-				'escape_cb'       => 'dsi_sanitize_int',
+				'sanitization_cb' => 'dli_sanitize_int',
+				'escape_cb'       => 'dli_sanitize_int',
 		) );
 }
-add_action( 'cmb2_admin_init', 'dsi_register_main_options_metabox' );
+add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 
 /**
- * A CMB2 options-page display callback override which adds tab navigation among
- * CMB2 options pages which share this same display callback.
- *
- * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
- */
-function dsi_options_display_with_tabs( $cmb_options ) {
-	$tabs = dsi_options_page_tabs( $cmb_options );
+	* A CMB2 options-page display callback override which adds tab navigation among
+	* CMB2 options pages which share this same display callback.
+	*
+	* @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
+	*/
+function dli_options_display_with_tabs( $cmb_options ) {
+	$tabs = dli_options_page_tabs( $cmb_options );
 	?>
 	<div class="wrap cmb2-options-page option-<?php echo $cmb_options->option_key; ?>">
 		<?php if ( get_admin_page_title() ) : ?>
@@ -1422,14 +1280,14 @@ function dsi_options_display_with_tabs( $cmb_options ) {
 }
 
 /**
- * Gets navigation tabs array for CMB2 options pages which share the given
- * display_cb param.
- *
- * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
- *
- * @return array Array of tab information.
- */
-function dsi_options_page_tabs( $cmb_options ) {
+	* Gets navigation tabs array for CMB2 options pages which share the given
+	* display_cb param.
+	*
+	* @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
+	*
+	* @return array Array of tab information.
+	*/
+function dli_options_page_tabs( $cmb_options ) {
 	$tab_group = $cmb_options->cmb->prop( 'tab_group' );
 	$tabs      = array();
 
@@ -1445,36 +1303,12 @@ function dsi_options_page_tabs( $cmb_options ) {
 }
 
 
-function dsi_options_assets() {
+function dli_options_assets() {
 		$current_screen = get_current_screen();
 
-		if(strpos($current_screen->id, 'configurazione_page_') !== false || $current_screen->id === 'toplevel_page_dsi_options') {
-				wp_enqueue_style( 'dsi_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css' );
-				wp_enqueue_script( 'dsi_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog'), '1.0', true );
+		if(strpos($current_screen->id, 'configurazione_page_') !== false || $current_screen->id === 'toplevel_page_dli_options') {
+				wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css' );
+				wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog'), '1.0', true );
 		}
 }
-add_action( 'admin_enqueue_scripts', 'dsi_options_assets' );
-
-// if (! wp_next_scheduled ( 'dsi_cron_options' )) {
-// 		wp_schedule_event(time(), 'daily', 'dsi_cron_options');
-// }
-// add_action('dsi_cron_options', 'dsi_check_cron_options');
-
-// function dsi_check_cron_options() {
-// 		$update = false;
-// 		$messages = dsi_get_option( "messages", "home_messages" );
-
-// 		foreach ($messages as $key => $message) {
-// 				$message_date = strtotime($message['data_message']);
-// 				$now = strtotime("now");
-// 				if($message_date <= $now) {
-// 						$update = true;
-// 						unset($messages[$key]);
-// 				}
-// 		}
-
-// 		if($update) {
-// 				$to_update['messages'] = array_values($messages);
-// 				update_option('home_messages', $to_update, true);
-// 		}
-// }
+add_action( 'admin_enqueue_scripts', 'dli_options_assets' );

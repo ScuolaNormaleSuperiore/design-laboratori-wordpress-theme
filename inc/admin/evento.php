@@ -387,7 +387,7 @@ function dsi_add_eventi_metaboxes() {
 		'name'    => __( 'Organizzato da *', 'design_laboratori_italia' ),
 		'description' => __( 'Se è organizzato dalla scuola, card della struttura organizzativa responsabile (es. Segreteria , oppure Presidenza) ' , 'design_laboratori_italia' ),
 		'type'    => 'pw_multiselect',
-		'options' => dsi_get_strutture_options(),
+		'options' => dli_get_strutture_options(),
 		'attributes'    => array(
 			'data-conditional-id'     => $prefix.'organizzato_da_scuola',
 			'data-conditional-value'  => "si",

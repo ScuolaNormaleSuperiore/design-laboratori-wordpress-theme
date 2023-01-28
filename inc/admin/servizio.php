@@ -277,7 +277,7 @@ function dsi_add_servizi_metaboxes() {
         'name'        => __( 'Struttura responsabile del servizio', 'design_laboratori_italia' ),
         'desc' => __( 'Seleziona la struttura responsabile del servizio ' , 'design_laboratori_italia' ),
         'type'    => 'pw_multiselect',
-        'options' => dsi_get_strutture_options(),
+        'options' => dli_get_strutture_options(),
     ) );
 
 

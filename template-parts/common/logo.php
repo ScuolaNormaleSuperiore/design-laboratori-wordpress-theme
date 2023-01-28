@@ -1,9 +1,9 @@
 <?php
-if ( dsi_get_option( "logo_laboratorio" ) ) {
+if ( dli_get_option( "logo_laboratorio" ) ) {
 ?>
 
 	<svg width="82" height="82" class="icon" aria-hidden="true">
-			<image xlink:href="<?php echo dsi_get_option( "logo_laboratorio" );?>" width="82" height="82"/>
+			<image xlink:href="<?php echo dli_get_option( "logo_laboratorio" );?>" width="82" height="82"/>
 	</svg>
 
 <?php } else { ?>

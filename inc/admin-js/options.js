@@ -2,7 +2,7 @@ let $j = jQuery.noConflict();
 let form = $j('.cmb-form');
 
 $j(function() {
-    $j('#toplevel_page_dsi_options').find('ul').addClass('hidden');
+    $j('#toplevel_page_dli_options').find('ul').addClass('hidden');
 
     form.data('serialize',form.serialize());
     $j('.nav-tab').each(function() {

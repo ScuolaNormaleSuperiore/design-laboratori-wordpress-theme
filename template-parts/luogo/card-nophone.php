@@ -66,7 +66,7 @@ if(isset($struttura->ID)){
 								<?php if(isset($indirizzo) && $indirizzo != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "indirizzo", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "indirizzo", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<?php echo wpautop($indirizzo); ?>
@@ -76,7 +76,7 @@ if(isset($struttura->ID)){
 								<?php if(isset($cap) && $cap != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "CAP", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "CAP", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<p><?php echo $cap; ?></p>
@@ -86,7 +86,7 @@ if(isset($struttura->ID)){
 								<?php if(isset($orario_pubblico) && $orario_pubblico != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "Orari", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "Orari", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<?php echo wpautop($orario_pubblico); ?>
@@ -96,7 +96,7 @@ if(isset($struttura->ID)){
 								<?php /* if(isset($mail) && $mail != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "Email", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "Email", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<p><a href="mailto:<?php echo $mail; ?>"><?php echo $mail; ?></a></p>
@@ -106,7 +106,7 @@ if(isset($struttura->ID)){
 								<?php if(isset($pec) && $pec != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "PEC", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "PEC", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<p><a href="mailto:<?php echo $pec; ?>"><?php echo $pec; ?></a></p>
@@ -118,7 +118,7 @@ if(isset($struttura->ID)){
 	                                ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "Telefono", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "Telefono", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<p><?php echo $telefono; ?></p>
@@ -128,7 +128,7 @@ if(isset($struttura->ID)){
 								<?php if(isset($persone) && $persone != ""){ ?>
 									<li>
 										<div class="location-title">
-											<span><?php _e( "Rif.", "design_laboratori_italia" ); ?></span>
+											<span><?php _e( "Rif.", 'design_laboratori_italia' ); ?></span>
 										</div>
 										<div class="location-content">
 											<p><?php echo $persone; ?></p>

@@ -137,8 +137,8 @@ class People_Manager {
 			'menu_icon'       => 'dashicons-businessperson',
 			'has_archive'     => false,
 			'show_in_rest'    => true,
-			'hierarchical'    => false,
-			'capability_type' => array( 'persona', 'persone' ),
+			'hierarchical'    => true,
+			// 'capability_type' => array( 'persona', 'persone' ),
 			'rewrite'         => array( 'slug' => 'persone' ),
 		);
 

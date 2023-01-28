@@ -28,7 +28,7 @@ if(!$excerpt)
             <?php /* if(is_array($argomenti) && count($argomenti)) { ?>
                     <div class="badges">
                         <?php foreach ( $argomenti as $item ) { ?>
-                            <a href="<?php echo get_term_link($item); ?>?post_type=scheda_didattica" title="<?php _e("Vai al livello", "design_laboratori_italia"); ?>: <?php echo $item->name; ?>"
+                            <a href="<?php echo get_term_link($item); ?>?post_type=scheda_didattica" title="<?php _e("Vai al livello", 'design_laboratori_italia'); ?>: <?php echo $item->name; ?>"
                                class="badge badge-sm badge-pill badge-outline-<?php echo $class; ?>"><?php echo $item->name; ?></a>
                         <?php } ?>
                     </div><!-- /badges -->

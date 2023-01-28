@@ -1,6 +1,6 @@
 <?php
 
-$home_articoli_manuali = dsi_get_option("home_articoli_manuali", "homepage");
+$home_articoli_manuali = dli_get_option("home_articoli_manuali", "homepage");
 
 if(is_array($home_articoli_manuali) && count($home_articoli_manuali)){
 
@@ -10,7 +10,7 @@ if(is_array($home_articoli_manuali) && count($home_articoli_manuali)){
     <section class="section bg-white py-2 py-lg-3 py-xl-5">
     <div class="container">
         <div class="title-section pb-4">
-            <h3 class="h2"><?php _e("In Evidenza", "design_laboratori_italia"); ?></h3>
+            <h3 class="h2"><?php _e("In Evidenza", 'design_laboratori_italia'); ?></h3>
         </div><!-- /title-section -->
         <div class="row variable-gutters">
                 <?php
@@ -34,11 +34,11 @@ if(is_array($home_articoli_manuali) && count($home_articoli_manuali)){
 
     </div><!-- /container -->
         <?php
-        $landing_url = dsi_get_template_page_url("page-templates/notizie.php");
+        $landing_url = dli_get_template_page_url("page-templates/notizie.php");
         if($landing_url) {
             ?>
             <div class="text-center mt-4">
-                <a class="text-underline" href="<?php echo $landing_url; ?>"><strong><?php _e("Scopri di più", "design_laboratori_italia"); ?></strong></a>
+                <a class="text-underline" href="<?php echo $landing_url; ?>"><strong><?php _e("Scopri di più", 'design_laboratori_italia'); ?></strong></a>
             </div>
             <?php
         }

@@ -9,7 +9,7 @@
 
 get_header();
 global $luogo, $tipologia_luogo;
-$mappa_primo_piano = dsi_get_option("posizione_mappa", "luoghi") === 'true' ? true : false;
+$mappa_primo_piano = dli_get_option("posizione_mappa", "luoghi") === 'true' ? true : false;
 ?>
     <main id="main-container" class="main-container redbrown">
         <?php get_template_part("template-parts/common/breadcrumb"); ?>
@@ -21,7 +21,7 @@ $mappa_primo_piano = dsi_get_option("posizione_mappa", "luoghi") === 'true' ? tr
             // recupero la lista delle tipologie
             $i=0;
             $locations = [];
-            $strutture_luoghi = dsi_get_option("strutture_luoghi", "luoghi");
+            $strutture_luoghi = dli_get_option("strutture_luoghi", "luoghi");
             if($strutture_luoghi) { ?>
                 <section class="section bg-white section-map-wrapper">
                     <div class="map-aside">
@@ -115,7 +115,7 @@ $mappa_primo_piano = dsi_get_option("posizione_mappa", "luoghi") === 'true' ? tr
         } else {
             // recupero la lista delle tipologie
             $i=0;
-            $strutture_luoghi = dsi_get_option("strutture_luoghi", "luoghi");
+            $strutture_luoghi = dli_get_option("strutture_luoghi", "luoghi");
             if($strutture_luoghi) {
                 foreach ($strutture_luoghi as $id_tipologia_luogo) {
 

@@ -19,7 +19,7 @@ get_header();
                         <div class="section-title">
                             <p><?php
                                 if(get_search_query() != "")
-                                    _e("Risultati della ricerca per:", "design_laboratori_italia");
+                                    _e("Risultati della ricerca per:", 'design_laboratori_italia');
                                 ?></p>
                             <h2 class="mb-0"><?php if(get_search_query() != "")
                                                         echo get_search_query();
@@ -32,20 +32,20 @@ get_header();
                                 $str = "";
 								if(isset($_GET["type"]) && $_GET["type"] != "") {
 									if ( $_GET["type"] == "any" ) {
-										$str = __( "su <span>tutto il sito</span>", "design_laboratori_italia" );
+										$str = __( "su <span>tutto il sito</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "laboratory" ) {
-										$str = __( "nel <span>materiale relativo alla scuola</span>", "design_laboratori_italia" );
+										$str = __( "nel <span>materiale relativo alla scuola</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "news" ) {
-										$str = __( "in <span>notizie ed eventi</span>", "design_laboratori_italia" );
+										$str = __( "in <span>notizie ed eventi</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "service" ) {
-										$str = __( "nei <span>servizi</span>", "design_laboratori_italia" );
+										$str = __( "nei <span>servizi</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "education" ) {
-										$str = __( "nella <span>didattica</span>", "design_laboratori_italia" );
+										$str = __( "nella <span>didattica</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "class" ) {
-										$str = __( "nelle <span>materiale relativo alle classi</span>", "design_laboratori_italia" );
+										$str = __( "nelle <span>materiale relativo alle classi</span>", 'design_laboratori_italia' );
 									}
 								}else{
-									$str = __( "in base ai filtri selezionati", "design_laboratori_italia" );
+									$str = __( "in base ai filtri selezionati", 'design_laboratori_italia' );
                                 }
 								echo " ".$str;
 								?>

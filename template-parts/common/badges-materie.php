@@ -6,7 +6,7 @@ $argomenti = dsi_get_materie_of_post();
 if(is_array($argomenti) && count($argomenti)) {
 	?>
 	<aside class="badges-wrapper badges-main">
-	<h4><?php _e("Materia", "design_laboratori_italia"); ?></h4>
+	<h4><?php _e("Materia", 'design_laboratori_italia'); ?></h4>
 	<div class="badges">
 		<?php foreach ( $argomenti as $materia ) {
 			?>

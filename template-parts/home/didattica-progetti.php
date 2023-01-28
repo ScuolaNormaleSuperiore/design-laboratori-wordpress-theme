@@ -1,6 +1,6 @@
 <?php
 global $progetto;
-//$testo_sezione_progetti = dsi_get_option("testo_sezione_progetti", "didattica");
+//$testo_sezione_progetti = dli_get_option("testo_sezione_progetti", "didattica");
 $args = array('post_type' => 'scheda_progetto',
     'posts_per_page' => 3
 );
@@ -13,11 +13,11 @@ if(is_array($posts) && count($posts)) {
             <div class="row variable-gutters">
                 <div class="col">
                     <div class="section-title text-center mb-4">
-                        <h2><?php _e("I Progetti", "design_laboratori_italia"); ?></h2>
-                        <p class="mb-4"><?php _e("Scopri i progetti dell'Istituto", "design_laboratori_italia") ?></p>
+                        <h2><?php _e("I Progetti", 'design_laboratori_italia'); ?></h2>
+                        <p class="mb-4"><?php _e("Scopri i progetti dell'Istituto", 'design_laboratori_italia') ?></p>
                         <!-- <div class="clearfix">
                             <a class="btn btn-bluelectric" style="min-width: 200px;"
-                               href="<?php echo get_post_type_archive_link("scheda_progetto") ?>"><?php _e("Scopri", "design_laboratori_italia"); ?></a>
+                               href="<?php echo get_post_type_archive_link("scheda_progetto") ?>"><?php _e("Scopri", 'design_laboratori_italia'); ?></a>
                         </div> -->
                     </div><!-- /hero-title -->
                 </div><!-- /col -->
@@ -37,7 +37,7 @@ if(is_array($posts) && count($posts)) {
         </div><!-- /row -->
     </div><!-- /row -->
     <div class="pb-5 text-center mt-4">
-        <a class="text-underline" href="<?php echo get_post_type_archive_link("scheda_progetto") ?>"><strong><?php _e("Vedi tutti i progetti", "design_laboratori_italia"); ?></strong></a>
+        <a class="text-underline" href="<?php echo get_post_type_archive_link("scheda_progetto") ?>"><strong><?php _e("Vedi tutti i progetti", 'design_laboratori_italia'); ?></strong></a>
     </div>
     </div><!-- /container -->
     </section><?php

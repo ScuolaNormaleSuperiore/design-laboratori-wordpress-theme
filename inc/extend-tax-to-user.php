@@ -149,7 +149,7 @@ class dsi_UserTaxonomies {
             ?>
             <table class="form-table">
                 <tr>
-                    <th><label for=""><?php _e("Seleziona {$taxonomy->labels->singular_name}", "design_laboratori_italia")?></label></th>
+                    <th><label for=""><?php _e("Seleziona {$taxonomy->labels->singular_name}", 'design_laboratori_italia')?></label></th>
                     <td>
                         <?php if(!empty($terms)):?>
                             <?php foreach($terms as $term):?>
@@ -157,7 +157,7 @@ class dsi_UserTaxonomies {
                                 <label for="<?php echo "{$key}-{$term->slug}"?>"><?php echo $term->name?></label><br />
                             <?php endforeach; // Terms?>
                         <?php else:?>
-                            <?php _e("Non è stato creato ancora nessun  {$taxonomy->labels->name}.", "design_laboratori_italia")?>
+                            <?php _e("Non è stato creato ancora nessun  {$taxonomy->labels->name}.", 'design_laboratori_italia')?>
                         <?php endif?>
                     </td>
                 </tr>
@@ -168,7 +168,7 @@ class dsi_UserTaxonomies {
         // Output the above if we have anything, with a heading
         $output	= ob_get_clean();
         if(!empty($output)) {
-//            echo '<h3>', __('Tassonomia', "design_laboratori_italia"), '</h3>';
+//            echo '<h3>', __('Tassonomia', 'design_laboratori_italia'), '</h3>';
             echo $output;
         }
     }

@@ -2,10 +2,10 @@
 global $post, $licenza;
 ?>
 <div class="article-footer">
-    <p data-element="metadata"><strong><?php _e("Pubblicato", "design_laboratori_italia"); ?>:</strong> <?php
+    <p data-element="metadata"><strong><?php _e("Pubblicato", 'design_laboratori_italia'); ?>:</strong> <?php
 		$date_publish = new DateTime($post->post_date);
 		echo $date_publish->format('d.m.Y');
-		?> <span>-</span> <strong><?php _e("Revisione", "design_laboratori_italia"); ?>:</strong> <?php
+		?> <span>-</span> <strong><?php _e("Revisione", 'design_laboratori_italia'); ?>:</strong> <?php
 		$date_update = new DateTime($post->post_modified);
 		echo $date_update->format('d.m.Y');
 		?></p>
@@ -13,6 +13,6 @@ global $post, $licenza;
         if(trim($licenza)!= "")
             echo $licenza;
         else
-            _e("Eccetto dove diversamente specificato, questo articolo è stato rilasciato sotto Licenza Creative Commons Attribuzione 3.0 Italia.", "design_laboratori_italia"); ?></p>
+            _e("Eccetto dove diversamente specificato, questo articolo è stato rilasciato sotto Licenza Creative Commons Attribuzione 3.0 Italia.", 'design_laboratori_italia'); ?></p>
 </div><!-- /article-footer -->
 

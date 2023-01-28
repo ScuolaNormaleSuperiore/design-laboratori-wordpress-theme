@@ -14,7 +14,7 @@ if ( is_array($posts_array) && count( $posts_array ) ) { ?>
 		<div class="row variable-gutters">
 			<div class="col-lg-12">
 
-				<h3 class="mb-5 text-center semi-bold text-gray-primary"><?php _e("Schede didattiche correlate", "design_laboratori_italia"); ?></h3>
+				<h3 class="mb-5 text-center semi-bold text-gray-primary"><?php _e("Schede didattiche correlate", 'design_laboratori_italia'); ?></h3>
 
 				<div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide"
                   data-bs-carousel-splide>

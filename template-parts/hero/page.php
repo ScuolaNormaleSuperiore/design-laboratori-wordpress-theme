@@ -1,5 +1,5 @@
 <?php
-$testo_sezione_organizzazione = dsi_get_option("testo_sezione_organizzazione", "organizzazione");
+$testo_sezione_organizzazione = dli_get_option("testo_sezione_organizzazione", "organizzazione");
 ?>
 <section class="section bg-redbrown bg-red-gradient py-5 position-relative d-flex align-items-center overflow-hidden" >
     <div class="people-red-forms">

@@ -1,9 +1,9 @@
 <?php
 $groups = array(
-	"laboratory" => __("Laboratorio", "design_laboratori_italia"),
-	"service" =>  __("Servizi", "design_laboratori_italia"),
-	"news" =>  __("Novità", "design_laboratori_italia"),
-	"education" =>  __("Didattica", "design_laboratori_italia")
+	"laboratory" => __("Laboratorio", 'design_laboratori_italia'),
+	"service" =>  __("Servizi", 'design_laboratori_italia'),
+	"news" =>  __("Novità", 'design_laboratori_italia'),
+	"education" =>  __("Didattica", 'design_laboratori_italia')
 );
 
 
@@ -56,7 +56,7 @@ if(isset($_GET["post_terms"]))
     <?php
     }
     ?>
-        <h3 class="h6 text-uppercase"><strong><?php _e("Argomenti", "design_laboratori_italia"); ?></strong></h3>
+        <h3 class="h6 text-uppercase"><strong><?php _e("Argomenti", 'design_laboratori_italia'); ?></strong></h3>
         <ul data-element="all-topics">
             <?php
             $terms = get_terms( array(

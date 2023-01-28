@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$testo_servizi = dsi_get_option("testo_servizi", "servizi");
+$testo_servizi = dli_get_option("testo_servizi", "servizi");
 
 ?>
 <section class="section bg-purplelight bg-purplegradient py-5 position-relative d-flex align-items-center overflow-hidden" >

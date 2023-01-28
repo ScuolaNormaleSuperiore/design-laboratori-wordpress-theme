@@ -47,7 +47,7 @@ class Publication_Manager {
 			'label'           => __( 'Pubblicazione', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', ),
-			// 'hierarchical'    => true,
+			'hierarchical'    => true,
 			'public'          => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-book',
@@ -56,7 +56,6 @@ class Publication_Manager {
 			'rewrite'         => array(
 				'slug' => 'strutture',
 			),
-			// 'map_meta_cap'    => true,
 		);
 
 		register_post_type( PUBLICATION_POST_TYPE, $args );

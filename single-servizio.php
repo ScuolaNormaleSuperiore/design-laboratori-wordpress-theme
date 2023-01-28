@@ -105,47 +105,47 @@ get_header();
                             <aside class="aside-main aside-sticky">
                                 <div class="aside-title" id="page-index">
                                     <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e("Indice della pagina", "design_laboratori_italia"); ?></span>
+                                        <span><?php _e("Indice della pagina", 'design_laboratori_italia'); ?></span>
                                         <svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
                                     </a>
                                 </div>
                                 <div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="page-index">
                                     <ul class="link-list" data-element="page-index">
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-descrizione" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Cos'è", "design_laboratori_italia"); ?>"><?php _e("Cos'è", "design_laboratori_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-descrizione" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Cos'è", 'design_laboratori_italia'); ?>"><?php _e("Cos'è", 'design_laboratori_italia'); ?></a>
                                         </li>
                                         <?php
                                         // do action per innestare elementi tramite plugin / child theme
                                         do_action("dsi_servizio_menu_after_description");
                                         ?>
                                         <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-accedi" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Come si accede al servizio", "design_laboratori_italia"); ?>"><?php _e("Come si accede al servizio", "design_laboratori_italia"); ?></a>
+                                            <a class="list-item scroll-anchor-offset" href="#art-par-accedi" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Come si accede al servizio", 'design_laboratori_italia'); ?>"><?php _e("Come si accede al servizio", 'design_laboratori_italia'); ?></a>
                                         </li>
                                         <?php if(($cosa_serve) || (is_array($cosa_serve_list))) { ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-cosa-serve" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Cosa serve", "design_laboratori_italia"); ?>"><?php _e("Cosa serve", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-cosa-serve" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Cosa serve", 'design_laboratori_italia'); ?>"><?php _e("Cosa serve", 'design_laboratori_italia'); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php if(is_array($fasi_scadenze) && count($fasi_scadenze)>0) { ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-tempi-scadenze" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Tempi e scadenze", "design_laboratori_italia"); ?>"><?php _e("Tempi e scadenze", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-tempi-scadenze" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Tempi e scadenze", 'design_laboratori_italia'); ?>"><?php _e("Tempi e scadenze", 'design_laboratori_italia'); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php  if(trim($casi_particolari) != ""){ ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-casi-particolari" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Casi particolari", "design_laboratori_italia"); ?>"><?php _e("Casi particolari", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-casi-particolari" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Casi particolari", 'design_laboratori_italia'); ?>"><?php _e("Casi particolari", 'design_laboratori_italia'); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) || (is_array($file_documenti) && count($file_documenti)>0)){ ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-documenti" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Documenti", "design_laboratori_italia"); ?>"><?php _e("Documenti", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-documenti" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Documenti", 'design_laboratori_italia'); ?>"><?php _e("Documenti", 'design_laboratori_italia'); ?></a>
                                             </li>
                                         <?php } ?>
                                         <?php
                                         if($telefono || $mail){
                                             ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-contatti" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Contatti", "design_laboratori_italia"); ?>"><?php _e("Contatti", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-contatti" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Contatti", 'design_laboratori_italia'); ?>"><?php _e("Contatti", 'design_laboratori_italia'); ?></a>
                                             </li>
 
                                             <?php
@@ -153,7 +153,7 @@ get_header();
                                         ?>
                                         <?php if(trim($altre_info) != ""){ ?>
                                             <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-altre-info" title="<?php _e("Vai al paragrafo", "design_laboratori_italia"); ?> <?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?>"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></a>
+                                                <a class="list-item scroll-anchor-offset" href="#art-par-altre-info" title="<?php _e("Vai al paragrafo", 'design_laboratori_italia'); ?> <?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?>"><?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?></a>
                                             </li>
                                         <?php } ?>
 
@@ -164,7 +164,7 @@ get_header();
                         </div>
                         <div class="col-lg-8 col-md-8 offset-lg-1 pt84">
                             <article class="article-wrapper">
-                                <h2 class="h4" id="art-par-descrizione"><?php _e("Cos'è", "design_laboratori_italia"); ?></h2>
+                                <h2 class="h4" id="art-par-descrizione"><?php _e("Cos'è", 'design_laboratori_italia'); ?></h2>
                                 <div class="row variable-gutters">
                                     <div class="col-lg-9">
                                         <div class="article-description wysiwig-text">
@@ -182,7 +182,7 @@ get_header();
                                 // $esito = "";
                                 if(trim($esito) != ""){
                                     ?>
-                                    <h3 class="h6" data-element="used-for"><?php _e("A cosa serve", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6" data-element="used-for"><?php _e("A cosa serve", 'design_laboratori_italia'); ?></h3>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9 wysiwig-text">
                                             <?php echo wpautop($esito); ?>
@@ -191,7 +191,7 @@ get_header();
                                     <?php
                                 }
                                 ?>
-                                <h2 class="h4" id="art-par-accedi"><?php _e("Come si accede al servizio", "design_laboratori_italia"); ?></h2>
+                                <h2 class="h4" id="art-par-accedi"><?php _e("Come si accede al servizio", 'design_laboratori_italia'); ?></h2>
                                 <?php
                                 if(trim($come_si_fa) != ""){
                                     ?>
@@ -200,7 +200,7 @@ get_header();
                                             <?php echo wpautop($come_si_fa); ?>
                                             <?php /* if(trim($canale_fisico_prenotazione) != ""){  ?>
                                                 <div class="btn-wrapper mb-5">
-                                                    <a class="btn btn-purplelight" href="<?php echo $canale_fisico_prenotazione; ?>"><?php _e("Prenota", "design_laboratori_italia"); ?></a>
+                                                    <a class="btn btn-purplelight" href="<?php echo $canale_fisico_prenotazione; ?>"><?php _e("Prenota", 'design_laboratori_italia'); ?></a>
                                                 </div>
                                             <?php } */ ?>
                                         </div><!-- /col-lg-9 -->
@@ -210,7 +210,7 @@ get_header();
 
                                 if(trim($procedura_esito) != ""){
                                     ?>
-                                    <h3 class="h6"><?php _e("Procedure collegate all'esito", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6"><?php _e("Procedure collegate all'esito", 'design_laboratori_italia'); ?></h3>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9 wysiwig-text">
                                             <?php echo wpautop($procedura_esito); ?>
@@ -220,7 +220,7 @@ get_header();
                                 }
                                 if((trim($canale_digitale) != "") || (trim($canale_digitale_link) != "")) {
                                     ?>
-                                    <h3 class="h6"><?php _e("Servizio online", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6"><?php _e("Servizio online", 'design_laboratori_italia'); ?></h3>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9 wysiwig-text">
                                             <?php echo wpautop($canale_digitale); ?>
@@ -235,7 +235,7 @@ get_header();
                                 }
                                 if(trim($autenticazione) != ""){
                                     ?>
-                                    <h3 class="h6"><?php _e("Autenticazione", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6"><?php _e("Autenticazione", 'design_laboratori_italia'); ?></h3>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <?php echo apply_filters("the_content", $autenticazione); ?>
@@ -249,7 +249,7 @@ get_header();
 											<div class="col-4 col-md-3">
 												<div class="note">
 													<svg class="svg-filters" width="90" height="64" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-spid"></use></svg>
-													<p><?php _e("Non hai SPID?", "design_laboratori_italia"); ?><br/><a href="https://www.spid.gov.it" aria-label="scopri di più su SPID - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
+													<p><?php _e("Non hai SPID?", 'design_laboratori_italia'); ?><br/><a href="https://www.spid.gov.it" aria-label="scopri di più su SPID - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
 												</div>
 											</div>
 										<?php }
@@ -258,7 +258,7 @@ get_header();
 											<div class="col-4 col-md-3">
 												<div class="note cie">
 													<svg class="svg-filters" width="90" height="64" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-cie"></use></svg>
-													<p><?php _e("Non hai CIE?", "design_laboratori_italia"); ?><br/><a href="https://www.cartaidentita.interno.gov.it/la-carta/" aria-label="scopri di più su CIE - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
+													<p><?php _e("Non hai CIE?", 'design_laboratori_italia'); ?><br/><a href="https://www.cartaidentita.interno.gov.it/la-carta/" aria-label="scopri di più su CIE - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
 												</div>
 											</div>
 										<?php }
@@ -267,7 +267,7 @@ get_header();
 											<div class="col-4 col-md-3">
 												<div class="note cns">
 													<img class="svg-filters" width="90" height="64" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-cns.png' ); ?>" alt="logo cns">
-													<p><?php _e("Non hai CNS?", "design_laboratori_italia"); ?><br/><a href="https://sistemats1.sanita.finanze.it/portale/modalita-di-accesso-con-ts_cns" aria-label="scopri di più su CNS - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
+													<p><?php _e("Non hai CNS?", 'design_laboratori_italia'); ?><br/><a href="https://sistemats1.sanita.finanze.it/portale/modalita-di-accesso-con-ts_cns" aria-label="scopri di più su CNS - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
 												</div>
 											</div>
 										<?php }									
@@ -276,7 +276,7 @@ get_header();
 								<?php
                                 }
                                 if($servizi_correlati){ ?>
-                                    <h3 class="h6"><?php _e("Servizi correlati", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6"><?php _e("Servizi correlati", 'design_laboratori_italia'); ?></h3>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">
@@ -295,7 +295,7 @@ get_header();
                                     ?>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
-                                            <h3 class="h6"><?php _e("Luoghi in cui viene erogato il servizio", "design_laboratori_italia"); ?></h3>
+                                            <h3 class="h6"><?php _e("Luoghi in cui viene erogato il servizio", 'design_laboratori_italia'); ?></h3>
                                             <?php
                                             $c=0;
                                             foreach ($luoghi as $idluogo){
@@ -312,7 +312,7 @@ get_header();
 
                                 if(($cosa_serve) || (is_array($cosa_serve_list))) {
                                     ?>
-                                    <h2 class="h4" id="art-par-cosa-serve"><?php _e( "Cosa serve", "design_laboratori_italia" ); ?></h2>
+                                    <h2 class="h4" id="art-par-cosa-serve"><?php _e( "Cosa serve", 'design_laboratori_italia' ); ?></h2>
 
                                     <div class="row variable-gutters mb-2 pb-2">
                                         <div class="col-lg-9">
@@ -346,7 +346,7 @@ get_header();
                                 // print_r($fasi_scadenze);
                                 if(is_array($fasi_scadenze) && count($fasi_scadenze)>0) {
                                     ?>
-                                    <h2 class="h4" id="art-par-tempi-scadenze"><?php _e("Tempi e scadenze", "design_laboratori_italia"); ?></h2>
+                                    <h2 class="h4" id="art-par-tempi-scadenze"><?php _e("Tempi e scadenze", 'design_laboratori_italia'); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <div class="calendar-vertical mb-5">
@@ -384,7 +384,7 @@ get_header();
 
                                 if(trim($casi_particolari) != ""){
                                     ?>
-                                    <h2 class="h4" id="art-par-casi-particolari"><?php _e("Casi particolari", "design_laboratori_italia"); ?></h2>
+                                    <h2 class="h4" id="art-par-casi-particolari"><?php _e("Casi particolari", 'design_laboratori_italia'); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <?php echo wpautop($casi_particolari); ?>
@@ -396,7 +396,7 @@ get_header();
 
                                 if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) || (is_array($file_documenti) && count($file_documenti)>0)){
                                     ?>
-                                    <h2 class="h4" id="art-par-documenti"><?php _e("Documenti", "design_laboratori_italia"); ?></h2>
+                                    <h2 class="h4" id="art-par-documenti"><?php _e("Documenti", 'design_laboratori_italia'); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">
@@ -428,12 +428,12 @@ get_header();
                                     ?>
                                     <div class="row variable-gutters mb-4" >
                                         <div class="col-lg-9">
-                                            <h2 class="h4" id="art-par-contatti"><?php _e("Contatti", "design_laboratori_italia"); ?></h2>
+                                            <h2 class="h4" id="art-par-contatti"><?php _e("Contatti", 'design_laboratori_italia'); ?></h2>
                                             <div class="card card-bg bg-color rounded">
                                                 <div class="card-body pb-1">
                                                     <ul>
-                                                        <?php if($telefono){ ?><li><strong><?php _e("Telefono", "design_laboratori_italia"); ?>:</strong> <?php echo $telefono; ?></li><?php } ?>
-                                                        <?php if($mail){ ?><li><strong><?php _e("Email", "design_laboratori_italia"); ?>:</strong> <?php echo $mail; ?></li><?php } ?>
+                                                        <?php if($telefono){ ?><li><strong><?php _e("Telefono", 'design_laboratori_italia'); ?>:</strong> <?php echo $telefono; ?></li><?php } ?>
+                                                        <?php if($mail){ ?><li><strong><?php _e("Email", 'design_laboratori_italia'); ?>:</strong> <?php echo $mail; ?></li><?php } ?>
                                                     </ul>
                                                 </div></div>
                                         </div></div>
@@ -443,7 +443,7 @@ get_header();
                                 if(is_array($struttura_responsabile) && count($struttura_responsabile) > 0){
                                     global $struttura;
                                     //$struttura = get_post($struttura_responsabile[0]);
-                                    echo "<h3 class='h6'>".__("Struttura responsabile del servizio", "design_laboratori_italia")."</h3>";
+                                    echo "<h3 class='h6'>".__("Struttura responsabile del servizio", 'design_laboratori_italia')."</h3>";
                                     ?>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
@@ -468,7 +468,7 @@ get_header();
 
                                 if(isset($arrstrutture) && is_array($arrstrutture) && count($arrstrutture) > 0){
                                     ?>
-                                    <h6><?php _e("Per saperne di più", "design_laboratori_italia"); ?></h6>
+                                    <h6><?php _e("Per saperne di più", 'design_laboratori_italia'); ?></h6>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <ul>
@@ -485,7 +485,7 @@ get_header();
 
                                 if(trim($altre_info) != ""){
                                     ?>
-                                    <h2 class="h4" id="art-par-altre-info"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h2>
+                                    <h2 class="h4" id="art-par-altre-info"><?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9">
                                             <?php echo wpautop($altre_info); ?>
@@ -495,7 +495,7 @@ get_header();
                                 }
 
                                 if($link_schede_progetti){ ?>
-                                    <h3 class="h6"><?php _e("Progetti collegati al servizio", "design_laboratori_italia"); ?></h3>
+                                    <h3 class="h6"><?php _e("Progetti collegati al servizio", 'design_laboratori_italia'); ?></h3>
                                     <div class="card-deck card-deck-spaced mb-4">
                                         <?php
                                         foreach ($link_schede_progetti as $idprogetto){

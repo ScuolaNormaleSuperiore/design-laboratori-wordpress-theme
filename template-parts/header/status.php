@@ -28,7 +28,7 @@ if(is_singular("servizio")){
             <div class="container">
                 <div class="row variable-gutters">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <p class="m-0"><strong><?php _e("Documento Annullato", "design_laboratori_italia"); ?></strong>
+                        <p class="m-0"><strong><?php _e("Documento Annullato", 'design_laboratori_italia'); ?></strong>
                             <?php
                             if($motivo_annullamento != "")
                                 echo ": ".$motivo_annullamento;
@@ -45,7 +45,7 @@ if(is_singular("servizio")){
             <div class="container">
                 <div class="row variable-gutters">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <p class="m-0"><strong><?php _e("Documento Scaduto", "design_laboratori_italia"); ?></strong></p>
+                        <p class="m-0"><strong><?php _e("Documento Scaduto", 'design_laboratori_italia'); ?></strong></p>
                     </div><!-- /col -->
                 </div><!-- /row -->
             </div><!-- /container -->
@@ -60,7 +60,7 @@ if(is_singular("servizio")){
             <div class="container">
                 <div class="row variable-gutters">
                     <div class="col d-flex align-items-center">
-                        <p class="m-0"><strong><?php _e("Progetto Realizzato", "design_laboratori_italia"); ?></strong></p>
+                        <p class="m-0"><strong><?php _e("Progetto Realizzato", 'design_laboratori_italia'); ?></strong></p>
                     </div><!-- /col -->
                 </div><!-- /row -->
             </div><!-- /container -->

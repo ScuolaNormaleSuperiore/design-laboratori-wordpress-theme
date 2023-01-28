@@ -1,12 +1,12 @@
 <?php
 global $servizio;
-$home_servizi_manuali = dsi_get_option("home_servizi_manuali", "homepage");
+$home_servizi_manuali = dli_get_option("home_servizi_manuali", "homepage");
 
 ?>
 <div class="container position-relative slided-top">
     <div class="row variable-gutters mb-4">
         <?php
-        $home_is_selezione_automatica_servizi = dsi_get_option("home_is_selezione_automatica_servizi", "homepage");
+        $home_is_selezione_automatica_servizi = dli_get_option("home_is_selezione_automatica_servizi", "homepage");
         if($home_is_selezione_automatica_servizi != "false"){
             $args = array('post_type' => 'servizio',
                 'posts_per_page' => 6,
@@ -35,11 +35,11 @@ $home_servizi_manuali = dsi_get_option("home_servizi_manuali", "homepage");
         ?>
     </div><!-- /row -->
     <?php
-    $landing_url = dsi_get_template_page_url("page-templates/servizi.php");
+    $landing_url = dli_get_template_page_url("page-templates/servizi.php");
     if($landing_url) {
         ?>
         <div class="pb-5 text-center">
-            <a class="btn btn-outline-purplelight" href="<?php echo $landing_url; ?>"><strong><?php _e("Scopri di più", "design_laboratori_italia"); ?></strong></a>
+            <a class="btn btn-outline-purplelight" href="<?php echo $landing_url; ?>"><strong><?php _e("Scopri di più", 'design_laboratori_italia'); ?></strong></a>
         </div>
         <?php
     }

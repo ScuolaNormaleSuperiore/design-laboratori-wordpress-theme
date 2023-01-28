@@ -2,8 +2,8 @@
 
 // global $calendar_card;
 
-$tipologie_notizie = dsi_get_option("tipologie_notizie", "notizie");
-$home_show_events = dsi_get_option("home_show_events", "homepage");
+$tipologie_notizie = dli_get_option("tipologie_notizie", "notizie");
+$home_show_events = dli_get_option("home_show_events", "homepage");
 
 $ct=0;
 $column = 1;
@@ -63,7 +63,7 @@ if(is_array($tipologie_notizie) && count($tipologie_notizie)){
                     echo '</div>';
                 ?>
                 <div class="py-4">
-                    <a class="text-underline" href="<?php echo get_term_link($tipologia_notizia); ?>"><strong><?php _e("Vedi tutti", "design_laboratori_italia"); ?></strong></a>
+                    <a class="text-underline" href="<?php echo get_term_link($tipologia_notizia); ?>"><strong><?php _e("Vedi tutti", 'design_laboratori_italia'); ?></strong></a>
                 </div>
             </div><!-- /col-lg-4 -->
             <?php
@@ -78,7 +78,7 @@ if(is_array($tipologie_notizie) && count($tipologie_notizie)){
 
         <!-- <div class="title-section <?php if($home_show_events == "true_event") echo 'pb-4'; ?>"> -->
         <div class="title-section pb-4">
-            <h2><?php _e("Eventi", "design_laboratori_italia"); ?></h2>
+            <h2><?php _e("Eventi", 'design_laboratori_italia'); ?></h2>
         </div><!-- /title-section -->
 
         <?php
@@ -110,7 +110,7 @@ if(is_array($tipologie_notizie) && count($tipologie_notizie)){
 
     ?>
     <div class="py-4">
-        <a class="text-underline" href="<?php echo get_post_type_archive_link("evento"); ?>"><strong><?php _e("Vedi tutti", "design_laboratori_italia"); ?></strong></a>
+        <a class="text-underline" href="<?php echo get_post_type_archive_link("evento"); ?>"><strong><?php _e("Vedi tutti", 'design_laboratori_italia'); ?></strong></a>
     </div>
     </div><!-- /col-lg-4 -->
     <?php
@@ -120,7 +120,7 @@ if(is_array($tipologie_notizie) && count($tipologie_notizie)){
         <div class="col-lg-4">
 
             <div class="title-section pb-4">
-                <div class="h2"><?php _e("Circolari", "design_laboratori_italia"); ?></div>
+                <div class="h2"><?php _e("Circolari", 'design_laboratori_italia'); ?></div>
             </div><!-- /title-section -->
             <?php
             $args = array('post_type' => 'circolare',
@@ -133,7 +133,7 @@ if(is_array($tipologie_notizie) && count($tipologie_notizie)){
             ?>
 
             <div class="py-4">
-                <a class="text-underline" href="<?php echo get_post_type_archive_link("circolare"); ?>"><strong><?php _e("Vedi tutte", "design_laboratori_italia"); ?></strong></a>
+                <a class="text-underline" href="<?php echo get_post_type_archive_link("circolare"); ?>"><strong><?php _e("Vedi tutte", 'design_laboratori_italia'); ?></strong></a>
             </div>
 
         </div>

@@ -314,7 +314,7 @@ function dsi_add_luogo_metaboxes() {
 		'name'    => __( 'Il luogo è sede di:', 'design_scuole_italia' ),
 		'desc' => __( 'Link alle strutture (segreteria, scuola, dirigenza) presenti nel luogo' , 'design_scuole_italia' ),
         'type'    => 'pw_multiselect',
-        'options' => dsi_get_strutture_options(),
+        'options' => dli_get_strutture_options(),
 	) );
 
     $cmb_aftercontent_luoghi->add_field( array(
@@ -322,7 +322,7 @@ function dsi_add_luogo_metaboxes() {
         'name'    => __( 'Gestito da', 'design_scuole_italia' ),
         'desc' => __( 'Link alle strutture (segreteria, scuola, dirigenza) presenti nel luogo' , 'design_scuole_italia' ),
         'type'    => 'pw_multiselect',
-        'options' => dsi_get_strutture_options(),
+        'options' => dli_get_strutture_options(),
     ) );
 
     $cmb_aftercontent_luoghi->add_field( array(

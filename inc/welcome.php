@@ -16,7 +16,7 @@ function dsi_welcome_panel(){
     ?>
     <div class="welcome-panel-content" style="padding-bottom:30px;">
         <img src="https://avatars1.githubusercontent.com/u/15377824?s=36&v=4"  style="float:left; margin:0px 20px;" />
-        <h2><?php _e( 'Design Laboratori Italia: il tema di Developers Italia per i Laboratori Italiani', "design_laboratori_italia" ); ?></h2>
+        <h2><?php _e( 'Design Laboratori Italia: il tema di Developers Italia per i Laboratori Italiani', 'design_laboratori_italia' ); ?></h2>
     </div>
     <?php
 }

@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$citazione = dsi_get_option("citazione", "la_scuola");
+$citazione = dli_get_option("citazione", "la_scuola");
 if(trim($citazione) != ""){
 	?>
 	<section class="section py-4 bg-redbrown big-quote-wrapper">

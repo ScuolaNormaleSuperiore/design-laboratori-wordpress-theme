@@ -159,7 +159,7 @@ $posts = get_posts($args);
 								<aside class="aside-main aside-sticky">
 									<div class="aside-title" id="people-detail" >
 										<a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri / chiudi dettagli della persona">
-											<span><?php _e("Dettagli della persona", "design_laboratori_italia"); ?></span>
+											<span><?php _e("Dettagli della persona", 'design_laboratori_italia'); ?></span>
 											<svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
 										</a>
 									</div>
@@ -167,22 +167,22 @@ $posts = get_posts($args);
 										<ul class="link-list">
 											<?php if($bio != "") { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#art-par-bio" title="Vai al paragrafo <?php _e("Biografia", "design_laboratori_italia"); ?>"><?php _e("Biografia", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#art-par-bio" title="Vai al paragrafo <?php _e("Biografia", 'design_laboratori_italia'); ?>"><?php _e("Biografia", 'design_laboratori_italia'); ?></a>
 												</li>
 											<?php } ?>
 											<?php if($progetti && $progetti->have_posts())  { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#par-progetti" title="Vai al paragrafo <?php _e("Progetti", 'design_laboratori_italia'); ?>"><?php _e("Progetti", 'design_laboratori_italia'); ?></a>
 												</li>
 											<?php } ?>
 											<?php if($progetti && $progetti->have_posts())  { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?>"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", 'design_laboratori_italia'); ?>"><?php _e("Indirizzi di ricerca", 'design_laboratori_italia'); ?></a>
 												</li>
 											<?php } ?>
 											<?php if($pubblicazioni && $pubblicazioni->have_posts())  { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-pubblicazioni" title="Vai al paragrafo <?php _e("Pubblicazioni", "design_laboratori_italia"); ?>"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#par-pubblicazioni" title="Vai al paragrafo <?php _e("Pubblicazioni", 'design_laboratori_italia'); ?>"><?php _e("Pubblicazioni", 'design_laboratori_italia'); ?></a>
 												</li>
 												<?php } ?>
 												<?php
@@ -190,13 +190,13 @@ $posts = get_posts($args);
 												?>
 													<li>
 														<a class="list-item scroll-anchor-offset" href="#par-altre-info"
-														title="Vai al paragrafo <?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?>"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></a>
+														title="Vai al paragrafo <?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?>"><?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?></a>
 													</li>
 													<?php
 												}
 												if(($telefono_pubblico != "") || ($email_pubblico != "")){ ?>
 													<li>
-														<a class="list-item scroll-anchor-offset" href="#par-contatti" title="Vai al paragrafo <?php _e("Contatti", "design_laboratori_italia"); ?>"><?php _e("Contatti", "design_laboratori_italia"); ?></a>
+														<a class="list-item scroll-anchor-offset" href="#par-contatti" title="Vai al paragrafo <?php _e("Contatti", 'design_laboratori_italia'); ?>"><?php _e("Contatti", 'design_laboratori_italia'); ?></a>
 													</li>
 												<?php } ?>
 										</ul>
@@ -206,7 +206,7 @@ $posts = get_posts($args);
 							<div class="col-lg-8 col-md-8 offset-lg-1 pt84">
 								<article class="article-wrapper">
 									<?php if($bio != "") { ?>
-										<h3 id="art-par-bio"><?php _e("Biografia", "design_laboratori_italia"); ?></h3>
+										<h3 id="art-par-bio"><?php _e("Biografia", 'design_laboratori_italia'); ?></h3>
 										<div class="row variable-gutters">
 											<div class="col-lg-9">
 												<p><?php echo $bio; ?></p>
@@ -215,7 +215,7 @@ $posts = get_posts($args);
 										<?php }
 										if ($progetti && $progetti->have_posts()) {
 											?>
-											<h3 id="par-progetti"  class="mb-4"><?php _e("Progetti", "design_laboratori_italia"); ?></h3>
+											<h3 id="par-progetti"  class="mb-4"><?php _e("Progetti", 'design_laboratori_italia'); ?></h3>
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-12">
 													<div	iv class="card-deck card-deck-spaced">
@@ -261,7 +261,7 @@ $posts = get_posts($args);
 											<?php }
 											if (is_array($indirizzi_di_ricerca) && count($indirizzi_di_ricerca) >0) {
 												?>
-												<h3 id="par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></h3>
+												<h3 id="par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", 'design_laboratori_italia'); ?></h3>
 												<div class="row variable-gutters mb-4">
 													<div class="col-lg-12">
 														<div	iv class="card-deck card-deck-spaced">
@@ -288,7 +288,7 @@ $posts = get_posts($args);
 												<?php }
 											if ($pubblicazioni && $pubblicazioni->have_posts()) {
 													?>
-													<h3 id="par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></h3>
+													<h3 id="par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", 'design_laboratori_italia'); ?></h3>
 													<div class="row variable-gutters mb-4">
 														<div class="col-lg-12">
 															<div	iv class="card-deck card-deck-spaced">
@@ -308,7 +308,7 @@ $posts = get_posts($args);
 																				<strong><a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a></strong>
 																			</p>
 																			<small><?php echo get_field('descrizione_breve'); ?></small>
-																			<small><?php _e("Responsabile di progetto", "design_laboratori_italia");
+																			<small><?php _e("Responsabile di progetto", 'design_laboratori_italia');
 																			?></small>
 																		</div><!-- /card-icon-content -->
 																	</div><!-- /card-body -->
@@ -321,7 +321,7 @@ $posts = get_posts($args);
 
                             if (is_array($documenti) && count($documenti) > 0) {
                                 ?>
-                                <h4 id="art-par-documenti"  class="mb-4"><?php _e("Documenti", "design_laboratori_italia"); ?></h4>
+                                <h4 id="art-par-documenti"  class="mb-4"><?php _e("Documenti", 'design_laboratori_italia'); ?></h4>
                                 <div class="row variable-gutters mb-4">
                                     <div class="col-lg-12">
                                         <div class="card-deck card-deck-spaced">
@@ -347,7 +347,7 @@ $posts = get_posts($args);
 
                             if (is_array($strutture) && count($strutture) > 0) {
                                 ?>
-                                <h4 id="art-par-documenti"  class="mb-4"><?php _e("Strutture", "design_laboratori_italia"); ?></h4>
+                                <h4 id="art-par-documenti"  class="mb-4"><?php _e("Strutture", 'design_laboratori_italia'); ?></h4>
                                 <div class="row variable-gutters mb-4">
                                     <div class="col-lg-12">
                                         <div class="card-deck card-deck-spaced">
@@ -374,7 +374,7 @@ $posts = get_posts($args);
                             if(trim($altre_info) != ""){
                                 ?>
                                 <h4 id="art-par-altre-info"
-                                    class="mb-4"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h4>
+                                    class="mb-4"><?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?></h4>
                                 <div class="row variable-gutters">
                                     <div class="col-lg-9">
                                         <p><?php echo $altre_info; ?></p>
@@ -385,12 +385,12 @@ $posts = get_posts($args);
                             ?>
 
                             <?php if(($telefono_pubblico != "") || ($email_pubblico != "")){ ?>
-                                <h4 id="art-par-contatti"><?php _e("Contatti", "design_laboratori_italia"); ?></h4>
+                                <h4 id="art-par-contatti"><?php _e("Contatti", 'design_laboratori_italia'); ?></h4>
                                 <div class="row variable-gutters">
                                     <div class="col-lg-9">
                                         <ul>
-                                            <?php if($telefono_pubblico != ""){?><li><strong><?php _e("Telefono", "design_laboratori_italia"); ?>:</strong> <?php echo $telefono_pubblico; ?></li><?php } ?>
-                                            <?php if($email_pubblico != ""){?><li><strong><?php _e("Email", "design_laboratori_italia"); ?>:</strong> <a href="mailto:<?php echo $email_pubblico; ?>"><?php echo $email_pubblico; ?></a></li><?php } ?>
+                                            <?php if($telefono_pubblico != ""){?><li><strong><?php _e("Telefono", 'design_laboratori_italia'); ?>:</strong> <?php echo $telefono_pubblico; ?></li><?php } ?>
+                                            <?php if($email_pubblico != ""){?><li><strong><?php _e("Email", 'design_laboratori_italia'); ?>:</strong> <a href="mailto:<?php echo $email_pubblico; ?>"><?php echo $email_pubblico; ?></a></li><?php } ?>
                                         </ul>
                                     </div><!-- /col-lg-9 -->
                                 </div><!-- /row -->
@@ -414,7 +414,7 @@ $posts = get_posts($args);
 
                     <div class="row variable-gutters">
                         <div class="col-lg-12">
-                            <h3 class="mb-5 text-center semi-bold text-gray-primary" id="art-par-articoli"><?php _e( "Articoli pubblicati da ", "design_laboratori_italia" ); ?><?php echo dsi_get_display_name($author_id); ?></h3>
+                            <h3 class="mb-5 text-center semi-bold text-gray-primary" id="art-par-articoli"><?php _e( "Articoli pubblicati da ", 'design_laboratori_italia' ); ?><?php echo dsi_get_display_name($author_id); ?></h3>
                             <div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide>
                                 <div class="splide__track ps-lg-3 pe-lg-3">
                                     <ul class="splide__list it-carousel-all">
@@ -430,7 +430,7 @@ $posts = get_posts($args);
                                                             $argomenti = dsi_get_argomenti_of_post($post);
                                                             if(is_array($argomenti) && count($argomenti)) {
                                                                 foreach ( $argomenti as $argomento ) { ?>
-                                                                    <a href="<?php echo get_term_link($argomento); ?>"  class="badge badge-sm badge-pill badge-outline-greendark" title="<?php _e("Vai all'argomento", "design_laboratori_italia"); ?>: <?php echo $argomento->name; ?>"><?php echo $argomento->name; ?></a><?php
+                                                                    <a href="<?php echo get_term_link($argomento); ?>"  class="badge badge-sm badge-pill badge-outline-greendark" title="<?php _e("Vai all'argomento", 'design_laboratori_italia'); ?>: <?php echo $argomento->name; ?>"><?php echo $argomento->name; ?></a><?php
                                                                 }
                                                             }
                                                             ?>

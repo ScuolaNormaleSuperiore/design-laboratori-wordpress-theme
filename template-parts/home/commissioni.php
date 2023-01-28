@@ -1,7 +1,7 @@
 <?php
 global $autore;
 
-$link_strutture_commissioni = dsi_get_option("link_strutture_commissioni", "la_scuola");
+$link_strutture_commissioni = dli_get_option("link_strutture_commissioni", "la_scuola");
 if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 	$arr_commissioni = array();
 	foreach ($link_strutture_commissioni as $idcommissione){
@@ -14,7 +14,7 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 			<div class="row variable-gutters pt-4">
 				<div class="col">
 					<div class="title-section text-center mb-5">
-						<h3 class="h4"><?php  _e("Commissioni e gruppi di lavoro", "design_laboratori_italia");  ?></h3>
+						<h3 class="h4"><?php  _e("Commissioni e gruppi di lavoro", 'design_laboratori_italia');  ?></h3>
 					</div><!-- /title-section -->
 					<div class="responsive-tabs-wrapper">
 						<div class="responsive-tabs responsive-tabs-aside responsive-tabs-aside-large">
@@ -36,7 +36,7 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 									<div class="responsive-tabs-container">
 										<p class="text-description mb-4"><?php echo $descrizione; ?></p>
 										<?php if(is_array($responsabile) && count($responsabile)>0) { ?>
-											<h6><?php _e( "Responsabile", "design_laboratori_italia" ); ?></h6>
+											<h6><?php _e( "Responsabile", 'design_laboratori_italia' ); ?></h6>
 											<div class="card-deck card-deck-spaced mb-2">
 												<?php
 												foreach ( $responsabile as $idutente ) {
@@ -55,7 +55,7 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 											</div><!-- /card-deck -->
 											<?php } ?>
 										<?php if(is_array($persone) && count($persone)>0){ ?>
-											<h6><?php _e("Persone", "design_laboratori_italia"); ?></h6>
+											<h6><?php _e("Persone", 'design_laboratori_italia'); ?></h6>
 											<div class="card-deck card-deck-spaced mb-2">
 												<?php
 												foreach ($persone as $idutente) {
@@ -75,15 +75,15 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 										<?php }
 										if($telefono || $mail || $pec){
 											?>
-											<h4 id="art-par-more"><?php _e("Per informazioni", "design_laboratori_italia"); ?></h4>
+											<h4 id="art-par-more"><?php _e("Per informazioni", 'design_laboratori_italia'); ?></h4>
 													<ul class="location-list mt-3">
-														<?php if($telefono){ ?><li><div class="location-title"><span><?php _e("Telefono", "design_laboratori_italia"); ?>:</span></div><div class="location-content"><p><?php echo $telefono; ?></p></div></li><?php } ?>
-														<?php if($mail){ ?><li><div class="location-title"><span><?php _e("Email", "design_laboratori_italia"); ?>:</span></div><div class="location-content"><p><?php echo $mail; ?></p></div></li><?php } ?>
-														<?php if($pec){ ?><li><div class="location-title"><span><?php _e("PEC", "design_laboratori_italia"); ?>:</span></div><div class="location-content"><p><?php echo $pec; ?></p></div></li><?php } ?>
+														<?php if($telefono){ ?><li><div class="location-title"><span><?php _e("Telefono", 'design_laboratori_italia'); ?>:</span></div><div class="location-content"><p><?php echo $telefono; ?></p></div></li><?php } ?>
+														<?php if($mail){ ?><li><div class="location-title"><span><?php _e("Email", 'design_laboratori_italia'); ?>:</span></div><div class="location-content"><p><?php echo $mail; ?></p></div></li><?php } ?>
+														<?php if($pec){ ?><li><div class="location-title"><span><?php _e("PEC", 'design_laboratori_italia'); ?>:</span></div><div class="location-content"><p><?php echo $pec; ?></p></div></li><?php } ?>
 													</ul>
 
 										<?php } ?>
-                                        <a class="btn btn-redbrown mt-4" href="<?php echo get_permalink($commissione); ?>"><?php _e("Vai alla scheda", "design_laboratori_italia"); ?></a>
+                                        <a class="btn btn-redbrown mt-4" href="<?php echo get_permalink($commissione); ?>"><?php _e("Vai alla scheda", 'design_laboratori_italia'); ?></a>
 									</div><!-- /responsive-tabs-container -->
 								</div>
 								<?php
@@ -100,7 +100,7 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 		<div class="container">
 			<div class="row variable-gutters">
 				<div class="col-lg-12">
-					<a class="btn btn-block btn-white rounded mb-3 mb-lg-0" href="<?php echo get_post_type_archive_link("struttura"); ?>"><?php _e("Tutta l’organizzazione", "design_laboratori_italia"); ?></a>
+					<a class="btn btn-block btn-white rounded mb-3 mb-lg-0" href="<?php echo get_post_type_archive_link("struttura"); ?>"><?php _e("Tutta l’organizzazione", 'design_laboratori_italia'); ?></a>
 				</div><!-- /col-lg-4 -->
 			</div><!-- /row -->
 		</div><!-- /container -->

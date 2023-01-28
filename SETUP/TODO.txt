@@ -1,8 +1,6 @@
 
 *** TODO ***
 
-1) Configurazione: togliere: Didattica, Organizzazione, documenti.
-2) Configurazione aggiungere: Progetti, Pubblicazioni, Attività di ricerca.
 3) Verifica Hero: Persone, Progetti, Attività ricerca, Pubblicazioni, Eventi, Servizi, Luoghi, Notizie.
 4) Menù novità nello header
 5) Menù Lab in orizzontale.
@@ -30,3 +28,5 @@
 - Gestione social
 - Logo in configurazione (options.php)
 - Script creazione contenuti iniziale (activations.php)
+- Configurazione: togliere: Didattica, Organizzazione, documenti.
+- Configurazione aggiungere: Progetti, Pubblicazioni, Attività di ricerca.

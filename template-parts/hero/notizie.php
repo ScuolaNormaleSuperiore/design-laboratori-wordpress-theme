@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$testo_notizie = dsi_get_option("testo_notizie", "notizie");
+$testo_notizie = dli_get_option("testo_notizie", "notizie");
 
 ?>
     <section class="section bg-greendark bg-greendarkgradient py-5 position-relative d-flex align-items-center overflow-hidden" >

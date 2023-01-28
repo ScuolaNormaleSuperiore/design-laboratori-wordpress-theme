@@ -85,7 +85,7 @@ function dsi_get_luoghi_options( $parent = false, $addnone=false) {
 
 	$options = array();
 	if($addnone)
-		$options[0]=__("Nessun luogo","design_laboratori_italia");
+		$options[0]=__("Nessun luogo",'design_laboratori_italia');
 	if ( $luoghi ) {
 		foreach ( $luoghi as $luogo ) {
 			$options[ $luogo->ID ] = $luogo->post_title;
@@ -96,7 +96,7 @@ function dsi_get_luoghi_options( $parent = false, $addnone=false) {
 }
 
 
-function dsi_get_strutture_options( ) {
+function dli_get_strutture_options( ) {
 
 	$programs = get_posts("post_type=struttura&posts_per_page=-1&orderby=title&order=ASC");
 
@@ -198,7 +198,7 @@ function dsi_get_tipologie_strutture_options( ) {
 
 
 
-function dsi_get_tipologie_luoghi_options( ) {
+function dli_get_tipologie_luoghi_options( ) {
 
 		$tipologie = get_terms( array(
 				'taxonomy' => 'tipologia-luogo',
@@ -331,7 +331,7 @@ function dsi_get_tipologie_amministrazione_trasparente( $query_args = false) {
  *
  * @return array
  */
-function dsi_get_tipologia_servizi_options( $query_args = false) {
+function dli_get_tipologia_servizi_options( $query_args = false) {
 
 	$items = get_terms( array(
 		'taxonomy' => 'tipologia-servizio',
@@ -353,7 +353,7 @@ function dsi_get_tipologia_servizi_options( $query_args = false) {
  *
  * @return array
  */
-function dsi_get_tipologia_articoli_options( $query_args = false) {
+function dli_get_tipologia_articoli_options( $query_args = false) {
 
 	$items = get_terms( array(
 		'taxonomy' => 'tipologia-articolo',

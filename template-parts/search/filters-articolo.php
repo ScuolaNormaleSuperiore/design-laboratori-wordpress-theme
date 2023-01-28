@@ -3,7 +3,7 @@
 ?>
 <aside class="aside-list sticky-sidebar search-results-filters pt-3">
 	<form role="search" method="get" class="search-form" action="<?php echo home_url(""); ?>">
-			<div class="h6 text-uppercase mt-4"><strong><?php _e("Tipologia", "design_laboratori_italia"); ?></strong></div>
+			<div class="h6 text-uppercase mt-4"><strong><?php _e("Tipologia", 'design_laboratori_italia'); ?></strong></div>
 			<ul>
 				<?php
 				$terms = get_terms( array(

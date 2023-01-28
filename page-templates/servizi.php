@@ -17,7 +17,7 @@ get_header();
 
 			get_template_part("template-parts/hero/servizi");
 
-			$tipologie_servizi = dsi_get_option("tipologie_servizi", "servizi");
+			$tipologie_servizi = dli_get_option("tipologie_servizi", "servizi");
 			$ct=0;
 			if(is_array($tipologie_servizi) && count($tipologie_servizi)){
 				foreach ( $tipologie_servizi as $id_tipologia_servizio ) {

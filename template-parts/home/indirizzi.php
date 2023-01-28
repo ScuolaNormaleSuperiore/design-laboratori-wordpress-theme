@@ -10,7 +10,7 @@ if($ct%2)
 <section class="section <?php echo $container_class; ?> py-5">
 	<div class="container">
 		<div class="title-section mb-5">
-			<h2 class="h4"><?php _e("Indirizzi di studio", "design_laboratori_italia"); ?></h2>
+			<h2 class="h4"><?php _e("Indirizzi di studio", 'design_laboratori_italia'); ?></h2>
 		</div><!-- /title-large -->
 		<div class="row variable-gutters">
 			<?php
@@ -26,7 +26,7 @@ if($ct%2)
 
 		</div><!-- /row -->
 		<div class="pt-3 text-center">
-			<a class="text-underline" href="<?php echo get_post_type_archive_link("indirizzo"); ?>"><strong><?php _e("Vedi tutti", "design_laboratori_italia"); ?></strong></a>
+			<a class="text-underline" href="<?php echo get_post_type_archive_link("indirizzo"); ?>"><strong><?php _e("Vedi tutti", 'design_laboratori_italia'); ?></strong></a>
 		</div>
 	</div><!-- /container -->
 </section><!-- /section -->
