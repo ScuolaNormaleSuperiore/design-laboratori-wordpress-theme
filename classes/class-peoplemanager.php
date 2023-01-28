@@ -138,7 +138,6 @@ class People_Manager {
 			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'hierarchical'    => true,
-			// 'capability_type' => array( 'persona', 'persone' ),
 			'rewrite'         => array( 'slug' => 'persone' ),
 		);
 
