@@ -242,6 +242,9 @@ if(is_search() || is_archive())
 										$show_socials = dsi_get_option( "show_socials", "socials" );
 										if($show_socials == "true") : ?>
 										<div class="header-social">
+											<?php
+											if (1==0) {
+											?>
 												<span>Seguici su:</span>
 												<div class="header-social-wrapper">
 												<?php if($facebook = dsi_get_option( "facebook", "socials" )) :?><a href="<?php echo $facebook; ?>" aria-label="facebook" title="vai alla pagina facebook"><svg class="icon it-social-facebook"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-facebook"></use></svg></a><?php endif; ?>
@@ -250,6 +253,9 @@ if(is_search() || is_archive())
 														<?php if($twitter = dsi_get_option( "twitter", "socials" )) :?><a href="<?php echo $twitter; ?>" aria-label="twitter" title="vai alla pagina twitter"><svg class="icon it-social-twitter"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-twitter"></use></svg></a><?php endif; ?>
 														<?php if($linkedin = dsi_get_option( "linkedin", "socials" )) :?><a href="<?php echo $linkedin; ?>" aria-label="linkedin" title="vai alla pagina linkedin"><svg class="icon it-social-linkedin"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-linkedin"></use></svg></a><?php endif; ?>
 												</div><!-- /header-social-wrapper -->
+											<?php
+											}
+											?>
 										</div><!-- /header-social -->
 										<?php endif ?>
 								</div><!-- /col -->
