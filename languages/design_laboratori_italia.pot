@@ -4381,7 +4381,7 @@ msgid "Le carte della Laboratorio"
 msgstr ""
 
 #: template-parts/hero/home.php:41
-msgid "Vai alla scuola"
+msgid "Vai al laboratorio"
 msgstr ""
 
 #: template-parts/hero/luoghi.php:13

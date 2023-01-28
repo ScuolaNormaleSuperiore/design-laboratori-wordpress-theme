@@ -137,6 +137,7 @@ function dli_create_pages_on_theme_activation() {
 	// Creazione della pagina Presentazione (Pagina statica).
 	$new_page_title    = __( 'Presentazione', 'design_laboratori_italia' ); // Page's title.
 	$new_page_content  = 'La nostra storia'; // Content goes here.
+	$new_page_template = '';
 	$page_check        = get_page_by_title( $new_page_title ); // Check if the page already exists
 	// Store the above data in an array.
 	$new_page = array(
@@ -150,12 +151,6 @@ function dli_create_pages_on_theme_activation() {
 	// If the page doesn't already exist, create it.
 	if ( ! isset( $page_check->ID ) ) {
 		$presentazione_page_id = wp_insert_post( $new_page );
-		if ( ! empty( $new_page_template ) ) {
-			update_post_meta( $presentazione_page_id, '_wp_page_template', $new_page_template );
-		}
-	} else {
-		$presentazione_page_id = $page_check->ID;
-		update_post_meta( $presentazione_page_id, '_wp_page_template', $new_page_template );
 	}
 
 	// Template page per La Home di Sezione Notizie.
@@ -324,7 +319,7 @@ function dli_create_pages_on_theme_activation() {
 				'menu-item-object-id' => $presentazione_id,
 				'menu-item-object'    => 'post',
 				'menu-item-status'    => 'publish',
-				'menu-item-type'       => 'post_type',
+				'menu-item-type'      => 'post_type',
 				'menu-item-classes'   => 'footer-link',
 			)
 		);

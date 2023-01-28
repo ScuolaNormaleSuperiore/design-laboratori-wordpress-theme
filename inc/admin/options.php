@@ -664,49 +664,49 @@ function dsi_register_main_options_metabox() {
 		/**
 		 * Registers options page "Presentazione".
 		 */
-		$args = array(
-				'id'           => 'dsi_options_presentazione',
-				'title'        => esc_html__( 'Presentazione', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'presentazione',
-				'capability'    => 'manage_options',
-				'tab_title'    => __('Presentazione', "design_laboratori_italia"),
-				'parent_slug'  => 'dsi_options',
-				'tab_group'    => 'dsi_options',
+		// $args = array(
+		// 		'id'           => 'dsi_options_presentazione',
+		// 		'title'        => esc_html__( 'Presentazione', 'design_laboratori_italia' ),
+		// 		'object_types' => array( 'options-page' ),
+		// 		'option_key'   => 'presentazione',
+		// 		'capability'    => 'manage_options',
+		// 		'tab_title'    => __('Presentazione', "design_laboratori_italia"),
+		// 		'parent_slug'  => 'dsi_options',
+		// 		'tab_group'    => 'dsi_options',
 
-		);
+		// );
 
 		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dsi_options_display_with_tabs';
-		}
+		// if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		// 		$args['display_cb'] = 'dsi_options_display_with_tabs';
+		// }
 
-		$presentazione_options = new_cmb2_box( $args );
-		$presentazione_landing_url = dsi_get_template_page_url("page-templates/presentazione.php");
+		// $presentazione_options = new_cmb2_box( $args );
+		// $presentazione_landing_url = dsi_get_template_page_url("page-templates/presentazione.php");
 
-		$presentazione_options->add_field( array(
-				'id' => $prefix . 'presentazione_istruzioni',
-				'name'        => __( 'Presenta la Laboratorio', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona i contenuti che meglio rappresentano l\'Istituto scolastico</a>. Saranno mostrati nella  <a href="'.$presentazione_landing_url.'"> pagina di Presentazione della Laboratorio</a>' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
+		// $presentazione_options->add_field( array(
+		// 		'id' => $prefix . 'presentazione_istruzioni',
+		// 		'name'        => __( 'Presenta la Laboratorio', 'design_laboratori_italia' ),
+		// 		'desc' => __( 'Seleziona i contenuti che meglio rappresentano l\'Istituto scolastico</a>. Saranno mostrati nella  <a href="'.$presentazione_landing_url.'"> pagina di Presentazione della Laboratorio</a>' , 'design_laboratori_italia' ),
+		// 		'type' => 'title',
+		// ) );
 
-		$presentazione_options->add_field(array(
-						'name' => __('Selezione articoli ', 'design_laboratori_italia'),
-						'desc' => __('Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  ', 'design_laboratori_italia'),
-						'id' => $prefix . 'articoli_presentazione',
-						'type'    => 'custom_attached_posts',
-						'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
-						'options' => array(
-								'show_thumbnails' => false, // Show thumbnails on the left
-								'filter_boxes'    => true, // Show a text box for filtering the results
-								'query_args'      => array(
-										'posts_per_page' => -1,
-										'post_type'      => array('post', 'page', 'evento', 'documento', 'struttura', 'servizio','indirizzo'),
-								), // override the get_posts args
-						)
-				)
-		);
+		// $presentazione_options->add_field(array(
+		// 				'name' => __('Selezione articoli ', 'design_laboratori_italia'),
+		// 				'desc' => __('Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  ', 'design_laboratori_italia'),
+		// 				'id' => $prefix . 'articoli_presentazione',
+		// 				'type'    => 'custom_attached_posts',
+		// 				'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
+		// 				'options' => array(
+		// 						'show_thumbnails' => false, // Show thumbnails on the left
+		// 						'filter_boxes'    => true, // Show a text box for filtering the results
+		// 						'query_args'      => array(
+		// 								'posts_per_page' => -1,
+		// 								'post_type'      => array('post', 'page', 'evento', 'documento', 'struttura', 'servizio','indirizzo'),
+		// 						), // override the get_posts args
+		// 				)
+		// 		)
+		// );
 
 
 	/**
