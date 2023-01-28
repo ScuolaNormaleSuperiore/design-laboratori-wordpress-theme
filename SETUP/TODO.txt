@@ -20,6 +20,8 @@
 17) Aggiunta campo OpenStreetMap in Evento (https://wordpress.org/plugins/acf-openstreetmap-field/)
 18) Aggiunta sitemap
 19) Creazione Dockerfile.
+20) Rename "_dsi" in "_dli"
+21) Rename "function dsi_" in "function dli_"
 
 * Fatti *
 - CT Eventi
