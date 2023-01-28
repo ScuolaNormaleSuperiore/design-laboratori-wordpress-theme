@@ -1,27 +1,30 @@
 
 *** TODO ***
 
-3) Togliere pt superflui
-4) Logo in configurazione (options.php)
-5) Plugin per traduzione post e gestione multilingua
-6) Viste contenuti e archivi
-7) Plugin cookies
-8) Plugin web analytics
-9) Plugin LDAP/Shibboleth
-10) Script creazione contenuti iniziale (activations.php)
-11) Gestione social
-12) CI/CD
-13) Passaggio a Bootstrap 5
-14) Import pubblicazioni da IRIS?
-15) Verifica accessibilità
-16) CT Indirizzi di ricerca
-17) Manuale operatore
-18) Produzione e traduzione etichette in inglese
-19) Aggiunta campo OpenStreetMap in Evento (https://wordpress.org/plugins/acf-openstreetmap-field/)
-20)
-
+1) Configurazione: togliere: Didattica, Organizzazione, documenti.
+2) Configurazione aggiungere: Progetti, Pubblicazioni, Attività di ricerca.
+3) Verifica Hero: Persone, Progetti, Attività ricerca, Pubblicazioni, Eventi, Servizi, Luoghi, Notizie.
+4) Menù novità nello header
+5) Menù Lab in orizzontale.
+6) Menù Presentazione Multilink.
+7) Plugin per traduzione post e gestione multilingua
+8) Plugin cookies
+9) Plugin web analytics
+10) Plugin LDAP
+11) Plugin Shibboleth
+12) Passaggio a Bootstrap 5
+13) Import pubblicazioni da IRIS?
+14) Verifica accessibilità
+15) Manuale operatore
+16) Produzione e traduzione etichette in inglese
+17) Aggiunta campo OpenStreetMap in Evento (https://wordpress.org/plugins/acf-openstreetmap-field/)
+18) Aggiunta sitemap
 
 
 * Fatti *
-1) CT Eventi
-2) CT News
+- CT Eventi
+- CT News
+- CI/CD
+- Gestione social
+- Logo in configurazione (options.php)
+- Script creazione contenuti iniziale (activations.php)
