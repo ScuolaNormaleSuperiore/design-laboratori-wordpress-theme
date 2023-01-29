@@ -8,10 +8,9 @@
 // Post Types.
 define( 'PEOPLE_POST_TYPE', 'persona' );
 
-// Taxonomies
-define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
-
-define ('STRUCTURE_TAXONOMY', 'struttura');
+// Taxonomies.
+// define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
+define( 'STRUCTURE_TAXONOMY', 'struttura' );
 
 /**
  * The manager that setups People post types.
@@ -44,37 +43,7 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
-		//aggiungo la tassonomia tipo persona
-		$labels = array(
-			'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
-			'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
-			'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
-			'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
-			'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
-			'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
-			'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
-			'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
-			'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
-		);
-
-		$args = array(
-			'hierarchical'      => true,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'tipologia-persona' ),
-			'capabilities'      => array(
-				'manage_terms' => 'manage_tipologia_persone',
-				'edit_terms'   => 'edit_tipologia_persone',
-				'delete_terms' => 'delete_tipologia_persone',
-				'assign_terms' => 'assign_tipologia_persone',
-			),
-		);
-
-		register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
-
-		// Aggiungo la tassonomia struttura.
+		//aggiungo la tassonomia struttura
 
 		$structure_labels = array(
 			'name'              => _x( 'Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
@@ -99,12 +68,49 @@ class People_Manager {
 				'manage_terms' => 'manage_strutture',
 				'edit_terms'   => 'edit_strutture',
 				'delete_terms' => 'delete_strutture',
-				'assign_terms' => 'assign_strutture'
+				'assign_terms' => 'assign_strutture',
 			),
 		);
 
 		register_taxonomy( STRUCTURE_TAXONOMY, array( PEOPLE_POST_TYPE ), $structure_args );
 	}
+
+	// /**
+	//  * Register the taxonomies.
+	//  *
+	//  * @return void
+	//  */
+	// public function add_taxonomies() {
+	// 	//aggiungo la tassonomia tipo persona
+	// 	$labels = array(
+	// 		'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
+	// 		'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
+	// 		'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
+	// 		'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
+	// 		'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
+	// 		'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
+	// 		'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
+	// 		'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
+	// 		'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
+	// 	);
+
+	// 	$args = array(
+	// 		'hierarchical'      => true,
+	// 		'labels'            => $labels,
+	// 		'show_ui'           => true,
+	// 		'show_admin_column' => true,
+	// 		'query_var'         => true,
+	// 		'rewrite'           => array( 'slug' => 'tipologia-persona' ),
+	// 		'capabilities'      => array(
+	// 			'manage_terms' => 'manage_tipologia_persone',
+	// 			'edit_terms'   => 'edit_tipologia_persone',
+	// 			'delete_terms' => 'delete_tipologia_persone',
+	// 			'assign_terms' => 'assign_tipologia_persone',
+	// 		),
+	// 	);
+
+	// 	register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
+
 
 	/**
 	 * Register the post type.
@@ -126,7 +132,7 @@ class People_Manager {
 			'use_featured_image'    => __( 'Usa come Immagine della Persona' . 'design_laboratori_italia' ),
 		);
 
-		$args = array(
+		$args   = array(
 			'label'           => __( 'Persona', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
@@ -135,10 +141,10 @@ class People_Manager {
 			'show_in_rest'    => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-businessperson',
-			'has_archive'     => false,
+			'has_archive'     => true,
 			'show_in_rest'    => true,
 			'hierarchical'    => true,
-			'rewrite'         => array( 'slug' => 'persone' ),
+			'rewrite'         => array('slug' => 'persone'),
 		);
 
 		register_post_type( PEOPLE_POST_TYPE, $args );
@@ -367,6 +373,32 @@ class People_Manager {
 						'placeholder' => 'https://',
 					),
 					array(
+						'key' => 'field_63cfb60b96994',
+						'label' => 'Categoria di appartenenza',
+						'name' => 'categoria_appartenenza',
+						'aria-label' => '',
+						'type' => 'relationship',
+						'instructions' => '',
+						'required' => 1,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'tipologia-persona',
+						),
+						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
+						'return_format' => 'object',
+						'min' => '',
+						'max' => '',
+						'elements' => '',
+					),
+					array(
 						'key' => 'field_63c8152d68f0b',
 						'label' => 'Progetti correlati',
 						'name' => 'progetti_correlati',
@@ -479,7 +511,7 @@ class People_Manager {
 				'show_in_rest' => 1,
 			));
 			
+			
 		}
 	}
-
 }

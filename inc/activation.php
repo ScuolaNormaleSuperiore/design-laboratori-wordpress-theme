@@ -304,12 +304,12 @@ function dli_create_pages_on_theme_activation() {
 	wp_insert_term( 'Rassegna Stampa', 'tipologia-articolo' );
 
 	// Valori tassonomia tipo-perrsona.
-	wp_insert_term( 'Allievo', 'tipo-persona' );
-	wp_insert_term( 'Direttore', 'tipo-persona' );
-	wp_insert_term( 'Professore', 'tipo-persona' );
-	wp_insert_term( 'Ricercatore', 'tipo-persona' );
-	wp_insert_term( 'Tecnico', 'tipo-persona' );
-	wp_insert_term( 'PTA', 'tipo-persona' );
+	// wp_insert_term( 'Allievo', 'tipo-persona' );
+	// wp_insert_term( 'Direttore', 'tipo-persona' );
+	// wp_insert_term( 'Professore', 'tipo-persona' );
+	// wp_insert_term( 'Ricercatore', 'tipo-persona' );
+	// wp_insert_term( 'Tecnico', 'tipo-persona' );
+	// wp_insert_term( 'PTA', 'tipo-persona' );
 
 	// Valori tassonomia struttura.
 	wp_insert_term( 'Prima struttura', 'struttura' );

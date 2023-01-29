@@ -29,9 +29,9 @@ get_header();
 								<div class="badges">
 									<?php
 									foreach ( $strutture as $struttura ) { ?>
-										<a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", 'design_laboratori_italia'); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
+										<a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php echo $struttura->name; ?></a>
 									<?php } ?>
-									<a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", 'design_laboratori_italia'); ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php _e("Disattiva filtri", 'design_laboratori_italia'); ?></a>
+									<a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>" class="badge badge-sm badge-pill badge-outline-bluelectric"><?php _e("Disattiva filtri", "design_laboratori_italia"); ?></a>
 								</div><!-- /badges -->
               </aside>
 							<section class="section bg-white py-5">
@@ -103,7 +103,7 @@ get_header();
 												<?php if ($persone->have_posts()) { ?>
 													<div class="row variable-gutters mb-4">
 														<div class="col-lg-3">
-															<h3 class="text-lg-right mb-3"><?php _e($nome_categoria, 'design_laboratori_italia'); ?></h3>
+															<h3 class="text-lg-right mb-3"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h3>
 														</div><!-- /col-lg-3 -->
 														<div class="col-lg-9">
 															<div class="row variable-gutters">
