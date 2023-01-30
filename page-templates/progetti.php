@@ -16,7 +16,7 @@ get_header();
 			get_template_part( 'template-parts/hero/progetti' );
 	?>
 
-	<h2>Qui ci vanno i progetti:</h2>
+	<h2>Qui ci vanno i PROGETTI:</h2>
 	<ul>
 		<li>Uno</li>
 		<li>Due</li>

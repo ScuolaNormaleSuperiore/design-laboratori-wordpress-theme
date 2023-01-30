@@ -1,7 +1,6 @@
 
 *** TODO ***
 
-3) Verifica Hero: Persone, Progetti, Attività ricerca, Pubblicazioni, Eventi, Servizi, Luoghi, Notizie.
 4) Menù novità nello header
 5) Menù Lab in orizzontale.
 6) Menù Presentazione Multilink.
