@@ -35,7 +35,8 @@ $email_pubblico = get_the_author_meta('_dsi_persona_email_pubblico');
 $telefono_pubblico = get_the_author_meta('_dsi_persona_telefono_pubblico');
 
 // recupero la lista dei progetti
-$progetti= new WP_Query(array(
+$progetti = new WP_Query(
+	array(
 	'posts_per_page' => -1,
 	'post_type' => 'progetto',
 	'orderby' => 'data_inizio',
@@ -60,12 +61,12 @@ $pubblicazioni= new WP_Query(array(
 	'posts_per_page' => -1,
 	'post_type' => 'pubblicazione',
 	'orderby' => 'anno',
-	'order' => 'DESC',
+	'order' => 'ASC',
 	'meta_query' => array(
 		array(
 			'key' => 'autori', 
 			'compare' => 'LIKE',
-			'value' => '"' . $ID . '"',
+			'value' => $title 
 		),
 	)
 ));
