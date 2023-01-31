@@ -105,7 +105,7 @@ $pubblicazioni= new WP_Query(array(
 											<?php } ?>
 											<?php if($progetti && $progetti->have_posts())  { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#art-par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
 												</li>
 											<?php }
 											// controllo che ci siano indirizzi di ricerca da mostrare 
@@ -121,18 +121,18 @@ $pubblicazioni= new WP_Query(array(
 											}?>
 											<?php if (is_array($indirizzi_di_ricerca_ids) && count($indirizzi_di_ricerca_ids) >0)  { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?>"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#art-par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?>"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></a>
 												</li>
 											<?php } ?>
 											<?php if ( $pubblicazioni && $pubblicazioni->have_posts() ) { ?>
 												<li>
-													<a class="list-item scroll-anchor-offset" href="#par-pubblicazioni" title="Vai al paragrafo <?php _e("Pubblicazioni", "design_laboratori_italia"); ?>"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></a>
+													<a class="list-item scroll-anchor-offset" href="#art-par-pubblicazioni" title="Vai al paragrafo <?php _e("Pubblicazioni", "design_laboratori_italia"); ?>"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></a>
 												</li>
 												<?php } ?>
 												<?php
 												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) { ?>
 													<li>
-														<a class="list-item scroll-anchor-offset" href="#par-altre-info"
+														<a class="list-item scroll-anchor-offset" href="#art-par-altre-info"
 														title="Vai al paragrafo <?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?>"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></a>
 													</li>
 													<?php
@@ -140,7 +140,7 @@ $pubblicazioni= new WP_Query(array(
 
 												if( ( $telefono != "" ) || ( $email != "" ) || ( $sitoweb != "" ) ){ ?>
 													<li>
-														<a class="list-item scroll-anchor-offset" href="#par-contatti" title="Vai al paragrafo <?php _e("Contatti", "design_laboratori_italia"); ?>"><?php _e("Contatti", "design_laboratori_italia"); ?></a>
+														<a class="list-item scroll-anchor-offset" href="#art-par-contatti" title="Vai al paragrafo <?php _e("Contatti", "design_laboratori_italia"); ?>"><?php _e("Contatti", "design_laboratori_italia"); ?></a>
 													</li>
 												<?php } ?>
 										</ul>
@@ -159,7 +159,7 @@ $pubblicazioni= new WP_Query(array(
 										<?php }
 										if ($progetti && $progetti->have_posts()) {
 											?>
-											<h3 id="par-progetti"  class="mb-4"><?php _e("Progetti", "design_laboratori_italia"); ?></h3>
+											<h3 id="art-par-progetti"  class="mb-4"><?php _e("Progetti", "design_laboratori_italia"); ?></h3>
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-12">
 													<div	iv class="card-deck card-deck-spaced">
@@ -207,7 +207,7 @@ $pubblicazioni= new WP_Query(array(
 													'post__in' => $indirizzi_di_ricerca_ids
 												));
 											?>
-											<h3 id="par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></h3>
+											<h3 id="art-par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></h3>
 											<div class="row variable-gutters mb-4">
 												<div class="col-lg-12">
 													<div	iv class="card-deck card-deck-spaced">
@@ -237,7 +237,7 @@ $pubblicazioni= new WP_Query(array(
 											<?php }
 											if ($pubblicazioni && $pubblicazioni->have_posts()) {
 													?>
-													<h3 id="par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></h3>
+													<h3 id="art-par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></h3>
 													<div class="row variable-gutters mb-4">
 														<div class="col-lg-12">
 															<div	iv class="card-deck card-deck-spaced">
@@ -268,7 +268,7 @@ $pubblicazioni= new WP_Query(array(
 													<?php }
 
 													if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) { ?>
-														<h4 id="par-altre-info"  class="mb-4"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h4>
+														<h4 id="art-par-altre-info"  class="mb-4"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h4>
 														<div class="row variable-gutters mb-4">
 															<div class="col-lg-12">
 																<div class="card-deck card-deck-spaced">
