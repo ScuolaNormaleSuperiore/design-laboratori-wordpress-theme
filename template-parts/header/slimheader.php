@@ -45,7 +45,7 @@
 					<span class="visually-hidden">Selezione lingua: lingua selezionata</span>
 					<span>ITA</span>
 					<svg class="icon d-none d-lg-block">
-						<use href="bootstrap-italia/svg/sprites.svg#it-expand"></use>
+						<use  href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 					</svg>
 					</a>
 					<div class="dropdown-menu">
@@ -70,7 +70,7 @@
 					<?php
 						// get_template_part( 'template-parts/header/header-anon' );
 					} else {
-						get_template_part( 'template-parts/header/header-logged' );
+						// get_template_part( 'template-parts/header/header-logged' );
 					}
 					?>
 				</div>
@@ -81,3 +81,4 @@
 		</div>
 	</div>
 </div>
+<!-- END SLIMHEADER -->
