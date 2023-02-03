@@ -50,6 +50,7 @@ if(is_search() || is_archive())
 		<div class="container">
 		<div class="row">
 			<div class="col-12">
+			<!-- SLIM HEADER -->
 			<div class="it-header-slim-wrapper-content">
 				<a class="d-none d-lg-block navbar-brand" href="https://www.sns.it/" target="_blank">Scuola Normale Superiore</a>
 				<div class="nav-mobile">
@@ -113,6 +114,7 @@ if(is_search() || is_archive())
 				</div>
 				</div>
 			</div>
+			<!-- End SLIM HEADER -->
 			</div>
 		</div>
 		</div>
@@ -122,54 +124,33 @@ if(is_search() || is_archive())
 		<div class="container">
 			<div class="row">
 			<div class="col-12">
+				<!-- TITLE ROW -->
 				<div class="it-header-center-content-wrapper">
 				<div class="it-brand-wrapper">
 					<a href="sf-index.html">
 					<?php get_template_part( 'template-parts/common/logo' ); ?>
 					<div class="it-brand-text">
-						<div class="it-brand-title">DocStAr</div>
-						<div class="it-brand-tagline d-none d-md-block">Laboratorio di documentazione storico artistica</div>
+					<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
+					<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tipologia_scuola' ); ?></div>
 					</div>
 					</a>
 				</div>
 				<div class="it-right-zone">
-					<div class="it-socials d-none d-md-flex">
-					<span>Seguici su</span>
-					<ul>
-						<li>
-						<a href="#" aria-label="Facebook" target="_blank">
-							<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-facebook'; ?>"></use>
-							</svg>
-						</a>
-						</li>
-						<li>
-						<a href="#" aria-label="Github" target="_blank">
-							<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-github'; ?>"></use>
-							</svg>
-						</a>
-						</li>
-						<li>
-						<a href="#" aria-label="Twitter" target="_blank">
-							<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-twitter'; ?>"></use>
-							</svg>
-						</a>
-						</li>
-					</ul>
-					</div>
-					<div class="it-search-wrapper">
+				<div class="it-socials d-none d-md-flex">
+					<?php get_template_part( 'template-parts/common/social' ); ?>
+				</div>
+				<div class="it-search-wrapper">
 					<span class="d-none d-md-block">Cerca</span>
 					<a class="search-link rounded-icon" aria-label="Cerca nel sito" href="#">
 						<svg class="icon">
-						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 						</svg>
 					</a>
-					</div>
 				</div>
+				</div> <!-- End it-right-zone -->
 				</div>
 			</div>
+			<!-- End TITLE ROW -->
 			</div>
 		</div>
 		</div>
@@ -197,13 +178,10 @@ if(is_search() || is_archive())
 					</div>
 					<div class="menu-wrapper">
 					<ul class="navbar-nav">
-						
-						
 						<li class="nav-item active"><a class="nav-link" href="persone.html" aria-current="Persone"><span>Persone</span></a></li>
 						<li class="nav-item"><a class="nav-link " href="#"><span>Progetti</span></a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><span>Attività di ricerca</span></a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><span>Pubblicazioni</span></a></li>
-					
 						</ul>
 					<ul class="navbar-nav navbar-secondary">
 						<li class="nav-item dropdown">
@@ -227,8 +205,6 @@ if(is_search() || is_archive())
 							</div>
 						</div>
 						</li>
-					
-		
 						<li class="nav-item dropdown megamenu">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"
 							id="mainNavMegamenu1">
@@ -281,7 +257,6 @@ if(is_search() || is_archive())
 					</div>
 				</div>
 				</nav>
-				
 			</div>
 			</div>
 		</div>
@@ -289,10 +264,11 @@ if(is_search() || is_archive())
 	</div>
 	</div>
 <!-- END HEADER -->
+
+
+
+<!-- OLD TOGLIERE DA QUI IN GIU' -->
 <DIV style="width: 100%; height: 100px; border: 1px solid red;">&nbsp;</DIV>
-
-
-
 
 <div id="main-wrapper" class="push_container" id="page_top">
 	<?php get_template_part("template-parts/common/skiplink"); ?>
