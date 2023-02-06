@@ -22,7 +22,7 @@
 						<a href="<?php echo get_site_url(); ?>">
 								<svg class="icon">
 								<!-- footer logo -->
-								<?php get_template_part( 'template-parts/common/logo' ); ?>
+								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
 								</svg>
 								<div class="it-brand-text">
 									<h2 class="no_toc"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h2>
