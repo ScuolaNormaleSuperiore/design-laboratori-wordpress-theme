@@ -38,7 +38,7 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
-			'id'         => $prefix . 'tipologia_scuola',
+			'id'         => $prefix . 'tipologia_laboratorio',
 			'name'       => __( 'Tipologia *', 'design_laboratori_italia' ),
 			'desc'       => __( 'La Tipologia del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -62,6 +62,18 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
+			'id'         => $prefix . 'tagline_laboratorio',
+			'name'       => __( 'Tagline *', 'design_laboratori_italia' ),
+			'desc'       => __( 'La tagline del Laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
 			'id'         => $prefix . 'luogo_laboratorio',
 			'name'       => __( 'Città *', 'design_laboratori_italia' ),
 			'desc'       => __( 'La città dove risiede la Laboratorio' , 'design_laboratori_italia' ),
@@ -69,7 +81,79 @@ function dli_register_main_options_metabox() {
 			'attributes' => array(
 				'required' => 'required',
 			),
-		) 
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'indirizzo_laboratorio',
+			'name'       => __( 'Indirizzo *', 'design_laboratori_italia' ),
+			'desc'       => __( "L'indirizzo del Laboratorio" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'email_laboratorio',
+			'name'       => __( 'Email *', 'design_laboratori_italia' ),
+			'desc'       => __( "L'email del Laboratorio" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'pec_laboratorio',
+			'name'       => __( 'PEC *', 'design_laboratori_italia' ),
+			'desc'       => __( "La PEC del Laboratorio" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'telefono_laboratorio',
+			'name'       => __( 'Telefono *', 'design_laboratori_italia' ),
+			'desc'       => __( "Il numero di telefono del Laboratorio" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'nome_ente_padre',
+			'name'       => __( 'Ente padre *', 'design_laboratori_italia' ),
+			'desc'       => __( "Il nome dell'ente padre" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'url_ente_padre',
+			'name'       => __( 'Url ente padre *', 'design_laboratori_italia' ),
+			'desc'       => __( "L'url dell'ente padre" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
 	);
 
 	$header_options->add_field(
@@ -459,7 +543,7 @@ function dli_register_main_options_metabox() {
 		'id'           => $prefix . 'timeline',
 		'type'        => 'group',
 		'name'        => 'Timeline',
-		'desc' => __( 'Ogni fase è costruita attraverso data, titolo (max 60 caratteri) e descrizione breve (max 140 caratteri). NB: Se è un istituto comprende le tappe delle scuole che ne fanno parte' , 'design_laboratori_italia' ),
+		'desc' => __( 'Ogni fase è costruita attraverso data, titolo (max 60 caratteri) e descrizione breve (max 140 caratteri). NB: Se è un istituto comprende le tappe dei laboratori che ne fanno parte' , 'design_laboratori_italia' ),
 		'repeatable'  => true,
 		'options'     => array(
 			'group_title'   => __( 'Fase {#}', 'design_laboratori_italia' ),
@@ -554,43 +638,14 @@ function dli_register_main_options_metabox() {
 		),
 	) );
 
-	$main_options->add_field( array(
-		'name'        => __( 'Le carte della scuola', 'design_laboratori_italia' ),
-		'desc' => __('Utilizza le carte per presentare il Piano triennale dell\'offerta formativa (PTOF), il Piano di inclusione e il Regolamento di Istituto o altri documenti.', 'design_laboratori_italia' ),
-		'type' => 'title',
-		'id' => $prefix . 'prefisso_carte',
-	) );
-
-	$main_options->add_field( array(
-		'id' => $prefix . 'descrizione_carte',
-		'title'        => __( 'Le Carte', 'design_laboratori_italia' ),
-		'name'        => __( 'Descrizione', 'design_laboratori_italia' ),
-		'desc' => __( 'E\' l\'accesso a tutti i documenti della scuola. Es: La scuola raccontata attraverso i documenti più importanti, come il piano triennale dell\'offerta formativa' , 'design_laboratori_italia' ),
-		'type' => 'textarea_small',
-	) );
-
-	$main_options->add_field( array(
-		'id' => $prefix . 'link_schede_documenti',
-		'name'    => __( 'Le Carte', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui tutti i documenti che ritieni utili per presentare la scuola.  <a href="post-new.php?post_type=documento">Qui puoi creare un documento.</a> ' , 'design_laboratori_italia' ),
-		'type'    => 'custom_attached_posts',
-		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
-		'options' => array(
-			'show_thumbnails' => false, // Show thumbnails on the left
-			'filter_boxes'    => true, // Show a text box for filtering the results
-			'query_args'      => array(
-				'posts_per_page' => -1,
-				'post_type'      => 'documento',
-			), // override the get_posts args
-		),
-	) );
-
-	$main_options->add_field( array(
-		'name'        => __( 'I numeri del Laboratorio', 'design_laboratori_italia' ),
-		'desc' => __('Inserisci il numero di studenti e classi della Laboratorio', 'design_laboratori_italia' ),
-		'type' => 'title',
-		'id' => $prefix . 'prefisso_numeri',
-	) );
+	$main_options->add_field(
+		array(
+			'name'        => __( 'I numeri del Laboratorio', 'design_laboratori_italia' ),
+			'desc' => __('Inserisci il numero di studenti e classi della Laboratorio', 'design_laboratori_italia' ),
+			'type' => 'title',
+			'id' => $prefix . 'prefisso_numeri',
+		)
+	);
 
 	$main_options->add_field( array(
 		'id' => $prefix . 'numeri_descrizione',
@@ -603,45 +658,101 @@ function dli_register_main_options_metabox() {
 		),
 	) );
 
-	$main_options->add_field( array(
-		'id' => $prefix . 'studenti',
-		'name'        => __( 'Studenti *', 'design_laboratori_italia' ),
-		'desc' => __( 'Numero di studenti iscritti a scuola' , 'design_laboratori_italia' ),
-		'type' => 'text_small',
-		'attributes' => array(
-			'type' => 'number',
-			'pattern' => '\d*',
-			'required'    => 'required'
-		),
-		'sanitization_cb' => 'absint',
-		'escape_cb'       => 'absint',
-	) );
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'allievi',
+			'name'        => __( 'Allievi *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di allievi del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
 
-	$main_options->add_field( array(
-		'id' => $prefix . 'classi',
-		'name'        => __( 'Classi *', 'design_laboratori_italia' ),
-		'desc' => __( 'Numero di classi della scuola' , 'design_laboratori_italia' ),
-		'type' => 'text_small',
-		'attributes' => array(
-			'type' => 'number',
-			'pattern' => '\d*',
-			'required'    => 'required'
-		),
-		'sanitization_cb' => 'absint',
-		'escape_cb'       => 'absint',
-	) );
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'phd',
+			'name'        => __( 'Phd *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di phd del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
 
-	$main_options->add_field( array(
-		'id' => $prefix . 'url_scuoleinchiaro',
-		'name'        => __( 'Per approfondire *', 'design_laboratori_italia' ),
-		'desc' => __( 'Link alla scheda della scuola all\'interno di "scuola in chiaro"' , 'design_laboratori_italia' ),
-		'type' => 'text_url',
-		'attributes'    => array(
-			'required'    => 'required'
-		),
-	) );
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'professori',
+			'name'        => __( 'Professori *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di professori del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
 
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'ricercatori',
+			'name'        => __( 'Ricercatori *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di ricercatori del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
 
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'progetti',
+			'name'        => __( 'Progetti *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di progetti del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
+
+	$main_options->add_field(
+		array(
+			'id' => $prefix . 'pubblicazioni',
+			'name'        => __( 'Pubblicazioni *', 'design_laboratori_italia' ),
+			'desc' => __( 'Numero di pubblicazioni del laboratorio' , 'design_laboratori_italia' ),
+			'type' => 'text_small',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+				'required'    => 'required'
+			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
+		)
+	);
 
 	/**
 	* 5 - Registers options page "Servizi".
@@ -1189,55 +1300,6 @@ function dli_register_main_options_metabox() {
 		'type' => 'text'
 		) );
 
-		$setup_options->add_field( array(
-				'id' => $prefix . 'mail_circolari',
-				'name'        => __( 'Configurazione email Circolari', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione della mail inviata in caso di assegnazione di una circolare.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'mail_circolare_non_inviare',
-				'name' => __('DIsabilita le notifiche email', 'design_laboratori_italia' ),
-				'type' => 'checkbox',
-				'default' => false,
-				'description' => __('Selezionando questa opzione <b>NESSUNA email</b> verrà inviata per le circolari in <b>NESSUN caso</b>.', 'design_laboratori_italia' )
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'mail_circolare_oggetto',
-				'name' => 'Oggetto della mail',
-				'type' => 'text',
-				'default' => 'Nuova circolare dalla scuola '.dli_get_option("nome_laboratorio")
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'mail_circolare_messaggio',
-				'name' => 'Messaggio della mail',
-				'type' => 'textarea',
-				'default' => 'Hai ricevuto una nuova circolare. Accedi alla tua bacheca personale per prenderne visione ',
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'altro_scadenza_albo',
-				'name'        => __( 'Scadenza Albo', 'design_laboratori_italia' ),
-				'desc' => __( 'Configura la data di scadenza dei documenti di tipo Albo.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'giorni_scadenza',
-				'name' => 'Durata in giorni atti Albo ',
-				'desc' => __( '<br>Se ad un documento di tipo albo non viene inserita una data di scadenza, valorizzando questo campo questa sarà impostata automaticamente a X giorni dalla pubblicazione', 'design_laboratori_italia' ),
-				'type' => 'text_small',
-				'attributes' => array(
-						'type' => 'number',
-						'pattern' => '\d*',
-						'min' => 0,
-				),
-				'sanitization_cb' => 'dli_sanitize_int',
-				'escape_cb'       => 'dli_sanitize_int',
-		) );
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 
