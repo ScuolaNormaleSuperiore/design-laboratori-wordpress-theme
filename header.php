@@ -133,12 +133,13 @@ if( is_search() || is_archive() )
 				<!-- TITLE ROW -->
 				<div class="it-header-center-content-wrapper">
 				<div class="it-brand-wrapper">
-					<a href="sf-index.html">
-					<?php get_template_part( 'template-parts/common/logo' ); ?>
-					<div class="it-brand-text">
-					<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
-					<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
-					</div>
+					<a href="<?php echo get_site_url(); ?>">
+						<!-- header logo -->
+						<?php get_template_part( 'template-parts/common/logo' ); ?>
+						<div class="it-brand-text">
+						<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
+						<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
+						</div>
 					</a>
 				</div>
 				<div class="it-right-zone">

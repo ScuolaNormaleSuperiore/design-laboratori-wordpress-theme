@@ -1254,6 +1254,7 @@ function dli_register_main_options_metabox() {
 	/**
 	* 14 - Registers options page "Altro".
 	*/
+
 	$args = array(
 		'id'           => 'dli_setup_menu',
 		'title'        => esc_html__( 'Altro', 'design_laboratori_italia' ),
@@ -1272,33 +1273,42 @@ function dli_register_main_options_metabox() {
 
 	$setup_options = new_cmb2_box( $args );
 
-		$setup_options->add_field( array(
-				'id' => $prefix . 'footer_options',
-				'name'        => __( 'Footer', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione del testo da inserire nel footer delle scuole.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$setup_options->add_field( array(
-				'id' => $prefix . 'footer_text',
-				'name' => 'Testo Footer',
-				'desc' => __( 'Inserisci nel footer l\'indirizzo, il codice meccanografico, il codice IPA, il codice Fiscale e il CUF ', 'design_laboratori_italia' ),
-				'type' => 'textarea'
-		) );
-
-		$setup_options->add_field( array(
+	$setup_options->add_field( array(
 				'id' => $prefix . 'altro_istruzioni',
 				'name'        => __( 'Altre Informazioni', 'design_laboratori_italia' ),
 				'desc' => __( 'Area di configurazione delle opzioni generali del tema.' , 'design_laboratori_italia' ),
 				'type' => 'title',
 		) );
 
-	$setup_options->add_field( array(
-		'id' => $prefix . 'mapbox_key',
-		'name' => 'Access Token MapBox',
-		'desc' => __( 'Inserisci l\'access token mapbox per l\'erogazione delle mappe. Puoi crearlo <a target="_blank" href="https://www.mapbox.com/studio/account/tokens/">da qui</a>', 'design_laboratori_italia' ),
-		'type' => 'text'
-		) );
+	$setup_options->add_field(
+		array(
+			'id'   => $prefix . 'mapbox_key',
+			'name' => 'Access Token MapBox',
+			'desc' => __( 'Inserisci l\'access token mapbox per l\'erogazione delle mappe. Puoi crearlo <a target="_blank" href="https://www.mapbox.com/studio/account/tokens/">da qui</a>', 'design_laboratori_italia' ),
+			'type' => 'text',
+			)
+		);
+	
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'newsletter',
+				'name' => __( 'Newsletter', 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+	
+		$setup_options->add_field(
+			array(
+				'id'      => $prefix . 'newsletter_enabled',
+				'name'    => __('Attiva la newsletter', 'design_laboratori_italia'),
+				'type'    => 'radio_inline',
+				'default' => 'false',
+				'options' => array(
+						'true'  => __('Si', 'design_laboratori_italia'),
+						'false' => __('No', 'design_laboratori_italia'),
+				),
+			)
+		);
 
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );

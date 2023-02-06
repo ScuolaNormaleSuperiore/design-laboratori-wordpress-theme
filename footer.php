@@ -19,9 +19,10 @@
 				<div class="row clearfix">
 					<div class="col-sm-12">
 						<div class="it-brand-wrapper">
-							<a href="#">
+						<a href="<?php echo get_site_url(); ?>">
 								<svg class="icon">
-								<use xlink:href="bootstrap-italia/svg/sprites.svg#it-code-circle"></use>
+								<!-- footer logo -->
+								<?php get_template_part( 'template-parts/common/logo' ); ?>
 								</svg>
 								<div class="it-brand-text">
 									<h2 class="no_toc"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h2>
@@ -79,6 +80,7 @@
 		<div class="col-lg-4 col-md-4 pb-2">
 			<div class="pb-2">
 				<?php get_template_part( 'template-parts/common/social_footer' ); ?>
+				<?php get_template_part( 'template-parts/common/newsletter' ); ?>
 			</div>
 		</div>
 				</div>
