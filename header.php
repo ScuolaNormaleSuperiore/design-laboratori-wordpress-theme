@@ -56,7 +56,9 @@ if( is_search() || is_archive() )
 			<div class="col-12">
 			<!-- SLIM HEADER -->
 			<div class="it-header-slim-wrapper-content">
-				<a class="d-none d-lg-block navbar-brand" href="https://www.sns.it/" target="_blank">Scuola Normale Superiore</a>
+				<a class="d-none d-lg-block navbar-brand" 
+					href="<?php echo dli_get_option( 'url_ente_appartenenza' ); ?>" 
+					target="_blank"><?php echo dli_get_option( 'nome_ente_appartenza' ); ?></a>
 				<div class="nav-mobile">
 				<nav aria-label="Navigazione accessoria">
 					<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menu1a" role="button"
@@ -140,17 +142,17 @@ if( is_search() || is_archive() )
 					</a>
 				</div>
 				<div class="it-right-zone">
-				<div class="it-socials d-none d-md-flex">
-					<?php get_template_part( 'template-parts/common/social' ); ?>
-				</div>
-				<div class="it-search-wrapper">
-					<span class="d-none d-md-block">Cerca</span>
-					<a class="search-link rounded-icon" aria-label="Cerca nel sito" href="#">
-						<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
-						</svg>
-					</a>
-				</div>
+					<div class="it-socials d-none d-md-flex">
+						<?php get_template_part( 'template-parts/common/social' ); ?>
+					</div>
+					<div class="it-search-wrapper">
+						<span class="d-none d-md-block">Cerca</span>
+						<a class="search-link rounded-icon" aria-label="Cerca nel sito" href="#">
+							<svg class="icon">
+								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
+							</svg>
+						</a>
+					</div>
 				</div> <!-- End it-right-zone -->
 				</div>
 			</div>

@@ -111,11 +111,11 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'pec_laboratorio',
-			'name'       => __( 'PEC *', 'design_laboratori_italia' ),
+			'name'       => __( 'PEC', 'design_laboratori_italia' ),
 			'desc'       => __( "La PEC del Laboratorio" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
-				'required' => 'required',
+				// 'required' => 'required',
 			),
 		)
 	);
@@ -134,7 +134,7 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
-			'id'         => $prefix . 'nome_ente_padre',
+			'id'         => $prefix . 'nome_ente_appartenza',
 			'name'       => __( 'Ente padre *', 'design_laboratori_italia' ),
 			'desc'       => __( "Il nome dell'ente padre" , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -146,7 +146,7 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
-			'id'         => $prefix . 'url_ente_padre',
+			'id'         => $prefix . 'url_ente_appartenenza',
 			'name'       => __( 'Url ente padre *', 'design_laboratori_italia' ),
 			'desc'       => __( "L'url dell'ente padre" , 'design_laboratori_italia' ),
 			'type'       => 'text',
