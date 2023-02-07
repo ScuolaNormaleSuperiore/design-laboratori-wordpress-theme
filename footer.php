@@ -20,10 +20,8 @@
 					<div class="col-sm-12">
 						<div class="it-brand-wrapper">
 						<a href="<?php echo get_site_url(); ?>">
-								<svg class="icon">
 								<!-- footer logo -->
 								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
-								</svg>
 								<div class="it-brand-text">
 									<h2 class="no_toc"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h2>
 									<h3 class="no_toc d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></h3>
