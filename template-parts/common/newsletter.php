@@ -12,7 +12,10 @@ if ( $newsletter_enabled === 'true' ) {
 		<div class="input-group border">
 			<div class="input-group-prepend">
 					<div class="input-group-text bg-transparent border-white">
-						<svg class="icon icon-sm icon-white"><use xlink:href="bootstrap-italia/svg/sprites.svg#it-mail"></use></svg>
+						<svg class="icon icon-sm icon-white">
+							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ?>">
+							</use>
+						</svg>
 					</div>
 			</div>
 			<label for="input-group-3" class="text-white text-light"><?php echo __( 'Indirizzo e-mail', 'design_laboratori_italia' ); ?></label>
