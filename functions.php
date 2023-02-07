@@ -179,10 +179,11 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		register_nav_menus(
 			array(
-				'menu-lab'          => esc_html__( 'Menu principale di link (a sinistra)', 'design_laboratori_italia' ),
-				'menu-right'        => esc_html__( 'Menu secondario multilevel (a destra)', 'design_laboratori_italia' ),
-				'menu-header-right' => esc_html__( 'Menu header di link (in alto a destra)', 'design_laboratori_italia' ),
-				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link (footer)', 'design_laboratori_italia' ),
+				'menu-lab'          => esc_html__( 'Menu principale di link a sinistra', 'design_laboratori_italia' ),
+				'menu-right'        => esc_html__( 'Menu secondario multilevel a destra', 'design_laboratori_italia' ),
+				'menu-header-right' => esc_html__( 'Menu header di link in alto a destra', 'design_laboratori_italia' ),
+				'menu-links'        => esc_html__( 'Menu link utili - footer', 'design_laboratori_italia' ),
+				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link - footer', 'design_laboratori_italia' ),
 			)
 		);
 
@@ -195,88 +196,67 @@ add_action( 'after_setup_theme', 'dsi_setup' );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function dsi_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
-		'id'            => 'footer-1',
-		'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
-		'id'            => 'footer-2',
-		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
-		'id'            => 'footer-3',
-		'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
-		'id'            => 'footer-4',
-		'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
+function dli_widgets_init() {
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-1',
+	// 	'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
+	// register_sidebar(
+	// 	array(
+	// 		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
+	// 		'id'            => 'footer-2',
+	// 		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 		'before_widget' => '<div class="footer-list">',
+	// 		'after_widget'  => '</div>',
+	// 		'before_title'  => '<h2 class="h3">',
+	// 		'after_title'   => '</h2>',
+	// 	)
+	// );
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-3',
+	// 	'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-4',
+	// 	'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
 }
-add_action( 'widgets_init', 'dsi_widgets_init' );
+add_action( 'widgets_init', 'dli_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
 function dsi_scripts() {
 
-	//wp_deregister_script('jquery');
+	//wp_deregister_script('jquery' );
 
-	wp_enqueue_style( 'dsi-wp-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'dsi-font', get_template_directory_uri() . '/assets/css/fonts.css');
-	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia.css');
-	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/laboratori.css');
-	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
-	wp_enqueue_style( 'dsi-carousel-style', get_template_directory_uri() . '/assets/css/carousel-style-double.css');
-	wp_enqueue_style( 'dsi-splide-min', get_template_directory_uri() . '/assets/css/splide.min.css');
+	// Importazione dei file CSS.
+	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri() ); // File style.css vuoto.
+	wp_enqueue_style( 'dli-font', get_template_directory_uri() . '/assets/css/fonts.css' );
+	wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css' );
+	wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia-comuni.min.css' );
+	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css' );
 
-	wp_enqueue_script( 'dsi-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js');
-	
-	// print css
-	wp_enqueue_style('dsi-print-style', get_template_directory_uri() . '/print.css', array(),'20190912','print' );
+	// Importazione dei file JAVASCRIPT.
+	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js' );
+	wp_enqueue_script( 'dli-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js' );
+	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js', array(), false, true);
 
-	// footer
-	wp_enqueue_script( 'dsi-boostrap-italia-js', get_template_directory_uri() . '/assets/js/bootstrap-italia.js', array(), false, true);
-	wp_enqueue_script( 'dsi-splide-min', get_template_directory_uri() . '/assets/js/splide.min.js', array(), null, true);
-
-
-	/*TODO: da definire se minifizzare*/
-	wp_enqueue_script( 'dsi-jquery-easing', get_template_directory_uri() . '/assets/js/components/jquery-easing/jquery.easing.js', array(), false, true);
-	wp_enqueue_script( 'dsi-jquery-scrollto', get_template_directory_uri() . '/assets/js/components/jquery.scrollto/jquery.scrollTo.js', array(), false, true);
-	wp_enqueue_script( 'dsi-jquery-responsive-dom', get_template_directory_uri() . '/assets/js/components/ResponsiveDom/js/jquery.responsive-dom.js', array(), false, true);
-	wp_enqueue_script( 'dsi-jpushmenu', get_template_directory_uri() . '/assets/js/components/jPushMenu/jpushmenu.js', array(), false, true);
-	wp_enqueue_script( 'dsi-perfect-scrollbar', get_template_directory_uri() . '/assets/js/components/perfect-scrollbar-master/perfect-scrollbar/js/perfect-scrollbar.jquery.js', array(), false, true);
-	wp_enqueue_script( 'dsi-vallento', get_template_directory_uri() . '/assets/js/components/vallenato.js-master/vallenato.js', array(), false, true);
-	wp_enqueue_script( 'dsi-jquery-responsive-tabs', get_template_directory_uri() . '/assets/js/components/responsive-tabs/js/jquery.responsiveTabs.js', array(), false, true);
-	wp_enqueue_script( 'dsi-fitvids', get_template_directory_uri() . '/assets/js/components/fitvids/jquery.fitvids.js', array(), false, true);
-	wp_enqueue_script( 'dsi-sticky-kit', get_template_directory_uri() . '/assets/js/components/sticky-kit-master/dist/sticky-kit.js', array(), false, true);
-	wp_enqueue_script( 'dsi-jquery-match-height', get_template_directory_uri() . '/assets/js/components/jquery-match-height/dist/jquery.matchHeight.js', array(), false, true);
-
-	if(is_singular(array("servizio", "struttura", "luogo", "evento", "scheda_progetto", "post", "circolare", "indirizzo")) || is_archive() || is_search() || is_post_type_archive("luogo")) {
-		wp_enqueue_script( 'dsi-leaflet-js', get_template_directory_uri() . '/assets/js/components/leaflet/leaflet.js', array(), false, true);
-    }
-
-	wp_enqueue_script( 'dsi-scuole-js', get_template_directory_uri() . '/assets/js/laboratori.js', array(), false, true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -304,7 +284,7 @@ function set_views($post_ID) {
 		delete_post_meta($post_ID, $key);
 
 		//set number of views to zero
-		add_post_meta($post_ID, $key, '0');
+		add_post_meta($post_ID, $key, '0' );
 
 	} else{ //increment number of views
 		$count++;
@@ -312,13 +292,14 @@ function set_views($post_ID) {
 	}
 }
 
-//keeps the count accurate by removing prefetching
+// Keeps the count accurate by removing prefetching.
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 function add_menu_link_class( $atts, $item, $args ) {
 	if (property_exists($args, 'link_class')) {
-	  $atts['class'] = $args->link_class;
+		$atts['class'] = $args->link_class;
 	}
 	return $atts;
-  }
-  add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
+}
+
+add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );

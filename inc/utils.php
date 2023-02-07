@@ -1058,8 +1058,8 @@ if(!function_exists("dsi_truncate")) {
 /**
  * get group related to current page
  */
-if(!function_exists("dsi_get_current_group")) {
-		function dsi_get_current_group() {
+if(!function_exists("dli_get_current_group")) {
+		function dli_get_current_group() {
 				if (is_front_page()) {
 						return null;
 				}
@@ -1088,20 +1088,21 @@ if(!function_exists("dsi_get_current_group")) {
 						return  dsi_get_post_types_group($tipo_post);
 				}
 				if (is_page()) {
-						$rel_url = wp_make_link_relative(get_permalink());
-						$rel_url =  preg_replace('/^' . preg_quote('/', '/') . '/', '', $rel_url);
-						$group_slug = strtok($rel_url, '/');
-						switch($group_slug){
-								case 'la-scuola':
-										return 'school';
-								case 'didattica' :
-										return 'education';
-								case 'novita': case 'evento': case 'circolare':
-										return 'news';
-								case 'servizi':
-										return 'service';
-						}
-						return null;
+						// $rel_url = wp_make_link_relative(get_permalink());
+						// $rel_url =  preg_replace('/^' . preg_quote('/', '/') . '/', '', $rel_url);
+						// $group_slug = strtok($rel_url, '/');
+						// switch($group_slug){
+						// 		case 'la-scuola':
+						// 				return 'school';
+						// 		case 'didattica' :
+						// 				return 'education';
+						// 		case 'novita': case 'evento': case 'circolare':
+						// 				return 'news';
+						// 		case 'servizi':
+						// 				return 'service';
+						// }
+						// return get_post_field( 'title' );
+						return get_the_title();
 				}
 				$current_post_type = get_post_type();
 				if ($current_post_type == 'documento') {
