@@ -57,6 +57,27 @@ get_header();
 </div>
 </section>
 
+<!-- PRESENTAZIONE -->
+<section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted pt-5">
+	<div>
+		<div class="container my-12">
+			<h2 class="h3 pb-1">Il laboratorio</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed nibh accumsan, placerat tortor a, efficitur ipsum. 
+				Duis quis ligula tellus. Nam in finibus justo, nec tempor tellus. Maecenas at enim maximus tellus aliquet hendrerit. Cras tempus tempor risus. 
+				Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent vitae luctus mi. Mauris accumsan mollis est, vitae mollis ipsum volutpat tempus. 
+				Suspendisse lobortis arcu bibendum massa viverra fermentum. Duis venenatis ligula ac elementum euismod. 
+				Nunc auctor porta condimentum. Phasellus non nisl a nunc volutpat venenatis. Integer urna nisl, faucibus semper velit ac, ullamcorper laoreet quam.
+				In id dignissim eros, posuere posuere quam. Pellentesque at tincidunt ligula, sit amet mattis diam.&nbsp;
+			</p>
+			<p>
+				Quisque lorem diam, scelerisque sed odio ut, tincidunt iaculis nisl. Suspendisse venenatis in arcu a accumsan. 
+				Fusce lectus nibh, dignissim eget bibendum non, lobortis vitae ligula. Pellentesque sem eros, tristique in odio sit amet, fringilla luctus risus. Sed viverra erat sit amet sem suscipit mollis. In placerat bibendum orci, non gravida magna rhoncus id. 
+				Sed id est nec quam laoreet eleifend eu sed ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
+		</div>
+	</div>
+</section>
+
 </main>
 <?php
 get_footer();
