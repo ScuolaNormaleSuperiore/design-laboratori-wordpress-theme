@@ -13,200 +13,178 @@ get_header();
 ?>
 
 <!-- START CONTENT -->
-<main id="main-container">
-	<!-- BREADCRUMB -->
-	<section id ="breadcrumb">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 ms-4 ">
-					<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
-						<ol class="breadcrumb pb-0">
-							<li class="breadcrumb-item"><a href="sf-index.html">Home</a><span class="separator">&gt;</span></li>
-							<li class="breadcrumb-item active" aria-current="Elenco persone">Persone</li>
-						</ol>
-					</nav>
+<form action="<?php $_SERVER['PHP_SELF']; ?>" id="personeform" method="GET">
+	<main id="main-container">
+		<!-- BREADCRUMB -->
+		<section id ="breadcrumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 ms-4 ">
+						<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+							<ol class="breadcrumb pb-0">
+								<li class="breadcrumb-item"><a href="sf-index.html">Home</a><span class="separator">&gt;</span></li>
+								<li class="breadcrumb-item active" aria-current="Elenco persone"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></li>
+							</ol>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- BANNER PERSONE -->
-	<section id="banner-persone" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-persone">
-		<div class="section-muted p-3 primary-bg-c1">
-			<div class="container">
-				<div class="hero-title text-left ms-4 pb-3 pt-3">
-					<h2 class="p-0  ">Le persone</h2>
-					<p class="font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		<!-- BANNER PERSONE -->
+		<section id="banner-persone" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-persone">
+			<div class="section-muted p-3 primary-bg-c1">
+				<div class="container">
+					<div class="hero-title text-left ms-4 pb-3 pt-3">
+						<h2 class="p-0  "><?php _e( 'Le persone', 'design_laboratori_italia' ); ?></h2>
+						<p class="font-weight-normal"><?php echo dli_get_option( 'testo_sezione_persone', 'persone' ); ?></p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- ELENCO PERSONE -->
-	<div class="container my-4">
-		<section class="section bg-gray-light py-5">
-			<div class="container">
+		<!-- ELENCO PERSONE -->
+		<div class="container my-4">
+			<section class="section bg-gray-light py-5">
+				<div class="container">
 
-				<!-- FILTRI SU STRUTTURE chips se presenti -->
-				<div class="title-section text-center mb-5">
-					<div class="chip chip-simple">
-						<span class="chip-label">Scuola Normale</span>
-					</div>
-					<div class="chip chip-simple">
-						<span class="chip-label">IIT</span>
-					</div>
-					<div class="chip chip-simple">
-						<span class="chip-label">Tutte le strutture</span>
-					</div>
-				</div>
-				<!-- FINE FILTRI -->
-
-				<!-- ELENCO AVATAR PERSONE -->
-				<div class="row  mb-4">
-					<div class="col-lg-3">
-						<h3 class="text-lg-right mb-3 h4">Direttore</h3>
-					</div><!-- /col-lg-3 -->
-					<div class="col-lg-9">
-						<div class="row ">
-
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-										<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-									</div>
-									<div class="extra-text">
-										<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-										<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-									</div>
-								</div>
+					<?php
+						// recupero i termini della tassonomia struttura.
+						$strutture = get_terms( [
+								'taxonomy' => 'struttura',
+								'hide_empty' => false,
+							] 
+						);
+						//visualizzo i filtri sulle strutture solo se ne esistono almeno 2
+						if( count($strutture) >= 1 ) {
+					?>
+						<!-- FILTRI SU STRUTTURE chips se presenti -->
+						<div class="title-section text-center mb-5">
+							<?php
+								foreach ( $strutture as $struttura ) { ?>
+							<div class="chip chip-simple">
+								<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>"><?php echo $struttura->name; ?></a></span>
 							</div>
+							<?php } ?>
 
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-										<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-									</div>
-									<div class="extra-text">
-										<h4>Giulia Neri</h4>
-										<p>IIT</p>
-									</div>
-								</div>
+							<div class="chip chip-simple">
+								<span class="chip-label"><a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>"><?php _e("Tutte le strutture", "design_laboratori_italia"); ?></a></span>
 							</div>
+						</div>
+						<!-- FINE FILTRI -->
+						<?php
+						}
+						//recupero tutte le categorie
+						$categorie_persone= new WP_Query(array(
+							'posts_per_page' => -1,
+							'post_type' => 'tipologia-persona',
+							'meta_key' => 'priorita',
+							'orderby' => 'meta_value_num',
+							'order' => 'ASC'
+						));
+						wp_reset_postdata();
+						while($categorie_persone->have_posts()) {
+							$categorie_persone->the_post();
+							$nome_categoria = get_field('nome');
 
-							<div class="col-lg-4">
-									<div class="avatar-wrapper avatar-extra-text">
-											<div class="avatar size-xl">
-												<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
-											</div>
-											<div class="extra-text">
-												<h4>Michele Dotti</h4>
-											</div>
-									</div>
-							</div>
+							$categoria_id = get_the_ID();
+							if (isset($_GET['struttura']) && $_GET['struttura'] != "" ) {
+								$struttura = $_GET['struttura'];
+								// recupero la lista delle persone filtrate per struttura
+								$persone= new WP_Query(array(
+									'posts_per_page' => -1,
+									'post_type' => 'persona',
+									'orderby' => 'cognome',
+									'order' => 'ASC',
+									'meta_query' => array(
+										array(
+											'key'     => 'categoria_appartenenza',
+											'compare' => 'LIKE',
+											'value'   => '"' . $categoria_id . '"',
+										),
+									),
+									'tax_query' => array(
+										array(
+											'taxonomy' => 'struttura',
+											'field'    => 'slug',
+											'terms'    => "'" . $struttura . "'",
+										),
+									)
+								));
+							}
+							else {
+								// recupero la lista delle persone
+								$persone = new WP_Query(
+									array(
+										'posts_per_page' => -1,
+										'post_type' => 'persona',
+										'orderby' => 'cognome',
+										'order' => 'ASC',
+										'meta_query' => array(
+											array(
+												'key' => 'categoria_appartenenza',
+												'compare' => 'LIKE',
+												'value' => '"' . $categoria_id . '"',
+											),
+										),
+									)
+								);
+							}
+
+							if($persone) {
+						?>
+
+					<!-- ELENCO AVATAR PERSONE -->
+					<?php
+						if ($persone->have_posts()) { ?>
+							<div class="row  mb-4">
+								<div class="col-lg-3">
+									<h3 class="text-lg-right mb-3 h4"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h3>
+								</div><!-- /col-lg-3 -->
+								<div class="col-lg-9">
+									<div class="row ">
+
+									<?php 
+										while($persone->have_posts()) {
+											$persone->the_post();
+											$escludi_da_elenco = get_field('escludi_da_elenco');
+											if(!$escludi_da_elenco) {
+												$nome = get_field('nome');
+												$cognome = get_field('cognome');
+												$foto = get_field('foto');
+												$disattiva_pagina_dettaglio = get_field('disattiva_pagina_dettaglio');
+												$ID = get_the_ID();
+												$link_persona = get_the_permalink($ID);
+											?>
+												<div class="col-lg-4">
+													<div class="avatar-wrapper avatar-extra-text">
+														<div class="avatar size-xl">
+															<img src="<?php echo dsi_get_persona_avatar($foto, $ID); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
+														</div>
+														<div class="extra-text">
+															<h4><a href="<?php echo $link_persona; ?>"><?php echo $nome . " " . $cognome; ?></a></h4>
+															<time datetime="2023-09-15"><?php echo $nome_struttura; ?>&nbsp;</time>
+														</div>
+													</div>
+												</div>
+											<?php
+											}
+										}
+						}
+						wp_reset_postdata(); ?>
 						</div><!-- /row -->
 					</div><!-- /col-lg-9 -->
 				</div><!-- /row -->
-				<!-- /row -->
-				<!-- /row -->
-
-				<div class="row  mb-4">
-					<div class="col-lg-3">
-						<h3 class="text-lg-right mb-3 h4">Professori</h3>
-					</div><!-- /col-lg-3 -->
-					<div class="col-lg-9">
-						<div class="row ">
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-										<img src="img/img-avatar-250x250.png" alt="" aria-hidden="true">
-									</div>
-									<div class="extra-text">
-										<h4><a href="#">Antonio Rossi</a></h4>
-										<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-											<p aria-hidden="true">GN</p>
-											<span class="visually-hidden">Mario Rossi</span>
-										</div>
-									<div class="extra-text">
-										<h4>Giulia Neri</h4>
-										<p>IIT</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-									<div class="avatar-wrapper avatar-extra-text">
-											<div class="avatar size-xl">
-												<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
-											</div>
-											<div class="extra-text">
-												<h4><a href="#">Michele Dotti</a></h4>
-												<time datetime="2023-05-12">CRN/nano</time>
-											</div>
-									</div>
-							</div>
-						</div><!-- /row -->
-
-						<div class="row ">
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-										<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-									</div>
-									<div class="extra-text">
-										<h4><a href="#">Mario Rossi</a></h4>
-										<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-									<div class="avatar size-xl">
-										<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-									</div>
-									<div class="extra-text">
-										<h4>Giulia Neri</h4>
-										<p>IIT</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="avatar-wrapper avatar-extra-text">
-										<div class="avatar size-xl">
-											<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
-										</div>
-										<div class="extra-text">
-											<h4><a href="#">Michele Dotti</a></h4>
-											<time datetime="2023-05-12">CRN/nano</time>
-										</div>
-								</div>
-							</div>
-
-						</div>
-					</div><!-- /col-lg-9 -->
-				</div>
-
-				<div class="row  mb-4">
-					<div class="col-lg-3">
-						<h3 class="text-lg-right mb-3 h4">Post-doc</h3>
-					</div><!-- /col-lg-3 -->
-					<div class="col-lg-9">
-						<div class="row ">
-							<span class="text-lg-right mb-3 pt-1 pl-4">Mario Rossi, Federica Bianchi, Viola Gialli</span>
-						</div><!-- /row -->
-					</div><!-- /col-lg-9 -->
-				</div>
-			</div><!-- /container -->
-		</section><!-- /section -->
-		<!-- /section -->
-	</div>
-</main>
+				</div><!-- /container -->
+				<?php
+				}
+				wp_reset_postdata();
+				} ?>
+			</section><!-- /section -->
+			<!-- /section -->
+		</div>
+	</main>
+</form>
 <!-- END CONTENT -->
+<?php
+get_footer();
