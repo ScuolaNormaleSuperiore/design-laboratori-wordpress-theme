@@ -220,7 +220,7 @@ if( is_search() || is_archive() )
 									'list_item_class' => 'nav-item',
 									'link_class'      => 'nav-link',
 									'current_group'   => $current_group,
-									'walker'          => new Main_Menu_Walker()
+									'walker'          => new Main_Menu_Walker(),
 								)
 							);
 						}
