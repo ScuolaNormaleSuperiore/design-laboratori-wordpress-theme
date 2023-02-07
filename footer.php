@@ -72,8 +72,28 @@
 				</ul>
 			</div>
 		</div>
+		<!-- LINK UTILI -->
 		<div class="col-lg-4 col-md-4 pb-2">
-			<!-- <h4><a href="#" title="Vai alla pagina: Lorem Ipsum">Lorem Ipsum</a></h4> -->
+			<h4>
+				<a href='#' title='Vai alla pagina: Lorem Ipsum'>
+					<?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>
+				</a>
+			</h4>
+			<div class="link-list-wrapper" id="link-utili">
+			<?php
+				$location = 'menu-links';
+				if ( has_nav_menu( $location ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location' => $location,
+							'depth'          => 0,
+							'menu_class'     => 'footer-list',
+							'walker'         => new Footer_Menu_Walker(),
+						)
+					);
+				}
+				?>
+			</div>
 		</div>
 		<div class="col-lg-4 col-md-4 pb-2">
 			<div class="pb-2">

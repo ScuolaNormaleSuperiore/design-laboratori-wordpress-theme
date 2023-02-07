@@ -179,10 +179,11 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		register_nav_menus(
 			array(
-				'menu-lab'          => esc_html__( 'Menu principale di link (a sinistra)', 'design_laboratori_italia' ),
-				'menu-right'        => esc_html__( 'Menu secondario multilevel (a destra)', 'design_laboratori_italia' ),
-				'menu-header-right' => esc_html__( 'Menu header di link (in alto a destra)', 'design_laboratori_italia' ),
-				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link (footer)', 'design_laboratori_italia' ),
+				'menu-lab'          => esc_html__( 'Menu principale di link a sinistra', 'design_laboratori_italia' ),
+				'menu-right'        => esc_html__( 'Menu secondario multilevel a destra', 'design_laboratori_italia' ),
+				'menu-header-right' => esc_html__( 'Menu header di link in alto a destra', 'design_laboratori_italia' ),
+				'menu-links'         => esc_html__( 'Menu link utili - footer', 'design_laboratori_italia' ),
+				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link - footer', 'design_laboratori_italia' ),
 			)
 		);
 
@@ -195,45 +196,47 @@ add_action( 'after_setup_theme', 'dsi_setup' );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function dsi_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
-		'id'            => 'footer-1',
-		'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
-		'id'            => 'footer-2',
-		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
-		'id'            => 'footer-3',
-		'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
-		'id'            => 'footer-4',
-		'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
-		'before_widget' => '<div class="footer-list">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="h3">',
-		'after_title'   => '</h2>',
-	) );
+function dli_widgets_init() {
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-1',
+	// 	'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
+	// register_sidebar(
+	// 	array(
+	// 		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
+	// 		'id'            => 'footer-2',
+	// 		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 		'before_widget' => '<div class="footer-list">',
+	// 		'after_widget'  => '</div>',
+	// 		'before_title'  => '<h2 class="h3">',
+	// 		'after_title'   => '</h2>',
+	// 	)
+	// );
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-3',
+	// 	'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
+	// register_sidebar( array(
+	// 	'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
+	// 	'id'            => 'footer-4',
+	// 	'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
+	// 	'before_widget' => '<div class="footer-list">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h2 class="h3">',
+	// 	'after_title'   => '</h2>',
+	// ) );
 }
-add_action( 'widgets_init', 'dsi_widgets_init' );
+add_action( 'widgets_init', 'dli_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
