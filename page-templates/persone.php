@@ -50,77 +50,87 @@ get_header();
 
 					<?php
 						// recupero i termini della tassonomia struttura.
-						$strutture = get_terms( [
+						$strutture = get_terms(
+							[
 								'taxonomy' => 'struttura',
 								'hide_empty' => false,
-							] 
+							]
 						);
-						//visualizzo i filtri sulle strutture solo se ne esistono almeno 2
-						if( count($strutture) >= 1 ) {
-					?>
+						// visualizzo i filtri sulle strutture solo se ne esistono almeno 2.
+						if ( count( $strutture ) >= 1 ) {
+							?>
 						<!-- FILTRI SU STRUTTURE chips se presenti -->
 						<div class="title-section text-center mb-5">
 							<?php
-								foreach ( $strutture as $struttura ) { ?>
-							<div class="chip chip-simple">
-								<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug ?>" title="<?php _e("Filtra per", "design_laboratori_italia"); ?>: <?php echo $struttura->name; ?>"><?php echo $struttura->name; ?></a></span>
-							</div>
+							foreach ( $strutture as $struttura ) {
+								?>
+								<div class="chip chip-simple">
+									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo $struttura->name; ?>"><?php echo $struttura->name; ?></a></span>
+								</div>
 							<?php } ?>
 
 							<div class="chip chip-simple">
-								<span class="chip-label"><a href="<?php the_permalink();?>" title="<?php _e("Disattiva filtri", "design_laboratori_italia"); ?>"><?php _e("Tutte le strutture", "design_laboratori_italia"); ?></a></span>
+								<span class="chip-label"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Disattiva filtri', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
 							</div>
 						</div>
 						<!-- FINE FILTRI -->
-						<?php
+							<?php
 						}
-						//recupero tutte le categorie
-						$categorie_persone= new WP_Query(array(
-							'posts_per_page' => -1,
-							'post_type' => 'tipologia-persona',
-							'meta_key' => 'priorita',
-							'orderby' => 'meta_value_num',
-							'order' => 'ASC'
-						));
+
+						// recupero tutte le categorie.
+						$categorie_persone = new WP_Query(
+							array(
+								'posts_per_page' => -1,
+								'post_type'      => 'tipologia-persona',
+								'meta_key'       => 'priorita',
+								'orderby'        => 'meta_value_num',
+								'order'          => 'ASC',
+							)
+						);
+
 						wp_reset_postdata();
-						while($categorie_persone->have_posts()) {
+
+						// INIZIO LOOP CATEGORIE.
+						while ( $categorie_persone->have_posts() ) {
 							$categorie_persone->the_post();
-							$nome_categoria = get_field('nome');
+							$nome_categoria = get_field( 'nome' );
 
 							$categoria_id = get_the_ID();
-							if (isset($_GET['struttura']) && $_GET['struttura'] != "" ) {
+							if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != "" ) {
 								$struttura = $_GET['struttura'];
-								// recupero la lista delle persone filtrate per struttura
-								$persone= new WP_Query(array(
-									'posts_per_page' => -1,
-									'post_type' => 'persona',
-									'orderby' => 'cognome',
-									'order' => 'ASC',
-									'meta_query' => array(
-										array(
-											'key'     => 'categoria_appartenenza',
-											'compare' => 'LIKE',
-											'value'   => '"' . $categoria_id . '"',
-										),
-									),
-									'tax_query' => array(
-										array(
-											'taxonomy' => 'struttura',
-											'field'    => 'slug',
-											'terms'    => "'" . $struttura . "'",
-										),
-									)
-								));
-							}
-							else {
-								// recupero la lista delle persone
+								// recupero la lista delle persone filtrate per struttura.
 								$persone = new WP_Query(
 									array(
 										'posts_per_page' => -1,
-										'post_type' => 'persona',
-										'orderby' => 'cognome',
-										'order' => 'ASC',
-										'meta_query' => array(
+										'post_type'      => 'persona',
+										'orderby'        => 'cognome',
+										'order'          => 'ASC',
+										'meta_query'     => array(
+											array(
+												'key'     => 'categoria_appartenenza',
+												'compare' => 'LIKE',
+												'value'   => '"' . $categoria_id . '"',
+											),
+										),
+										'tax_query'   => array(
+											array(
+												'taxonomy' => 'struttura',
+												'field'    => 'slug',
+												'terms'    => "'" . $struttura . "'",
+											),
+										),
+									)
+								);
+							}
+							else {
+								// recupero la lista DI TUTTE persone.
+								$persone = new WP_Query(
+									array(
+										'posts_per_page' => -1,
+										'post_type'      => 'persona',
+										'orderby'        => 'cognome',
+										'order'          => 'ASC',
+										'meta_query'     => array(
 											array(
 												'key' => 'categoria_appartenenza',
 												'compare' => 'LIKE',
@@ -131,58 +141,71 @@ get_header();
 								);
 							}
 
-							if($persone) {
-						?>
+							if ( $persone ) {
+								?>
 
-					<!-- ELENCO AVATAR PERSONE -->
-					<?php
-						if ($persone->have_posts()) { ?>
-							<div class="row  mb-4">
-								<div class="col-lg-3">
-									<h3 class="text-lg-right mb-3 h4"><?php _e($nome_categoria, "design_laboratori_italia"); ?></h3>
-								</div><!-- /col-lg-3 -->
-								<div class="col-lg-9">
-									<div class="row ">
+								<!-- ELENCO AVATAR PERSONE -->
+								<?php
+								if ( $persone->have_posts() ) {
+									?>
+									<div class="row  mb-4">
+										<div class="col-lg-3">
+											<h3 class="text-lg-right mb-3 h4"><?php _e( $nome_categoria, "design_laboratori_italia" ); ?></h3>
+										</div><!-- /col-lg-3 -->
+										<div class="col-lg-9">
+											<div class="row ">
 
-									<?php 
-										while($persone->have_posts()) {
+										<?php
+										while ( $persone->have_posts() ) {
 											$persone->the_post();
-											$escludi_da_elenco = get_field('escludi_da_elenco');
-											if(!$escludi_da_elenco) {
-												$nome = get_field('nome');
-												$cognome = get_field('cognome');
-												$foto = get_field('foto');
-												$disattiva_pagina_dettaglio = get_field('disattiva_pagina_dettaglio');
-												$ID = get_the_ID();
-												$link_persona = get_the_permalink($ID);
-											?>
+											$escludi_da_elenco = get_field( 'escludi_da_elenco' );
+											if ( ! $escludi_da_elenco ) {
+												$nome                       = get_field( 'nome' );
+												$cognome                    = get_field( 'cognome' );
+												$foto                       = get_field( 'foto' );
+												$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio' );
+												$ID                         = get_the_ID();
+												$link_persona               = get_the_permalink( $ID );
+												?>
 												<div class="col-lg-4">
 													<div class="avatar-wrapper avatar-extra-text">
 														<div class="avatar size-xl">
-															<img src="<?php echo dsi_get_persona_avatar($foto, $ID); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
+															<img src="<?php echo dsi_get_persona_avatar( $foto, $ID ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
 														</div>
 														<div class="extra-text">
-															<h4><a href="<?php echo $link_persona; ?>"><?php echo $nome . " " . $cognome; ?></a></h4>
+															<?php
+															$terms = get_the_terms( $ID, 'struttura' );
+															$nome_struttura = $terms[0]->name;
+															if ( ! $disattiva_pagina_dettaglio ) {
+																?>
+																<h4><a href="<?php echo $link_persona; ?>"><?php echo $nome . " " . $cognome; ?></a></h4>
+																<?php
+															}
+															else {
+																?>
+																<h4><?php echo $nome . " " . $cognome; ?></h4>
+															<?php } ?>
 															<time datetime="2023-09-15"><?php echo $nome_struttura; ?>&nbsp;</time>
 														</div>
 													</div>
-												</div>
-											<?php
+												</div><!-- /col-lg-4 -->
+												<?php
 											}
 										}
+										?>
+											</div><!-- /row -->
+										</div><!-- /col-lg-9 -->
+									</div><!-- /row -->
+									<?php
+								}
+							}
+							wp_reset_postdata();
 						}
-						wp_reset_postdata(); ?>
-						</div><!-- /row -->
-					</div><!-- /col-lg-9 -->
-				</div><!-- /row -->
+						wp_reset_postdata();
+						?>
 				</div><!-- /container -->
-				<?php
-				}
-				wp_reset_postdata();
-				} ?>
 			</section><!-- /section -->
-			<!-- /section -->
-		</div>
+		</div><!-- /container -->
 	</main>
 </form>
 <!-- END CONTENT -->
