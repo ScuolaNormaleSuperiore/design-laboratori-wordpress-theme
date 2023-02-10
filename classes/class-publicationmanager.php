@@ -8,6 +8,9 @@
 // Post Types.
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 
+// Taxonomies.
+define( 'CATEGORY_TAXONOMY', 'categoria' );
+
 /**
  * The manager that setups Course post types.
  */
@@ -23,8 +26,48 @@ class Publication_Manager {
 	 * @return void
 	 */
 	public function setup() {
+		// Register the taxonomies used by this post type.
+		add_action( 'init', array( $this, 'add_taxonomies' ) );
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
+	}
+
+	/**
+	 * Register the taxonomies.
+	 *
+	 * @return void
+	 */
+	public function add_taxonomies() {
+		// aggiungo la tassonomia categoria
+
+		$category_labels = array(
+			'name'              => _x( 'Categoria', 'taxonomy general name', 'design_laboratori_italia' ),
+			'singular_name'     => _x( 'Categoria', 'taxonomy singular name', 'design_laboratori_italia' ),
+			'search_items'      => __( 'Cerca Categoria', 'design_laboratori_italia' ),
+			'all_items'         => __( 'Tutte le categorie', 'design_laboratori_italia' ),
+			'edit_item'         => __( 'Modifica la Categoria', 'design_laboratori_italia' ),
+			'update_item'       => __( 'Aggiorna la Categoria', 'design_laboratori_italia' ),
+			'add_new_item'      => __( 'Aggiungi una Categoria', 'design_laboratori_italia' ),
+			'new_item_name'     => __( 'Nuova Categoria', 'design_laboratori_italia' ),
+			'menu_name'         => __( 'Categoria', 'design_laboratori_italia' ),
+		);
+
+		$category_args = array(
+			'hierarchical'      => true,
+			'labels'            => $category_labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'categoria' ),
+			'capabilities'      => array(
+				'manage_terms' => 'manage_categorie',
+				'edit_terms'   => 'edit_categorie',
+				'delete_terms' => 'delete_categorie',
+				'assign_terms' => 'assign_categorie',
+			),
+		);
+
+		register_taxonomy( CATEGORY_TAXONOMY, array( PUBLICATION_POST_TYPE ), $category_args );
 	}
 
 	/**
@@ -103,6 +146,32 @@ class Publication_Manager {
 						'label' => 'Autori',
 						'name' => 'autori',
 						'aria-label' => '',
+						'type' => 'relationship',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'post_type' => array(
+							0 => 'persona',
+						),
+						'taxonomy' => '',
+						'filters' => array(
+							0 => 'search',
+						),
+						'return_format' => 'object',
+						'min' => '',
+						'max' => '',
+						'elements' => '',
+					),
+					array(
+						'key' => 'field_63e652af2c892',
+						'label' => 'Abstract',
+						'name' => 'abstract',
+						'aria-label' => '',
 						'type' => 'text',
 						'instructions' => '',
 						'required' => 0,
@@ -113,10 +182,47 @@ class Publication_Manager {
 							'id' => '',
 						),
 						'default_value' => '',
-						'maxlength' => '',
+						'maxlength' => 255,
 						'placeholder' => '',
 						'prepend' => '',
 						'append' => '',
+					),
+					array(
+						'key' => 'field_63e652c02c893',
+						'label' => 'Url',
+						'name' => 'url',
+						'aria-label' => '',
+						'type' => 'url',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'placeholder' => '',
+					),
+					array(
+						'key' => 'field_63e652d32c894',
+						'label' => 'Promuovi in Home',
+						'name' => 'promuovi_in_home',
+						'aria-label' => '',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 0,
+						'ui' => 0,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
 					),
 				),
 				'location' => array(
