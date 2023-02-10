@@ -284,10 +284,10 @@ function dli_register_main_options_metabox() {
 				'title'        => esc_html__( 'Home Page', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'homepage',
-				'capability'    => 'manage_options',
+				'capability'   => 'manage_options',
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
-				'tab_title'    => __('Home', 'design_laboratori_italia'),	);
+				'tab_title'    => __( 'Home', 'design_laboratori_italia' ),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -312,7 +312,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_carousel_is_selezione_automatica',
 				'name' => __('Selezione Automatica', 'design_laboratori_italia'),
-				'desc' => __('Seleziona <b>Si</b> per mostrare automaticamente gli articoli in Home Page (ultimo articolo per ogni categoria). <b>No</b> per sceglierli manualmente', 'design_laboratori_italia'),
+				'desc' => __('Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in home". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia'),
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(
@@ -324,8 +324,8 @@ function dli_register_main_options_metabox() {
 
 		$home_options->add_field(
 			array(
-				'name'    => __('Selezione articoli ', 'design_laboratori_italia'),
-				'desc'    => __('Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia'),
+				'name'    => __( 'Selezione articoli ', 'design_laboratori_italia' ),
+				'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia'),
 				'id'      => $prefix . 'articoli_presentazione',
 				'type'    => 'custom_attached_posts',
 				'column'  => true,
@@ -334,7 +334,7 @@ function dli_register_main_options_metabox() {
 						'filter_boxes'    => true, // Show a text box for filtering the results.
 						'query_args'      => array(
 								'posts_per_page' => -1,
-								'post_type'      => array('post', 'page', 'evento', 'documento', 'struttura', 'servizio','indirizzo'),
+								'post_type'      => array('post', 'notizia', 'evento', 'pubblicazione'),
 						), // override the get_posts args.
 					)
 				)
@@ -342,8 +342,8 @@ function dli_register_main_options_metabox() {
 
 		$home_options->add_field(
 			array(
-				'id' => $prefix . 'home_istruzioni_banner',
-				'name'        => __( 'Sezione Banner', 'design_laboratori_italia' ),
+				'id'   => $prefix . 'home_istruzioni_banner',
+				'name' => __( 'Sezione Banner', 'design_laboratori_italia' ),
 				'desc' => __( 'Gestione sezione Banner (opzionale) mostrata in Home Page' , 'design_laboratori_italia' ),
 				'type' => 'title',
 			)

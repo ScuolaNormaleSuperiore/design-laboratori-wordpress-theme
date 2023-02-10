@@ -123,8 +123,8 @@ class Event_Manager {
 							'class' => '',
 							'id' => '',
 						),
-						'display_format' => 'd/m/Y g:i a',
-						'return_format' => 'Y-m-d H:i:s',
+						'display_format' => 'd/m/Y H:i',
+						'return_format' => 'd/m/Y H:i',
 						'first_day' => 1,
 					),
 					array(
@@ -141,8 +141,8 @@ class Event_Manager {
 							'class' => '',
 							'id' => '',
 						),
-						'display_format' => 'd/m/Y g:i a',
-						'return_format' => 'Y-m-d H:i:s',
+						'display_format' => 'd/m/Y H:i',
+						'return_format' => 'd/m/Y H:i',
 						'first_day' => 1,
 					),
 					array(
@@ -321,7 +321,7 @@ class Event_Manager {
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
-						'required' => 1,
+						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
 							'width' => '',
@@ -341,7 +341,7 @@ class Event_Manager {
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
-						'required' => 1,
+						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
 							'width' => '',

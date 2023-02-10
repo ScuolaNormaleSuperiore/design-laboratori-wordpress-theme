@@ -163,6 +163,27 @@ function dli_create_pages_on_theme_activation() {
 			}
 	}
 
+	$new_page_title    = __( 'Eventi', 'design_laboratori_italia' ); // Page's title.
+	$new_page_content  = 'Qui ci sono gli eventi'; // Content goes here.
+	$new_page_template = 'page-templates/eventi.php'; // The template to use for the page.
+	$page_check        = get_page_by_title( $new_page_title ); // Check if the page already exists.
+	// Store the above data in an array
+	$new_page = array(
+		'post_type'    => 'page',
+		'post_title'   => $new_page_title,
+		'post_content' => $new_page_content,
+		'post_status'  => 'publish',
+		'post_author'  => 1,
+		'post_slug'    => 'eventi',
+	);
+	// If the page doesn't already exist, create it.
+	if ( ! isset( $page_check->ID ) ) {
+			$new_page_id = wp_insert_post( $new_page );
+			if ( ! empty( $new_page_template ) ) {
+				update_post_meta( $new_page_id, '_wp_page_template', $new_page_template );
+			}
+	}
+
 	// Template page per La Home di Sezione Servizi.
 	$new_page_title    = __( 'Servizi', 'design_laboratori_italia' ); // Page's title.
 	$new_page_content  = 'Qui ci sono i servizi'; // Content goes here.
@@ -278,11 +299,6 @@ function dli_create_pages_on_theme_activation() {
 	wp_insert_term( 'Professori e ricercatori', 'tipologia-servizio' );
 	wp_insert_term( 'Studenti', 'tipologia-servizio' );
 	wp_insert_term( 'Esterni', 'tipologia-servizio' );
-
-	// Valori tassonomia tipologia-articolo.
-	wp_insert_term( 'Notizie', 'tipologia-articolo' );
-	wp_insert_term( 'Articoli', 'tipologia-articolo' );
-	wp_insert_term( 'Rassegna Stampa', 'tipologia-articolo' );
 
 	// Valori tassonomia struttura.
 	wp_insert_term( 'Prima struttura', 'struttura' );
@@ -421,17 +437,17 @@ function dli_create_pages_on_theme_activation() {
 			)
 		);
 
-		$term = get_term_by( 'name', 'Notizie', 'tipologia-articolo' );
+		$notizie_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
-				'menu-item-title'     => __('Notizie', 'design_laboratori_italia' ),
+				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $notizie_id,
+				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
-				'menu-item-type'      => 'taxonomy',
-				'menu-item-object'    => 'tipologia-articolo',
-				'menu-item-object-id' => $term->term_id,
-				'menu-item-classes'    => 'footer-link',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
 			)
 		);
 
@@ -455,29 +471,31 @@ function dli_create_pages_on_theme_activation() {
 		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
 		$menu_novita = $menu_id;
 
-		$term = get_term_by( 'name', 'Notizie', 'tipologia-articolo' );
+		$notizie_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
 				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $notizie_id,
+				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
-				'menu-item-type'      => 'taxonomy',
-				'menu-item-object'    => 'tipologia-articolo',
-				'menu-item-object-id' => $term->term_id,
-				'menu-item-classes'    => 'footer-link',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
 			)
 		);
 
+		$eventi_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
-				'menu-item-title'   => __( 'Eventi', 'design_laboratori_italia' ),
-				'menu-item-status'  => 'publish',
-				'menu-item-object'  => 'evento',
-				'menu-item-type'    => 'post_type_archive',
-				'menu-item-classes' => 'footer-link',
+				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $eventi_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
 			)
 		);
 

@@ -1120,19 +1120,60 @@ if(!function_exists("dli_get_current_group")) {
 
 if( ! function_exists( 'dli_get_carousel_items' ) ) {
 	function dli_get_carousel_items( ) {
-		$items = array();
-
-		$evento = get_post(1665);
-		$test_item = dli_from_event_to_slider_event ( $evento );
-		array_push($items, $test_item );
-		return array();
+		$items   = array();
+		$results = array();
+		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
+		if ( $mode_auto == 'true' ) {
+			$query = new WP_Query(
+				array(
+					'posts_per_page' => -1,
+					'post_type'      => array( 'evento', 'notizia', 'pubblicazione', 'post' ),
+					'orderby'        => 'post_date',
+					'order'          => 'DESC',
+					'meta_query'     => array(
+						array(
+							'key'     => 'promuovi_in_home',
+							'compare' => '=',
+							'value'   => 1,
+						),
+					),
+				)
+			);
+			$number =  $query->found_posts;
+			$results = $query->posts;
+		} else {
+			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
+			foreach ( $result_ids As $id) {
+				array_push( $results, get_post( $id  ) );
+			}
+		}
+		foreach ( $results as $result ) {
+			$item = array();
+			switch ( $result->post_type) {
+				case 'evento':
+					$item = dli_from_event_to_slider_item ( $result );
+					break;
+				case 'notizia':
+					$item = dli_from_news_to_slider_item ( $result );
+					break;
+				case 'pubblicazione':
+						$item = dli_from_publication_to_slider_item ( $result );
+						break;
+				default:
+					// Standard post or article.
+					$item = dli_from_post_to_slider_item ( $result );
+					break;
+			}
+			array_push( $items, $item );
+		}
+		return $items;
 	}
 }
 
-if( ! function_exists( 'dli_from_event_to_slider_event' ) ) {
-	function dli_from_event_to_slider_event( $evento ) {
-		$post_type = get_post_type( $evento );
-		$image_url  = the_post_thumbnail_url( 'item-carousel' );
+if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
+	function dli_from_event_to_slider_item( $item ) {
+		$post_type = get_post_type( $item );
+		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
 		if (! $image_url){
 			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 		}
@@ -1140,12 +1181,92 @@ if( ! function_exists( 'dli_from_event_to_slider_event' ) ) {
 			'type'          => $post_type,
 			'category'      => __( 'Eventi', 'design_laboratori_italia' ),
 			'category_link' => get_post_type_archive_link( $post_type ),
-			'date'          => '10/12/2023',
-			'title'         => get_the_title( $evento ),
-			'description'   => wp_trim_words( get_the_content( $evento ), 200 ),
-			'link'          => get_the_permalink( $evento ),
-			'image_url'     => the_post_thumbnail_url( 'item-carousel' ),
+			'date'          => get_field('data_inizio', $item),
+			'title'         => get_the_title( $item ),
+			'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_url,
 		);
+	}
+
+	if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
+		function dli_from_event_to_slider_item( $item ) {
+			$post_type = get_post_type( $item );
+			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+			if (! $image_url){
+				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+			}
+			return array(
+				'type'          => $post_type,
+				'category'      => __( 'Eventi', 'design_laboratori_italia' ),
+				'category_link' => get_post_type_archive_link( $post_type ),
+				'date'          => get_field('data_inizio', $item),
+				'title'         => get_the_title( $item ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'link'          => get_the_permalink( $item ),
+				'image_url'     => $image_url,
+			);
+		}
+	}
+
+	if( ! function_exists( 'dli_from_news_to_slider_item' ) ) {
+		function dli_from_news_to_slider_item( $item ) {
+			$post_type = get_post_type( $item );
+			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+			if (! $image_url){
+				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+			}
+			return array(
+				'type'          => $post_type,
+				'category'      => __( 'Notizie', 'design_laboratori_italia' ),
+				'category_link' => get_post_type_archive_link( $post_type ),
+				'date'          => get_the_date( 'd/m/Y', $item ),
+				'title'         => get_the_title( $item ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'link'          => get_the_permalink( $item ),
+				'image_url'     => $image_url,
+			);
+		}
+	}
+
+	if( ! function_exists( 'dli_from_publication_to_slider_item' ) ) {
+		function dli_from_publication_to_slider_item( $item ) {
+			$post_type = get_post_type( $item );
+			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+			if (! $image_url){
+				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+			}
+			return array(
+				'type'          => $post_type,
+				'category'      => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+				'category_link' => get_post_type_archive_link( $post_type ),
+				'date'          => get_field('data_inizio', $item),
+				'title'         => get_the_title( $item ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'link'          => get_the_permalink( $item ),
+				'image_url'     => $image_url,
+			);
+		}
+	}
+
+	if( ! function_exists( 'dli_from_post_to_slider_item' ) ) {
+		function dli_from_post_to_slider_item( $item ) {
+			$post_type = get_post_type( $item );
+			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+			if (! $image_url){
+				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+			}
+			return array(
+				'type'          => $post_type,
+				'category'      => __( 'Articoli', 'design_laboratori_italia' ),
+				'category_link' => get_post_type_archive_link( $post_type ),
+				'date'          => get_field('data_inizio', $item),
+				'title'         => get_the_title( $item ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'link'          => get_the_permalink( $item ),
+				'image_url'     => $image_url,
+			);
+		}
 	}
 
 }

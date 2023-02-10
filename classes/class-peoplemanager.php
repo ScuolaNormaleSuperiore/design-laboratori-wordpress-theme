@@ -9,7 +9,6 @@
 define( 'PEOPLE_POST_TYPE', 'persona' );
 
 // Taxonomies.
-// define( 'PEOPLE_TYPE_TAXONOMY', 'tipo-persona' );
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 
 /**

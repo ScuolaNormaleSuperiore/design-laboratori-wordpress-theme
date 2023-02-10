@@ -122,7 +122,7 @@ class News_Manager {
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
-						'required' => 1,
+						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
 							'width' => '',
@@ -142,7 +142,7 @@ class News_Manager {
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
-						'required' => 1,
+						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
 							'width' => '',

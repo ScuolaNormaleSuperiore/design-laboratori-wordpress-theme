@@ -15,11 +15,11 @@
 			<!-- Single slide -->
 			<li class="splide__slide">
 				<div class="it-single-slide-wrapper">
-					<a href="#">
+					<a href="<?php echo esc_attr( $item['link'] ); ?>">
 						<div class="img-responsive-wrapper">
 							<div class="img-responsive">
-								<div class="img-wrapper">
-									<img src="<?php echo $item['image_url']; ?>" title="titolo immagine" alt="descrizione immagine" />
+								<div>
+									<img src="<?php echo esc_url( $item['image_url'] ); ?>" title="titolo immagine" alt="descrizione immagine" />
 								</div>
 							</div>
 						</div>
@@ -29,15 +29,15 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="category-top">
-										<a class="category" href="#"><?php echo $item['category']; ?></a>
-										<span class="data"><?php echo $item['date']; ?></span>
+										<a class="category" href="<?php echo esc_url( $item['category_link'] ); ?>"><?php echo esc_attr( $item['category'] ); ?></a>
+										<span class="data"><?php echo esc_attr( $item['date'] ); ?></span>
 									</div>
 									<h5 class="card-title big-heading"><?php echo $item['title']; ?></h5>
-									<p class="card-text"><?php echo $item['description']; ?></p>
-									<a class="read-more" href="<?php echo $item['link']; ?>">
+									<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>
+									<a class="read-more" href="<?php echo esc_attr( $item['link'] ); ?>">
 										<span class="text"><?php echo __( 'Leggi di piu', 'design_laboratori_italia' ); ?></span>
 										<svg class="icon">
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use>
+											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ) ?>"></use>
 										</svg>
 									</a>
 								</div>

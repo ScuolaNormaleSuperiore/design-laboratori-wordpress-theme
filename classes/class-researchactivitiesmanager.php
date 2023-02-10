@@ -31,7 +31,7 @@ class ResearchActivities_Manager {
 						'singular_name' => _x( 'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' ),
 						'add_new'       => _x( 'Aggiungi un Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' ),
 						'add_new_item'  => _x( 'Aggiungi un nuovo Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' ),
-						'edit_item'       => _x( 'Modifica l\'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' )
+						'edit_item'     => _x( 'Modifica l\'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' )
 				);
 
 				$args   = array(
