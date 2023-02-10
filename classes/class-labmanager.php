@@ -25,6 +25,13 @@ if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
 
+if ( ! class_exists( 'News_Manager' ) ) {
+	include_once 'class-newsmanager.php';
+}
+
+if ( ! class_exists( 'Event_Manager' ) ) {
+	include_once 'class-eventmanager.php';
+}
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -81,6 +88,14 @@ class LabManager {
 
 		// Setup del post type Progetti.
 		$ctprog = new Project_Manager();
+		$ctprog->setup();
+
+		// Setup del post type News.
+		$ctprog = new News_Manager();
+		$ctprog->setup();
+
+		// Setup del post type Eventi.
+		$ctprog = new Event_Manager();
 		$ctprog->setup();
 	}
 }

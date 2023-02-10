@@ -18,7 +18,7 @@
                     "id": ""
                 },
                 "default_value": "",
-                "maxlength": "",
+                "maxlength": 255,
                 "rows": "",
                 "placeholder": "",
                 "new_lines": ""
@@ -44,56 +44,24 @@
                 "ui_off_text": ""
             },
             {
-                "key": "field_63cab53e7a489",
-                "label": "Progetto",
-                "name": "progetto",
+                "key": "field_63e665c8c0cd4",
+                "label": "Promuovi in home",
+                "name": "promuovi_in_home",
                 "aria-label": "",
-                "type": "relationship",
+                "type": "true_false",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
                     "id": ""
                 },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            },
-            {
-                "key": "field_63cab53e7de3e",
-                "label": "Indirizzo di ricerca",
-                "name": "indirizzo_di_ricerca",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             }
         ],
         "location": [
