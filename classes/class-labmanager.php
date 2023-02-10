@@ -25,7 +25,6 @@ if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
 
-if ( ! class_exists( 'Contact_Manager' ) ) {
 /**
  * The manager that builds the tool and configures Wordpress.
  */
