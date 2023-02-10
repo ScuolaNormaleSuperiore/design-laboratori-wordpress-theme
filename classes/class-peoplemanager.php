@@ -43,7 +43,7 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
-		//aggiungo la tassonomia struttura
+		// aggiungo la tassonomia struttura
 
 		$structure_labels = array(
 			'name'              => _x( 'Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
@@ -74,42 +74,6 @@ class People_Manager {
 
 		register_taxonomy( STRUCTURE_TAXONOMY, array( PEOPLE_POST_TYPE ), $structure_args );
 	}
-
-	// /**
-	//  * Register the taxonomies.
-	//  *
-	//  * @return void
-	//  */
-	// public function add_taxonomies() {
-	// 	//aggiungo la tassonomia tipo persona
-	// 	$labels = array(
-	// 		'name'              => _x( 'Tipologia Persona', 'taxonomy general name', 'design_laboratori_italia' ),
-	// 		'singular_name'     => _x( 'Tipologia Persona', 'taxonomy singular name', 'design_laboratori_italia' ),
-	// 		'search_items'      => __( 'Cerca Tipologia', 'design_laboratori_italia' ),
-	// 		'all_items'         => __( 'Tutte le tipologie', 'design_laboratori_italia' ),
-	// 		'edit_item'         => __( 'Modifica la Tipologia', 'design_laboratori_italia' ),
-	// 		'update_item'       => __( 'Aggiorna la Tipologia', 'design_laboratori_italia' ),
-	// 		'add_new_item'      => __( 'Aggiungi una Tipologia', 'design_laboratori_italia' ),
-	// 		'new_item_name'     => __( 'Nuova Tipologia', 'design_laboratori_italia' ),
-	// 		'menu_name'         => __( 'Tipologia', 'design_laboratori_italia' ),
-	// 	);
-
-	// 	$args = array(
-	// 		'hierarchical'      => true,
-	// 		'labels'            => $labels,
-	// 		'show_ui'           => true,
-	// 		'show_admin_column' => true,
-	// 		'query_var'         => true,
-	// 		'rewrite'           => array( 'slug' => 'tipologia-persona' ),
-	// 		'capabilities'      => array(
-	// 			'manage_terms' => 'manage_tipologia_persone',
-	// 			'edit_terms'   => 'edit_tipologia_persone',
-	// 			'delete_terms' => 'delete_tipologia_persone',
-	// 			'assign_terms' => 'assign_tipologia_persone',
-	// 		),
-	// 	);
-
-	// 	register_taxonomy( PEOPLE_TYPE_TAXONOMY, array( PEOPLE_POST_TYPE ), $args );
 
 
 	/**
@@ -172,7 +136,7 @@ class People_Manager {
 	 * @return void
 	 */
 	function add_fields() {
-		if( function_exists('acf_add_local_field_group') ) {
+		if ( function_exists( 'acf_add_local_field_group' ) ) {
 
 			acf_add_local_field_group(array(
 				'key' => 'group_63c808f35b51a',
@@ -373,7 +337,7 @@ class People_Manager {
 						'placeholder' => 'https://',
 					),
 					array(
-						'key' => 'field_63cfb60b96994',
+						'key' => 'field_63e64bb8c4793',
 						'label' => 'Categoria di appartenenza',
 						'name' => 'categoria_appartenenza',
 						'aria-label' => '',
@@ -446,8 +410,48 @@ class People_Manager {
 					),
 					array(
 						'key' => 'field_63ceb661fa3b1',
-						'label' => 'Altri allegati',
-						'name' => 'altri_allegati',
+						'label' => 'Allegato 1',
+						'name' => 'allegato1',
+						'aria-label' => '',
+						'type' => 'file',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'return_format' => 'array',
+						'library' => 'uploadedTo',
+						'min_size' => '',
+						'max_size' => '',
+						'mime_types' => '',
+					),
+					array(
+						'key' => 'field_63e6473ebae92',
+						'label' => 'Allegato 2',
+						'name' => 'allegato2',
+						'aria-label' => '',
+						'type' => 'file',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'return_format' => 'array',
+						'library' => 'uploadedTo',
+						'min_size' => '',
+						'max_size' => '',
+						'mime_types' => '',
+					),
+					array(
+						'key' => 'field_63e64748bae93',
+						'label' => 'Allegato 3',
+						'name' => 'allegato3',
 						'aria-label' => '',
 						'type' => 'file',
 						'instructions' => '',
@@ -510,8 +514,6 @@ class People_Manager {
 				'description' => '',
 				'show_in_rest' => 1,
 			));
-			
-			
 		}
 	}
 }
