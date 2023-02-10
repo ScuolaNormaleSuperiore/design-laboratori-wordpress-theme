@@ -1125,7 +1125,7 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 		$evento = get_post(1665);
 		$test_item = dli_from_event_to_slider_event ( $evento );
 		array_push($items, $test_item );
-		return $items;
+		return array();
 	}
 }
 
