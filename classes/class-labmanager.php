@@ -25,7 +25,7 @@ if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
 
-if (! class_exists( 'Contact_Manager' ) ) {
+if ( ! class_exists( 'Contact_Manager' ) ) {
 	include_once 'class-contactmanager.php';
 }
 

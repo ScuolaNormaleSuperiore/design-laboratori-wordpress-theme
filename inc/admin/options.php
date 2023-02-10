@@ -302,15 +302,15 @@ function dli_register_main_options_metabox() {
 		$home_options->add_field(
 			array(
 				'id' => $prefix . 'home_istruzioni_1',
-				'name'        => __( 'Sezione slider', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione dello slider in Home Page' , 'design_laboratori_italia' ),
+				'name'        => __( 'Sezione Carousel', 'design_laboratori_italia' ),
+				'desc' => __( 'Gestione del carousel in Home Page' , 'design_laboratori_italia' ),
 				'type' => 'title',
 			)
 		);
 
 		$home_options->add_field(
 			array(
-				'id' => $prefix . 'home_slider_is_selezione_automatica',
+				'id' => $prefix . 'home_carousel_is_selezione_automatica',
 				'name' => __('Selezione Automatica', 'design_laboratori_italia'),
 				'desc' => __('Seleziona <b>Si</b> per mostrare automaticamente gli articoli in Home Page (ultimo articolo per ogni categoria). <b>No</b> per sceglierli manualmente', 'design_laboratori_italia'),
 				'type' => 'radio_inline',
@@ -325,7 +325,7 @@ function dli_register_main_options_metabox() {
 		$home_options->add_field(
 			array(
 				'name'    => __('Selezione articoli ', 'design_laboratori_italia'),
-				'desc'    => __('Seleziona gli articoli da mostrare nello slider della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia'),
+				'desc'    => __('Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia'),
 				'id'      => $prefix . 'articoli_presentazione',
 				'type'    => 'custom_attached_posts',
 				'column'  => true,
@@ -432,38 +432,14 @@ function dli_register_main_options_metabox() {
 
 	$scuola_landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
 
-	$main_options->add_field( array(
-			'id' => $prefix . 'laboratorio_istruzioni',
-			'name'        => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
+	$main_options->add_field(
+		array(
+			'id'   => $prefix . 'laboratorio_istruzioni',
+			'name' => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
 			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Laboratorio</a>.' , 'design_laboratori_italia' ),
 			'type' => 'title',
-			) );
-
-
-	// 	$main_options->add_field( array(
-	// 	'id' => $prefix . 'immagine',
-	// 	'name'        => __( 'Immagine', 'design_laboratori_italia' ),
-	// 	'desc' => __( 'Immagine di presentazione della scuola' , 'design_laboratori_italia' ),
-	// 	'type'    => 'file',
-	// 	'options' => array(
-	// 		'url' => false, // Hide the text input for the url
-	// 	),
-	// 	'text'    => array(
-	// 		'add_upload_file_text' => 'Aggiungi Immagine' // Change upload button text. Default: "Add or Upload File"
-	// 	),
-	// 	// query_args are passed to wp.media's library query.
-	// 	'query_args' => array(
-	// 		'type' => array(
-	// 			'image/gif',
-	// 			'image/jpeg',
-	// 			'image/png',
-	// 		),
-	// 	),
-	// 	'preview_size' => 'medium', // Image size to use when previewing in the admin.
-	// 	'attributes'    => array(
-	// 		'required'    => 'required'
-	// 	),
-	// ) );
+		)
+	);
 
 	$main_options->add_field(
 		array(
@@ -480,20 +456,20 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field(
 		array(
-			'name'        => __( 'La Storia', 'design_laboratori_italia' ),
+			'name' => __( 'La Storia', 'design_laboratori_italia' ),
 			'desc' => __('Timeline della Laboratorio', 'design_laboratori_italia' ),
 			'type' => 'title',
-			'id' => $prefix . 'prefisso_storia',
+			'id'   => $prefix . 'prefisso_storia',
 		)
 	);
 
 	$main_options->add_field(
 		array(
-			'id' => $prefix . 'descrizione_scuola',
-			'title'        => __( 'La Storia', 'design_laboratori_italia' ),
-			'name'        => __( 'Descrizione', 'design_laboratori_italia' ),
-			'desc' => __( 'Descrizione introduttiva della timeline' , 'design_laboratori_italia' ),
-			'type' => 'textarea_small',
+			'id'    => $prefix . 'descrizione_scuola',
+			'title' => __( 'La Storia', 'design_laboratori_italia' ),
+			'name'  => __( 'Descrizione', 'design_laboratori_italia' ),
+			'desc'  => __( 'Descrizione introduttiva della timeline' , 'design_laboratori_italia' ),
+			'type'  => 'textarea_small',
 		)
 	);
 
@@ -787,23 +763,27 @@ function dli_register_main_options_metabox() {
 
 	$notizie_options = new_cmb2_box( $args );
 
-		$notizie_landing_url = dli_get_template_page_url("page-templates/notizie.php");
-		$notizie_options->add_field( array(
-				'id' => $prefix . 'notizie_istruzioni',
-				'name'        => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
+		$notizie_landing_url = dli_get_template_page_url( 'page-templates/notizie.php' );
+		$notizie_options->add_field(
+			array(
+				'id'   => $prefix . 'notizie_istruzioni',
+				'name' => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
 				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$notizie_landing_url.'">la pagina di panoramica delle Novità</a>.' , 'design_laboratori_italia' ),
 				'type' => 'title',
-		) );
+			)
+		);
 
-		$notizie_options->add_field( array(
-		'id' => $prefix . 'testo_notizie',
-		'name'        => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-		'desc' => __( 'es: "Le notizie del liceo scientifico Enriques dedicate a tutti i genitori, studenti, personale ATA e docenti"' , 'design_laboratori_italia' ),
-		'type' => 'textarea',
-		'attributes'    => array(
-			'maxlength'  => '140'
-		),
-	) );
+		$notizie_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_notizie',
+				'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "Le notizie del laboratorio"' , 'design_laboratori_italia' ),
+				'type'       => 'textarea',
+				'attributes' => array(
+					'maxlength'  => '140'
+				),
+			)
+		);
 
 	$notizie_options->add_field( array(
 			'name'       => __('Tipologie Articoli', 'design_laboratori_italia' ),

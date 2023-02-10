@@ -1117,3 +1117,35 @@ if(!function_exists("dli_get_current_group")) {
 				return null;
 		}
 }
+
+if( ! function_exists( 'dli_get_carousel_items' ) ) {
+	function dli_get_carousel_items( ) {
+		$items = array();
+
+		$evento = get_post(1665);
+		$test_item = dli_from_event_to_slider_event ( $evento );
+		array_push($items, $test_item );
+		return $items;
+	}
+}
+
+if( ! function_exists( 'dli_from_event_to_slider_event' ) ) {
+	function dli_from_event_to_slider_event( $evento ) {
+		$post_type = get_post_type( $evento );
+		$image_url  = the_post_thumbnail_url( 'item-carousel' );
+		if (! $image_url){
+			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+		}
+		return array(
+			'type'          => $post_type,
+			'category'      => __( 'Eventi', 'design_laboratori_italia' ),
+			'category_link' => get_post_type_archive_link( $post_type ),
+			'date'          => '10/12/2023',
+			'title'         => get_the_title( $evento ),
+			'description'   => wp_trim_words( get_the_content( $evento ), 200 ),
+			'link'          => get_the_permalink( $evento ),
+			'image_url'     => the_post_thumbnail_url( 'item-carousel' ),
+		);
+	}
+
+}
