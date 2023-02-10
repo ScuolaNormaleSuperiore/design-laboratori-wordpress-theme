@@ -1139,7 +1139,6 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 					),
 				)
 			);
-			$number =  $query->found_posts;
 			$results = $query->posts;
 		} else {
 			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');

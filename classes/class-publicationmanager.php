@@ -203,6 +203,26 @@ class Publication_Manager {
 						'placeholder' => '',
 					),
 					array(
+						'key' => 'field_63e6d1ff4bf3c',
+						'label' => 'Promuovi in hero',
+						'name' => 'promuovi_in_hero',
+						'aria-label' => '',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 1,
+						'ui' => 0,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
+					),
+					array(
 						'key' => 'field_63e652d32c894',
 						'label' => 'Promuovi in Home',
 						'name' => 'promuovi_in_home',
@@ -243,7 +263,6 @@ class Publication_Manager {
 				'show_in_rest' => 1,
 			));
 		}
-
 	}
 
 }

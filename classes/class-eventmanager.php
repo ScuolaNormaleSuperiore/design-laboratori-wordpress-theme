@@ -55,7 +55,7 @@ class Event_Manager {
 			'has_archive'     => true,
 			'show_in_rest'    => true,
 			'capability_type' => array( 'evento', 'eventi' ),
-			// 'map_meta_cap'    => true,
+			'map_meta_cap'    => true,
 		);
 
 		register_post_type( EVENT_POST_TYPE, $args );

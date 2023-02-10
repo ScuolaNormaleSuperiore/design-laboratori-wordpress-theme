@@ -166,25 +166,7 @@ function dsi_eventi_filters( $query ) {
 						));
 
 				}
-		} /*else if(! is_admin() && ! $query->is_main_query()){
-
-				if ($query->get("post_type") == "evento"){
-
-						$query->set('meta_key', '_dsi_evento_timestamp_inizio' );
-						$query->set('orderby', array('meta_value' => 'DESC', 'date' => 'DESC'));
-						$query->set( 'meta_query', array(
-								array(
-										'key' => '_dsi_evento_timestamp_inizio'
-								),
-								array(
-										'key' => '_dsi_evento_timestamp_fine',
-										'value' => time(),
-										'compare' => '>=',
-										'type' => 'numeric'
-								)
-						));
-				}
-		}*/
+		}
 
 }
 
