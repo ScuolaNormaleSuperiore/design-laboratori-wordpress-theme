@@ -240,9 +240,35 @@
 							"elements": ""
 					},
 					{
+							"key": "field_63e6504ea74b9",
+							"label": "Eventi collegati",
+							"name": "eventi_collegati",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"evento"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
 							"key": "field_63c6cebf3e66e",
-							"label": "Altri allegati",
-							"name": "altri_allegati",
+							"label": "Allegato 1",
+							"name": "allegato1",
 							"aria-label": "",
 							"type": "file",
 							"instructions": "",
@@ -258,6 +284,72 @@
 							"min_size": "",
 							"max_size": "",
 							"mime_types": ""
+					},
+					{
+							"key": "field_63e650bfa74ba",
+							"label": "Allegato 2",
+							"name": "allegato2",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e650cba74bb",
+							"label": "Allegato 3",
+							"name": "allegato3",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e650d5a74bc",
+							"label": "Pubblicazioni",
+							"name": "pubblicazioni",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"pubblicazione"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
 					}
 			],
 			"location": [

@@ -1,12 +1,12 @@
 [
 	{
-			"key": "group_63ce5d9c8654b",
-			"title": "Campi Contatto",
+			"key": "group_63cfb5b25e045",
+			"title": "Campi Tipologia Persona",
 			"fields": [
 					{
-							"key": "field_63ce5d9d8d851",
-							"label": "Label",
-							"name": "label",
+							"key": "field_63cfb5b3bd2e0",
+							"label": "Nome",
+							"name": "nome",
 							"aria-label": "",
 							"type": "text",
 							"instructions": "",
@@ -24,28 +24,9 @@
 							"append": ""
 					},
 					{
-							"key": "field_63ce5db38d852",
-							"label": "Mail",
-							"name": "mail",
-							"aria-label": "",
-							"type": "email",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
-					},
-					{
-							"key": "field_63ce5dbe8d853",
-							"label": "Telefono",
-							"name": "telefono",
+							"key": "field_63cfb5c6bd2e1",
+							"label": "Descrizione",
+							"name": "descrizione",
 							"aria-label": "",
 							"type": "text",
 							"instructions": "",
@@ -63,13 +44,13 @@
 							"append": ""
 					},
 					{
-							"key": "field_63ce5dcb8d854",
-							"label": "URL",
-							"name": "url",
+							"key": "field_63cfb5cdbd2e2",
+							"label": "Priorità",
+							"name": "priorita",
 							"aria-label": "",
-							"type": "url",
+							"type": "number",
 							"instructions": "",
-							"required": 0,
+							"required": 1,
 							"conditional_logic": 0,
 							"wrapper": {
 									"width": "",
@@ -77,7 +58,12 @@
 									"id": ""
 							},
 							"default_value": "",
-							"placeholder": ""
+							"min": 1,
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
 					}
 			],
 			"location": [
@@ -85,7 +71,7 @@
 							{
 									"param": "post_type",
 									"operator": "==",
-									"value": "contatto"
+									"value": "tipologia-persona"
 							}
 					]
 			],

@@ -1,194 +1,296 @@
 [
-    {
-        "key": "group_63ca9a68be429",
-        "title": "Campi Evento",
-        "fields": [
-            {
-                "key": "field_63cab1657e109",
-                "label": "Descrizione breve",
-                "name": "descrizione_breve",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "rows": "",
-                "placeholder": "",
-                "new_lines": ""
-            },
-            {
-                "key": "field_63ca9a6ae7e55",
-                "label": "Data inizio",
-                "name": "data_inizio",
-                "aria-label": "",
-                "type": "date_time_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y g:i a",
-                "return_format": "Y-m-d H:i:s",
-                "first_day": 1
-            },
-            {
-                "key": "field_63ca9adab8fce",
-                "label": "Data fine",
-                "name": "data_fine",
-                "aria-label": "",
-                "type": "date_time_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y g:i a",
-                "return_format": "Y-m-d H:i:s",
-                "first_day": 1
-            },
-            {
-                "key": "field_63ca9b49b8fcf",
-                "label": "Luogo",
-                "name": "luogo",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63cab17d7e10a",
-                "label": "Contatti di riferimento",
-                "name": "contatti",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63ca9bdcb8fd0",
-                "label": "Promuovi in hero",
-                "name": "promuovi_in_hero",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 1,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_63ca9c03b8fd1",
-                "label": "Progetto",
-                "name": "progetto",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            },
-            {
-                "key": "field_63ca9c28b8fd2",
-                "label": "Indirizzo di ricerca",
-                "name": "indirizzo_di_ricerca",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "evento"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 1
-    }
+	{
+			"key": "group_63ca9a68be429",
+			"title": "Campi Evento",
+			"fields": [
+					{
+							"key": "field_63cab1657e109",
+							"label": "Descrizione breve",
+							"name": "descrizione_breve",
+							"aria-label": "",
+							"type": "textarea",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"rows": "",
+							"placeholder": "",
+							"new_lines": ""
+					},
+					{
+							"key": "field_63ca9a6ae7e55",
+							"label": "Data inizio",
+							"name": "data_inizio",
+							"aria-label": "",
+							"type": "date_time_picker",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"display_format": "d\/m\/Y g:i a",
+							"return_format": "Y-m-d H:i:s",
+							"first_day": 1
+					},
+					{
+							"key": "field_63ca9adab8fce",
+							"label": "Data fine",
+							"name": "data_fine",
+							"aria-label": "",
+							"type": "date_time_picker",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"display_format": "d\/m\/Y g:i a",
+							"return_format": "Y-m-d H:i:s",
+							"first_day": 1
+					},
+					{
+							"key": "field_63ca9b49b8fcf",
+							"label": "Luogo",
+							"name": "luogo",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e6569c824b8",
+							"label": "Label Contatti",
+							"name": "label_contatti",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63cab17d7e10a",
+							"label": "Telefono",
+							"name": "telefono",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e656c0824b9",
+							"label": "Email",
+							"name": "email",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e656dc824ba",
+							"label": "Sito web",
+							"name": "sitoweb",
+							"aria-label": "",
+							"type": "url",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+					},
+					{
+							"key": "field_63e6572d824bb",
+							"label": "Immagine\/Logo",
+							"name": "immagine_logo",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "",
+							"preview_size": "medium"
+					},
+					{
+							"key": "field_63ca9bdcb8fd0",
+							"label": "Promuovi in hero",
+							"name": "promuovi_in_hero",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "",
+							"default_value": 1,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					},
+					{
+							"key": "field_63ca9c03b8fd1",
+							"label": "Progetto",
+							"name": "progetto",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"progetto"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
+							"key": "field_63ca9c28b8fd2",
+							"label": "Indirizzo di ricerca",
+							"name": "indirizzo_di_ricerca",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"progetto"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
+							"key": "field_63e6574c824bc",
+							"label": "Allegato",
+							"name": "allegato",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "evento"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 1
+	}
 ]

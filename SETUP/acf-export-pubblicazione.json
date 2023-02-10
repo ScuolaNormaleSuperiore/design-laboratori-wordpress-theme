@@ -1,68 +1,131 @@
 [
-    {
-        "key": "group_63ca5c47b914d",
-        "title": "Campi Pubblicazione",
-        "fields": [
-            {
-                "key": "field_63ca5c496dfcd",
-                "label": "Anno",
-                "name": "anno",
-                "aria-label": "",
-                "type": "number",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "min": "",
-                "max": "",
-                "placeholder": "",
-                "step": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63ca5c776dfce",
-                "label": "Autori",
-                "name": "autori",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "pubblicazione"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 1
-    }
+	{
+			"key": "group_63ca5c47b914d",
+			"title": "Campi Pubblicazione",
+			"fields": [
+					{
+							"key": "field_63ca5c496dfcd",
+							"label": "Anno",
+							"name": "anno",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63ca5c776dfce",
+							"label": "Autori",
+							"name": "autori",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"persona"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
+							"key": "field_63e652af2c892",
+							"label": "Abstract",
+							"name": "abstract",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": 255,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e652c02c893",
+							"label": "Url",
+							"name": "url",
+							"aria-label": "",
+							"type": "url",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+					},
+					{
+							"key": "field_63e652d32c894",
+							"label": "Promuovi in Home",
+							"name": "promuovi_in_home",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "pubblicazione"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 1
+	}
 ]

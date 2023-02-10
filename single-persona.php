@@ -1,39 +1,38 @@
 <?php
 /**
- * The template for displaying author
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#author
+ * The template for displaying persona
  *
  * @package Design_Laboratori_Italia
  */
 
 get_header();
 
-while(have_posts()) {
+while ( have_posts() ) {
 	the_post();
-	$ID = get_the_ID();
-	$foto = get_field('foto');
-	$title = get_the_title($ID);
-	$image_url = dsi_get_persona_avatar($foto, $ID);
-	$bio = get_the_content();
-	$categoria_appartenenza = get_field('categoria_appartenenza')[0]->nome;
-	$allegato_cv = get_field('allegato_cv');
-	echo ' <br />ALTR ALLEGATI <br />';
-	$altri_allegati = get_field('altri_allegati');
-	$telefono = get_field('telefono');
-	$email = get_field('email');
-	$sitoweb = get_field('sito_web');
+	$ID                     = get_the_ID();
+	$foto                   = get_field( 'foto' );
+	$title                  = get_the_title( $ID );
+	$image_url              = dsi_get_persona_avatar( $foto, $ID );
+	$bio                    = get_the_content();
+	$categoria_appartenenza = get_field( 'categoria_appartenenza' )[0]->nome;
+	$allegato_cv            = get_field( 'allegato_cv' );
+	$altri_allegati         = get_field( 'altri_allegati' );
+	$telefono               = get_field( 'telefono' );
+	$email                  = get_field( 'email' );
+	$sitoweb                = get_field( 'sito_web' );
+	$terms                  = get_the_terms( $ID, 'struttura' );
+	$nome_struttura         = $terms[0]->name;
 }
 
-// recupero la lista dei progetti
+// recupero la lista dei progetti.
 $progetti = new WP_Query(
 	array(
 	'posts_per_page' => -1,
-	'post_type' => 'progetto',
-	'orderby' => 'data_inizio',
-	'order' => 'DESC',
-	'meta_query' => array(
-		'relation' => 'OR',
+	'post_type'      => 'progetto',
+	'orderby'        => 'data_inizio',
+	'order'          => 'DESC',
+	'meta_query'     => array(
+		'relation'  => 'OR',
 		array(
 			'key'     => 'responsabile_del_progetto',
 			'compare' => 'LIKE',
@@ -44,287 +43,407 @@ $progetti = new WP_Query(
 			'compare'   => 'LIKE',
 			'value'     => '"' . $ID . '"',
 		),
+	),
 	)
-));
+);
 
-//recupero la lista delle pubblicazioni
-$pubblicazioni= new WP_Query(array(
-	'posts_per_page' => -1,
-	'post_type' => 'pubblicazione',
-	'orderby' => 'anno',
-	'order' => 'ASC',
-	'meta_query' => array(
-		array(
-			'key' => 'autori', 
-			'compare' => 'LIKE',
-			'value' => $title
+$pubblicazioni = new WP_Query(
+	array(
+		'posts_per_page' => -1,
+		'post_type'      => 'pubblicazione',
+		'orderby'        => 'anno',
+		'order'          => 'ASC',
+		'meta_query'     => array(
+			array(
+				'key' => 'autori',
+				'compare' => 'LIKE',
+				'value' => $title,
+			),
 		),
 	)
-));
-
+);
 ?>
-		<main id="main-container" class="main-container petrol">
-				<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-				<section class="section bg-petrol py-3 py-lg-3 py-xl-5">
-						<div class="container">
-        			<div class="row variable-gutters">
-									<div class="col-12 col-sm-3 col-lg-3 d-none d-sm-block">
-											<div class="section-thumb thumb-large mx-3">
-													<?php if($image_url) {
-														echo "<img src='".$image_url."' alt=''/>";
-													} ?>
-											</div><!-- /section-thumb -->
-									</div><!-- /col-lg-2 -->
-									<div class="col-12 col-sm-9 col-md-8 col-lg-8 offset-lg-1 d-flex align-items-center">
-										<div class="section-title">
-											<h2 class="mb-3"><?php echo dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title );?></h2>
-											<p><?php echo $categoria_appartenenza; ?></p>
-                  	</div><!-- /title-section -->
-									</div><!-- /col-lg-5 col-md-8 -->
-							</div><!-- /row -->
-						</div><!-- /container -->
-				</section><!-- /section -->
-
-				<section class="section bg-white">
-					<div class="container container-border-top">
-						<div class="row variable-gutters">
-							<div class="col-lg-3 col-md-4 aside-border px-0">
-								<aside class="aside-main aside-sticky">
-									<div class="aside-title" id="people-detail" >
-										<a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri / chiudi dettagli della persona">
-											<span><?php _e("Dettagli della persona", "design_laboratori_italia"); ?></span>
-											<svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
-										</a>
-									</div>
-									<div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="people-detail">
-										<ul class="link-list">
-											<?php if($bio != "") { ?>
-												<li>
-													<a class="list-item scroll-anchor-offset" href="#art-par-bio" title="Vai al paragrafo <?php _e("Biografia", "design_laboratori_italia"); ?>"><?php _e("Biografia", "design_laboratori_italia"); ?></a>
-												</li>
-											<?php } ?>
-											<?php if($progetti && $progetti->have_posts())  { ?>
-												<li>
-													<a class="list-item scroll-anchor-offset" href="#art-par-progetti" title="Vai al paragrafo <?php _e("Progetti", "design_laboratori_italia"); ?>"><?php _e("Progetti", "design_laboratori_italia"); ?></a>
-												</li>
-											<?php }
-											// controllo che ci siano indirizzi di ricerca da mostrare 
-											$indirizzi_di_ricerca_ids = array();
-											while ($progetti->have_posts()) {
-												$progetti->the_post();
-												$ID        = get_the_ID();
-												$indirizzi = get_field('elenco_indirizzi_di_ricerca_correlati');
-												$indirizzi = $indirizzi ? $indirizzi : array();
-												foreach($indirizzi as $indirizzo) {
-													array_push($indirizzi_di_ricerca_ids, $indirizzo->ID);
-												}
-											}?>
-											<?php if (is_array($indirizzi_di_ricerca_ids) && count($indirizzi_di_ricerca_ids) >0)  { ?>
-												<li>
-													<a class="list-item scroll-anchor-offset" href="#art-par-indirizzi-di-ricerca" title="Vai al paragrafo <?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?>"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></a>
-												</li>
-											<?php } ?>
-											<?php if ( $pubblicazioni && $pubblicazioni->have_posts() ) { ?>
-												<li>
-													<a class="list-item scroll-anchor-offset" href="#art-par-pubblicazioni" title="Vai al paragrafo <?php _e("Pubblicazioni", "design_laboratori_italia"); ?>"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></a>
-												</li>
-												<?php } ?>
-												<?php
-												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) { ?>
-													<li>
-														<a class="list-item scroll-anchor-offset" href="#art-par-altre-info"
-														title="Vai al paragrafo <?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?>"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></a>
-													</li>
-													<?php
-												}
-
-												if( ( $telefono != "" ) || ( $email != "" ) || ( $sitoweb != "" ) ){ ?>
-													<li>
-														<a class="list-item scroll-anchor-offset" href="#art-par-contatti" title="Vai al paragrafo <?php _e("Contatti", "design_laboratori_italia"); ?>"><?php _e("Contatti", "design_laboratori_italia"); ?></a>
-													</li>
-												<?php } ?>
-										</ul>
-									</div>
-								</aside>
-							</div>
-							<div class="col-lg-8 col-md-8 offset-lg-1 pt84">
-								<article class="article-wrapper">
-									<?php if($bio != "") { ?>
-										<h3 id="art-par-bio"><?php _e("Biografia", "design_laboratori_italia"); ?></h3>
-										<div class="row variable-gutters">
-											<div class="col-lg-9">
-												<p><?php echo $bio; ?></p>
-											</div><!-- /col-lg-9 -->
-										</div><!-- /row -->
-										<?php }
-										if ($progetti && $progetti->have_posts()) {
-											?>
-											<h3 id="art-par-progetti"  class="mb-4"><?php _e("Progetti", "design_laboratori_italia"); ?></h3>
-											<div class="row variable-gutters mb-4">
-												<div class="col-lg-12">
-													<div	iv class="card-deck card-deck-spaced">
-													<?php
-													while ($progetti->have_posts()) {
-														$progetti->the_post();
-														$ID        = get_the_ID();
-														$title     = get_the_title($ID);
-														?>
-														<div class="card card-bg card-icon rounded">
-															<div class="card-body">
-																<svg class="icon svg-project">
-																	<use xmlns:xlink="http://www.w3.org/1999/xlink"
-																	xlink:href="#svg-project"></use>
-																</svg>
-																<div class="card-icon-content">
-																	<p>
-																		<strong><a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a></strong>
-																	</p>
-																	<small><?php echo get_field('descrizione_breve'); ?></small>
-																	<small><?php
-																	//recupero i nomi dei responsabili di progetto 
-																	$responsabili_di_progetto= get_field('responsabile_del_progetto');
-																	$responsabli = array();
-																	foreach($responsabili_di_progetto as $responsabile_di_progetto) {
-																		array_push($responsabli, $responsabile_di_progetto->post_title);
-																	}
-																	echo implode(",", $responsabli);
-																	?></small>
-																</div><!-- /card-icon-content -->
-															</div><!-- /card-body -->
-														</div><!-- /card card-bg card-icon rounded -->
-														<?php } ?>
-													</div><!-- /card-deck card-deck-spaced -->
-												</div><!-- /col-lg-12 -->
-											</div><!-- /row -->
-											<?php }
-											if (is_array($indirizzi_di_ricerca_ids) && count($indirizzi_di_ricerca_ids) >0) {
-												//recupero la lista degli indirizzi di ricerca
-												$indirizzi_di_ricerca= new WP_Query(array(
-													'posts_per_page' => -1,
-													'post_type' => 'indirizzo-di-ricerca',
-													'orderby' => 'title',
-													'order' => 'ASC',
-													'post__in' => $indirizzi_di_ricerca_ids
-												));
-											?>
-											<h3 id="art-par-indirizzi-di-ricerca"  class="mb-4"><?php _e("Indirizzi di ricerca", "design_laboratori_italia"); ?></h3>
-											<div class="row variable-gutters mb-4">
-												<div class="col-lg-12">
-													<div	iv class="card-deck card-deck-spaced">
-													<?php
-													while ( $indirizzi_di_ricerca->have_posts() ) {
-														$indirizzi_di_ricerca->the_post();
-														$ID    = get_the_ID();
-														$indirizzo_ricerca_title = get_the_title( $ID );
-													?>
-														<div class="card card-bg card-icon rounded">
-															<div class="card-body">
-																<svg class="icon svg-project">
-																	<use xmlns:xlink="http://www.w3.org/1999/xlink"
-																	xlink:href="#svg-project"></use>
-																</svg>
-																<div class="card-icon-content">
-																	<p>
-																		<strong><a href="<?php echo get_permalink(); ?>"><?php echo $indirizzo_ricerca_title; ?></a></strong>
-																	</p>
-																</div><!-- /card-icon-content -->
-															</div><!-- /card-body -->
-														</div><!-- /card card-bg card-icon rounded -->
-													<?php } ?>
-													</div><!-- /card-deck card-deck-spaced -->
-												</div><!-- /col-lg-12 -->
-											</div><!-- /row -->
-											<?php }
-											if ($pubblicazioni && $pubblicazioni->have_posts()) {
-													?>
-													<h3 id="art-par-pubblicazioni"  class="mb-4"><?php _e("Pubblicazioni", "design_laboratori_italia"); ?></h3>
-													<div class="row variable-gutters mb-4">
-														<div class="col-lg-12">
-															<div	iv class="card-deck card-deck-spaced">
-															<?php while ($pubblicazioni->have_posts()) {
-																$pubblicazioni->the_post();
-																$ID = get_the_ID();
-																$title = get_the_title($ID);
-																?>
-																<div class="card card-bg card-icon rounded">
-																	<div class="card-body">
-																		<svg class="icon svg-project">
-																			<use xmlns:xlink="http://www.w3.org/1999/xlink"
-																			xlink:href="#svg-project"></use>
-																		</svg>
-																		<div class="card-icon-content">
-																			<p>
-																				<strong><a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a></strong>
-																			</p>
-																			<small><?php echo get_field( 'descrizione_breve' ); ?></small>
-																			<small><?php echo get_field( 'autori' ); ?></small>
-																		</div><!-- /card-icon-content -->
-																	</div><!-- /card-body -->
-																</div><!-- /card card-bg card-icon rounded -->
-																<?php } ?>
-															</div><!-- /card-deck card-deck-spaced -->
-														</div><!-- /col-lg-12 -->
-													</div><!-- /row -->
-													<?php }
-
-													if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) { ?>
-														<h4 id="art-par-altre-info"  class="mb-4"><?php _e("Ulteriori informazioni", "design_laboratori_italia"); ?></h4>
-														<div class="row variable-gutters mb-4">
-															<div class="col-lg-12">
-																<div class="card-deck card-deck-spaced">
-																	<div class="card card-bg card-icon rounded">
-																		<div class="card-body">
-																			<svg class="icon it-pdf-document">
-																				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-pdf-document"></use>
-																			</svg>
-																			<div class="card-icon-content">
-																				<p>
-																					<strong><a href="<?php echo $allegato_cv['url']; ?>" ><?php echo $allegato_cv['title']; ?></a></strong>
-																				</p>
-																			</div><!-- /card-icon-content -->
-																		</div><!-- /card-body -->
-																	</div><!-- /card card-bg card-icon rounded -->
-																	<div class="card card-bg card-icon rounded">
-																		<div class="card-body">
-																			<svg class="icon it-pdf-document">
-																				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-pdf-document"></use>
-																			</svg>
-																			<div class="card-icon-content">
-																				<p>
-																					<strong><a href="<?php echo $altri_allegati['url']; ?>" ><?php echo $altri_allegati['title']; ?></a></strong>
-																				</p>
-																			</div><!-- /card-icon-content -->
-																		</div><!-- /card-body -->
-																	</div><!-- /card card-bg card-icon rounded -->
-																</div><!-- /card-deck card-deck-spaced -->
-															</div><!-- /col-lg-12 -->
-														</div><!-- /row -->
-														<?php
-													}
-													?>
-
-													<?php if( ( $telefono != "" ) || ( $email != "" ) || ( $sitoweb != "" ) ) { ?>
-														<h4 id="art-par-contatti"><?php _e("Contatti", "design_laboratori_italia"); ?></h4>
-														<div class="row variable-gutters">
-															<div class="col-lg-9">
-																<ul>
-																	<?php if($telefono != ""){?><li><strong><?php _e("Telefono", "design_laboratori_italia"); ?>:</strong> <?php echo $telefono; ?></li><?php } ?>
-																	<?php if($email != ""){?><li><strong><?php _e("Email", "design_laboratori_italia"); ?>:</strong> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></li><?php } ?>
-																	<?php if($email != ""){?><li><strong><?php _e("Sito web", "design_laboratori_italia"); ?>:</strong> <a href="<?php echo $sitoweb; ?>"><?php echo $sitoweb; ?></a></li><?php } ?>
-																</ul>
-															</div><!-- /col-lg-9 -->
-														</div><!-- /row -->
-													<?php } ?>
-													<div class="row variable-gutters">
-														<div class="col-lg-9">
-															<?php get_template_part("template-parts/single/bottom"); ?>
-														</div><!-- /col-lg-9 -->
-													</div><!-- /row -->
-							</article>
-						</div><!-- /col-lg-8 -->
-					</div><!-- /row -->
-				</div><!-- /container -->
+	<!-- START CONTENT -->
+		<main id="main-container">
+		<!-- BREADCRUMB -->
+			<section id ="breadcrumb">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 ms-4 ">
+							<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+								<ol class="breadcrumb pb-0">
+									<li class="breadcrumb-item"><a href="<?php echo get_site_url(); ?>">Home</a><span class="separator">&gt;</span></li>
+									<li class="breadcrumb-item"><a href="<?php echo dli_get_template_page_url("page-templates/persone.php")?>"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></a><span class="separator">&gt;</span></li>
+									<li class="breadcrumb-item active" aria-current="Elenco persone"><?php echo dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ); ?></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
 			</section>
-		</main><!-- #main -->
+
+			<!-- BANNER PERSONE -->
+			<section id="banner-persone" aria-describedby="Scheda persona">
+				<div class="p-3 primary-bg-c1">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 col-lg-3 d-flex align-items-center justify-content-center">
+								<div class="avatar size-xxl">
+								<?php
+								if ( $image_url ) {
+									echo "<img src='" . $image_url . "' alt='" . dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title );
+									if ( $nome_struttura ) {
+										echo "- " . $nome_struttura;
+									}
+									echo "' aria-hidden='true'/>";
+								}
+								?>
+								</div><!-- /avatar -->
+							</div><!-- /col-lg-3 -->
+							<div class="col-12 col-lg-9">
+								<div class="section-title">
+									<h2 class="mb-3 mt-3"><?php echo dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ); ?></h2>
+									<p>
+										<?php
+										echo $categoria_appartenenza;
+										if ( $nome_struttura ) {
+											echo ', ' . $nome_struttura;
+										}
+										?>
+									</p>
+								</div><!-- /title-section -->
+							</div><!-- /col-12 col-lg-9 -->
+						</div><!-- /row -->
+					</div>
+				</div>
+			</section>
+
+			<!-- DETTAGLIO PERSONA -->
+			<div class="container py-lg-5">
+				<div class="row">
+					<div class="col-12 col-lg-3">
+						<div data-bs-toggle="sticky" data-bs-stackable="true">
+							<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
+								<button
+								class="custom-navbar-toggler"
+								type="button"
+								aria-controls="navbarNav"
+								aria-expanded="false"
+								aria-label="Toggle navigation"
+								data-bs-toggle="navbarcollapsible"
+								data-bs-target="#navbarNav">
+									<span class="it-list"></span>1. Introduzione
+								</button>
+								<div class="progress custom-navbar-progressbar">
+									<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+								<div class="navbar-collapsable" id="navbarNav">
+									<div class="overlay"></div>
+									<a class="it-back-button" href="#" role="button">
+										<svg class="icon icon-sm icon-primary align-top">
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left';?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'?>"></use>
+										</svg>
+										<span>Indietro</span>
+									</a>
+									<div class="menu-wrapper">
+										<div class="link-list-wrapper">
+											<h3>
+												<?php
+													_e( 'DETTAGLI della persona', 'design_laboratori_italia' );
+												?>
+												&nbsp;</h3>
+											<div class="progress">
+												<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+											<ul class="link-list">
+												<?php if ( $bio != '' ) { ?>
+												<li class="nav-item">
+													<a class="nav-link active" href="#p1">
+														<span><?php _e( 'Biografia', "design_laboratori_italia" ); ?> </span>
+													</a>
+												</li>
+												<?php
+													}
+												if ( $progetti && $progetti->have_posts() ) {
+													?>
+												<li class="nav-item">
+													<a class="nav-link" href="#p2">
+														<span><?php _e( 'Progetti', "design_laboratori_italia" ); ?></span>
+													</a>
+												</li>
+												<?php
+												}
+												// controllo che ci siano indirizzi di ricerca da mostrare.
+												$indirizzi_di_ricerca_ids = array();
+												while ( $progetti->have_posts() ) {
+													$progetti->the_post();
+													$ID        = get_the_ID();
+													$indirizzi = get_field( 'elenco_indirizzi_di_ricerca_correlati' );
+													$indirizzi = $indirizzi ? $indirizzi : array();
+													foreach ( $indirizzi as $indirizzo ) {
+														array_push( $indirizzi_di_ricerca_ids, $indirizzo->ID );
+													}
+												}
+												if ( is_array( $indirizzi_di_ricerca_ids ) && count( $indirizzi_di_ricerca_ids ) > 0 ) {
+												?>
+												<li class="nav-item">
+													<a class="nav-link" href="#p3">
+														<span><?php
+															_e( 'Indirizzi di ricerca', "design_laboratori_italia" );
+														?></span>
+													</a>
+												</li>
+												<?php
+												}
+												if ( $pubblicazioni && $pubblicazioni->have_posts() ) {
+												?>
+												<li class="nav-item">
+													<a class="nav-link" href="#p4">
+														<span><?php _e( 'Pubblicazioni', "design_laboratori_italia" ); ?></span>
+													</a>
+												</li>
+												<?php
+												}
+												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) {
+												?>
+												<li class="nav-item">
+													<a class="nav-link" href="#p5">
+														<span><?php _e( 'Ulteriori informazioni', "design_laboratori_italia" ); ?></span>
+													</a>
+												</li>
+												<?php
+												}
+												if ( ( $telefono != '' ) || ( $email != '' ) || ( $sitoweb != '' ) ) {
+													?>
+												<li class="nav-item">
+													<a class="nav-link" href="#p6">
+														<span><?php _e( 'Contatti', "design_laboratori_italia" ); ?></span>
+													</a>
+												</li>
+												<?php
+													}
+												?>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+					<div class="col-12 col-lg-9 it-page-sections-container">
+						<?php
+							if ( $bio != '' ) {
+							?>
+						<h3 class="it-page-section h4" id="p1"><?php _e( 'Biografia', "design_laboratori_italia" ); ?></h3>
+						<div class="row pb-3">
+							<p><?php echo $bio; ?></p>
+						</div>
+							<?php
+						}
+						if ( $progetti && $progetti->have_posts() ) {
+							?>
+						<h3 class="it-page-section h4" id="p2"><?php _e( 'Progetti', "design_laboratori_italia" ); ?></h3>
+						<!-- PROGETTI -->
+						<section id="progetti">
+							<div class="row pb-3">
+								<div class="card-wrapper card-teaser-wrapper">
+								<?php
+								while ( $progetti->have_posts() ) {
+									$progetti->the_post();
+									$ID        = get_the_ID();
+									$title     = get_the_title( $ID );
+									?>
+									<!--start card-->
+									<div class="card card-teaser rounded shadow">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
+												</svg>
+												<a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a>
+											</h3>
+											<div class="card-text">
+												<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+											</div>
+										</div>
+									</div>
+									<!--end card-->
+									<?php
+								}
+								?>
+								</div> <!--end card wrapper-->
+							</div> <!--end row-->
+						</section>
+							<?php
+						}
+						if ( is_array( $indirizzi_di_ricerca_ids ) && count( $indirizzi_di_ricerca_ids ) > 0 ) {
+							// recupero la lista degli indirizzi di ricerca.
+							$indirizzi_di_ricerca = new WP_Query(
+								array(
+									'posts_per_page' => -1,
+									'post_type'      => 'indirizzo-di-ricerca',
+									'orderby'        => 'title',
+									'order'          => 'ASC',
+									'post__in'       => $indirizzi_di_ricerca_ids,
+								)
+							);
+							?>
+						<h3 class="it-page-section h4 pt-3" id="p3">Indirizzi di ricerca</h3>
+						<!-- INDIRIZZI DI RICERCA -->
+						<section id="indirizzi-ricerca">
+							<div class="row pb-3">
+								<div class="card-wrapper card-teaser-wrapper">
+								<?php
+								while ( $indirizzi_di_ricerca->have_posts() ) {
+									$indirizzi_di_ricerca->the_post();
+									$ID    = get_the_ID();
+									$indirizzo_ricerca_title = get_the_title( $ID );
+									?>
+											<!--start card-->
+											<div class="card card-teaser rounded shadow">
+												<div class="card-body">
+													<h3 class="card-title h5 ">
+														<svg class="icon">
+															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
+														</svg>
+														<a href="<?php echo get_permalink(); ?>"><?php echo $indirizzo_ricerca_title; ?></a>
+													</h3>
+													<div class="card-text">
+														<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+													</div>
+												</div>
+											</div>
+											<!--end card-->
+									<?php
+								}
+								?>
+								</div> <!--end card wrapper-->
+							</div> <!--end row-->
+						</section>
+							<?php
+						}
+						if ( $pubblicazioni && $pubblicazioni->have_posts() ) {
+							?>
+						<h3 class="it-page-section h4 pt-3" id="p4"><?php _e( 'Pubblicazioni', "design_laboratori_italia" ); ?></h3>
+						<!-- PUBBLICAZIONI -->
+						<section id="pubblicazioni">    
+							<div class="row pb-3">
+								<div class="card-wrapper card-teaser-wrapper">
+								<?php
+								while ( $pubblicazioni->have_posts() ) {
+									$pubblicazioni->the_post();
+									$ID    = get_the_ID();
+									$title = get_the_title( $ID );
+									?>
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
+												</svg>
+												<a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a>
+											</h3>
+											<div class="card-text">
+												<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+											</div>
+										</div>
+									</div><!--end card-->
+									<?php
+								}
+								?>
+								</div> <!--end card wrapper-->
+							</div> <!--end row-->
+						</section>
+							<?php
+						}
+						if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) {
+							?>
+						<h3 class="it-page-section h4 pt-3" id="p5"><?php _e( 'Ulteriori informazioni', "design_laboratori_italia" ); ?></h3>
+						<section id="ulteriori-info">
+							<div class="row pb-3">
+								<div class="card-wrapper card-teaser-wrapper">
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
+												</svg>
+												<a href="<?php echo $allegato_cv['url']; ?>"><?php echo $allegato_cv['title']; ?>&nbsp;</a>
+											</h3>
+										</div>
+									</div><!--end card-->
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
+												</svg>
+												<a href="<?php echo $altri_allegati['url']; ?>"><?php echo $altri_allegati['title']; ?></a>
+											</h3>
+										</div>
+									</div><!--end card-->
+									</div> <!--end card wrapper-->
+							</div> <!--end row-->
+						</section>
+							<?php
+						}
+						?>
+						<?php if ( ( $telefono != "" ) || ( $email != "" ) || ( $sitoweb != "" ) ) { ?>
+							<h3 class="it-page-section h4 pt-3" id="p6"><?php _e( 'Contatti', "design_laboratori_italia" ); ?></h3>
+							<div class="it-list-wrapper">
+								<ul class="it-list">
+								<?php if ( $telefono != '' ) { ?>
+									<li>
+										<div class="list-item">
+											<div class="it-rounded-icon">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone';?>"></use>
+												</svg>
+											</div>
+											<div class="it-right-zone"><span class="text"><?php echo $telefono; ?></span></div>
+										</div>
+									</li>
+									<?php
+								}
+								if ( $email != '' ) {
+									?>
+									<li>
+										<a href="mailto:<?php echo $email; ?>" class="list-item">
+											<div class="it-rounded-icon">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
+												</svg>
+											</div>
+											<div class="it-right-zone"><span class="text"><?php echo $email; ?></span></div>
+										</a>
+									</li>
+									<?php
+								}
+								if ( $sitoweb != '' ) {
+									?>
+									<li>
+										<a class="list-item" href="<?php echo $sitoweb; ?>">
+											<div class="it-rounded-icon">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
+												</svg>
+											</div>
+											<div class="it-right-zone"><span class="text"><?php echo $sitoweb; ?></span></div>
+										</a>
+									</li>
+									<?php
+								}
+								?>
+								</ul>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+			</main>
+<!-- END CONTENT -->
 <?php
 get_footer();

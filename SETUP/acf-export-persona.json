@@ -198,6 +198,32 @@
 							"placeholder": "https:\/\/"
 					},
 					{
+							"key": "field_63e64bb8c4793",
+							"label": "Categoria di appartenenza",
+							"name": "categoria_appartenenza",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"tipologia-persona"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
 							"key": "field_63c8152d68f0b",
 							"label": "Progetti correlati",
 							"name": "progetti_correlati",
@@ -245,8 +271,48 @@
 					},
 					{
 							"key": "field_63ceb661fa3b1",
-							"label": "Altri allegati",
-							"name": "altri_allegati",
+							"label": "Allegato 1",
+							"name": "allegato1",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e6473ebae92",
+							"label": "Allegato 2",
+							"name": "allegato2",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e64748bae93",
+							"label": "Allegato 3",
+							"name": "allegato3",
 							"aria-label": "",
 							"type": "file",
 							"instructions": "",
