@@ -411,7 +411,7 @@ $pubblicazioni = new WP_Query(
 								if ( $email != '' ) {
 									?>
 									<li>
-										<a href="#" class="list-item">
+										<a href="mailto:<?php echo $email; ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
@@ -425,7 +425,7 @@ $pubblicazioni = new WP_Query(
 								if ( $sitoweb != '' ) {
 									?>
 									<li>
-										<a class="list-item" href="#">
+										<a class="list-item" href="<?php echo $sitoweb; ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
