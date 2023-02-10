@@ -48,15 +48,13 @@ class Event_Manager {
 			'label'           => __( 'Evento', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			// 'hierarchical'    => true,
+			'hierarchical'    => false,
 			'public'          => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-calendar',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array(
-				'slug' => 'eventi',
-			),
+			'capability_type' => array( 'evento', 'eventi' ),
 			// 'map_meta_cap'    => true,
 		);
 

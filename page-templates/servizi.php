@@ -9,29 +9,14 @@ global $post, $tipologia_servizio, $ct;
 get_header();
 
 ?>
+
 	<main id="main-container" class="main-container purplelight">
-		<?php get_template_part("template-parts/common/breadcrumb"); ?>
-		<?php
-		while ( have_posts() ) :
-			the_post();
-
-			get_template_part("template-parts/hero/servizi");
-
-			$tipologie_servizi = dli_get_option("tipologie_servizi", "servizi");
-			$ct=0;
-			if(is_array($tipologie_servizi) && count($tipologie_servizi)){
-				foreach ( $tipologie_servizi as $id_tipologia_servizio ) {
-                    $tipologia_servizio = get_term_by("id", $id_tipologia_servizio, "tipologia-servizio");
-					get_template_part("template-parts/home/servizi", "tipologie");
-					$ct++;
-			    }
-
-            }
-            get_template_part("template-parts/home/indirizzi");
-
-
-		endwhile; // End of the loop.
-		?>
+	<h2>Qui ci vanno i SERVIZI:</h2>
+	<ul>
+		<li>Uno</li>
+		<li>Due</li>
+		<li>Tre</li>
+	</ul>
 	</main>
 
 <?php

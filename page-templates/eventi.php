@@ -8,10 +8,6 @@ get_header();
 ?>
 
 <main id="main-container" class="main-container bluelectric">
-	<?php
-		while ( have_posts() ) {
-			the_post();
-	?>
 
 	<h2>Qui ci vanno gli EVENTI:</h2>
 	<ul>
@@ -19,10 +15,8 @@ get_header();
 		<li>Due</li>
 		<li>Tre</li>
 	</ul>
-
-	<?php 
-		}
-	?>
+	
+</main>
 
 <?php
 get_footer();

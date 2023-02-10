@@ -54,15 +54,13 @@ class News_Manager {
 			'label'           => __( 'Notizia', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			// 'hierarchical'    => true,
+			'hierarchical'    => false,
 			'public'          => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-welcome-widgets-menus',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array(
-				'slug' => 'notizie',
-			),
+			'capability_type' => array( 'notizia', 'notizie' ),
 			// 'map_meta_cap'    => true,
 		);
 

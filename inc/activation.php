@@ -146,7 +146,7 @@ function dli_create_pages_on_theme_activation() {
 	$new_page_content  = 'Qui ci sono le notizie'; // Content goes here.
 	$new_page_template = 'page-templates/notizie.php'; // The template to use for the page.
 	$page_check        = get_page_by_title( $new_page_title ); // Check if the page already exists.
-	// Store the above data in an array
+	// Store the above data in an array.
 	$new_page = array(
 		'post_type'    => 'page',
 		'post_title'   => $new_page_title,
@@ -167,7 +167,7 @@ function dli_create_pages_on_theme_activation() {
 	$new_page_content  = 'Qui ci sono gli eventi'; // Content goes here.
 	$new_page_template = 'page-templates/eventi.php'; // The template to use for the page.
 	$page_check        = get_page_by_title( $new_page_title ); // Check if the page already exists.
-	// Store the above data in an array
+	// Store the above data in an array.
 	$new_page = array(
 		'post_type'    => 'page',
 		'post_title'   => $new_page_title,
@@ -437,7 +437,7 @@ function dli_create_pages_on_theme_activation() {
 			)
 		);
 
-		$notizie_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
+		$notizie_id = dsi_get_template_page_id( 'page-templates/notizie.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
@@ -471,7 +471,7 @@ function dli_create_pages_on_theme_activation() {
 		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
 		$menu_novita = $menu_id;
 
-		$notizie_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
+		$notizie_id = dsi_get_template_page_id( 'page-templates/notizie.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
@@ -485,12 +485,12 @@ function dli_create_pages_on_theme_activation() {
 			)
 		);
 
-		$eventi_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
+		$eventi_id = dsi_get_template_page_id( 'page-templates/eventi.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
-				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-title'     => __( 'Eventi', 'design_laboratori_italia' ),
 				'menu-item-object-id' => $eventi_id,
 				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
