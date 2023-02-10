@@ -70,10 +70,10 @@
 					},
 					{
 							"key": "field_63ca964ca16fe",
-							"label": "Contatti di riferimento",
-							"name": "contatti_di_riferimento",
+							"label": "Email",
+							"name": "email",
 							"aria-label": "",
-							"type": "relationship",
+							"type": "text",
 							"instructions": "",
 							"required": 0,
 							"conditional_logic": 0,
@@ -82,17 +82,48 @@
 									"class": "",
 									"id": ""
 							},
-							"post_type": [
-									"contatto"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e65557d07f6",
+							"label": "Telefono",
+							"name": "telefono",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63e65567d07f7",
+							"label": "Sito web",
+							"name": "sitioweb",
+							"aria-label": "",
+							"type": "url",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
 					},
 					{
 							"key": "field_63ca969ca16ff",
