@@ -128,7 +128,7 @@ if ( check_dependencies() ) {
 }
 
 
-if ( ! function_exists( 'dsi_setup' ) ) :
+if ( ! function_exists( 'dli_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -136,7 +136,7 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function dsi_setup() {
+	function dli_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -190,7 +190,7 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 
 	}
 endif;
-add_action( 'after_setup_theme', 'dsi_setup' );
+add_action( 'after_setup_theme', 'dli_setup' );
 
 /**
  * Register widget area.
@@ -242,7 +242,7 @@ add_action( 'widgets_init', 'dli_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function dsi_scripts() {
+function dli_scripts() {
 
 	//wp_deregister_script('jquery' );
 
@@ -263,7 +263,7 @@ function dsi_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'dsi_scripts' );
+add_action( 'wp_enqueue_scripts', 'dli_scripts' );
 
 function console_log ($output, $msg = "log") {
     echo '<script> console.log("'. $msg .'",'. json_encode($output) .')</script>';
