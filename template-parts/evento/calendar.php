@@ -25,8 +25,8 @@ global $post;
     moment.locale('it');
     <?php if(is_singular(array("evento", "scheda_progetto")) || is_home()){
 
-    $timestamp_inizio = dsi_get_meta("timestamp_inizio");
-    $timestamp_fine= dsi_get_meta("timestamp_fine");
+    $timestamp_inizio = dli_get_meta("timestamp_inizio");
+    $timestamp_fine= dli_get_meta("timestamp_fine");
     $timestamp_inizio = $timestamp_inizio ? $timestamp_inizio : time();
     $timestamp_fine = $timestamp_fine ? $timestamp_fine : time() + (7 * 24 * 60 * 60);
 

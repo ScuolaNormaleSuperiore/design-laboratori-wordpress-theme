@@ -2,7 +2,7 @@
 global $post, $current_user;
 
 if(is_user_logged_in()){
-    $require_feedback = dsi_get_meta("require_feedback", "", $post->ID);
+    $require_feedback = dli_get_meta("require_feedback", "", $post->ID);
     if(($require_feedback != "") && ($require_feedback != "false")){
         if(dsi_user_can_sign_circolare($current_user, $post)){
             $disabled = "";

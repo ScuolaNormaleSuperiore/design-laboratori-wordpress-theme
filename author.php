@@ -270,7 +270,7 @@ $posts = get_posts($args);
                                                             <p>
                                                                 <strong><a href="<?php echo get_permalink($scheda); ?>"> <?php echo $scheda->post_title; ?></a></strong>
                                                             </p>
-                                                            <small><?php echo dsi_get_meta("descrizione", "_dsi_scheda_didattica_", $scheda->ID); ?></small>
+                                                            <small><?php echo dli_get_meta("descrizione", "_dsi_scheda_didattica_", $scheda->ID); ?></small>
                                                         </div><!-- /card-icon-content -->
                                                     </div><!-- /card-body -->
                                                 </div><!-- /card card-bg card-icon rounded -->
@@ -297,7 +297,7 @@ $posts = get_posts($args);
                                                             <p>
                                                                 <strong><a href="<?php echo get_permalink($scheda); ?>"><?php echo $scheda->post_title; ?></a></strong>
                                                             </p>
-                                                            <small><?php echo dsi_get_meta("descrizione", "_dsi_scheda_progetto_", $scheda->ID); ?></small>
+                                                            <small><?php echo dli_get_meta("descrizione", "_dsi_scheda_progetto_", $scheda->ID); ?></small>
                                                         </div><!-- /card-icon-content -->
                                                     </div><!-- /card-body -->
                                                 </div><!-- /card card-bg card-icon rounded -->

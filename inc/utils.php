@@ -50,8 +50,8 @@ if(!function_exists("dsi_members_can_user_view_post")) {
  * @param string $key
  * @return mixed meta_value
  */
-if(!function_exists("dsi_get_meta")){
-	function dsi_get_meta( $key = '', $prefix = "", $post_id = "") {
+if(!function_exists("dli_get_meta")){
+	function dli_get_meta( $key = '', $prefix = "", $post_id = "") {
 				if ( ! dsi_members_can_user_view_post(get_current_user_id(), $post_id) ) return false;
 
 		if($post_id == "")
@@ -102,8 +102,8 @@ if(!function_exists("dsi_get_meta")){
 }
 
 
-if(!function_exists("dsi_get_term_meta")){
-		function dsi_get_term_meta( $key , $prefix, $term_id) {
+if(!function_exists("dli_get_term_meta")){
+		function dli_get_term_meta( $key , $prefix, $term_id) {
 						return get_term_meta($term_id, $prefix.$key, true );
 
 		}
@@ -396,8 +396,8 @@ function dsi_get_date_evento($post){
 		$prefix = '_dsi_scheda_progetto_';
 
 	$ret = "";
-	$timestamp_inizio = dsi_get_meta("timestamp_inizio", $prefix, $post->ID);
-	$timestamp_fine= dsi_get_meta("timestamp_fine", $prefix, $post->ID);
+	$timestamp_inizio = dli_get_meta("timestamp_inizio", $prefix, $post->ID);
+	$timestamp_fine= dli_get_meta("timestamp_fine", $prefix, $post->ID);
 	if($timestamp_inizio >= $timestamp_fine){
 		$ret .=  date_i18n("j F Y", $timestamp_inizio);
 		//$ret .= __(" alle ", 'design_laboratori_italia');
@@ -714,16 +714,16 @@ function dsi_get_circolari_feedback_options(){
  */
 function dsi_user_can_sign_circolare($user, $post){
 
-		$destinatari_circolari = dsi_get_meta("destinatari_circolari", "", $post->ID);
+		$destinatari_circolari = dli_get_meta("destinatari_circolari", "", $post->ID);
 		if($destinatari_circolari == "all"){
 				return true;
 		}elseif ($destinatari_circolari == "ruolo"){
-				$ruoli_circolari = dsi_get_meta("ruoli_circolari", "", $post->ID);
+				$ruoli_circolari = dli_get_meta("ruoli_circolari", "", $post->ID);
 				if( array_intersect($ruoli_circolari, $user->roles ) ) {
 						return true;
 				}
 		}elseif ($destinatari_circolari == "gruppo"){
-				$gruppi_circolari = dsi_get_meta("gruppi_circolari", "", $post->ID);
+				$gruppi_circolari = dli_get_meta("gruppi_circolari", "", $post->ID);
 				if(is_object_in_term($user->ID, "gruppo-utente", $gruppi_circolari)){
 						return true;
 				}
@@ -1265,6 +1265,23 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 			);
+		}
+	}
+
+	if( ! function_exists( 'dli_get_main_taxonomy_termitem' ) ) {
+		function dli_get_main_taxonomy_termitem( $post, $taxonomy ) {
+			$terms = get_the_terms( $post, $taxonomy );
+			if ( ! is_array( $terms ) || count($terms) ==0 ) {
+				return array(
+					'title' => __( $post->post_type, 'design_laboratori_italia' ),
+					'url'   => get_post_type_archive_link( $post->post_type ),
+				);
+			} else {
+				return array(
+					'title' => $terms[0],
+					'url'   => get_term_link( $terms[0] ),
+				);
+			}
 		}
 	}
 

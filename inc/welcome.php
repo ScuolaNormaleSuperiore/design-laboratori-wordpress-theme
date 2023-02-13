@@ -59,8 +59,8 @@ function dsi_circolari_dashboard_widget() {
             $circolare = get_post($idcircolare);
             if($circolare) {
                 $real_circolari[] = $idcircolare;
-                $numerazione_circolare = dsi_get_meta("numerazione_circolare", "", $idcircolare);
-                $require_feedback = dsi_get_meta("require_feedback", "", $idcircolare);
+                $numerazione_circolare = dli_get_meta("numerazione_circolare", "", $idcircolare);
+                $require_feedback = dli_get_meta("require_feedback", "", $idcircolare);
                 $feedback_array = dsi_get_circolari_feedback_options();
 
                 echo "<li>";
@@ -101,7 +101,7 @@ function dsi_circolari_signed_dashboard_widget() {
             $circolare = get_post($idcircolare);
             if($circolare) {
                 $real_circolari[] = $idcircolare;
-                $numerazione_circolare = dsi_get_meta("numerazione_circolare", "", $idcircolare);
+                $numerazione_circolare = dli_get_meta("numerazione_circolare", "", $idcircolare);
                 $firma = get_user_meta($userID, "_dsi_signed_" . $idcircolare, true);
 
                 echo "<li>";

@@ -24,10 +24,11 @@ $num_items = $query->post_count;
 		<?php
 		if ( $num_items != 0) {
 			$last_hero_news = $query->posts[0];
+			$termitem       = dli_get_main_taxonomy_termitem( $last_hero_news, 'category' );
 		?>
 			<div class="card-body">
 				<div class="category-top">
-					<a class="category" href="#">Categoria</a>
+					<a class="category" href="<?php echo esc_url( $termitem['url'] ); ?>"><?php echo esc_attr( $termitem['title'] ); ?></a>
 					<span class="data"><?php echo get_the_date( 'd/m/Y', $last_hero_news ); ?></span>
 				</div>
 				<h3 class="card-title h4"><?php echo get_the_title( $last_hero_news ); ?></h3>

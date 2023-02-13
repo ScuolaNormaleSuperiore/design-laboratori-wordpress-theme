@@ -2,9 +2,9 @@
 if(is_singular("servizio")){
 // controllo se il servizio è disabilitato
 
-	$stato = dsi_get_meta("stato");
+	$stato = dli_get_meta("stato");
 	if($stato == "false"){
-		$desc_stato = dsi_get_meta("desc_stato");
+		$desc_stato = dli_get_meta("desc_stato");
 		?>
 		<section class="bg-alert py-2" id="alert">
 			<div class="container">
@@ -21,7 +21,7 @@ if(is_singular("servizio")){
 }else if(is_singular("documento")){
     global $post;
     if($post->post_status == "annullato"){
-        $motivo_annullamento = dsi_get_meta("motivo_annullamento");
+        $motivo_annullamento = dli_get_meta("motivo_annullamento");
 
         ?>
         <section class="bg-alert py-2" id="alert">
@@ -53,7 +53,7 @@ if(is_singular("servizio")){
         <?php
     }
 }else if(is_singular("scheda_progetto")){
-    $is_realizzato = dsi_get_meta("is_realizzato");
+    $is_realizzato = dli_get_meta("is_realizzato");
     if($is_realizzato == "true"){
         ?>
         <section class="bg-bluelectric py-2" id="alert">

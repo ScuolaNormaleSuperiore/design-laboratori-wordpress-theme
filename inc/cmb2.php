@@ -243,7 +243,7 @@ function dsi_get_strutture_indirizzo_scuole_options( ) {
 		if ( $strutture ) {
 				foreach ( $strutture as $struttura ) {
 						// per ogni scuola seleziono i percorsi abilitati
-							$percorsi = dsi_get_meta("percorsi", "", $struttura->ID);
+							$percorsi = dli_get_meta("percorsi", "", $struttura->ID);
 				//    print_r($percorsi);
 							if(is_array($percorsi) && count($percorsi) > 0){
 									foreach ($percorsi as $percorso){

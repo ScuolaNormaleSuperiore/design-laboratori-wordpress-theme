@@ -11,11 +11,11 @@ get_template_part("template-parts/single/related-posts", $args = array( "post", 
 
 get_header();
 
-$link_schede_luoghi = dsi_get_meta("link_schede_luoghi");
-$nome_luogo_custom = dsi_get_meta("nome_luogo_custom");
-$link_schede_documenti = dsi_get_meta("link_schede_documenti");
-$file_documenti = dsi_get_meta("file_documenti");
-$date = dsi_get_meta("date");
+$link_schede_luoghi = dli_get_meta("link_schede_luoghi");
+$nome_luogo_custom = dli_get_meta("nome_luogo_custom");
+$link_schede_documenti = dli_get_meta("link_schede_documenti");
+$file_documenti = dli_get_meta("file_documenti");
+$date = dli_get_meta("date");
 
 $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $post->ID);
 ?>
@@ -47,12 +47,12 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <h2 class="d-none"><?php echo get_post_type(); ?></h2>
 
                                 <div class="h3 text-greendark mb-3"><?php echo dsi_get_date_evento($post); ?></div>
-                                <p class="mb-0"><?php echo dsi_get_meta("descrizione"); ?></p>
+                                <p class="mb-0"><?php echo dli_get_meta("descrizione"); ?></p>
 								<?php 
                                 $badgeclass = "badge-outline-greendark";
                                 get_template_part("template-parts/common/badges-argomenti"); ?>
 								<?php
-								$link_schede_notizia = dsi_get_meta("link_schede_notizia");
+								$link_schede_notizia = dli_get_meta("link_schede_notizia");
 								if(is_array($link_schede_notizia) && count($link_schede_notizia) > 0){
 									foreach ($link_schede_notizia as $id_notizia){
 										$notizia = get_post($id_notizia);
@@ -133,7 +133,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 </div>
 								<?php
 								global $gallery;
-								$gallery = dsi_get_meta("gallery");
+								$gallery = dli_get_meta("gallery");
                             	if ( is_array( $gallery ) && count( $gallery ) > 0 ) {
                             	    ?>
                                 <div class="row variable-gutters">
@@ -150,7 +150,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 		                            <?php
 	                            }
 
-								$video = dsi_get_meta("video");
+								$video = dli_get_meta("video");
 								if($video) { ?>
                                     <div class="video-container my-4">
 										<?php echo wp_oembed_get ($video); ?>
@@ -158,12 +158,12 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 								<?php } ?>
                                 <h3  class="h6"><?php _e("Destinatari", 'design_laboratori_italia'); ?></h3>
 								<?php
-								$descrizione_destinatari = dsi_get_meta("descrizione_destinatari");
+								$descrizione_destinatari = dli_get_meta("descrizione_destinatari");
 								echo wpautop($descrizione_destinatari);
 								?>
 
                                 <?php
-                                $persone_amministrazione = dsi_get_meta("persone_amministrazione");
+                                $persone_amministrazione = dli_get_meta("persone_amministrazione");
                                 if(is_array($persone_amministrazione)) {
 
                                     ?>
@@ -239,8 +239,8 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                         }
                                         /* else {
 
-                                            $timestamp_inizio = dsi_get_meta("timestamp_inizio");
-                                            $timestamp_fine = dsi_get_meta("timestamp_fine");
+                                            $timestamp_inizio = dli_get_meta("timestamp_inizio");
+                                            $timestamp_fine = dli_get_meta("timestamp_fine");
                                             $ora_inizio = date_i18n("H:i", $timestamp_inizio);
                                             $ora_fine = date_i18n("H:i", $timestamp_fine);
 
@@ -281,8 +281,8 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 								?>
                                 <h2 class="h4" id="art-par-costi"><?php _e("Costi", 'design_laboratori_italia'); ?></h2>
 								<?php
-								$tipo_evento = dsi_get_meta("tipo_evento");
-								$prezzo = dsi_get_meta("prezzo");
+								$tipo_evento = dli_get_meta("tipo_evento");
+								$prezzo = dli_get_meta("prezzo");
 								if($tipo_evento == "gratis"){
 									echo "<p>Evento Gratuito</p>";
 								}else {
@@ -306,8 +306,8 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 
                                 <h2 class="h4"  id="art-par-contatti"><?php _e("Contatti", 'design_laboratori_italia'); ?></h2>
 								<?php
-								$organizzato_da_scuola = dsi_get_meta("organizzato_da_scuola");
-								$link_struttura = dsi_get_meta("link_struttura_organizzativa");
+								$organizzato_da_scuola = dli_get_meta("organizzato_da_scuola");
+								$link_struttura = dli_get_meta("link_struttura_organizzativa");
 								if($organizzato_da_scuola == "si") {
 									?>
                                     <div  class="h6"><?php _e( "Organizzato da", 'design_laboratori_italia' ); ?></div>
@@ -328,34 +328,34 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     </div><!-- /card-deck card-deck-spaced -->
 									<?php
 								} ?>
-                                <?php if((($organizzato_da_scuola != "si") && ((dsi_get_meta("contatto_telefono") != "") || (dsi_get_meta("contatto_persona") != "") || (dsi_get_meta("contatto_email") != ""))) || ((dsi_get_meta("website") != "") ||  (dsi_get_meta("patrocinato") != "") || (dsi_get_meta("sponsor") != "") )) { ?>
+                                <?php if((($organizzato_da_scuola != "si") && ((dli_get_meta("contatto_telefono") != "") || (dli_get_meta("contatto_persona") != "") || (dli_get_meta("contatto_email") != ""))) || ((dli_get_meta("website") != "") ||  (dli_get_meta("patrocinato") != "") || (dli_get_meta("sponsor") != "") )) { ?>
                                     <div class="in-evidence mb-5 py-4 pl-2 pr-2">
                                         <ul class="mb-0">
-                                            <?php if (dsi_get_meta("website") != "") { ?>
+                                            <?php if (dli_get_meta("website") != "") { ?>
                                                 <li><strong
                                                         class="mr-2"><?php _e("Sito web:", 'design_laboratori_italia'); ?></strong>
-                                                <a class="text-underline-hover" href="<?php echo dsi_get_meta("website"); ?>" aria-label="Vai a <?php echo dsi_get_meta("website"); ?> - link esterno"><?php echo dsi_get_meta("website"); ?></a>
+                                                <a class="text-underline-hover" href="<?php echo dli_get_meta("website"); ?>" aria-label="Vai a <?php echo dli_get_meta("website"); ?> - link esterno"><?php echo dli_get_meta("website"); ?></a>
                                                 </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dsi_get_meta("contatto_persona") != "")) { ?>
+                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_persona") != "")) { ?>
                                                 <li><strong
-                                                        class="mr-2"><?php _e("Referente:", 'design_laboratori_italia'); ?></strong> <?php echo dsi_get_meta("contatto_persona"); ?>
+                                                        class="mr-2"><?php _e("Referente:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("contatto_persona"); ?>
                                                 </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dsi_get_meta("contatto_telefono") != "")) { ?>
+                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_telefono") != "")) { ?>
                                                 <li><strong
-                                                        class="mr-2"><?php _e("Telefono:", 'design_laboratori_italia'); ?></strong> <?php echo dsi_get_meta("contatto_telefono"); ?>
+                                                        class="mr-2"><?php _e("Telefono:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("contatto_telefono"); ?>
                                                 </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dsi_get_meta("contatto_email") != "")) { ?>
+                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_email") != "")) { ?>
                                                 <li><strong
                                                         class="mr-2"><?php _e("Email:", 'design_laboratori_italia'); ?></strong>
-                                                <a href="mailto:<?php echo dsi_get_meta("contatto_email"); ?>"><?php echo dsi_get_meta("contatto_email"); ?></a>
+                                                <a href="mailto:<?php echo dli_get_meta("contatto_email"); ?>"><?php echo dli_get_meta("contatto_email"); ?></a>
                                                 </li><?php } ?>
-                                            <?php if (dsi_get_meta("patrocinato") != "") { ?>
+                                            <?php if (dli_get_meta("patrocinato") != "") { ?>
                                                 <li><strong
-                                                        class="mr-2"><?php _e("Patrocinato da:", 'design_laboratori_italia'); ?></strong> <?php echo dsi_get_meta("patrocinato"); ?>
+                                                        class="mr-2"><?php _e("Patrocinato da:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("patrocinato"); ?>
                                                 </li><?php } ?>
-                                            <?php if (dsi_get_meta("sponsor") != "") { ?>
+                                            <?php if (dli_get_meta("sponsor") != "") { ?>
                                                 <li><strong
-                                                        class="mr-2"><?php _e("Sponsor:", 'design_laboratori_italia'); ?></strong> <?php echo dsi_get_meta("sponsor"); ?>
+                                                        class="mr-2"><?php _e("Sponsor:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("sponsor"); ?>
                                                 </li><?php } ?>
                                         </ul>
                                     </div>
@@ -392,13 +392,13 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                             <div>
                                 <div class="d-flex justify-content-end pb-4">
                                     <?php
-                                    $timestamp_inizio = dsi_get_meta("timestamp_inizio");
-                                    $timestamp_fine= dsi_get_meta("timestamp_fine");
+                                    $timestamp_inizio = dli_get_meta("timestamp_inizio");
+                                    $timestamp_fine= dli_get_meta("timestamp_fine");
                                     $data_inizio = date_i18n("Ymd", $timestamp_inizio);
                                     $data_fine = date_i18n("Ymd", $timestamp_fine);
                                     ?>
                                     <div class="actions-wrapper actions-main">
-                                        <p><a class="text-underline text-greendark" target="_blank" href="https://calendar.google.com/calendar/r/eventedit?text=<?php echo urlencode(get_the_title()); ?>&dates=<?php echo $data_inizio; ?>/<?php echo $data_fine; ?>&details=<?php echo urlencode(dsi_get_meta("descrizione")); ?>:+<?php echo urlencode(get_permalink()); ?>&location=<?php echo urlencode(dli_get_option("luogo_laboratorio")); ?>"> + aggiungi a Google Calendar</a></p>
+                                        <p><a class="text-underline text-greendark" target="_blank" href="https://calendar.google.com/calendar/r/eventedit?text=<?php echo urlencode(get_the_title()); ?>&dates=<?php echo $data_inizio; ?>/<?php echo $data_fine; ?>&details=<?php echo urlencode(dli_get_meta("descrizione")); ?>:+<?php echo urlencode(get_permalink()); ?>&location=<?php echo urlencode(dli_get_option("luogo_laboratorio")); ?>"> + aggiungi a Google Calendar</a></p>
                                     </div>
                                 </div>
 

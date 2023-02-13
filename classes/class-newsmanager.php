@@ -62,6 +62,7 @@ class News_Manager {
 			'show_in_rest'    => true,
 			'capability_type' => array( 'notizia', 'notizie' ),
 			'map_meta_cap'    => true,
+			'taxonomies'      => array( 'category' ),
 		);
 
 		register_post_type( NEWS_POST_TYPE, $args );

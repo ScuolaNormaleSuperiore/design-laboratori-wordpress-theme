@@ -21,7 +21,7 @@ if(is_array($gruppo_carte) && count($gruppo_carte) > 0) {
 							<?php
 							foreach ( $gruppo_carte as $carta ) {
 								$doc = get_post($carta);
-								$desc = dsi_get_meta("descrizione", '', $doc->ID);
+								$desc = dli_get_meta("descrizione", '', $doc->ID);
 								?>
 								<li class="splide__slide">
 									<div class="it-single-slide-wrapper h-100">

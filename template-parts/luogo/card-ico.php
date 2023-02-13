@@ -5,13 +5,13 @@ $id = 0;
 // controllo se è un parent, in caso recupero i dati del genitore
 if($luogo->post_parent == 0){
     $id = $luogo->ID;
-    $posizione_gps = dsi_get_meta("posizione_gps", '_dsi_luogo_', $luogo->ID);
-    $indirizzo = dsi_get_meta("indirizzo", '', $luogo->ID);
+    $posizione_gps = dli_get_meta("posizione_gps", '_dsi_luogo_', $luogo->ID);
+    $indirizzo = dli_get_meta("indirizzo", '', $luogo->ID);
 }else{
     $parent = get_post($luogo->post_parent);
     $id = $parent->ID;
-    $posizione_gps = dsi_get_meta("posizione_gps", "_dsi_luogo_", $luogo->post_parent);
-    $indirizzo = dsi_get_meta("indirizzo", "", $luogo->post_parent);
+    $posizione_gps = dli_get_meta("posizione_gps", "_dsi_luogo_", $luogo->post_parent);
+    $indirizzo = dli_get_meta("indirizzo", "", $luogo->post_parent);
 }
 
 /*$locations[$posizione_gps['lat']."|".$posizione_gps['lng']][] = [

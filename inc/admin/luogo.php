@@ -544,7 +544,7 @@ function dsi_save_luogo( $post_id) {
 	if(!isset($_POST["_dsi_luogo_childof"]))
 	    return;
 
-	//$parentid = dsi_get_meta("childof", "_dsi_luogo_", $post_id);
+	//$parentid = dli_get_meta("childof", "_dsi_luogo_", $post_id);
     $parentid = $_POST["_dsi_luogo_childof"];
 
 

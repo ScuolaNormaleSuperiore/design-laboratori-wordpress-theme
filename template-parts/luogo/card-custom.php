@@ -2,14 +2,14 @@
 global $post;
 $c=0;
 
-$nome_luogo_custom = dsi_get_meta("nome_luogo_custom");
-$posizione_gps =  dsi_get_meta("posizione_gps_luogo_custom");
-$indirizzo_luogo_custom = dsi_get_meta("indirizzo_luogo_custom");
+$nome_luogo_custom = dli_get_meta("nome_luogo_custom");
+$posizione_gps =  dli_get_meta("posizione_gps_luogo_custom");
+$indirizzo_luogo_custom = dli_get_meta("indirizzo_luogo_custom");
 $arrq = array();
-if(dsi_get_meta("quartiere_luogo_custom") != "")
-	$arrq[]=dsi_get_meta("quartiere_luogo_custom");
-if(dsi_get_meta("circoscrizione_luogo_custom") != "")
-	$arrq[]=dsi_get_meta("circoscrizione_luogo_custom");
+if(dli_get_meta("quartiere_luogo_custom") != "")
+	$arrq[]=dli_get_meta("quartiere_luogo_custom");
+if(dli_get_meta("circoscrizione_luogo_custom") != "")
+	$arrq[]=dli_get_meta("circoscrizione_luogo_custom");
 ?>
 
 <div class="card card-bg rounded mb-5">

@@ -1,10 +1,10 @@
 <?php
 global $post, $autore, $luogo, $c, $badgeclass;
-$link_schede_documenti = dsi_get_meta("link_schede_documenti");
-$file_documenti = dsi_get_meta("file_documenti");
-$luoghi = dsi_get_meta("luoghi");
-$persone = dsi_get_meta("persone");
-$numerazione_circolare = dsi_get_meta("numerazione_circolare");
+$link_schede_documenti = dli_get_meta("link_schede_documenti");
+$file_documenti = dli_get_meta("file_documenti");
+$luoghi = dli_get_meta("luoghi");
+$persone = dli_get_meta("persone");
+$numerazione_circolare = dli_get_meta("numerazione_circolare");
 
 $image_url = get_the_post_thumbnail_url($post, "item-gallery");
 $autore = get_user_by("ID", $post->post_author);
@@ -26,7 +26,7 @@ $autore = get_user_by("ID", $post->post_author);
                 <div class="col-md-<?php echo $colsize; ?> article-title-author-container">
                     <div class="title-content">
                         <h1><?php the_title(); ?></h1>
-                        <p class="mb-0"><?php echo dsi_get_meta("descrizione"); ?></p>
+                        <p class="mb-0"><?php echo dli_get_meta("descrizione"); ?></p>
                     </div><!-- /title-content -->
                     <div class="card card-avatar card-comments">
                         <div class="card-body p-0">

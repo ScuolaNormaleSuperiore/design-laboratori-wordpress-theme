@@ -11,10 +11,10 @@ get_template_part("template-parts/single/related-posts","post");
 get_template_part("template-parts/single/related-posts","events");
 get_template_part("template-parts/single/related-posts","circolari");
 get_header();
-$link_schede_documenti = dsi_get_meta("link_schede_documenti");
-$file_documenti = dsi_get_meta("file_documenti");
-$luoghi = dsi_get_meta("luoghi");
-$persone = dsi_get_meta("persone");
+$link_schede_documenti = dli_get_meta("link_schede_documenti");
+$file_documenti = dli_get_meta("file_documenti");
+$luoghi = dli_get_meta("luoghi");
+$persone = dli_get_meta("persone");
 
 $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $post->ID);
 ?>
