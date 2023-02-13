@@ -9,7 +9,7 @@
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 
 // Taxonomies.
-define( 'CATEGORY_TAXONOMY', 'categoria' );
+define( 'CATEGORY_TAXONOMY', 'tipo-pubblicazione' );
 
 /**
  * The manager that setups Course post types.
@@ -38,36 +38,36 @@ class Publication_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
-		// aggiungo la tassonomia categoria
+		// Aggiungo la tassonomia tipo-pubblicazione.
 
-		$category_labels = array(
-			'name'              => _x( 'Categoria', 'taxonomy general name', 'design_laboratori_italia' ),
-			'singular_name'     => _x( 'Categoria', 'taxonomy singular name', 'design_laboratori_italia' ),
-			'search_items'      => __( 'Cerca Categoria', 'design_laboratori_italia' ),
-			'all_items'         => __( 'Tutte le categorie', 'design_laboratori_italia' ),
-			'edit_item'         => __( 'Modifica la Categoria', 'design_laboratori_italia' ),
-			'update_item'       => __( 'Aggiorna la Categoria', 'design_laboratori_italia' ),
-			'add_new_item'      => __( 'Aggiungi una Categoria', 'design_laboratori_italia' ),
-			'new_item_name'     => __( 'Nuova Categoria', 'design_laboratori_italia' ),
-			'menu_name'         => __( 'Categoria', 'design_laboratori_italia' ),
+		$publ_types_labels = array(
+			'name'              => _x( 'Tipo pubblicazione', 'taxonomy general name', 'design_laboratori_italia' ),
+			'singular_name'     => _x( 'Tipo pubblicazione', 'taxonomy singular name', 'design_laboratori_italia' ),
+			'search_items'      => __( 'Cerca tipo pubblicazione', 'design_laboratori_italia' ),
+			'all_items'         => __( 'Tutti i tipi', 'design_laboratori_italia' ),
+			'edit_item'         => __( 'Modifica il tipo pubblicazione', 'design_laboratori_italia' ),
+			'update_item'       => __( 'Aggiorna il tipo pubblicazione', 'design_laboratori_italia' ),
+			'add_new_item'      => __( 'Aggiungi un tipo pubblicazione', 'design_laboratori_italia' ),
+			'new_item_name'     => __( 'Nuovo tipo pubblicazione', 'design_laboratori_italia' ),
+			'menu_name'         => __( 'Tipo Pubblicazione', 'design_laboratori_italia' ),
 		);
 
-		$category_args = array(
+		$publ_types_args = array(
 			'hierarchical'      => true,
-			'labels'            => $category_labels,
+			'labels'            => $publ_types_labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'categoria' ),
+			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
 			'capabilities'      => array(
-				'manage_terms' => 'manage_categorie',
-				'edit_terms'   => 'edit_categorie',
-				'delete_terms' => 'delete_categorie',
-				'assign_terms' => 'assign_categorie',
+				'manage_terms' => 'manage_tipo_pubblicazione',
+				'edit_terms'   => 'edit_tipo_pubblicazione',
+				'delete_terms' => 'delete_tipo_pubblicazione',
+				'assign_terms' => 'assign_tipo_pubblicazione',
 			),
 		);
 
-		register_taxonomy( CATEGORY_TAXONOMY, array( PUBLICATION_POST_TYPE ), $category_args );
+		register_taxonomy( CATEGORY_TAXONOMY, array( PUBLICATION_POST_TYPE ), $publ_types_args );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Publication_Manager {
 		$args   = array(
 			'label'           => __( 'Pubblicazione', 'design_laboratori_italia' ),
 			'labels'          => $labels,
-			'supports'        => array( 'title', ),
+			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			'hierarchical'    => true,
 			'public'          => true,
 			'menu_position'   => 2,
