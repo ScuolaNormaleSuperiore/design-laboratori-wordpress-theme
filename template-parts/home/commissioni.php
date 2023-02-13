@@ -24,12 +24,12 @@ if(is_array($link_strutture_commissioni) && ($link_strutture_commissioni > 0)) {
 								<?php } ?>
 							</ul>
 							<?php foreach ($arr_commissioni as $commissione) {
-								$descrizione = dsi_get_meta("descrizione", "_dsi_struttura_", $commissione->ID);
-								$responsabile = dsi_get_meta("responsabile", "_dsi_struttura_", $commissione->ID);
-								$persone = dsi_get_meta("persone", "_dsi_struttura_", $commissione->ID);
-								$telefono = dsi_get_meta("telefono", "_dsi_struttura_", $commissione->ID);
-								$mail = dsi_get_meta("mail", "_dsi_struttura_", $commissione->ID);
-								$pec = dsi_get_meta("pec", "_dsi_struttura_", $commissione->ID);
+								$descrizione = dli_get_meta("descrizione", "_dsi_struttura_", $commissione->ID);
+								$responsabile = dli_get_meta("responsabile", "_dsi_struttura_", $commissione->ID);
+								$persone = dli_get_meta("persone", "_dsi_struttura_", $commissione->ID);
+								$telefono = dli_get_meta("telefono", "_dsi_struttura_", $commissione->ID);
+								$mail = dli_get_meta("mail", "_dsi_struttura_", $commissione->ID);
+								$pec = dli_get_meta("pec", "_dsi_struttura_", $commissione->ID);
 
 								?>
 								<div id="<?php echo $commissione->post_name; ?>" class="responsive-tabs-content">

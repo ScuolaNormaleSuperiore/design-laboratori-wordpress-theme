@@ -8,7 +8,7 @@ $post = $progetto;
         <div class="card-body">
             <div class="card-content">
                 <a href="<?php echo get_permalink($progetto); ?>" class="project-card-title"><h3 class="mb-0"><?php echo $progetto->post_title; ?></h3></a>    
-                <p class="mb-4 mt-3"><?php  echo dsi_get_meta("descrizione" , '_dsi_scheda_progetto_', $progetto->ID); ?></p>
+                <p class="mb-4 mt-3"><?php  echo dli_get_meta("descrizione" , '_dsi_scheda_progetto_', $progetto->ID); ?></p>
             </div>
         </div><!-- /card-body -->
         <div class="card-top badge-container mb-3">
@@ -20,7 +20,7 @@ $post = $progetto;
             <?php /* // todo: programma materia
             <div class="d-flex align-items-center">
                 <?php
-                $classi = dsi_get_meta("classi", "_dsi_scheda_progetto_", $post->ID);
+                $classi = dli_get_meta("classi", "_dsi_scheda_progetto_", $post->ID);
                 if(is_array($classi) && count($classi) > 0) {
 
                     ?>

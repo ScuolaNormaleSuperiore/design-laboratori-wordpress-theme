@@ -24,26 +24,26 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
         set_views($post->ID);
 
             $percorsi = dsi_get_percorsi_of_scuola($post);
-            $link_servizi_didattici = dsi_get_meta("link_servizi_didattici");
+            $link_servizi_didattici = dli_get_meta("link_servizi_didattici");
 
             $image_url = get_the_post_thumbnail_url($post, "item-gallery");
-            $descrizione = dsi_get_meta("descrizione");
-            //$didattica = dsi_get_meta("didattica");
-            $link_schede_servizi = dsi_get_meta("link_schede_servizi");
-            $link_schede_progetti = dsi_get_meta("link_schede_progetti");
+            $descrizione = dli_get_meta("descrizione");
+            //$didattica = dli_get_meta("didattica");
+            $link_schede_servizi = dli_get_meta("link_schede_servizi");
+            $link_schede_progetti = dli_get_meta("link_schede_progetti");
 
-            $responsabile = dsi_get_meta("responsabile")?dsi_get_meta("responsabile"):"";
-            $persone = dsi_get_meta("persone");
-            $altri_componenti = dsi_get_meta("altri_componenti");
+            $responsabile = dli_get_meta("responsabile")?dli_get_meta("responsabile"):"";
+            $persone = dli_get_meta("persone");
+            $altri_componenti = dli_get_meta("altri_componenti");
 
 
-            $sedi = dsi_get_meta("sedi");
-           // $luoghi = dsi_get_meta("luoghi");
+            $sedi = dli_get_meta("sedi");
+           // $luoghi = dli_get_meta("luoghi");
 
-            $altre_info = dsi_get_meta("altre_info");
-            $telefono = dsi_get_meta("telefono");
-            $mail = dsi_get_meta("mail");
-//			$pec = dsi_get_meta("pec");
+            $altre_info = dli_get_meta("altre_info");
+            $telefono = dli_get_meta("telefono");
+            $mail = dli_get_meta("mail");
+//			$pec = dli_get_meta("pec");
 
         $children = false;
     if($post->post_parent == 0) {
@@ -87,7 +87,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <h1><?php the_title(); ?></h1>
                                 <p class="mb-0"><?php echo $descrizione; ?></p>
                                 <?php if(dsi_is_scuola($post)){
-                                    $codice_meccanografico = dsi_get_meta("codice_meccanografico");
+                                    $codice_meccanografico = dli_get_meta("codice_meccanografico");
                                     if($codice_meccanografico) {
                                         ?>
                                         <br><small class="h7 text-redbrown text-uppercase"><strong>Codice Meccanografico: </strong><?php echo $codice_meccanografico; ?></small>

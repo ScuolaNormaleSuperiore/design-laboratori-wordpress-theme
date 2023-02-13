@@ -6,7 +6,7 @@ $tipologia = "";
 if(is_array($tipologie) && count($tipologie) > 0){
 	$tipologia = $tipologie[0]->slug;
 }
-$codice_meccanografico = dsi_get_meta("codice_meccanografico", "", $struttura->ID);
+$codice_meccanografico = dli_get_meta("codice_meccanografico", "", $struttura->ID);
 ?>
 <div class="card card-bg card-icon-main rounded">
     <a href="<?php echo get_permalink($struttura); ?>" aria-describedby="card-desc-<?php echo $struttura->ID; ?>">

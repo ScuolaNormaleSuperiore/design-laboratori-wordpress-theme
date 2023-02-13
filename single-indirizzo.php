@@ -23,49 +23,49 @@ get_header();
             // get all post meta cmb2
             $percorsi = dsi_get_percorsi_of_scuola($post);
             // print_r($percorsi);
-            //$sottotitolo = dsi_get_meta("sottotitolo");
+            //$sottotitolo = dli_get_meta("sottotitolo");
 
-            $link_struttura_didattica = dsi_get_meta("link_struttura_didattica");
+            $link_struttura_didattica = dli_get_meta("link_struttura_didattica");
 
-            $esito = dsi_get_meta("esito");
-            $programma = dsi_get_meta("programma");
-            $descrizione = dsi_get_meta("descrizione");
-            $come_si_fa = dsi_get_meta("come_si_fa");
-            $procedura_esito = dsi_get_meta("procedura_esito");
-            $canale_digitale = dsi_get_meta("canale_digitale");
-            $canale_digitale_label = dsi_get_meta("canale_digitale_label");
-            $canale_digitale_link = dsi_get_meta("canale_digitale_link");
+            $esito = dli_get_meta("esito");
+            $programma = dli_get_meta("programma");
+            $descrizione = dli_get_meta("descrizione");
+            $come_si_fa = dli_get_meta("come_si_fa");
+            $procedura_esito = dli_get_meta("procedura_esito");
+            $canale_digitale = dli_get_meta("canale_digitale");
+            $canale_digitale_label = dli_get_meta("canale_digitale_label");
+            $canale_digitale_link = dli_get_meta("canale_digitale_link");
 
-            $autenticazione = dsi_get_meta("autenticazione");
-            $provider_autenticazione = dsi_get_meta("provider_autenticazione");
-            //$canale_fisico = dsi_get_meta("canale_fisico");
-            // $canale_fisico_prenotazione = dsi_get_meta("canale_fisico_prenotazione");
+            $autenticazione = dli_get_meta("autenticazione");
+            $provider_autenticazione = dli_get_meta("provider_autenticazione");
+            //$canale_fisico = dli_get_meta("canale_fisico");
+            // $canale_fisico_prenotazione = dli_get_meta("canale_fisico_prenotazione");
 
-            //$sedi = dsi_get_meta("sedi");
-            $cosa_serve = dsi_get_meta("cosa_serve");
-            $cosa_serve_list = dsi_get_meta("cosa_serve_list");
+            //$sedi = dli_get_meta("sedi");
+            $cosa_serve = dli_get_meta("cosa_serve");
+            $cosa_serve_list = dli_get_meta("cosa_serve_list");
 
-            $costi_vincoli = dsi_get_meta("costi_vincoli");
-            $fasi_scadenze = dsi_get_meta("fasi_scadenze");
-            $casi_particolari = dsi_get_meta("casi_particolari");
-            $link_schede_documenti = dsi_get_meta("link_schede_documenti");
-            $file_documenti = dsi_get_meta("file_documenti");
-            $altre_info = dsi_get_meta("altre_info");
+            $costi_vincoli = dli_get_meta("costi_vincoli");
+            $fasi_scadenze = dli_get_meta("fasi_scadenze");
+            $casi_particolari = dli_get_meta("casi_particolari");
+            $link_schede_documenti = dli_get_meta("link_schede_documenti");
+            $file_documenti = dli_get_meta("file_documenti");
+            $altre_info = dli_get_meta("altre_info");
 
-            $struttura_responsabile = dsi_get_meta("struttura_responsabile");
-            $luoghi = dsi_get_meta("luoghi");
-
-
-            $calendario_classi_descrizione = dsi_get_meta("calendario_classi_descrizione");
-            $calendario_classi_file = dsi_get_meta("calendario_classi_file");
-            $libri_testo_descrizione = dsi_get_meta("libri_testo_descrizione");
-            $libri_testo_file = dsi_get_meta("libri_testo_file");
-            $consigli_di_classe = dsi_get_meta("consigli_di_classe");
+            $struttura_responsabile = dli_get_meta("struttura_responsabile");
+            $luoghi = dli_get_meta("luoghi");
 
 
-            $servizi_correlati = dsi_get_meta("servizi_correlati");
-            $mail = dsi_get_meta("mail");
-            $telefono = dsi_get_meta("telefono");
+            $calendario_classi_descrizione = dli_get_meta("calendario_classi_descrizione");
+            $calendario_classi_file = dli_get_meta("calendario_classi_file");
+            $libri_testo_descrizione = dli_get_meta("libri_testo_descrizione");
+            $libri_testo_file = dli_get_meta("libri_testo_file");
+            $consigli_di_classe = dli_get_meta("consigli_di_classe");
+
+
+            $servizi_correlati = dli_get_meta("servizi_correlati");
+            $mail = dli_get_meta("mail");
+            $telefono = dli_get_meta("telefono");
             ?>
             <section class="section bg-white py-2 py-lg-3 py-xl-5">
                 <div class="container">

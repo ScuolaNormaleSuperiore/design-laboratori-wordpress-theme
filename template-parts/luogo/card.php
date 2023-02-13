@@ -12,12 +12,12 @@ if($lg == 9){
 }
 
 $card_title = $luogo->post_title;
-$indirizzo = dsi_get_meta("indirizzo", '_dsi_luogo_', $luogo->ID);
-$posizione_gps = dsi_get_meta("posizione_gps", '_dsi_luogo_', $luogo->ID);
-$cap = dsi_get_meta("cap", '_dsi_luogo_', $luogo->ID);
-$mail = dsi_get_meta("mail", '_dsi_luogo_', $luogo->ID);
-$pec = dsi_get_meta("pec", '_dsi_luogo_', $luogo->ID);
-$telefono = dsi_get_meta("telefono", '_dsi_luogo_', $luogo->ID);
+$indirizzo = dli_get_meta("indirizzo", '_dsi_luogo_', $luogo->ID);
+$posizione_gps = dli_get_meta("posizione_gps", '_dsi_luogo_', $luogo->ID);
+$cap = dli_get_meta("cap", '_dsi_luogo_', $luogo->ID);
+$mail = dli_get_meta("mail", '_dsi_luogo_', $luogo->ID);
+$pec = dli_get_meta("pec", '_dsi_luogo_', $luogo->ID);
+$telefono = dli_get_meta("telefono", '_dsi_luogo_', $luogo->ID);
 
 // controllo se è un parent, in caso recupero i dati del genitore
 if($luogo->post_parent == 0){
@@ -25,30 +25,30 @@ if($luogo->post_parent == 0){
 }else{
 	$parent = get_post($luogo->post_parent);
 	$card_title = $parent->post_title;
-	if(!$indirizzo)	$indirizzo = dsi_get_meta("indirizzo", "_dsi_luogo_", $luogo->post_parent);
-	if(!$posizione_gps["lat"] || !$posizione_gps["lng"]) $posizione_gps = dsi_get_meta("posizione_gps", "_dsi_luogo_", $luogo->post_parent);
-	if(!$cap) $cap = dsi_get_meta("cap", "_dsi_luogo_", $luogo->post_parent);
-	if(!$mail) $mail = dsi_get_meta("mail", "_dsi_luogo_", $luogo->post_parent);
-	if(!$pec) $pec = dsi_get_meta("pec", "_dsi_luogo_", $luogo->post_parent);
-	if(!$telefono) $telefono = dsi_get_meta("telefono", "_dsi_luogo_", $luogo->post_parent);
+	if(!$indirizzo)	$indirizzo = dli_get_meta("indirizzo", "_dsi_luogo_", $luogo->post_parent);
+	if(!$posizione_gps["lat"] || !$posizione_gps["lng"]) $posizione_gps = dli_get_meta("posizione_gps", "_dsi_luogo_", $luogo->post_parent);
+	if(!$cap) $cap = dli_get_meta("cap", "_dsi_luogo_", $luogo->post_parent);
+	if(!$mail) $mail = dli_get_meta("mail", "_dsi_luogo_", $luogo->post_parent);
+	if(!$pec) $pec = dli_get_meta("pec", "_dsi_luogo_", $luogo->post_parent);
+	if(!$telefono) $telefono = dli_get_meta("telefono", "_dsi_luogo_", $luogo->post_parent);
 }
 
-$orario_pubblico = dsi_get_meta("orario_pubblico", '_dsi_luogo_', $luogo->ID);
+$orario_pubblico = dli_get_meta("orario_pubblico", '_dsi_luogo_', $luogo->ID);
 
-if(isset($struttura->ID) && dsi_get_meta("telefono", '_dsi_struttura_', $struttura->ID) != "")
-	$telefono = dsi_get_meta("telefono", '_dsi_struttura_', $struttura->ID);
+if(isset($struttura->ID) && dli_get_meta("telefono", '_dsi_struttura_', $struttura->ID) != "")
+	$telefono = dli_get_meta("telefono", '_dsi_struttura_', $struttura->ID);
 
-if(isset($struttura->ID) && dsi_get_meta("mail", '_dsi_struttura_', $struttura->ID) != "")
-	$mail = dsi_get_meta("mail", '_dsi_struttura_', $struttura->ID);
+if(isset($struttura->ID) && dli_get_meta("mail", '_dsi_struttura_', $struttura->ID) != "")
+	$mail = dli_get_meta("mail", '_dsi_struttura_', $struttura->ID);
 
-if(isset($struttura->ID) && dsi_get_meta("pec", '_dsi_struttura_', $struttura->ID) != "")
-$pec = dsi_get_meta("pec", '_dsi_struttura_', $struttura->ID);
+if(isset($struttura->ID) && dli_get_meta("pec", '_dsi_struttura_', $struttura->ID) != "")
+$pec = dli_get_meta("pec", '_dsi_struttura_', $struttura->ID);
 
-if(isset($struttura->ID) && dsi_get_meta("pec", '_dsi_struttura_', $struttura->ID) != "")
-	$pec = dsi_get_meta("pec", '_dsi_struttura_', $struttura->ID);
+if(isset($struttura->ID) && dli_get_meta("pec", '_dsi_struttura_', $struttura->ID) != "")
+	$pec = dli_get_meta("pec", '_dsi_struttura_', $struttura->ID);
 
 if(isset($struttura->ID)){
-	$arr_persone = dsi_get_meta("persone", '_dsi_struttura_', $struttura->ID);
+	$arr_persone = dli_get_meta("persone", '_dsi_struttura_', $struttura->ID);
 	$persone = "";
 	if(is_array($arr_persone)){
 		foreach ($arr_persone as $id_persona){

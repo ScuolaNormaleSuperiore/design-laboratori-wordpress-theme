@@ -24,40 +24,40 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 				set_views($post->ID);
 				$image_url = get_the_post_thumbnail_url($post, "item-gallery");
 				$autore = get_user_by("ID", $post->post_author);
-				$elementi_di_interesse = dsi_get_meta("elementi_di_interesse");
+				$elementi_di_interesse = dli_get_meta("elementi_di_interesse");
 
-				$descrizione_breve = dsi_get_meta("descrizione_breve");
-				$anno_costruzione = dsi_get_meta("anno_costruzione");
-				$numero_piani = dsi_get_meta("numero_piani");
-				$posti_sedere = dsi_get_meta("posti_sedere");
-				$gallery = dsi_get_meta("gallery");
-				$video = dsi_get_meta("video");
-				$link_strutture = dsi_get_meta("link_strutture");
-				$orario_pubblico = dsi_get_meta("orario_pubblico");
-				$altre_info = dsi_get_meta("info");
-				$servizi_presenti = dsi_get_meta("servizi_presenti");
-				$servizi_altro = dsi_get_meta("servizi_altro");
+				$descrizione_breve = dli_get_meta("descrizione_breve");
+				$anno_costruzione = dli_get_meta("anno_costruzione");
+				$numero_piani = dli_get_meta("numero_piani");
+				$posti_sedere = dli_get_meta("posti_sedere");
+				$gallery = dli_get_meta("gallery");
+				$video = dli_get_meta("video");
+				$link_strutture = dli_get_meta("link_strutture");
+				$orario_pubblico = dli_get_meta("orario_pubblico");
+				$altre_info = dli_get_meta("info");
+				$servizi_presenti = dli_get_meta("servizi_presenti");
+				$servizi_altro = dli_get_meta("servizi_altro");
 
-				$modalita_accesso = dsi_get_meta("modalita_accesso");
-				$gestito_da  = dsi_get_meta("gestito_da");
-				$gestito_da_nome  = dsi_get_meta("gestito_da_nome");
-				$gestito_da_link  = dsi_get_meta("gestito_da_link");
-				$gestito_da_persone  = dsi_get_meta("gestito_da_persone");
+				$modalita_accesso = dli_get_meta("modalita_accesso");
+				$gestito_da  = dli_get_meta("gestito_da");
+				$gestito_da_nome  = dli_get_meta("gestito_da_nome");
+				$gestito_da_link  = dli_get_meta("gestito_da_link");
+				$gestito_da_persone  = dli_get_meta("gestito_da_persone");
 
-	$indirizzo = dsi_get_meta("indirizzo");
-				$posizione_gps = dsi_get_meta("posizione_gps");
-				$cap = dsi_get_meta("cap");
-				$mail = dsi_get_meta("mail");
-				$telefono = dsi_get_meta("telefono");
+	$indirizzo = dli_get_meta("indirizzo");
+				$posizione_gps = dli_get_meta("posizione_gps");
+				$cap = dli_get_meta("cap");
+				$mail = dli_get_meta("mail");
+				$telefono = dli_get_meta("telefono");
 			
 				if($post->post_parent == 0){
 					
 				}else{
-			if(!$indirizzo) $indirizzo = dsi_get_meta("indirizzo", "_dsi_luogo_", $post->post_parent);
-						if(!$posizione_gps) $posizione_gps = dsi_get_meta("posizione_gps", "_dsi_luogo_", $post->post_parent);
-						if(!$cap) $cap = dsi_get_meta("cap", "_dsi_luogo_", $post->post_parent);
-						if(!$mail) $mail = dsi_get_meta("mail", "_dsi_luogo_", $post->post_parent);
-						if(!$telefono) $telefono = dsi_get_meta("telefono", "_dsi_luogo_", $post->post_parent);
+			if(!$indirizzo) $indirizzo = dli_get_meta("indirizzo", "_dsi_luogo_", $post->post_parent);
+						if(!$posizione_gps) $posizione_gps = dli_get_meta("posizione_gps", "_dsi_luogo_", $post->post_parent);
+						if(!$cap) $cap = dli_get_meta("cap", "_dsi_luogo_", $post->post_parent);
+						if(!$mail) $mail = dli_get_meta("mail", "_dsi_luogo_", $post->post_parent);
+						if(!$telefono) $telefono = dli_get_meta("telefono", "_dsi_luogo_", $post->post_parent);
 				}
 				?>
 
@@ -205,7 +205,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 																								echo "<h6>".__("Ospita", 'design_laboratori_italia')."</h6>";
 																								echo '<div class="card-deck card-deck-spaced">';
 																								foreach ($children as $child) {
-																										$descrizione_breve_child = dsi_get_meta("descrizione_breve", "", $child->ID);
+																										$descrizione_breve_child = dli_get_meta("descrizione_breve", "", $child->ID);
 																										?>
 																										<div class="card card-bg card-icon rounded">
 																												<a href="<?php echo get_permalink($child); ?>">

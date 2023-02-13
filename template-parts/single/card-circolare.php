@@ -1,6 +1,6 @@
 <?php
 global $post;
-$numerazione_circolare = dsi_get_meta("numerazione_circolare", "", $post->ID);
+$numerazione_circolare = dli_get_meta("numerazione_circolare", "", $post->ID);
 
 ?><div class="card card-bg bg-white card-thumb-rounded">
 	<div class="card-body">

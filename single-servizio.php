@@ -24,39 +24,39 @@ get_header();
             // get all post meta cmb2
          //   $percorsi = dsi_get_percorsi_of_scuola($post);
             // print_r($percorsi);
-            //$sottotitolo = dsi_get_meta("sottotitolo");
-            $esito = dsi_get_meta("esito");
-            $descrizione = dsi_get_meta("descrizione");
-            $come_si_fa = dsi_get_meta("come_si_fa");
-            $procedura_esito = dsi_get_meta("procedura_esito");
-            $canale_digitale = dsi_get_meta("canale_digitale");
-            $canale_digitale_label = dsi_get_meta("canale_digitale_label");
-            $canale_digitale_link = dsi_get_meta("canale_digitale_link");
+            //$sottotitolo = dli_get_meta("sottotitolo");
+            $esito = dli_get_meta("esito");
+            $descrizione = dli_get_meta("descrizione");
+            $come_si_fa = dli_get_meta("come_si_fa");
+            $procedura_esito = dli_get_meta("procedura_esito");
+            $canale_digitale = dli_get_meta("canale_digitale");
+            $canale_digitale_label = dli_get_meta("canale_digitale_label");
+            $canale_digitale_link = dli_get_meta("canale_digitale_link");
 
-            $autenticazione = dsi_get_meta("autenticazione");
-            $provider_autenticazione = dsi_get_meta("provider_autenticazione");
-            //$canale_fisico = dsi_get_meta("canale_fisico");
-          //  $canale_fisico_prenotazione = dsi_get_meta("canale_fisico_prenotazione");
-            //$sedi = dsi_get_meta("sedi");
-            $cosa_serve = dsi_get_meta("cosa_serve");
-            $cosa_serve_list = dsi_get_meta("cosa_serve_list");
+            $autenticazione = dli_get_meta("autenticazione");
+            $provider_autenticazione = dli_get_meta("provider_autenticazione");
+            //$canale_fisico = dli_get_meta("canale_fisico");
+          //  $canale_fisico_prenotazione = dli_get_meta("canale_fisico_prenotazione");
+            //$sedi = dli_get_meta("sedi");
+            $cosa_serve = dli_get_meta("cosa_serve");
+            $cosa_serve_list = dli_get_meta("cosa_serve_list");
 
-            $fasi_scadenze = dsi_get_meta("fasi_scadenze");
-            $casi_particolari = dsi_get_meta("casi_particolari");
-            $link_schede_documenti = dsi_get_meta("link_schede_documenti");
-            $file_documenti = dsi_get_meta("file_documenti");
-            $altre_info = dsi_get_meta("altre_info");
+            $fasi_scadenze = dli_get_meta("fasi_scadenze");
+            $casi_particolari = dli_get_meta("casi_particolari");
+            $link_schede_documenti = dli_get_meta("link_schede_documenti");
+            $file_documenti = dli_get_meta("file_documenti");
+            $altre_info = dli_get_meta("altre_info");
 
-            $struttura_responsabile = dsi_get_meta("struttura_responsabile");
-            $scuola_responsabile = dsi_get_meta("scuola_responsabile");
+            $struttura_responsabile = dli_get_meta("struttura_responsabile");
+            $scuola_responsabile = dli_get_meta("scuola_responsabile");
 
-            $luoghi = dsi_get_meta("luoghi");
-            $link_schede_progetti = dsi_get_meta("link_schede_progetti");
+            $luoghi = dli_get_meta("luoghi");
+            $link_schede_progetti = dli_get_meta("link_schede_progetti");
 
 
-            $servizi_correlati = dsi_get_meta("servizi_correlati");
-            $mail = dsi_get_meta("mail");
-            $telefono = dsi_get_meta("telefono");
+            $servizi_correlati = dli_get_meta("servizi_correlati");
+            $mail = dli_get_meta("mail");
+            $telefono = dli_get_meta("telefono");
             ?>
             <section class="section bg-white py-2 py-lg-3 py-xl-5">
                 <div class="container">

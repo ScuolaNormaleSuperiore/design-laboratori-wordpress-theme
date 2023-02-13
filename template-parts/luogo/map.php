@@ -3,9 +3,9 @@ $arr_luoghi = array();
 $c=0;
 $luoghi = get_posts("post_type=luogo&posts_per_page=-1&post_parent=0");
 foreach ($luoghi as $luogo) {
-    $posizione_gps = dsi_get_meta("posizione_gps", "", $luogo->ID);
+    $posizione_gps = dli_get_meta("posizione_gps", "", $luogo->ID);
     if ($posizione_gps && $posizione_gps["lat"] && $posizione_gps["lng"]) {
-        $indirizzo = dsi_get_meta("indirizzo", "", $luogo->ID);
+        $indirizzo = dli_get_meta("indirizzo", "", $luogo->ID);
         $arr_luoghi[$c]["post_title"] = $luogo->post_title;
         $arr_luoghi[$c]["permalink"] = get_permalink($luogo);
         $arr_luoghi[$c]["gps"] = $posizione_gps;

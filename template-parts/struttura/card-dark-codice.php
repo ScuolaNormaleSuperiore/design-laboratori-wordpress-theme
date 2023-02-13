@@ -5,7 +5,7 @@ $tipologie = wp_get_object_terms( $struttura->ID, 'tipologia-struttura' );
 if($tipologie){
 	$tipologia = $tipologie[0]->slug;
 }
-$codice_meccanografico = dsi_get_meta("codice_meccanografico", "", $struttura->ID);
+$codice_meccanografico = dli_get_meta("codice_meccanografico", "", $struttura->ID);
 
 ?>
 <div class="card card-bg  bg-color bg-dark card-icon-main rounded">

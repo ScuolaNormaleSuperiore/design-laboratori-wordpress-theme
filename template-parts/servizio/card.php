@@ -10,7 +10,7 @@ if($servizio->post_status == "publish") {
                 </svg>
                 <div class="card-icon-content"  id="card-desc-<?php echo $servizio->ID; ?>">
                     <p><strong><?php echo $servizio->post_title; ?></strong></p>
-                    <small><?php echo dsi_get_meta("descrizione", '_dsi_servizio_', $servizio->ID); ?></small>
+                    <small><?php echo dli_get_meta("descrizione", '_dsi_servizio_', $servizio->ID); ?></small>
                 </div><!-- /card-icon-content -->
             </div><!-- /card-body -->
         </a>
