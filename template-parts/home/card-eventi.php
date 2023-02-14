@@ -4,7 +4,7 @@ $query = new WP_Query(
 		'post_type'      => array( 'evento' ),
 		'orderby'        => 'post_date',
 		'order'          => 'DESC',
-		'posts_per_page' => 1,
+		'posts_per_page' => -1,
 		'meta_query'     => array(
 			array(
 				'key'     => 'promuovi_in_hero',
@@ -23,25 +23,28 @@ $num_items = $query->post_count;
 		<div class="card card-img no-after card-bg">
 		<?php
 		if ( $num_items != 0) {
-			$last_hero_news = $query->posts[0];
+			$last_hero_event = $query->posts[0];
+			$event_date      = DateTime::createFromFormat( 'd/m/Y', get_the_date( 'd/m/Y', $last_hero_event ) );
 		?>
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">
 					<figure class="img-wrapper">
-					<img src="img/img-avatar-250x250.png" title="titolo immagine" alt="descrizione immagine">
+					<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-hero-event' ); ?>"
+						alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>"
+						title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+						alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>">
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
-						<span class="card-date">30</span>
-						<span class="card-day">novembre</span>
+						<span class="card-date"><?php echo $event_date->format( 'd' ); ?></span>
+						<span class="card-day"><?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
 					</div>
 				</div>
 			</div>
 			<div class="card-body p-4">
-			<h3 class="card-title h4">Titolo evento</h3>
-			<p class="card-text">Abstract della news su più righe con riduzione testo o utilizzo campo riassunto standard wordpress&nbsp;</p>
-			<a class="read-more" href="#">
+			<h3 class="card-title h4"><?php echo get_the_title( $last_hero_event ); ?></h3>
+			<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), 50 ); ?></p>
+			<a class="read-more" href="<?php echo get_permalink( $last_hero_event ); ?>">
 				<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-				<span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
 				<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use></svg>
 			</a>
 			</div>

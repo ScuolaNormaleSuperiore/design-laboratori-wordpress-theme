@@ -168,9 +168,10 @@ if ( ! function_exists( 'dli_setup' ) ) :
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'article-simple-thumb', 500, 384 , true );
 			add_image_size( 'item-thumb', 280, 280 , true );
-			add_image_size( 'item-gallery', 730, 485 , true );
+			// add_image_size( 'item-gallery', 730, 485 , true );
+			add_image_size( 'item-hero-event', 418, 130 , true );
 			add_image_size( 'item-carousel', 592, 334 , true );
-			add_image_size( 'vertical-card', 190, 290 , true );
+			// add_image_size( 'vertical-card', 190, 290 , true );
 			add_image_size( 'banner', 600, 250 , false );
 		}
 
@@ -191,53 +192,6 @@ if ( ! function_exists( 'dli_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'dli_setup' );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function dli_widgets_init() {
-	// register_sidebar( array(
-	// 	'name'          => esc_html__( 'Footer - colonna 1', 'design_laboratori_italia' ),
-	// 	'id'            => 'footer-1',
-	// 	'description'   => esc_html__( 'Prima colonna a più di pagina.', 'design_laboratori_italia' ),
-	// 	'before_widget' => '<div class="footer-list">',
-	// 	'after_widget'  => '</div>',
-	// 	'before_title'  => '<h2 class="h3">',
-	// 	'after_title'   => '</h2>',
-	// ) );
-	// register_sidebar(
-	// 	array(
-	// 		'name'          => esc_html__( 'Footer - colonna 2', 'design_laboratori_italia' ),
-	// 		'id'            => 'footer-2',
-	// 		'description'   => esc_html__( 'Seconda colonna a più di pagina.', 'design_laboratori_italia' ),
-	// 		'before_widget' => '<div class="footer-list">',
-	// 		'after_widget'  => '</div>',
-	// 		'before_title'  => '<h2 class="h3">',
-	// 		'after_title'   => '</h2>',
-	// 	)
-	// );
-	// register_sidebar( array(
-	// 	'name'          => esc_html__( 'Footer - colonna 3', 'design_laboratori_italia' ),
-	// 	'id'            => 'footer-3',
-	// 	'description'   => esc_html__( 'Terza colonna a più di pagina.', 'design_laboratori_italia' ),
-	// 	'before_widget' => '<div class="footer-list">',
-	// 	'after_widget'  => '</div>',
-	// 	'before_title'  => '<h2 class="h3">',
-	// 	'after_title'   => '</h2>',
-	// ) );
-	// register_sidebar( array(
-	// 	'name'          => esc_html__( 'Footer - colonna 4', 'design_laboratori_italia' ),
-	// 	'id'            => 'footer-4',
-	// 	'description'   => esc_html__( 'Quarta colonna a più di pagina.', 'design_laboratori_italia' ),
-	// 	'before_widget' => '<div class="footer-list">',
-	// 	'after_widget'  => '</div>',
-	// 	'before_title'  => '<h2 class="h3">',
-	// 	'after_title'   => '</h2>',
-	// ) );
-}
-add_action( 'widgets_init', 'dli_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -287,7 +241,7 @@ function set_views($post_ID) {
 		//set number of views to zero
 		add_post_meta($post_ID, $key, '0' );
 
-	} else{ //increment number of views
+	} else { //increment number of views.
 		$count++;
 		update_post_meta($post_ID, $key, $count);
 	}

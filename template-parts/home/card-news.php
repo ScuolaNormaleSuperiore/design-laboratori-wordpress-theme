@@ -32,10 +32,9 @@ $num_items = $query->post_count;
 					<span class="data"><?php echo get_the_date( 'd/m/Y', $last_hero_news ); ?></span>
 				</div>
 				<h3 class="card-title h4"><?php echo get_the_title( $last_hero_news ); ?></h3>
-				<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_news ), 200 ); ?></p>
-				<a class="read-more" href="#">
+				<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_news ), 50 ); ?></p>
+				<a class="read-more" href="<?php echo get_permalink( $last_hero_news ); ?>">
 					<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-					<span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
 					<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use></svg>
 				</a>
 			</div>

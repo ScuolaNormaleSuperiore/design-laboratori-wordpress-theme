@@ -1285,4 +1285,25 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		}
 	}
 
+	if( ! function_exists( 'dli_get_monthname' ) ) {
+		function dli_get_monthname( $month ) {
+			$index = intval( $month ) - 1;
+			$months = array(
+				'gennaio',
+				'febbraio',
+				'marzo',
+				'aprile',
+				'maggio',
+				'giugno',
+				'luglio',
+				'agosto',
+				'settembre',
+				'ottobre',
+				'novembre',
+				'dicembre'
+			);
+			return $months[ $index ];
+		}
+	}
+
 }

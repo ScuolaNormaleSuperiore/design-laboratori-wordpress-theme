@@ -102,7 +102,7 @@ class Event_Manager {
 							'id' => '',
 						),
 						'default_value' => '',
-						'maxlength' => '',
+						'maxlength' => '255',
 						'rows' => '',
 						'placeholder' => '',
 						'new_lines' => '',
