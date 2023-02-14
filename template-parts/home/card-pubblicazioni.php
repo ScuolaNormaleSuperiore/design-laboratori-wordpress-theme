@@ -18,7 +18,7 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4">
-	<h2 class="h3 pb-2">Pubblicazioni</h2>
+	<h2 class="h3 pb-2"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
 
 	<?php
 		while( $query->have_posts() ) {

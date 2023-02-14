@@ -24,7 +24,7 @@ $num_items = $query->post_count;
 		<?php
 		if ( $num_items != 0) {
 			$last_hero_event = $query->posts[0];
-			$event_date      = DateTime::createFromFormat( 'd/m/Y', get_the_date( 'd/m/Y', $last_hero_event ) );
+			$event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_event ) );
 		?>
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">

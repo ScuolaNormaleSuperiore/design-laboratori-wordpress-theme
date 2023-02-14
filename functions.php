@@ -10,6 +10,11 @@
 /**
  * Define
  */
+require get_template_directory() . '/lab_config.php';
+
+/**
+ * Define
+ */
 require get_template_directory() . '/inc/define.php';
 
 /**

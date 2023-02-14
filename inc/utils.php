@@ -1182,7 +1182,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 			'category_link' => get_post_type_archive_link( $post_type ),
 			'date'          => get_field('data_inizio', $item),
 			'title'         => get_the_title( $item ),
-			'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+			'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 			'link'          => get_the_permalink( $item ),
 			'image_url'     => $image_url,
 		);
@@ -1201,7 +1201,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				'category_link' => get_post_type_archive_link( $post_type ),
 				'date'          => get_field('data_inizio', $item),
 				'title'         => get_the_title( $item ),
-				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 			);
@@ -1219,9 +1219,9 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				'type'          => $post_type,
 				'category'      => __( 'Notizie', 'design_laboratori_italia' ),
 				'category_link' => get_post_type_archive_link( $post_type ),
-				'date'          => get_the_date( 'd/m/Y', $item ),
+				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => get_the_title( $item ),
-				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 			);
@@ -1239,9 +1239,9 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				'type'          => $post_type,
 				'category'      => __( 'Pubblicazioni', 'design_laboratori_italia' ),
 				'category_link' => get_post_type_archive_link( $post_type ),
-				'date'          => get_field('data_inizio', $item),
+				'date'          => get_field('anno', $item),
 				'title'         => get_the_title( $item ),
-				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 			);
@@ -1259,9 +1259,9 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				'type'          => $post_type,
 				'category'      => __( 'Articoli', 'design_laboratori_italia' ),
 				'category_link' => get_post_type_archive_link( $post_type ),
-				'date'          => get_field('data_inizio', $item),
+				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => get_the_title( $item ),
-				'description'   => wp_trim_words( get_field('descrizione_breve', $item), 200 ),
+				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 			);
