@@ -11,10 +11,12 @@ get_header();
 ?>
 <main id="main-container" class="main-container redbrown">
 
-<!-- CAROUSEL -->
-<section class="section pt-5 pb-5">
-	<?php get_template_part( 'template-parts/home/carousel' ); ?>
-</section>
+<!-- Section MAIN HERO  -->
+<?php get_template_part( 'template-parts/home/main-hero' ); ?>
+
+<!-- Section CAROUSEL -->
+<?php get_template_part( 'template-parts/home/carousel' ); ?>
+
 
 <!-- PRESENTAZIONE -->
 <section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted pt-5">

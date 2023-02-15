@@ -173,7 +173,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'           => $prefix . 'logo_laboratorio_mobile',
-			'name'         => __('Logo per mobile', 'design_laboratori_italia' ),
+			'name'         => __( 'Logo per mobile', 'design_laboratori_italia' ),
 			'desc'         => __( 'Utilizzare questo campo per caricare un\'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile). Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),
 			'type'         => 'file',
 			'query_args'   => array(
@@ -311,13 +311,13 @@ function dli_register_main_options_metabox() {
 		$home_options->add_field(
 			array(
 				'id' => $prefix . 'home_carousel_is_selezione_automatica',
-				'name' => __('Selezione Automatica', 'design_laboratori_italia'),
-				'desc' => __('Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in home". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia'),
+				'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
+				'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in home". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(
-						'true' => __('Si', 'design_laboratori_italia'),
-						'false' => __('No', 'design_laboratori_italia'),
+						'true' => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 			)
 		);
@@ -325,7 +325,7 @@ function dli_register_main_options_metabox() {
 		$home_options->add_field(
 			array(
 				'name'    => __( 'Selezione articoli ', 'design_laboratori_italia' ),
-				'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia'),
+				'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia' ),
 				'id'      => $prefix . 'articoli_presentazione',
 				'type'    => 'custom_attached_posts',
 				'column'  => true,
@@ -334,79 +334,155 @@ function dli_register_main_options_metabox() {
 						'filter_boxes'    => true, // Show a text box for filtering the results.
 						'query_args'      => array(
 								'posts_per_page' => -1,
-								'post_type'      => array('post', 'notizia', 'evento', 'pubblicazione'),
+								'post_type'      => array('post', 'notizia', 'evento', 'pubblicazione' ),
 						), // override the get_posts args.
 					)
 				)
 		);
 
-		$home_options->add_field(
-			array(
-				'id'   => $prefix . 'home_istruzioni_banner',
-				'name' => __( 'Sezione Banner', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione sezione Banner (opzionale) mostrata in Home Page' , 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
+	// *** SEZIONE MAIN HERO (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_main_hero',
+			'name' => __( 'Sezione hero principale', 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione sezione Hero principale (opzionale) mostrato in Home Page' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
 
-		$home_options->add_field(
-			array(
-				'id' => $prefix.'visualizza_banner',
-				'name'    => __( 'Visualizza la fascia banner', 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
-				'options' => array(
-						'si' => __( 'Si', 'design_laboratori_italia' ),
-						'no'   => __( 'No', 'design_laboratori_italia' ),
-				),
-				'default' => "no"
-			)
-		);
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_main_hero_enabled',
+			'name' => __( 'Hero principale attivo', 'design_laboratori_italia' ),
+			'desc' => __( 'Attiva l\'hero principale in Home Page', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
 
-		$banner_group_id = $home_options->add_field( array(
-				'id'          =>  $prefix . 'banner_group',
-				'type'        => 'group',
-				'repeatable'  => true,
-				'options'     => array(
-						'group_title'   => 'Banner {#}',
-						'add_button'    => 'Aggiungi un nuovo banner',
-						'remove_button' => 'Rimuovi Banner',
-						'closed'        => true,  // Repeater fields closed by default - neat & compact.
-						'sortable'      => true,  // Allow changing the order of repeated groups.
-				),
-		) );
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_title',
+			'name'       => __( 'Titolo hero', 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
 
-		$home_options->add_group_field(
-			$banner_group_id,
-			array(
-				'name' => 'Banner',
-				'id'   => 'banner',
-				'type'    => 'file',
-				'options' => array(
-						'url' => false, // Hide the text input for the url
-				),
-				'text'    => array(
-						'add_upload_file_text' => 'Aggiungi file' // Change upload button text. Default: "Add or Upload File"
-				),
-				'query_args' => array(
-						'type' => array(
-							'image/gif',
-							'image/jpeg',
-							'image/png',
-						),
-				),
-				'preview_size' => 'banner',
-			) 
-		);
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_text',
+			'name'       => __( 'Testo hero', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140'
+			),
+		)
+	);
 
-		$home_options->add_group_field(
-			$banner_group_id,
-			array(
-				'name' => 'Url di destinazione',
-				'desc' => 'Url di destinazione (lasciare vuoto se non necessario)',
-				'id'   => 'url',
-				'type' => 'text_url',
-			) 
-		);
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_button_label',
+			'name'       => __( 'Label bottone', 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_url',
+			'name'       => __( 'Url', 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_image',
+			'name'       => __( 'Immagine di sfondo', 'design_laboratori_italia' ),
+			'desc'       => __( 'Immagine in formato png o jpg' , 'design_laboratori_italia' ),
+			'type'       => 'file',
+			'query_args' => array(
+				'type' => array(
+					'image/png',
+					'image/jpg',
+					'image/svg',
+				),
+			),
+		)
+	);
+
+	// *** SEZIONE BANNER (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_istruzioni_banner',
+			'name' => __( 'Sezione Banner', 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione sezione Banner (opzionale) mostrata in Home Page' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix.'visualizza_banner',
+			'name'    => __( 'Visualizza la fascia banner', 'design_laboratori_italia' ),
+			'type'    => 'radio_inline',
+			'options' => array(
+					'si' => __( 'Si', 'design_laboratori_italia' ),
+					'no'   => __( 'No', 'design_laboratori_italia' ),
+			),
+			'default' => "no"
+		)
+	);
+
+	$banner_group_id = $home_options->add_field( array(
+			'id'          =>  $prefix . 'banner_group',
+			'type'        => 'group',
+			'repeatable'  => true,
+			'options'     => array(
+					'group_title'   => 'Banner {#}',
+					'add_button'    => 'Aggiungi un nuovo banner',
+					'remove_button' => 'Rimuovi Banner',
+					'closed'        => true,  // Repeater fields closed by default - neat & compact.
+					'sortable'      => true,  // Allow changing the order of repeated groups.
+			),
+	) );
+
+	$home_options->add_group_field(
+		$banner_group_id,
+		array(
+			'name' => 'Banner',
+			'id'   => 'banner',
+			'type'    => 'file',
+			'options' => array(
+					'url' => false,
+			),
+			'text'    => array(
+					'add_upload_file_text' => 'Aggiungi file'
+			),
+			'query_args' => array(
+					'type' => array(
+						'image/gif',
+						'image/jpeg',
+						'image/png',
+					),
+			),
+			'preview_size' => 'banner',
+		) 
+	);
+
+	$home_options->add_group_field(
+		$banner_group_id,
+		array(
+			'name' => 'Url di destinazione',
+			'desc' => 'Url di destinazione (lasciare vuoto se non necessario)',
+			'id'   => 'url',
+			'type' => 'text_url',
+		) 
+	);
 
 	/**
 	* 4 - Registers options page "Laboratorio".
@@ -417,7 +493,7 @@ function dli_register_main_options_metabox() {
 		'object_types' => array( 'options-page' ),
 				'capability'    => 'manage_options',
 				'option_key'   => 'la_scuola',
-		'tab_title'    => __('Laboratorio', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Laboratorio', 'design_laboratori_italia' ),
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 
@@ -457,7 +533,7 @@ function dli_register_main_options_metabox() {
 	$main_options->add_field(
 		array(
 			'name' => __( 'La Storia', 'design_laboratori_italia' ),
-			'desc' => __('Timeline della Laboratorio', 'design_laboratori_italia' ),
+			'desc' => __( 'Timeline della Laboratorio', 'design_laboratori_italia' ),
 			'type' => 'title',
 			'id'   => $prefix . 'prefisso_storia',
 		)
@@ -511,7 +587,7 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field( array(
 		'name'        => __( 'Le Strutture', 'design_laboratori_italia' ),
-		'desc' => __('Organizzazione scolastica', 'design_laboratori_italia' ),
+		'desc' => __( 'Organizzazione scolastica', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_strutture_scuola',
 	) );
@@ -542,7 +618,7 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field( array(
 		'name'        => __( 'I Luoghi', 'design_laboratori_italia' ),
-		'desc' => __('Immagini dei luoghi della Laboratorio', 'design_laboratori_italia' ),
+		'desc' => __( 'Immagini dei luoghi della Laboratorio', 'design_laboratori_italia' ),
 		'type' => 'title',
 		'id' => $prefix . 'prefisso_luoghi_storia',
 	) );
@@ -575,7 +651,7 @@ function dli_register_main_options_metabox() {
 	$main_options->add_field(
 		array(
 			'name'        => __( 'I numeri del Laboratorio', 'design_laboratori_italia' ),
-			'desc' => __('Inserisci il numero di studenti e classi della Laboratorio', 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci il numero di studenti e classi della Laboratorio', 'design_laboratori_italia' ),
 			'type' => 'title',
 			'id' => $prefix . 'prefisso_numeri',
 		)
@@ -700,7 +776,7 @@ function dli_register_main_options_metabox() {
 		'parent_slug'  => 'dli_options',
 		'capability'   => 'manage_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __('Servizi', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Servizi', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -728,10 +804,11 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	
 	// Campo filtro contenuto mostrato per tipologia.
 	$servizi_options->add_field(
 		array(
-			'name'       => __('Tipologie Servizi', 'design_laboratori_italia' ),
+			'name'       => __( 'Tipologie Servizi', 'design_laboratori_italia' ),
 			'desc'       => __( 'Servizi aggregati per tipologie. Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
 			'id'         => $prefix . 'tipologie_servizi',
 			'type'       => 'pw_multiselect',
@@ -754,7 +831,7 @@ function dli_register_main_options_metabox() {
 				'capability'    => 'manage_options',
 				'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __('Novità', 'design_laboratori_italia'),	);
+		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -786,7 +863,7 @@ function dli_register_main_options_metabox() {
 		);
 
 	$notizie_options->add_field( array(
-			'name'       => __('Tipologie Articoli', 'design_laboratori_italia' ),
+			'name'       => __( 'Tipologie Articoli', 'design_laboratori_italia' ),
 			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
 			'id' => $prefix . 'tipologie_notizie',
 			'type'    => 'pw_multiselect',
@@ -808,7 +885,7 @@ function dli_register_main_options_metabox() {
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'capability'    => 'manage_options',
-		'tab_title'    => __('Persone', 'design_laboratori_italia'),	);
+		'tab_title'    => __( 'Persone', 'design_laboratori_italia' ),	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
@@ -858,7 +935,7 @@ function dli_register_main_options_metabox() {
 		'parent_slug'  => 'dli_options',
 		'capability'   => 'manage_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __('Pubblicazioni', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Pubblicazioni', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -899,7 +976,7 @@ function dli_register_main_options_metabox() {
 		'parent_slug'  => 'dli_options',
 		'capability'   => 'manage_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __('Progetti', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Progetti', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -939,7 +1016,7 @@ function dli_register_main_options_metabox() {
 		'parent_slug'  => 'dli_options',
 		'capability'   => 'manage_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __('Indirizzi di ricerca', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Indirizzi di ricerca', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -982,7 +1059,7 @@ function dli_register_main_options_metabox() {
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
-				'tab_title'    => __('Luoghi', 'design_laboratori_italia'),	);
+				'tab_title'    => __( 'Luoghi', 'design_laboratori_italia' ),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -1021,13 +1098,13 @@ function dli_register_main_options_metabox() {
 
 		$luoghi_options->add_field(array(
 				'id' => $prefix . 'posizione_mappa',
-				'name' => __('Visualizza mappa', 'design_laboratori_italia'),
-				'desc' => __('Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo l\'elenco delle strutture.', 'design_laboratori_italia'),
+				'name' => __( 'Visualizza mappa', 'design_laboratori_italia' ),
+				'desc' => __( 'Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo l\'elenco delle strutture.', 'design_laboratori_italia' ),
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(
-						'true' => __('Si', 'design_laboratori_italia'),
-						'false' => __('No', 'design_laboratori_italia'),
+						'true' => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 		));
 
@@ -1041,7 +1118,7 @@ function dli_register_main_options_metabox() {
 		$luoghi_options->add_field( array(
 				'id' => $prefix . 'excerpt_length',
 				'name'        => __( 'Testo elementi di interesse *', 'design_laboratori_italia' ),
-				'desc' => __('Specificare la lunghezzadi default, in caratteri, per il testo descrittivo degli elmenti di interesse oltre la quale il testo verrà nascosto', 'design_laboratori_italia' ),
+				'desc' => __( 'Specificare la lunghezzadi default, in caratteri, per il testo descrittivo degli elmenti di interesse oltre la quale il testo verrà nascosto', 'design_laboratori_italia' ),
 				'type' => 'text_small',
 				'attributes' => array(
 						'type' => 'number',
@@ -1061,7 +1138,7 @@ function dli_register_main_options_metabox() {
 				'title'        => esc_html__( 'Login', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'login',
-				'tab_title'    => __('Servizi esterni', 'design_laboratori_italia'),
+				'tab_title'    => __( 'Servizi esterni', 'design_laboratori_italia' ),
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
@@ -1127,7 +1204,7 @@ function dli_register_main_options_metabox() {
 				'capability'    => 'manage_options',
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
-				'tab_title'    => __('Socialmedia', 'design_laboratori_italia'),	);
+				'tab_title'    => __( 'Socialmedia', 'design_laboratori_italia' ),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -1145,13 +1222,13 @@ function dli_register_main_options_metabox() {
 
 		$social_options->add_field(array(
 				'id' => $prefix . 'show_socials',
-				'name' => __('Mostra le icone social', 'design_laboratori_italia'),
-				'desc' => __('Abilita la visualizzazione dei socialmedia nell\'header e nel footer della pagina.', 'design_laboratori_italia'),
+				'name' => __( 'Mostra le icone social', 'design_laboratori_italia' ),
+				'desc' => __( 'Abilita la visualizzazione dei socialmedia nell\'header e nel footer della pagina.', 'design_laboratori_italia' ),
 				'type' => 'radio_inline',
 				'default' => 'false',
 				'options' => array(
-						'true' => __('Si', 'design_laboratori_italia'),
-						'false' => __('No', 'design_laboratori_italia'),
+						'true' => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 				'attributes' => array(
 						'data-conditional-value' => "false",
@@ -1198,7 +1275,7 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Altro', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'setup',
-		'tab_title'    => __('Altro', 'design_laboratori_italia'),
+		'tab_title'    => __( 'Altro', 'design_laboratori_italia' ),
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 				'capability'    => 'manage_options',
@@ -1238,12 +1315,12 @@ function dli_register_main_options_metabox() {
 		$setup_options->add_field(
 			array(
 				'id'      => $prefix . 'newsletter_enabled',
-				'name'    => __('Attiva la newsletter', 'design_laboratori_italia'),
+				'name'    => __( 'Attiva la newsletter', 'design_laboratori_italia' ),
 				'type'    => 'radio_inline',
 				'default' => 'false',
 				'options' => array(
-						'true'  => __('Si', 'design_laboratori_italia'),
-						'false' => __('No', 'design_laboratori_italia'),
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 			)
 		);
@@ -1318,7 +1395,7 @@ function dli_options_assets() {
 
 		if(strpos($current_screen->id, 'configurazione_page_') !== false || $current_screen->id === 'toplevel_page_dli_options') {
 				wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css' );
-				wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog'), '1.0', true );
+				wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog' ), '1.0', true );
 		}
 }
 add_action( 'admin_enqueue_scripts', 'dli_options_assets' );

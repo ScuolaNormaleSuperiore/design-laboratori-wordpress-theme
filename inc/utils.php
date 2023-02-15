@@ -1173,7 +1173,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 	function dli_from_event_to_slider_item( $item ) {
 		$post_type = get_post_type( $item );
 		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
-		if (! $image_url){
+		if ( ! $image_url ){
 			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 		}
 		return array(
@@ -1192,7 +1192,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		function dli_from_event_to_slider_item( $item ) {
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
-			if (! $image_url){
+			if ( ! $image_url ){
 				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 			}
 			return array(
@@ -1212,7 +1212,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		function dli_from_news_to_slider_item( $item ) {
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
-			if (! $image_url){
+			if ( ! $image_url ){
 				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 			}
 			return array(
@@ -1232,7 +1232,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		function dli_from_publication_to_slider_item( $item ) {
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
-			if (! $image_url){
+			if ( ! $image_url ){
 				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 			}
 			return array(
@@ -1252,7 +1252,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		function dli_from_post_to_slider_item( $item ) {
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
-			if (! $image_url){
+			if ( ! $image_url ){
 				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 			}
 			return array(
