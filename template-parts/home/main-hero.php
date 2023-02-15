@@ -7,7 +7,6 @@ if ( $main_hero_enabled === 'true' ) {
 	$image_id     = attachment_url_to_postid( $image_url );
 	$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
 	$image_title  = get_the_title( $image_id );
-	// $image_src    = wp_get_attachment_image_src( $image_id, 'full' );
 	$hero_text    = dli_get_option( 'home_main_hero_text', 'homepage' );
 	$hero_title   = dli_get_option( 'home_main_hero_title', 'homepage' );
 	$hero_url     = dli_get_option( 'home_main_hero_url', 'homepage' );

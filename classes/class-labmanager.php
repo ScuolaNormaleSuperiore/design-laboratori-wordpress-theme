@@ -32,6 +32,11 @@ if ( ! class_exists( 'News_Manager' ) ) {
 if ( ! class_exists( 'Event_Manager' ) ) {
 	include_once 'class-eventmanager.php';
 }
+
+if ( ! class_exists( 'Post_Manager' ) ) {
+	include_once 'class-postmanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -96,6 +101,10 @@ class LabManager {
 
 		// Setup del post type Eventi.
 		$ctprog = new Event_Manager();
+		$ctprog->setup();
+
+		// Setup del post.
+		$ctprog = new Post_Manager();
 		$ctprog->setup();
 	}
 }

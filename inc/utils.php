@@ -1123,7 +1123,7 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 		$items   = array();
 		$results = array();
 		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
-		if ( $mode_auto == 'true' ) {
+		if ( $mode_auto === 'true' ) {
 			$query = new WP_Query(
 				array(
 					'posts_per_page' => -1,
