@@ -29,9 +29,9 @@ function dsi_register_servizio_post_type() {
 		'menu_position'         => 2,
 		'menu_icon'             => 'dashicons-id-alt',
 		'has_archive'           => true,
-        'capability_type' => array('servizio', 'servizi'),
-        'map_meta_cap'    => true,
-        'description'    => __( "I servizi che la scuola mette a disposizione di tutti.", 'design_laboratori_italia' ),
+		'capability_type' => array('servizio', 'servizi'),
+		'map_meta_cap'    => true,
+		'description'    => __( "I servizi che la scuola mette a disposizione di tutti.", 'design_laboratori_italia' ),
 	);
 	register_post_type( 'servizio', $args );
 

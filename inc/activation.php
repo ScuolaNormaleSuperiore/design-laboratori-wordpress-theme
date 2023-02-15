@@ -82,7 +82,7 @@ function dli_create_pages_on_theme_activation() {
 		'post_status'  => 'publish',
 		'post_author'  => 1,
 		'post_slug'    => 'progetti',
-		'post_parent'   => $lab_page_id,
+		// 'post_parent'   => $lab_page_id,
 		// 'page_template' => $new_page_template,
 	);
 	// If the page doesn't already exist, create it
