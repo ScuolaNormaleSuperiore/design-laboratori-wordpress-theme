@@ -65,7 +65,7 @@ get_header();
 							foreach ( $strutture as $struttura ) {
 								?>
 								<div class="chip chip-simple">
-									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo $struttura->name; ?>"><?php echo $struttura->name; ?></a></span>
+									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr($struttura->name); ?>"><?php echo esc_attr($struttura->name); ?></a></span>
 								</div>
 							<?php } ?>
 
@@ -170,7 +170,7 @@ get_header();
 												<div class="col-lg-4">
 													<div class="avatar-wrapper avatar-extra-text">
 														<div class="avatar size-xl">
-															<img src="<?php echo dsi_get_persona_avatar( $foto, $ID ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
+															<img src="<?php echo dli_get_persona_avatar( $foto, $ID ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
 														</div>
 														<div class="extra-text">
 															<?php
@@ -178,14 +178,14 @@ get_header();
 															$nome_struttura = $terms[0]->name;
 															if ( ! $disattiva_pagina_dettaglio ) {
 																?>
-																<h4><a href="<?php echo $link_persona; ?>"><?php echo $nome . " " . $cognome; ?></a></h4>
+																<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr($nome) . " " . esc_attr($cognome); ?></a></h4>
 																<?php
 															}
 															else {
 																?>
-																<h4><?php echo $nome . " " . $cognome; ?></h4>
+																<h4><?php echo esc_attr($nome) . " " . esc_attr($cognome); ?></h4>
 															<?php } ?>
-															<time datetime="2023-09-15"><?php echo $nome_struttura; ?>&nbsp;</time>
+															<time datetime="2023-09-15"><?php echo esc_attr($nome_struttura); ?>&nbsp;</time>
 														</div>
 													</div>
 												</div><!-- /col-lg-4 -->

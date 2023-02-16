@@ -12,7 +12,7 @@ while ( have_posts() ) {
 	$ID                     = get_the_ID();
 	$foto                   = get_field( 'foto' );
 	$title                  = get_the_title( $ID );
-	$image_url              = dsi_get_persona_avatar( $foto, $ID );
+	$image_url              = dli_get_persona_avatar( $foto, $ID );
 	$bio                    = get_the_content();
 	$categoria_appartenenza = get_field( 'categoria_appartenenza' )[0]->nome;
 	$allegato_cv            = get_field( 'allegato_cv' );
@@ -74,9 +74,9 @@ $pubblicazioni = new WP_Query(
 						<div class="col-12 ms-4 ">
 							<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
 								<ol class="breadcrumb pb-0">
-									<li class="breadcrumb-item"><a href="<?php echo get_site_url(); ?>">Home</a><span class="separator">&gt;</span></li>
-									<li class="breadcrumb-item"><a href="<?php echo dli_get_template_page_url("page-templates/persone.php")?>"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></a><span class="separator">&gt;</span></li>
-									<li class="breadcrumb-item active" aria-current="Elenco persone"><?php echo dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ); ?></li>
+									<li class="breadcrumb-item"><a href="<?php echo esc_url(get_site_url()); ?>">Home</a><span class="separator">&gt;</span></li>
+									<li class="breadcrumb-item"><a href="<?php echo dli_get_template_page_url("page-templates/persone.php");?>"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></a><span class="separator">&gt;</span></li>
+									<li class="breadcrumb-item active" aria-current="Elenco persone"><?php echo esc_attr(dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title)) ; ?></li>
 								</ol>
 							</nav>
 						</div>
@@ -93,9 +93,9 @@ $pubblicazioni = new WP_Query(
 								<div class="avatar size-xxl">
 								<?php
 								if ( $image_url ) {
-									echo "<img src='" . $image_url . "' alt='" . dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title );
+									echo "<img src='" . esc_url($image_url) . "' alt='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) );
 									if ( $nome_struttura ) {
-										echo "- " . $nome_struttura;
+										echo '- ' . esc_attr($nome_struttura);
 									}
 									echo "' aria-hidden='true'/>";
 								}
@@ -104,12 +104,12 @@ $pubblicazioni = new WP_Query(
 							</div><!-- /col-lg-3 -->
 							<div class="col-12 col-lg-9">
 								<div class="section-title">
-									<h2 class="mb-3 mt-3"><?php echo dsi_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ); ?></h2>
+									<h2 class="mb-3 mt-3"><?php echo esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) ); ?></h2>
 									<p>
 										<?php
 										echo $categoria_appartenenza;
 										if ( $nome_struttura ) {
-											echo ', ' . $nome_struttura;
+											echo ', ' . esc_attr( $nome_struttura );
 										}
 										?>
 									</p>
@@ -239,7 +239,7 @@ $pubblicazioni = new WP_Query(
 							?>
 						<h3 class="it-page-section h4" id="p1"><?php _e( 'Biografia', "design_laboratori_italia" ); ?></h3>
 						<div class="row pb-3">
-							<p><?php echo $bio; ?></p>
+							<p><?php echo esc_html( $bio ); ?></p>
 						</div>
 							<?php
 						}
@@ -263,10 +263,10 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 												</svg>
-												<a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a>
+												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
 											</h3>
 											<div class="card-text">
-												<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+												<p><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
 											</div>
 										</div>
 									</div>
@@ -309,10 +309,10 @@ $pubblicazioni = new WP_Query(
 														<svg class="icon">
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 														</svg>
-														<a href="<?php echo get_permalink(); ?>"><?php echo $indirizzo_ricerca_title; ?></a>
+														<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $indirizzo_ricerca_title ); ?></a>
 													</h3>
 													<div class="card-text">
-														<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+														<p><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
 													</div>
 												</div>
 											</div>
@@ -345,10 +345,10 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
 												</svg>
-												<a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a>
+												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr($title); ?></a>
 											</h3>
 											<div class="card-text">
-												<p><?php echo get_field( 'abstract' ); ?></p>
+												<p><?php echo esc_attr( get_field( 'abstract' ) ); ?></p>
 											</div>
 										</div>
 									</div><!--end card-->
@@ -377,7 +377,7 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
-												<a href="<?php echo $allegato_cv['url']; ?>"><?php echo $allegato_cv['title']; ?>&nbsp;</a>
+												<a href="<?php echo esc_url($allegato_cv['url']); ?>"><?php echo esc_attr( $allegato_cv['title'] ); ?>&nbsp;</a>
 											</h3>
 										</div>
 									</div><!--end card-->
@@ -392,7 +392,7 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
-												<a href="<?php echo $allegato1['url']; ?>"><?php echo $allegato1['title']; ?></a>
+												<a href="<?php echo esc_url($allegato1['url']); ?>"><?php echo esc_attr( $allegato1['title'] ); ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
@@ -406,7 +406,7 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
-												<a href="<?php echo $allegato2['url']; ?>"><?php echo $allegato2['title']; ?></a>
+												<a href="<?php echo esc_url($allegato2['url']); ?>"><?php echo esc_attr( $allegato2['title'] ); ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
@@ -420,7 +420,7 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
-												<a href="<?php echo $allegato3['url']; ?>"><?php echo $allegato3['title']; ?></a>
+												<a href="<?php echo esc_url($allegato3['url']); ?>"><?php echo esc_attr( $allegato3['title'] ); ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
@@ -443,7 +443,7 @@ $pubblicazioni = new WP_Query(
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone';?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo $telefono; ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
 										</div>
 									</li>
 									<?php
@@ -451,13 +451,13 @@ $pubblicazioni = new WP_Query(
 								if ( $email != '' ) {
 									?>
 									<li>
-										<a href="mailto:<?php echo $email; ?>" class="list-item">
+										<a href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo $email; ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
 										</a>
 									</li>
 									<?php
@@ -465,13 +465,13 @@ $pubblicazioni = new WP_Query(
 								if ( $sitoweb != '' ) {
 									?>
 									<li>
-										<a class="list-item" href="<?php echo $sitoweb; ?>">
+										<a class="list-item" href="<?php echo esc_attr( $sitoweb ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo $sitoweb; ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_url( $sitoweb ); ?></span></div>
 										</a>
 									</li>
 									<?php
