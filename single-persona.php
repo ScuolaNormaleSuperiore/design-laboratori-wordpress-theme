@@ -16,7 +16,9 @@ while ( have_posts() ) {
 	$bio                    = get_the_content();
 	$categoria_appartenenza = get_field( 'categoria_appartenenza' )[0]->nome;
 	$allegato_cv            = get_field( 'allegato_cv' );
-	$altri_allegati         = get_field( 'altri_allegati' );
+	$allegato1              = get_field( 'allegato1' );
+	$allegato2              = get_field( 'allegato2' );
+	$allegato3              = get_field( 'allegato3' );
 	$telefono               = get_field( 'telefono' );
 	$email                  = get_field( 'email' );
 	$sitoweb                = get_field( 'sito_web' );
@@ -57,7 +59,7 @@ $pubblicazioni = new WP_Query(
 			array(
 				'key' => 'autori',
 				'compare' => 'LIKE',
-				'value' => $title,
+				'value' => $ID,
 			),
 		),
 	)
@@ -189,7 +191,7 @@ $pubblicazioni = new WP_Query(
 												<li class="nav-item">
 													<a class="nav-link" href="#p3">
 														<span><?php
-															_e( 'Indirizzi di ricerca', "design_laboratori_italia" );
+															_e( 'Attività di ricerca', "design_laboratori_italia" );
 														?></span>
 													</a>
 												</li>
@@ -204,7 +206,8 @@ $pubblicazioni = new WP_Query(
 												</li>
 												<?php
 												}
-												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) {
+												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $allegato1 ) && count( $allegato1 ) > 0 )
+												|| ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) || ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
 												?>
 												<li class="nav-item">
 													<a class="nav-link" href="#p5">
@@ -288,7 +291,7 @@ $pubblicazioni = new WP_Query(
 								)
 							);
 							?>
-						<h3 class="it-page-section h4 pt-3" id="p3">Indirizzi di ricerca</h3>
+						<h3 class="it-page-section h4 pt-3" id="p3">Attività di ricerca</h3>
 						<!-- INDIRIZZI DI RICERCA -->
 						<section id="indirizzi-ricerca">
 							<div class="row pb-3">
@@ -345,7 +348,7 @@ $pubblicazioni = new WP_Query(
 												<a href="<?php echo get_permalink(); ?>"><?php echo $title; ?></a>
 											</h3>
 											<div class="card-text">
-												<p><?php echo get_field( 'descrizione_breve' ); ?></p>
+												<p><?php echo get_field( 'abstract' ); ?></p>
 											</div>
 										</div>
 									</div><!--end card-->
@@ -357,12 +360,16 @@ $pubblicazioni = new WP_Query(
 						</section>
 							<?php
 						}
-						if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $altri_allegati ) && count( $altri_allegati ) > 0 ) ) {
+						if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $allegato1 ) && count( $allegato1 ) > 0 )
+						|| ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) || ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
 							?>
 						<h3 class="it-page-section h4 pt-3" id="p5"><?php _e( 'Ulteriori informazioni', "design_laboratori_italia" ); ?></h3>
 						<section id="ulteriori-info">
 							<div class="row pb-3">
 								<div class="card-wrapper card-teaser-wrapper">
+								<?php
+									if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) ) {
+										?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
@@ -374,6 +381,10 @@ $pubblicazioni = new WP_Query(
 											</h3>
 										</div>
 									</div><!--end card-->
+									<?php } ?>
+									<?php
+									if ( ( is_array( $allegato1 ) && count( $allegato1 ) > 0 ) ) {
+										?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
@@ -381,10 +392,39 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
-												<a href="<?php echo $altri_allegati['url']; ?>"><?php echo $altri_allegati['title']; ?></a>
+												<a href="<?php echo $allegato1['url']; ?>"><?php echo $allegato1['title']; ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
+									<?php }
+									if ( ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) ) {
+										?>
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
+												</svg>
+												<a href="<?php echo $allegato2['url']; ?>"><?php echo $allegato2['title']; ?></a>
+											</h3>
+										</div>
+									</div><!--end card-->
+									<?php }
+									if ( ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
+										?>
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
+												</svg>
+												<a href="<?php echo $allegato3['url']; ?>"><?php echo $allegato3['title']; ?></a>
+											</h3>
+										</div>
+									</div><!--end card-->
+									<?php } ?>
 									</div> <!--end card wrapper-->
 							</div> <!--end row-->
 						</section>
