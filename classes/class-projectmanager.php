@@ -38,14 +38,14 @@ class Project_Manager {
 						'label'         => __( 'Progetto', 'design_laboratori_italia' ),
 						'labels'        => $labels,
 						'supports'      => array( 'title', 'editor', 'thumbnail' ),
-						'hierarchical'  => false,
+						'hierarchical'  => true,
 						'public'        => true,
 						'menu_position' => 2,
 						'menu_icon'     => 'dashicons-media-document',
 						'has_archive'   => true,
 						'show_in_rest'  => true,
-						'capability_type' => array( 'progetto', 'progetti' ),
-						// 'rewrite'       => array( 'slug' => 'progetti' ),
+						// 'capability_type' => array( 'progetto', 'progetti' ),
+						'rewrite'       => array( 'slug' => 'progetti' ),
 					);
 
 					register_post_type( PROGETTO_POST_TYPE, $args );
