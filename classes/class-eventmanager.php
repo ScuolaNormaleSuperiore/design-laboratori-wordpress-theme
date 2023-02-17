@@ -54,8 +54,7 @@ class Event_Manager {
 			'menu_icon'       => 'dashicons-calendar',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'capability_type' => array( 'evento', 'eventi' ),
-			'map_meta_cap'    => true,
+			// 'capability_type' => array( 'evento', 'eventi' ),
 		);
 
 		register_post_type( EVENT_POST_TYPE, $args );

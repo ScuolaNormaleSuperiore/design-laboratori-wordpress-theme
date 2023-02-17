@@ -60,9 +60,8 @@ class News_Manager {
 			'menu_icon'       => 'dashicons-welcome-widgets-menus',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'capability_type' => array( 'notizia', 'notizie' ),
-			'map_meta_cap'    => true,
 			'taxonomies'      => array( 'category' ),
+			// 'capability_type' => array( 'notizia', 'notizie' ),
 		);
 
 		register_post_type( NEWS_POST_TYPE, $args );

@@ -23,8 +23,7 @@ function dsi_register_luogo_post_type() {
 		'menu_position' => 2,
 		'menu_icon'     => 'dashicons-pressthis',
 		'has_archive'   => true,
-        'capability_type' => array('luogo', 'luoghi'),
-        'map_meta_cap'    => true,
+		'capability_type' => array('luogo', 'luoghi'),
 	);
 	register_post_type( 'luogo', $args );
 

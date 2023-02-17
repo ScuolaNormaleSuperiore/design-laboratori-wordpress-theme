@@ -596,31 +596,31 @@ function dsi_before_admin_bar_render()
  * abilito edit utenti agli admin di un netork multisite
  */
 
-function dsi_admin_users_caps( $caps, $cap, $user_id, $args ){
+// function dsi_admin_users_caps( $caps, $cap, $user_id, $args ){
 
-		foreach( $caps as $key => $capability ){
+// 		foreach( $caps as $key => $capability ){
 
-				if( $capability != 'do_not_allow' )
-						continue;
+// 				if( $capability != 'do_not_allow' )
+// 						continue;
 
-				switch( $cap ) {
-						case 'edit_user':
-						case 'edit_users':
-								$caps[$key] = 'edit_users';
-								break;
-						case 'delete_user':
-						case 'delete_users':
-								$caps[$key] = 'delete_users';
-								break;
-						case 'create_users':
-								$caps[$key] = $cap;
-								break;
-				}
-		}
+// 				switch( $cap ) {
+// 						case 'edit_user':
+// 						case 'edit_users':
+// 								$caps[$key] = 'edit_users';
+// 								break;
+// 						case 'delete_user':
+// 						case 'delete_users':
+// 								$caps[$key] = 'delete_users';
+// 								break;
+// 						case 'create_users':
+// 								$caps[$key] = $cap;
+// 								break;
+// 				}
+// 		}
 
-		return $caps;
-}
-add_filter( 'map_meta_cap', 'dsi_admin_users_caps', 1, 4 );
+// 		return $caps;
+// }
+// add_filter( 'map_meta_cap', 'dsi_admin_users_caps', 1, 4 );
 remove_all_filters( 'enable_edit_any_user_configuration' );
 add_filter( 'enable_edit_any_user_configuration', '__return_true');
 
