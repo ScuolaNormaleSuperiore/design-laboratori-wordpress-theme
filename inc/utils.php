@@ -139,8 +139,8 @@ if(!function_exists("dsi_get_user_avatar")){
  * @param object $foto
  * @return string url
  */
-if(!function_exists("dsi_get_persona_avatar")){
-	function dsi_get_persona_avatar( $foto, $ID, $size=250 ) {
+if(!function_exists("dli_get_persona_avatar")){
+	function dli_get_persona_avatar( $foto, $ID, $size=250 ) {
 
 		$thumbnail = $foto['sizes']['thumbnail'];
 		if(!$thumbnail) {
@@ -997,7 +997,7 @@ function dsi_get_display_name($user_id){
  * funzione per la gestione del nome persona
  */
 
-function dsi_get_persona_display_name($nome, $cognome, $title){
+function dli_get_persona_display_name($nome, $cognome, $title){
 	if(($nome != "") && ($cognome != ""))
 			return $nome." ".$cognome;
 	else
