@@ -92,7 +92,7 @@ $num_results = $the_query->found_posts;
 				}
 			} else {
 			?>
-		<div clas="row pt-5">
+		<div clas="row pt-2">
 			<?php echo __( 'Non è stato trovato nessun progetto', 'design_laboratori_italia' ); ?>
 		</div>
 		<?php
@@ -113,13 +113,20 @@ $num_results = $the_query->found_posts;
 
 	<!-- PAGINAZIONE -->
 	<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
+	<div class="row pt-5" id='pagination_links'>
 	<?php
-				echo paginate_links(
-					array(
-						'total' => $the_query->max_num_pages,
-					)
-				);
+		$prev_label = '<svg class="icon icon-primary"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
+		$next_label = '<svg class="icon icon-primary"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
+		echo paginate_links(
+			array(
+				'total'     => $the_query->max_num_pages,
+				'prev_text' => $prev_label,
+				'next_text' => $next_label,
+				'type'      => 'list',
+			)
+		);
 	?>
+	</div>
 	</nav>
 
 	<br /><br />
