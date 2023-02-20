@@ -208,32 +208,6 @@ class ResearchActivities_Manager {
 							'elements' => '',
 						),
 						array(
-							'key' => 'field_63ca96e9a1700',
-							'label' => 'Elenco progetti collegati',
-							'name' => 'elenco_progetti_collegati',
-							'aria-label' => '',
-							'type' => 'relationship',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'post_type' => array(
-								0 => 'progetto',
-							),
-							'taxonomy' => '',
-							'filters' => array(
-								0 => 'search',
-							),
-							'return_format' => 'object',
-							'min' => '',
-							'max' => '',
-							'elements' => '',
-						),
-						array(
 							'key' => 'field_63ca9713a1701',
 							'label' => 'Eventi collegati',
 							'name' => 'eventi_collegati',
