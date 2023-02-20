@@ -82,7 +82,7 @@ $num_results = $the_query->found_posts;
 						</div>  
 						<!--end card-->
 				<?php
-					if ( ( $post_index % PROG_CELLS_PER_ROW ) == PROG_CELLS_PER_ROW - 1 ) {
+					if ( ( ( $post_index % PROG_CELLS_PER_ROW ) === PROG_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
 				?>
 				</div>
 				<!-- end row -->
@@ -104,55 +104,21 @@ $num_results = $the_query->found_posts;
 
 
 
-
-
 	<!-- RESTORE ORIGINAL Post Data -->
 	<?php
 		wp_reset_postdata();
 	?>
 
 	<!-- PAGINAZIONE -->
-	<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
-	<div class="row pt-5" id='pagination_links'>
 	<?php
-		$prev_label = '<svg class="icon icon-primary"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
-		$next_label = '<svg class="icon icon-primary"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
-		echo paginate_links(
+		get_template_part(
+			'template-parts/common/paginazione',
+			null,
 			array(
-				'total'     => $the_query->max_num_pages,
-				'prev_text' => $prev_label,
-				'next_text' => $next_label,
-				'type'      => 'list',
+				'query' => $the_query,
 			)
 		);
 	?>
-	</div>
-	</nav>
-
-	<br /><br />
-	<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
-		<ul class="pagination">
-			<li class="page-item disabled">
-				<a class="page-link" href="#" tabindex="-1" aria-hidden="true">
-					<svg class="icon icon-primary"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>"></use></svg>
-					<span class="visually-hidden">Pagina precedente</span>
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#" aria-current="page">
-					<span class="d-inline-block d-sm-none">Pagina </span>1
-				</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					<span class="visually-hidden">Pagina successiva</span>
-					<svg class="icon icon-primary"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right'; ?>"></use></svg>
-				</a>
-			</li>
-		</ul>
-	</nav>
 
 	</main>
 
