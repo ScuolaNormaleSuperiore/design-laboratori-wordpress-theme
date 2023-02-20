@@ -22,8 +22,8 @@ get_header();
 					<div class="col-12 ms-4 ">
 						<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
 							<ol class="breadcrumb pb-0">
-								<li class="breadcrumb-item"><a href="sf-index.html">Home</a><span class="separator">&gt;</span></li>
-								<li class="breadcrumb-item active" aria-current="Elenco persone"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></li>
+								<li class="breadcrumb-item"><a href="<?php echo esc_url(get_site_url()); ?>">Home</a><span class="separator">&gt;</span></li>
+								<li class="breadcrumb-item active" aria-current="<?php _e( 'Elenco persone', 'design_laboratori_italia' ); ?>"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></li>
 							</ol>
 						</nav>
 					</div>
@@ -32,16 +32,7 @@ get_header();
 		</section>
 
 		<!-- BANNER PERSONE -->
-		<section id="banner-persone" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-persone">
-			<div class="section-muted p-3 primary-bg-c1">
-				<div class="container">
-					<div class="hero-title text-left ms-4 pb-3 pt-3">
-						<h2 class="p-0  "><?php _e( 'Le persone', 'design_laboratori_italia' ); ?></h2>
-						<p class="font-weight-normal"><?php echo dli_get_option( 'testo_sezione_persone', 'persone' ); ?></p>
-					</div>
-				</div>
-			</div>
-		</section>
+		<?php get_template_part( 'template-parts/hero/persone' ); ?>
 
 		<!-- ELENCO PERSONE -->
 		<div class="container my-4">
@@ -65,7 +56,7 @@ get_header();
 							foreach ( $strutture as $struttura ) {
 								?>
 								<div class="chip chip-simple">
-									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr($struttura->name); ?>"><?php echo esc_attr($struttura->name); ?></a></span>
+									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
 								</div>
 							<?php } ?>
 
@@ -96,7 +87,7 @@ get_header();
 							$nome_categoria = get_field( 'nome' );
 
 							$categoria_id = get_the_ID();
-							if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != "" ) {
+							if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != '' ) {
 								$struttura = $_GET['struttura'];
 								// recupero la lista delle persone filtrate per struttura.
 								$persone = new WP_Query(
@@ -178,14 +169,14 @@ get_header();
 															$nome_struttura = $terms[0]->name;
 															if ( ! $disattiva_pagina_dettaglio ) {
 																?>
-																<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr($nome) . " " . esc_attr($cognome); ?></a></h4>
+																<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
 																<?php
 															}
 															else {
 																?>
-																<h4><?php echo esc_attr($nome) . " " . esc_attr($cognome); ?></h4>
+																<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
 															<?php } ?>
-															<time datetime="2023-09-15"><?php echo esc_attr($nome_struttura); ?>&nbsp;</time>
+															<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
 														</div>
 													</div>
 												</div><!-- /col-lg-4 -->

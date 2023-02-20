@@ -76,7 +76,7 @@ $pubblicazioni = new WP_Query(
 								<ol class="breadcrumb pb-0">
 									<li class="breadcrumb-item"><a href="<?php echo esc_url(get_site_url()); ?>">Home</a><span class="separator">&gt;</span></li>
 									<li class="breadcrumb-item"><a href="<?php echo dli_get_template_page_url("page-templates/persone.php");?>"><?php _e( 'Persone', 'design_laboratori_italia' ); ?></a><span class="separator">&gt;</span></li>
-									<li class="breadcrumb-item active" aria-current="Elenco persone"><?php echo esc_attr(dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title)) ; ?></li>
+									<li class="breadcrumb-item active" aria-current="<?php _e( 'Elenco persone', 'design_laboratori_italia' ); ?>"><?php echo esc_attr(dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title)) ; ?></li>
 								</ol>
 							</nav>
 						</div>
