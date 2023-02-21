@@ -110,99 +110,86 @@ get_header();
 					penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 				</p>
 			</div>
-			
-			<h3 class="it-page-section h4 pt-3" id="p2">Responsabile</h3>
 
 			<!-- RESPONSABILE -->
+			<h3 class="it-page-section h4 pt-3" id="p2">Responsabile</h3>
 			<section id="responsabile">    
 				<div class="row pb-3 pt-3">
-								
-												<div class="col-lg-4">  
-													<div class="avatar-wrapper avatar-extra-text">
-													<div class="avatar size-xl">
-														<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-													</div>
-													<div class="extra-text">
-														<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-														<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-													</div>
-												</div>
-											</div>
-											
-											
-											
-											
-								
+					<div class="col-lg-4">  
+						<div class="avatar-wrapper avatar-extra-text">
+							<div class="avatar size-xl">
+								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
 							</div>
+							<div class="extra-text">
+								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
+								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 
-			<h3 class="it-page-section h4 pt-3" id="p3">Partecipanti</h3>
-
 			<!-- PARTECIPANTI -->
+			<h3 class="it-page-section h4 pt-3" id="p3">Partecipanti</h3>
 			<section id="partecipanti">    
 				<div class="row pb-3 pt-3">
-									
-													<div class="col-lg-4">  
-														<div class="avatar-wrapper avatar-extra-text">
-														<div class="avatar size-xl">
-															<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-														</div>
-														<div class="extra-text">
-															<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-															<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-														</div>
-													</div>
-												</div>
-												
-												<div class="col-lg-4">
-													<div class="avatar-wrapper avatar-extra-text">
-														<div class="avatar size-xl">
-															<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-														</div>
-														<div class="extra-text">
-															<h4>Giulia Neri</h4>
-															<p>IIT</p>
-														</div>
-													</div>
-												</div>
-												
-												<div class="col-lg-4">
-														<div class="avatar-wrapper avatar-extra-text">
-																<div class="avatar size-xl">
-																	<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
-																</div>
-																<div class="extra-text">
-																	<h4>Michele Dotti</h4>
-																</div>
-														</div>
-												</div>
-									
-								</div>
-				<div class="row pb-3 pt-3">
-				<div class="col-lg-4">  
-					<div class="avatar-wrapper avatar-extra-text">
-					<div class="avatar size-xl">
-						<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
+					<div class="col-lg-4">  
+						<div class="avatar-wrapper avatar-extra-text">
+							<div class="avatar size-xl">
+								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
+							</div>
+							<div class="extra-text">
+								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
+								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
+							</div>
+						</div>
 					</div>
-					<div class="extra-text">
-						<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-						<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="avatar-wrapper avatar-extra-text">
-					<div class="avatar size-xl">
+					<div class="col-lg-4">
+						<div class="avatar-wrapper avatar-extra-text">
+						<div class="avatar size-xl">
 						<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-					</div>
-					<div class="extra-text">
+						</div>
+						<div class="extra-text">
 						<h4>Giulia Neri</h4>
 						<p>IIT</p>
+						</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="avatar-wrapper avatar-extra-text">
+						<div class="avatar size-xl">
+						<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
+						</div>
+						<div class="extra-text">
+						<h4>Michele Dotti</h4>
+						</div>
+						</div>
 					</div>
 				</div>
-			</div>
-
+				<div class="row pb-3 pt-3">
+					<div class="col-lg-4">  
+						<div class="avatar-wrapper avatar-extra-text">
+							<div class="avatar size-xl">
+								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
 							</div>
+							<div class="extra-text">
+								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
+								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
+							</div>
+						</div>
+						</div>
+					<div class="col-lg-4">
+					<div class="avatar-wrapper avatar-extra-text">
+					<div class="avatar size-xl">
+					<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
+					</div>
+					<div class="extra-text">
+					<h4>Giulia Neri</h4>
+					<p>IIT</p>
+					</div>
+					</div>
+					</div>
+				</div>
 			</section>	
 					
 		<h3 class="it-page-section h4 pt-3" id="p4">Attività di ricerca</h3>
