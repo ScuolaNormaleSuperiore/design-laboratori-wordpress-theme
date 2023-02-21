@@ -5,8 +5,7 @@
  */
 get_header();
 
-$anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ",ARRAY_A );
-print_r($anni_pubblicazioni);
+$anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' " );
 
 ?>
 
@@ -19,7 +18,7 @@ print_r($anni_pubblicazioni);
 				<div class="col-12 ms-4 ">
 					<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
 						<ol class="breadcrumb pb-0">
-							<li class="breadcrumb-item"><a href="<?php echo esc_url(get_site_url()); ?>">Home</a><span class="separator">&gt;</span></li>
+							<li class="breadcrumb-item"><a href="<?php echo esc_url( get_site_url() ); ?>">Home</a><span class="separator">&gt;</span></li>
 							<li class="breadcrumb-item active" aria-current="<?php _e( 'Elenco pubblicazioni', 'design_laboratori_italia' ); ?>"><?php _e( 'Pubblicazioni', 'design_laboratori_italia' ); ?></li>
 						</ol>
 					</nav>
@@ -46,89 +45,106 @@ print_r($anni_pubblicazioni);
 								<?php
 								foreach ( $anni_pubblicazioni as $anno ) { ?>
 									<option value=""><?php echo $anno->meta_value; ?></option>
-									<option value="Value 1">2023</option>
 									<?php
 								}
 								?>
 							</select>
 						</div>
 					</div>
-                             <!-- FILTRO PER CATEGORIA - Se esiste -->
-                              <div class="row pt-5">
-                                <h3 class="h6 text-uppercase border-bottom">Tipologia</h3>
-                                  <div>
-                                  <div class="form-check">
-                                    <input id="checkbox4" type="checkbox" checked>
-                                    <label for="checkbox4">Monografie e articoli</label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input id="checkbox5" type="checkbox">
-                                    <label for="checkbox5" class="disabled">Altra categoria</label>
-                                  </div>
-                                <div class="form-check">
-                                    <input id="checkbox5" type="checkbox">
-                                    <label for="checkbox5" class="disabled">Altra categoria 2</label>
-                                  </div>
-                                </div>
-                              </div>
-                            
-                            <!--fine filtri -->
-                    </div>
-                    <!-- PUBBLICAZIONI -->
-                    <div class="col-12 col-lg-8">
-                        <div class="row">      
-                        
-                           <!--start card-->
-                            <div class="card-wrapper">
-                             <div class="card card-teaser rounded shadow">
-						<div class="card-body">
-							<h3 class="card-title h5"><a href="https://ricerca.sns.it/handle/11384/75152?mode=complete">Sperimentazione di Sistemi Informativi Geografici applicati alle aree archeologiche</a></h3>
-							<p class="card-text">Monografie e Articoli, Pietro Carmelo Manti,  in «Elymos. 1, Quaderni del Parco Archeologico di Segesta», pp. 29-38 2022</p>
+					<?php
+					// recupero i termini della tassonomia tipo pubblicazione.
+					$tipi_pubblicazione = get_terms(
+						[
+							'taxonomy'   => 'tipo-pubblicazione',
+							'hide_empty' => false,
+						]
+					);
+					// visualizzo i filtri sul tipo doi pubblicazione solo se ne esistono almeno 1.
+					if ( count( $tipi_pubblicazione ) >= 1 ) {
+					?>
+					<!-- FILTRO PER CATEGORIA - Se esiste -->
+					<div class="row pt-5">
+						<h3 class="h6 text-uppercase border-bottom"><?php _e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
+						<div>
+							<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
+							<div class="form-check">
+								<input id="checkbox4" type="checkbox" checked>
+								<label for="checkbox4"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
+							</div>
+								<?php
+							}
+							?>
 						</div>
 					</div>
-                            </div>
-                            <!--end card-->
-                            
-                            <!--start card-->
-                            <div class="card-wrapper pt-3">
-                             <div class="card card-teaser ">
-						<div class="card-body">
-							<h3 class="card-title h5">Sperimentazione di Sistemi Informativi Geografici applicati alle aree archeologiche </h3>
-							<p class="card-text">Monografie e Articoli, Pietro Carmelo Manti,  in «Elymos. 1, Quaderni del Parco Archeologico di Segesta», pp. 29-38 2022</p>
-						</div>
-					</div>
-                            </div>
-                            <!--end card-->
-                            
-                            <!--start card-->
-                            <div class="card-wrapper pt-3">
-                             <div class="card card-teaser ">
-						<div class="card-body">
-							<h3 class="card-title h5">Sperimentazione di Sistemi Informativi Geografici applicati alle aree archeologiche </h3>
-							<p class="card-text">Monografie e Articoli, Pietro Carmelo Manti,  in «Elymos. 1, Quaderni del Parco Archeologico di Segesta», pp. 29-38 2022</p>
-						</div>
-					</div>
-                            </div>
-                            <!--end card-->
-                            
-                            <!--start card-->
-                            <div class="card-wrapper pt-3">
-                             <div class="card card-teaser ">
-						<div class="card-body">
-							<h3 class="card-title h5">Sperimentazione di Sistemi Informativi Geografici applicati alle aree archeologiche </h3>
-							<p class="card-text">Monografie e Articoli, Pietro Carmelo Manti,  in «Elymos. 1, Quaderni del Parco Archeologico di Segesta», pp. 29-38 2022</p>
-						</div>
-					</div>
-                            </div>
-                            <!--end card-->
-                        </div>		  
-                    </div>
-                     
+						<?php
+					}
+					?>
+					<!--fine filtri -->
 				</div>
-		    </div>            
-        </section>
-<!-- PAGINAZIONE -->
-        
+
+				<!-- PUBBLICAZIONI -->
+				<?php
+				$pubblicazioni = new WP_Query(
+					array(
+						'posts_per_page' => -1,
+						'post_type'      => 'pubblicazione',
+						'orderby'        => 'anno',
+						'order'          => 'ASC',
+					)
+				);
+				if ( $pubblicazioni ) {
+				?>
+
+					<div class="col-12 col-lg-8">
+						<div class="row">
+							<?php
+							while ( $pubblicazioni->have_posts() ) {
+								$pubblicazioni->the_post();
+								$ID       = get_the_ID();
+								$title    = get_the_title( $ID );
+								$abstract = get_field( 'abstract' );
+								$url = get_field( 'url' );
+								?>
+								<!--start card-->
+								<div class="card-wrapper pt-3">
+									<div class="card card-teaser rounded shadow">
+										<div class="card-body">
+											<?php
+											if ($url) {
+												?>
+												<h3 class="card-title h5">
+													<svg class="icon">
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
+													</svg>
+													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+												</h3>
+												<?php
+											}
+											else {
+												?>
+												<h3 class="card-title h5">
+													<svg class="icon">
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
+													</svg>
+													<?php echo esc_attr( $title ); ?>
+												</h3>
+											<?php } ?>
+											<p class="card-text"><?php echo esc_attr( $abstract ); ?></p>
+										</div>
+									</div>
+								</div>
+								<!--end card-->
+							<?php } ?>
+						</div>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+		</div>
+	</section>
+
+	<!-- PAGINAZIONE -->
 <nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
               <ul class="pagination">
                 <li class="page-item disabled">
