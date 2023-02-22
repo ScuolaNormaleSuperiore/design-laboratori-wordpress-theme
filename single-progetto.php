@@ -19,7 +19,9 @@ get_header();
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
-		<div class="img-wrapper"><img src="https://animals.sandiegozoo.org/sites/default/files/2016-08/animals_hero_mountains.jpg" title="titolo immagine" alt="descrizione immagine"></div>
+		<div class="img-wrapper">
+			<img src="<?php echo the_post_thumbnail_url( 'item-gallery' ); ?>" title="titolo immagine" alt="descrizione immagine">
+		</div>
 		</div>
 		</div>
 		<div class="container">
@@ -99,142 +101,59 @@ get_header();
 			</div> <!-- row -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
-			<h3 class="it-page-section h4" id="p1">Descrizione</h3>
+			<h3 class="it-page-section h4" id="p1"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 
 			<div class="row pb-3">
-					<p>
-					Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue, sodales ac rhoncus in, ultricies a neque. Morbi non semper felis, at lacinia
-					nibh. Nam quis elit massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper
-					sem, vel sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada vel ut quam. Cras vehicula rutrum
-					vehicula. Suspendisse efficitur eget purus vitae convallis. Integer euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque
-					penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				<p>
+					<?php
+						$content = apply_filters( 'the_content', $post->post_content );
+						echo $content;
+					?>
 				</p>
 			</div>
 
 			<!-- RESPONSABILE -->
-			<h3 class="it-page-section h4 pt-3" id="p2">Responsabile</h3>
-			<section id="responsabile">    
-				<div class="row pb-3 pt-3">
-					<div class="col-lg-4">  
-						<div class="avatar-wrapper avatar-extra-text">
-							<div class="avatar size-xl">
-								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-							</div>
-							<div class="extra-text">
-								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<?php $responsabili = get_field( 'responsabile_del_progetto' ); ?>
+			<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+			<?php
+				get_template_part(
+					'template-parts/common/sezione-persone',
+					null,
+					array(
+						'section_id' => 'responsabile',
+						'items'    => $responsabili,
+					)
+				);
+			?>
 
 			<!-- PARTECIPANTI -->
-			<h3 class="it-page-section h4 pt-3" id="p3">Partecipanti</h3>
-			<section id="partecipanti">    
-				<div class="row pb-3 pt-3">
-					<div class="col-lg-4">  
-						<div class="avatar-wrapper avatar-extra-text">
-							<div class="avatar size-xl">
-								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-							</div>
-							<div class="extra-text">
-								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="avatar-wrapper avatar-extra-text">
-						<div class="avatar size-xl">
-						<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-						</div>
-						<div class="extra-text">
-						<h4>Giulia Neri</h4>
-						<p>IIT</p>
-						</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="avatar-wrapper avatar-extra-text">
-						<div class="avatar size-xl">
-						<img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" aria-hidden="true">
-						</div>
-						<div class="extra-text">
-						<h4>Michele Dotti</h4>
-						</div>
-						</div>
-					</div>
-				</div>
-				<div class="row pb-3 pt-3">
-					<div class="col-lg-4">  
-						<div class="avatar-wrapper avatar-extra-text">
-							<div class="avatar size-xl">
-								<img src="https://randomuser.me/api/portraits/men/33.jpg" alt="" aria-hidden="true">
-							</div>
-							<div class="extra-text">
-								<h4><a href="sf-scheda-persona.html">Mario Rossi</a></h4>
-								<time datetime="2023-09-15">Scuola normale superiore&nbsp;</time>
-							</div>
-						</div>
-						</div>
-					<div class="col-lg-4">
-					<div class="avatar-wrapper avatar-extra-text">
-					<div class="avatar size-xl">
-					<img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" aria-hidden="true">
-					</div>
-					<div class="extra-text">
-					<h4>Giulia Neri</h4>
-					<p>IIT</p>
-					</div>
-					</div>
-					</div>
-				</div>
-			</section>	
-					
-		<h3 class="it-page-section h4 pt-3" id="p4">Attività di ricerca</h3>
-		<!-- INDIRIZZI DI RICERCA -->
-			<section id="indirizzi-ricerca">    
-				<div class="row pb-3 col-sm-12">
-								
-									<div class="card-wrapper card-teaser-wrapper">
-										<!--start card-->
-											<div class="card card-teaser rounded shadow">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-folder"></use>
-													</svg>
-													<a href="sf-scheda-attivita.html">Nome indirizzo</a>
-												</h3>
-												<div class="card-text">
-													<p>Descrizione breve</p>
-												</div>
-											</div>
-										</div>
-											<!--end card-->
-											<!--start card-->
-											<div class="card card-teaser rounded shadow">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-folder"></use>
-													</svg>
-													<a href="sf-scheda-attivita.html">Nome indirizzo</a>
-												</h3>
-												<div class="card-text">
-													<p>Descrizione breve</p>
-												</div>
-											</div>
-										</div>
-											<!--end card-->
+			<?php $partecipanti = get_field( 'persone' ); ?>
+			<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
+			<?php
+				get_template_part(
+					'template-parts/common/sezione-persone',
+					null,
+					array(
+						'section_id' => 'partecipanti',
+						'items'    => $partecipanti,
+					)
+				);
+			?>
 
-									</div>
-								
-							</div>
-			</section>
+		<!-- INDIRIZZI DI RICERCA -->
+		<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Attività di ricerca', 'design_laboratori_italia' ); ?></h3>
+		<?php
+				get_template_part(
+					'template-parts/common/sezione-indirizzidiricerca',
+					null,
+					array(
+						'section_id' => 'indirizzi-di-ricerca',
+						'items'    => array(),
+					)
+				);
+		?>
 					
-		<h3 class="it-page-section pt-3 h4" id="p5">Pubblicazioni</h3>
+		<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
 
 			<!-- PUBBLICAZIONI -->
 			<section id="pubblicazioni">    
@@ -291,7 +210,7 @@ get_header();
 				</div>
 			</section>
 			
-		<h3 class="it-page-section h4 pt-3" id="p6">Allegati</h3>
+		<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
 
 			<section id="allegati">    
 					<div class="row pb-3">
@@ -326,7 +245,7 @@ get_header();
 				</div>
 			</section>
 
-		<h3 class="it-page-section h4 pt-3" id="p7">Eventi</h3>
+		<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 
 		<section id="eventi" >
 						<div class="section-content">

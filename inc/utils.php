@@ -139,22 +139,20 @@ if(!function_exists("dsi_get_user_avatar")){
  * @param object $foto
  * @return string url
  */
-if(!function_exists("dli_get_persona_avatar")){
+if( ! function_exists( 'dli_get_persona_avatar' ) ){
 	function dli_get_persona_avatar( $foto, $ID, $size=250 ) {
-
 		$thumbnail = $foto['sizes']['thumbnail'];
-		if(!$thumbnail) {
-			$thumbnail = get_avatar_url( $ID, array("size" => $size) ); 
+		if( ! $thumbnail ) {
+			$thumbnail = get_avatar_url( $ID, array( "size" => $size ) );
 		}
 		return $thumbnail;
 	}
 }
 
 
+add_filter( 'get_avatar' , 'dli_custom_avatar' , 1 , 5 );
 
-add_filter( 'get_avatar' , 'dsi_custom_avatar' , 1 , 5 );
-
-function dsi_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
+function dli_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
 		$user = false;
 
 		if ( is_numeric( $id_or_email ) ) {

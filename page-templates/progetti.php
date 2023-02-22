@@ -39,7 +39,7 @@ $num_results = $the_query->found_posts;
 			<?php
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				if ( ( $post_index % PROG_CELLS_PER_ROW ) == 0 ) {
+				if ( ( $pindex % PROG_CELLS_PER_ROW ) == 0 ) {
 			?>
 				<!-- begin row -->
 				<div class="row pt-5">
@@ -82,13 +82,13 @@ $num_results = $the_query->found_posts;
 						</div>  
 						<!--end card-->
 				<?php
-					if ( ( ( $post_index % PROG_CELLS_PER_ROW ) === PROG_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+					if ( ( ( $pindex % PROG_CELLS_PER_ROW ) === PROG_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
 				?>
 				</div>
 				<!-- end row -->
 			<?php
 				}
-				$post_index++;
+				$pindex++;
 				}
 			} else {
 			?>

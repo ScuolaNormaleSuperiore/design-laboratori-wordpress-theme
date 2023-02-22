@@ -173,7 +173,7 @@ if ( ! function_exists( 'dli_setup' ) ) :
 		if ( function_exists( 'add_image_size' ) ) {
 			// add_image_size( 'article-simple-thumb', 500, 384 , true );
 			add_image_size( 'item-thumb', 280, 280 , true );
-			// add_image_size( 'item-gallery', 730, 485 , true );
+			add_image_size( 'item-gallery', 730, 485 , true );
 			add_image_size( 'item-hero-event', 418, 130 , true );
 			add_image_size( 'item-card-list', 416, 232 , true );
 			add_image_size( 'item-carousel', 592, 334 , true );
