@@ -7,6 +7,11 @@ get_header();
 
 $anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' " );
 
+print_r($_GET);
+
+if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
+	$anno_select = $_GET['annoSelect'];
+}
 ?>
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
@@ -39,12 +44,12 @@ $anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb
 						<div class="row pt-3">
 							<h3 class="h6 text-uppercase border-bottom"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></h3>
 							<div class="select-wrapper">
-								<label for="defaultSelect" class="visually-hidden"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></label>
-								<select id="defaultSelect">
-									<option selected="" value=""><?php _e( 'Scegli un\'opzione', 'design_laboratori_italia' ); ?></option>
+								<label for="annoSelect" class="visually-hidden"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></label>
+								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
+									<option <?php if(!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( 'Scegli un\'opzione', 'design_laboratori_italia' ); ?></option>
 									<?php
 									foreach ( $anni_pubblicazioni as $anno ) { ?>
-										<option value=""><?php echo $anno->meta_value; ?></option>
+										<option <?php if($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo $anno->meta_value; ?>"><?php echo $anno->meta_value; ?></option>
 										<?php
 									}
 									?>
@@ -68,8 +73,8 @@ $anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb
 							<div>
 								<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
 								<div class="form-check">
-									<input id="checkbox4" type="checkbox" checked>
-									<label for="checkbox4"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
+									<input id="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" checked onChange="this.form.submit()">
+									<label for="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
 								</div>
 									<?php
 								}
