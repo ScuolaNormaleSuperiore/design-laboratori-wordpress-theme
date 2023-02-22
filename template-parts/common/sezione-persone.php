@@ -2,26 +2,28 @@
 	$items     = $args['items'];
 	$section_id  = $args['section_id'];
 	$num_results = count( $items );
-	define( 'PERSONS_PER_ROW', 3 );
+	define( 'PERSONE_PER_ROW', 3 );
 ?>
 <section id="<?php echo $section_id; ?>">
 <?php
 	// The mani loop of the page.
 	$pindex = 0;
 	if ( $num_results ) {
-?>
-		<?php
-		foreach ( $items as $person ) {
-			if ( ( $pindex % PERSONS_PER_ROW ) == 0 ) {
+		foreach ( $items as $item ) {
+			if ( ( $pindex % PERSONE_PER_ROW ) == 0 ) {
 		?>
 			<!-- begin row  person-->
 			<div class="row pb-3 pt-3">
 			<?php
 				}
-				$id                         = $person->ID;
+				$id                         = $item->ID;
 				$foto                       = get_field( 'foto', $id );
 				$terms                      = get_the_terms( $id, 'struttura' );
-				$nome_struttura             = $terms[0]->name;
+				if ( $terms ) {
+					$nome_struttura = $terms[0]->name;
+				} else {
+					$nome_struttura = '';
+				}
 				$escludi_da_elenco          = get_field( 'escludi_da_elenco', $id );
 				$nome                       = get_field( 'nome', $id );
 				$cognome                    = get_field( 'cognome', $id );
@@ -29,7 +31,7 @@
 				$link_persona               = get_the_permalink( $id );
 			?>
 
-				<!-- begin person -->
+				<!-- begin card person -->
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">
 					<div class="avatar size-xl">
@@ -41,10 +43,10 @@
 					</div>
 					</div>
 				</div>
-				<!-- end person -->
+				<!-- end card person -->
 
 			<?php
-				if ( ( ( $pindex % PERSONS_PER_ROW ) === PERSONS_PER_ROW - 1 ) || ( $pindex + 1 === $num_results ) ) {
+				if ( ( ( $pindex % PERSONE_PER_ROW ) === PERSONE_PER_ROW - 1 ) || ( $pindex + 1 === $num_results ) ) {
 			?>
 			</div>
 			<!-- end row person -->
@@ -52,6 +54,8 @@
 				}
 				$pindex++;
 			}
+		} else {
+			echo '<p>-</p>';
 		}
 		?>
 

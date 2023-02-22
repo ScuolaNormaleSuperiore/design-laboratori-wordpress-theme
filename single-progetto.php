@@ -101,220 +101,100 @@ get_header();
 			</div> <!-- row -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
-			<h3 class="it-page-section h4" id="p1"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4" id="p1"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 
-			<div class="row pb-3">
-				<p>
-					<?php
-						$content = apply_filters( 'the_content', $post->post_content );
-						echo $content;
-					?>
-				</p>
-			</div>
-
-			<!-- RESPONSABILE -->
-			<?php $responsabili = get_field( 'responsabile_del_progetto' ); ?>
-			<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-persone',
-					null,
-					array(
-						'section_id' => 'responsabile',
-						'items'    => $responsabili,
-					)
-				);
-			?>
-
-			<!-- PARTECIPANTI -->
-			<?php $partecipanti = get_field( 'persone' ); ?>
-			<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-persone',
-					null,
-					array(
-						'section_id' => 'partecipanti',
-						'items'    => $partecipanti,
-					)
-				);
-			?>
-
-		<!-- INDIRIZZI DI RICERCA -->
-		<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Attività di ricerca', 'design_laboratori_italia' ); ?></h3>
-		<?php
-				get_template_part(
-					'template-parts/common/sezione-indirizzidiricerca',
-					null,
-					array(
-						'section_id' => 'indirizzi-di-ricerca',
-						'items'    => array(),
-					)
-				);
-		?>
-					
-		<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
-
-			<!-- PUBBLICAZIONI -->
-			<section id="pubblicazioni">    
 				<div class="row pb-3">
-								
-					<div class="card-wrapper card-teaser-wrapper">
-										<!--start card-->
-											<div class="card card-teaser rounded shadow ">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-note"></use>
-													</svg>
-													<a href="#">Titolo pubblicazione</a>
-												</h3>
-												<div class="card-text">
-													<p>Elenco autori</p>
-												</div>
-											</div>
-										</div>
-											<!--end card-->
-											<!--start card-->
-											<div class="card card-teaser rounded shadow">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-note"></use>
-													</svg>
-													<a href="#">Titolo pubblicazione 2</a>
-												</h3>
-												<div class="card-text">
-													<p>Elenco autori</p>
-												</div>
-											</div>
-										</div>
-											<!--end card-->
-											<!--start card-->
-											<div class="card card-teaser rounded shadow">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-note"></use>
-													</svg>
-													<a href="#">Titolo pubblicazione</a>
-												</h3>
-												<div class="card-text">
-													<p>Elenco autori</p>
-												</div>
-											</div>
-										</div>
-											<!--end card-->
-									</div>
-								
+					<p>
+						<?php
+							$content = apply_filters( 'the_content', $post->post_content );
+							echo $content;
+						?>
+					</p>
 				</div>
-			</section>
-			
-		<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
 
-			<section id="allegati">    
-					<div class="row pb-3">
-								
-									<div class="card-wrapper card-teaser-wrapper">
-										<!--start card-->
-											<div class="card card-teaser rounded shadow ">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-file-pdf"></use>
-													</svg>
-													<a href="#">Curriculum vitae&nbsp;</a>
-												</h3>
-											</div>
-										</div>
-											<!--end card-->
-											<!--start card-->
-											<div class="card card-teaser rounded shadow ">
-											<div class="card-body">
-												<h3 class="card-title h5 ">
-													<svg class="icon">
-														<use href="bootstrap-italia/svg/sprites.svg#it-file-pdf"></use>
-													</svg>
-													<a href="#">Elenco pubblicazioni PDF</a>
-												</h3>
-											</div>
-										</div>
-											<!--end card-->
-									</div>
-								
-				</div>
-			</section>
+				<!-- RESPONSABILE -->
+				<?php $responsabili = get_field( 'responsabile_del_progetto' ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+				<?php
+					get_template_part(
+						'template-parts/common/sezione-persone',
+						null,
+						array(
+							'section_id' => 'responsabile',
+							'items'      => $responsabili,
+						)
+					);
+				?>
 
-		<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<!-- PARTECIPANTI -->
+				<?php $partecipanti = get_field( 'persone' ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
+				<?php
+					get_template_part(
+						'template-parts/common/sezione-persone',
+						null,
+						array(
+							'section_id' => 'partecipanti',
+							'items'      => $partecipanti,
+						)
+					);
+				?>
 
-		<section id="eventi" >
-						<div class="section-content">
-								<div class="row pt-3">
-											
-											<div class="col-12 col-lg-4">
-												<!--start card-->
-												<div class="card-wrapper">
-														<div class="card card-img no-after card-bg">
-															<div class="img-responsive-wrapper">
-																<div class="img-responsive img-responsive-panoramic">
-																	<figure class="img-wrapper">
-																		<img src="img/img-avatar-250x250.png" title="titolo immagine" alt="descrizione immagine">
-																	</figure>
-																	<div class="card-calendar d-flex flex-column justify-content-center">
-																		<span class="card-date">30</span>
-																		<span class="card-day">novembre</span>
-																	</div>
-																</div>
-															</div>
-															<div class="card-body p-4">
-								<h3 class="card-title h4">Titolo evento</h3>
-								<p class="card-text">Abstract della news su più righe con riduzione testo o utilizzo campo riassunto standard wordpress&nbsp;</p>
-																	<a class="read-more" href="#">
-																	<span class="text">Leggi di più</span>
-																	<span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
-																	<svg class="icon">
-																		<use href="/bootstrap-italia/dist/svg/sprites.svg#it-arrow-right"></use>
-																	</svg></a>
-															</div>
-														</div>
-													</div>
-												<!--end card-->
-											</div>
-											<div class="col-12 col-lg-4">
-												<!--start card-->
-												<div class="card-wrapper">
-														<div class="card card-img no-after card-bg">
-															<div class="img-responsive-wrapper">
-																<div class="img-responsive img-responsive-panoramic">
-																	<figure class="img-wrapper">
-																		<img src="img/img-avatar-250x250.png" title="titolo immagine" alt="descrizione immagine">
-																	</figure>
-																	<div class="card-calendar d-flex flex-column justify-content-center">
-																		<span class="card-date">23</span>
-																		<span class="card-day">Dicembre</span>
-																	</div>
-																</div>
-															</div>
-															<div class="card-body p-4">
-								<h3 class="card-title h4">Titolo evento 2</h3>
-								<p class="card-text">Abstract della news su più righe con riduzione testo o utilizzo campo riassunto standard wordpress&nbsp;</p>
-																	<a class="read-more" href="#">
-																	<span class="text">Leggi di più</span>
-																	<span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
-																	<svg class="icon">
-																		<use href="/bootstrap-italia/dist/svg/sprites.svg#it-arrow-right"></use>
-																	</svg></a>
-															</div>
-														</div>
-													</div>
-												<!--end card-->
-											</div>
-										</div>
-								
-						</div>
-				</section>
-			
-			
+				<!-- INDIRIZZI DI RICERCA -->
+				<?php $indirizzidiricerca = get_field( 'elenco_indirizzi_di_ricerca_correlati' ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></h3>
+				<?php
+						get_template_part(
+							'template-parts/common/sezione-indirizzidiricerca',
+							null,
+							array(
+								'section_id' => 'indirizzi-di-ricerca',
+								'items'      => $indirizzidiricerca,
+							)
+						);
+				?>
+
+				<!-- PUBBLICAZIONI -->
+				<?php $pubblicazioni = get_field( 'pubblicazioni' ); ?>
+				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
+				<?php
+						get_template_part(
+							'template-parts/common/sezione-pubblicazioni',
+							null,
+							array(
+								'section_id' => 'pubblicazioni',
+								'items'      => $pubblicazioni,
+							)
+						);
+				?>
+
+			<!-- ALLEGATI -->
+			<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+			<?php
+				get_template_part(
+					'template-parts/common/sezione-allegati',
+					null,
+					array(
+						'section_id' => 'allegati',
+						'items'      => array(),
+					)
+				);
+			?>
+
+			<!-- EVENTI -->
+			<?php $eventi = get_field( 'eventi_collegati' ); ?>
+			<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+			<?php
+				get_template_part(
+					'template-parts/common/sezione-eventi',
+					null,
+					array(
+						'section_id' => 'eventi',
+						'items'      => array(),
+					)
+				);
+			?>
+
 			</div>
 		</div>
 	</div> <!-- scheda_progetto -->
