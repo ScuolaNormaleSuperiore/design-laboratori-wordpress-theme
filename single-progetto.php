@@ -190,7 +190,7 @@ get_header();
 					null,
 					array(
 						'section_id' => 'eventi',
-						'items'      => array(),
+						'items'      => $eventi,
 					)
 				);
 			?>
