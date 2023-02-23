@@ -60,7 +60,7 @@ get_header();
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top">
-									<use href="bootstrap-italia/svg/sprites.svg#it-chevron-left" xlink:href="bootstrap-italia/svg/sprites.svg#it-chevron-left"></use>
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>"></use>
 								</svg>
 								<span>Indietro</span>
 							</a>
@@ -169,6 +169,16 @@ get_header();
 				?>
 
 			<!-- ALLEGATI -->
+			<?php
+				$fields    = array( 'allegato1', 'allegato2', 'allegato3' );
+				$allegati  = array();
+				foreach ( $fields as $field ) {
+					$item = get_field( $field );
+					if ( $item ) {
+						array_push( $allegati, $item );
+					}
+				}
+			?>
 			<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
 			<?php
 				get_template_part(
@@ -176,7 +186,7 @@ get_header();
 					null,
 					array(
 						'section_id' => 'allegati',
-						'items'      => array(),
+						'items'      => $allegati,
 					)
 				);
 			?>

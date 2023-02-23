@@ -2,7 +2,7 @@
 	$items     = $args['items'];
 	$section_id  = $args['section_id'];
 	$num_results = count( $items );
-	define( 'PERSONE_PER_ROW', 3 );
+	define( 'PERSONE_PER_ROW', 2 );
 ?>
 <section id="<?php echo $section_id; ?>">
 <?php
@@ -16,9 +16,9 @@
 			<div class="row pb-3 pt-3">
 			<?php
 				}
-				$id                         = $item->ID;
-				$foto                       = get_field( 'foto', $id );
-				$terms                      = get_the_terms( $id, 'struttura' );
+				$id    = $item->ID;
+				$foto  = get_field( 'foto', $id );
+				$terms = get_the_terms( $id, 'struttura' );
 				if ( $terms ) {
 					$nome_struttura = $terms[0]->name;
 				} else {
@@ -28,7 +28,7 @@
 				$nome                       = get_field( 'nome', $id );
 				$cognome                    = get_field( 'cognome', $id );
 				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
-				$link                       = get_the_permalink( $id );
+				$post_link                  = get_the_permalink( $id );
 			?>
 
 				<!-- begin card person -->
@@ -38,7 +38,7 @@
 						<img src="<?php echo dli_get_persona_avatar( $foto, $id ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
 					</div>
 					<div class="extra-text">
-					<h4><a href="<?php echo $link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>
+					<h4><a href="<?php echo $post_link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>
 					<span><?php echo esc_attr( $nome_struttura ); ?></span>
 					</div>
 					</div>
