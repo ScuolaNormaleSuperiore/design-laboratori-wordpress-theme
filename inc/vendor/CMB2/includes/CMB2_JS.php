@@ -115,14 +115,16 @@ class CMB2_JS {
 		unset( $dependencies['cmb2-char-counter'] );
 
 		// Enqueue cmb JS.
-		wp_enqueue_script( self::$handle, CMB2_Utils::url( "js/cmb2{$min}.js" ), array_values( $dependencies ), CMB2_VERSION, true );
+		// wp_enqueue_script( self::$handle, CMB2_Utils::url( "js/cmb2{$min}.js" ), array_values( $dependencies ), CMB2_VERSION, true );
+		wp_enqueue_script( self::$handle,  get_stylesheet_directory_uri() . "/inc/vendor/CMB2/js/cmb2{$min}.js", array_values( $dependencies ), CMB2_VERSION, true );
 
 		// if SCRIPT_DEBUG, we need to enqueue separately.
 		if ( $enqueue_wysiwyg ) {
-			wp_enqueue_script( 'cmb2-wysiwyg', CMB2_Utils::url( 'js/cmb2-wysiwyg.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION );
+			// wp_enqueue_script( 'cmb2-wysiwyg', CMB2_Utils::url( 'js/cmb2-wysiwyg.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION );
+			wp_enqueue_script( 'cmb2-wysiwyg',  get_stylesheet_directory_uri() . '/inc/vendor/CMB2/js/cmb2-wysiwyg.js', array( 'jquery', 'wp-util' ), CMB2_VERSION );
 		}
 		if ( $enqueue_char_counter ) {
-			wp_enqueue_script( 'cmb2-char-counter', CMB2_Utils::url( 'js/cmb2-char-counter.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION );
+			wp_enqueue_script( 'cmb2-char-counter',  get_stylesheet_directory_uri() . '/inc/vendor/CMB2/js/cmb2-char-counter.js', array( 'jquery', 'wp-util' ), CMB2_VERSION );
 		}
 
 		self::localize( $debug );
@@ -143,7 +145,7 @@ class CMB2_JS {
 		// Only use minified files if SCRIPT_DEBUG is off.
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$func = $enqueue ? 'wp_enqueue_script' : 'wp_register_script';
-		$func( 'wp-color-picker-alpha', CMB2_Utils::url( "js/wp-color-picker-alpha{$min}.js" ), array( 'wp-color-picker' ), '2.1.3' );
+		$func( 'wp-color-picker-alpha',  get_stylesheet_directory_uri() . "/inc/vendor/CMB2/js/wp-color-picker-alpha{$min}.js", array( 'wp-color-picker' ), '2.1.3' );
 	}
 
 	/**
@@ -157,7 +159,8 @@ class CMB2_JS {
 	 */
 	public static function register_datetimepicker( $enqueue = false ) {
 		$func = $enqueue ? 'wp_enqueue_script' : 'wp_register_script';
-		$func( 'jquery-ui-datetimepicker', CMB2_Utils::url( 'js/jquery-ui-timepicker-addon.min.js' ), array( 'jquery-ui-slider' ), '1.5.0' );
+		// $func( 'jquery-ui-datetimepicker', CMB2_Utils::url( 'js/jquery-ui-timepicker-addon.min.js' ), array( 'jquery-ui-slider' ), '1.5.0' );
+		$func( 'jquery-ui-datetimepicker', get_stylesheet_directory_uri() . '/inc/vendor/CMB2/js/jquery-ui-timepicker-addon.min.js', array( 'jquery-ui-slider' ), '1.5.0' );
 	}
 
 	/**

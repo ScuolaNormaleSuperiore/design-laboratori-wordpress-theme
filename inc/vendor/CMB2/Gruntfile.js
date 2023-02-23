@@ -93,22 +93,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// concat: {
-		// 	options: {
-		// 		stripBanners: true,
-		// 		banner: '/**\n' +
-		// 		' * <%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> | <%= pkg.homepage %> | Copyright (c) <%= grunt.template.today("yyyy") %>; | Licensed GPLv2+\n' +
-		// 		' */\n',
-		// 	},
-		// 	CMB2 : {
-		// 		src: [
-		// 			'js/cmb2.min.js',
-		// 			'js/jquery.timePicker.min.js',
-		// 		],
-		// 		dest: 'assets/js/combined.js'
-		// 	}
-		// },
-
 		csscomb: {
 			dist: {
 				files: [{
@@ -166,11 +150,6 @@ module.exports = function(grunt) {
 					' | Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>' +
 					' | Licensed <%= pkg.license %>' +
 					' */'
-				// banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-				// 	' * <%= pkg.homepage %>\n' +
-				// 	' * Copyright (c) <%= grunt.template.today("yyyy") %>;' +
-				// 	' * Licensed GPLv2+' +
-				// 	' */\n'
 			},
 			minify: {
 				expand: true,
@@ -229,11 +208,6 @@ module.exports = function(grunt) {
 					'js/cmb2.min.js': ['js/cmb2.js', 'js/cmb2-wysiwyg.js', 'js/cmb2-char-counter.js']
 				},
 				options: {
-					// banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-					// 	' * <%= pkg.homepage %>\n' +
-					// 	' * Copyright (c) <%= grunt.template.today("yyyy") %>;' +
-					// 	' * Licensed GPLv2+' +
-					// 	' */\n',
 					mangle: false
 				}
 			}
