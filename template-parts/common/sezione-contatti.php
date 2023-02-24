@@ -42,7 +42,7 @@
 		</li>
 		<?php
 			}
-			if ( $email ) {
+			if ( $website ) {
 		?>
 		<li>
 			<a class="list-item" href="#">
