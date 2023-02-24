@@ -4,7 +4,7 @@
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'PERSONE_PER_ROW', 2 );
 ?>
-<section id="<?php echo $section_id; ?>">
+<section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
 	// The mani loop of the page.
 	$pindex = 0;
