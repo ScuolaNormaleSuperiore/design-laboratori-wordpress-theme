@@ -75,16 +75,16 @@ get_header();
 											<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p2"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p3"><span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-progetti"><span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p4"><span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-contatti"><span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link link-100" href="#p5"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 									</ul>
 								</div>
@@ -96,17 +96,69 @@ get_header();
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
-
 				<div class="row pb-3">
 					<p>
-						<?php
+						<?php echo wp_trim_words( get_field( 'testo_descrittivo' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+						<!--?php
 							$content = apply_filters( 'the_content', $post->post_content );
 							echo $content;
-						?>
+						? -->
 					</p>
 				</div>
 
+				<!-- RESPONSABILE -->
+				<?php $responsabili = get_field( 'responsabile_attivita_di_ricerca' ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+				<?php
+					get_template_part(
+						'template-parts/common/sezione-persone',
+						null,
+						array(
+							'section_id' => 'responsabile',
+							'items'      => $responsabili,
+						)
+					);
+				?>
 
+				<!-- CONTATTI -->
+				<?php
+					$website = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
+					$phone   = get_field( 'telefono' )? get_field( 'telefono' ) : '';
+					$email   = get_field( 'email' )? get_field( 'email' ) : '';
+					$contatti = array(
+						'email'   => $email,
+						'pec'     => '',
+						'address' => '',
+						'mobile'  => '',
+						'phone'   => $phone,
+						'website' => $website,
+ 					)
+				?>
+				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
+				<?php
+						get_template_part(
+							'template-parts/common/sezione-contatti',
+							null,
+							array(
+								'section_id' => 'contatti',
+								'items'      => $contatti,
+							)
+						);
+				?>
+
+				<!-- EVENTI -->
+				<?php $eventi = get_field( 'eventi_collegati' ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<?php
+					get_template_part(
+						'template-parts/common/sezione-eventi',
+						null,
+						array(
+							'section_id' => 'eventi',
+							'items'      => $eventi,
+						)
+					);
+				?>
 
 			</div>
 		</div>

@@ -75,22 +75,22 @@ get_header();
 											<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p2"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p3"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p4"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-indirizzi-di-ricerca"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p5"><span><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-pubblicazioni"><span><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p6"><span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-allegati"><span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link link-100" href="#p6"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 									</ul>
 								</div>
@@ -102,7 +102,6 @@ get_header();
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
-
 				<div class="row pb-3">
 					<p>
 						<?php
