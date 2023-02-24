@@ -1,4 +1,6 @@
 <?php
+define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
+
 /* Template Name: Le pubblicazioni.
  *
  * @package Design_Laboratori_Italia
@@ -7,11 +9,35 @@ get_header();
 
 $anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' " );
 
-print_r($_GET);
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
+	$anno_filter_array = 
+		array(
+			'key'     => 'anno',
+			'compare' => 'LIKE',
+			'value'   => $anno_select,
+		);
 }
+
+// estraggo i parametri per il tipo pubblicazione
+$tipi_pubblicazione_params = array();
+foreach ( $_GET as $parameter ) {
+	echo $parameter;
+	if ( str_starts_with( $parameter, PREFIX_CAT_FILTER ) ) {
+		array_push( $tipi_pubblicazione_params, $parameter );
+	}
+}
+if ($tipi_pubblicazione_params > 0 ) {
+	$tipi_pubbl_filter_array = 
+		array(
+			'key'     => 'tipo-pubblicazione',
+			'compare' => 'IN',
+			'value'   => $tipi_pubblicazione_params,
+		);
+}
+
+
 ?>
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
@@ -46,10 +72,10 @@ if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 							<div class="select-wrapper">
 								<label for="annoSelect" class="visually-hidden"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></label>
 								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
-									<option <?php if(!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( 'Scegli un\'opzione', 'design_laboratori_italia' ); ?></option>
+									<option <?php if (!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( 'Scegli un\'opzione', 'design_laboratori_italia' ); ?></option>
 									<?php
 									foreach ( $anni_pubblicazioni as $anno ) { ?>
-										<option <?php if($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo $anno->meta_value; ?>"><?php echo $anno->meta_value; ?></option>
+										<option <?php if ($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo $anno->meta_value; ?>"><?php echo $anno->meta_value; ?></option>
 										<?php
 									}
 									?>
@@ -73,8 +99,14 @@ if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 							<div>
 								<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
 								<div class="form-check">
-									<input id="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" checked onChange="this.form.submit()">
-									<label for="<?php echo 'checkBoxCat' . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
+									<?php
+									$checked = false;
+									if ( isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug) {
+										$checked = true;
+									}
+									?>
+								<input id="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" value="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->name ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
+								<label for="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
 								</div>
 									<?php
 								}
@@ -95,6 +127,11 @@ if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 							'post_type'      => 'pubblicazione',
 							'orderby'        => 'anno',
 							'order'          => 'ASC',
+							'meta_query'     => array(
+								'relation'  => 'OR',
+								$anno_filter_array,
+								$tipi_pubbl_filter_array,
+							),
 						)
 					);
 					if ( $pubblicazioni ) {
