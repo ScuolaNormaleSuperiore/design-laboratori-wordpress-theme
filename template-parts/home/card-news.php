@@ -22,7 +22,7 @@ $num_items = $query->post_count;
 	<div class="card-wrapper">
 		<div class="card card-bg">
 		<?php
-		if ( $num_items != 0) {
+		if ( $num_items != 0 ) {
 			$last_hero_news = $query->posts[0];
 			$termitem       = dli_get_main_taxonomy_termitem( $last_hero_news, 'category' );
 		?>

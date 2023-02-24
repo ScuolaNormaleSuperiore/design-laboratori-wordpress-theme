@@ -1276,7 +1276,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				);
 			} else {
 				return array(
-					'title' => $terms[0],
+					'title' => $terms[0]->name,
 					'url'   => get_term_link( $terms[0] ),
 				);
 			}
