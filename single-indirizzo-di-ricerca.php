@@ -78,19 +78,13 @@ get_header();
 											<a class="nav-link" href="#p2"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p3"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#p3"><span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p4"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#p4"><span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p5"><span><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#p6"><span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link link-100" href="#p6"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link link-100" href="#p5"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 									</ul>
 								</div>
@@ -112,98 +106,7 @@ get_header();
 					</p>
 				</div>
 
-				<!-- RESPONSABILE -->
-				<?php $responsabili = get_field( 'responsabile_del_progetto' ); ?>
-				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
-				<?php
-					get_template_part(
-						'template-parts/common/sezione-persone',
-						null,
-						array(
-							'section_id' => 'responsabile',
-							'items'      => $responsabili,
-						)
-					);
-				?>
 
-				<!-- PARTECIPANTI -->
-				<?php $partecipanti = get_field( 'persone' ); ?>
-				<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
-				<?php
-					get_template_part(
-						'template-parts/common/sezione-persone',
-						null,
-						array(
-							'section_id' => 'partecipanti',
-							'items'      => $partecipanti,
-						)
-					);
-				?>
-
-				<!-- INDIRIZZI DI RICERCA -->
-				<?php $indirizzidiricerca = get_field( 'elenco_indirizzi_di_ricerca_correlati' ); ?>
-				<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></h3>
-				<?php
-						get_template_part(
-							'template-parts/common/sezione-indirizzidiricerca',
-							null,
-							array(
-								'section_id' => 'indirizzi-di-ricerca',
-								'items'      => $indirizzidiricerca,
-							)
-						);
-				?>
-
-				<!-- PUBBLICAZIONI -->
-				<?php $pubblicazioni = get_field( 'pubblicazioni' ); ?>
-				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
-				<?php
-						get_template_part(
-							'template-parts/common/sezione-pubblicazioni',
-							null,
-							array(
-								'section_id' => 'pubblicazioni',
-								'items'      => $pubblicazioni,
-							)
-						);
-				?>
-
-			<!-- ALLEGATI -->
-			<?php
-				$fields    = array( 'allegato1', 'allegato2', 'allegato3' );
-				$allegati  = array();
-				foreach ( $fields as $field ) {
-					$item = get_field( $field );
-					if ( $item ) {
-						array_push( $allegati, $item );
-					}
-				}
-			?>
-			<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-allegati',
-					null,
-					array(
-						'section_id' => 'allegati',
-						'items'      => $allegati,
-					)
-				);
-			?>
-
-			<!-- EVENTI -->
-			<?php $eventi = get_field( 'eventi_collegati' ); ?>
-			<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-eventi',
-					null,
-					array(
-						'section_id' => 'eventi',
-						'items'      => $eventi,
-					)
-				);
-			?>
 
 			</div>
 		</div>

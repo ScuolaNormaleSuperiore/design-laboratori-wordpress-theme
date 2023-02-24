@@ -1,7 +1,7 @@
 <?php
 	$items       = $args['items'];
 	$section_id  = $args['section_id'];
-	$num_results = count( $items );
+	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'EVENTI_PER_ROW', 3 );
 ?>
 <section id="<?php echo $section_id; ?>">

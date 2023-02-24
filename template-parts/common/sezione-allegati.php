@@ -1,7 +1,7 @@
 <?php
 	$items       = $args['items'];
 	$section_id  = $args['section_id'];
-	$num_results = count( $items );
+	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'ALLEGATI_PER_ROW', 3 );
 ?>
 
