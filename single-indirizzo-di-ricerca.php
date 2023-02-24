@@ -120,6 +120,20 @@ get_header();
 					);
 				?>
 
+				<!-- PROGETTI -->
+				<?php $progetti = dli_get_projects_by_event_id( get_the_ID() ); ?>
+				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
+				<?php
+					get_template_part(
+						'template-parts/common/sezione-progetti',
+						null,
+						array(
+							'section_id' => 'progetti',
+							'items'      => $progetti,
+						)
+					);
+				?>
+
 				<!-- CONTATTI -->
 				<?php
 					$website = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
@@ -132,7 +146,7 @@ get_header();
 						'mobile'  => '',
 						'phone'   => $phone,
 						'website' => $website,
- 					)
+					)
 				?>
 				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 				<?php

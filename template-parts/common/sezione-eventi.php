@@ -12,7 +12,7 @@
 		if ( $num_results ) {
 			foreach ( $items as $item ) {
 				if ( ( $pindex % EVENTI_PER_ROW ) == 0 ) {
-			?>
+	?>
 					<!-- begin row eventi -->
 					<div class="row pt-3">
 					<?php
@@ -52,7 +52,7 @@
 									<div class="card-body p-4">
 										<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
 										<p class="card-text"><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
-										<a class="read-more" href="<?php echo esc_url( $link ); ?> ">
+										<a class="read-more" href="<?php echo esc_url( $link ); ?>">
 											<span class="text"><?php echo __('Leggi di più', 'design_laboratori_italia' ) ?></span>
 											<span class="visually-hidden"><?php echo $desc; ?></span>
 											<svg class="icon">

@@ -1116,6 +1116,27 @@ if(!function_exists("dli_get_current_group")) {
 		}
 }
 
+if( ! function_exists( 'dli_get_projects_by_event_id' ) ) {
+	function dli_get_projects_by_event_id( $event_id ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => 'progetto',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'elenco_indirizzi_di_ricerca_correlati',
+						'compare' => 'LIKE',
+						'value'   => '"' . $event_id . '"',
+					),
+				),
+			)
+		);
+		return $query->posts;
+	}
+}
+
 if( ! function_exists( 'dli_get_carousel_items' ) ) {
 	function dli_get_carousel_items( ) {
 		$items   = array();
