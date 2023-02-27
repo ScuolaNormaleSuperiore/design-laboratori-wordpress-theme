@@ -329,6 +329,23 @@ class Event_Manager {
 						'mime_types' => '',
 					),
 					array(
+						'key' => 'field_63fcc059ead9c',
+						'label' => 'Video',
+						'name' => 'video',
+						'aria-label' => '',
+						'type' => 'url',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'placeholder' => '',
+					),
+					array(
 						'key' => 'field_63ca9bdcb8fd0',
 						'label' => 'Promuovi in hero',
 						'name' => 'promuovi_in_hero',
