@@ -7,8 +7,7 @@ define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
  */
 get_header();
 
-$anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' " );
-
+$anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ORDER BY meta_value DESC " );
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
@@ -23,17 +22,18 @@ if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 // estraggo i parametri per il tipo pubblicazione
 $tipi_pubblicazione_params = array();
 foreach ( $_GET as $parameter ) {
-	echo $parameter;
 	if ( str_starts_with( $parameter, PREFIX_CAT_FILTER ) ) {
-		array_push( $tipi_pubblicazione_params, $parameter );
+		$tipo = str_replace( PREFIX_CAT_FILTER, '', $parameter );
+		array_push( $tipi_pubblicazione_params, $tipo);
 	}
 }
-if ($tipi_pubblicazione_params > 0 ) {
+if ( count( $tipi_pubblicazione_params ) > 0 ) {
 	$tipi_pubbl_filter_array = 
 		array(
-			'key'     => 'tipo-pubblicazione',
-			'compare' => 'IN',
-			'value'   => $tipi_pubblicazione_params,
+			'taxonomy' => 'tipo-pubblicazione',
+			'field'    => 'slug',
+			'operator' => 'IN',
+			'terms'    => $tipi_pubblicazione_params,
 		);
 }
 
@@ -105,7 +105,7 @@ if ($tipi_pubblicazione_params > 0 ) {
 										$checked = true;
 									}
 									?>
-								<input id="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" value="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->name ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
+								<input id="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" value="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
 								<label for="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
 								</div>
 									<?php
@@ -121,19 +121,51 @@ if ($tipi_pubblicazione_params > 0 ) {
 
 					<!-- PUBBLICAZIONI -->
 					<?php
-					$pubblicazioni = new WP_Query(
-						array(
-							'posts_per_page' => -1,
-							'post_type'      => 'pubblicazione',
-							'orderby'        => 'anno',
-							'order'          => 'ASC',
-							'meta_query'     => array(
-								'relation'  => 'OR',
-								$anno_filter_array,
-								$tipi_pubbl_filter_array,
-							),
-						)
-					);
+					if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
+						$pubblicazioni = new WP_Query(
+							array(
+								'posts_per_page' => -1,
+								'post_type'      => 'pubblicazione',
+								'orderby'        => 'anno',
+								'order'          => 'ASC',
+								'meta_query'     => array(
+									$anno_filter_array,
+								),
+								'tax_query'   => array(
+									$tipi_pubbl_filter_array,
+								),
+							)
+						);
+					}
+
+					if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
+						$pubblicazioni = new WP_Query(
+							array(
+								'posts_per_page' => -1,
+								'post_type'      => 'pubblicazione',
+								'orderby'        => 'anno',
+								'order'          => 'ASC',
+								'meta_query'     => array(
+									$anno_filter_array,
+								),
+							)
+						);
+					}
+
+					if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
+						$pubblicazioni = new WP_Query(
+							array(
+								'posts_per_page' => -1,
+								'post_type'      => 'pubblicazione',
+								'orderby'        => 'anno',
+								'order'          => 'ASC',
+								'tax_query'   => array(
+									$tipi_pubbl_filter_array,
+								)
+							)
+						);
+					}
+
 					if ( $pubblicazioni ) {
 					?>
 
@@ -181,6 +213,7 @@ if ($tipi_pubblicazione_params > 0 ) {
 						</div>
 						<?php
 					}
+					wp_reset_postdata();
 					?>
 				</div>
 			</div>

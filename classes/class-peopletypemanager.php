@@ -19,7 +19,7 @@ class PeopleType_Manager {
 	 */
 	public function setup() {
 		// Register the post type.
-		add_action( 'init', array( $this, 'add_post_type' ) );		
+		add_action( 'init', array( $this, 'add_post_type' ) );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class PeopleType_Manager {
 			'labels'          => $labels,
 			'supports'        => array( 'title'),
 			'public'          => true,
-			'show_in_menu'    => true,
+			'show_in_menu'  =>	'edit.php?post_type=persona',
 			'show_in_rest'    => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-nametag',

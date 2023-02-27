@@ -157,11 +157,12 @@ get_header();
 												$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio' );
 												$ID                         = get_the_ID();
 												$link_persona               = get_the_permalink( $ID );
+												$title                      = get_the_title( $ID );
 												?>
 												<div class="col-lg-4">
 													<div class="avatar-wrapper avatar-extra-text">
 														<div class="avatar size-xl">
-															<img src="<?php echo dli_get_persona_avatar( $foto, $ID ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
+															<img src="<?php echo dli_get_persona_avatar( $foto, $ID ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
 														</div>
 														<div class="extra-text">
 															<?php
