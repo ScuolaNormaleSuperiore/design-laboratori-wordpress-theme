@@ -1,378 +1,326 @@
 [
-    {
-        "key": "group_63c808f35b51a",
-        "title": "Campi Persona",
-        "fields": [
-            {
-                "key": "field_63c958fb0e14f",
-                "label": "Titolo",
-                "name": "titolo",
-                "aria-label": "",
-                "type": "select",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "choices": {
-                    "Dott.": "Dott.",
-                    "Dott.ssa": "Dott.ssa",
-                    "Dr.": "Dr.",
-                    "Prof.": "Prof.",
-                    "Prof.ssa": "Prof.ssa",
-                    "Ing.": "Ing.",
-                    "Avv.": "Avv.",
-                    "Sig.": "Sig.",
-                    "Sig.ra": "Sig.ra"
-                },
-                "default_value": false,
-                "return_format": "value",
-                "multiple": 0,
-                "allow_null": 1,
-                "ui": 0,
-                "ajax": 0,
-                "placeholder": ""
-            },
-            {
-                "key": "field_63c958b563559",
-                "label": "Nome",
-                "name": "nome",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63c808f420306",
-                "label": "Cognome",
-                "name": "cognome",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63c8090f20307",
-                "label": "Email",
-                "name": "email",
-                "aria-label": "",
-                "type": "email",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63c8141a68f06",
-                "label": "Foto",
-                "name": "foto",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "",
-                "preview_size": "medium"
-            },
-            {
-                "key": "field_63c8144668f07",
-                "label": "Telefono",
-                "name": "telefono",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_63c8146368f08",
-                "label": "Escludi da elenco",
-                "name": "escludi_da_elenco",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_63ceb5a83d83e",
-                "label": "Disattiva pagina dettaglio",
-                "name": "disattiva_pagina_dettaglio",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "Disattiva il link alla pagina di dettaglio della persona",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_63c814c668f09",
-                "label": "Sito web",
-                "name": "sito_web",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "https:\/\/"
-            },
-            {
-                "key": "field_63e64bb8c4793",
-                "label": "Categoria di appartenenza",
-                "name": "categoria_appartenenza",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "tipologia-persona"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            },
-            {
-                "key": "field_63c8152d68f0b",
-                "label": "Progetti correlati",
-                "name": "progetti_correlati",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            },
-            {
-                "key": "field_63c8159068f0c",
-                "label": "Allegato CV",
-                "name": "allegato_cv",
-                "aria-label": "",
-                "type": "file",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_size": "",
-                "max_size": 5,
-                "mime_types": "pdf"
-            },
-            {
-                "key": "field_63ceb661fa3b1",
-                "label": "Allegato 1",
-                "name": "allegato1",
-                "aria-label": "",
-                "type": "file",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "uploadedTo",
-                "min_size": "",
-                "max_size": "",
-                "mime_types": ""
-            },
-            {
-                "key": "field_63e6473ebae92",
-                "label": "Allegato 2",
-                "name": "allegato2",
-                "aria-label": "",
-                "type": "file",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "uploadedTo",
-                "min_size": "",
-                "max_size": "",
-                "mime_types": ""
-            },
-            {
-                "key": "field_63e64748bae93",
-                "label": "Allegato 3",
-                "name": "allegato3",
-                "aria-label": "",
-                "type": "file",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "uploadedTo",
-                "min_size": "",
-                "max_size": "",
-                "mime_types": ""
-            },
-            {
-                "key": "field_63c815d868f0d",
-                "label": "Pubblicazioni",
-                "name": "pubblicazioni",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "pubblicazione"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "persona"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 1
-    }
+	{
+			"key": "group_63c808f35b51a",
+			"title": "Campi Persona",
+			"fields": [
+					{
+							"key": "field_63c958fb0e14f",
+							"label": "Titolo",
+							"name": "titolo",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"choices": {
+									"Dott.": "Dott.",
+									"Dott.ssa": "Dott.ssa",
+									"Dr.": "Dr.",
+									"Prof.": "Prof.",
+									"Prof.ssa": "Prof.ssa",
+									"Ing.": "Ing.",
+									"Avv.": "Avv.",
+									"Sig.": "Sig.",
+									"Sig.ra": "Sig.ra"
+							},
+							"default_value": false,
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 1,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": ""
+					},
+					{
+							"key": "field_63c958b563559",
+							"label": "Nome",
+							"name": "nome",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63c808f420306",
+							"label": "Cognome",
+							"name": "cognome",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63c8090f20307",
+							"label": "Email",
+							"name": "email",
+							"aria-label": "",
+							"type": "email",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63c8141a68f06",
+							"label": "Foto",
+							"name": "foto",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "",
+							"preview_size": "medium"
+					},
+					{
+							"key": "field_63c8144668f07",
+							"label": "Telefono",
+							"name": "telefono",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_63c8146368f08",
+							"label": "Escludi da elenco",
+							"name": "escludi_da_elenco",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					},
+					{
+							"key": "field_63ceb5a83d83e",
+							"label": "Disattiva pagina dettaglio",
+							"name": "disattiva_pagina_dettaglio",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "Disattiva il link alla pagina di dettaglio della persona",
+							"default_value": 0,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					},
+					{
+							"key": "field_63c814c668f09",
+							"label": "Sito web",
+							"name": "sito_web",
+							"aria-label": "",
+							"type": "url",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"placeholder": "https:\/\/"
+					},
+					{
+							"key": "field_63e64bb8c4793",
+							"label": "Categoria di appartenenza",
+							"name": "categoria_appartenenza",
+							"aria-label": "",
+							"type": "relationship",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"post_type": [
+									"tipologia-persona"
+							],
+							"taxonomy": "",
+							"filters": [
+									"search"
+							],
+							"return_format": "object",
+							"min": "",
+							"max": "",
+							"elements": ""
+					},
+					{
+							"key": "field_63c8159068f0c",
+							"label": "Allegato CV",
+							"name": "allegato_cv",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_size": "",
+							"max_size": 5,
+							"mime_types": "pdf"
+					},
+					{
+							"key": "field_63ceb661fa3b1",
+							"label": "Allegato 1",
+							"name": "allegato1",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e6473ebae92",
+							"label": "Allegato 2",
+							"name": "allegato2",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					},
+					{
+							"key": "field_63e64748bae93",
+							"label": "Allegato 3",
+							"name": "allegato3",
+							"aria-label": "",
+							"type": "file",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"return_format": "array",
+							"library": "uploadedTo",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "persona"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 1
+	}
 ]
