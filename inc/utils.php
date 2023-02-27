@@ -139,22 +139,20 @@ if(!function_exists("dsi_get_user_avatar")){
  * @param object $foto
  * @return string url
  */
-if(!function_exists("dli_get_persona_avatar")){
+if( ! function_exists( 'dli_get_persona_avatar' ) ){
 	function dli_get_persona_avatar( $foto, $ID, $size=250 ) {
-
 		$thumbnail = $foto['sizes']['thumbnail'];
-		if(!$thumbnail) {
-			$thumbnail = get_avatar_url( $ID, array("size" => $size) ); 
+		if( ! $thumbnail ) {
+			$thumbnail = get_avatar_url( $ID, array( "size" => $size ) );
 		}
 		return $thumbnail;
 	}
 }
 
 
+add_filter( 'get_avatar' , 'dli_custom_avatar' , 1 , 5 );
 
-add_filter( 'get_avatar' , 'dsi_custom_avatar' , 1 , 5 );
-
-function dsi_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
+function dli_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
 		$user = false;
 
 		if ( is_numeric( $id_or_email ) ) {
@@ -1118,6 +1116,27 @@ if(!function_exists("dli_get_current_group")) {
 		}
 }
 
+if( ! function_exists( 'dli_get_projects_by_event_id' ) ) {
+	function dli_get_projects_by_event_id( $event_id ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => 'progetto',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'elenco_indirizzi_di_ricerca_correlati',
+						'compare' => 'LIKE',
+						'value'   => '"' . $event_id . '"',
+					),
+				),
+			)
+		);
+		return $query->posts;
+	}
+}
+
 if( ! function_exists( 'dli_get_carousel_items' ) ) {
 	function dli_get_carousel_items( ) {
 		$items   = array();
@@ -1278,7 +1297,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 				);
 			} else {
 				return array(
-					'title' => $terms[0],
+					'title' => $terms[0]->name,
 					'url'   => get_term_link( $terms[0] ),
 				);
 			}

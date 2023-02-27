@@ -5,6 +5,9 @@
  * @package Design_Laboratori_Italia
  */
 
+ // Post Types.
+define( 'RESEARCHACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
+
 /**
 	* Il manager che fa il setup del custom type Indirizzo di Ricerca.
 	*/
@@ -37,16 +40,16 @@ class ResearchActivities_Manager {
 				$args   = array(
 						'label'         => __( 'Indirizzo di ricerca', 'design_laboratori_italia' ),
 						'labels'        => $labels,
-						'supports'      => array( 'title'),
+						'supports'      => array( 'title', 'thumbnail' ),
 						'public'        => true,
-						'show_in_rest' => true,
+						'show_in_rest'  => true,
 						'menu_position' => 2,
 						'menu_icon'     => 'dashicons-book-alt',
 						'has_archive'   => true,
-						'rewrite' => array('slug' => 'indirizzi-di-ricerca'),
+						'rewrite'       => array( 'slug' => 'indirizzi-di-ricerca' ),
 				);
 
-				register_post_type( 'indirizzo-di-ricerca', $args );
+				register_post_type( RESEARCHACTIVITY_POST_TYPE, $args );
 
 				// Add the custom fields.
 				$this->add_fields();

@@ -1,10 +1,10 @@
-
 *** TODO ***
 
-4) Menù novità nello header
-5) Menù Lab in orizzontale.
+1) Verifica Multilingua: plugin, menu, contenuti, query, ecc.
+2) Pop ricerca
+3) Risultati ricerca
+4) Breadcrumb
 6) Menù Presentazione Multilink.
-7) Plugin per traduzione post e gestione multilingua
 8) Plugin cookies
 9) Plugin web analytics
 10) Plugin LDAP
@@ -29,3 +29,5 @@
 - Script creazione contenuti iniziale (activations.php)
 - Configurazione: togliere: Didattica, Organizzazione, documenti.
 - Configurazione aggiungere: Progetti, Pubblicazioni, Attività di ricerca.
+- Menù novità nello header
+- Menù Lab in orizzontale.

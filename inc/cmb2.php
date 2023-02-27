@@ -61,20 +61,6 @@ function dsi_get_gruppi_options( $query_args = false) {
 
 		return $options;
 }
-/* // todo: programma materia
-function dsi_get_program_options( $query_args = false) {
-
-	$programs = get_posts("post_type=programma_materia&posts_per_page=-1&orderby=title&order=ASC");
-
-	$options = array();
-	if ( $programs ) {
-		foreach ( $programs as $program ) {
-			$options[ $program->ID ] = $program->post_title;
-		}
-	}
-
-	return $options;
-}*/
 
 
 function dsi_get_luoghi_options( $parent = false, $addnone=false) {
