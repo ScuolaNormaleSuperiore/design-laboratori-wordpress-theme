@@ -101,7 +101,7 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 								<div class="form-check">
 									<?php
 									$checked = false;
-									if ( isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug) {
+									if ( count( $tipi_pubblicazione_params ) == 0 || (isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug)) {
 										$checked = true;
 									}
 									?>
@@ -121,6 +121,24 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 
 					<!-- PUBBLICAZIONI -->
 					<?php
+
+					if (!isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
+						$pubblicazioni = new WP_Query(
+							array(
+								'posts_per_page' => -1,
+								'post_type'      => 'pubblicazione',
+								'orderby'        => 'anno',
+								'order'          => 'ASC',
+								'meta_query'     => array(
+									$anno_filter_array,
+								),
+								'tax_query'   => array(
+									$tipi_pubbl_filter_array,
+								),
+							)
+						);
+					}
+
 					if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 						$pubblicazioni = new WP_Query(
 							array(
