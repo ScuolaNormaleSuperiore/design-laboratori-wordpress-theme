@@ -1,5 +1,6 @@
 <?php
 define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
+define( 'POST_PER_PAGE', '4' );
 
 /* Template Name: Le pubblicazioni.
  *
@@ -24,7 +25,7 @@ $tipi_pubblicazione_params = array();
 foreach ( $_GET as $parameter ) {
 	if ( str_starts_with( $parameter, PREFIX_CAT_FILTER ) ) {
 		$tipo = str_replace( PREFIX_CAT_FILTER, '', $parameter );
-		array_push( $tipi_pubblicazione_params, $tipo);
+		array_push( $tipi_pubblicazione_params, $tipo );
 	}
 }
 if ( count( $tipi_pubblicazione_params ) > 0 ) {
@@ -36,6 +37,73 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 			'terms'    => $tipi_pubblicazione_params,
 		);
 }
+
+if ( !isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
+	$pubblicazioni = new WP_Query(
+		array(
+			'posts_per_page' => POST_PER_PAGE,
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_type'      => 'pubblicazione',
+			'orderby'        => 'anno',
+			'order'          => 'ASC',
+			'meta_query'     => array(
+				$anno_filter_array,
+			),
+			'tax_query'   => array(
+				$tipi_pubbl_filter_array,
+			),
+		)
+	);
+}
+
+if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
+	$pubblicazioni = new WP_Query(
+		array(
+			'posts_per_page' => POST_PER_PAGE,
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_type'      => 'pubblicazione',
+			'orderby'        => 'anno',
+			'order'          => 'ASC',
+			'meta_query'     => array(
+				$anno_filter_array,
+			),
+			'tax_query'   => array(
+				$tipi_pubbl_filter_array,
+			),
+		)
+	);
+}
+
+if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
+	$pubblicazioni = new WP_Query(
+		array(
+			'posts_per_page' => POST_PER_PAGE,
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_type'      => 'pubblicazione',
+			'orderby'        => 'anno',
+			'order'          => 'ASC',
+			'meta_query'     => array(
+				$anno_filter_array,
+			),
+		)
+	);
+}
+
+if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
+	$pubblicazioni = new WP_Query(
+		array(
+			'posts_per_page' => POST_PER_PAGE,
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_type'      => 'pubblicazione',
+			'orderby'        => 'anno',
+			'order'          => 'ASC',
+			'tax_query'   => array(
+				$tipi_pubbl_filter_array,
+			)
+		)
+	);
+}
+$num_results = $pubblicazioni->found_posts;
 
 
 ?>
@@ -122,69 +190,7 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 					<!-- PUBBLICAZIONI -->
 					<?php
 
-					if (!isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
-						$pubblicazioni = new WP_Query(
-							array(
-								'posts_per_page' => -1,
-								'post_type'      => 'pubblicazione',
-								'orderby'        => 'anno',
-								'order'          => 'ASC',
-								'meta_query'     => array(
-									$anno_filter_array,
-								),
-								'tax_query'   => array(
-									$tipi_pubbl_filter_array,
-								),
-							)
-						);
-					}
-
-					if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
-						$pubblicazioni = new WP_Query(
-							array(
-								'posts_per_page' => -1,
-								'post_type'      => 'pubblicazione',
-								'orderby'        => 'anno',
-								'order'          => 'ASC',
-								'meta_query'     => array(
-									$anno_filter_array,
-								),
-								'tax_query'   => array(
-									$tipi_pubbl_filter_array,
-								),
-							)
-						);
-					}
-
-					if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
-						$pubblicazioni = new WP_Query(
-							array(
-								'posts_per_page' => -1,
-								'post_type'      => 'pubblicazione',
-								'orderby'        => 'anno',
-								'order'          => 'ASC',
-								'meta_query'     => array(
-									$anno_filter_array,
-								),
-							)
-						);
-					}
-
-					if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
-						$pubblicazioni = new WP_Query(
-							array(
-								'posts_per_page' => -1,
-								'post_type'      => 'pubblicazione',
-								'orderby'        => 'anno',
-								'order'          => 'ASC',
-								'tax_query'   => array(
-									$tipi_pubbl_filter_array,
-								)
-							)
-						);
-					}
-
-					if ( $pubblicazioni ) {
+					if ( $num_results ) {
 					?>
 
 						<div class="col-12 col-lg-8">
@@ -226,41 +232,39 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 										</div>
 									</div>
 									<!--end card-->
-								<?php } ?>
+								<?php } 
+								?>
 							</div>
 						</div>
 						<?php
+							wp_reset_postdata();
 					}
-					wp_reset_postdata();
+					else {
+						?>
+						<div class="col-12 col-lg-8">
+							<div class="row pt-2">
+							<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
+							</div>
+					</div>
+					<?php
+					}
 					?>
 				</div>
 			</div>
 		</section>
 
+
 		<!-- PAGINAZIONE -->
-		<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
-			<ul class="pagination">
-				<li class="page-item disabled">
-					<a class="page-link" href="#" tabindex="-1" aria-hidden="true">
-						<svg class="icon icon-primary"><use href="bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>
-						<span class="visually-hidden">Pagina precedente</span>
-					</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#" aria-current="page">
-						<span class="d-inline-block d-sm-none">Pagina </span>1
-					</a>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item">
-					<a class="page-link" href="#">
-						<span class="visually-hidden">Pagina successiva</span>
-						<svg class="icon icon-primary"><use href="bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>
-					</a>
-				</li>
-			</ul>
-		</nav>
+	<?php
+		get_template_part(
+			'template-parts/common/paginazione',
+			null,
+			array(
+				'query' => $pubblicazioni,
+			)
+		);
+	?>
+
 	</main>
 </form>
 <!-- END CONTENT -->
