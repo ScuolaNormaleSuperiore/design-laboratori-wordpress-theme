@@ -76,12 +76,13 @@ if( is_search() || is_archive() )
 						if ( has_nav_menu( $menu_name ) ) {
 							$menu       = wp_get_nav_menu_object( $locations[ $menu_name ] );
 							$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
+							$menuitems  = $menuitems  ? $menuitems : array();
 						?>
 						<ul class="link-list">
-							<?php
-							foreach ( $menuitems as $item ) {
-							?>
-							<li><a class="list-item" href="<?php echo $item->url ?>" aria-current="page"><?php echo $item->title;?></a></li>
+						<?php
+						foreach ( $menuitems as $item ) {
+						?>
+						<li><a class="list-item" href="<?php echo $item->url ?>" aria-current="page"><?php echo $item->title;?></a></li>
 							<?php
 							}
 							?>

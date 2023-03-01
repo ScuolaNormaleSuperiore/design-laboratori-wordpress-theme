@@ -42,49 +42,6 @@ function dsi_register_required_plugins() {
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
 	$plugins = array(
-/*
-	// This is an example of how to include a plugin bundled with a theme.
-	array(
-		'name'               => 'TGM Example Plugin',
-		// The plugin name.
-		'slug'               => 'tgm-example-plugin',
-		// The plugin slug (typically the folder name).
-		'source'             => get_template_directory() . '/lib/plugins/tgm-example-plugin.zip',
-		// The plugin source.
-		'required'           => true,
-		// If false, the plugin is only 'recommended' instead of required.
-		'version'            => '',
-		// E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-		'force_activation'   => false,
-		// If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-		'force_deactivation' => false,
-		// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-		'external_url'       => '',
-		// If set, overrides default API URL and points to an external URL.
-		'is_callable'        => '',
-		// If set, this callable will be be checked for availability to determine if a plugin is active.
-	),
-
-	// This is an example of how to include a plugin from an arbitrary external source in your theme.
-	array(
-		'name'         => 'TGM New Media Plugin',
-		// The plugin name.
-		'slug'         => 'tgm-new-media-plugin',
-		// The plugin slug (typically the folder name).
-		'source'       => 'https://s3.amazonaws.com/tgm/tgm-new-media-plugin.zip',
-		// The plugin source.
-		'required'     => true,
-		// If false, the plugin is only 'recommended' instead of required.
-		'external_url' => 'https://github.com/thomasgriffin/New-Media-Image-Uploader',
-		// If set, overrides default API URL and points to an external URL.
-	),
-
-	// This is an example of how to include a plugin from a GitHub repository in your theme.
-	// This presumes that the plugin code is based in the root of the GitHub repository
-	// and not in a subdirectory ('/src') of the repository.
-*/
-
-		// This is an example of how to include a plugin from the WordPress Plugin Repository.
 		array(
 			'name'     => 'Advanced Custom Fields',
 			'slug'     => 'advanced-custom-fields',
@@ -100,38 +57,26 @@ function dsi_register_required_plugins() {
 			'slug'     => 'members',
 			'required' => true,
 		),
-		// array(
-		// 	'name'     => 'Italia - Amministrazione Aperta',
-		// 	'slug'     => 'italia-amministrazione-aperta',
-		// 	'source'     => 'https://github.com/italia/plugin_wp_amministrazione_aperta/archive/refs/heads/master.zip',
-		// 	'required' => true,
-		// ),
-		// array(
-		// 	'name'   => 'Italia - XML Bandi di Gara',
-		// 	'slug'   => 'italia-anac-xml-bandi-gara',
-		// 	'source' => 'https://github.com/italia/plugin_wp_anac_xml_bandi_gara/archive/refs/heads/master.zip',
-		// 	'required' => true,
-		// ),
 		array(
 			'name'     => 'Better aria label support',
 			'slug'     => 'better-aria-label-support',
 			'required' => true,
 		),
-			// array(
-			// 		'name'     => 'ANAC XML Viewer',
-			// 		'slug'     => 'anac-xml-viewer',
-			// 		'required' => true,
-			// ),
-			array(
-					'name'     => 'Contact Form 7',
-					'slug'     => 'contact-form-7',
-					'required' => true,
-			),
-			array(
-					'name'     => 'Contact Form 7 Database Addon – CFDB7',
-					'slug'     => 'contact-form-cfdb7',
-					'required' => true,
-			),
+		array(
+			'name'     => 'Contact Form 7',
+			'slug'     => 'contact-form-7',
+			'required' => true,
+		),
+		array(
+			'name'     => 'Contact Form 7 Database Addon – CFDB7',
+			'slug'     => 'contact-form-cfdb7',
+			'required' => true,
+		),
+		array(
+			'name'     => 'Polylang - Multilanguage support',
+			'slug'     => 'polylang',
+			'required' => true,
+		),
 	);
 
 	/*
