@@ -285,15 +285,6 @@ function dli_create_pages_on_theme_activation() {
 
 	// ************ CREAZIONE VOCI DI DEFAULT DELLE TASSONOMIE ************
 
-	// Valori tassonomia tipologia-luogo.
-	wp_insert_term( 'Aula', 'tipologia-luogo' );
-	wp_insert_term( 'Aula studio', 'tipologia-luogo' );
-	wp_insert_term( 'Biblioteca', 'tipologia-luogo' );
-	wp_insert_term( 'Laboratorio', 'tipologia-luogo' );
-	wp_insert_term( 'Parcheggio', 'tipologia-luogo' );
-	wp_insert_term( "Spazio all'aperto", 'tipologia-luogo' );
-	wp_insert_term( 'Ufficio', 'tipologia-luogo' );
-
 	// Valori tassonomia tipologia-servizio.
 	wp_insert_term( 'Dipendenti', 'tipologia-servizio' );
 	wp_insert_term( 'Professori e ricercatori', 'tipologia-servizio' );
