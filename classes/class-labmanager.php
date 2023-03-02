@@ -37,6 +37,10 @@ if ( ! class_exists( 'Post_Manager' ) ) {
 	include_once 'class-postmanager.php';
 }
 
+if ( ! class_exists( 'Place_Manager' ) ) {
+	include_once 'class-placemanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -106,5 +110,9 @@ class LabManager {
 		// Setup del post.
 		$ctprog = new Post_Manager();
 		$ctprog->setup();
+
+		// Setup del post type Luoghi
+		$ctluoghi = new Place_Manager();
+		$ctluoghi->setup();
 	}
 }

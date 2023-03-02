@@ -1,0 +1,189 @@
+[
+    {
+        "key": "group_640091684b5ab",
+        "title": "Campi Luogo",
+        "fields": [
+            {
+                "key": "field_6400916967a3b",
+                "label": "Indirizzo",
+                "name": "indirizzo",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Indirizzo del luogo.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "center_lat": 41.894802,
+                "center_lng": 12.4853384,
+                "zoom": 12,
+                "height": 400,
+                "return_format": "leaflet",
+                "allow_map_layers": 1,
+                "max_markers": "",
+                "layers": [
+                    "OpenStreetMap.Mapnik"
+                ],
+                "key": "field_64009299f3a34",
+                "label": "Posizione GPS",
+                "name": "posizione_gps",
+                "aria-label": "",
+                "type": "open_street_map",
+                "instructions": "NB: clicca sulla lente d'ingrandimento e cerca l'indirizzo, anche se lo hai già inserito nel campo precedente.\r\nQuesto permetterà una corretta georeferenziazione del luogo",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                }
+            },
+            {
+                "key": "field_64009a193a197",
+                "label": "CAP",
+                "name": "cap",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Codice di avviamento postale del luogo",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_64009a913a198",
+                "label": "Riferimento mail",
+                "name": "riferimento_mail",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "Indirizzo di posta elettronica del luogo.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_64009abf3a199",
+                "label": "PEC",
+                "name": "pec",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "Indirizzo di posta elettronica certificata (PEC).",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_64009ad53a19a",
+                "label": "Riferimento telefonico",
+                "name": "riferimento_telefonico",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Telefono del luogo.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_64009af93a19b",
+                "label": "Orario per il pubblico",
+                "name": "orario_per_il_pubblico",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Orario di apertura al pubblico del luogo.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_64009b8ebdef8",
+                "label": "Come raggiungerci",
+                "name": "come_raggiungerci",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]
