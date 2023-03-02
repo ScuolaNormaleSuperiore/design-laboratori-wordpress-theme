@@ -29,7 +29,7 @@ class PeopleType_Manager {
 	 */
 	public function add_post_type() {
 
-		//register post type Tipologia Persona
+		// Register post type Tipologia Persona.
 
 		$labels = array(
 			'name'                  => _x( 'Tipologia Persone', 'Post Type General Name', 'design_laboratori_italia' ),
@@ -43,7 +43,7 @@ class PeopleType_Manager {
 		$args   = array(
 			'label'           => __( 'Tipologia Persona', 'design_laboratori_italia' ),
 			'labels'          => $labels,
-			'supports'        => array( 'title'),
+			'supports'        => array( 'title' ),
 			'public'          => true,
 			'show_in_menu'  =>	'edit.php?post_type=persona',
 			'show_in_rest'    => true,

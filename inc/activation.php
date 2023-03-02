@@ -51,6 +51,9 @@ function dli_create_pages_on_theme_activation() {
 	// Create the default pages.
 	create_the_pages();
 
+	// Create the tipologia-persona entities.
+	create_the_tipologia_persona();
+
 	// Add some term to taxonomies.
 	create_the_taxonomies();
 
@@ -65,29 +68,91 @@ function dli_create_pages_on_theme_activation() {
 	update_option( 'dli_has_installed', true );
 }
 
+
+/**
+ * Create the tipologia persona.
+ *
+ * @return void
+ */
+function create_the_tipologia_persona() {
+	// Qui crea la tipologia direttore in italiano e in inglese.
+	// 'tipologia-persona'
+}
+
+
 /**
  * Create the default taxonomies entries.
  *
  * @return void
  */
 function create_the_taxonomies() {
-	// // Valori tassonomia tipologia-luogo.
-	// wp_insert_term( 'Aula', 'tipologia-luogo' );
-	// wp_insert_term( 'Aula studio', 'tipologia-luogo' );
-	// wp_insert_term( 'Biblioteca', 'tipologia-luogo' );
-	// wp_insert_term( 'Laboratorio', 'tipologia-luogo' );
-	// wp_insert_term( 'Parcheggio', 'tipologia-luogo' );
-	// wp_insert_term( "Spazio all'aperto", 'tipologia-luogo' );
-	// wp_insert_term( 'Ufficio', 'tipologia-luogo' );
+	// Valori tassonomia tipologia-luogo.
+	$taxonomy = 'tipologia-luogo';
+	$terms = array(
+		array( 'it' => 'Aula', 'en' => 'Classroom' ),
+		array( 'it' => 'Aula studio', 'en' => 'Study room' ),
+		array( 'it' => 'Biblioteca', 'en' => 'Library' ),
+		array( 'it' => 'Laboratorio', 'en' => 'Laboratory' ),
+		array( 'it' => 'Parcheggio', 'en' => 'Parking' ),
+		array( 'it' => 'Ufficio', 'en' => 'Office' ),
+	);
+	build_taxonomies( $taxonomy, $terms );
 
-	// // Valori tassonomia tipologia-servizio.
-	// wp_insert_term( 'Dipendenti', 'tipologia-servizio' );
-	// wp_insert_term( 'Professori e ricercatori', 'tipologia-servizio' );
-	// wp_insert_term( 'Studenti', 'tipologia-servizio' );
-	// wp_insert_term( 'Esterni', 'tipologia-servizio' );
+	// Valori tassonomia tipologia-servizio.
+	$taxonomy = 'tipologia-servizio';
+	$terms = array(
+		array( 'it' => 'Dipendenti', 'en' => 'Employees' ),
+		array( 'it' => 'Professori', 'en' => 'Professors' ),
+		array( 'it' => 'Studenti', 'en' => 'Students' ),
+		array( 'it' => 'Esterni', 'en' => 'External' ),
+		array( 'it' => 'Ricercatori', 'en' => 'Researchers' ),
+	);
+	build_taxonomies( $taxonomy, $terms );
 
-	// // Valori tassonomia struttura.
-	// wp_insert_term( 'Prima struttura', 'struttura' );
+	// Valori tassonomia struttura.
+	$taxonomy = 'struttura';
+	$terms = array(
+		array( 'it' => 'Prima struttura', 'en' => 'First structure' ),
+	);
+	build_taxonomies( $taxonomy, $terms );
+
+}
+
+/**
+ * Build the taxonomies.
+ *
+ * @return void
+ */
+function build_taxonomies( $taxonomy, $terms ) {
+
+	foreach ( $terms as $term ) {
+
+		$termitem = get_term_by( 'slug', $term['it'], $taxonomy );
+		if ( $termitem ) {
+			$term_it = $termitem->term_id;
+		} else {
+			$termobject = wp_insert_term( $term['it'], $taxonomy );
+			$term_it    = $termobject['term_id'];
+		}
+		pll_set_term_language( $term_it, 'it' );
+
+		$termitem = get_term_by( 'slug', $term['en'], $taxonomy );
+		if ( $termitem ) {
+			$term_en = $termitem->term_id;
+		} else {
+			$termobject = wp_insert_term( $term['en'], $taxonomy );
+			$term_en    = $termobject['term_id'];
+		}
+		pll_set_term_language( $term_en, 'en' );
+
+		// Associate it and en translations.
+		$related_taxonomies = array(
+			'it' => $term_it,
+			'en' => $term_en,
+		);
+		pll_save_term_translations( $related_taxonomies );
+	}
+
 }
 
 /**
