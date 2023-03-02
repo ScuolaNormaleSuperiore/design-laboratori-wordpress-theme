@@ -94,31 +94,42 @@ if( is_search() || is_archive() )
 				</nav>
 				</div>
 				<div class="it-header-slim-right-zone">
-				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-					<span class="visually-hidden">Selezione lingua: lingua selezionata</span>
-					<span>ITA</span>
-					<svg class="icon d-none d-lg-block">
-						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
-					</svg>
-					</a>
-					<div class="dropdown-menu">
-					<div class="row">
-						<div class="col-12">
-						<div class="link-list-wrapper">
-							<ul class="link-list">
-							<li><a class="dropdown-item list-item" href="#"><span>ITA <span
-									class="visually-hidden">selezionata</span></span></a></li>
-							<li><a class="dropdown-item list-item" href="#"><span>ENG</span></a></li>
-							</ul>
+					<!-- Language selector -->
+					<?php	
+						$args = array(
+							'dropdown'         => 1,
+							'hide_current'     => 1,
+							'show_flags'       => 0,
+							'show_names'       => 1,
+							'display_names_as' => 'slug', // slug,name.
+						);
+						pll_the_languages( $args );
+					?>
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="visually-hidden">Selezione lingua: lingua selezionata</span>
+						<span>ITA</span>
+						<svg class="icon d-none d-lg-block">
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+						</svg>
+						</a>
+						<div class="dropdown-menu">
+						<div class="row">
+							<div class="col-12">
+							<div class="link-list-wrapper">
+								<ul class="link-list">
+								<li><a class="dropdown-item list-item" href="#"><span>ITA <span
+										class="visually-hidden">selezionata</span></span></a></li>
+								<li><a class="dropdown-item list-item" href="#"><span>ENG</span></a></li>
+								</ul>
+							</div>
+							</div>
 						</div>
 						</div>
 					</div>
+					<div class="it-access-top-wrapper">
+						<a class="btn btn-primary btn-sm" href="#">Accedi</a>
 					</div>
-				</div>
-				<div class="it-access-top-wrapper">
-					<a class="btn btn-primary btn-sm" href="#">Accedi</a>
-				</div>
 				</div>
 			</div>
 			<!-- End SLIM HEADER -->

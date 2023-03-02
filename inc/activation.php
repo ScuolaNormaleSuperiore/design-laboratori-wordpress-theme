@@ -5,6 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
+// The slug is the name of the post, that is the name that appears in the url.
 define( 'SLUG_SERVIZI_IT', 'servizi' );
 define( 'SLUG_SERVIZI_EN', 'services' );
 define( 'SLUG_LUOGHI_IT', 'luoghi' );
@@ -47,8 +48,13 @@ function dli_create_pages_on_theme_activation() {
 	// Verifico se è una prima installazione.
 	$dli_has_installed = get_option( 'dli_has_installed' );
 
+	// Create the default pages.
 	create_the_pages();
 
+	// Add some term to taxonomies.
+	create_the_taxonomies();
+
+	// Create all the menus of the site.
 	create_the_menus();
 
 	global $wp_rewrite;
@@ -60,13 +66,72 @@ function dli_create_pages_on_theme_activation() {
 }
 
 /**
+ * Create the default taxonomies entries.
+ *
+ * @return void
+ */
+function create_the_taxonomies() {
+	// // Valori tassonomia tipologia-luogo.
+	// wp_insert_term( 'Aula', 'tipologia-luogo' );
+	// wp_insert_term( 'Aula studio', 'tipologia-luogo' );
+	// wp_insert_term( 'Biblioteca', 'tipologia-luogo' );
+	// wp_insert_term( 'Laboratorio', 'tipologia-luogo' );
+	// wp_insert_term( 'Parcheggio', 'tipologia-luogo' );
+	// wp_insert_term( "Spazio all'aperto", 'tipologia-luogo' );
+	// wp_insert_term( 'Ufficio', 'tipologia-luogo' );
+
+	// // Valori tassonomia tipologia-servizio.
+	// wp_insert_term( 'Dipendenti', 'tipologia-servizio' );
+	// wp_insert_term( 'Professori e ricercatori', 'tipologia-servizio' );
+	// wp_insert_term( 'Studenti', 'tipologia-servizio' );
+	// wp_insert_term( 'Esterni', 'tipologia-servizio' );
+
+	// // Valori tassonomia struttura.
+	// wp_insert_term( 'Prima struttura', 'struttura' );
+}
+
+/**
  * Create the site menus.
  *
  * @return void
  */
 function create_the_menus() {
-	error_log('CIAO CIAO');
+	/**
+	 *  1 - Creazione del menu LABORATORIO.
+	 */
+	$name = __( 'Il Laboratorio', 'design_laboratori_italia' );
+
+	wp_delete_nav_menu( $name );
+
+	$menu_object = wp_get_nav_menu_object( $name );
+	if ( $menu_object ) {
+			$menu_id = $menu_object->term_id;
+	} else {
+		$menu_id = wp_create_nav_menu( $name );
+		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
+
+		$page    = get_page_by_path( SLUG_PERSONE_IT );
+		$page_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => 'Persone',
+				'menu-item-object-id' => $page_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr             = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-lab'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
 }
+
 
 /**
  * Create the default pages in italian and english.
@@ -255,7 +320,7 @@ function create_the_pages() {
 			// Store the above data in an array.
 			$new_page = array(
 				'post_type'    => $page['page_type'],
-				'post_slug'    => $page['page_slug_it'],
+				'post_name'    => $page['page_slug_it'],
 				'post_title'   => $page['page_title_it'],
 				'post_content' => $page['page_content_it'],
 				'post_status'  => $page['page_status'],
