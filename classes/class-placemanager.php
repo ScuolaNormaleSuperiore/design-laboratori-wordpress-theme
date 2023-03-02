@@ -125,6 +125,7 @@ class Place_Manager {
 	public function custom_layout( $post ) {
 		if ( PLACE_POST_TYPE === $post->post_type ) {
 			_e( '<span><i>il <b>Titolo</b> è il <b>Nome del Luogo</b>.</i></span> in cui si svolge l\'attività del laboratorio. I luoghi possono essere sede di strutture e canali fisici di erogazione di un servizio<br><br>','design_laboratori_italia' );
+			_e( '<h1>Descrizione del luogo</h1>', 'design_laboratori_italia' );
 		}
 	}
 
@@ -161,8 +162,8 @@ class Place_Manager {
 						'append' => '',
 					),
 					array(
-						'center_lat' => 41.894802,
-						'center_lng' => 12.4853384,
+						'center_lat' => 43.716667,
+						'center_lng' => 10.4,
 						'zoom' => 12,
 						'height' => 400,
 						'return_format' => 'leaflet',
@@ -176,7 +177,7 @@ class Place_Manager {
 						'name' => 'posizione_gps',
 						'aria-label' => '',
 						'type' => 'open_street_map',
-						'instructions' => 'NB: clicca sulla lente d\'ingrandimento e cerca l\'indirizzo, anche se lo hai già inserito nel campo precedente.
+						'instructions' => 'NB: Inserisci e cerca l\'indirizzo, anche se lo hai già inserito nel campo precedente.
 			Questo permetterà una corretta georeferenziazione del luogo',
 						'required' => 0,
 						'conditional_logic' => 0,
@@ -310,7 +311,7 @@ class Place_Manager {
 						array(
 							'param' => 'post_type',
 							'operator' => '==',
-							'value' => 'post',
+							'value' => 'luogo',
 						),
 					),
 				),
