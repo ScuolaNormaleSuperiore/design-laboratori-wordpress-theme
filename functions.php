@@ -204,7 +204,7 @@ add_action( 'after_setup_theme', 'dli_setup' );
  */
 function dli_scripts() {
 
-	//wp_deregister_script('jquery' );
+	// wp_deregister_script('jquery' );
 
 	// Importazione dei file CSS.
 	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri() ); // File style.css vuoto.

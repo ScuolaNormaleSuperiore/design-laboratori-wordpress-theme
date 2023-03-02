@@ -55,7 +55,7 @@ function dli_create_pages_on_theme_activation() {
 	create_the_taxonomies();
 
 	// Create all the menus of the site.
-	create_the_menus();
+	//create_the_menus();
 
 	global $wp_rewrite;
 	$wp_rewrite->init(); // important...

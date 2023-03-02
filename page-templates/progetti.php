@@ -10,10 +10,9 @@ define( 'PROG_CELLS_PER_ROW', 3 );
 
 $the_query = new WP_Query(
 	array(
-		'paged'           => get_query_var( 'paged', 1 ),
-		'post_type'       => 'progetto',
-		'posts_per_page'  => 6,
-
+		'paged'          => get_query_var( 'paged', 1 ),
+		'post_type'      => 'progetto',
+		'posts_per_page' => 6,
 	)
 );
 $num_results = $the_query->found_posts;

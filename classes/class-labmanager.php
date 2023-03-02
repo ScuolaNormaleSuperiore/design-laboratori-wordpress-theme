@@ -37,6 +37,10 @@ if ( ! class_exists( 'Post_Manager' ) ) {
 	include_once 'class-postmanager.php';
 }
 
+if ( ! class_exists( 'Polylang_Manager' ) ) {
+	include_once 'class-polylangmanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -106,5 +110,10 @@ class LabManager {
 		// Setup del post.
 		$ctprog = new Post_Manager();
 		$ctprog->setup();
+
+		// Setup di Polylang.
+		$polylang = new Polylang_Manager();
+		$polylang->setup();
+
 	}
 }
