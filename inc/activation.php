@@ -55,7 +55,7 @@ function dli_create_pages_on_theme_activation() {
 	create_the_taxonomies();
 
 	// Create all the menus of the site.
-	//create_the_menus();
+	create_the_menus();
 
 	global $wp_rewrite;
 	$wp_rewrite->init(); // important...
@@ -96,10 +96,11 @@ function create_the_taxonomies() {
  * @return void
  */
 function create_the_menus() {
+
 	/**
 	 *  1 - Creazione del menu LABORATORIO.
 	 */
-	$name = __( 'Il Laboratorio', 'design_laboratori_italia' );
+	$name = 'The lab';
 
 	wp_delete_nav_menu( $name );
 
@@ -110,13 +111,13 @@ function create_the_menus() {
 		$menu_id = wp_create_nav_menu( $name );
 		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
 
-		$page    = get_page_by_path( SLUG_PERSONE_IT );
+		$page    = get_page_by_path( SLUG_PERSONE_EN );
 		$page_id = $page->ID;
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
-				'menu-item-title'     => 'Persone',
+				'menu-item-title'     => 'People',
 				'menu-item-object-id' => $page_id,
 				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
@@ -126,10 +127,11 @@ function create_the_menus() {
 		);
 
 		$locations_primary_arr             = get_theme_mod( 'nav_menu_locations' );
-		$locations_primary_arr['menu-lab'] = $menu->term_id;
+		$locations_primary_arr['menu-lab__en'] = $menu->term_id;
 		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
 		update_option( 'menu_check', true );
 	}
+
 }
 
 
