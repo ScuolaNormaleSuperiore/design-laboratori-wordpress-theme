@@ -1,6 +1,6 @@
 *** TODO ***
 
-1) Selettore di lingua.
+1) Selettore di lingua abilitato da Configurazione.
 2) Quando non ci sono contenuti c'è un messaggio: aggiungere margin-left o centralo.
 3) BUG: "Ricarica dati": non associa i menu correttamente.
 4) Breadcrumb
@@ -36,3 +36,4 @@
 - Menù novità nello header
 - Menù Lab in orizzontale.
 - Verifica Multilingua: plugin, menu, contenuti, query, ecc.
+- Selettore di lingua.
