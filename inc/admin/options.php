@@ -695,61 +695,6 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
-	/**
-	* 5 - Registers options page "Servizi".
-	*/
-	// Intestazione della sezione.
-	$args = array(
-		'id'           => 'dli_options_servizi',
-		'title'        => esc_html__( 'I Servizi', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'servizi',
-		'parent_slug'  => 'dli_options',
-		'capability'   => 'manage_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Servizi', 'design_laboratori_italia' ),
-	);
-	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-	$servizi_options = new_cmb2_box( $args );
-	$servizi_landing_url = dli_get_template_page_url( 'page-templates/servizi.php' );
-	$servizi_options->add_field(
-		array(
-		'id'   => $prefix . 'servizi_istruzioni',
-		'name' => __( 'Sezione I Servizi', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$servizi_landing_url.'">la pagina di panoramica dei Servizi</a>.' , 'design_laboratori_italia' ),
-		'type' => 'title',
-		)
-	);
-	// Campo descrizione della sezione.
-	$servizi_options->add_field(
-		array(
-			'id'         => $prefix . 'testo_servizi',
-			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-			'desc'       => __( 'es: "I servizi offerti dal liceo scientifico Enriques dedicati a tutti i genitori, studenti, personale ATA e docenti"' , 'design_laboratori_italia' ),
-			'type'       => 'textarea',
-			'attributes' => array(
-				'maxlength' => '140'
-			),
-		)
-	);
-	
-	// Campo filtro contenuto mostrato per tipologia.
-	$servizi_options->add_field(
-		array(
-			'name'       => __( 'Tipologie Servizi', 'design_laboratori_italia' ),
-			'desc'       => __( 'Servizi aggregati per tipologie. Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
-			'id'         => $prefix . 'tipologie_servizi',
-			'type'       => 'pw_multiselect',
-			'options'    => dli_get_tipologia_servizi_options(),
-			'attributes' => array(
-				'placeholder' =>  __( 'Seleziona e ordina le tipologie di servizi da mostrare nella HomePage di sezione', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
 
 	/**
 	* 6 - Registers options page "Novità".

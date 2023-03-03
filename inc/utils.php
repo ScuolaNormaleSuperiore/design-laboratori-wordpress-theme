@@ -62,10 +62,7 @@ if(!function_exists("dli_get_meta")){
 		if($prefix != "")
 			return get_post_meta( $post_id, $prefix.$key, true );
 
-				if(is_singular("servizio") || (isset($post_type) && $post_type == "servizio")){
-						$prefix = '_dsi_servizio_';
-						return get_post_meta( $post_id, $prefix.$key, true );
-				}else if(is_singular("indirizzo") || (isset($post_type) && $post_type == "indirizzo")){
+				if(is_singular("indirizzo") || (isset($post_type) && $post_type == "indirizzo")){
 						$prefix = '_dsi_indirizzo_';
 						return get_post_meta( $post_id, $prefix.$key, true );
 				}else if (is_singular("luogo")  || (isset($post_type) && $post_type == "luogo")) {
@@ -253,24 +250,6 @@ if(!function_exists("dsi_get_tipologia_struttura_of_post")) {
 				}
 
 				$argomenti_terms = wp_get_object_terms( $singular->ID, 'tipologia-struttura' );
-				return $argomenti_terms;
-		}
-}
-
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array
- */
-if(!function_exists("dsi_get_tipologia_servizio_of_post")) {
-		function dsi_get_tipologia_servizio_of_post( $singular = false ) {
-				global $post;
-
-				if ( ! $singular) {
-						$singular = $post;
-				}
-
-				$argomenti_terms = wp_get_object_terms( $singular->ID, 'tipologia-servizio' );
 				return $argomenti_terms;
 		}
 }
@@ -531,9 +510,9 @@ function dsi_get_post_types_grouped($type = "", $tag = false){
 	else if($type === "education")
 		$post_types = array("scheda_didattica", "scheda_progetto"); // todo: programma materia 		$post_types = array("programma_materia", "scheda_didattica", "scheda_progetto");
 	else if($type === "service")
-		$post_types = array("servizio", "indirizzo");
+		$post_types = array("indirizzo");
 	else
-		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "servizio", "indirizzo", "struttura", "page"); // todo: programma materia $post_types = array("evento", "post","circolare", "documento", "luogo", "materia", "programma_materia", "scheda_didattica", "scheda_progetto", "servizio", "struttura", "page");
+		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page"); // todo: programma materia $post_types = array("evento", "post","circolare", "documento", "luogo", "materia", "programma_materia", "scheda_didattica", "scheda_progetto", "struttura", "page");
 
 	// rimuovo post types che non hanno la categoria
 	if($tag){
@@ -560,7 +539,7 @@ function dsi_get_post_types_group($post_type){
 		$group = "laboratory";
 	else if(in_array($post_type, array("programma", "scheda_didattica", "scheda_progetto")))
 		$group = "education";
-	else if(in_array($post_type, array("servizio", "indirizzo")))
+	else if(in_array($post_type, array("indirizzo")))
 		$group = "service";
 
 
@@ -579,8 +558,6 @@ function dsi_get_italian_name_group($group) {
 		$gruppo = "Il Laboratorio";
 	else if($group == "education")
 		$gruppo = "Didattica";
-	else if($group == "service")
-		$gruppo = "Servizi";
 	
 		return $gruppo;
 }
@@ -1064,9 +1041,7 @@ if(!function_exists("dli_get_current_group")) {
 				if (is_tax()) {
 						$taxonomy = get_queried_object() -> taxonomy;
 						$term = get_queried_object() -> slug;
-						if ($taxonomy == 'tipologia-servizio'){
-							$tipo_post = 'servizio';
-						}
+
 						if ($taxonomy == 'tipologia-documento'){
 								$tipo_post ='documento';
 						}
@@ -1096,8 +1071,6 @@ if(!function_exists("dli_get_current_group")) {
 						// 				return 'education';
 						// 		case 'novita': case 'evento': case 'circolare':
 						// 				return 'news';
-						// 		case 'servizi':
-						// 				return 'service';
 						// }
 						// return get_post_field( 'title' );
 						return get_the_title();

@@ -184,20 +184,6 @@ function dli_create_pages_on_theme_activation() {
 			}
 	}
 
-	// Template page per La Home di Sezione Servizi.
-	$new_page_title    = __( 'Servizi', 'design_laboratori_italia' ); // Page's title.
-	$new_page_content  = 'Qui ci sono i servizi'; // Content goes here.
-	$new_page_template = 'page-templates/servizi.php'; // The template to use for the page.
-	$page_check        = get_page_by_title( $new_page_title ); // Check if the page already exists.
-	// Store the above data in an array
-	$new_page = array(
-		'post_type'    => 'page',
-		'post_title'   => $new_page_title,
-		'post_content' => $new_page_content,
-		'post_status'  => 'publish',
-		'post_author'  => 1,
-		'post_slug'    => 'servizi'
-	);
 	// If the page doesn't already exist, create it.
 	if ( ! isset( $page_check->ID ) ) {
 			$new_page_id = wp_insert_post( $new_page );
@@ -284,12 +270,6 @@ function dli_create_pages_on_theme_activation() {
 
 
 	// ************ CREAZIONE VOCI DI DEFAULT DELLE TASSONOMIE ************
-
-	// Valori tassonomia tipologia-servizio.
-	wp_insert_term( 'Dipendenti', 'tipologia-servizio' );
-	wp_insert_term( 'Professori e ricercatori', 'tipologia-servizio' );
-	wp_insert_term( 'Studenti', 'tipologia-servizio' );
-	wp_insert_term( 'Esterni', 'tipologia-servizio' );
 
 	// Valori tassonomia struttura.
 	wp_insert_term( 'Prima struttura', 'struttura' );
@@ -396,20 +376,6 @@ function dli_create_pages_on_theme_activation() {
 				'menu-item-title'     => 'Presentazione',
 				'menu-item-object-id' => $presentazione_id,
 				'menu-item-object'    => 'post',
-				'menu-item-status'    => 'publish',
-				'menu-item-type'      => 'post_type',
-				'menu-item-classes'   => 'footer-link',
-			)
-		);
-
-		$servizi_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
-		wp_update_nav_menu_item(
-			$menu->term_id,
-			0,
-			array(
-				'menu-item-title'     => __( 'Servizi', 'design_laboratori_italia' ),
-				'menu-item-object-id' => $servizi_id,
-				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
 				'menu-item-type'      => 'post_type',
 				'menu-item-classes'   => 'footer-link',

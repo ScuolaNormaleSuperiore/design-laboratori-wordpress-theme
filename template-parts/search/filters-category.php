@@ -1,7 +1,6 @@
 <?php
 $groups = array(
 	"laboratory" => __("Laboratorio", 'design_laboratori_italia'),
-	"service" =>  __("Servizi", 'design_laboratori_italia'),
 	"news" =>  __("Novità", 'design_laboratori_italia'),
 	"education" =>  __("Didattica", 'design_laboratori_italia')
 );

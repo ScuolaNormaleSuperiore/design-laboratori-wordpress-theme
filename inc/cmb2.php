@@ -132,39 +132,6 @@ function dsi_get_strutture_scuole_options( ) {
 }
 
 
-/**
- * @return array
- */
-function dsi_get_servizi_options( ) {
-
-		$programs = get_posts("post_type=servizio&posts_per_page=-1&orderby=title&order=ASC");
-
-		$options = array();
-		if ( $programs ) {
-				foreach ( $programs as $program ) {
-						$options[ $program->ID ] = $program->post_title;
-				}
-		}
-		return $options;
-}
-
-/**
- * @return array
- */
-function dsi_get_servizi_didattici_options( ) {
-
-		$programs = get_posts("post_type=indirizzo&posts_per_page=-1&orderby=title&order=ASC");
-
-		$options = array();
-		if ( $programs ) {
-				foreach ( $programs as $program ) {
-						$options[ $program->ID ] = $program->post_title;
-				}
-		}
-		return $options;
-}
-
-
 function dsi_get_tipologie_strutture_options( ) {
 
 		$tipologie = get_terms( array(
@@ -308,29 +275,6 @@ function dsi_get_tipologie_amministrazione_trasparente( $query_args = false) {
 		sort($options);
 
 		return $options;
-}
-
-
-/**
- * Lista di tipologia di servizi
- * @param bool $query_args
- *
- * @return array
- */
-function dli_get_tipologia_servizi_options( $query_args = false) {
-
-	$items = get_terms( array(
-		'taxonomy' => 'tipologia-servizio',
-		'hide_empty' => false,
-	));
-
-	$options = array();
-	if ( $items ) {
-		foreach ( $items as $item ) {
-			$options[ $item->term_id ] = $item->name;
-		}
-	}
-	return $options;
 }
 
 /**

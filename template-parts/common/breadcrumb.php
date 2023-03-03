@@ -20,8 +20,7 @@
 			                    'search'      => esc_html__( 'Risultati Ricerca: %s','design_laboratori_italia' ),
                             ),
 		                    'post_taxonomy' => array(
-			                     'servizio'  => 'tipologia-servizio', // 'post' post type and 'post_tag' taxonomy
-                                'indirizzo'  => 'percorsi-di-studio',
+                                'indirizzo'  => 'percorsi-di-studio', // 'post' post type and 'post_tag' taxonomy
 			                     'documento'  => 'tipologia-documento',
 			                     'post'  =>     'tipologia-articolo',
 			                     'luogo'  => 'tipologia-luogo',

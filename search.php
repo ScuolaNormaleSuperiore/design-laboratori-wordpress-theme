@@ -37,8 +37,6 @@ get_header();
 										$str = __( "nel <span>materiale relativo alla scuola</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "news" ) {
 										$str = __( "in <span>notizie ed eventi</span>", 'design_laboratori_italia' );
-									} else if ( $_GET["type"] == "service" ) {
-										$str = __( "nei <span>servizi</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "education" ) {
 										$str = __( "nella <span>didattica</span>", 'design_laboratori_italia' );
 									} else if ( $_GET["type"] == "class" ) {

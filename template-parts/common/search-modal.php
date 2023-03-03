@@ -15,7 +15,7 @@
 								</h2>
 								<div class="form-group search-form">
 									<label for="search-input"><?php _e("Cerca",'design_laboratori_italia'); ?></label>
-									<input type="text" name="s" id="search-input" data-element="search-modal-input" class="form-control" placeholder="<?php _e("Cerca informazioni, servizi, notizie o documenti",'design_laboratori_italia'); ?>" value="<?php echo get_search_query(); ?>">
+									<input type="text" name="s" id="search-input" data-element="search-modal-input" class="form-control" placeholder="<?php _e("Cerca informazioni, notizie o documenti",'design_laboratori_italia'); ?>" value="<?php echo get_search_query(); ?>">
                                     <button type="button" class="clean-input" aria-label="Elimina testo di ricerca">
                                         <svg class="svg-cancel-large" role="presentation">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use>
@@ -84,7 +84,7 @@
                                 <ul class="searches-list">
                                     <?php
                                     $popular_posts = new WP_Query( array(
-                                        'post_type'     => ['circolare','documento','evento','incarico','indirizzo', 'luogo', 'post','scheda_didattica','scheda_progetto','servizio','struttura'], 
+                                        'post_type'     => ['circolare','documento','evento','incarico','indirizzo', 'luogo', 'post','scheda_didattica','scheda_progetto','struttura'], 
                                         'posts_per_page' => 7, 
                                         'meta_key'      => 'views',
                                         'orderby'       => 'meta_value_num',

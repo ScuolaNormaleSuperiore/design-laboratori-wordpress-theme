@@ -351,13 +351,9 @@ class Breadcrumb_Trail {
                 else if(is_post_type_archive(array("circolare", "evento")))
                     $this->items[] =  "<a href='".home_url("novita")."'>".__("Novità", 'design_laboratori_italia')."</a>";
 
-                else if(is_post_type_archive(array("scheda_didattica", "scheda_progetto")))
+                else if(is_post_type_archive(array("scheda_didattica", "scheda_progetto"))) {
                     $this->items[] =  "<a href='".home_url("didattica")."'>".__("Didattica", 'design_laboratori_italia')."</a>";
-
-                if(is_post_type_archive(array("servizio"))){
-                    $this->items[] =  "<a href='".home_url("servizi")."'>".__("Servizi", 'design_laboratori_italia')."</a>";
-                    $this->items[] =  __("Tutti i Servizi", 'design_laboratori_italia');
-                }else if ( is_post_type_archive() ){
+								}else if ( is_post_type_archive() ){
                     $this->add_post_type_archive_items();
 
                 }

@@ -40,7 +40,6 @@ msgstr ""
 #: archive-programma_materia.php:36
 #: archive-scheda_didattica.php:27
 #: archive-scheda_progetto.php:27
-#: archive-servizio.php:20
 #: archive.php:44
 #: taxonomy-amministrazione-trasparente.php:32
 #: taxonomy-percorsi-di-studio.php:26
@@ -99,7 +98,6 @@ msgstr ""
 #: inc/admin/indirizzo.php:416
 #: inc/admin/luogo.php:394
 #: inc/admin/persona.php:350
-#: inc/admin/servizio.php:369
 #: inc/admin/struttura.php:326
 #: single-documento.php:114
 #: single-documento.php:265
@@ -110,8 +108,6 @@ msgstr ""
 #: single-luogo.php:130
 #: single-luogo.php:383
 #: single-programma_materia.php:176
-#: single-servizio.php:134
-#: single-servizio.php:366
 #: single-struttura.php:130
 #: single-struttura.php:357
 msgid "Ulteriori informazioni"
@@ -125,8 +121,6 @@ msgstr ""
 #: single-evento.php:287
 #: single-indirizzo.php:171
 #: single-indirizzo.php:464
-#: single-servizio.php:141
-#: single-servizio.php:379
 #: single-struttura.php:301
 msgid "Contatti"
 msgstr ""
@@ -163,7 +157,6 @@ msgstr ""
 #: inc/admin/options.php:932
 #: inc/admin/options.php:938
 #: inc/admin/scheda_progetto.php:285
-#: inc/admin/servizio.php:409
 #: single-circolare.php:42
 #: single-evento.php:348
 #: single-indirizzo.php:179
@@ -171,15 +164,12 @@ msgstr ""
 #: single-post.php:41
 #: single-scheda_progetto.php:89
 #: single-scheda_progetto.php:256
-#: single-servizio.php:149
-#: single-servizio.php:416
 #: template-parts/single/related.php:151
 msgid "Documenti"
 msgstr ""
 
 #: author.php:331
 #: single-indirizzo.php:468
-#: single-servizio.php:383
 #: single-struttura.php:305
 #: template-parts/home/commissioni.php:80
 #: template-parts/luogo/card.php:135
@@ -188,7 +178,6 @@ msgstr ""
 
 #: author.php:332
 #: single-indirizzo.php:469
-#: single-servizio.php:384
 #: single-struttura.php:306
 #: template-parts/home/commissioni.php:81
 #: template-parts/luogo/card.php:113
@@ -229,10 +218,6 @@ msgstr ""
 
 #: functions.php:125
 msgid "Sottovoci del menu principale, voce \"Laboratorio\""
-msgstr ""
-
-#: functions.php:126
-msgid "Sottovoci del menu principale, voce \"Servizi\""
 msgstr ""
 
 #: functions.php:127
@@ -318,12 +303,11 @@ msgstr ""
 #: inc/breadcrumb.php:358
 #: single-struttura.php:115
 #: single-struttura.php:162
-#: template-parts/hero/servizi.php:30
 #: template-parts/search/filters-category.php:4
 #: template-parts/search/filters-tag.php:4
 #: template-parts/search/filters.php:4
 #: template-parts/single/related.php:100
-msgid "Servizi"
+msgid ""
 msgstr ""
 
 #: header.php:171
@@ -346,7 +330,7 @@ msgstr ""
 
 #: inc/actions.php:255
 #: inc/activation.php:670
-msgid "Tutti i servizi"
+msgid "Tutti i "
 msgstr ""
 
 #: inc/actions.php:257
@@ -591,7 +575,6 @@ msgstr ""
 #: inc/admin/evento.php:42
 #: inc/admin/luogo.php:36
 #: inc/admin/scheda_progetto.php:39
-#: inc/admin/servizio.php:41
 #: inc/admin/struttura.php:40
 msgid "Cerca Tipologia"
 msgstr ""
@@ -602,7 +585,6 @@ msgstr ""
 #: inc/admin/evento.php:43
 #: inc/admin/luogo.php:37
 #: inc/admin/scheda_progetto.php:40
-#: inc/admin/servizio.php:42
 #: inc/admin/struttura.php:41
 msgid "Tutte le tipologie"
 msgstr ""
@@ -613,7 +595,6 @@ msgstr ""
 #: inc/admin/evento.php:44
 #: inc/admin/luogo.php:38
 #: inc/admin/scheda_progetto.php:41
-#: inc/admin/servizio.php:43
 #: inc/admin/struttura.php:42
 msgid "Modifica la Tipologia"
 msgstr ""
@@ -624,7 +605,6 @@ msgstr ""
 #: inc/admin/evento.php:45
 #: inc/admin/luogo.php:39
 #: inc/admin/scheda_progetto.php:42
-#: inc/admin/servizio.php:44
 #: inc/admin/struttura.php:43
 msgid "Aggiorna la Tipologia"
 msgstr ""
@@ -635,7 +615,6 @@ msgstr ""
 #: inc/admin/evento.php:46
 #: inc/admin/luogo.php:40
 #: inc/admin/scheda_progetto.php:43
-#: inc/admin/servizio.php:45
 #: inc/admin/struttura.php:44
 msgid "Aggiungi una Tipologia"
 msgstr ""
@@ -646,7 +625,6 @@ msgstr ""
 #: inc/admin/evento.php:47
 #: inc/admin/luogo.php:41
 #: inc/admin/scheda_progetto.php:44
-#: inc/admin/servizio.php:46
 #: inc/admin/struttura.php:45
 msgid "Nuova Tipologia"
 msgstr ""
@@ -658,7 +636,6 @@ msgstr ""
 #: inc/admin/evento.php:48
 #: inc/admin/luogo.php:42
 #: inc/admin/scheda_progetto.php:45
-#: inc/admin/servizio.php:47
 #: inc/admin/struttura.php:46
 #: template-parts/search/filters-articolo.php:6
 #: template-parts/search/filters-circolare.php:6
@@ -666,7 +643,6 @@ msgstr ""
 #: template-parts/search/filters-evento.php:15
 #: template-parts/search/filters-luogo.php:6
 #: template-parts/search/filters-scheda_progetto.php:6
-#: template-parts/search/filters-servizio.php:6
 #: template-parts/search/filters-struttura.php:6
 #: template-parts/search/filters-tipo_incarico.php:6
 msgid "Tipologia"
@@ -733,7 +709,6 @@ msgstr ""
 #: inc/admin/indirizzo.php:473
 #: inc/admin/programma_materia.php:224
 #: inc/admin/scheda_didattica.php:164
-#: inc/admin/servizio.php:426
 msgid "Carica documenti"
 msgstr ""
 
@@ -748,7 +723,6 @@ msgstr ""
 #: inc/admin/indirizzo.php:480
 #: inc/admin/programma_materia.php:231
 #: inc/admin/scheda_didattica.php:171
-#: inc/admin/servizio.php:433
 msgid "Aggiungi un nuovo Documento"
 msgstr ""
 
@@ -758,7 +732,6 @@ msgstr ""
 #: inc/admin/indirizzo.php:481
 #: inc/admin/programma_materia.php:232
 #: inc/admin/scheda_didattica.php:172
-#: inc/admin/servizio.php:434
 msgid "Rimuovi Documento"
 msgstr ""
 
@@ -776,7 +749,6 @@ msgstr ""
 #: inc/admin/programma_materia.php:138
 #: inc/admin/programma_materia.php:233
 #: inc/admin/scheda_didattica.php:173
-#: inc/admin/servizio.php:435
 msgid "Rimuovi"
 msgstr ""
 
@@ -1180,7 +1152,6 @@ msgstr ""
 #: inc/admin/programma_materia.php:89
 #: inc/admin/scheda_didattica.php:56
 #: inc/admin/scheda_progetto.php:95
-#: inc/admin/servizio.php:143
 msgid "Descrizione *"
 msgstr ""
 
@@ -1283,7 +1254,6 @@ msgstr ""
 #: inc/admin/evento.php:224
 #: inc/admin/indirizzo.php:381
 #: inc/admin/options.php:308
-#: inc/admin/servizio.php:329
 msgid "Fase {#}"
 msgstr ""
 
@@ -1499,7 +1469,6 @@ msgstr ""
 #: inc/admin/options.php:404
 #: inc/admin/options.php:436
 #: inc/admin/options.php:469
-#: inc/admin/servizio.php:353
 #: single-documento.php:87
 #: single-documento.php:125
 #: single-luogo.php:103
@@ -1676,7 +1645,6 @@ msgstr ""
 
 #: inc/admin/evento.php:491
 #: inc/admin/indirizzo.php:474
-#: inc/admin/servizio.php:427
 msgid "Se l'allegato non è descritto da una scheda documento, link all'allegato (es. link a una locandina). "
 msgstr ""
 
@@ -1723,12 +1691,10 @@ msgid "Visualizza l'indirizzo"
 msgstr ""
 
 #: inc/admin/indirizzo.php:19
-#: inc/admin/servizio.php:19
 msgid "Rimuovi Logo"
 msgstr ""
 
 #: inc/admin/indirizzo.php:20
-#: inc/admin/servizio.php:20
 msgid "Usa come Logo"
 msgstr ""
 
@@ -1776,7 +1742,6 @@ msgid "Lo stato del servizio indica l'effettiva fruibilità del percorso di stud
 msgstr ""
 
 #: inc/admin/indirizzo.php:100
-#: inc/admin/servizio.php:96
 msgid "Attivo"
 msgstr ""
 
@@ -1786,7 +1751,6 @@ msgid "Disattivo"
 msgstr ""
 
 #: inc/admin/indirizzo.php:109
-#: inc/admin/servizio.php:105
 msgid "Motivo"
 msgstr ""
 
@@ -1811,14 +1775,11 @@ msgid "Indicare una sintetica descrizione del percorso di studio (max 160 caratt
 msgstr ""
 
 #: inc/admin/indirizzo.php:164
-#: inc/admin/servizio.php:156
 msgid "Dettagli Servizio"
 msgstr ""
 
 #: inc/admin/indirizzo.php:173
-#: inc/admin/servizio.php:165
 #: single-indirizzo.php:202
-#: single-servizio.php:172
 msgid "A cosa serve"
 msgstr ""
 
@@ -1827,7 +1788,6 @@ msgid "Indicare uno o più output prodotti. Ad es.: \" Questo percorso di studio
 msgstr ""
 
 #: inc/admin/indirizzo.php:188
-#: inc/admin/servizio.php:178
 msgid "Come si fa "
 msgstr ""
 
@@ -1836,7 +1796,6 @@ msgid "Indica la procedura - on line e/o attraverso una delle sedi indicate - da
 msgstr ""
 
 #: inc/admin/indirizzo.php:209
-#: inc/admin/servizio.php:198
 msgid "Procedure collegate"
 msgstr ""
 
@@ -1845,7 +1804,6 @@ msgid "Questo campo indica eventuali procedure collegate al servizio."
 msgstr ""
 
 #: inc/admin/indirizzo.php:216
-#: inc/admin/servizio.php:205
 msgid "Servizi on line"
 msgstr ""
 
@@ -1854,56 +1812,44 @@ msgid "Link per avviare la procedura di attivazione del servizio. "
 msgstr ""
 
 #: inc/admin/indirizzo.php:230
-#: inc/admin/servizio.php:218
 msgid "Azione"
 msgstr ""
 
 #: inc/admin/indirizzo.php:231
-#: inc/admin/servizio.php:219
 msgid "Seleziona l'azione prevista nel link che segue."
 msgstr ""
 
 #: inc/admin/indirizzo.php:247
-#: inc/admin/servizio.php:235
 msgid "Link"
 msgstr ""
 
 #: inc/admin/indirizzo.php:248
-#: inc/admin/servizio.php:236
 msgid "Link per avviare la procedura online."
 msgstr ""
 
 #: inc/admin/indirizzo.php:254
-#: inc/admin/servizio.php:242
 #: single-indirizzo.php:255
-#: single-servizio.php:225
 msgid "Autenticazione"
 msgstr ""
 
 #: inc/admin/indirizzo.php:255
-#: inc/admin/servizio.php:243
 msgid "Indicare, se previste, le modalità di autenticazione necessarie. Ad es. \"Per attivare il servizio mensa dovrai iscriverti al sito del Comune. L'iscrizione è possibile anche attraverso spid.\""
 msgstr ""
 
 #: inc/admin/indirizzo.php:266
-#: inc/admin/servizio.php:254
 msgid "SPID"
 msgstr ""
 
 #: inc/admin/indirizzo.php:267
-#: inc/admin/servizio.php:255
 msgid "Selezionare se è previsto SPID tra le modalità di autenticazione necessarie per accedere al Servizio."
 msgstr ""
 
 #: inc/admin/indirizzo.php:275
-#: inc/admin/servizio.php:282
 #: single-indirizzo.php:297
-#: single-servizio.php:246
 msgid "Servizi correlati"
 msgstr ""
 
 #: inc/admin/indirizzo.php:282
-#: inc/admin/servizio.php:289
 msgid "Selezione i <a href=\"edit.php?post_type=luogo\">luoghi</a> in cui vengono erogati i servizi"
 msgstr ""
 
@@ -1965,37 +1911,30 @@ msgid "Cosa Serve (testo introduttivo) "
 msgstr ""
 
 #: inc/admin/indirizzo.php:352
-#: inc/admin/servizio.php:299
 msgid "es: \"Per attivare il servizio bisogna prima compilare il modulo on line oppure stampare e compilare il modulo cartaceo che trovi nella sezione documenti di questa pagina. [Vai alla sezione documenti]\" Per creare un link mediante ancora inserisci #art-par-documenti come valore del link"
 msgstr ""
 
 #: inc/admin/indirizzo.php:368
-#: inc/admin/servizio.php:315
 msgid "Cosa Serve (lista)"
 msgstr ""
 
 #: inc/admin/indirizzo.php:369
-#: inc/admin/servizio.php:316
 msgid "la lista di cosa serve"
 msgstr ""
 
 #: inc/admin/indirizzo.php:377
-#: inc/admin/servizio.php:325
 msgid "<h1>Fasi e Scadenze</h1>"
 msgstr ""
 
 #: inc/admin/indirizzo.php:379
-#: inc/admin/servizio.php:327
 msgid "Prevedere una data di scadenza del Servizio (ad es. \"iscrizione asilo nido entro...\"). Se il Servizio è diviso in fasi, prevedere un campo per ciascuna fase del Servizio e relativa indicazione dei tempi \" - data)"
 msgstr ""
 
 #: inc/admin/indirizzo.php:382
-#: inc/admin/servizio.php:330
 msgid "Aggiungi una fase"
 msgstr ""
 
 #: inc/admin/indirizzo.php:383
-#: inc/admin/servizio.php:331
 msgid "Rimuovi la fase"
 msgstr ""
 
@@ -2009,50 +1948,40 @@ msgid "Fase"
 msgstr ""
 
 #: inc/admin/indirizzo.php:400
-#: inc/admin/servizio.php:340
 msgid "Esempio: \"Iscrizione alla gita\" oppure \"Pagamento della gita\""
 msgstr ""
 
 #: inc/admin/indirizzo.php:408
-#: inc/admin/servizio.php:361
 #: single-indirizzo.php:159
 #: single-indirizzo.php:438
-#: single-servizio.php:129
-#: single-servizio.php:353
 msgid "Casi particolari"
 msgstr ""
 
 #: inc/admin/indirizzo.php:409
-#: inc/admin/servizio.php:362
 msgid "Inserire come testo libero, eventuali casi particolari riferiti all'ottenimento del Servizio in questione. Es. Le persone con disabilità (legge 104) possono contattare direttamente l'ufficio e concordare una procedura di rinnovo a domicilio"
 msgstr ""
 
 #: inc/admin/indirizzo.php:417
 #: inc/admin/luogo.php:395
-#: inc/admin/servizio.php:370
 #: inc/admin/struttura.php:327
 msgid "Ulteriori informazioni sul Servizio, FAQ ed eventuali riferimenti normativi"
 msgstr ""
 
 #: inc/admin/indirizzo.php:430
 #: inc/admin/luogo.php:181
-#: inc/admin/servizio.php:383
 msgid "Riferimento mail"
 msgstr ""
 
 #: inc/admin/indirizzo.php:431
-#: inc/admin/servizio.php:384
 msgid "Indirizzo di posta elettronica del servizio. "
 msgstr ""
 
 #: inc/admin/indirizzo.php:442
 #: inc/admin/luogo.php:193
-#: inc/admin/servizio.php:395
 msgid "Riferimento telefonico "
 msgstr ""
 
 #: inc/admin/indirizzo.php:443
-#: inc/admin/servizio.php:396
 msgid "Telefono del servizio. "
 msgstr ""
 
@@ -2062,12 +1991,10 @@ msgid "Inserisci qui tutti i documenti che ritieni utili per attivare il servizi
 msgstr ""
 
 #: inc/admin/indirizzo.php:488
-#: inc/admin/servizio.php:441
 msgid "Codice dell’Ente Erogatore (ipa)"
 msgstr ""
 
 #: inc/admin/indirizzo.php:496
-#: inc/admin/servizio.php:449
 msgid "Specificare il nome dell’organizzazione, come indicato nell’Indice della Pubblica Amministrazione (IPA), che esercita uno specifico ruolo sul Servizio."
 msgstr ""
 
@@ -2193,7 +2120,6 @@ msgstr ""
 
 #: inc/admin/luogo.php:231
 #: inc/admin/options.php:328
-#: inc/admin/servizio.php:339
 msgid "Titolo"
 msgstr ""
 
@@ -2503,14 +2429,6 @@ msgstr ""
 msgid "Si, mostra il calendario"
 msgstr ""
 
-#: inc/admin/options.php:166
-msgid "Sezione Servizi"
-msgstr ""
-
-#: inc/admin/options.php:167
-msgid "Gestione sezione Servizi mostrati in home page"
-msgstr ""
-
 #: inc/admin/options.php:175
 msgid "Seleziona per mostrare automaticamente i servizi (mostra gli ultimi)"
 msgstr ""
@@ -2559,7 +2477,6 @@ msgid "Ogni fase è costruita attraverso data, titolo (max 60 caratteri) e descr
 msgstr ""
 
 #: inc/admin/options.php:318
-#: inc/admin/servizio.php:345
 #: single-scheda_progetto.php:114
 msgid "Data"
 msgstr ""
@@ -2661,33 +2578,9 @@ msgstr ""
 msgid "Seleziona gli articoli da mostrare nella pagina di Presentazione della Laboratorio.  "
 msgstr ""
 
-#: inc/admin/options.php:572
-msgid "I Servizi"
-msgstr ""
-
-#: inc/admin/options.php:591
-msgid "Sezione I Servizi"
-msgstr ""
-
 #: inc/admin/options.php:599
 #: inc/admin/options.php:653
 msgid "Descrizione Sezione"
-msgstr ""
-
-#: inc/admin/options.php:600
-msgid "es: \"I servizi offerti dal liceo scientifico Enriques dedicati a tutti i genitori, studenti, personale ATA e docenti\""
-msgstr ""
-
-#: inc/admin/options.php:609
-msgid "Tipologie Servizi"
-msgstr ""
-
-#: inc/admin/options.php:610
-msgid "Servizi aggregati per tipologie. Seleziona le tipologie da mostrare. "
-msgstr ""
-
-#: inc/admin/options.php:615
-msgid "Seleziona e ordina le tipologie di servizi da mostrare nella HomePage di sezione"
 msgstr ""
 
 #: inc/admin/options.php:627
@@ -3537,127 +3430,6 @@ msgstr ""
 msgid "<h1>Descrizione Estesa e Completa del Progetto</h1>"
 msgstr ""
 
-#: inc/admin/servizio.php:11
-msgctxt "Post Type General Name"
-msgid "Servizi"
-msgstr ""
-
-#: inc/admin/servizio.php:12
-msgctxt "Post Type Singular Name"
-msgid "Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:13
-#: inc/admin/servizio.php:14
-msgctxt "Post Type Singular Name"
-msgid "Aggiungi un Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:15
-msgid "Logo Identificativo del Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:16
-msgctxt "Post Type Singular Name"
-msgid "Modifica il Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:17
-msgctxt "Post Type Singular Name"
-msgid "Visualizza il Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:23
-msgid "Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:34
-msgid "I servizi che la scuola mette a disposizione di tutti."
-msgstr ""
-
-#: inc/admin/servizio.php:39
-msgctxt "taxonomy general name"
-msgid "Tipologia Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:40
-msgctxt "taxonomy singular name"
-msgid "Tipologia Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:84
-msgid "Stato del Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:92
-msgid "Lo stato del servizio indica l'effettiva fruibilità del Servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:106
-msgid "Descrizione testuale del motivo per cui un servizio non è attivo. Es. Servizio momentaneamente disattivato perché....Servizio attivo dal..."
-msgstr ""
-
-#: inc/admin/servizio.php:133
-msgid "Tipologia servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:144
-msgid "Indicare una sintetica descrizione del Servizio (max 160 caratteri) utilizzando un linguaggio semplice che possa aiutare qualsiasi utente a identificare con chiarezza il Servizio. Non utilizzare un linguaggio ricco di riferimenti normativi. Vincoli: 160 caratteri spazi inclusi."
-msgstr ""
-
-#: inc/admin/servizio.php:166
-msgid "Indicare uno o più output prodotti dal servizio. Ad es.: \" Questo servizio ti permette l'iscrizione al servizio mensa\""
-msgstr ""
-
-#: inc/admin/servizio.php:179
-msgid "Indica la procedura - on line e/o attraverso una delle sedi indicate - da seguire per usufruire del servizio. Es. \"per iscriverti al servizio mensa puoi utilizzare il servizio on line oppure andare in una delle sedi indicate qui sotto\""
-msgstr ""
-
-#: inc/admin/servizio.php:199
-msgid "Questo campo indica eventuali procedure collegate al servizio. Ad es., se il servizio è l'iscrizione al servizio mensa, si spiega che ogni 3 mesi si dovrà procedere al pagamento dei pasti utilizzando il servizio on line oppure attraverso il bollettino postale."
-msgstr ""
-
-#: inc/admin/servizio.php:206
-msgid "Link per avviare la procedura di attivazione del servizio. Questo campo mette in relazione \"Servizio\" con il suo canale digitale di attivazione. Es. \"Per richiedere il servizio mensa utilizza la procedura on line prevista nel sito del Comune X (link)\""
-msgstr ""
-
-#: inc/admin/servizio.php:263
-#: single-servizio.php:394
-msgid "Struttura responsabile del servizio"
-msgstr ""
-
-#: inc/admin/servizio.php:264
-msgid "Seleziona la struttura responsabile del servizio "
-msgstr ""
-
-#: inc/admin/servizio.php:272
-msgid "Laboratorio a cui il servizio appartiene"
-msgstr ""
-
-#: inc/admin/servizio.php:273
-msgid "Seleziona la scuola a cui il servizio appartiene "
-msgstr ""
-
-#: inc/admin/servizio.php:290
-msgid "In caso di servizio erogato in più luoghi, crea una sede per ogni luogo. "
-msgstr ""
-
-#: inc/admin/servizio.php:298
-msgid "Cosa Serve (testo introduttivo) * "
-msgstr ""
-
-#: inc/admin/servizio.php:346
-msgid "Data della fase"
-msgstr ""
-
-#: inc/admin/servizio.php:463
-msgid "<span><i>il <b>Titolo</b> è il <b>Nome del Servizio</b>. Il nome del Servizio deve essere facilmente comprensibile dai cittadini. Vincoli: massimo 60 caratteri spazi inclusi</i></span><br><br>"
-msgstr ""
-
-#: inc/admin/servizio.php:473
-msgid "<h1>Descrizione Estesa e Completa del Servizio</h1>"
-msgstr ""
-
 #: inc/admin/struttura.php:10
 msgctxt "Post Type General Name"
 msgid "Strutture"
@@ -3829,10 +3601,6 @@ msgstr ""
 msgid "<h1>Cosa fa </h1> Elenco/descrizione dei compiti assegnati alla struttura"
 msgstr ""
 
-#: inc/breadcrumb.php:359
-msgid "Tutti i Servizi"
-msgstr ""
-
 #: inc/cmb2.php:88
 msgid "Nessun luogo"
 msgstr ""
@@ -3931,7 +3699,6 @@ msgstr ""
 
 #: single-documento.php:76
 #: single-indirizzo.php:117
-#: single-servizio.php:105
 msgid "Indice della pagina"
 msgstr ""
 
@@ -3944,8 +3711,6 @@ msgstr ""
 #: single-documento.php:215
 #: single-indirizzo.php:154
 #: single-indirizzo.php:405
-#: single-servizio.php:124
-#: single-servizio.php:316
 msgid "Tempi e scadenze"
 msgstr ""
 
@@ -3981,8 +3746,6 @@ msgstr ""
 #: single-evento.php:114
 #: single-indirizzo.php:124
 #: single-indirizzo.php:190
-#: single-servizio.php:112
-#: single-servizio.php:160
 msgid "Cos'è"
 msgstr ""
 
@@ -4046,14 +3809,6 @@ msgstr ""
 #: single-luogo.php:130
 #: single-scheda_progetto.php:89
 #: single-scheda_progetto.php:95
-#: single-servizio.php:112
-#: single-servizio.php:115
-#: single-servizio.php:119
-#: single-servizio.php:124
-#: single-servizio.php:129
-#: single-servizio.php:134
-#: single-servizio.php:141
-#: single-servizio.php:149
 msgid "Vai al paragrafo"
 msgstr ""
 
@@ -4074,23 +3829,18 @@ msgstr ""
 
 #: single-indirizzo.php:148
 #: single-indirizzo.php:336
-#: single-servizio.php:119
-#: single-servizio.php:282
 msgid "Cosa serve"
 msgstr ""
 
 #: single-indirizzo.php:230
-#: single-servizio.php:200
 msgid "Procedure collegate all'esito"
 msgstr ""
 
 #: single-indirizzo.php:240
-#: single-servizio.php:210
 msgid "Servizio online"
 msgstr ""
 
 #: single-indirizzo.php:264
-#: single-servizio.php:234
 msgid "Non hai SPID?"
 msgstr ""
 
@@ -4103,7 +3853,6 @@ msgid "Luoghi in cui viene erogato l'indirizzo di studio"
 msgstr ""
 
 #: single-indirizzo.php:509
-#: single-servizio.php:446
 #: template-parts/home/didattica-cicli-indirizzi.php:107
 #: template-parts/home/didattica-cicli.php:68
 msgid "Per saperne di più"
@@ -4232,15 +3981,6 @@ msgstr ""
 msgid "Descrizione del progetto"
 msgstr ""
 
-#: single-servizio.php:115
-#: single-servizio.php:181
-msgid "Come si accede al servizio"
-msgstr ""
-
-#: single-servizio.php:265
-msgid "Luoghi in cui viene erogato il servizio"
-msgstr ""
-
 #: single-struttura.php:104
 msgid "Dettagli"
 msgstr ""
@@ -4305,7 +4045,7 @@ msgid "Risultati Ricerca: %s"
 msgstr ""
 
 #: template-parts/common/search-modal.php:19
-msgid "Cerca informazioni, servizi, notizie o documenti"
+msgid "Cerca informazioni, notizie o documenti"
 msgstr ""
 
 #: template-parts/common/search-modal.php:29
@@ -4392,7 +4132,6 @@ msgstr ""
 #: template-parts/home/articoli-eventi.php:96
 #: template-parts/home/eventi.php:29
 #: template-parts/home/indirizzi.php:29
-#: template-parts/home/servizi-tipologie.php:36
 msgid "Vedi tutti"
 msgstr ""
 
@@ -4410,7 +4149,6 @@ msgid "In Evidenza"
 msgstr ""
 
 #: template-parts/home/articoli-manuali.php:41
-#: template-parts/home/list-servizi.php:42
 msgid "Scopri di più"
 msgstr ""
 
@@ -4597,10 +4335,6 @@ msgstr ""
 
 #: template-parts/search/filters-scheda-didattica.php:20
 msgid "Livelli"
-msgstr ""
-
-#: template-parts/single/actions.php:14
-msgid "Servizi per "
 msgstr ""
 
 #: template-parts/single/actions.php:24
