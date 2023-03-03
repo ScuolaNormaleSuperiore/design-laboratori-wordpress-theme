@@ -6,6 +6,9 @@
  */
 
 // The slug is the name of the post, that is the name that appears in the url.
+// Default pages of the lab.
+define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
+define( 'SLUG_LABORATORIO_EN', 'the-lab' );
 define( 'SLUG_SERVIZI_IT', 'servizi' );
 define( 'SLUG_SERVIZI_EN', 'services' );
 define( 'SLUG_LUOGHI_IT', 'luoghi' );
@@ -22,8 +25,7 @@ define( 'SLUG_PROGETTI_IT', 'progetti' );
 define( 'SLUG_PROGETTI_EN', 'projects' );
 define( 'SLUG_PERSONE_IT', 'persone' );
 define( 'SLUG_PERSONE_EN', 'people' );
-define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
-define( 'SLUG_LABORATORIO_EN', 'the-lab' );
+// Default pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
 define( 'SLUG_ACCESSIBILITA_EN', 'accessibility' );
 define( 'SLUG_DOVESIAMO_IT', 'dove-siamo' );
@@ -161,29 +163,81 @@ function build_taxonomies( $taxonomy, $terms ) {
  * @return void
  */
 function create_the_menus() {
+	error_log( '@@@ HERE WE CREATE THE MENUS @@@' );
+	create_the_it_menus();
+	create_the_en_menus();
+}
 
+
+/**
+ * Create the site menus.
+ *
+ * @return void
+ */
+function create_the_it_menus() {
 	/**
 	 *  1 - Creazione del menu LABORATORIO.
 	 */
-	$name = 'The lab';
+	$name = __( 'Il Laboratorio', 'design_laboratori_italia' );
 
 	wp_delete_nav_menu( $name );
-
 	$menu_object = wp_get_nav_menu_object( $name );
-	if ( $menu_object ) {
-			$menu_id = $menu_object->term_id;
+	if( $menu_object ) {
+			$menu_lab = $menu_object->term_id;
 	} else {
-		$menu_id = wp_create_nav_menu( $name );
-		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_id  = wp_create_nav_menu( $name );
+		$menu     = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_lab = $menu_id;
 
-		$page    = get_page_by_path( SLUG_PERSONE_EN );
-		$page_id = $page->ID;
+		$persone_id = dsi_get_template_page_id( 'page-templates/persone.php' );
 		wp_update_nav_menu_item(
 			$menu->term_id,
 			0,
 			array(
-				'menu-item-title'     => 'People',
-				'menu-item-object-id' => $page_id,
+				'menu-item-title'     => __( 'Persone', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $persone_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$progetti_id = dsi_get_template_page_id( 'page-templates/progetti.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Progetti', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $progetti_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$ricerca_id = dsi_get_template_page_id( 'page-templates/ricerca.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Attività di ricerca', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $ricerca_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$pubblicazioni_id = dsi_get_template_page_id( 'page-templates/pubblicazioni.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $pubblicazioni_id,
 				'menu-item-object'    => 'page',
 				'menu-item-status'    => 'publish',
 				'menu-item-type'      => 'post_type',
@@ -192,10 +246,295 @@ function create_the_menus() {
 		);
 
 		$locations_primary_arr             = get_theme_mod( 'nav_menu_locations' );
-		$locations_primary_arr['menu-lab__en'] = $menu->term_id;
+		$locations_primary_arr['menu-lab'] = $menu->term_id;
 		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
 		update_option( 'menu_check', true );
 	}
+
+	/**
+	 * 2 - Creazione del menu PRESENTAZIONE.
+	 */
+	$name = __( 'Presentazione', 'design_laboratori_italia' );
+
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_presentazione = $menu_object->term_id;
+	} else {
+
+		$menu_id            = wp_create_nav_menu( $name );
+		$menu               = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_presentazione = $menu_id;
+
+		$page             = get_page_by_path( 'presentazione' );
+		$presentazione_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => 'Presentazione',
+				'menu-item-object-id' => $presentazione_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$servizi_id = dsi_get_template_page_id( 'page-templates/servizi.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Servizi', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $servizi_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'   => __( 'I luoghi', 'design_laboratori_italia' ),
+				'menu-item-status'  => 'publish',
+				'menu-item-object'  => 'luogo',
+				'menu-item-type'    => 'post_type_archive',
+				'menu-item-classes' => 'footer-link',
+			)
+		);
+
+		$notizie_id = dsi_get_template_page_id( 'page-templates/notizie.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $notizie_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr               = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-right'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
+
+	/**
+	 * 3 - Creazione del menu NOTIZIE.
+	 */
+	$name = __( 'Novità', 'design_laboratori_italia' );
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_novita = $menu_object->term_id;
+	} else {
+
+		$menu_id     = wp_create_nav_menu( $name );
+		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_novita = $menu_id;
+
+		$notizie_id = dsi_get_template_page_id( 'page-templates/notizie.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Notizie', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $notizie_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$eventi_id = dsi_get_template_page_id( 'page-templates/eventi.php' );
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Eventi', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $eventi_id,
+				'menu-item-object'    => 'page',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$page        = get_page_by_path( SLUG_CONTATTI_IT );
+		$contatti_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Contatti', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $contatti_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$page        = get_page_by_path( 'dove-siamo' );
+		$dove_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Dove siamo', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $dove_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr                      = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-header-right'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
+
+	/**
+	 * 4 - Creazione del menu Footer.
+	 */
+	$name = __( 'Footer', 'design_laboratori_italia' );
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_footer = $menu_object->term_id;
+	} else {
+
+		$menu_id     = wp_create_nav_menu( $name );
+		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_footer = $menu_id;
+
+		// Di solito la Pagina Policy è già presente in una installazione di WP (con id=3).
+		$policy_id = get_option( 'wp_page_for_privacy_policy' );
+		if ( ( ! $policy_id ) || ( get_post( (int) $policy_id ) == null ) ) {
+			$page             = get_page_by_path( SLUG_PRIVACY_IT );
+			$policy_id = $page->ID;
+		} else {
+			$policy_id = (int) $policy_id;
+		}
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Privacy Policy', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $policy_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$page             = get_page_by_path( 'accessibilita' );
+		$accessibilita_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Dichiarazione di accessibilità', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $accessibilita_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$page        = get_page_by_path( SLUG_CONTATTI_IT );
+		$contatti_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Contatti', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $contatti_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$page        = get_page_by_path( 'dove-siamo' );
+		$dove_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Dove siamo', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $dove_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr                = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-footer'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
+
+	/**
+	 * 5 - Creazione del menu Link utili.
+	 */
+	$name = __( 'Link utili', 'design_laboratori_italia' );
+	wp_delete_nav_menu( $name );
+	$menu_object = wp_get_nav_menu_object( $name );
+	if( $menu_object ) {
+		$menu_link = $menu_object->term_id;
+	} else {
+
+		$menu_id     = wp_create_nav_menu( $name );
+		$menu        = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_links  = $menu_id;
+
+		$page             = get_page_by_path( 'accessibilita' );
+		$accessibilita_id = $page->ID;
+		wp_update_nav_menu_item(
+			$menu->term_id,
+			0,
+			array(
+				'menu-item-title'     => __( 'Dichiarazione di accessibilità', 'design_laboratori_italia' ),
+				'menu-item-object-id' => $accessibilita_id,
+				'menu-item-object'    => 'post',
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'post_type',
+				'menu-item-classes'   => 'footer-link',
+			)
+		);
+
+		$locations_primary_arr                = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr['menu-links'] = $menu->term_id;
+		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
+		update_option( 'menu_check', true );
+	}
+
+}
+
+
+/**
+ * Create the site menus.
+ *
+ * @return void
+ */
+function create_the_en_menus() {
 
 }
 
@@ -297,7 +636,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/persone.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_PROGETTI_IT,
@@ -310,7 +649,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/progetti.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_RICERCA_IT,
@@ -321,9 +660,9 @@ function create_the_pages() {
 				'page_content_en' => 'Description of the research activities...',
 				'page_status'     => 'publish',
 				'page_author'     => 1,
-				'page_template'   => 'page-templates/progetti.php',
+				'page_template'   => 'page-templates/ricerca.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_PUBBLICAZIONI_IT,
@@ -336,7 +675,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/pubblicazioni.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_NOTIZIE_IT,
@@ -349,7 +688,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/notizie.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_EVENTI_IT,
@@ -362,7 +701,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/eventi.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
 				'page_slug_it'    => SLUG_SERVIZI_IT,
@@ -375,7 +714,7 @@ function create_the_pages() {
 				'page_author'     => 1,
 				'page_template'   => 'page-templates/servizi.php',
 				'page_type'       => 'page',
-				'page_parent'     => null,
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 
 		);
@@ -392,11 +731,16 @@ function create_the_pages() {
 				'post_content' => $page['page_content_it'],
 				'post_status'  => $page['page_status'],
 				'post_author'  => intval( $page['page_author'] ),
+				'post_parent'  => 0,
 			);
 			$page_check     = get_page_by_path( $page['page_slug_it'] );
 			$new_page_it_id = $page_check ? $page_check->ID : 0;
 			// If the IT page doesn't already exist, create it.
 			if ( ! $new_page_it_id ) {
+				if ( isset( $page['page_parent'] ) ) {
+					$post_parent_id          = intval( get_page_by_path( $page['page_parent'][0] )->ID );
+					$new_page['post_parent'] = $post_parent_id;
+				}
 				$new_page_it_id = wp_insert_post( $new_page );
 				update_post_meta( $new_page_it_id, '_wp_page_template', $new_page_template );
 			}
@@ -412,11 +756,16 @@ function create_the_pages() {
 				'post_content' => $page['page_content_en'],
 				'post_status'  => $page['page_status'],
 				'post_author'  => intval( $page['page_author'] ),
+				'post_parent'  => 0,
 			);
 			$page_check     = get_page_by_path( $page['page_slug_en'] );
 			$new_page_en_id = $page_check ? $page_check->ID : 0;
 			// If the IT page doesn't already exist, create it.
 			if ( ! $new_page_en_id ) {
+				if ( isset( $page['page_parent'] ) ) {
+					$post_parent_id          = intval( get_page_by_path( $page['page_parent'][1] )->ID );
+					$new_page['post_parent'] = $post_parent_id;
+				}
 				$new_page_en_id = wp_insert_post( $new_page );
 				update_post_meta( $new_page_en_id, '_wp_page_template', $new_page_template );
 			}

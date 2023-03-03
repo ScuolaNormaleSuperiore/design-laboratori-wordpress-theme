@@ -185,6 +185,7 @@ if ( ! function_exists( 'dli_setup' ) ) :
 		 * This theme uses wp_nav_menu().
 		 * Definizione delle locations dei menu: wp-admin/nav-menus.php?action=locations.
 		 */
+		error_log( '@@@ HERE WE REGISTER THE MENU POSITIONS @@@' );
 		register_nav_menus(
 			array(
 				'menu-lab'          => esc_html__( 'Menu principale di link a sinistra', 'design_laboratori_italia' ),
