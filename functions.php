@@ -56,11 +56,6 @@ require get_template_directory() . '/inc/utils.php';
  */
 require get_template_directory() . '/inc/notification.php';
 
-/**
- * Breadcrumb class
- */
-require get_template_directory() . '/inc/breadcrumb.php';
-
 
 /**
  * Activation Hooks

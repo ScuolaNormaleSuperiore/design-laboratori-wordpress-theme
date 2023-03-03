@@ -1336,4 +1336,57 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		}
 	}
 
+	if( ! function_exists( 'dli_build_content_path' ) ) {
+		function dli_build_content_path( $post ) {
+			$steps = array(
+				array(
+					'label' => 'Home',
+					'url'   => get_site_url(),
+					'class' => 'breadcrumb-item',
+				),
+			);
+			
+			switch ( $post->post_type ) {
+				case 'page':
+					array_push( 
+						$steps, 
+						array(
+							'label' => $post->post_title,
+							'url'   => $post->post_url,
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+				case 'post':
+					array_push( 
+						$steps, 
+						array(
+							'label' => 'Blog',
+							'url'   => get_site_url() . '/blog',
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+				default:
+					array_push( 
+						$steps, 
+						array(
+							'label' => $post->post_type,
+							'url'   => get_site_url() . $post->post_type,
+							'class' => 'breadcrumb-item',
+						),
+						array(
+							'label' => $post->post_title,
+							'url'   => $post->post_url,
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+		}
+
+			return $steps;
+		}
+	}
+
+	
 }

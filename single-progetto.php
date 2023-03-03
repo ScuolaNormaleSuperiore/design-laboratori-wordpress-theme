@@ -13,7 +13,8 @@ get_header();
 <main id="main-container">
 
 	<!-- BREADCRUMB -->
-	breadcrumb
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+
 
 	<!-- BANNER PROGETTI -->
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">

@@ -1,44 +1,44 @@
-<section class="section py-2 bg-white d-none d-sm-block">
-    <div class="container">
-		<div class="row variable-gutters">
-			<div class="col-12">
-				<div class="breadcrumb">
-                    <?php
-                    if ( function_exists( 'breadcrumb_trail' ) ) {
-	                    $args = array(
-		                    'container'       => 'nav',
-		                    'before'          => '',
-		                    'after'           => '',
-		                    'browse_tag'      => 'h2',
-		                    'list_tag'        => 'ol',
-		                    'item_tag'        => 'li',
-		                    'show_on_front'   => true,
-		                    'network'         => false,
-		                    'show_title'      => true,
-		                    'show_browse'     => false,
-		                    'labels'          => array(
-			                    'search'      => esc_html__( 'Risultati Ricerca: %s','design_laboratori_italia' ),
-                            ),
-		                    'post_taxonomy' => array(
-			                     'servizio'  => 'tipologia-servizio', // 'post' post type and 'post_tag' taxonomy
-                                'indirizzo'  => 'percorsi-di-studio',
-			                     'documento'  => 'tipologia-documento',
-			                     'post'  =>     'tipologia-articolo',
-			                     'luogo'  => 'tipologia-luogo',
-			                     // 'programma_materia'  => 'materia', // todo: programma materia
-			                     'struttura'  => 'tipologia-struttura',
-                                'scheda_didattica'  => 'percorsi-di-studio',
-                                'scheda_progetto'  => 'tipologia-progetto',
-                                'incarico'  => 'tipo_incarico',
+<?php
+	global $post;
+	$steps = dli_build_content_path( $post );
+	$index = 0;
+?>
+<section id="breadcrumb">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 ms-4 ">
+				<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+				<ol class="breadcrumb pb-0">
+					<?php
+						foreach( $steps as $step ){
+					?>
+					<li class="<?php echo esc_attr( $step['class'] ); ?>">
+						<a href="<?php echo esc_url( $step['url'] ); ?>"><?php echo esc_attr( $step['label'] ); ?></a>
+						<?php
+							if ( $index < count( $steps) -1 ) {
+						?>
+						<span class="separator">&gt;</span>
+						<?php
+							}
+						?>
+					</li>
+					<?php
+						$index++;
+						}
+					?>
+				</ol>
+			</nav>
+		</div>
+		</div>
+	</div>
+</section>
 
-                            ),
-		                    'echo'            => true
-	                    );
-	                    breadcrumb_trail($args);
-                    }
-                    ?>
-				</div><!-- /breadcrumbs -->
-			</div><!-- /col-12 -->
-		</div><!-- /row -->
-	</div><!-- /container -->
-</section><!-- /section --><?php
+
+<!--
+
+					<li class="breadcrumb-item">
+						<a href="sf-index.html">Home</a><span class="separator">&gt;</span>
+					</li>
+					<li class="breadcrumb-item"><a href="sf-elenco-persone.html">Persone</a><span class="separator">&gt;</span></li>
+					<li class="breadcrumb-item active" aria-current="Elenco persone">Mario Rossi</li>
+					-->
