@@ -255,7 +255,7 @@ function create_the_it_menus() {
 			),
 			array(
 				'slug'         => SLUG_NOTIZIE_IT,
-				'title'        => 'I luoghi',
+				'title'        => 'Le notizie',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
@@ -815,7 +815,7 @@ function create_the_pages() {
 				'content_en'         => 'The places of the lab...',
 				'content_status'     => 'publish',
 				'content_author'     => 1,
-				'content_template'   => 'page-templates/servizi.php',
+				'content_template'   => 'page-templates/luoghi.php',
 				'content_type'       => 'page',
 				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
@@ -844,7 +844,7 @@ function create_the_pages() {
 					$new_page['post_parent'] = $post_parent_id;
 				}
 				$new_page_it_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_it_id, '_wp_content_template', $new_content_template );
+				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
 			}
 			// Assign the IT language to the page.
 			pll_set_post_language( $new_page_it_id, 'it' );
@@ -869,7 +869,7 @@ function create_the_pages() {
 					$new_page['post_parent'] = $post_parent_id;
 				}
 				$new_page_en_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_en_id, '_wp_content_template', $new_content_template );
+				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
 			}
 			// Assign the EN language to the page.
 			pll_set_post_language( $new_page_en_id, 'en' );
