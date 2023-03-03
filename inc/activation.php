@@ -221,6 +221,71 @@ function create_the_it_menus() {
 
 	build_the_menu( $menu );
 
+	/**
+	 * 2 - Creazione del menu PRESENTAZIONE.
+	 */
+	$menu = array(
+		'name'     => 'Presentazione',
+		'lang'     => 'it',
+		'location' => 'menu-right',
+		'items' => array(
+			array(
+				'slug'         => SLUG_PRESENTAZIONE_IT,
+				'title'        => 'Presentazione',
+				'content_type' => 'post',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_SERVIZI_IT,
+				'title'        => 'Servizi',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_LUOGHI_IT,
+				'title'        => 'I luoghi',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_NOTIZIE_IT,
+				'title'        => 'I luoghi',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
+
+	/**
+	 * 5 - Creazione del menu Link utili.
+	 */
+	$menu = array(
+		'name'     => 'Link utili',
+		'lang'     => 'it',
+		'location' => 'menu-links',
+		'items' => array(
+			array(
+				'slug'         => SLUG_ACCESSIBILITA_IT,
+				'title'        => 'Dichiarazione di accessibilità',
+				'content_type' => 'post',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
 }
 
 /**
@@ -233,7 +298,7 @@ function 	build_the_menu( $custom_menu ) {
 	$menu_items    = $custom_menu['items'];
 	$menu_location = $custom_menu['location'];
 	$menu_lang     = $custom_menu['lang'];
-	if ( $menu_lang != 'it' ) {
+	if ( 'it' !== $menu_lang ) {
 		$menu_location = $menu_location . '__' . $menu_lang;
 	}
 
@@ -466,7 +531,7 @@ function create_the_pages() {
 			),
 			array(
 				'page_slug_it'    => SLUG_NOTIZIE_IT,
-				'page_slug_en'    => SLUG_NOTIZIE_IT,
+				'page_slug_en'    => SLUG_NOTIZIE_EN,
 				'page_title_it'   => 'Le notizie',
 				'page_title_en'   => 'News',
 				'page_content_it' => 'Le notizie del laboratorio ...',
@@ -503,7 +568,19 @@ function create_the_pages() {
 				'page_type'       => 'page',
 				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
-
+			array(
+				'page_slug_it'    => SLUG_LUOGHI_IT,
+				'page_slug_en'    => SLUG_LUOGHI_EN,
+				'page_title_it'   => 'I luoghi',
+				'page_title_en'   => 'Places',
+				'page_content_it' => 'I luoghi del laboratorio ...',
+				'page_content_en' => 'The places of the lab...',
+				'page_status'     => 'publish',
+				'page_author'     => 1,
+				'page_template'   => 'page-templates/servizi.php',
+				'page_type'       => 'page',
+				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			),
 		);
 
 		foreach ( $static_pages as $page ) {
