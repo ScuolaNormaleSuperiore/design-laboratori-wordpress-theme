@@ -39,6 +39,8 @@ if ( ! class_exists( 'Post_Manager' ) ) {
 
 if ( ! class_exists( 'Polylang_Manager' ) ) {
 	include_once 'class-polylangmanager.php';
+if ( ! class_exists( 'Place_Manager' ) ) {
+	include_once 'class-placemanager.php';
 }
 
 /**
@@ -114,6 +116,9 @@ class LabManager {
 		// Setup di Polylang.
 		$polylang = new Polylang_Manager();
 		$polylang->setup();
+		// Setup del post type Luoghi
+		$ctluoghi = new Place_Manager();
+		$ctluoghi->setup();
 
 	}
 }

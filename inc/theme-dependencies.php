@@ -48,6 +48,11 @@ function dsi_register_required_plugins() {
 			'required' => true,
 		),
 		array(
+			'name'     => 'ACF OpenStreetMap Field',
+			'slug'     => 'acf-openstreetmap-field',
+			'required' => true,
+		),
+		array(
 			'name'     => 'Disable Gutenberg',
 			'slug'     => 'disable-gutenberg',
 			'required' => true,
