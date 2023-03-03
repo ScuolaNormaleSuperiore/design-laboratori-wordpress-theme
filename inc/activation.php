@@ -232,7 +232,7 @@ function create_the_it_menus() {
 			array(
 				'slug'         => SLUG_PRESENTAZIONE_IT,
 				'title'        => 'Presentazione',
-				'content_type' => 'post',
+				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
@@ -265,6 +265,93 @@ function create_the_it_menus() {
 	);
 	build_the_menu( $menu );
 
+	/**
+	 * 3 - Creazione del menu NOTIZIE.
+	 */
+	$menu = array(
+		'name'     => 'Novità',
+		'lang'     => 'it',
+		'location' => 'menu-header-right',
+		'items' => array(
+			array(
+				'slug'         => SLUG_NOTIZIE_IT,
+				'title'        => 'Notizie',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_EVENTI_IT,
+				'title'        => 'Eventi',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_CONTATTI_IT,
+				'title'        => 'Contatti',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_DOVESIAMO_IT,
+				'title'        => 'Dove siamo',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
+	/**
+	 * 4 - Creazione del menu Footer.
+	 */
+	$menu = array(
+		'name'     => 'Footer it',
+		'lang'     => 'it',
+		'location' => 'menu-footer',
+		'items' => array(
+			array(
+				'slug'         => SLUG_PRIVACY_IT,
+				'title'        => 'Privacy Policy',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_ACCESSIBILITA_IT,
+				'title'        => 'Dichiarazione di accessibilità',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_CONTATTI_IT,
+				'title'        => 'Contatti',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_DOVESIAMO_IT,
+				'title'        => 'Dove siamo',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
 
 	/**
 	 * 5 - Creazione del menu Link utili.
@@ -277,7 +364,7 @@ function create_the_it_menus() {
 			array(
 				'slug'         => SLUG_ACCESSIBILITA_IT,
 				'title'        => 'Dichiarazione di accessibilità',
-				'content_type' => 'post',
+				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
@@ -312,7 +399,7 @@ function 	build_the_menu( $custom_menu ) {
 		$menu_id  = wp_create_nav_menu( $menu_name );
 		$menu     = get_term_by( 'id', $menu_id, 'nav_menu' );
 
-		foreach ( $menu_items as $menu_item) {
+		foreach ( $menu_items as $menu_item ) {
 			$result       = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
 			$menu_item_id = $result->ID;
 			wp_update_nav_menu_item(
@@ -345,7 +432,7 @@ function 	build_the_menu( $custom_menu ) {
  */
 function create_the_en_menus() {
 	/**
-	 *  1 - Creazione del menu LABORATORIO.
+	 *  1 - Creazione del menu LABORATORIO-en.
 	 */
 	$menu = array(
 		'name'     => 'The Lab',
@@ -386,7 +473,158 @@ function create_the_en_menus() {
 			),
 		),
 	);
+	build_the_menu( $menu );
 
+	/**
+	 * 2 - Creazione del menu PRESENTAZIONE-en.
+	 */
+	$menu = array(
+		'name'     => 'Presentation',
+		'lang'     => 'en',
+		'location' => 'menu-right',
+		'items' => array(
+			array(
+				'slug'         => SLUG_PRESENTAZIONE_EN,
+				'title'        => 'Presentation',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_SERVIZI_EN,
+				'title'        => 'Services',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_LUOGHI_EN,
+				'title'        => 'Places',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_NOTIZIE_EN,
+				'title'        => 'News',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
+	/**
+	 * 3 - Creazione del menu NOTIZIE.
+	 */
+	$menu = array(
+		'name'     => 'News',
+		'lang'     => 'en',
+		'location' => 'menu-header-right',
+		'items' => array(
+			array(
+				'slug'         => SLUG_NOTIZIE_EN,
+				'title'        => 'News',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_EVENTI_EN,
+				'title'        => 'Events',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_CONTATTI_EN,
+				'title'        => 'Contacts',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_DOVESIAMO_EN,
+				'title'        => 'Where we are',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
+	/**
+	 * 4 - Creazione del menu Footer.
+	 */
+	$menu = array(
+		'name'     => 'Footer en',
+		'lang'     => 'en',
+		'location' => 'menu-footer',
+		'items' => array(
+			array(
+				'slug'         => SLUG_PRIVACY_EN,
+				'title'        => 'Privacy Policy',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_ACCESSIBILITA_EN,
+				'title'        => 'Accessibility declaration',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_CONTATTI_EN,
+				'title'        => 'Contacts',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_DOVESIAMO_EN,
+				'title'        => 'Where we are',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
+	build_the_menu( $menu );
+
+	/**
+	 * 5 - Creazione del menu Link utili-en.
+	 */
+	$menu = array(
+		'name'     => 'Useful link',
+		'lang'     => 'en',
+		'location' => 'menu-links',
+		'items' => array(
+			array(
+				'slug'         => SLUG_ACCESSIBILITA_EN,
+				'title'        => 'Accessibility declaration',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+		),
+	);
 	build_the_menu( $menu );
 }
 
@@ -400,213 +638,213 @@ function create_the_pages() {
 		// Creazione delle pagine statiche.
 		$static_pages = array(
 			array(
-				'page_slug_it'    => SLUG_PRESENTAZIONE_IT,
-				'page_slug_en'    => SLUG_PRESENTAZIONE_EN,
-				'page_title_it'   => 'Presentazione',
-				'page_title_en'   => 'Presentation',
-				'page_content_it' => 'La nostra storia...',
-				'page_content_en' => 'Our history...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => '',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
+				'content_slug_en'    => SLUG_PRESENTAZIONE_EN,
+				'content_title_it'   => 'Presentazione',
+				'content_title_en'   => 'Presentation',
+				'content_it'         => 'La nostra storia...',
+				'content_en'         => 'Our history...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_PRIVACY_IT,
-				'page_slug_en'    => SLUG_PRIVACY_EN,
-				'page_title_it'   => 'Privacy Policy',
-				'page_title_en'   => 'Privacy Policy',
-				'page_content_it' => 'La nostra Privacy Policy...',
-				'page_content_en' => 'Our Privacy Policy...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => '',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_PRIVACY_IT,
+				'content_slug_en'    => SLUG_PRIVACY_EN,
+				'content_title_it'   => 'Privacy Policy',
+				'content_title_en'   => 'Privacy Policy',
+				'content_it'         => 'La nostra Privacy Policy...',
+				'content_en'         => 'Our Privacy Policy...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_CONTATTI_IT,
-				'page_slug_en'    => SLUG_CONTATTI_EN,
-				'page_title_it'   => 'Contatti',
-				'page_title_en'   => 'Contacts',
-				'page_content_it' => 'I nostri contatti...',
-				'page_content_en' => 'Our contacts...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => '',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_CONTATTI_IT,
+				'content_slug_en'    => SLUG_CONTATTI_EN,
+				'content_title_it'   => 'Contatti',
+				'content_title_en'   => 'Contacts',
+				'content_it'         => 'I nostri contatti...',
+				'content_en'         => 'Our contacts...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_DOVESIAMO_IT,
-				'page_slug_en'    => SLUG_DOVESIAMO_EN,
-				'page_title_it'   => 'Dove siamo',
-				'page_title_en'   => 'Where we are',
-				'page_content_it' => 'Noi siamo qui...',
-				'page_content_en' => 'We are here...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => '',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_DOVESIAMO_IT,
+				'content_slug_en'    => SLUG_DOVESIAMO_EN,
+				'content_title_it'   => 'Dove siamo',
+				'content_title_en'   => 'Where we are',
+				'content_it'         => 'Noi siamo qui...',
+				'content_en'         => 'We are here...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_ACCESSIBILITA_IT,
-				'page_slug_en'    => SLUG_ACCESSIBILITA_EN,
-				'page_title_it'   => 'Accessibilità',
-				'page_title_en'   => 'Accessibility',
-				'page_content_it' => 'La di chiarazione di accessibilità...',
-				'page_content_en' => 'The accessibility declaration...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => '',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
+				'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
+				'content_title_it'   => 'Dichiarazione',
+				'content_title_en'   => 'Accessibility',
+				'content_it'         => 'La di chiarazione di accessibilità...',
+				'content_en'         => 'The accessibility declaration...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_LABORATORIO_IT,
-				'page_slug_en'    => SLUG_LABORATORIO_EN,
-				'page_title_it'   => 'Il Laboratorio',
-				'page_title_en'   => 'The Lab',
-				'page_content_it' => 'Descrizione del laboratorio...',
-				'page_content_en' => 'Lab description...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/il-laboratorio.php',
-				'page_type'       => 'page',
-				'page_parent'     => null,
+				'content_slug_it'    => SLUG_LABORATORIO_IT,
+				'content_slug_en'    => SLUG_LABORATORIO_EN,
+				'content_title_it'   => 'Il Laboratorio',
+				'content_title_en'   => 'The Lab',
+				'content_it'         => 'Descrizione del laboratorio...',
+				'content_en'         => 'Lab description...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/il-laboratorio.php',
+				'content_type'       => 'page',
+				'content_parent'     => null,
 			),
 			array(
-				'page_slug_it'    => SLUG_PERSONE_IT,
-				'page_slug_en'    => SLUG_PERSONE_EN,
-				'page_title_it'   => 'Le Persone',
-				'page_title_en'   => 'People',
-				'page_content_it' => 'Descrizione dello staff del laboratorio...',
-				'page_content_en' => 'Description of the Lab staff...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/persone.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_PERSONE_IT,
+				'content_slug_en'    => SLUG_PERSONE_EN,
+				'content_title_it'   => 'Le Persone',
+				'content_title_en'   => 'People',
+				'content_it'         => 'Descrizione dello staff del laboratorio...',
+				'content_en'         => 'Description of the Lab staff...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/persone.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_PROGETTI_IT,
-				'page_slug_en'    => SLUG_PROGETTI_EN,
-				'page_title_it'   => 'I progetti',
-				'page_title_en'   => 'The projects',
-				'page_content_it' => 'Descrizione dei progetti del laboratorio...',
-				'page_content_en' => 'Description of the Lab projects...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/progetti.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_PROGETTI_IT,
+				'content_slug_en'    => SLUG_PROGETTI_EN,
+				'content_title_it'   => 'I progetti',
+				'content_title_en'   => 'The projects',
+				'content_it'         => 'Descrizione dei progetti del laboratorio...',
+				'content_en'         => 'Description of the Lab projects...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/progetti.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_RICERCA_IT,
-				'page_slug_en'    => SLUG_RICERCA_EN,
-				'page_title_it'   => 'Attività di ricerca',
-				'page_title_en'   => 'Research activities',
-				'page_content_it' => 'Descrizione delle attività di ricerca...',
-				'page_content_en' => 'Description of the research activities...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/ricerca.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_RICERCA_IT,
+				'content_slug_en'    => SLUG_RICERCA_EN,
+				'content_title_it'   => 'Attività di ricerca',
+				'content_title_en'   => 'Research activities',
+				'content_it'         => 'Descrizione delle attività di ricerca...',
+				'content_en'         => 'Description of the research activities...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/ricerca.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_PUBBLICAZIONI_IT,
-				'page_slug_en'    => SLUG_PUBBLICAZIONI_EN,
-				'page_title_it'   => 'Le pubblicazioni',
-				'page_title_en'   => 'Publications',
-				'page_content_it' => 'Le nostre pubblicazioni ...',
-				'page_content_en' => 'Our publications...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/pubblicazioni.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
+				'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
+				'content_title_it'   => 'Le pubblicazioni',
+				'content_title_en'   => 'Publications',
+				'content_it'         => 'Le nostre pubblicazioni ...',
+				'content_en'         => 'Our publications...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/pubblicazioni.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_NOTIZIE_IT,
-				'page_slug_en'    => SLUG_NOTIZIE_EN,
-				'page_title_it'   => 'Le notizie',
-				'page_title_en'   => 'News',
-				'page_content_it' => 'Le notizie del laboratorio ...',
-				'page_content_en' => 'Lab publications...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/notizie.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_NOTIZIE_IT,
+				'content_slug_en'    => SLUG_NOTIZIE_EN,
+				'content_title_it'   => 'Le notizie',
+				'content_title_en'   => 'News',
+				'content_it'         => 'Le notizie del laboratorio ...',
+				'content_en'         => 'Lab publications...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/notizie.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_EVENTI_IT,
-				'page_slug_en'    => SLUG_EVENTI_EN,
-				'page_title_it'   => 'Gli eventi',
-				'page_title_en'   => 'Events',
-				'page_content_it' => 'Gli eventi del laboratorio ...',
-				'page_content_en' => 'The events of the lab...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/eventi.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_EVENTI_IT,
+				'content_slug_en'    => SLUG_EVENTI_EN,
+				'content_title_it'   => 'Gli eventi',
+				'content_title_en'   => 'Events',
+				'content_it'         => 'Gli eventi del laboratorio ...',
+				'content_en'         => 'The events of the lab...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/eventi.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_SERVIZI_IT,
-				'page_slug_en'    => SLUG_SERVIZI_EN,
-				'page_title_it'   => 'I servizi',
-				'page_title_en'   => 'Services',
-				'page_content_it' => 'I servizi del laboratorio ...',
-				'page_content_en' => 'The services of the lab...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/servizi.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_SERVIZI_IT,
+				'content_slug_en'    => SLUG_SERVIZI_EN,
+				'content_title_it'   => 'I servizi',
+				'content_title_en'   => 'Services',
+				'content_it'         => 'I servizi del laboratorio ...',
+				'content_en'         => 'The services of the lab...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/servizi.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 			array(
-				'page_slug_it'    => SLUG_LUOGHI_IT,
-				'page_slug_en'    => SLUG_LUOGHI_EN,
-				'page_title_it'   => 'I luoghi',
-				'page_title_en'   => 'Places',
-				'page_content_it' => 'I luoghi del laboratorio ...',
-				'page_content_en' => 'The places of the lab...',
-				'page_status'     => 'publish',
-				'page_author'     => 1,
-				'page_template'   => 'page-templates/servizi.php',
-				'page_type'       => 'page',
-				'page_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+				'content_slug_it'    => SLUG_LUOGHI_IT,
+				'content_slug_en'    => SLUG_LUOGHI_EN,
+				'content_title_it'   => 'I luoghi',
+				'content_title_en'   => 'Places',
+				'content_it'         => 'I luoghi del laboratorio ...',
+				'content_en'         => 'The places of the lab...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/servizi.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),
 		);
 
 		foreach ( $static_pages as $page ) {
-			$new_page_template   = $page['page_template'];
+			$new_content_template   = $page['content_template'];
 
 			// Create the IT page.
 			// Store the above data in an array.
 			$new_page = array(
-				'post_type'    => $page['page_type'],
-				'post_name'    => $page['page_slug_it'],
-				'post_title'   => $page['page_title_it'],
-				'post_content' => $page['page_content_it'],
-				'post_status'  => $page['page_status'],
-				'post_author'  => intval( $page['page_author'] ),
+				'post_type'    => $page['content_type'],
+				'post_name'    => $page['content_slug_it'],
+				'post_title'   => $page['content_title_it'],
+				'post_content' => $page['content_it'],
+				'post_status'  => $page['content_status'],
+				'post_author'  => intval( $page['content_author'] ),
 				'post_parent'  => 0,
 			);
-			$page_check     = dli_get_content( $page['page_slug_it'], $page['page_type'] );
+			$page_check     = dli_get_content( $page['content_slug_it'], $page['content_type'] );
 			$new_page_it_id = $page_check ? $page_check->ID : 0;
 			// If the IT page doesn't already exist, create it.
 			if ( ! $new_page_it_id ) {
-				if ( isset( $page['page_parent'] ) ) {
-					$post_parent_id          = intval( get_page_by_path( $page['page_parent'][0] )->ID );
+				if ( isset( $page['content_parent'] ) ) {
+					$post_parent_id          = intval( get_page_by_path( $page['content_parent'][0] )->ID );
 					$new_page['post_parent'] = $post_parent_id;
 				}
 				$new_page_it_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_it_id, '_wp_page_template', $new_page_template );
+				update_post_meta( $new_page_it_id, '_wp_content_template', $new_content_template );
 			}
 			// Assign the IT language to the page.
 			pll_set_post_language( $new_page_it_id, 'it' );
@@ -614,24 +852,24 @@ function create_the_pages() {
 			// Create the EN page.
 			// Store the above data in an array.
 			$new_page = array(
-				'post_type'    => $page['page_type'],
-				'post_name'    => $page['page_slug_en'],
-				'post_title'   => $page['page_title_en'],
-				'post_content' => $page['page_content_en'],
-				'post_status'  => $page['page_status'],
-				'post_author'  => intval( $page['page_author'] ),
+				'post_type'    => $page['content_type'],
+				'post_name'    => $page['content_slug_en'],
+				'post_title'   => $page['content_title_en'],
+				'post_content' => $page['content_en'],
+				'post_status'  => $page['content_status'],
+				'post_author'  => intval( $page['content_author'] ),
 				'post_parent'  => 0,
 			);
-			$page_check     = dli_get_content( $page['page_slug_en'], $page['page_type'] );
+			$page_check     = dli_get_content( $page['content_slug_en'], $page['content_type'] );
 			$new_page_en_id = $page_check ? $page_check->ID : 0;
 			// If the IT page doesn't already exist, create it.
 			if ( ! $new_page_en_id ) {
-				if ( isset( $page['page_parent'] ) ) {
-					$post_parent_id          = intval( get_page_by_path( $page['page_parent'][1] )->ID );
+				if ( isset( $page['content_parent'] ) ) {
+					$post_parent_id          = intval( get_page_by_path( $page['content_parent'][1] )->ID );
 					$new_page['post_parent'] = $post_parent_id;
 				}
 				$new_page_en_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_en_id, '_wp_page_template', $new_page_template );
+				update_post_meta( $new_page_en_id, '_wp_content_template', $new_content_template );
 			}
 			// Assign the EN language to the page.
 			pll_set_post_language( $new_page_en_id, 'en' );
