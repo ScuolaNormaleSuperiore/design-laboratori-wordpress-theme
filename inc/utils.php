@@ -1325,4 +1325,15 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		}
 	}
 
+	if( ! function_exists( 'dli_get_content' ) ) {
+		function dli_get_content( $slug, $content_type='post' ) {
+			$args = array(
+				'name'        => $slug,
+				'post_type'   => $content_type,
+				'numberposts' => 1,
+			);
+			return get_posts( $args )[0];
+		}
+	}
+
 }

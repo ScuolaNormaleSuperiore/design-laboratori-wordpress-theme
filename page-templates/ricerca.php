@@ -94,7 +94,7 @@ $num_results = $the_query->found_posts;
 			} else {
 			?>
 		<div clas="row pt-2">
-			<?php echo __( 'Non è stato trovato nessun progetto', 'design_laboratori_italia' ); ?>
+			<?php echo __( 'Non è stata trovata nessuna attività di ricerca', 'design_laboratori_italia' ); ?>
 		</div>
 		<?php
 			}
