@@ -738,18 +738,6 @@ function dli_register_main_options_metabox() {
 			)
 		);
 
-	$notizie_options->add_field( array(
-			'name'       => __( 'Tipologie Articoli', 'design_laboratori_italia' ),
-			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare. ', 'design_laboratori_italia' ),
-			'id' => $prefix . 'tipologie_notizie',
-			'type'    => 'pw_multiselect',
-			'options' => dli_get_tipologia_articoli_options(),
-			'attributes' => array(
-				'placeholder' =>  __( 'Seleziona e ordina le tipologie di articoli da mostrare nella HomePage di sezione', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
 	/**
 	* 7 - Registers options page "Persone".
 	*/

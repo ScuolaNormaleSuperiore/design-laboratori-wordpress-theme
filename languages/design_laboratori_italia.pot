@@ -2595,18 +2595,6 @@ msgstr ""
 msgid "es: \"Le notizie del liceo scientifico Enriques dedicate a tutti i genitori, studenti, personale ATA e docenti\""
 msgstr ""
 
-#: inc/admin/options.php:662
-msgid "Tipologie Articoli"
-msgstr ""
-
-#: inc/admin/options.php:663
-msgid "Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare. "
-msgstr ""
-
-#: inc/admin/options.php:668
-msgid "Seleziona e ordina le tipologie di articoli da mostrare nella HomePage di sezione"
-msgstr ""
-
 #: inc/admin/options.php:680
 msgid "La Didattica"
 msgstr ""

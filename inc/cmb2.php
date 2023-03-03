@@ -278,29 +278,6 @@ function dsi_get_tipologie_amministrazione_trasparente( $query_args = false) {
 }
 
 /**
- * Lista di tipologia di articoli
- * @param bool $query_args
- *
- * @return array
- */
-function dli_get_tipologia_articoli_options( $query_args = false) {
-
-	$items = get_terms( array(
-		'taxonomy' => 'tipologia-articolo',
-		'hide_empty' => false,
-	));
-
-	$options = array();
-	if ( $items ) {
-		foreach ( $items as $item ) {
-			$options[ $item->term_id ] = $item->name;
-		}
-	}
-	return $options;
-}
-
-
-/**
  * Rende i campi cmb2 bidirezionali
  * @param $type_from
  * @param $field_from
