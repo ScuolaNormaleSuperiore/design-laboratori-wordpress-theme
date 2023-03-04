@@ -110,21 +110,10 @@ $num_results = $pubblicazioni->found_posts;
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
 	<main id="main-container">
+
 		<!-- BREADCRUMB -->
-		<section id ="breadcrumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 ms-4 ">
-						<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
-							<ol class="breadcrumb pb-0">
-								<li class="breadcrumb-item"><a href="<?php echo esc_url( get_site_url() ); ?>">Home</a><span class="separator">&gt;</span></li>
-								<li class="breadcrumb-item active" aria-current="<?php _e( 'Elenco pubblicazioni', 'design_laboratori_italia' ); ?>"><?php _e( 'Pubblicazioni', 'design_laboratori_italia' ); ?></li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</section>
+		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+
 		<!-- BANNER PUBBLICAZIONI -->
 		<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
 
@@ -271,6 +260,3 @@ $num_results = $pubblicazioni->found_posts;
 
 <?php
 get_footer();
-
-
-

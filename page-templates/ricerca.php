@@ -22,8 +22,8 @@ $num_results = $the_query->found_posts;
 
 <main id="main-container">
 
-	<!-- BREADCRUMB -->	
-	<section id ="breadcrumb">breadcrumb</section>
+	<!-- BREADCRUMB -->
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- BANNER INDIRIZZI DI RICERCA -->
 	<?php get_template_part( 'template-parts/hero/ricerca' ); ?>
