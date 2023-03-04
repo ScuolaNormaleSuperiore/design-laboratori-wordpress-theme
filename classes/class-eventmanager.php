@@ -1,6 +1,5 @@
 <?php
-// Post Types.
-define( 'EVENT_POST_TYPE', 'evento' );
+
 
 /**
  * The manager that setups Course post types.

@@ -1336,6 +1336,13 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 		}
 	}
 
+	if( ! function_exists( 'dli_get_search_link' ) ) {
+		function dli_get_search_link( $current_language ) {
+			$search_page = ( 'it' === $current_language ) ? SLUG_RICERCA_SITO_IT : SLUG_RICERCA_SITO_EN;
+			return get_site_url() . '/' . $search_page;
+		}
+	}
+
 	if( ! function_exists( 'dli_build_content_path' ) ) {
 		function dli_build_content_path( $post ) {
 			$steps = array(

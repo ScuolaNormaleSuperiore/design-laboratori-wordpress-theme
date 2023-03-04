@@ -14,7 +14,7 @@ get_header();
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<h2>Qui ci vanno i SERVIZI:</h2>
+	<h2>Qui vanno i SERVIZI:</h2>
 	<ul>
 		<li>Uno</li>
 		<li>Due</li>

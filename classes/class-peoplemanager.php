@@ -5,12 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-// Post Types.
-define( 'PEOPLE_POST_TYPE', 'persona' );
-
-// Taxonomies.
-define( 'STRUCTURE_TAXONOMY', 'struttura' );
-
 /**
  * The manager that setups People post types.
  */

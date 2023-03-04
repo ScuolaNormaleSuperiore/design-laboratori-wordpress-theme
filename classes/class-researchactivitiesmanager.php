@@ -5,8 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
- // Post Types.
-define( 'RESEARCHACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
 
 /**
 	* Il manager che fa il setup del custom type Indirizzo di Ricerca.

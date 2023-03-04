@@ -5,37 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
-// The slug is the name of the post, that is the name that appears in the url.
-// Default pages of the lab.
-define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
-define( 'SLUG_LABORATORIO_EN', 'the-lab' );
-define( 'SLUG_SERVIZI_IT', 'servizi' );
-define( 'SLUG_SERVIZI_EN', 'services' );
-define( 'SLUG_LUOGHI_IT', 'luoghi' );
-define( 'SLUG_LUOGHI_EN', 'places' );
-define( 'SLUG_EVENTI_IT', 'eventi' );
-define( 'SLUG_EVENTI_EN', 'events' );
-define( 'SLUG_NOTIZIE_IT', 'notizie' );
-define( 'SLUG_NOTIZIE_EN', 'news' );
-define( 'SLUG_PUBBLICAZIONI_IT', 'pubblicazioni' );
-define( 'SLUG_PUBBLICAZIONI_EN', 'publications' );
-define( 'SLUG_RICERCA_IT', 'ricerca' );
-define( 'SLUG_RICERCA_EN', 'research' );
-define( 'SLUG_PROGETTI_IT', 'progetti' );
-define( 'SLUG_PROGETTI_EN', 'projects' );
-define( 'SLUG_PERSONE_IT', 'persone' );
-define( 'SLUG_PERSONE_EN', 'people' );
-// Default pages of the site.
-define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
-define( 'SLUG_ACCESSIBILITA_EN', 'accessibility' );
-define( 'SLUG_DOVESIAMO_IT', 'dove-siamo' );
-define( 'SLUG_DOVESIAMO_EN', 'where-we-are' );
-define( 'SLUG_PRESENTAZIONE_IT', 'presentazione' );
-define( 'SLUG_PRESENTAZIONE_EN', 'presentation' );
-define( 'SLUG_CONTATTI_IT', 'contatti' );
-define( 'SLUG_CONTATTI_EN', 'contacts' );
-define( 'SLUG_PRIVACY_IT', 'privacy-policy' );
-define( 'SLUG_PRIVACY_EN', 'privacy-policy-en' );
+
 
 /**
  * Action to add page templates used by theme
@@ -318,32 +288,48 @@ function create_the_it_menus() {
 		'location' => 'menu-footer',
 		'items' => array(
 			array(
+				'slug'         => SLUG_MEDIA_POLICY_IT,
+				'title'        => 'Media policy',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
 				'slug'         => SLUG_PRIVACY_IT,
-				'title'        => 'Privacy Policy',
+				'title'        => 'Privacy policy',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_ACCESSIBILITA_IT,
-				'title'        => 'Dichiarazione di accessibilità',
+				'slug'         => SLUG_NOTE_LEGALI_IT,
+				'title'        => 'Note legali',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_CONTATTI_IT,
-				'title'        => 'Contatti',
+				'slug'         => SLUG_MAPPA_SITO_IT,
+				'title'        => 'Mappa del sito',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_DOVESIAMO_IT,
-				'title'        => 'Dove siamo',
+				'slug'         => SLUG_RICERCA_SITO_IT,
+				'title'        => 'Cerca',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_BLOG_IT,
+				'title'        => 'Blog',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
@@ -572,32 +558,48 @@ function create_the_en_menus() {
 		'location' => 'menu-footer',
 		'items' => array(
 			array(
+				'slug'         => SLUG_MEDIA_POLICY_EN,
+				'title'        => 'Media policy',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
 				'slug'         => SLUG_PRIVACY_EN,
-				'title'        => 'Privacy Policy',
+				'title'        => 'Privacy policy',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_ACCESSIBILITA_EN,
-				'title'        => 'Accessibility declaration',
+				'slug'         => SLUG_NOTE_LEGALI_EN,
+				'title'        => 'Legal notes',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_CONTATTI_EN,
-				'title'        => 'Contacts',
+				'slug'         => SLUG_MAPPA_SITO_EN,
+				'title'        => 'Site map',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_DOVESIAMO_EN,
-				'title'        => 'Where we are',
+				'slug'         => SLUG_RICERCA_SITO_EN,
+				'title'        => 'Search',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
+			array(
+				'slug'         => SLUG_BLOG_EN,
+				'title'        => 'Blog',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
@@ -653,8 +655,8 @@ function create_the_pages() {
 			array(
 				'content_slug_it'    => SLUG_PRIVACY_IT,
 				'content_slug_en'    => SLUG_PRIVACY_EN,
-				'content_title_it'   => 'Privacy Policy',
-				'content_title_en'   => 'Privacy Policy',
+				'content_title_it'   => 'Privacy policy',
+				'content_title_en'   => 'Privacy policy',
 				'content_it'         => 'La nostra Privacy Policy...',
 				'content_en'         => 'Our Privacy Policy...',
 				'content_status'     => 'publish',
@@ -696,6 +698,45 @@ function create_the_pages() {
 				'content_title_en'   => 'Accessibility',
 				'content_it'         => 'La di chiarazione di accessibilità...',
 				'content_en'         => 'The accessibility declaration...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
+			),
+			array(
+				'content_slug_it'    => SLUG_MEDIA_POLICY_IT,
+				'content_slug_en'    => SLUG_MEDIA_POLICY_EN,
+				'content_title_it'   => 'Media policy',
+				'content_title_en'   => 'Media policy',
+				'content_it'         => 'La Media policy (italiano)...',
+				'content_en'         => 'The Media policy (english)...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
+			),
+			array(
+				'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
+				'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
+				'content_title_it'   => 'Note legali',
+				'content_title_en'   => 'Legal notes',
+				'content_it'         => 'Le note legali...',
+				'content_en'         => 'The legal notes...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => '',
+				'content_type'       => 'page',
+				'content_parent'     => null,
+			),
+			array(
+				'content_slug_it'    => SLUG_MAPPA_SITO_IT,
+				'content_slug_en'    => SLUG_MAPPA_SITO_EN,
+				'content_title_it'   => 'Mappa del sito',
+				'content_title_en'   => 'Site map',
+				'content_it'         => 'La mappa del sito...',
+				'content_en'         => 'The map of the site...',
 				'content_status'     => 'publish',
 				'content_author'     => 1,
 				'content_template'   => '',
@@ -816,6 +857,32 @@ function create_the_pages() {
 				'content_status'     => 'publish',
 				'content_author'     => 1,
 				'content_template'   => 'page-templates/luoghi.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			),
+			array(
+				'content_slug_it'    => SLUG_RICERCA_SITO_IT,
+				'content_slug_en'    => SLUG_RICERCA_SITO_EN,
+				'content_title_it'   => 'Ricerca',
+				'content_title_en'   => 'Search',
+				'content_it'         => 'Ricerca cose nel sito ...',
+				'content_en'         => 'Search things in the site...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/cerca.php',
+				'content_type'       => 'page',
+				'content_parent'     => null,
+			),
+			array(
+				'content_slug_it'    => SLUG_BLOG_IT,
+				'content_slug_en'    => SLUG_BLOG_EN,
+				'content_title_it'   => 'Blog',
+				'content_title_en'   => 'Blog',
+				'content_it'         => 'Il blog ...',
+				'content_en'         => 'The blog...',
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/blog.php',
 				'content_type'       => 'page',
 				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),

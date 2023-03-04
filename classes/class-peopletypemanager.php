@@ -1,8 +1,4 @@
 <?php
-// Post Types.
-define( 'PEOPLE_TYPE_POST_TYPE', 'tipologia-persona' );
-
-
 /**
  * The manager that setups People type post types.
  */

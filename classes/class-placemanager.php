@@ -5,11 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
-// Post Types.
-define( 'PLACE_POST_TYPE', 'luogo' );
 
-// Taxonomies.
-define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
 
 /**
  * The manager that setups People post types.

@@ -11,7 +11,7 @@ get_header();
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 	
-	<h2>Qui ci vanno le notizie:</h2>
+	<h2>Qui vanno le notizie:</h2>
 	<ul>
 		<li>Uno</li>
 		<li>Due</li>

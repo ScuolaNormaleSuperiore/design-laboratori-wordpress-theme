@@ -5,8 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-// Post Types.
-define( 'NEWS_POST_TYPE', 'notizia' );
 
 /**
  * The manager that setups Course post types.

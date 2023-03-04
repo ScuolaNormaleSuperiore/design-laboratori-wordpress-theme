@@ -28,10 +28,10 @@ function dsi_register_servizio_post_type() {
 		'menu_position'         => 2,
 		'menu_icon'             => 'dashicons-id-alt',
 		'has_archive'           => true,
-		'capability_type' => array('servizio', 'servizi'),
+		'capability_type' => array( 'servizio', 'servizi' ),
 		'description'    => __( "I servizi che la scuola mette a disposizione di tutti.", 'design_laboratori_italia' ),
 	);
-	register_post_type( 'servizio', $args );
+	register_post_type( SERVICE_POST_TYPE, $args );
 
 	$labels = array(
 		'name'              => _x( 'Tipologia Servizio', 'taxonomy general name', 'design_laboratori_italia' ),

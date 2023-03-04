@@ -165,8 +165,11 @@ if( is_search() || is_archive() )
 						<?php get_template_part( 'template-parts/common/social' ); ?>
 					</div>
 					<div class="it-search-wrapper">
-						<span class="d-none d-md-block">Cerca</span>
-						<a class="search-link rounded-icon" aria-label="Cerca nel sito" href="#">
+						<span class="d-none d-md-block"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></span>
+						<?php
+							$search_link = dli_get_search_link( $current_language );
+						?>
+						<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
 							<svg class="icon">
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 							</svg>

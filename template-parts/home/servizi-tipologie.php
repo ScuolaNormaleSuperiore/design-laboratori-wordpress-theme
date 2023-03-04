@@ -14,15 +14,16 @@ if($ct%2)
 		</div><!-- /title-large -->
 		<div class="row variable-gutters">
 			<?php
-			$args = array('post_type' => 'servizio',
-			              'posts_per_page' => 9,
-			              'tax_query' => array(
-				              array(
-					              'taxonomy' => 'tipologia-servizio',
-					              'field' => 'term_id',
-					              'terms' => $tipologia_servizio->term_id,
-				              ),
-			              ),
+			$args = array(
+				'post_type'      => 'servizio',
+				'posts_per_page' => 9,
+				'tax_query'      => array(
+						array(
+							'taxonomy' => SERVICE_TYPE_TAXONOMY,
+							'field'    => 'term_id',
+							'terms'    => $tipologia_servizio->term_id,
+						),
+					),
 			);
 			$servizi = get_posts($args);
 			foreach ($servizi as $servizio){ ?>

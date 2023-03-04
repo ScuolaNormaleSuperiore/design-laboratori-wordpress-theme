@@ -5,38 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-// Post Types.
-define(
-	'DLI_POST_TYPES_TO_TRANSLATE',
-	array(
-		'luogo',
-		'servizio',
-		'persona',
-		'evento',
-		'evento',
-		'notizia',
-		'notizia',
-		'progetto',
-		'pubblicazione',
-		'indirizzo-di-ricerca',
-		'tipologia-persona',
-		'page',
-		'post',
-	)
-);
-
-// Taxonomies.
-define(
-	'DLI_TAXONOMIES_TO_TRANSLATE',
-	array(
-		'tipologia-luogo',
-		'tipologia-servizio',
-		'struttura',
-		'tipo-pubblicazione',
-		'category',
-	)
-);
-
 /**
  * The manager that setups People post types.
  */

@@ -4,13 +4,6 @@
  *
  * @package Design_Laboratori_Italia
  */
-
-// Post Types.
-define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
-
-// Taxonomies.
-define( 'CATEGORY_TAXONOMY', 'tipo-pubblicazione' );
-
 /**
  * The manager that setups Course post types.
  */

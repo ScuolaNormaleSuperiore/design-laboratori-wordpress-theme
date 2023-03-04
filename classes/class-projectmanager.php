@@ -5,8 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
- // Post Types.
-define( 'PROGETTO_POST_TYPE', 'progetto' );
 
 class Project_Manager {
 	/**
