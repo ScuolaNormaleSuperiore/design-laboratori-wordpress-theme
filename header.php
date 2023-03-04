@@ -96,6 +96,8 @@ if( is_search() || is_archive() )
 				<div class="it-header-slim-right-zone">
 					<!-- Language selector -->
 					<?php	
+						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
+						if ( 'true' === $selettore_visibile ) {
 						$current_language = pll_current_language( 'slug' );
 						$languages_list   = pll_languages_list( array( 'hide_empty'=>0, 'fields'=>'slug' ) );
 					?>
@@ -132,10 +134,18 @@ if( is_search() || is_archive() )
 						</div>
 						</div>
 					</div>
+					<?php
+						}
+						$login_visible = dli_get_option( 'login_button_visible', 'setup' );
+						if ( $login_visible === 'true' ) {
+					?>
 					<div class="it-access-top-wrapper">
-						&nbsp;
+						&nbsp;&nbsp;
 						<a class="btn btn-primary btn-sm" href="#">Accedi</a>
 					</div>
+					<?php
+						}
+					?>
 				</div>
 			</div>
 			<!-- End SLIM HEADER -->

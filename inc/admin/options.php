@@ -1325,6 +1325,47 @@ function dli_register_main_options_metabox() {
 			)
 		);
 
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'login',
+				'name' => __( 'Login', 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+	
+		$setup_options->add_field(
+			array(
+				'id'      => $prefix . 'login_button_visible',
+				'name'    => __( 'Pulsante per il login visibile', 'design_laboratori_italia' ),
+				'type'    => 'radio_inline',
+				'default' => 'true',
+				'options' => array(
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'multilingua',
+				'name' => __( 'Multilingua', 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+	
+		$setup_options->add_field(
+			array(
+				'id'      => $prefix . 'selettore_lingua_visible',
+				'name'    => __( 'Selettore lingua visibile', 'design_laboratori_italia' ),
+				'type'    => 'radio_inline',
+				'default' => 'true',
+				'options' => array(
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+				),
+			)
+		);
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 
