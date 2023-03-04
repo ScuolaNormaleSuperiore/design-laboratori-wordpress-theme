@@ -10,7 +10,7 @@
 		if ( $facebook = dli_get_option( 'facebook', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $facebook; ?>" aria-label="Facebook" target="_blank">
+			<a class="p-2 text-white" href="<?php echo $facebook; ?>" title="Facebook" aria-label="Facebook" target="_blank">
 				<svg class="icon icon-sm icon-white align-top">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-facebook'; ?>"></use>
 				</svg>
@@ -21,7 +21,7 @@
 		if ( $youtube = dli_get_option( 'youtube', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $youtube; ?>" aria-label="Youtube" target="_blank">
+			<a class="p-2 text-white" href="<?php echo $youtube; ?>" title="Youtube" aria-label="Youtube" target="_blank">
 				<svg class="icon icon-sm icon-white align-top">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-youtube'; ?>"></use>
 				</svg>
@@ -32,7 +32,7 @@
 		if ( $instagram = dli_get_option( 'instagram', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $instagram; ?>" aria-label="Instagram" target="_blank">
+			<a class="p-2 text-white" href="<?php echo $instagram; ?>" title="Instagram" aria-label="Instagram" target="_blank">
 				<svg class="icon icon-sm icon-white align-top">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-instagram'; ?>"></use>
 				</svg>
@@ -43,7 +43,7 @@
 		if ( $twitter = dli_get_option( 'twitter', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $twitter; ?>" aria-label="Twitter" target="_blank">
+			<a class="p-2 text-white" href="<?php echo $twitter; ?>" title="Twitter" aria-label="Twitter" target="_blank">
 				<svg class="icon icon-sm icon-white align-top">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-twitter'; ?>"></use>
 				</svg>
@@ -54,9 +54,53 @@
 		if ( $linkedin = dli_get_option( 'linkedin', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $linkedin; ?>" aria-label="Linkedin" target="_blank">
+			<a class="p-2 text-white" href="<?php echo $linkedin; ?>" title="Linkedin" aria-label="Linkedin" target="_blank">
 				<svg class="icon icon-sm icon-white align-top">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-linkedin'; ?>"></use>
+				</svg>
+			</a>
+			</li>
+		<?php
+		}
+		if ( $github = dli_get_option( 'github', 'socials' ) ) {
+		?>
+		<li class="list-inline-item">
+			<a class="p-2 text-white" href="<?php echo $github; ?>" title="GitHub" aria-label="GitHub" target="_blank">
+				<svg class="icon icon-sm icon-white align-top">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-github'; ?>"></use>
+				</svg>
+			</a>
+			</li>
+		<?php
+		}
+		if ( $pinterest = dli_get_option( 'pinterest', 'socials' ) ) {
+		?>
+		<li class="list-inline-item">
+			<a class="p-2 text-white" href="<?php echo $pinterest; ?>" title="Pinterest" aria-label="Pinterest" target="_blank">
+				<svg class="icon icon-sm icon-white align-top">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-pinterest'; ?>"></use>
+				</svg>
+			</a>
+			</li>
+		<?php
+		}
+		if ( $iris = dli_get_option( 'iris', 'socials' ) ) {
+		?>
+		<li class="list-inline-item">
+			<a class="p-2 text-white" href="<?php echo $iris; ?>" title="Iris" aria-label="Iris" target="_blank">
+				<svg class="icon icon-sm icon-white align-top">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-pa'; ?>"></use>
+				</svg>
+			</a>
+			</li>
+		<?php
+		}
+		if ( $alumni = dli_get_option( 'alumni', 'socials' ) ) {
+		?>
+		<li class="list-inline-item">
+			<a class="p-2 text-white" href="<?php echo $alumni; ?>" title="Alumni" aria-label="Alumni" target="_blank">
+				<svg class="icon icon-sm icon-white align-top">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-open-source'; ?>"></use>
 				</svg>
 			</a>
 			</li>

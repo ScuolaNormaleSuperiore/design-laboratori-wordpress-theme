@@ -1265,6 +1265,29 @@ function dli_register_main_options_metabox() {
 				'type' => 'text_url',
 		) );
 
+		$social_options->add_field( array(
+			'id' => $prefix . 'github',
+			'name' => 'GitHub',
+			'type' => 'text_url',
+	) );
+
+	$social_options->add_field( array(
+		'id' => $prefix . 'pinterest',
+		'name' => 'Pinterest',
+		'type' => 'text_url',
+) );
+
+$social_options->add_field( array(
+	'id' => $prefix . 'iris',
+	'name' => 'Iris',
+	'type' => 'text_url',
+) );
+
+$social_options->add_field( array(
+	'id' => $prefix . 'alumni',
+	'name' => 'Alumni',
+	'type' => 'text_url',
+) );
 
 	/**
 	* 14 - Registers options page "Altro".
