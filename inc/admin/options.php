@@ -828,10 +828,11 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Le Novità', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'notizie',
-				'capability'    => 'manage_options',
-				'parent_slug'  => 'dli_options',
+		'capability'   => 'manage_options',
+		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),	);
+		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),
+	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {

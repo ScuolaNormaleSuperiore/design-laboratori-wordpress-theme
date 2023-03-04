@@ -3,6 +3,7 @@
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
+define( 'DLI_POSTS_PER_PAGE', 6 );
 
 // CUSTOM CONTENT TYPES.
 define( 'EVENT_POST_TYPE', 'evento' );

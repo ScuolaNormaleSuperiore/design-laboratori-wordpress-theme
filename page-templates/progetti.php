@@ -11,8 +11,8 @@ define( 'PROG_CELLS_PER_ROW', 3 );
 $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
-		'post_type'      => 'progetto',
-		'posts_per_page' => 6,
+		'post_type'      => PROGETTO_POST_TYPE,
+		'posts_per_page' => DLI_POSTS_PER_PAGE,
 	)
 );
 $num_results = $the_query->found_posts;
@@ -68,7 +68,9 @@ $num_results = $the_query->found_posts;
 								?>
 									<div class="card-body">
 										<h3 class="card-title h5 "><?php echo get_the_title(); ?></h3>
-										<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_news ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+										<p class="card-text">
+											<?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_news ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+										</p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 										<span class="text"><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
 										<svg class="icon">
