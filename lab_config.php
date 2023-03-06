@@ -114,6 +114,10 @@ define(
 			'it' => SLUG_SERVIZI_IT,
 			'en' => SLUG_SERVIZI_EN,
 		),
+		WP_DEFAULT_POST => array(
+			'it' => SLUG_BLOG_IT,
+			'en' => SLUG_BLOG_EN,
+		),
 	)
 );
 

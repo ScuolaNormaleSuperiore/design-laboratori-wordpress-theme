@@ -15,7 +15,8 @@
 
 if ( ! function_exists( 'dli_current_language' ) ) {
 	function dli_current_language( $type = 'slug' ) {
-		return pll_current_language( $type );
+		$cl = pll_current_language( $type );
+		return $cl ? $cl : DLI_DEFAULT_LANGUAGE;
 	}
 }
 

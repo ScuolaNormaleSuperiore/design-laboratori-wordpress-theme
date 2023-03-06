@@ -19,7 +19,7 @@
 							<div class="img-responsive-wrapper">
 								<div class="img-responsive">
 									<div>
-										<img src="<?php echo esc_url( $item['image_url'] ); ?>" title="titolo immagine" alt="descrizione immagine" />
+										<img src="<?php echo esc_url( $item['image_url'] ); ?>" title="<?php echo esc_attr( $item['image_title'] ); ?>" alt="<?php echo esc_attr( $item['image_alt'] ); ?>" />
 									</div>
 								</div>
 							</div>
@@ -34,12 +34,18 @@
 										</div>
 										<h5 class="card-title big-heading"><?php echo $item['title']; ?></h5>
 										<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>
+										<?php
+										if ( $item['link'] ) {
+										?>
 										<a class="read-more" href="<?php echo esc_attr( $item['link'] ); ?>">
 											<span class="text"><?php echo __( 'Leggi di piu', 'design_laboratori_italia' ); ?></span>
 											<svg class="icon">
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ) ?>"></use>
 											</svg>
 										</a>
+										<?php
+										}
+										?>
 									</div>
 								</div>
 							</div>
