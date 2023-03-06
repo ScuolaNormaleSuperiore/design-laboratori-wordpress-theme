@@ -108,7 +108,7 @@ function build_taxonomies( $taxonomy, $terms ) {
 			$termobject = wp_insert_term( $term['it'], $taxonomy );
 			$term_it    = $termobject['term_id'];
 		}
-		pll_set_term_language( $term_it, 'it' );
+		dli_set_term_language( $term_it, 'it' );
 
 		$termitem = get_term_by( 'slug', $term['en'], $taxonomy );
 		if ( $termitem ) {
@@ -117,14 +117,14 @@ function build_taxonomies( $taxonomy, $terms ) {
 			$termobject = wp_insert_term( $term['en'], $taxonomy );
 			$term_en    = $termobject['term_id'];
 		}
-		pll_set_term_language( $term_en, 'en' );
+		dli_set_term_language( $term_en, 'en' );
 
 		// Associate it and en translations.
 		$related_taxonomies = array(
 			'it' => $term_it,
 			'en' => $term_en,
 		);
-		pll_save_term_translations( $related_taxonomies );
+		dli_save_term_translations( $related_taxonomies );
 	}
 
 }
@@ -916,7 +916,7 @@ function create_the_pages() {
 				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
 			}
 			// Assign the IT language to the page.
-			pll_set_post_language( $new_page_it_id, 'it' );
+			dli_set_post_language( $new_page_it_id, 'it' );
 
 			// Create the EN page.
 			// Store the above data in an array.
@@ -941,14 +941,14 @@ function create_the_pages() {
 				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
 			}
 			// Assign the EN language to the page.
-			pll_set_post_language( $new_page_en_id, 'en' );
+			dli_set_post_language( $new_page_en_id, 'en' );
 
 			// Associate it and en translations.
 			$related_posts = array(
 				'it' => $new_page_it_id,
 				'en' => $new_page_en_id,
 			);
-			pll_save_post_translations( $related_posts );
+			dli_save_post_translations( $related_posts );
 
 		}
 }

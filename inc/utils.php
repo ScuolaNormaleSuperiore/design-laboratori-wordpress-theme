@@ -1375,7 +1375,7 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 					);
 					break;
 				default:
-					$lang = pll_current_language() == 'en' ? 'en' : 'it';
+					$lang = dli_current_language() === DLI_EN_SLUG ? DLI_EN_SLUG : DLI_IT_SLUG;
 					$slug = DLI_PAGE_PER_CT[$post->post_type][$lang];
 					$ct   = dli_get_content( $slug, 'page' );
 					array_push( 

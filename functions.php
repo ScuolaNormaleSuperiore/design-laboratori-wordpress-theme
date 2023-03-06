@@ -13,6 +13,16 @@
 require get_template_directory() . '/lab_config.php';
 
 /**
+ * Warappers functions fo Polylang.
+ */
+require get_template_directory() . '/inc/wrappers_polylang.php';
+
+/**
+ * Warappers functions for ACF.
+ */
+require get_template_directory() . '/inc/wrappers_acf.php';
+
+/**
  * Define
  */
 require get_template_directory() . '/inc/define.php';
@@ -20,13 +30,12 @@ require get_template_directory() . '/inc/define.php';
 /**
  * Extend User Taxonomy
  */
-require get_template_directory() . '/inc/extend-tax-to-user.php';
+// require get_template_directory() . '/inc/extend-tax-to-user.php';
 
 /**
  * Implement Plugin Activations Rules
  */
 require get_template_directory() . '/inc/theme-dependencies.php';
-
 
 /**
  * header menu walker
@@ -47,18 +56,18 @@ if ( ! function_exists ( 'dli_get_tipologia_articoli_options' ) ) {
 }
 
 /**
- * Utils functions
+ * Utils functions.
  */
 require get_template_directory() . '/inc/utils.php';
 
 /**
- * Notifications functions
+ * Notifications functions.
  */
 require get_template_directory() . '/inc/notification.php';
 
 
 /**
- * Activation Hooks
+ * Activation Hooks.
  */
 require get_template_directory() . '/inc/activation.php';
 
@@ -75,12 +84,12 @@ require get_template_directory() . '/inc/gutenberg.php';
 /**
  * Welcome page
  */
-require get_template_directory() . '/inc/welcome.php';
+//require get_template_directory() . '/inc/welcome.php';
 
 /**
  * Admin menu
  */
-require get_template_directory() . '/inc/menu-order.php';
+// require get_template_directory() . '/inc/menu-order.php';
 
 
 /**

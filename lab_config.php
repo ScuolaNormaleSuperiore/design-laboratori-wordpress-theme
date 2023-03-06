@@ -1,5 +1,11 @@
 <?php
 
+// Multilanguage options.
+define( 'DLI_IT_SLUG', 'it' );
+define( 'DLI_EN_SLUG', 'en' );
+define( 'DLI_DEFAULT_LANGUAGE', DLI_IT_SLUG );
+
+
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );

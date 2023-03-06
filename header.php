@@ -98,8 +98,8 @@ if( is_search() || is_archive() )
 					<?php	
 						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
 						if ( 'true' === $selettore_visibile ) {
-						$current_language = pll_current_language( 'slug' );
-						$languages_list   = pll_languages_list( array( 'hide_empty'=>0, 'fields'=>'slug' ) );
+						$current_language = dli_current_language( 'slug' );
+						$languages_list   = dli_languages_list( array( 'hide_empty'=>0, 'fields'=>'slug' ) );
 					?>
 					<div class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
