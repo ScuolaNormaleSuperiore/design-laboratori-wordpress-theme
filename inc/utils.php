@@ -1168,16 +1168,16 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 		foreach ( $results as $result ) {
 			$item = array();
 			switch ( $result->post_type) {
-				case 'evento':
+				case EVENT_POST_TYPE:
 					$item = dli_from_event_to_carousel_item ( $result );
 					break;
-				case 'notizia':
+				case NEWS_POST_TYPE:
 					$item = dli_from_news_to_carousel_item ( $result );
 					break;
-				case 'progetto':
+				case PROGETTO_POST_TYPE:
 						$item = dli_from_progetto_to_carousel_item ( $result );
 						break;
-				case 'pubblicazione':
+				case PUBLICATION_POST_TYPE:
 						$item = dli_from_publication_to_carousel_item ( $result );
 						break;
 				default:
