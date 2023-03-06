@@ -25,7 +25,6 @@ define( 'CATEGORY_TAXONOMY', 'tipo-pubblicazione' );
 define( 'SERVICE_TYPE_TAXONOMY', 'tipologia-servizio' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 
-
 // The slug is the name of the post, that is the name that appears in the url.
 // Archive pages of the site.
 define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
@@ -69,8 +68,51 @@ define( 'SLUG_NOTE_LEGALI_EN', 'legal-tones' );
 define( 'SLUG_MAPPA_SITO_IT', 'mappa-sito' );
 define( 'SLUG_MAPPA_SITO_EN', 'site-map' );
 
+// ARCHIVE PAGE PER POST TYPE.
+define(
+	'DLI_PAGE_PER_CT',
+	array(
+		EVENT_POST_TYPE => array(
+			'it' => SLUG_EVENTI_IT,
+			'en' => SLUG_EVENTI_EN,
+		),
+		NEWS_POST_TYPE => array(
+			'it' => SLUG_NOTIZIE_IT,
+			'en' => SLUG_NOTIZIE_EN,
+		),
+		PEOPLE_POST_TYPE => array(
+			'it' => SLUG_PERSONE_IT,
+			'en' => SLUG_PERSONE_EN,
+		),
+		PEOPLE_TYPE_POST_TYPE => array(
+			'it' => SLUG_PERSONE_IT,
+			'en' => SLUG_PERSONE_EN,
+		),
+		PLACE_POST_TYPE => array(
+			'it' => SLUG_LUOGHI_IT,
+			'en' => SLUG_LUOGHI_EN,
+		),
+		PROGETTO_POST_TYPE => array(
+			'it' => SLUG_PROGETTI_IT,
+			'en' => SLUG_PROGETTI_EN,
+		),
+		PUBLICATION_POST_TYPE => array(
+			'it' => SLUG_PUBBLICAZIONI_IT,
+			'en' => SLUG_PUBBLICAZIONI_EN,
+		),
+		RESEARCHACTIVITY_POST_TYPE => array(
+			'it' => SLUG_RICERCA_IT,
+			'en' => SLUG_RICERCA_EN,
+		),
+		SERVICE_POST_TYPE => array(
+			'it' => SLUG_SERVIZI_IT,
+			'en' => SLUG_SERVIZI_EN,
+		),
+	)
+);
 
-// Post Types.
+
+// Post Types for PolyLang.
 define(
 	'DLI_POST_TYPES_TO_TRANSLATE',
 	array(

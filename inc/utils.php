@@ -1375,11 +1375,14 @@ if( ! function_exists( 'dli_from_event_to_slider_item' ) ) {
 					);
 					break;
 				default:
+					$lang = pll_current_language() == 'en' ? 'en' : 'it';
+					$slug = DLI_PAGE_PER_CT[$post->post_type][$lang];
+					$ct   = dli_get_content( $slug, 'page' );
 					array_push( 
 						$steps, 
 						array(
-							'label' => $post->post_type,
-							'url'   => get_site_url() . $post->post_type,
+							'label' => get_the_title( $ct->ID ),
+							'url'   => get_permalink( $ct->ID ),
 							'class' => 'breadcrumb-item',
 						),
 						array(
