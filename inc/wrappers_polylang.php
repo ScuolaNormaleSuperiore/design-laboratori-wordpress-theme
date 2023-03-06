@@ -14,7 +14,7 @@
 
 
 if ( ! function_exists( 'dli_current_language' ) ) {
-	function dli_current_language( $type='slug' ) {
+	function dli_current_language( $type = 'slug' ) {
 		return pll_current_language( $type );
 	}
 }
