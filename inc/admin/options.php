@@ -931,21 +931,10 @@ function dli_register_main_options_metabox() {
 		$luoghi_options->add_field( array(
 				'id' => $prefix . 'testo_sezione_luoghi',
 				'name'        => __( 'Descrizione Sezione Luoghi', 'design_laboratori_italia' ),
-				'desc' => __( 'es: "Questi i luoghi della scuola"' , 'design_laboratori_italia' ),
+				'desc' => __( 'es: "Questi i luoghi del laboratorio"' , 'design_laboratori_italia' ),
 				'type' => 'textarea',
 				'attributes'    => array(
 						'maxlength'  => '140'
-				),
-		) );
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'strutture_luoghi',
-				'name'        => __( 'Seleziona e ordina le tipologie di luoghi  da mostrare', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona le tipologie di luoghi che vuoi mostrare. ' , 'design_laboratori_italia' ),
-				'type'    => 'pw_multiselect',
-				'options' => dli_get_tipologie_luoghi_options(),
-				'attributes' => array(
-						'placeholder' =>  __( ' Seleziona e ordina le tipologie di luoghi da mostrare nella pagina Luoghi', 'design_laboratori_italia' ),
 				),
 		) );
 
@@ -960,28 +949,6 @@ function dli_register_main_options_metabox() {
 						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 		));
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'luogho_istruzioni',
-				'name'        => __( 'Dettaglio Luogo', 'design_laboratori_italia' ),
-				'desc' => __( 'Specifica le opzioni di visualizzazione per il dettaglio del singolo luogo.' , 'design_laboratori_italia' ),
-				'type' => 'title',
-		) );
-
-		$luoghi_options->add_field( array(
-				'id' => $prefix . 'excerpt_length',
-				'name'        => __( 'Testo elementi di interesse *', 'design_laboratori_italia' ),
-				'desc' => __( 'Specificare la lunghezzadi default, in caratteri, per il testo descrittivo degli elmenti di interesse oltre la quale il testo verrà nascosto', 'design_laboratori_italia' ),
-				'type' => 'text_small',
-				'attributes' => array(
-						'type' => 'number',
-						'pattern' => '\d*',
-						'required'    => 'required',
-						'min' => 60
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
-		) );
 
 	/**
 	* 13 - Registers options page "Social media".

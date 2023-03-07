@@ -2684,19 +2684,7 @@ msgid "Descrizione Sezione Luoghi"
 msgstr ""
 
 #: inc/admin/options.php:907
-msgid "es: \"Questi i luoghi della scuola\""
-msgstr ""
-
-#: inc/admin/options.php:916
-msgid "Seleziona e ordina le tipologie di luoghi  da mostrare"
-msgstr ""
-
-#: inc/admin/options.php:917
-msgid "Seleziona le tipologie di luoghi che vuoi mostrare. "
-msgstr ""
-
-#: inc/admin/options.php:921
-msgid "Seleziona e ordina le tipologie di luoghi da mostrare nella pagina Luoghi"
+msgid "es: \"Questi i luoghi del laboratorio\""
 msgstr ""
 
 #: inc/admin/options.php:950
