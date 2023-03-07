@@ -378,11 +378,6 @@ msgstr "The Laboratory"
 msgid "Persone"
 msgstr ""
 
-#: inc/activation.php:138
-#: inc/admin/options.php:461
-msgid "I numeri del Laboratorio"
-msgstr ""
-
 #. Template Name of the theme
 #: inc/activation.php:163
 #: inc/activation.php:795
@@ -403,7 +398,6 @@ msgstr ""
 #. Template Name of the theme
 #: inc/activation.php:219
 #: inc/admin/options.php:285
-#: inc/admin/options.php:295
 msgid "La Storia"
 msgstr ""
 
@@ -419,10 +413,6 @@ msgstr ""
 
 #: inc/activation.php:595
 msgid "Le persone"
-msgstr ""
-
-#: inc/activation.php:605
-msgid "I numeri del Laboratorio"
 msgstr ""
 
 #: inc/activation.php:615
@@ -2455,23 +2445,7 @@ msgid "Immagine di presentazione della scuola"
 msgstr ""
 
 #: inc/admin/options.php:273
-msgid "Citazione"
-msgstr ""
-
-#: inc/admin/options.php:274
-msgid "Breve (compresa tra 70 e 140 caratteri spazi inclusi) frase identificativa della missione o della identità dell'istituto . Es. \"Da sempre un punto di riferimento per la formazione degli studenti a Roma\" Es. \"La scuola è una comunità: costruiamo insieme il futuro\". Link alla pagina di presentazione della missione della scuola"
-msgstr ""
-
-#: inc/admin/options.php:286
-msgid "Timeline della Laboratorio"
-msgstr ""
-
-#: inc/admin/options.php:297
-msgid "Descrizione introduttiva della timeline"
-msgstr ""
-
-#: inc/admin/options.php:305
-msgid "Ogni fase è costruita attraverso data, titolo (max 60 caratteri) e descrizione breve (max 140 caratteri). NB: Se è un istituto comprende le tappe delle scuole che ne fanno parte"
+msgid "Etichetta"
 msgstr ""
 
 #: inc/admin/options.php:318
@@ -2485,16 +2459,8 @@ msgstr ""
 msgid "Le Strutture"
 msgstr ""
 
-#: inc/admin/options.php:339
-msgid "Organizzazione scolastica"
-msgstr ""
-
 #: inc/admin/options.php:348
 msgid "Es: Una scuola è fatta di persone. Ecco come siamo organizzati e come possiamo entrare in contatto"
-msgstr ""
-
-#: inc/admin/options.php:356
-msgid "Seleziona qui le principali strutture organizzative (es: La Dirigenza, La segreteria, etc)  <a href=\"post-new.php?post_type=struttura\">Qui puoi creare una struttura.</a> "
 msgstr ""
 
 #: inc/admin/options.php:395
@@ -2502,15 +2468,6 @@ msgstr ""
 msgid "I Luoghi"
 msgstr ""
 
-#: inc/admin/options.php:396
-msgid "Immagini dei luoghi della Laboratorio"
-msgstr ""
-
-#: inc/admin/options.php:405
-msgid "Es: Testo descrittivo dei luoghi della scuola"
-msgstr ""
-
-#: inc/admin/options.php:412
 #: single-luogo.php:432
 msgid "Gallery"
 msgstr ""
@@ -2530,10 +2487,6 @@ msgstr ""
 
 #: inc/admin/options.php:446
 msgid "Inserisci qui tutti i documenti che ritieni utili per presentare la scuola.  <a href=\"post-new.php?post_type=documento\">Qui puoi creare un documento.</a> "
-msgstr ""
-
-#: inc/admin/options.php:462
-msgid "Inserisci il numero di studenti e classi della Laboratorio"
 msgstr ""
 
 #: inc/admin/options.php:470
