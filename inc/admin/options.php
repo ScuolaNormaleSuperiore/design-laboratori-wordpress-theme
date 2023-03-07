@@ -513,9 +513,16 @@ function dli_register_main_options_metabox() {
 				'id'         => $prefix . 'testo_notizie',
 				'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 				'desc'       => __( 'es: "Le notizie del laboratorio"' , 'design_laboratori_italia' ),
-				'type'       => 'textarea',
-				'attributes' => array(
-					'maxlength'  => '140'
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em', 
+					),
 				),
 			)
 		);
@@ -552,9 +559,16 @@ function dli_register_main_options_metabox() {
 			'id' => $prefix . 'testo_sezione_persone',
 			'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
 			'desc' => __( 'es: "Le persone del laboratorio"' , 'design_laboratori_italia' ),
-			'type' => 'textarea',
-			'attributes'    => array(
-					'maxlength'  => '140'
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
 			),
 	) );
 
@@ -592,9 +606,16 @@ function dli_register_main_options_metabox() {
 			'id'         => $prefix . 'testo_pubblicazioni',
 			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Pubblicazioni dei membri del Laboratorio.' , 'design_laboratori_italia' ),
-			'type'       => 'textarea',
-			'attributes' => array(
-				'maxlength' => '140'
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
 			),
 		)
 	);
@@ -633,9 +654,16 @@ function dli_register_main_options_metabox() {
 			'id'         => $prefix . 'testo_progetti',
 			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "I progetti del Laboratorio"' , 'design_laboratori_italia' ),
-			'type'       => 'textarea',
-			'attributes' => array(
-				'maxlength' => '140'
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
 			),
 		)
 	);
@@ -673,9 +701,16 @@ function dli_register_main_options_metabox() {
 			'id'         => $prefix . 'testo_ricerca',
 			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Gli indirizzi di ricerca del Laboratorio"' , 'design_laboratori_italia' ),
-			'type'       => 'textarea',
-			'attributes' => array(
-				'maxlength' => '140'
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
 			),
 		)
 	);
@@ -714,9 +749,16 @@ function dli_register_main_options_metabox() {
 				'id' => $prefix . 'testo_sezione_luoghi',
 				'name'        => __( 'Descrizione Sezione Luoghi', 'design_laboratori_italia' ),
 				'desc' => __( 'es: "Questi i luoghi del laboratorio"' , 'design_laboratori_italia' ),
-				'type' => 'textarea',
-				'attributes'    => array(
-						'maxlength'  => '140'
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em', 
+					),
 				),
 		) );
 
