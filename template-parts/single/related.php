@@ -10,21 +10,7 @@ if(is_array($argomenti) && count($argomenti)) {
 	foreach ( $argomenti as $item ) {
 		$arr_ids[] = $item->term_id;
 	}
-	// recupero servizi, notizie e documenti collegati agli argomenti utente
-	$servizi_array = get_posts(
-		array(
-			'posts_per_page' => 5,
-			'post_type'      => 'servizio',
-			'post__not_in'   => array( $post->ID ),
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'post_tag',
-					'field'    => 'term_id',
-					'terms'    => $arr_ids,
-				)
-			)
-		)
-	);
+	// recupero notizie e documenti collegati agli argomenti utente
 
 	$documenti_array = get_posts(
 		array(
@@ -57,9 +43,8 @@ if(is_array($argomenti) && count($argomenti)) {
 	);
 
 
-	if ((is_array($servizi_array) && count( $servizi_array )) || (is_array($documenti_array) && count( $documenti_array )) || (is_array($posts_array) && count( $posts_array )) ) {
+	if ((is_array($documenti_array) && count( $documenti_array )) || (is_array($posts_array) && count( $posts_array )) ) {
 		$contabox=0;
-		if(is_array($servizi_array) && count( $servizi_array )) $contabox++;
 		if(is_array($documenti_array) && count( $documenti_array )) $contabox++;
 		if(is_array($posts_array) && count( $posts_array )) $contabox++;
 		$colnum = 12/$contabox;
@@ -86,31 +71,6 @@ if(is_array($argomenti) && count($argomenti)) {
 
 					<div class="accordion-wrapper accordion-cards accordion-responsive">
 						<div class="row variable-gutters">
-
-							<?php if(is_array($servizi_array) && count($servizi_array)){ ?>
-								<div class="col-xl-<?php echo $colnum; ?>">
-									<div class="card card-bg h-100 rounded">
-										<div class="card-body">
-											<div class="card-header accordion-header">
-												<svg class="icon icon-toggle svg-gear">
-													<use xmlns:xlink="http://www.w3.org/1999/xlink"
-													     xlink:href="#svg-gear"></use>
-												</svg>
-												<span><?php _e( "Servizi", 'design_laboratori_italia' ); ?></span>
-											</div><!-- /accordion-header -->
-											<div class="card-content accordion-content">
-												<ul>
-													<?php
-													foreach ( $servizi_array as $item ) {
-														echo '<li><a href="'.get_permalink($item).'">'.get_the_title($item).'</a></li>';
-													}
-													?>
-												</ul>
-											</div><!-- /accordion-content -->
-										</div><!-- /card-body -->
-									</div><!-- /card card-bg card-icon rounded -->
-								</div><!-- /col-xl-<?php echo $colnum; ?> -->
-							<?php } ?>
 
 							<?php if(is_array($posts_array) && count($posts_array)){ ?>
 								<div class="col-xl-<?php echo $colnum; ?>">

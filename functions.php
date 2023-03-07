@@ -50,10 +50,9 @@ require get_template_directory() . '/walkers/footer-walker.php';
 /**
  * Implement CMB2 Custom Field Manager
  */
-if ( ! function_exists ( 'dli_get_tipologia_articoli_options' ) ) {
-	require get_template_directory() . '/inc/cmb2.php';
-	require get_template_directory() . '/inc/backend-template.php';
-}
+require get_template_directory() . '/inc/cmb2.php';
+require get_template_directory() . '/inc/backend-template.php';
+
 
 /**
  * Utils functions.

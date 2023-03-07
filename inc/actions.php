@@ -41,10 +41,6 @@ function dsi_hide_editor() {
 						remove_post_type_support( 'page', 'editor' );
 				}
 
-				if ( $template_file == 'page-templates/servizi.php' ) { // edit the template name
-						remove_post_type_support( 'page', 'editor' );
-				}
-
 				if ( $template_file == 'page-templates/persone.php' ) { // edit the template name
 						remove_post_type_support( 'page', 'editor' );
 				}
@@ -268,18 +264,9 @@ global $wp_query;
 				//  $title = post_type_archive_title('', false)." ";
 				//$title .= single_term_title('', false);
 				$title = single_term_title('', false);
-		} elseif ( is_post_type_archive("servizio") ) {
-				$title = __("Tutti i servizi", 'design_laboratori_italia');
 		} elseif ( is_post_type_archive("evento") ) {
 				$title = __("Calendario", 'design_laboratori_italia');
-		} elseif ( is_tax("tipologia-servizio") ) {
-				// $title = __("Servizi per ", 'design_laboratori_italia').": ".single_term_title('', false);
-				$title = single_term_title('', false);
 		}elseif ( is_tax("tipologia-circolare") ) {
-				// $title = __("Servizi per ", 'design_laboratori_italia').": ".single_term_title('', false);
-				$title = single_term_title('', false);
-		}elseif ( is_tax("tipologia-luogo") ) {
-				// $title = __("Servizi per ", 'design_laboratori_italia').": ".single_term_title('', false);
 				$title = single_term_title('', false);
 		} elseif ( is_tax("tipologia-progetto") ) {
 				$title = single_term_title('', false);

@@ -10,8 +10,6 @@ if(is_singular()){
     $current_title = single_tag_title( '', false );
 } elseif ( is_tax("tipologia-articolo") ) {
     $current_title = single_term_title('', false);
-} elseif ( is_tax("tipologia-servizio") ) {
-    $current_title = __("Servizi per ", 'design_laboratori_italia').": ".single_term_title('', false);
 } elseif ( is_post_type_archive() ) {
     $current_title = post_type_archive_title('', false);
 }else{
