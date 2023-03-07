@@ -1259,13 +1259,11 @@ msgstr ""
 
 #: inc/admin/documento.php:388
 #: inc/admin/options.php:309
-#: inc/admin/options.php:1022
 msgid "Aggiungi un elemento"
 msgstr ""
 
 #: inc/admin/documento.php:389
 #: inc/admin/options.php:310
-#: inc/admin/options.php:1023
 msgid "Rimuovi l'elemento "
 msgstr ""
 
@@ -2727,34 +2725,6 @@ msgstr ""
 
 #: inc/admin/options.php:983
 msgid "Login"
-msgstr ""
-
-#: inc/admin/options.php:986
-msgid "Servizi esterni"
-msgstr ""
-
-#: inc/admin/options.php:1001
-msgid "Servizi esterni: informazioni di login"
-msgstr ""
-
-#: inc/admin/options.php:1002
-msgid "Area di configurazione dei link di login ai servizi esterni, da mostrare nella maschera di login ."
-msgstr ""
-
-#: inc/admin/options.php:1018
-msgid "Definisci tutti i servizi esterni che vuoi mostrare agli utenti in fase di login."
-msgstr ""
-
-#: inc/admin/options.php:1021
-msgid "Link {#}"
-msgstr ""
-
-#: inc/admin/options.php:1031
-msgid "Nome Servizio"
-msgstr ""
-
-#: inc/admin/options.php:1038
-msgid "Link Servizio"
 msgstr ""
 
 #: inc/admin/options.php:1049
