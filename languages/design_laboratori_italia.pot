@@ -2644,19 +2644,7 @@ msgid "Descrizione Sezione Persone"
 msgstr ""
 
 #: inc/admin/options.php:802
-msgid "es: \"Le persone del liceo scientifico xxx, insegnanti, personale ATA e docenti"
-msgstr ""
-
-#: inc/admin/options.php:811
-msgid "Seleziona e ordina le strutture organizzative a cui fanno capo le persone"
-msgstr ""
-
-#: inc/admin/options.php:812
-msgid "Seleziona le strutture organizzative di cui vuoi mostrare le persone. <a href=\""
-msgstr ""
-
-#: inc/admin/options.php:816
-msgid "Seleziona e ordina le strutture di cui mostrare le persone"
+msgid "es: \"Le persone del laboratorio\""
 msgstr ""
 
 #: inc/admin/options.php:845

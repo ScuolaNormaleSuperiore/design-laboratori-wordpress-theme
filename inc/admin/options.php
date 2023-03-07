@@ -769,21 +769,10 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field( array(
 			'id' => $prefix . 'testo_sezione_persone',
 			'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
-			'desc' => __( 'es: "Le persone del liceo scientifico xxx, insegnanti, personale ATA e docenti' , 'design_laboratori_italia' ),
+			'desc' => __( 'es: "Le persone del laboratorio"' , 'design_laboratori_italia' ),
 			'type' => 'textarea',
 			'attributes'    => array(
 					'maxlength'  => '140'
-			),
-	) );
-
-	$persone_options->add_field( array(
-			'id' => $prefix . 'strutture_persone',
-			'name'        => __( 'Seleziona e ordina le strutture organizzative a cui fanno capo le persone', 'design_laboratori_italia' ),
-			'desc' => __( 'Seleziona le strutture organizzative di cui vuoi mostrare le persone. <a href="'.$persone_landing_url.'">La pagina con la lista delle persone sarà popolata automaticamente</a>. ' , 'design_laboratori_italia' ),
-			'type'    => 'pw_multiselect',
-			'options' => dli_get_strutture_options(),
-			'attributes' => array(
-					'placeholder' =>  __( 'Seleziona e ordina le strutture di cui mostrare le persone', 'design_laboratori_italia' ),
 			),
 	) );
 
