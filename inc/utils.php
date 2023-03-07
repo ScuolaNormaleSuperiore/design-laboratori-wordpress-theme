@@ -137,8 +137,8 @@ if(!function_exists("dsi_get_user_avatar")){
  * @return string url
  */
 if( ! function_exists( 'dli_get_persona_avatar' ) ){
-	function dli_get_persona_avatar( $foto, $ID, $size=250 ) {
-		$thumbnail = $foto['sizes']['thumbnail'];
+	function dli_get_persona_avatar( $persona, $ID, $size=250 ) {
+		$thumbnail = get_the_post_thumbnail_url($persona, "item-thumb");
 		if( ! $thumbnail ) {
 			$thumbnail = get_avatar_url( $ID, array( "size" => $size ) );
 		}
