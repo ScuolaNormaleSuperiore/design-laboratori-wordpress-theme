@@ -46,6 +46,6 @@ if ( ! function_exists( 'dli_set_post_language' ) ) {
 
 if ( ! function_exists( 'dli_save_post_translations' ) ) {
 	function dli_save_post_translations( $related_posts ) {
-		return dli_save_post_translations( $related_posts );
+		return pll_save_post_translations( $related_posts );
 	}
 }

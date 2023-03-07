@@ -20,7 +20,6 @@ define( 'PLACE_POST_TYPE', 'luogo' );
 define( 'PROGETTO_POST_TYPE', 'progetto' );
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'RESEARCHACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
-define( 'SERVICE_POST_TYPE', 'servizio' );
 define( 'WP_DEFAULT_POST', 'post' );
 define( 'WP_DEFAULT_PAGE', 'page' );
 
@@ -28,15 +27,12 @@ define( 'WP_DEFAULT_PAGE', 'page' );
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
 define( 'CATEGORY_TAXONOMY', 'tipo-pubblicazione' );
-define( 'SERVICE_TYPE_TAXONOMY', 'tipologia-servizio' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 
 // The slug is the name of the post, that is the name that appears in the url.
 // Archive pages of the site.
 define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
 define( 'SLUG_LABORATORIO_EN', 'the-lab' );
-define( 'SLUG_SERVIZI_IT', 'servizi' );
-define( 'SLUG_SERVIZI_EN', 'services' );
 define( 'SLUG_LUOGHI_IT', 'luoghi' );
 define( 'SLUG_LUOGHI_EN', 'places' );
 define( 'SLUG_EVENTI_IT', 'eventi' );
@@ -110,10 +106,6 @@ define(
 			'it' => SLUG_RICERCA_IT,
 			'en' => SLUG_RICERCA_EN,
 		),
-		SERVICE_POST_TYPE => array(
-			'it' => SLUG_SERVIZI_IT,
-			'en' => SLUG_SERVIZI_EN,
-		),
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
@@ -126,7 +118,6 @@ define(
 define(
 	'DLI_POST_TYPES_TO_TRANSLATE',
 	array(
-		SERVICE_POST_TYPE,
 		PEOPLE_POST_TYPE,
 		EVENT_POST_TYPE,
 		NEWS_POST_TYPE,

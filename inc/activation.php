@@ -72,17 +72,6 @@ function create_the_taxonomies() {
 	);
 	build_taxonomies( $taxonomy, $terms );
 
-	// Valori tassonomia tipologia-servizio.
-	$taxonomy = 'tipologia-servizio';
-	$terms = array(
-		array( 'it' => 'Dipendenti', 'en' => 'Employees' ),
-		array( 'it' => 'Professori', 'en' => 'Professors' ),
-		array( 'it' => 'Studenti', 'en' => 'Students' ),
-		array( 'it' => 'Esterni', 'en' => 'External' ),
-		array( 'it' => 'Ricercatori', 'en' => 'Researchers' ),
-	);
-	build_taxonomies( $taxonomy, $terms );
-
 	// Valori tassonomia struttura.
 	$taxonomy = 'struttura';
 	$terms = array(
