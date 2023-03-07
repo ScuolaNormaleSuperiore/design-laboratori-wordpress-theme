@@ -52,7 +52,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'nome_laboratorio',
 			'name'       => __( 'Nome Laboratorio *', 'design_laboratori_italia' ),
-			'desc'       => __( 'Il Nome della Laboratorio' , 'design_laboratori_italia' ),
+			'desc'       => __( 'Il Nome del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
 				'required'   => 'required',
@@ -76,7 +76,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'luogo_laboratorio',
 			'name'       => __( 'Città *', 'design_laboratori_italia' ),
-			'desc'       => __( 'La città dove risiede la Laboratorio' , 'design_laboratori_italia' ),
+			'desc'       => __( 'La città dove risiede il Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
 				'required' => 'required',
@@ -443,7 +443,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'   => $prefix . 'laboratorio_istruzioni',
 			'name' => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica della Laboratorio</a>.' , 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica del Laboratorio</a>.' , 'design_laboratori_italia' ),
 			'type' => 'title',
 		)
 	);

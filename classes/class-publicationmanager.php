@@ -14,7 +14,7 @@ class Publication_Manager {
 	public function __construct() {}
 
 	/**
-	 * Install and configure the Course post type.
+	 * Install and configure the Publication post type.
 	 *
 	 * @return void
 	 */
