@@ -30,7 +30,7 @@ $progetti = new WP_Query(
 	array(
 	'posts_per_page' => -1,
 	'post_type'      => 'progetto',
-	'orderby'        => 'data_inizio',
+	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
 	'order'          => 'DESC',
 	'meta_query'     => array(
 		'relation'  => 'OR',
