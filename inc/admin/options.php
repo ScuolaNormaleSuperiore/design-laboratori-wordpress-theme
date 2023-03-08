@@ -312,7 +312,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_carousel_is_selezione_automatica',
 				'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in home". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
+				'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(

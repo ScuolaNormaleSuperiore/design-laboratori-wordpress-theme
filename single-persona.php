@@ -323,6 +323,7 @@ $pubblicazioni = new WP_Query(
 									$pubblicazioni->the_post();
 									$ID    = get_the_ID();
 									$title = get_the_title( $ID );
+									$url      = get_field( 'url' );
 									?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
@@ -331,10 +332,18 @@ $pubblicazioni = new WP_Query(
 												<svg class="icon">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
 												</svg>
-												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr($title); ?></a>
+												<?php
+												if($url) {
+													?>
+												<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+												<?php }
+												else {
+													echo esc_attr( $title );
+												}
+												?>
 											</h3>
 											<div class="card-text">
-												<p><?php echo esc_attr( get_field( 'abstract' ) ); ?></p>
+												<p><?php echo esc_attr( the_content() ); ?></p>
 											</div>
 										</div>
 									</div><!--end card-->
