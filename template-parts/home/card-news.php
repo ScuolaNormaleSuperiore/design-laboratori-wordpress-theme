@@ -24,7 +24,7 @@ $num_items = $query->post_count;
 		<?php
 		if ( $num_items != 0 ) {
 			$last_hero_news = $query->posts[0];
-			$termitem       = dli_get_main_taxonomy_termitem( $last_hero_news, 'category' );
+			$termitem       = dli_get_main_category( $last_hero_news, 'category' );
 		?>
 			<div class="card-body">
 				<div class="category-top">

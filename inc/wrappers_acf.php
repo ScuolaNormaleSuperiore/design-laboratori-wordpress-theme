@@ -10,9 +10,8 @@
  */
 
 
-if(!function_exists("dli_get_field")) {
-	function dli_get_field( $fied_name ) {
-		return get_field( $fied_name );
+if ( ! function_exists( 'dli_get_field' ) ) {
+	function dli_get_field( $selector, $post_id = false, $format_value = true ) {
+		return get_field( $selector, $post_id = false, $format_value = true );
 	}
-
 }

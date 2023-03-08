@@ -1310,8 +1310,8 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 		}
 	}
 
-	if( ! function_exists( 'dli_get_main_taxonomy_termitem' ) ) {
-		function dli_get_main_taxonomy_termitem( $post, $taxonomy ) {
+	if( ! function_exists( 'dli_get_main_category' ) ) {
+		function dli_get_main_category( $post, $taxonomy ) {
 			$terms = get_the_terms( $post, $taxonomy );
 			if ( ! is_array( $terms ) || count($terms) ==0 ) {
 				return array(

@@ -69,7 +69,7 @@ $num_results = $the_query->found_posts;
 					<?php
 					}
 					$post_id  = get_the_ID();
-					$termitem = dli_get_main_taxonomy_termitem( $post_id, 'category' );
+					$termitem = dli_get_main_category( $post_id, 'category' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">

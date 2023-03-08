@@ -35,7 +35,7 @@ $num_items = $query->post_count;
 						alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>">
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
-						<span class="card-date"><?php echo $event_date->format( 'd' ); ?></span>
+						<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
 						<span class="card-day"><?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
 					</div>
 				</div>

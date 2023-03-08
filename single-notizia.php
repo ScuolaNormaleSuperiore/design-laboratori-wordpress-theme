@@ -7,15 +7,53 @@
  * @package Design_Laboratori_Italia
  */
 
+global $post;
 get_header();
+$category  = dli_get_main_category( $last_hero_news, 'category' );
+$date      = get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_news );
+$news_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+$image_url = get_the_post_thumbnail_url( 'item-carousel' );
 ?>
 
 <main id="main-container">
 
 	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+	<?php get_template_part( $post->ID, 'template-parts/common/breadcrumb' ); ?>
 
-dettaglio notizia
+	<section id="banner-news" aria-describedby="Testo introduttivo news" class="bg-banner-news">
+		<div class="section-muted  primary-bg-c1">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-5 align-middle">
+						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
+							<p class="card-date">
+								<?php echo intval( $news_date->format( 'd' ) ) ; ?>
+								&nbsp;
+								<?php echo __( dli_get_monthname( $news_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+							</p>
+							<h2 class="p-0  "><?php echo esc_attr( get_the_title() ); ?></h2>
+							<p class="font-weight-normal">
+								<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							</p>
+							<div class="chip chip-primary chip-lg chip-simple">
+								<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<?php
+						if( $image_url ) {
+						?>
+						<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
+						<?php
+						}
+						?>
+						<img src="https://animals.sandiegozoo.org/sites/default/files/2016-08/animals_hero_mountains.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 </main>
 
