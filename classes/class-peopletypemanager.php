@@ -41,13 +41,13 @@ class PeopleType_Manager {
 			'labels'          => $labels,
 			'supports'        => array( 'title' ),
 			'public'          => true,
-			'show_in_menu'  =>	'edit.php?post_type=persona',
+			'show_in_menu'    =>	'edit.php?post_type=persona',
 			'show_in_rest'    => true,
 			'menu_position'   => 2,
 			'menu_icon'       => 'dashicons-nametag',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array('slug' => 'tipologia-persone'),
+			'rewrite'         => array( 'slug' => 'tipologia-persone' ),
 		);
 
 		register_post_type( PEOPLE_TYPE_POST_TYPE, $args );
