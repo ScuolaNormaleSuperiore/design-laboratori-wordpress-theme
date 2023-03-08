@@ -1124,7 +1124,7 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 					'order'          => 'DESC',
 					'meta_query'     => array(
 						array(
-							'key'     => 'promuovi_in_hero',
+							'key'     => 'promuovi_in_carousel',
 							'compare' => '=',
 							'value'   => 1,
 						),

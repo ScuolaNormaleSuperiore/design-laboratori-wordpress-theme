@@ -8,7 +8,7 @@
 							"label": "Descrizione breve",
 							"name": "descrizione_breve",
 							"aria-label": "",
-							"type": "text",
+							"type": "textarea",
 							"instructions": "",
 							"required": 1,
 							"conditional_logic": 0,
@@ -19,63 +19,45 @@
 							},
 							"default_value": "",
 							"maxlength": 255,
+							"rows": "",
 							"placeholder": "",
-							"prepend": "",
-							"append": ""
+							"new_lines": ""
 					},
 					{
-							"key": "field_64077f4692f86",
-							"label": "Date progetto",
-							"name": "date_progetto",
+							"key": "field_63c6cc2fc647b",
+							"label": "Data inizio",
+							"name": "data_inizio",
 							"aria-label": "",
-							"type": "group",
+							"type": "date_picker",
 							"instructions": "",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-									"width": "",
+									"width": "50",
 									"class": "",
 									"id": ""
 							},
-							"layout": "table",
-							"sub_fields": [
-									{
-											"key": "field_63c6cc2fc647b",
-											"label": "Data inizio",
-											"name": "data_inizio",
-											"aria-label": "",
-											"type": "date_picker",
-											"instructions": "",
-											"required": 0,
-											"conditional_logic": 0,
-											"wrapper": {
-													"width": "",
-													"class": "",
-													"id": ""
-											},
-											"display_format": "d\/m\/Y",
-											"return_format": "d\/m\/Y",
-											"first_day": 1
-									},
-									{
-											"key": "field_63c6cc62c647c",
-											"label": "Data fine",
-											"name": "data_fine",
-											"aria-label": "",
-											"type": "date_picker",
-											"instructions": "",
-											"required": 0,
-											"conditional_logic": 0,
-											"wrapper": {
-													"width": "",
-													"class": "",
-													"id": ""
-											},
-											"display_format": "d\/m\/Y",
-											"return_format": "d\/m\/Y",
-											"first_day": 1
-									}
-							]
+							"display_format": "d\/m\/Y",
+							"return_format": "d\/m\/Y",
+							"first_day": 1
+					},
+					{
+							"key": "field_63c6cc62c647c",
+							"label": "Data fine",
+							"name": "data_fine",
+							"aria-label": "",
+							"type": "date_picker",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "50",
+									"class": "",
+									"id": ""
+							},
+							"display_format": "d\/m\/Y",
+							"return_format": "d\/m\/Y",
+							"first_day": 1
 					},
 					{
 							"key": "field_63c6cba8c647a",
