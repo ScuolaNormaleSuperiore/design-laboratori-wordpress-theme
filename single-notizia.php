@@ -9,7 +9,7 @@
 
 global $post;
 get_header();
-$category  = dli_get_main_category( $last_hero_news, 'category' );
+$category  = dli_get_post_main_category( $last_hero_news, 'category' );
 $date      = get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_news );
 $news_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );

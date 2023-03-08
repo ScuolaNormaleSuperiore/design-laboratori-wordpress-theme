@@ -1,20 +1,29 @@
 <?php
 /* Template Name: Notizie.
- *
+ *$all_categories
  * @package Design_Laboratori_Italia
  */
 global $post;
 get_header();
 define( 'NEWS_CELLS_PER_ROW', 3 );
 
+if ( isset( $_GET['cat'] ) ){
+	$selected_categories = $_GET['cat'];
+} else {
+	$selected_categories = array();
+}
+
+
 $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => NEWS_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
+		'category__in'   => $selected_categories,
 	)
 );
-$num_results = $the_query->found_posts;
+$num_results    = $the_query->found_posts;
+$all_categories = dli_get_all_categories( 'category' );
 ?>
 
 <main id="main-container" class="main-container bluelectric">
@@ -33,21 +42,30 @@ $num_results = $the_query->found_posts;
 				<!--COLONNA FILTRI -->
 				<div class="col-12 col-lg-3 border-end">
 					<div class="row pt-4">
+					<?php
+						if( count( $all_categories ) > 0 ) {
+					?>
 						<h3 class="h6 text-uppercase border-bottom">Categoria</h3>
 						<div>
-							<div class="form-check">
-								<input id="checkbox4" type="checkbox" checked>
-								<label for="checkbox4">Categoria</label>
-							</div>
-							<div class="form-check">
-								<input id="checkbox5" type="checkbox">
-								<label for="checkbox5" class="disabled">Altra categoria</label>
-							</div>
-							<div class="form-check">
-								<input id="checkbox5" type="checkbox">
-								<label for="checkbox5" class="disabled">Altra categoria 2</label>
-							</div>
+							<form action="." id="notizieform" method="GET">
+								<?php
+									foreach( $all_categories as $category ) {
+								?>
+								<div class="form-check">
+									<input type="checkbox" name="cat[]" id="<?php echo $category['slug']; ?>" 
+										value="<?php echo $category['id']; ?>" onChange="this.form.submit()"
+										<?php if ( in_array( $category['id'], $selected_categories ) ) { echo "checked='checked'"; } ?>
+									>
+									<label for="<?php echo $category['slug']; ?>"><?php echo $category['name']; ?></label>
+								</div>
+								<?php
+									}
+								?>
+							</form>
 						</div>
+					<?php
+					}
+					?>
 					</div>
 				</div>
 				<!--COLONNA FILTRI -->
@@ -69,7 +87,7 @@ $num_results = $the_query->found_posts;
 					<?php
 					}
 					$post_id  = get_the_ID();
-					$termitem = dli_get_main_category( $post_id, 'category' );
+					$termitem = dli_get_post_main_category( $post_id, 'category' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">

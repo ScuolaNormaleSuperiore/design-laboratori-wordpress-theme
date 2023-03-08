@@ -1239,13 +1239,17 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 		}
 	}
 
-	if( ! function_exists( 'dli_get_main_category' ) ) {
-		function dli_get_main_category( $post, $taxonomy ) {
+	if( ! function_exists( 'dli_get_post_main_category' ) ) {
+		function dli_get_post_main_category( $post, $taxonomy ) {
 			$terms = get_the_terms( $post, $taxonomy );
 			if ( ! is_array( $terms ) || count($terms) ==0 ) {
+				$pg        = dli_get_page_by_post_type( $post->post_type );
+				$pg_link   = get_permalink( $pg->ID );
 				return array(
-					'title' => __( $post->post_type, 'design_laboratori_italia' ),
-					'url'   => get_post_type_archive_link( $post->post_type ),
+					// 'title' => __( $post->post_type, 'design_laboratori_italia' ),
+					// 'url'   => get_post_type_archive_link( $post->post_type ),
+					'title' => $pg->post_title,
+					'url'   => $pg_link,
 				);
 			} else {
 				return array(
@@ -1255,6 +1259,29 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			}
 		}
 	}
+
+	if( ! function_exists( 'dli_get_all_categories' ) ) {
+		function dli_get_all_categories( $taxonomy ) {
+			$terms      = get_terms( $taxonomy );
+			$categories = array();
+			if ( $terms ) {
+				foreach ( $terms as $term ) {
+					array_push (
+						$categories,
+						array(
+							'id'          => $term->term_id,
+							'slug'        => $term->slug,
+							'name'        => $term->name,
+							'description' => $term->description,
+							'url'         => get_term_link( $term ),
+						)
+						);
+				}
+			}
+			return $categories;
+		}
+	}
+
 
 	if( ! function_exists( 'dli_get_monthname' ) ) {
 		function dli_get_monthname( $month ) {
