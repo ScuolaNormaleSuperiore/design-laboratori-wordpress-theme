@@ -22,7 +22,7 @@ $pg_link   = get_permalink( $pg->ID );
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<!-- DETTAGLIO NOTIZIA-->
+	<!-- BANNER NOTIZIA-->
 	<section id="banner-news" aria-describedby="Testo introduttivo news" class="bg-banner-news">
 		<div class="section-muted  primary-bg-c1">
 			<div class="container">
@@ -57,6 +57,7 @@ $pg_link   = get_permalink( $pg->ID );
 		</div>
 	</section>
 
+	<!-- DETAGLIO NOTIZIA -->
 	<section id="news" class="p-4">
 		<div class="container my-4">
 			<div class="row pt-0">

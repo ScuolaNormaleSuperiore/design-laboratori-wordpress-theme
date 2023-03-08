@@ -1,6 +1,6 @@
 <?php
 /**
- * Servizio template file
+ * Servizio template file$start_event_date
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -9,12 +9,14 @@
 
 global $post;
 get_header();
-$category   = dli_get_post_main_category( $post, 'category' );
-$image_url  = get_the_post_thumbnail_url( 0, 'item-carousel' );
-$pg         = dli_get_page_by_post_type( $post->post_type );
-$pg_link    = get_permalink( $pg->ID );
-$date       = get_field( 'data_inizio', $post );
-$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+$category         = dli_get_post_main_category( $post, 'category' );
+$image_url        = get_the_post_thumbnail_url( 0, 'item-carousel' );
+$pg               = dli_get_page_by_post_type( $post->post_type );
+$pg_link          = get_permalink( $pg->ID );
+$start_date       = get_field( 'data_inizio', $post );
+$start_event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
+$end_date         = get_field( 'data_fine', $post );
+$end_event_date   = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
 ?>
 
 <main id="main-container">
@@ -22,16 +24,39 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
+	
+	<!-- BANNER NOTIZIA-->
+	<section id="banner-news" aria-describedby="Testo introduttivo eventi" class="bg-banner-eventi">
+		<div class="section-muted  primary-bg-c1">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-5 align-middle">
+						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
+							<p class="card-date">dal <?php echo $start_date; ?> al <?php echo $end_date; ?></p>
+							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>
+							<p class="font-weight-normal">
+								<?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-7">
+					<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-carousel' ); ?>"
+							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<!-- DETTAGLIO EVENTO -->
 	<div class="container py-lg-5">
 		<div class="row">
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">
 					<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
-						<button class="custom-navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false"
-							aria-label="Toggle navigation" data-bs-toggle="navbarcollapsible" data-bs-target="#navbarNav">
-							<span class="it-list"></span>1. Introduzione
-						</button>
 						<div class="progress custom-navbar-progressbar">
 							<div	div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
@@ -42,38 +67,38 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" 
 								xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>"></use>
 							</svg>
-							<span>Indietro</span>
+							<span><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></span>
 							</a>
 							<div class="menu-wrapper">
 								<div class="link-list-wrapper">
-									<h3>DETTAGLI dell'evento</h3>
+									<h3><?php echo __( 'Dettagli dell\'evento', 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 									<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<ul class="link-list">
 										<li class="nav-item">
-											<a class="nav-link active" href="#p1">
-											<span>Descrizione&nbsp;&nbsp; </span>
+											<a class="nav-link active" href="#descrizione">
+											<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p2">
-											<span>Luogo</span>
+											<a class="nav-link" href="#luogo">
+											<span><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p3">
-											<span>Contatti</span>
+											<a class="nav-link" href="#contatti">
+											<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p4">
-											<span>Allegati&nbsp;</span>
+											<a class="nav-link" href="#allegati">
+											<span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#p5">
-											<span>Video</span>
+											<a class="nav-link" href="#video">
+											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 									</ul>
@@ -86,19 +111,13 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 			<!-- DESCRIZIONE --> 
-			<h3 class="it-page-section h4 visually-hidden" id="p1">Descrizione evento</h3>
+			<h3 class="it-page-section h4 visually-hidden" id="descrizione">Descrizione evento</h3>
 				<div class="row pb-3">
-				<p>
-				Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue, sodales ac rhoncus in, ultricies a neque. Morbi non semper felis, at lacinia
-				nibh. Nam quis elit massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper
-				sem, vel sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada vel ut quam. Cras vehicula rutrum
-				vehicula. Suspendisse efficitur eget purus vitae convallis. Integer euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque
-				penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-				</p>
+				<p><?php the_content(); ?></p>
 			</div>
 
 			<!-- LUOGO -->
-			<h3 class="it-page-section h4 pt-3" id="p2">Luogo</h3>
+			<h3 class="it-page-section h4 pt-3" id="luogo">Luogo</h3>
 			<section id="responsabile">    
 			<div class="row pb-3 pt-3">
 			<p>{Luogo}</p>
@@ -106,7 +125,7 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 			</section>
 
 			<!-- CONTATTI -->
-			<h3 class="it-page-section h4 pt-3 pb-3" id="p3">{Label}</h3>
+			<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">{Label}</h3>
 			<div class="it-list-wrapper">
 			<ul class="it-list">
 			<li>
@@ -146,7 +165,7 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 			</div>	
 
 			<!-- ALLEGATI -->
-			<h3 class="it-page-section h4 pt-3 pb-3" id="p4">Allegati</h3>
+			<h3 class="it-page-section h4 pt-3 pb-3" id="allegati">Allegati</h3>
 			<section id="allegati">    
 			<div class="row ">
 				<div class="card-wrapper card-teaser-wrapper">
@@ -165,32 +184,17 @@ $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 			</section>
 
 			<!-- VIDEO -->	
-			<h3 id="p5" class="it-page-section h4 pt-3">Video</h3>
+			<h3 id="video" class="it-page-section h4 pt-3">Video</h3>
 			<div class="row variable-gutters mb-5">
 				<div class="col-lg-9">
 					<div class="video-wrapper">
 						<iframe title="Intervento del Presidente Draghi alla Firma del Patto per Torino"
-						aria-label="Intervento del Presidente Draghi alla Firma del Patto per Torino" width="500"
-						height="281" src="https://www.youtube-nocookie.com/embed/s9cYAy-xd6g?feature=oembed"
-						frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen=""></iframe>
-					</div><!-- /video-wrapper -->
-					<div id="accordionDiv1" class="collapse-div transcription-accordion">
-						<div class="collapse-header" id="headingA2">
-							<button data-toggle="collapse" data-target="#accordion2" aria-expanded="false"
-							aria-controls="accordion2">
-							Trascrizione del video
-							</button>
-						</div>
-						<div id="accordion2" class="collapse" role="region" aria-labelledby="headingA2" data-parent="#accordionDiv1">
-							<div class="collapse-body">
-								Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
-								denim
-								aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-								VHS.
-							</div>
-						</div>
+							aria-label="Intervento del Presidente Draghi alla Firma del Patto per Torino" width="500"
+							height="281" src="https://www.youtube-nocookie.com/embed/s9cYAy-xd6g?feature=oembed"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen="">
+						</iframe>
 					</div>
 				</div><!-- /col-lg-9 -->
 			</div><!-- /row -->

@@ -31,10 +31,10 @@ $num_items = $query->post_count;
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">
 					<figure class="img-wrapper">
-					<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-hero-event' ); ?>"
-						alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>"
-						title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-						alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>">
+						<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-hero-event' ); ?>"
+							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>"
+							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>">
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
 						<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
