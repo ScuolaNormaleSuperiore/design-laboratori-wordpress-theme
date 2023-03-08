@@ -17,7 +17,6 @@
 			<?php
 				}
 				$id    = $item->ID;
-				$foto  = get_field( 'foto', $id );
 				$terms = get_the_terms( $id, 'struttura' );
 				if ( $terms ) {
 					$nome_struttura = $terms[0]->name;
@@ -27,6 +26,7 @@
 				$escludi_da_elenco          = get_field( 'escludi_da_elenco', $id );
 				$nome                       = get_field( 'nome', $id );
 				$cognome                    = get_field( 'cognome', $id );
+				$title                      = get_the_title( $ID );
 				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
 				$post_link                  = get_the_permalink( $id );
 			?>
@@ -35,7 +35,7 @@
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">
 					<div class="avatar size-xl">
-						<img src="<?php echo dli_get_persona_avatar( $foto, $id ); ?>" alt="<?php echo $foto['alt']; ?>" aria-hidden="true">
+						<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
 					</div>
 					<div class="extra-text">
 					<h4><a href="<?php echo $post_link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>

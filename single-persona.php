@@ -10,9 +10,8 @@ get_header();
 while ( have_posts() ) {
 	the_post();
 	$ID                     = get_the_ID();
-	$foto                   = get_field( 'foto' );
 	$title                  = get_the_title( $ID );
-	$image_url              = dli_get_persona_avatar( $foto, $ID );
+	$image_url              = dli_get_persona_avatar( $post, $ID );
 	$bio                    = get_the_content();
 	$categoria_appartenenza = get_field( 'categoria_appartenenza' )[0]->nome;
 	$allegato_cv            = get_field( 'allegato_cv' );
@@ -31,7 +30,7 @@ $progetti = new WP_Query(
 	array(
 	'posts_per_page' => -1,
 	'post_type'      => 'progetto',
-	'orderby'        => 'data_inizio',
+	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
 	'order'          => 'DESC',
 	'meta_query'     => array(
 		'relation'  => 'OR',
