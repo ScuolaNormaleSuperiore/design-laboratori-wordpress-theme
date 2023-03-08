@@ -478,7 +478,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 6 - Registers options page "Novità".
+	* 5 - Registers options page "Novità".
 	*/
 	$args = array(
 		'id'           => 'dli_options_notizie',
@@ -527,6 +527,56 @@ function dli_register_main_options_metabox() {
 			)
 		);
 
+	/**
+	* 6 - Registers options page "Eventi".
+	*/
+	$args = array(
+		'id'           => 'dli_options_eventi',
+		'title'        => esc_html__( 'Gli eventi', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'eventi',
+		'capability'   => 'manage_options',
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Eventi', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$eventi_options = new_cmb2_box( $args );
+
+		$eventi_landing_url = dli_get_template_page_url( 'page-templates/eventi.php' );
+		$eventi_options->add_field(
+			array(
+				'id'   => $prefix . 'eventi_istruzioni',
+				'name' => __( 'Sezione Eventi', 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$eventi_landing_url.'">la pagina di panoramica degli Eventi</a>.' , 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+
+		$eventi_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_eventi',
+				'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "Gli eventi del laboratorio"' , 'design_laboratori_italia' ),
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em', 
+					),
+				),
+			)
+		);
+	
 	/**
 	* 7 - Registers options page "Persone".
 	*/
@@ -775,7 +825,7 @@ function dli_register_main_options_metabox() {
 		));
 
 	/**
-	* 13 - Registers options page "Social media".
+	* 12 - Registers options page "Social media".
 	*/
 		$args = array(
 				'id'           => 'dli_options_socials',
@@ -871,7 +921,7 @@ $social_options->add_field( array(
 ) );
 
 	/**
-	* 14 - Registers options page "Altro".
+	* 13 - Registers options page "Altro".
 	*/
 
 	$args = array(

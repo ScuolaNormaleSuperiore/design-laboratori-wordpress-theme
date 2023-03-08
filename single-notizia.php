@@ -20,8 +20,9 @@ $pg_link   = get_permalink( $pg->ID );
 <main id="main-container">
 
 	<!-- BREADCRUMB -->
-	<?php get_template_part( $post->ID, 'template-parts/common/breadcrumb' ); ?>
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
+	<!-- DETTAGLIO NOTIZIA-->
 	<section id="banner-news" aria-describedby="Testo introduttivo news" class="bg-banner-news">
 		<div class="section-muted  primary-bg-c1">
 			<div class="container">

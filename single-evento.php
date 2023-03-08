@@ -1,448 +1,205 @@
 <?php
 /**
- * The template for displaying all single posts
+ * Servizio template file
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Design_Laboratori_Italia
  */
-global $post, $autore, $luogo, $c;
-get_template_part("template-parts/single/related-posts", $args = array( "post", "events", "circolari" )); 
 
+global $post;
 get_header();
-
-$link_schede_luoghi = dli_get_meta("link_schede_luoghi");
-$nome_luogo_custom = dli_get_meta("nome_luogo_custom");
-$link_schede_documenti = dli_get_meta("link_schede_documenti");
-$file_documenti = dli_get_meta("file_documenti");
-$date = dli_get_meta("date");
-
-$user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $post->ID);
+$category   = dli_get_post_main_category( $post, 'category' );
+$image_url  = get_the_post_thumbnail_url( 0, 'item-carousel' );
+$pg         = dli_get_page_by_post_type( $post->post_type );
+$pg_link    = get_permalink( $pg->ID );
+$date       = get_field( 'data_inizio', $post );
+$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 ?>
-    <main id="main-container" class="main-container greendark">
-		<?php get_template_part("template-parts/common/breadcrumb"); ?>
 
-		<?php while ( have_posts() ) :  the_post();
-        set_views($post->ID);
-			$image_url = get_the_post_thumbnail_url($post, "item-gallery");
-			$autore = get_user_by("ID", $post->post_author);
-			?>
+<main id="main-container">
 
-				<?php if(has_post_thumbnail($post)){ ?>
-        <section class="section bg-white article-title">
-                    <div class="title-img" style="background-image: url('<?php echo $image_url; ?>');"></div>
-					<?php
-					$colsize = 6;
-				}else{
-				?>
-                <section class="section bg-white article-title article-title-small">
-		            <?php
-					$colsize = 12;
-				} ?>
-                <div class="container">
-                    <div class="row variable-gutters">
-                        <div class="col-md-<?php echo $colsize; ?> flex align-items-center">
-                            <div class="title-content">
-                                <h1 class="h2"><?php the_title(); ?></h1>
-                                <h2 class="d-none"><?php echo get_post_type(); ?></h2>
+	<!-- BREADCRUMB -->
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-                                <div class="h3 text-greendark mb-3"><?php echo dsi_get_date_evento($post); ?></div>
-                                <p class="mb-0"><?php echo dli_get_meta("descrizione"); ?></p>
-								<?php 
-                                $badgeclass = "badge-outline-greendark";
-                                get_template_part("template-parts/common/badges-argomenti"); ?>
-								<?php
-								$link_schede_notizia = dli_get_meta("link_schede_notizia");
-								if(is_array($link_schede_notizia) && count($link_schede_notizia) > 0){
-									foreach ($link_schede_notizia as $id_notizia){
-										$notizia = get_post($id_notizia);
-										?>
-                                        <div class="text-icon">
-                                            <a href="<?php echo get_permalink($notizia); ?>">
-                                                <svg class="icon svg-link"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-link"></use></svg>
-                                                <p><?php echo $notizia->post_title; ?></p>
-                                            </a>
-                                        </div>
-										<?php
-									}
-								}
-								?>
-                            </div><!-- /title-content -->
-                        </div><!-- /col-md-6 -->
-                    </div><!-- /row -->
-                </div><!-- /container -->
-            </section>
+	<!-- DETTAGLIO EVENTO -->
+	<div class="container py-lg-5">
+		<div class="row">
+			<div class="col-12 col-lg-3">
+				<div data-bs-toggle="sticky" data-bs-stackable="true">
+					<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
+						<button class="custom-navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false"
+							aria-label="Toggle navigation" data-bs-toggle="navbarcollapsible" data-bs-target="#navbarNav">
+							<span class="it-list"></span>1. Introduzione
+						</button>
+						<div class="progress custom-navbar-progressbar">
+							<div	div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<div class="navbar-collapsable" id="navbarNav">
+							<div class="overlay"></div>
+							<a class="it-back-button" href="#" role="button">
+							<svg class="icon icon-sm icon-primary align-top">
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" 
+								xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>"></use>
+							</svg>
+							<span>Indietro</span>
+							</a>
+							<div class="menu-wrapper">
+								<div class="link-list-wrapper">
+									<h3>DETTAGLI dell'evento</h3>
+									<div class="progress">
+									<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									<ul class="link-list">
+										<li class="nav-item">
+											<a class="nav-link active" href="#p1">
+											<span>Descrizione&nbsp;&nbsp; </span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#p2">
+											<span>Luogo</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#p3">
+											<span>Contatti</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#p4">
+											<span>Allegati&nbsp;</span>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#p5">
+											<span>Video</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="col-12 col-lg-9 it-page-sections-container">
 
-            <section class="section bg-white">
-                <div class="container container-border-top">
-                    <div class="row variable-gutters">
-                        <?php if($user_can_view_post): ?>
-                        <div class="col-lg-3 aside-border px-0">
-                            <aside class="aside-main aside-sticky">
-                                <div class="aside-title" id="event-legend">
-                                    <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e("Indice dell'evento", 'design_laboratori_italia'); ?></span>
-                                        <svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
-                                    </a>
-                                </div>
-                                <div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="event-legend">
-                                    <ul class="link-list">
-                                        <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-cosa" title="Vai al paragrafo <?php _e("Cos'è", 'design_laboratori_italia'); ?>"><?php _e("Cos'è", 'design_laboratori_italia'); ?></a>
-                                        </li>
-										<?php 	if((is_array($link_schede_luoghi) && count($link_schede_luoghi)) || ($nome_luogo_custom != "")) { ?>
-                                            <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-luogo" title="Vai al paragrafo <?php _e("Luogo", 'design_laboratori_italia'); ?>"><?php _e("Luogo", 'design_laboratori_italia'); ?></a>
-                                            </li>
-										<?php }
-										if($date) {
-                                            ?>
-                                            <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-date"
-                                                   title="Vai al paragrafo <?php _e("Date e Orari", 'design_laboratori_italia'); ?>"><?php _e("Date e Orari", 'design_laboratori_italia'); ?></a>
-                                            </li>
-                                            <?php } ?>
-                                        <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-costi" title="Vai al paragrafo <?php _e("Costi", 'design_laboratori_italia'); ?>"><?php _e("Costi", 'design_laboratori_italia'); ?></a>
-                                        </li>
-                                        <li>
-                                            <a class="list-item scroll-anchor-offset" href="#art-par-contatti" title="Vai al paragrafo <?php _e("Contatti", 'design_laboratori_italia'); ?>"><?php _e("Contatti", 'design_laboratori_italia'); ?></a>
-                                        </li>
-										<?php if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) || (is_array($file_documenti) && count($file_documenti)>0)){ ?>
-                                            <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-altro" title="Vai al paragrafo <?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?>">Ulteriori informazioni<?php _e("", 'design_laboratori_italia'); ?></a>
-                                            </li>
-										<?php } ?>
-                                        <?php if ( is_array($posts_array) && count( $posts_array ) )  {   ?>
-                                            <li>
-                                                <a class="list-item scroll-anchor-offset" href="#art-par-correlati"
-                                                title="Vai al paragrafo <?php _e("Circolari, notizie, eventi correlati", 'design_laboratori_italia'); ?>"><?php _e("Circolari, notizie, eventi correlati", 'design_laboratori_italia'); ?></a>
-                                            </li>
-                                        <?php } ?>
-                                     
-                                    </ul>
-                                </div>
-                            </aside>
+			<!-- DESCRIZIONE --> 
+			<h3 class="it-page-section h4 visually-hidden" id="p1">Descrizione evento</h3>
+				<div class="row pb-3">
+				<p>
+				Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue, sodales ac rhoncus in, ultricies a neque. Morbi non semper felis, at lacinia
+				nibh. Nam quis elit massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper
+				sem, vel sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada vel ut quam. Cras vehicula rutrum
+				vehicula. Suspendisse efficitur eget purus vitae convallis. Integer euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque
+				penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				</p>
+			</div>
 
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="article-wrapper pt-4 px-3">
-                                <h2 id="art-par-cosa" class="h4"><?php _e("Cos'è", 'design_laboratori_italia'); ?></h2>
-                                <div class="col-lg-12 px-0 wysiwig-text">
-                                <?php the_content(); ?>
-                                </div>
-								<?php
-								global $gallery;
-								$gallery = dli_get_meta("gallery");
-                            	if ( is_array( $gallery ) && count( $gallery ) > 0 ) {
-                            	    ?>
-                                <div class="row variable-gutters">
-                                    <div class="col">
-                                        <div class="it-carousel-wrapper inside-carousel splide" data-bs-carousel-splide>
-                                            <div class="splide__track">
-                                                <ul class="splide__list">
-                                                    <?php get_template_part( "template-parts/single/gallery", $post->post_type ); ?>
-                                                </ul>
-                                            </div><!-- /carousel-simple -->
-                                        </div>
-                                    </div><!-- /col -->
-                                </div><!-- /row -->
-		                            <?php
-	                            }
+			<!-- LUOGO -->
+			<h3 class="it-page-section h4 pt-3" id="p2">Luogo</h3>
+			<section id="responsabile">    
+			<div class="row pb-3 pt-3">
+			<p>{Luogo}</p>
+			</div>
+			</section>
 
-								$video = dli_get_meta("video");
-								if($video) { ?>
-                                    <div class="video-container my-4">
-										<?php echo wp_oembed_get ($video); ?>
-                                    </div>
-								<?php } ?>
-                                <h3  class="h6"><?php _e("Destinatari", 'design_laboratori_italia'); ?></h3>
-								<?php
-								$descrizione_destinatari = dli_get_meta("descrizione_destinatari");
-								echo wpautop($descrizione_destinatari);
-								?>
+			<!-- CONTATTI -->
+			<h3 class="it-page-section h4 pt-3 pb-3" id="p3">{Label}</h3>
+			<div class="it-list-wrapper">
+			<ul class="it-list">
+			<li>
+			<div class="list-item">
+			<div class="it-rounded-icon">
+			<svg class="icon">
+				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+			</svg>
+			</div>
+			<div class="it-right-zone"><span class="text">050 509662</span>
+			</div>
+			</div>
+			</li>   
+			<li>
+			<a href="#" class="list-item">
+			<div class="it-rounded-icon">
+			<svg class="icon">
+				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+			</svg>
+			</div>
+			<div class="it-right-zone"><span class="text">mail@sns.it</span>
+			</div>
+			</a>
+			</li>
+			<li>
+			<a class="list-item" href="#">
+			<div class="it-rounded-icon">
+			<svg class="icon">
+				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+			</svg>
+			</div>
+			<div class="it-right-zone"><span class="text">www.sns.it</span>
+			</div>
+			</a>
+			</li>
+			</ul>
+			</div>	
 
-                                <?php
-                                $persone_amministrazione = dli_get_meta("persone_amministrazione");
-                                if(is_array($persone_amministrazione)) {
+			<!-- ALLEGATI -->
+			<h3 class="it-page-section h4 pt-3 pb-3" id="p4">Allegati</h3>
+			<section id="allegati">    
+			<div class="row ">
+				<div class="card-wrapper card-teaser-wrapper">
+					<!--start card-->
+					<div class="card card-teaser rounded shadow ">
+						<div class="card-body">
+							<h3 class="card-title h5 ">
+								<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use></svg>
+								<a href="#">Locandina</a>
+							</h3>
+						</div>
+					</div>
+					<!--end card-->
+				</div>  
+			</div>
+			</section>
 
-                                    ?>
-                                    <h3 class="h6"><?php _e("Parteciperanno", 'design_laboratori_italia'); ?></h3>
+			<!-- VIDEO -->	
+			<h3 id="p5" class="it-page-section h4 pt-3">Video</h3>
+			<div class="row variable-gutters mb-5">
+				<div class="col-lg-9">
+					<div class="video-wrapper">
+						<iframe title="Intervento del Presidente Draghi alla Firma del Patto per Torino"
+						aria-label="Intervento del Presidente Draghi alla Firma del Patto per Torino" width="500"
+						height="281" src="https://www.youtube-nocookie.com/embed/s9cYAy-xd6g?feature=oembed"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen=""></iframe>
+					</div><!-- /video-wrapper -->
+					<div id="accordionDiv1" class="collapse-div transcription-accordion">
+						<div class="collapse-header" id="headingA2">
+							<button data-toggle="collapse" data-target="#accordion2" aria-expanded="false"
+							aria-controls="accordion2">
+							Trascrizione del video
+							</button>
+						</div>
+						<div id="accordion2" class="collapse" role="region" aria-labelledby="headingA2" data-parent="#accordionDiv1">
+							<div class="collapse-body">
+								Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
+								denim
+								aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
+								VHS.
+							</div>
+						</div>
+					</div>
+				</div><!-- /col-lg-9 -->
+			</div><!-- /row -->
+			</div>
+		</div> <!-- END row -->
+	</div>   <!-- END container -->
 
-                                    <div class="card-deck card-deck-spaced mb-2">
-                                        <?php
-                                        foreach ($persone_amministrazione as $idutente) {
-                                            $autore = get_user_by("ID", $idutente);
-                                            ?>
-                                            <div class="card card-bg card-avatar rounded">
-                                                <a href="<?php echo get_author_posts_url( $autore->ID);  ?>">
-                                                    <div class="card-body">
-                                                        <?php get_template_part("template-parts/autore/card"); ?>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /card card-bg card-avatar rounded -->
-                                            <?php
-                                        }
-                                        ?>
-                                    </div><!-- /card-deck -->
-                                    <?php
-                                }
+</main>
 
-                                if((is_array($link_schede_luoghi) && count($link_schede_luoghi) > 0) || ($nome_luogo_custom != "" )) {
-                                    ?>
 
-                                    <h2 class="h4" id="art-par-luogo"><?php _e("Luogo", 'design_laboratori_italia'); ?></h2>
-
-                                    <?php
-                                    $c = 0;
-                                    if (is_array($link_schede_luoghi) && count($link_schede_luoghi) > 0) {
-                                        foreach ($link_schede_luoghi as $idluogo) {
-                                            $c++;
-                                            $luogo = get_post($idluogo);
-                                            get_template_part("template-parts/luogo/card", "large");
-                                        }
-                                    } else if ($nome_luogo_custom != "") {
-                                        get_template_part("template-parts/luogo/card", "custom");
-
-                                    }
-                                }
-								?>
-                                <?php
-                                if($date) {
-                                    ?>
-                                    <h2 class="h4"  id="art-par-date"><?php _e("Date e Orari", 'design_laboratori_italia'); ?></h2>
-                                    <div class="calendar-vertical mb-5">
-                                        <?php
-
-                                        $old_data = "";
-                                        foreach ($date as $data) {
-
-                                            ?>
-                                            <div class="calendar-date">
-                                                <div class="calendar-date-day">
-                                                    <?php if ($old_data != date_i18n("dMY", $data["data"])) { ?>
-                                                        <small><?php echo date_i18n("Y", $data["data"]); ?></small>
-                                                        <p><?php echo date_i18n("d", $data["data"]); ?></p>
-                                                        <small><b><?php echo date_i18n("M", $data["data"]); ?></b></small>
-
-                                                    <?php } ?>
-                                                </div><!-- /calendar-date-day -->
-                                                <div class="calendar-date-description rounded">
-                                                    <div class="calendar-date-description-content">
-                                                        <p><?php echo date_i18n("H:i", $data["data"]); ?><?php if (isset($data["descrizione"])) echo " - " . $data["descrizione"]; ?></p>
-                                                    </div><!-- /calendar-date-description-content -->
-                                                </div><!-- /calendar-date-description -->
-                                            </div><!-- /calendar-date -->
-                                            <?php
-                                            $old_data = date_i18n("dMY", $data["data"]);
-
-                                        }
-                                        /* else {
-
-                                            $timestamp_inizio = dli_get_meta("timestamp_inizio");
-                                            $timestamp_fine = dli_get_meta("timestamp_fine");
-                                            $ora_inizio = date_i18n("H:i", $timestamp_inizio);
-                                            $ora_fine = date_i18n("H:i", $timestamp_fine);
-
-                                        ?>
-                                        <div class="calendar-date">
-                                            <div class="calendar-date-day">
-                                                <small><?php echo date_i18n("Y", $timestamp_inizio); ?></small>
-                                                <p><?php echo date_i18n("d", $timestamp_inizio); ?></p>
-                                                <small><b><?php echo date_i18n("M", $timestamp_inizio); ?></b></small>
-
-                                            </div><!-- /calendar-date-day -->
-                                            <div class="calendar-date-description rounded">
-                                                <div class="calendar-date-description-content">
-                                                    <p><?php echo $ora_inizio; ?><?php if ($ora_fine != $ora_inizio) echo " - " . $ora_fine; ?></p>
-                                                </div><!-- /calendar-date-description-content -->
-                                            </div><!-- /calendar-date-description -->
-                                        </div><!-- /calendar-date -->
-
-                                            <div class="calendar-date">
-                                                <div class="calendar-date-day">
-                                                    <small><?php echo date_i18n("Y", $timestamp_fine); ?></small>
-                                                    <p><?php echo date_i18n("d", $timestamp_fine); ?></p>
-                                                    <small><b><?php echo date_i18n("M", $timestamp_fine); ?></b></small>
-
-                                                </div><!-- /calendar-date-day -->
-                                                <div class="calendar-date-description rounded">
-                                                    <div class="calendar-date-description-content">
-                                                        <p><?php echo $ora_inizio; ?><?php if ($ora_fine != $ora_inizio) echo " - " . $ora_fine; ?></p>
-                                                    </div><!-- /calendar-date-description-content -->
-                                                </div><!-- /calendar-date-description -->
-                                            </div><!-- /calendar-date -->
-                                        <?php
-                                        } */ ?>
-
-                                    </div><!-- /calendar-vertical -->
-                                    <?php
-                                }
-								?>
-                                <h2 class="h4" id="art-par-costi"><?php _e("Costi", 'design_laboratori_italia'); ?></h2>
-								<?php
-								$tipo_evento = dli_get_meta("tipo_evento");
-								$prezzo = dli_get_meta("prezzo");
-								if($tipo_evento == "gratis"){
-									echo "<p>Evento Gratuito</p>";
-								}else {
-									foreach ($prezzo as $biglietto) {
-										?>
-                                        <div class="text-border-left">
-                                            <div class="text-icon">
-                                                <svg class="icon svg-ticket">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         xlink:href="#svg-ticket"></use>
-                                                </svg>
-                                                <span><?php echo $biglietto["tipo_biglietto"]; ?></span>
-                                            </div>
-                                            <p class="price"><strong>€ <?php echo $biglietto["prezzo"]; ?></strong></p>
-                                            <p><?php echo $biglietto["descrizione"]; ?></p>
-                                        </div><!-- /text-border-left -->
-										<?php
-									}
-								}
-								?>
-
-                                <h2 class="h4"  id="art-par-contatti"><?php _e("Contatti", 'design_laboratori_italia'); ?></h2>
-								<?php
-								$organizzato_da_scuola = dli_get_meta("organizzato_da_scuola");
-								$link_struttura = dli_get_meta("link_struttura_organizzativa");
-								if($organizzato_da_scuola == "si") {
-									?>
-                                    <div  class="h6"><?php _e( "Organizzato da", 'design_laboratori_italia' ); ?></div>
-                                    <div class="card-deck card-deck-spaced">
-										<?php
-										global $icon_color, $second_icon_color;
-										$icon_color        = "greendark";
-										$second_icon_color = "#c8edc3";
-										if(is_array($link_struttura)) {
-										    foreach ($link_struttura as $id_struttura){
-                                                $struttura = get_post( $id_struttura );
-
-                                                get_template_part( "template-parts/struttura/card" );
-                                            }
-
-										}
-										?>
-                                    </div><!-- /card-deck card-deck-spaced -->
-									<?php
-								} ?>
-                                <?php if((($organizzato_da_scuola != "si") && ((dli_get_meta("contatto_telefono") != "") || (dli_get_meta("contatto_persona") != "") || (dli_get_meta("contatto_email") != ""))) || ((dli_get_meta("website") != "") ||  (dli_get_meta("patrocinato") != "") || (dli_get_meta("sponsor") != "") )) { ?>
-                                    <div class="in-evidence mb-5 py-4 pl-2 pr-2">
-                                        <ul class="mb-0">
-                                            <?php if (dli_get_meta("website") != "") { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Sito web:", 'design_laboratori_italia'); ?></strong>
-                                                <a class="text-underline-hover" href="<?php echo dli_get_meta("website"); ?>" aria-label="Vai a <?php echo dli_get_meta("website"); ?> - link esterno"><?php echo dli_get_meta("website"); ?></a>
-                                                </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_persona") != "")) { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Referente:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("contatto_persona"); ?>
-                                                </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_telefono") != "")) { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Telefono:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("contatto_telefono"); ?>
-                                                </li><?php } ?>
-                                            <?php if (($organizzato_da_scuola != "si") && (dli_get_meta("contatto_email") != "")) { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Email:", 'design_laboratori_italia'); ?></strong>
-                                                <a href="mailto:<?php echo dli_get_meta("contatto_email"); ?>"><?php echo dli_get_meta("contatto_email"); ?></a>
-                                                </li><?php } ?>
-                                            <?php if (dli_get_meta("patrocinato") != "") { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Patrocinato da:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("patrocinato"); ?>
-                                                </li><?php } ?>
-                                            <?php if (dli_get_meta("sponsor") != "") { ?>
-                                                <li><strong
-                                                        class="mr-2"><?php _e("Sponsor:", 'design_laboratori_italia'); ?></strong> <?php echo dli_get_meta("sponsor"); ?>
-                                                </li><?php } ?>
-                                        </ul>
-                                    </div>
-                                <?php } ?>
-
-								<?php if((is_array($link_schede_documenti) && count($link_schede_documenti)>0) || (is_array($file_documenti) && count($file_documenti)>0)){ ?>
-                                    <h2 class="h4" id="art-par-altro"><?php _e("Ulteriori informazioni", 'design_laboratori_italia'); ?></h2>
-                                    <div  class="h6"><?php _e("Documenti", 'design_laboratori_italia'); ?></div>
-                                    <div class="card-deck card-deck-spaced">
-										<?php
-										if(is_array($link_schede_documenti) && count($link_schede_documenti)>0) {
-											global $documento;
-											foreach ( $link_schede_documenti as $link_scheda_documento ) {
-												$documento = get_post( $link_scheda_documento );
-												get_template_part( "template-parts/documento/card" );
-											}
-										}
-
-										global $idfile, $nomefile;
-										if(is_array($file_documenti) && count($file_documenti)>0) {
-
-											foreach ( $file_documenti as $idfile => $nomefile ) {
-												get_template_part( "template-parts/documento/file" );
-											}
-										}
-
-										?>
-                                    </div><!-- /card-deck card-deck-spaced -->
-								<?php } ?>
-								<?php get_template_part("template-parts/single/bottom"); ?>
-                            </article>
-                        </div><!-- /col-lg-6 -->
-                        <div class="col-lg-3 aside-border-left px-0">
-                            <div>
-                                <div class="d-flex justify-content-end pb-4">
-                                    <?php
-                                    $timestamp_inizio = dli_get_meta("timestamp_inizio");
-                                    $timestamp_fine= dli_get_meta("timestamp_fine");
-                                    $data_inizio = date_i18n("Ymd", $timestamp_inizio);
-                                    $data_fine = date_i18n("Ymd", $timestamp_fine);
-                                    ?>
-                                    <div class="actions-wrapper actions-main">
-                                        <p><a class="text-underline text-greendark" target="_blank" href="https://calendar.google.com/calendar/r/eventedit?text=<?php echo urlencode(get_the_title()); ?>&dates=<?php echo $data_inizio; ?>/<?php echo $data_fine; ?>&details=<?php echo urlencode(dli_get_meta("descrizione")); ?>:+<?php echo urlencode(get_permalink()); ?>&location=<?php echo urlencode(dli_get_option("luogo_laboratorio")); ?>"> + aggiungi a Google Calendar</a></p>
-                                    </div>
-                                </div>
-
-                                <?php
-                                // get_template_part("template-parts/evento/calendar");
-                                ?>
-                                <div class="d-flex justify-content-end pb-4">
-                                    <?php get_template_part("template-parts/single/actions"); ?>
-                                </div>
-                            </div>
-                        </div><!-- /col-lg-3 -->
-                        <?php else: ?>
-                            <div class="col-lg-12 p-5 m-5 text-center font-weight-bold wysiwig-text">
-                                <?php the_content(); ?>
-                            </div>
-                        <?php endif; ?>
-                    </div><!-- /row -->
-                </div><!-- /container -->
-            </section>
-
-            <?php if ( is_array( $gallery ) && count( $gallery ) > 0 ) { ?>
-                <section class="section bg-gray-light py-5" id="art-par-04">
-                    <div class="container py-4">
-                        <div class="title-section text-center mb-5">
-                            <h2 class="h4">Foto e video</h2>
-                        </div><!-- /title-large -->
-                        <div class="row variable-gutters">
-                            <div class="col">
-                                <div class="it-carousel-wrapper simple-two-carousel splide" data-bs-carousel-splide>
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                        <?php get_template_part( "template-parts/single/gallery", $post->post_type ); ?>
-                                        </ul>
-                                    </div><!-- /carousel-simple -->
-                                </div>
-                            </div><!-- /col -->
-                        </div><!-- /row -->
-                    </div><!-- /container -->
-                </section>
-            <?php } ?>
-
-			<?php get_template_part("template-parts/single/more-posts"); ?>
-
-		<?php  	endwhile; // End of the loop. ?>
-    </main><!-- #main -->
 <?php
 get_footer();

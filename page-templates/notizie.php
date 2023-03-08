@@ -3,6 +3,7 @@
  *$all_categories
  * @package Design_Laboratori_Italia
  */
+
 global $post;
 get_header();
 define( 'NEWS_CELLS_PER_ROW', 3 );
@@ -31,7 +32,7 @@ $all_categories = dli_get_all_categories( 'category' );
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<!-- BANNER PROGETTI -->
+	<!-- BANNER NOTIZIE -->
 	<?php get_template_part( 'template-parts/hero/notizie' ); ?>
 
 	<!-- SEZIONE NOTIZIE -->
@@ -106,7 +107,7 @@ $all_categories = dli_get_all_categories( 'category' );
 										</div>
 										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_news ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
