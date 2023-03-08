@@ -21,7 +21,6 @@
 							$id          = $item->ID;
 							$src_icon    = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';
 							$nome        = get_the_title( $id);
-							$abstract    = get_field( 'abstract', $id );
 							$link        = get_permalink( $id );
 						?>
 								<!--begin card pubblicazioni -->
@@ -34,7 +33,7 @@
 											<a href="<?php echo $link; ?>"><?php echo $nome; ?></a>
 										</h3>
 										<div class="card-text">
-											<p><?php echo $abstract ?></p>
+											<p><?php echo esc_attr( the_content() ); ?></p>
 										</div>
 									</div>
 								</div>

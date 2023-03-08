@@ -189,7 +189,6 @@ $num_results = $pubblicazioni->found_posts;
 									$pubblicazioni->the_post();
 									$ID       = get_the_ID();
 									$title    = get_the_title( $ID );
-									$abstract = get_field( 'abstract' );
 									$url      = get_field( 'url' );
 									?>
 									<!--start card-->
@@ -216,7 +215,7 @@ $num_results = $pubblicazioni->found_posts;
 														<?php echo esc_attr( $title ); ?>
 													</h3>
 												<?php } ?>
-												<p class="card-text"><?php echo esc_attr( $abstract ); ?></p>
+												<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
 											</div>
 										</div>
 									</div>
