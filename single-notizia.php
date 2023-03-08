@@ -55,6 +55,24 @@ $image_url = get_the_post_thumbnail_url( 'item-carousel' );
 		</div>
 	</section>
 
+	<section id="news" class="p-4">
+		<div class="container my-4">
+			<div class="row pt-0">
+				<!-- SIDEBAR NEWS  -->
+				<div class="col-12 col-lg-3 border-end">
+				</div>
+				<!-- NEWS -->
+				<div class="col-12 col-lg-9 it-page-sections-container">
+					<div class="row p-4 pt-0">
+						<p>
+							<?php echo the_content(); ?>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 </main>
 
 
