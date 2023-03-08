@@ -12,7 +12,9 @@ get_header();
 $category  = dli_get_main_category( $last_hero_news, 'category' );
 $date      = get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_news );
 $news_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-$image_url = get_the_post_thumbnail_url( 'item-carousel' );
+$image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
+$pg        = dli_get_page_by_post_type( $post->post_type );
+$pg_link   = get_permalink( $pg->ID );
 ?>
 
 <main id="main-container">
@@ -48,7 +50,6 @@ $image_url = get_the_post_thumbnail_url( 'item-carousel' );
 						<?php
 						}
 						?>
-						<img src="https://animals.sandiegozoo.org/sites/default/files/2016-08/animals_hero_mountains.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
 					</div>
 				</div>
 			</div>
@@ -59,10 +60,14 @@ $image_url = get_the_post_thumbnail_url( 'item-carousel' );
 		<div class="container my-4">
 			<div class="row pt-0">
 				<!-- SIDEBAR NEWS  -->
-				<div class="col-12 col-lg-3 border-end">
+				<?php
+					$link_msg =  __( 'Tutte le notizie', 'design_laboratori_italia' );
+				?>
+				<div class="col-12 col-lg-2 border-end">
+						<a href="<?php echo esc_url( $pg_link); ?>" title="<?php echo $link_msg; ?>" alt="<?php echo $link_msg; ?>" ><?php echo $link_msg; ?></a>
 				</div>
 				<!-- NEWS -->
-				<div class="col-12 col-lg-9 it-page-sections-container">
+				<div class="col-12 col-lg-10 it-page-sections-container">
 					<div class="row p-4 pt-0">
 						<p>
 							<?php echo the_content(); ?>

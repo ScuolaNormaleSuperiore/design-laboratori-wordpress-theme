@@ -80,10 +80,7 @@ if(!function_exists("dli_get_meta")){
 		}else if (is_singular("post")  || (isset($post_type) && $post_type == "post")) {
 			$prefix = '_dsi_articolo_';
 			return get_post_meta( $post_id, $prefix . $key, true );
-		}/*else if (is_singular("programma_materia")  || (isset($post_type) && $post_type == "programma_materia")) { // todo: programma materia
-			$prefix = '_dsi_materia_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}*/else if (is_singular("scheda_progetto")  || (isset($post_type) && $post_type == "scheda_progetto")) {
+		}else if (is_singular("scheda_progetto")  || (isset($post_type) && $post_type == "scheda_progetto")) {
 			$prefix = '_dsi_scheda_progetto_';
 			return get_post_meta( $post_id, $prefix . $key, true );
 		}else if (is_singular("scheda_didattica")  || (isset($post_type) && $post_type == "scheda_didattica")) {
@@ -729,46 +726,6 @@ function dsi_user_has_signed_circolare($user, $post){
 }
 
 /**
- * check if is circolare
- * @param $post
- * @return bool
- */
-function dsi_is_circolare($post){
-
-		if($post->post_type == "circolare")
-				return true;
-
-		return false;
-}
-
-
-/**
- * check if is circolare
- * @param $post
- * @return bool
- */
-function dsi_is_albo($post){
-
-		if(has_term("albo-online", "tipologia-documento", $post))
-				return true;
-
-		return false;
-}
-
-/**
- * Converte l'anno scolastico nel formato da stampare
- */
-function dsi_convert_anno_scuola($anno){
-		if(is_string($anno) && ($anno != "")) {
-				$nextanno = $anno + 1;
-				return $anno . "/" . $nextanno;
-		}else{
-				return "";
-		}
-
-}
-
-/**
  * controllo se una struttura è una scuola
  * @param $post
  * @return bool
@@ -779,22 +736,6 @@ function dsi_is_scuola($post){
 				return true;
 
 		return false;
-}
-
-
-/**
- * ritorna l'anno scolastico corrente
- * @param bool $year
- * @return false|int|string
- */
-function dsi_get_current_anno_scolastico($year = true){
-		$today_month = date("n");
-		if($today_month < 8){
-				if($year) return date("Y")-1; else return dsi_convert_anno_scuola(date("Y")-1);
-		}else{
-				if($year) return date("Y"); else return dsi_convert_anno_scuola(date("Y"));
-		}
-
 }
 
 
@@ -1061,18 +1002,6 @@ if(!function_exists("dli_get_current_group")) {
 						return  dsi_get_post_types_group($tipo_post);
 				}
 				if (is_page()) {
-						// $rel_url = wp_make_link_relative(get_permalink());
-						// $rel_url =  preg_replace('/^' . preg_quote('/', '/') . '/', '', $rel_url);
-						// $group_slug = strtok($rel_url, '/');
-						// switch($group_slug){
-						// 		case 'la-scuola':
-						// 				return 'school';
-						// 		case 'didattica' :
-						// 				return 'education';
-						// 		case 'novita': case 'evento': case 'circolare':
-						// 				return 'news';
-						// }
-						// return get_post_field( 'title' );
 						return get_the_title();
 				}
 				$current_post_type = get_post_type();
