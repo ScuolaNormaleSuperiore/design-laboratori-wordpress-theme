@@ -7,7 +7,7 @@ $query = new WP_Query(
 		'posts_per_page' => 2,
 		'meta_query'     => array(
 			array(
-				'key'     => 'promuovi_in_hero',
+				'key'     => 'promuovi_in_carousel',
 				'compare' => '=',
 				'value'   => 1,
 			),
@@ -27,7 +27,7 @@ $num_items = $query->post_count;
 	<div class="card card-teaser rounded shadow">
 		<div class="card-body">
 			<h3 class="card-title h5"><?php the_title() ?></h3>
-			<p class="card-text"><?php echo the_field( 'abstract' ); ?></p>
+			<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
 		</div>
 	</div>
 	<?php
