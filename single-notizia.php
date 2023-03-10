@@ -1,6 +1,6 @@
 <?php
 /**
- * Servizio template file
+ * Notizia template file
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -9,8 +9,8 @@
 
 global $post;
 get_header();
-$category  = dli_get_post_main_category( $last_hero_news, 'category' );
-$date      = get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_news );
+$category  = dli_get_post_main_category( $post, 'category' );
+$date      = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $news_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 $pg        = dli_get_page_by_post_type( $post->post_type );
