@@ -297,7 +297,7 @@ class Event_Manager {
 							'id' => '',
 						),
 						'post_type' => array(
-							0 => 'progetto',
+							0 => 'indirizzo-di-ricerca',
 						),
 						'taxonomy' => '',
 						'filters' => array(
@@ -347,8 +347,8 @@ class Event_Manager {
 					),
 					array(
 						'key' => 'field_63ca9bdcb8fd0',
-						'label' => 'Promuovi in hero',
-						'name' => 'promuovi_in_hero',
+						'label' => 'Promuovi in carousel',
+						'name' => 'promuovi_in_carousel',
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
@@ -360,7 +360,7 @@ class Event_Manager {
 							'id' => '',
 						),
 						'message' => '',
-						'default_value' => 1,
+						'default_value' => 0,
 						'ui' => 0,
 						'ui_on_text' => '',
 						'ui_off_text' => '',
