@@ -23,6 +23,8 @@ class Publication_Manager {
 		add_action( 'init', array( $this, 'add_taxonomies' ) );
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
+		// Customize the post type layout of the admin interface.
+		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
 	/**
@@ -96,6 +98,18 @@ class Publication_Manager {
 
 		// Add the custom fields.
 		$this->add_fields();
+	}
+
+	/**
+	 * Customize the layout of the admin interface.
+	 *
+	 * @param Object $post - The custom post.
+	 * @return string
+	 */
+	public function custom_layout( $post ) {
+		if ( PUBLICATION_POST_TYPE === $post->post_type ) {
+			_e( '<h1>Descrizione della pubblicazione</h1>', 'design_laboratori_italia' );
+		}
 	}
 
 

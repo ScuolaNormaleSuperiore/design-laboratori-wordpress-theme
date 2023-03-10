@@ -21,6 +21,8 @@ class Project_Manager {
 	public function setup() {
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
+		// Customize the post type layout of the admin interface.
+		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
 		function add_post_type() {
@@ -50,6 +52,18 @@ class Project_Manager {
 					// Add the custom fields
 					$this->add_fields();
 		}
+
+		/**
+	 * Customize the layout of the admin interface.
+	 *
+	 * @param Object $post - The custom post.
+	 * @return string
+	 */
+	public function custom_layout( $post ) {
+		if ( PROGETTO_POST_TYPE === $post->post_type ) {
+			_e( '<h1>Descrizione del progetto</h1>', 'design_laboratori_italia' );
+		}
+	}
 
 		function add_fields() {
 			if( function_exists('acf_add_local_field_group') ){

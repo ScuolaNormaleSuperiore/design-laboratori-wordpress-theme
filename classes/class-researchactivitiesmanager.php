@@ -24,6 +24,8 @@ class ResearchActivities_Manager {
 	public function setup() {
 		// Register the post type.
 		add_action( 'init', array( $this, 'dsi_register_indirizzo_di_ricerca_post_type' ) );
+		// Customize the post type layout of the admin interface.
+		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
 		function dsi_register_indirizzo_di_ricerca_post_type() {
@@ -38,7 +40,7 @@ class ResearchActivities_Manager {
 				$args   = array(
 						'label'         => __( 'Indirizzo di ricerca', 'design_laboratori_italia' ),
 						'labels'        => $labels,
-						'supports'      => array( 'title', 'thumbnail' ),
+						'supports'      => array( 'title', 'editor', 'thumbnail' ),
 						'public'        => true,
 						'show_in_rest'  => true,
 						'menu_position' => 2,
@@ -53,6 +55,18 @@ class ResearchActivities_Manager {
 				$this->add_fields();
 		}
 
+		/**
+	 * Customize the layout of the admin interface.
+	 *
+	 * @param Object $post - The custom post.
+	 * @return string
+	 */
+	public function custom_layout( $post ) {
+		if ( RESEARCHACTIVITY_POST_TYPE === $post->post_type ) {
+			_e( '<h1>Descrizione indirizzo di ricerca</h1>', 'design_laboratori_italia' );
+		}
+	}
+
 		function add_fields() {
 			if( function_exists('acf_add_local_field_group') ) {
 
@@ -61,54 +75,9 @@ class ResearchActivities_Manager {
 					'title' => 'Campi Indirizzo di ricerca',
 					'fields' => array(
 						array(
-							'key' => 'field_63ca9592c7532',
-							'label' => 'Logo indirizzo di ricerca',
-							'name' => 'logo_indirizzo_di_ricerca',
-							'aria-label' => '',
-							'type' => 'image',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'return_format' => 'array',
-							'library' => 'uploadedTo',
-							'min_width' => '',
-							'min_height' => '',
-							'min_size' => '',
-							'max_width' => '',
-							'max_height' => '',
-							'max_size' => '',
-							'mime_types' => 'png, jpg, jpeg',
-							'preview_size' => 'medium',
-						),
-						array(
 							'key' => 'field_63ca95fba16fc',
 							'label' => 'Descrizione breve',
 							'name' => 'descrizione_breve',
-							'aria-label' => '',
-							'type' => 'text',
-							'instructions' => '',
-							'required' => 1,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'default_value' => '',
-							'maxlength' => 255,
-							'placeholder' => '',
-							'prepend' => '',
-							'append' => '',
-						),
-						array(
-							'key' => 'field_63ca9616a16fd',
-							'label' => 'Testo descrittivo',
-							'name' => 'testo_descrittivo',
 							'aria-label' => '',
 							'type' => 'textarea',
 							'instructions' => '',
@@ -120,7 +89,7 @@ class ResearchActivities_Manager {
 								'id' => '',
 							),
 							'default_value' => '',
-							'maxlength' => '',
+							'maxlength' => 255,
 							'rows' => '',
 							'placeholder' => '',
 							'new_lines' => '',
@@ -130,7 +99,7 @@ class ResearchActivities_Manager {
 							'label' => 'Email',
 							'name' => 'email',
 							'aria-label' => '',
-							'type' => 'text',
+							'type' => 'email',
 							'instructions' => '',
 							'required' => 0,
 							'conditional_logic' => 0,
@@ -140,7 +109,6 @@ class ResearchActivities_Manager {
 								'id' => '',
 							),
 							'default_value' => '',
-							'maxlength' => '',
 							'placeholder' => '',
 							'prepend' => '',
 							'append' => '',

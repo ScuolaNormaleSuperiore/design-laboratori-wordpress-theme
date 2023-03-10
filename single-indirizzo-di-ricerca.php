@@ -98,7 +98,7 @@ get_header();
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
 					<p>
-						<?php echo wp_trim_words( get_field( 'testo_descrittivo' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+						<?php echo esc_attr( the_content() ); ?>
 						<!--?php
 							$content = apply_filters( 'the_content', $post->post_content );
 							echo $content;

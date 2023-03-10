@@ -99,10 +99,6 @@ class LabManager {
 		$ctram = new ResearchActivities_Manager();
 		$ctram->setup();
 
-		// Setup del post type Progetti.
-		$ctprog = new Project_Manager();
-		$ctprog->setup();
-
 		// Setup del post type News.
 		$ctprog = new News_Manager();
 		$ctprog->setup();
