@@ -73,7 +73,7 @@ require get_template_directory() . '/inc/activation.php';
 /**
  * Actions & Hooks
  */
-// require get_template_directory() . '/inc/actions.php';
+require get_template_directory() . '/inc/actions.php';
 
 /**
  * Gutenberg editor rules
