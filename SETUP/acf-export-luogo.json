@@ -4,6 +4,26 @@
 			"title": "Campi Luogo",
 			"fields": [
 					{
+							"key": "field_640b0dc4ea339",
+							"label": "Descrizione breve",
+							"name": "descrizione_breve",
+							"aria-label": "",
+							"type": "textarea",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": 255,
+							"rows": "",
+							"placeholder": "",
+							"new_lines": ""
+					},
+					{
 							"key": "field_6400916967a3b",
 							"label": "Indirizzo",
 							"name": "indirizzo",

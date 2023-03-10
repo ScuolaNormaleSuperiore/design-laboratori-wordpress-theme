@@ -94,7 +94,7 @@ class Place_Manager {
 		$args   = array(
 			'label'           => __( 'Luogo', 'design_laboratori_italia' ),
 			'labels'          => $labels,
-			'supports'        => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			'public'          => true,
 			'show_in_menu'    => true,
 			'show_in_rest'    => true,
@@ -138,6 +138,26 @@ class Place_Manager {
 				'title' => 'Campi Luogo',
 				'fields' => array(
 					array(
+						'key' => 'field_640b0dc4ea339',
+						'label' => 'Descrizione breve',
+						'name' => 'descrizione_breve',
+						'aria-label' => '',
+						'type' => 'textarea',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => '',
+						'maxlength' => 255,
+						'rows' => '',
+						'placeholder' => '',
+						'new_lines' => '',
+					),
+					array(
 						'key' => 'field_6400916967a3b',
 						'label' => 'Indirizzo',
 						'name' => 'indirizzo',
@@ -173,8 +193,7 @@ class Place_Manager {
 						'name' => 'posizione_gps',
 						'aria-label' => '',
 						'type' => 'open_street_map',
-						'instructions' => 'NB: Inserisci e cerca l\'indirizzo, anche se lo hai già inserito nel campo precedente.
-			Questo permetterà una corretta georeferenziazione del luogo',
+						'instructions' => 'NB: Inserisci e cerca l\'indirizzo, anche se lo hai già inserito nel campo precedente. Questo permetterà una corretta georeferenziazione del luogo',
 						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
