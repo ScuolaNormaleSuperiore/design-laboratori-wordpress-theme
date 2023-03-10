@@ -39,11 +39,7 @@ $current_group   = dli_get_current_group();
 </nav>
 <!-- End Right menu element-->
 
-<?php
 
-if( is_search() || is_archive() )
-	get_template_part( 'template-parts/header/search-filters' );
-?>
 
 
 <?php $active_page = dli_get_current_group(); ?>

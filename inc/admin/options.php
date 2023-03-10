@@ -478,7 +478,57 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 5 - Registers options page "Novità".
+	* 5 - Registers options page "Blog".
+	*/
+	$args = array(
+		'id'           => 'dli_options_blog',
+		'title'        => esc_html__( 'Il blog', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'blog',
+		'capability'   => 'manage_options',
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Blog', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$blog_options = new_cmb2_box( $args );
+
+		$blog_landing_url = dli_get_template_page_url( 'page-templates/blog.php' );
+		$blog_options->add_field(
+			array(
+				'id'   => $prefix . 'blog_istruzioni',
+				'name' => __( 'Sezione Il Blog', 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$blog_landing_url.'"> il blog</a>.' , 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+
+		$blog_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_blog',
+				'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "Gli articoli del laboratorio"' , 'design_laboratori_italia' ),
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em', 
+					),
+				),
+			)
+		);
+
+	/**
+	* 6 - Registers options page "Novità".
 	*/
 	$args = array(
 		'id'           => 'dli_options_notizie',
@@ -528,7 +578,7 @@ function dli_register_main_options_metabox() {
 		);
 
 	/**
-	* 6 - Registers options page "Eventi".
+	* 7- Registers options page "Eventi".
 	*/
 	$args = array(
 		'id'           => 'dli_options_eventi',
@@ -578,7 +628,7 @@ function dli_register_main_options_metabox() {
 		);
 	
 	/**
-	* 7 - Registers options page "Persone".
+	* 8 - Registers options page "Persone".
 	*/
 	$args = array(
 		'id'           => 'dli_options_persone',
@@ -623,7 +673,7 @@ function dli_register_main_options_metabox() {
 	) );
 
 	/**
-	* 8 - Registers options page "Pubblicazioni".
+	* 9 - Registers options page "Pubblicazioni".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -671,7 +721,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 9 - Registers options page "Progetti".
+	* 10 - Registers options page "Progetti".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -719,7 +769,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 10 - Registers options page "Attività di ricerca".
+	* 11 - Registers options page "Attività di ricerca".
 	*/
 	$args = array(
 		'id'           => 'dli_options_ricerca',
@@ -769,7 +819,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 11 - Registers options page "Attività di ricerca".
+	* 12 - Registers options page "Attività di ricerca".
 	*/
 		$args = array(
 				'id'           => 'dli_options_luoghi',
@@ -825,7 +875,7 @@ function dli_register_main_options_metabox() {
 		));
 
 	/**
-	* 12 - Registers options page "Social media".
+	* 13 - Registers options page "Social media".
 	*/
 		$args = array(
 				'id'           => 'dli_options_socials',
@@ -921,7 +971,7 @@ $social_options->add_field( array(
 ) );
 
 	/**
-	* 13 - Registers options page "Altro".
+	* 14 - Registers options page "Altro".
 	*/
 
 	$args = array(

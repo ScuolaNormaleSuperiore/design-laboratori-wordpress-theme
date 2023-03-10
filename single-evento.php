@@ -17,6 +17,13 @@ $start_date       = get_field( 'data_inizio', $post );
 $start_event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
 $end_date         = get_field( 'data_fine', $post );
 $end_event_date   = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
+$luogo            = dli_get_field( 'luogo' );
+$label_contatti   = dli_get_field( 'label_contatti' );
+$telefono         = dli_get_field( 'telefono' );
+$email            = dli_get_field( 'email' );
+$sitoweb          = dli_get_field( 'sitoweb' );
+$video            = dli_get_field( 'video' );
+$allegato         = dli_get_field( 'allegato' );
 ?>
 
 <main id="main-container">
@@ -109,96 +116,137 @@ $end_event_date   = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date )
 				</div>
 			</div>
 			<div class="col-12 col-lg-9 it-page-sections-container">
-
-			<!-- DESCRIZIONE --> 
-			<h3 class="it-page-section h4 visually-hidden" id="descrizione">Descrizione evento</h3>
+				<!-- DESCRIZIONE --> 
+				<h3 class="it-page-section h4 visually-hidden" id="descrizione"><?php echo __( 'Descrizione evento', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
-				<p><?php the_content(); ?></p>
-			</div>
+					<p><?php the_content(); ?></p>
+				</div>
 
-			<!-- LUOGO -->
-			<h3 class="it-page-section h4 pt-3" id="luogo">Luogo</h3>
-			<section id="responsabile">    
-			<div class="row pb-3 pt-3">
-			<p>{Luogo}</p>
-			</div>
-			</section>
+				<!-- LUOGO -->
+				<?php
+				if ( $luogo ) {
+				?>
+				<h3 class="it-page-section h4 pt-3" id="luogo"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
+				<section id="responsabile">    
+				<div class="row pb-3 pt-3">
+				<p><?php echo esc_attr( $luogo ); ?></p>
+				</div>
+				</section>
+				<?php
+				}
+				?>
 
-			<!-- CONTATTI -->
-			<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">{Label}</h3>
-			<div class="it-list-wrapper">
-			<ul class="it-list">
-			<li>
-			<div class="list-item">
-			<div class="it-rounded-icon">
-			<svg class="icon">
-				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
-			</svg>
-			</div>
-			<div class="it-right-zone"><span class="text">050 509662</span>
-			</div>
-			</div>
-			</li>   
-			<li>
-			<a href="#" class="list-item">
-			<div class="it-rounded-icon">
-			<svg class="icon">
-				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
-			</svg>
-			</div>
-			<div class="it-right-zone"><span class="text">mail@sns.it</span>
-			</div>
-			</a>
-			</li>
-			<li>
-			<a class="list-item" href="#">
-			<div class="it-rounded-icon">
-			<svg class="icon">
-				<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-			</svg>
-			</div>
-			<div class="it-right-zone"><span class="text">www.sns.it</span>
-			</div>
-			</a>
-			</li>
-			</ul>
-			</div>	
+				<!-- CONTATTI -->
+				<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">
+					<?php
+					if ( $label_contatti ) {
+					?>
+					<span><?php echo esc_attr( $label_contatti ) ?></span>
+					<?php
+					} else {
+					?>
+					<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
+					<?php
+					}
+					?>
+				</h3>
+				<div class="it-list-wrapper">
+					<ul class="it-list">
+						<?php
+							if ( $telefono ) {
+						?>
+						<li>
+							<div class="list-item">
+								<div class="it-rounded-icon">
+									<svg class="icon">
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+									</svg>
+								</div>
+								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+							</div>
+						</li>
+						<?php
+							}
+							if ( $email ) {
+						?>
+						<li>
+							<a href="#" class="list-item">
+							<div class="it-rounded-icon">
+								<svg class="icon">
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+								</svg>
+							</div>
+							<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+							</a>
+						</li>
+						<?php
+							}
+							if ( $sitoweb ) {
+						?>
+						<li>
+							<a class="list-item" href="#">
+							<div class="it-rounded-icon">
+								<svg class="icon">
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+								</svg>
+							</div>
+							<div class="it-right-zone"><span class="text"><?php echo esc_url( $sitoweb ); ?></span></div>
+							</a>
+						</li>
+						<?php
+							}
+						?>
+					</ul>
+				</div>
 
-			<!-- ALLEGATI -->
-			<h3 class="it-page-section h4 pt-3 pb-3" id="allegati">Allegati</h3>
-			<section id="allegati">    
-			<div class="row ">
-				<div class="card-wrapper card-teaser-wrapper">
-					<!--start card-->
-					<div class="card card-teaser rounded shadow ">
-						<div class="card-body">
-							<h3 class="card-title h5 ">
-								<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use></svg>
-								<a href="#">Locandina</a>
-							</h3>
+				<!-- ALLEGATI -->
+				<?php
+				if ( $allegato ){
+				?>
+				<h3 class="it-page-section h4 pt-3 pb-3" id="allegati"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+				<section id="allegati">    
+					<div class="row ">
+						<div class="card-wrapper card-teaser-wrapper">
+							<!--start card-->
+							<div class="card card-teaser rounded shadow ">
+								<div class="card-body">
+									<h3 class="card-title h5 ">
+										<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use></svg>
+										<a target="_blank" href="<?php echo esc_attr( $allegato['url'] ); ?>"><?php echo esc_attr( $allegato['title'] ); ?></a>
+									</h3>
+								</div>
+							</div>
+							<!--end card-->
+						</div>  
+					</div>
+				</section>
+				<?php
+					}
+				?>
+
+				<!-- VIDEO -->
+				<?php
+				if ( $video ){
+				?>
+				<h3 id="video" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
+				<div class="row variable-gutters mb-5">
+					<div class="col-lg-9">
+						<div class="video-wrapper">
+							<iframe title="" width="500"
+								height="281" src="<?php echo esc_url( $video ); ?>"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen="">
+							</iframe>
 						</div>
-					</div>
-					<!--end card-->
-				</div>  
+					</div><!-- /col-lg-9 -->
+				</div><!-- /row -->
+				<?php
+					}
+				?>
 			</div>
-			</section>
 
-			<!-- VIDEO -->	
-			<h3 id="video" class="it-page-section h4 pt-3">Video</h3>
-			<div class="row variable-gutters mb-5">
-				<div class="col-lg-9">
-					<div class="video-wrapper">
-						<iframe title="Intervento del Presidente Draghi alla Firma del Patto per Torino"
-							aria-label="Intervento del Presidente Draghi alla Firma del Patto per Torino" width="500"
-							height="281" src="https://www.youtube-nocookie.com/embed/s9cYAy-xd6g?feature=oembed"
-							frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen="">
-						</iframe>
-					</div>
-				</div><!-- /col-lg-9 -->
-			</div><!-- /row -->
-			</div>
+
 		</div> <!-- END row -->
 	</div>   <!-- END container -->
 

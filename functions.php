@@ -60,6 +60,11 @@ require get_template_directory() . '/inc/backend-template.php';
 require get_template_directory() . '/inc/utils.php';
 
 /**
+ * Search Utils functions.
+ */
+require get_template_directory() . '/inc/search-utils.php';
+
+/**
  * Notifications functions.
  */
 require get_template_directory() . '/inc/notification.php';
