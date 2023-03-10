@@ -1,86 +1,86 @@
 [
-    {
-        "key": "group_63cab53e5eb0e",
-        "title": "Campi Notizia",
-        "fields": [
-            {
-                "key": "field_63cab53e63c56",
-                "label": "Descrizione breve",
-                "name": "descrizione_breve",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": 255,
-                "rows": "",
-                "placeholder": "",
-                "new_lines": ""
-            },
-            {
-                "key": "field_63cab53e76998",
-                "label": "Promuovi in hero",
-                "name": "promuovi_in_hero",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 1,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_63e665c8c0cd4",
-                "label": "Promuovi in home",
-                "name": "promuovi_in_home",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "notizia"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 1
-    }
+	{
+			"key": "group_63cab53e5eb0e",
+			"title": "Campi Notizia",
+			"fields": [
+					{
+							"key": "field_63cab53e63c56",
+							"label": "Descrizione breve",
+							"name": "descrizione_breve",
+							"aria-label": "",
+							"type": "textarea",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": 255,
+							"rows": "",
+							"placeholder": "",
+							"new_lines": ""
+					},
+					{
+							"key": "field_63cab53e76998",
+							"label": "Promuovi in carousel",
+							"name": "promuovi_in_carousel",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					},
+					{
+							"key": "field_63e665c8c0cd4",
+							"label": "Promuovi in home",
+							"name": "promuovi_in_home",
+							"aria-label": "",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 0,
+							"ui_on_text": "",
+							"ui_off_text": ""
+					}
+			],
+			"location": [
+					[
+							{
+									"param": "post_type",
+									"operator": "==",
+									"value": "notizia"
+							}
+					]
+			],
+			"menu_order": 0,
+			"position": "normal",
+			"style": "default",
+			"label_placement": "top",
+			"instruction_placement": "label",
+			"hide_on_screen": "",
+			"active": true,
+			"description": "",
+			"show_in_rest": 1
+	}
 ]
