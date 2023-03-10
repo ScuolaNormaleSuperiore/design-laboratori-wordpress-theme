@@ -58,8 +58,8 @@ class Post_Manager {
 					),
 					array(
 						'key' => 'field_63ecbd31e4611',
-						'label' => 'Promuovi in hero',
-						'name' => 'promuovi_in_hero',
+						'label' => 'Promuovi in carousel',
+						'name' => 'promuovi_in_carousel',
 						'aria-label' => '',
 						'type' => 'true_false',
 						'instructions' => '',
