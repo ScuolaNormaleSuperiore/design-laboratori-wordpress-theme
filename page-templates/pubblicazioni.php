@@ -1,6 +1,5 @@
 <?php
 define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
-define( 'POST_PER_PAGE', '4' );
 
 /* Template Name: Le pubblicazioni.
  *
@@ -41,7 +40,7 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 if ( !isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => POST_PER_PAGE,
+			'posts_per_page' => DLI_POSTS_PER_PAGE,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -59,7 +58,7 @@ if ( !isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => POST_PER_PAGE,
+			'posts_per_page' => DLI_POSTS_PER_PAGE,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -77,7 +76,7 @@ if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => POST_PER_PAGE,
+			'posts_per_page' => DLI_POSTS_PER_PAGE,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -92,7 +91,7 @@ if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => POST_PER_PAGE,
+			'posts_per_page' => DLI_POSTS_PER_PAGE,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
