@@ -1120,6 +1120,7 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			'image_title'   => $image_title,
 		);
 	}
+}
 
 	if( ! function_exists( 'dli_from_news_to_carousel_item' ) ) {
 		function dli_from_news_to_carousel_item( $item ) {
@@ -1389,5 +1390,10 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return dli_get_content( $page, 'page' );
 		}
 	}
+
+	if( ! function_exists( 'dli_get_all_contenttypes' ) ) {
+		function dli_get_all_contenttypes( ) {
+			return DLI_POST_TYPES_TO_TRANSLATE;
+		}
+	}
 	
-}
