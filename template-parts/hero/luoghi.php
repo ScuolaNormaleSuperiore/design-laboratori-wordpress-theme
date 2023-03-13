@@ -6,7 +6,7 @@ $testo_sezione_luoghi = dli_get_option("testo_sezione_luoghi", "luoghi");
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
 				<h2 class="p-0  "><?php _e( 'I Luoghi', 'design_laboratori_italia' ); ?></h2>
-				<p class="font-weight-normal"><?php echo esc_html( $testo_sezione_luoghi ); ?></p>
+				<p class="font-weight-normal"><?php echo $testo_sezione_luoghi; ?></p>
 			</div>
 		</div>
 	</div>

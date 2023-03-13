@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
 				<h2 class="p-0  "><?php echo __( 'Blog', 'design_laboratori_italia' ); ?></h2>
-				<p class="font-weight-normal"><?php echo esc_html( $testo_sezione ); ?></p>
+				<p class="font-weight-normal"><?php echo $testo_sezione; ?></p>
 			</div>
 		</div>
 	</div>

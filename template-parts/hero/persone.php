@@ -6,7 +6,7 @@ $testo_sezione_persone = dli_get_option("testo_sezione_persone", "persone");
 				<div class="container">
 					<div class="hero-title text-left ms-4 pb-3 pt-3">
 						<h2 class="p-0  "><?php _e( 'Le persone', 'design_laboratori_italia' ); ?></h2>
-						<p class="font-weight-normal"><?php echo esc_html( $testo_sezione_persone ); ?></p>
+						<p class="font-weight-normal"><?php echo $testo_sezione_persone; ?></p>
 					</div>
 				</div>
 			</div>
