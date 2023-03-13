@@ -157,7 +157,7 @@ $num_results = $pubblicazioni->found_posts;
 								<div class="form-check">
 									<?php
 									$checked = false;
-									if ( count( $tipi_pubblicazione_params ) == 0 || (isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug)) {
+									if ( (isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug)) {
 										$checked = true;
 									}
 									?>
