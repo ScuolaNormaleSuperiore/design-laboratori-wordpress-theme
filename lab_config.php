@@ -55,8 +55,6 @@ define( 'SLUG_BLOG_EN', 'the-bloge' );
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
 define( 'SLUG_ACCESSIBILITA_EN', 'accessibility' );
-define( 'SLUG_DOVESIAMO_IT', 'dove-siamo' );
-define( 'SLUG_DOVESIAMO_EN', 'where-we-are' );
 define( 'SLUG_PRESENTAZIONE_IT', 'presentazione' );
 define( 'SLUG_PRESENTAZIONE_EN', 'presentation' );
 define( 'SLUG_CONTATTI_IT', 'contatti' );
