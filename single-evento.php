@@ -47,7 +47,7 @@ $allegato         = dli_get_field( 'allegato' );
 						</div>
 					</div>
 					<div class="col-sm-7">
-					<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-carousel' ); ?>"
+					<img src="<?php echo $image_url; ?>"
 							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
 							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
 							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
