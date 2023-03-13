@@ -59,7 +59,7 @@
 							"name": "posizione_gps",
 							"aria-label": "",
 							"type": "open_street_map",
-							"instructions": "NB: Inserisci e cerca l'indirizzo, anche se lo hai già inserito nel campo precedente.\r\nQuesto permetterà una corretta georeferenziazione del luogo",
+							"instructions": "NB: Inserisci e cerca l'indirizzo, anche se lo hai già inserito nel campo precedente. Questo permetterà una corretta georeferenziazione del luogo",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
