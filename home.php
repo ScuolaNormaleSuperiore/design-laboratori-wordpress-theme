@@ -19,24 +19,26 @@ get_header();
 
 
 <!-- PRESENTAZIONE -->
+<?php
+$testo_sezione_laboratorio = dli_get_option("descrizione_laboratorio", "la_scuola");
+$etichetta_laboratorio = esc_html (dli_get_option("etichetta", "la_scuola"));
+if($testo_sezione_laboratorio) {
+	?>
 <section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted pt-5">
 	<div>
 		<div class="container my-12">
-			<h2 class="h3 pb-1"><?php echo __( 'Il laboratorio', 'design_laboratori_italia' ); ?></h2>
+			<h2 class="h3 pb-1"><?php echo $etichetta_laboratorio; ?></h2>
 			<p>
 				<?php
-				$post = get_page_by_path( 'presentazione' );
-				if ( ! $post ) {
-					echo 'Qui va il contenuto della pagina con slug: "presentazione". Se non esiste, va creata.';
-				} else {
-					$content = apply_filters( 'the_content', $post->post_content );
-					echo $content ;
-				}
+					echo $testo_sezione_laboratorio;
 				?>
 			</p>
 		</div>
 	</div>
 </section>
+<?php
+}
+?>
 
 <!-- BLOCCO CARD -->
 <section id="blocco-card" aria-describedby="Blocco news, eventi e pubblicazioni" class="section pt-5" >
