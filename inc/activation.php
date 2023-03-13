@@ -198,22 +198,6 @@ function create_the_it_menus() {
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
-			array(
-				'slug'         => SLUG_LUOGHI_IT,
-				'title'        => 'I luoghi',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-			),
-			array(
-				'slug'         => SLUG_NOTIZIE_IT,
-				'title'        => 'Le notizie',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-			),
 		),
 	);
 	build_the_menu( $menu );
@@ -251,7 +235,7 @@ function create_the_it_menus() {
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_DOVESIAMO_IT,
+				'slug'         => SLUG_LUOGHI_IT,
 				'title'        => 'Dove siamo',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
@@ -460,22 +444,6 @@ function create_the_en_menus() {
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
-			array(
-				'slug'         => SLUG_LUOGHI_EN,
-				'title'        => 'Places',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-			),
-			array(
-				'slug'         => SLUG_NOTIZIE_EN,
-				'title'        => 'News',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-			),
 		),
 	);
 	build_the_menu( $menu );
@@ -513,7 +481,7 @@ function create_the_en_menus() {
 				'classes'      => 'footer-link',
 			),
 			array(
-				'slug'         => SLUG_DOVESIAMO_EN,
+				'slug'         => SLUG_LUOGHI_EN,
 				'title'        => 'Where we are',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
@@ -650,19 +618,6 @@ function create_the_pages() {
 				'content_status'     => 'publish',
 				'content_author'     => 1,
 				'content_template'   => 'page-templates/contatti.php',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_DOVESIAMO_IT,
-				'content_slug_en'    => SLUG_DOVESIAMO_EN,
-				'content_title_it'   => 'Dove siamo',
-				'content_title_en'   => 'Where we are',
-				'content_it'         => 'Noi siamo qui...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'We are here...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/dove-siamo.php',
 				'content_type'       => 'page',
 				'content_parent'     => null,
 			),
