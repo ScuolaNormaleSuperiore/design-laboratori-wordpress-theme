@@ -29,6 +29,8 @@
 				$title                      = get_the_title( $ID );
 				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
 				$post_link                  = get_the_permalink( $id );
+				$categoria                  = get_field( 'categoria_appartenenza', $id );
+				$cat_label                  = count( $categoria ) ? $categoria[0]->post_title : '';
 			?>
 
 				<!-- begin card person -->
@@ -39,7 +41,7 @@
 					</div>
 					<div class="extra-text">
 					<h4><a href="<?php echo $post_link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>
-					<span><?php echo esc_attr( $nome_struttura ); ?></span>
+					<span><?php echo esc_attr( $cat_label ); ?></span>
 					</div>
 					</div>
 				</div>
