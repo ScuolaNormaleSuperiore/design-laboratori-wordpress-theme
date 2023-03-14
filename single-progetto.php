@@ -1,6 +1,6 @@
 <?php
 /**
- * Servizio template file
+ * Progetto template file
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -8,6 +8,21 @@
  */
 
 get_header();
+
+$descrizione        = apply_filters( 'the_content', $post->post_content );
+$responsabili       = get_field( 'responsabile_del_progetto' );
+$partecipanti       = get_field( 'persone' );
+$indirizzidiricerca = get_field( 'elenco_indirizzi_di_ricerca_correlati' );
+$pubblicazioni      = get_field( 'pubblicazioni' );
+$fields_allegati    = array( 'allegato1', 'allegato2', 'allegato3' );
+$allegati           = array();
+foreach ( $fields_allegati as $field ) {
+	$item = get_field( $field );
+	if ( $item ) {
+		array_push( $allegati, $item );
+	}
+}
+$eventi = get_field( 'eventi_collegati' );
 ?>
 
 <main id="main-container">
@@ -72,27 +87,57 @@ get_header();
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<ul class="link-list">
-										<li class="nav-item">
-											<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#sezione-indirizzi-di-ricerca"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
-										</li>
+										<?php
+										if ( $descrizione ) {
+											?>
+											<li class="nav-item">
+												<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
+											</li>
+											<?php
+										}
+										if ( $responsabili ) {
+											?>
+											<li class="nav-item">
+												<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+											</li>
+											<?php
+										}
+										if ( $partecipanti ) {
+										 ?>
+											<li class="nav-item">
+												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
+											</li>
+											<?php
+										}
+										if ( $indirizzidiricerca ) {
+											?>
+											<li class="nav-item">
+												<a class="nav-link" href="#sezione-indirizzi-di-ricerca"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
+											</li>
+											<?php
+										}
+										if ( $pubblicazioni ) {
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-pubblicazioni"><span><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+											<?php
+										}
+										if ( count( $allegati ) > 0 ) {
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-allegati"><span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+											<?php
+										}
+										if ( $eventi ) {
+											?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+											<?php
+										}
+										?>
 									</ul>
 								</div>
 							</div> <!-- menu_laterale -->
@@ -102,48 +147,52 @@ get_header();
 			</div> <!-- row -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
+				<?php
+				if ( $descrizione ) {
+					?>
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
 					<p>
 						<?php
-							$content = apply_filters( 'the_content', $post->post_content );
-							echo $content;
+							echo $descrizione;
 						?>
 					</p>
 				</div>
-
-				<!-- RESPONSABILE -->
-				<?php $responsabili = get_field( 'responsabile_del_progetto' ); ?>
-				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
-				<?php
-					get_template_part(
-						'template-parts/common/sezione-persone',
-						null,
-						array(
-							'section_id' => 'responsabile',
-							'items'      => $responsabili,
-						)
-					);
-				?>
-
-				<!-- PARTECIPANTI -->
-				<?php $partecipanti = get_field( 'persone' ); ?>
-				<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
-				<?php
-					get_template_part(
-						'template-parts/common/sezione-persone',
-						null,
-						array(
-							'section_id' => 'partecipanti',
-							'items'      => $partecipanti,
-						)
-					);
-				?>
-
+					<?php
+				}
+				if ( $responsabili ) {
+					?>
+					<!-- RESPONSABILE -->
+					<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+					<?php
+						get_template_part(
+							'template-parts/common/sezione-persone',
+							null,
+							array(
+								'section_id' => 'responsabile',
+								'items'      => $responsabili,
+							)
+						);
+				}
+				if ( $partecipanti ) {
+					?>
+					<!-- PARTECIPANTI -->
+					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
+					<?php
+						get_template_part(
+							'template-parts/common/sezione-persone',
+							null,
+							array(
+								'section_id' => 'partecipanti',
+								'items'      => $partecipanti,
+							)
+						);
+				}
+				if ( $indirizzidiricerca ) {
+					?>
 				<!-- INDIRIZZI DI RICERCA -->
-				<?php $indirizzidiricerca = get_field( 'elenco_indirizzi_di_ricerca_correlati' ); ?>
 				<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 						get_template_part(
 							'template-parts/common/sezione-indirizzidiricerca',
 							null,
@@ -152,12 +201,12 @@ get_header();
 								'items'      => $indirizzidiricerca,
 							)
 						);
-				?>
-
+				}
+				if ( $pubblicazioni ) {
+					?>
 				<!-- PUBBLICAZIONI -->
-				<?php $pubblicazioni = get_field( 'pubblicazioni' ); ?>
 				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 						get_template_part(
 							'template-parts/common/sezione-pubblicazioni',
 							null,
@@ -166,45 +215,36 @@ get_header();
 								'items'      => $pubblicazioni,
 							)
 						);
-				?>
-
-			<!-- ALLEGATI -->
-			<?php
-				$fields    = array( 'allegato1', 'allegato2', 'allegato3' );
-				$allegati  = array();
-				foreach ( $fields as $field ) {
-					$item = get_field( $field );
-					if ( $item ) {
-						array_push( $allegati, $item );
-					}
 				}
-			?>
-			<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-allegati',
-					null,
-					array(
-						'section_id' => 'allegati',
-						'items'      => $allegati,
-					)
-				);
-			?>
-
-			<!-- EVENTI -->
-			<?php $eventi = get_field( 'eventi_collegati' ); ?>
-			<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
-			<?php
-				get_template_part(
-					'template-parts/common/sezione-eventi',
-					null,
-					array(
-						'section_id' => 'eventi',
-						'items'      => $eventi,
-					)
-				);
-			?>
-
+				if ( count( $allegati ) > 0 ) {
+					?>
+				<!-- ALLEGATI -->
+				<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+					<?php
+					get_template_part(
+						'template-parts/common/sezione-allegati',
+						null,
+						array(
+							'section_id' => 'allegati',
+							'items'      => $allegati,
+						)
+					);
+				}
+				if ( $eventi ) {
+					?>
+				<!-- EVENTI -->
+				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+					<?php
+					get_template_part(
+						'template-parts/common/sezione-eventi',
+						null,
+						array(
+							'section_id' => 'eventi',
+							'items'      => $eventi,
+						)
+					);
+				}
+				?>
 			</div>
 		</div>
 	</div> <!-- scheda_progetto -->
