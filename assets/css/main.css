@@ -37,15 +37,29 @@
 }
 
 .card.card-avatar .card-avatar-img {
-width: 40px;
-height: 40px;
-flex-shrink: 0;
-margin: 0 12px 0 0;
-border-radius: 50%;
-overflow: hidden;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	margin: 0 12px 0 0;
+	border-radius: 50%;
+	overflow: hidden;
 }
 
 .color-invert {
 filter: invert(100%);
+}
+
+.chip-selected {
+	background: #30475f;
+	border-color: #30475f;
+	color: #ffffff;
+}
+
+.chip-selected a {
+	color: #ffffff;
+}
+
+.chip-label a {
+	text-decoration: none !important;
 }
 

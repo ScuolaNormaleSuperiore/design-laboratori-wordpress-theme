@@ -88,7 +88,7 @@ while ( have_posts() ) {
 											<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 										<ul class="link-list">
-										<?php if ( $descrizione != '' ) { 
+										<?php if ( $descrizione != '' ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link active" href="#p1">
@@ -146,11 +146,9 @@ while ( have_posts() ) {
 							<div class="card-wrapper">
 								<div class="card card-img no-after">
 									<div class="img-responsive-wrapper">
-										<div class="img-responsive">
-											<?php
-											echo $posizione;
-											?>
-										</div>
+										<?php
+										echo $posizione;
+										?>
 									</div>
 									<?php
 					}
@@ -263,7 +261,7 @@ while ( have_posts() ) {
 			?>
 			</div>
 		</div> <!-- END row -->
-	</div>   <!-- END container -->     
+	</div>   <!-- END container -->
 	</main>
 <!-- END CONTENT -->
 
