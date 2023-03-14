@@ -3,6 +3,8 @@
 # More info at https://github.com/italia/publiccode.yml
 
 publiccodeYmlVersion: '0.2'
+applicationSuite: WordPress
+softwareVersion: 0.0.1
 categories:
   - website-builder
 description:
@@ -31,10 +33,10 @@ description:
       legate alla ricerca.
     screenshots:
       - >-
-        https://raw.githubusercontent.com/italia/design-laboratori-wordpress-theme/master/screenshot.png
+        https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/assets/img/homepage.png
     shortDescription: >-
         Design Laboratori Italia è un tema WordPress per i siti dei Laboratori Italiani. 
-developmentStatus: alpha
+developmentStatus: development 
 intendedAudience:
   countries:
     - it
@@ -45,7 +47,7 @@ usedBy:
 it:
   countryExtensionVersion: '0.2'
   riuso:
-    codiceIPA: istsc_blps020006
+    codiceIPA: sns_pi
   conforme:
     gdpr: false
     lineeGuidaDesign: true
@@ -57,11 +59,15 @@ it:
     pagopa: false
     spid: false
 legal:
-  license: AGPL-3.0-or-later
+  license: GPL-3.0-only
 localisation:
   availableLanguages:
     - it
   localisationReady: true
+dependsOn:
+  open:
+    - name: WordPress
+      optional: false
 maintenance:
   contacts:
     - email: servizi.informativi@sns.it
@@ -70,10 +76,6 @@ maintenance:
 name: Design Laboratori Italia
 platforms:
   - web
-  - windows
-  - linux
-  - ios
 releaseDate: '2023-03-06'
 softwareType: addon
-softwareVersion: '0.0.1'
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
