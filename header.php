@@ -210,7 +210,7 @@ $current_group   = dli_get_current_group();
 						</svg>
 					</button>
 					</div>
-					<div class="menu-wrapper">
+					<div class="menu-wrapper" id="menu-principale">
 						<!-- MAIN MENU -->
 						<nav aria-label="Principale">
 							<?php

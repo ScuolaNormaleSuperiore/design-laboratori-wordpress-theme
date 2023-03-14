@@ -11,7 +11,7 @@
 ?>
 
 <!-- START FOOTER -->
-<footer class="it-footer">
+<footer class="it-footer" id="footer-container">
 	<!-- TAGLINE -->
 	<div class="it-footer-main">
 		<div class="container">
