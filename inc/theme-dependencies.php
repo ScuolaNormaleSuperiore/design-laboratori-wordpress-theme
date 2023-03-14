@@ -82,6 +82,11 @@ function dsi_register_required_plugins() {
 			'slug'     => 'polylang',
 			'required' => true,
 		),
+		array(
+			'name'     => 'CookieYes - GDPR Cookie Consent',
+			'slug'     => 'cookie-law-info',
+			'required' => true,
+		),
 	);
 
 	/*
