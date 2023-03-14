@@ -22,7 +22,8 @@ foreach ( $fields_allegati as $field ) {
 		array_push( $allegati, $item );
 	}
 }
-$eventi = get_field( 'eventi_collegati' );
+$eventi     = get_field( 'eventi_collegati' );
+$websiteurl = get_field( 'url' );
 ?>
 
 <main id="main-container">
@@ -46,6 +47,9 @@ $eventi = get_field( 'eventi_collegati' );
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+						<div class="it-btn-container">
+							<a class="btn btn-sm btn-primary" href="<?php echo esc_url( $websiteurl) ; ?>"><?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -103,7 +107,7 @@ $eventi = get_field( 'eventi_collegati' );
 											<?php
 										}
 										if ( $partecipanti ) {
-										 ?>
+											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
 											</li>
