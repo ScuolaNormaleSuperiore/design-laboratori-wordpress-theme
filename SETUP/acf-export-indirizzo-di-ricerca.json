@@ -1,148 +1,154 @@
 [
-	{
-			"key": "group_63ca9591d0d91",
-			"title": "Campi Indirizzo di ricerca",
-			"fields": [
-					{
-							"key": "field_63ca95fba16fc",
-							"label": "Descrizione breve",
-							"name": "descrizione_breve",
-							"aria-label": "",
-							"type": "textarea",
-							"instructions": "",
-							"required": 1,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": 255,
-							"rows": "",
-							"placeholder": "",
-							"new_lines": ""
-					},
-					{
-							"key": "field_63ca964ca16fe",
-							"label": "Email",
-							"name": "email",
-							"aria-label": "",
-							"type": "email",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
-					},
-					{
-							"key": "field_63e65557d07f6",
-							"label": "Telefono",
-							"name": "telefono",
-							"aria-label": "",
-							"type": "text",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
-					},
-					{
-							"key": "field_63e65567d07f7",
-							"label": "Sito web",
-							"name": "sitioweb",
-							"aria-label": "",
-							"type": "url",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"placeholder": ""
-					},
-					{
-							"key": "field_63ca969ca16ff",
-							"label": "Responsabile dell’attività di ricerca",
-							"name": "responsabile_attivita_di_ricerca",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 1,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"persona"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": 1,
-							"max": "",
-							"elements": ""
-					},
-					{
-							"key": "field_63ca9713a1701",
-							"label": "Eventi collegati",
-							"name": "eventi_collegati",
-							"aria-label": "",
-							"type": "text",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
-					}
-			],
-			"location": [
-					[
-							{
-									"param": "post_type",
-									"operator": "==",
-									"value": "indirizzo-di-ricerca"
-							}
-					]
-			],
-			"menu_order": 0,
-			"position": "normal",
-			"style": "default",
-			"label_placement": "top",
-			"instruction_placement": "label",
-			"hide_on_screen": "",
-			"active": true,
-			"description": "",
-			"show_in_rest": 0
-	}
+    {
+        "key": "group_63ca9591d0d91",
+        "title": "Campi Indirizzo di ricerca",
+        "fields": [
+            {
+                "key": "field_63ca95fba16fc",
+                "label": "Descrizione breve",
+                "name": "descrizione_breve",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": 255,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_63ca964ca16fe",
+                "label": "Email",
+                "name": "email",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_63e65557d07f6",
+                "label": "Telefono",
+                "name": "telefono",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_63e65567d07f7",
+                "label": "Sito web",
+                "name": "sitioweb",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_63ca969ca16ff",
+                "label": "Responsabile dell’attività di ricerca",
+                "name": "responsabile_attivita_di_ricerca",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "persona"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": 0,
+                "max": "",
+                "elements": ""
+            },
+            {
+                "key": "field_63ca9713a1701",
+                "label": "Eventi collegati",
+                "name": "eventi_collegati",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "evento"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "indirizzo-di-ricerca"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
 ]

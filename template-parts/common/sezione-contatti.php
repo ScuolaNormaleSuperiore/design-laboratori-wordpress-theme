@@ -16,31 +16,33 @@
 				if ( $phone ) {
 			?>
 			<li>
-				<div class="list-item">
-					<div class="it-rounded-icon">
-						<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
-						</svg>
+				<a href="<?php echo 'tel:' . esc_attr( $phone ); ?>" class="list-item" target="_blank">
+					<div class="list-item">
+						<div class="it-rounded-icon">
+							<svg class="icon">
+								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+							</svg>
+						</div>
+						<div class="it-right-zone">
+							<span class="text"><?php echo esc_attr( $phone ); ?></span>
+						</div>
 					</div>
-					<div class="it-right-zone">
-						<span class="text"><?php echo esc_attr( $phone ); ?></span>
-					</div>
-				</div>
+				</a>
 			</li>
 			<?php
 				}
 				if ( $email ) {
 			?>
 			<li>
-				<a href="#" class="list-item">
-				<div class="it-rounded-icon">
-				<svg class="icon">
-					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
-				</svg>
-				</div>
-				<div class="it-right-zone">
-					<span class="text"><?php echo esc_attr( $email ); ?></span>
-				</div>
+				<a href="<?php echo 'mailto:' . esc_attr( $email ); ?>" class="list-item" target="_blank">
+					<div class="it-rounded-icon">
+					<svg class="icon">
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+					</svg>
+					</div>
+					<div class="it-right-zone">
+						<span class="text"><?php echo esc_attr( $email ); ?></span>
+					</div>
 				</a>
 			</li>
 			<?php
@@ -48,15 +50,15 @@
 				if ( $website ) {
 			?>
 			<li>
-				<a class="list-item" href="#">
-				<div class="it-rounded-icon">
-				<svg class="icon">
-					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-				</svg>
-				</div>
-				<div class="it-right-zone">
-					<span class="text"><?php echo esc_url( $website ); ?></span>
-				</div>
+				<a class="list-item" target="_blank" href="<?php echo esc_url( $website ); ?>">
+					<div class="it-rounded-icon">
+					<svg class="icon">
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+					</svg>
+					</div>
+					<div class="it-right-zone">
+						<span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span>
+					</div>
 				</a>
 			</li>
 			<?php

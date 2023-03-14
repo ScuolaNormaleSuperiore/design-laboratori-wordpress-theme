@@ -66,7 +66,7 @@
 						<!--end card eventi -->
 
 					<?php
-						if ( ( ( $pindex % PERSONE_PER_ROW ) === PERSONE_PER_ROW - 1 ) || ( $pindex + 1 === $num_results ) ) {
+						if ( ( ( $pindex % EVENTI_PER_ROW ) === EVENTI_PER_ROW - 1 ) || ( $pindex + 1 === $num_results ) ) {
 					?>
 					</div>
 					<!-- end row eventi -->

@@ -8,6 +8,22 @@
  */
 
 get_header();
+$description  = trim( get_the_content() );
+$responsabili = get_field( 'responsabile_attivita_di_ricerca' );
+$progetti     = dli_get_projects_by_event_id( get_the_ID() );
+$website      = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
+$phone        = get_field( 'telefono' )? get_field( 'telefono' ) : '';
+$email        = get_field( 'email' )? get_field( 'email' ) : '';
+$eventi       = get_field( 'eventi_collegati' );
+$cont_pres    = $website || $phone || $email;
+$contatti     = array(
+	'email'   => $email,
+	'pec'     => '',
+	'address' => '',
+	'mobile'  => '',
+	'phone'   => $phone,
+	'website' => $website,
+);
 ?>
 
 <main id="main-container">
@@ -29,7 +45,7 @@ get_header();
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+						<p class="d-none d-lg-block"><?php echo dli_get_field( 'descrizione_breve' ); ?></p>
 					</div>
 				</div>
 			</div>
@@ -71,21 +87,43 @@ get_header();
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<ul class="link-list">
+										<?php
+										if ( $description ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+										<?php
+										}
+										if ( $responsabili ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+										<?php
+										}
+										if ( $progetti ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-progetti"><span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+										<?php
+										}
+										if ( $cont_pres ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-contatti"><span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+										<?php
+										}
+										if ( $eventi ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
 										</li>
+										<?php
+										}
+										?>
 									</ul>
 								</div>
 							</div> <!-- menu_laterale -->
@@ -95,19 +133,23 @@ get_header();
 			</div> <!-- row -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
+				<?php
+				if ( $description ) {
+				?>
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
 					<p>
-						<?php echo esc_attr( the_content() ); ?>
-						<!--?php
-							$content = apply_filters( 'the_content', $post->post_content );
-							echo $content;
-						? -->
+						<?php echo the_content(); ?>
 					</p>
 				</div>
+				<?php
+				}
+				?>
 
 				<!-- RESPONSABILE -->
-				<?php $responsabili = get_field( 'responsabile_attivita_di_ricerca' ); ?>
+				<?php
+				if ( $responsabili ) {
+				?>
 				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
@@ -118,10 +160,13 @@ get_header();
 							'items'      => $responsabili,
 						)
 					);
+				}
 				?>
 
 				<!-- PROGETTI -->
-				<?php $progetti = dli_get_projects_by_event_id( get_the_ID() ); ?>
+				<?php
+				if ( $progetti ) {
+				?>
 				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
@@ -132,21 +177,12 @@ get_header();
 							'items'      => $progetti,
 						)
 					);
+				}
 				?>
 
 				<!-- CONTATTI -->
 				<?php
-					$website = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
-					$phone   = get_field( 'telefono' )? get_field( 'telefono' ) : '';
-					$email   = get_field( 'email' )? get_field( 'email' ) : '';
-					$contatti = array(
-						'email'   => $email,
-						'pec'     => '',
-						'address' => '',
-						'mobile'  => '',
-						'phone'   => $phone,
-						'website' => $website,
-					)
+				if ( $cont_pres ) {
 				?>
 				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 				<?php
@@ -158,10 +194,13 @@ get_header();
 								'items'      => $contatti,
 							)
 						);
+					}
 				?>
 
 				<!-- EVENTI -->
-				<?php $eventi = get_field( 'eventi_collegati' ); ?>
+				<?php
+				if ( $eventi ) {
+				?>
 				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
@@ -172,6 +211,7 @@ get_header();
 							'items'      => $eventi,
 						)
 					);
+				}
 				?>
 
 			</div>

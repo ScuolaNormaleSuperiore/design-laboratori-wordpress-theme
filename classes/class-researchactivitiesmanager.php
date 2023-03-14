@@ -68,6 +68,7 @@ class ResearchActivities_Manager {
 	}
 
 		function add_fields() {
+
 			if( function_exists('acf_add_local_field_group') ) {
 
 				acf_add_local_field_group(array(
@@ -157,7 +158,7 @@ class ResearchActivities_Manager {
 							'aria-label' => '',
 							'type' => 'relationship',
 							'instructions' => '',
-							'required' => 1,
+							'required' => 0,
 							'conditional_logic' => 0,
 							'wrapper' => array(
 								'width' => '',
@@ -172,7 +173,7 @@ class ResearchActivities_Manager {
 								0 => 'search',
 							),
 							'return_format' => 'object',
-							'min' => 1,
+							'min' => 0,
 							'max' => '',
 							'elements' => '',
 						),
@@ -181,7 +182,7 @@ class ResearchActivities_Manager {
 							'label' => 'Eventi collegati',
 							'name' => 'eventi_collegati',
 							'aria-label' => '',
-							'type' => 'text',
+							'type' => 'relationship',
 							'instructions' => '',
 							'required' => 0,
 							'conditional_logic' => 0,
@@ -190,11 +191,17 @@ class ResearchActivities_Manager {
 								'class' => '',
 								'id' => '',
 							),
-							'default_value' => '',
-							'maxlength' => '',
-							'placeholder' => '',
-							'prepend' => '',
-							'append' => '',
+							'post_type' => array(
+								0 => 'evento',
+							),
+							'taxonomy' => '',
+							'filters' => array(
+								0 => 'search',
+							),
+							'return_format' => 'object',
+							'min' => '',
+							'max' => '',
+							'elements' => '',
 						),
 					),
 					'location' => array(
@@ -216,6 +223,8 @@ class ResearchActivities_Manager {
 					'description' => '',
 					'show_in_rest' => 0,
 				));
+
 			}	
+			
 		}
 }
