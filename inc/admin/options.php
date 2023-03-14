@@ -231,30 +231,29 @@ function dli_register_main_options_metabox() {
 			'id'      => 'colore_message',
 			'type'    => 'radio_inline',
 			'options' => array(
-					'red'   => __( '<span class="radio-color red"></span>Rosso', 'design_laboratori_italia' ),
-					'yellow' => __( '<span class="radio-color yellow"></span>Giallo', 'design_laboratori_italia' ),
-					'green'     => __( '<span class="radio-color green"></span>Verde', 'design_laboratori_italia' ),
-					'blue'     => __( '<span class="radio-color blue"></span>Blu', 'design_laboratori_italia' ),
-					'purple'     => __( '<span class="radio-color purple"></span>Viola', 'design_laboratori_italia' ),
+					'danger'  => __( '<span class="radio-color red"></span>Danger', 'design_laboratori_italia' ),
+					'success' => __( '<span class="radio-color green"></span>Success', 'design_laboratori_italia' ),
+					'warning' => __( '<span class="radio-color brown"></span>Warning', 'design_laboratori_italia' ),
+					'info'    => __( '<span class="radio-color gray"></span>Info', 'design_laboratori_italia' ),
 			),
-			'default' => 'yellow',
+			'default' => 'info',
 	) );
 
-	$alerts_options->add_group_field( $alerts_group_id, array(
-			'name' => 'Visualizza icona',
-			'id'   => 'icona_message',
-			'type' => 'checkbox',
-	) );
+	// $alerts_options->add_group_field( $alerts_group_id, array(
+	// 		'name' => 'Visualizza icona',
+	// 		'id'   => 'icona_message',
+	// 		'type' => 'checkbox',
+	// ) );
 
-	$alerts_options->add_group_field( $alerts_group_id, array(
-			'id' => $prefix . 'data_message',
-			'name'        => __( 'Data fine', 'design_laboratori_italia' ),
-			'type' => 'text_date',
-			'date_format' => 'd-m-Y',
-			'data-datepicker' => json_encode( array(
-					'yearRange' => '-100:+0',
-			) ),
-	) );
+	// $alerts_options->add_group_field( $alerts_group_id, array(
+	// 		'id' => $prefix . 'data_message',
+	// 		'name'        => __( 'Data fine', 'design_laboratori_italia' ),
+	// 		'type' => 'text_date',
+	// 		'date_format' => 'd-m-Y',
+	// 		'data-datepicker' => json_encode( array(
+	// 				'yearRange' => '-100:+0',
+	// 		) ),
+	// ) );
 
 	$alerts_options->add_group_field( $alerts_group_id, array(
 			'id' => $prefix . 'testo_message',

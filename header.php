@@ -265,6 +265,12 @@ $current_group   = dli_get_current_group();
 </header>
 <!-- END HEADER -->
 
+
+<!-- ALERT SECTION - AVVISI -->
+<?php
+	get_template_part( 'template-parts/header/alert' );
+?>
+
 <!-- Finestre modali per la ricerca -->
 <?php
 	get_template_part( 'template-parts/common/search-modal' );

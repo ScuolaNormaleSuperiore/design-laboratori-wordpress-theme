@@ -439,19 +439,25 @@ luogo
 }
 
 .cmb2-options-box .radio-color.red {
-    background-color: #D1344C;
+    background-color: #CC334C;
 }
 .cmb2-options-box .radio-color.purple {
     background-color: #B21DD0;
 }
 .cmb2-options-box .radio-color.green {
-    background-color: #0E8A5F;
+    background-color: #008055;
 }
 .cmb2-options-box .radio-color.blue {
     background-color: #0D00FF;
 }
 .cmb2-options-box .radio-color.yellow {
     background-color: #FFCC00;
+}
+.cmb2-options-box .radio-color.gray {
+	background-color: #5d7083;
+}
+.cmb2-options-box .radio-color.brown {
+	background-color: #995C00;
 }
 
 #spinner-overlayer {

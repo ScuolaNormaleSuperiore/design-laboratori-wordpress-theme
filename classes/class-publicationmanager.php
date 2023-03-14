@@ -91,7 +91,7 @@ class Publication_Manager {
 			'menu_icon'       => 'dashicons-book',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array( 'slug' => 'strutture', )
+			'rewrite'         => array( 'slug' => 'strutture', ),
 		);
 
 		register_post_type( PUBLICATION_POST_TYPE, $args );
