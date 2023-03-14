@@ -42,9 +42,35 @@ if ( $searchstring !== '' ) {
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<!-- SEZIONE RICERCA NELL SITO -->
 	<form action="." id="notizieform" method="GET">
-	<section id="news" class="p-4">
+
+	<!-- BANNER -->
+	<section id="banner-cerca"  class="bg-banner-cerca">
+		<div class="section-muted p-3 primary-bg-c1">
+			<div class="container">
+				<div class="hero-title text-left ms-4 pb-3 pt-3">
+					<h2 class="pt-0 pb-0"><?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?></h2>
+					<div class="row m-0">
+						<div class="form-group col-md-12 mb-4 text-left">
+							<label class="active visually-hidden" for="searchstring">
+								<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>
+							</label>
+							<input type="text" id="searchstring" name="searchstring" class="form-control" placeholder="<?php echo __( 'Inserisci il test da cercare', 'design_laboratori_italia' ); ?>">
+						</div> 
+					</div>
+					<div class="row">
+							<div class="form-group col text-left ps-4 mb-2">
+								<button type="button" class="btn btn-outline-primary"><?php echo __( 'Cancella', 'design_laboratori_italia' ); ?></button>
+								<button type="submit" class="btn btn-primary"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SEZIONE RICERCA NELL SITO -->
+	<section id="RISULTATI" class="p-4">
 		<div class="container my-4">
 			<div class="row pt-0">
 
@@ -77,28 +103,12 @@ if ( $searchstring !== '' ) {
 				</div>
 				<!--COLONNA FILTRI -->
 
-				<!-- Inizio ELENCO NEWS -->
+				<!-- Inizio ELENCO RISULTATI -->
 				<div class="col-12 col-lg-8">
-						<div>
-							<p>
-								<span>
-									<input type="text" id="searchstring" name="searchstring" placeholder="Testo da cercare..." ù
-										value="<?php echo $searchstring; ?>" />
-								</span>
-							</p>
-							<p>
-
-								<button type="submit" class="btn btn-primary">
-									<?php echo __( 'Cerca', 'design_laboratori_italia' ); ?>
-								</button>
-
-								<button type="button" class="btn btn-primary">
-									<?php echo __( 'Reimposta filtri', 'design_laboratori_italia' ); ?>
-								</button>
-							</p>
+						<div class="row ps-4">
 							<p>
 								<em>
-									<span><?php echo __( 'Numero dei contenuti trovati', 'design_laboratori_italia' ); ?>:</span>
+									<span><?php echo __( 'Risultati', 'design_laboratori_italia' ); ?>:</span>
 									<span><?php echo $num_results; ?></span>
 								</em>
 						</p>
@@ -114,21 +124,30 @@ if ( $searchstring !== '' ) {
 						$the_query->the_post();
 					?>
 					<!-- begin row -->
-					<div class="row pt-5">
+					<div class="row">
 					<?php
 						$result = dli_format_search_result( $post )
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-12">
-							<div class="card-wrapper">
-
-							<p>
-								<a href="<?php echo esc_url( $result['link'] ); ?>">
-									<span><b><?php echo esc_attr( $result['title'] ); ?></b></span>
-								</a>:
-								<span><em><?php echo esc_attr( wp_trim_words( $result['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?></em></span>
-							</p>
-
+							<div class="card-wrapper ">
+								<div class="card">
+									<div class="card-body mb-0">
+										<?php
+										 if ( $result['image'] ) {
+										?>
+										<img src="<?php echo esc_url( $result['image'] ); ?>" height="100" width="100" 
+											class="img-thumbnail float-sm-start me-2 text-nowrap" />
+										<?php
+										 }
+										?>
+										<span class="text" style="text-transform: uppercase;"><?php echo esc_attr( $result['type'] ); ?></span>
+										<a href="<?php echo esc_url( $result['link'] ); ?>">
+											<h3 class="card-title h5 "><?php echo esc_attr( $result['title'] ); ?></h3>
+										</a>
+										<p class="card-text"><?php echo esc_attr( wp_trim_words( $result['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!--end card-->
@@ -137,23 +156,19 @@ if ( $searchstring !== '' ) {
 					<?php
 					$pindex++;
 					}
-				} else {
-					?>
-				<div clas="row pt-2">
-					<?php echo __( 'Non è stata trovato alcun contenuto che soddisfa i requisiti', 'design_laboratori_italia' ); ?>
-				</div>
-				<?php
-					}
-				 ?>
+				}
+				?>
 
 
 				</div> 
-				<!-- Fine elenco news-->
+				<!-- Fine elenco RISULTATI-->
 
 			</div>
 		</div>
 	</section>
+
 	</form>
+
 		<!-- RESTORE ORIGINAL Post Data -->
 		<?php
 		wp_reset_postdata();

@@ -31,8 +31,8 @@ if ( ! function_exists( 'dli_format_search_result' ) ) {
 			'link'          => get_the_permalink( $post->ID ),
 			'date'          => null,
 			'type'          => $post->post_type,
-			'category'      => '',
-			'link_category' => '',
+			'category'      => null,
+			'link_category' => null,
 		);
 
 	}
