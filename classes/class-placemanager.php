@@ -98,7 +98,7 @@ class Place_Manager {
 			'public'          => true,
 			'show_in_menu'    => true,
 			'show_in_rest'    => true,
-			'menu_position'   => 2,
+			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-pressthis',
 			'has_archive'     => true,
 			'show_in_rest'    => true,

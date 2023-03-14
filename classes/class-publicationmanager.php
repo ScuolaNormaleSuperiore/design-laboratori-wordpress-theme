@@ -87,11 +87,12 @@ class Publication_Manager {
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			'hierarchical'    => true,
 			'public'          => true,
-			'menu_position'   => 2,
+			'show_in_menu'    => true,
+			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-book',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'rewrite'         => array( 'slug' => 'strutture', )
+			'rewrite'         => array( 'slug' => 'pubblicazioni' ),
 		);
 
 		register_post_type( PUBLICATION_POST_TYPE, $args );
