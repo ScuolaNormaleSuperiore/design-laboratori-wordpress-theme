@@ -2,6 +2,7 @@
 $messages = dli_get_option( 'messages', 'home_messages' );
 if ( $messages && ! empty($messages) ) {
 	foreach ( $messages as $msg ) {
+	if ( isset( $message['testo_message'] ) ) {
 ?>
 	<div class="container my-12 p-2">
 		<div class="alert alert-<?php echo $msg['colore_message']; ?> alert-dismissible fade show mb-0" role="alert">
@@ -36,6 +37,7 @@ if ( $messages && ! empty($messages) ) {
 		</div>
 	</div>
 <?php
+	}
 	}
 }
 ?>
