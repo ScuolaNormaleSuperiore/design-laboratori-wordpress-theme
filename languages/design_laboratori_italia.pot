@@ -2,7 +2,7 @@
 # This file is distributed under the AGPL 3.0 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Design Laboratori Italia 0.0.1\n"
+"Project-Id-Version: Design Laboratori Italia 0.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/design-laboratori-wordpress-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

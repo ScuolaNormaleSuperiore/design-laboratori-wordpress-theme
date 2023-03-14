@@ -1,6 +1,6 @@
 {
   "name": "design-laboratori-wordpress-theme",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "description": "Tema Wordpress dei Laboratori Italiani",
   "main": "index.js",
   "scripts": {
