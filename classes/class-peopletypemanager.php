@@ -43,7 +43,7 @@ class PeopleType_Manager {
 			'public'          => true,
 			'show_in_menu'    =>	'edit.php?post_type=persona',
 			'show_in_rest'    => true,
-			'menu_position'   => 2,
+			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-nametag',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
