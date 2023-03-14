@@ -11,16 +11,21 @@ define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 // BEGIN preparazione dei parametri di ricerca.
 $allcontentypes = dli_get_all_contenttypes();
 
-if ( isset( $_GET['selected_contents'] ) ) {
-	$selected_contents = $_GET['selected_contents'];
-} else {
+if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 	$selected_contents = array();
-}
-
-if ( isset( $_GET['searchstring'] ) ) {
-	$searchstring = $_GET['searchstring'];
+	$searchstring      = '';
 } else {
-	$searchstring = '';
+	if ( isset( $_GET['selected_contents'] ) ) {
+		$selected_contents = $_GET['selected_contents'];
+	} else {
+		$selected_contents = array();
+	}
+	
+	if ( isset( $_GET['searchstring'] ) ) {
+		$searchstring = $_GET['searchstring'];
+	} else {
+		$searchstring = '';
+	}	
 }
 
 if ( $searchstring !== '' ) {
@@ -42,7 +47,7 @@ if ( $searchstring !== '' ) {
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<form action="." id="notizieform" method="GET">
+	<form action="." id="ricercasitoform" method="GET">
 
 	<!-- BANNER -->
 	<section id="banner-cerca"  class="bg-banner-cerca">
@@ -55,13 +60,18 @@ if ( $searchstring !== '' ) {
 							<label class="active visually-hidden" for="searchstring">
 								<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>
 							</label>
-							<input type="text" id="searchstring" name="searchstring" class="form-control" placeholder="<?php echo __( 'Inserisci il test da cercare', 'design_laboratori_italia' ); ?>">
+							<input type="text" id="searchstring" name="searchstring" class="form-control" 
+								value="<?php echo $searchstring ? $searchstring : '' ?>"
+								placeholder="<?php echo __( 'Inserisci il test da cercare', 'design_laboratori_italia' ); ?>">
+							<input type="hidden" name="isreset" id="isreset" value=""/>
 						</div> 
 					</div>
 					<div class="row">
 							<div class="form-group col text-left ps-4 mb-2">
-								<button type="button" class="btn btn-outline-primary"><?php echo __( 'Cancella', 'design_laboratori_italia' ); ?></button>
-								<button type="submit" class="btn btn-primary"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></button>
+								<button type="reset" value="reset" onclick="resetForm('ricercasitoform', 'isreset');" class="btn btn-outline-primary">
+									<?php echo __( 'Cancella', 'design_laboratori_italia' ); ?>
+								</button>
+								<button type="submit" value="submit" class="btn btn-primary"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></button>
 							</div>
 					</div>
 				</div>
@@ -158,8 +168,6 @@ if ( $searchstring !== '' ) {
 					}
 				}
 				?>
-
-
 				</div> 
 				<!-- Fine elenco RISULTATI-->
 
