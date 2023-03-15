@@ -17,7 +17,7 @@
 		<div class="container">
 			<section>
 				<div class="row clearfix">
-					<div class="col-12">
+					<div class="col-sm-12">
 						<div class="it-brand-wrapper">
 						<a href="<?php echo get_site_url(); ?>">
 								<!-- footer logo -->
@@ -57,18 +57,25 @@
 					</li>
 					<?php
 						}
+						if ( $email ) {
 					?>
-
 					<li>
 						<a class="list-item" href="#" title="E-mail">
 							<?php echo __( 'E-mail', 'design_laboratori_italia' ) . ': ' . $email; ?>
 						</a>
 					</li>
+					<?php
+						}
+						if ( $telefono ) {
+					?>
 					<li>
 						<a class="list-item" href="#" title="Telefono">
 							<?php echo __( 'Telefono', 'design_laboratori_italia' ) . ': ' . $telefono; ?>
 						</a>
 					</li>
+					<?php
+						}
+					?>
 				</ul>
 			</div>
 		</div>
