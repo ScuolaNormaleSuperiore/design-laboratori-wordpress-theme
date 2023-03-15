@@ -7,7 +7,7 @@
 
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
- 
+
 
 /**
  * Action to add page templates used by theme
@@ -880,10 +880,10 @@ function create_the_pages() {
  *
  * @return void
  */
-function dsi_add_update_theme_page() {
+function dli_add_update_theme_page() {
 		add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dli_reload_theme_option_page' );
 }
-add_action( 'admin_menu', 'dsi_add_update_theme_page' );
+add_action( 'admin_menu', 'dli_add_update_theme_page' );
 
 /**
  * Pagina contenente il pulsante per ricaricare i dati.
