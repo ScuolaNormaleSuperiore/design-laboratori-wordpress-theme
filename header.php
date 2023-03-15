@@ -94,8 +94,8 @@ $current_group   = dli_get_current_group();
 					<!-- Language selector -->
 					<?php	
 						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
+						$current_language   = dli_current_language( 'slug' );
 						if ( 'true' === $selettore_visibile ) {
-						$current_language = dli_current_language( 'slug' );
 						$languages_list   = dli_languages_list( array( 'hide_empty'=>0, 'fields'=>'slug' ) );
 					?>
 					<div class="nav-item dropdown">
