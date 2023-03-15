@@ -157,32 +157,32 @@ $current_group   = dli_get_current_group();
 			<div class="col-12">
 				<!-- TITLE ROW -->
 				<div class="it-header-center-content-wrapper">
-				<div class="it-brand-wrapper">
-					<a href="<?php echo get_site_url(); ?>">
-						<!-- header logo -->
-						<?php get_template_part( 'template-parts/common/logo' ); ?>
-						<div class="it-brand-text">
-						<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
-						<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
-						</div>
-					</a>
-				</div>
-				<div class="it-right-zone">
-					<div class="it-socials d-none d-md-flex">
-						<?php get_template_part( 'template-parts/common/social' ); ?>
-					</div>
-					<div class="it-search-wrapper">
-						<span class="d-none d-md-block"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></span>
-						<?php
-							$search_link = dli_get_search_link( $current_language );
-						?>
-						<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
-							<svg class="icon">
-								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
-							</svg>
+					<div class="it-brand-wrapper">
+						<a href="<?php echo get_site_url(); ?>">
+							<!-- header logo -->
+							<?php get_template_part( 'template-parts/common/logo' ); ?>
+							<div class="it-brand-text">
+							<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
+							<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
+							</div>
 						</a>
 					</div>
-				</div> <!-- End it-right-zone -->
+					<div class="it-right-zone">
+						<div class="it-socials d-none d-md-flex">
+							<?php get_template_part( 'template-parts/common/social' ); ?>
+						</div>
+						<div class="it-search-wrapper">
+							<span class="d-none d-md-block"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></span>
+							<?php
+								$search_link = dli_get_search_link( $current_language );
+							?>
+							<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
+								<svg class="icon">
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
+								</svg>
+							</a>
+						</div>
+					</div> <!-- End it-right-zone -->
 				</div>
 			</div>
 			<!-- End TITLE ROW -->

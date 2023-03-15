@@ -124,6 +124,10 @@ function check_dependencies() {
 		error_log( 'The plugin Members is missing, please install and activate it: https://wordpress.org/plugins/members' );
 		$result = false;
 	}
+	if ( ! function_exists( 'pll_the_languages' ) ) {
+		error_log( 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/' );
+		$result = false;
+	}
 	return $result;
 }
 

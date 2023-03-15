@@ -17,7 +17,7 @@
 		<div class="container">
 			<section>
 				<div class="row clearfix">
-					<div class="col-sm-12">
+					<div class="col-12">
 						<div class="it-brand-wrapper">
 						<a href="<?php echo get_site_url(); ?>">
 								<!-- footer logo -->

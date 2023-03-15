@@ -1063,6 +1063,7 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 			$results = $query->posts;
 		} else {
 			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
+			$result_ids = $result_ids ? $result_ids : array();
 			foreach ( $result_ids As $id) {
 				array_push( $results, get_post( $id  ) );
 			}
@@ -1396,4 +1397,12 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return DLI_POST_TYPES_TO_TRANSLATE;
 		}
 	}
+
+	if( ! function_exists( 'dli_get_default_logo' ) ) {
+		function dli_get_default_logo( ) {
+			$img_link = get_template_directory_uri() . '/assets/img/logo-default.png';
+			return $img_link;
+		}
+	}
+	
 	

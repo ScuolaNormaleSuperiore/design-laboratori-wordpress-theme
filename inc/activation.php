@@ -22,6 +22,12 @@ function dli_create_pages_on_theme_activation() {
 	// Verifico se è una prima installazione.
 	$dli_has_installed = get_option( 'dli_has_installed' );
 
+	// Se non è installato Polylang non si può attivare il tema.
+	if ( ! function_exists( 'pll_the_languages' ) ) {
+		$msg = 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/';
+		return false;
+	}
+
 	// Create the default pages.
 	create_the_pages();
 
@@ -875,7 +881,7 @@ function create_the_pages() {
  * @return void
  */
 function dsi_add_update_theme_page() {
-		add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dsi_reload_theme_option_page' );
+		add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dli_reload_theme_option_page' );
 }
 add_action( 'admin_menu', 'dsi_add_update_theme_page' );
 
@@ -885,7 +891,7 @@ add_action( 'admin_menu', 'dsi_add_update_theme_page' );
  *
  * @return void
  */
-function dsi_reload_theme_option_page() {
+function dli_reload_theme_option_page() {
 	if( isset( $_GET["action"] ) && $_GET["action"] == "reload" ){
 			dli_create_pages_on_theme_activation();
 	}
@@ -893,6 +899,6 @@ function dsi_reload_theme_option_page() {
 	echo "<div class='wrap'>";
 	echo '<h1>Ricarica i dati di attivazione del tema</h1>';
 
-	echo '<a href="themes.php?page=reload-data-theme-options&action=reload" class="button button-primary">Ricarica i dati di attivazione (menu, tipologie, etc)</a>';
+	echo '<a href="themes.php?page=reload-data-theme-options&action=reload" class="button button-primary">Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)</a>';
 	echo '</div>';
 }
