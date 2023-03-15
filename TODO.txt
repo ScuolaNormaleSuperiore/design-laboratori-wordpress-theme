@@ -1,0 +1,36 @@
+*** TODO ***
+
+1) Quando non ci sono contenuti c'è un messaggio: aggiungere margin-left o centralo.
+2) BUG: "Ricarica dati": non associa i menu correttamente.
+3) "Ricarica dati": creazione contenuto "tipo di persona" (es. direttore).
+4) Menù Presentazione Multilink.
+5) Import pubblicazioni da IRIS?
+6) Verifica accessibilità
+7) Manuale operatore
+8) Produzione e traduzione etichette in inglese
+9) Aggiunta sitemap
+10) Creazione Dockerfile.
+11) Rename "_dsi" in "_dli"
+12) Rename "function dsi_" in "function dli_"
+
+
+* Fatti *
+- Passaggio a Bootstrap 5
+- Plugin web analytics
+- Plugin cookies
+- Pagina ricerca
+- Risultati ricerca
+- Selettore di lingua abilitato da Configurazione.
+- Breadcrumb
+- CT Eventi
+- CT News
+- CI/CD
+- Gestione social
+- Logo in configurazione (options.php)
+- Script creazione contenuti iniziale (activations.php)
+- Configurazione: togliere: Didattica, Organizzazione, documenti.
+- Configurazione aggiungere: Progetti, Pubblicazioni, Attività di ricerca.
+- Menù novità nello header
+- Menù Lab in orizzontale.
+- Verifica Multilingua: plugin, menu, contenuti, query, ecc.
+- Selettore di lingua.

@@ -1069,6 +1069,28 @@ $social_options->add_field( array(
 				),
 			)
 		);
+
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'analytics',
+				'name' => __( 'Analytics', 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+	
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'analytics_code',
+				'name' => 'Codice analytics',
+				'desc' => __( 'Inserisci il codice Analytics. Puoi crearlo <a target="_blank" href="https://webanalytics.italia.it/">da qui</a>', 'design_laboratori_italia' ),
+				'type' => 'textarea_code',
+				'attributes'    => array(
+						'rows'  => 10,
+						'maxlength'  => '1000',
+				),
+			)
+		);
+
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 
