@@ -32,8 +32,8 @@ description:
       Si pone l'obiettivo di comunicare in modo chiaro e semplice le attività del laboratorio
       legate alla ricerca.
     screenshots:
-      - >-
-        https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/assets/img/homepage.png
+      - https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/assets/screenshots/homepage.png
+
     shortDescription: >-
         Design Laboratori Italia è un tema WordPress per i siti dei Laboratori Italiani. 
 developmentStatus: development 
