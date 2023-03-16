@@ -24,26 +24,6 @@
 							"new_lines": ""
 					},
 					{
-							"key": "field_6400916967a3b",
-							"label": "Indirizzo",
-							"name": "indirizzo",
-							"aria-label": "",
-							"type": "text",
-							"instructions": "Indirizzo del luogo.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
-					},
-					{
 							"center_lat": 43.716667,
 							"center_lng": 10.4,
 							"zoom": 12,
@@ -67,26 +47,6 @@
 									"class": "",
 									"id": ""
 							}
-					},
-					{
-							"key": "field_64009a193a197",
-							"label": "CAP",
-							"name": "cap",
-							"aria-label": "",
-							"type": "text",
-							"instructions": "Codice di avviamento postale del luogo",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": "",
-							"placeholder": "",
-							"prepend": "",
-							"append": ""
 					},
 					{
 							"key": "field_64009a913a198",
@@ -133,6 +93,46 @@
 							"aria-label": "",
 							"type": "text",
 							"instructions": "Telefono del luogo.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_6400916967a3b",
+							"label": "Indirizzo",
+							"name": "indirizzo",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "Indirizzo del luogo.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+					},
+					{
+							"key": "field_64009a193a197",
+							"label": "CAP",
+							"name": "cap",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "Codice di avviamento postale del luogo",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
