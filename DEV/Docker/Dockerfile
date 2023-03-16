@@ -11,7 +11,6 @@
 ###### Start from an official Php release with Apache ######
 FROM php:8.2-apache
 
-
 ################# CONFIGURATIONS (define ARG after FROM) #####################
 ARG WP_ARCHIVE=wordpress-6.1.1.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
@@ -29,9 +28,7 @@ ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.2.zip
 ARG PLG_MEMBERS=members.3.2.2.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
-
 ##############################################################################
-
 
 
 # Update packages 
@@ -54,6 +51,7 @@ RUN docker-php-ext-install mysqli && \
 COPY configure/createUserAndDatabase.sql /tmp/createUserAndDatabase.sql
 COPY src/doclabdb.sql /tmp/doclabdb.sql
 COPY configure/configureWP.sql /tmp/configureWP.sql
+
 # Copy source code and configure.
 COPY configure/startServicesScript.sh /root/startServicesScript.sh
 COPY configure/wp-config.php /tmp/wp-config.php
@@ -71,6 +69,10 @@ WORKDIR /tmp
 RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	rm -rf /var/www/html && \
 	tar -xvzf /tmp/${WP_ARCHIVE} --directory /var/www/ && \
+	rm -rf /var/www/html/wp-content/themes/twentytwentyone && \
+	rm -rf /var/www/html/wp-content/themes/twentytwentytwo && \
+	rm -rf /var/www/html/wp-content/plugins/akismet && \
+	rm -rf /var/www/html/wp-content/plugins/hello.php && \
 	mv /var/www/wordpress /var/www/html	&& \
 	cd /var/www/html/wp-content/themes && \
 	git clone ${DLI_THEME} && \
