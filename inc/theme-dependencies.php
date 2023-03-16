@@ -87,6 +87,11 @@ function dsi_register_required_plugins() {
 			'slug'     => 'cookie-law-info',
 			'required' => true,
 		),
+		array(
+			'name'     => 'WP Mail SMTP',
+			'slug'     => 'wp-mail-smtp',
+			'required' => true,
+		),
 	);
 
 	/*
