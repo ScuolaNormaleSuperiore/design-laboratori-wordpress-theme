@@ -115,14 +115,14 @@ class PeopleType_Manager {
 						'aria-label' => '',
 						'type' => 'number',
 						'instructions' => '',
-						'required' => 1,
+						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
 							'id' => '',
 						),
-						'default_value' => '',
+						'default_value' => 1,
 						'min' => 1,
 						'max' => '',
 						'placeholder' => '',
@@ -149,7 +149,8 @@ class PeopleType_Manager {
 				'active' => true,
 				'description' => '',
 				'show_in_rest' => 0,
-			));	
+			));
+
 		}
 	}
 }

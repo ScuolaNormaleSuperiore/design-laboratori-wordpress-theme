@@ -1,329 +1,329 @@
 [
-	{
-			"key": "group_63c6cba778a4e",
-			"title": "Progetto",
-			"fields": [
-					{
-							"key": "field_63c6cce7c647f",
-							"label": "Descrizione breve",
-							"name": "descrizione_breve",
-							"aria-label": "",
-							"type": "textarea",
-							"instructions": "",
-							"required": 1,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"maxlength": 255,
-							"rows": "",
-							"placeholder": "",
-							"new_lines": ""
-					},
-					{
-							"key": "field_63c6cc2fc647b",
-							"label": "Data inizio",
-							"name": "data_inizio",
-							"aria-label": "",
-							"type": "date_picker",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "50",
-									"class": "",
-									"id": ""
-							},
-							"display_format": "d\/m\/Y",
-							"return_format": "d\/m\/Y",
-							"first_day": 1
-					},
-					{
-							"key": "field_63c6cc62c647c",
-							"label": "Data fine",
-							"name": "data_fine",
-							"aria-label": "",
-							"type": "date_picker",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "50",
-									"class": "",
-									"id": ""
-							},
-							"display_format": "d\/m\/Y",
-							"return_format": "d\/m\/Y",
-							"first_day": 1
-					},
-					{
-							"key": "field_63c6cba8c647a",
-							"label": "Archiviato",
-							"name": "archiviato",
-							"aria-label": "",
-							"type": "true_false",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"message": "Non visualizzare nella lista dei progetti",
-							"default_value": 0,
-							"ui": 0,
-							"ui_on_text": "",
-							"ui_off_text": ""
-					},
-					{
-							"key": "field_63c6cc74c647d",
-							"label": "Promuovi in carousel",
-							"name": "promuovi_in_carousel",
-							"aria-label": "",
-							"type": "true_false",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"message": "",
-							"default_value": 0,
-							"ui": 0,
-							"ui_on_text": "",
-							"ui_off_text": ""
-					},
-					{
-							"key": "field_63c6ce6f3e66c",
-							"label": "Url",
-							"name": "url",
-							"aria-label": "",
-							"type": "url",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"default_value": "",
-							"placeholder": "Link al sito web del progetto"
-					},
-					{
-							"key": "field_63c6ceae3e66d",
-							"label": "Responsabile del progetto",
-							"name": "responsabile_del_progetto",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 1,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"persona"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
-					},
-					{
-							"key": "field_63ca605161313",
-							"label": "Persone",
-							"name": "persone",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"persona"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
-					},
-					{
-							"key": "field_63ca9a376bf2e",
-							"label": "Elenco indirizzi di ricerca correlati",
-							"name": "elenco_indirizzi_di_ricerca_correlati",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"indirizzo-di-ricerca"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
-					},
-					{
-							"key": "field_63e6504ea74b9",
-							"label": "Eventi collegati",
-							"name": "eventi_collegati",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"evento"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
-					},
-					{
-							"key": "field_63c6cebf3e66e",
-							"label": "Allegato 1",
-							"name": "allegato1",
-							"aria-label": "",
-							"type": "file",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"return_format": "array",
-							"library": "uploadedTo",
-							"min_size": "",
-							"max_size": "",
-							"mime_types": ""
-					},
-					{
-							"key": "field_63e650bfa74ba",
-							"label": "Allegato 2",
-							"name": "allegato2",
-							"aria-label": "",
-							"type": "file",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"return_format": "array",
-							"library": "uploadedTo",
-							"min_size": "",
-							"max_size": "",
-							"mime_types": ""
-					},
-					{
-							"key": "field_63e650cba74bb",
-							"label": "Allegato 3",
-							"name": "allegato3",
-							"aria-label": "",
-							"type": "file",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"return_format": "array",
-							"library": "uploadedTo",
-							"min_size": "",
-							"max_size": "",
-							"mime_types": ""
-					},
-					{
-							"key": "field_63e650d5a74bc",
-							"label": "Pubblicazioni",
-							"name": "pubblicazioni",
-							"aria-label": "",
-							"type": "relationship",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-									"width": "",
-									"class": "",
-									"id": ""
-							},
-							"post_type": [
-									"pubblicazione"
-							],
-							"taxonomy": "",
-							"filters": [
-									"search"
-							],
-							"return_format": "object",
-							"min": "",
-							"max": "",
-							"elements": ""
-					}
-			],
-			"location": [
-					[
-							{
-									"param": "post_type",
-									"operator": "==",
-									"value": "progetto"
-							}
-					]
-			],
-			"menu_order": 0,
-			"position": "normal",
-			"style": "default",
-			"label_placement": "top",
-			"instruction_placement": "label",
-			"hide_on_screen": "",
-			"active": true,
-			"description": "",
-			"show_in_rest": 1
-	}
+    {
+        "key": "group_63c6cba778a4e",
+        "title": "Progetto",
+        "fields": [
+            {
+                "key": "field_63c6cce7c647f",
+                "label": "Descrizione breve",
+                "name": "descrizione_breve",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": 255,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_63c6cc2fc647b",
+                "label": "Data inizio",
+                "name": "data_inizio",
+                "aria-label": "",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y",
+                "return_format": "d\/m\/Y",
+                "first_day": 1
+            },
+            {
+                "key": "field_63c6cc62c647c",
+                "label": "Data fine",
+                "name": "data_fine",
+                "aria-label": "",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y",
+                "return_format": "d\/m\/Y",
+                "first_day": 1
+            },
+            {
+                "key": "field_63c6cba8c647a",
+                "label": "Archiviato",
+                "name": "archiviato",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Non visualizzare nella lista dei progetti",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_63c6cc74c647d",
+                "label": "Promuovi in carousel",
+                "name": "promuovi_in_carousel",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_63c6ce6f3e66c",
+                "label": "Url",
+                "name": "url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "Link al sito web del progetto"
+            },
+            {
+                "key": "field_63c6ceae3e66d",
+                "label": "Responsabile del progetto",
+                "name": "responsabile_del_progetto",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "persona"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            },
+            {
+                "key": "field_63ca605161313",
+                "label": "Persone",
+                "name": "persone",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "persona"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            },
+            {
+                "key": "field_63ca9a376bf2e",
+                "label": "Elenco indirizzi di ricerca correlati",
+                "name": "elenco_indirizzi_di_ricerca_correlati",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "indirizzo-di-ricerca"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            },
+            {
+                "key": "field_63e6504ea74b9",
+                "label": "Eventi collegati",
+                "name": "eventi_collegati",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "evento"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            },
+            {
+                "key": "field_63c6cebf3e66e",
+                "label": "Allegato 1",
+                "name": "allegato1",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "uploadedTo",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_63e650bfa74ba",
+                "label": "Allegato 2",
+                "name": "allegato2",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "uploadedTo",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_63e650cba74bb",
+                "label": "Allegato 3",
+                "name": "allegato3",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "uploadedTo",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_63e650d5a74bc",
+                "label": "Pubblicazioni",
+                "name": "pubblicazioni",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "pubblicazione"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "progetto"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 1
+    }
 ]
