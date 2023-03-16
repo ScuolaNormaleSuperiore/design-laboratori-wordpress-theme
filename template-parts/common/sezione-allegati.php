@@ -5,7 +5,7 @@
 	define( 'ALLEGATI_PER_ROW', 3 );
 ?>
 
-<section id="<?php echo $section_id; ?>">
+<section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
 	// The mani loop of the page.
 	$pindex = 0;

@@ -5,7 +5,7 @@
 	define( 'PUBBLICAZIONI_PER_ROW', 2 );
 ?>
 
-<section id="<?php echo $section_id; ?>">
+<section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
 	// The mani loop of the page.
 	$pindex = 0;

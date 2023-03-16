@@ -24,6 +24,7 @@ $email            = dli_get_field( 'email' );
 $sitoweb          = dli_get_field( 'sitoweb' );
 $video            = dli_get_field( 'video' );
 $allegato         = dli_get_field( 'allegato' );
+$short_descr      = get_field( 'descrizione_breve', $last_hero_event );
 ?>
 
 <main id="main-container">
@@ -42,7 +43,7 @@ $allegato         = dli_get_field( 'allegato' );
 							<p class="card-date">dal <?php echo $start_date; ?> al <?php echo $end_date; ?></p>
 							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>
 							<p class="font-weight-normal">
-								<?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+								<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							</p>
 						</div>
 					</div>
@@ -83,31 +84,54 @@ $allegato         = dli_get_field( 'allegato' );
 									<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<ul class="link-list">
+										<?php
+											if ( $short_descr ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link active" href="#descrizione">
 											<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+											}
+											if ( $luogo ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#luogo">
 											<span><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										</li>
+										<?php
+											}
+											if ( 1 == 1 ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#contatti">
 											<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+											}
+											if ( $allegato ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#allegati">
 											<span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+											}
+											if ( $video ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#video">
 											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+											}
+										?>
 									</ul>
 								</div>
 							</div>
@@ -127,7 +151,7 @@ $allegato         = dli_get_field( 'allegato' );
 				if ( $luogo ) {
 				?>
 				<h3 class="it-page-section h4 pt-3" id="luogo"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
-				<section id="responsabile">    
+				<section id="responsabile">
 				<div class="row pb-3 pt-3">
 				<p><?php echo esc_attr( $luogo ); ?></p>
 				</div>
@@ -204,7 +228,6 @@ $allegato         = dli_get_field( 'allegato' );
 				if ( $allegato ){
 				?>
 				<h3 class="it-page-section h4 pt-3 pb-3" id="allegati"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
-				<section id="allegati">    
 					<div class="row ">
 						<div class="card-wrapper card-teaser-wrapper">
 							<!--start card-->
@@ -219,7 +242,6 @@ $allegato         = dli_get_field( 'allegato' );
 							<!--end card-->
 						</div>  
 					</div>
-				</section>
 				<?php
 					}
 				?>

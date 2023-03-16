@@ -4,7 +4,7 @@
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'PROGETTI_PER_ROW', 3 );
 ?>
-<section id="<?php echo 'sezione' . $section_id; ?>">
+<section id="<?php echo 'sezione-' . $section_id; ?>">
 
 <div class="row pb-3">
 	<div class="card-wrapper card-teaser-wrapper">

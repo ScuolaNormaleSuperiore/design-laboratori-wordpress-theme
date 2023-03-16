@@ -4,7 +4,7 @@
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'EVENTI_PER_ROW', 3 );
 ?>
-<section id="<?php echo $section_id; ?>">
+<section id="<?php echo 'sezione-' . $section_id; ?>">
 	<div class="section-content">
 	<?php
 		// The mani loop of the page.
