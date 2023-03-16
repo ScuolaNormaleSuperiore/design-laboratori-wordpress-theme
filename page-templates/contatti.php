@@ -176,7 +176,7 @@ if ( $forminviato === 'yes' ) {
 				<div class="col-lg-9">
 					<div class="row ">
 						<div class="col-lg-12">  
-						<div class="p-5 shadow">
+						<div class="p-5">
 							<div class="row">
 								<div class="form-group col">
 									<label class="active" for="nomecognome"><?php echo __( 'Nome e cognome', 'design_laboratori_italia' ); ?></label>
