@@ -20,7 +20,7 @@ if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 	} else {
 		$selected_contents = array();
 	}
-	
+
 	if ( isset( $_GET['searchstring'] ) ) {
 		$searchstring = $_GET['searchstring'];
 	} else {
@@ -29,6 +29,9 @@ if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 }
 
 if ( $searchstring !== '' ) {
+	if ( count( $selected_contents ) === 0) {
+		$selected_contents = $allcontentypes;
+	}
 	$the_query = dli_main_search_query(
 		$selected_contents,
 		$searchstring,
