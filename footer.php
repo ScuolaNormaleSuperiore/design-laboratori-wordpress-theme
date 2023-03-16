@@ -51,7 +51,7 @@
 						if ( $pec ) {
 					?>
 					<li>
-						<a class="list-item" href="#" title="Vai alla pagina: Posta Elettronica Certificata">
+						<a class="list-item" href="<?php echo 'mailto:' . $pec; ?>" title="Vai alla pagina: Posta Elettronica Certificata">
 							<?php echo __( 'Posta Elettronica Certificata', 'design_laboratori_italia' ) . ': ' . $pec; ?>
 						</a>
 					</li>
@@ -60,7 +60,7 @@
 						if ( $email ) {
 					?>
 					<li>
-						<a class="list-item" href="#" title="E-mail">
+						<a class="list-item" href="<?php echo 'mailto:' .  $email; ?>" title="E-mail">
 							<?php echo __( 'E-mail', 'design_laboratori_italia' ) . ': ' . $email; ?>
 						</a>
 					</li>
@@ -69,7 +69,7 @@
 						if ( $telefono ) {
 					?>
 					<li>
-						<a class="list-item" href="#" title="Telefono">
+						<a class="list-item" href="<?php echo 'tel:' .  $telefono; ?>" title="Telefono">
 							<?php echo __( 'Telefono', 'design_laboratori_italia' ) . ': ' . $telefono; ?>
 						</a>
 					</li>

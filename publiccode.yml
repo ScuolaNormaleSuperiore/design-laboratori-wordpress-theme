@@ -23,19 +23,20 @@ description:
     genericName: Tema Wordpress
     localisedName: Design Laboratori Italia 
     longDescription: >
-      DLI è un tema basato sul modello di siti per le scuole italiane, e serve a realizzare
-      il sito di un laboratorio. Una volta installato, l'ambiente offre una serie di contenuti
-      predefiniti che rendono semplice e veloce l'allestimento del sito.
-
-      Questo sito permette di pubblicare tutte le informazioni relative ad un
-      laboratorio di ricerca: persone, pubblicazioni, progetti, attività di ricerca, ecc.
-      Si pone l'obiettivo di comunicare in modo chiaro e semplice le attività del laboratorio
-      legate alla ricerca.
+      Design laboratori e centro di ricerca è un tema wordpress basato sul modello di siti per le 
+      scuole italiane e sviluppato dalla Scuola Normale Superiore con l’obiettivo di creare un modello 
+      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre 
+      una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.  
+      Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: 
+      personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di 
+      ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
+      Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale 
+      di ricerca delle strutture.
     screenshots:
       - https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/assets/screenshots/homepage.png
 
     shortDescription: >-
-        Design Laboratori Italia è un tema WordPress per i siti dei Laboratori Italiani. 
+        Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l\’obiettivo di creare un modello di sito per le strutture di ricerca.
 developmentStatus: development 
 intendedAudience:
   countries:
@@ -52,7 +53,6 @@ it:
     gdpr: false
     lineeGuidaDesign: true
     misureMinimeSicurezza: false
-    modelloInteroperabilita: false
   piattaforme:
     anpr: false
     cie: false
