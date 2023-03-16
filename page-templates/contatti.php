@@ -147,7 +147,7 @@ if ( $forminviato === 'yes' ) {
 								<a href="#" class="list-item">
 								<div class="it-rounded-icon">
 									<svg class="icon">
-								<use href="bootstrap-italia/svg/sprites.svg#it-mail"></use>
+								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 									</svg>
 								</div>
 								<div class="it-right-zone">
