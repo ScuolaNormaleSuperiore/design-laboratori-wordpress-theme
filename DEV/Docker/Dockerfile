@@ -11,7 +11,6 @@
 ###### Start from an official Php release with Apache ######
 FROM php:8.2-apache
 
-
 ################# CONFIGURATIONS (define ARG after FROM) #####################
 ARG WP_ARCHIVE=wordpress-6.1.1.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
@@ -29,9 +28,7 @@ ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.2.zip
 ARG PLG_MEMBERS=members.3.2.2.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
-
 ##############################################################################
-
 
 
 # Update packages 
