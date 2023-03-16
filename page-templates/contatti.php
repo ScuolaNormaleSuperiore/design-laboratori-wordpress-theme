@@ -34,7 +34,7 @@ get_header();
 							<div class="list-item">
 								<div class="it-rounded-icon">
 									<svg class="icon">
-										<use href="bootstrap-italia/svg/sprites.svg#it-telephone"></use>
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 									</svg>
 								</div>
 								<div class="it-right-zone"><span class="text">050 509662</span>
@@ -45,7 +45,7 @@ get_header();
 							<a href="#" class="list-item">
 							<div class="it-rounded-icon">
 								<svg class="icon">
-								<use href="bootstrap-italia/svg/sprites.svg#it-mail"></use>
+								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 								</svg>
 							</div>
 							<div class="it-right-zone">
@@ -57,7 +57,7 @@ get_header();
 							<a class="list-item" href="#">
 							<div class="it-rounded-icon">
 							<svg class="icon">
-							<use href="bootstrap-italia/svg/sprites.svg#it-link"></use>
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 							</svg>
 							</div>
 							<div class="it-right-zone"><span class="text">www.sns.it</span>
