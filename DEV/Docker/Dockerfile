@@ -28,6 +28,7 @@ ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.2.zip
 ARG PLG_MEMBERS=members.3.2.2.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
+ARG PLG_SMTP=https://downloads.wordpress.org/plugin/wp-mail-smtp.3.7.0.zip
 ##############################################################################
 
 
@@ -97,6 +98,8 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_MEMBERS}  && \
 	curl -o /tmp/${PLG_GUTENBERG} ${BASE_PLUGIN_URL}/${PLG_GUTENBERG} && \
 	unzip /tmp/${PLG_GUTENBERG}  && \
+	curl -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
+	unzip /tmp/${PLG_SMTP}  && \
 	cp -f /tmp/wp-config.php  /var/www/html/wp-config.php && \
 	cp /tmp/.htaccess /var/www/html/.htaccess && \
 	wget ${ADMINER} -O /var/www/html/adminer.php && \
