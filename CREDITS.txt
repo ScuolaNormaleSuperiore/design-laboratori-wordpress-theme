@@ -5,6 +5,7 @@
 
 *** Librerie usate nel tema ***
 
+- [Bootstrap Italia](https://italia.github.io/bootstrap-italia/)
 - [CMB2](https://github.com/CMB2/CMB2)
 - [dompdf](https://github.com/dompdf/dompdf)
 - [TGM-Plugin-Activation](http://tgmpluginactivation.com/)

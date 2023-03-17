@@ -63,8 +63,8 @@ COPY src/uploads.zip /tmp/uploads.zip
 RUN apt-get install -y mariadb-server && \
 	/etc/init.d/mariadb start && \
 	mysql < /tmp/createUserAndDatabase.sql && \
-	mysql doclab < /tmp/doclabdb.sql && \
-	mysql doclab < /tmp/configureWP.sql
+	mysql doclabdb < /tmp/doclabdb.sql && \
+	mysql doclabdb < /tmp/configureWP.sql
 
 # Install Wordpress and the needed plugin
 WORKDIR /tmp

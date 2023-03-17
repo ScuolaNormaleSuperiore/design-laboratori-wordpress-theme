@@ -130,7 +130,7 @@ function build_taxonomies( $taxonomy, $terms ) {
  * @return void
  */
 function create_the_menus() {
-	error_log( '@@@ HERE WE CREATE THE MENUS @@@' );
+	// error_log( '@@@ HERE WE CREATE THE MENUS @@@' );
 	create_the_it_menus();
 	create_the_en_menus();
 }
