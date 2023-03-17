@@ -41,7 +41,7 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 ## Demo
 ### Docker
 E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugin richiesti + contenuti d'esempio). 
-Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker).
+Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker/Dockerfile).
 
 I comandi da eseguire per creare ed eseguire il container sono:
 - docker build -t doclab-img -f Dockerfile .

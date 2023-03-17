@@ -57,6 +57,7 @@ COPY configure/configureWP.sql /tmp/configureWP.sql
 COPY configure/startServicesScript.sh /root/startServicesScript.sh
 COPY configure/wp-config.php /tmp/wp-config.php
 COPY configure/.htaccess /tmp/.htaccess
+COPY src/uploads.zip /tmp/uploads.zip
 
 # Install mariadb, create and init the database.
 RUN apt-get install -y mariadb-server && \
@@ -70,11 +71,11 @@ WORKDIR /tmp
 RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	rm -rf /var/www/html && \
 	tar -xvzf /tmp/${WP_ARCHIVE} --directory /var/www/ && \
+	mv /var/www/wordpress /var/www/html	&& \
 	rm -rf /var/www/html/wp-content/themes/twentytwentyone && \
 	rm -rf /var/www/html/wp-content/themes/twentytwentytwo && \
 	rm -rf /var/www/html/wp-content/plugins/akismet && \
 	rm -rf /var/www/html/wp-content/plugins/hello.php && \
-	mv /var/www/wordpress /var/www/html	&& \
 	cd /var/www/html/wp-content/themes && \
 	git clone ${DLI_THEME} && \
 	cd /var/www/html/wp-content/plugins && \
@@ -102,8 +103,10 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_SMTP}  && \
 	cp -f /tmp/wp-config.php  /var/www/html/wp-config.php && \
 	cp /tmp/.htaccess /var/www/html/.htaccess && \
+	unzip /tmp/uploads.zip -d /var/www/html/wp-content/uploads/ && \
 	wget ${ADMINER} -O /var/www/html/adminer.php && \
 	chown -R www-data:www-data /var/www/html/*
+
 
 # Remove the temp file.
 RUN rm -rf /tmp/*
