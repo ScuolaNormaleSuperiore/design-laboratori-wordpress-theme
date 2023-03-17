@@ -1,12 +1,16 @@
 # ![developers.italia](https://avatars1.githubusercontent.com/u/15377824?s=36&v=4 "developers.italia") Design Laboratori Italia
 
- **Design Laboratori Italia** è un tema WordPress utilizzabile per creare il sito di un laboratorio. 
 
+**Design laboratori e centri di ricerca** è un tema wordpress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta istallato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
+Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
 ## Stato del progetto
 Il progetto è in fase di sviluppo, il primo rilascio stabile è previsto per il mese di aprile del 2023.
 
+## Credits
+Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/CREDITS.txt)
+
 ## Funzionalità
-- Popolamento automatico del sito.
+- Popolamento automatico del sito: pagine e menu.
 - Gestione delle persone del laboratorio.
 - Gestione dei progetti del laboratorio.
 - Gestione delle news e degli eventi del laboratorio.
@@ -15,14 +19,104 @@ Il progetto è in fase di sviluppo, il primo rilascio stabile è previsto per il
 - Gestione degli indirizzi di ricerca.
 - Supporto delle lingue italiano ed inglese.
 
-
-
 ## Requisiti software
 1. Il CMS Wordpress (versione >= 6.1.1).
 
 
 ## Repository
 [Questo](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme) è il repository che contiene il codice sorgente del progetto.
+
+## Catalogo del riuso
+Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home page del progetto è [questa](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html).
+
+## Demo
+### Docker
+E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugin richiesti + contenuti d'esempio). 
+Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker).
+
+I comandi da eseguire per creare ed eseguire il container sono:
+- docker build -t doclab-img -f Dockerfile .
+- docker run -p 80:80 -p 3306:3306 --name=doclab -d doclab-img
+ 
+Per collegarsi alla shell del container, eseguire il comando:
+- docker exec -it doclab /bin/bash
+  
+L'url del sito appena creato è: http://localhost/ .
+
+Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Doc Lab** è già configurato
+
+Per autenticarsi come amministratore del sito l'url è http://localhost/wp-admin/ e l'account è: manager / password
+
+Sul container è installato il tool *Adminer* per gestire le tabelle del database.
+L'url di *Adminer* è: http://localhost/adminer.php
+Per configurarlo i parametri sono:
+- System: Mysql
+- Server: 127.0.0.1
+- Utente: admin
+- Password: admin
+- Database: doclabdb
+
+
+## Dipendenze
+Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
+* [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
+* [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
+* [Contact Form 7](https://it.wordpress.org/plugins/contact-form-7/)
+* [Contact Form CFDB7](https://it.wordpress.org/plugins/contact-form-cfdb7/)
+* [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
+* [Disable Gutenberg](https://wordpress.org/plugins/disable-gutenberg/)
+* [Members](https://it.wordpress.org/plugins/members/)
+* [Polylang](https://it.wordpress.org/plugins/polylang/)
+* [Regenerate Thumbnails](https://it.wordpress.org/plugins/regenerate-thumbnails/)
+* [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
+
+Il tema mostra un avviso quando uno di questi plugin non è installato.
+
+
+## Installazione e configurazione del tema
+Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
+
+1. Scaricare il tema ["Design Laboratori Italia"](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git)
+2. Copiare la cartella ***design-laboratori-wordpress-theme*** in *<installazione_wordpress>/wp-content/themes/*
+3. Attivazione del tema (creazione automatica dei contenuti e dei menu di default).
+4. Installazione e attivazione plugin dipendenti.
+5. Configurazione di Polylang usando il wizard del plugin:
+
+	5.1 Andare in *WP->Lingue->Configurazione* e aggiungere le lingue italiano (default) e inglese
+
+	5.2 Impostare: *Permetti a Polylang di tradurre i media*
+
+	5.3 Impostare *Scegli la lingua da assegnare* = it
+
+6. Creazione dei contenuti di default: WP->Aspetto->Ricarica i dati-> Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)
+7. Configurazione del tema: Andare in *WP->Configurazione* e impostare i dati di configurazione.
+**Immagine 1:** Backoffice: configurazione del tema.
+![configure](assets/screenshots/configurazione1.png)
+
+## Tickets e bug-fixing
+Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues/new) del repository del progetto.
+
+## Sviluppi futuri
+Queste le sono le principali funzionalità previste per le prossime versioni del sistema:
+* Integrazione con il software Iris di Cineca.
+* Autenticazione tramite LDAP.
+* Autenticazione tramite Shibboleth.
+
+## Galleria
+
+**Immagine 1:** Backoffice: configurazione del carousel.
+![configure](assets/screenshots/configurazione3.png)
+
+**Immagine 2:** Homepage con carousel.
+![configure](assets/screenshots/homepage.png)
+
+**Immagine 3:** Le persone del laboratorio.
+![configure](assets/screenshots/homepage.png)
+
+**Immagine 4:** I progetti del laboratorio.
+![configure](assets/screenshots/homepage.png)
+
 
 ## Lingue supportate
 Il plugin è disponibile in italiano e in inglese.

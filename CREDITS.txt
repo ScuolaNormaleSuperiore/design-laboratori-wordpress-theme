@@ -1,0 +1,31 @@
+*** Progetto di partenza ***
+
+- [Design Scuole Italia](https://github.com/italia/design-scuole-wordpress-theme)
+
+
+*** Librerie usate nel tema ***
+
+- [CMB2](https://github.com/CMB2/CMB2)
+- [dompdf](https://github.com/dompdf/dompdf)
+- [TGM-Plugin-Activation](http://tgmpluginactivation.com/)
+
+
+**- Plugin usati dal tema ***
+
+- [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
+- [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
+- [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
+- [Contact Form 7](https://it.wordpress.org/plugins/contact-form-7/)
+- [Contact Form CFDB7](https://it.wordpress.org/plugins/contact-form-cfdb7/)
+- [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
+- [Disable Gutenberg](https://wordpress.org/plugins/disable-gutenberg/)
+- [Members](https://it.wordpress.org/plugins/members/)
+- [Polylang](https://it.wordpress.org/plugins/polylang/)
+- [Regenerate Thumbnails](https://it.wordpress.org/plugins/regenerate-thumbnails/)
+- [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
+
+
+*** Plugin utili per lo sviluppo ***
+
+- [Manual Image Crop](https://wordpress.org/plugins/manual-image-crop/)
+

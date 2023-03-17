@@ -26,9 +26,9 @@ ARG PLG_CFDB7=contact-form-cfdb7.zip
 ARG PLG_COOKIES=cookie-law-info.3.0.8.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.2.zip
-ARG PLG_MEMBERS=members.3.2.2.zip
+ARG PLG_MEMBERS=members.3.2.4.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
-ARG PLG_SMTP=https://downloads.wordpress.org/plugin/wp-mail-smtp.3.7.0.zip
+ARG PLG_SMTP=wp-mail-smtp.3.7.0.zip
 ##############################################################################
 
 
