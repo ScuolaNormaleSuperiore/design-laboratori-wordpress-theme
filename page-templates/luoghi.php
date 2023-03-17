@@ -82,7 +82,7 @@ $num_results = $luoghi->found_posts;
 									<div class="form-check">
 									<?php
 									$checked = false;
-									if ((isset ( $_GET[esc_attr( $tipo_luogo->slug )] ) || $_GET[esc_attr( $tipo_luogo->slug )] === $tipo_luogo->slug)) {
+									if  ( isset ( $_GET[esc_attr( $tipo_luogo->slug )] ) ) {
 										$checked = true;
 									}
 									?>

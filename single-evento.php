@@ -24,7 +24,7 @@ $email            = dli_get_field( 'email' );
 $sitoweb          = dli_get_field( 'sitoweb' );
 $video            = dli_get_field( 'video' );
 $allegato         = dli_get_field( 'allegato' );
-$short_descr      = get_field( 'descrizione_breve', $last_hero_event );
+$short_descr      = get_field( 'descrizione_breve' );
 ?>
 
 <main id="main-container">
@@ -49,9 +49,9 @@ $short_descr      = get_field( 'descrizione_breve', $last_hero_event );
 					</div>
 					<div class="col-sm-7">
 					<img src="<?php echo $image_url; ?>"
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							alt="<?php echo esc_attr( get_the_title() ); ?>" 
+							title="<?php echo esc_attr( get_the_title() ); ?>" 
+							alt="<?php echo esc_attr( get_the_title() ); ?>" 
 							class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
 					</div>
 				</div>

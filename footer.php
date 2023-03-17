@@ -127,7 +127,6 @@
 								'menu_class'      => 'it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row',
 								'container'       => '',
 								'list_item_class' => 'list-inline-item',
-								'current_group'   => $current_group,
 								'walker'          => new Footer_Menu_Walker(),
 							)
 						);

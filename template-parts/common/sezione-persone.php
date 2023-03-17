@@ -2,7 +2,6 @@
 	$items     = $args['items'];
 	$section_id  = $args['section_id'];
 	$num_results = is_array( $items ) ? count( $items ) : 0;
-	define( 'PERSONE_PER_ROW', 2 );
 ?>
 <section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
@@ -26,7 +25,7 @@
 				$escludi_da_elenco          = get_field( 'escludi_da_elenco', $id );
 				$nome                       = get_field( 'nome', $id );
 				$cognome                    = get_field( 'cognome', $id );
-				$title                      = get_the_title( $ID );
+				$title                      = get_the_title( $id );
 				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
 				$post_link                  = get_the_permalink( $id );
 				$categoria                  = get_field( 'categoria_appartenenza', $id );

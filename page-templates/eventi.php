@@ -115,8 +115,8 @@ $all_categories = dli_get_all_categories( 'category' );
 									</div>
 									<div class="card-body p-4">
 										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
-										<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
-										<a class="read-more" href="<?php echo get_permalink( $last_hero_event ); ?>">
+										<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+										<a class="read-more" href="<?php echo get_permalink(); ?>">
 											<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 											<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use></svg>
 										</a>

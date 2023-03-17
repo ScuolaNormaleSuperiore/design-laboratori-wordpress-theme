@@ -5,10 +5,12 @@
  */
 global $post;
 get_header();
-$email    = dli_get_option( 'email_laboratorio' );
-$telefono = dli_get_option( 'telefono_laboratorio' );
-$pec      = dli_get_option( 'pec_laboratorio' );
-$website  = get_site_url();
+$email         = dli_get_option( 'email_laboratorio' );
+$telefono      = dli_get_option( 'telefono_laboratorio' );
+$pec           = dli_get_option( 'pec_laboratorio' );
+$website       = get_site_url();
+$mostraerrore  = false;
+$mostrainviato = false;
 
 if ( isset( $_POST['nomecognome'] ) ) {
 	$nomecognome = $_POST['nomecognome'];
@@ -51,11 +53,9 @@ if ( $forminviato === 'yes' ) {
 	$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
 	$headers    = 'From: ' . $indirizzoemail . "\r\n" . 'Reply-To: ' . $indirizzoemail . "\r\n";
 
-	// @TODO: Validazione
+	// @TODO: Validazione.
 
-	// INVIO EMAIL
-	$mostraerrore  = false;
-	$mostrainviato = false;
+	// INVIO EMAIL.
 	$sent          = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
 
 	if ( $forminviato && $sent ) {

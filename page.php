@@ -24,9 +24,9 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 				<div class="row">
 					<div class="col-sm-5 align-middle">
 						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
-							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>
+							<h2 class="p-0  "><?php echo get_the_title(); ?></h2>
 							<p class="font-weight-normal">
-								<?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+								<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							</p>
 						</div>
 					</div>
@@ -35,9 +35,9 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 					if ( $image_url ) {
 					?>
 					<img src="<?php echo $image_url; ?>"
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
+							alt="<?php echo esc_attr( get_the_title() ); ?>" 
+							title="<?php echo esc_attr( get_the_title() ); ?>" 
+							alt="<?php echo esc_attr( get_the_title() ); ?>" 
 							class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
 						<?php
 						}

@@ -10,6 +10,7 @@ define( 'DLI_DEFAULT_LANGUAGE', DLI_IT_SLUG );
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 define( 'DLI_POSTS_PER_PAGE', 6 );
+define( 'PERSONE_PER_ROW', 2 );
 
 // CUSTOM CONTENT TYPES.
 define( 'EVENT_POST_TYPE', 'evento' );

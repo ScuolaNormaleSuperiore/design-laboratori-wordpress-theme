@@ -24,15 +24,9 @@ if ( $messages && ! empty($messages) ) {
 			?>
 
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo __( 'Chiudi avviso', 'design_laboratori_italia' ); ?>">
-				<?php
-				if ( $msg['icona_message'] === 'on' ) {
-				?>
 				<svg class="icon">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
 				</svg>
-				<?php
-				}
-				?>
 			</button>
 		</div>
 	</div>

@@ -28,6 +28,8 @@ if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 	}	
 }
 
+$the_query = null;
+
 if ( $searchstring !== '' ) {
 	if ( count( $selected_contents ) === 0) {
 		$selected_contents = $allcontentypes;

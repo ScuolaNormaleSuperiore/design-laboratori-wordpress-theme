@@ -7,7 +7,10 @@ define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
  */
 get_header();
 
-$anni_pubblicazioni = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ORDER BY meta_value DESC " );
+$anni_pubblicazioni      = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ORDER BY meta_value DESC " );
+$anno_filter_array       = null;
+$tipi_pubbl_filter_array = null;
+$anno_select             = null;
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
@@ -19,7 +22,7 @@ if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 		);
 }
 
-// estraggo i parametri per il tipo pubblicazione
+// Estraggo i parametri per il tipo pubblicazione.
 $tipi_pubblicazione_params = array();
 foreach ( $_GET as $parameter ) {
 	if ( str_starts_with( $parameter, PREFIX_CAT_FILTER ) ) {
@@ -28,7 +31,7 @@ foreach ( $_GET as $parameter ) {
 	}
 }
 if ( count( $tipi_pubblicazione_params ) > 0 ) {
-	$tipi_pubbl_filter_array = 
+	$tipi_pubbl_filter_array =
 		array(
 			'taxonomy' => 'tipo-pubblicazione',
 			'field'    => 'slug',
@@ -37,7 +40,7 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 		);
 }
 
-if ( !isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
+if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
 			'posts_per_page' => DLI_POSTS_PER_PAGE,
@@ -157,7 +160,7 @@ $num_results = $pubblicazioni->found_posts;
 								<div class="form-check">
 									<?php
 									$checked = false;
-									if ( (isset ( $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] ) || $_GET[PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug )] == $tipo_pubblicazione->slug)) {
+									if  ( isset ( $_GET[ PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ) ] ) )  {
 										$checked = true;
 									}
 									?>
