@@ -40,7 +40,7 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 ## Demo
 ### Docker
-E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugin richiesti + contenuti d'esempio). 
+E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugins + contenuti d'esempio). 
 Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker/Dockerfile).
 
 I comandi da eseguire per creare ed eseguire il container sono:
@@ -54,7 +54,7 @@ L'url del sito appena creato è: http://localhost/ .
 
 Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Doc Lab** è già configurato
 
-Per autenticarsi come amministratore del sito l'url è http://localhost/wp-admin/ e l'account è: manager / password
+Per autenticarsi come amministratore del sito l'url è http://localhost/wp-admin/ e l'account per accedere è: manager / password
 
 Sul container è installato il tool *Adminer* per gestire le tabelle del database.
 L'url di *Adminer* è: http://localhost/adminer.php
@@ -88,27 +88,27 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 
 1. Scaricare il tema ["Design Laboratori Italia"](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git)
 2. Copiare la cartella ***design-laboratori-wordpress-theme*** in *<installazione_wordpress>/wp-content/themes/*
-3. Attivazione del tema (creazione automatica dei contenuti e dei menu di default).
-4. Installazione e attivazione plugin dipendenti.
+3. Attivare il tema (creazione automatica dei contenuti e dei menu di default).
+4. Installare e attivare i plugin dipendenti (un popup mostra l'elenco dei plugin richiesti).
 5. Configurazione di Polylang usando il wizard del plugin:
 
-	5.1 Andare in *WP->Lingue->Configurazione* e aggiungere le lingue italiano (default) e inglese
+	5.1 Andare in *WP->Lingue->Configurazione* e aggiungere le lingue italiano (default) e inglese.
 
-	5.2 Impostare: *Permetti a Polylang di tradurre i media*
+	5.2 Impostare: *Permetti a Polylang di tradurre i media*.
 
-	5.3 Impostare *Scegli la lingua da assegnare* = it
+	5.3 Impostare *Scegli la lingua da assegnare* = it.
 
-6. Creazione dei contenuti di default: WP->Aspetto->Ricarica i dati-> Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)
+6. Creazione dei contenuti di default: *WP->Aspetto->Ricarica i dati-> Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)*
 7. Configurazione del tema: Andare in *WP->Configurazione* e impostare i dati di configurazione.
 **Immagine 1:** Backoffice: configurazione del tema.
 ![configure](assets/screenshots/configurazione1.png)
 
 ## Tickets e bug-fixing
-Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues/new) del repository del progetto.
+Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 
 ## Sviluppi futuri
 Queste le sono le principali funzionalità previste per le prossime versioni del sistema:
-* Integrazione con il software Iris di Cineca.
+* Integrazione con il software Iris.
 * Autenticazione tramite LDAP.
 * Autenticazione tramite Shibboleth.
 
