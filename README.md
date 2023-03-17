@@ -10,13 +10,22 @@ Il progetto è in fase di sviluppo, il primo rilascio stabile è previsto per il
 Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/CREDITS.txt)
 
 ## Funzionalità
-- Popolamento automatico del sito: pagine e menu.
+- Popolamento automatico del sito (pagine e menu).
+- Sezione per la configurazione del tema e dei contenuti.
 - Gestione delle persone del laboratorio.
 - Gestione dei progetti del laboratorio.
 - Gestione delle news e degli eventi del laboratorio.
 - Gestione dei luoghi del laboratorio.
 - Gestione delle pubblicazioni del laboratorio.
 - Gestione degli indirizzi di ricerca.
+- Gestione del blog del laboratorio.
+- Pagine di archivio con paginazione.
+- Ricerca in tutti i contenuti del sito.
+- Gestione degli avvisi in home page.
+- Gestione dei cookies.
+- Form di contatti.
+- Gestione hero in home page.
+- Carousel in home page con contenuti selezionabili.
 - Supporto delle lingue italiano ed inglese.
 
 ## Requisiti software
@@ -112,11 +121,13 @@ Queste le sono le principali funzionalità previste per le prossime versioni del
 ![configure](assets/screenshots/homepage.png)
 
 **Immagine 3:** Le persone del laboratorio.
-![configure](assets/screenshots/homepage.png)
+![configure](assets/screenshots/persone.png)
 
 **Immagine 4:** I progetti del laboratorio.
-![configure](assets/screenshots/homepage.png)
+![configure](assets/screenshots/progetti.png)
 
+**Immagine 5:** La ricerca nel sito.
+![configure](assets/screenshots/ricerca.png)
 
 ## Lingue supportate
 Il plugin è disponibile in italiano e in inglese.

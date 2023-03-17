@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.2'
 applicationSuite: WordPress
-softwareVersion: 0.0.3-alpha
+softwareVersion: 1.0.0-beta
 categories:
   - website-builder
 description:
@@ -12,13 +12,22 @@ description:
     documentation: >-
       https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/README.md
     features:
-      - Popolamento automatico del sito.
+      - Popolamento automatico del sito (pagine e menu).
+      - Sezione per la configurazione del tema e dei contenuti.
       - Gestione delle persone del laboratorio.
       - Gestione dei progetti del laboratorio.
       - Gestione delle news e degli eventi del laboratorio.
       - Gestione dei luoghi del laboratorio.
       - Gestione delle pubblicazioni del laboratorio.
       - Gestione degli indirizzi di ricerca.
+      - Gestione del blog del laboratorio.
+      - Pagine di archivio con paginazione.
+      - Ricerca in tutti i contenuti del sito.
+      - Gestione degli avvisi in home page.
+      - Gestione dei cookies.
+      - Form di contatti.
+      - Gestione hero in home page.
+      - Carousel in home page con contenuti selezionabili.
       - Supporto delle lingue italiano ed inglese.
     genericName: Tema Wordpress
     localisedName: Design laboratori e centri di ricerca
@@ -33,8 +42,18 @@ description:
       Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale 
       di ricerca delle strutture.
     screenshots:
-      - https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/assets/screenshots/homepage.png
-
+      - assets/screenshots/homepage.png
+      - assets/screenshots/homepage2.png
+      - assets/screenshots/configurazione1.png
+      - assets/screenshots/configurazione2.png
+      - assets/screenshots/configurazione3.png
+      - assets/screenshots/configurazione4.png
+      - assets/screenshots/progetti.png
+      - assets/screenshots/persone.png
+      - assets/screenshots/pubblicazioni.png
+      - assets/screenshots/indirizzi-di-ricerca.png
+      - assets/screenshots/ricerca.png
+      - assets/screenshots/eventi.png
     shortDescription: >-
         Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l’obiettivo di creare un modello di sito per le strutture di ricerca.
 developmentStatus: development 
