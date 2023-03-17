@@ -43,12 +43,12 @@ get_header();
 							<?php
 							foreach ( $strutture as $struttura ) {
 								?>
-								<div class="chip chip-simple <?php if ( isset( $_GET['struttura'] ) && $_GET['struttura'] == $struttura->slug ) echo " chip-selected" ?>">
+								<div class="chip chip-primary chip-lg chip-simple <?php if ( isset( $_GET['struttura'] ) && $_GET['struttura'] == $struttura->slug ) echo " chip-selected" ?>">
 									<span class="chip-label"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
 								</div>
 							<?php } ?>
 
-							<div class="chip chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
+							<div class="chip chip-primary chip-lg chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
 								<span class="chip-label"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Disattiva filtri', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
 							</div>
 						</div>

@@ -50,8 +50,8 @@ filter: invert(100%);
 }
 
 .chip-selected {
-	background: #30475f;
-	border-color: #30475f;
+	background: #30475f !important;
+	border-color: #30475f !important;
 	color: #ffffff;
 }
 
