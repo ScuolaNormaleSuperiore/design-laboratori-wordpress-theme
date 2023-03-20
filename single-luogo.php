@@ -43,10 +43,16 @@ while ( have_posts() ) {
 							</div>
 						</div>
 						<div class="col-sm-7">
+							<?php
+							if ($image_url) {
+							?>
 							<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" 
-							alt="<?php echo esc_attr($title)?>"
-							title="<?php echo esc_attr($title)?>"
-							loading="lazy">
+								alt="<?php echo esc_attr( $title )?>"
+								title="<?php echo esc_attr( $title )?>"
+								loading="lazy">
+							<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>

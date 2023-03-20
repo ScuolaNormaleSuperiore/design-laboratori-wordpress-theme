@@ -57,7 +57,7 @@ $mappa_primo_piano = dli_get_option("posizione_mappa", "luoghi") === 'true' ? tr
                 foreach ($locations as $location_key => $value) {
                     foreach ($value as $place_key => $place) {
                         if(!$place['lat'] || !$place['lng']) {
-                            $pos = dsi_multi_array_search($place['indirizzo'], $locations);
+                            $pos = dli_multi_array_search($place['indirizzo'], $locations);
                             if($pos) {
                                 $locations[$pos][] = $place;
                                 unset($locations[$location_key][$place_key]);
