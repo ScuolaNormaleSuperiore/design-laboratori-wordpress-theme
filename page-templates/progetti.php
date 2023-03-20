@@ -8,12 +8,32 @@ get_header();
 
 define( 'PROG_CELLS_PER_ROW', 3 );
 
+$today = date( 'Ymd' );
+
 $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => PROGETTO_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
-	)
+		'meta_query' => array(
+				'relation'     => 'AND',
+				array(
+					'key' => 'data_inizio',
+					'compare'  => '<=',
+					'value'    => $today,
+				),
+				array(
+					'key' => 'data_fine',
+					'compare'  => '>=',
+					'value'    => $today,
+				),
+				array(
+					'key'     => 'archiviato',
+					'compare' => '=',
+					'value'   => 0,
+				),
+			),
+		),
 );
 $num_results = $the_query->found_posts;
 ?>
@@ -29,13 +49,13 @@ $num_results = $the_query->found_posts;
 	<?php
 	// The mani loop of the page.
 	$pindex = 0;
-	if ( $num_results ) {
 		?>
 
 	<!-- ELENCO PROGETTI -->
 	<section id="progetti" class="p-1">
 		<div class="container my-4">
 			<?php
+			if ( $num_results ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
 				if ( ( $pindex % PROG_CELLS_PER_ROW ) == 0 ) {

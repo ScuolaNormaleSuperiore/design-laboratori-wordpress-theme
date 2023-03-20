@@ -10,6 +10,14 @@
 global $post;
 get_header();
 
+$the_query = new WP_Query(
+	array(
+		'paged'          => get_query_var( 'paged', 1 ),
+		'post_type'      => PEOPLE_POST_TYPE,
+		'posts_per_page' => DLI_POSTS_PER_PAGE,
+	)
+);
+$num_results = $the_query->found_posts;
 ?>
 
 <!-- START CONTENT -->
@@ -56,131 +64,142 @@ get_header();
 							<?php
 						}
 
-						// recupero tutte le categorie.
-						$categorie_persone = new WP_Query(
-							array(
-								'posts_per_page' => -1,
-								'post_type'      => 'tipologia-persona',
-								'meta_key'       => 'priorita',
-								'orderby'        => 'meta_value_num',
-								'order'          => 'ASC',
-							)
-						);
+						if($num_results) {
+							// recupero tutte le categorie.
+							$categorie_persone = new WP_Query(
+								array(
+									'posts_per_page' => -1,
+									'post_type'      => 'tipologia-persona',
+									'meta_key'       => 'priorita',
+									'orderby'        => 'meta_value_num',
+									'order'          => 'ASC',
+								)
+							);
 
-						wp_reset_postdata();
+							wp_reset_postdata();
 
-						// INIZIO LOOP CATEGORIE.
-						while ( $categorie_persone->have_posts() ) {
-							$categorie_persone->the_post();
-							$nome_categoria = get_field( 'nome' );
+							// INIZIO LOOP CATEGORIE.
+							while ( $categorie_persone->have_posts() ) {
+								$categorie_persone->the_post();
+								$nome_categoria = get_field( 'nome' );
 
-							$categoria_id = get_the_ID();
-							if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != '' ) {
-								$struttura = $_GET['struttura'];
-								// recupero la lista delle persone filtrate per struttura.
-								$persone = new WP_Query(
-									array(
-										'posts_per_page' => -1,
-										'post_type'      => 'persona',
-										'orderby'        => 'cognome',
-										'order'          => 'ASC',
-										'meta_query'     => array(
-											array(
-												'key'     => 'categoria_appartenenza',
-												'compare' => 'LIKE',
-												'value'   => '"' . $categoria_id . '"',
+								$categoria_id = get_the_ID();
+								if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != '' ) {
+									$struttura = $_GET['struttura'];
+									// recupero la lista delle persone filtrate per struttura.
+									$persone = new WP_Query(
+										array(
+											'posts_per_page' => -1,
+											'post_type'      => 'persona',
+											'orderby'        => 'cognome',
+											'order'          => 'ASC',
+											'meta_query'     => array(
+												array(
+													'key'     => 'categoria_appartenenza',
+													'compare' => 'LIKE',
+													'value'   => '"' . $categoria_id . '"',
+												),
 											),
-										),
-										'tax_query'   => array(
-											array(
-												'taxonomy' => 'struttura',
-												'field'    => 'slug',
-												'terms'    => "'" . $struttura . "'",
+											'tax_query'   => array(
+												array(
+													'taxonomy' => 'struttura',
+													'field'    => 'slug',
+													'terms'    => "'" . $struttura . "'",
+												),
 											),
-										),
-									)
-								);
-							}
-							else {
-								// recupero la lista DI TUTTE persone.
-								$persone = new WP_Query(
-									array(
-										'posts_per_page' => -1,
-										'post_type'      => 'persona',
-										'orderby'        => 'cognome',
-										'order'          => 'ASC',
-										'meta_query'     => array(
-											array(
-												'key' => 'categoria_appartenenza',
-												'compare' => 'LIKE',
-												'value' => '"' . $categoria_id . '"',
-											),
-										),
-									)
-								);
-							}
-
-							if ( $persone ) {
-								?>
-
-								<!-- ELENCO AVATAR PERSONE -->
-								<?php
-								if ( $persone->have_posts() ) {
-									?>
-									<div class="row  mb-4">
-										<div class="col-lg-3">
-											<h3 class="text-lg-right mb-3 h4"><?php _e( $nome_categoria, "design_laboratori_italia" ); ?></h3>
-										</div><!-- /col-lg-3 -->
-										<div class="col-lg-9">
-											<div class="row ">
-
-										<?php
-										while ( $persone->have_posts() ) {
-											$persone->the_post();
-											$escludi_da_elenco = get_field( 'escludi_da_elenco' );
-											if ( ! $escludi_da_elenco ) {
-												$nome                       = get_field( 'nome' );
-												$cognome                    = get_field( 'cognome' );
-												$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio' );
-												$ID                         = get_the_ID();
-												$link_persona               = get_the_permalink( $ID );
-												$title                      = get_the_title( $ID );
-												?>
-												<div class="col-lg-4">
-													<div class="avatar-wrapper avatar-extra-text">
-														<div class="avatar size-xl">
-															<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
-														</div>
-														<div class="extra-text">
-															<?php
-															$terms = get_the_terms( $ID, 'struttura' );
-															$nome_struttura = $terms[0]->name;
-															if ( ! $disattiva_pagina_dettaglio ) {
-																?>
-																<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
-																<?php
-															}
-															else {
-																?>
-																<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
-															<?php } ?>
-															<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
-														</div>
-													</div>
-												</div><!-- /col-lg-4 -->
-												<?php
-											}
-										}
-										?>
-											</div><!-- /row -->
-										</div><!-- /col-lg-9 -->
-									</div><!-- /row -->
-									<?php
+										)
+									);
 								}
+								else {
+									// recupero la lista DI TUTTE persone.
+									$persone = new WP_Query(
+										array(
+											'posts_per_page' => -1,
+											'post_type'      => 'persona',
+											'orderby'        => 'cognome',
+											'order'          => 'ASC',
+											'meta_query'     => array(
+												array(
+													'key' => 'categoria_appartenenza',
+													'compare' => 'LIKE',
+													'value' => '"' . $categoria_id . '"',
+												),
+											),
+										)
+									);
+								}
+
+								if ( $persone ) {
+									?>
+
+									<!-- ELENCO AVATAR PERSONE -->
+									<?php
+									if ( $persone->have_posts() ) {
+										?>
+										<div class="row  mb-4">
+											<div class="col-lg-3">
+												<h3 class="text-lg-right mb-3 h4"><?php _e( $nome_categoria, "design_laboratori_italia" ); ?></h3>
+											</div><!-- /col-lg-3 -->
+											<div class="col-lg-9">
+												<div class="row ">
+
+											<?php
+											while ( $persone->have_posts() ) {
+												$persone->the_post();
+												$escludi_da_elenco = get_field( 'escludi_da_elenco' );
+												if ( ! $escludi_da_elenco ) {
+													$nome                       = get_field( 'nome' );
+													$cognome                    = get_field( 'cognome' );
+													$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio' );
+													$ID                         = get_the_ID();
+													$link_persona               = get_the_permalink( $ID );
+													$title                      = get_the_title( $ID );
+													?>
+													<div class="col-lg-4">
+														<div class="avatar-wrapper avatar-extra-text">
+															<div class="avatar size-xl">
+																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
+															</div>
+															<div class="extra-text">
+																<?php
+																$terms = get_the_terms( $ID, 'struttura' );
+																$nome_struttura = $terms[0]->name;
+																if ( ! $disattiva_pagina_dettaglio ) {
+																	?>
+																	<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																	<?php
+																}
+																else {
+																	?>
+																	<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
+																<?php } ?>
+																<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
+															</div>
+														</div>
+													</div><!-- /col-lg-4 -->
+													<?php
+												}
+											}
+											?>
+												</div><!-- /row -->
+											</div><!-- /col-lg-9 -->
+										</div><!-- /row -->
+										<?php
+									}
+								}
+								wp_reset_postdata();
+							}
+						}
+						else {
+							?>
+								<div class="col-12 col-lg-8">
+									<div class="row pt-2">
+										<?php echo __( 'Non è stata trovata nessuna persona', 'design_laboratori_italia' ); ?>
+									</div>
+								</div>
+							<?php
 							}
 							wp_reset_postdata();
-						}
-						wp_reset_postdata();
 						?>
 				</div><!-- /container -->
 			</section><!-- /section -->
