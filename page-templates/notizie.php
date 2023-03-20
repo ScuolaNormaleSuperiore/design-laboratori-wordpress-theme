@@ -131,12 +131,14 @@ $all_categories = dli_get_all_categories( 'category' );
 					}
 				} else {
 					?>
-				<div clas="row pt-2">
-					<?php echo __( 'Non è stata trovata nessuna notizia', 'design_laboratori_italia' ); ?>
-				</div>
-				<?php
-					}
-				 ?>
+					<div class="col-12 col-lg-8">
+						<div clas="row pt-2">
+							<?php echo __( 'Non è stata trovata nessuna notizia', 'design_laboratori_italia' ); ?>
+						</div>
+					</div>
+					<?php
+				}
+				?>
 
 
 				</div> 

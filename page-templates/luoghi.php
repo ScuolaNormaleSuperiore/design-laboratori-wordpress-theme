@@ -141,7 +141,6 @@ $num_results = $luoghi->found_posts;
 							</div>
 						</div>
 						<?php
-						wp_reset_postdata();
 					}
 					else {
 						?>
@@ -157,6 +156,11 @@ $num_results = $luoghi->found_posts;
 			</div>
 		</section>
 
+		<!-- RESTORE ORIGINAL Post Data -->
+		<?php
+		wp_reset_postdata();
+	?>
+	
 		<!-- PAGINAZIONE -->
 	<?php
 		get_template_part(
