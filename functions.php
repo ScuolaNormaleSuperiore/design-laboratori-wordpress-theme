@@ -8,9 +8,15 @@
  */
 
 /**
- * Define
+ * Define the theme parameters and configurations.
  */
 require get_template_directory() . '/lab_config.php';
+
+/**
+ * Setup the theme post types and taxonomies.
+ */
+require get_template_directory() . '/lab_setup.php';
+
 
 /**
  * Warappers functions fo Polylang.
@@ -85,16 +91,6 @@ require get_template_directory() . '/inc/actions.php';
  */
 require get_template_directory() . '/inc/gutenberg.php';
 
-/**
- * Welcome page
- */
-//require get_template_directory() . '/inc/welcome.php';
-
-/**
- * Admin menu
- */
-// require get_template_directory() . '/inc/menu-order.php';
-
 
 /**
  * Import
@@ -105,44 +101,6 @@ require get_template_directory() . '/inc/import.php';
  * TCPDF
  */
 require get_template_directory() . '/inc/dompdf.php';
-
-
-
-
-/**
- * Check plugin dependencies.
- *
- * @return boolean
- */
-function check_dependencies() {
-	$result = true;
-	if ( ! class_exists( 'ACF' ) ) {
-		error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://wordpress.org/plugins/advanced-custom-fields' );
-		$result = false;
-	}
-	if ( ! class_exists( 'Members_Plugin' ) ) {
-		error_log( 'The plugin Members is missing, please install and activate it: https://wordpress.org/plugins/members' );
-		$result = false;
-	}
-	if ( ! function_exists( 'pll_the_languages' ) ) {
-		error_log( 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/' );
-		$result = false;
-	}
-	return $result;
-}
-
-if ( check_dependencies() ) {
-	// SETUP THE POST TYPES  USED BY THE THEME.
-
-	if ( ! class_exists( 'LabManager' ) ) {
-		include_once 'classes/class-labmanager.php';
-
-		global $lab_manager;
-		$lab_manager = new LabManager();
-		$lab_manager->plugin_setup();
-	}
-
-}
 
 
 if ( ! function_exists( 'dli_setup' ) ) :
@@ -214,8 +172,6 @@ add_action( 'after_setup_theme', 'dli_setup' );
  * Enqueue scripts and styles.
  */
 function dli_scripts() {
-
-	// wp_deregister_script('jquery' );
 
 	// Importazione dei file CSS.
 	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri() ); // File style.css vuoto.

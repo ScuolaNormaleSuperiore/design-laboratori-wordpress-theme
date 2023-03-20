@@ -1313,7 +1313,8 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 				'post_type'   => $content_type,
 				'numberposts' => 1,
 			);
-			return get_posts( $args )[0];
+			$posts = get_posts( $args );
+			return $posts ? $posts[0] : null;
 		}
 	}
 
