@@ -7,7 +7,7 @@ $query = new WP_Query(
 		'posts_per_page' => -1,
 		'meta_query'     => array(
 			array(
-				'key'     => 'promuovi_in_carousel',
+				'key'     => 'promuovi_in_home',
 				'compare' => '=',
 				'value'   => 1,
 			),
