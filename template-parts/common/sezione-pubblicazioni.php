@@ -20,8 +20,9 @@
 							}
 							$id          = $item->ID;
 							$src_icon    = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';
-							$nome        = get_the_title( $id);
+							$nome        = get_the_title( $id );
 							$link        = get_permalink( $id );
+							$content     = $item->post_content;
 						?>
 								<!--begin card pubblicazioni -->
 								<div class="card card-teaser rounded shadow ">
@@ -33,7 +34,7 @@
 											<a href="<?php echo $link; ?>"><?php echo $nome; ?></a>
 										</h3>
 										<div class="card-text">
-											<p><?php echo esc_attr( the_content() ); ?></p>
+											<p><?php echo esc_attr( $content ); ?></p>
 										</div>
 									</div>
 								</div>
