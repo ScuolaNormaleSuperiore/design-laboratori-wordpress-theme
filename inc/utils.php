@@ -34,8 +34,8 @@ if(!function_exists("dli_get_option")) {
  * @param  int     $post_id
  * @return bool
  */
-if(!function_exists("dsi_members_can_user_view_post")) {
-		function dsi_members_can_user_view_post($user_id, $post_id) {
+if(!function_exists("dli_members_can_user_view_post")) {
+		function dli_members_can_user_view_post($user_id, $post_id) {
 				if(!function_exists("members_can_user_view_post")) {
 						return true;
 				}else{
@@ -52,7 +52,7 @@ if(!function_exists("dsi_members_can_user_view_post")) {
  */
 if(!function_exists("dli_get_meta")){
 	function dli_get_meta( $key = '', $prefix = "", $post_id = "") {
-				if ( ! dsi_members_can_user_view_post(get_current_user_id(), $post_id) ) return false;
+				if ( ! dli_members_can_user_view_post(get_current_user_id(), $post_id) ) return false;
 
 		if($post_id == "")
 			$post_id = get_the_ID();
@@ -930,44 +930,15 @@ function dli_get_persona_display_name($nome, $cognome, $title){
  * @param  mixed  $okey Previous value
  * @return mixed
  */
-if(!function_exists("dsi_multi_array_search")) {
-		function dsi_multi_array_search($search_for, $search_in, $okey = false) {
+if(!function_exists("dli_multi_array_search")) {
+		function dli_multi_array_search($search_for, $search_in, $okey = false) {
 				foreach ($search_in as $key => $element) {
 						$key = $okey ? $okey : $key;
-						if (($element === $search_for) || (is_array($element) && $key = dsi_multi_array_search($search_for, $element, $key))) {
+						if (($element === $search_for) || (is_array($element) && $key = dli_multi_array_search($search_for, $element, $key))) {
 								return $key;
 						}
 				}
 				return false;
-		}
-}
-
-
-/**
- *  Tronca un testo in base ai valori specificati
- *  * @since 0.1.0
- * @param $string initial text
- * @param $limit truncate length
- * @param string $break
- * @param string $pad
- * @return string
- */
-if(!function_exists("dsi_truncate")) {
-		function dsi_truncate($string, $limit, $break = " ", $pad = "..."){
-				$string = html_entity_decode($string, ENT_QUOTES, "UTF-8");
-
-				$string = strip_tags($string);
-				if (mb_strlen($string) <= $limit)
-						return $string;
-
-				// is $break present between $limit and the end of the string?
-				if (false !== ($breakpoint = strpos($string, $break, $limit))) {
-						if ($breakpoint < mb_strlen($string) - 1) {
-								$string = mb_substr($string, 0, $breakpoint) . $pad;
-						}
-				}
-
-				return $string;
 		}
 }
 
@@ -1313,7 +1284,8 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 				'post_type'   => $content_type,
 				'numberposts' => 1,
 			);
-			return get_posts( $args )[0];
+			$posts = get_posts( $args );
+			return $posts ? $posts[0] : null;
 		}
 	}
 

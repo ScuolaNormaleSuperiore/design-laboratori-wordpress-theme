@@ -135,3 +135,4 @@ Il plugin è disponibile in italiano e in inglese.
 ## Copyright
 1. Detentore copyright: Scuola Normale Superiore.
 2. Responsabili del progetto: Michele Fiaschi, Claudio Battaglino, Marcella Monreale.
+3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e il ***laboratorio Doc Star*** della *Scuola Normale Superiore di Pisa*.

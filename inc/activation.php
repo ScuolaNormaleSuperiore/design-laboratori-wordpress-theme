@@ -370,7 +370,7 @@ function 	build_the_menu( $custom_menu ) {
 					'menu-item-object'    => $menu_item['content_type'],
 					'menu-item-status'    => $menu_item['status'],
 					'menu-item-type'      => $menu_item['post_type'],
-					'menu-item-classes'   => $menu_item['footer-link'],
+					// 'menu-item-classes'   => $menu_item['footer-link'],
 				)
 			);
 		}
