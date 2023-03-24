@@ -17,7 +17,7 @@ $query = new WP_Query(
 $num_items = $query->post_count;
 ?>
 
-<div class="col-12 col-lg-4">
+<div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
 	<h2 class="h3 pb-2"><?php echo __( 'Notizie', 'design_laboratori_italia' ); ?></h2>
 	<div class="card-wrapper">
 		<div class="card card-bg">
