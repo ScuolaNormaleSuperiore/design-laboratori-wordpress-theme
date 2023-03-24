@@ -52,8 +52,8 @@ $num_results = $the_query->found_posts;
 		?>
 
 	<!-- ELENCO PROGETTI -->
-	<section id="progetti" class="p-1">
-		<div class="container my-4">
+	<section id="progetti">
+		<div class="container p-5">
 			<?php
 			if ( $num_results ) {
 			while ( $the_query->have_posts() ) {
@@ -61,7 +61,7 @@ $num_results = $the_query->found_posts;
 				if ( ( $pindex % PROG_CELLS_PER_ROW ) == 0 ) {
 			?>
 				<!-- begin row -->
-				<div class="row pt-5">
+				<div class="row">
 				<?php
 					}
 					$image_url   = get_the_post_thumbnail_url( get_the_ID(), 'full' );
@@ -71,7 +71,7 @@ $num_results = $the_query->found_posts;
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">
-							<div class="card-space">
+							<div class="card-space pb-5">
 								<div class="card card-bg card-big no-after">
 								<?php
 								if ( $image_url ) {

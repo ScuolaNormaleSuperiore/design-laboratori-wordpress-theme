@@ -53,7 +53,7 @@ $contatti     = array(
 	</section>
 
 	<!-- DETTAGLIO PROGETTO -->
-	<div class="container py-lg-5" id="scheda_progetto">
+	<div class="container p-5" id="scheda_progetto">
 		<div class="row">
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">

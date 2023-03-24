@@ -120,10 +120,10 @@ $num_results = $pubblicazioni->found_posts;
 		<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
 
 		<!-- ELENCO PUBBLICAZIONI -->
-		<section id="pubblicazioni" class="p-4">   
-			<div class="container my-4"> 
-				<div class="row pt-0"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
-					<div class="col-12 col-lg-3 border-end">
+		<section id="pubblicazioni">
+			<div class="container p-5"> 
+				<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
+					<div class="col-12 col-lg-3 border-end pb-3">
 						<!--COLONNA FILTRI -->
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
@@ -184,7 +184,7 @@ $num_results = $pubblicazioni->found_posts;
 					if ( $num_results ) {
 					?>
 
-						<div class="col-12 col-lg-8">
+						<div class="col-12 col-lg-8 pt-3">
 							<div class="row">
 								<?php
 								while ( $pubblicazioni->have_posts() ) {
