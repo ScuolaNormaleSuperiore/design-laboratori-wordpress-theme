@@ -9,6 +9,6 @@ require 'vendor/CMB2-taxonomy-hierarchy-child.php';
 
 add_filter(
 	'pw_cmb2_field_select2_asset_path',
-	function ( $var ) { return get_stylesheet_directory_uri(). '/inc/vendor/cmb-field-select2-master'; } );
+	function ( $var ) { return get_stylesheet_directory_uri() . '/inc/vendor/cmb-field-select2-master'; } );
 
 require 'vendor/cmb-field-select2-master/cmb-field-select2.php';

@@ -34,22 +34,17 @@ require get_template_directory() . '/inc/wrappers_acf.php';
 require get_template_directory() . '/inc/define.php';
 
 /**
- * Extend User Taxonomy
- */
-// require get_template_directory() . '/inc/extend-tax-to-user.php';
-
-/**
- * Implement Plugin Activations Rules
+ * Implement Plugin Activations Rules.
  */
 require get_template_directory() . '/inc/theme-dependencies.php';
 
 /**
- * header menu walker
+ * Header menu walker.
  */
 require get_template_directory() . '/walkers/header-walker.php';
 
 /**
- * footer menu walker
+ * Footer menu walker.
  */
 require get_template_directory() . '/walkers/footer-walker.php';
 
@@ -198,7 +193,7 @@ function console_log ($output, $msg = "log") {
 /*
  * Set post views count using post meta
  */
-function set_views($post_ID) {
+function set_views( $post_ID ) {
 	$key = 'views';
 	$count = get_post_meta($post_ID, $key, true); //retrieves the count
 
@@ -223,7 +218,7 @@ function set_views($post_ID) {
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 function add_menu_link_class( $atts, $item, $args ) {
-	if (property_exists($args, 'link_class')) {
+	if ( property_exists( $args, 'link_class' ) ) {
 		$atts['class'] = $args->link_class;
 	}
 	return $atts;
