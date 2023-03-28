@@ -4,7 +4,6 @@ require 'vendor/CMB2/init.php';
 require 'vendor/CMB2-conditional-logic/cmb2-conditional-logic.php';
 require 'vendor/CMB2-field-Leaflet-Geocoder/cmb-field-leaflet-map.php';
 require 'vendor/cmb2-attached-posts/cmb2-attached-posts-field.php';
-
 require 'vendor/CMB2-taxonomy-hierarchy-child.php';
 
 add_filter(
