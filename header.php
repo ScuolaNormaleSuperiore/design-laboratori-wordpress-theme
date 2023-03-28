@@ -78,8 +78,12 @@ $current_group   = dli_get_current_group();
 						<ul class="link-list">
 						<?php
 						foreach ( $menuitems as $item ) {
+							$active_class = '';
+							if(get_permalink( ) == $item->url) {
+								$active_class = 'active';
+							}
 						?>
-						<li><a class="list-item" href="<?php echo $item->url ?>" aria-current="page"><?php echo $item->title;?></a></li>
+						<li><a class="list-item <?php echo $active_class;?>" href="<?php echo $item->url ?>" aria-current="page"><?php echo $item->title;?></a></li>
 							<?php
 							}
 							?>

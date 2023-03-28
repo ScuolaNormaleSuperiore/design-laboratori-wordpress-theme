@@ -570,7 +570,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em', 
+						'valid_elements' => 'a[href],strong,em',
 					),
 				),
 			)
@@ -1073,7 +1073,7 @@ $social_options->add_field( array(
 		$setup_options->add_field(
 			array(
 				'id'   => $prefix . 'analytics',
-				'name' => __( 'Analytics', 'design_laboratori_italia' ),
+				'name' => __( 'Web Analytics Italia', 'design_laboratori_italia' ),
 				'type' => 'title',
 			)
 		);

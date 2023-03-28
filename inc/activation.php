@@ -695,7 +695,7 @@ function create_the_pages() {
 			array(
 				'content_slug_it'    => SLUG_PERSONE_IT,
 				'content_slug_en'    => SLUG_PERSONE_EN,
-				'content_title_it'   => 'Le Persone',
+				'content_title_it'   => 'Persone',
 				'content_title_en'   => 'People',
 				'content_it'         => 'Descrizione dello staff del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
 				'content_en'         => 'Description of the Lab staff...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
@@ -708,8 +708,8 @@ function create_the_pages() {
 			array(
 				'content_slug_it'    => SLUG_PROGETTI_IT,
 				'content_slug_en'    => SLUG_PROGETTI_EN,
-				'content_title_it'   => 'I progetti',
-				'content_title_en'   => 'The projects',
+				'content_title_it'   => 'Progetti',
+				'content_title_en'   => 'Projects',
 				'content_it'         => 'Descrizione dei progetti del laboratorio...',
 				'content_en'         => 'Description of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 				'content_status'     => 'publish',
@@ -734,7 +734,7 @@ function create_the_pages() {
 			array(
 				'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
 				'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
-				'content_title_it'   => 'Le pubblicazioni',
+				'content_title_it'   => 'Pubblicazioni',
 				'content_title_en'   => 'Publications',
 				'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
 				'content_en'         => 'Our publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
