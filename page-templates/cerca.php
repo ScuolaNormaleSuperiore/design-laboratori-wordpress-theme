@@ -31,9 +31,6 @@ if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 $the_query = null;
 
 if ( $searchstring !== '' ) {
-	if ( count( $selected_contents ) === 0) {
-		$selected_contents = $allcontentypes;
-	}
 	$the_query = dli_main_search_query(
 		$selected_contents,
 		$searchstring,
@@ -67,7 +64,7 @@ if ( $searchstring !== '' ) {
 							</label>
 							<input type="text" id="searchstring" name="searchstring" class="form-control" 
 								value="<?php echo $searchstring ? $searchstring : '' ?>"
-								placeholder="<?php echo __( 'Inserisci il test da cercare', 'design_laboratori_italia' ); ?>">
+								placeholder="<?php echo __( 'Inserisci il testo da cercare', 'design_laboratori_italia' ); ?>">
 							<input type="hidden" name="isreset" id="isreset" value=""/>
 						</div> 
 					</div>
@@ -95,7 +92,7 @@ if ( $searchstring !== '' ) {
 					<?php
 						if( count( $allcontentypes ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Tipo di contenuto', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ); ?></h3>
 						<div>
 								<?php
 									foreach( $allcontentypes as $ct ) {
@@ -103,9 +100,11 @@ if ( $searchstring !== '' ) {
 								<div class="form-check">
 									<input type="checkbox" name="selected_contents[]" id="<?php echo $ct; ?>" 
 										value="<?php echo $ct; ?>"
-										<?php if ( in_array( $ct, $selected_contents ) ) { echo "checked='checked'"; } ?>
+										<?php if (count( $selected_contents ) > 0 && in_array( $ct, $selected_contents ) ) {
+											 echo "checked='checked'";
+										} ?>
 									>
-									<label for="<?php echo $ct; ?>"><?php echo $ct; ?></label>
+									<label for="<?php echo $ct; ?>"><?php echo ucfirst(str_replace("-", " ", $ct));; ?></label>
 								</div>
 								<?php
 									}

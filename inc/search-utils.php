@@ -2,6 +2,7 @@
 
 if ( ! function_exists( 'dli_main_search_query' ) ) {
 		function dli_main_search_query( $selected_contents, $searchstring, $pagesize ) {
+			if( count( $selected_contents ) > 0 ) {
 			$the_query = new WP_Query(
 				array(
 					'paged'          => get_query_var( 'paged', 1 ),
@@ -10,6 +11,17 @@ if ( ! function_exists( 'dli_main_search_query' ) ) {
 					's'              => $searchstring,
 				)
 			);
+		}
+		else {
+			$the_query = new WP_Query(
+				array(
+					'paged'          => get_query_var( 'paged', 1 ),
+					'posts_per_page' => $pagesize,
+					's'              => $searchstring,
+				)
+			);
+		}
+
 			return $the_query;
 		}
 }
