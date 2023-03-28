@@ -57,8 +57,7 @@ require get_template_directory() . '/walkers/footer-walker.php';
  * Implement CMB2 Custom Field Manager
  */
 require get_template_directory() . '/inc/cmb2.php';
-require get_template_directory() . '/inc/backend-template.php';
-
+require get_template_directory() . '/inc/admin/options.php';
 
 /**
  * Utils functions.
