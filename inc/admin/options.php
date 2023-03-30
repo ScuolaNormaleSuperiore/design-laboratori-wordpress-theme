@@ -373,11 +373,30 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
+			'id'         => $prefix . 'home_main_hero_title_eng',
+			'name'       => __( 'Titolo hero ENG', 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
 			'id'         => $prefix . 'home_main_hero_text',
 			'name'       => __( 'Testo hero', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
 			'attributes' => array(
-				'maxlength' => '140'
+				'maxlength' => '140',
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_text_eng',
+			'name'       => __( 'Testo hero ENG', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '140',
 			),
 		)
 	);
@@ -386,6 +405,14 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'home_main_hero_button_label',
 			'name'       => __( 'Label bottone', 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_main_hero_button_label_eng',
+			'name'       => __( 'Label bottone ENG', 'design_laboratori_italia' ),
 			'type'       => 'text',
 		)
 	);
@@ -458,6 +485,15 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field(
 		array(
+			'id'         => $prefix . 'etichetta_eng',
+			'name'       => __( 'Etichetta ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Titolo della sezione in Inglese' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$main_options->add_field(
+		array(
 			'id'    => $prefix . 'descrizione_laboratorio',
 			'title' => __( 'Descrizione', 'design_laboratori_italia' ),
 			'name'  => __( 'Descrizione', 'design_laboratori_italia' ),
@@ -470,7 +506,27 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em',
+				),
+			),
+		)
+	);
+
+	$main_options->add_field(
+		array(
+			'id'    => $prefix . 'descrizione_laboratorio_eng',
+			'title' => __( 'Descrizione ENG', 'design_laboratori_italia' ),
+			'name'  => __( 'Descrizione ENG', 'design_laboratori_italia' ),
+			'desc'  => __( 'Descrizione del laboratorio in Inglese' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em',
 				),
 			),
 		)
@@ -512,6 +568,25 @@ function dli_register_main_options_metabox() {
 				'id'         => $prefix . 'testo_blog',
 				'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 				'desc'       => __( 'es: "Gli articoli del laboratorio"' , 'design_laboratori_italia' ),
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em', 
+					),
+				),
+			)
+		);
+
+		$blog_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_blog_eng',
+				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "The papers from the Lab"' , 'design_laboratori_italia' ),
 				'type' => 'wysiwyg',
 				'options' => array(
 					'textarea_rows' => 1,
@@ -576,6 +651,25 @@ function dli_register_main_options_metabox() {
 			)
 		);
 
+		$notizie_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_notizie_eng',
+				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "News from the Lab"' , 'design_laboratori_italia' ),
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em',
+					),
+				),
+			)
+		);
+
 	/**
 	* 7- Registers options page "Eventi".
 	*/
@@ -620,7 +714,26 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em', 
+						'valid_elements' => 'a[href],strong,em',
+					),
+				),
+			)
+		);
+
+		$eventi_options->add_field(
+			array(
+				'id'         => $prefix . 'testo_eventi_eng',
+				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'       => __( 'es: "Events from the Lab"' , 'design_laboratori_italia' ),
+				'type' => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em',
 					),
 				),
 			)
@@ -654,7 +767,8 @@ function dli_register_main_options_metabox() {
 	) );
 
 
-	$persone_options->add_field( array(
+	$persone_options->add_field( 
+		array(
 			'id' => $prefix . 'testo_sezione_persone',
 			'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
 			'desc' => __( 'es: "Le persone del laboratorio"' , 'design_laboratori_italia' ),
@@ -669,7 +783,27 @@ function dli_register_main_options_metabox() {
 					'valid_elements' => 'a[href],strong,em', 
 				),
 			),
-	) );
+		)
+	);
+
+	$persone_options->add_field( 
+		array(
+			'id' => $prefix . 'testo_sezione_persone_eng',
+			'name'        => __( 'Descrizione Sezione Persone ENG', 'design_laboratori_italia' ),
+			'desc' => __( 'es: "People from the Lab"' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
+			),
+		),
+	);
 
 	/**
 	* 9 - Registers options page "Pubblicazioni".
@@ -699,12 +833,31 @@ function dli_register_main_options_metabox() {
 		'type' => 'title',
 		)
 	);
-	// Campo descrizione della sezione.
+	// Campi descrizione della sezione.
 	$pubblicazioni_options->add_field(
 		array(
 			'id'         => $prefix . 'testo_pubblicazioni',
 			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-			'desc'       => __( 'es: "Pubblicazioni dei membri del Laboratorio.' , 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Pubblicazioni dei membri del Laboratorio."' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
+			),
+		)
+	);
+
+	$pubblicazioni_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_pubblicazioni_eng',
+			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Publications by Lab members."' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
 			'options' => array(
 				'textarea_rows' => 1,
@@ -747,12 +900,32 @@ function dli_register_main_options_metabox() {
 		'type' => 'title',
 		)
 	);
-	// Campo descrizione della sezione.
+	// Campi descrizione della sezione.
 	$progetti_options->add_field(
 		array(
 			'id'         => $prefix . 'testo_progetti',
 			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "I progetti del Laboratorio"' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em', 
+				),
+			),
+		)
+	);
+
+	// Campi descrizione della sezione.
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_progetti_eng',
+			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Lab projects"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
 			'options' => array(
 				'textarea_rows' => 1,
@@ -794,7 +967,7 @@ function dli_register_main_options_metabox() {
 		'type' => 'title',
 		)
 	);
-	// Campo descrizione della sezione.
+	// Campi descrizione della sezione.
 	$ricerca_options->add_field(
 		array(
 			'id'         => $prefix . 'testo_ricerca',
@@ -808,7 +981,27 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em',
+				),
+			),
+		)
+	);
+
+	// Campi descrizione della sezione.
+	$ricerca_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_ricerca_eng',
+			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Lab research activities"' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em',
 				),
 			),
 		)
@@ -860,6 +1053,23 @@ function dli_register_main_options_metabox() {
 					),
 				),
 		) );
+
+		$luoghi_options->add_field( array(
+			'id' => $prefix . 'testo_sezione_luoghi_eng',
+			'name'        => __( 'Descrizione Sezione Luoghi ENG', 'design_laboratori_italia' ),
+			'desc' => __( 'es: "Lab places"' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em',
+				),
+			),
+	) );
 
 		$luoghi_options->add_field(array(
 				'id' => $prefix . 'posizione_mappa',
