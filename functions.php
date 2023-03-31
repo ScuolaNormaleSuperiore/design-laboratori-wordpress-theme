@@ -51,7 +51,8 @@ require get_template_directory() . '/walkers/footer-walker.php';
 /**
  * Implement CMB2 Custom Field Manager: import the library.
  */
-require get_template_directory() . '/inc/vendor/CMB2/init.php';
+require get_template_directory() . '/inc/cmb2.php';
+
 // Import the code to create the admin section: Configurazione.
 require get_template_directory() . '/inc/admin/options.php';
 
