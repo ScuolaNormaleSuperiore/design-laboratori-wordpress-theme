@@ -1,5 +1,6 @@
 <?php
-$testo_sezione_persone = dli_get_option("testo_sezione_persone", "persone");
+$testo_sezione_persone = dli_get_configuration_field_by_lang( 'testo_sezione_persone', 'persone' );
+
 ?>
 <section id="banner-persone" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-persone">
 			<div class="section-muted p-3 primary-bg-c1">

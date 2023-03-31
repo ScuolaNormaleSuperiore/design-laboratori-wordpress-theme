@@ -328,6 +328,14 @@ function create_the_it_menus() {
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
+			array(
+				'slug'         => SLUG_ARCHIVIO_PROGETTI_IT,
+				'title'        => 'Archivio progetti',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
 		),
 	);
 	build_the_menu( $menu );
@@ -574,6 +582,14 @@ function create_the_en_menus() {
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
 			),
+			array(
+				'slug'         => SLUG_ARCHIVIO_PROGETTI_EN,
+				'title'        => 'Projects archive',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+			),
 		),
 	);
 	build_the_menu( $menu );
@@ -715,6 +731,19 @@ function create_the_pages() {
 				'content_status'     => 'publish',
 				'content_author'     => 1,
 				'content_template'   => 'page-templates/progetti.php',
+				'content_type'       => 'page',
+				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			),
+			array(
+				'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
+				'content_slug_en'    => SLUG_ARCHIVIO_PROGETTI_EN,
+				'content_title_it'   => 'Archivio progetti',
+				'content_title_en'   => 'Projects archive',
+				'content_it'         => 'Archivio dei progetti del laboratorio...',
+				'content_en'         => 'Projects archive of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+				'content_status'     => 'publish',
+				'content_author'     => 1,
+				'content_template'   => 'page-templates/archive-progetti.php',
 				'content_type'       => 'page',
 				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),

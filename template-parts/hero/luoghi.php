@@ -1,5 +1,5 @@
 <?php
-$testo_sezione_luoghi = dli_get_option("testo_sezione_luoghi", "luoghi");
+$testo_sezione_luoghi = dli_get_configuration_field_by_lang( 'testo_sezione_luoghi', 'luoghi' );
 ?>
 <section id="banner-luoghi" aria-describedby="Testo introduttivo sezione progetti" class="bg-banner-progetti">
 	<div class="section-muted p-3 primary-bg-c1">

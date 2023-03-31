@@ -201,7 +201,7 @@ if ( $forminviato === 'yes' ) {
 										placeholder="<?php echo __( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="exampleInputTelephone" class="active"><?php echo __( 'Telefono', 'design_laboratori_italia' ); ?></label>
+									<label for="numerotelefono" class="active"><?php echo __( 'Telefono', 'design_laboratori_italia' ); ?></label>
 									<input type="tel" class="form-control" id="numerotelefono" name="numerotelefono"
 										value="<?php echo $numerotelefono; ?>"
 										placeholder="<?php echo __( 'Inserisci il tuo numero di telefono', 'design_laboratori_italia' ); ?>">
