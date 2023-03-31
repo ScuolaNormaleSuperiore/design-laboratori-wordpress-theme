@@ -743,7 +743,7 @@ function create_the_pages() {
 				'content_en'         => 'Projects archive of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 				'content_status'     => 'publish',
 				'content_author'     => 1,
-				'content_template'   => 'page-templates/progetti-archive.php',
+				'content_template'   => 'page-templates/archive-progetti.php',
 				'content_type'       => 'page',
 				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
 			),

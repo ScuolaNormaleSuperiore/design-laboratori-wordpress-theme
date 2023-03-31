@@ -116,16 +116,6 @@ define(
 	)
 );
 
-define(
-	'DLI_ARCHIVE_PAGE_PER_CT',
-	array(
-		PROGETTO_POST_TYPE => array(
-			'it' => SLUG_ARCHIVIO_PROGETTI_IT,
-			'en' => SLUG_ARCHIVIO_PROGETTI_EN,
-		),
-	)
-);
-
 
 // Post Types for PolyLang.
 define(
