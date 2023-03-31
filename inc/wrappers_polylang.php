@@ -49,3 +49,15 @@ if ( ! function_exists( 'dli_save_post_translations' ) ) {
 		return pll_save_post_translations( $related_posts );
 	}
 }
+
+if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
+	function dli_get_configuration_field_by_lang( $field_name, $field_type ) {
+		$field_name_new = ( dli_current_language() === 'it' ) ? $field_name : $field_name . '_eng';
+		$field_value    = dli_get_option( $field_name_new, $field_type );
+		if ( ! $field_value ) {
+			$field_name_new = ( get_site_option( 'WPLANG' ) === 'it_IT' ) ? $field_name : $field_name . '_eng';
+		}
+
+		return dli_get_option( $field_name_new, $field_type );		
+	}
+}
