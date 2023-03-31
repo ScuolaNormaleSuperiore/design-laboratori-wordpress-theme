@@ -53,6 +53,9 @@ define( 'SLUG_RICERCA_SITO_IT', 'ricerca-sito' );
 define( 'SLUG_RICERCA_SITO_EN', 'search-site' );
 define( 'SLUG_BLOG_IT', 'il-blog' );
 define( 'SLUG_BLOG_EN', 'the-bloge' );
+define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
+define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
+
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
@@ -109,6 +112,16 @@ define(
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
+		),
+	)
+);
+
+define(
+	'DLI_ARCHIVE_PAGE_PER_CT',
+	array(
+		PROGETTO_POST_TYPE => array(
+			'it' => SLUG_ARCHIVIO_PROGETTI_IT,
+			'en' => SLUG_ARCHIVIO_PROGETTI_EN,
 		),
 	)
 );

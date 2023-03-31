@@ -1357,9 +1357,23 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 		}
 	}
 
+	if( ! function_exists( 'dli_get_archive_page_slug_by_post_type' ) ) {
+		function dli_get_archive_page_slug_by_post_type( $post_type ) {
+			$lang = dli_current_language();
+			return DLI_ARCHIVE_PAGE_PER_CT[$post_type][$lang];
+		}
+	}
+
 	if( ! function_exists( 'dli_get_page_by_post_type' ) ) {
 		function dli_get_page_by_post_type( $post_type ) {
 			$page = dli_get_page_slug_by_post_type( $post_type );
+			return dli_get_content( $page, 'page' );
+		}
+	}
+
+	if( ! function_exists( 'dli_get_page_by_post_type' ) ) {
+		function dli_get_archive_page_by_post_type( $post_type ) {
+			$page = dli_get_archive_page_slug_by_post_type( $post_type );
 			return dli_get_content( $page, 'page' );
 		}
 	}

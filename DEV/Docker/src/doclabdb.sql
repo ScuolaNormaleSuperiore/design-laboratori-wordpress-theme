@@ -1642,7 +1642,10 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (136, 1, '2023-03-17 13:15:21', '2023-03-17 12:15:21', '', 'Prova A', '', 'inherit', 'closed', 'closed', '', 'prova-a-6', '', '', '2023-03-17 13:15:21', '2023-03-17 12:15:21', '', 134, 'http://localhost/doclab/wp-content/uploads/2023/03/Prova-A-5.pdf', 0, 'attachment', 'application/pdf', 0),
 (137, 1, '2023-03-17 13:15:36', '2023-03-17 12:15:36', '', 'Prova B', '', 'inherit', 'closed', 'closed', '', 'prova-b', '', '', '2023-03-17 13:15:36', '2023-03-17 12:15:36', '', 134, 'http://localhost/doclab/wp-content/uploads/2023/03/Prova-B.pdf', 0, 'attachment', 'application/pdf', 0),
 (138, 1, '2023-03-17 13:15:39', '2023-03-17 12:15:39', '', 'Prova C', '', 'inherit', 'closed', 'closed', '', 'prova-c-2', '', '', '2023-03-17 13:15:39', '2023-03-17 12:15:39', '', 134, 'http://localhost/doclab/wp-content/uploads/2023/03/Prova-C-1.pdf', 0, 'attachment', 'application/pdf', 0),
-(139, 1, '2023-03-17 13:15:51', '2023-03-17 12:15:51', '', 'Prova B', '', 'inherit', 'closed', 'closed', '', 'prova-b-2', '', '', '2023-03-17 13:15:51', '2023-03-17 12:15:51', '', 134, 'http://localhost/doclab/wp-content/uploads/2023/03/Prova-B-1.pdf', 0, 'attachment', 'application/pdf', 0);
+(139, 1, '2023-03-17 13:15:51', '2023-03-17 12:15:51', '', 'Prova B', '', 'inherit', 'closed', 'closed', '', 'prova-b-2', '', '', '2023-03-17 13:15:51', '2023-03-17 12:15:51', '', 134, 'http://localhost/doclab/wp-content/uploads/2023/03/Prova-B-1.pdf', 0, 'attachment', 'application/pdf', 0),
+(140, 1, '2023-03-31 14:30:53', '2023-03-16 13:30:53', 'Archivio dei progetti del laboratorio...', 'Archivio Progetti', '', 'publish', 'closed', 'closed', '', 'progetti', '', '', '2023-03-31 14:30:53', '2023-03-31 13:30:53', '', 22, 'http://localhost/doclab/il-laboratorio/archivio-progetti/', 0, 'page', '', 0),
+(141, 1, '2023-03-31 14:30:53', '2023-03-16 13:30:53', 'Projects archive of the Lab projects... [template active]', 'Archive Projects', '', 'publish', 'closed', 'closed', '', 'projects', '', '', '2023-03-31 14:30:53', '2023-03-16 13:30:53', '', 23, 'http://localhost/doclab/the-lab/projects-archive/', 0, 'page', '', 0);
+
 
 -- --------------------------------------------------------
 
