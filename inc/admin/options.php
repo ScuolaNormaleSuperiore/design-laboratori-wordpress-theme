@@ -373,7 +373,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_title_eng',
+			'id'         => $prefix . 'home_main_hero_title' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Titolo hero ENG', 'design_laboratori_italia' ),
 			'type'       => 'text',
 		)
@@ -392,7 +392,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_text_eng',
+			'id'         => $prefix . 'home_main_hero_text'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Testo hero ENG', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
 			'attributes' => array(
@@ -411,7 +411,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_button_label_eng',
+			'id'         => $prefix . 'home_main_hero_button_label'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Label bottone ENG', 'design_laboratori_italia' ),
 			'type'       => 'text',
 		)
@@ -485,7 +485,7 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field(
 		array(
-			'id'         => $prefix . 'etichetta_eng',
+			'id'         => $prefix . 'etichetta'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Etichetta ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'Titolo della sezione in Inglese' , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -514,7 +514,7 @@ function dli_register_main_options_metabox() {
 
 	$main_options->add_field(
 		array(
-			'id'    => $prefix . 'descrizione_laboratorio_eng',
+			'id'    => $prefix . 'descrizione_laboratorio'. DLI_ENG_SUFFIX_LANGUAGE,
 			'title' => __( 'Descrizione ENG', 'design_laboratori_italia' ),
 			'name'  => __( 'Descrizione ENG', 'design_laboratori_italia' ),
 			'desc'  => __( 'Descrizione del laboratorio in Inglese' , 'design_laboratori_italia' ),
@@ -584,7 +584,7 @@ function dli_register_main_options_metabox() {
 
 		$blog_options->add_field(
 			array(
-				'id'         => $prefix . 'testo_blog_eng',
+				'id'         => $prefix . 'testo_blog'. DLI_ENG_SUFFIX_LANGUAGE,
 				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 				'desc'       => __( 'es: "The papers from the Lab"' , 'design_laboratori_italia' ),
 				'type' => 'wysiwyg',
@@ -653,7 +653,7 @@ function dli_register_main_options_metabox() {
 
 		$notizie_options->add_field(
 			array(
-				'id'         => $prefix . 'testo_notizie_eng',
+				'id'         => $prefix . 'testo_notizie'. DLI_ENG_SUFFIX_LANGUAGE,
 				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 				'desc'       => __( 'es: "News from the Lab"' , 'design_laboratori_italia' ),
 				'type' => 'wysiwyg',
@@ -722,7 +722,7 @@ function dli_register_main_options_metabox() {
 
 		$eventi_options->add_field(
 			array(
-				'id'         => $prefix . 'testo_eventi_eng',
+				'id'         => $prefix . 'testo_eventi'. DLI_ENG_SUFFIX_LANGUAGE,
 				'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 				'desc'       => __( 'es: "Events from the Lab"' , 'design_laboratori_italia' ),
 				'type' => 'wysiwyg',
@@ -788,7 +788,7 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field( 
 		array(
-			'id' => $prefix . 'testo_sezione_persone_eng',
+			'id' => $prefix . 'testo_sezione_persone'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'        => __( 'Descrizione Sezione Persone ENG', 'design_laboratori_italia' ),
 			'desc' => __( 'es: "People from the Lab"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
@@ -855,7 +855,7 @@ function dli_register_main_options_metabox() {
 
 	$pubblicazioni_options->add_field(
 		array(
-			'id'         => $prefix . 'testo_pubblicazioni_eng',
+			'id'         => $prefix . 'testo_pubblicazioni'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Publications by Lab members."' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
@@ -923,7 +923,7 @@ function dli_register_main_options_metabox() {
 	// Campi descrizione della sezione.
 	$progetti_options->add_field(
 		array(
-			'id'         => $prefix . 'testo_progetti_eng',
+			'id'         => $prefix . 'testo_progetti'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Lab projects"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
@@ -990,7 +990,7 @@ function dli_register_main_options_metabox() {
 	// Campi descrizione della sezione.
 	$ricerca_options->add_field(
 		array(
-			'id'         => $prefix . 'testo_ricerca_eng',
+			'id'         => $prefix . 'testo_ricerca'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Lab research activities"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
@@ -1055,7 +1055,7 @@ function dli_register_main_options_metabox() {
 		) );
 
 		$luoghi_options->add_field( array(
-			'id' => $prefix . 'testo_sezione_luoghi_eng',
+			'id' => $prefix . 'testo_sezione_luoghi'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'        => __( 'Descrizione Sezione Luoghi ENG', 'design_laboratori_italia' ),
 			'desc' => __( 'es: "Lab places"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',

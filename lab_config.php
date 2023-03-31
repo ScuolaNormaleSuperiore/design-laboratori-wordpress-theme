@@ -4,6 +4,7 @@
 define( 'DLI_IT_SLUG', 'it' );
 define( 'DLI_EN_SLUG', 'en' );
 define( 'DLI_DEFAULT_LANGUAGE', DLI_IT_SLUG );
+define( 'DLI_ENG_SUFFIX_LANGUAGE', '_eng' );
 
 
 // Define global lab data format.
