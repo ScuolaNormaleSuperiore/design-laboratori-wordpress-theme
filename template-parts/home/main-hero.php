@@ -3,14 +3,16 @@
 
 $main_hero_enabled = dli_get_option( 'home_main_hero_enabled', 'homepage' );
 if ( $main_hero_enabled === 'true' ) {
-	$image_url    = dli_get_option( 'home_main_hero_image', 'homepage' );
-	$image_id     = attachment_url_to_postid( $image_url );
-	$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
-	$image_title  = get_the_title( $image_id );
-	$hero_text    = dli_get_option( 'home_main_hero_text', 'homepage' );
-	$hero_title   = dli_get_option( 'home_main_hero_title', 'homepage' );
+	$image_url   = dli_get_option( 'home_main_hero_image', 'homepage' );
+	$image_id    = attachment_url_to_postid( $image_url );
+	$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+	$image_title = get_the_title( $image_id );
+	$hero_title  = dli_get_configuration_field_by_lang( 'home_main_hero_title', 'homepage' );
+	$hero_text   = dli_get_configuration_field_by_lang( 'home_main_hero_text', 'homepage' );
+
 	$hero_url     = dli_get_option( 'home_main_hero_url', 'homepage' );
-	$button_label = dli_get_option( 'home_main_hero_button_label', 'homepage' );
+	$button_label = dli_get_configuration_field_by_lang( 'home_main_hero_button_label', 'homepage' );
+
 ?>
 	<section class="it-hero-wrapper it-dark it-overlay">
 		<div class="img-responsive-wrapper">

@@ -28,10 +28,6 @@ require get_template_directory() . '/inc/wrappers_polylang.php';
  */
 require get_template_directory() . '/inc/wrappers_acf.php';
 
-/**
- * Define
- */
-require get_template_directory() . '/inc/define.php';
 
 /**
  * Implement Plugin Activations Rules.
@@ -51,7 +47,8 @@ require get_template_directory() . '/walkers/footer-walker.php';
 /**
  * Implement CMB2 Custom Field Manager: import the library.
  */
-require get_template_directory() . '/inc/vendor/CMB2/init.php';
+require get_template_directory() . '/inc/cmb2.php';
+
 // Import the code to create the admin section: Configurazione.
 require get_template_directory() . '/inc/admin/options.php';
 
@@ -65,11 +62,6 @@ require get_template_directory() . '/inc/utils.php';
  */
 require get_template_directory() . '/inc/search-utils.php';
 
-/**
- * Notifications functions.
- */
-require get_template_directory() . '/inc/notification.php';
-
 
 /**
  * Activation Hooks.
@@ -81,16 +73,6 @@ require get_template_directory() . '/inc/activation.php';
  */
 require get_template_directory() . '/inc/actions.php';
 
-/**
- * Gutenberg editor rules
- */
-require get_template_directory() . '/inc/gutenberg.php';
-
-
-/**
- * Import
- */
-require get_template_directory() . '/inc/import.php';
 
 /**
  * TCPDF

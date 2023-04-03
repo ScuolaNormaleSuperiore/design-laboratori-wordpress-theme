@@ -1,5 +1,6 @@
 <?php
-	$testo_sezione = dli_get_option( 'testo_ricerca', 'ricerca');
+	$testo_sezione = dli_get_configuration_field_by_lang( 'testo_ricerca', 'ricerca' );
+
 ?>
 <section id="banner-progetti" aria-describedby="Testo introduttivo sezione progetti" class="bg-banner-progetti">
 	<div class="section-muted p-3 primary-bg-c1">

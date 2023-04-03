@@ -1,5 +1,6 @@
 <?php
-$testo_sezione_luoghi = dli_get_option("testo_sezione_luoghi", "luoghi");
+$testo_sezione_luoghi = dli_get_configuration_field_by_lang( 'testo_sezione_luoghi', 'luoghi' );
+
 ?>
 <section class="section bg-redbrown bg-red-gradient py-5 position-relative d-flex align-items-center overflow-hidden" >
     <div class="people-red-forms">

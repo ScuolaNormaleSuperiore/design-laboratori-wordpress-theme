@@ -20,8 +20,9 @@ get_header();
 
 <!-- PRESENTAZIONE -->
 <?php
-$testo_sezione_laboratorio = dli_get_option("descrizione_laboratorio", "la_scuola");
-$etichetta_laboratorio = esc_html (dli_get_option("etichetta", "la_scuola"));
+$testo_sezione_laboratorio = dli_get_configuration_field_by_lang( 'descrizione_laboratorio', 'la_scuola' );
+$etichetta_laboratorio = dli_get_configuration_field_by_lang( 'etichetta', 'la_scuola' );
+
 if($testo_sezione_laboratorio) {
 	?>
 <section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted pt-5">

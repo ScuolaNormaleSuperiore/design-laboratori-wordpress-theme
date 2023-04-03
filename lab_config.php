@@ -4,6 +4,7 @@
 define( 'DLI_IT_SLUG', 'it' );
 define( 'DLI_EN_SLUG', 'en' );
 define( 'DLI_DEFAULT_LANGUAGE', DLI_IT_SLUG );
+define( 'DLI_ENG_SUFFIX_LANGUAGE', '_eng' );
 
 
 // Define global lab data format.
@@ -52,6 +53,9 @@ define( 'SLUG_RICERCA_SITO_IT', 'ricerca-sito' );
 define( 'SLUG_RICERCA_SITO_EN', 'search-site' );
 define( 'SLUG_BLOG_IT', 'il-blog' );
 define( 'SLUG_BLOG_EN', 'the-bloge' );
+define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
+define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
+
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
