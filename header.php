@@ -40,93 +40,88 @@ $current_group   = dli_get_current_group();
 </nav>
 <!-- End Right menu element-->
 
-
-
-
-<?php $active_page = dli_get_current_group(); ?>
-
 <!-- HEADER -->
 <header class="it-header-wrapper" data-bs-target="#header-nav-wrapper">
 	<div class="it-header-slim-wrapper">
 		<div class="container">
-		<div class="row">
-			<div class="col-12">
-			<!-- SLIM HEADER -->
-			<div class="it-header-slim-wrapper-content">
-				<a class="d-none d-lg-block navbar-brand" 
-					href="<?php echo dli_get_option( 'url_ente_appartenenza' ); ?>" 
-					target="_blank"><?php echo dli_get_option( 'nome_ente_appartenza' ); ?></a>
-				<div class="nav-mobile">
-					<!-- TOP MENU -->
-					<?php
-						echo get_template_part(
-							'template-parts/header/top-menu',
-							false,
-							array(
-								'current_group' => $current_group,
-								'locations'     => $locations,
-							)
-						);
-					?>
-				</div>
-				<div class="it-header-slim-right-zone">
-					<!-- Language selector -->
-					<?php	
-						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
-						$current_language   = dli_current_language( 'slug' );
-						if ( 'true' === $selettore_visibile ) {
-						$languages_list = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
-					?>
-					<div class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-						<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia');?></span>
-						<span><?php echo $current_language; ?></span>
-						<svg class="icon d-none d-lg-block">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
-						</svg>
-						</a>
-						<div class="dropdown-menu">
-						<div class="row">
-							<div class="col-12">
-							<div class="link-list-wrapper">
-								<ul class="link-list">
-								<?php
-									$selectors = dli_get_page_selectors();
-									foreach ( $selectors as $selector ) {
-								?>
-									<li>
-										<a class="dropdown-item list-item" href="<?php echo $selector['url'] ?>">
-											<span>
-												<?php echo $selector['slug'] ?>
-											</span>
-										</a>
-									</li>
-								<?php
-									}
-								?>
-								</ul>
+			<div class="row">
+				<div class="col-12">
+				<!-- SLIM HEADER -->
+				<div class="it-header-slim-wrapper-content">
+					<a class="d-none d-lg-block navbar-brand" 
+						href="<?php echo dli_get_option( 'url_ente_appartenenza' ); ?>" 
+						target="_blank"><?php echo dli_get_option( 'nome_ente_appartenza' ); ?></a>
+					<div class="nav-mobile">
+						<!-- TOP MENU -->
+						<?php
+							echo get_template_part(
+								'template-parts/header/top-menu',
+								false,
+								array(
+									'current_group' => $current_group,
+									'locations'     => $locations,
+								)
+							);
+						?>
+					</div>
+					<div class="it-header-slim-right-zone">
+						<!-- Language selector -->
+						<?php	
+							$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
+							$current_language   = dli_current_language( 'slug' );
+							if ( 'true' === $selettore_visibile ) {
+							$languages_list = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
+						?>
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia');?></span>
+							<span><?php echo $current_language; ?></span>
+							<svg class="icon d-none d-lg-block">
+								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+							</svg>
+							</a>
+							<div class="dropdown-menu">
+							<div class="row">
+								<div class="col-12">
+								<div class="link-list-wrapper">
+									<ul class="link-list">
+									<?php
+										$selectors = dli_get_page_selectors();
+										foreach ( $selectors as $selector ) {
+									?>
+										<li>
+											<a class="dropdown-item list-item" href="<?php echo $selector['url'] ?>">
+												<span>
+													<?php echo $selector['slug'] ?>
+												</span>
+											</a>
+										</li>
+									<?php
+										}
+									?>
+									</ul>
+								</div>
+								</div>
 							</div>
 							</div>
 						</div>
+						<?php
+							}
+							$login_visible = dli_get_option( 'login_button_visible', 'setup' );
+							if ( $login_visible === 'true' ) {
+						?>
+						<div class="it-access-top-wrapper">
+							&nbsp;&nbsp;
+							<a class="btn btn-primary btn-sm" href="#">Accedi</a>
 						</div>
+						<?php
+							}
+						?>
 					</div>
-					<?php
-						}
-						$login_visible = dli_get_option( 'login_button_visible', 'setup' );
-						if ( $login_visible === 'true' ) {
-					?>
-					<div class="it-access-top-wrapper">
-						&nbsp;&nbsp;
-						<a class="btn btn-primary btn-sm" href="#">Accedi</a>
-					</div>
-					<?php
-						}
-					?>
+				</div>
+				<!-- End SLIM HEADER -->
 				</div>
 			</div>
-			<!-- End SLIM HEADER -->
-			</div>
-		</div>
 		</div>
 	</div>
 	<div class="it-nav-wrapper">

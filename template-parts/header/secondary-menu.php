@@ -8,21 +8,45 @@
 	$location   = "menu-right";
 	$menu       = wp_get_nav_menu_object( $locations[ $location ] );
 	$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-	$menuitems  = $menuitems  ? $menuitems : array();
+	$menuitems  = $menuitems  ? dli_menu_tree_by_items( $menuitems ) : array();
 
-	if ( has_nav_menu( $location ) ) {
-		wp_nav_menu(
-			array(
-				'theme_location'  => $location,
-				'depth'           => 0,
-				'menu_class'      => 'navbar-nav navbar-secondary',
-				'container'       => '',
-				'list_item_class' => 'nav-item',
-				'link_class'      => 'nav-link',
-				'current_group'   => $current_group,
-				'walker'          => new Main_Menu_Walker(),
-			)
-		);
-	}
+	if ( has_nav_menu( $location ) && count( $menuitems  ) ) {
+	?>
+	<ul class="navbar-nav navbar-secondary">
+	<?php
+		foreach ( $menuitems as $item ) {
+			if ( count( $item['children'] ) > 0 ) {
+	?>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
+				<span><?php echo esc_attr( $item['element']->title); ?></span>
+				<svg class="icon icon-xs">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+				</svg>
+			</a>
+			<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
+				<div class="link-list-wrapper">
+					<ul class="link-list">
+						<?php
+							foreach ( $item['children'] as $subitem ) {
+						?>
+						<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $subitem->url); ?>"><span><?php echo esc_attr( $subitem->title); ?></span></a></li>
+						<?php
+							} // foreach
+						?>
+					</ul>
+				</div>
+			</div>
+		</li>
+	<?php
+			} else {
+	?>
+		<li class="nav-item">
+			<a class="nav-link" href="<?php echo esc_url( $item['element']->title ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a>
+		</li>
+	<?php
+			} // else
+		} // foreach
+	} // has_nav_menu
 	?>
 </nav>

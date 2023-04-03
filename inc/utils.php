@@ -1376,5 +1376,20 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return $img_link;
 		}
 	}
-	
-	
+
+	if( ! function_exists( 'dli_menu_tree_by_items' ) ) {
+		function dli_menu_tree_by_items( $menuitems ) {
+			$menu_tree = array();
+			foreach ( $menuitems As $item ) {
+				if ( $item->menu_item_parent === '0' ) {
+					$menu_tree[$item->ID] = array(
+						'element'  => $item,
+						'children' => array(),
+					);
+				} else {
+					array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
+				}
+			}
+			return $menu_tree;
+		}
+	}
