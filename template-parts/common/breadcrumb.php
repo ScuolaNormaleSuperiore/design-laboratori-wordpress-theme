@@ -1,6 +1,10 @@
 <?php
 	global $post;
-	$steps = dli_build_content_path( $post );
+	if ( is_home() ) {
+		$steps = array();
+	} else {
+		$steps = dli_build_content_path( $post );
+	}
 	$index = 0;
 ?>
 <section id="breadcrumb">

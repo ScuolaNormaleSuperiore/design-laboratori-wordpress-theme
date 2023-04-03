@@ -100,7 +100,7 @@ $current_group   = dli_get_current_group();
 						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
 						$current_language   = dli_current_language( 'slug' );
 						if ( 'true' === $selettore_visibile ) {
-						$languages_list = dli_languages_list( array( 'hide_empty'=>0, 'fields'=>'slug' ) );
+						$languages_list = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
 					?>
 					<div class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -116,13 +116,13 @@ $current_group   = dli_get_current_group();
 							<div class="link-list-wrapper">
 								<ul class="link-list">
 								<?php
-									foreach ( $languages_list as $lang_slug ) {
-										$site_url = ('it' === $lang_slug) ? get_site_url() : get_site_url() . '/' . $lang_slug;
+									$selectors = dli_get_page_selectors();
+									foreach ( $selectors as $selector ) {
 								?>
 									<li>
-										<a class="dropdown-item list-item" href="<?php echo $site_url; ?>">
+										<a class="dropdown-item list-item" href="<?php echo $selector['url'] ?>">
 											<span>
-												<?php echo $lang_slug; ?>
+												<?php echo $selector['slug'] ?>
 											</span>
 										</a>
 									</li>
@@ -162,7 +162,7 @@ $current_group   = dli_get_current_group();
 				<!-- TITLE ROW -->
 				<div class="it-header-center-content-wrapper">
 					<div class="it-brand-wrapper">
-						<a href="<?php echo get_site_url(); ?>">
+						<a href="<?php echo dli_homepage_url(); ?>">
 							<!-- header logo -->
 							<?php get_template_part( 'template-parts/common/logo' ); ?>
 							<div class="it-brand-text">

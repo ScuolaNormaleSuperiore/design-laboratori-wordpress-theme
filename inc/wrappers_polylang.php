@@ -14,6 +14,12 @@
 
 
 if ( ! function_exists( 'dli_current_language' ) ) {
+	/**
+	 * Recupera la lingua di default del sito.
+	 *
+	 * @param string $type
+	 * @return void
+	 */
 	function dli_current_language( $type = 'slug' ) {
 		$cl = pll_current_language( $type );
 		return $cl ? $cl : DLI_DEFAULT_LANGUAGE;
@@ -21,31 +27,149 @@ if ( ! function_exists( 'dli_current_language' ) ) {
 }
 
 if ( ! function_exists( 'dli_languages_list' ) ) {
+	/**
+	 * Recupera lìelenco delle lingue supportate dal sito.
+	 *
+	 * @param [type] $args
+	 * @return void
+	 */
 	function dli_languages_list( $args ) {
 		return pll_languages_list( $args );
 	}
 }
 
 if ( ! function_exists( 'dli_set_term_language' ) ) {
+	/**
+	 * Imposta la lingua del termine di una tassonomia.
+	 *
+	 * @param [type] $term
+	 * @param [type] $lang
+	 * @return void
+	 */
 	function dli_set_term_language( $term, $lang ) {
 		return pll_set_term_language( $term, $lang );
 	}
 }
 
 if ( ! function_exists( 'dli_save_term_translations' ) ) {
+	/**
+	 * Definisce un termine come la traduzione di un altro.
+	 *
+	 * @param [type] $related_taxonomies
+	 * @return void
+	 */
 	function dli_save_term_translations( $related_taxonomies ) {
 		return pll_save_term_translations( $related_taxonomies );
 	}
 }
 
 if ( ! function_exists( 'dli_set_post_language' ) ) {
+	/**
+	 * Imposta la lingua di un post.
+	 *
+	 * @param [type] $post
+	 * @param [type] $lang
+	 * @return void
+	 */
 	function dli_set_post_language( $post, $lang ) {
 		return pll_set_post_language( $post, $lang );
 	}
 }
 
 if ( ! function_exists( 'dli_save_post_translations' ) ) {
+	/**
+	 * Definisce un post come la traduzione di un altro.
+	 *
+	 * @param [type] $related_posts
+	 * @return void
+	 */
 	function dli_save_post_translations( $related_posts ) {
 		return pll_save_post_translations( $related_posts );
 	}
 }
+
+if ( ! function_exists( 'dli_get_post_translations' ) ) {
+	/**
+	 * Recupera le traduzioni di un post nelle lingue del sito, se presenti.
+	 *
+	 * @param [type] $related_posts
+	 * @return void
+	 */
+	function dli_get_post_translations( $related_posts ) {
+		return pll_get_post_translations( $related_posts );
+	}
+}
+
+if ( ! function_exists( 'dli_homepage_url' ) ) {
+	function dli_homepage_url() {
+		$site_url         = get_site_url();
+		$current_language = dli_current_language( 'slug' );
+		$default_language = pll_default_language( 'slug' );
+		if ( $current_language != $default_language ) {
+			return $site_url . '/' . $current_language;
+		} else {
+			return $site_url;
+		}
+	}
+}
+
+if ( ! function_exists( 'dli_get_page_selectors' ) ) {
+	/**
+	 * Ritorna la lista di elementi del selettore in base alla lingua della pagina.
+	 * Se la pagina non ha traduzione non c'è il selettore (richiesta esplicita, ma discutibile !!).
+	 */
+	function dli_get_page_selectors() {
+		global $post;
+		$selectors = array();
+
+		$site_url         = get_site_url();
+		$traduzioni       = dli_get_post_translations( $post->ID );
+		$languages_list   = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
+		$default_language = pll_default_language( 'slug' );
+		$current_language = dli_current_language( 'slug' );
+
+		// La home page è la stessa per tutte le lingue.
+		if ( is_home() ) {
+
+			foreach( $languages_list as $lang_slug ) {
+				if ( $lang_slug != $default_language ) {
+					$url = $site_url . '/' . $lang_slug;
+				} else {
+					$url =  $site_url;
+				}
+				array_push(
+					$selectors,
+					array(
+						'slug' => $lang_slug,
+						'url'  => $url,
+					)
+				);
+			}
+			return $selectors;
+
+		} else {
+
+			$selectors = array(
+				array(
+					'slug' => $current_language,
+					'url'  => get_permalink( $post ),
+				),
+			);
+			foreach( $languages_list as $lang_slug ) {
+				if ( (  $lang_slug !== $current_language ) && array_key_exists(  $lang_slug , $traduzioni ) ){
+					array_push(
+						$selectors,
+						array(
+							'slug' => $lang_slug,
+							'url'  => get_permalink( $traduzioni[ $lang_slug ] ),
+						)
+					);
+				}
+			}
+			return $selectors;
+
+		}
+
+	}
+}
+

@@ -19,7 +19,7 @@
 				<div class="row clearfix">
 					<div class="col-sm-12">
 						<div class="it-brand-wrapper">
-						<a href="<?php echo get_site_url(); ?>">
+						<a href="<?php echo dli_homepage_url(); ?>">
 								<!-- footer logo -->
 								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
 								<div class="it-brand-text">

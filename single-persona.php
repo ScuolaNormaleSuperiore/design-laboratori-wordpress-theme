@@ -22,7 +22,8 @@ while ( have_posts() ) {
 	$email                  = get_field( 'email' );
 	$sitoweb                = get_field( 'sito_web' );
 	$terms                  = get_the_terms( $ID, 'struttura' );
-	$nome_struttura         = $terms[0]->name;
+	$terms                  = $terms ? $terms : array();
+	$nome_struttura         = count( $terms ) ? $terms[0]->name : '';
 }
 
 // recupero la lista dei progetti.

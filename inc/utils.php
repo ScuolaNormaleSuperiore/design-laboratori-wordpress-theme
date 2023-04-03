@@ -1292,7 +1292,7 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	if( ! function_exists( 'dli_get_search_link' ) ) {
 		function dli_get_search_link( $current_language ) {
 			$search_page = ( 'it' === $current_language ) ? SLUG_RICERCA_SITO_IT : SLUG_RICERCA_SITO_EN;
-			return get_site_url() . '/' . $search_page;
+			return dli_homepage_url() . '/' . $search_page;
 		}
 	}
 
@@ -1301,50 +1301,50 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$steps = array(
 				array(
 					'label' => 'Home',
-					'url'   => get_site_url(),
+					'url'   => dli_homepage_url(),
 					'class' => 'breadcrumb-item',
 				),
 			);
-			
-			switch ( $post->post_type ) {
-				case 'page':
-					array_push( 
-						$steps, 
-						array(
-							'label' => $post->post_title,
-							'url'   => $post->post_url,
-							'class' => 'breadcrumb-item active',
-						),
-					);
-					break;
-				case 'post':
-					array_push( 
-						$steps, 
-						array(
-							'label' => 'Blog',
-							'url'   => get_site_url() . '/blog',
-							'class' => 'breadcrumb-item active',
-						),
-					);
-					break;
-				default:
-					$ct   = dli_get_page_by_post_type( $post->post_type );
-					array_push( 
-						$steps, 
-						array(
-							'label' => get_the_title( $ct->ID ),
-							'url'   => get_permalink( $ct->ID ),
-							'class' => 'breadcrumb-item',
-						),
-						array(
-							'label' => $post->post_title,
-							'url'   => $post->post_url,
-							'class' => 'breadcrumb-item active',
-						),
-					);
-					break;
-		}
-
+			if ( $post ){
+				switch ( $post->post_type ) {
+					case 'page':
+						array_push( 
+							$steps, 
+							array(
+								'label' => $post->post_title,
+								'url'   => $post->post_url,
+								'class' => 'breadcrumb-item active',
+							),
+						);
+						break;
+					case 'post':
+						array_push( 
+							$steps, 
+							array(
+								'label' => 'Blog',
+								'url'   => get_site_url() . '/blog',
+								'class' => 'breadcrumb-item active',
+							),
+						);
+						break;
+					default:
+						$ct   = dli_get_page_by_post_type( $post->post_type );
+						array_push( 
+							$steps, 
+							array(
+								'label' => get_the_title( $ct->ID ),
+								'url'   => get_permalink( $ct->ID ),
+								'class' => 'breadcrumb-item',
+							),
+							array(
+								'label' => $post->post_title,
+								'url'   => $post->post_url,
+								'class' => 'breadcrumb-item active',
+							),
+						);
+						break;
+				}
+			}
 			return $steps;
 		}
 	}
