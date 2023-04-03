@@ -28,7 +28,7 @@ if ( ! function_exists( 'dli_current_language' ) ) {
 
 if ( ! function_exists( 'dli_languages_list' ) ) {
 	/**
-	 * Recupera lìelenco delle lingue supportate dal sito.
+	 * Recupera l'elenco delle lingue supportate dal sito.
 	 *
 	 * @param [type] $args
 	 * @return void
@@ -178,7 +178,8 @@ if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
 		$field_name_new = ( dli_current_language() === DLI_IT_SLUG ) ? $field_name : $field_name . DLI_ENG_SUFFIX_LANGUAGE;
 		$field_value    = dli_get_option( $field_name_new, $field_type );
 		if ( ! $field_value ) {
-			$field_name_new = ( get_site_option( 'WPLANG' ) === 'it_IT' ) ? $field_name : $field_name . DLI_ENG_SUFFIX_LANGUAGE;
+			$default_language = pll_default_language( 'slug' );
+			$field_name_new   = ( DLI_IT_SLUG === $default_language ) ? $field_name : $field_name . DLI_ENG_SUFFIX_LANGUAGE;
 		}
 
 		return dli_get_option( $field_name_new, $field_type );
