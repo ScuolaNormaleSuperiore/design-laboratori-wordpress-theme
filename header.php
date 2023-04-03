@@ -14,7 +14,7 @@
 require_once get_template_directory() . '/walkers/main-menu-walker.php';
 require_once get_template_directory() . '/walkers/menu-right-walker.php';
 
-$theme_locations = get_nav_menu_locations();
+$locations       = get_nav_menu_locations();
 $current_group   = dli_get_current_group();
 ?>
 <!doctype html>
@@ -57,42 +57,17 @@ $current_group   = dli_get_current_group();
 					href="<?php echo dli_get_option( 'url_ente_appartenenza' ); ?>" 
 					target="_blank"><?php echo dli_get_option( 'nome_ente_appartenza' ); ?></a>
 				<div class="nav-mobile">
-				<nav aria-label="Navigazione accessoria">
-					<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menu1a" role="button"
-					aria-expanded="false" aria-controls="menu4">
-					<span><?php echo __( 'News e contatti', 'design_laboratori_italia');?></span>
-					<svg class="icon" aria-hidden="true">
-						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
-					</svg>
-					</a>
-					<div class="link-list-wrapper collapse" id="menu1a">
+					<!-- TOP MENU -->
 					<?php
-						$locations = get_nav_menu_locations();
-						$menu_name = 'menu-header-right';
-						$menu_items = array();
-						if ( has_nav_menu( $menu_name ) ) {
-							$menu       = wp_get_nav_menu_object( $locations[ $menu_name ] );
-							$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-							$menuitems  = $menuitems  ? $menuitems : array();
-						?>
-						<ul class="link-list">
-						<?php
-						foreach ( $menuitems as $item ) {
-							$active_class = '';
-							if(get_permalink( ) == $item->url) {
-								$active_class = 'active';
-							}
-						?>
-						<li><a class="list-item <?php echo $active_class;?>" href="<?php echo $item->url ?>" aria-current="page"><?php echo $item->title;?></a></li>
-							<?php
-							}
-							?>
-						</ul>
-						<?php
-							}
-						?>
-					</div> <!-- menu1a -->
-				</nav>
+						echo get_template_part(
+							'template-parts/header/top-menu',
+							false,
+							array(
+								'current_group' => $current_group,
+								'locations'     => $locations,
+							)
+						);
+					?>
 				</div>
 				<div class="it-header-slim-right-zone">
 					<!-- Language selector -->
@@ -217,47 +192,27 @@ $current_group   = dli_get_current_group();
 					</div>
 					<div class="menu-wrapper" id="menu-principale">
 						<!-- MAIN MENU -->
-						<nav aria-label="Principale">
-							<?php
-							$location = 'menu-lab';
-							if ( has_nav_menu( $location ) ) {
-								wp_nav_menu(
-									array(
-										'theme_location'  => $location,
-										'depth'           => 0,
-										'menu_class'      => 'navbar-nav',
-										'items_wrap'      => '<ul class="%2$s" id="%1$s" data-element="main-navigation">%3$s</ul>',
-										'container'       => '',
-										'list_item_class' => 'nav-item',
-										'link_class'      => 'nav-link',
-										'current_group'   => $current_group,
-										'walker'          => new Main_Menu_Walker(),
-									)
-								);
-								}
-								?>
-					</nav>
-
-					<!-- SECONDARY MENU -->
-					<nav aria-label="Secondaria">
 						<?php
-						$location = "menu-right";
-						if ( has_nav_menu( $location ) ) {
-							wp_nav_menu(
+							echo get_template_part(
+								'template-parts/header/main-menu',
+								false,
 								array(
-									'theme_location'  => $location,
-									'depth'           => 0,
-									'menu_class'      => 'navbar-nav navbar-secondary',
-									'container'       => '',
-									'list_item_class' => 'nav-item',
-									'link_class'      => 'nav-link',
-									'current_group'   => $current_group,
-									'walker'          => new Main_Menu_Walker(),
+									'current_group' => $current_group,
+									'locations'     => $locations,
 								)
 							);
-						}
 						?>
-					</nav>
+						<!-- SECONDARY MENU -->
+						<?php
+							echo get_template_part(
+								'template-parts/header/secondary-menu',
+								false,
+								array(
+									'current_group' => $current_group,
+									'locations'     => $locations,
+								)
+							);
+						?>
 
 					</div> <!-- menu-wrapper -->
 				</div>
