@@ -42,7 +42,7 @@
 			} else {
 	?>
 		<li class="nav-item">
-			<a class="nav-link" href="<?php echo esc_url( $item['element']->title ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a>
+			<a class="nav-link" href="<?php echo esc_url( $item['element']->url ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a>
 		</li>
 	<?php
 			} // else
