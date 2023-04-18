@@ -194,7 +194,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 							if ( $email ) {
 						?>
 						<li>
-							<a href="#" class="list-item">
+							<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
 							<div class="it-rounded-icon">
 								<svg class="icon">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
@@ -208,7 +208,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 							if ( $sitoweb ) {
 						?>
 						<li>
-							<a class="list-item" href="#">
+							<a class="list-item" target="_blank" href="<?php echo $sitoweb; ?>">
 							<div class="it-rounded-icon">
 								<svg class="icon">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
