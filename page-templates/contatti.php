@@ -44,14 +44,14 @@ if ( isset( $_POST['testomessaggio'] ) ) {
 	$testomessaggio = '';
 }
 
-if ( $forminviato === 'yes' ) {
+if ( 'yes' === $forminviato ) {
 
 	$email_sito = $email;
-	$email_sito = 'claudio.battaglino@sns.it';
+	$email_sito = get_bloginfo( 'admin_email' );
 	$name       = $nomecognome;
 	$to         = $email_sito;
 	$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
-	$headers    = 'From: ' . $indirizzoemail . "\r\n" . 'Reply-To: ' . $indirizzoemail . "\r\n";
+	$headers    = 'From: ' . $indirizzoemail . '\r\n' . 'Reply-To: ' . $indirizzoemail . '\r\n';
 
 	// @TODO: Validazione.
 
