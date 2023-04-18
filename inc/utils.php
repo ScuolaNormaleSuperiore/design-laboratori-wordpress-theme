@@ -1393,3 +1393,27 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return $menu_tree;
 		}
 	}
+
+if ( ! function_exists( 'dli_check_dependencies' ) ) {
+	/**
+	 * Check plugin dependencies.
+	 *
+	 * @return boolean
+	 */
+	function dli_check_dependencies() {
+		$result = true;
+		if ( ! class_exists( 'ACF' ) ) {
+			error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://wordpress.org/plugins/advanced-custom-fields' );
+			$result = false;
+		}
+		if ( ! class_exists( 'Members_Plugin' ) ) {
+			error_log( 'The plugin Members is missing, please install and activate it: https://wordpress.org/plugins/members' );
+			$result = false;
+		}
+		if ( ! function_exists( 'pll_the_languages' ) ) {
+			error_log( 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/' );
+			$result = false;
+		}
+		return $result;
+	}
+}

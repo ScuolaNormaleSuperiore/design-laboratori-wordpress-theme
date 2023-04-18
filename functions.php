@@ -12,11 +12,6 @@
  */
 require get_template_directory() . '/lab_config.php';
 
-/**
- * Setup the theme post types and taxonomies.
- */
-require get_template_directory() . '/lab_setup.php';
-
 
 /**
  * Warappers functions fo Polylang.
@@ -78,6 +73,20 @@ require get_template_directory() . '/inc/actions.php';
  * TCPDF
  */
 require get_template_directory() . '/inc/dompdf.php';
+
+
+if ( dli_check_dependencies() ) {
+	// SETUP THE POST TYPES  USED BY THE THEME.
+
+	if ( ! class_exists( 'LabManager' ) ) {
+		include_once 'classes/class-labmanager.php';
+
+		global $lab_manager;
+		$lab_manager = new LabManager();
+		$lab_manager->plugin_setup();
+	}
+
+}
 
 
 if ( ! function_exists( 'dli_setup' ) ) :
