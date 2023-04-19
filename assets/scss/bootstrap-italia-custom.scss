@@ -8,4 +8,8 @@ $primary-b: 30;
 // è possibile utilizzare ad esempio il sito https://rgb.to/.
 
 // import libreria
- @import "./bootstrap-italia-main/src/scss/bootstrap-italia.scss";
+@import "bootstrap-italia/src/scss/bootstrap-italia.scss";
+
+
+// Comando per rigenerare css:
+// sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed

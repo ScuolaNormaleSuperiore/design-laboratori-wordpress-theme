@@ -162,7 +162,7 @@ function dli_scripts() {
 	// Importazione dei file CSS.
 	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri() ); // File style.css vuoto.
 	wp_enqueue_style( 'dli-font', get_template_directory_uri() . '/assets/css/fonts.css' );
-	wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css' );
+	wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia-custom.min.css' );
 	wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia-comuni.min.css' );
 	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css' );
 
