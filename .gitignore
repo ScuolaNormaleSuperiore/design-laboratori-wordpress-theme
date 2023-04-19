@@ -27,3 +27,4 @@ Thumbs.db
 
 node_modules
 assets/css/compiled
+ assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
