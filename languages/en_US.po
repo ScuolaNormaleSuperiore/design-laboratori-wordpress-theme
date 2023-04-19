@@ -1,14 +1,13 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: 2023-04-19 07:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -961,7 +960,7 @@ msgstr ""
 #. Name of the template
 #: inc/admin/options.php:747 inc/admin/options.php:753
 msgid "Persone"
-msgstr ""
+msgstr "People"
 
 #: single-luogo.php:110 single-luogo.php:150
 msgid "Posizione"
@@ -1010,7 +1009,7 @@ msgstr ""
 #: classes/class-placemanager.php:85
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi il Luogo"
-msgstr ""
+msgstr "Add the Place"
 
 #: classes/class-peoplemanager.php:83
 msgctxt "Post Type Singular Name"
@@ -1259,7 +1258,7 @@ msgstr ""
 #: template-parts/common/social.php:5 template-parts/common/social_footer.php:7
 #: template-parts/common/social_footer.php:7
 msgid "Seguici su"
-msgstr ""
+msgstr "Follow us on"
 
 #: inc/admin/options.php:1273
 msgid "Selettore lingua visibile"

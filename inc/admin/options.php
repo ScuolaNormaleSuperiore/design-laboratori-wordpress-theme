@@ -558,7 +558,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id'   => $prefix . 'blog_istruzioni',
 				'name' => __( 'Sezione Il Blog', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$blog_landing_url.'"> il blog</a>.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="' . $blog_landing_url . '"> il blog</a>.' , 'design_laboratori_italia' ),
 				'type' => 'title',
 			)
 		);
@@ -829,10 +829,11 @@ function dli_register_main_options_metabox() {
 		array(
 		'id'   => $prefix . 'pubblicazioni_istruzioni',
 		'name' => __( 'Sezione I Pubblicazioni', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$pubblicazioni_landing_url.'">la pagina di panoramica delle Pubblicazioni</a>.' , 'design_laboratori_italia' ),
+		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="' . $pubblicazioni_landing_url . '">la pagina di panoramica delle Pubblicazioni</a>.' , 'design_laboratori_italia' ),
 		'type' => 'title',
 		)
 	);
+	
 	// Campi descrizione della sezione.
 	$pubblicazioni_options->add_field(
 		array(
@@ -1033,7 +1034,7 @@ function dli_register_main_options_metabox() {
 		$luoghi_options->add_field( array(
 				'id' => $prefix . 'luoghi_istruzioni',
 				'name'        => __( 'Sezione Luoghi', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.get_post_type_archive_link("luogo").'">la pagina dei luoghi scolastici</a>.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'. get_post_type_archive_link("luogo"). '">la pagina dei luoghi scolastici</a>.' , 'design_laboratori_italia' ),
 				'type' => 'title',
 		) );
 

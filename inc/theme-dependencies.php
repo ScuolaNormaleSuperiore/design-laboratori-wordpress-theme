@@ -67,16 +67,16 @@ function dsi_register_required_plugins() {
 			'slug'     => 'better-aria-label-support',
 			'required' => true,
 		),
-		array(
-			'name'     => 'Contact Form 7',
-			'slug'     => 'contact-form-7',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Contact Form 7 Database Addon – CFDB7',
-			'slug'     => 'contact-form-cfdb7',
-			'required' => true,
-		),
+		// array(
+		// 	'name'     => 'Contact Form 7',
+		// 	'slug'     => 'contact-form-7',
+		// 	'required' => true,
+		// ),
+		// array(
+		// 	'name'     => 'Contact Form 7 Database Addon – CFDB7',
+		// 	'slug'     => 'contact-form-cfdb7',
+		// 	'required' => true,
+		// ),
 		array(
 			'name'     => 'Polylang - Multilanguage support',
 			'slug'     => 'polylang',

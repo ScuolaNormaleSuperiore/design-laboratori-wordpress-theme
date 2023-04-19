@@ -77,7 +77,13 @@ class LabManager {
 	 */
 	public function plugin_setup() {
 
+		// Setup internationalisation.
+		add_action( 'init', array( $this, 'languages' ) );
+
 		// Setup dei post type personalizzati e delle tassonomie associate.
+		// Setup di Polylang.
+		$polylang = new Polylang_Manager();
+		$polylang->setup();
 
 		// Setup del post type Persona.
 		$cpm = new People_Manager();
@@ -111,13 +117,14 @@ class LabManager {
 		$ctprog = new Post_Manager();
 		$ctprog->setup();
 
-		// Setup di Polylang.
-		$polylang = new Polylang_Manager();
-		$polylang->setup();
-
 		// Setup del post type Luoghi.
 		$ctluoghi = new Place_Manager();
 		$ctluoghi->setup();
 
 	}
+
+	function languages() {
+		load_plugin_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
+	}
+
 }
