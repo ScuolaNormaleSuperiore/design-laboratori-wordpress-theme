@@ -113,6 +113,11 @@ Con la seguente procedura si produce un nuo file *bootstrap-italia-custom.min* c
 3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss).
 4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***.
 
+Altre guide su questo argomento:
+* [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria).
+* [Elenco delle variabili modificabili](https://github.com/italia/bootstrap-italia/tree/main/src/scss).
+* [Tool per codifica colori](https://rgb.to/).
+
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 
