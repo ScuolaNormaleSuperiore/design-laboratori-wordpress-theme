@@ -103,6 +103,16 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 **Immagine 1:** Backoffice: configurazione del tema.
 ![configure](assets/screenshots/configurazione1.png)
 
+
+## Personalizzazione dei colori
+Per cambiare i colori del tema, va prodotto un nuovo file *bootstrap-italia-custom.min.css* con i nuovi colori.
+Con la seguente procedura si produce un nuo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
+
+1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
+2. Eseguire il comando ***npm run*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
+3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss).
+4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***.
+
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 
