@@ -825,11 +825,12 @@ function dli_register_main_options_metabox() {
 	}
 	$pubblicazioni_options = new_cmb2_box( $args );
 	$pubblicazioni_landing_url = dli_get_template_page_url( 'page-templates/pubblicazioni.php' );
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s">la pagina di panoramica delle Pubblicazioni</a>', 'design_laboratori_italia' ), $pubblicazioni_landing_url	);
 	$pubblicazioni_options->add_field(
 		array(
 		'id'   => $prefix . 'pubblicazioni_istruzioni',
 		'name' => __( 'Sezione I Pubblicazioni', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="' . $pubblicazioni_landing_url . '">la pagina di panoramica delle Pubblicazioni</a>.' , 'design_laboratori_italia' ),
+		'desc' => $descr,
 		'type' => 'title',
 		)
 	);
