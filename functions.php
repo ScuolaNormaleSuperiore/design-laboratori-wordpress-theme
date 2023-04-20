@@ -32,12 +32,12 @@ require get_template_directory() . '/inc/theme-dependencies.php';
 /**
  * Header menu walker.
  */
-require get_template_directory() . '/walkers/header-walker.php';
+require get_template_directory() . '/inc/walkers/header-walker.php';
 
 /**
  * Footer menu walker.
  */
-require get_template_directory() . '/walkers/footer-walker.php';
+require get_template_directory() . '/inc/walkers/footer-walker.php';
 
 /**
  * Implement CMB2 Custom Field Manager: import the library.
@@ -79,7 +79,7 @@ if ( dli_check_dependencies() ) {
 	// SETUP THE POST TYPES  USED BY THE THEME.
 
 	if ( ! class_exists( 'LabManager' ) ) {
-		include_once 'classes/class-labmanager.php';
+		include_once 'inc/classes/class-labmanager.php';
 
 		global $lab_manager;
 		$lab_manager = new LabManager();

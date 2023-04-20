@@ -10,9 +10,8 @@
  */
 
 /** Header_Mobile_Menu class */
-// require_once get_template_directory() . '/walkers/mobile-header-walker.php';
-require_once get_template_directory() . '/walkers/main-menu-walker.php';
-require_once get_template_directory() . '/walkers/menu-right-walker.php';
+require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
+require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
 
 $locations       = get_nav_menu_locations();
 $current_group   = dli_get_current_group();
