@@ -67,7 +67,7 @@ function create_the_tipologia_persona() {
  */
 function create_the_taxonomies() {
 	// Valori tassonomia tipologia-luogo.
-	$taxonomy = 'tipologia-luogo';
+	$taxonomy = PLACE_TYPE_TAXONOMY;
 	$terms = array(
 		array( 'it' => 'Aula', 'en' => 'Classroom' ),
 		array( 'it' => 'Aula studio', 'en' => 'Study room' ),
@@ -79,12 +79,19 @@ function create_the_taxonomies() {
 	build_taxonomies( $taxonomy, $terms );
 
 	// Valori tassonomia struttura.
-	$taxonomy = 'struttura';
+	$taxonomy = STRUCTURE_TAXONOMY;
 	$terms = array(
 		array( 'it' => 'Prima struttura', 'en' => 'First structure' ),
 	);
 	build_taxonomies( $taxonomy, $terms );
 
+	// Valori tassonomia tipo-pubblicazione.
+	$taxonomy = PUBLICATION_TYPE_TAXONOMY;
+	$terms = array(
+		array( 'it' => 'Articolo in rivista', 'en' => 'Article in journal' ),
+		array( 'it' => 'Monografia', 'en' => 'Monograph' ),
+	);
+	build_taxonomies( $taxonomy, $terms );
 }
 
 /**

@@ -75,17 +75,12 @@ require get_template_directory() . '/inc/actions.php';
 require get_template_directory() . '/inc/dompdf.php';
 
 
-if ( dli_check_dependencies() ) {
-	// SETUP THE POST TYPES  USED BY THE THEME.
-
-	if ( ! class_exists( 'LabManager' ) ) {
-		include_once 'inc/classes/class-labmanager.php';
-
-		global $lab_manager;
-		$lab_manager = new LabManager();
-		$lab_manager->plugin_setup();
-	}
-
+////// SETUP THE POST TYPES  USED BY THE THEME. //////
+if ( ! class_exists( 'LabManager' ) ) {
+	include_once 'inc/classes/class-labmanager.php';
+	global $lab_manager;
+	$lab_manager = new LabManager();
+	$lab_manager->plugin_setup();
 }
 
 

@@ -29,7 +29,7 @@ define( 'WP_DEFAULT_PAGE', 'page' );
 // CUSTOM TAXONOMIES.
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
-define( 'CATEGORY_TAXONOMY', 'tipo-pubblicazione' );
+define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 
 // The slug is the name of the post, that is the name that appears in the url.
@@ -141,7 +141,7 @@ define(
 	array(
 		PLACE_TYPE_TAXONOMY,
 		STRUCTURE_TAXONOMY,
-		CATEGORY_TAXONOMY,
+		PUBLICATION_TYPE_TAXONOMY,
 		WP_DEFAULT_CATEGORY,
 	)
 );

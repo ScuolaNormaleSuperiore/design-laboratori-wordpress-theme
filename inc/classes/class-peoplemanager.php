@@ -57,12 +57,12 @@ class People_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'struttura' ),
-			'capabilities'      => array(
-				'manage_terms' => 'manage_strutture',
-				'edit_terms'   => 'edit_strutture',
-				'delete_terms' => 'delete_strutture',
-				'assign_terms' => 'assign_strutture',
-			),
+			// 'capabilities'      => array(
+			// 	'manage_terms' => 'manage_strutture',
+			// 	'edit_terms'   => 'edit_strutture',
+			// 	'delete_terms' => 'delete_strutture',
+			// 	'assign_terms' => 'assign_strutture',
+			// ),
 		);
 
 		register_taxonomy( STRUCTURE_TAXONOMY, array( PEOPLE_POST_TYPE ), $structure_args );

@@ -59,12 +59,12 @@ class Place_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipologia-luogo' ),
-			'capabilities'      => array(
-				'manage_terms' => 'manage_tipologie_luogo',
-				'edit_terms'   => 'edit_tipologie_luogo',
-				'delete_terms' => 'delete_tipologie_luogo',
-				'assign_terms' => 'assign_tipologie_luogo',
-			),
+			// 'capabilities'      => array(
+			// 	'manage_terms' => 'manage_tipologie_luogo',
+			// 	'edit_terms'   => 'edit_tipologie_luogo',
+			// 	'delete_terms' => 'delete_tipologie_luogo',
+			// 	'assign_terms' => 'assign_tipologie_luogo',
+			// ),
 		);
 
 		register_taxonomy( PLACE_TYPE_TAXONOMY, array( PLACE_POST_TYPE ), $place_type_args );

@@ -54,15 +54,15 @@ class Publication_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
-			'capabilities'      => array(
-				'manage_terms' => 'manage_tipo_pubblicazione',
-				'edit_terms'   => 'edit_tipo_pubblicazione',
-				'delete_terms' => 'delete_tipo_pubblicazione',
-				'assign_terms' => 'assign_tipo_pubblicazione',
-			),
+			// 'capabilities'      => array(
+			// 	'manage_terms' => 'manage_tipo_pubblicazione',
+			// 	'edit_terms'   => 'edit_tipo_pubblicazione',
+			// 	'delete_terms' => 'delete_tipo_pubblicazione',
+			// 	'assign_terms' => 'assign_tipo_pubblicazione',
+			// ),
 		);
 
-		register_taxonomy( CATEGORY_TAXONOMY, array( PUBLICATION_POST_TYPE ), $publ_types_args );
+		register_taxonomy( PUBLICATION_TYPE_TAXONOMY, array( PUBLICATION_POST_TYPE ), $publ_types_args );
 	}
 
 	/**
