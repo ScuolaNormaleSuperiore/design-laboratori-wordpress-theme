@@ -1,6 +1,6 @@
 <?php
-$descrizione_strutture = dli_get_option("descrizione_strutture", "la_scuola");
-$link_strutture_evidenza = dli_get_option("link_strutture_evidenza", "la_scuola");
+$descrizione_strutture = dli_get_option("descrizione_strutture", "il_laboratorio");
+$link_strutture_evidenza = dli_get_option("link_strutture_evidenza", "il_laboratorio");
 
 global $struttura;
 ?>

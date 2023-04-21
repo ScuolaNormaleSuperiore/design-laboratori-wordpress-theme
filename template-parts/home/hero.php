@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$img_identita = dli_get_option("immagine", "la_scuola");
+$img_identita = dli_get_option("immagine", "il_laboratorio");
 $colid=6;
 $showimage = true;
 if($img_identita == ""){

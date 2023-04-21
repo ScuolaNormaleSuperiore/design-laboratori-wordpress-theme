@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$img_identita = dli_get_option("immagine", "la_scuola");
+$img_identita = dli_get_option("immagine", "il_laboratorio");
 //$id_scuola_principale = dli_get_option("scuola_principale", "homepage");
 $landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
 

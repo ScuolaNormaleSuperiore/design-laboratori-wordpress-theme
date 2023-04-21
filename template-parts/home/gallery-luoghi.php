@@ -1,7 +1,7 @@
 <?php
 global $post, $gallery;
-$gallery = dli_get_option("immagini_luoghi", "la_scuola");
-$testoluoghi = dli_get_option("descrizione_gallery_luoghi", "la_scuola");
+$gallery = dli_get_option("immagini_luoghi", "il_laboratorio");
+$testoluoghi = dli_get_option("descrizione_gallery_luoghi", "il_laboratorio");
 
 if(is_array($gallery) && count($gallery) > 0){
 	?>

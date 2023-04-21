@@ -1,7 +1,7 @@
 <!-- PRESENTAZIONE -->
 <?php
-$testo_sezione_laboratorio = dli_get_configuration_field_by_lang( 'descrizione_laboratorio', 'la_scuola' );
-$etichetta_laboratorio     = dli_get_configuration_field_by_lang( 'etichetta', 'la_scuola' );
+$testo_sezione_laboratorio = dli_get_configuration_field_by_lang( 'descrizione_laboratorio', 'il_laboratorio' );
+$etichetta_laboratorio     = dli_get_configuration_field_by_lang( 'etichetta', 'il_laboratorio' );
 
 if ( $testo_sezione_laboratorio ) {
 	?>
