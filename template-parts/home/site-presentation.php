@@ -10,9 +10,7 @@ if ( $testo_sezione_laboratorio ) {
 		<div class="container my-12">
 			<h2 class="h3 pb-1"><?php echo $etichetta_laboratorio; ?></h2>
 			<p>
-				<?php
-					echo $testo_sezione_laboratorio;
-				?>
+				<?php echo wpautop( $testo_sezione_laboratorio, true ); 	?>
 			</p>
 		</div>
 	</div>
