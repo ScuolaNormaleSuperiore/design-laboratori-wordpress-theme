@@ -426,6 +426,20 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
+			'id' => $prefix . 'home_carousel_after_presentation_enabled',
+			'name' => __( 'Mostra carousel dopo presentazione.', 'design_laboratori_italia' ),
+			'desc' => __( 'Il carousel dopo la presentazione.', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
 			'id' => $prefix . 'home_carousel_is_selezione_automatica',
 			'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
 			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),

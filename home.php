@@ -8,6 +8,7 @@
  */
 
 get_header();
+$carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled', 'homepage' );
 ?>
 <main id="main-container" class="main-container redbrown">
 
@@ -15,8 +16,13 @@ get_header();
 <?php get_template_part( 'template-parts/home/main-hero' ); ?>
 
 <!-- Section CAROUSEL -->
+<?php
+ if ( 'false' === $carousel_after_pres ){
+?>
 <?php get_template_part( 'template-parts/home/carousel' ); ?>
-
+<?php
+	}
+?>
 
 <!-- PRESENTAZIONE -->
 <?php
@@ -39,6 +45,15 @@ if ( $testo_sezione_laboratorio ) {
 </section>
 <?php
 }
+?>
+
+<!-- Section CAROUSEL -->
+<?php
+ if ( 'false' !== $carousel_after_pres ){
+?>
+<?php get_template_part( 'template-parts/home/carousel' ); ?>
+<?php
+	}
 ?>
 
 <!-- Section Featured Contents (Contenuti in evidenza) -->
