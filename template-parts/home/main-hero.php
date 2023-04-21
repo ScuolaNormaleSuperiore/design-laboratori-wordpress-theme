@@ -2,7 +2,8 @@
 <?php
 
 $main_hero_enabled = dli_get_option( 'home_main_hero_enabled', 'homepage' );
-if ( $main_hero_enabled === 'true' ) {
+
+if ( 'true' === $main_hero_enabled ) {
 	$image_url   = dli_get_option( 'home_main_hero_image', 'homepage' );
 	$image_id    = attachment_url_to_postid( $image_url );
 	$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );

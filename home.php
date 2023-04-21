@@ -41,22 +41,8 @@ if ( $testo_sezione_laboratorio ) {
 }
 ?>
 
-<!-- BLOCCO CARD -->
-<section id="blocco-card" aria-describedby="Blocco news, eventi e pubblicazioni" class="section pt-5" >
-	<div class="section-content">
-		<div class="container">
-		<div class="row">
-			<!-- CARD NOTIZIE -->
-			<?php get_template_part( 'template-parts/home/card-news' ); ?>
-			<!-- CARD EVENTI -->
-			<?php get_template_part( 'template-parts/home/card-eventi' ); ?>
-			<!-- CARD PUBBLICAZIONI -->
-			<?php get_template_part( 'template-parts/home/card-pubblicazioni' ); ?>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- FINE BLOCCO CARD -->
+<!-- Section Featured Contents (Contenuti in evidenza) -->
+<?php get_template_part( 'template-parts/home/featured-contents' ); ?>
 
 </main>
 <?php

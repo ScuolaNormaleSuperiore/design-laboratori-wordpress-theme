@@ -298,47 +298,6 @@ function dli_register_main_options_metabox() {
 		/**
 		* 3 - Registers options page "Home".
 		*/
-		$home_options->add_field(
-			array(
-				'id' => $prefix . 'home_istruzioni_1',
-				'name'        => __( 'Sezione Carousel', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione del carousel in Home Page' , 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
-
-		$home_options->add_field(
-			array(
-				'id' => $prefix . 'home_carousel_is_selezione_automatica',
-				'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
-				'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
-				'type' => 'radio_inline',
-				'default' => 'true',
-				'options' => array(
-						'true' => __( 'Si', 'design_laboratori_italia' ),
-						'false' => __( 'No', 'design_laboratori_italia' ),
-				),
-			)
-		);
-
-		$home_options->add_field(
-			array(
-				'name'    => __( 'Selezione articoli ', 'design_laboratori_italia' ),
-				'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia' ),
-				'id'      => $prefix . 'articoli_presentazione',
-				'type'    => 'custom_attached_posts',
-				'column'  => true,
-				'options' => array(
-						'show_thumbnails' => false, // Show thumbnails on the left.
-						'filter_boxes'    => true, // Show a text box for filtering the results.
-						'query_args'      => array(
-								'posts_per_page' => -1,
-								'post_type'      => array('post', 'notizia', 'evento', 'pubblicazione' ),
-						), // override the get_posts args.
-					)
-				)
-		);
-
 	// *** SEZIONE MAIN HERO (HOMEPAGE) ***
 	$home_options->add_field(
 		array(
@@ -440,6 +399,87 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_istruzioni_1',
+			'name'        => __( 'Sezione Carousel', 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione del carousel in Home Page' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_carousel_is_visible',
+			'name' => __( 'Visualizza carousel', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato.', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_carousel_is_selezione_automatica',
+			'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
+			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'name'    => __( 'Selezione articoli ', 'design_laboratori_italia' ),
+			'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia' ),
+			'id'      => $prefix . 'articoli_presentazione',
+			'type'    => 'custom_attached_posts',
+			'column'  => true,
+			'options' => array(
+					'show_thumbnails' => false, // Show thumbnails on the left.
+					'filter_boxes'    => true, // Show a text box for filtering the results.
+					'query_args'      => array(
+							'posts_per_page' => -1,
+							'post_type'      => array('post', 'notizia', 'evento', 'pubblicazione' ),
+					), // override the get_posts args.
+				)
+			)
+	);
+
+	// *** SEZIONE CONTENUTI IN EVIDENZA (HOMEPAGE) ***
+		$home_options->add_field(
+			array(
+				'id' => $prefix . 'home_featured_contents',
+				'name'        => __( 'Sezione contenuti in evidenza', 'design_laboratori_italia' ),
+				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page.' , 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+
+		$home_options->add_field(
+			array(
+				'id' => $prefix . 'home_featuredcontents_is_visible',
+				'name' => __( 'Visualizza contenuti in evidenza', 'design_laboratori_italia' ),
+				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata.', 'design_laboratori_italia' ),
+				'type' => 'radio_inline',
+				'default' => 'true',
+				'options' => array(
+						'true' => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
 
 	/**
 	* 4 - Registers options page "Laboratorio".
