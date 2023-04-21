@@ -499,15 +499,14 @@ function dli_register_main_options_metabox() {
 	* 4 - Registers options page "Laboratorio".
 	*/
 	$args = array(
-		'id'           => 'dli_options_la_scuola',
+		'id'           => 'dli_options_il_laboratorio',
 		'title'        => esc_html__( 'Il Laboratorio', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
-				'capability'    => 'manage_options',
-				'option_key'   => 'la_scuola',
+		'capability'   => 'manage_options',
+		'option_key'   => 'il_laboratorio',
 		'tab_title'    => __( 'Laboratorio', 'design_laboratori_italia' ),
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
-
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
@@ -517,13 +516,13 @@ function dli_register_main_options_metabox() {
 
 	$main_options = new_cmb2_box( $args );
 
-	$scuola_landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
+	$lab_landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
 
 	$main_options->add_field(
 		array(
 			'id'   => $prefix . 'laboratorio_istruzioni',
 			'name' => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$scuola_landing_url.'">la pagina di panoramica del Laboratorio</a>.' , 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$lab_landing_url.'">la pagina di panoramica del Laboratorio</a>.' , 'design_laboratori_italia' ),
 			'type' => 'title',
 		)
 	);
@@ -560,7 +559,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em',
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
@@ -580,7 +579,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em',
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
@@ -630,7 +629,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em', 
+						'valid_elements' => 'a[href],strong,em,p,br', 
 					),
 				),
 			)
@@ -649,7 +648,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em', 
+						'valid_elements' => 'a[href],strong,em,p,br', 
 					),
 				),
 			)
@@ -699,7 +698,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em',
+						'valid_elements' => 'a[href],strong,em,p,br',
 					),
 				),
 			)
@@ -718,7 +717,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em',
+						'valid_elements' => 'a[href],strong,em,p,br',
 					),
 				),
 			)
@@ -768,7 +767,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em',
+						'valid_elements' => 'a[href],strong,em,p,br',
 					),
 				),
 			)
@@ -787,7 +786,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em',
+						'valid_elements' => 'a[href],strong,em,p,br',
 					),
 				),
 			)
@@ -834,7 +833,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		)
@@ -853,7 +852,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		),
@@ -903,7 +902,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		)
@@ -922,7 +921,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		)
@@ -970,7 +969,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		)
@@ -990,7 +989,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em', 
+					'valid_elements' => 'a[href],strong,em,p,br', 
 				),
 			),
 		)
@@ -1037,7 +1036,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em',
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
@@ -1057,7 +1056,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em',
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
@@ -1105,7 +1104,7 @@ function dli_register_main_options_metabox() {
 					'quicktags'     => false,
 					'tinymce'       => array(
 						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em', 
+						'valid_elements' => 'a[href],strong,em,p,br', 
 					),
 				),
 		) );
@@ -1122,7 +1121,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em',
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 	) );
