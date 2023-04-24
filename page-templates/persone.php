@@ -148,12 +148,14 @@ $num_results = $the_query->found_posts;
 												$persone->the_post();
 												$escludi_da_elenco = get_field( 'escludi_da_elenco' );
 												if ( ! $escludi_da_elenco ) {
-													$nome                       = get_field( 'nome' );
-													$cognome                    = get_field( 'cognome' );
-													$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio' );
-													$ID                         = get_the_ID();
-													$link_persona               = get_the_permalink( $ID );
-													$title                      = get_the_title( $ID );
+													$nome                                = get_field( 'nome' );
+													$cognome                             = get_field( 'cognome' );
+													$disattiva_pagina_dettaglio          = get_field( 'disattiva_pagina_dettaglio' );
+													$abilita_link_diretto_pagina_persona = get_field( 'abilita_link_diretto_pagina_persona' );
+													$ID                                  = get_the_ID();
+													$link_persona                        = get_the_permalink( $ID );
+													$sitoweb                             = get_field( 'sito_web' );
+													$title                               = get_the_title( $ID );
 													?>
 													<div class="col-lg-4">
 														<div class="avatar-wrapper avatar-extra-text">
@@ -165,9 +167,16 @@ $num_results = $the_query->found_posts;
 																$terms = get_the_terms( $ID, 'struttura' );
 																$nome_struttura = $terms[0]->name;
 																if ( ! $disattiva_pagina_dettaglio ) {
-																	?>
-																	<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
-																	<?php
+																	if ( ! $abilita_link_diretto_pagina_persona ) {
+																		?>
+																		<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																		<?php
+																	}
+																	else {
+																		?>
+																			<h4><a href="<?php echo $sitoweb; ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																		<?php
+																	}
 																}
 																else {
 																	?>
