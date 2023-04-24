@@ -16,6 +16,9 @@ if ( 'true' === $main_hero_enabled ) {
 
 ?>
 	<section class="it-hero-wrapper it-dark it-overlay">
+	<?php
+	if ( $image_url && '' !== $image_url ) {
+		?>
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
@@ -23,15 +26,24 @@ if ( 'true' === $main_hero_enabled ) {
 				</div>
 			</div>
 		</div>
+		<?php
+	}
+	?>
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( $hero_title) ; ?></h2>
 						<p class="d-none d-lg-block"><?php echo esc_html( $hero_text) ; ?></p>
+						<?php
+					if ( $hero_url && '' !== $hero_url ) {
+						?>
 						<div class="it-btn-container">
 							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $hero_url) ; ?>"><?php echo esc_attr( $button_label) ; ?></a>
 						</div>
+							<?php
+					}
+					?>
 					</div>
 				</div>
 			</div>
