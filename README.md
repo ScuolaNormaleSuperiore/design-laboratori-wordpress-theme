@@ -7,7 +7,7 @@ Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle att
 Il progetto è in fase di sviluppo, il primo rilascio stabile è previsto per il mese di aprile del 2023.
 
 ## Credits
-Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/CREDITS.txt). 
+Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia 2.3.8***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/CREDITS.txt). 
 
 ## Funzionalità
 - Popolamento automatico del sito (pagine e menu).
@@ -71,13 +71,10 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 * [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
 * [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
 * [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
-* [Contact Form 7](https://it.wordpress.org/plugins/contact-form-7/)
-* [Contact Form CFDB7](https://it.wordpress.org/plugins/contact-form-cfdb7/)
 * [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
 * [Disable Gutenberg](https://wordpress.org/plugins/disable-gutenberg/)
 * [Members](https://it.wordpress.org/plugins/members/)
 * [Polylang](https://it.wordpress.org/plugins/polylang/)
-* [Regenerate Thumbnails](https://it.wordpress.org/plugins/regenerate-thumbnails/)
 * [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
 
 Il tema mostra un avviso quando uno di questi plugin non è installato.
