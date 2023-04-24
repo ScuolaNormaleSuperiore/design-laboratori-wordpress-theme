@@ -160,7 +160,7 @@ function dli_scripts() {
 
 	if ( 'custom' === dli_get_option( 'choose_style', 'setup' ) ) {
 		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia-custom.min.css' );
-		wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/custom-overrides.css' );
+		wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/custom-colors.css' );
 	} else {
 		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css' );
 	}
