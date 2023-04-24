@@ -10,8 +10,8 @@
     "minify:css": "node scripts/minify-css.js",
     "minify:js": "node scripts/minify-js.js",
 		"create_layout": "sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
-		"update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\bootstrap-italia\\css\\ /Y",
-		"update_layout_linux": "npm run create_layout && cp -f ./assets/css/compiled/bootstrap-italia-custom.min.* ./assets/bootstrap-italia/cs/"
+		"update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\css\\ /Y",
+		"update_layout_linux": "npm run create_layout && cp -f ./assets/css/compiled/bootstrap-italia-custom.min.* ./assets/css/"
   },
   "repository": {
     "type": "git",
