@@ -1040,30 +1040,39 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 			}
 		}
 		foreach ( $results as $result ) {
-			$item = array();
-			switch ( $result->post_type) {
-				case EVENT_POST_TYPE:
-					$item = dli_from_event_to_carousel_item ( $result );
-					break;
-				case NEWS_POST_TYPE:
-					$item = dli_from_news_to_carousel_item ( $result );
-					break;
-				case PROGETTO_POST_TYPE:
-						$item = dli_from_progetto_to_carousel_item ( $result );
-						break;
-				case PUBLICATION_POST_TYPE:
-						$item = dli_from_publication_to_carousel_item ( $result );
-						break;
-				default:
-					// Standard post or article.
-					$item = dli_from_post_to_carousel_item ( $result );
-					break;
-			}
+			$item = dli_get_post_wrapper( $result );
 			array_push( $items, $item );
 		}
 		return $items;
 	}
 }
+
+
+if( ! function_exists( 'dli_get_post_wrapper' ) ) {
+	function dli_get_post_wrapper( $result ) {
+		$item = array();
+		switch ( $result->post_type) {
+			case EVENT_POST_TYPE:
+				$item = dli_from_event_to_carousel_item ( $result );
+				break;
+			case NEWS_POST_TYPE:
+				$item = dli_from_news_to_carousel_item ( $result );
+				break;
+			case PROGETTO_POST_TYPE:
+					$item = dli_from_progetto_to_carousel_item ( $result );
+					break;
+			case PUBLICATION_POST_TYPE:
+					$item = dli_from_publication_to_carousel_item ( $result );
+					break;
+			default:
+				// Standard post or article.
+				$item = dli_from_post_to_carousel_item ( $result );
+				break;
+		}
+		return $item;
+	}
+}
+
 
 if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	function dli_from_event_to_carousel_item( $item ) {
