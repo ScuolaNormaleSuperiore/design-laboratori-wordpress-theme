@@ -1265,6 +1265,37 @@ $social_options->add_field( array(
 
 	$setup_options->add_field(
 		array(
+			'id'   => $prefix . 'style_manager',
+			'name' => __( 'Gestione dello stile del sito', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$setup_options->add_field(
+		array(
+			'id'               => $prefix . 'choose_style',
+			'name'             => __( 'Stile del sito', 'design_laboratori_italia' ),
+			'desc'             => __( 'Selezione lo stile del sito (scegliere default per usare quello standard di Desgners Italia)' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'default',
+			'show_option_none' => false,
+			'options'          => array(
+				'standard' => __( 'Default Style', 'default' ),
+				'custom'   => __( 'Custom Style', 'custom' ),
+		),
+		)
+	);
+
+	$setup_options->add_field(
+		array(
+			'id'   => $prefix . 'maps_manager',
+			'name' => __( 'Gestione mappe', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+		
+	$setup_options->add_field(
+		array(
 			'id'   => $prefix . 'mapbox_key',
 			'name' => 'Access Token MapBox',
 			'desc' => __( 'Inserisci l\'access token mapbox per l\'erogazione delle mappe. Puoi crearlo <a target="_blank" href="https://www.mapbox.com/studio/account/tokens/">da qui</a>', 'design_laboratori_italia' ),
