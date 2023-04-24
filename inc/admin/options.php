@@ -520,7 +520,19 @@ function dli_register_main_options_metabox() {
 		$home_options->add_group_field(
 			$featured_contents_group_id,
 			array(
-				'id'               => $prefix . 'featured_contents_templatee_box_1',
+				'id'               => $prefix . 'featured_contents_type_box_1',
+				'name'             => __( 'Contenuto del box', 'design_laboratori_italia' ),
+				'desc'             => __( 'Seleziona un tipo di contenuto' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => NEWS_POST_TYPE,
+				'options_cb'       => 'dli_get_boxes_post_types',
+			)
+		);
+
+		$home_options->add_group_field(
+			$featured_contents_group_id,
+			array(
+				'id'               => $prefix . 'featured_contents_template_box_1',
 				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
 				'desc'             => __( 'Seleziona uno di questi template' , 'design_laboratori_italia' ),
 				'type'             => 'select',
@@ -577,7 +589,19 @@ function dli_register_main_options_metabox() {
 		$home_options->add_group_field(
 			$featured_contents_group_id,
 			array(
-				'id'               => $prefix . 'featured_contents_templatee_box_2',
+				'id'               => $prefix . 'featured_contents_type_box_2',
+				'name'             => __( 'Contenuto del box', 'design_laboratori_italia' ),
+				'desc'             => __( 'Seleziona un tipo di contenuto' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => EVENT_POST_TYPE,
+				'options_cb'       => 'dli_get_boxes_post_types',
+			)
+		);
+
+		$home_options->add_group_field(
+			$featured_contents_group_id,
+			array(
+				'id'               => $prefix . 'featured_contents_template_box_2',
 				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
 				'desc'             => __( 'Seleziona uno di questi template' , 'design_laboratori_italia' ),
 				'type'             => 'select',
@@ -634,7 +658,19 @@ function dli_register_main_options_metabox() {
 		$home_options->add_group_field(
 			$featured_contents_group_id,
 			array(
-				'id'               => $prefix . 'featured_contents_templatee_box_3',
+				'id'               => $prefix . 'featured_contents_type_box_2',
+				'name'             => __( 'Contenuto del box', 'design_laboratori_italia' ),
+				'desc'             => __( 'Seleziona un tipo di contenuto' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => PUBLICATION_POST_TYPE,
+				'options_cb'       => 'dli_get_boxes_post_types',
+			)
+		);
+
+		$home_options->add_group_field(
+			$featured_contents_group_id,
+			array(
+				'id'               => $prefix . 'featured_contents_template_box_3',
 				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
 				'desc'             => __( 'Seleziona uno di questi template' , 'design_laboratori_italia' ),
 				'type'             => 'select',

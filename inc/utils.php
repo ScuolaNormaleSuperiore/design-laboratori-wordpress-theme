@@ -231,9 +231,6 @@ if(!function_exists("dsi_get_user_role")) {
 	}
 }
 
-
-
-
 /**
  * Wrapper function for agomenti taxonomy list
  * @return array
@@ -250,7 +247,6 @@ if(!function_exists("dsi_get_tipologia_struttura_of_post")) {
 				return $argomenti_terms;
 		}
 }
-
 
 /**
  * Wrapper function for agomenti taxonomy list
@@ -1047,7 +1043,6 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 	}
 }
 
-
 if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	function dli_get_post_wrapper( $result ) {
 		$item = array();
@@ -1073,6 +1068,20 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
+	function dli_get_boxes_post_types( $item ) {
+		return array(
+			RESEARCHACTIVITY_POST_TYPE => __( 'Attività di ricerca', 'design_laboratori_italia' ),
+			EVENT_POST_TYPE            => __( 'Eventi', 'design_laboratori_italia' ),
+			PLACE_POST_TYPE            => __( 'Luoghi', 'design_laboratori_italia' ),
+			NEWS_POST_TYPE             => __( 'Notizie', 'design_laboratori_italia' ),
+			PEOPLE_POST_TYPE           => __( 'Persone', 'design_laboratori_italia' ),
+			WP_DEFAULT_POST            => __( 'Post', 'design_laboratori_italia' ),
+			PROGETTO_POST_TYPE         => __( 'Progetti', 'design_laboratori_italia' ),
+			PUBLICATION_POST_TYPE      => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+		);
+	}
+}
 
 if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	function dli_from_event_to_carousel_item( $item ) {
