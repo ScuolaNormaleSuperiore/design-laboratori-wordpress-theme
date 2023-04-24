@@ -174,7 +174,7 @@ $num_results = $the_query->found_posts;
 																	}
 																	else {
 																		?>
-																			<h4><a href="<?php echo $sitoweb; ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																			<h4><a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
 																		<?php
 																	}
 																}
