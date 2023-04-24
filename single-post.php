@@ -45,10 +45,10 @@ $pg_link   = get_permalink( $pg->ID );
 					</div>
 					<div class="col-sm-7">
 						<?php
-						if( $image_url ) {
-						?>
+						if ( $image_url ) {
+							?>
 						<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
-						<?php
+							<?php
 						}
 						?>
 					</div>

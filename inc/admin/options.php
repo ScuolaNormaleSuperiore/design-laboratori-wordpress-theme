@@ -517,12 +517,14 @@ function dli_register_main_options_metabox() {
 	$main_options = new_cmb2_box( $args );
 
 	$lab_landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica del Laboratorio</a>', 'design_laboratori_italia' ), $lab_landing_url );
 
 	$main_options->add_field(
 		array(
 			'id'   => $prefix . 'laboratorio_istruzioni',
 			'name' => __( 'Sezione Il Laboratorio', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$lab_landing_url.'">la pagina di panoramica del Laboratorio</a>.' , 'design_laboratori_italia' ),
+			'desc' => $descr,
+			'type' => 'title',
 			'type' => 'title',
 		)
 	);
@@ -607,11 +609,12 @@ function dli_register_main_options_metabox() {
 	$blog_options = new_cmb2_box( $args );
 
 		$blog_landing_url = dli_get_template_page_url( 'page-templates/blog.php' );
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> il blog</a>', 'design_laboratori_italia' ), $blog_landing_url );
 		$blog_options->add_field(
 			array(
 				'id'   => $prefix . 'blog_istruzioni',
 				'name' => __( 'Sezione Il Blog', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="' . $blog_landing_url . '"> il blog</a>.' , 'design_laboratori_italia' ),
+				'desc' => $descr,
 				'type' => 'title',
 			)
 		);
@@ -676,11 +679,13 @@ function dli_register_main_options_metabox() {
 	$notizie_options = new_cmb2_box( $args );
 
 		$notizie_landing_url = dli_get_template_page_url( 'page-templates/notizie.php' );
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Novità</a>', 'design_laboratori_italia' ), $notizie_landing_url );
+
 		$notizie_options->add_field(
 			array(
 				'id'   => $prefix . 'notizie_istruzioni',
 				'name' => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$notizie_landing_url.'">la pagina di panoramica delle Novità</a>.' , 'design_laboratori_italia' ),
+				'desc' => $descr,
 				'type' => 'title',
 			)
 		);
@@ -745,11 +750,12 @@ function dli_register_main_options_metabox() {
 	$eventi_options = new_cmb2_box( $args );
 
 		$eventi_landing_url = dli_get_template_page_url( 'page-templates/eventi.php' );
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica degli Eventi</a>', 'design_laboratori_italia' ), $eventi_landing_url );
 		$eventi_options->add_field(
 			array(
 				'id'   => $prefix . 'eventi_istruzioni',
 				'name' => __( 'Sezione Eventi', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$eventi_landing_url.'">la pagina di panoramica degli Eventi</a>.' , 'design_laboratori_italia' ),
+				'desc' => $descr,
 				'type' => 'title',
 			)
 		);
@@ -812,10 +818,11 @@ function dli_register_main_options_metabox() {
 	$persone_options = new_cmb2_box( $args );
 
 	$persone_landing_url = dli_get_template_page_url("page-templates/persone.php");
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Persone</a>', 'design_laboratori_italia' ), $persone_landing_url );
 	$persone_options->add_field( array(
 			'id' => $prefix . 'persone_istruzioni',
 			'name'        => __( 'Sezione Persone', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$persone_landing_url.'">la pagina delle Persone</a>.' , 'design_laboratori_italia' ),
+			'desc' => $descr,
 			'type' => 'title',
 	) );
 
@@ -878,7 +885,7 @@ function dli_register_main_options_metabox() {
 	}
 	$pubblicazioni_options = new_cmb2_box( $args );
 	$pubblicazioni_landing_url = dli_get_template_page_url( 'page-templates/pubblicazioni.php' );
-	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s">la pagina di panoramica delle Pubblicazioni</a>', 'design_laboratori_italia' ), $pubblicazioni_landing_url	);
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Pubblicazioni</a>', 'design_laboratori_italia' ), $pubblicazioni_landing_url	);
 	$pubblicazioni_options->add_field(
 		array(
 		'id'   => $prefix . 'pubblicazioni_istruzioni',
@@ -947,11 +954,13 @@ function dli_register_main_options_metabox() {
 	}
 	$progetti_options = new_cmb2_box( $args );
 	$progetti_landing_url = dli_get_template_page_url( 'page-templates/progetti.php' );
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica dei Progetti</a>', 'design_laboratori_italia' ), $progetti_landing_url );
+
 	$progetti_options->add_field(
 		array(
 		'id'   => $prefix . 'progetti_istruzioni',
 		'name' => __( 'Sezione I Progetti', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$progetti_landing_url.'">la pagina di panoramica dei Progetti</a>.' , 'design_laboratori_italia' ),
+		'desc' => $descr,
 		'type' => 'title',
 		)
 	);
@@ -1014,11 +1023,13 @@ function dli_register_main_options_metabox() {
 	}
 	$ricerca_options = new_cmb2_box( $args );
 	$ricerca_landing_url = dli_get_template_page_url( 'page-templates/ricerca.php' );
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica degli Indirizzi di ricerca</a>', 'design_laboratori_italia' ), $ricerca_landing_url );
+
 	$ricerca_options->add_field(
 		array(
 		'id'   => $prefix . 'ricerca_istruzioni',
 		'name' => __( 'Sezione Indirizzi Ricerca', 'design_laboratori_italia' ),
-		'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'.$ricerca_landing_url.'">la pagina di panoramica degli Indirizzi di ricerca</a>.' , 'design_laboratori_italia' ),
+		'desc' => $descr,
 		'type' => 'title',
 		)
 	);
@@ -1084,11 +1095,12 @@ function dli_register_main_options_metabox() {
 		}
 
 		$luoghi_options = new_cmb2_box( $args );
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina dei luoghi scolastici</a>', 'design_laboratori_italia' ), get_post_type_archive_link("luogo") );
 
 		$luoghi_options->add_field( array(
-				'id' => $prefix . 'luoghi_istruzioni',
-				'name'        => __( 'Sezione Luoghi', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui le informazioni utili a popolare <a href="'. get_post_type_archive_link("luogo"). '">la pagina dei luoghi scolastici</a>.' , 'design_laboratori_italia' ),
+				'id'   => $prefix . 'luoghi_istruzioni',
+				'name' => __( 'Sezione Luoghi', 'design_laboratori_italia' ),
+				'desc' => $descr,
 				'type' => 'title',
 		) );
 
