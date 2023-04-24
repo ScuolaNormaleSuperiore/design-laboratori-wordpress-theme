@@ -1,4 +1,10 @@
 <?php
+$box_number    = $args[0];
+$box_label     = $args[1];
+$box_template  = $args[2];
+$box_post_type = $args[3];
+$box_items     = $args[4];
+
 $query = new WP_Query(
 	array(
 		'post_type'      => array( 'evento' ),

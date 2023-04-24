@@ -658,7 +658,7 @@ function dli_register_main_options_metabox() {
 		$home_options->add_group_field(
 			$featured_contents_group_id,
 			array(
-				'id'               => $prefix . 'featured_contents_type_box_2',
+				'id'               => $prefix . 'featured_contents_type_box_3',
 				'name'             => __( 'Contenuto del box', 'design_laboratori_italia' ),
 				'desc'             => __( 'Seleziona un tipo di contenuto' , 'design_laboratori_italia' ),
 				'type'             => 'select',
