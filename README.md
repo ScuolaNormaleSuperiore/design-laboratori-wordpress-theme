@@ -102,16 +102,17 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 ![configure](assets/screenshots/configurazione1.png)
 
 
-## Personalizzazione dello stile
-In *WP->Configurazione->*
+## Personalizzazione dello stile (colori e font)
+In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
+* **Stile Bootstrap Iatalia standard**: Stile che prevede i colori e i font di default della libreria Bootstrap Italia.
+* **Stile personalizzato**: Stile che colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
 
-Per cambiare i colori del tema, va prodotto un nuovo file *bootstrap-italia-custom.min.css* con i nuovi colori.
-Con la seguente procedura si produce un nuo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
+Il file  [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento []() oppure seguendo i seguenti passi:
 
 1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
 2. Eseguire il comando ***npm run*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
 3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss).
-4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***.
+4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***. Questo comando produce un nuovo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
 
 Altre guide su questo argomento:
 * [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria).
