@@ -12,7 +12,7 @@
 FROM php:8.2-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.2tar.gz
+ARG WP_ARCHIVE=wordpress-6.2.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
