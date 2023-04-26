@@ -1,6 +1,10 @@
-/* .it-footer-main {
-	background-color: #004d99;
+.it-footer-main {
+	background-color: #2f475e;
 }
 .it-footer-small-prints {
-	background-color: #036;
-} */
+	background-color: #2f475e;
+}
+
+.primary-bg-c1 {
+    background-color: #e6ecf2 !important;
+}
