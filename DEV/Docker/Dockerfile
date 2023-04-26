@@ -1,9 +1,9 @@
 ##############################################################################
 ######			USEFUL DOCKER COMMANDS:
 ######
-######		- docker build -t doclab-img -f Dockerfile .
-######		- docker run -p 80:80 -p 3306:3306 --name=doclab -d doclab-img
-######		- docker exec -it doclab /bin/bash
+######		- docker build -t demolab-img -f Dockerfile .
+######		- docker run -p 80:80 -p 3306:3306 --name=demolab -d demolab-img
+######		- docker exec -it demolab /bin/bash
 ######		- Per svuotare la cache: docker builder prune
 ######		- Per elencare i volumi: docker volume ls
 ##############################################################################
@@ -26,7 +26,7 @@ ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.3.zip
 ARG PLG_MEMBERS=members.3.2.4.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
-ARG PLG_SMTP=wp-mail-smtp.3.7.0.zip
+ARG PLG_SMTP=wp-mail-smtp.3.8.0.zip
 ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.4.zip
 ##############################################################################
 
@@ -49,7 +49,7 @@ RUN docker-php-ext-install mysqli && \
 
 # Copy the file of the database files.
 COPY configure/createUserAndDatabase.sql /tmp/createUserAndDatabase.sql
-COPY src/doclabdb.sql /tmp/doclabdb.sql
+COPY src/demolabdb.sql /tmp/demolabdb.sql
 COPY configure/configureWP.sql /tmp/configureWP.sql
 
 # Copy source code and configure.
@@ -62,8 +62,8 @@ COPY src/uploads.zip /tmp/uploads.zip
 RUN apt-get install -y mariadb-server && \
 	/etc/init.d/mariadb start && \
 	mysql < /tmp/createUserAndDatabase.sql && \
-	mysql doclabdb < /tmp/doclabdb.sql && \
-	mysql doclabdb < /tmp/configureWP.sql
+	mysql demolabdb < /tmp/demolabdb.sql && \
+	mysql demolabdb < /tmp/configureWP.sql
 
 # Install Wordpress and the needed plugin
 WORKDIR /tmp

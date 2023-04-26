@@ -44,16 +44,16 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugins + contenuti d'esempio). 
 Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker/Dockerfile).
 
+Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Demo Lab** è già configurato ed è popolato con dei contenuti di prova. Lo scopo di Demo Lab è quello di mostrare le funzionalità del sistema e poterle provare velocemente, non deve essere usato in ambienti di produzione.
+
 I comandi da eseguire per creare ed eseguire il container sono:
-- docker build -t doclab-img -f Dockerfile .
-- docker run -p 80:80 -p 3306:3306 --name=doclab -d doclab-img
+- docker build -t demolab-img -f Dockerfile .
+- docker run -p 80:80 -p 3306:3306 --name=demolab -d demolab-img
  
 Per collegarsi alla shell del container, eseguire il comando:
-- docker exec -it doclab /bin/bash
+- docker exec -it demolab /bin/bash
   
 L'url del sito appena creato è: http://localhost/ .
-
-Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Doc Lab** è già configurato
 
 Per autenticarsi come amministratore del sito l'url è http://localhost/wp-admin/ e l'account per accedere è: manager / password
 
@@ -64,7 +64,7 @@ Per configurarlo i parametri sono:
 - Server: 127.0.0.1
 - Utente: admin
 - Password: admin
-- Database: doclabdb
+- Database: demolabdb
 
 
 ## Dipendenze
