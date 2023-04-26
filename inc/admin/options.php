@@ -1485,8 +1485,8 @@ $social_options->add_field( array(
 			'default'          => 'default',
 			'show_option_none' => false,
 			'options'          => array(
-				'standard' => __( 'Default Style', 'design_laboratori_italia' ),
-				'custom'   => __( 'Custom Style', 'design_laboratori_italia' ),
+				'standard' => __( 'Stile Bootstrap Italia standard', 'design_laboratori_italia' ),
+				'custom'   => __( 'Stile personalizzato', 'design_laboratori_italia' ),
 		),
 		)
 	);
