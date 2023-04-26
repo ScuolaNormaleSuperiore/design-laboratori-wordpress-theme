@@ -1,7 +1,7 @@
 [
     {
         "key": "group_63c6cba778a4e",
-        "title": "Progetto",
+        "title": "Campi Progetto",
         "fields": [
             {
                 "key": "field_63c6cce7c647f",
@@ -74,6 +74,26 @@
                     "id": ""
                 },
                 "message": "Non visualizzare nella lista dei progetti",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_6448ebe0d41ce",
+                "label": "Promuovi in home",
+                "name": "promuovi_in_home",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
                 "default_value": 0,
                 "ui": 0,
                 "ui_on_text": "",

@@ -351,6 +351,26 @@ class People_Manager {
 						'elements' => '',
 					),
 					array(
+						'key' => 'field_6448ec7982550',
+						'label' => 'Promuovi in home',
+						'name' => 'promuovi_in_home',
+						'aria-label' => '',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 0,
+						'ui' => 0,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
+					),
+					array(
 						'key' => 'field_63c8159068f0c',
 						'label' => 'Allegato CV',
 						'name' => 'allegato_cv',
@@ -450,6 +470,7 @@ class People_Manager {
 				'description' => '',
 				'show_in_rest' => 1,
 			));
+
 		}
 	}
 }

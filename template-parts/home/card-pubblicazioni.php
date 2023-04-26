@@ -8,7 +8,7 @@ $order_field   = 'post_date';
 
 $query = new WP_Query(
 	array(
-		'post_type'      =>  array( $box_post_type ),
+		'post_type'      => array( $box_post_type ),
 		'orderby'        => $order_field,
 		'order'          => 'DESC',
 		'posts_per_page' => 2,
@@ -25,7 +25,7 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
-	<h2 class="h3 pb-2"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
+	<h2 class="h3 pb-2"><?php echo __( $box_label, 'design_laboratori_italia' ); ?></h2>
 
 	<?php
 		foreach( $query->posts as $carditem ) {

@@ -8,7 +8,7 @@ $order_field   = 'post_date';
 
 $query = new WP_Query(
 	array(
-		'post_type'      =>  array( $box_post_type ),
+		'post_type'      => array( $box_post_type ),
 		'orderby'        => $order_field,
 		'order'          => 'DESC',
 		'posts_per_page' => 1,

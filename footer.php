@@ -22,7 +22,7 @@
 						<a href="<?php echo dli_homepage_url(); ?>">
 								<!-- footer logo -->
 								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
-								<div class="it-brand-text">
+								<div class="it-brand-text ms-4">
 									<h2 class="no_toc"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h2>
 									<h3 class="no_toc d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></h3>
 								</div>

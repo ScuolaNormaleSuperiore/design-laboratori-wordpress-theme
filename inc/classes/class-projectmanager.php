@@ -150,6 +150,26 @@ class Project_Manager {
 							'ui_off_text' => '',
 						),
 						array(
+							'key' => 'field_6448ebe0d41ce',
+							'label' => 'Promuovi in home',
+							'name' => 'promuovi_in_home',
+							'aria-label' => '',
+							'type' => 'true_false',
+							'instructions' => '',
+							'required' => 0,
+							'conditional_logic' => 0,
+							'wrapper' => array(
+								'width' => '',
+								'class' => '',
+								'id' => '',
+							),
+							'message' => '',
+							'default_value' => 0,
+							'ui' => 0,
+							'ui_on_text' => '',
+							'ui_off_text' => '',
+						),
+						array(
 							'key' => 'field_63c6cc74c647d',
 							'label' => 'Promuovi in carousel',
 							'name' => 'promuovi_in_carousel',
@@ -396,7 +416,7 @@ class Project_Manager {
 					'description' => '',
 					'show_in_rest' => 1,
 				));
-	
+
 			}
 		}
 }

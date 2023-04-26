@@ -25,7 +25,7 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
-	<h2 class="h3 pb-2"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h2>
+	<h2 class="h3 pb-2"><?php echo __( $box_label, 'design_laboratori_italia' ); ?></h2>
 	<div class="card-wrapper">
 		<div class="card card-img no-after card-bg">
 		<?php
