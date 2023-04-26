@@ -145,3 +145,22 @@ define(
 		WP_DEFAULT_CATEGORY,
 	)
 );
+
+
+// Post Wrapper for Carousel and Featured Contents.
+define(
+	'DLI_POST_WRAPPER',
+	array(
+		'type'          => '',
+		'category'      => '',
+		'category_link' => '',
+		'date'          => '',
+		'title'         => '',
+		'description'   => '',
+		'full_content'  => '',
+		'link'          => '',
+		'image_url'     => '',
+		'image_alt'     => '',
+		'image_title'   => '',
+	)
+);
