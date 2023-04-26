@@ -15,9 +15,6 @@ $the_query = new WP_Query(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => PEOPLE_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
-		'meta_key'       => 'cognome',
-		'orderby'        => 'meta_value',
-		'order'          => 'ASC',
 	)
 );
 $num_results = $the_query->found_posts;
@@ -94,7 +91,8 @@ $num_results = $the_query->found_posts;
 										array(
 											'posts_per_page' => -1,
 											'post_type'      => 'persona',
-											'orderby'        => 'cognome',
+											'meta_key'       => 'cognome',
+											'orderby'        => 'meta_value',
 											'order'          => 'ASC',
 											'meta_query'     => array(
 												array(
@@ -119,7 +117,8 @@ $num_results = $the_query->found_posts;
 										array(
 											'posts_per_page' => -1,
 											'post_type'      => 'persona',
-											'orderby'        => 'cognome',
+											'meta_key'       => 'cognome',
+											'orderby'        => 'meta_value',
 											'order'          => 'ASC',
 											'meta_query'     => array(
 												array(
@@ -163,7 +162,8 @@ $num_results = $the_query->found_posts;
 													<div class="col-lg-4">
 														<div class="avatar-wrapper avatar-extra-text">
 															<div class="avatar size-xl">
-																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
+																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" 
+																	alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
 															</div>
 															<div class="extra-text">
 																<?php
@@ -172,12 +172,16 @@ $num_results = $the_query->found_posts;
 																if ( ! $disattiva_pagina_dettaglio ) {
 																	if ( ! $abilita_link_diretto_pagina_persona ) {
 																		?>
-																		<h4><a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																		<h4>
+																			<a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a>
+																		</h4>
 																		<?php
 																	}
 																	else {
 																		?>
-																			<h4><a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a></h4>
+																			<h4>
+																				<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a>
+																			</h4>
 																		<?php
 																	}
 																}
