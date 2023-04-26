@@ -44,7 +44,7 @@ $num_results = $the_query->found_posts;
 							]
 						);
 						// visualizzo i filtri sulle strutture solo se ne esistono almeno 2.
-						if ( count( $strutture ) >= 1 ) {
+						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) ) {
 							?>
 						<!-- FILTRI SU STRUTTURE chips se presenti -->
 						<div class="title-section text-center mb-5">
@@ -64,7 +64,7 @@ $num_results = $the_query->found_posts;
 							<?php
 						}
 
-						if($num_results) {
+						if( $num_results ) {
 							// recupero tutte le categorie.
 							$categorie_persone = new WP_Query(
 								array(

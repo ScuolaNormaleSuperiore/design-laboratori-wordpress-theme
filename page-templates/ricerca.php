@@ -31,13 +31,13 @@ $num_results = $the_query->found_posts;
 	<?php
 	// The mani loop of the page.
 	$pindex = 0;
-	if ( $num_results ) {
-		?>
+	?>
 
 	<!-- ELENCO INDIRIZZI DI RICERCA -->
 	<section id="indirizziricerca">
 		<div class="container p-5">
 			<?php
+			if ( $num_results ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
 				if ( ( $pindex % RIC_CELLS_PER_ROW ) == 0 ) {
