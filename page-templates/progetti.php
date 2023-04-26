@@ -119,7 +119,6 @@ $num_results = $the_query->found_posts;
 		<?php
 			}
 		 ?>
-
 		</div>
 	</section>
 

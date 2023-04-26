@@ -80,7 +80,7 @@ $num_results = $the_query->found_posts;
 									</div>
 								</div>
 							</div>
-						</div>  
+						</div>
 						<!--end card-->
 				<?php
 					if ( ( ( $pindex % RIC_CELLS_PER_ROW ) === RIC_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
@@ -99,7 +99,6 @@ $num_results = $the_query->found_posts;
 		<?php
 			}
 		 ?>
-
 		</div>
 	</section>
 
