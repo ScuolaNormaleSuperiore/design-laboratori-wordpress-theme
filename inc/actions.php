@@ -62,7 +62,7 @@ add_action( 'admin_enqueue_scripts', 'dli_admin_css_load' );
 // 				$allowed_types = array( "any", "laboratory", "news", "education", "service" );
 // 				if ( isset( $_GET["type"] ) && in_array( $_GET["type"], $allowed_types ) ) {
 // 						$type = $_GET["type"];
-// 						$post_types = dsi_get_post_types_grouped( $type );
+// 						$post_types = dli_get_post_types_grouped( $type );
 // 						$query->set( 'post_type', $post_types );
 // 				}
 // 				if ( isset( $_GET["post_types"] ) ) {

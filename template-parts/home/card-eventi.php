@@ -1,8 +1,15 @@
 <?php
+$box_number    = $args[0];
+$box_label     = $args[1];
+$box_template  = $args[2];
+$box_post_type = $args[3];
+$box_items     = $args[4];
+$order_field   = 'post_date';
+
 $query = new WP_Query(
 	array(
-		'post_type'      => array( 'evento' ),
-		'orderby'        => 'post_date',
+		'post_type'      => array( $box_post_type ),
+		'orderby'        => $order_field,
 		'order'          => 'DESC',
 		'posts_per_page' => -1,
 		'meta_query'     => array(
@@ -22,32 +29,36 @@ $num_items = $query->post_count;
 	<div class="card-wrapper">
 		<div class="card card-img no-after card-bg">
 		<?php
-		if ( $num_items != 0) {
-			$last_hero_event = $query->posts[0];
-			// $event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, get_the_date( DLI_ACF_DATE_FORMAT, $last_hero_event ) );
-			$date            = get_field( 'data_inizio', $last_hero_event );
-			$event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+		if ( $num_items != 0 ) {
+			$carditem  = $query->posts[0];
+			$postitem  = dli_get_post_wrapper( $carditem );
+			// $date      = get_field( 'data_inizio', $carditem );
+			$date      = $postitem['date'];
+			$item_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 		?>
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">
 					<figure class="img-wrapper">
-						<img src="<?php echo get_the_post_thumbnail_url( $last_hero_event , 'item-hero-event' ); ?>"
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>"
-							title="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>" 
-							alt="<?php echo esc_attr( get_the_title( $last_hero_event ) ); ?>">
+						<img src="<?php echo $postitem['image_url']; ?>"
+							alt="<?php echo esc_attr( $postitem['image_alt'] ); ?>"
+							title="<?php echo esc_attr( $postitem['image_title'] ); ?>"
+						>
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
-						<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
-						<span class="card-day"><?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
+						<span class="card-date"><?php echo intval( $item_date->format( 'd' ) ); ?></span>
+						<span class="card-day"><?php echo __( dli_get_monthname( $item_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
 					</div>
 				</div>
 			</div>
 			<div class="card-body p-4">
-			<h3 class="card-title h4"><?php echo get_the_title( $last_hero_event ); ?></h3>
-			<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $last_hero_event ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
-			<a class="read-more" href="<?php echo get_permalink( $last_hero_event ); ?>">
+			<h3 class="card-title h4"><?php echo $postitem['title']; ?></h3>
+			<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve', $carditem ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+			<a class="read-more" href="<?php echo $postitem['link']; ?>">
 				<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-				<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use></svg>
+				<svg class="icon">
+					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>">
+					</use>
+				</svg>
 			</a>
 			</div>
 		<?php

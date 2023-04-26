@@ -1,8 +1,15 @@
 <?php
+$box_number    = $args[0];
+$box_label     = $args[1];
+$box_template  = $args[2];
+$box_post_type = $args[3];
+$box_items     = $args[4];
+$order_field   = 'post_date';
+
 $query = new WP_Query(
 	array(
-		'post_type'      => array( 'pubblicazione' ),
-		'orderby'        => 'post_date',
+		'post_type'      =>  array( $box_post_type ),
+		'orderby'        => $order_field,
 		'order'          => 'DESC',
 		'posts_per_page' => 2,
 		'meta_query'     => array(
@@ -21,13 +28,13 @@ $num_items = $query->post_count;
 	<h2 class="h3 pb-2"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
 
 	<?php
-		while( $query->have_posts() ) {
-			$query->the_post();
+		foreach( $query->posts as $carditem ) {
+			$postitem = dli_get_post_wrapper( $carditem );
 	?>
 	<div class="card card-teaser rounded shadow">
 		<div class="card-body">
-			<h3 class="card-title h5"><?php the_title() ?></h3>
-			<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
+			<h3 class="card-title h5"><?php echo $postitem['title']; ?></h3>
+			<p class="card-text"><?php echo esc_attr( $postitem['description'] ); ?></p>
 		</div>
 	</div>
 	<?php

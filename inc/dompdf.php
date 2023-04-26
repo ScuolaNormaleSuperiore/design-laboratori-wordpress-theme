@@ -19,7 +19,7 @@ function dsi_pdf_generator(){
         $data = file_get_contents($image_url);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $numerazione_circolare = dli_get_meta("numerazione_circolare", "", $post->ID);
+        // $numerazione_circolare = dli_get_meta("numerazione_circolare", "", $post->ID);
 
 
         ob_start();

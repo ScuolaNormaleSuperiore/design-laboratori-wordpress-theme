@@ -38,93 +38,11 @@ if(!function_exists("dli_members_can_user_view_post")) {
 		function dli_members_can_user_view_post($user_id, $post_id) {
 				if(!function_exists("members_can_user_view_post")) {
 						return true;
-				}else{
+				} else{
 						return members_can_user_view_post($user_id, $post_id);
 				}
 
 		}
-}
-
-/**
- * Wrapper function for get_post_meta
- * @param string $key
- * @return mixed meta_value
- */
-if(!function_exists("dli_get_meta")){
-	function dli_get_meta( $key = '', $prefix = "", $post_id = "") {
-				if ( ! dli_members_can_user_view_post(get_current_user_id(), $post_id) ) return false;
-
-		if($post_id == "")
-			$post_id = get_the_ID();
-
-		$post_type = get_post_type($post_id);
-
-		if($prefix != "")
-			return get_post_meta( $post_id, $prefix.$key, true );
-
-				if(is_singular("indirizzo") || (isset($post_type) && $post_type == "indirizzo")){
-						$prefix = '_dsi_indirizzo_';
-						return get_post_meta( $post_id, $prefix.$key, true );
-				}else if (is_singular("luogo")  || (isset($post_type) && $post_type == "luogo")) {
-			$prefix = '_dsi_luogo_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("struttura")  || (isset($post_type) && $post_type == "struttura")) {
-			$prefix = '_dsi_struttura_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("evento")  || (isset($post_type) && $post_type == "evento")) {
-			$prefix = '_dsi_evento_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("documento")  || (isset($post_type) && $post_type == "documento")) {
-			$prefix = '_dsi_documento_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("post")  || (isset($post_type) && $post_type == "post")) {
-			$prefix = '_dsi_articolo_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("scheda_progetto")  || (isset($post_type) && $post_type == "scheda_progetto")) {
-			$prefix = '_dsi_scheda_progetto_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("scheda_didattica")  || (isset($post_type) && $post_type == "scheda_didattica")) {
-			$prefix = '_dsi_scheda_didattica_';
-			return get_post_meta( $post_id, $prefix . $key, true );
-		}else if (is_singular("circolare")  || (isset($post_type) && $post_type == "circolare")) {
-						$prefix = '_dsi_circolare_';
-						return get_post_meta( $post_id, $prefix . $key, true );
-				}
-
-		return get_post_meta( $post_id, $key, true );
-	}
-}
-
-
-if(!function_exists("dli_get_term_meta")){
-		function dli_get_term_meta( $key , $prefix, $term_id) {
-						return get_term_meta($term_id, $prefix.$key, true );
-
-		}
-}
-/**
-	* Wrapper function for user avatar
-	* @param object user
-	* @return string url
-	*/
-if(!function_exists("dsi_get_user_avatar")){
-	function dsi_get_user_avatar( $user = false, $size=250 ) {
-		if(!$user && is_user_logged_in()){
-			$user = wp_get_current_user();
-		}
-				$foto_id = null;
-		$foto_url = get_the_author_meta('_dsi_persona_foto', $user->ID);
-		if($foto_url)
-						$foto_id = attachment_url_to_postid($foto_url);
-
-				if(isset($foto_id) && $foto_id)
-						$avatar = wp_get_attachment_image_url($foto_id, "item-thumb");
-		else
-				$avatar = get_avatar_url( $user->ID, array("size" => $size) );
-
-		$avatar = apply_filters("dsi_avatar_url", $avatar, $user);
-		return $avatar;
-	}
 }
 
 /**
@@ -143,361 +61,13 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
 	}
 }
 
-
-add_filter( 'get_avatar' , 'dli_custom_avatar' , 1 , 5 );
-
-function dli_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
-		$user = false;
-
-		if ( is_numeric( $id_or_email ) ) {
-
-				$id = (int) $id_or_email;
-				$user = get_user_by( 'id' , $id );
-
-		} elseif ( is_object( $id_or_email ) ) {
-
-				if ( ! empty( $id_or_email->user_id ) ) {
-						$id = (int) $id_or_email->user_id;
-						$user = get_user_by( 'id' , $id );
-				}
-
-		} else {
-				$user = get_user_by( 'email', $id_or_email );
-		}
-
-		if ( $user && is_object( $user ) ) {
-
-				$foto_url = get_the_author_meta('_dsi_persona_foto', $user->ID);
-				if($foto_url)
-						$foto_id = attachment_url_to_postid($foto_url);
-
-				if(isset($foto_id) && $foto_id) {
-						$avatar = wp_get_attachment_image_url($foto_id, "item-thumb");
-						$avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
-				}
-		}
-
-		return $avatar;
-}
-
-
-
-/**
- * Wrapper function for user role
- * @param object user
- * @return string role
- */
-if(!function_exists("dsi_get_user_role")) {
-	function dsi_get_user_role( $user = false ) {
-		global $wp_roles;
-
-
-		if ( ! $user && is_user_logged_in() ) {
-			$user = wp_get_current_user();
-		}
-
-				$ruolo_scuola = get_the_author_meta('_dsi_persona_ruolo_scuola', $user->ID);
-				$tipo_posto = get_the_author_meta('_dsi_persona_tipo_posto', $user->ID);
-				$ruolo_non_docente = get_the_author_meta('_dsi_persona_ruolo_non_docente', $user->ID);
-
-				$str_ruolo = "";
-				if($ruolo_scuola == "dirigente"){
-						$str_ruolo .= "Dirigente Scolastico ";
-				}else if($ruolo_scuola == "docente"){
-						$str_ruolo .= "Docente ";
-
-						if($tipo_posto == "sostegno"){
-								$str_ruolo .= "di sostegno ";
-						}
-
-				}else if($ruolo_scuola == "personaleata"){
-
-						if($ruolo_non_docente == "direttore-amministrativo"){
-								$str_ruolo .= "Direttore amministrativo ";
-						}else if($ruolo_non_docente == "tecnico"){
-								$str_ruolo .= "Personale tecnico ";
-						}else if($ruolo_non_docente == "amministrativo"){
-								$str_ruolo .= "Personale amministrativo ";
-						}else if($ruolo_non_docente == "collaboratore"){
-								$str_ruolo .= "Collaboratore scolastico";
-						}else{
-								$str_ruolo .= "Non docente ";
-						}
-
-
-				}
-
-				return $str_ruolo;
-	}
-}
-
-
-
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array
- */
-if(!function_exists("dsi_get_tipologia_struttura_of_post")) {
-		function dsi_get_tipologia_struttura_of_post( $singular = false ) {
-				global $post;
-
-				if ( ! $singular) {
-						$singular = $post;
-				}
-
-				$argomenti_terms = wp_get_object_terms( $singular->ID, 'tipologia-struttura' );
-				return $argomenti_terms;
-		}
-}
-
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array arguomenti
- */
-if(!function_exists("dsi_get_tipologia_luogo_of_post")) {
-		function dsi_get_tipologia_luogo_of_post( $singular = false ) {
-				global $post;
-
-				if ( ! $singular) {
-						$singular = $post;
-				}
-
-				$argomenti_terms = wp_get_object_terms( $singular->ID, 'tipologia-luogo' );
-				return $argomenti_terms;
-		}
-}
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array arguomenti
- */
-if(!function_exists("dsi_get_argomenti_of_post")) {
-	function dsi_get_argomenti_of_post( $singular = false ) {
-		global $post;
-
-		if ( ! $singular) {
-			$singular = $post;
-		}
-
-		$argomenti_terms = wp_get_object_terms( $singular->ID, 'post_tag' );
-		return $argomenti_terms;
-	}
-}
-
-/**
- * recupero i percorsi di studio della scuola
- */
-if(!function_exists("dsi_get_percorsi_of_scuola")) {
-		function dsi_get_percorsi_of_scuola($singular = false ) {
-				global $post;
-
-				if ( ! $singular) {
-						$singular = $post;
-				}
-
-				$argomenti_terms = wp_get_object_terms( $singular->ID, 'percorsi-di-studio' );
-				return $argomenti_terms;
-		}
-}
-
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array arguomenti
- */
-// todo: programma materia
-/*
-if(!function_exists("dsi_get_materie_of_post")) {
-	function dsi_get_materie_of_post( $singular = false ) {
-		global $post;
-
-		if ( ! $singular) {
-			$singular = $post;
-		}
-
-		$argomenti_terms = wp_get_object_terms( $singular->ID, 'materia' );
-		return $argomenti_terms;
-	}
-}*/
-
-
-/**
- * Wrapper function for agomenti taxonomy list
- * @return array arguomenti
- */
-if(!function_exists("dsi_get_classi_of_post")) {
-	function dsi_get_classi_of_post( $singular = false ) {
-		global $post;
-
-		if ( ! $singular) {
-			$singular = $post;
-		}
-
-		$argomenti_terms = wp_get_object_terms( $singular->ID, 'classe' );
-		return $argomenti_terms;
-	}
-}
-
-
-/**
- * Function to get mapbox access token
- * @return string accesstoken
- */
-if(!function_exists("dsi_get_mapbox_access_token")) {
-	function dsi_get_mapbox_access_token() {
-		global $post;
-
-		$accesstoken = dli_get_option( "mapbox_key", "setup" );
-		if ( trim( $accesstoken ) == "" ) {
-			$accesstoken = DSI_ACCESSTOKEN_MAPBOX;
-		}
-
-		return $accesstoken;
-	}
-}
-
-/**
- * Event date start/stop
- * @param $post
- *
- */
-function dsi_get_date_evento($post){
-	if($post->post_type == "evento")
-		$prefix = '_dsi_evento_';
-	else if($post->post_type == "scheda_progetto")
-		$prefix = '_dsi_scheda_progetto_';
-
-	$ret = "";
-	$timestamp_inizio = dli_get_meta("timestamp_inizio", $prefix, $post->ID);
-	$timestamp_fine= dli_get_meta("timestamp_fine", $prefix, $post->ID);
-	if($timestamp_inizio >= $timestamp_fine){
-		$ret .=  date_i18n("j F Y", $timestamp_inizio);
-		//$ret .= __(" alle ", 'design_laboratori_italia');
-		//$ret .=  date_i18n("H:i", $timestamp_inizio);
-		return $ret;
-	}
-
-	$data_inizio = date_i18n("j F Y", $timestamp_inizio);
-	$data_fine = date_i18n("j F Y", $timestamp_fine);
-	$ora_inizio = date_i18n("H:i", $timestamp_inizio);
-	$ora_fine = date_i18n("H:i", $timestamp_fine);
-	if($data_inizio == $data_fine){
-		$ret .= __("Il ", 'design_laboratori_italia');
-		$ret .= $data_inizio;
-		/*
-		if($post->post_type == "evento"){
-			$ret .= __(" dalle ", 'design_laboratori_italia');
-			$ret .= $ora_inizio;
-			$ret .= __(" alle ", 'design_laboratori_italia');
-			$ret .= $ora_fine;
-
-		}*/
-
-	}else{
-		$ret .= __("dal ", 'design_laboratori_italia');
-		$ret .= $data_inizio;
-		/*
-		if($post->post_type == "evento") {
-			$ret .= __( " alle ", 'design_laboratori_italia' );
-			$ret .= $ora_inizio;
-		}*/
-		$ret .= __(" al ", 'design_laboratori_italia');
-		$ret .= $data_fine;
-		/*
-		if($post->post_type == "evento") {
-			$ret .= __( " alle ", 'design_laboratori_italia' );
-			$ret .= $ora_fine;
-		}*/
-	}
-
-	return $ret;
-
-}
-
-
-/**
- * @param WP_Query|null $wp_query
- * @param bool $echo
- *
- * @return string
- * Accepts a WP_Query instance to build pagination (for custom wp_query()),
- * or nothing to use the current global $wp_query (eg: taxonomy term page)
- * - Tested on WP 4.9.5
- * - Tested with Bootstrap 4.1
- * - Tested on Sage 9
- *
- * USAGE:
- *     <?php echo dsi_bootstrap_pagination(); ?> //uses global $wp_query
- * or with custom WP_Query():
- *     <?php
- *      $query = new \WP_Query($args);
- *       ... while(have_posts()), $query->posts stuff ...
- *       echo bootstrap_pagination($query);
- *     ?>
- */
-function dsi_bootstrap_pagination( \WP_Query $wp_query = null, $echo = true ) {
-	if ( null === $wp_query ) {
-		global $wp_query;
-	}
-	$pages = paginate_links( [
-			'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-			'format'       => '%#%',
-			'current'      => max( 1, get_query_var( 'paged' ) ),
-			'total'        => $wp_query->max_num_pages,
-			'type'         => 'array',
-			'show_all'     => false,
-			'end_size'     => 3,
-			'mid_size'     => 1,
-			'prev_next'    => true,
-			'prev_text'    => __( '<svg class="icon icon-primary"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-arrow-left-small"></use></svg><span class="sr-only">Pagina precedente</span>' ),
-			'next_text'    => __( '<span class="sr-only">Pagina successiva</span><svg class="icon icon-primary"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-arrow-right-small"></use></svg>' ),
-			'add_args'     => false,
-			'add_fragment' => ''
-		]
-	);
-	if ( is_array( $pages ) ) {
-		//$paged = ( get_query_var( 'paged' ) == 0 ) ? 1 : get_query_var( 'paged' );
-		$pagination = '<div class="pagination"><ul class="pagination">';
-		foreach ($pages as $page) {
-						$exploded = explode('>',$page);
-						$i = 0;
-						$aria_label = 'aria-label=';
-						foreach ($exploded as $str) {
-								if (strpos($str, '<a') !== false) {
-										if (strpos($str, 'next') !== false) $aria_label .= "'Vai alla pagina successiva'";
-										elseif (strpos($str, 'prev') !== false) $aria_label .= "'Vai alla pagina precedente'";
-										else {
-												$page_num_array = explode('/',$str);
-												$page_num = $page_num_array[count($page_num_array) - 2];
-												$aria_label .= "'Vai alla pagina ".$page_num."'";
-										}
-										$exploded[$i] .= $aria_label;
-								}
-								++$i;
-						}
-						$page = implode('>',$exploded);
-			$pagination .= '<li class="page-item' . (strpos($page, 'current') !== false ? ' active' : '') . '"> ' . str_replace('page-numbers', 'page-link', $page) . '</li>';
-		}
-		$pagination .= '</ul></div>';
-		if ( $echo ) {
-			echo $pagination;
-		} else {
-			return $pagination;
-		}
-	}
-	return null;
-}
-
-
 /**
  * Ritorna l'associazione tra i type ricercabili e i post_type wordpress
  * @param string $type
  *
  * @return array
  */
-function dsi_get_post_types_grouped($type = "", $tag = false){
+function dli_get_post_types_grouped($type = "", $tag = false){
 	if($type == "")
 		$type = "any";
 	if($type === "laboratory")
@@ -505,21 +75,17 @@ function dsi_get_post_types_grouped($type = "", $tag = false){
 	else if($type === "news")
 		$post_types = array("evento", "post", "circolare");
 	else if($type === "education")
-		$post_types = array("scheda_didattica", "scheda_progetto"); // todo: programma materia 		$post_types = array("programma_materia", "scheda_didattica", "scheda_progetto");
+		$post_types = array("scheda_didattica", "scheda_progetto");
 	else if($type === "service")
 		$post_types = array("indirizzo");
 	else
-		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page"); // todo: programma materia $post_types = array("evento", "post","circolare", "documento", "luogo", "materia", "programma_materia", "scheda_didattica", "scheda_progetto", "struttura", "page");
-
-	// rimuovo post types che non hanno la categoria
+		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page");
 	if($tag){
 		if (($key = array_search("page", $post_types)) !== false) {
 			unset($post_types[$key]);
 		}
-
 	}
 	return $post_types;
-
 }
 
 
@@ -530,7 +96,7 @@ function dsi_get_post_types_grouped($type = "", $tag = false){
  * @return string
  *
  */
-function dsi_get_post_types_group($post_type){
+function dli_get_post_types_group($post_type){
 	$group = "news";
 	if(in_array($post_type, array("documento", "luogo", "struttura", "page"))) // todo: programma materia if(in_array($post_type, array("documento", "luogo", "programma_materia", "struttura", "page")))
 		$group = "laboratory";
@@ -538,86 +104,7 @@ function dsi_get_post_types_group($post_type){
 		$group = "education";
 	else if(in_array($post_type, array("indirizzo")))
 		$group = "service";
-
-
 	return $group;
-}
-
-/**
- * @param $post_type
- *
- * ritorna il gruppo in italiano
- * @return string
- */
-function dsi_get_italian_name_group($group) {
-	$gruppo = "Novità";
-	if($group == "laboratory")
-		$gruppo = "Il Laboratorio";
-	else if($group == "education")
-		$gruppo = "Didattica";
-	
-		return $gruppo;
-}
-
-/**
- * @param $post_type
- *
- * ritorna il suffisso della classe relativa al colore
- * @return string
- */
-function dsi_get_post_types_color_class($post_type) {
-	$class = "greendark";
-	$group = dsi_get_post_types_group($post_type);
-	if($group == "laboratory")
-		$class = "redbrown";
-	else if($group == "education")
-		$class = "bluelectric";
-	else if($group == "service")
-		$class = "purplelight";
-	return $class;
-}
-
-/**
- * @param $post_type
- *
- * ritorna il nome dell'svg utilizzato per la preview del post type
- * @return string
- */
-function dsi_get_post_types_icon_class($post_type) {
-	$icon = "newspaper";
-	$group = dsi_get_post_types_group($post_type);
-	if($group == "laboratory")
-		$icon = "school-building";
-	else if($group == "education")
-		$icon = "laboratory";
-	else if($group == "service")
-		$icon = "hand-point-up";
-
-	if($post_type == "documento")
-		$icon = "generic-document";
-		return $icon;
-}
-
-
-/**
- *
- * Contatore dei post totali raggruppati in base al gruppo di ricerca di appartenenza
- *
- * @param $post_types
- *
- * @return bool|int
- */
-function dsi_count_grouped_posts($post_types){
-	if(!is_array($post_types))
-		return false;
-	$count = 0;
-	foreach ($post_types as $post_type){
-		$count_posts = wp_count_posts($post_type);
-		if(isset($count_posts->publish))
-			$count += $count_posts->publish;
-	}
-	return $count;
-
 }
 
 /**
@@ -632,112 +119,14 @@ function dli_get_template_page_url($TEMPLATE_NAME){
 		'meta_value' => $TEMPLATE_NAME,
 				'hierarchical' => 0
 	));
-
 		if($pages){
-				foreach ($pages as $page){
-						if($page->ID)
-								return get_page_link($page->ID);
-				}
+			foreach ($pages as $page){
+				if($page->ID)
+						return get_page_link($page->ID);
+			}
 		}
 	return null;
 }
-
-/**
- * recupera id page template in base al nome
- * @param $TEMPLATE_NAME
- *
- * @return string|null
- */
-function dsi_get_template_page_id($TEMPLATE_NAME){
-		$url = null;
-		$pages = get_pages(array(
-				'meta_key' => '_wp_page_template',
-				'meta_value' => $TEMPLATE_NAME,
-				'hierarchical' => 0
-		));
-		if($pages){
-				foreach ($pages as $page){
-						if($page->ID)
-								return $page->ID;
-				}
-		}
-
-		return 0;
-}
-
-/**
- * ritorna l'array dei feedback delle circolari
- * @return array
- */
-function dsi_get_circolari_feedback_options(){
-		return array(
-				"false" => __('Nessun Feedback ', 'design_laboratori_italia'),
-				'presa_visione' => __('Presa Visione', 'design_laboratori_italia'),
-				'si_no' => __('Si / No', 'design_laboratori_italia'),
-				'si_no_visione' => __('Si / No / Presa Visione', 'design_laboratori_italia'),
-		);
-}
-
-/**
- * controlla se l'utente è abilitato a firmare la circolare
- * @param $user
- * @param $post
- * @return bool
- */
-function dsi_user_can_sign_circolare($user, $post){
-
-		$destinatari_circolari = dli_get_meta("destinatari_circolari", "", $post->ID);
-		if($destinatari_circolari == "all"){
-				return true;
-		}elseif ($destinatari_circolari == "ruolo"){
-				$ruoli_circolari = dli_get_meta("ruoli_circolari", "", $post->ID);
-				if( array_intersect($ruoli_circolari, $user->roles ) ) {
-						return true;
-				}
-		}elseif ($destinatari_circolari == "gruppo"){
-				$gruppi_circolari = dli_get_meta("gruppi_circolari", "", $post->ID);
-				if(is_object_in_term($user->ID, "gruppo-utente", $gruppi_circolari)){
-						return true;
-				}
-		}
-
-		return false;
-}
-
-
-/**
- * Controllo se l'utente ha già firmato la circolare
- * @param $user
- * @param $post
- * @return bool
- */
-function dsi_user_has_signed_circolare($user, $post){
-		$signed = get_post_meta($post->ID, "_dsi_has_signed", true);
-		if(!$signed)
-				$signed = array();
-		if(in_array($user->ID, $signed)){
-				$sign = get_user_meta($user->ID, "_dsi_signed_".$post->ID, true);
-				if($sign)
-						return $sign;
-
-				return true;
-		}
-		return false;
-}
-
-/**
- * controllo se una struttura è una scuola
- * @param $post
- * @return bool
- */
-function dsi_is_scuola($post){
-
-		if(has_term("scuola", "tipologia-struttura", $post))
-				return true;
-
-		return false;
-}
-
 
 /**
  * restituisce intero
@@ -755,157 +144,6 @@ function dli_sanitize_int( $value, $field_args, $field ) {
 				$sanitized_value = absint( $value );
 		}
 		return $sanitized_value;
-}
-
-
-if(!function_exists("dsi_pluralize_string")) {
-		function dsi_pluralize_string($string){
-		switch ($string){
-				case "Biblioteca":
-						$string = "Biblioteche";
-						break;
-
-				case "Palestra":
-						$string = "Palestre";
-						break;
-
-				case "Edificio scolastico":
-						$string = "Edifici scolastici";
-						break;
-
-				case "Teatro":
-						$string = "Teatri";
-						break;
-
-				case "Laboratorio":
-						$string = "Laboratori";
-						break;
-
-				case "Giardino":
-						$string = "Giardini";
-						break;
-
-				case "Dirigenza Scolastica":
-						$string = "Dirigenze Scolastiche";
-						break;
-
-				case "Segreteria":
-						$string = "Segreterie";
-						break;
-
-				case "Laboratorio":
-						$string = "Laboratori";
-						break;
-
-				case "Commissione":
-						$string = "Commissioni";
-						break;
-
-				case "Organo Collegiale":
-						$string = "Organi Collegiali";
-						break;
-
-				case "Associazione scolastica":
-						$string = "Associazioni scolastiche";
-						break;
-
-				case "Mensa":
-						$string = "Mense";
-						break;
-
-				case "Documento Generico":
-						$string = "Documenti Generici";
-						break;
-
-				case "Bandi e Gare":
-						$string = "Bandi e Gare";
-						break;
-
-				case "Contratto":
-						$string = "Contratti";
-						break;
-
-				case "Delibera":
-						$string = "Delibere";
-						break;
-
-				case "Verbale":
-						$string = "Verbali";
-						break;
-
-				case "Regolamento":
-						$string = "Regolamenti";
-						break;
-
-				case "Documento Programmatico":
-						$string = "Documenti Programmatici";
-						break;
-
-				case "Documento Didattico":
-						$string = "Documenti Didattici";
-						break;
-
-				case "Modulistica":
-						$string = "Modulistica";
-						break;
-
-				case "Albo online":
-						$string = "Albo online";
-						break;
-
-				case "Progetto area scientifica":
-						$string = "Progetti area scientifica";
-						break;
-
-				case "Progetto area umanistica":
-						$string = "Progetti area umanistica";
-						break;
-
-				case "Progetto di integrazione":
-						$string = "Progetti di integrazione";
-						break;
-
-				case "Progetto di orientamento":
-						$string = "Progetti di orientamento";
-						break;
-
-				case "Progetto territorio e ambiente":
-						$string = "Progetti territorio e ambiente";
-						break;
-
-
-				case "Indirizzo di Studio":
-						$string = "Indirizzi di studio";
-						break;
-
-				case "Laboratorio / Istituto":
-						$string = "Laboratori / Istituti";
-						break;
-
-				case "":
-						$string = "";
-						break;
-
-		}
-
-				return $string;
-		}
-}
-
-/**
- * funzione per la gestione del nome autore
- */
-
-function dsi_get_display_name($user_id){
-
-		$display = get_the_author_meta('display_name', $user_id);
-		$nome = get_the_author_meta('first_name', $user_id);
-		$cognome = get_the_author_meta('last_name', $user_id);
-		if(($nome != "") && ($cognome != ""))
-				return $nome." ".$cognome;
-		else
-				return $display;
-
 }
 
 
@@ -963,14 +201,14 @@ if(!function_exists("dli_get_current_group")) {
 						if ($tipo_post == 'documento' && $term == 'albo-online') {
 								return 'news';
 						}
-						return  dsi_get_post_types_group($tipo_post);
+						return  dli_get_post_types_group($tipo_post);
 				}
 				if (is_author()) {
 						return 'school';
 				}
 				if ( is_archive()  ) {
 						$tipo_post = get_queried_object() -> name;
-						return  dsi_get_post_types_group($tipo_post);
+						return  dli_get_post_types_group($tipo_post);
 				}
 				if (is_page()) {
 						return get_the_title();
@@ -983,7 +221,7 @@ if(!function_exists("dli_get_current_group")) {
 						}
 				}
 				if ( ($current_post_type != false)) {
-						return dsi_get_post_types_group(get_post_type());
+						return dli_get_post_types_group(get_post_type());
 				}
 				return null;
 		}
@@ -1040,33 +278,56 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 			}
 		}
 		foreach ( $results as $result ) {
-			$item = array();
-			switch ( $result->post_type) {
-				case EVENT_POST_TYPE:
-					$item = dli_from_event_to_carousel_item ( $result );
-					break;
-				case NEWS_POST_TYPE:
-					$item = dli_from_news_to_carousel_item ( $result );
-					break;
-				case PROGETTO_POST_TYPE:
-						$item = dli_from_progetto_to_carousel_item ( $result );
-						break;
-				case PUBLICATION_POST_TYPE:
-						$item = dli_from_publication_to_carousel_item ( $result );
-						break;
-				default:
-					// Standard post or article.
-					$item = dli_from_post_to_carousel_item ( $result );
-					break;
-			}
+			$item = dli_get_post_wrapper( $result );
 			array_push( $items, $item );
 		}
 		return $items;
 	}
 }
 
+if( ! function_exists( 'dli_get_post_wrapper' ) ) {
+	function dli_get_post_wrapper( $result ) {
+		$item = array();
+		switch ( $result->post_type) {
+			case EVENT_POST_TYPE:
+				$item = dli_from_event_to_carousel_item ( $result );
+				break;
+			case NEWS_POST_TYPE:
+				$item = dli_from_news_to_carousel_item ( $result );
+				break;
+			case PROGETTO_POST_TYPE:
+					$item = dli_from_progetto_to_carousel_item ( $result );
+					break;
+			case PUBLICATION_POST_TYPE:
+					$item = dli_from_publication_to_carousel_item ( $result );
+					break;
+			default:
+				// Standard post or article.
+				$item = dli_from_post_to_carousel_item ( $result );
+				break;
+		}
+		return $item;
+	}
+}
+
+if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
+	function dli_get_boxes_post_types( $item ) {
+		return array(
+			RESEARCHACTIVITY_POST_TYPE => __( 'Attività di ricerca', 'design_laboratori_italia' ),
+			EVENT_POST_TYPE            => __( 'Eventi', 'design_laboratori_italia' ),
+			PLACE_POST_TYPE            => __( 'Luoghi', 'design_laboratori_italia' ),
+			NEWS_POST_TYPE             => __( 'Notizie', 'design_laboratori_italia' ),
+			PEOPLE_POST_TYPE           => __( 'Persone', 'design_laboratori_italia' ),
+			WP_DEFAULT_POST            => __( 'Post', 'design_laboratori_italia' ),
+			PROGETTO_POST_TYPE         => __( 'Progetti', 'design_laboratori_italia' ),
+			PUBLICATION_POST_TYPE      => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+		);
+	}
+}
+
 if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	function dli_from_event_to_carousel_item( $item ) {
+		$result    =  DLI_POST_WRAPPER;
 		$post_type = get_post_type( $item );
 		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
 		if ( ! $image_url ){
@@ -1079,23 +340,27 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 		$image_alt   = $image_alt ? $image_alt : $post_title;
 		$image_title = get_the_title( $image_id );
 		$image_title = $image_title ? $image_title : $post_title;
-		return array(
+		// @TODO: Popolare $result e non ridefinirlo.
+		$result = array(
 			'type'          => $post_type,
 			'category'      => $page->post_title,
 			'category_link' => get_permalink( $page->ID ),
 			'date'          => get_field('data_inizio', $item),
 			'title'         => $post_title,
 			'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => get_the_content( $item ),
 			'link'          => get_the_permalink( $item ),
 			'image_url'     => $image_url,
 			'image_alt'     => $image_alt,
 			'image_title'   => $image_title,
 		);
+		return $result;
 	}
 }
 
 	if( ! function_exists( 'dli_from_news_to_carousel_item' ) ) {
 		function dli_from_news_to_carousel_item( $item ) {
+			$result    =  DLI_POST_WRAPPER;
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
 			if ( ! $image_url ){
@@ -1108,29 +373,33 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$image_alt   = $image_alt ? $image_alt : $post_title;
 			$image_title = get_the_title( $image_id );
 			$image_title = $image_title ? $image_title : $post_title;
-			return array(
+			// @TODO: Popolare $result e non ridefinirlo.
+			$result      = array(
 				'type'          => $post_type,
 				'category'      => $page->post_title,
 				'category_link' => get_permalink( $page->ID ),
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
+				'full_content'  => get_the_content( $item ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 				'image_alt'     => $image_alt,
 				'image_title'   => $image_title,
 			);
+			return $result;
 		}
 	}
 
 	if( ! function_exists( 'dli_from_publication_to_carousel_item' ) ) {
 		function dli_from_publication_to_carousel_item( $item ) {
+			$result    =  DLI_POST_WRAPPER;
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
 			if ( ! $image_url ){
 				$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 			}
-			$page = dli_get_page_by_post_type( $post_type );
+			$page        = dli_get_page_by_post_type( $post_type );
 			$post_title  = get_the_title( $item );
 			$image_id    = attachment_url_to_postid( $image_url );
 			$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
@@ -1139,23 +408,27 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$image_title = $image_title ? $image_title : $post_title;
 			$link_pubbl  = get_field('url', $item);
 			$link_pubbl  = $link_pubbl ? $link_pubbl : '';
-			return array(
+			// @TODO: Popolare $result e non ridefinirlo.
+			$result      = array(
 				'type'          => $post_type,
 				'category'      => $page->post_title,
 				'category_link' => get_permalink( $page->ID ),
 				'date'          => get_field('anno', $item),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
+				'full_content'  => get_the_content( $item ),
 				'link'          => $link_pubbl,
 				'image_url'     => $image_url,
 				'image_alt'     => $image_alt,
 				'image_title'   => $image_title,
 			);
+			return $result;
 		}
 	}
 
 	if( ! function_exists( 'dli_from_progetto_to_carousel_item' ) ) {
 		function dli_from_progetto_to_carousel_item( $item ) {
+			$result    =  DLI_POST_WRAPPER;
 			$post_type = get_post_type( $item );
 			$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
 			if ( ! $image_url ){
@@ -1168,18 +441,21 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$image_alt   = $image_alt ? $image_alt : $post_title;
 			$image_title = get_the_title( $image_id );
 			$image_title = $image_title ? $image_title : $post_title;
-			return array(
+			// @TODO: Popolare $result e non ridefinirlo.
+			$result      = array(
 				'type'          => $post_type,
 				'category'      => $page->post_title,
 				'category_link' => get_permalink( $page->ID ),
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
+				'full_content'  => get_the_content( $item ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 				'image_alt'     => $image_alt,
 				'image_title'   => $image_title,
 			);
+			return $result;
 		}
 	}
 
@@ -1197,18 +473,21 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$image_alt   = $image_alt ? $image_alt : $post_title;
 			$image_title = get_the_title( $image_id );
 			$image_title = $image_title ? $image_title : $post_title;
-			return array(
+			// @TODO: Popolare $result e non ridefinirlo.
+			$result      = array(
 				'type'          => $post_type,
 				'category'      => $page->post_title,
 				'category_link' => get_permalink( $page->ID ),
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
+				'full_content'  => get_the_content( $item ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_url,
 				'image_alt'     => $image_alt,
 				'image_title'   => $image_title,
 			);
+			return $result;
 		}
 	}
 
@@ -1219,8 +498,6 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 				$pg        = dli_get_page_by_post_type( $post->post_type );
 				$pg_link   = get_permalink( $pg->ID );
 				return array(
-					// 'title' => __( $post->post_type, 'design_laboratori_italia' ),
-					// 'url'   => get_post_type_archive_link( $post->post_type ),
 					'title' => $pg->post_title,
 					'url'   => $pg_link,
 				);
@@ -1254,7 +531,6 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return $categories;
 		}
 	}
-
 
 	if( ! function_exists( 'dli_get_monthname' ) ) {
 		function dli_get_monthname( $month ) {
@@ -1393,27 +669,3 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			return $menu_tree;
 		}
 	}
-
-// if ( ! function_exists( 'dli_check_dependencies' ) ) {
-// 	/**
-// 	 * Check plugin dependencies.
-// 	 *
-// 	 * @return boolean
-// 	 */
-// 	function dli_check_dependencies() {
-// 		$result = true;
-// 		if ( ! class_exists( 'ACF' ) ) {
-// 			error_log( 'The plugin ACF (advanced-custom-fields) is missing, please install and activate it: https://wordpress.org/plugins/advanced-custom-fields' );
-// 			$result = false;
-// 		}
-// 		if ( ! class_exists( 'Members_Plugin' ) ) {
-// 			error_log( 'The plugin Members is missing, please install and activate it: https://wordpress.org/plugins/members' );
-// 			$result = false;
-// 		}
-// 		if ( ! function_exists( 'pll_the_languages' ) ) {
-// 			error_log( 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/' );
-// 			$result = false;
-// 		}
-// 		return $result;
-// 	}
-// }
