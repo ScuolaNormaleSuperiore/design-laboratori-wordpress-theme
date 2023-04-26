@@ -15,6 +15,9 @@ $the_query = new WP_Query(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => PEOPLE_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
+		'meta_key'       => 'cognome',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
 	)
 );
 $num_results = $the_query->found_posts;

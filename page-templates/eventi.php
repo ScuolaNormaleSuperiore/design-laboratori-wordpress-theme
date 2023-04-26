@@ -21,6 +21,9 @@ $the_query = new WP_Query(
 		'post_type'      => EVENT_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
 		'category__in'   => $selected_categories,
+		'meta_key'       => 'data_inizio',
+		'orderby'        => 'meta_value_num',
+		'order'          => 'DESC',
 	)
 );
 $num_results    = $the_query->found_posts;
@@ -90,7 +93,6 @@ $all_categories = dli_get_all_categories( 'category' );
 					}
 					$post_id    = get_the_ID();
 					$termitem   = dli_get_post_main_category( $post_id, 'category' );
-					// $event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, get_the_date( DLI_ACF_DATE_FORMAT, $post_id ) );
 					$date       = get_field( 'data_inizio', $post_id );
 					$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 					?>
@@ -104,21 +106,28 @@ $all_categories = dli_get_all_categories( 'category' );
 											<figure class="img-wrapper">
 												<img src="<?php echo get_the_post_thumbnail_url( $post->ID , 'item-hero-event' ); ?>"
 													alt="<?php echo esc_attr( get_the_title() ); ?>"
-													title="<?php echo esc_attr( get_the_title() ); ?>" 
+													title="<?php echo esc_attr( get_the_title() ); ?>"
 													alt="<?php echo esc_attr( get_the_title() ); ?>">
 											</figure>
 											<div class="card-calendar d-flex flex-column justify-content-center">
 												<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
-												<span class="card-day"><?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
+												<span class="card-day">
+													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+												</span>
 											</div>
 										</div>
 									</div>
 									<div class="card-body p-4">
 										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
-										<p class="card-text"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+										<p class="card-text">
+											<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+										</p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 											<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-											<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>"></use></svg>
+											<svg class="icon">
+												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>">
+											</use>
+										</svg>
 										</a>
 									</div>
 								</div>

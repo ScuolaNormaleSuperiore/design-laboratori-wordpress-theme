@@ -40,7 +40,17 @@ $short_descr      = get_field( 'descrizione_breve' );
 				<div class="row">
 					<div class="col-sm-5 align-middle">
 						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
+							<?php
+							if ( $start_date === $end_date ){
+							?>
+							<p class="card-date"><?php echo $start_date; ?></p>
+							<?php
+							} else {
+							?>
 							<p class="card-date">dal <?php echo $start_date; ?> al <?php echo $end_date; ?></p>
+							<?php
+							}
+							?>
 							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>
 							<p class="font-weight-normal">
 								<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
