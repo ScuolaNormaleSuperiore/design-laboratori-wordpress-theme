@@ -12,7 +12,7 @@
 FROM php:8.2-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.1.1.tar.gz
+ARG WP_ARCHIVE=wordpress-6.2tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
@@ -21,14 +21,13 @@ ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.4.3.zip
 ARG PLG_ACF=advanced-custom-fields.6.0.7.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_CONCTACT_FORM=contact-form-7.5.7.4.zip
-ARG PLG_CFDB7=contact-form-cfdb7.zip
 ARG PLG_COOKIES=cookie-law-info.3.0.8.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
 ARG PLG_POLYLANG=polylang.3.3.2.zip
 ARG PLG_MEMBERS=members.3.2.4.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
 ARG PLG_SMTP=wp-mail-smtp.3.7.0.zip
+ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.4.zip
 ##############################################################################
 
 
@@ -85,10 +84,8 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_ACF}  && \
 	curl -o /tmp/${PLG_ARIA_LABEL} ${BASE_PLUGIN_URL}/${PLG_ARIA_LABEL} && \
 	unzip /tmp/${PLG_ARIA_LABEL}  && \
-	curl -o /tmp/${PLG_CONCTACT_FORM} ${BASE_PLUGIN_URL}/${PLG_CONCTACT_FORM} && \
-	unzip /tmp/${PLG_CONCTACT_FORM}  && \
-	curl -o /tmp/${PLG_CFDB7} ${BASE_PLUGIN_URL}/${PLG_CFDB7} && \
-	unzip /tmp/${PLG_CFDB7}  && \
+	curl -o /tmp/${PLG_LOCO_TRANSLATE} ${BASE_PLUGIN_URL}/${PLG_LOCO_TRANSLATE} && \
+	unzip /tmp/${PLG_LOCO_TRANSLATE}  && \
 	curl -o /tmp/${PLG_COOKIES} ${BASE_PLUGIN_URL}/${PLG_COOKIES} && \
 	unzip /tmp/${PLG_COOKIES}  && \
 	curl -o /tmp/${PLG_REG_THUMBNAILS} ${BASE_PLUGIN_URL}/${PLG_REG_THUMBNAILS} && \
