@@ -18,5 +18,10 @@ $primary-b: 30;
 // $primary-s: 5;
 // $primary-b: 95;
 
+// Per l'override della famiglia di caratteri
+$font-family-serif: 'Roboto', 'Titillium Web', 'Lora', 'Roboto Mono', Georgia, serif;
+$font-family-sans-serif: 'Roboto', 'Titillium Web', 'Lora', 'Roboto Mono', Arial, Helvetica, sans-serif;
+$font-family-monospace: 'Roboto', 'Titillium Web', 'Lora', 'Roboto Mono', 'Courier New', Courier, monospace;
+
 // import libreria
 @import "bootstrap-italia/src/scss/bootstrap-italia.scss";

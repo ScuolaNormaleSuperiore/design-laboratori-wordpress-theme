@@ -4,7 +4,7 @@
 **Design laboratori e centri di ricerca** è un tema wordpress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta istallato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
 Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
 ## Stato del progetto
-Il progetto è in fase di sviluppo, il primo rilascio stabile è previsto per il mese di aprile del 2023.
+Il progetto è in fase di beta testing.
 
 ## Credits
 Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia 2.3.8***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/CREDITS.txt). 
@@ -105,19 +105,20 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 ## Personalizzazione dello stile (colori e font)
 In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
 * **Stile Bootstrap Iatalia standard**: Stile che prevede i colori e i font di default della libreria Bootstrap Italia.
-* **Stile personalizzato**: Stile che colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
+* **Stile personalizzato**: Stile che usa colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
 
-Il file  [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento []() oppure seguendo i seguenti passi:
+Il file  [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria/) oppure seguendo i seguenti passi:
 
 1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
 2. Eseguire il comando ***npm run*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
-3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss).
+3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss) indicando i valori che devono essere modificati e rigenerati.
 4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***. Questo comando produce un nuovo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
 
 Altre guide su questo argomento:
 * [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria).
 * [Elenco delle variabili modificabili](https://github.com/italia/bootstrap-italia/tree/main/src/scss).
 * [Tool per codifica colori](https://rgb.to/).
+* [Google Fonts](https://fonts.google.com).
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
@@ -125,8 +126,8 @@ Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNo
 ## Sviluppi futuri
 Queste le sono le principali funzionalità previste per le prossime versioni del sistema:
 * Integrazione con il software Iris.
-* Autenticazione tramite LDAP.
-* Autenticazione tramite Shibboleth.
+* Autenticazione degli operatori tramite LDAP.
+* Autenticazione degli operatori tramite Shibboleth.
 
 ## Galleria
 
@@ -146,9 +147,9 @@ Queste le sono le principali funzionalità previste per le prossime versioni del
 ![configure](assets/screenshots/ricerca.png)
 
 ## Lingue supportate
-Il plugin è disponibile in italiano e in inglese.
+Il tema è disponibile in ***italiano*** e in ***inglese***.
 
 ## Copyright
-1. Detentore copyright: Scuola Normale Superiore.
-2. Responsabili del progetto: Michele Fiaschi, Claudio Battaglino, Marcella Monreale.
+1. Detentore copyright: *Scuola Normale Superiore di Pisa*.
+2. Responsabili del progetto: Michele Fiaschi, Marcella Monreale e Claudio Battaglino.
 3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e il ***laboratorio Doc Star*** della *Scuola Normale Superiore di Pisa*.
