@@ -12,6 +12,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Funzionalità
 - Popolamento automatico del sito (pagine e menu).
 - Sezione per la configurazione del tema e dei contenuti.
+- Personalizzazione del layout della home page.
 - Gestione delle persone del laboratorio.
 - Gestione dei progetti del laboratorio.
 - Gestione delle news e degli eventi del laboratorio.
