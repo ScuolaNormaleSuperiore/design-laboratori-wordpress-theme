@@ -103,7 +103,7 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 
 
 ## Personalizzazione dello stile
-
+In *WP->Configurazione->*
 
 Per cambiare i colori del tema, va prodotto un nuovo file *bootstrap-italia-custom.min.css* con i nuovi colori.
 Con la seguente procedura si produce un nuo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
