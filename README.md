@@ -84,7 +84,7 @@ Il tema mostra un avviso quando uno di questi plugin non è installato.
 ## Installazione e configurazione del tema
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
 
-1. Scaricare il tema ["Design Laboratori Italia"](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git)
+1. Scaricare il tema ["Design Laboratori Italia"](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git).
 2. Copiare la cartella ***design-laboratori-wordpress-theme*** in *<installazione_wordpress>/wp-content/themes/*
 3. Attivare il tema (creazione automatica dei contenuti e dei menu di default).
 4. Installare e attivare i plugin dipendenti (un popup mostra l'elenco dei plugin richiesti).
