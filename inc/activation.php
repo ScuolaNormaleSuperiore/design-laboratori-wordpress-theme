@@ -137,7 +137,7 @@ function build_taxonomies( $taxonomy, $terms ) {
  * @return void
  */
 function create_the_menus() {
-	// error_log( '@@@ HERE WE CREATE THE MENUS @@@' );
+	// Creazione dei menu predefiniti.
 	create_the_it_menus();
 	create_the_en_menus();
 }
@@ -165,6 +165,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PROGETTI_IT,
@@ -173,6 +174,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_RICERCA_IT,
@@ -181,6 +183,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PUBBLICAZIONI_IT,
@@ -189,6 +192,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -210,6 +214,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -230,6 +235,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_EVENTI_IT,
@@ -238,6 +244,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_CONTATTI_IT,
@@ -246,6 +253,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_LUOGHI_IT,
@@ -254,6 +262,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -274,6 +283,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PRIVACY_IT,
@@ -282,6 +292,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_IT,
@@ -290,6 +301,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_MAPPA_SITO_IT,
@@ -298,6 +310,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_RICERCA_SITO_IT,
@@ -306,6 +319,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_BLOG_IT,
@@ -314,6 +328,16 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
+				'slug'         => '',
+				'title'        => 'Riuso',
+				'content_type' => '',
+				'post_type'    => '',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => 'https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme',
 			),
 		),
 	);
@@ -334,6 +358,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_ARCHIVIO_PROGETTI_IT,
@@ -342,6 +367,7 @@ function create_the_it_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -376,19 +402,37 @@ function 	build_the_menu( $custom_menu ) {
 		foreach ( $menu_items as $menu_item ) {
 			$result       = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
 			$menu_item_id = $result->ID;
-			wp_update_nav_menu_item(
-				$menu->term_id,
-				0,
-				array(
-					'menu-item-title'     => $menu_item['title'],
-					'menu-item-object-id' => $menu_item_id,
-					'menu-item-object'    => $menu_item['content_type'],
-					'menu-item-status'    => $menu_item['status'],
-					'menu-item-type'      => $menu_item['post_type'],
-					// 'menu-item-classes'   => $menu_item['footer-link'],
-				)
-			);
+			if ( ( ! isset( $menu_item['link'] ) ) || ( '' === $menu_item['link'] ) ) {
+				// Link a pagine o post.
+				wp_update_nav_menu_item(
+					$menu->term_id,
+					0,
+					array(
+						'menu-item-title'     => $menu_item['title'],
+						'menu-item-object-id' => $menu_item_id,
+						'menu-item-object'    => $menu_item['content_type'],
+						'menu-item-status'    => $menu_item['status'],
+						'menu-item-type'      => $menu_item['post_type'],
+						'menu-item-url'       => $menu_item['link'],
+						// 'menu-item-classes'   => $menu_item['footer-link'],
+					)
+				);
+			} else {
+				// Link esterni.
+				wp_update_nav_menu_item(
+					$menu->term_id,
+					0,
+					array(
+						'menu-item-title'     => $menu_item['title'],
+						'menu-item-status'    => $menu_item['status'],
+						'menu-item-url'       => $menu_item['link'],
+						// 'menu-item-classes'   => $menu_item['footer-link'],
+					)
+				);
+			}
 		}
+
+
 
 		$locations_primary_arr                   = get_theme_mod( 'nav_menu_locations' );
 		$locations_primary_arr[ $menu_location ] = $menu->term_id;
@@ -420,6 +464,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PROGETTI_EN,
@@ -428,6 +473,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_RICERCA_EN,
@@ -436,6 +482,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PUBBLICAZIONI_EN,
@@ -444,6 +491,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -464,6 +512,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -484,6 +533,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_EVENTI_EN,
@@ -492,6 +542,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_CONTATTI_EN,
@@ -500,6 +551,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_LUOGHI_EN,
@@ -508,6 +560,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
@@ -528,6 +581,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_PRIVACY_EN,
@@ -536,6 +590,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_EN,
@@ -544,6 +599,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_MAPPA_SITO_EN,
@@ -552,6 +608,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_RICERCA_SITO_EN,
@@ -560,6 +617,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_BLOG_EN,
@@ -568,6 +626,16 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
+				'slug'         => '',
+				'title'        => 'Reuse',
+				'content_type' => '',
+				'post_type'    => '',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => 'https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme',
 			),
 		),
 	);
@@ -588,6 +656,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 			array(
 				'slug'         => SLUG_ARCHIVIO_PROGETTI_EN,
@@ -596,6 +665,7 @@ function create_the_en_menus() {
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
+				'link'         => '',
 			),
 		),
 	);
