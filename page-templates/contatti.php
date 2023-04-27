@@ -56,7 +56,7 @@ if ( 'yes' === $forminviato ) {
 	// @TODO: Validazione.
 
 	// INVIO EMAIL.
-	$sent          = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
+	$sent = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
 
 	if ( $forminviato && $sent ) {
 		$mostrainviato = true;
@@ -79,15 +79,17 @@ if ( 'yes' === $forminviato ) {
 			<div class="container">
 				<div class="hero-title text-left ms-4 pb-3 pt-3">
 					<h2 class="p-0  "><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h2>
-					<p class="font-weight-normal"><?php echo __( 'Utilizza i dati di contatto o compila il form sottostante', 'design_laboratori_italia' ); ?></p>
+					<p class="font-weight-normal">
+						<?php echo __( 'Utilizza i dati di contatto o compila il form sottostante', 'design_laboratori_italia' ); ?>
+					</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-		<!-- ALERT OK -->
+	<!-- ALERT OK -->
 	<?php
-	 if ( $mostrainviato ){
+	 if ( $mostrainviato ) {
 	?>
 	<div class="container my-12 p-2">
 		<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
@@ -101,7 +103,7 @@ if ( 'yes' === $forminviato ) {
 	</div>
 	<?php
 	 }
-	 if ( $mostraerrore ){
+	 if ( $mostraerrore ) {
 	?>
 		<!-- ALERT KO -->
 		<div class="container my-12 p-2">
@@ -121,7 +123,7 @@ if ( 'yes' === $forminviato ) {
 	<FORM action="." id="formcontatti" name="formcontatti" method="POST">
 		<div class="container my-4 pt-4">
 
-		<!-- CONTATTI DEL LABORATORIO -->
+			<!-- CONTATTI DEL LABORATORIO -->
 			<div class="row">
 				<div class="col-12 col-lg-3 border-end pe-0 ps-0">
 					<div class="it-list-wrapper pt-4">
@@ -161,7 +163,7 @@ if ( 'yes' === $forminviato ) {
 								<a class="list-item" href="#">
 								<div class="it-rounded-icon">
 								<svg class="icon">
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 								</svg>
 								</div>
 								<div class="it-right-zone"><span class="text"><?php echo $website; ?></span>
@@ -229,12 +231,11 @@ if ( 'yes' === $forminviato ) {
 						</div>
 					</div>
 				</div>
-				
 
 			</div>
 		</div>
 
-	</FORM>	
+	</FORM>
 </main>
 
 <?php
