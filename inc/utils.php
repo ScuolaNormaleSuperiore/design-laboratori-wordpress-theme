@@ -511,21 +511,23 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	}
 
 	if( ! function_exists( 'dli_get_all_categories' ) ) {
-		function dli_get_all_categories( $taxonomy ) {
+		function dli_get_all_categories( $taxonomy, $exclude_uncategorized=true ) {
 			$terms      = get_terms( $taxonomy );
 			$categories = array();
 			if ( $terms ) {
 				foreach ( $terms as $term ) {
-					array_push (
-						$categories,
-						array(
-							'id'          => $term->term_id,
-							'slug'        => $term->slug,
-							'name'        => $term->name,
-							'description' => $term->description,
-							'url'         => get_term_link( $term ),
-						)
+					if ( ! $exclude_uncategorized || $term->name != 'Uncategorized' ) {
+						array_push (
+							$categories,
+							array(
+								'id'          => $term->term_id,
+								'slug'        => $term->slug,
+								'name'        => $term->name,
+								'description' => $term->description,
+								'url'         => get_term_link( $term ),
+							)
 						);
+					}
 				}
 			}
 			return $categories;
