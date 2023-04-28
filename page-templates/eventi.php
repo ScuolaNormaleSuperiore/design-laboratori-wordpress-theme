@@ -14,7 +14,6 @@ if ( isset( $_GET['cat'] ) ){
 	$selected_categories = array();
 }
 
-
 $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),

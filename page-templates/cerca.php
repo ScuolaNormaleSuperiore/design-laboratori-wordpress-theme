@@ -1,6 +1,6 @@
 <?php
 /* Template Name: Ricerca.
- *$allcontentypes
+ *
  * @package Design_Laboratori_Italia
  */
 
