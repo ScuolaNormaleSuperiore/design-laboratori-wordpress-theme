@@ -9,6 +9,7 @@
 
 get_header();
 
+$ID                 = get_the_ID();
 $descrizione        = apply_filters( 'the_content', $post->post_content );
 $responsabili       = get_field( 'responsabile_del_progetto' );
 $partecipanti       = get_field( 'persone' );
@@ -22,8 +23,25 @@ foreach ( $fields_allegati as $field ) {
 		array_push( $allegati, $item );
 	}
 }
-$eventi     = get_field( 'eventi_collegati' );
 $websiteurl = get_field( 'url' );
+
+// recupero la lista degli eventi correlati ad un progetto.
+$eventi = new WP_Query(
+	array(
+	'posts_per_page' => -1,
+	'post_type'      => 'evento',
+	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
+	'order'          => 'DESC',
+	'meta_query'     => array(
+		array(
+			'key'     => 'progetto',
+			'compare' => 'LIKE',
+			'value'   => '"' . $ID . '"',
+		),
+	),
+	)
+);
+
 ?>
 
 <main id="main-container">
@@ -134,7 +152,7 @@ $websiteurl = get_field( 'url' );
 										</li>
 											<?php
 										}
-										if ( $eventi ) {
+										if ( $eventi->posts ) {
 											?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
@@ -234,7 +252,7 @@ $websiteurl = get_field( 'url' );
 						)
 					);
 				}
-				if ( $eventi ) {
+				if ( $eventi->posts ) {
 					?>
 				<!-- EVENTI -->
 				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
@@ -244,7 +262,7 @@ $websiteurl = get_field( 'url' );
 						null,
 						array(
 							'section_id' => 'eventi',
-							'items'      => $eventi,
+							'items'      => $eventi->posts,
 						)
 					);
 				}

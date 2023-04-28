@@ -178,32 +178,6 @@ class ResearchActivities_Manager {
 							'max' => '',
 							'elements' => '',
 						),
-						array(
-							'key' => 'field_63ca9713a1701',
-							'label' => 'Eventi collegati',
-							'name' => 'eventi_collegati',
-							'aria-label' => '',
-							'type' => 'relationship',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'post_type' => array(
-								0 => 'evento',
-							),
-							'taxonomy' => '',
-							'filters' => array(
-								0 => 'search',
-							),
-							'return_format' => 'object',
-							'min' => '',
-							'max' => '',
-							'elements' => '',
-						),
 					),
 					'location' => array(
 						array(
