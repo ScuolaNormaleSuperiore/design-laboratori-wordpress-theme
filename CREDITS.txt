@@ -21,6 +21,7 @@
 - [Members](https://it.wordpress.org/plugins/members/)
 - [Polylang](https://it.wordpress.org/plugins/polylang/)
 - [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
+- [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
 
 
 *** Plugin utili per lo sviluppo ***
@@ -28,5 +29,3 @@
 - [Manual Image Crop](https://wordpress.org/plugins/manual-image-crop/)
 - [Regenerate Thumbnails](https://it.wordpress.org/plugins/regenerate-thumbnails/)
 - [Loco Translate](https://it.wordpress.org/plugins/loco-translate/)
-- [Contact Form 7](https://it.wordpress.org/plugins/contact-form-7/)
-- [Contact Form CFDB7](https://it.wordpress.org/plugins/contact-form-cfdb7/)

@@ -18,8 +18,8 @@ ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.
 
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
-ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.4.3.zip
 ARG PLG_ACF=advanced-custom-fields.6.1.4.zip
+ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.4.3.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_COOKIES=cookie-law-info.3.0.8.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
@@ -28,6 +28,7 @@ ARG PLG_MEMBERS=members.3.2.4.zip
 ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
 ARG PLG_SMTP=wp-mail-smtp.3.8.0.zip
 ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.4.zip
+ARG PLG_CAPTCHA=really-simple-captcha.zip
 ##############################################################################
 
 
@@ -98,6 +99,8 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_GUTENBERG}  && \
 	curl -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
 	unzip /tmp/${PLG_SMTP}  && \
+	curl -o /tmp/${PLG_CAPTCHA} ${BASE_PLUGIN_URL}/${PLG_CAPTCHA} && \
+	unzip /tmp/${PLG_CAPTCHA}  && \
 	cp -f /tmp/wp-config.php  /var/www/html/wp-config.php && \
 	cp /tmp/.htaccess /var/www/html/.htaccess && \
 	unzip /tmp/uploads.zip -d /var/www/html/wp-content/uploads/ && \

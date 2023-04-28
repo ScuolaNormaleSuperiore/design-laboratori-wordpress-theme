@@ -77,6 +77,7 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 * [Members](https://it.wordpress.org/plugins/members/)
 * [Polylang](https://it.wordpress.org/plugins/polylang/)
 * [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
+* [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
 
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
