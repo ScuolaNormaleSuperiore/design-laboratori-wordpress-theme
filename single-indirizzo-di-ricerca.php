@@ -8,13 +8,13 @@
  */
 
 get_header();
+$ID           = get_the_ID();
 $description  = trim( get_the_content() );
 $responsabili = get_field( 'responsabile_attivita_di_ricerca' );
 $progetti     = dli_get_projects_by_event_id( get_the_ID() );
 $website      = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
 $phone        = get_field( 'telefono' )? get_field( 'telefono' ) : '';
 $email        = get_field( 'email' )? get_field( 'email' ) : '';
-$eventi       = get_field( 'eventi_collegati' );
 $cont_pres    = $website || $phone || $email;
 $contatti     = array(
 	'email'   => $email,
@@ -23,6 +23,23 @@ $contatti     = array(
 	'mobile'  => '',
 	'phone'   => $phone,
 	'website' => $website,
+);
+
+// recupero la lista degli eventi correlati ad un indirizzo di ricerca.
+$eventi = new WP_Query(
+	array(
+	'posts_per_page' => -1,
+	'post_type'      => 'evento',
+	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
+	'order'          => 'DESC',
+	'meta_query'     => array(
+		array(
+			'key'     => 'indirizzo_di_ricerca',
+			'compare' => 'LIKE',
+			'value'   => '"' . $ID . '"',
+		),
+	),
+	)
 );
 ?>
 
@@ -116,7 +133,7 @@ $contatti     = array(
 										</li>
 										<?php
 										}
-										if ( $eventi ) {
+										if ( $eventi->posts ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
@@ -199,7 +216,7 @@ $contatti     = array(
 
 				<!-- EVENTI -->
 				<?php
-				if ( $eventi ) {
+				if ( $eventi->posts ) {
 				?>
 				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 				<?php
@@ -208,7 +225,7 @@ $contatti     = array(
 						null,
 						array(
 							'section_id' => 'eventi',
-							'items'      => $eventi,
+							'items'      => $eventi->posts,
 						)
 					);
 				}

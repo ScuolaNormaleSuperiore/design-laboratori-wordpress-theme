@@ -111,7 +111,7 @@ $all_categories = dli_get_all_categories( 'category' );
 											<div class="card-calendar d-flex flex-column justify-content-center">
 												<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
 												<span class="card-day">
-													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
 												</span>
 											</div>
 										</div>

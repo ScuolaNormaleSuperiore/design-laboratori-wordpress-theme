@@ -71,7 +71,7 @@ class Project_Manager {
 
 				acf_add_local_field_group(array(
 					'key' => 'group_63c6cba778a4e',
-					'title' => 'Progetto',
+					'title' => 'Campi Progetto',
 					'fields' => array(
 						array(
 							'key' => 'field_63c6cce7c647f',
@@ -274,32 +274,6 @@ class Project_Manager {
 							),
 							'post_type' => array(
 								0 => 'indirizzo-di-ricerca',
-							),
-							'taxonomy' => '',
-							'filters' => array(
-								0 => 'search',
-							),
-							'return_format' => 'object',
-							'min' => '',
-							'max' => '',
-							'elements' => '',
-						),
-						array(
-							'key' => 'field_63e6504ea74b9',
-							'label' => 'Eventi collegati',
-							'name' => 'eventi_collegati',
-							'aria-label' => '',
-							'type' => 'relationship',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'post_type' => array(
-								0 => 'evento',
 							),
 							'taxonomy' => '',
 							'filters' => array(

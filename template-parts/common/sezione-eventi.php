@@ -44,7 +44,7 @@
 													<?php echo $event_date->format( 'd' ); ?>
 												</span>
 												<span class="card-day">
-													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
 												</span>
 											</div>
 										</div>
