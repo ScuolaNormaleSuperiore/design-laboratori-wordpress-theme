@@ -7,7 +7,6 @@ get_header();
 
 // Build the PAGE TREE.
 $pt = dli_get_site_tree();
-
 ?>
 
 <main id="main-container">
@@ -21,11 +20,11 @@ $pt = dli_get_site_tree();
 	<!-- MAPPA DEL SITO -->
 	<div class="container my-4">
 		<ul class="menutree">
-			<li><a href="<?php echo $pt['homepage']['link']; ?>"><?php echo $pt['homepage']['name']; ?></a></li>
+			<li><a href="<?php echo $pt[DLI_HOMEPAGE_SLUG]['link']; ?>"><?php echo $pt[DLI_HOMEPAGE_SLUG]['name']; ?></a></li>
 			<ul>
 				<?php
 				// I livello.
-				foreach ( $pt['homepage']['children'] as $item ) {
+				foreach ( $pt[DLI_HOMEPAGE_SLUG]['children'] as $item ) {
 					if ( $item['external'] ) {
 						echo '<li><a target="_blank" href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
 					} else {

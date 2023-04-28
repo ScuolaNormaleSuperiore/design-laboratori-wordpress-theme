@@ -8,6 +8,11 @@ define( 'DLI_ENG_SUFFIX_LANGUAGE', '_eng' );
 define( 'DLI_THEMA_PATH', dirname( plugin_basename( __FILE__ ) ) );
 define( 'DLI_THEMA_URL', get_template_directory_uri() );
 
+// Site Map.
+define( 'DLI_HOMEPAGE_SLUG', 'homepage' );
+define( 'DLI_HOMEPAGE_NAME', 'Home Page' );
+define( 'DLI_ENTE_SLUG', 'enteappartenenza' );
+
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );

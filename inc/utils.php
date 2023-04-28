@@ -683,21 +683,31 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 		$lng             = ( 'it' === $lng_slug ) ? '' : $lng_slug;
 		$site_url        = get_site_url() . $lng;
 		$hp              = dli_get_tree_item();
-		$hp['name']      = 'Home Page';
-		$hp['slug']      = 'homepage';
+		$hp['name']      = DLI_HOMEPAGE_NAME;
+		$hp['slug']      = DLI_HOMEPAGE_SLUG;
 		$hp['link']      = $site_url;
 		$pt[$hp['slug']] = $hp;
 
 		$ente             = dli_get_tree_item();
 		$ente['name']     = dli_get_option( 'nome_ente_appartenza' );
-		$ente['slug']     = 'enteappartenenza';
+		$ente['slug']     = DLI_ENTE_SLUG;
 		$ente['external'] = 'true';
 		$ente['link']     = dli_get_option( 'url_ente_appartenenza' );
 		$pt[$hp['slug']]['children'] = array( $ente['slug'] => $ente );
 
+
+		// C'è un modo per recuperare il menu per lingua?
+		$site_menus = array(
+			'it' => array(),
+			'en' => array(),
+		);
+
 		// Recupera elenco dei menu per lingua.
 
 		// Aggiungi pagine per voce di menu in lingua.
+
+		// Per ognuna di queste aggiungi lei.
+		// Se è un archivio aggiungi lei e i suoi figli facendo una ricerca per tipo contenuto e per lingua.
 
 		return $pt;
 	}
