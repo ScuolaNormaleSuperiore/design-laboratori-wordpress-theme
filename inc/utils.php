@@ -642,7 +642,11 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 
 	if( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 		function dli_get_all_contenttypes( ) {
-			return DLI_POST_TYPES_TO_TRANSLATE;
+			$arr = DLI_POST_TYPES_TO_TRANSLATE;
+			if ( ( $key = array_search( PEOPLE_TYPE_POST_TYPE, $arr ) ) !== false) {
+				unset( $arr[$key] );
+			}
+			return $arr;
 		}
 	}
 
