@@ -309,10 +309,6 @@ msgstr ""
 msgid "Dettagli del progetto"
 msgstr ""
 
-#: single-evento.php:82
-msgid "Dettagli dell'evento"
-msgstr ""
-
 #: single-persona.php:141
 msgid "DETTAGLI della persona"
 msgstr ""

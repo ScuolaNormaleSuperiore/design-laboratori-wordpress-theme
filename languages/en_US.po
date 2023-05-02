@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-02 17:50+0000\n"
+"PO-Revision-Date: 2023-05-02 18:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -41,7 +41,7 @@ msgstr "Update the structure"
 
 #: inc/classes/class-placemanager.php:49
 msgid "Aggiorna la Tipologia luogo"
-msgstr ""
+msgstr "Update the place type"
 
 #: inc/admin/options.php:223
 msgid "Aggiungi un messaggio"
@@ -57,7 +57,7 @@ msgstr "Add a structure"
 
 #: inc/classes/class-placemanager.php:50
 msgid "Aggiungi una Tipologia luogo"
-msgstr ""
+msgstr "Add a place type"
 
 #: single-evento.php:54
 msgid "al"
@@ -154,7 +154,7 @@ msgstr "Search publication type"
 
 #: inc/classes/class-placemanager.php:46
 msgid "Cerca Tipologia luogo"
-msgstr ""
+msgstr "Search place type"
 
 #: template-parts/header/alert.php:26
 msgid "Chiudi avviso"
@@ -240,7 +240,7 @@ msgstr "Description of the research activity"
 
 #: single-luogo.php:139
 msgid "Descrizione luogo"
-msgstr ""
+msgstr "Description of the place"
 
 #: inc/classes/class-newsmanager.php:80
 msgid "Descrizione notizia"
@@ -288,14 +288,10 @@ msgstr ""
 
 #: single-luogo.php:92
 msgid "Dettagli del luogo"
-msgstr ""
+msgstr "Place details"
 
 #: single-indirizzo-di-ricerca.php:85 single-progetto.php:89
 msgid "Dettagli del progetto"
-msgstr ""
-
-#: single-evento.php:82
-msgid "Dettagli dell'evento"
 msgstr ""
 
 #: single-persona.php:141
@@ -431,7 +427,7 @@ msgstr ""
 
 #: inc/admin/options.php:736
 msgid "Gli eventi"
-msgstr ""
+msgstr "The events"
 
 #: inc/admin/options.php:314
 msgid "Hero principale attivo"
@@ -451,7 +447,7 @@ msgstr ""
 
 #: template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
-msgstr ""
+msgstr "Places"
 
 #: template-parts/home/gallery-luoghi.php:11
 msgid "I luoghi della scuola"
@@ -827,7 +823,7 @@ msgstr "Update the structure"
 
 #: inc/classes/class-placemanager.php:48
 msgid "Modifica la Tipologia luogo"
-msgstr ""
+msgstr "Update the place type"
 
 #: inc/admin/options.php:430
 msgid "Mostra carousel dopo presentazione."
@@ -891,11 +887,11 @@ msgstr "Publications not found"
 
 #: page-templates/luoghi.php:149
 msgid "Non è stata trovato nessun luogo"
-msgstr ""
+msgstr "Places not found"
 
 #: page-templates/eventi.php:142
 msgid "Non è stato trovato alcun evento"
-msgstr ""
+msgstr "Events not found"
 
 #: archive.php:104 page-templates/blog.php:136
 msgid "Non è stato trovato nessun articolo"
@@ -907,7 +903,7 @@ msgstr ""
 
 #: inc/classes/class-newsmanager.php:52
 msgid "Notizia"
-msgstr ""
+msgstr "News"
 
 #: template-parts/hero/notizie.php:9 template-parts/home/card-news.php:21
 msgid "Notizie"
@@ -923,7 +919,7 @@ msgstr "New structure"
 
 #: inc/classes/class-placemanager.php:51
 msgid "Nuova Tipologia luogo"
-msgstr ""
+msgstr "New place type"
 
 #: inc/classes/class-publicationmanager.php:46
 msgid "Nuovo tipo pubblicazione"
@@ -1246,7 +1242,7 @@ msgstr ""
 
 #: inc/classes/class-eventmanager.php:42
 msgid "Rimuovi Immagine Evento"
-msgstr ""
+msgstr "Remove image of event"
 
 #: inc/classes/class-newsmanager.php:47
 msgid "Rimuovi Immagine Notizia"
@@ -1446,7 +1442,7 @@ msgstr "Type"
 
 #: inc/classes/class-placemanager.php:52
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
 #: inc/classes/class-peopletypemanager.php:40
 msgid "Tipologia Persona"
