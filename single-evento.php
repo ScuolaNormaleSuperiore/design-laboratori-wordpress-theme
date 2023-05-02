@@ -224,7 +224,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 								</svg>
 							</div>
-							<div class="it-right-zone"><span class="text"><?php echo esc_url( $sitoweb ); ?></span></div>
+							<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
 							</a>
 						</li>
 						<?php
