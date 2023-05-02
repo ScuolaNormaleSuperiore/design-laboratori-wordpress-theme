@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.2'
 applicationSuite: WordPress
-softwareVersion: 1.0.7-beta
+softwareVersion: 1.0.8-beta
 categories:
   - website-builder
 description:
@@ -63,7 +63,7 @@ intendedAudience:
   scope:
     - education
 usedBy:
-  - LABORATORIO DOCSTAR - Scuola Normale Superiore di Pisa
+  - Istituto Carlo Azeglio Ciampi - Scuola Normale Superiore di Pisa
 it:
   countryExtensionVersion: '0.2'
   riuso:
