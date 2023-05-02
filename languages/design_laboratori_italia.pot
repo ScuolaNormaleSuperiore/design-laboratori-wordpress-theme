@@ -16,8 +16,8 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2\n"
 "X-Domain: design_laboratori_italia"
 
-#: inc/utils.php:406
-msgid " al "
+#: single-evento.php:54
+msgid "al"
 msgstr ""
 
 #: 404.php:21
@@ -255,8 +255,8 @@ msgstr ""
 msgid "Contatti"
 msgstr ""
 
-#: inc/utils.php:399
-msgid "dal "
+#: single-evento.php:52
+msgid "dal"
 msgstr ""
 
 #: single-evento.php:92 single-indirizzo-di-ricerca.php:94

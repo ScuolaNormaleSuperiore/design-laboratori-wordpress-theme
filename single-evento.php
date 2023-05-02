@@ -47,8 +47,15 @@ $short_descr      = get_field( 'descrizione_breve' );
 							<?php
 							} else {
 							?>
-							<p class="card-date">dal <?php echo $start_date; ?> al <?php echo $end_date; ?></p>
-							<?php
+							<p class="card-date">
+								<?php
+									echo __( 'dal', 'design_laboratori_italia' );
+									echo ' ' . $start_date;
+									echo ' ' . __( 'al', 'design_laboratori_italia' );
+									echo ' ' . $end_date;
+								?>
+								</p>
+								<?php
 							}
 							?>
 							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>

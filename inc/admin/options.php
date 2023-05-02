@@ -1145,7 +1145,7 @@ function dli_register_main_options_metabox() {
 	// Intestazione della sezione.
 	$args = array(
 		'id'           => 'dli_options_progetti',
-		'title'        => esc_html__( 'Le progetti', 'design_laboratori_italia' ),
+		'title'        => esc_html__( 'I progetti', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'progetti',
 		'parent_slug'  => 'dli_options',
