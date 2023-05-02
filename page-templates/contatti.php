@@ -303,7 +303,10 @@ if ( 'yes' === $forminviato ) {
 									<div class="form-group col-md-9">
 										<div class="toggles">
 											<label for="ricevuta">
-												<?php echo __( 'Vuoi ricevere notifica al tuo indirizzo email ?', 'design_laboratori_italia' ); ?>
+												<?php
+												echo __( 'Vuoi ricevere notifica al tuo indirizzo email', 'design_laboratori_italia' );
+												echo '?';
+													?>
 												<input type="checkbox" id="ricevuta" name="ricevuta">
 												<span class="lever"></span>
 											</label>

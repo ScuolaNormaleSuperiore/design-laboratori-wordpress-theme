@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-02 11:58+0000\n"
+"PO-Revision-Date: 2023-05-02 15:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -19,22 +19,6 @@ msgstr ""
 msgid "404"
 msgstr "404"
 
-#: inc/classes/class-peoplemanager.php:122
-msgid "<h1>Biografia</h1> Biografia della persona"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:124
-msgid "<h1>Descrizione del luogo</h1>"
-msgstr ""
-
-#: inc/classes/class-projectmanager.php:65
-msgid "<h1>Descrizione del progetto</h1>"
-msgstr ""
-
-#: inc/classes/class-publicationmanager.php:112
-msgid "<h1>Descrizione della pubblicazione</h1>"
-msgstr ""
-
 #: inc/classes/class-eventmanager.php:75
 msgid "<h1>Descrizione evento</h1>"
 msgstr ""
@@ -45,10 +29,6 @@ msgstr ""
 
 #: inc/classes/class-newsmanager.php:80
 msgid "<h1>Descrizione notizia</h1>"
-msgstr ""
-
-#: inc/admin/options.php:236
-msgid "<span class=\"radio-color brown\"></span>Warning"
 msgstr ""
 
 #: inc/admin/options.php:237
@@ -143,10 +123,6 @@ msgstr ""
 msgid "Archivio articoli"
 msgstr ""
 
-#. Name of the template
-msgid "Archivio progetti."
-msgstr ""
-
 #: inc/admin/options.php:34
 msgid "Area di configurazione delle informazioni di base"
 msgstr ""
@@ -163,13 +139,9 @@ msgstr ""
 msgid "Attiva la newsletter"
 msgstr ""
 
-#: single-persona.php:181
+#: single-persona.php:181 single-persona.php:281
 msgid "Attività di ricerca"
-msgstr ""
-
-#. Name of the template
-msgid "Attività di ricerca."
-msgstr ""
+msgstr "Research activities"
 
 #: inc/admin/options.php:211
 msgid "Avvisi di allerta in Home Page"
@@ -182,6 +154,10 @@ msgstr ""
 #: single-persona.php:151 single-persona.php:227
 msgid "Biografia"
 msgstr "Biography"
+
+#: inc/classes/class-peoplemanager.php:125
+msgid "Biografia della persona"
+msgstr "Biography of the person"
 
 #: inc/admin/options.php:601 template-parts/hero/blog.php:9
 msgid "Blog"
@@ -272,6 +248,18 @@ msgstr ""
 #: inc/admin/options.php:575
 msgid "Descrizione del laboratorio in Inglese"
 msgstr ""
+
+#: inc/classes/class-placemanager.php:125
+msgid "Descrizione del luogo"
+msgstr "Description of the place"
+
+#: inc/classes/class-projectmanager.php:66
+msgid "Descrizione del progetto"
+msgstr "Description of the project"
+
+#: inc/classes/class-publicationmanager.php:112
+msgid "Descrizione della pubblicazione"
+msgstr "Description of the publication"
 
 #: inc/admin/options.php:573 inc/admin/options.php:574
 msgid "Descrizione ENG"
@@ -407,7 +395,7 @@ msgstr ""
 
 #: inc/admin/options.php:903
 msgid "es: \"Pubblicazioni dei membri del Laboratorio.\""
-msgstr ""
+msgstr "es: \"Publications by Lab members.\""
 
 #: inc/admin/options.php:922
 msgid "es: \"Publications by Lab members.\""
@@ -701,7 +689,7 @@ msgid ""
 msgstr ""
 
 #: inc/admin/options.php:888
-#, fuzzy, php-format
+#, php-format
 #| msgid ""
 #| "Inserisci qui le informazioni utili a popolare <a href=\"%s\">la pagina "
 #| "di panoramica delle Pubblicazioni</a>"
@@ -774,11 +762,7 @@ msgstr ""
 
 #: inc/admin/options.php:874 template-parts/hero/pubblicazioni.php:9
 msgid "Le pubblicazioni"
-msgstr ""
-
-#. Name of the template
-msgid "Le pubblicazioni."
-msgstr ""
+msgstr "Publications"
 
 #: template-parts/home/carousel.php:44
 msgid "Leggi di piu"
@@ -1054,7 +1038,7 @@ msgstr ""
 #: inc/classes/class-publicationmanager.php:76
 msgctxt "Post Type General Name"
 msgid "Pubblicazioni"
-msgstr ""
+msgstr "Publications"
 
 #: inc/classes/class-peopletypemanager.php:31
 msgctxt "Post Type General Name"
@@ -1116,6 +1100,11 @@ msgctxt "Post Type Singular Name"
 msgid "Aggiungi un nuovo Indirizzo di ricerca"
 msgstr ""
 
+#: inc/classes/class-projectmanager.php:33
+msgctxt "Post Type Singular Name"
+msgid "Aggiungi un nuovo Progetto"
+msgstr ""
+
 #: inc/classes/class-projectmanager.php:32
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Progetto"
@@ -1124,11 +1113,6 @@ msgstr ""
 #: inc/classes/class-newsmanager.php:41 inc/classes/class-newsmanager.php:42
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi una Notizia"
-msgstr ""
-
-#: inc/classes/class-projectmanager.php:33
-msgctxt "Post Type Singular Name"
-msgid "Aggiungi una nuovo Progetto"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:35
@@ -1267,7 +1251,7 @@ msgstr ""
 #: single-progetto.php:212 inc/admin/options.php:880
 #: template-parts/home/card-pubblicazioni.php:21
 msgid "Pubblicazioni"
-msgstr ""
+msgstr "Publications"
 
 #: template-parts/home/banner.php:12
 msgid "Pubblicità e Informazione"
@@ -1376,10 +1360,6 @@ msgstr ""
 msgid "Sezione I Progetti"
 msgstr ""
 
-#: inc/admin/options.php:892
-msgid "Sezione I Pubblicazioni"
-msgstr ""
-
 #: inc/admin/options.php:616
 msgid "Sezione Il Blog"
 msgstr ""
@@ -1395,6 +1375,10 @@ msgstr ""
 #: inc/admin/options.php:687
 msgid "Sezione Le Novità"
 msgstr ""
+
+#: inc/admin/options.php:1097
+msgid "Sezione Le Pubblicazioni"
+msgstr "Publications section"
 
 #: inc/admin/options.php:1102
 msgid "Sezione Luoghi"
@@ -1627,24 +1611,28 @@ msgstr ""
 
 #: single-evento.php:129 single-evento.php:253
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: inc/admin/options.php:416
 msgid "Visualizza carousel"
-msgstr ""
+msgstr "Show carousel"
 
 #: inc/admin/options.php:486
 msgid "Visualizza contenuti in evidenza"
-msgstr ""
+msgstr "Show highlight contents"
 
-#: inc/admin/options.php:1143
+#: inc/admin/options.php:1348
 msgid "Visualizza mappa"
-msgstr ""
+msgstr "Show map"
 
-#: page-templates/contatti.php:214
+#: page-templates/contatti.php:306
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
-msgstr ""
+msgstr "Would you like to receive email notification"
+
+#: inc/admin/options.php:236
+msgid "Warning"
+msgstr "Warning"
 
 #: inc/admin/options.php:1384
 msgid "Web Analytics Italia"
-msgstr ""
+msgstr "Web Analytics Italia"

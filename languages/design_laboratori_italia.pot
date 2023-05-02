@@ -24,20 +24,20 @@ msgstr ""
 msgid "404"
 msgstr ""
 
-#: inc/classes/class-peoplemanager.php:122
-msgid "<h1>Biografia</h1> Biografia della persona"
+#: inc/classes/class-peoplemanager.php:125
+msgid "Biografia della persona"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:124
-msgid "<h1>Descrizione del luogo</h1>"
+#: inc/classes/class-placemanager.php:125
+msgid "Descrizione del luogo"
 msgstr ""
 
-#: inc/classes/class-projectmanager.php:65
-msgid "<h1>Descrizione del progetto</h1>"
+#: inc/classes/class-projectmanager.php:66
+msgid "Descrizione del progetto"
 msgstr ""
 
 #: inc/classes/class-publicationmanager.php:112
-msgid "<h1>Descrizione della pubblicazione</h1>"
+msgid "Descrizione della pubblicazione"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:75
@@ -53,7 +53,7 @@ msgid "<h1>Descrizione notizia</h1>"
 msgstr ""
 
 #: inc/admin/options.php:236
-msgid "<span class=\"radio-color brown\"></span>Warning"
+msgid "Warning"
 msgstr ""
 
 #: inc/admin/options.php:237
@@ -144,10 +144,6 @@ msgstr ""
 msgid "Archivio articoli"
 msgstr ""
 
-#. Name of the template
-msgid "Archivio progetti."
-msgstr ""
-
 #: inc/admin/options.php:34
 msgid "Area di configurazione delle informazioni di base"
 msgstr ""
@@ -165,11 +161,8 @@ msgid "Attiva la newsletter"
 msgstr ""
 
 #: single-persona.php:181
+#: single-persona.php:281
 msgid "Attività di ricerca"
-msgstr ""
-
-#. Name of the template
-msgid "Attività di ricerca."
 msgstr ""
 
 #: inc/admin/options.php:211
@@ -772,10 +765,6 @@ msgstr ""
 msgid "Le pubblicazioni"
 msgstr ""
 
-#. Name of the template
-msgid "Le pubblicazioni."
-msgstr ""
-
 #: template-parts/home/carousel.php:44
 msgid "Leggi di piu"
 msgstr ""
@@ -1124,7 +1113,7 @@ msgstr ""
 
 #: inc/classes/class-projectmanager.php:33
 msgctxt "Post Type Singular Name"
-msgid "Aggiungi una nuovo Progetto"
+msgid "Aggiungi un nuovo Progetto"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:35
@@ -1372,8 +1361,8 @@ msgstr ""
 msgid "Sezione I Progetti"
 msgstr ""
 
-#: inc/admin/options.php:892
-msgid "Sezione I Pubblicazioni"
+#: inc/admin/options.php:1097
+msgid "Sezione Le Pubblicazioni"
 msgstr ""
 
 #: inc/admin/options.php:616
@@ -1633,11 +1622,11 @@ msgstr ""
 msgid "Visualizza contenuti in evidenza"
 msgstr ""
 
-#: inc/admin/options.php:1143
+#: inc/admin/options.php:1348
 msgid "Visualizza mappa"
 msgstr ""
 
-#: page-templates/contatti.php:214
+#: page-templates/contatti.php:306
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
 msgstr ""
 

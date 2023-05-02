@@ -233,7 +233,7 @@ function dli_register_main_options_metabox() {
 			'options' => array(
 					'danger'  => __( '<span class="radio-color red"></span>Danger', 'design_laboratori_italia' ),
 					'success' => __( '<span class="radio-color green"></span>Success', 'design_laboratori_italia' ),
-					'warning' => __( '<span class="radio-color brown"></span>Warning', 'design_laboratori_italia' ),
+					'warning' => '<span class="radio-color brown"></span>' . __( 'Warning', 'design_laboratori_italia' ),
 					'info'    => __( '<span class="radio-color gray"></span>Info', 'design_laboratori_italia' ),
 			),
 			'default' => 'info',
@@ -1094,7 +1094,7 @@ function dli_register_main_options_metabox() {
 	$pubblicazioni_options->add_field(
 		array(
 		'id'   => $prefix . 'pubblicazioni_istruzioni',
-		'name' => __( 'Sezione I Pubblicazioni', 'design_laboratori_italia' ),
+		'name' => __( 'Sezione Le Pubblicazioni', 'design_laboratori_italia' ),
 		'desc' => $descr,
 		'type' => 'title',
 		)

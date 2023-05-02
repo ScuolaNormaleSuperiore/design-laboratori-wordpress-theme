@@ -109,7 +109,9 @@ class Publication_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( PUBLICATION_POST_TYPE === $post->post_type ) {
-			_e( '<h1>Descrizione della pubblicazione</h1>', 'design_laboratori_italia' );
+			echo '<h1>';
+			_e( 'Descrizione della pubblicazione', 'design_laboratori_italia' );
+			echo '</h1>';
 		}
 	}
 
