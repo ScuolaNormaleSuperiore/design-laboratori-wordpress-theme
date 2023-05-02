@@ -120,7 +120,17 @@ class Place_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( PLACE_POST_TYPE === $post->post_type ) {
-			_e( '<span><i>il <b>Titolo</b> è il <b>Nome del Luogo</b>.</i></span> in cui si svolge l\'attività del laboratorio. I luoghi possono essere sede di strutture e canali fisici di erogazione di un servizio<br><br>','design_laboratori_italia' );
+			echo '<span><i>';
+			_e( 'il', 'design_laboratori_italia' );
+			echo ' <b>';
+			_e( 'Titolo','design_laboratori_italia' );
+			echo '</b> ';
+			_e( 'è il','design_laboratori_italia' );
+			echo ' <b>';
+			_e( 'Nome del Luogo','design_laboratori_italia' );
+			echo '</b></i></span> ';
+			_e( "in cui si svolge l'attività del laboratorio. I luoghi possono essere sede di strutture e canali fisici di erogazione di un servizio",'design_laboratori_italia' );
+			echo "<br><br>";
 			echo '<h1>';
 			_e( 'Descrizione del luogo', 'design_laboratori_italia' );
 			echo '</h1>';

@@ -72,7 +72,9 @@ class Event_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( EVENT_POST_TYPE === $post->post_type ) {
-			_e( '<h1>Descrizione evento</h1>', 'design_laboratori_italia' );
+			echo '<h1>';
+			_e( 'Descrizione evento', 'design_laboratori_italia' );
+			echo '</h1>';
 		}
 	}
 

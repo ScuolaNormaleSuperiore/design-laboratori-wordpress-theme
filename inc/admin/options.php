@@ -39,7 +39,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'tipologia_laboratorio',
-			'name'       => __( 'Tipologia *', 'design_laboratori_italia' ),
+			'name'       => __( 'Tipologia', 'design_laboratori_italia' ) . ' *',
 			'desc'       => __( 'La Tipologia del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -231,10 +231,10 @@ function dli_register_main_options_metabox() {
 			'id'      => 'colore_message',
 			'type'    => 'radio_inline',
 			'options' => array(
-					'danger'  => __( '<span class="radio-color red"></span>Danger', 'design_laboratori_italia' ),
-					'success' => __( '<span class="radio-color green"></span>Success', 'design_laboratori_italia' ),
+					'danger' => '<span class="radio-color red"></span>' . __( 'Danger', 'design_laboratori_italia' ),
+					'success' => '<span class="radio-color green"></span>' . __( 'Success', 'design_laboratori_italia' ),
 					'warning' => '<span class="radio-color brown"></span>' . __( 'Warning', 'design_laboratori_italia' ),
-					'info'    => __( '<span class="radio-color gray"></span>Info', 'design_laboratori_italia' ),
+					'info'    => '<span class="radio-color gray"></span>' . __( 'Info', 'design_laboratori_italia' ),
 			),
 			'default' => 'info',
 	) );

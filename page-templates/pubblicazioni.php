@@ -131,7 +131,7 @@ $num_results = $pubblicazioni->found_posts;
 							<div class="select-wrapper">
 								<label for="annoSelect" class="visually-hidden"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></label>
 								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
-									<option <?php if (!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( 'Scegli un\'opzione', 'design_laboratori_italia' ); ?></option>
+									<option <?php if (!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
 									<?php
 									foreach ( $anni_pubblicazioni as $anno ) { ?>
 										<option <?php if ($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo $anno->meta_value; ?>"><?php echo $anno->meta_value; ?></option>

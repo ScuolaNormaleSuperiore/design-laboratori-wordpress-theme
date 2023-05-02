@@ -40,16 +40,17 @@ msgstr ""
 msgid "Descrizione della pubblicazione"
 msgstr ""
 
-#: inc/classes/class-eventmanager.php:75
-msgid "<h1>Descrizione evento</h1>"
+#: inc/classes/class-eventmanager.php:76
+#: single-evento.php:161
+msgid "Descrizione evento"
 msgstr ""
 
 #: inc/classes/class-researchactivitiesmanager.php:67
-msgid "<h1>Descrizione indirizzo di ricerca</h1>"
+msgid "Descrizione indirizzo di ricerca"
 msgstr ""
 
 #: inc/classes/class-newsmanager.php:80
-msgid "<h1>Descrizione notizia</h1>"
+msgid "Descrizione notizia"
 msgstr ""
 
 #: inc/admin/options.php:236
@@ -57,22 +58,15 @@ msgid "Warning"
 msgstr ""
 
 #: inc/admin/options.php:237
-msgid "<span class=\"radio-color gray\"></span>Info"
+msgid "Info"
 msgstr ""
 
 #: inc/admin/options.php:235
-msgid "<span class=\"radio-color green\"></span>Success"
+msgid "Success"
 msgstr ""
 
 #: inc/admin/options.php:234
-msgid "<span class=\"radio-color red\"></span>Danger"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:123
-msgid ""
-"<span><i>il <b>Titolo</b> è il <b>Nome del Luogo</b>.</i></span> in cui si "
-"svolge l'attività del laboratorio. I luoghi possono essere sede di strutture "
-"e canali fisici di erogazione di un servizio<br><br>"
+msgid "Danger"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:121
@@ -120,7 +114,7 @@ msgstr ""
 msgid "Allegati"
 msgstr ""
 
-#: inc/admin/options.php:1273
+#: inc/admin/options.php:1478
 msgid "Altre Informazioni"
 msgstr ""
 
@@ -134,10 +128,6 @@ msgstr ""
 
 #: page-templates/contatti.php:224
 msgid "Annulla"
-msgstr ""
-
-#. Name of the template
-msgid "Archive."
 msgstr ""
 
 #: template-parts/hero/archive.php:5
@@ -179,10 +169,6 @@ msgstr ""
 
 #: inc/admin/options.php:601 template-parts/hero/blog.php:9
 msgid "Blog"
-msgstr ""
-
-#. Name of the template
-msgid "Blog."
 msgstr ""
 
 #: page-templates/cerca.php:74
@@ -269,10 +255,6 @@ msgstr ""
 
 #: inc/admin/options.php:573 inc/admin/options.php:574
 msgid "Descrizione ENG"
-msgstr ""
-
-#: single-evento.php:144
-msgid "Descrizione evento"
 msgstr ""
 
 #: single-luogo.php:139
@@ -430,10 +412,6 @@ msgstr ""
 msgid "Eventi"
 msgstr ""
 
-#. Name of the template
-msgid "Eventi."
-msgstr ""
-
 #: inc/classes/class-eventmanager.php:47
 msgid "Evento"
 msgstr ""
@@ -494,20 +472,28 @@ msgstr ""
 msgid "I luoghi della scuola"
 msgstr ""
 
-#. Name of the template
-msgid "I Luoghi."
-msgstr ""
-
-#. Name of the template
-msgid "I progetti."
-msgstr ""
-
 #. Author of the theme
 msgid "ICT SNS"
 msgstr ""
 
-#: inc/utils.php:387
-msgid "Il "
+#: inc\classes\class-placemanager.php:124
+msgid "il"
+msgstr ""
+
+#: inc\classes\class-placemanager.php:126
+msgid "Titolo"
+msgstr ""
+
+#: inc\classes\class-placemanager.php:128
+msgid "è il"
+msgstr ""
+
+#: inc\classes\class-placemanager.php:130
+msgid "Nome del Luogo"
+msgstr ""
+
+#: inc\classes\class-placemanager.php:132
+msgid "in cui si svolge l'attività del laboratorio. I luoghi possono essere sede di strutture e canali fisici di erogazione di un servizio"
 msgstr ""
 
 #: inc/admin/options.php:595
@@ -757,21 +743,15 @@ msgstr ""
 msgid "Le persone"
 msgstr ""
 
-#: inc/admin/options.php:943
-msgid "Le progetti"
-msgstr ""
-
 #: inc/admin/options.php:874 template-parts/hero/pubblicazioni.php:9
 msgid "Le pubblicazioni"
 msgstr ""
 
 #: template-parts/home/carousel.php:44
-msgid "Leggi di piu"
-msgstr ""
-
 #: archive.php:82 page-templates/blog.php:113 page-templates/eventi.php:120
 #: page-templates/notizie.php:113 template-parts/common/sezione-eventi.php:56
 #: template-parts/home/card-eventi.php:49 template-parts/home/card-news.php:37
+
 msgid "Leggi di più"
 msgstr ""
 
@@ -944,11 +924,7 @@ msgstr ""
 msgid "Notizie"
 msgstr ""
 
-#. Name of the template
-msgid "Notizie."
-msgstr ""
-
-#: inc/admin/options.php:671
+#: inc/admin/options.php:876
 msgid "Novità"
 msgstr ""
 
@@ -1304,12 +1280,6 @@ msgstr ""
 msgid "Selettore lingua visibile"
 msgstr ""
 
-#: inc/admin/options.php:1144
-msgid ""
-"Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo "
-"l'elenco delle strutture."
-msgstr ""
-
 #: inc/admin/options.php:445
 msgid ""
 "Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è "
@@ -1401,15 +1371,10 @@ msgstr ""
 msgid "Si"
 msgstr ""
 
-#: inc/utils.php:676
-msgid "Si / No"
-msgstr ""
-
-#: inc/utils.php:677
-msgid "Si / No / Presa Visione"
-msgstr ""
-
-#: single-progetto.php:51 template-parts/common/sezione-contatti.php:60
+#: single-progetto.php:69
+#: template-parts/common/sezione-contatti.php:60 
+#: single-evento.php:234 
+#: single-persona.php:470
 msgid "Sito web"
 msgstr ""
 
@@ -1483,13 +1448,10 @@ msgstr ""
 msgid "Tipo Pubblicazione"
 msgstr ""
 
-#: page-templates/luoghi.php:79 page-templates/pubblicazioni.php:157
+#: page-templates/luoghi.php:79 page-templates/pubblicazioni.php:157 inc/admin/options.php:42
 msgid "Tipologia"
 msgstr ""
 
-#: inc/admin/options.php:42
-msgid "Tipologia *"
-msgstr ""
 
 #: inc/classes/class-placemanager.php:52
 msgid "Tipologia luogo"

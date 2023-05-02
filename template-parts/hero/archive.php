@@ -1,4 +1,4 @@
-<section id="banner-progetti" aria-describedby="Testo introduttivo sezione notizie" class="bg-banner-progetti">
+<section id="banner-archive" aria-describedby="Testo introduttivo sezione notizie" class="bg-banner-progetti">
 	<div class="section-muted p-3 primary-bg-c1">
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
