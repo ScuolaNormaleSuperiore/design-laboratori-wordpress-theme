@@ -63,7 +63,7 @@ intendedAudience:
   scope:
     - education
 usedBy:
-  - Istituto Carlo Azeglio Ciampi - Scuola Normale Superiore di Pisa
+  - sns_pi
 it:
   countryExtensionVersion: '0.2'
   riuso:
