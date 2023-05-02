@@ -46,7 +46,9 @@ $num_items = $query->post_count;
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
 						<span class="card-date"><?php echo intval( $item_date->format( 'd' ) ); ?></span>
-						<span class="card-day"><?php echo __( dli_get_monthname( $item_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?></span>
+						<span class="card-day"><?php echo __( dli_get_monthname( $item_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+							&nbsp;<?php echo intval( $item_date->format( 'Y' ) ); ?>
+						</span>
 					</div>
 				</div>
 			</div>
