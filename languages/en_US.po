@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-03 12:35+0000\n"
+"PO-Revision-Date: 2023-05-03 13:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -276,14 +276,6 @@ msgstr "Description of people section in English"
 msgid "Design Laboratori Italia"
 msgstr "Design Laboratori Italia"
 
-#. Description of the theme
-msgid ""
-"Design Laboratori Italia è il tema di WordPress per i siti dei Laboratori "
-"Italiani. Rispetta le linee guida di design dell’Agenzia per l’Italia "
-"digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza "
-"Bootstrap Italia. Basato sul precedente lavoro di Marco Buttarini."
-msgstr ""
-
 #: single-luogo.php:92
 msgid "Dettagli del luogo"
 msgstr "Place details"
@@ -408,10 +400,6 @@ msgstr "Highlights management in Home Page"
 msgid "Gestione dello stile del sito"
 msgstr "Style website management"
 
-#: inc/admin/options.php:1304
-msgid "Gestione mappe"
-msgstr "Maps managment"
-
 #: inc/admin/options.php:306
 msgid "Gestione sezione Hero principale (opzionale) mostrato in Home Page"
 msgstr "Management of main hero section (optional) shown in Home Page"
@@ -439,10 +427,6 @@ msgstr "https://ict.sns.it"
 #: template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
 msgstr "Places"
-
-#: template-parts/home/gallery-luoghi.php:11
-msgid "I luoghi della scuola"
-msgstr ""
 
 #. Author of the theme
 msgid "ICT SNS"
@@ -564,6 +548,8 @@ msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
 msgstr ""
+"Enter Web Analytics code. You can create it <a target=\"_blank\" "
+"href=\"https://webanalytics.italia.it/\">here</a>"
 
 #: page-templates/cerca.php:67
 msgid "Inserisci il testo da cercare"
@@ -584,13 +570,6 @@ msgstr "Enter your name"
 #: page-templates/contatti.php:298
 msgid "Inserisci il tuo numero di telefono"
 msgstr "Enter your phone number"
-
-#: inc/admin/options.php:1313
-msgid ""
-"Inserisci l'access token mapbox per l'erogazione delle mappe. Puoi crearlo "
-"<a target=\"_blank\" href=\"https://www.mapbox.com/studio/account/tokens/\">"
-"da qui</a>"
-msgstr ""
 
 #: inc/admin/options.php:212
 msgid "Inserisci messaggi che saranno visualizzati nella homepage"
@@ -951,6 +930,9 @@ msgid ""
 "back();\" title=\"Torna alla pagina precedente\">torna indietro</a> o "
 "utilizza il menu per continuare la navigazione."
 msgstr ""
+"Oops! The page you are looking for was not found, <a href=\"javascript:"
+"history.back();\" title=\"Back to previous page\">back</a> or use the menu "
+"to continue browsing."
 
 #: inc/admin/options.php:14
 msgid "Opzioni di base"
@@ -1272,10 +1254,14 @@ msgid "Selettore lingua visibile"
 msgstr "Language selector visible"
 
 #: inc/admin/options.php:445
+#| msgid ""
+#| "Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali "
+#| "è stato settato il flag \"Promuovi in carousel\". <b>No</b> per "
+#| "sceglierli manualmente nella sezione seguente."
 msgid ""
 "Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è "
 "stato settato il flag \"Promuovi in carousel\". <b>No</b> per sceglierli "
-"manualmente nella sezione seguente."
+"manualmente nella sezione seguente"
 msgstr ""
 "Select <b>Yes</b> to automatically show articles for which the \"Promote in "
 "carousel\" flag has been set. <b>No</b> to choose them manually in the "
@@ -1574,10 +1560,6 @@ msgstr "Go to Newsletter"
 #: template-parts/home/eventi.php:34 template-parts/home/indirizzi.php:29
 msgid "Vedi tutti"
 msgstr "View all"
-
-#: template-parts/home/gallery-luoghi.php:27
-msgid "Vedi tutti i luoghi"
-msgstr "View all places"
 
 #: single-evento.php:129 single-evento.php:253
 msgid "Video"

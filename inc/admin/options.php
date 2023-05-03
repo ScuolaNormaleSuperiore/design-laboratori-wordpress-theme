@@ -1502,23 +1502,6 @@ $social_options->add_field( array(
 		),
 		)
 	);
-
-	$setup_options->add_field(
-		array(
-			'id'   => $prefix . 'maps_manager',
-			'name' => __( 'Gestione mappe', 'design_laboratori_italia' ),
-			'type' => 'title',
-		)
-	);
-		
-	$setup_options->add_field(
-		array(
-			'id'   => $prefix . 'mapbox_key',
-			'name' => 'Access Token MapBox',
-			'desc' => __( 'Inserisci l\'access token mapbox per l\'erogazione delle mappe. Puoi crearlo <a target="_blank" href="https://www.mapbox.com/studio/account/tokens/">da qui</a>', 'design_laboratori_italia' ),
-			'type' => 'text',
-			)
-		);
 	
 		$setup_options->add_field(
 			array(
