@@ -287,14 +287,6 @@ msgstr ""
 msgid "Design Laboratori Italia"
 msgstr ""
 
-#. Description of the theme
-msgid ""
-"Design Laboratori Italia è il tema di WordPress per i siti dei Laboratori "
-"Italiani. Rispetta le linee guida di design dell’Agenzia per l’Italia "
-"digitale rilasciare dal Team per la Trasformazione Digitale. Utilizza "
-"Bootstrap Italia. Basato sul precedente lavoro di Marco Buttarini."
-msgstr ""
-
 #: single-luogo.php:92
 msgid "Dettagli del luogo"
 msgstr ""
@@ -419,10 +411,6 @@ msgstr ""
 msgid "Gestione dello stile del sito"
 msgstr ""
 
-#: inc/admin/options.php:1304
-msgid "Gestione mappe"
-msgstr ""
-
 #: inc/admin/options.php:306
 msgid "Gestione sezione Hero principale (opzionale) mostrato in Home Page"
 msgstr ""
@@ -449,10 +437,6 @@ msgstr ""
 
 #: template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
-msgstr ""
-
-#: template-parts/home/gallery-luoghi.php:11
-msgid "I luoghi della scuola"
 msgstr ""
 
 #. Author of the theme
@@ -591,13 +575,6 @@ msgstr ""
 
 #: page-templates/contatti.php:281
 msgid "Testo del messaggio"
-msgstr ""
-
-#: inc/admin/options.php:1313
-msgid ""
-"Inserisci l'access token mapbox per l'erogazione delle mappe. Puoi crearlo "
-"<a target=\"_blank\" href=\"https://www.mapbox.com/studio/account/tokens/\">"
-"da qui</a>"
 msgstr ""
 
 #: inc/admin/options.php:212
@@ -1536,10 +1513,6 @@ msgstr ""
 
 #: template-parts/home/eventi.php:34 template-parts/home/indirizzi.php:29
 msgid "Vedi tutti"
-msgstr ""
-
-#: template-parts/home/gallery-luoghi.php:27
-msgid "Vedi tutti i luoghi"
 msgstr ""
 
 #: single-evento.php:129 single-evento.php:253
