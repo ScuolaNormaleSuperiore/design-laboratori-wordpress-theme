@@ -141,7 +141,7 @@ class LabManager {
 	 * @return object.
 	 */
 	function setup_rest_api(){
-		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ){
+		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ) {
 			return new WP_Error(
 				'rest_disabled',
 				__( 'L\'API REST di WordPress è disabilitata.', 'design_laboratori_italia' ),
