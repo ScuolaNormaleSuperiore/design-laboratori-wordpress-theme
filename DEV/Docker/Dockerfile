@@ -18,7 +18,7 @@ ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.
 
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
-ARG PLG_ACF=advanced-custom-fields.6.1.4.zip
+ARG PLG_ACF=advanced-custom-fields.6.1.5.zip
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.4.3.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_COOKIES=cookie-law-info.3.0.9.zip

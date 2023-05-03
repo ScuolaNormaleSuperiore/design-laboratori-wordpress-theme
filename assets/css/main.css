@@ -63,3 +63,24 @@
 	text-decoration: none !important;
 }
 
+.menutree {
+
+}
+
+.menutree a {
+	text-decoration: none;
+}
+
+.menutree ul {
+}
+
+.menutree ul li {
+
+}
+
+.box_change_map_lang {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
