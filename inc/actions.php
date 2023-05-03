@@ -11,39 +11,6 @@ function dli_disable_all_comments() {
 }
 add_action( 'after_setup_theme', 'dli_disable_all_comments' );
 
-
-// /**
-//  * Hide content editor for post types defined in settings
-//  */
-// add_action( 'admin_init', 'dsi_hide_editor' );
-// function dsi_hide_editor() {
-// 		global $pagenow;
-// 		if ( $pagenow == "post.php" ) {
-// 				// Get the Post ID.
-// 				if(isset($_GET['post']))
-// 						$post_id = $_GET['post'];
-// 				else if(isset($_POST['post_ID']))
-// 						$post_id = $_POST['post_ID'];
-// 				if ( ! isset( $post_id ) ) {
-// 						return;
-// 				}
-// 				// Get the name of the Page Template file.
-// 				$template_file = get_post_meta( $post_id, '_wp_page_template', true );
-
-// 				if ( $template_file == 'page-templates/il-laboratorio.php' ) { // edit the template name
-// 						remove_post_type_support( 'page', 'editor' );
-// 				}
-
-// 				if ( $template_file == 'page-templates/notizie.php' ) { // edit the template name
-// 						remove_post_type_support( 'page', 'editor' );
-// 				}
-
-// 				if ( $template_file == 'page-templates/persone.php' ) { // edit the template name
-// 						remove_post_type_support( 'page', 'editor' );
-// 				}
-// 		}
-// }
-
 /**
  * Add css admin style: TAB di Configurazione laterale.
  */

@@ -11,7 +11,7 @@
 				<ul class="splide__list">
 				<?php
 					if ( count( $items ) === 0 ) {
-						echo '<em>' . __( 'Indicare in Admin->Configurazione gli articoli da mostrare nel carousel', 'design_laboratori_italia' ) '&nbsp;.</em>';
+						echo '<em>' . __( 'Indicare in Admin->Configurazione gli articoli da mostrare nel carousel', 'design_laboratori_italia' ) . '&nbsp;.</em>';
 					}
 					foreach ( $items as $item ) {
 				?>
