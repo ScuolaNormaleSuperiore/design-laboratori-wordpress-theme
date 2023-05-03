@@ -6,7 +6,16 @@
 get_header();
 
 // Build the PAGE TREE.
-$pt = dli_get_site_tree();
+
+$lng_slug  = dli_current_language( 'slug' );
+
+try {
+	$pt = dli_get_site_tree();
+} catch ( Exception $e ) {
+	$pt  = array();
+	$msg = 'Caught exception: ' . $e->getMessage() . '\n';
+	error_log( $msg );
+}
 ?>
 
 <main id="main-container">
@@ -31,6 +40,7 @@ $pt = dli_get_site_tree();
 						echo '<li><a href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
 					}
 					// II livello.
+					echo '<ul>';
 					foreach ( $item['children'] as $childitem ) {
 						if ( $childitem['external'] ) {
 							echo '<li><a target="_blank" href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
@@ -38,6 +48,7 @@ $pt = dli_get_site_tree();
 							echo '<li><a href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
 						}
 						// III livello.
+						echo '<ul>';
 						foreach ( $childitem['children'] as $grandchilditem ) {
 							if ( $grandchilditem['external'] ) {
 								echo '<li><a target="_blank" href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
@@ -45,11 +56,23 @@ $pt = dli_get_site_tree();
 								echo '<li><a href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
 							}
 						}
+						echo '</ul>';
 					}
+					echo '</ul>';
 				}
 				?>
 			</ul>
 		</ul>
+	</div>
+
+	<div class="box_change_map_lang">
+		<?php
+			if ( 'it' === $lng_slug ) {
+				echo '<a href="' . get_site_url() . '/en/' . SLUG_MAPPA_SITO_EN . '">Site Map in English</a>';
+			} else {
+				echo '<a href="' . get_site_url() . '/' . SLUG_MAPPA_SITO_IT . '">Mappa del sito in Italiano</a>';
+			}
+		?>
 	</div>
 
 </main>

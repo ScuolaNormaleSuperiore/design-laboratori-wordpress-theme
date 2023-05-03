@@ -185,3 +185,28 @@ if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
 		return dli_get_option( $field_name_new, $field_type );
 	}
 }
+
+if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
+	function dli_get_all_menus_by_lang( $lang ) {
+		$options        = get_option( 'polylang' );
+		$menu_locations = $options['nav_menus']['design-laboratori-wordpress-theme'];
+
+		$items = array();
+		$ids   = array();
+		foreach ( $menu_locations as $name => $menulangs ) {
+			foreach ( $menulangs as $ml_lang => $ml_id ) {
+				if ( ! in_array( $ml_id, $ids ) ) {
+					if ( isset( $items[ $ml_lang ] ) ) {
+						array_push( $items[$ml_lang], array( $name => $ml_id ) );
+						array_push( $ids, $ml_id );
+					} else {
+						$items[$ml_lang] = array();
+						array_push( $items[ $ml_lang ], array( $name => $ml_id ) );
+						array_push( $ids, $ml_id );
+					}
+				}
+			}
+		}
+		return $items[ $lang ];
+	}
+}

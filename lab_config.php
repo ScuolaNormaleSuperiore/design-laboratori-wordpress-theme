@@ -58,7 +58,7 @@ define( 'SLUG_PERSONE_EN', 'people' );
 define( 'SLUG_RICERCA_SITO_IT', 'ricerca-sito' );
 define( 'SLUG_RICERCA_SITO_EN', 'search-site' );
 define( 'SLUG_BLOG_IT', 'il-blog' );
-define( 'SLUG_BLOG_EN', 'the-bloge' );
+define( 'SLUG_BLOG_EN', 'the-blog' );
 define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
 define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
 
@@ -75,7 +75,7 @@ define( 'SLUG_PRIVACY_EN', 'privacy-policy-en' );
 define( 'SLUG_MEDIA_POLICY_IT', 'media-policy' );
 define( 'SLUG_MEDIA_POLICY_EN', 'media-policy-en' );
 define( 'SLUG_NOTE_LEGALI_IT', 'note-legali' );
-define( 'SLUG_NOTE_LEGALI_EN', 'legal-tones' );
+define( 'SLUG_NOTE_LEGALI_EN', 'legal-notes' );
 define( 'SLUG_MAPPA_SITO_IT', 'mappa-sito' );
 define( 'SLUG_MAPPA_SITO_EN', 'site-map' );
 
