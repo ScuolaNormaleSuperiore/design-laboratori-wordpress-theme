@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.2'
 applicationSuite: WordPress
-softwareVersion: 1.0.9-beta
+softwareVersion: 1.0.10-beta
 categories:
   - website-builder
 description:
@@ -63,7 +63,7 @@ intendedAudience:
   scope:
     - education
 usedBy:
-  - sns_pi
+  - Istituto di Studi Avanzati Carlo Azeglio Ciampi - Scuola Normale Superiore
 it:
   countryExtensionVersion: '0.2'
   riuso:
