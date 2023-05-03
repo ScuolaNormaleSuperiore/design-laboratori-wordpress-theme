@@ -63,7 +63,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'tagline_laboratorio',
-			'name'       => __( 'Tagline *', 'design_laboratori_italia' ),
+			'name'       => __( 'Tagline', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'La tagline del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -147,7 +147,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'url_ente_appartenenza',
-			'name'       => __( 'Url ente padre *', 'design_laboratori_italia' ),
+			'name'       => __( 'Url ente padre', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "L'url dell'ente padre" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -442,7 +442,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_carousel_is_selezione_automatica',
 			'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
-			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente.', 'design_laboratori_italia' ),
+			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
@@ -454,7 +454,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'name'    => __( 'Selezione articoli ', 'design_laboratori_italia' ),
+			'name'    => __( 'Selezione articoli', 'design_laboratori_italia' ),
 			'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia' ),
 			'id'      => $prefix . 'articoli_presentazione',
 			'type'    => 'custom_attached_posts',
@@ -1492,7 +1492,7 @@ $social_options->add_field( array(
 		array(
 			'id'               => $prefix . 'choose_style',
 			'name'             => __( 'Stile del sito', 'design_laboratori_italia' ),
-			'desc'             => __( 'Selezione lo stile del sito (scegliere default per usare quello standard di Desgners Italia)' , 'design_laboratori_italia' ),
+			'desc'             => __( 'Selezione lo stile del sito (scegliere default per usare quello standard di Designers Italia)' , 'design_laboratori_italia' ),
 			'type'             => 'select',
 			'default'          => 'default',
 			'show_option_none' => false,

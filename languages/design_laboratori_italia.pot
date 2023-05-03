@@ -1253,7 +1253,7 @@ msgstr ""
 msgid ""
 "Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è "
 "stato settato il flag \"Promuovi in carousel\". <b>No</b> per sceglierli "
-"manualmente nella sezione seguente."
+"manualmente nella sezione seguente"
 msgstr ""
 
 #: inc/admin/options.php:458
@@ -1263,7 +1263,7 @@ msgid ""
 msgstr ""
 
 #: inc/admin/options.php:457
-msgid "Selezione articoli "
+msgid "Selezione articoli"
 msgstr ""
 
 #: inc/admin/options.php:444
@@ -1277,7 +1277,7 @@ msgstr ""
 #: inc/admin/options.php:1290
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
-"Desgners Italia)"
+"Designers Italia)"
 msgstr ""
 
 #: inc/admin/options.php:407
@@ -1360,7 +1360,7 @@ msgid "Struttura"
 msgstr ""
 
 #: inc/admin/options.php:66
-msgid "Tagline *"
+msgid "Tagline"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:42
@@ -1480,7 +1480,7 @@ msgid "Url"
 msgstr ""
 
 #: inc/admin/options.php:150
-msgid "Url ente padre *"
+msgid "Url ente padre"
 msgstr ""
 
 #: inc/classes/class-placemanager.php:91

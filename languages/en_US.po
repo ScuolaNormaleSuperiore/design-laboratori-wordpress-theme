@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-03 12:13+0000\n"
+"PO-Revision-Date: 2023-05-03 12:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -1277,30 +1277,37 @@ msgid ""
 "stato settato il flag \"Promuovi in carousel\". <b>No</b> per sceglierli "
 "manualmente nella sezione seguente."
 msgstr ""
+"Select <b>Yes</b> to automatically show articles for which the \"Promote in "
+"carousel\" flag has been set. <b>No</b> to choose them manually in the "
+"following section"
 
 #: inc/admin/options.php:458
 msgid ""
 "Seleziona gli articoli da mostrare nel carousel della Home Page, se "
 "disabilitata la selezione automatica"
 msgstr ""
+"Select the articles to show in the carousel of the Home Page, if the "
+"automatic selection is disabled"
 
 #: inc/admin/options.php:457
-msgid "Selezione articoli "
-msgstr ""
+msgid "Selezione articoli"
+msgstr "Selection of Articles"
 
 #: inc/admin/options.php:444
 msgid "Selezione Automatica"
-msgstr ""
+msgstr "Automatic selection"
 
 #: header.php:76
 msgid "Selezione lingua: lingua selezionata"
-msgstr ""
+msgstr "Language selection: selected language"
 
 #: inc/admin/options.php:1290
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
-"Desgners Italia)"
+"Designers Italia)"
 msgstr ""
+"Select the website style (choose default to use the standard one of "
+"Designers Italia)"
 
 #: inc/admin/options.php:407
 msgid "Sezione Carousel"
@@ -1369,11 +1376,11 @@ msgstr "Website"
 
 #: inc/admin/options.php:1158 inc/admin/options.php:1164
 msgid "Socialmedia"
-msgstr ""
+msgstr "Socialmedia"
 
 #: inc/admin/options.php:1289
 msgid "Stile del sito"
-msgstr ""
+msgstr "Style of website"
 
 #: inc/classes/class-peoplemanager.php:50
 msgid "Struttura"
@@ -1384,8 +1391,8 @@ msgid "Success"
 msgstr "Success"
 
 #: inc/admin/options.php:66
-msgid "Tagline *"
-msgstr ""
+msgid "Tagline"
+msgstr "Tagline"
 
 #: inc/classes/class-peoplemanager.php:42
 msgctxt "taxonomy general name"
@@ -1395,12 +1402,12 @@ msgstr "Structure"
 #: inc/classes/class-publicationmanager.php:39
 msgctxt "taxonomy general name"
 msgid "Tipo pubblicazione"
-msgstr ""
+msgstr "Publication type"
 
 #: inc/classes/class-placemanager.php:44
 msgctxt "taxonomy general name"
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
 #: inc/classes/class-peoplemanager.php:43
 msgctxt "taxonomy singular name"
@@ -1410,12 +1417,12 @@ msgstr "Structure"
 #: inc/classes/class-publicationmanager.php:40
 msgctxt "taxonomy singular name"
 msgid "Tipo pubblicazione"
-msgstr ""
+msgstr "Publication type"
 
 #: inc/classes/class-placemanager.php:45
 msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
 #: footer.php:73 page-templates/contatti.php:204 inc/admin/options.php:126
 msgid "Telefono"
@@ -1423,7 +1430,7 @@ msgstr "Phone"
 
 #: page-templates/contatti.php:190 inc/admin/options.php:260
 msgid "Testo"
-msgstr ""
+msgstr "Text"
 
 #: page-templates/contatti.php:281
 msgid "Testo del messaggio"
@@ -1431,11 +1438,11 @@ msgstr "Message text"
 
 #: inc/admin/options.php:344
 msgid "Testo hero"
-msgstr ""
+msgstr "Hero text"
 
 #: inc/admin/options.php:355
 msgid "Testo hero ENG"
-msgstr ""
+msgstr "Hero text in English"
 
 #: inc/classes/class-publicationmanager.php:47
 msgid "Tipo Pubblicazione"
@@ -1452,7 +1459,7 @@ msgstr "Place type"
 
 #: inc/classes/class-peopletypemanager.php:40
 msgid "Tipologia Persona"
-msgstr ""
+msgstr "People type"
 
 #: inc\classes\class-placemanager.php:126
 msgid "Titolo"
@@ -1472,11 +1479,11 @@ msgstr "Hero title"
 
 #: inc/admin/options.php:336
 msgid "Titolo hero ENG"
-msgstr ""
+msgstr "Hero title in English"
 
 #: template-parts/home/strutture.php:58
 msgid "Tutta l’organizzazione"
-msgstr ""
+msgstr "Whole organization"
 
 #: single-notizia.php:66
 msgid "Tutte le notizie"
@@ -1488,15 +1495,15 @@ msgstr "All structures"
 
 #: inc/classes/class-placemanager.php:47
 msgid "Tutte le tipologie luogo"
-msgstr ""
+msgstr "All Place types"
 
 #: single-post.php:66
 msgid "Tutti gli articoli"
-msgstr ""
+msgstr "All articles"
 
 #: inc/classes/class-publicationmanager.php:42
 msgid "Tutti i tipi"
-msgstr ""
+msgstr "All types"
 
 #: single-persona.php:201 single-persona.php:362
 msgid "Ulteriori informazioni"
@@ -1507,20 +1514,21 @@ msgid "Url"
 msgstr "Url"
 
 #: inc/admin/options.php:150
-msgid "Url ente padre *"
-msgstr ""
+#| msgid "Url ente padre *"
+msgid "Url ente padre"
+msgstr "Member institution URL"
 
 #: inc/classes/class-placemanager.php:91
 msgid "Usa come Immagine del Luogo"
-msgstr ""
+msgstr "Use as Place image"
 
 #: inc/classes/class-eventmanager.php:43
 msgid "Usa come Immagine Evento"
-msgstr ""
+msgstr "Use as Event image"
 
 #: inc/classes/class-newsmanager.php:48
 msgid "Usa come Immagine Notizia"
-msgstr ""
+msgstr "Use as News image"
 
 #: page-templates/contatti.php:172
 msgid "Utilizza i dati di contatto o compila il form sottostante"
@@ -1532,22 +1540,24 @@ msgid ""
 "laboratorio visibile dal menu hamburger (mobile). Si raccomanda di caricare "
 "un'immagine in formato svg"
 msgstr ""
+"Use this field to upload an alternative image to the lab logo visible from "
+"the burger menu (mobile). It is recommended to upload an image in svg format"
 
 #: template-parts/common/skiplink.php:2
 msgid "Vai ai contenuti"
-msgstr ""
+msgstr "Skip to contents"
 
 #: template-parts/common/skiplink.php:4
 msgid "Vai al footer"
-msgstr ""
+msgstr "Skip to footer"
 
 #: template-parts/hero/home.php:41
 msgid "Vai al laboratorio"
-msgstr ""
+msgstr "Go to the lab"
 
 #: template-parts/common/skiplink.php:3
 msgid "Vai al menu di navigazione"
-msgstr ""
+msgstr "Skip to main navigation"
 
 #: page-templates/archive-progetti.php:77 page-templates/progetti.php:95
 msgid "Vai al progetto"
@@ -1559,15 +1569,15 @@ msgstr "Go to research activity"
 
 #: template-parts/common/newsletter.php:7
 msgid "Vai alla pagina: Newsletter"
-msgstr ""
+msgstr "Go to Newsletter"
 
 #: template-parts/home/eventi.php:34 template-parts/home/indirizzi.php:29
 msgid "Vedi tutti"
-msgstr ""
+msgstr "View all"
 
 #: template-parts/home/gallery-luoghi.php:27
 msgid "Vedi tutti i luoghi"
-msgstr ""
+msgstr "View all places"
 
 #: single-evento.php:129 single-evento.php:253
 msgid "Video"
