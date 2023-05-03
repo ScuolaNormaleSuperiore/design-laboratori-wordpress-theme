@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-02 11:58+0000\n"
+"PO-Revision-Date: 2023-05-03 12:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -19,96 +19,42 @@ msgstr ""
 msgid "404"
 msgstr "404"
 
-#: inc/classes/class-peoplemanager.php:122
-msgid "<h1>Biografia</h1> Biografia della persona"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:124
-msgid "<h1>Descrizione del luogo</h1>"
-msgstr ""
-
-#: inc/classes/class-projectmanager.php:65
-msgid "<h1>Descrizione del progetto</h1>"
-msgstr ""
-
-#: inc/classes/class-publicationmanager.php:112
-msgid "<h1>Descrizione della pubblicazione</h1>"
-msgstr ""
-
-#: inc/classes/class-eventmanager.php:75
-msgid "<h1>Descrizione evento</h1>"
-msgstr ""
-
-#: inc/classes/class-researchactivitiesmanager.php:67
-msgid "<h1>Descrizione indirizzo di ricerca</h1>"
-msgstr ""
-
-#: inc/classes/class-newsmanager.php:80
-msgid "<h1>Descrizione notizia</h1>"
-msgstr ""
-
-#: inc/admin/options.php:236
-msgid "<span class=\"radio-color brown\"></span>Warning"
-msgstr ""
-
-#: inc/admin/options.php:237
-msgid "<span class=\"radio-color gray\"></span>Info"
-msgstr ""
-
-#: inc/admin/options.php:235
-msgid "<span class=\"radio-color green\"></span>Success"
-msgstr ""
-
-#: inc/admin/options.php:234
-msgid "<span class=\"radio-color red\"></span>Danger"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:123
-msgid ""
-"<span><i>il <b>Titolo</b> è il <b>Nome del Luogo</b>.</i></span> in cui si "
-"svolge l'attività del laboratorio. I luoghi possono essere sede di strutture "
-"e canali fisici di erogazione di un servizio<br><br>"
-msgstr ""
-
-#: inc/classes/class-peoplemanager.php:121
-msgid ""
-"<span><i>Inserire nel titolo il nome completo della persona ed eventualmente "
-"il nome completo per facilitare la ricerca.</i></span>"
-msgstr ""
-
 #: inc/admin/options.php:1183
+#| msgid ""
+#| "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
+#| "pagina."
 msgid ""
 "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
-"pagina."
-msgstr ""
+"pagina"
+msgstr "Enable social media in the page header and footer"
 
 #: inc/classes/class-publicationmanager.php:44
 msgid "Aggiorna il tipo pubblicazione"
-msgstr ""
+msgstr "Update publication type"
 
 #: inc/classes/class-peoplemanager.php:47
 msgid "Aggiorna la Struttura"
-msgstr ""
+msgstr "Update the structure"
 
 #: inc/classes/class-placemanager.php:49
 msgid "Aggiorna la Tipologia luogo"
-msgstr ""
+msgstr "Update the place type"
 
 #: inc/admin/options.php:223
 msgid "Aggiungi un messaggio"
-msgstr ""
+msgstr "Add a messagge"
 
 #: inc/classes/class-publicationmanager.php:45
 msgid "Aggiungi un tipo pubblicazione"
-msgstr ""
+msgstr "Add a publication type"
 
 #: inc/classes/class-peoplemanager.php:48
 msgid "Aggiungi una Struttura"
-msgstr ""
+msgstr "Add a structure"
 
 #: inc/classes/class-placemanager.php:50
 msgid "Aggiungi una Tipologia luogo"
-msgstr ""
+msgstr "Add a place type"
 
 #: single-evento.php:54
 msgid "al"
@@ -117,87 +63,76 @@ msgstr "to"
 #: single-evento.php:120 single-evento.php:230 single-progetto.php:133
 #: single-progetto.php:226
 msgid "Allegati"
-msgstr ""
+msgstr "Attachments"
 
-#: inc/admin/options.php:1273
+#: inc/admin/options.php:1478
 msgid "Altre Informazioni"
-msgstr ""
+msgstr "More Information"
 
 #: inc/admin/options.php:1255 inc/admin/options.php:1258
 msgid "Altro"
-msgstr ""
+msgstr "Other"
 
 #: page-templates/pubblicazioni.php:130 page-templates/pubblicazioni.php:132
 msgid "Anno"
-msgstr ""
+msgstr "Year"
 
 #: page-templates/contatti.php:224
 msgid "Annulla"
-msgstr ""
-
-#. Name of the template
-msgid "Archive."
-msgstr ""
+msgstr "Cancel"
 
 #: template-parts/hero/archive.php:5
 msgid "Archivio articoli"
-msgstr ""
-
-#. Name of the template
-msgid "Archivio progetti."
-msgstr ""
+msgstr "Articles archive"
 
 #: inc/admin/options.php:34
 msgid "Area di configurazione delle informazioni di base"
-msgstr ""
+msgstr "Configuration of basic information"
 
-#: inc/admin/options.php:1274
-msgid "Area di configurazione delle opzioni generali del tema."
-msgstr ""
+#: inc/admin/options.php:1479
+#| msgid "Area di configurazione delle opzioni generali del tema."
+msgid "Area di configurazione delle opzioni generali del tema"
+msgstr "Configuration of theme general options"
 
 #: inc/admin/options.php:315
 msgid "Attiva l'hero principale in Home Page"
-msgstr ""
+msgstr "Enable main hero in Home Page"
 
 #: inc/admin/options.php:1329
 msgid "Attiva la newsletter"
-msgstr ""
+msgstr "Enable newsletter"
 
-#: single-persona.php:181
+#: single-persona.php:181 single-persona.php:281
 msgid "Attività di ricerca"
-msgstr ""
-
-#. Name of the template
-msgid "Attività di ricerca."
-msgstr ""
+msgstr "Research activities"
 
 #: inc/admin/options.php:211
 msgid "Avvisi di allerta in Home Page"
-msgstr ""
+msgstr "Alerts in Home Page"
 
 #: inc/admin/options.php:199
 msgid "Avvisi in Home"
-msgstr ""
+msgstr "Alerts in Home"
 
 #: single-persona.php:151 single-persona.php:227
 msgid "Biografia"
 msgstr "Biography"
 
+#: inc/classes/class-peoplemanager.php:125
+msgid "Biografia della persona"
+msgstr "Biography of the person"
+
 #: inc/admin/options.php:601 template-parts/hero/blog.php:9
 msgid "Blog"
-msgstr ""
-
-#. Name of the template
-msgid "Blog."
-msgstr ""
+msgstr "Blog"
 
 #: page-templates/cerca.php:74
 msgid "Cancella"
-msgstr ""
+msgstr "Cancel"
 
 #: page-templates/notizie.php:49
 msgid "Categoria"
-msgstr ""
+msgstr "Category"
 
 #: header.php:148 page-templates/cerca.php:76
 msgid "Cerca"
@@ -205,47 +140,47 @@ msgstr "Search"
 
 #: header.php:152 page-templates/cerca.php:59 page-templates/cerca.php:63
 msgid "Cerca nel sito"
-msgstr ""
+msgstr "Search this site"
 
 #: inc/classes/class-peoplemanager.php:44
 msgid "Cerca Struttura"
-msgstr ""
+msgstr "Search structure"
 
 #: inc/classes/class-publicationmanager.php:41
 msgid "Cerca tipo pubblicazione"
-msgstr ""
+msgstr "Search publication type"
 
 #: inc/classes/class-placemanager.php:46
 msgid "Cerca Tipologia luogo"
-msgstr ""
+msgstr "Search place type"
 
 #: template-parts/header/alert.php:26
 msgid "Chiudi avviso"
-msgstr ""
+msgstr "Close the warning"
 
 #: inc/admin/options.php:78
-msgid "Città *"
-msgstr ""
+msgid "Città"
+msgstr "City"
 
 #: inc/admin/options.php:271
 msgid "Collegamento"
-msgstr ""
+msgstr "Link"
 
 #: single-luogo.php:119 single-luogo.php:262
 msgid "Come raggiungerci"
-msgstr ""
+msgstr "How to reach us"
 
 #: page-templates/contatti.php:225
 msgid "Conferma"
-msgstr ""
+msgstr "Confirmation"
 
 #: inc/admin/options.php:10
 msgid "Configurazione"
-msgstr ""
+msgstr "Configuration"
 
 #: inc/admin/options.php:33
 msgid "Configurazione Laboratorio"
-msgstr ""
+msgstr "Lab configuration"
 
 #: footer.php:38 single-evento.php:111 single-evento.php:172
 #: single-indirizzo-di-ricerca.php:115 single-indirizzo-di-ricerca.php:187
@@ -258,64 +193,88 @@ msgstr "Contacts"
 msgid "dal"
 msgstr "from"
 
+#: inc/admin/options.php:234
+msgid "Danger"
+msgstr "Danger"
+
 #: single-evento.php:92 single-indirizzo-di-ricerca.php:94
 #: single-indirizzo-di-ricerca.php:139 single-luogo.php:101
 #: single-progetto.php:98 single-progetto.php:157 inc/admin/options.php:553
 #: inc/admin/options.php:554
 msgid "Descrizione"
-msgstr ""
+msgstr "Description"
 
 #: inc/admin/options.php:555
 msgid "Descrizione del laboratorio"
-msgstr ""
+msgstr "Lab description"
 
 #: inc/admin/options.php:575
 msgid "Descrizione del laboratorio in Inglese"
-msgstr ""
+msgstr "Lab description in English"
+
+#: inc/classes/class-placemanager.php:125
+msgid "Descrizione del luogo"
+msgstr "Description of the place"
+
+#: inc/classes/class-projectmanager.php:66
+msgid "Descrizione del progetto"
+msgstr "Description of the project"
+
+#: inc/classes/class-publicationmanager.php:112
+msgid "Descrizione della pubblicazione"
+msgstr "Description of the publication"
 
 #: inc/admin/options.php:573 inc/admin/options.php:574
 msgid "Descrizione ENG"
-msgstr ""
+msgstr "Description in English"
 
-#: single-evento.php:144
+#: inc/classes/class-eventmanager.php:76 single-evento.php:161
 msgid "Descrizione evento"
-msgstr ""
+msgstr "Description of the event"
+
+#: inc/classes/class-researchactivitiesmanager.php:67
+msgid "Descrizione indirizzo di ricerca"
+msgstr "Description of the research activity"
 
 #: single-luogo.php:139
 msgid "Descrizione luogo"
-msgstr ""
+msgstr "Description of the place"
+
+#: inc/classes/class-newsmanager.php:80
+msgid "Descrizione notizia"
+msgstr "Description of the news"
 
 #: inc/admin/options.php:625 inc/admin/options.php:696
 #: inc/admin/options.php:766 inc/admin/options.php:902
 #: inc/admin/options.php:971 inc/admin/options.php:1040
 msgid "Descrizione Sezione"
-msgstr ""
+msgstr "Description of section"
 
 #: inc/admin/options.php:644 inc/admin/options.php:715
 #: inc/admin/options.php:785 inc/admin/options.php:921
 #: inc/admin/options.php:991 inc/admin/options.php:1060
 msgid "Descrizione Sezione ENG"
-msgstr ""
+msgstr "Description of section in English"
 
 #: inc/admin/options.php:1109
 msgid "Descrizione Sezione Luoghi"
-msgstr ""
+msgstr "Description of places section"
 
 #: inc/admin/options.php:1126
 msgid "Descrizione Sezione Luoghi ENG"
-msgstr ""
+msgstr "Description of places section in English"
 
 #: inc/admin/options.php:833
 msgid "Descrizione Sezione Persone"
-msgstr ""
+msgstr "Description of people section"
 
 #: inc/admin/options.php:852
 msgid "Descrizione Sezione Persone ENG"
-msgstr ""
+msgstr "Description of people section in English"
 
 #. Name of the theme
 msgid "Design Laboratori Italia"
-msgstr ""
+msgstr "Design Laboratori Italia"
 
 #. Description of the theme
 msgid ""
@@ -327,282 +286,278 @@ msgstr ""
 
 #: single-luogo.php:92
 msgid "Dettagli del luogo"
-msgstr ""
+msgstr "Place details"
 
 #: single-indirizzo-di-ricerca.php:85 single-progetto.php:89
 msgid "Dettagli del progetto"
-msgstr ""
-
-#: single-evento.php:82
-msgid "Dettagli dell'evento"
-msgstr ""
+msgstr "Project deatils"
 
 #: single-persona.php:141
 msgid "DETTAGLI della persona"
-msgstr ""
+msgstr "Person details"
 
-#: page-templates/persone.php:60
-msgid "Disattiva filtri"
-msgstr ""
-
-#: footer.php:64 page-templates/contatti.php:198
+#: footer.php:64 page-templates/contatti.php:198 inc/admin/options.php:102
 msgid "E-mail"
-msgstr ""
-
-#: inc/admin/options.php:102
-msgid "Email *"
-msgstr ""
+msgstr "E-mail"
 
 #: inc/admin/options.php:138
-msgid "Ente padre *"
-msgstr ""
+msgid "Ente padre"
+msgstr "Membership institution"
 
 #: inc/admin/options.php:786
 msgid "es: \"Events from the Lab\""
-msgstr ""
+msgstr "e.g.: \"Events from the Lab\""
 
 #: inc/admin/options.php:626
 msgid "es: \"Gli articoli del laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Gli articoli del laboratorio\""
 
 #: inc/admin/options.php:767
 msgid "es: \"Gli eventi del laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Gli eventi del laboratorio\""
 
 #: inc/admin/options.php:1041
 msgid "es: \"Gli indirizzi di ricerca del Laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Gli indirizzi di ricerca del Laboratorio\""
 
 #: inc/admin/options.php:972
 msgid "es: \"I progetti del Laboratorio\""
-msgstr ""
+msgstr "e.g.: \"I progetti del Laboratorio\""
 
 #: inc/admin/options.php:1127
 msgid "es: \"Lab places\""
-msgstr ""
+msgstr "e.g.: \"Lab places\""
 
 #: inc/admin/options.php:992
 msgid "es: \"Lab projects\""
-msgstr ""
+msgstr "e.g.: \"Lab projects\""
 
 #: inc/admin/options.php:1061
 msgid "es: \"Lab research activities\""
-msgstr ""
+msgstr "e.g.: \"Lab research activities\""
 
 #: inc/admin/options.php:697
 msgid "es: \"Le notizie del laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Le notizie del laboratorio\""
 
 #: inc/admin/options.php:834
 msgid "es: \"Le persone del laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Le persone del laboratorio\""
 
 #: inc/admin/options.php:716
 msgid "es: \"News from the Lab\""
-msgstr ""
+msgstr "e.g.: \"News from the Lab\""
 
 #: inc/admin/options.php:853
 msgid "es: \"People from the Lab\""
-msgstr ""
+msgstr "e.g.: \"People from the Lab\""
 
 #: inc/admin/options.php:903
 msgid "es: \"Pubblicazioni dei membri del Laboratorio.\""
-msgstr ""
+msgstr "e.g.: \"Pubblicazioni dei membri del Laboratorio.\""
 
 #: inc/admin/options.php:922
 msgid "es: \"Publications by Lab members.\""
-msgstr ""
+msgstr "e.g.: \"Publications by Lab members.\""
 
 #: inc/admin/options.php:1110
 msgid "es: \"Questi i luoghi del laboratorio\""
-msgstr ""
+msgstr "e.g.: \"Questi i luoghi del laboratorio\""
 
 #: inc/admin/options.php:645
 msgid "es: \"The papers from the Lab\""
-msgstr ""
+msgstr "e.g.: \"The papers from the Lab\""
 
 #: inc/admin/options.php:535
 msgid "Etichetta"
-msgstr ""
+msgstr "Label"
 
 #: inc/admin/options.php:544
 msgid "Etichetta ENG"
-msgstr ""
+msgstr "Label in English"
 
 #: single-indirizzo-di-ricerca.php:122 single-indirizzo-di-ricerca.php:204
 #: single-progetto.php:140 single-progetto.php:240 inc/admin/options.php:742
 #: template-parts/hero/eventi.php:9 template-parts/home/card-eventi.php:21
 #: template-parts/home/eventi.php:13
 msgid "Eventi"
-msgstr ""
-
-#. Name of the template
-msgid "Eventi."
-msgstr ""
+msgstr "Events"
 
 #: inc/classes/class-eventmanager.php:47
 msgid "Evento"
-msgstr ""
+msgstr "Event"
 
 #: page-templates/persone.php:55
 msgid "Filtra per"
-msgstr ""
+msgstr "Filter by"
 
 #: page-templates/cerca.php:95
 msgid "Filtra per tipo di contenuto"
-msgstr ""
+msgstr "Filter by content type"
 
 #: inc/admin/options.php:408
 msgid "Gestione del carousel in Home Page"
-msgstr ""
+msgstr "Carousel management in Home Page"
 
 #: inc/admin/options.php:478
-msgid "Gestione della sezione dei contenuti in evidenza in Home Page."
-msgstr ""
+#| msgid "Gestione della sezione dei contenuti in evidenza in Home Page."
+msgid "Gestione della sezione dei contenuti in evidenza in Home Page"
+msgstr "Highlights management in Home Page"
 
 #: inc/admin/options.php:1281
 msgid "Gestione dello stile del sito"
-msgstr ""
+msgstr "Style website management"
 
 #: inc/admin/options.php:1304
 msgid "Gestione mappe"
-msgstr ""
+msgstr "Maps managment"
 
 #: inc/admin/options.php:306
 msgid "Gestione sezione Hero principale (opzionale) mostrato in Home Page"
-msgstr ""
+msgstr "Management of main hero section (optional) shown in Home Page"
 
 #: inc/admin/options.php:736
 msgid "Gli eventi"
-msgstr ""
+msgstr "The events"
 
 #: inc/admin/options.php:314
 msgid "Hero principale attivo"
-msgstr ""
+msgstr "Main hero enabled"
 
 #: inc/admin/options.php:289
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: inc/admin/options.php:283
 msgid "Home Page"
-msgstr ""
+msgstr "Home Page"
 
 #. Author URI of the theme
 msgid "https://ict.sns.it"
-msgstr ""
+msgstr "https://ict.sns.it"
 
 #: template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
-msgstr ""
+msgstr "Places"
 
 #: template-parts/home/gallery-luoghi.php:11
 msgid "I luoghi della scuola"
 msgstr ""
 
-#. Name of the template
-msgid "I Luoghi."
-msgstr ""
-
-#. Name of the template
-msgid "I progetti."
-msgstr ""
-
 #. Author of the theme
 msgid "ICT SNS"
-msgstr ""
+msgstr "ICT SNS"
 
-#: inc/utils.php:387
-msgid "Il "
-msgstr ""
+#: inc\classes\class-placemanager.php:124
+msgid "il"
+msgstr "the"
 
 #: inc/admin/options.php:595
 msgid "Il blog"
-msgstr ""
+msgstr "The blog"
 
 #: inc/admin/options.php:431
-msgid "Il carousel dopo la presentazione."
-msgstr ""
+msgid "Il carousel dopo la presentazione"
+msgstr "Carousel after presentation"
 
 #: inc/admin/options.php:503
 msgid "Il Laboratorio"
-msgstr ""
-
-#. Name of the template
-msgid "Il Laboratorio."
-msgstr ""
+msgstr "The Lab"
 
 #: inc/admin/options.php:163
 msgid ""
 "Il logo del laboratorio. Si raccomanda di caricare un'immagine in formato svg"
 msgstr ""
+"The logo of the lab. It is recommended to upload an image in svg format"
 
 #: inc/admin/options.php:55
 msgid "Il Nome del Laboratorio"
-msgstr ""
+msgstr "The Lab name"
 
 #: inc/admin/options.php:139
 msgid "Il nome dell'ente padre"
-msgstr ""
+msgstr "The member institution name"
 
 #: inc/admin/options.php:127
 msgid "Il numero di telefono del Laboratorio"
-msgstr ""
+msgstr "The Lab telephone number"
 
 #: inc/admin/options.php:390
 msgid "Immagine di sfondo"
-msgstr ""
+msgstr "Background image"
 
 #: inc/admin/options.php:391
 msgid "Immagine in formato png o jpg"
-msgstr ""
+msgstr "Image in png or jpg format"
 
 #: inc/classes/class-placemanager.php:88
 msgid "Immagine principale del Luogo"
-msgstr ""
+msgstr "Place main image"
 
 #: inc/classes/class-peoplemanager.php:86
 msgid "Immagine principale della Persona"
+msgstr "Person main image"
+
+#: inc\classes\class-placemanager.php:132
+msgid ""
+"in cui si svolge l'attività del laboratorio. I luoghi possono essere sede di "
+"strutture e canali fisici di erogazione di un servizio"
 msgstr ""
+"in which the activity of the laboratory takes place. Places can be "
+"structures locations and physical channels of service delivery"
 
 #: template-parts/home/carousel.php:14
-msgid ""
-"Indicare in Admin->Configurazione gli articoli da mostrare nel carousel."
-msgstr ""
+#| msgid ""
+#| "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel."
+msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
+msgstr "In Admin->Configure set the articles to show in the carousel"
 
 #: inc/admin/options.php:417
-msgid "Indicare se il carousel in Home Page deve essere visualizzato."
-msgstr ""
+#| msgid "Indicare se il carousel in Home Page deve essere visualizzato."
+msgid "Indicare se il carousel in Home Page deve essere visualizzato"
+msgstr "Whether the carousel in Home Page should be displayed"
 
 #: inc/admin/options.php:487
 msgid ""
-"Indicare se la sezione dei contenuti in evidenza deve essere visualizzata."
-msgstr ""
+"Indicare se la sezione dei contenuti in evidenza deve essere visualizzata"
+msgstr "Whether the highlights section should be displayed"
 
 #: single-evento.php:78
 msgid "Indietro"
-msgstr ""
+msgstr "Back"
 
 #: single-progetto.php:119 single-progetto.php:198 inc/admin/options.php:1012
 #: inc/admin/options.php:1018
 msgid "Indirizzi di ricerca"
-msgstr ""
+msgstr "Research activities"
 
 #: template-parts/home/indirizzi.php:13
 msgid "Indirizzi di studio"
-msgstr ""
+msgstr "Fields of study"
 
 #: inc/admin/options.php:90
-msgid "Indirizzo *"
-msgstr ""
+msgid "Indirizzo"
+msgstr "Address"
 
 #: inc/classes/class-researchactivitiesmanager.php:41
 msgid "Indirizzo di ricerca"
-msgstr ""
+msgstr "Research activity"
 
 #: template-parts/common/newsletter.php:21
 msgid "Indirizzo e-mail"
+msgstr "E-mail address"
+
+#: inc/admin/options.php:237
+msgid "Info"
+msgstr "Info"
+
+#: inc/classes/class-peoplemanager.php:122
+msgid ""
+"Inserire nel titolo il nome completo della persona ed eventualmente il nome "
+"completo per facilitare la ricerca"
 msgstr ""
+"Enter in the title the full name of the person and, where appropriate, the "
+"full name to facilitate the search"
 
 #: inc/admin/options.php:1393
 msgid ""
@@ -612,23 +567,23 @@ msgstr ""
 
 #: page-templates/cerca.php:67
 msgid "Inserisci il testo da cercare"
-msgstr ""
+msgstr "Type the search text"
 
-#: page-templates/contatti.php:193
+#: page-templates/contatti.php:284
 msgid "Inserisci il testo del messaggio"
-msgstr ""
+msgstr "Insert text for your message"
 
-#: page-templates/contatti.php:201
+#: page-templates/contatti.php:292
 msgid "Inserisci il tuo indirizzo email"
-msgstr ""
+msgstr "Enter your email address"
 
-#: page-templates/contatti.php:185
+#: page-templates/contatti.php:276
 msgid "Inserisci il tuo nome"
-msgstr ""
+msgstr "Enter your name"
 
-#: page-templates/contatti.php:207
+#: page-templates/contatti.php:298
 msgid "Inserisci il tuo numero di telefono"
-msgstr ""
+msgstr "Enter your phone number"
 
 #: inc/admin/options.php:1313
 msgid ""
@@ -638,25 +593,29 @@ msgid ""
 msgstr ""
 
 #: inc/admin/options.php:212
-msgid "Inserisci messaggi che saranno visualizzati nella homepage."
-msgstr ""
+msgid "Inserisci messaggi che saranno visualizzati nella homepage"
+msgstr "Enter the messages that will display in homepage"
 
 #: inc/admin/options.php:1176
-msgid "Inserisci qui i link ai tuoi socialmedia."
-msgstr ""
+#| msgid "Inserisci qui i link ai tuoi socialmedia."
+msgid "Inserisci qui i link ai tuoi socialmedia"
+msgstr "Insert here socialmedia links"
 
 #: inc/admin/options.php:612
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> il blog</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the blog</a>"
 
 #: inc/admin/options.php:1098
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina dei "
-"luoghi scolastici</a>"
+"luoghi</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the Places "
+"page</a>"
 
 #: inc/admin/options.php:753
 #, php-format
@@ -664,6 +623,8 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica degli Eventi</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the Events "
+"overview page</a>"
 
 #: inc/admin/options.php:1026
 #, php-format
@@ -671,6 +632,8 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica degli Indirizzi di ricerca</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the Research "
+"ativities overview page</a>"
 
 #: inc/admin/options.php:957
 #, php-format
@@ -678,6 +641,8 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica dei Progetti</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the Projects "
+"overview page</a>"
 
 #: inc/admin/options.php:520
 #, php-format
@@ -685,6 +650,8 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica del Laboratorio</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the Lab "
+"overview page</a>"
 
 #: inc/admin/options.php:682
 #, php-format
@@ -692,6 +659,8 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica delle Novità</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the News "
+"overview page</a>"
 
 #: inc/admin/options.php:821
 #, php-format
@@ -699,9 +668,11 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
 "panoramica delle Persone</a>"
 msgstr ""
+"Insert here the useful information to populate <a href=\"%s\"> the People "
+"overview page</a>"
 
 #: inc/admin/options.php:888
-#, fuzzy, php-format
+#, php-format
 #| msgid ""
 #| "Inserisci qui le informazioni utili a popolare <a href=\"%s\">la pagina "
 #| "di panoramica delle Pubblicazioni</a>"
@@ -714,47 +685,47 @@ msgstr ""
 
 #: template-parts/common/newsletter.php:25
 msgid "Invio"
-msgstr ""
+msgstr "Send"
 
 #: inc/admin/options.php:103
 msgid "L'email del Laboratorio"
-msgstr ""
+msgstr "Lab email"
 
 #: inc/admin/options.php:91
 msgid "L'indirizzo del Laboratorio"
-msgstr ""
+msgstr "Lab address"
 
 #: inc/admin/options.php:151
 msgid "L'url dell'ente padre"
-msgstr ""
+msgstr "Member institution URL"
 
 #: inc/admin/options.php:79
 msgid "La città dove risiede il Laboratorio"
-msgstr ""
+msgstr "Lab city"
 
 #: inc/admin/options.php:115
 msgid "La PEC del Laboratorio"
-msgstr ""
+msgstr "Lab PEC"
 
 #: inc/admin/options.php:67
 msgid "La tagline del Laboratorio"
-msgstr ""
+msgstr "Lab tagline"
 
 #: inc/admin/options.php:43
 msgid "La Tipologia del Laboratorio"
-msgstr ""
+msgstr "The Lab type"
 
 #: inc/admin/options.php:366
 msgid "Label bottone"
-msgstr ""
+msgstr "Button label"
 
 #: inc/admin/options.php:374
 msgid "Label bottone ENG"
-msgstr ""
+msgstr "Button label in English"
 
 #: inc/admin/options.php:507
 msgid "Laboratorio"
-msgstr ""
+msgstr "Lab"
 
 #: template-parts/hero/ricerca.php:9
 msgid "Le attività di ricerca"
@@ -762,37 +733,26 @@ msgstr "Research activities"
 
 #: inc/admin/options.php:665
 msgid "Le Novità"
-msgstr ""
+msgstr "The News"
 
 #: template-parts/hero/persone.php:9
 msgid "Le persone"
 msgstr "People"
 
-#: inc/admin/options.php:943
-msgid "Le progetti"
-msgstr ""
-
 #: inc/admin/options.php:874 template-parts/hero/pubblicazioni.php:9
 msgid "Le pubblicazioni"
-msgstr ""
+msgstr "Publications"
 
-#. Name of the template
-msgid "Le pubblicazioni."
-msgstr ""
-
-#: template-parts/home/carousel.php:44
-msgid "Leggi di piu"
-msgstr ""
-
-#: archive.php:82 page-templates/blog.php:113 page-templates/eventi.php:120
+#: template-parts/home/carousel.php:44 archive.php:82
+#: page-templates/blog.php:113 page-templates/eventi.php:120
 #: page-templates/notizie.php:113 template-parts/common/sezione-eventi.php:56
 #: template-parts/home/card-eventi.php:49 template-parts/home/card-news.php:37
 msgid "Leggi di più"
-msgstr ""
+msgstr "Read more"
 
 #: inc/admin/options.php:272
-msgid "Link al una pagina di approfondimento anche esterna al sito"
-msgstr ""
+msgid "Link a una pagina di approfondimento anche esterna al sito"
+msgstr "Link to an in-depth page also external to the site"
 
 #: footer.php:86
 msgid "Link utili"
@@ -800,108 +760,106 @@ msgstr "Useful links"
 
 #: inc/admin/options.php:1342
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: inc/admin/options.php:162
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: inc/classes/class-eventmanager.php:40
-msgid "Logo Identificativo del Evento"
-msgstr ""
+#| msgid "Logo Identificativo del Evento"
+msgid "Logo Identificativo dell'Evento"
+msgstr "Event identification logo"
 
 #: inc/classes/class-newsmanager.php:45
 msgid "Logo Identificativo della Notizia"
-msgstr ""
+msgstr "News identification logo"
 
 #: inc/admin/options.php:176
 msgid "Logo per mobile"
-msgstr ""
+msgstr "Mobile logo"
 
 #: inc/admin/options.php:1084 inc/admin/options.php:1090
 msgid "Luoghi"
-msgstr ""
+msgstr "Places"
 
 #: single-evento.php:101 single-evento.php:153
 #: inc/classes/class-placemanager.php:95
 msgid "Luogo"
-msgstr ""
+msgstr "Location"
 
 #: inc/admin/options.php:261
 msgid "Massimo 140 caratteri"
-msgstr ""
+msgstr "Maximum 140 characters"
 
 #: functions.php:144
 msgid "Menu a piè di pagina di link - footer"
-msgstr ""
+msgstr "Footer link menu - footer"
 
 #: functions.php:142
 msgid "Menu header di link in alto a destra"
-msgstr ""
+msgstr "Header link menu - top right"
 
 #: functions.php:143
 msgid "Menu link utili - footer"
-msgstr ""
+msgstr "Useful link menu - footer"
 
 #: functions.php:140
 msgid "Menu principale di link a sinistra"
-msgstr ""
+msgstr "Main link menu - top left"
 
 #: functions.php:141
 msgid "Menu secondario multilevel a destra"
-msgstr ""
+msgstr "Multilevel secondary right menu"
 
 #: inc/admin/options.php:193
 msgid "Messaggi"
-msgstr ""
-
-#: page-templates/contatti.php:94
-msgid "Messaggio inviato correttamente."
-msgstr ""
-
-#: page-templates/contatti.php:109
-msgid "Messaggio non inviato."
-msgstr ""
+msgstr "Messages"
 
 #: inc/admin/options.php:222
-msgid "Messaggio {#}"
-msgstr ""
+msgid "Messaggio"
+msgstr "Message"
+
+#: page-templates/contatti.php:94
+#| msgid "Messaggio inviato correttamente."
+msgid "Messaggio inviato correttamente"
+msgstr "Message sent successfully"
+
+#: page-templates/contatti.php:109
+msgid "Messaggio non inviato"
+msgstr "Message not sent"
 
 #: inc/classes/class-publicationmanager.php:43
 msgid "Modifica il tipo pubblicazione"
-msgstr ""
+msgstr "Update the publication type"
 
 #: inc/classes/class-peoplemanager.php:46
 msgid "Modifica la Struttura"
-msgstr ""
+msgstr "Update the structure"
 
 #: inc/classes/class-placemanager.php:48
 msgid "Modifica la Tipologia luogo"
-msgstr ""
+msgstr "Update the place type"
 
 #: inc/admin/options.php:430
-msgid "Mostra carousel dopo presentazione."
-msgstr ""
+msgid "Mostra carousel dopo presentazione"
+msgstr "Show carousel after presentation"
 
 #: inc/admin/options.php:1182
 msgid "Mostra le icone social"
-msgstr ""
+msgstr "Show social media icons"
 
 #: inc/admin/options.php:1363
 msgid "Multilingua"
-msgstr ""
-
-#: inc/utils.php:674
-msgid "Nessun Feedback "
-msgstr ""
+msgstr "Multi-language"
 
 #: template-parts/header/top-menu.php:9
 msgid "News e contatti"
-msgstr "News e ocntacts"
+msgstr "News e contacts"
 
 #: inc/admin/options.php:1321 template-parts/common/newsletter.php:8
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: inc/admin/options.php:320 inc/admin/options.php:422
 #: inc/admin/options.php:436 inc/admin/options.php:450
@@ -909,81 +867,83 @@ msgstr ""
 #: inc/admin/options.php:1188 inc/admin/options.php:1334
 #: inc/admin/options.php:1355 inc/admin/options.php:1376
 msgid "No"
-msgstr ""
+msgstr "No"
+
+#: inc\classes\class-placemanager.php:130
+msgid "Nome del Luogo"
+msgstr "Place's name"
 
 #: page-templates/contatti.php:182
 msgid "Nome e cognome"
-msgstr ""
+msgstr "Name and surname"
 
 #: inc/admin/options.php:54
-msgid "Nome Laboratorio *"
-msgstr ""
+msgid "Nome Laboratorio"
+msgstr "Lab name"
 
 #: page-templates/ricerca.php:97
 msgid "Non è stata trovata nessuna attività di ricerca"
-msgstr ""
+msgstr "No research activities available"
 
 #: page-templates/notizie.php:136
 msgid "Non è stata trovata nessuna notizia"
-msgstr ""
+msgstr "No news available"
 
 #: page-templates/persone.php:206
 msgid "Non è stata trovata nessuna persona"
-msgstr ""
+msgstr "No people available"
 
 #: page-templates/pubblicazioni.php:236
 msgid "Non è stata trovata nessuna pubblicazione"
-msgstr ""
+msgstr "No publications available"
 
 #: page-templates/luoghi.php:149
 msgid "Non è stata trovato nessun luogo"
-msgstr ""
+msgstr "Places not available"
 
 #: page-templates/eventi.php:142
 msgid "Non è stato trovato alcun evento"
-msgstr ""
+msgstr "No events available"
 
 #: archive.php:104 page-templates/blog.php:136
 msgid "Non è stato trovato nessun articolo"
-msgstr ""
+msgstr "No posts available"
 
 #: page-templates/archive-progetti.php:99 page-templates/progetti.php:117
 msgid "Non è stato trovato nessun progetto"
-msgstr ""
+msgstr "No projects available"
 
 #: inc/classes/class-newsmanager.php:52
 msgid "Notizia"
-msgstr ""
+msgstr "News"
 
 #: template-parts/hero/notizie.php:9 template-parts/home/card-news.php:21
 msgid "Notizie"
 msgstr "News"
 
-#. Name of the template
-msgid "Notizie."
-msgstr ""
-
-#: inc/admin/options.php:671
+#: inc/admin/options.php:876
 msgid "Novità"
-msgstr ""
+msgstr "News"
 
 #: inc/classes/class-peoplemanager.php:49
 msgid "Nuova Struttura"
-msgstr ""
+msgstr "New structure"
 
 #: inc/classes/class-placemanager.php:51
 msgid "Nuova Tipologia luogo"
-msgstr ""
+msgstr "New place type"
 
 #: inc/classes/class-publicationmanager.php:46
 msgid "Nuovo tipo pubblicazione"
-msgstr ""
+msgstr "New publication type"
 
 #: inc/admin/options.php:219
 msgid ""
 "Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) "
-"e data di scadenza (opzionale)."
+"e data di scadenza (opzionale)"
 msgstr ""
+"Each message is built through short description (max 140 characters) and "
+"expiration date"
 
 #: 404.php:23
 msgid ""
@@ -994,23 +954,23 @@ msgstr ""
 
 #: inc/admin/options.php:14
 msgid "Opzioni di base"
-msgstr ""
+msgstr "Basic options"
 
 #: 404.php:22
 msgid "Pagina non trovata"
-msgstr ""
+msgstr "Page not found"
 
 #: single-progetto.php:112 single-progetto.php:184
 msgid "Partecipanti"
-msgstr ""
+msgstr "Participants"
 
 #: inc/admin/options.php:114
 msgid "PEC"
-msgstr ""
+msgstr "PEC"
 
 #: inc/classes/class-peoplemanager.php:93
 msgid "Persona"
-msgstr ""
+msgstr "Person"
 
 #. Name of the template
 #: inc/admin/options.php:806 inc/admin/options.php:812
@@ -1019,47 +979,47 @@ msgstr "People"
 
 #: single-luogo.php:110 single-luogo.php:150
 msgid "Posizione"
-msgstr ""
+msgstr "Location"
 
 #: inc/classes/class-eventmanager.php:34
 msgctxt "Post Type General Name"
 msgid "Eventi"
-msgstr ""
+msgstr "Events"
 
 #: inc/classes/class-researchactivitiesmanager.php:33
 msgctxt "Post Type General Name"
 msgid "Indirizzi di ricerca"
-msgstr ""
+msgstr "Research activities"
 
 #: inc/classes/class-placemanager.php:82
 msgctxt "Post Type General Name"
 msgid "Luoghi"
-msgstr ""
+msgstr "Places"
 
 #: inc/classes/class-newsmanager.php:39
 msgctxt "Post Type General Name"
 msgid "Notizie"
-msgstr ""
+msgstr "News"
 
 #: inc/classes/class-peoplemanager.php:80
 msgctxt "Post Type General Name"
 msgid "Persone"
-msgstr ""
+msgstr "People"
 
 #: inc/classes/class-projectmanager.php:30
 msgctxt "Post Type General Name"
 msgid "Progetti"
-msgstr ""
+msgstr "Projects"
 
 #: inc/classes/class-publicationmanager.php:76
 msgctxt "Post Type General Name"
 msgid "Pubblicazioni"
-msgstr ""
+msgstr "Publications"
 
 #: inc/classes/class-peopletypemanager.php:31
 msgctxt "Post Type General Name"
 msgid "Tipologia Persone"
-msgstr ""
+msgstr "People type"
 
 #: inc/classes/class-placemanager.php:85
 msgctxt "Post Type Singular Name"
@@ -1069,185 +1029,181 @@ msgstr "Add the Place"
 #: inc/classes/class-peoplemanager.php:83
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Persona"
-msgstr ""
+msgstr "Add the Person"
 
 #: inc/classes/class-publicationmanager.php:79
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Pubblicazione"
-msgstr ""
+msgstr "Add the Publication"
 
 #: inc/classes/class-peopletypemanager.php:34
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Tipologia Persona"
-msgstr ""
+msgstr "Add the Person type"
 
 #: inc/classes/class-placemanager.php:84
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Luogo"
-msgstr ""
+msgstr "Add place"
 
 #: inc/classes/class-peoplemanager.php:82
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Persona"
-msgstr ""
+msgstr "Add Person"
 
 #: inc/classes/class-publicationmanager.php:78
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Pubblicazione"
-msgstr ""
+msgstr "Add Publication"
 
 #: inc/classes/class-peopletypemanager.php:33
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Tipologia  Persona"
-msgstr ""
+msgstr "Add Person type"
 
 #: inc/classes/class-eventmanager.php:36 inc/classes/class-eventmanager.php:37
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Evento"
-msgstr ""
+msgstr "Add an Event"
 
 #: inc/classes/class-researchactivitiesmanager.php:35
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Indirizzo di ricerca"
-msgstr ""
+msgstr "Add a research activity"
 
 #: inc/classes/class-researchactivitiesmanager.php:36
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un nuovo Indirizzo di ricerca"
-msgstr ""
+msgstr "Add a new Research activity"
+
+#: inc/classes/class-projectmanager.php:33
+msgctxt "Post Type Singular Name"
+msgid "Aggiungi un nuovo Progetto"
+msgstr "Add a new Project"
 
 #: inc/classes/class-projectmanager.php:32
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Progetto"
-msgstr ""
+msgstr "Add a Project"
 
 #: inc/classes/class-newsmanager.php:41 inc/classes/class-newsmanager.php:42
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi una Notizia"
-msgstr ""
-
-#: inc/classes/class-projectmanager.php:33
-msgctxt "Post Type Singular Name"
-msgid "Aggiungi una nuovo Progetto"
-msgstr ""
+msgstr "Add a News"
 
 #: inc/classes/class-eventmanager.php:35
 msgctxt "Post Type Singular Name"
 msgid "Evento"
-msgstr ""
+msgstr "Event"
 
 #: inc/classes/class-researchactivitiesmanager.php:34
 msgctxt "Post Type Singular Name"
 msgid "Indirizzo di ricerca"
-msgstr ""
+msgstr "Research activity"
 
 #: inc/classes/class-placemanager.php:83
 msgctxt "Post Type Singular Name"
 msgid "Luogo"
-msgstr ""
+msgstr "Place"
 
 #: inc/classes/class-eventmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Modifica il Evento"
-msgstr ""
+msgstr "Update the Event"
 
 #: inc/classes/class-placemanager.php:86
 msgctxt "Post Type Singular Name"
 msgid "Modifica il Luogo"
-msgstr ""
+msgstr "Update the Place"
 
 #: inc/classes/class-projectmanager.php:34
 msgctxt "Post Type Singular Name"
 msgid "Modifica il Progetto"
-msgstr ""
+msgstr "Update the Project"
 
 #: inc/classes/class-researchactivitiesmanager.php:37
 msgctxt "Post Type Singular Name"
 msgid "Modifica l'Indirizzo di ricerca"
-msgstr ""
+msgstr "Update the Research activity"
 
 #: inc/classes/class-newsmanager.php:43
 msgctxt "Post Type Singular Name"
 msgid "Modifica la Notizia"
-msgstr ""
+msgstr "Update the News"
 
 #: inc/classes/class-peoplemanager.php:84
 msgctxt "Post Type Singular Name"
 msgid "Modifica la Persona"
-msgstr ""
+msgstr "Update the Person"
 
 #: inc/classes/class-publicationmanager.php:80
 msgctxt "Post Type Singular Name"
 msgid "Modifica la Pubblicazione"
-msgstr ""
+msgstr "Update the Publication"
 
 #: inc/classes/class-peopletypemanager.php:35
 msgctxt "Post Type Singular Name"
 msgid "Modifica la Tipologia Persona"
-msgstr ""
+msgstr "Update the People type"
 
 #: inc/classes/class-newsmanager.php:40
 msgctxt "Post Type Singular Name"
 msgid "Notizia"
-msgstr ""
+msgstr "News"
 
 #: inc/classes/class-peoplemanager.php:81
 msgctxt "Post Type Singular Name"
 msgid "Persona"
-msgstr ""
+msgstr "Person"
 
 #: inc/classes/class-projectmanager.php:31
 msgctxt "Post Type Singular Name"
 msgid "Progetto"
-msgstr ""
+msgstr "Project"
 
 #: inc/classes/class-publicationmanager.php:77
 msgctxt "Post Type Singular Name"
 msgid "Pubblicazione"
-msgstr ""
+msgstr "Publication"
 
 #: inc/classes/class-peopletypemanager.php:32
 msgctxt "Post Type Singular Name"
 msgid "Tipologia Persona"
-msgstr ""
+msgstr "People type"
 
 #: inc/classes/class-eventmanager.php:39
 msgctxt "Post Type Singular Name"
 msgid "Visualizza il Evento"
-msgstr ""
+msgstr "Display the Event"
 
 #: inc/classes/class-placemanager.php:87
 msgctxt "Post Type Singular Name"
 msgid "Visualizza il Luogo"
-msgstr ""
+msgstr "Display the Place"
 
 #: inc/classes/class-newsmanager.php:44
 msgctxt "Post Type Singular Name"
 msgid "Visualizza la Notizia"
-msgstr ""
+msgstr "Display the News"
 
 #: inc/classes/class-peoplemanager.php:85
 msgctxt "Post Type Singular Name"
 msgid "Visualizza la Persona"
-msgstr ""
+msgstr "Display the Person"
 
 #: inc/classes/class-publicationmanager.php:81
 msgctxt "Post Type Singular Name"
 msgid "Visualizza la Pubblicazione"
-msgstr ""
+msgstr "Display the Publication"
 
 #: inc/classes/class-peopletypemanager.php:36
 msgctxt "Post Type Singular Name"
 msgid "Visualizza la Tipologia  Persona"
-msgstr ""
+msgstr "Display the People type"
 
 #: footer.php:55
 msgid "Posta Elettronica Certificata"
 msgstr "Certified E-mail"
-
-#: inc/utils.php:675
-msgid "Presa Visione"
-msgstr ""
 
 #: single-indirizzo-di-ricerca.php:108 single-indirizzo-di-ricerca.php:170
 #: single-persona.php:160 single-persona.php:235 inc/admin/options.php:949
@@ -1257,58 +1213,54 @@ msgstr "Projects"
 
 #: inc/classes/class-projectmanager.php:38
 msgid "Progetto"
-msgstr ""
+msgstr "Project"
 
 #: inc/classes/class-publicationmanager.php:85
 msgid "Pubblicazione"
-msgstr ""
+msgstr "Publication"
 
 #: single-persona.php:191 single-persona.php:317 single-progetto.php:126
 #: single-progetto.php:212 inc/admin/options.php:880
 #: template-parts/home/card-pubblicazioni.php:21
 msgid "Pubblicazioni"
-msgstr ""
+msgstr "Publications"
 
 #: template-parts/home/banner.php:12
 msgid "Pubblicità e Informazione"
-msgstr ""
+msgstr "Publicity and Information"
 
 #: inc/admin/options.php:1350
 msgid "Pulsante per il login visibile"
-msgstr ""
+msgstr "Button for login visible"
 
 #: single-indirizzo-di-ricerca.php:101 single-indirizzo-di-ricerca.php:153
 #: single-progetto.php:105 single-progetto.php:170
 msgid "Responsabile"
-msgstr ""
-
-#. Name of the template
-msgid "Ricerca."
-msgstr ""
+msgstr "Manager"
 
 #: inc/admin/options.php:224
 msgid "Rimuovi il messaggio"
-msgstr ""
+msgstr "Remove the message"
 
 #: inc/classes/class-placemanager.php:90
 msgid "Rimuovi Immagine"
-msgstr ""
+msgstr "Remove image"
 
 #: inc/classes/class-eventmanager.php:42
 msgid "Rimuovi Immagine Evento"
-msgstr ""
+msgstr "Remove image of event"
 
 #: inc/classes/class-newsmanager.php:47
 msgid "Rimuovi Immagine Notizia"
-msgstr ""
+msgstr "Remove news image"
 
 #: page-templates/cerca.php:125
 msgid "Risultati"
-msgstr ""
+msgstr "Results"
 
 #: page-templates/pubblicazioni.php:134
 msgid "Scegli un'opzione"
-msgstr ""
+msgstr "Select an option"
 
 #: template-parts/common/social.php:5 template-parts/common/social_footer.php:7
 #: template-parts/common/social_footer.php:7
@@ -1317,13 +1269,7 @@ msgstr "Follow us on"
 
 #: inc/admin/options.php:1371
 msgid "Selettore lingua visibile"
-msgstr ""
-
-#: inc/admin/options.php:1144
-msgid ""
-"Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo "
-"l'elenco delle strutture."
-msgstr ""
+msgstr "Language selector visible"
 
 #: inc/admin/options.php:445
 msgid ""
@@ -1331,82 +1277,89 @@ msgid ""
 "stato settato il flag \"Promuovi in carousel\". <b>No</b> per sceglierli "
 "manualmente nella sezione seguente."
 msgstr ""
+"Select <b>Yes</b> to automatically show articles for which the \"Promote in "
+"carousel\" flag has been set. <b>No</b> to choose them manually in the "
+"following section"
 
 #: inc/admin/options.php:458
 msgid ""
 "Seleziona gli articoli da mostrare nel carousel della Home Page, se "
 "disabilitata la selezione automatica"
 msgstr ""
+"Select the articles to show in the carousel of the Home Page, if the "
+"automatic selection is disabled"
 
 #: inc/admin/options.php:457
-msgid "Selezione articoli "
-msgstr ""
+msgid "Selezione articoli"
+msgstr "Selection of Articles"
 
 #: inc/admin/options.php:444
 msgid "Selezione Automatica"
-msgstr ""
+msgstr "Automatic selection"
 
 #: header.php:76
 msgid "Selezione lingua: lingua selezionata"
-msgstr ""
+msgstr "Language selection: selected language"
 
 #: inc/admin/options.php:1290
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
-"Desgners Italia)"
+"Designers Italia)"
 msgstr ""
+"Select the website style (choose default to use the standard one of "
+"Designers Italia)"
 
 #: inc/admin/options.php:407
 msgid "Sezione Carousel"
-msgstr ""
+msgstr "Carousel section"
 
 #: inc/admin/options.php:477
 msgid "Sezione contenuti in evidenza"
-msgstr ""
+msgstr "Highlights section"
 
 #: inc/admin/options.php:757
 msgid "Sezione Eventi"
-msgstr ""
+msgstr "Events section"
 
 #: inc/admin/options.php:305
 msgid "Sezione hero principale"
-msgstr ""
+msgstr "Main hero section"
 
 #: inc/admin/options.php:962
 msgid "Sezione I Progetti"
-msgstr ""
-
-#: inc/admin/options.php:892
-msgid "Sezione I Pubblicazioni"
-msgstr ""
+msgstr "Projects section"
 
 #: inc/admin/options.php:616
 msgid "Sezione Il Blog"
-msgstr ""
+msgstr "Blog section"
 
 #: inc/admin/options.php:525
 msgid "Sezione Il Laboratorio"
-msgstr ""
+msgstr "Lab section"
 
 #: inc/admin/options.php:1031
 msgid "Sezione Indirizzi Ricerca"
-msgstr ""
+msgstr "Research activities section"
 
 #: inc/admin/options.php:687
 msgid "Sezione Le Novità"
-msgstr ""
+msgstr "News section"
+
+#: inc/admin/options.php:1097
+msgid "Sezione Le Pubblicazioni"
+msgstr "Publications section"
 
 #: inc/admin/options.php:1102
 msgid "Sezione Luoghi"
-msgstr ""
+msgstr "Places section"
 
 #: inc/admin/options.php:824
 msgid "Sezione Persone"
-msgstr ""
+msgstr "People section"
 
 #: inc/admin/options.php:1175
 msgid "Sezione socialmedia"
-msgstr ""
+msgstr "Socialmedia section"
 
 #: inc/admin/options.php:319 inc/admin/options.php:421
 #: inc/admin/options.php:435 inc/admin/options.php:449
@@ -1414,145 +1367,143 @@ msgstr ""
 #: inc/admin/options.php:1187 inc/admin/options.php:1333
 #: inc/admin/options.php:1354 inc/admin/options.php:1375
 msgid "Si"
-msgstr ""
+msgstr "Yes"
 
-#: inc/utils.php:676
-msgid "Si / No"
-msgstr ""
-
-#: inc/utils.php:677
-msgid "Si / No / Presa Visione"
-msgstr ""
-
-#: single-progetto.php:51 template-parts/common/sezione-contatti.php:60
+#: single-progetto.php:69 template-parts/common/sezione-contatti.php:60
+#: single-evento.php:234 single-persona.php:470
 msgid "Sito web"
-msgstr ""
+msgstr "Website"
 
 #: inc/admin/options.php:1158 inc/admin/options.php:1164
 msgid "Socialmedia"
-msgstr ""
+msgstr "Socialmedia"
 
 #: inc/admin/options.php:1289
 msgid "Stile del sito"
-msgstr ""
+msgstr "Style of website"
 
 #: inc/classes/class-peoplemanager.php:50
 msgid "Struttura"
-msgstr ""
+msgstr "Structure"
+
+#: inc/admin/options.php:235
+msgid "Success"
+msgstr "Success"
 
 #: inc/admin/options.php:66
-msgid "Tagline *"
-msgstr ""
+msgid "Tagline"
+msgstr "Tagline"
 
 #: inc/classes/class-peoplemanager.php:42
 msgctxt "taxonomy general name"
 msgid "Struttura"
-msgstr ""
+msgstr "Structure"
 
 #: inc/classes/class-publicationmanager.php:39
 msgctxt "taxonomy general name"
 msgid "Tipo pubblicazione"
-msgstr ""
+msgstr "Publication type"
 
 #: inc/classes/class-placemanager.php:44
 msgctxt "taxonomy general name"
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
 #: inc/classes/class-peoplemanager.php:43
 msgctxt "taxonomy singular name"
 msgid "Struttura"
-msgstr ""
+msgstr "Structure"
 
 #: inc/classes/class-publicationmanager.php:40
 msgctxt "taxonomy singular name"
 msgid "Tipo pubblicazione"
-msgstr ""
+msgstr "Publication type"
 
 #: inc/classes/class-placemanager.php:45
 msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
-#: footer.php:73 page-templates/contatti.php:204
+#: footer.php:73 page-templates/contatti.php:204 inc/admin/options.php:126
 msgid "Telefono"
 msgstr "Phone"
 
-#: inc/admin/options.php:126
-msgid "Telefono *"
-msgstr ""
-
 #: page-templates/contatti.php:190 inc/admin/options.php:260
 msgid "Testo"
-msgstr ""
+msgstr "Text"
+
+#: page-templates/contatti.php:281
+msgid "Testo del messaggio"
+msgstr "Message text"
 
 #: inc/admin/options.php:344
 msgid "Testo hero"
-msgstr ""
+msgstr "Hero text"
 
 #: inc/admin/options.php:355
 msgid "Testo hero ENG"
-msgstr ""
+msgstr "Hero text in English"
 
 #: inc/classes/class-publicationmanager.php:47
 msgid "Tipo Pubblicazione"
-msgstr ""
+msgstr "Publication type"
 
 #: page-templates/luoghi.php:79 page-templates/pubblicazioni.php:157
-msgid "Tipologia"
-msgstr ""
-
 #: inc/admin/options.php:42
-msgid "Tipologia *"
-msgstr ""
+msgid "Tipologia"
+msgstr "Type"
 
 #: inc/classes/class-placemanager.php:52
 msgid "Tipologia luogo"
-msgstr ""
+msgstr "Place type"
 
 #: inc/classes/class-peopletypemanager.php:40
 msgid "Tipologia Persona"
-msgstr ""
+msgstr "People type"
+
+#: inc\classes\class-placemanager.php:126
+msgid "Titolo"
+msgstr "Title"
 
 #: inc/admin/options.php:536
 msgid "Titolo della sezione"
-msgstr ""
+msgstr "Title of section"
 
 #: inc/admin/options.php:545
 msgid "Titolo della sezione in Inglese"
-msgstr ""
+msgstr "Title of section in English"
 
 #: inc/admin/options.php:328
 msgid "Titolo hero"
-msgstr ""
+msgstr "Hero title"
 
 #: inc/admin/options.php:336
 msgid "Titolo hero ENG"
-msgstr ""
+msgstr "Hero title in English"
 
 #: template-parts/home/strutture.php:58
 msgid "Tutta l’organizzazione"
-msgstr ""
+msgstr "Whole organization"
 
 #: single-notizia.php:66
 msgid "Tutte le notizie"
-msgstr ""
+msgstr "All news"
 
 #: page-templates/persone.php:60 inc/classes/class-peoplemanager.php:45
 msgid "Tutte le strutture"
-msgstr ""
+msgstr "All structures"
 
 #: inc/classes/class-placemanager.php:47
 msgid "Tutte le tipologie luogo"
-msgstr ""
+msgstr "All Place types"
 
 #: single-post.php:66
 msgid "Tutti gli articoli"
-msgstr ""
+msgstr "All articles"
 
 #: inc/classes/class-publicationmanager.php:42
 msgid "Tutti i tipi"
-msgstr ""
+msgstr "All types"
 
 #: single-persona.php:201 single-persona.php:362
 msgid "Ulteriori informazioni"
@@ -1560,27 +1511,28 @@ msgstr "More info"
 
 #: inc/admin/options.php:382
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: inc/admin/options.php:150
-msgid "Url ente padre *"
-msgstr ""
+#| msgid "Url ente padre *"
+msgid "Url ente padre"
+msgstr "Member institution URL"
 
 #: inc/classes/class-placemanager.php:91
 msgid "Usa come Immagine del Luogo"
-msgstr ""
+msgstr "Use as Place image"
 
 #: inc/classes/class-eventmanager.php:43
 msgid "Usa come Immagine Evento"
-msgstr ""
+msgstr "Use as Event image"
 
 #: inc/classes/class-newsmanager.php:48
 msgid "Usa come Immagine Notizia"
-msgstr ""
+msgstr "Use as News image"
 
-#: page-templates/contatti.php:82
+#: page-templates/contatti.php:172
 msgid "Utilizza i dati di contatto o compila il form sottostante"
-msgstr ""
+msgstr "Use the contact details or fill in the form below"
 
 #: inc/admin/options.php:177
 msgid ""
@@ -1588,26 +1540,28 @@ msgid ""
 "laboratorio visibile dal menu hamburger (mobile). Si raccomanda di caricare "
 "un'immagine in formato svg"
 msgstr ""
+"Use this field to upload an alternative image to the lab logo visible from "
+"the burger menu (mobile). It is recommended to upload an image in svg format"
 
 #: template-parts/common/skiplink.php:2
 msgid "Vai ai contenuti"
-msgstr ""
+msgstr "Skip to contents"
 
 #: template-parts/common/skiplink.php:4
 msgid "Vai al footer"
-msgstr ""
+msgstr "Skip to footer"
 
 #: template-parts/hero/home.php:41
 msgid "Vai al laboratorio"
-msgstr ""
+msgstr "Go to the lab"
 
 #: template-parts/common/skiplink.php:3
 msgid "Vai al menu di navigazione"
-msgstr ""
+msgstr "Skip to main navigation"
 
 #: page-templates/archive-progetti.php:77 page-templates/progetti.php:95
 msgid "Vai al progetto"
-msgstr ""
+msgstr "Go to project"
 
 #: page-templates/ricerca.php:75
 msgid "Vai all'attività"
@@ -1615,36 +1569,44 @@ msgstr "Go to research activity"
 
 #: template-parts/common/newsletter.php:7
 msgid "Vai alla pagina: Newsletter"
-msgstr ""
+msgstr "Go to Newsletter"
 
 #: template-parts/home/eventi.php:34 template-parts/home/indirizzi.php:29
 msgid "Vedi tutti"
-msgstr ""
+msgstr "View all"
 
 #: template-parts/home/gallery-luoghi.php:27
 msgid "Vedi tutti i luoghi"
-msgstr ""
+msgstr "View all places"
 
 #: single-evento.php:129 single-evento.php:253
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: inc/admin/options.php:416
 msgid "Visualizza carousel"
-msgstr ""
+msgstr "Show carousel"
 
 #: inc/admin/options.php:486
 msgid "Visualizza contenuti in evidenza"
-msgstr ""
+msgstr "Show highlight contents"
 
-#: inc/admin/options.php:1143
+#: inc/admin/options.php:1348
 msgid "Visualizza mappa"
-msgstr ""
+msgstr "Show map"
 
-#: page-templates/contatti.php:214
+#: page-templates/contatti.php:306
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
-msgstr ""
+msgstr "Would you like to receive email notification"
+
+#: inc/admin/options.php:236
+msgid "Warning"
+msgstr "Warning"
 
 #: inc/admin/options.php:1384
 msgid "Web Analytics Italia"
-msgstr ""
+msgstr "Web Analytics Italia"
+
+#: inc\classes\class-placemanager.php:128
+msgid "è il"
+msgstr "is the"

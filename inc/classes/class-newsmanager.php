@@ -77,7 +77,9 @@ class News_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( NEWS_POST_TYPE === $post->post_type ) {
-			_e( '<h1>Descrizione notizia</h1>', 'design_laboratori_italia' );
+			echo '<h1>';
+			_e( 'Descrizione notizia', 'design_laboratori_italia' );
+			echo '</h1>';
 		}
 	}
 

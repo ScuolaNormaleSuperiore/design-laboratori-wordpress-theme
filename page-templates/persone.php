@@ -57,7 +57,7 @@ $num_results = $the_query->found_posts;
 							<?php } ?>
 
 							<div class="chip chip-primary chip-lg chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
-								<span class="chip-label"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Disattiva filtri', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
+								<span class="chip-label"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
 							</div>
 						</div>
 						<!-- FINE FILTRI -->

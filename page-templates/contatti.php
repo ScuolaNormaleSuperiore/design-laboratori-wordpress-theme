@@ -133,7 +133,7 @@ if ( 'yes' === $forminviato ) {
 		// 4a - Invio email al laboratorio.
 		$sent = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
 		if ( ! $sent ) {
-			$testorisultato = $testorisultato . '<BR/>' . __( 'Messaggio non inviato.', 'design_laboratori_italia' );
+			$testorisultato = $testorisultato . '<BR/>' . __( 'Messaggio non inviato', 'design_laboratori_italia' ) . '&nbsp;.';
 		}
 		if ( 'on' === $ricevuta ) {
 			// 4b - Invio Email di copia.
@@ -182,7 +182,7 @@ if ( 'yes' === $forminviato ) {
 	?>
 	<div class="container my-12 p-2">
 		<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-		<?php echo __( 'Messaggio inviato correttamente.', 'design_laboratori_italia' ); ?>
+		<?php echo __( 'Messaggio inviato correttamente', 'design_laboratori_italia' ) . '&nbsp;.'; ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 				<svg class="icon">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
@@ -303,7 +303,10 @@ if ( 'yes' === $forminviato ) {
 									<div class="form-group col-md-9">
 										<div class="toggles">
 											<label for="ricevuta">
-												<?php echo __( 'Vuoi ricevere notifica al tuo indirizzo email ?', 'design_laboratori_italia' ); ?>
+												<?php
+												echo __( 'Vuoi ricevere notifica al tuo indirizzo email', 'design_laboratori_italia' );
+												echo '?';
+													?>
 												<input type="checkbox" id="ricevuta" name="ricevuta">
 												<span class="lever"></span>
 											</label>

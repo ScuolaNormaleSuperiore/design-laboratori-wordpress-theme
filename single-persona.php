@@ -178,7 +178,7 @@ $pubblicazioni = new WP_Query(
 												<li class="nav-item">
 													<a class="nav-link" href="#p3">
 														<span><?php
-															_e( 'Attività di ricerca', "design_laboratori_italia" );
+															echo __( 'Attività di ricerca', "design_laboratori_italia" );
 														?></span>
 													</a>
 												</li>
@@ -278,7 +278,7 @@ $pubblicazioni = new WP_Query(
 								)
 							);
 							?>
-						<h3 class="it-page-section h4 pt-3" id="p3">Attività di ricerca</h3>
+						<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Attività di ricerca', "design_laboratori_italia" );?></h3>
 						<!-- INDIRIZZI DI RICERCA -->
 						<section id="indirizzi-ricerca">
 							<div class="row pb-3">

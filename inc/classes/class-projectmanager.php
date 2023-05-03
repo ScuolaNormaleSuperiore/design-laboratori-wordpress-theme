@@ -30,7 +30,7 @@ class Project_Manager {
 						'name'          => _x( 'Progetti', 'Post Type General Name', 'design_laboratori_italia' ),
 						'singular_name' => _x( 'Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
 						'add_new'       => _x( 'Aggiungi un Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
-						'add_new_item'  => _x( 'Aggiungi una nuovo Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
+						'add_new_item'  => _x( 'Aggiungi un nuovo Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
 						'edit_item'     => _x( 'Modifica il Progetto', 'Post Type Singular Name', 'design_laboratori_italia' )
 					);
 
@@ -62,7 +62,9 @@ class Project_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( PROGETTO_POST_TYPE === $post->post_type ) {
-			_e( '<h1>Descrizione del progetto</h1>', 'design_laboratori_italia' );
+			echo '<h1>';
+			_e( 'Descrizione del progetto', 'design_laboratori_italia' );
+			echo '</h1>';
 		}
 	}
 
