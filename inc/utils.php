@@ -28,22 +28,22 @@ if(!function_exists("dli_get_option")) {
 	}
 }
 
-/**
- * Define members check user function if not defined and return true
- * @param  int     $user_id
- * @param  int     $post_id
- * @return bool
- */
-if(!function_exists("dli_members_can_user_view_post")) {
-		function dli_members_can_user_view_post($user_id, $post_id) {
-				if(!function_exists("members_can_user_view_post")) {
-						return true;
-				} else{
-						return members_can_user_view_post($user_id, $post_id);
-				}
+// /**
+//  * Define members check user function if not defined and return true
+//  * @param  int     $user_id
+//  * @param  int     $post_id
+//  * @return bool
+//  */
+// if(!function_exists("dli_members_can_user_view_post")) {
+// 		function dli_members_can_user_view_post($user_id, $post_id) {
+// 				if(!function_exists("members_can_user_view_post")) {
+// 						return true;
+// 				} else{
+// 						return members_can_user_view_post($user_id, $post_id);
+// 				}
 
-		}
-}
+// 		}
+// }
 
 /**
  * Wrapper function for persona avatar
@@ -61,32 +61,32 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
 	}
 }
 
-/**
- * Ritorna l'associazione tra i type ricercabili e i post_type wordpress
- * @param string $type
- *
- * @return array
- */
-function dli_get_post_types_grouped($type = "", $tag = false){
-	if($type == "")
-		$type = "any";
-	if($type === "laboratory")
-		$post_types = array("documento", "luogo", "struttura", "page");
-	else if($type === "news")
-		$post_types = array("evento", "post", "circolare");
-	else if($type === "education")
-		$post_types = array("scheda_didattica", "scheda_progetto");
-	else if($type === "service")
-		$post_types = array("indirizzo");
-	else
-		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page");
-	if($tag){
-		if (($key = array_search("page", $post_types)) !== false) {
-			unset($post_types[$key]);
-		}
-	}
-	return $post_types;
-}
+// /**
+//  * Ritorna l'associazione tra i type ricercabili e i post_type wordpress
+//  * @param string $type
+//  *
+//  * @return array
+//  */
+// function dli_get_post_types_grouped($type = "", $tag = false){
+// 	if($type == "")
+// 		$type = "any";
+// 	if($type === "laboratory")
+// 		$post_types = array("documento", "luogo", "struttura", "page");
+// 	else if($type === "news")
+// 		$post_types = array("evento", "post", "circolare");
+// 	else if($type === "education")
+// 		$post_types = array("scheda_didattica", "scheda_progetto");
+// 	else if($type === "service")
+// 		$post_types = array("indirizzo");
+// 	else
+// 		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page");
+// 	if($tag){
+// 		if (($key = array_search("page", $post_types)) !== false) {
+// 			unset($post_types[$key]);
+// 		}
+// 	}
+// 	return $post_types;
+// }
 
 
 /**
@@ -96,14 +96,14 @@ function dli_get_post_types_grouped($type = "", $tag = false){
  * @return string
  *
  */
-function dli_get_post_types_group($post_type){
-	$group = "news";
-	if(in_array($post_type, array("documento", "luogo", "struttura", "page"))) // todo: programma materia if(in_array($post_type, array("documento", "luogo", "programma_materia", "struttura", "page")))
-		$group = "laboratory";
-	else if(in_array($post_type, array("programma", "scheda_didattica", "scheda_progetto")))
-		$group = "education";
-	else if(in_array($post_type, array("indirizzo")))
-		$group = "service";
+function dli_get_post_types_group( $post_type ){
+	$group = 'news';
+	if( in_array( $post_type, array( 'documento', 'luogo', 'struttura', 'page' ) ) )
+		$group = 'laboratory';
+	else if( in_array( $post_type, array( 'programma', 'scheda_didattica', 'scheda_progetto' ) ) )
+		$group = 'education';
+	else if( in_array( $post_type, array( 'indirizzo' ) ) )
+		$group = 'service';
 	return $group;
 }
 
@@ -128,37 +128,36 @@ function dli_get_template_page_url($TEMPLATE_NAME){
 	return null;
 }
 
-/**
- * restituisce intero
- * @param $value
- * @param $field_args
- * @param $field
- * @return int|string
- */
-function dli_sanitize_int( $value, $field_args, $field ) {
-		// Don't keep anything that's not numeric
-		if ( ! is_numeric( $value ) ) {
-				$sanitized_value = '';
-		} else {
-				// Ok, let's clean it up.
-				$sanitized_value = absint( $value );
-		}
-		return $sanitized_value;
-}
+// /**
+//  * restituisce intero
+//  * @param $value
+//  * @param $field_args
+//  * @param $field
+//  * @return int|string
+//  */
+// function dli_sanitize_int( $value, $field_args, $field ) {
+// 		// Don't keep anything that's not numeric
+// 		if ( ! is_numeric( $value ) ) {
+// 				$sanitized_value = '';
+// 		} else {
+// 				// Ok, let's clean it up.
+// 				$sanitized_value = absint( $value );
+// 		}
+// 		return $sanitized_value;
+// }
 
 
 /**
  * funzione per la gestione del nome persona
  */
-
-function dli_get_persona_display_name($nome, $cognome, $title){
-	if(($nome != "") && ($cognome != ""))
-			return $nome." ".$cognome;
-	else
+if( ! function_exists( 'dli_get_persona_display_name' ) ) {
+	function dli_get_persona_display_name( $nome, $cognome, $title ){
+		if( ( $nome != '' ) && ( $cognome != '' ) )
+			return $nome .' ' . $cognome;
+		else
 			return $title;
-
+	}
 }
-
 
 /**
  *  Funzione per la ricerca di un valore in un array multiplo
