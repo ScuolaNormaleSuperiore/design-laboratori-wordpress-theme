@@ -51,7 +51,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'nome_laboratorio',
-			'name'       => __( 'Nome Laboratorio *', 'design_laboratori_italia' ),
+			'name'       => __( 'Nome Laboratorio', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'Il Nome del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -216,10 +216,10 @@ function dli_register_main_options_metabox() {
 	$alerts_group_id = $alerts_options->add_field( array(
 			'id'           => $prefix . 'messages',
 			'type'        => 'group',
-			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale).' , 'design_laboratori_italia' ),
+			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)' , 'design_laboratori_italia' )   . '&nbsp;.',
 			'repeatable'  => true,
 			'options'     => array(
-					'group_title'   => __( 'Messaggio {#}', 'design_laboratori_italia' ),
+					'group_title'   => __( 'Messaggio', 'design_laboratori_italia' ) . '&nbsp{#}',
 					'add_button'    => __( 'Aggiungi un messaggio', 'design_laboratori_italia' ),
 					'remove_button' => __( 'Rimuovi il messaggio', 'design_laboratori_italia' ),
 					'sortable'      => true,  // Allow changing the order of repeated groups.
@@ -269,7 +269,7 @@ function dli_register_main_options_metabox() {
 	$alerts_options->add_group_field( $alerts_group_id, array(
 			'id' => $prefix . 'link_message',
 			'name'        => __( 'Collegamento', 'design_laboratori_italia' ),
-			'desc' => __( 'Link al una pagina di approfondimento anche esterna al sito' , 'design_laboratori_italia' ),
+			'desc' => __( 'Link a una pagina di approfondimento anche esterna al sito' , 'design_laboratori_italia' ),
 			'type' => 'text_url',
 	) );
 
@@ -427,7 +427,7 @@ function dli_register_main_options_metabox() {
 	$home_options->add_field(
 		array(
 			'id' => $prefix . 'home_carousel_after_presentation_enabled',
-			'name' => __( 'Mostra carousel dopo presentazione.', 'design_laboratori_italia' ),
+			'name' => __( 'Mostra carousel dopo presentazione', 'design_laboratori_italia' ) . '&nbsp;.',
 			'desc' => __( 'Il carousel dopo la presentazione', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'false',

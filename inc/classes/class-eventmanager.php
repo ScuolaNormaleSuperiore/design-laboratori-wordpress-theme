@@ -37,7 +37,7 @@ class Event_Manager {
 			'add_new_item'          => _x( 'Aggiungi un Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'edit_item'             => _x( 'Modifica il Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza il Evento', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'featured_image'        => __( 'Logo Identificativo del Evento', 'design_laboratori_italia' ),
+			'featured_image'        => __( "Logo Identificativo dell'Evento", 'design_laboratori_italia' ),
 			'set_featured_image'    => __( 'Seleziona Immagine Evento' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Evento' , 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Evento' , 'design_laboratori_italia' ),

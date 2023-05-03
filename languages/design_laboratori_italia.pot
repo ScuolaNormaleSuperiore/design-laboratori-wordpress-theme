@@ -739,7 +739,7 @@ msgid "Leggi di più"
 msgstr ""
 
 #: inc/admin/options.php:272
-msgid "Link al una pagina di approfondimento anche esterna al sito"
+msgid "Link a una pagina di approfondimento anche esterna al sito"
 msgstr ""
 
 #: footer.php:86
@@ -755,7 +755,7 @@ msgid "Logo"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:40
-msgid "Logo Identificativo del Evento"
+msgid "Logo Identificativo dell'Evento"
 msgstr ""
 
 #: inc/classes/class-newsmanager.php:45
@@ -804,15 +804,15 @@ msgid "Messaggi"
 msgstr ""
 
 #: page-templates/contatti.php:94
-msgid "Messaggio inviato correttamente."
+msgid "Messaggio inviato correttamente"
 msgstr ""
 
 #: page-templates/contatti.php:109
-msgid "Messaggio non inviato."
+msgid "Messaggio non inviato"
 msgstr ""
 
 #: inc/admin/options.php:222
-msgid "Messaggio {#}"
+msgid "Messaggio"
 msgstr ""
 
 #: inc/classes/class-publicationmanager.php:43
@@ -828,7 +828,7 @@ msgid "Modifica la Tipologia luogo"
 msgstr ""
 
 #: inc/admin/options.php:430
-msgid "Mostra carousel dopo presentazione."
+msgid "Mostra carousel dopo presentazione"
 msgstr ""
 
 #: inc/admin/options.php:1182
@@ -860,7 +860,7 @@ msgid "Nome e cognome"
 msgstr ""
 
 #: inc/admin/options.php:54
-msgid "Nome Laboratorio *"
+msgid "Nome Laboratorio"
 msgstr ""
 
 #: page-templates/ricerca.php:97
@@ -920,9 +920,7 @@ msgid "Nuovo tipo pubblicazione"
 msgstr ""
 
 #: inc/admin/options.php:219
-msgid ""
-"Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) "
-"e data di scadenza (opzionale)."
+msgid "Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)"
 msgstr ""
 
 #: 404.php:23
@@ -1185,10 +1183,6 @@ msgstr ""
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
-#: inc/utils.php:675
-msgid "Presa Visione"
-msgstr ""
-
 #: single-indirizzo-di-ricerca.php:108 single-indirizzo-di-ricerca.php:170
 #: single-persona.php:160 single-persona.php:235 inc/admin/options.php:949
 #: template-parts/hero/progetti.php:9
@@ -1220,10 +1214,6 @@ msgstr ""
 #: single-indirizzo-di-ricerca.php:101 single-indirizzo-di-ricerca.php:153
 #: single-progetto.php:105 single-progetto.php:170
 msgid "Responsabile"
-msgstr ""
-
-#. Name of the template
-msgid "Ricerca."
 msgstr ""
 
 #: inc/admin/options.php:224
