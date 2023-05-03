@@ -87,7 +87,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'indirizzo_laboratorio',
-			'name'       => __( 'Indirizzo *', 'design_laboratori_italia' ),
+			'name'       => __( 'Indirizzo', 'design_laboratori_italia' )  . '&nbsp;*',
 			'desc'       => __( "L'indirizzo del Laboratorio" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -99,7 +99,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'email_laboratorio',
-			'name'       => __( 'Email *', 'design_laboratori_italia' ),
+			'name'       => __( 'Email', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "L'email del Laboratorio" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -135,7 +135,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'nome_ente_appartenza',
-			'name'       => __( 'Ente padre *', 'design_laboratori_italia' ),
+			'name'       => __( 'Ente padre', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "Il nome dell'ente padre" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -209,7 +209,7 @@ function dli_register_main_options_metabox() {
 	$alerts_options->add_field( array(
 			'id' => $prefix . 'messages_istruzioni',
 			'name'        => __( 'Avvisi di allerta in Home Page', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage.' , 'design_laboratori_italia' ),
+			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage' , 'design_laboratori_italia' )  . '&nbsp;.',
 			'type' => 'title',
 	) );
 
@@ -414,7 +414,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_carousel_is_visible',
 			'name' => __( 'Visualizza carousel', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato.', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
@@ -428,7 +428,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_carousel_after_presentation_enabled',
 			'name' => __( 'Mostra carousel dopo presentazione.', 'design_laboratori_italia' ),
-			'desc' => __( 'Il carousel dopo la presentazione.', 'design_laboratori_italia' ),
+			'desc' => __( 'Il carousel dopo la presentazione', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -475,7 +475,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_featured_contents',
 				'name'        => __( 'Sezione contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page' , 'design_laboratori_italia' ) . '&nbsp;.',
 				'type' => 'title',
 			)
 		);
@@ -484,7 +484,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_featuredcontents_is_visible',
 				'name' => __( 'Visualizza contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata.', 'design_laboratori_italia' ),
+				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata', 'design_laboratori_italia' ) . '&nbsp;.',
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(
@@ -1300,7 +1300,7 @@ function dli_register_main_options_metabox() {
 		}
 
 		$luoghi_options = new_cmb2_box( $args );
-		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina dei luoghi scolastici</a>', 'design_laboratori_italia' ), get_post_type_archive_link("luogo") );
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina dei luoghi</a>', 'design_laboratori_italia' ), get_post_type_archive_link("luogo") );
 
 		$luoghi_options->add_field( array(
 				'id'   => $prefix . 'luoghi_istruzioni',
@@ -1378,14 +1378,14 @@ function dli_register_main_options_metabox() {
 		$social_options->add_field( array(
 				'id' => $prefix . 'socials_istruzioni',
 				'name'        => __( 'Sezione socialmedia', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui i link ai tuoi socialmedia.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Inserisci qui i link ai tuoi socialmedia' , 'design_laboratori_italia' ) . '&nbsp;.',
 				'type' => 'title',
 		) );
 
 		$social_options->add_field(array(
 				'id' => $prefix . 'show_socials',
 				'name' => __( 'Mostra le icone social', 'design_laboratori_italia' ),
-				'desc' => __( 'Abilita la visualizzazione dei socialmedia nell\'header e nel footer della pagina.', 'design_laboratori_italia' ),
+				'desc' => __( "Abilita la visualizzazione dei socialmedia nell'header e nel footer della pagina", 'design_laboratori_italia' ) . '&nbsp;.',
 				'type' => 'radio_inline',
 				'default' => 'false',
 				'options' => array(
@@ -1476,7 +1476,7 @@ $social_options->add_field( array(
 	$setup_options->add_field( array(
 				'id' => $prefix . 'altro_istruzioni',
 				'name'        => __( 'Altre Informazioni', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione delle opzioni generali del tema.' , 'design_laboratori_italia' ),
+				'desc' => __( 'Area di configurazione delle opzioni generali del tema' , 'design_laboratori_italia' ) . '&nbsp;.',
 				'type' => 'title',
 		) );
 

@@ -250,21 +250,21 @@ while ( have_posts() ) {
 						</ul>
 					</div>
 					<!-- FINE LISTA DATI INDIRIZZO -->
+					<!-- COME RAGGIUNGERCI -->
+					<?php
+					if ( $come_raggiungerci != '' ) {
+						?>
+					<div class="row pb-3">
+						<h3 class="it-page-section h4" id="p3"><?php _e( 'Come raggiungerci', "design_laboratori_italia" ); ?></h3>
+						<p><?php echo esc_html( $come_raggiungerci ); ?></p>
+					</div>
+						<?php
+					}
+					?>
+					</div> <!--end row-->
 				</div>
 			</div>
 			<!--end card-->
-			</div> <!--end row-->
-			<!-- COME RAGGIUNGERCI -->
-			<?php
-			if ( $come_raggiungerci != '' ) {
-				?>
-			<div class="row pb-3">
-				<h3 class="it-page-section h4" id="p3"><?php _e( 'Come raggiungerci', "design_laboratori_italia" ); ?></h3>
-				<p><?php echo esc_html( $come_raggiungerci ); ?></p>
-			</div>
-			<?php
-			}
-			?>
 			</div>
 		</div> <!-- END row -->
 	</div>   <!-- END container -->

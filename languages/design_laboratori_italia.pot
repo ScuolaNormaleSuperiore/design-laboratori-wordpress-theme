@@ -72,7 +72,7 @@ msgstr ""
 #: inc/admin/options.php:1183
 msgid ""
 "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
-"pagina."
+"pagina"
 msgstr ""
 
 #: inc/classes/class-publicationmanager.php:44
@@ -132,8 +132,8 @@ msgstr ""
 msgid "Area di configurazione delle informazioni di base"
 msgstr ""
 
-#: inc/admin/options.php:1274
-msgid "Area di configurazione delle opzioni generali del tema."
+#: inc/admin/options.php:1479
+msgid "Area di configurazione delle opzioni generali del tema"
 msgstr ""
 
 #: inc/admin/options.php:315
@@ -307,20 +307,13 @@ msgstr ""
 msgid "DETTAGLI della persona"
 msgstr ""
 
-#: page-templates/persone.php:60
-msgid "Disattiva filtri"
-msgstr ""
-
 #: footer.php:64 page-templates/contatti.php:198
+#: inc/admin/options.php:102
 msgid "E-mail"
 msgstr ""
 
-#: inc/admin/options.php:102
-msgid "Email *"
-msgstr ""
-
 #: inc/admin/options.php:138
-msgid "Ente padre *"
+msgid "Ente padre"
 msgstr ""
 
 #: inc/admin/options.php:786
@@ -419,7 +412,7 @@ msgid "Gestione del carousel in Home Page"
 msgstr ""
 
 #: inc/admin/options.php:478
-msgid "Gestione della sezione dei contenuti in evidenza in Home Page."
+msgid "Gestione della sezione dei contenuti in evidenza in Home Page"
 msgstr ""
 
 #: inc/admin/options.php:1281
@@ -491,7 +484,7 @@ msgid "Il blog"
 msgstr ""
 
 #: inc/admin/options.php:431
-msgid "Il carousel dopo la presentazione."
+msgid "Il carousel dopo la presentazione"
 msgstr ""
 
 #: inc/admin/options.php:503
@@ -533,16 +526,16 @@ msgstr ""
 
 #: template-parts/home/carousel.php:14
 msgid ""
-"Indicare in Admin->Configurazione gli articoli da mostrare nel carousel."
+"Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr ""
 
 #: inc/admin/options.php:417
-msgid "Indicare se il carousel in Home Page deve essere visualizzato."
+msgid "Indicare se il carousel in Home Page deve essere visualizzato"
 msgstr ""
 
 #: inc/admin/options.php:487
 msgid ""
-"Indicare se la sezione dei contenuti in evidenza deve essere visualizzata."
+"Indicare se la sezione dei contenuti in evidenza deve essere visualizzata"
 msgstr ""
 
 #: single-evento.php:78
@@ -559,7 +552,7 @@ msgid "Indirizzi di studio"
 msgstr ""
 
 #: inc/admin/options.php:90
-msgid "Indirizzo *"
+msgid "Indirizzo"
 msgstr ""
 
 #: inc/classes/class-researchactivitiesmanager.php:41
@@ -608,11 +601,11 @@ msgid ""
 msgstr ""
 
 #: inc/admin/options.php:212
-msgid "Inserisci messaggi che saranno visualizzati nella homepage."
+msgid "Inserisci messaggi che saranno visualizzati nella homepage"
 msgstr ""
 
 #: inc/admin/options.php:1176
-msgid "Inserisci qui i link ai tuoi socialmedia."
+msgid "Inserisci qui i link ai tuoi socialmedia"
 msgstr ""
 
 #: inc/admin/options.php:612
@@ -625,7 +618,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina dei "
-"luoghi scolastici</a>"
+"luoghi</a>"
 msgstr ""
 
 #: inc/admin/options.php:753
