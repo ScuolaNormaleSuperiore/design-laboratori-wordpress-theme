@@ -80,6 +80,9 @@ class LabManager {
 		// Setup internationalisation.
 		add_action( 'init', array( $this, 'languages' ) );
 
+		// Setup REST API.
+		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
+
 		// Setup dei post type personalizzati e delle tassonomie associate.
 		// Setup di Polylang.
 		$polylang = new Polylang_Manager();
@@ -123,8 +126,28 @@ class LabManager {
 
 	}
 
+	/**
+	 * Imposta la cartella con i file delle traduzioni.
+	 *
+	 * @return void
+	 */
 	function languages() {
 		load_plugin_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
+	}
+
+	/**
+	 * Disabilita la REST API se necessario.
+	 *
+	 * @return object.
+	 */
+	function setup_rest_api(){
+		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ){
+			return new WP_Error(
+				'rest_disabled',
+				__( 'L\'API REST di WordPress è disabilitata.', 'design_laboratori_italia' ),
+				array( 'status' => rest_authorization_required_code() )
+			);
+		}
 	}
 
 }

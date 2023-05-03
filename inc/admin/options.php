@@ -1587,6 +1587,26 @@ $social_options->add_field( array(
 			)
 		);
 
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'restapi',
+				'name' => __( 'REST API', 'design_laboratori_italia' ),
+				'type' => 'title',
+			)
+		);
+
+		$setup_options->add_field(
+			array(
+				'id'      => $prefix . 'rest_api_enabled',
+				'name'    => __( 'Abilita REST API', 'design_laboratori_italia' ),
+				'type'    => 'radio_inline',
+				'default' => 'false',
+				'options' => array(
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+				),
+			)
+		);
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 

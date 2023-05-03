@@ -389,11 +389,12 @@ function 	build_the_menu( $custom_menu ) {
 		$menu_location = $menu_location . '__' . $menu_lang;
 	}
 
-	wp_delete_nav_menu( $menu_name );
+	// wp_delete_nav_menu( $menu_name );
 
 	$menu_object = wp_get_nav_menu_object( $menu_name );
 	if ( $menu_object ) {
 		$menu_id = $menu_object->term_id;
+		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
 	} else {
 
 		$menu_id  = wp_create_nav_menu( $menu_name );

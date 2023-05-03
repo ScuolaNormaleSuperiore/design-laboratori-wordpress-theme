@@ -68,11 +68,14 @@ try {
 
 				<div class="box_change_map_lang">
 					<?php
+					$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
+					if ( 'true' === $selettore_visibile ) {
 						if ( 'it' === $lng_slug ) {
 							echo '<a href="' . get_site_url() . '/en/' . SLUG_MAPPA_SITO_EN . '">Site Map in English</a>';
 						} else {
 							echo '<a href="' . get_site_url() . '/' . SLUG_MAPPA_SITO_IT . '">Mappa del sito in Italiano</a>';
 						}
+					}
 					?>
 				</div>
 			</div>
