@@ -118,7 +118,9 @@ class People_Manager {
 	 */
 	public function custom_layout( $post ) {
 		if ( PEOPLE_POST_TYPE === $post->post_type ) {
-			_e( '<span><i>Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca.</i></span>','design_laboratori_italia' );
+			echo '<span><i>';
+			_e( 'Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca','design_laboratori_italia' );
+			echo '.</i></span>';
 			echo '<h1>';
 			_e( 'Biografia', 'design_laboratori_italia' );
 			echo '</h1>';

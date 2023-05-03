@@ -69,12 +69,6 @@ msgstr ""
 msgid "Danger"
 msgstr ""
 
-#: inc/classes/class-peoplemanager.php:121
-msgid ""
-"<span><i>Inserire nel titolo il nome completo della persona ed eventualmente "
-"il nome completo per facilitare la ricerca.</i></span>"
-msgstr ""
-
 #: inc/admin/options.php:1183
 msgid ""
 "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
@@ -204,7 +198,7 @@ msgid "Chiudi avviso"
 msgstr ""
 
 #: inc/admin/options.php:78
-msgid "Città *"
+msgid "Città"
 msgstr ""
 
 #: inc/admin/options.php:271
@@ -504,10 +498,6 @@ msgstr ""
 msgid "Il Laboratorio"
 msgstr ""
 
-#. Name of the template
-msgid "Il Laboratorio."
-msgstr ""
-
 #: inc/admin/options.php:163
 msgid ""
 "Il logo del laboratorio. Si raccomanda di caricare un'immagine in formato svg"
@@ -590,20 +580,24 @@ msgstr ""
 msgid "Inserisci il testo da cercare"
 msgstr ""
 
-#: page-templates/contatti.php:193
+#: page-templates/contatti.php:284
 msgid "Inserisci il testo del messaggio"
 msgstr ""
 
-#: page-templates/contatti.php:201
+#: page-templates/contatti.php:292
 msgid "Inserisci il tuo indirizzo email"
 msgstr ""
 
-#: page-templates/contatti.php:185
+#: page-templates/contatti.php:276
 msgid "Inserisci il tuo nome"
 msgstr ""
 
-#: page-templates/contatti.php:207
+#: page-templates/contatti.php:298
 msgid "Inserisci il tuo numero di telefono"
+msgstr ""
+
+#: page-templates/contatti.php:281
+msgid "Testo del messaggio"
 msgstr ""
 
 #: inc/admin/options.php:1313
@@ -850,10 +844,6 @@ msgstr ""
 
 #: inc/admin/options.php:1363
 msgid "Multilingua"
-msgstr ""
-
-#: inc/utils.php:674
-msgid "Nessun Feedback "
 msgstr ""
 
 #: template-parts/header/top-menu.php:9
@@ -1421,11 +1411,8 @@ msgid "Tipologia luogo"
 msgstr ""
 
 #: footer.php:73 page-templates/contatti.php:204
-msgid "Telefono"
-msgstr ""
-
 #: inc/admin/options.php:126
-msgid "Telefono *"
+msgid "Telefono"
 msgstr ""
 
 #: page-templates/contatti.php:190 inc/admin/options.php:260
@@ -1485,6 +1472,10 @@ msgstr ""
 msgid "Tutte le strutture"
 msgstr ""
 
+#: inc/classes/class-peoplemanager.php:122
+msgid "Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca"
+msgstr ""
+
 #: inc/classes/class-placemanager.php:47
 msgid "Tutte le tipologie luogo"
 msgstr ""
@@ -1521,7 +1512,7 @@ msgstr ""
 msgid "Usa come Immagine Notizia"
 msgstr ""
 
-#: page-templates/contatti.php:82
+#: page-templates/contatti.php:172
 msgid "Utilizza i dati di contatto o compila il form sottostante"
 msgstr ""
 

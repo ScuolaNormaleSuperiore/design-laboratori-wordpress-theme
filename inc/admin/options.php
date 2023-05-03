@@ -39,7 +39,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'tipologia_laboratorio',
-			'name'       => __( 'Tipologia', 'design_laboratori_italia' ) . ' *',
+			'name'       => __( 'Tipologia', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'La Tipologia del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -75,7 +75,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'luogo_laboratorio',
-			'name'       => __( 'Città *', 'design_laboratori_italia' ),
+			'name'       => __( 'Città', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'La città dove risiede il Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
@@ -123,7 +123,7 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'telefono_laboratorio',
-			'name'       => __( 'Telefono *', 'design_laboratori_italia' ),
+			'name'       => __( 'Telefono', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "Il numero di telefono del Laboratorio" , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(

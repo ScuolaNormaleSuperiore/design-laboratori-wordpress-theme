@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2023-05-02 18:01+0000\n"
+"PO-Revision-Date: 2023-05-03 09:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -18,12 +18,6 @@ msgstr ""
 #: 404.php:21
 msgid "404"
 msgstr "404"
-
-#: inc/classes/class-peoplemanager.php:121
-msgid ""
-"<span><i>Inserire nel titolo il nome completo della persona ed eventualmente "
-"il nome completo per facilitare la ricerca.</i></span>"
-msgstr ""
 
 #: inc/admin/options.php:1183
 msgid ""
@@ -45,7 +39,7 @@ msgstr "Update the place type"
 
 #: inc/admin/options.php:223
 msgid "Aggiungi un messaggio"
-msgstr ""
+msgstr "Add a messagge"
 
 #: inc/classes/class-publicationmanager.php:45
 msgid "Aggiungi un tipo pubblicazione"
@@ -130,11 +124,11 @@ msgstr "Blog"
 
 #: page-templates/cerca.php:74
 msgid "Cancella"
-msgstr ""
+msgstr "Cancel"
 
 #: page-templates/notizie.php:49
 msgid "Categoria"
-msgstr ""
+msgstr "Category"
 
 #: header.php:148 page-templates/cerca.php:76
 msgid "Cerca"
@@ -142,7 +136,7 @@ msgstr "Search"
 
 #: header.php:152 page-templates/cerca.php:59 page-templates/cerca.php:63
 msgid "Cerca nel sito"
-msgstr ""
+msgstr "Search this site"
 
 #: inc/classes/class-peoplemanager.php:44
 msgid "Cerca Struttura"
@@ -161,7 +155,7 @@ msgid "Chiudi avviso"
 msgstr ""
 
 #: inc/admin/options.php:78
-msgid "Città *"
+msgid "Città"
 msgstr ""
 
 #: inc/admin/options.php:271
@@ -174,7 +168,7 @@ msgstr ""
 
 #: page-templates/contatti.php:225
 msgid "Conferma"
-msgstr ""
+msgstr "Confirmation"
 
 #: inc/admin/options.php:10
 msgid "Configurazione"
@@ -228,7 +222,7 @@ msgstr "Description of the publication"
 
 #: inc/admin/options.php:573 inc/admin/options.php:574
 msgid "Descrizione ENG"
-msgstr ""
+msgstr "Description in English"
 
 #: inc/classes/class-eventmanager.php:76 single-evento.php:161
 msgid "Descrizione evento"
@@ -276,7 +270,7 @@ msgstr "Description of people section in English"
 
 #. Name of the theme
 msgid "Design Laboratori Italia"
-msgstr ""
+msgstr "Design Laboratori Italia"
 
 #. Description of the theme
 msgid ""
@@ -304,7 +298,7 @@ msgstr ""
 
 #: footer.php:64 page-templates/contatti.php:198
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: inc/admin/options.php:102
 msgid "Email *"
@@ -364,7 +358,7 @@ msgstr ""
 
 #: inc/admin/options.php:903
 msgid "es: \"Pubblicazioni dei membri del Laboratorio.\""
-msgstr "es: \"Publications by Lab members.\""
+msgstr ""
 
 #: inc/admin/options.php:922
 msgid "es: \"Publications by Lab members.\""
@@ -380,11 +374,11 @@ msgstr ""
 
 #: inc/admin/options.php:535
 msgid "Etichetta"
-msgstr ""
+msgstr "Label"
 
 #: inc/admin/options.php:544
 msgid "Etichetta ENG"
-msgstr ""
+msgstr "Label in English"
 
 #: single-indirizzo-di-ricerca.php:122 single-indirizzo-di-ricerca.php:204
 #: single-progetto.php:140 single-progetto.php:240 inc/admin/options.php:742
@@ -399,11 +393,11 @@ msgstr "Event"
 
 #: page-templates/persone.php:55
 msgid "Filtra per"
-msgstr ""
+msgstr "Filter by"
 
 #: page-templates/cerca.php:95
 msgid "Filtra per tipo di contenuto"
-msgstr ""
+msgstr "Filter by content type"
 
 #: inc/admin/options.php:408
 msgid "Gestione del carousel in Home Page"
@@ -435,15 +429,15 @@ msgstr ""
 
 #: inc/admin/options.php:289
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: inc/admin/options.php:283
 msgid "Home Page"
-msgstr ""
+msgstr "Home Page"
 
 #. Author URI of the theme
 msgid "https://ict.sns.it"
-msgstr ""
+msgstr "https://ict.sns.it"
 
 #: template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
@@ -455,7 +449,7 @@ msgstr ""
 
 #. Author of the theme
 msgid "ICT SNS"
-msgstr ""
+msgstr "ICT SNS"
 
 #: inc\classes\class-placemanager.php:124
 msgid "il"
@@ -471,10 +465,6 @@ msgstr ""
 
 #: inc/admin/options.php:503
 msgid "Il Laboratorio"
-msgstr ""
-
-#. Name of the template
-msgid "Il Laboratorio."
 msgstr ""
 
 #: inc/admin/options.php:163
@@ -534,7 +524,7 @@ msgstr ""
 
 #: single-evento.php:78
 msgid "Indietro"
-msgstr ""
+msgstr "Back"
 
 #: single-progetto.php:119 single-progetto.php:198 inc/admin/options.php:1012
 #: inc/admin/options.php:1018
@@ -561,6 +551,14 @@ msgstr ""
 msgid "Info"
 msgstr "Info"
 
+#: inc/classes/class-peoplemanager.php:122
+msgid ""
+"Inserire nel titolo il nome completo della persona ed eventualmente il nome "
+"completo per facilitare la ricerca"
+msgstr ""
+"Enter in the title the full name of the person and, where appropriate, the "
+"full name to facilitate the search"
+
 #: inc/admin/options.php:1393
 msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
@@ -569,23 +567,23 @@ msgstr ""
 
 #: page-templates/cerca.php:67
 msgid "Inserisci il testo da cercare"
-msgstr ""
+msgstr "Type the search text"
 
-#: page-templates/contatti.php:193
+#: page-templates/contatti.php:284
 msgid "Inserisci il testo del messaggio"
-msgstr ""
+msgstr "Insert text for your message"
 
-#: page-templates/contatti.php:201
+#: page-templates/contatti.php:292
 msgid "Inserisci il tuo indirizzo email"
-msgstr ""
+msgstr "Enter your email address"
 
-#: page-templates/contatti.php:185
+#: page-templates/contatti.php:276
 msgid "Inserisci il tuo nome"
-msgstr ""
+msgstr "Enter your name"
 
-#: page-templates/contatti.php:207
+#: page-templates/contatti.php:298
 msgid "Inserisci il tuo numero di telefono"
-msgstr ""
+msgstr "Enter your phone number"
 
 #: inc/admin/options.php:1313
 msgid ""
@@ -837,13 +835,9 @@ msgstr ""
 msgid "Multilingua"
 msgstr ""
 
-#: inc/utils.php:674
-msgid "Nessun Feedback "
-msgstr ""
-
 #: template-parts/header/top-menu.php:9
 msgid "News e contatti"
-msgstr "News e ocntacts"
+msgstr "News e contacts"
 
 #: inc/admin/options.php:1321 template-parts/common/newsletter.php:8
 msgid "Newsletter"
@@ -863,7 +857,7 @@ msgstr "Place's name"
 
 #: page-templates/contatti.php:182
 msgid "Nome e cognome"
-msgstr ""
+msgstr "Name and surname"
 
 #: inc/admin/options.php:54
 msgid "Nome Laboratorio *"
@@ -871,7 +865,7 @@ msgstr ""
 
 #: page-templates/ricerca.php:97
 msgid "Non è stata trovata nessuna attività di ricerca"
-msgstr ""
+msgstr "No research activities  available"
 
 #: page-templates/notizie.php:136
 msgid "Non è stata trovata nessuna notizia"
@@ -879,7 +873,7 @@ msgstr "News not found"
 
 #: page-templates/persone.php:206
 msgid "Non è stata trovata nessuna persona"
-msgstr ""
+msgstr "No people available"
 
 #: page-templates/pubblicazioni.php:236
 msgid "Non è stata trovata nessuna pubblicazione"
@@ -891,15 +885,15 @@ msgstr "Places not found"
 
 #: page-templates/eventi.php:142
 msgid "Non è stato trovato alcun evento"
-msgstr "Events not found"
+msgstr "No events available"
 
 #: archive.php:104 page-templates/blog.php:136
 msgid "Non è stato trovato nessun articolo"
-msgstr ""
+msgstr "No posts available"
 
 #: page-templates/archive-progetti.php:99 page-templates/progetti.php:117
 msgid "Non è stato trovato nessun progetto"
-msgstr ""
+msgstr "No projects available"
 
 #: inc/classes/class-newsmanager.php:52
 msgid "Notizia"
@@ -1411,17 +1405,17 @@ msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
 msgstr ""
 
-#: footer.php:73 page-templates/contatti.php:204
+#: footer.php:73 page-templates/contatti.php:204 inc/admin/options.php:126
 msgid "Telefono"
 msgstr "Phone"
-
-#: inc/admin/options.php:126
-msgid "Telefono *"
-msgstr ""
 
 #: page-templates/contatti.php:190 inc/admin/options.php:260
 msgid "Testo"
 msgstr ""
+
+#: page-templates/contatti.php:281
+msgid "Testo del messaggio"
+msgstr "Message text"
 
 #: inc/admin/options.php:344
 msgid "Testo hero"
@@ -1516,9 +1510,9 @@ msgstr ""
 msgid "Usa come Immagine Notizia"
 msgstr ""
 
-#: page-templates/contatti.php:82
+#: page-templates/contatti.php:172
 msgid "Utilizza i dati di contatto o compila il form sottostante"
-msgstr ""
+msgstr "Use the contact details or fill in the form below"
 
 #: inc/admin/options.php:177
 msgid ""
