@@ -300,6 +300,9 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 			case PUBLICATION_POST_TYPE:
 					$item = dli_from_publication_to_carousel_item ( $result );
 					break;
+			case WP_DEFAULT_PAGE:
+				$item = dli_from_page_to_carousel_item ( $result );
+				break;
 			default:
 				// Standard post or article.
 				$item = dli_from_post_to_carousel_item ( $result );
@@ -490,6 +493,49 @@ if( ! function_exists( 'dli_from_post_to_carousel_item' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
+	function dli_from_page_to_carousel_item( $item ) {
+		$post_type = get_post_type( $item );
+		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+		if ( ! $image_url ){
+			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+		}
+		$page = dli_get_page_by_post_type( $post_type );
+		$post_title  = get_the_title( $item );
+		$image_id    = attachment_url_to_postid( $image_url );
+		$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+		$image_alt   = $image_alt ? $image_alt : $post_title;
+		$image_title = get_the_title( $image_id );
+		$image_title = $image_title ? $image_title : $post_title;
+
+		$pt_slugs = dli_get_pt_slugs( );
+		if ( in_array( $item->post_name, $pt_slugs ) ) {
+			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
+			$description = '';
+			$fullcontent = '';
+		} else {
+			// PAGINA STATICA.
+			$description = $item->post_content;
+			$fullcontent = get_the_content( $item );
+		}
+		// @TODO: Popolare $result e non ridefinirlo.
+		$result      = array(
+			'type'          => $post_type,
+			'category'      => 'Home',
+			'category_link' => get_site_url(),
+			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $description, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => $fullcontent,
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_url,
+			'image_alt'     => $image_alt,
+			'image_title'   => $image_title,
+		);
+		return $result;
+	}
+}
+
 if( ! function_exists( 'dli_get_post_main_category' ) ) {
 	function dli_get_post_main_category( $post, $taxonomy ) {
 		$terms = get_the_terms( $post, $taxonomy );
@@ -630,7 +676,7 @@ if( ! function_exists( 'dli_build_content_path' ) ) {
 if( ! function_exists( 'dli_get_page_slug_by_post_type' ) ) {
 	function dli_get_page_slug_by_post_type( $post_type ) {
 		$lang = dli_current_language();
-		return DLI_PAGE_PER_CT[$post_type][$lang];
+		return isset( DLI_PAGE_PER_CT[$post_type] ) ? DLI_PAGE_PER_CT[$post_type][$lang] : '';
 	}
 }
 

@@ -179,37 +179,6 @@ function dli_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'dli_scripts' );
 
-// function console_log ($output, $msg = "log") {
-//     echo '<script> console.log("'. $msg .'",'. json_encode($output) .')</script>';
-// };
-
-// /*
-//  * Set post views count using post meta
-//  */
-// function set_views( $post_ID ) {
-// 	$key = 'views';
-// 	$count = get_post_meta($post_ID, $key, true); //retrieves the count
-
-// 	if($count == ''){ //check if the post has ever been seen
-
-// 		//set count to 0
-// 		$count = 0;
-
-// 		//just in case
-// 		delete_post_meta($post_ID, $key);
-
-// 		//set number of views to zero
-// 		add_post_meta($post_ID, $key, '0' );
-
-// 	} else { //increment number of views.
-// 		$count++;
-// 		update_post_meta($post_ID, $key, $count);
-// 	}
-// }
-
-// Keeps the count accurate by removing prefetching.
-// remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-
 function add_menu_link_class( $atts, $item, $args ) {
 	if ( property_exists( $args, 'link_class' ) ) {
 		$atts['class'] = $args->link_class;
