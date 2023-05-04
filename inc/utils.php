@@ -28,23 +28,6 @@ if(!function_exists("dli_get_option")) {
 	}
 }
 
-// /**
-//  * Define members check user function if not defined and return true
-//  * @param  int     $user_id
-//  * @param  int     $post_id
-//  * @return bool
-//  */
-// if(!function_exists("dli_members_can_user_view_post")) {
-// 		function dli_members_can_user_view_post($user_id, $post_id) {
-// 				if(!function_exists("members_can_user_view_post")) {
-// 						return true;
-// 				} else{
-// 						return members_can_user_view_post($user_id, $post_id);
-// 				}
-
-// 		}
-// }
-
 /**
  * Wrapper function for persona avatar
  * @param object $foto
@@ -60,33 +43,6 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
 		return $thumbnail;
 	}
 }
-
-// /**
-//  * Ritorna l'associazione tra i type ricercabili e i post_type wordpress
-//  * @param string $type
-//  *
-//  * @return array
-//  */
-// function dli_get_post_types_grouped($type = "", $tag = false){
-// 	if($type == "")
-// 		$type = "any";
-// 	if($type === "laboratory")
-// 		$post_types = array("documento", "luogo", "struttura", "page");
-// 	else if($type === "news")
-// 		$post_types = array("evento", "post", "circolare");
-// 	else if($type === "education")
-// 		$post_types = array("scheda_didattica", "scheda_progetto");
-// 	else if($type === "service")
-// 		$post_types = array("indirizzo");
-// 	else
-// 		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page");
-// 	if($tag){
-// 		if (($key = array_search("page", $post_types)) !== false) {
-// 			unset($post_types[$key]);
-// 		}
-// 	}
-// 	return $post_types;
-// }
 
 
 /**
@@ -127,24 +83,6 @@ function dli_get_template_page_url($TEMPLATE_NAME){
 		}
 	return null;
 }
-
-// /**
-//  * restituisce intero
-//  * @param $value
-//  * @param $field_args
-//  * @param $field
-//  * @return int|string
-//  */
-// function dli_sanitize_int( $value, $field_args, $field ) {
-// 		// Don't keep anything that's not numeric
-// 		if ( ! is_numeric( $value ) ) {
-// 				$sanitized_value = '';
-// 		} else {
-// 				// Ok, let's clean it up.
-// 				$sanitized_value = absint( $value );
-// 		}
-// 		return $sanitized_value;
-// }
 
 
 /**
@@ -508,7 +446,7 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 		$image_title = get_the_title( $image_id );
 		$image_title = $image_title ? $image_title : $post_title;
 
-		$pt_slugs = dli_get_pt_slugs( );
+		$pt_slugs = dli_get_pt_archive_slugs( );
 		if ( in_array( $item->post_name, $pt_slugs ) ) {
 			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
 			$description = '';
@@ -743,7 +681,7 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 
 		// Recupera elenco dei menu per lingua.
 		$menu_items = dli_get_all_menus_by_lang( $lng_slug );
-		$slugs      = dli_get_pt_slugs();
+		$slugs      = dli_get_pt_archive_slugs();
 
 		// Aggiungi all'albero delle pagine le voci di menu.
 		foreach ( $menu_items as $item ) {
@@ -800,8 +738,13 @@ if( ! function_exists( 'dli_get_tree_item' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_get_pt_slugs' ) ) {
-	function dli_get_pt_slugs( ) {
+if( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
+	/**
+	 * Return the slugs of all the page that are archives of posts.
+	 *
+	 * @return void
+	 */
+	function dli_get_pt_archive_slugs( ) {
 		$slugs = array();
 		foreach( DLI_PAGE_PER_CT as $pt => $items ){
 			if ( $pt !== PEOPLE_TYPE_POST_TYPE ) {
