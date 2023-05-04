@@ -5,8 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-require get_template_directory() . '/config_pages.php';
-
 /**
  * Action to add page templates used by theme
  */
