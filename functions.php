@@ -10,7 +10,7 @@
 /**
  * Define the theme parameters and configurations.
  */
-require get_template_directory() . '/lab_config.php';
+require get_template_directory() . '/config_lab.php';
 
 
 /**
