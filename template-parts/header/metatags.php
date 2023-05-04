@@ -13,6 +13,8 @@ $charset       = 'text/html; charset=US-ASCII';
 $keywords      = preg_replace( "/[^a-zA-Z0-9\s]/", '', $wrapper['title'] . ' ' . $tagline );
 $description   = $wrapper['description'];
 
+$analytics_text = dli_get_option( 'analytics_code', 'setup' );
+
 ?>
 
 <meta name="resource-type" content="<?php echo $resource_type; ?>" />
@@ -22,3 +24,5 @@ $description   = $wrapper['description'];
 
 <meta http-equiv="content-type" content="<?php echo $charset; ?>" />
 <meta http-equiv="content-language" content="<?php echo $localestr; ?>" />
+
+<?php echo $analytics_text; ?>
