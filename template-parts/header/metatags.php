@@ -22,4 +22,3 @@ $description   = $wrapper['description'];
 
 <meta http-equiv="content-type" content="<?php echo $charset; ?>" />
 <meta http-equiv="content-language" content="<?php echo $localestr; ?>" />
-

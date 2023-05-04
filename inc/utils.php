@@ -445,8 +445,9 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 		$image_alt   = $image_alt ? $image_alt : $post_title;
 		$image_title = get_the_title( $image_id );
 		$image_title = $image_title ? $image_title : $post_title;
+		$categories  = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
+		$pt_slugs    = dli_get_sluglist_by_category( $categories );
 
-		$pt_slugs = dli_get_pt_archive_slugs( );
 		if ( in_array( $item->post_name, $pt_slugs ) ) {
 			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
 			$description = '';
@@ -705,10 +706,10 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 						$child_el['slug'] = $object->post_name;
 						$child_el['link'] = get_permalink( $object->ID );
 						$pt[$hp['slug']]['children'][$menu->slug]['children'][$object->post_title] = $child_el;
-						// Per le pagine archivio o riassuntive, aggiungi all'albero tutti i contenuti di quel tipo.
+						// Per le pagine archivio (elenco di post), aggiungi all'albero tutti i contenuti di quel tipo.
 						$post_tpye = isset( $slugs[ $object->post_name ] ) ? $slugs[ $object->post_name ] : '';
 						if ( $post_tpye ) {
-							$results = dli_get_map_posts( $post_tpye );
+							$results = dli_get_sitemap_posts( $post_tpye );
 							foreach ( $results as $r ){
 								$post_el         = dli_get_tree_item();
 								$post_el['name'] = $r->post_title;
@@ -738,11 +739,33 @@ if( ! function_exists( 'dli_get_tree_item' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_sitemap_posts' ) ) {
+	/**
+	 * Return the list of the post of a certain type to show in the sitemap.
+	 * 
+	 * @param array $post_type
+	 * @return array of slugs (strings)
+	 */
+	function dli_get_sitemap_posts( $post_type ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => $post_type,
+				'post_status'    => 'publish',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+			)
+		);
+		return $query->posts;
+	}
+}
+
 if( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 	/**
 	 * Return the slugs of all the page that are archives of posts.
-	 *
-	 * @return void
+	 * Ritorna un array di coppie: <slug> => <post_type>.
+	 * 
+	 * @return array.
 	 */
 	function dli_get_pt_archive_slugs( ) {
 		$slugs = array();
@@ -757,17 +780,45 @@ if( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_get_map_posts' ) ) {
-	function dli_get_map_posts( $post_type ) {
-		$query = new WP_Query(
-			array(
-				'posts_per_page' => -1,
-				'post_type'      => $post_type,
-				'post_status'    => 'publish',
-				'orderby'        => 'post_date',
-				'order'          => 'DESC',
-			)
-		);
-		return $query->posts;
+
+if( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
+	/**
+	 * Return the slugs of all the page that are archives of posts.
+	 * Ritorna un array di slug
+	 * 
+	 * @return array.
+	 */
+	function dli_get_sluglist_by_category( $categories ) {
+		$pt_slugs = dli_get_slugs_by_category( $categories );
+		$sluglist    = array();
+		foreach ( $pt_slugs as $category_items ) {
+			foreach ( $category_items as $item ) {
+				array_push( $sluglist, $item );
+			}
+		}
+		return $sluglist;
+	}
+}
+
+if( ! function_exists( 'dli_get_slugs_by_category' ) ) {
+	/**
+	 *  Return the slugs of the categories passed as parameter.
+	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
+	 * 
+	 * @param array $categories
+	 * @return array.
+	 */
+	function dli_get_slugs_by_category( $categories ) {
+		$slugmap = array();
+		foreach ( DLI_STATIC_PAGE_CATS as $item ) {
+			if ( in_array( $item['content_category'], $categories ) ) {
+				if ( ! isset( $slugmap[$item['content_category']] ) ) {
+					$slugmap[$item['content_category']] = array();
+				}
+				array_push( $slugmap[$item['content_category']], $item['content_slug_it'] );
+				array_push( $slugmap[$item['content_category']], $item['content_slug_en'] );
+			}
+		}
+		return $slugmap;
 	}
 }

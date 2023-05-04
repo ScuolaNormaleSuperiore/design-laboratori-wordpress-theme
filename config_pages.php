@@ -1,7 +1,23 @@
 <?php
 
+// Pagina che si edita da backend.
+define( 'DLI_STATIC_PAGE_CAT', 'static_page' );
+// Pagina costruita automaticamente con form, mappe, ecc.
+define( 'DLI_CUSTOM_PAGE_CAT', 'custom_page' );
+// Pagina che contiene la lista dei post di un certo tipo (archivio).
+define( 'DLI_ARCHIVE_PAGE_CAT', 'archive_page' );
+
 define(
-	'DLI_STATIC_PAGES',
+	'DLI_PAGE_CATEGORIES',
+	array(
+		DLI_STATIC_PAGE_CAT,
+		DLI_CUSTOM_PAGE_CAT,
+		DLI_ARCHIVE_PAGE_CAT,
+	)
+);
+
+define(
+	'DLI_STATIC_PAGE_CATS',
 	array(
 		array(
 			'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
@@ -15,7 +31,7 @@ define(
 			'content_template'   => '',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_PRIVACY_IT,
@@ -29,7 +45,7 @@ define(
 			'content_template'   => '',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_CONTATTI_IT,
@@ -43,7 +59,7 @@ define(
 			'content_template'   => 'page-templates/contatti.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'custompage',
+			'content_category'   => DLI_CUSTOM_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
@@ -57,7 +73,7 @@ define(
 			'content_template'   => '',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_MEDIA_POLICY_IT,
@@ -71,7 +87,7 @@ define(
 			'content_template'   => '',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
@@ -85,7 +101,7 @@ define(
 			'content_template'   => '',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_MAPPA_SITO_IT,
@@ -99,7 +115,7 @@ define(
 			'content_template'   => 'page-templates/mappasito.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'custompage',
+			'content_category'   => DLI_CUSTOM_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_LABORATORIO_IT,
@@ -113,7 +129,7 @@ define(
 			'content_template'   => 'page-templates/il-laboratorio.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'staticpage',
+			'content_category'   => DLI_STATIC_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_PERSONE_IT,
@@ -127,7 +143,7 @@ define(
 			'content_template'   => 'page-templates/persone.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_PROGETTI_IT,
@@ -141,7 +157,7 @@ define(
 			'content_template'   => 'page-templates/progetti.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
@@ -155,7 +171,7 @@ define(
 			'content_template'   => 'page-templates/archive-progetti.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_RICERCA_IT,
@@ -169,7 +185,7 @@ define(
 			'content_template'   => 'page-templates/ricerca.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'custompage',
+			'content_category'   => DLI_CUSTOM_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
@@ -183,7 +199,7 @@ define(
 			'content_template'   => 'page-templates/pubblicazioni.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_NOTIZIE_IT,
@@ -197,7 +213,7 @@ define(
 			'content_template'   => 'page-templates/notizie.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_EVENTI_IT,
@@ -211,7 +227,7 @@ define(
 			'content_template'   => 'page-templates/eventi.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_LUOGHI_IT,
@@ -225,7 +241,7 @@ define(
 			'content_template'   => 'page-templates/luoghi.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_RICERCA_SITO_IT,
@@ -239,7 +255,7 @@ define(
 			'content_template'   => 'page-templates/cerca.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
-			'content_category'   => 'custompage',
+			'content_category'   => DLI_CUSTOM_PAGE_CAT,
 		),
 		array(
 			'content_slug_it'    => SLUG_BLOG_IT,
@@ -253,7 +269,7 @@ define(
 			'content_template'   => 'page-templates/blog.php',
 			'content_type'       => 'page',
 			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			'content_category'   => 'archive',
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 	)
 );
