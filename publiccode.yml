@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.2'
 applicationSuite: WordPress
-softwareVersion: 1.1.2-beta
+softwareVersion: 1.2.1-beta
 categories:
   - website-builder
 description:
