@@ -152,6 +152,6 @@ Queste le sono le principali funzionalità previste per le prossime versioni del
 Il tema è disponibile in ***italiano*** e in ***inglese***.
 
 ## Copyright
-1. Detentore copyright: *Scuola Normale Superiore di Pisa*.
+1. Detentore copyright: *Scuola Normale Superiore*.
 2. Responsabili del progetto: Michele Fiaschi, Marcella Monreale e Claudio Battaglino.
-3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e il ***laboratorio Doc Star*** della *Scuola Normale Superiore di Pisa*.
+3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e il ***laboratorio Doc Star*** della *Scuola Normale Superiore*.
