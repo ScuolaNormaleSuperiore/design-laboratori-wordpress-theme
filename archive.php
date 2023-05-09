@@ -27,7 +27,7 @@ $num_results    = $the_query->found_posts;
 $all_categories = dli_get_all_categories( 'category' );
 ?>
 
-<main id="main-container" class="main-container bluelectric">
+<main id="main-container" class="main-container bluelectric" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -80,7 +80,7 @@ $all_categories = dli_get_all_categories( 'category' );
 										</p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon">
+										<svg class="icon" role="img" aria-labelledby="Arrow right">
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
 										</svg>
 										</a>

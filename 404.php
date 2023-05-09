@@ -11,7 +11,7 @@
 get_header();
 ?>
 
-    <main id="main-container" class="main-container">
+    <main id="main-container" class="main-container" role="main">
 
 		<?php get_template_part("template-parts/common/breadcrumb"); ?>
         <section class="section bg-white">

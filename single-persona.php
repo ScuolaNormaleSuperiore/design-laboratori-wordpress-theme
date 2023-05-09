@@ -66,7 +66,7 @@ $pubblicazioni = new WP_Query(
 );
 ?>
 	<!-- START CONTENT -->
-		<main id="main-container">
+		<main id="main-container" role="main">
 
 			<!-- BREADCRUMB -->
 			<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -129,7 +129,7 @@ $pubblicazioni = new WP_Query(
 								<div class="navbar-collapsable" id="navbarNav">
 									<div class="overlay"></div>
 									<a class="it-back-button" href="#" role="button">
-										<svg class="icon icon-sm icon-primary align-top">
+										<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left';?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'?>"></use>
 										</svg>
 										<span>Indietro</span>
@@ -247,7 +247,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="Folder">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 												</svg>
 												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
@@ -293,7 +293,7 @@ $pubblicazioni = new WP_Query(
 											<div class="card card-teaser rounded shadow">
 												<div class="card-body">
 													<h3 class="card-title h5 ">
-														<svg class="icon">
+														<svg class="icon" role="img" aria-labelledby="Folder">
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 														</svg>
 														<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $indirizzo_ricerca_title ); ?></a>
@@ -330,7 +330,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="Note">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
 												</svg>
 												<?php
@@ -370,7 +370,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="File PDF">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato_cv['url']); ?>"><?php echo esc_attr( $allegato_cv['title'] ); ?>&nbsp;</a>
@@ -385,7 +385,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="File PDF">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato1['url']); ?>"><?php echo esc_attr( $allegato1['title'] ); ?></a>
@@ -399,7 +399,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="File PDF">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato2['url']); ?>"><?php echo esc_attr( $allegato2['title'] ); ?></a>
@@ -413,7 +413,7 @@ $pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="File PDF">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato3['url']); ?>"><?php echo esc_attr( $allegato3['title'] ); ?></a>
@@ -435,7 +435,7 @@ $pubblicazioni = new WP_Query(
 									<li>
 										<div class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="Telephone">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone';?>"></use>
 												</svg>
 											</div>
@@ -449,7 +449,7 @@ $pubblicazioni = new WP_Query(
 									<li>
 										<a href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="Mail">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
 												</svg>
 											</div>
@@ -463,7 +463,7 @@ $pubblicazioni = new WP_Query(
 									<li>
 										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sitoweb ); ?>">
 											<div class="it-rounded-icon">
-												<svg class="icon">
+												<svg class="icon" role="img" aria-labelledby="Link">
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
 												</svg>
 											</div>

@@ -19,7 +19,7 @@
 				<a href="<?php echo 'tel:' . esc_attr( $phone ); ?>" class="list-item" target="_blank">
 					<div class="list-item">
 						<div class="it-rounded-icon">
-							<svg class="icon">
+							<svg class="icon" role="img" aria-labelledby="Telephone">
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 							</svg>
 						</div>
@@ -36,7 +36,7 @@
 			<li>
 				<a href="<?php echo 'mailto:' . esc_attr( $email ); ?>" class="list-item" target="_blank">
 					<div class="it-rounded-icon">
-					<svg class="icon">
+					<svg class="icon" role="img" aria-labelledby="Mail">
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 					</svg>
 					</div>
@@ -52,7 +52,7 @@
 			<li>
 				<a class="list-item" target="_blank" href="<?php echo esc_url( $website ); ?>">
 					<div class="it-rounded-icon">
-					<svg class="icon">
+					<svg class="icon" role="img" aria-labelledby="Link">
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 					</svg>
 					</div>

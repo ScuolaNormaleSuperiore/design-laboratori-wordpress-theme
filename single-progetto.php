@@ -44,7 +44,7 @@ $eventi = new WP_Query(
 
 ?>
 
-<main id="main-container">
+<main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -97,7 +97,7 @@ $eventi = new WP_Query(
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
-								<svg class="icon icon-sm icon-primary align-top">
+								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>"></use>
 								</svg>
 								<span>Indietro</span>

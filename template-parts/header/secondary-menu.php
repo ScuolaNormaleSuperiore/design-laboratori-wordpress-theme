@@ -20,7 +20,7 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 				<span><?php echo esc_attr( $item['element']->title); ?></span>
-				<svg class="icon icon-xs">
+				<svg class="icon icon-xs" role="img" aria-labelledby="Expand">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 				</svg>
 			</a>

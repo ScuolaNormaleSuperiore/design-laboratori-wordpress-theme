@@ -9,7 +9,7 @@
 		?>
 		<li>
 			<a href="<?php echo $facebook; ?>" aria-label="Facebook" target="_blank">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Facebook">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-facebook'; ?>"></use>
 				</svg>
 			</a>
@@ -20,7 +20,7 @@
 		?>
 		<li>
 			<a href="<?php echo $youtube; ?>" aria-label="Youtube" target="_blank">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Youtube">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-youtube'; ?>"></use>
 				</svg>
 			</a>
@@ -31,7 +31,7 @@
 		?>
 		<li>
 			<a href="<?php echo $instagram; ?>" aria-label="Instagram" target="_blank">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Instagram">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-instagram'; ?>"></use>
 				</svg>
 			</a>
@@ -42,7 +42,7 @@
 		?>
 		<li>
 			<a href="<?php echo $twitter; ?>" aria-label="Twitter" target="_blank">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Twitter">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-twitter'; ?>"></use>
 				</svg>
 			</a>
@@ -53,7 +53,7 @@
 		?>
 		<li>
 			<a href="<?php echo $linkedin; ?>" aria-label="Linkedin" target="_blank">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Linkedin">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-linkedin'; ?>"></use>
 				</svg>
 			</a>

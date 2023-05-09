@@ -10,7 +10,7 @@
 get_header();
 $carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled', 'homepage' );
 ?>
-<main id="main-container" class="main-container redbrown">
+<main id="main-container" class="main-container redbrown" role="main">
 
 <!-- Section MAIN HERO  -->
 <?php get_template_part( 'template-parts/home/main-hero' ); ?>

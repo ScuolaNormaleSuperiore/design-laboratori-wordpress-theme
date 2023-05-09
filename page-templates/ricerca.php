@@ -20,7 +20,7 @@ $num_results = $the_query->found_posts;
 ?>
 
 
-<main id="main-container">
+<main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -73,7 +73,7 @@ $num_results = $the_query->found_posts;
 										<p class="card-text"><?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 										<span class="text"><?php echo __( 'Vai all\'attività', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon">
+										<svg class="icon" role="img" aria-labelledby="Arrow right">
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
 										</svg>
 										</a>

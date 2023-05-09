@@ -158,7 +158,7 @@ if ( 'yes' === $forminviato ) {
 
 ?>
 
-<main id="main-container" class="main-container bluelectric">
+<main id="main-container" class="main-container bluelectric" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -184,7 +184,7 @@ if ( 'yes' === $forminviato ) {
 		<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
 		<?php echo __( 'Messaggio inviato correttamente', 'design_laboratori_italia' ) . '&nbsp;.'; ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Close">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
 				</svg>
 			</button>
@@ -199,7 +199,7 @@ if ( 'yes' === $forminviato ) {
 		<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
 			<?php echo __( $testorisultato, 'design_laboratori_italia' ); ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
-				<svg class="icon">
+				<svg class="icon" role="img" aria-labelledby="Close">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
 				</svg>
 			</button>
@@ -221,7 +221,7 @@ if ( 'yes' === $forminviato ) {
 							<li>
 								<div class="list-item">
 									<div class="it-rounded-icon">
-										<svg class="icon">
+										<svg class="icon" role="img" aria-labelledby="Telephone">
 										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 										</svg>
 									</div>
@@ -237,7 +237,7 @@ if ( 'yes' === $forminviato ) {
 							<li>
 								<a href="<?php echo 'mailto:' . $email; ?>" class="list-item">
 								<div class="it-rounded-icon">
-									<svg class="icon">
+									<svg class="icon" role="img" aria-labelledby="Mail">
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 									</svg>
 								</div>
@@ -251,7 +251,7 @@ if ( 'yes' === $forminviato ) {
 							<li>
 								<a class="list-item" href="<?php echo $website; ?>">
 								<div class="it-rounded-icon">
-								<svg class="icon">
+								<svg class="icon" role="img" aria-labelledby="Link">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 								</svg>
 								</div>

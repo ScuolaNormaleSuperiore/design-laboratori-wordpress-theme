@@ -42,7 +42,7 @@ $current_group   = dli_get_current_group();
 <!-- End Right menu element-->
 
 <!-- HEADER -->
-<header class="it-header-wrapper" data-bs-target="#header-nav-wrapper">
+<header class="it-header-wrapper" data-bs-target="#header-nav-wrapper" role="navigation">
 	<div class="it-header-slim-wrapper">
 		<div class="container">
 			<div class="row">
@@ -77,7 +77,7 @@ $current_group   = dli_get_current_group();
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia');?></span>
 							<span><?php echo $current_language; ?></span>
-							<svg class="icon d-none d-lg-block">
+							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 							</svg>
 							</a>
@@ -137,7 +137,7 @@ $current_group   = dli_get_current_group();
 							<!-- header logo -->
 							<?php get_template_part( 'template-parts/common/logo' ); ?>
 							<div class="it-brand-text ms-4">
-							<div class="it-brand-title"><strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong></div>
+							<div class="it-brand-title"><h1><?php echo dli_get_option( 'nome_laboratorio' ); ?></h1></div>
 							<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
 							</div>
 						</a>
@@ -152,7 +152,7 @@ $current_group   = dli_get_current_group();
 								$search_link = dli_get_search_link( $current_language );
 							?>
 							<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
-								<svg class="icon">
+								<svg class="icon" role="img" aria-labelledby="Search">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 								</svg>
 							</a>
@@ -172,7 +172,7 @@ $current_group   = dli_get_current_group();
 				<nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
 				<button class="custom-navbar-toggler" type="button" aria-controls="nav1" aria-expanded="false"
 					aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
-					<svg class="icon bg-override">
+					<svg class="icon bg-override" role="img" aria-labelledby="Burger">
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger'; ?>"></use>
 					</svg>
 				</button>
@@ -181,7 +181,7 @@ $current_group   = dli_get_current_group();
 					<div class="close-div">
 					<button class="btn close-menu" type="button">
 						<span class="visually-hidden">Nascondi la navigazione</span>
-						<svg class="icon">
+						<svg class="icon" role="img" aria-labelledby="Close big">
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big'; ?>"></use>
 						</svg>
 					</button>

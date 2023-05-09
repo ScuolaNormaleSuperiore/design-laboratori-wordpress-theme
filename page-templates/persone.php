@@ -22,7 +22,7 @@ $num_results = $the_query->found_posts;
 
 <!-- START CONTENT -->
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="personeform" method="GET">
-	<main id="main-container">
+	<main id="main-container" role="main">
 
 		<!-- BREADCRUMB -->
 		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>

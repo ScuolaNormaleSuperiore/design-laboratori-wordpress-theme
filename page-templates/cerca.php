@@ -44,7 +44,7 @@ if ( $searchstring !== '' ) {
 
 ?>
 
-<main id="main-container" class="main-container bluelectric">
+<main id="main-container" class="main-container bluelectric" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>

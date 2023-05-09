@@ -50,7 +50,7 @@ $num_results = $luoghi->found_posts;
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="luoghiform" method="GET">
 <!-- START CONTENT -->
-	<main id="main-container">
+	<main id="main-container" role="main">
 		<!-- BREADCRUMB -->
 		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
@@ -121,7 +121,7 @@ $num_results = $luoghi->found_posts;
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body">
 										<h3 class="card-title h5 ">
-											<svg class="icon">
+											<svg class="icon" role="img" aria-labelledby="Map marker">
 												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker'; ?>"></use>
 											</svg>
 											<a href="<?php the_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>

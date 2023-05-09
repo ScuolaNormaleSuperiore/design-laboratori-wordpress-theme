@@ -27,7 +27,7 @@
 						<div class="card card-teaser rounded shadow ">
 							<div class="card-body">
 								<h3 class="card-title h5 ">
-									<svg class="icon">
+									<svg class="icon"  role="img" aria-labelledby="File PDF">
 										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use>
 									</svg>
 									<a href="<?php echo esc_url( $post_url ) ; ?>" target="_blank"><?php echo esc_attr( $post_title ) ; ?></a>

@@ -12,7 +12,7 @@ get_header();
 $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 ?>
 
-<main id="main-container">
+<main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>

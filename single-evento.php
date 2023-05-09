@@ -27,7 +27,7 @@ $allegato         = dli_get_field( 'allegato' );
 $short_descr      = get_field( 'descrizione_breve' );
 ?>
 
-<main id="main-container">
+<main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -88,7 +88,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
-							<svg class="icon icon-sm icon-primary align-top">
+							<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron left">
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" 
 								xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>"></use>
 							</svg>
@@ -199,7 +199,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 						<li>
 							<div class="list-item">
 								<div class="it-rounded-icon">
-									<svg class="icon">
+									<svg class="icon" role="img" aria-labelledby="Telephone">
 										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 									</svg>
 								</div>
@@ -213,7 +213,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 						<li>
 							<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
 							<div class="it-rounded-icon">
-								<svg class="icon">
+								<svg class="icon" role="img" aria-labelledby="Mail">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 								</svg>
 							</div>
@@ -227,7 +227,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 						<li>
 							<a class="list-item" target="_blank" href="<?php echo $sitoweb; ?>">
 							<div class="it-rounded-icon">
-								<svg class="icon">
+								<svg class="icon" role="img" aria-labelledby="Link">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 								</svg>
 							</div>
@@ -251,7 +251,9 @@ $short_descr      = get_field( 'descrizione_breve' );
 							<div class="card card-teaser rounded shadow ">
 								<div class="card-body">
 									<h3 class="card-title h5 ">
-										<svg class="icon"><use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use></svg>
+										<svg class="icon" role="img" aria-labelledby="File PDF">
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use>
+										</svg>
 										<a target="_blank" href="<?php echo esc_attr( $allegato['url'] ); ?>"><?php echo esc_attr( $allegato['title'] ); ?></a>
 									</h3>
 								</div>

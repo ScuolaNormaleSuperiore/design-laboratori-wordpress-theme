@@ -111,7 +111,7 @@ $num_results = $pubblicazioni->found_posts;
 ?>
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
-	<main id="main-container">
+	<main id="main-container" role="main">
 
 		<!-- BREADCRUMB -->
 		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -201,7 +201,7 @@ $num_results = $pubblicazioni->found_posts;
 												if ( $url ) {
 													?>
 													<h3 class="card-title h5">
-														<svg class="icon">
+														<svg class="icon" role="img" aria-labelledby="Note">
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
 														</svg>
 														<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
@@ -211,7 +211,7 @@ $num_results = $pubblicazioni->found_posts;
 												else {
 													?>
 													<h3 class="card-title h5">
-														<svg class="icon">
+														<svg class="icon" role="img" aria-labelledby="Note">
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
 														</svg>
 														<?php echo esc_attr( $title ); ?>

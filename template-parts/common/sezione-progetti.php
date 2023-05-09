@@ -23,7 +23,7 @@
 		<div class="card card-teaser rounded shadow">
 			<div class="card-body">
 				<h3 class="card-title h5 ">
-					<svg class="icon">
+					<svg class="icon" role="img" aria-labelledby="Folder">
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder'; ?>"></use>
 					</svg>
 					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_attr( $title ); ?></a>

@@ -15,7 +15,7 @@ get_header();
 ?>
 *** SINGLE DI DEFAULT ***
 
-    <main id="main-container" class="main-container greendark">
+    <main id="main-container" class="main-container greendark" role="main">
 		<?php get_template_part("template-parts/common/breadcrumb"); ?>
 
 		<?php while ( have_posts() ) :  the_post();

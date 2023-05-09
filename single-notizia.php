@@ -17,7 +17,7 @@ $pg        = dli_get_page_by_post_type( $post->post_type );
 $pg_link   = get_permalink( $pg->ID );
 ?>
 
-<main id="main-container">
+<main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
