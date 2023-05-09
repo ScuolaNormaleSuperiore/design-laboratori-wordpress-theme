@@ -19,6 +19,10 @@ define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 define( 'DLI_POSTS_PER_PAGE', 6 );
 define( 'PERSONE_PER_ROW', 2 );
 
+// Define template active sting.
+define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
+define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
+
 // CUSTOM CONTENT TYPES.
 define( 'EVENT_POST_TYPE', 'evento' );
 define( 'NEWS_POST_TYPE', 'notizia' );
@@ -122,7 +126,6 @@ define(
 	)
 );
 
-
 // Post Types for PolyLang.
 define(
 	'DLI_POST_TYPES_TO_TRANSLATE',
@@ -150,7 +153,6 @@ define(
 		WP_DEFAULT_CATEGORY,
 	)
 );
-
 
 // Post Wrapper for Carousel and Featured Contents.
 define(

@@ -5,10 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
-define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
-
-
 /**
  * Action to add page templates used by theme
  */
@@ -389,11 +385,12 @@ function 	build_the_menu( $custom_menu ) {
 		$menu_location = $menu_location . '__' . $menu_lang;
 	}
 
-	wp_delete_nav_menu( $menu_name );
+	// wp_delete_nav_menu( $menu_name );
 
 	$menu_object = wp_get_nav_menu_object( $menu_name );
 	if ( $menu_object ) {
 		$menu_id = $menu_object->term_id;
+		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
 	} else {
 
 		$menu_id  = wp_create_nav_menu( $menu_name );
@@ -679,305 +676,305 @@ function create_the_en_menus() {
  * @return void
  */
 function create_the_pages() {
-		// Creazione delle pagine statiche.
-		$static_pages = array(
-			array(
-				'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
-				'content_slug_en'    => SLUG_PRESENTAZIONE_EN,
-				'content_title_it'   => 'Presentazione',
-				'content_title_en'   => 'Presentation',
-				'content_it'         => 'La nostra storia...',
-				'content_en'         => 'Our history...',
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => '',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_PRIVACY_IT,
-				'content_slug_en'    => SLUG_PRIVACY_EN,
-				'content_title_it'   => 'Privacy policy',
-				'content_title_en'   => 'Privacy policy',
-				'content_it'         => 'La nostra Privacy Policy...',
-				'content_en'         => 'Our Privacy Policy...',
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => '',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_CONTATTI_IT,
-				'content_slug_en'    => SLUG_CONTATTI_EN,
-				'content_title_it'   => 'Contatti',
-				'content_title_en'   => 'Contacts',
-				'content_it'         => 'I nostri contatti...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Our contacts...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/contatti.php',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
-				'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
-				'content_title_it'   => 'Dichiarazione',
-				'content_title_en'   => 'Accessibility',
-				'content_it'         => 'La di chiarazione di accessibilità...',
-				'content_en'         => 'The accessibility declaration...',
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => '',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_MEDIA_POLICY_IT,
-				'content_slug_en'    => SLUG_MEDIA_POLICY_EN,
-				'content_title_it'   => 'Media policy',
-				'content_title_en'   => 'Media policy',
-				'content_it'         => 'La Media policy ( italiano )...',
-				'content_en'         => 'The Media policy ( english )...',
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => '',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
-				'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
-				'content_title_it'   => 'Note legali',
-				'content_title_en'   => 'Legal notes',
-				'content_it'         => 'Le note legali...',
-				'content_en'         => 'The legal notes...',
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => '',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_MAPPA_SITO_IT,
-				'content_slug_en'    => SLUG_MAPPA_SITO_EN,
-				'content_title_it'   => 'Mappa del sito',
-				'content_title_en'   => 'Site map',
-				'content_it'         => 'La mappa del sito...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'The map of the site...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/mappasito.php',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_LABORATORIO_IT,
-				'content_slug_en'    => SLUG_LABORATORIO_EN,
-				'content_title_it'   => 'Il Laboratorio',
-				'content_title_en'   => 'The Lab',
-				'content_it'         => 'Descrizione del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Lab description...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/il-laboratorio.php',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_PERSONE_IT,
-				'content_slug_en'    => SLUG_PERSONE_EN,
-				'content_title_it'   => 'Persone',
-				'content_title_en'   => 'People',
-				'content_it'         => 'Descrizione dello staff del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Description of the Lab staff...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/persone.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_PROGETTI_IT,
-				'content_slug_en'    => SLUG_PROGETTI_EN,
-				'content_title_it'   => 'Progetti',
-				'content_title_en'   => 'Projects',
-				'content_it'         => 'Descrizione dei progetti del laboratorio...',
-				'content_en'         => 'Description of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/progetti.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
-				'content_slug_en'    => SLUG_ARCHIVIO_PROGETTI_EN,
-				'content_title_it'   => 'Archivio progetti',
-				'content_title_en'   => 'Projects archive',
-				'content_it'         => 'Archivio dei progetti del laboratorio...',
-				'content_en'         => 'Projects archive of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/archive-progetti.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_RICERCA_IT,
-				'content_slug_en'    => SLUG_RICERCA_EN,
-				'content_title_it'   => 'Attività di ricerca',
-				'content_title_en'   => 'Research activities',
-				'content_it'         => 'Descrizione delle attività di ricerca...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Description of the research activities...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/ricerca.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
-				'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
-				'content_title_it'   => 'Pubblicazioni',
-				'content_title_en'   => 'Publications',
-				'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Our publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/pubblicazioni.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_NOTIZIE_IT,
-				'content_slug_en'    => SLUG_NOTIZIE_EN,
-				'content_title_it'   => 'Le notizie',
-				'content_title_en'   => 'News',
-				'content_it'         => 'Le notizie del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Lab publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/notizie.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_EVENTI_IT,
-				'content_slug_en'    => SLUG_EVENTI_EN,
-				'content_title_it'   => 'Gli eventi',
-				'content_title_en'   => 'Events',
-				'content_it'         => 'Gli eventi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'The events of the lab...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/eventi.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_LUOGHI_IT,
-				'content_slug_en'    => SLUG_LUOGHI_EN,
-				'content_title_it'   => 'I luoghi',
-				'content_title_en'   => 'Places',
-				'content_it'         => 'I luoghi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'The places of the lab...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/luoghi.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
-			array(
-				'content_slug_it'    => SLUG_RICERCA_SITO_IT,
-				'content_slug_en'    => SLUG_RICERCA_SITO_EN,
-				'content_title_it'   => 'Ricerca',
-				'content_title_en'   => 'Search',
-				'content_it'         => 'Ricerca cose nel sito ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'Search things in the site...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/cerca.php',
-				'content_type'       => 'page',
-				'content_parent'     => null,
-			),
-			array(
-				'content_slug_it'    => SLUG_BLOG_IT,
-				'content_slug_en'    => SLUG_BLOG_EN,
-				'content_title_it'   => 'Blog',
-				'content_title_en'   => 'Blog',
-				'content_it'         => 'Il blog ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-				'content_en'         => 'The blog...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
-				'content_status'     => 'publish',
-				'content_author'     => 1,
-				'content_template'   => 'page-templates/blog.php',
-				'content_type'       => 'page',
-				'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
-			),
+	// Creazione delle pagine statiche.
+	$static_pages = array(
+		array(
+			'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
+			'content_slug_en'    => SLUG_PRESENTAZIONE_EN,
+			'content_title_it'   => 'Presentazione',
+			'content_title_en'   => 'Presentation',
+			'content_it'         => 'La nostra storia...',
+			'content_en'         => 'Our history...',
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => '',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_PRIVACY_IT,
+			'content_slug_en'    => SLUG_PRIVACY_EN,
+			'content_title_it'   => 'Privacy policy',
+			'content_title_en'   => 'Privacy policy',
+			'content_it'         => 'La nostra Privacy Policy...',
+			'content_en'         => 'Our Privacy Policy...',
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => '',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_CONTATTI_IT,
+			'content_slug_en'    => SLUG_CONTATTI_EN,
+			'content_title_it'   => 'Contatti',
+			'content_title_en'   => 'Contacts',
+			'content_it'         => 'I nostri contatti...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Our contacts...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/contatti.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
+			'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
+			'content_title_it'   => 'Dichiarazione',
+			'content_title_en'   => 'Accessibility',
+			'content_it'         => 'La di chiarazione di accessibilità...',
+			'content_en'         => 'The accessibility declaration...',
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => '',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_MEDIA_POLICY_IT,
+			'content_slug_en'    => SLUG_MEDIA_POLICY_EN,
+			'content_title_it'   => 'Media policy',
+			'content_title_en'   => 'Media policy',
+			'content_it'         => 'La Media policy ( italiano )...',
+			'content_en'         => 'The Media policy ( english )...',
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => '',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
+			'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
+			'content_title_it'   => 'Note legali',
+			'content_title_en'   => 'Legal notes',
+			'content_it'         => 'Le note legali...',
+			'content_en'         => 'The legal notes...',
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => '',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_MAPPA_SITO_IT,
+			'content_slug_en'    => SLUG_MAPPA_SITO_EN,
+			'content_title_it'   => 'Mappa del sito',
+			'content_title_en'   => 'Site map',
+			'content_it'         => 'La mappa del sito...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'The map of the site...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/mappasito.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_LABORATORIO_IT,
+			'content_slug_en'    => SLUG_LABORATORIO_EN,
+			'content_title_it'   => 'Il Laboratorio',
+			'content_title_en'   => 'The Lab',
+			'content_it'         => 'Descrizione del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Lab description...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/il-laboratorio.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_PERSONE_IT,
+			'content_slug_en'    => SLUG_PERSONE_EN,
+			'content_title_it'   => 'Persone',
+			'content_title_en'   => 'People',
+			'content_it'         => 'Descrizione dello staff del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Description of the Lab staff...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/persone.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_PROGETTI_IT,
+			'content_slug_en'    => SLUG_PROGETTI_EN,
+			'content_title_it'   => 'Progetti',
+			'content_title_en'   => 'Projects',
+			'content_it'         => 'Descrizione dei progetti del laboratorio...',
+			'content_en'         => 'Description of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/progetti.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
+			'content_slug_en'    => SLUG_ARCHIVIO_PROGETTI_EN,
+			'content_title_it'   => 'Archivio progetti',
+			'content_title_en'   => 'Projects archive',
+			'content_it'         => 'Archivio dei progetti del laboratorio...',
+			'content_en'         => 'Projects archive of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/archive-progetti.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_RICERCA_IT,
+			'content_slug_en'    => SLUG_RICERCA_EN,
+			'content_title_it'   => 'Attività di ricerca',
+			'content_title_en'   => 'Research activities',
+			'content_it'         => 'Descrizione delle attività di ricerca...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Description of the research activities...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/ricerca.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
+			'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
+			'content_title_it'   => 'Pubblicazioni',
+			'content_title_en'   => 'Publications',
+			'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Our publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/pubblicazioni.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_NOTIZIE_IT,
+			'content_slug_en'    => SLUG_NOTIZIE_EN,
+			'content_title_it'   => 'Le notizie',
+			'content_title_en'   => 'News',
+			'content_it'         => 'Le notizie del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Lab publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/notizie.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_EVENTI_IT,
+			'content_slug_en'    => SLUG_EVENTI_EN,
+			'content_title_it'   => 'Gli eventi',
+			'content_title_en'   => 'Events',
+			'content_it'         => 'Gli eventi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'The events of the lab...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/eventi.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_LUOGHI_IT,
+			'content_slug_en'    => SLUG_LUOGHI_EN,
+			'content_title_it'   => 'I luoghi',
+			'content_title_en'   => 'Places',
+			'content_it'         => 'I luoghi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'The places of the lab...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/luoghi.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+		array(
+			'content_slug_it'    => SLUG_RICERCA_SITO_IT,
+			'content_slug_en'    => SLUG_RICERCA_SITO_EN,
+			'content_title_it'   => 'Ricerca',
+			'content_title_en'   => 'Search',
+			'content_it'         => 'Ricerca cose nel sito ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Search things in the site...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/cerca.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+		),
+		array(
+			'content_slug_it'    => SLUG_BLOG_IT,
+			'content_slug_en'    => SLUG_BLOG_EN,
+			'content_title_it'   => 'Blog',
+			'content_title_en'   => 'Blog',
+			'content_it'         => 'Il blog ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'The blog...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/blog.php',
+			'content_type'       => 'page',
+			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+		),
+	);
+
+	foreach ( $static_pages as $page ) {
+		$new_content_template   = $page['content_template'];
+
+		// Create the IT page.
+		// Store the above data in an array.
+		$new_page = array(
+			'post_type'    => $page['content_type'],
+			'post_name'    => $page['content_slug_it'],
+			'post_title'   => $page['content_title_it'],
+			'post_content' => $page['content_it'],
+			'post_status'  => $page['content_status'],
+			'post_author'  => intval( $page['content_author'] ),
+			'post_parent'  => 0,
 		);
-
-		foreach ( $static_pages as $page ) {
-			$new_content_template   = $page['content_template'];
-
-			// Create the IT page.
-			// Store the above data in an array.
-			$new_page = array(
-				'post_type'    => $page['content_type'],
-				'post_name'    => $page['content_slug_it'],
-				'post_title'   => $page['content_title_it'],
-				'post_content' => $page['content_it'],
-				'post_status'  => $page['content_status'],
-				'post_author'  => intval( $page['content_author'] ),
-				'post_parent'  => 0,
-			);
-			$page_check     = dli_get_content( $page['content_slug_it'], $page['content_type'] );
-			$new_page_it_id = $page_check ? $page_check->ID : 0;
-			// If the IT page doesn't already exist, create it.
-			if ( ! $new_page_it_id ) {
-				if ( isset( $page['content_parent'] ) ) {
-					$post_parent_id          = intval( get_page_by_path( $page['content_parent'][0] )->ID );
-					$new_page['post_parent'] = $post_parent_id;
-				}
-				$new_page_it_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
+		$page_check     = dli_get_content( $page['content_slug_it'], $page['content_type'] );
+		$new_page_it_id = $page_check ? $page_check->ID : 0;
+		// If the IT page doesn't already exist, create it.
+		if ( ! $new_page_it_id ) {
+			if ( isset( $page['content_parent'] ) ) {
+				$post_parent_id          = intval( get_page_by_path( $page['content_parent'][0] )->ID );
+				$new_page['post_parent'] = $post_parent_id;
 			}
-			// Assign the IT language to the page.
-			dli_set_post_language( $new_page_it_id, 'it' );
-
-			// Create the EN page.
-			// Store the above data in an array.
-			$new_page = array(
-				'post_type'    => $page['content_type'],
-				'post_name'    => $page['content_slug_en'],
-				'post_title'   => $page['content_title_en'],
-				'post_content' => $page['content_en'],
-				'post_status'  => $page['content_status'],
-				'post_author'  => intval( $page['content_author'] ),
-				'post_parent'  => 0,
-			);
-			$page_check     = dli_get_content( $page['content_slug_en'], $page['content_type'] );
-			$new_page_en_id = $page_check ? $page_check->ID : 0;
-			// If the IT page doesn't already exist, create it.
-			if ( ! $new_page_en_id ) {
-				if ( isset( $page['content_parent'] ) ) {
-					$post_parent_id          = intval( get_page_by_path( $page['content_parent'][1] )->ID );
-					$new_page['post_parent'] = $post_parent_id;
-				}
-				$new_page_en_id = wp_insert_post( $new_page );
-				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
-			}
-			// Assign the EN language to the page.
-			dli_set_post_language( $new_page_en_id, 'en' );
-
-			// Associate it and en translations.
-			$related_posts = array(
-				'it' => $new_page_it_id,
-				'en' => $new_page_en_id,
-			);
-			dli_save_post_translations( $related_posts );
-
+			$new_page_it_id = wp_insert_post( $new_page );
+			update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
 		}
+		// Assign the IT language to the page.
+		dli_set_post_language( $new_page_it_id, 'it' );
+
+		// Create the EN page.
+		// Store the above data in an array.
+		$new_page = array(
+			'post_type'    => $page['content_type'],
+			'post_name'    => $page['content_slug_en'],
+			'post_title'   => $page['content_title_en'],
+			'post_content' => $page['content_en'],
+			'post_status'  => $page['content_status'],
+			'post_author'  => intval( $page['content_author'] ),
+			'post_parent'  => 0,
+		);
+		$page_check     = dli_get_content( $page['content_slug_en'], $page['content_type'] );
+		$new_page_en_id = $page_check ? $page_check->ID : 0;
+		// If the IT page doesn't already exist, create it.
+		if ( ! $new_page_en_id ) {
+			if ( isset( $page['content_parent'] ) ) {
+				$post_parent_id          = intval( get_page_by_path( $page['content_parent'][1] )->ID );
+				$new_page['post_parent'] = $post_parent_id;
+			}
+			$new_page_en_id = wp_insert_post( $new_page );
+			update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
+		}
+		// Assign the EN language to the page.
+		dli_set_post_language( $new_page_en_id, 'en' );
+
+		// Associate it and en translations.
+		$related_posts = array(
+			'it' => $new_page_it_id,
+			'en' => $new_page_en_id,
+		);
+		dli_save_post_translations( $related_posts );
+
+	}
 }
 
 /**

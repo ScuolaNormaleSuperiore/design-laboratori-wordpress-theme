@@ -28,23 +28,6 @@ if(!function_exists("dli_get_option")) {
 	}
 }
 
-// /**
-//  * Define members check user function if not defined and return true
-//  * @param  int     $user_id
-//  * @param  int     $post_id
-//  * @return bool
-//  */
-// if(!function_exists("dli_members_can_user_view_post")) {
-// 		function dli_members_can_user_view_post($user_id, $post_id) {
-// 				if(!function_exists("members_can_user_view_post")) {
-// 						return true;
-// 				} else{
-// 						return members_can_user_view_post($user_id, $post_id);
-// 				}
-
-// 		}
-// }
-
 /**
  * Wrapper function for persona avatar
  * @param object $foto
@@ -60,33 +43,6 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
 		return $thumbnail;
 	}
 }
-
-// /**
-//  * Ritorna l'associazione tra i type ricercabili e i post_type wordpress
-//  * @param string $type
-//  *
-//  * @return array
-//  */
-// function dli_get_post_types_grouped($type = "", $tag = false){
-// 	if($type == "")
-// 		$type = "any";
-// 	if($type === "laboratory")
-// 		$post_types = array("documento", "luogo", "struttura", "page");
-// 	else if($type === "news")
-// 		$post_types = array("evento", "post", "circolare");
-// 	else if($type === "education")
-// 		$post_types = array("scheda_didattica", "scheda_progetto");
-// 	else if($type === "service")
-// 		$post_types = array("indirizzo");
-// 	else
-// 		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "indirizzo", "struttura", "page");
-// 	if($tag){
-// 		if (($key = array_search("page", $post_types)) !== false) {
-// 			unset($post_types[$key]);
-// 		}
-// 	}
-// 	return $post_types;
-// }
 
 
 /**
@@ -127,24 +83,6 @@ function dli_get_template_page_url($TEMPLATE_NAME){
 		}
 	return null;
 }
-
-// /**
-//  * restituisce intero
-//  * @param $value
-//  * @param $field_args
-//  * @param $field
-//  * @return int|string
-//  */
-// function dli_sanitize_int( $value, $field_args, $field ) {
-// 		// Don't keep anything that's not numeric
-// 		if ( ! is_numeric( $value ) ) {
-// 				$sanitized_value = '';
-// 		} else {
-// 				// Ok, let's clean it up.
-// 				$sanitized_value = absint( $value );
-// 		}
-// 		return $sanitized_value;
-// }
 
 
 /**
@@ -300,6 +238,9 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 			case PUBLICATION_POST_TYPE:
 					$item = dli_from_publication_to_carousel_item ( $result );
 					break;
+			case WP_DEFAULT_PAGE:
+				$item = dli_from_page_to_carousel_item ( $result );
+				break;
 			default:
 				// Standard post or article.
 				$item = dli_from_post_to_carousel_item ( $result );
@@ -490,6 +431,50 @@ if( ! function_exists( 'dli_from_post_to_carousel_item' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
+	function dli_from_page_to_carousel_item( $item ) {
+		$post_type = get_post_type( $item );
+		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+		if ( ! $image_url ){
+			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+		}
+		$page = dli_get_page_by_post_type( $post_type );
+		$post_title  = get_the_title( $item );
+		$image_id    = attachment_url_to_postid( $image_url );
+		$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+		$image_alt   = $image_alt ? $image_alt : $post_title;
+		$image_title = get_the_title( $image_id );
+		$image_title = $image_title ? $image_title : $post_title;
+		$categories  = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
+		$pt_slugs    = dli_get_sluglist_by_category( $categories );
+
+		if ( in_array( $item->post_name, $pt_slugs ) ) {
+			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
+			$description = '';
+			$fullcontent = '';
+		} else {
+			// PAGINA STATICA.
+			$description = $item->post_content;
+			$fullcontent = get_the_content( $item );
+		}
+		// @TODO: Popolare $result e non ridefinirlo.
+		$result      = array(
+			'type'          => $post_type,
+			'category'      => 'Home',
+			'category_link' => get_site_url(),
+			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $description, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => $fullcontent,
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_url,
+			'image_alt'     => $image_alt,
+			'image_title'   => $image_title,
+		);
+		return $result;
+	}
+}
+
 if( ! function_exists( 'dli_get_post_main_category' ) ) {
 	function dli_get_post_main_category( $post, $taxonomy ) {
 		$terms = get_the_terms( $post, $taxonomy );
@@ -630,7 +615,7 @@ if( ! function_exists( 'dli_build_content_path' ) ) {
 if( ! function_exists( 'dli_get_page_slug_by_post_type' ) ) {
 	function dli_get_page_slug_by_post_type( $post_type ) {
 		$lang = dli_current_language();
-		return DLI_PAGE_PER_CT[$post_type][$lang];
+		return isset( DLI_PAGE_PER_CT[$post_type] ) ? DLI_PAGE_PER_CT[$post_type][$lang] : '';
 	}
 }
 
@@ -697,7 +682,7 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 
 		// Recupera elenco dei menu per lingua.
 		$menu_items = dli_get_all_menus_by_lang( $lng_slug );
-		$slugs      = dli_get_pt_slugs();
+		$slugs      = dli_get_pt_archive_slugs();
 
 		// Aggiungi all'albero delle pagine le voci di menu.
 		foreach ( $menu_items as $item ) {
@@ -721,10 +706,10 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 						$child_el['slug'] = $object->post_name;
 						$child_el['link'] = get_permalink( $object->ID );
 						$pt[$hp['slug']]['children'][$menu->slug]['children'][$object->post_title] = $child_el;
-						// Per le pagine archivio o riassuntive, aggiungi all'albero tutti i contenuti di quel tipo.
+						// Per le pagine archivio (elenco di post), aggiungi all'albero tutti i contenuti di quel tipo.
 						$post_tpye = isset( $slugs[ $object->post_name ] ) ? $slugs[ $object->post_name ] : '';
 						if ( $post_tpye ) {
-							$results = dli_get_map_posts( $post_tpye );
+							$results = dli_get_sitemap_posts( $post_tpye );
 							foreach ( $results as $r ){
 								$post_el         = dli_get_tree_item();
 								$post_el['name'] = $r->post_title;
@@ -754,8 +739,35 @@ if( ! function_exists( 'dli_get_tree_item' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_get_pt_slugs' ) ) {
-	function dli_get_pt_slugs( ) {
+if( ! function_exists( 'dli_get_sitemap_posts' ) ) {
+	/**
+	 * Return the list of the post of a certain type to show in the sitemap.
+	 * 
+	 * @param array $post_type
+	 * @return array of slugs (strings)
+	 */
+	function dli_get_sitemap_posts( $post_type ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => $post_type,
+				'post_status'    => 'publish',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+			)
+		);
+		return $query->posts;
+	}
+}
+
+if( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
+	/**
+	 * Return the slugs of all the page that are archives of posts.
+	 * Ritorna un array di coppie: <slug> => <post_type>.
+	 * 
+	 * @return array.
+	 */
+	function dli_get_pt_archive_slugs( ) {
 		$slugs = array();
 		foreach( DLI_PAGE_PER_CT as $pt => $items ){
 			if ( $pt !== PEOPLE_TYPE_POST_TYPE ) {
@@ -768,17 +780,45 @@ if( ! function_exists( 'dli_get_pt_slugs' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_get_map_posts' ) ) {
-	function dli_get_map_posts( $post_type ) {
-		$query = new WP_Query(
-			array(
-				'posts_per_page' => -1,
-				'post_type'      => $post_type,
-				'post_status'    => 'publish',
-				'orderby'        => 'post_date',
-				'order'          => 'DESC',
-			)
-		);
-		return $query->posts;
+
+if( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
+	/**
+	 * Return the slugs of all the page that are archives of posts.
+	 * Ritorna un array di slug
+	 * 
+	 * @return array.
+	 */
+	function dli_get_sluglist_by_category( $categories ) {
+		$pt_slugs = dli_get_slugs_by_category( $categories );
+		$sluglist    = array();
+		foreach ( $pt_slugs as $category_items ) {
+			foreach ( $category_items as $item ) {
+				array_push( $sluglist, $item );
+			}
+		}
+		return $sluglist;
+	}
+}
+
+if( ! function_exists( 'dli_get_slugs_by_category' ) ) {
+	/**
+	 *  Return the slugs of the categories passed as parameter.
+	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
+	 * 
+	 * @param array $categories
+	 * @return array.
+	 */
+	function dli_get_slugs_by_category( $categories ) {
+		$slugmap = array();
+		foreach ( DLI_STATIC_PAGE_CATS as $item ) {
+			if ( in_array( $item['content_category'], $categories ) ) {
+				if ( ! isset( $slugmap[$item['content_category']] ) ) {
+					$slugmap[$item['content_category']] = array();
+				}
+				array_push( $slugmap[$item['content_category']], $item['content_slug_it'] );
+				array_push( $slugmap[$item['content_category']], $item['content_slug_en'] );
+			}
+		}
+		return $slugmap;
 	}
 }

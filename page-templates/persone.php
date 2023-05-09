@@ -168,28 +168,36 @@ $num_results = $the_query->found_posts;
 															<div class="extra-text">
 																<?php
 																$terms = get_the_terms( $ID, 'struttura' );
-																$nome_struttura = $terms[0]->name;
-																if ( ! $disattiva_pagina_dettaglio ) {
-																	if ( ! $abilita_link_diretto_pagina_persona ) {
-																		?>
-																		<h4>
-																			<a href="<?php echo $link_persona; ?>"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a>
-																		</h4>
-																		<?php
+																if ( $terms ) {
+																	$nome_struttura = $terms[0]->name;
+																	if ( ! $disattiva_pagina_dettaglio ) {
+																		if ( ! $abilita_link_diretto_pagina_persona ) {
+																			?>
+																			<h4>
+																				<a href="<?php echo $link_persona; ?>">
+																					<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+																				</a>
+																			</h4>
+																			<?php
+																		}
+																		else {
+																			?>
+																				<h4>
+																					<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
+																						<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+																					</a>
+																				</h4>
+																			<?php
+																		}
 																	}
 																	else {
 																		?>
-																			<h4>
-																				<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank"><?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?></a>
-																			</h4>
-																		<?php
-																	}
+																		<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
+																	<?php } ?>
+																	<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
+																<?php
 																}
-																else {
-																	?>
-																	<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
-																<?php } ?>
-																<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
+																?>
 															</div>
 														</div>
 													</div><!-- /col-lg-4 -->
