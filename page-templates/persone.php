@@ -167,9 +167,6 @@ $num_results = $the_query->found_posts;
 															</div>
 															<div class="extra-text">
 																<?php
-																$terms = get_the_terms( $ID, 'struttura' );
-																if ( $terms ) {
-																	$nome_struttura = $terms[0]->name;
 																	if ( ! $disattiva_pagina_dettaglio ) {
 																		if ( ! $abilita_link_diretto_pagina_persona ) {
 																			?>
@@ -193,10 +190,14 @@ $num_results = $the_query->found_posts;
 																	else {
 																		?>
 																		<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
-																	<?php } ?>
-																	<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
-																<?php
-																}
+																	<?php }
+																	$terms = get_the_terms( $ID, 'struttura' );
+																	if ( $terms ) {
+																		$nome_struttura = $terms[0]->name;
+																	?>
+																		<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
+																	<?php
+																	}
 																?>
 															</div>
 														</div>
