@@ -137,7 +137,7 @@ $current_group   = dli_get_current_group();
 							<!-- header logo -->
 							<?php get_template_part( 'template-parts/common/logo' ); ?>
 							<div class="it-brand-text ms-4">
-							<div class="it-brand-title"><h1><?php echo dli_get_option( 'nome_laboratorio' ); ?></h1></div>
+							<div class="it-brand-title"><h1 class="h3"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h1></div>
 							<div class="it-brand-tagline d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></div>
 							</div>
 						</a>
