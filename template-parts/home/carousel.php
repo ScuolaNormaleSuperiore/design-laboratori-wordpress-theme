@@ -35,7 +35,7 @@
 												<a class="category" href="<?php echo esc_url( $item['category_link'] ); ?>"><?php echo esc_attr( $item['category'] ); ?></a>
 												<span class="data"><?php echo esc_attr( $item['date'] ); ?></span>
 											</div>
-											<h5 class="card-title big-heading"><?php echo $item['title']; ?></h5>
+											<h5 class="h5 card-title big-heading"><?php echo $item['title']; ?></h5>
 											<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>
 											<?php
 											if ( $item['link'] ) {
