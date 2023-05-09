@@ -46,7 +46,7 @@ $all_categories = dli_get_all_categories( 'category' );
 					<?php
 						if( count( $all_categories ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom">Categoria</h3>
+						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Categoria', 'design_laboratori_italia' ); ?></h3>
 						<div>
 							<form action="." id="notizieform" method="GET">
 								<?php

@@ -104,7 +104,7 @@ if ( $searchstring !== '' ) {
 											 echo "checked='checked'";
 										} ?>
 									>
-									<label for="<?php echo $ct; ?>"><?php echo ucfirst(str_replace("-", " ", $ct));; ?></label>
+									<label for="<?php echo $ct; ?>"><?php echo __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ); ?></label>
 								</div>
 								<?php
 									}
