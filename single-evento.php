@@ -273,7 +273,7 @@ $short_descr      = get_field( 'descrizione_breve' );
 				<div class="row variable-gutters mb-5">
 					<div class="col-lg-9">
 						<div class="video-wrapper">
-							<iframe title="" width="500"
+							<iframe title="<?php echo get_the_title( ); ?> Video'" width="500"
 								height="281" src="<?php echo esc_url( $video ); ?>"
 								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
