@@ -66,7 +66,7 @@ $eventi = new WP_Query(
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 						<div class="it-btn-container">
-							<a class="btn btn-sm btn-primary" href="<?php echo esc_url( $websiteurl) ; ?>"><?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl) ; ?>"><?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 						</div>
 					</div>
 				</div>
