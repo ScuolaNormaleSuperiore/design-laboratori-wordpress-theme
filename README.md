@@ -154,4 +154,4 @@ Il tema è disponibile in ***italiano*** e in ***inglese***.
 ## Copyright
 1. Detentore copyright: *Scuola Normale Superiore*.
 2. Responsabili del progetto: Michele Fiaschi, Marcella Monreale e Claudio Battaglino.
-3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e il ***laboratorio Doc Star*** della *Scuola Normale Superiore*.
+3. Il progetto è stato realizzato con la collaborazione dell'***Ufficio comunicazione*** e Monia Manescalchi del ***laboratorio Doc Star*** della *Scuola Normale Superiore*.
