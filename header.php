@@ -209,7 +209,6 @@ $current_group   = dli_get_current_group();
 								)
 							);
 						?>
-
 					</div> <!-- menu-wrapper -->
 				</div>
 				</nav>
