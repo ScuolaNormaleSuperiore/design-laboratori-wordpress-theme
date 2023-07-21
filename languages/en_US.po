@@ -1287,6 +1287,10 @@ msgstr "Automatic selection"
 msgid "Selezione lingua: lingua selezionata"
 msgstr "Language selection: selected language"
 
+#: header.php:116
+msgid "Accedi"
+msgstr "Login"
+
 #: inc/admin/options.php:1290
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "

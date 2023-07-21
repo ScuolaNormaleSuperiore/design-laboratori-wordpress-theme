@@ -113,7 +113,7 @@ $current_group   = dli_get_current_group();
 						?>
 						<div class="it-access-top-wrapper">
 							&nbsp;&nbsp;
-							<a class="btn btn-primary btn-sm" href="#">Accedi</a>
+							<a class="btn btn-primary btn-sm" href="<?php echo get_site_url();?>/admin"><?php echo __( 'Accedi', 'design_laboratori_italia' ); ?></a>
 						</div>
 						<?php
 							}
