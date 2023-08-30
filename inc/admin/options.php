@@ -164,8 +164,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
-					'image/svg',
-					'image/png',
+					'image',
 				),
 			),
 		)
@@ -179,8 +178,7 @@ function dli_register_main_options_metabox() {
 			'type'         => 'file',
 			'query_args'   => array(
 				'type' => array(
-					'image/svg',
-					'image/png',
+					'image',
 				),
 			),
 		)
