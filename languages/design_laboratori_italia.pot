@@ -16,6 +16,10 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2\n"
 "X-Domain: design_laboratori_italia"
 
+#: page.php:57
+msgid "Pagine collegate"
+msgstr ""
+
 #: single-evento.php:54
 msgid "al"
 msgstr ""
