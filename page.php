@@ -58,6 +58,31 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 					<div class="sidebar-linklist-wrapper">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
+								<?php
+								//Retrieve till second level pages
+									$pages = get_pages( array(
+										'child_of'     => $post->ID,
+										'offset'       => 0,
+										'parent'       => $post->ID,
+									));
+
+									foreach ( $pages as $pg ) {
+										echo esc_attr( get_the_title( $pg ) );
+										$subs = get_pages( array(
+											'child_of'     => $pg->ID,
+											'offset'       => 0,
+											'parent'       => $pg->ID,
+										));
+
+										foreach( $subs as $sub ) {
+											echo esc_attr( get_the_title( $sub ) );
+										}
+									}
+										
+									
+										echo "FINE PAGINE DINAMICHE";
+								?>
+								
 								<li>
 									<a class="list-item large medium right-icon active" href="#collapseOne" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
 										<span class="list-item-title-icon-wrapper">
