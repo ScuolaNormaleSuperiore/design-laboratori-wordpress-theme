@@ -52,6 +52,15 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 	<section class="section bg-white">
 		<div class="container container-border-top">
 			<div class="row">
+				<?php
+					//Retrieve till second level pages
+					$pages = get_pages( array(
+						'child_of'     => $post->ID,
+						'offset'       => 0,
+						'parent'       => $post->ID,
+					));
+					if($pages) {
+						?>
 				<!-- SIDEBAR -->
 				<div class="sidebar-wrapper col-12 col-lg-3">
 					<h3><?php echo __( 'Pagine collegate', 'design_laboratori_italia' ); ?></h3>
@@ -67,107 +76,46 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 									));
 
 									foreach ( $pages as $pg ) {
-										echo esc_attr( get_the_title( $pg ) );
-										$subs = get_pages( array(
-											'child_of'     => $pg->ID,
-											'offset'       => 0,
-											'parent'       => $pg->ID,
-										));
-
-										foreach( $subs as $sub ) {
-											echo esc_attr( get_the_title( $sub ) );
-										}
+										?>
+										<li>
+											<a class="list-item large medium right-icon active" href="#collapseOne" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+												<span class="list-item-title-icon-wrapper">
+													<span><?php echo esc_attr( get_the_title( $pg ) ); ?></span>
+													<svg class="icon icon-sm icon-primary right" aria-hidden="true">
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+													</svg>
+												</span>
+											</a>
+											<?php
+											$subspg = get_pages( array(
+												'child_of'     => $pg->ID,
+												'offset'       => 0,
+												'parent'       => $pg->ID,
+											));
+											?>
+											<ul class="link-sublist collapse show" id="collapseOne">
+												<?php
+												foreach( $subspg as $subpg ) {
+													?>
+													<li>
+														<a class="list-item active" href="<?php echo get_permalink( $subpg->ID ); ?>">
+															<span><?php echo esc_attr( get_the_title( $subpg ) ); ?></span>
+														</a>
+													</li>
+													<?php
+												}
+												?>
+											</ul>
+											<?php
 									}
-										
-									
-										echo "FINE PAGINE DINAMICHE";
 								?>
-								
-								<li>
-									<a class="list-item large medium right-icon active" href="#collapseOne" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-										<span class="list-item-title-icon-wrapper">
-											<span>Link lista 1 (selezionato)</span>
-											<svg class="icon icon-sm icon-primary right" aria-hidden="true">
-												<use href="/dist/svg/sprites.svg#it-expand"></use>
-											</svg>
-										</span>
-									</a>
-									<ul class="link-sublist collapse show" id="collapseOne">
-										<li>
-											<a class="list-item active" href="#">
-												<span>Link lista 1.1 (attivo)</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 1.2</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 1.3</span>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="list-item large medium right-icon" href="#collapseTwo" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
-										<span class="list-item-title-icon-wrapper">
-											<span>Link lista 2</span>
-											<svg class="icon icon-sm icon-primary right" aria-hidden="true">
-												<use href="/dist/svg/sprites.svg#it-expand"></use>
-											</svg>
-										</span>
-									</a>
-									<ul class="link-sublist collapse" id="collapseTwo">
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 2.1</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 2.2</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 2.3</span>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="list-item large medium right-icon" href="#collapseThree" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
-									<span class="list-item-title-icon-wrapper">
-										<span>Link lista 3</span>
-										<svg class="icon icon-sm icon-primary right" aria-hidden="true">
-											<use href="/dist/svg/sprites.svg#it-expand"></use>
-										</svg>
-									</span>
-									</a>
-									<ul class="link-sublist collapse" id="collapseThree">
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 3.1</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 3.2</span>
-											</a>
-										</li>
-										<li>
-											<a class="list-item" href="#">
-												<span>Link lista 3.3</span>
-											</a>
-										</li>
-									</ul>
-								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
+				<?php
+					}
+					?>
 				<!-- FINE SIDEBAR -->
 				<div class="col-lg-8 pt84">
 					<article class="article-wrapper"><?php the_content(); ?></article>
