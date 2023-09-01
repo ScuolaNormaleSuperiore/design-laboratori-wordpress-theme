@@ -78,35 +78,34 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 									foreach ( $pages as $pg ) {
 										?>
 										<li>
-											<a class="list-item large medium right-icon active" href="#collapseOne" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+											<a class="list-item large medium right-icon active" href="<?php echo get_permalink( $pg->ID ); ?>">
 												<span class="list-item-title-icon-wrapper">
 													<span><?php echo esc_attr( get_the_title( $pg ) ); ?></span>
-													<svg class="icon icon-sm icon-primary right" aria-hidden="true">
-														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
-													</svg>
 												</span>
 											</a>
 											<?php
-											$subspg = get_pages( array(
-												'child_of'     => $pg->ID,
-												'offset'       => 0,
-												'parent'       => $pg->ID,
-											));
-											?>
-											<ul class="link-sublist collapse show" id="collapseOne">
-												<?php
-												foreach( $subspg as $subpg ) {
-													?>
-													<li>
-														<a class="list-item active" href="<?php echo get_permalink( $subpg->ID ); ?>">
-															<span><?php echo esc_attr( get_the_title( $subpg ) ); ?></span>
-														</a>
-													</li>
-													<?php
-												}
+											if ($post->post_parent ) {
+												$subspg = get_pages( array(
+													'child_of'     => $pg->ID,
+													'offset'       => 0,
+													'parent'       => $pg->ID,
+												));
 												?>
-											</ul>
+												<ul class="link-sublist">
+													<?php
+													foreach( $subspg as $subpg ) {
+														?>
+														<li>
+															<a class="list-item active" href="<?php echo get_permalink( $subpg->ID ); ?>">
+																<span><?php echo esc_attr( get_the_title( $subpg ) ); ?></span>
+															</a>
+														</li>
+														<?php
+													}
+													?>
+												</ul>
 											<?php
+										}
 									}
 								?>
 							</ul>
