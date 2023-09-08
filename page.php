@@ -53,8 +53,22 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 		<div class="container container-border-top">
 			<div class="row">
 				<!-- SIDEBAR -->
-				<div class="sidebar-wrapper col-12 col-lg-3">
+				<div class="sidebar-wrapper border-end col-12 col-lg-3">
+					<?php if ( $post->post_parent !== 0 ) {
+					?>
+					<a href="<?php echo get_permalink( $post->post_parent ); ?>" class="btn btn-primary btn-xs btn-me mb-5" role="button">
+						<svg class="icon icon-sm icon-white me-2">
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left';?>"></use>
+						</svg>
+						Torna indietro
+					</a>
+					<?php
+					}
+					?>
 					<h3><?php echo __( 'Pagine collegate', 'design_laboratori_italia' ); ?></h3>
+					<div class="progress">
+						<div class="progress-bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
 					<div class="sidebar-linklist-wrapper">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
