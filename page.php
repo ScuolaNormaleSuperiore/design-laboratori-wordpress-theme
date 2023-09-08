@@ -52,6 +52,17 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 	<section class="section bg-white">
 		<div class="container container-border-top">
 			<div class="row">
+				<?php
+					//get top parent page id
+					$top_parent = dli_get_page_anchestor_id( $post );
+					//Retrieve till second level pages
+						$pages = get_pages( array(
+							'child_of'     => $top_parent,
+							'offset'       => 0,
+							'parent'       => $top_parent,
+						));
+					if($pages) {
+						?>
 				<!-- SIDEBAR -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3">
 					<?php if ( $post->post_parent !== 0 ) {
@@ -60,7 +71,7 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 						<svg class="icon icon-sm icon-white me-2">
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left';?>"></use>
 						</svg>
-						Torna indietro
+						<?php echo __( 'Torna indietro', 'design_laboratori_italia' ); ?>
 					</a>
 					<?php
 					}
@@ -73,15 +84,6 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<?php
-								//get top parent page id
-								$top_parent = dli_get_page_anchestor_id( $post );
-								//Retrieve till second level pages
-									$pages = get_pages( array(
-										'child_of'     => $top_parent,
-										'offset'       => 0,
-										'parent'       => $top_parent,
-									));
-
 									foreach ( $pages as $pg ) {
 										?>
 										<li>
@@ -121,6 +123,9 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 					</div>
 				</div>
 				<!-- FINE SIDEBAR -->
+				<?php
+				}
+				?>
 				<div class="col-lg-8 pt84">
 					<article class="article-wrapper"><?php the_content(); ?></article>
 				</div><!-- /col-lg-8 -->
