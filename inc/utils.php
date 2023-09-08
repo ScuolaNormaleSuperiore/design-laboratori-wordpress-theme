@@ -822,3 +822,23 @@ if( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 		return $slugmap;
 	}
 }
+
+
+if( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
+	/**
+	 *  Return the anchestor id of given page
+	 * 
+	 * @param array $page
+	 * @return id.
+	 */
+	function dli_get_page_anchestor_id( $page ) {
+		if ( $page->post_parent) {
+			$ancestors = get_post_ancestors( $page->ID );
+			$root      = count( $ancestors ) - 1;
+			$parent    = $ancestors[ $root ];
+		} else {
+			$parent = $page->ID;
+		}
+		return $parent;
+	}
+}
