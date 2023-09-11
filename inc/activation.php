@@ -398,38 +398,38 @@ function 	build_the_menu( $custom_menu ) {
 
 		foreach ( $menu_items as $menu_item ) {
 			$result       = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
-			$menu_item_id = $result->ID;
-			if ( ( ! isset( $menu_item['link'] ) ) || ( '' === $menu_item['link'] ) ) {
-				// Link a pagine o post.
-				wp_update_nav_menu_item(
-					$menu->term_id,
-					0,
-					array(
-						'menu-item-title'     => $menu_item['title'],
-						'menu-item-object-id' => $menu_item_id,
-						'menu-item-object'    => $menu_item['content_type'],
-						'menu-item-status'    => $menu_item['status'],
-						'menu-item-type'      => $menu_item['post_type'],
-						'menu-item-url'       => $menu_item['link'],
-						// 'menu-item-classes'   => $menu_item['footer-link'],
-					)
-				);
-			} else {
-				// Link esterni.
-				wp_update_nav_menu_item(
-					$menu->term_id,
-					0,
-					array(
-						'menu-item-title'     => $menu_item['title'],
-						'menu-item-status'    => $menu_item['status'],
-						'menu-item-url'       => $menu_item['link'],
-						// 'menu-item-classes'   => $menu_item['footer-link'],
-					)
-				);
+			if ( $result ){
+				$menu_item_id = $result->ID;
+				if ( ( ! isset( $menu_item['link'] ) ) || ( '' === $menu_item['link'] ) ) {
+					// Link a pagine o post.
+					wp_update_nav_menu_item(
+						$menu->term_id,
+						0,
+						array(
+							'menu-item-title'     => $menu_item['title'],
+							'menu-item-object-id' => $menu_item_id,
+							'menu-item-object'    => $menu_item['content_type'],
+							'menu-item-status'    => $menu_item['status'],
+							'menu-item-type'      => $menu_item['post_type'],
+							'menu-item-url'       => $menu_item['link'],
+							// 'menu-item-classes'   => $menu_item['footer-link'],
+						)
+					);
+				} else {
+					// Link esterni.
+					wp_update_nav_menu_item(
+						$menu->term_id,
+						0,
+						array(
+							'menu-item-title'     => $menu_item['title'],
+							'menu-item-status'    => $menu_item['status'],
+							'menu-item-url'       => $menu_item['link'],
+							// 'menu-item-classes'   => $menu_item['footer-link'],
+						)
+					);
+				}
 			}
 		}
-
-
 
 		$locations_primary_arr                   = get_theme_mod( 'nav_menu_locations' );
 		$locations_primary_arr[ $menu_location ] = $menu->term_id;
