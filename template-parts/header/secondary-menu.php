@@ -27,10 +27,12 @@
 			<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
 				<div class="link-list-wrapper">
 					<ul class="link-list">
+						<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $item['element']->url ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a></li>
+						<li><span class="divider"></span></li>
 						<?php
 							foreach ( $item['children'] as $subitem ) {
 						?>
-						<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $subitem->url); ?>"><span><?php echo esc_attr( $subitem->title); ?></span></a></li>
+						<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $subitem->url); ?>"><span><?php echo esc_attr( $subitem->title ); ?></span></a></li>
 						<?php
 							} // foreach
 						?>
