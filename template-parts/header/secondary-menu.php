@@ -7,7 +7,7 @@
 	<?php
 	$location   = "menu-right";
 	$menu       = wp_get_nav_menu_object( $locations[ $location ] );
-	$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
+	$menuitems  = $menu ? wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) ) : array();
 	$menuitems  = $menuitems  ? dli_menu_tree_by_items( $menuitems ) : array();
 
 	if ( has_nav_menu( $location ) && count( $menuitems  ) ) {
