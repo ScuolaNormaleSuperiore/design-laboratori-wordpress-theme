@@ -12,22 +12,22 @@
 FROM php:8.2-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.2.tar.gz
+ARG WP_ARCHIVE=wordpress-6.3.1.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
-ARG PLG_ACF=advanced-custom-fields.6.1.5.zip
+ARG PLG_ACF=advanced-custom-fields.6.2.1.zip
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.4.3.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_COOKIES=cookie-law-info.3.0.9.zip
-ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.5.zip
-ARG PLG_POLYLANG=polylang.3.3.3.zip
-ARG PLG_MEMBERS=members.3.2.5.zip
-ARG PLG_GUTENBERG=disable-gutenberg.2.9.zip
-ARG PLG_SMTP=wp-mail-smtp.3.8.0.zip
-ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.4.zip
+ARG PLG_COOKIES=cookie-law-info.3.1.4.zip
+ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
+ARG PLG_POLYLANG=polylang.3.4.5.zip
+ARG PLG_MEMBERS=members.3.2.7.zip
+ARG PLG_GUTENBERG=disable-gutenberg.3.0.zip
+ARG PLG_SMTP=wp-mail-smtp.3.9.0.zip
+ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.6.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ##############################################################################
 
