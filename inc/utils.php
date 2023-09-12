@@ -847,3 +847,28 @@ if( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 		return $parent;
 	}
 }
+
+if ( ! function_exists( 'check_plugin_active' ) ) {
+	function check_plugin_active( $plugin ) {
+			return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
+	}
+}
+
+if( ! function_exists( 'check_plugin_installed' ) ) {
+	function check_mandatory_plugins( ) {
+		$mandatory_plugins = MANDATORY_PLUGINS;
+		$text_plugins  = implode("','", $mandatory_plugins);
+		$all_activated = 1;
+		foreach ( $mandatory_plugins as $plugin ) {
+			if (! check_plugin_active( $plugin ) ) {
+				$all_activated = 0;
+			}
+		}
+		if ( ! $all_activated ) {
+			$msg = __( 'ATTENZIONE: I seguenti plugin devono essere installati e attivati obbligatoriamente: ', 'design_laboratori_italia' );
+			wp_die( $msg . $text_plugins );
+			return false;
+		}
+		return true;
+	}
+}

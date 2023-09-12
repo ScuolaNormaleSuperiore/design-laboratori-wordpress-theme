@@ -41,53 +41,7 @@ function dsi_register_required_plugins() {
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
-	$plugins = array(
-		array(
-			'name'     => 'Advanced Custom Fields',
-			'slug'     => 'advanced-custom-fields',
-			'required' => true,
-		),
-		array(
-			'name'     => 'ACF OpenStreetMap Field',
-			'slug'     => 'acf-openstreetmap-field',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Disable Gutenberg',
-			'slug'     => 'disable-gutenberg',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Members',
-			'slug'     => 'members',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Better aria label support',
-			'slug'     => 'better-aria-label-support',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Polylang - Multilanguage support',
-			'slug'     => 'polylang',
-			'required' => true,
-		),
-		array(
-			'name'     => 'CookieYes - GDPR Cookie Consent',
-			'slug'     => 'cookie-law-info',
-			'required' => true,
-		),
-		array(
-			'name'     => 'WP Mail SMTP',
-			'slug'     => 'wp-mail-smtp',
-			'required' => true,
-		),
-		array(
-			'name'     => 'Really Simple CAPTCHA',
-			'slug'     => 'really-simple-captcha',
-			'required' => true,
-		),
-	);
+	$plugins = SUGGESTED_PLUGINS;
 
 	/*
 	 * Array of configuration settings. Amend each line as needed.

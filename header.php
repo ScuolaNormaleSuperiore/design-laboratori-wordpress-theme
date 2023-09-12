@@ -10,6 +10,9 @@
  */
 
 /** Header_Mobile_Menu class */
+
+check_mandatory_plugins();
+
 require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
 require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
 
@@ -75,7 +78,7 @@ $current_group   = dli_get_current_group();
 						?>
 						<div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia');?></span>
+							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
 							<span><?php echo $current_language; ?></span>
 							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
