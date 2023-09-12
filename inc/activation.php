@@ -376,7 +376,7 @@ function create_the_it_menus() {
  *
  * @return void
  */
-function 	build_the_menu( $custom_menu ) {
+function build_the_menu( $custom_menu ) {
 	$menu_name     = $custom_menu['name'];
 	$menu_items    = $custom_menu['items'];
 	$menu_location = $custom_menu['location'];
@@ -397,8 +397,8 @@ function 	build_the_menu( $custom_menu ) {
 		$menu     = get_term_by( 'id', $menu_id, 'nav_menu' );
 
 		foreach ( $menu_items as $menu_item ) {
-			$result       = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
-			if ( $result ){
+			$result = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
+			if ( $result ) {
 				$menu_item_id = $result->ID;
 				if ( ( ! isset( $menu_item['link'] ) ) || ( '' === $menu_item['link'] ) ) {
 					// Link a pagine o post.
