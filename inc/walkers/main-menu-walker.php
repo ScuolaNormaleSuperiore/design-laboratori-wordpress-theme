@@ -53,13 +53,18 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 				$output .= esc_attr( $item->title );
 				$output .= '</span></a></li>
 								<li><span class="divider"></span></li>';
-				/*foreach ( $item['children'] as $subitem ) {
+				//show sub pages
+				if ( $args->menu ) {
+					$menuitems  = $args->menu ? wp_get_nav_menu_items( $args->menu->term_id, array( 'order' => 'DESC' ) ) : array();
+					$menuitems  = $menuitems  ? dli_menu_tree_by_items( $menuitems ) : array();
+				}
+				foreach ( $menuitems[$item->ID]['children'] as $subitem ) {
 					$output .= '<li><a class="dropdown-item list-item" href="';
-					$output .= esc_attr( $subitem->url);
+					$output .= esc_attr( $subitem->url );
 					$output .= '"><span>';
 					$output .= esc_attr( $subitem->title );
 					$output .= '</span></a></li>';
-				}*/ // foreach
+				} // foreach
 				$output .= '</ul></div></div>';
 			}
 			else if ( !$args->walker->has_children && $item->menu_item_parent === '0' ) {
@@ -69,7 +74,7 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 		}
  
 		if ( !$args->walker->has_children && $item->menu_item_parent === '0' ) {
-			$output .= $item->title;
+			$output .= '<span>' . $item->title . '</span>';
 		}
  
 		if ( $item->url && $item->url != '#' ) {

@@ -658,7 +658,9 @@ if( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 					'children' => array(),
 				);
 			} else {
-				array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
+				if( array_key_exists( $item->menu_item_parent, $menu_tree ) && $menu_tree[$item->menu_item_parent] !== null ) {
+					array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
+				}
 			}
 		}
 		return $menu_tree;
