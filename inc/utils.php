@@ -872,6 +872,25 @@ if( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
+	/**
+	 *  Return the slug anchestors of given page
+	 * 
+	 * @param array $page
+	 * @return array.
+	 */
+	function dli_get_page_slug_anchestors( $page ) {
+		$slugs = array();
+		if ( $page->post_parent) {
+			$ancestors = get_post_ancestors( $page->ID );
+			foreach ( $ancestors as $ancestor ) {
+				array_push( $slugs, get_post( $ancestor )->post_name );
+			} 
+		}
+		return $slugs;
+	}
+}
+
 if ( ! function_exists( 'check_plugin_active' ) ) {
 	function check_plugin_active( $plugin ) {
 			return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
