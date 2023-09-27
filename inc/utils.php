@@ -897,7 +897,7 @@ if ( ! function_exists( 'check_plugin_active' ) ) {
 	}
 }
 
-if( ! function_exists( 'check_plugin_installed' ) ) {
+if( ! function_exists( 'check_mandatory_plugins' ) ) {
 	function check_mandatory_plugins( ) {
 		$mandatory_plugins = MANDATORY_PLUGINS;
 		$text_plugins  = implode("','", $mandatory_plugins);
