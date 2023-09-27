@@ -10,7 +10,7 @@
 			wp_nav_menu(
 				array(
 					'theme_location'  => $location,
-					'depth'           => 0,
+					'depth'           => 1,
 					'menu_class'      => 'navbar-nav',
 					'items_wrap'      => '<ul class="%2$s" id="%1$s" data-element="main-navigation">%3$s</ul>',
 					'container'       => '',

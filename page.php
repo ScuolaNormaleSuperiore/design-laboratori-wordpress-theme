@@ -55,6 +55,10 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 				<?php
 					//get top parent page id
 					$top_parent = dli_get_page_anchestor_id( $post );
+					$slugs      = array_reverse ( dli_get_page_slug_anchestors( $post ) );
+					if ( count ( $slugs ) > 0 && ($slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
+						$top_parent = get_page_by_path( $slugs[0] . '/' . $slugs[1] )->ID;
+					}
 					//Retrieve till second level pages
 						$pages = get_pages( array(
 							'child_of'     => $top_parent,

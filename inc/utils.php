@@ -575,8 +575,30 @@ if( ! function_exists( 'dli_build_content_path' ) ) {
 		if ( $post ){
 			switch ( $post->post_type ) {
 				case 'page':
+					$post_parent = $post->post_parent;
+					$post_parents = array();
+					while ( $post_parent !== 0 ) {
+						$post_tmp       = get_post( $post_parent );
+						$post_parents[] = array(
+							'label' => $post_tmp->post_title,
+							'url'   => get_permalink( $post_tmp->ID ),
+							'class' => 'breadcrumb-item',
+						);
+						$post_parent    = $post_tmp->post_parent;
+					}
+
+					//reverse array
+					$post_parents = count( $post_parents ) > 1 ? array_reverse( $post_parents ) : $post_parents;
+					
+					foreach ( $post_parents as $parent ) {
+						array_push(
+							$steps,
+							$parent,
+						);
+					}
+
 					array_push( 
-						$steps, 
+						$steps,
 						array(
 							'label' => $post->post_title,
 							'url'   => $post->post_url,
@@ -658,7 +680,9 @@ if( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 					'children' => array(),
 				);
 			} else {
-				array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
+				if( array_key_exists( $item->menu_item_parent, $menu_tree ) && $menu_tree[$item->menu_item_parent] !== null ) {
+					array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
+				}
 			}
 		}
 		return $menu_tree;
@@ -845,6 +869,25 @@ if( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 			$parent = $page->ID;
 		}
 		return $parent;
+	}
+}
+
+if( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
+	/**
+	 *  Return the slug anchestors of given page
+	 * 
+	 * @param array $page
+	 * @return array.
+	 */
+	function dli_get_page_slug_anchestors( $page ) {
+		$slugs = array();
+		if ( $page->post_parent) {
+			$ancestors = get_post_ancestors( $page->ID );
+			foreach ( $ancestors as $ancestor ) {
+				array_push( $slugs, get_post( $ancestor )->post_name );
+			} 
+		}
+		return $slugs;
 	}
 }
 
