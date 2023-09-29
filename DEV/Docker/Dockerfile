@@ -41,7 +41,15 @@ RUN apt-get install -y \
 	bash-completion \
 	libxml2-dev \
 	unzip \
-	wget
+	wget 
+
+# Install gd extension
+RUN apt-get install -y \
+		libfreetype-dev \
+		libjpeg62-turbo-dev \
+		libpng-dev \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd
 
 # Install and enable useful modules
 RUN docker-php-ext-install mysqli && \
@@ -110,6 +118,9 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 
 # Remove the temp file.
 RUN rm -rf /tmp/*
+
+#Copy utility files
+COPY src/phpinfo.php /var/www/html/phpinfo.php
 
 EXPOSE 80 3306
 
