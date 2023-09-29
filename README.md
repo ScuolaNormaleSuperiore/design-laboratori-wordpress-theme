@@ -99,7 +99,8 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 	5.3 Impostare *Scegli la lingua da assegnare* = it.
 
 6. Creazione dei contenuti di default: *WP->Aspetto->Ricarica i dati-> Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)*
-7. Configurazione del tema: Andare in *WP->Configurazione* e impostare i dati di configurazione.
+7. In *WP->Aspetto->Menu* cliccare su **Salva menu**.
+8. Configurazione del tema: Andare in *WP->Configurazione* e impostare i dati di configurazione.
 **Immagine 1:** Backoffice: configurazione del tema.
 ![configure](assets/screenshots/configurazione1.png)
 
