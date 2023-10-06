@@ -199,8 +199,13 @@ define(
 			'required' => true,
 		),
 		array(
-			'name'     => 'Members',
-			'slug'     => 'members',
+			'name'     => 'PublishPress Capabilities',
+			'slug'     => 'capability-manager-enhanced',
+			'required' => true,
+		),
+		array(
+			'name'     => 'PublishPress Permissions',
+			'slug'     => 'press-permit-core',
 			'required' => true,
 		),
 		array(
