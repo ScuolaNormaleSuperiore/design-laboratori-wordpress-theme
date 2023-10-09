@@ -24,7 +24,8 @@ ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_COOKIES=cookie-law-info.3.1.4.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
 ARG PLG_POLYLANG=polylang.3.4.5.zip
-ARG PLG_MEMBERS=members.3.2.8.zip
+ARG PLG_PUBLISH_PRESS_CAPABILITIES=press-permit-core.3.11.1.zip
+ARG PLG_PUBLISH_PRESS_PERMISSIONS=capability-manager-enhanced.2.10.0.zip
 ARG PLG_GUTENBERG=disable-gutenberg.3.0.zip
 ARG PLG_SMTP=wp-mail-smtp.3.9.0.zip
 ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.6.zip
@@ -101,8 +102,10 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_REG_THUMBNAILS}  && \
 	curl -o /tmp/${PLG_POLYLANG} ${BASE_PLUGIN_URL}/${PLG_POLYLANG} && \
 	unzip /tmp/${PLG_POLYLANG}  && \
-	curl -o /tmp/${PLG_MEMBERS} ${BASE_PLUGIN_URL}/${PLG_MEMBERS} && \
-	unzip /tmp/${PLG_MEMBERS}  && \
+	curl -o /tmp/${PLG_PUBLISH_PRESS_CAPABILITIES} ${BASE_PLUGIN_URL}/${PLG_PUBLISH_PRESS_CAPABILITIES} && \
+	unzip /tmp/${PLG_PUBLISH_PRESS_CAPABILITIES}  && \
+	curl -o /tmp/${PLG_PUBLISH_PRESS_PERMISSIONS} ${BASE_PLUGIN_URL}/${PLG_PUBLISH_PRESS_PERMISSIONS} && \
+	unzip /tmp/${PLG_PUBLISH_PRESS_PERMISSIONS}  && \
 	curl -o /tmp/${PLG_GUTENBERG} ${BASE_PLUGIN_URL}/${PLG_GUTENBERG} && \
 	unzip /tmp/${PLG_GUTENBERG}  && \
 	curl -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
