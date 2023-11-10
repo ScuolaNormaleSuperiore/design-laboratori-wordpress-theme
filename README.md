@@ -82,8 +82,8 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
 ## Plugin consigliati in produzione
-* [PublishPress Capabilities](https://it.wordpress.org/plugins/capability-manager-enhanced/)
-* [PublishPress Permissions](https://it.wordpress.org/plugins/press-permit-core/)
+* [PublishPress Capabilities](https://it.wordpress.org/plugins/capability-manager-enhanced/): E' un plugin che permette di avere il controllo su tutte le capacità e le autorizzazioni di un sito WordPress.
+* [PublishPress Permissions](https://it.wordpress.org/plugins/press-permit-core/): E' un plugin che permette di abilitare o negare l’accesso ad articoli, pagine, categorie, tag e altro ancora. Le autorizzazioni possono essere applicate per ruolo, per singolo utente o per gruppo.
 
 ## Installazione e configurazione del tema
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
