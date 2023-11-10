@@ -12,24 +12,25 @@
 FROM php:8.2-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.3.1.tar.gz
+ARG WP_ARCHIVE=wordpress-6.4.1.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
-
-ARG PLG_ACF=advanced-custom-fields.6.2.1.zip
-ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.0.zip
+ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.4.zip
+ARG PLG_ACF=advanced-custom-fields.6.2.2.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_COOKIES=cookie-law-info.3.1.4.zip
-ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
-ARG PLG_POLYLANG=polylang.3.5.zip
-ARG PLG_PUBLISH_PRESS_CAPABILITIES=press-permit-core.3.11.1.zip
-ARG PLG_PUBLISH_PRESS_PERMISSIONS=capability-manager-enhanced.2.10.0.zip
-ARG PLG_GUTENBERG=disable-gutenberg.3.0.zip
-ARG PLG_SMTP=wp-mail-smtp.3.9.0.zip
-ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.6.zip
+ARG PLG_COOKIES=cookie-law-info.3.1.6.zip
+ARG PLG_GUTENBERG=disable-gutenberg.3.1.zip
+ARG PLG_POLYLANG=polylang.3.5.2.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
+ARG PLG_SMTP=wp-mail-smtp.3.10.0.zip
+
+# Plugion facoltativi o di sviluppo
+ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.6.zip
+ARG PLG_PUBLISH_PRESS_CAPABILITIES=press-permit-core.3.11.5.zip
+ARG PLG_PUBLISH_PRESS_PERMISSIONS=capability-manager-enhanced.2.10.1.zip
+ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
 ##############################################################################
 
 
