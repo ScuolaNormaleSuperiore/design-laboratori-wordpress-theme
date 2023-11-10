@@ -75,14 +75,15 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 * [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
 * [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
 * [Disable Gutenberg](https://wordpress.org/plugins/disable-gutenberg/)
-* [PublishPress Capabilities](https://it.wordpress.org/plugins/capability-manager-enhanced/)
-* [PublishPress Permissions](https://it.wordpress.org/plugins/press-permit-core/)
 * [Polylang](https://it.wordpress.org/plugins/polylang/)
 * [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
 * [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
 
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
+## Plugin consigliati in produzione
+* [PublishPress Capabilities](https://it.wordpress.org/plugins/capability-manager-enhanced/)
+* [PublishPress Permissions](https://it.wordpress.org/plugins/press-permit-core/)
 
 ## Installazione e configurazione del tema
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:

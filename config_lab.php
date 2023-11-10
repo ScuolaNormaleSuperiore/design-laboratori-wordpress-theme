@@ -199,16 +199,6 @@ define(
 			'required' => true,
 		),
 		array(
-			'name'     => 'PublishPress Capabilities',
-			'slug'     => 'capability-manager-enhanced',
-			'required' => true,
-		),
-		array(
-			'name'     => 'PublishPress Permissions',
-			'slug'     => 'press-permit-core',
-			'required' => true,
-		),
-		array(
 			'name'     => 'Better aria label support',
 			'slug'     => 'better-aria-label-support',
 			'required' => true,
