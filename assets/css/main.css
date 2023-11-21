@@ -84,3 +84,11 @@
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
+
+.it-brand-title h1.h3 {
+	font-size: 1em !important;
+}
+
+.it-brand-tagline {
+	font-size: 1em !important;
+}
