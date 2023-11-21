@@ -71,6 +71,7 @@ function create_the_taxonomies() {
 		array( 'it' => 'Laboratorio', 'en' => 'Laboratory' ),
 		array( 'it' => 'Parcheggio', 'en' => 'Parking' ),
 		array( 'it' => 'Ufficio', 'en' => 'Office' ),
+		array( 'it' => 'Sede', 'en' => 'Headquarter' ),
 	);
 	build_taxonomies( $taxonomy, $terms );
 
