@@ -48,7 +48,7 @@ $short_descr         = get_field( 'descrizione_breve' );
 								<?php 
 									echo $start_date; 
 									if ( $orario_inizio ) {
-										echo ' ' . $orario_inizio;
+										echo ', ' . $orario_inizio;
 									}
 								?>
 							</p>
@@ -62,7 +62,7 @@ $short_descr         = get_field( 'descrizione_breve' );
 									echo ' ' . __( 'al', 'design_laboratori_italia' );
 									echo ' ' . $end_date;
 									if ( $orario_inizio ) {
-										echo ' ' . $orario_inizio;
+										echo ', ' . $orario_inizio;
 									}
 								?>
 								</p>
