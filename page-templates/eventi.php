@@ -90,10 +90,11 @@ $all_categories = dli_get_all_categories( 'category' );
 					<div class="row pt-5">
 					<?php
 					}
-					$post_id    = get_the_ID();
-					$termitem   = dli_get_post_main_category( $post_id, 'category' );
-					$date       = get_field( 'data_inizio', $post_id );
-					$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$post_id       = get_the_ID();
+					$termitem      = dli_get_post_main_category( $post_id, 'category' );
+					$date          = get_field( 'data_inizio', $post_id );
+					$event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$orario_inizio = get_field( 'orario_inizio', $post_id );
 					?>
 
 						<!-- start card-->
@@ -121,6 +122,14 @@ $all_categories = dli_get_all_categories( 'category' );
 										<p class="card-text">
 											<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
+										<?php if( $orario_inizio ) {
+											?>
+											<p class="card-text">
+												<?php echo $orario_inizio; ?>
+											</p>
+											<?php
+										}
+										?>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 											<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 											<svg class="icon" role="img" aria-labelledby="Arrow right">

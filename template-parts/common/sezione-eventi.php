@@ -17,12 +17,13 @@
 					<div class="row pt-3">
 					<?php
 					}
-					$id         = $item->ID;
-					$foto       = get_field( 'foto', $id );
-					$link       = get_the_permalink( $id );
-					$desc       = get_field( 'descrizione_breve', $id );
-					$title      = get_the_title( $id );
-					$date       = get_field( 'data_inizio', $id );
+					$id            = $item->ID;
+					$foto          = get_field( 'foto', $id );
+					$link          = get_the_permalink( $id );
+					$desc          = get_field( 'descrizione_breve', $id );
+					$title         = get_the_title( $id );
+					$date          = get_field( 'data_inizio', $id );
+					$orario_inizio = get_field( 'orario_inizio', $id );
 					$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 					$img_link   = get_the_post_thumbnail_url( $id , 'item-thumb' );
 					if ( ! $img_link ) {
@@ -52,6 +53,14 @@
 									<div class="card-body p-4">
 										<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
 										<p class="card-text"><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
+										<?php if ( $orario_inizio ) {
+										?>
+											<p class="card-text">
+												<?php echo $orario_inizio; ?>
+											</p>
+										<?php
+										}
+										?>
 										<a class="read-more" href="<?php echo esc_url( $link ); ?>">
 											<span class="text"><?php echo __('Leggi di più', 'design_laboratori_italia' ) ?></span>
 											<span class="visually-hidden"><?php echo $desc; ?></span>

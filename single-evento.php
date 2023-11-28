@@ -9,22 +9,23 @@
 
 global $post;
 get_header();
-$category         = dli_get_post_main_category( $post, 'category' );
-$image_url        = get_the_post_thumbnail_url( 0, 'item-carousel' );
-$pg               = dli_get_page_by_post_type( $post->post_type );
-$pg_link          = get_permalink( $pg->ID );
-$start_date       = get_field( 'data_inizio', $post );
-$start_event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
-$end_date         = get_field( 'data_fine', $post );
-$end_event_date   = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
-$luogo            = dli_get_field( 'luogo' );
-$label_contatti   = dli_get_field( 'label_contatti' );
-$telefono         = dli_get_field( 'telefono' );
-$email            = dli_get_field( 'email' );
-$sitoweb          = dli_get_field( 'sitoweb' );
-$video            = dli_get_field( 'video' );
-$allegato         = dli_get_field( 'allegato' );
-$short_descr      = get_field( 'descrizione_breve' );
+$category            = dli_get_post_main_category( $post, 'category' );
+$image_url           = get_the_post_thumbnail_url( 0, 'item-carousel' );
+$pg                  = dli_get_page_by_post_type( $post->post_type );
+$pg_link             = get_permalink( $pg->ID );
+$start_date          = get_field( 'data_inizio', $post );
+$start_event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
+$end_date            = get_field( 'data_fine', $post );
+$end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
+$orario_inizio       = get_field( 'orario_inizio', $post );
+$luogo               = dli_get_field( 'luogo' );
+$label_contatti      = dli_get_field( 'label_contatti' );
+$telefono            = dli_get_field( 'telefono' );
+$email               = dli_get_field( 'email' );
+$sitoweb             = dli_get_field( 'sitoweb' );
+$video               = dli_get_field( 'video' );
+$allegato            = dli_get_field( 'allegato' );
+$short_descr         = get_field( 'descrizione_breve' );
 ?>
 
 <main id="main-container" role="main">
@@ -43,7 +44,14 @@ $short_descr      = get_field( 'descrizione_breve' );
 							<?php
 							if ( $start_date === $end_date ){
 							?>
-							<p class="card-date"><?php echo $start_date; ?></p>
+							<p class="card-date">
+								<?php 
+									echo $start_date; 
+									if ( $orario_inizio ) {
+										echo ' ' . $orario_inizio;
+									}
+								?>
+							</p>
 							<?php
 							} else {
 							?>
@@ -53,6 +61,9 @@ $short_descr      = get_field( 'descrizione_breve' );
 									echo ' ' . $start_date;
 									echo ' ' . __( 'al', 'design_laboratori_italia' );
 									echo ' ' . $end_date;
+									if ( $orario_inizio ) {
+										echo ' ' . $orario_inizio;
+									}
 								?>
 								</p>
 								<?php

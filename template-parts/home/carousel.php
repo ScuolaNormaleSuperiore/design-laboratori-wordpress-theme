@@ -34,6 +34,12 @@
 											<div class="category-top">
 												<a class="category" href="<?php echo esc_url( $item['category_link'] ); ?>"><?php echo esc_attr( $item['category'] ); ?></a>
 												<span class="data"><?php echo esc_attr( $item['date'] ); ?></span>
+												<?php if (  $item['orario_inizio'] ) {
+												?>
+												<span class="data"><?php echo esc_attr( $item['orario_inizio'] ); ?></span>
+											<?php
+											}
+											?>
 											</div>
 											<h5 class="h5 card-title big-heading"><?php echo $item['title']; ?></h5>
 											<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>

@@ -375,7 +375,6 @@ msgstr "Label in English"
 #: single-indirizzo-di-ricerca.php:122 single-indirizzo-di-ricerca.php:204 
 #: single-progetto.php:140 single-progetto.php:240 inc/admin/options.php:742 
 #: template-parts/hero/eventi.php:9 template-parts/home/card-eventi.php:21 
-#: template-parts/home/eventi.php:13
 msgid "Eventi"
 msgstr "Events"
 
@@ -1570,7 +1569,7 @@ msgstr "Go to research activity"
 msgid "Vai alla pagina: Newsletter"
 msgstr "Go to Newsletter"
 
-#: template-parts/home/eventi.php:34 template-parts/home/indirizzi.php:29
+#: template-parts/home/indirizzi.php:29
 msgid "Vedi tutti"
 msgstr "View all"
 

@@ -35,6 +35,7 @@ $num_items = $query->post_count;
 			// $date      = get_field( 'data_inizio', $carditem );
 			$date      = $postitem['date'];
 			$item_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+			$orario_inizio = $postitem['orario_inizio'];
 		?>
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">
@@ -55,6 +56,14 @@ $num_items = $query->post_count;
 			<div class="card-body p-4">
 			<h3 class="card-title h4"><?php echo $postitem['title']; ?></h3>
 			<p class="card-text"><?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+			<?php if( $orario_inizio ) {
+				?>
+				<p class="card-text">
+					<?php echo $orario_inizio; ?>
+				</p>
+				<?php
+			}
+				?>
 			<a class="read-more" href="<?php echo $postitem['link']; ?>">
 				<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 				<svg class="icon" role="img" aria-labelledby="Arrow right">
