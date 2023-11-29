@@ -9,12 +9,12 @@
 
 global $post;
 get_header();
-$category  = dli_get_post_main_category( $post, 'category' );
-$date      = get_the_date( DLI_ACF_DATE_FORMAT, $post );
-$news_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-$image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
-$pg        = dli_get_page_by_post_type( $post->post_type );
-$pg_link   = get_permalink( $pg->ID );
+$category       = dli_get_post_main_category( $post, 'category' );
+$date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
+$news_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+$image_metadata = dli_get_image_metadata( $post );
+$pg             = dli_get_page_by_post_type( $post->post_type );
+$pg_link        = get_permalink( $pg->ID );
 ?>
 
 <main id="main-container" role="main">
@@ -23,7 +23,7 @@ $pg_link   = get_permalink( $pg->ID );
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- BANNER NOTIZIA-->
-	<section id="banner-news" aria-describedby="Testo introduttivo news" class="bg-banner-news">
+	<section id="banner-news" class="bg-banner-news">
 		<div class="section-muted  primary-bg-c1">
 			<div class="container">
 				<div class="row">
@@ -45,10 +45,23 @@ $pg_link   = get_permalink( $pg->ID );
 					</div>
 					<div class="col-sm-7">
 						<?php
-						if( $image_url ) {
+						if( $image_metadata['image_url'] ) {
 						?>
-						<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
-						<?php
+						<figure class="figure">
+							<img src="<?php echo $image_metadata['image_url']; ?>" 
+							class="d-block mx-lg-auto img-fluid figure-img" 
+							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
+							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+							loading="lazy">
+							<?php
+							if( $image_metadata['image_caption'] ) {
+							?>
+								<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<?php
+							}
+							?>
+							</figure>
+							<?php
 						}
 						?>
 					</div>

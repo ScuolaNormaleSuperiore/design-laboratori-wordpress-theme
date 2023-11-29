@@ -490,7 +490,7 @@ if( ! function_exists( 'dli_get_image_metadata' ) ) {
 			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 		}
 		$post_title  = get_the_title( $item );
-		$image_id    = attachment_url_to_postid( $image_url );
+		$image_id = get_post_thumbnail_id( $item->ID );
 
 		$image_title   = get_the_title( $image_id );
 		$image_title   = $image_title ? $image_title : $post_title;

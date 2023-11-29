@@ -6,10 +6,11 @@
  *
  * @package Design_Laboratori_Italia
  */
-
+global $post;
 get_header();
 
 $ID                 = get_the_ID();
+$image_metadata     = dli_get_image_metadata( $post, 'item-gallery' );
 $descrizione        = apply_filters( 'the_content', $post->post_content );
 $responsabili       = get_field( 'responsabile_del_progetto' );
 $partecipanti       = get_field( 'persone' );
@@ -55,7 +56,7 @@ $eventi = new WP_Query(
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
 		<div class="img-wrapper">
-			<img src="<?php echo the_post_thumbnail_url( 'item-gallery' ); ?>" title="titolo immagine" alt="descrizione immagine">
+			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
 		</div>
 		</div>

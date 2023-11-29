@@ -80,7 +80,8 @@ $pubblicazioni = new WP_Query(
 								<div class="avatar size-xxl">
 								<?php
 								if ( $image_url ) {
-									echo "<img src='" . esc_url($image_url) . "' alt='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) );
+									echo "<img src='" . esc_url($image_url) . "' alt='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) )
+									. "' title='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) );
 									if ( $nome_struttura ) {
 										echo '- ' . esc_attr($nome_struttura);
 									}

@@ -90,11 +90,13 @@ $all_categories = dli_get_all_categories( 'category' );
 					<div class="row pt-5">
 					<?php
 					}
-					$post_id       = get_the_ID();
-					$termitem      = dli_get_post_main_category( $post_id, 'category' );
-					$date          = get_field( 'data_inizio', $post_id );
-					$event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-					$orario_inizio = get_field( 'orario_inizio', $post_id );
+					$post_id        = get_the_ID();
+					$termitem       = dli_get_post_main_category( $post_id, 'category' );
+					$date           = get_field( 'data_inizio', $post_id );
+					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$orario_inizio  = get_field( 'orario_inizio', $post_id );
+					$evento         = get_post( $post_id );
+					$image_metadata = dli_get_image_metadata( $evento, 'item-hero-event' );
 					?>
 
 						<!-- start card-->
@@ -104,10 +106,9 @@ $all_categories = dli_get_all_categories( 'category' );
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-												<img src="<?php echo get_the_post_thumbnail_url( $post->ID , 'item-hero-event' ); ?>"
-													alt="<?php echo esc_attr( get_the_title() ); ?>"
-													title="<?php echo esc_attr( get_the_title() ); ?>"
-													alt="<?php echo esc_attr( get_the_title() ); ?>">
+												<img src="<?php echo $image_metadata['image_url']; ?>"
+													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
+													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>">
 											</figure>
 											<div class="card-calendar d-flex flex-column justify-content-center">
 												<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>

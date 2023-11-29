@@ -5,13 +5,14 @@
  * @package Design_Laboratori_Italia
  */
 
+global $post;
 get_header();
 
 while ( have_posts() ) {
 	the_post();
 	$ID                = get_the_ID();
 	$title             = get_the_title( $ID );
-	$image_url         = get_the_post_thumbnail_url( 0, 'item-carousel' );
+	$image_metadata    = dli_get_image_metadata( $post );
 	$descrizione       = get_the_content();
 	$posizione         = get_field( 'posizione_gps' );
 	$come_raggiungerci = get_field( 'come_raggiungerci' );
@@ -32,7 +33,7 @@ while ( have_posts() ) {
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- BANNER  -->
-		<section id="banner-luoghi" aria-describedby="Testo introduttivo luogo" class="bg-banner-luoghi">
+		<section id="banner-luoghi" class="bg-banner-luoghi">
 			<div class="section-muted  primary-bg-c1">
 				<div class="container">
 					<div class="row">
@@ -44,12 +45,21 @@ while ( have_posts() ) {
 						</div>
 						<div class="col-sm-7">
 							<?php
-							if ($image_url) {
+							if ( $image_metadata['image_url'] ) {
 							?>
-							<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" 
-								alt="<?php echo esc_attr( $title )?>"
-								title="<?php echo esc_attr( $title )?>"
-								loading="lazy">
+							<figure class="figure">
+								<img src="<?php echo $image_metadata['image_url']; ?>" class="d-block mx-lg-auto img-fluid figure-img" 
+									alt="<?php echo esc_attr( $image_metadata['image_alt'] )?>"
+									title="<?php echo esc_attr( $image_metadata['image_title'] )?>"
+									loading="lazy">
+								<?php
+									if( $image_metadata['image_caption'] ) {
+									?>
+									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+									<?php
+									}
+									?>
+							</figure>
 							<?php
 							}
 							?>
