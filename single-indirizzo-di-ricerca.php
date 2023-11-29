@@ -7,16 +7,18 @@
  * @package Design_Laboratori_Italia
  */
 
+global $post;
 get_header();
-$ID           = get_the_ID();
-$description  = trim( get_the_content() );
-$responsabili = get_field( 'responsabile_attivita_di_ricerca' );
-$progetti     = dli_get_projects_by_event_id( get_the_ID() );
-$website      = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
-$phone        = get_field( 'telefono' )? get_field( 'telefono' ) : '';
-$email        = get_field( 'email' )? get_field( 'email' ) : '';
-$cont_pres    = $website || $phone || $email;
-$contatti     = array(
+$ID             = get_the_ID();
+$image_metadata = dli_get_image_metadata( $post, 'item-gallery' );
+$description    = trim( get_the_content() );
+$responsabili   = get_field( 'responsabile_attivita_di_ricerca' );
+$progetti       = dli_get_projects_by_event_id( get_the_ID() );
+$website        = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
+$phone          = get_field( 'telefono' )? get_field( 'telefono' ) : '';
+$email          = get_field( 'email' )? get_field( 'email' ) : '';
+$cont_pres      = $website || $phone || $email;
+$contatti       = array(
 	'email'   => $email,
 	'pec'     => '',
 	'address' => '',
@@ -48,12 +50,12 @@ $eventi = new WP_Query(
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<!-- BANNER PROGETTI -->
+	<!-- BANNER INDIRIZZI DI RICERCA -->
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
 		<div class="img-wrapper">
-			<img src="<?php echo the_post_thumbnail_url( 'item-gallery' ); ?>" title="titolo immagine" alt="descrizione immagine">
+			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
 		</div>
 		</div>

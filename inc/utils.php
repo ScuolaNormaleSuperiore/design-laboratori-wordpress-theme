@@ -483,9 +483,9 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 }
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
-	function dli_get_image_metadata( $item ) {
+	function dli_get_image_metadata( $item, $image_size = "item-carousel" ) {
 		$result    =  DLI_POST_WRAPPER;
-		$image_url = get_the_post_thumbnail_url( $item, 'item-carousel' );
+		$image_url = get_the_post_thumbnail_url( $item, $image_size );
 		if ( ! $image_url ){
 			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
 		}
