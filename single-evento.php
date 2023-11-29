@@ -34,8 +34,8 @@ $short_descr         = get_field( 'descrizione_breve' );
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	
-	<!-- BANNER NOTIZIA-->
-	<section id="banner-news" aria-describedby="Testo introduttivo eventi" class="bg-banner-eventi">
+	<!-- BANNER EVENTI-->
+	<section id="banner-eventi" class="bg-banner-eventi">
 		<div class="section-muted  primary-bg-c1">
 			<div class="container">
 				<div class="row">
