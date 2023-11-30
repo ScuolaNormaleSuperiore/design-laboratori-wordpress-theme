@@ -50,9 +50,6 @@ $num_results = $the_query->found_posts;
 					$ind_ricerca = get_post( $post_id );
 					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'full' );
 
-					$image_id    = attachment_url_to_postid( $image_url );
-					$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
-					$image_title = get_the_title( $image_id );
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">
