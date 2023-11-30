@@ -483,20 +483,26 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 }
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
-	function dli_get_image_metadata( $item, $image_size = "item-carousel" ) {
+	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = '/assets/img/yourimage.png' ) {
 		$result    =  DLI_POST_WRAPPER;
 		$image_url = get_the_post_thumbnail_url( $item, $image_size );
 		if ( ! $image_url ){
-			$image_url = get_template_directory_uri() . '/assets/img/yourimage.png';
+			$image_url = get_template_directory_uri() . $partial_default_img_url;
 		}
 		$post_title  = get_the_title( $item );
 		$image_id = get_post_thumbnail_id( $item->ID );
 
-		$image_title   = get_the_title( $image_id );
-		$image_title   = $image_title ? $image_title : $post_title;
-		$image_alt     = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
-		$image_alt     = $image_alt ? $image_alt : $image_title;
-		$image_caption = wp_get_attachment_caption( $image_id );
+		if( $image_id === 0 ) {
+			$image_title   = $post_title;
+			$image_alt     = $post_title;
+		}
+		else {
+			$image_title   = get_the_title( $image_id );
+			$image_title   = $image_title ? $image_title : $post_title;
+			$image_alt     = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+			$image_alt     = $image_alt ? $image_alt : $image_title;
+			$image_caption = wp_get_attachment_caption( $image_id );
+		}
 
 		$result = array(
 			'title'         => $post_title,

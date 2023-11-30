@@ -46,7 +46,10 @@ $num_results = $the_query->found_posts;
 				<div class="row">
 				<?php
 					}
-					$image_url   = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+					$post_id     = get_the_ID();
+					$ind_ricerca = get_post( $post_id );
+					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'full' );
+
 					$image_id    = attachment_url_to_postid( $image_url );
 					$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
 					$image_title = get_the_title( $image_id );
@@ -56,12 +59,14 @@ $num_results = $the_query->found_posts;
 							<div class="card-space pb-5">
 								<div class="card card-bg card-big no-after">
 								<?php
-								if ( $image_url ) {
+								if ( $image_metadata['image_url'] ) {
 								?>
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-												<img src="<?php echo $image_url; ?>" title="<?php echo $image_title; ?>" alt="<?php echo $image_url; ?>">
+												<img src="<?php echo $image_metadata['image_url']; ?>"
+												title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+												alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											</figure>
 										</div>
 									</div>

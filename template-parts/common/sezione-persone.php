@@ -36,7 +36,10 @@
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">
 					<div class="avatar size-xl">
-						<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
+						<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" 
+						alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+						title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+						aria-hidden="true">
 					</div>
 					<div class="extra-text">
 					<h4><a href="<?php echo $post_link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>

@@ -163,7 +163,9 @@ $num_results = $the_query->found_posts;
 														<div class="avatar-wrapper avatar-extra-text">
 															<div class="avatar size-xl">
 																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" 
-																	alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>" aria-hidden="true">
+																	alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+																	title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+																	aria-hidden="true">
 															</div>
 															<div class="extra-text">
 																<?php

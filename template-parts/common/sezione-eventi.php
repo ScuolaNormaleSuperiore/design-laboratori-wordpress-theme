@@ -17,18 +17,16 @@
 					<div class="row pt-3">
 					<?php
 					}
-					$id            = $item->ID;
-					$foto          = get_field( 'foto', $id );
-					$link          = get_the_permalink( $id );
-					$desc          = get_field( 'descrizione_breve', $id );
-					$title         = get_the_title( $id );
-					$date          = get_field( 'data_inizio', $id );
-					$orario_inizio = get_field( 'orario_inizio', $id );
-					$event_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-					$img_link   = get_the_post_thumbnail_url( $id , 'item-thumb' );
-					if ( ! $img_link ) {
-						$img_link = get_template_directory_uri() . '/assets/img/img-avatar-250x250.png';
-					}
+					$id             = $item->ID;
+					$foto           = get_field( 'foto', $id );
+					$link           = get_the_permalink( $id );
+					$desc           = get_field( 'descrizione_breve', $id );
+					$title          = get_the_title( $id );
+					$date           = get_field( 'data_inizio', $id );
+					$orario_inizio  = get_field( 'orario_inizio', $id );
+					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$image_metadata = dli_get_image_metadata( $item, 'item-thumb', '/assets/img/img-avatar-250x250.png' );
+
 					?>
 						<!--begin card eventi-->
 						<div class="col-12 col-lg-4">
@@ -37,8 +35,9 @@
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-											<img src="<?php echo $img_link; ?>"
-												title="<?php echo esc_attr( $title ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+											<img src="<?php echo $image_metadata['image_url']; ?>"
+												title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+												alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											</figure>
 											<div class="card-calendar d-flex flex-column justify-content-center">
 												<span class="card-date">
