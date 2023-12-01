@@ -9,12 +9,12 @@
 
 global $post;
 get_header();
-$category  = dli_get_post_main_category( $post, 'category' );
-$date      = get_the_date( DLI_ACF_DATE_FORMAT, $post );
-$post_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-$image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
-$pg        = dli_get_page_by_post_type( $post->post_type );
-$pg_link   = get_permalink( $pg->ID );
+$category       = dli_get_post_main_category( $post, 'category' );
+$date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
+$post_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+$image_metadata = dli_get_image_metadata( $post );
+$pg             = dli_get_page_by_post_type( $post->post_type );
+$pg_link        = get_permalink( $pg->ID );
 ?>
 
 <main id="main-container">
@@ -44,11 +44,23 @@ $pg_link   = get_permalink( $pg->ID );
 						</div>
 					</div>
 					<div class="col-sm-7">
+					<?php
+						if( $image_metadata['image_url'] ) {
+						?>
+							<figure class="figure">
+								<img src="<?php echo $image_metadata['image_url']; ?>"
+										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+								<?php
+									if( $image_metadata['image_caption'] ) {
+								?>
+									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<?php
+									}
+								?>
+							</figure>
 						<?php
-						if ( $image_url ) {
-							?>
-						<img src="<?php echo $image_url; ?>" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
-							<?php
 						}
 						?>
 					</div>

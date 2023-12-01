@@ -1214,10 +1214,6 @@ msgstr "Publication"
 msgid "Pubblicazioni"
 msgstr "Publications"
 
-#: template-parts/home/banner.php:12
-msgid "Pubblicità e Informazione"
-msgstr "Publicity and Information"
-
 #: inc/admin/options.php:1350
 msgid "Pulsante per il login visibile"
 msgstr "Button for login visible"

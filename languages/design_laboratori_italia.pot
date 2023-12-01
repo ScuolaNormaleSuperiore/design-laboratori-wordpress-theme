@@ -1187,10 +1187,6 @@ msgstr ""
 msgid "Pubblicazioni"
 msgstr ""
 
-#: template-parts/home/banner.php:12
-msgid "Pubblicità e Informazione"
-msgstr ""
-
 #: inc/admin/options.php:1350
 msgid "Pulsante per il login visibile"
 msgstr ""

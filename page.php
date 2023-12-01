@@ -31,13 +31,22 @@ $image_metadata = dli_get_image_metadata( $post );
 						</div>
 					</div>
 					<div class="col-sm-7">
-					<?php
-					if ( $image_metadata['image_url'] ) {
-					?>
-					<img src="<?php echo $image_metadata['image_url']; ?>"
-							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-							class="d-block mx-lg-auto img-fluid" loading="lazy">
+						<?php
+						if ( $image_metadata['image_url'] ) {
+						?>
+							<figure class="figure">
+								<img src="<?php echo $image_metadata['image_url']; ?>"
+										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+								<?php
+									if( $image_metadata['image_caption'] ) {
+								?>
+									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<?php
+									}
+								?>
+							</figure>
 						<?php
 						}
 						?>
