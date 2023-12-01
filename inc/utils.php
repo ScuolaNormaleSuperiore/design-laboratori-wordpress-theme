@@ -483,18 +483,18 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 }
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
-	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = '/assets/img/yourimage.png' ) {
+	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = null ) {
 		$result    =  DLI_POST_WRAPPER;
 		$image_url = get_the_post_thumbnail_url( $item, $image_size );
-		if ( ! $image_url ){
+		if ( ! $image_url && $partial_default_img_url ) {
 			$image_url = get_template_directory_uri() . $partial_default_img_url;
 		}
 		$post_title  = get_the_title( $item );
-		$image_id = get_post_thumbnail_id( $item->ID );
+		$image_id    = get_post_thumbnail_id( $item->ID );
 
 		if( $image_id === 0 ) {
-			$image_title   = $post_title;
-			$image_alt     = $post_title;
+			$image_title = $post_title;
+			$image_alt   = $post_title;
 		}
 		else {
 			$image_title   = get_the_title( $image_id );

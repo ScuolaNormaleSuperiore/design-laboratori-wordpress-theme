@@ -9,7 +9,7 @@
 
 global $post;
 get_header();
-$image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
+$image_metadata = dli_get_image_metadata( $post );
 ?>
 
 <main id="main-container" role="main">
@@ -32,13 +32,12 @@ $image_url = get_the_post_thumbnail_url( 0, 'item-carousel' );
 					</div>
 					<div class="col-sm-7">
 					<?php
-					if ( $image_url ) {
+					if ( $image_metadata['image_url'] ) {
 					?>
-					<img src="<?php echo $image_url; ?>"
-							alt="<?php echo esc_attr( get_the_title() ); ?>" 
-							title="<?php echo esc_attr( get_the_title() ); ?>" 
-							alt="<?php echo esc_attr( get_the_title() ); ?>" 
-							class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy">
+					<img src="<?php echo $image_metadata['image_url']; ?>"
+							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+							class="d-block mx-lg-auto img-fluid" loading="lazy">
 						<?php
 						}
 						?>
