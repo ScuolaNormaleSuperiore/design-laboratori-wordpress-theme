@@ -21,7 +21,7 @@
 							<a href="<?php echo esc_attr( $item['link'] ); ?>">
 								<div class="img-responsive-wrapper">
 									<div class="img-responsive">
-										<div>
+										<div class="img-wrapper">
 											<img src="<?php echo esc_url( $item['image_url'] ); ?>" title="<?php echo esc_attr( $item['image_title'] ); ?>" alt="<?php echo esc_attr( $item['image_alt'] ); ?>" />
 										</div>
 									</div>

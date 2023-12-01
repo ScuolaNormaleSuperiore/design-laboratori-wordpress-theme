@@ -32,7 +32,6 @@ $num_items = $query->post_count;
 		if ( $num_items != 0 ) {
 			$carditem       = $query->posts[0];
 			$postitem       = dli_get_post_wrapper( $carditem );
-			$image_metadata = dli_get_image_metadata( $carditem, 'item-carousel', '/assets/img/yourimage.png' );
 
 			$date      = $postitem['date'];
 			$item_date = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
@@ -41,9 +40,9 @@ $num_items = $query->post_count;
 			<div class="img-responsive-wrapper">
 				<div class="img-responsive img-responsive-panoramic">
 					<figure class="img-wrapper">
-						<img src="<?php echo $image_metadata['image_url']; ?>"
-							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
-							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+						<img src="<?php echo $postitem['image_url']; ?>"
+							alt="<?php echo esc_attr( $postitem['image_alt'] ); ?>"
+							title="<?php echo esc_attr( $postitem['image_title'] ); ?>"
 						>
 					</figure>
 					<div class="card-calendar d-flex flex-column justify-content-center">
