@@ -152,7 +152,7 @@ if ( $searchstring !== '' ) {
 										?>
 										<img src="<?php echo esc_url( $result['image'] ); ?>" height="100" width="100" 
 											class="img-thumbnail float-sm-start me-2 text-nowrap"
-											title="<?php echo esc_attr( $result['title'] ); ?>" alt="<?php echo esc_attr( $result['title'] ); ?>" />
+											title="<?php echo esc_attr( $result['image_title'] ); ?>" alt="<?php echo esc_attr( $result['image_alt'] ); ?>" />
 										<?php
 										 }
 										?>

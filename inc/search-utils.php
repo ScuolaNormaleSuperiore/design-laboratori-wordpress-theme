@@ -34,17 +34,25 @@ if ( ! function_exists( 'dli_format_search_result' ) ) {
 		$descr1 = dli_get_field( $post->ID, 'descrizione_breve' );
 		$descr2 = get_the_content( $post->ID );
 		$text   = $descr1 ? $descr1 : $descr2;
+		$post_title = get_the_title( $post->ID );
+
+		$image_metadata = dli_get_image_metadata( $post, 'item-thumb' );
+		$image_alt      = ( PEOPLE_POST_TYPE === $post->post_type ) ? $post_title : $image_metadata['image_alt'];
+		$image_title      = ( PEOPLE_POST_TYPE === $post->post_type ) ? $post_title : $image_metadata['image_title'];
 
 		return array(
 			'id'            => $post->ID,
-			'title'         => get_the_title( $post->ID ),
+			'title'         => $post_title,
 			'description'   => $text,
-			'image'         => get_the_post_thumbnail_url( $post->ID, 'item-thumb' ),
+			'image'         => $image_metadata['image_url'],
 			'link'          => get_the_permalink( $post->ID ),
 			'date'          => null,
 			'type'          => $post->post_type,
 			'category'      => null,
 			'link_category' => null,
+			'title'         => $post_title,
+			'image_alt'     => $image_alt,
+			'image_title'   => $image_title,
 		);
 
 	}
