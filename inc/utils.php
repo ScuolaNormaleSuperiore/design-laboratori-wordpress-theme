@@ -677,8 +677,49 @@ if( ! function_exists( 'dli_get_all_contenttypes_with_results' ) ) {
 					array_push( $content_types_with_results, $ct );
 				}
 			}
+			wp_reset_postdata();
 		}
 		return $content_types_with_results;
+	}
+}
+
+if( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
+	function dli_get_all_place_types_with_results( ) {
+		// recupero i termini della tassonomia tipologia luogo.
+		$tipi_luogo = get_terms(
+			[
+				'taxonomy'   => PLACE_TYPE_TAXONOMY,
+				'hide_empty' => false,
+			]
+		);
+
+		$place_types_with_results = array();
+
+		foreach ( $tipi_luogo as $tipo_luogo ) {
+
+			$luoghi = new WP_Query(
+				array(
+					'posts_per_page' => DLI_POSTS_PER_PAGE,
+					'paged'          => get_query_var( 'paged', 1 ),
+					'post_type'      => PLACE_POST_TYPE,
+					'orderby'        => 'title',
+					'tax_query'   => array(
+						array(
+							'taxonomy' => PLACE_TYPE_TAXONOMY,
+							'field'    => 'slug',
+							'terms'    => "'" . $tipo_luogo->slug . "'",
+						),
+					),
+				)
+			);
+
+			$num_results = $luoghi->found_posts;
+			if ( $num_results > 0 ) {
+				array_push( $place_types_with_results, $tipo_luogo );
+			}
+			wp_reset_postdata();
+		}
+		return $place_types_with_results;
 	}
 }
 

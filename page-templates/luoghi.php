@@ -64,13 +64,9 @@ $num_results = $luoghi->found_posts;
 					<div class="col-12 col-lg-3 border-end">
 						<!--COLONNA FILTRI -->
 						<?php
-						// recupero i termini della tassonomia tipologia luogo.
-						$tipi_luogo = get_terms(
-							[
-								'taxonomy'   => PLACE_TYPE_TAXONOMY,
-								'hide_empty' => false,
-							]
-						);
+						// recupero i termini della tassonomia tipologia luogo che hanno dei risultati.
+						$tipi_luogo = dli_get_all_place_types_with_results();
+
 						// visualizzo i filtri sul tipo di luogo solo se ne esistono almeno 1.
 						if ( count( $tipi_luogo ) >= 1 ) {
 						?>
