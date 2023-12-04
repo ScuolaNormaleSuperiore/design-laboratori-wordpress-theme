@@ -9,7 +9,7 @@ get_header();
 define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 
 // BEGIN preparazione dei parametri di ricerca.
-$allcontentypes = dli_get_all_contenttypes();
+$allcontentypes = dli_get_all_contenttypes_with_results();
 
 if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
 	$selected_contents = array();

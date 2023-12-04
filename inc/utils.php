@@ -659,6 +659,29 @@ if( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_all_contenttypes_with_results' ) ) {
+	function dli_get_all_contenttypes_with_results( ) {
+		$content_types = DLI_POST_TYPES_TO_TRANSLATE;
+		$content_types_with_results = array();
+		foreach ( $content_types as $ct ) {
+			if ( PEOPLE_TYPE_POST_TYPE !== $ct ) {
+				$the_query = new WP_Query(
+					array(
+						'paged'          => get_query_var( 'paged', 1 ),
+						'post_type'      => $ct,
+						'posts_per_page' => DLI_POSTS_PER_PAGE,
+					)
+				);
+				$num_results = $the_query->found_posts;
+				if ( $num_results > 0 ) {
+					array_push( $content_types_with_results, $ct );
+				}
+			}
+		}
+		return $content_types_with_results;
+	}
+}
+
 if( ! function_exists( 'dli_get_default_logo' ) ) {
 	function dli_get_default_logo( ) {
 		$img_link = get_template_directory_uri() . '/assets/img/logo-default.png';
