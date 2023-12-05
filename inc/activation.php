@@ -383,7 +383,7 @@ function build_the_menu( $custom_menu ) {
 	$menu_location = $custom_menu['location'];
 	$menu_lang     = $custom_menu['lang'];
 	if ( 'it' !== $menu_lang ) {
-		$menu_location = $menu_location . '__' . $menu_lang;
+		$menu_location = $menu_location . '___' . $menu_lang;
 	}
 
 	// wp_delete_nav_menu( $menu_name );
