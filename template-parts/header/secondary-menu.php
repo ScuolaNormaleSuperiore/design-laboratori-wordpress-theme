@@ -17,10 +17,14 @@
 		<ul id="secondary-menu" class="navbar-nav navbar-secondary">
 			<?php
 				foreach ( $menuitems as $item ) {
+					$active_class = '';
+					if ( get_permalink( ) == $item['element']->url ) {
+						$active_class = 'active';
+					}
 					if ( count( $item['children'] ) > 0 ) {
 			?>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
+					<a class="nav-link dropdown-toggle <?php echo $active_class;?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 						<span><?php echo esc_attr( $item['element']->title); ?></span>
 						<svg class="icon icon-xs" role="img" aria-labelledby="Expand">
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
@@ -46,7 +50,7 @@
 					} else {
 			?>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo esc_url( $item['element']->url ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a>
+					<a class="nav-link <?php echo $active_class;?>" href="<?php echo esc_url( $item['element']->url ); ?>"><span><?php echo esc_attr( $item['element']->title ); ?></span></a>
 				</li>
 			<?php
 					} // else

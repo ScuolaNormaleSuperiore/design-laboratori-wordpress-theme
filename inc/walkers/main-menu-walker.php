@@ -20,10 +20,9 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 
 	function start_el( &$output, $item, $depth=0, $args=[], $id=0 ) {
 		// set active tab
-		// $group = $args->current_group == 'documenti-e-dati' ? 'amministrazione' : $args->current_group;
 		$group = $args->current_group;
 		$active_class = '';
-		if ( $item->title == $group ) {
+		if ( $item->url == get_permalink( ) ) {
 			$active_class = 'active';
 		}
 
