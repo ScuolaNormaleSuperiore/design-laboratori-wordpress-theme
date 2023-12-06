@@ -57,6 +57,7 @@ class People_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'struttura' ),
+			'show_in_rest'      => true,
 			// 'capabilities'      => array(
 			// 	'manage_terms' => 'manage_strutture',
 			// 	'edit_terms'   => 'edit_strutture',
@@ -95,7 +96,6 @@ class People_Manager {
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			'public'          => true,
 			'show_in_menu'    => true,
-			'show_in_rest'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-businessperson',
 			'has_archive'     => true,

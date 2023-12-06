@@ -42,7 +42,6 @@ class PeopleType_Manager {
 			'supports'        => array( 'title' ),
 			'public'          => true,
 			'show_in_menu'    =>	'edit.php?post_type=persona',
-			'show_in_rest'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-nametag',
 			'has_archive'     => true,
@@ -148,7 +147,7 @@ class PeopleType_Manager {
 				'hide_on_screen' => '',
 				'active' => true,
 				'description' => '',
-				'show_in_rest' => 0,
+				'show_in_rest' => 1,
 			));
 
 		}

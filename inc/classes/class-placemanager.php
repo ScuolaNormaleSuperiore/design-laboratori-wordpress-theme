@@ -59,6 +59,7 @@ class Place_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipologia-luogo' ),
+			'show_in_rest'      => true,
 			// 'capabilities'      => array(
 			// 	'manage_terms' => 'manage_tipologie_luogo',
 			// 	'edit_terms'   => 'edit_tipologie_luogo',
@@ -97,7 +98,6 @@ class Place_Manager {
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
 			'public'          => true,
 			'show_in_menu'    => true,
-			'show_in_rest'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-pressthis',
 			'has_archive'     => true,
@@ -370,7 +370,7 @@ class Place_Manager {
 				'hide_on_screen' => '',
 				'active' => true,
 				'description' => '',
-				'show_in_rest' => 0,
+				'show_in_rest' => 1,
 			));
 
 		}

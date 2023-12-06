@@ -54,6 +54,7 @@ class Publication_Manager {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
+			'show_in_rest'      => true,
 			// 'capabilities'      => array(
 			// 	'manage_terms' => 'manage_tipo_pubblicazione',
 			// 	'edit_terms'   => 'edit_tipo_pubblicazione',
