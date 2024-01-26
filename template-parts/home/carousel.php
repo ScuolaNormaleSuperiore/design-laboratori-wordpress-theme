@@ -47,7 +47,7 @@
 											if ( $item['link'] ) {
 											?>
 											<a class="read-more" href="<?php echo esc_attr( $item['link'] ); ?>">
-												<span class="text"><?php echo __( 'Leggi di piu', 'design_laboratori_italia' ); ?></span>
+												<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 												<svg class="icon" role="img" aria-labelledby="Arrow right">
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ) ?>"></use>
 												</svg>
