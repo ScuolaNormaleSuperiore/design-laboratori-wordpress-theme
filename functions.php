@@ -197,3 +197,6 @@ function enable_svg_upload( $upload_mimes ) {
 	return $upload_mimes;
 }
 add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
+
+// Metodo per nascondere la versione del CMS (tag generator).
+add_filter( 'the_generator', '__return_null' );
