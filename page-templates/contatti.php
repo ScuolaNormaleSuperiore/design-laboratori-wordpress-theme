@@ -15,6 +15,8 @@ $captcha_enabled = false;
 $form_valid      = true;
 $sent            = false;
 $testorisultato  = '';
+$nonce_error     = false;
+$forminviato     = 'no';
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-captcha.php' ) ) ) {
@@ -70,7 +72,7 @@ if ( isset( $_POST['ricevuta'] ) ) {
 if ( isset( $_POST['forminviato'] ) ) {
 	$forminviato = $_POST['forminviato'];
 } else {
-	$forminviato = '';
+	$forminviato = 'no';
 }
 
 if ( isset( $_POST['testomessaggio'] ) ) {
@@ -91,9 +93,19 @@ if ( isset( $_POST['captcha-prefix'] ) ) {
 	$captcha_prefix = '';
 }
 
+// Verifica del nonce.
+if ( 'yes' === $forminviato && isset( $_POST['contatti_nonce_field'] ) && wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
+	// Il nonce è valido.
+	$nonce_error = false;
+} else {
+	// Il nonce non è valido.
+	$mostraerrore = true;
+	$nonce_error  = true;
+	$testorisultato = $testorisultato . '<BR/>' . __( 'Valore di Nonce errato.', 'design_laboratori_italia' );
+}
 
-
-if ( 'yes' === $forminviato ) {
+// Procedura di sottomissione del messaggio.
+if ( ( 'yes' === $forminviato ) && ( $nonce_error === false ) ) {
 
 	$email_sito = $email;
 	// $email_sito = get_option( 'admin_email' );
@@ -160,9 +172,10 @@ if ( 'yes' === $forminviato ) {
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- BREADCRUMB -->
+	<!-- SEZIONE BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
+	<!-- SEZIONE HEADER -->
 	<section id="banner-contatti" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-contatti">
 		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
@@ -176,179 +189,184 @@ if ( 'yes' === $forminviato ) {
 		</div>
 	</section>
 
-	<!-- ALERT OK -->
-	<?php
-	 if ( $mostrainviato ) {
-	?>
-	<div class="container my-12 p-2">
-		<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-		<?php echo __( 'Messaggio inviato correttamente', 'design_laboratori_italia' ) . '&nbsp;.'; ?>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
-				<svg class="icon" role="img" aria-labelledby="Close">
-					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
-				</svg>
-			</button>
+	<!-- SEZIONE MESSAGGI -->
+	<div id="contatti_messaggi">
+		<?php
+		if ( $mostrainviato ) {
+		?>
+			<!-- ALERT OK -->
+			<div class="container my-12 p-2">
+				<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+				<?php echo __( 'Messaggio inviato correttamente', 'design_laboratori_italia' ) . '&nbsp;.'; ?>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
+						<svg class="icon" role="img" aria-labelledby="Close">
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		<?php
+		}
+		if ( $mostraerrore ) {
+		?>
+			<!-- ALERT KO -->
+			<div class="container my-12 p-2">
+			<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+				<?php echo __( $testorisultato, 'design_laboratori_italia' ); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
+					<svg class="icon" role="img" aria-labelledby="Close">
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
+					</svg>
+				</button>
+			</div>
 		</div>
+		<?php
+		}
+		?>
 	</div>
-	<?php
-	 }
-	 if ( $mostraerrore ) {
-	?>
-		<!-- ALERT KO -->
-		<div class="container my-12 p-2">
-		<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
-			<?php echo __( $testorisultato, 'design_laboratori_italia' ); ?>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
-				<svg class="icon" role="img" aria-labelledby="Close">
-					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close'; ?>"></use>
-				</svg>
-			</button>
-		</div>
-	</div>
-	<?php
-	 }
-	?>
 
-	<FORM action="." id="formcontatti" name="formcontatti" method="POST">
-		<div class="container my-4 pt-4">
-
-			<!-- CONTATTI DEL LABORATORIO -->
-			<div class="row">
-				<div class="col-12 col-lg-3 border-end pe-0 ps-0">
-					<div class="it-list-wrapper pt-4">
-						<h3 class="h6 text-uppercase border-bottom ps-3"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
-						<ul class="it-list">
-							<li>
-								<div class="list-item">
+	<!-- SEZIONE FORM -->
+	<div id="contatti_form">
+		<FORM action="." id="formcontatti" name="formcontatti" method="POST">
+			<?php wp_nonce_field( 'sf_contatti_nonce', 'contatti_nonce_field' ); ?>
+			<div class="container my-4 pt-4">
+				<!-- CONTATTI DEL LABORATORIO -->
+				<div class="row">
+					<div class="col-12 col-lg-3 border-end pe-0 ps-0">
+						<div class="it-list-wrapper pt-4">
+							<h3 class="h6 text-uppercase border-bottom ps-3"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
+							<ul class="it-list">
+								<li>
+									<div class="list-item">
+										<div class="it-rounded-icon">
+											<svg class="icon" role="img" aria-labelledby="Telephone">
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone">
+											<span class="text">
+												<a class="list-item" href="<?php echo 'tel:' . $telefono; ?>" title='Telefono'>
+													<?php echo $telefono; ?>
+												</a>
+											</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<a href="<?php echo 'mailto:' . $email; ?>" class="list-item">
 									<div class="it-rounded-icon">
-										<svg class="icon" role="img" aria-labelledby="Telephone">
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+										<svg class="icon" role="img" aria-labelledby="Mail">
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 										</svg>
 									</div>
 									<div class="it-right-zone">
 										<span class="text">
-											<a class="list-item" href="<?php echo 'tel:' . $telefono; ?>" title='Telefono'>
-												<?php echo $telefono; ?>
-											</a>
+											<?php echo $email; ?>
 										</span>
 									</div>
-								</div>
-							</li>
-							<li>
-								<a href="<?php echo 'mailto:' . $email; ?>" class="list-item">
-								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Mail">
-								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+									</a>
+								</li>
+								<li>
+									<a class="list-item" href="<?php echo $website; ?>">
+									<div class="it-rounded-icon">
+									<svg class="icon" role="img" aria-labelledby="Link">
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 									</svg>
-								</div>
-								<div class="it-right-zone">
-									<span class="text">
-										<?php echo $email; ?>
-									</span>
-								</div>
-								</a>
-							</li>
-							<li>
-								<a class="list-item" href="<?php echo $website; ?>">
-								<div class="it-rounded-icon">
-								<svg class="icon" role="img" aria-labelledby="Link">
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-								</svg>
-								</div>
-								<div class="it-right-zone"><span class="text"><?php echo $website; ?></span>
-								</div>
-								</a>
-							</li>
-						</ul>
+									</div>
+									<div class="it-right-zone"><span class="text"><?php echo $website; ?></span>
+									</div>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
 
-				<!-- FORM DEI CONTATTI -->
-				<div class="col-lg-9">
-					<div class="row ">
-						<div class="col-lg-12">  
-							<div class="p-5">
-								<div class="row">
-									<div class="form-group col">
-										<label class="active" for="nomecognome"><?php echo __( 'Nome e cognome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-										<input type="text" class="form-control" name="nomecognome" id="nomecognome" 
-											value="<?php echo $nomecognome; ?>"
-											placeholder="<?php echo __( 'Inserisci il tuo nome', 'design_laboratori_italia' ); ?>">
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col">
-										<label class="active" for="testomessaggio"><?php echo __( 'Testo del messaggio', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-										<input type="text" class="form-control" name="testomessaggio" id="testomessaggio" 
-											value="<?php echo $testomessaggio; ?>"
-											placeholder="<?php echo __( 'Inserisci il testo del messaggio', 'design_laboratori_italia' ); ?>">
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-6">
-										<label class="active" for="indirizzoemail"><?php echo __( 'E-mail', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-										<input type="email" class="form-control" id="indirizzoemail" name="indirizzoemail" 
-											value="<?php echo $indirizzoemail; ?>"
-											placeholder="<?php echo __( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="numerotelefono" class="active"><?php echo __( 'Telefono', 'design_laboratori_italia' ); ?></label>
-										<input type="tel" class="form-control" id="numerotelefono" name="numerotelefono"
-											value="<?php echo $numerotelefono; ?>"
-											placeholder="<?php echo __( 'Inserisci il tuo numero di telefono', 'design_laboratori_italia' ); ?>">
-									</div>
-								</div>
-								<!-- NOTIFICA -->
-								<div class="row">
-									<div class="form-group col-md-9">
-										<div class="toggles">
-											<label for="ricevuta">
-												<?php
-												echo __( 'Vuoi ricevere notifica al tuo indirizzo email', 'design_laboratori_italia' );
-												echo '?';
-													?>
-												<input type="checkbox" id="ricevuta" name="ricevuta">
-												<span class="lever"></span>
-											</label>
+					<!-- FORM DEI CONTATTI -->
+					<div class="col-lg-9">
+						<div class="row ">
+							<div class="col-lg-12">  
+								<div class="p-5">
+									<div class="row">
+										<div class="form-group col">
+											<label class="active" for="nomecognome"><?php echo __( 'Nome e cognome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+											<input type="text" class="form-control" name="nomecognome" id="nomecognome" 
+												value="<?php echo $nomecognome; ?>"
+												placeholder="<?php echo __( 'Inserisci il tuo nome', 'design_laboratori_italia' ); ?>">
 										</div>
 									</div>
-								</div>
-								<!-- CAPTCHA -->
-								<?php
-								if ( $captcha_enabled ) {
-								?>
-								<div class="row" style="margin-top: 20px;">
-									<div class="form-group col-md-6" style="text-align: center">
-										<img src="<?php echo $captcha_obj_image_src; ?>" alt="captcha"
-													width="<?php echo $captcha_obj_image_width; ?>" height="<?php echo $captcha_obj_image_height; ?>" />
+									<div class="row">
+										<div class="form-group col">
+											<label class="active" for="testomessaggio"><?php echo __( 'Testo del messaggio', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+											<input type="text" class="form-control" name="testomessaggio" id="testomessaggio" 
+												value="<?php echo $testomessaggio; ?>"
+												placeholder="<?php echo __( 'Inserisci il testo del messaggio', 'design_laboratori_italia' ); ?>">
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<input name="captcha-field" id="captcha-field"  size="<?php echo $captcha_obj_image_width; ?>" type="text" 
-												placeholder="<?php echo __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"	/>
-										<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo $captcha_obj_prefix; ?>" />
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label class="active" for="indirizzoemail"><?php echo __( 'E-mail', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+											<input type="email" class="form-control" id="indirizzoemail" name="indirizzoemail" 
+												value="<?php echo $indirizzoemail; ?>"
+												placeholder="<?php echo __( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="numerotelefono" class="active"><?php echo __( 'Telefono', 'design_laboratori_italia' ); ?></label>
+											<input type="tel" class="form-control" id="numerotelefono" name="numerotelefono"
+												value="<?php echo $numerotelefono; ?>"
+												placeholder="<?php echo __( 'Inserisci il tuo numero di telefono', 'design_laboratori_italia' ); ?>">
+										</div>
 									</div>
-								</div>
-								<?php
-								}
-								?>
-								<!-- SUBMIT -->
-								<div class="row mt-4">
-									<div class="form-group col text-center">
-										<input type="hidden" name="forminviato" id="forminviato" value="yes" />
-										<button type="button" class="btn btn-outline-primary"><?php echo __( 'Annulla', 'design_laboratori_italia' ); ?></button>
-										<button type="submit" class="btn btn-primary"><?php echo __( 'Conferma', 'design_laboratori_italia' ); ?></button>
+									<!-- NOTIFICA -->
+									<div class="row">
+										<div class="form-group col-md-9">
+											<div class="toggles">
+												<label for="ricevuta">
+													<?php
+													echo __( 'Vuoi ricevere notifica al tuo indirizzo email', 'design_laboratori_italia' );
+													echo '?';
+														?>
+													<input type="checkbox" id="ricevuta" name="ricevuta">
+													<span class="lever"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+									<!-- CAPTCHA -->
+									<?php
+									if ( $captcha_enabled ) {
+									?>
+									<div class="row" style="margin-top: 20px;">
+										<div class="form-group col-md-6" style="text-align: center">
+											<img src="<?php echo $captcha_obj_image_src; ?>" alt="captcha"
+														width="<?php echo $captcha_obj_image_width; ?>" height="<?php echo $captcha_obj_image_height; ?>" />
+										</div>
+										<div class="form-group col-md-6">
+											<input name="captcha-field" id="captcha-field"  size="<?php echo $captcha_obj_image_width; ?>" type="text" 
+													placeholder="<?php echo __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"	/>
+											<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo $captcha_obj_prefix; ?>" />
+										</div>
+									</div>
+									<?php
+									}
+									?>
+									<!-- SUBMIT -->
+									<div class="row mt-4">
+										<div class="form-group col text-center">
+											<input type="hidden" name="forminviato" id="forminviato" value="yes" />
+											<button type="button" class="btn btn-outline-primary"><?php echo __( 'Annulla', 'design_laboratori_italia' ); ?></button>
+											<button type="submit" class="btn btn-primary"><?php echo __( 'Conferma', 'design_laboratori_italia' ); ?></button>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
-
 			</div>
-		</div>
+		</FORM>
+	</div>
 
-
-	</FORM>
 </main>
 
 <?php
