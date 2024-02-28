@@ -19,13 +19,13 @@ $nonce_error     = false;
 $forminviato     = 'no';
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-captcha.php' ) ) ) {
 	if ( class_exists( 'ReallySimpleCaptcha' ) ) {
 		$captcha_enabled          = true;
 		$captcha_obj              = new ReallySimpleCaptcha();
 		$captcha_obj->chars       = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 		$captcha_obj->char_length = '4';
-
 		// Width/Height dimensions of CAPTCHA image.
 		$captcha_obj->img_size = array( '72', '24' );
 		// Font color of CAPTCHA characters, in RGB (0 – 255).
@@ -38,7 +38,6 @@ if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-cap
 		$captcha_obj->font_char_width = '15';
 		// CAPTCHA image type. Can be 'png', 'jpeg', or 'gif'.
 		$captcha_obj->img_type = 'png';
-
 		$captcha_obj_word         = $captcha_obj->generate_random_word();
 		$captcha_obj_prefix       = mt_rand();
 		$captcha_obj_image_name   = $captcha_obj->generate_image( $captcha_obj_prefix, $captcha_obj_word );
@@ -74,19 +73,16 @@ if ( isset( $_POST['forminviato'] ) ) {
 } else {
 	$forminviato = 'no';
 }
-
 if ( isset( $_POST['testomessaggio'] ) ) {
 	$testomessaggio = sanitize_text_field( $_POST['testomessaggio'] );
 } else {
 	$testomessaggio = '';
 }
-
 if ( isset( $_POST['captcha-field'] ) ) {
 	$captcha_field = sanitize_text_field( $_POST['captcha-field'] );
 } else {
 	$captcha_field = '';
 }
-
 if ( isset( $_POST['captcha-prefix'] ) ) {
 	$captcha_prefix = sanitize_text_field( $_POST['captcha-prefix'] );
 } else {
@@ -97,12 +93,12 @@ if ( isset( $_POST['captcha-prefix'] ) ) {
 if ( 'yes' === $forminviato ) {
 
 	// Verifica del nonce.
-	if ( isset( $_POST['contatti_nonce_field'] ) &&
-		wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
+	if ( isset( $_POST['contatti_nonce_field'] ) && wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
 
 		// Il NONCE è valido.
 		$nonce_error = false;
 		$email_sito = $email;
+
 		// $email_sito = get_option( 'admin_email' );
 		$name       = $nomecognome;
 		$to         = $email_sito;
@@ -160,6 +156,7 @@ if ( 'yes' === $forminviato ) {
 		if ( ( ! $form_valid ) || ( $forminviato && ! $sent ) ) {
 			$mostraerrore  = true;
 		}
+
 	} else {
 		// Il NONCE non è valido.
 		$mostraerrore = true;
