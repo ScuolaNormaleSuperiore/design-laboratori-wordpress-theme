@@ -447,6 +447,7 @@ if( ! function_exists( 'dli_get_image_metadata' ) ) {
 	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = null ) {
 		$result    =  DLI_POST_WRAPPER;
 		$image_url = get_the_post_thumbnail_url( $item, $image_size );
+		$image_caption = '';
 		if ( ! $image_url && $partial_default_img_url ) {
 			$image_url = get_template_directory_uri() . $partial_default_img_url;
 		}

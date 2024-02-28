@@ -34,7 +34,7 @@
 											<div class="category-top">
 												<a class="category" href="<?php echo esc_url( $item['category_link'] ); ?>"><?php echo esc_attr( $item['category'] ); ?></a>
 												<span class="data"><?php echo esc_attr( $item['date'] ); ?></span>
-												<?php if (  $item['orario_inizio'] ) {
+												<?php if (  array_key_exists( 'data_inizio', $item) ) {
 												?>
 												<span class="data"><?php echo esc_attr( $item['orario_inizio'] ); ?></span>
 											<?php
