@@ -198,5 +198,10 @@ function enable_svg_upload( $upload_mimes ) {
 }
 add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
 
-// Metodo per nascondere la versione del CMS (tag generator).
+// Hook per nascondere la versione del CMS (tag generator).
 add_filter( 'the_generator', '__return_null' );
+
+// Hook per nascondere sovrascrivere il messaggio di errore in fase di login.
+add_filter( 'login_errors', function( $message ){
+	return 'Invalid username or password';
+} );

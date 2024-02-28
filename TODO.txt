@@ -6,10 +6,6 @@
 	- search.php
 	- contacts.php
 
-3) Aggiunta filtro "login_errors" per nascondere motivo login errato.
-
-4) Aggiunta filtro "the_generator" per nascondere versione WP.
-
 5) Modificare la pagina wp_login ?????  // cambiare url??
 
 6) Aggungere a wp-config.php:
@@ -17,8 +13,8 @@
 	- define( 'FORCE_SSL_LOGIN', true );
 	- define( 'FORCE_SSL_ADMIN', true );
 
-	8) Installare plugin WordFence o AllInOne (versione gratuita): firewall -->Da valutare
+8) Installare plugin WordFence o AllInOne (versione gratuita): firewall -->Da valutare
 
-	9) Verificare opportunità di usare Content Security Policy (CSP) ????
+9) Verificare opportunità di usare Content Security Policy (CSP) ????
 
-	10) SSL?????
+10) SSL?????
