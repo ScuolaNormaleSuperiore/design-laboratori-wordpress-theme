@@ -50,120 +50,121 @@ if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-cap
 }
 
 if ( isset( $_POST['nomecognome'] ) ) {
-	$nomecognome = $_POST['nomecognome'];
+	$nomecognome = sanitize_text_field( $_POST['nomecognome'] );
 } else {
 	$nomecognome = '';
 }
 if ( isset( $_POST['indirizzoemail'] ) ) {
-	$indirizzoemail = $_POST['indirizzoemail'];
+	$indirizzoemail = sanitize_email( $_POST['indirizzoemail'] );
 } else {
 	$indirizzoemail = '';
 }
 if ( isset( $_POST['numerotelefono'] ) ) {
-	$numerotelefono = $_POST['numerotelefono'];
+	$numerotelefono = sanitize_text_field( $_POST['numerotelefono'] );
 } else {
 	$numerotelefono = '';
 }
 if ( isset( $_POST['ricevuta'] ) ) {
-	$ricevuta = $_POST['ricevuta'];
+	$ricevuta = sanitize_text_field( $_POST['ricevuta'] );
 } else {
 	$ricevuta = '';
 }
 if ( isset( $_POST['forminviato'] ) ) {
-	$forminviato = $_POST['forminviato'];
+	$forminviato = sanitize_text_field( $_POST['forminviato'] );
 } else {
 	$forminviato = 'no';
 }
 
 if ( isset( $_POST['testomessaggio'] ) ) {
-	$testomessaggio = $_POST['testomessaggio'];
+	$testomessaggio = sanitize_text_field( $_POST['testomessaggio'] );
 } else {
 	$testomessaggio = '';
 }
 
 if ( isset( $_POST['captcha-field'] ) ) {
-	$captcha_field = $_POST['captcha-field'];
+	$captcha_field = sanitize_text_field( $_POST['captcha-field'] );
 } else {
 	$captcha_field = '';
 }
 
 if ( isset( $_POST['captcha-prefix'] ) ) {
-	$captcha_prefix = $_POST['captcha-prefix'];
+	$captcha_prefix = sanitize_text_field( $_POST['captcha-prefix'] );
 } else {
 	$captcha_prefix = '';
 }
 
-// Verifica del nonce.
-if ( 'yes' === $forminviato && isset( $_POST['contatti_nonce_field'] ) && wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
-	// Il nonce è valido.
-	$nonce_error = false;
-} else {
-	// Il nonce non è valido.
-	$mostraerrore = true;
-	$nonce_error  = true;
-	$testorisultato = $testorisultato . '<BR/>' . __( 'Valore di Nonce errato.', 'design_laboratori_italia' );
-}
-
 // Procedura di sottomissione del messaggio.
-if ( ( 'yes' === $forminviato ) && ( $nonce_error === false ) ) {
+if ( 'yes' === $forminviato ) {
 
-	$email_sito = $email;
-	// $email_sito = get_option( 'admin_email' );
-	$name       = $nomecognome;
-	$to         = $email_sito;
-	$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
-	$headers    = 'From: ' . $indirizzoemail . '\r\n' . 'Reply-To: ' . $indirizzoemail . '\r\n';
+	// Verifica del nonce.
+	if ( isset( $_POST['contatti_nonce_field'] ) &&
+		wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
 
-	// 1 - Controllo del captcha.
-	if ( $captcha_enabled ) {
-		$captcha_valid = $captcha_obj->check( $captcha_prefix, $captcha_field );
-		if ( ! $captcha_valid ) {
-			$testorisultato = $testorisultato . '<BR/>' . __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+		// Il NONCE è valido.
+		$nonce_error = false;
+		$email_sito = $email;
+		// $email_sito = get_option( 'admin_email' );
+		$name       = $nomecognome;
+		$to         = $email_sito;
+		$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
+		$headers    = 'From: ' . $indirizzoemail . '\r\n' . 'Reply-To: ' . $indirizzoemail . '\r\n';
+
+		// 1 - Controllo del captcha.
+		if ( $captcha_enabled ) {
+			$captcha_valid = $captcha_obj->check( $captcha_prefix, $captcha_field );
+			if ( ! $captcha_valid ) {
+				$testorisultato = $testorisultato . '<BR/>' . __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+			}
+		} else {
+			$captcha_valid = true;
 		}
-	} else {
-		$captcha_valid = true;
-	}
 
-	// 2 - Validazione dei campi.
-	// 2a - Controllo campi obbligatori
-	if ( '' === $nomecognome || '' === $indirizzoemail || '' === $testomessaggio ) {
-		$form_valid     = $form_valid && true;
-		$testorisultato = $testorisultato . '<BR/>' . __( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
-	}
-	// 2b - Controllo validità email.
-	if ( ! ( filter_var( $indirizzoemail, FILTER_VALIDATE_EMAIL ) ) ) {
-		$form_valid     = $form_valid && true;
-		$testorisultato = $testorisultato . '<BR/>' . __( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
-	}
-
-	// 3 - Calcolo validità.
-	// Il form è valido se i campi sono validi e se è valido il captcha oppure non è attivo.
-	$form_valid = $form_valid && ( $captcha_valid || ! $captcha_enabled );
-
-	// 4 - INVIO EMAIL.
-	if ( $form_valid ) {
-		// 4a - Invio email al laboratorio.
-		$sent = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
-		if ( ! $sent ) {
-			$testorisultato = $testorisultato . '<BR/>' . __( 'Messaggio non inviato', 'design_laboratori_italia' ) . '&nbsp;.';
+		// 2 - Validazione dei campi.
+		// 2a - Controllo campi obbligatori
+		if ( '' === $nomecognome || '' === $indirizzoemail || '' === $testomessaggio ) {
+			$form_valid     = $form_valid && true;
+			$testorisultato = $testorisultato . '<BR/>' . __( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
 		}
-		if ( 'on' === $ricevuta ) {
-			// 4b - Invio Email di copia.
-			$testo_ricevuta = __( 'Ricevuta', 'design_laboratori_italia' );
-			$subject        .= '(' . $testo_ricevuta . ')';
-			$sent           = $sent && wp_mail( $indirizzoemail, $subject, strip_tags( $testomessaggio ), $headers );
+		// 2b - Controllo validità email.
+		if ( ! ( filter_var( $indirizzoemail, FILTER_VALIDATE_EMAIL ) ) ) {
+			$form_valid     = $form_valid && true;
+			$testorisultato = $testorisultato . '<BR/>' . __( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
+		}
+
+		// 3 - Calcolo validità.
+		// Il form è valido se i campi sono validi e se è valido il captcha oppure non è attivo.
+		$form_valid = $form_valid && ( $captcha_valid || ! $captcha_enabled );
+
+		// 4 - INVIO EMAIL.
+		if ( $form_valid ) {
+			// 4a - Invio email al laboratorio.
+			$sent = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
 			if ( ! $sent ) {
-				$testorisultato = $testorisultato . '<BR/>' . __( 'Copia del messaggio non inviata.', 'design_laboratori_italia' );
+				$testorisultato = $testorisultato . '<BR/>' . __( 'Messaggio non inviato', 'design_laboratori_italia' ) . '&nbsp;.';
+			}
+			if ( 'on' === $ricevuta ) {
+				// 4b - Invio Email di copia.
+				$testo_ricevuta = __( 'Ricevuta', 'design_laboratori_italia' );
+				$subject        .= '(' . $testo_ricevuta . ')';
+				$sent           = $sent && wp_mail( $indirizzoemail, $subject, strip_tags( $testomessaggio ), $headers );
+				if ( ! $sent ) {
+					$testorisultato = $testorisultato . '<BR/>' . __( 'Copia del messaggio non inviata.', 'design_laboratori_italia' );
+				}
 			}
 		}
-	}
 
-	// 5 - Visualizzazione risultato.
-	if ( $forminviato && $sent ) {
-		$mostrainviato = true;
-	}
-	if ( ( ! $form_valid ) || ( $forminviato && ! $sent ) ) {
-		$mostraerrore  = true;
+		// 5 - Visualizzazione risultato.
+		if ( $forminviato && $sent ) {
+			$mostrainviato = true;
+		}
+		if ( ( ! $form_valid ) || ( $forminviato && ! $sent ) ) {
+			$mostraerrore  = true;
+		}
+	} else {
+		// Il NONCE non è valido.
+		$mostraerrore = true;
+		$nonce_error  = true;
+		$testorisultato = $testorisultato . '<BR/>' . __( 'Valore di Nonce errato.', 'design_laboratori_italia' );
 	}
 
 }

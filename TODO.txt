@@ -1,10 +1,8 @@
 1) Gestione input (sanitize) nelle pagine:
 	- search.php
-	- contacts.php
 
 2) Gestione nonce nelle pagine:
 	- search.php
-	- contacts.php
 
 5) Modificare la pagina wp_login ?????  // cambiare url??
 
@@ -18,3 +16,5 @@
 9) Verificare opportunità di usare Content Security Policy (CSP) ????
 
 10) SSL?????
+
+11) https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues/7
