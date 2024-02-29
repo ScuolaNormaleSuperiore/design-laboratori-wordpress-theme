@@ -1526,6 +1526,58 @@ $social_options->add_field( array(
 
 		$setup_options->add_field(
 			array(
+				'id'               => $prefix . 'newsletter_manager',
+				'name'             => __( 'Gestore delle newsletter', 'design_laboratori_italia' ),
+				'desc'             => __( 'Selezione del programma usato per gestire la newsletter del sito' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'default',
+				'show_option_none' => false,
+				'options'          => array(
+					'brevo' => __( 'Brevo', 'design_laboratori_italia' ),
+			),
+			)
+		);
+
+		$setup_options->add_field(
+			array(
+				'id'         => $prefix . 'newsletter_api_token',
+				'name'       => __( 'Token API', 'design_laboratori_italia' ),
+				'type'       => 'text',
+			)
+		);
+
+		$setup_options->add_field(
+			array(
+				'id'              => $prefix . 'newsletter_list_id',
+				'name'            => __( 'ID della lista', 'design_laboratori_italia' ),
+				'desc'            => __( 'ID della lista associata al sito' , 'design_laboratori_italia' ),
+				'type'            => 'text_small',
+				'attributes'      => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				),
+				'sanitization_cb' => 'absint',
+				'escape_cb'       => 'absint',
+			)
+		);
+
+		$setup_options->add_field(
+			array(
+				'id'              => $prefix . 'newsletter_template_id',
+				'name'            => __( 'ID del template', 'design_laboratori_italia' ),
+				'desc'            => __( 'ID del template della pagina che gestisce la double OptIn' , 'design_laboratori_italia' ),
+				'type'            => 'text_small',
+				'attributes'      => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				),
+				'sanitization_cb' => 'absint',
+				'escape_cb'       => 'absint',
+			)
+		);
+
+		$setup_options->add_field(
+			array(
 				'id'   => $prefix . 'login',
 				'name' => __( 'Login', 'design_laboratori_italia' ),
 				'type' => 'title',
