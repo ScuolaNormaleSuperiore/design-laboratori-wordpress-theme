@@ -10,33 +10,36 @@ define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 
 // BEGIN preparazione dei parametri di ricerca.
 $allcontentypes = dli_get_all_contenttypes_with_results();
+$num_results = 0;
 
-if ( isset( $_GET['isreset'] ) && ( $_GET['isreset'] === 'yes' ) ) {
+if ( isset( $_POST['isreset'] ) && ( $_POST['isreset'] === 'yes' ) ) {
 	$selected_contents = array();
 	$searchstring      = '';
 } else {
-	if ( isset( $_GET['selected_contents'] ) ) {
-		$selected_contents = $_GET['selected_contents'];
+	if ( isset( $_POST['selected_contents'] ) ) {
+		$selected_contents = $_POST['selected_contents'];
 	} else {
 		$selected_contents = array();
 	}
-
-	if ( isset( $_GET['searchstring'] ) ) {
-		$searchstring = $_GET['searchstring'];
+	if ( isset( $_POST['searchstring'] ) ) {
+		$searchstring = $_POST['searchstring'];
 	} else {
 		$searchstring = '';
-	}	
+	}
 }
 
 $the_query = null;
 
-if ( $searchstring !== '' ) {
-	$the_query = dli_main_search_query(
-		$selected_contents,
-		$searchstring,
-		SITESEARCH_CELLS_PER_PAGE
-	);
-	$num_results = $the_query->found_posts;
+if ( '' !== $searchstring ) {
+	// Verifica del NONCE.
+	if ( isset( $_POST['cercasito_nonce_field'] ) && wp_verify_nonce( $_POST['cercasito_nonce_field'], 'sf_cercasito_nonce' ) ) {
+		$the_query = dli_main_search_query(
+			$selected_contents,
+			$searchstring,
+			SITESEARCH_CELLS_PER_PAGE
+		);
+		$num_results = $the_query->found_posts;
+	}
 } else {
 	$num_results = 0;
 }
@@ -46,12 +49,13 @@ if ( $searchstring !== '' ) {
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- BREADCRUMB -->
+	<!-- SEZIONE BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<form action="." id="ricercasitoform" method="GET">
+	<FORM action="." id="ricercasitoform" method="POST">
+		<?php wp_nonce_field( 'sf_cercasito_nonce', 'cercasito_nonce_field' ); ?>
 
-	<!-- BANNER -->
+	<!-- SEZIONE BANNER -->
 	<section id="banner-cerca"  class="bg-banner-cerca">
 		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
@@ -66,7 +70,7 @@ if ( $searchstring !== '' ) {
 								value="<?php echo $searchstring ? $searchstring : '' ?>"
 								placeholder="<?php echo __( 'Inserisci il testo da cercare', 'design_laboratori_italia' ); ?>">
 							<input type="hidden" name="isreset" id="isreset" value=""/>
-						</div> 
+						</div>
 					</div>
 					<div class="row">
 							<div class="form-group col text-left ps-4 mb-2">
@@ -81,7 +85,7 @@ if ( $searchstring !== '' ) {
 		</div>
 	</section>
 
-	<!-- SEZIONE RICERCA NELL SITO -->
+	<!-- SEZIONE RICERCA NEL SITO -->
 	<section id="RISULTATI" class="p-4">
 		<div class="container my-4">
 			<div class="row pt-0">
@@ -115,7 +119,6 @@ if ( $searchstring !== '' ) {
 					?>
 					</div>
 				</div>
-				<!--COLONNA FILTRI -->
 
 				<!-- Inizio ELENCO RISULTATI -->
 				<div class="col-12 col-lg-8">
@@ -128,11 +131,10 @@ if ( $searchstring !== '' ) {
 						</p>
 						</div>
 				<?php
-				// The mani loop of the page.
+				// The main loop of the page.
 				$pindex = 0;
 				if ( ( $num_results > 0 ) && ( $searchstring !== '' ) ) {
 				?>
-
 				<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
@@ -173,14 +175,14 @@ if ( $searchstring !== '' ) {
 					}
 				}
 				?>
-				</div> 
-				<!-- Fine elenco RISULTATI-->
+				</div>
+				<!-- FINE elenco RISULTATI-->
 
 			</div>
 		</div>
 	</section>
 
-	</form>
+	</FORM>
 
 		<!-- RESTORE ORIGINAL Post Data -->
 		<?php
