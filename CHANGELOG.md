@@ -9,7 +9,7 @@ e questo progetto segue [Semantic Versioning](http://semver.org/).
 TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (Removed), Corretto (Fixed), Sicurezza (Security).
 
 
-## [Unreleased]
+## [Non rilasciato]
 
 ### Aggiunto
 - Aggiunta integrazione con Brevo.
