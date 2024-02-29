@@ -487,7 +487,7 @@ class WDS_CMB2_Attached_Posts_Field {
 
 		if ( ! $once ) {
 			wp_localize_script( 'cmb2-attached-posts-field', 'CMBAP', array(
-				'edit_link_template' => str_replace( get_the_ID(), 'REPLACEME', get_edit_post_link( get_the_ID() ) ),
+				'edit_link_template' => str_replace( get_the_ID(), 'REPLACEME', get_edit_post_link( get_the_ID() ) || '' ),
 				'ajaxurl'            => admin_url( 'admin-ajax.php', 'relative' ),
 			) );
 
