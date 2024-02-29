@@ -892,7 +892,7 @@ if( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
 
 if( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 	/**
-	 *  Return the slugs of the categories passed as parameter.
+	 * Return the slugs of the categories passed as parameter.
 	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
 	 * 
 	 * @param array $categories

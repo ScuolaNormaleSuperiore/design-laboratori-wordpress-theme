@@ -82,6 +82,8 @@ define( 'SLUG_NOTE_LEGALI_IT', 'note-legali' );
 define( 'SLUG_NOTE_LEGALI_EN', 'legal-notes' );
 define( 'SLUG_MAPPA_SITO_IT', 'mappa-sito' );
 define( 'SLUG_MAPPA_SITO_EN', 'site-map' );
+define( 'SLUG_NEWSLETTER_IT', 'newsletter' );
+define( 'SLUG_NEWSLETTER_EN', 'newsletter-en' );
 
 // ARCHIVE PAGE PER POST TYPE.
 define(

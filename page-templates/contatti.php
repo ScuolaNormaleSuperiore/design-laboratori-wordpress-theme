@@ -1,11 +1,11 @@
 <?php
-/* Template Name: Notizie.
+/* Template Name: Contatti.
  *
  * @package Design_Laboratori_Italia
  */
 global $post;
 get_header();
-$email           = dli_get_option( 'email_laboratorio' );
+$email_sito      = dli_get_option( 'email_laboratorio' );
 $telefono        = dli_get_option( 'telefono_laboratorio' );
 $pec             = dli_get_option( 'pec_laboratorio' );
 $website         = get_site_url();
@@ -16,37 +16,12 @@ $form_valid      = true;
 $sent            = false;
 $testorisultato  = '';
 $nonce_error     = false;
-$forminviato     = 'no';
+$forminviato     = 'no'; // Submit da questa stessa pagina.
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-captcha.php' ) ) ) {
-	if ( class_exists( 'ReallySimpleCaptcha' ) ) {
-		$captcha_enabled          = true;
-		$captcha_obj              = new ReallySimpleCaptcha();
-		$captcha_obj->chars       = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-		$captcha_obj->char_length = '4';
-		// Width/Height dimensions of CAPTCHA image.
-		$captcha_obj->img_size = array( '72', '24' );
-		// Font color of CAPTCHA characters, in RGB (0 – 255).
-		$captcha_obj->fg = array( '0', '0', '0' );
-		// Background color of CAPTCHA image, in RGB (0 – 255).
-		$captcha_obj->bg = array( '255', '255', '255' );
-		// Font Size of CAPTCHA characters.
-		$captcha_obj->font_size = '16';
-		// Width between CAPTCHA characters.
-		$captcha_obj->font_char_width = '15';
-		// CAPTCHA image type. Can be 'png', 'jpeg', or 'gif'.
-		$captcha_obj->img_type = 'png';
-		$captcha_obj_word         = $captcha_obj->generate_random_word();
-		$captcha_obj_prefix       = mt_rand();
-		$captcha_obj_image_name   = $captcha_obj->generate_image( $captcha_obj_prefix, $captcha_obj_word );
-		$captcha_obj_image_url    = get_bloginfo( 'wpurl' ) . '/wp-content/plugins/really-simple-captcha/tmp/';
-		$captcha_obj_image_src    = $captcha_obj_image_url . $captcha_obj_image_name;
-		$captcha_obj_image_width  = $captcha_obj->img_size[0];
-		$captcha_obj_image_height = $captcha_obj->img_size[1];
-	}
-}
+include_once( DLI_THEMA_PATH . '/template-parts/common/captcha.php' );
+
 
 if ( isset( $_POST['nomecognome'] ) ) {
 	$nomecognome = sanitize_text_field( $_POST['nomecognome'] );
@@ -97,9 +72,6 @@ if ( 'yes' === $forminviato ) {
 
 		// Il NONCE è valido.
 		$nonce_error = false;
-		$email_sito = $email;
-
-		// $email_sito = get_option( 'admin_email' );
 		$name       = $nomecognome;
 		$to         = $email_sito;
 		$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
@@ -251,7 +223,7 @@ if ( 'yes' === $forminviato ) {
 									</div>
 								</li>
 								<li>
-									<a href="<?php echo 'mailto:' . $email; ?>" class="list-item">
+									<a href="<?php echo 'mailto:' . $email_sito; ?>" class="list-item">
 									<div class="it-rounded-icon">
 										<svg class="icon" role="img" aria-labelledby="Mail">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
@@ -259,7 +231,7 @@ if ( 'yes' === $forminviato ) {
 									</div>
 									<div class="it-right-zone">
 										<span class="text">
-											<?php echo $email; ?>
+											<?php echo $email_sito; ?>
 										</span>
 									</div>
 									</a>
@@ -282,7 +254,7 @@ if ( 'yes' === $forminviato ) {
 					<!-- FORM DEI CONTATTI -->
 					<div class="col-lg-9">
 						<div class="row ">
-							<div class="col-lg-12">  
+							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="row">
 										<div class="form-group col">
