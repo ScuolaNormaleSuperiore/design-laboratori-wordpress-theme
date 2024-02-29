@@ -14,9 +14,19 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Aggiunto
 - Aggiunta integrazione con Brevo.
 
-### Security
-- Modifiche importanti all'algoritmo di ordinamento.
-- Aggiunta gestione nonce nelle form: contatti, ricerca, newsletter.
+### Sicurezza
+- Aggiunta gestione nonce nelle form: contatti e ricerca.
+- Corretta gestione sanitize input nelle form: contatti e ricerca.
+- Reso meno specifico il testo del messaggio di login errato.
+- Nascosto tag "generator" nel sorgente delle pagine del sito.
+- Modificata la url della pagina di login.
+- Verificare opportunità di usare Content Security Policy (CSP).
+- DISALLOW_FILE_EDIT.
+
+### Modificato
+- Aggiornata libreria Bootstrap Italia alla versione 2.8.2.
 
 
-## [1.2.4]-beta - 2023-12-01
+## [1.2.5] - 2024-03-01
+
+

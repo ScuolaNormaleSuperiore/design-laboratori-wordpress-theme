@@ -93,7 +93,7 @@ if ( isset( $_POST['captcha-prefix'] ) ) {
 if ( 'yes' === $forminviato ) {
 
 	// Verifica del nonce.
-	if ( isset( $_POST['contatti_nonce_field'] ) && wp_verify_nonce( $_POST['contatti_nonce_field'], 'sf_contatti_nonce' ) ) {
+	if ( isset( $_POST['contatti_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_POST['contatti_nonce_field'] ), 'sf_contatti_nonce' ) ) {
 
 		// Il NONCE è valido.
 		$nonce_error = false;

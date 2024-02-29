@@ -12,7 +12,7 @@ define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 $allcontentypes = dli_get_all_contenttypes_with_results();
 $num_results = 0;
 
-if ( isset( $_POST['isreset'] ) && ( $_POST['isreset'] === 'yes' ) ) {
+if ( isset( $_POST['isreset'] ) && ( sanitize_text_field( $_POST['isreset'] ) === 'yes' ) ) {
 	$selected_contents = array();
 	$searchstring      = '';
 } else {
@@ -21,8 +21,11 @@ if ( isset( $_POST['isreset'] ) && ( $_POST['isreset'] === 'yes' ) ) {
 	} else {
 		$selected_contents = array();
 	}
+	if ( ! is_array( $selected_contents ) ) {
+		$selected_contents = array();
+	}
 	if ( isset( $_POST['searchstring'] ) ) {
-		$searchstring = $_POST['searchstring'];
+		$searchstring = sanitize_text_field( $_POST['searchstring'] );
 	} else {
 		$searchstring = '';
 	}
@@ -32,7 +35,7 @@ $the_query = null;
 
 if ( '' !== $searchstring ) {
 	// Verifica del NONCE.
-	if ( isset( $_POST['cercasito_nonce_field'] ) && wp_verify_nonce( $_POST['cercasito_nonce_field'], 'sf_cercasito_nonce' ) ) {
+	if ( isset( $_POST['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_POST['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
 		$the_query = dli_main_search_query(
 			$selected_contents,
 			$searchstring,
