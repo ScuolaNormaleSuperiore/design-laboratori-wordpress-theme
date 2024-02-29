@@ -18,3 +18,5 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Modifiche importanti all'algoritmo di ordinamento.
 - Aggiunta gestione nonce nelle form: contatti, ricerca, newsletter.
 
+
+## [1.2.4]-beta - 2023-12-01
