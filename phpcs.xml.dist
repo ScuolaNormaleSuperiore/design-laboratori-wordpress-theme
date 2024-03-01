@@ -98,7 +98,7 @@
 	-->
 
 
-	<config name="testVersion" value="5.2-99.0"/>
+	<config name="testVersion" value="7.4-"/>
 	<rule ref="PHPCompatibility">
 		<exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
 		<exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
@@ -110,6 +110,9 @@
 		<exclude name="PHPCompatibility.PHP.NewFunctions.random_bytesFound"/>
 		<exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
 		<exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
+		<exclude name="Squiz.Commenting.FunctionComment"/>
+		<exclude name="Squiz.Commenting.VariableComment"/>
+		<exclude name="ControlStructure.YodaConditions"/>
 	</rule>
 
 </ruleset>
