@@ -148,7 +148,8 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 	<!-- SEZIONE FORM -->
 	<?php
 	if ( 'no' === $after_confirm ) {
-		$page_url = get_permalink( get_page_by_path( 'newsletter' ) );
+		$current_language = dli_current_language( 'slug' );
+		$page_url         = dli_get_newsletter_link($current_language);
 		?>
 		<div id="newsletter_form">
 			<FORM action="<?php echo esc_url( $page_url ); ?>" id="formnewsletter" name="formnewsletter" method="POST">

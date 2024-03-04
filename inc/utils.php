@@ -565,6 +565,13 @@ if( ! function_exists( 'dli_get_search_link' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_newsletter_link' ) ) {
+	function dli_get_newsletter_link( $current_language ) {
+		$newsletter_page = ( 'it' === $current_language ) ? SLUG_NEWSLETTER_IT : SLUG_NEWSLETTER_EN;
+		return dli_homepage_url() . '/' . $newsletter_page;
+	}
+}
+
 if( ! function_exists( 'dli_build_content_path' ) ) {
 	function dli_build_content_path( $post ) {
 		$steps = array(

@@ -2,7 +2,8 @@
 <?php
 $newsletter_enabled = dli_get_option( 'newsletter_enabled', 'setup' );
 if ( $newsletter_enabled === 'true' ) {
-	$page_url = get_permalink( get_page_by_path( 'newsletter' ) );
+	$current_language = dli_current_language( 'slug' );
+	$page_url         = dli_get_newsletter_link($current_language);
 ?>
 	<h4>
 		<a href="#" title="<?php echo __( 'Vai alla pagina: Newsletter', 'design_laboratori_italia' ); ?>">

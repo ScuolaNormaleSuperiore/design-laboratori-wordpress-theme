@@ -98,7 +98,8 @@ class Newsletter_Manager {
 				$newsletter_id = dli_get_option( 'newsletter_list_id', 'setup' );
 				$template_id   = dli_get_option( 'newsletter_template_id', 'setup' );
 				array_push( $list_ids, $newsletter_id );
-				$page_url      = get_permalink( get_page_by_path( 'newsletter' ) );
+				$current_language = dli_current_language( 'slug' );
+				$page_url         = dli_get_newsletter_link($current_language);
 				$redirect_url = $page_url . '?after_confirm=yes';
 				$data = array(
 					'attributes' => array(
