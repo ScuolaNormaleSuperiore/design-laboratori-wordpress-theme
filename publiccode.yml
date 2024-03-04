@@ -29,6 +29,7 @@ description:
       - Gestione hero in home page.
       - Carousel in home page con contenuti selezionabili.
       - Supporto delle lingue italiano ed inglese.
+      - Integrazione con il software di gestione delle newsletter Brevo.
     genericName: Tema Wordpress
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
