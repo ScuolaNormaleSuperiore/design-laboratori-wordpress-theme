@@ -31,3 +31,4 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Aggiornata libreria Bootstrap Italia alla versione 2.8.2.
 - Corretto codice in base ai warning generati da PHP 8.2 soprattutto sulle librerie CMB2.
+- Aggiornato sistema di demo basato su Docker.
