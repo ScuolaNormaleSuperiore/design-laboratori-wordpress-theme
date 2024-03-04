@@ -5,7 +5,8 @@ define( 'DLI_IT_SLUG', 'it' );
 define( 'DLI_EN_SLUG', 'en' );
 define( 'DLI_DEFAULT_LANGUAGE', DLI_IT_SLUG );
 define( 'DLI_ENG_SUFFIX_LANGUAGE', '_eng' );
-define( 'DLI_THEMA_PATH', dirname( plugin_basename( __FILE__ ) ) );
+#define( 'DLI_THEMA_PATH', dirname( plugin_basename( __FILE__ ) ) );
+define( 'DLI_THEMA_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DLI_THEMA_URL', get_template_directory_uri() );
 
 // Site Map.
