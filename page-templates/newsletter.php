@@ -22,7 +22,6 @@ $redirection   = sanitize_text_field( isset( $postdata['redirection'] ) ? $postd
 $user_name     = sanitize_text_field( isset( $postdata['user_name'] ) ? $postdata['user_name'] : '' );
 $user_surname  = sanitize_text_field( isset( $postdata['user_surname'] ) ? $postdata['user_surname'] : '' );
 $user_mail     = sanitize_email( isset( $postdata['user_mail'] ) ? $postdata['user_mail'] : '' );
-$user_phone    = sanitize_text_field( isset( $postdata['user_phone'] ) ? $postdata['user_phone'] : '' );
 // Submit da questa stessa pagina.
 $form_sent         = sanitize_text_field( isset( $postdata['form_sent'] ) ? $postdata['form_sent'] : 'no' );
 $captcha_field     = sanitize_text_field( isset( $postdata['captcha-field'] ) ? $postdata['captcha-field'] : '' );
@@ -30,6 +29,7 @@ $captcha_prefix    = sanitize_text_field( isset( $postdata['captcha-prefix'] ) ?
 $form_submission   = ( 'yes' !== $after_confirm ) && ( 'yes' === $form_sent );
 $sent_successfully = false;
 $form_errors       = array();
+$user_phone        = ''; // Andrebbe gestito il prefisso internazionale.
 
 include_once( DLI_THEMA_PATH . '/template-parts/common/captcha.php' );
 
@@ -131,7 +131,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 			<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
 				<?php
 				$error_text = join( '<BR />', $form_errors );
-				echo $error_text;
+				echo esc_html( $error_text );
 				?>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 					<svg class="icon" role="img" aria-labelledby="Close">
@@ -149,7 +149,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 	<?php
 	if ( 'no' === $after_confirm ) {
 		$current_language = dli_current_language( 'slug' );
-		$page_url         = dli_get_newsletter_link($current_language);
+		$page_url         = dli_get_newsletter_link( $current_language );
 		?>
 		<div id="newsletter_form">
 			<FORM action="<?php echo esc_url( $page_url ); ?>" id="formnewsletter" name="formnewsletter" method="POST">
@@ -164,34 +164,24 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 									<div class="p-5">
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label class="active" for="user_name"><?php echo __( 'Nome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+												<label class="active" for="user_name"><?php echo esc_html( __( 'Nome', 'design_laboratori_italia' ) ); ?>&nbsp;*</label>
 												<input type="text" class="form-control" name="user_name" id="user_name"
-													value="<?php echo $user_name; ?>"
-													placeholder="<?php echo __( 'Inserisci il tuo nome', 'design_laboratori_italia' ); ?>">
+													value="<?php echo esc_attr( $user_name ); ?>"
+													placeholder="<?php echo esc_html( __( 'Inserisci il tuo nome', 'design_laboratori_italia' ) ); ?>">
 											</div>
 											<div class="form-group col-md-6">
-												<label class="active" for="user_surname"><?php echo __( 'Cognome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+												<label class="active" for="user_surname"><?php echo esc_html( __( 'Cognome', 'design_laboratori_italia' ) ); ?>&nbsp;*</label>
 												<input type="text" class="form-control" name="user_surname" id="user_surname"
-													value="<?php echo $user_surname; ?>"
-													placeholder="<?php echo __( 'Inserisci il tuo cognome', 'design_laboratori_italia' ); ?>">
+													value="<?php echo esc_attr( $user_surname ); ?>"
+													placeholder="<?php echo esc_html( __( 'Inserisci il tuo cognome', 'design_laboratori_italia' ) ); ?>">
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col">
-												<label class="active" for="user_mail"><?php echo __( 'E-mail', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+												<label class="active" for="user_mail"><?php echo esc_html( __( 'E-mail', 'design_laboratori_italia' ) ); ?>&nbsp;*</label>
 												<input type="email" class="form-control" id="user_mail" name="user_mail" 
-													value="<?php echo $user_mail; ?>"
-													placeholder="<?php echo __( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
-											</div>
-										</div>
-										<div class="row">
-											<div class="form-group col-md-6">
-												<label for="user_phone" class="active">
-													<?php echo esc_html ( __( 'Telefono', 'design_laboratori_italia' ) ); ?>&nbsp;(<?php echo esc_html( __( 'facoltativo', 'design_laboratori_italia' ) ); ?>)
-												</label>
-												<input type="tel" class="form-control" id="user_phone" name="user_phone"
-													value="<?php echo $user_phone; ?>"
-													placeholder="<?php echo __( 'Inserisci il tuo numero di telefono', 'design_laboratori_italia' ); ?>">
+													value="<?php echo esc_attr( $user_mail ); ?>"
+													placeholder="<?php echo esc_attr( __( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ) ); ?>">
 											</div>
 										</div>
 
@@ -201,13 +191,13 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 										?>
 										<div class="row" style="margin-top: 20px;">
 											<div class="form-group col-md-6" style="text-align: center">
-												<img src="<?php echo $captcha_obj_image_src; ?>" alt="captcha"
-															width="<?php echo $captcha_obj_image_width; ?>" height="<?php echo $captcha_obj_image_height; ?>" />
+												<img src="<?php echo esc_url( $captcha_obj_image_src ); ?>" alt="captcha"
+															width="<?php echo esc_attr( $captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $captcha_obj_image_height ); ?>" />
 											</div>
 											<div class="form-group col-md-6">
-												<input name="captcha-field" id="captcha-field"  size="<?php echo $captcha_obj_image_width; ?>" type="text" 
-														placeholder="<?php echo __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"	/>
-												<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo $captcha_obj_prefix; ?>" />
+												<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $captcha_obj_image_width ); ?>" type="text" 
+														placeholder="<?php echo esc_attr( __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ) ); ?>"	/>
+												<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $captcha_obj_prefix ); ?>" />
 											</div>
 										</div>
 										<?php
@@ -218,8 +208,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 										<div class="row mt-4">
 											<div class="form-group col text-center">
 												<input type="hidden" name="form_sent" id="form_sent" value="yes" />
-												<button type="button" class="btn btn-outline-primary"><?php echo __( 'Annulla', 'design_laboratori_italia' ); ?></button>
-												<button type="submit" class="btn btn-primary"><?php echo __( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
+												<button type="submit" class="btn btn-primary"><?php echo esc_html( __( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ) ); ?></button>
 											</div>
 										</div>
 

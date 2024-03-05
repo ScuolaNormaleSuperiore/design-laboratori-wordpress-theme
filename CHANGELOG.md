@@ -24,7 +24,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Sicurezza
 - Corretto escaping dei dati delle form: contatti, ricerca e newsletter.
-- 
+
+### Corretto
+- Salvataggio del numero di telefono opzionale nell'anagarafica di Brevo.
 
 
 

@@ -63,24 +63,24 @@ if ( '' !== $searchstring ) {
 		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
 				<div class="hero-title text-left ms-4 pb-3 pt-3">
-					<h2 class="pt-0 pb-0"><?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?></h2>
+					<h2 class="pt-0 pb-0"><?php echo esc_html( __( 'Cerca nel sito', 'design_laboratori_italia' ) ); ?></h2>
 					<div class="row m-0">
 						<div class="form-group col-md-12 mb-4 text-left">
 							<label class="active visually-hidden" for="searchstring">
-								<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>
+								<?php echo esc_html( __( 'Cerca nel sito', 'design_laboratori_italia' ) ); ?>
 							</label>
 							<input type="text" id="searchstring" name="searchstring" class="form-control" 
-								value="<?php echo $searchstring ? $searchstring : '' ?>"
-								placeholder="<?php echo __( 'Inserisci il testo da cercare', 'design_laboratori_italia' ); ?>">
+								value="<?php echo esc_attr( $searchstring ? $searchstring : '' );  ?>"
+								placeholder="<?php echo esc_html( __( 'Inserisci il testo da cercare', 'design_laboratori_italia' ) ); ?>">
 							<input type="hidden" name="isreset" id="isreset" value=""/>
 						</div>
 					</div>
 					<div class="row">
 							<div class="form-group col text-left ps-4 mb-2">
 								<button type="reset" value="reset" onclick="resetForm('ricercasitoform', 'isreset');" class="btn btn-outline-primary">
-									<?php echo __( 'Cancella', 'design_laboratori_italia' ); ?>
+									<?php echo esc_html( __( 'Cancella', 'design_laboratori_italia' ) ); ?>
 								</button>
-								<button type="submit" value="submit" class="btn btn-primary"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></button>
+								<button type="submit" value="submit" class="btn btn-primary"><?php echo esc_html( __( 'Cerca', 'design_laboratori_italia' ) ); ?></button>
 							</div>
 					</div>
 				</div>
@@ -99,19 +99,19 @@ if ( '' !== $searchstring ) {
 					<?php
 						if( count( $allcontentypes ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html( __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ) ); ?></h3>
 						<div>
 								<?php
 									foreach( $allcontentypes as $ct ) {
 								?>
 								<div class="form-check">
-									<input type="checkbox" name="selected_contents[]" id="<?php echo $ct; ?>" 
-										value="<?php echo $ct; ?>"
+									<input type="checkbox" name="selected_contents[]" id="<?php echo esc_attr( $ct ); ?>" 
+										value="<?php echo esc_attr( $ct ); ?>"
 										<?php if (count( $selected_contents ) > 0 && in_array( $ct, $selected_contents ) ) {
 											 echo "checked='checked'";
 										} ?>
 									>
-									<label for="<?php echo $ct; ?>"><?php echo __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ); ?></label>
+									<label for="<?php echo esc_attr( $ct ) ; ?>"><?php echo esc_html( __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ) ); ?></label>
 								</div>
 								<?php
 									}
@@ -128,8 +128,8 @@ if ( '' !== $searchstring ) {
 						<div class="row ps-4">
 							<p>
 								<em>
-									<span><?php echo __( 'Risultati', 'design_laboratori_italia' ); ?>:</span>
-									<span><?php echo $num_results; ?></span>
+									<span><?php echo esc_html( __( 'Risultati', 'design_laboratori_italia' ) ); ?>:</span>
+									<span><?php echo esc_attr( $num_results ); ?></span>
 								</em>
 						</p>
 						</div>
