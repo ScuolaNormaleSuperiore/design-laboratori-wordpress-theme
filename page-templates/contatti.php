@@ -25,46 +25,15 @@ include_once( DLI_THEMA_PATH . '/template-parts/common/captcha.php' );
 
 $postdata = $_POST;
 
-if ( isset( $postdata['nomecognome'] ) ) {
-	$nomecognome = sanitize_text_field( $postdata['nomecognome'] );
-} else {
-	$nomecognome = '';
-}
-if ( isset( $postdata['indirizzoemail'] ) ) {
-	$indirizzoemail = sanitize_email( $postdata['indirizzoemail'] );
-} else {
-	$indirizzoemail = '';
-}
-if ( isset( $postdata['numerotelefono'] ) ) {
-	$numerotelefono = sanitize_text_field( $postdata['numerotelefono'] );
-} else {
-	$numerotelefono = '';
-}
-if ( isset( $postdata['ricevuta'] ) ) {
-	$ricevuta = sanitize_text_field( $postdata['ricevuta'] );
-} else {
-	$ricevuta = '';
-}
-if ( isset( $postdata['forminviato'] ) ) {
-	$forminviato = sanitize_text_field( $postdata['forminviato'] );
-} else {
-	$forminviato = 'no';
-}
-if ( isset( $postdata['testomessaggio'] ) ) {
-	$testomessaggio = sanitize_text_field( $postdata['testomessaggio'] );
-} else {
-	$testomessaggio = '';
-}
-if ( isset( $postdata['captcha-field'] ) ) {
-	$captcha_field = sanitize_text_field( $postdata['captcha-field'] );
-} else {
-	$captcha_field = '';
-}
-if ( isset( $postdata['captcha-prefix'] ) ) {
-	$captcha_prefix = sanitize_text_field( $postdata['captcha-prefix'] );
-} else {
-	$captcha_prefix = '';
-}
+$nomecognome    = sanitize_text_field( isset( $postdata['nomecognome'] ) ? $postdata['nomecognome'] : '' );
+$indirizzoemail = sanitize_text_field( isset( $postdata['indirizzoemail'] ) ? $postdata['indirizzoemail'] : '' );
+$numerotelefono = sanitize_text_field( isset( $postdata['numerotelefono'] ) ? $postdata['numerotelefono'] : '' );
+$ricevuta       = sanitize_text_field( isset( $postdata['ricevuta'] ) ? $postdata['ricevuta'] : '' );
+$forminviato    = sanitize_text_field( isset( $postdata['forminviato'] ) ? $postdata['forminviato'] : 'no' );
+$testomessaggio = sanitize_text_field( isset( $postdata['testomessaggio'] ) ? $postdata['testomessaggio'] : '' );
+$captcha_field  = sanitize_text_field( isset( $postdata['captcha-field'] ) ? $postdata['captcha-field'] : '' );
+$captcha_prefix = sanitize_text_field( isset( $postdata['captcha-prefix'] ) ? $postdata['captcha-prefix'] : '' );
+
 
 // Procedura di sottomissione del messaggio.
 if ( 'yes' === $forminviato ) {
