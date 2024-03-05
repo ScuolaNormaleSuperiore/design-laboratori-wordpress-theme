@@ -17,6 +17,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - DISALLOW_FILE_EDIT.
 
 
+## [1.2.6] - 2024-03-06
+
+### Aggiunto
+- Aggiunto in configurazione flag per nascondere logo nel footer e uso del flag nel footer.
+
+### Sicurezza
+- Corretto escaping dei dati delle form: contatti, ricerca e newsletter.
+- 
+
+
+
 ## [1.2.5] - 2024-03-04
 
 ### Aggiunto
