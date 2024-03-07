@@ -17,16 +17,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - DISALLOW_FILE_EDIT.
 
 
-## [1.2.6] - 2024-03-06
+## [1.2.6] - 2024-03-07
 
 ### Aggiunto
 - Aggiunto in configurazione flag per nascondere logo nel footer e uso del flag nel footer.
+- Aggiunta possibilità di specificare un logo diverso nel footer.
 
 ### Sicurezza
 - Corretto escaping dei dati delle form: contatti, ricerca e newsletter.
 
 ### Corretto
-- Salvataggio del numero di telefono opzionale nell'anagarafica di Brevo.
+- Tolta gestione del numero di telefono nell'anagarafica di Brevo.
 
 
 
