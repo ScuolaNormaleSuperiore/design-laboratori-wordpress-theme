@@ -171,6 +171,7 @@ if ( 'yes' === $forminviato ) {
 		<FORM action="." id="formcontatti" name="formcontatti" method="POST">
 			<?php wp_nonce_field( 'sf_contatti_nonce', 'contatti_nonce_field' ); ?>
 			<div class="container my-4 pt-4">
+
 				<!-- CONTATTI DEL LABORATORIO -->
 				<div class="row">
 					<div class="col-12 col-lg-3 border-end pe-0 ps-0">

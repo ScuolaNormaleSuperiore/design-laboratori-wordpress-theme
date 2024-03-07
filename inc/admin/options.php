@@ -159,8 +159,36 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'logo_laboratorio',
-			'name'       => __( 'Logo', 'design_laboratori_italia' ),
+			'name'       => __( 'Logo header', 'design_laboratori_italia' ),
 			'desc'       => __( 'Il logo del laboratorio. Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),
+			'type'       => 'file',
+			'query_args' => array(
+				'type' => array(
+					'image',
+				),
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id' => $prefix . 'logo_footer_visible',
+			'name' => __( 'Visualizza il logo nel footer', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se il logo nel footer deve essere visualizzato', 'design_laboratori_italia' ) . '&nbsp;.',
+			'type' => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'logo_laboratorio_footer',
+			'name'       => __( 'Logo footer', 'design_laboratori_italia' ),
+			'desc'       => __( 'Il logo mostrato nel footer. Se non è presente, ma è abilitata la visualizzazione del logo nel footer, viene mostrato quello dello header con colori invertiti. Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
