@@ -5,7 +5,7 @@
 ?>
 <section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
-	// The mani loop of the page.
+	// The main loop of the page.
 	$pindex = 0;
 	if ( $num_results ) {
 		foreach ( $items as $item ) {

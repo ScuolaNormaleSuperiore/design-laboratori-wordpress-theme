@@ -227,7 +227,7 @@ $pubblicazioni = new WP_Query(
 							?>
 						<h3 class="it-page-section h4" id="p1"><?php _e( 'Biografia', "design_laboratori_italia" ); ?></h3>
 						<div class="row pb-3">
-							<p><?php echo esc_html( $bio ); ?></p>
+							<p><?php echo wp_kses_post( $bio ); ?></p>
 						</div>
 							<?php
 						}
