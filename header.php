@@ -17,7 +17,7 @@ require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
 require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
 
 $locations       = get_nav_menu_locations();
-$current_group   = dli_get_current_group();
+// $current_group   = dli_get_current_group();
 ?>
 <!doctype html>
 <html lang="it">
@@ -62,7 +62,7 @@ $current_group   = dli_get_current_group();
 								'template-parts/header/top-menu',
 								false,
 								array(
-									'current_group' => $current_group,
+									// 'current_group' => $current_group,
 									'locations'     => $locations,
 								)
 							);
@@ -196,7 +196,7 @@ $current_group   = dli_get_current_group();
 								'template-parts/header/main-menu',
 								false,
 								array(
-									'current_group' => $current_group,
+									// 'current_group' => $current_group,
 									'locations'     => $locations,
 								)
 							);
@@ -207,7 +207,7 @@ $current_group   = dli_get_current_group();
 								'template-parts/header/secondary-menu',
 								false,
 								array(
-									'current_group' => $current_group,
+									// 'current_group' => $current_group,
 									'locations'     => $locations,
 								)
 							);

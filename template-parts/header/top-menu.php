@@ -1,5 +1,5 @@
 <?php
-	$current_group = $args['current_group'];
+	// $current_group = $args['current_group'];
 	$locations     = $args['locations'];
 ?>
 

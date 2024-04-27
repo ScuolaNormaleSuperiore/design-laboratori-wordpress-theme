@@ -45,23 +45,23 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
 }
 
 
-/**
- * @param $post_type
- *
- * ritorna il gruppo di appartenenza del post type
- * @return string
- *
- */
-function dli_get_post_types_group( $post_type ){
-	$group = 'news';
-	if( in_array( $post_type, array( 'documento', 'luogo', 'struttura', 'page' ) ) )
-		$group = 'laboratory';
-	else if( in_array( $post_type, array( 'programma', 'scheda_didattica', 'scheda_progetto' ) ) )
-		$group = 'education';
-	else if( in_array( $post_type, array( 'indirizzo' ) ) )
-		$group = 'service';
-	return $group;
-}
+// /**
+//  * @param $post_type
+//  *
+//  * ritorna il gruppo di appartenenza del post type
+//  * @return string
+//  *
+//  */
+// function dli_get_post_types_group( $post_type ){
+// 	$group = 'news';
+// 	if( in_array( $post_type, array( 'documento', 'luogo', 'struttura', 'page' ) ) )
+// 		$group = 'laboratory';
+// 	else if( in_array( $post_type, array( 'programma', 'scheda_didattica', 'scheda_progetto' ) ) )
+// 		$group = 'education';
+// 	else if( in_array( $post_type, array( 'indirizzo' ) ) )
+// 		$group = 'service';
+// 	return $group;
+// }
 
 /**
  * recupera la url del template in base al nome
@@ -117,52 +117,52 @@ if(!function_exists("dli_multi_array_search")) {
 		}
 }
 
-/**
- * get group related to current page
- */
-if(!function_exists("dli_get_current_group")) {
-		function dli_get_current_group() {
-				if (is_front_page()) {
-						return null;
-				}
-				if (is_tax()) {
-						$taxonomy = get_queried_object() -> taxonomy;
-						$term = get_queried_object() -> slug;
+// /**
+//  * get group related to current page
+//  */
+// if(!function_exists("dli_get_current_group")) {
+// 		function dli_get_current_group() {
+// 				if (is_front_page()) {
+// 						return null;
+// 				}
+// 				if (is_tax()) {
+// 						$taxonomy = get_queried_object() -> taxonomy;
+// 						$term = get_queried_object() -> slug;
 
-						if ($taxonomy == 'tipologia-documento'){
-								$tipo_post ='documento';
-						}
-						if ($taxonomy == 'tipologia-articolo'){
-								$tipo_post = 'post';
-						}
-						if ($tipo_post == 'documento' && $term == 'albo-online') {
-								return 'news';
-						}
-						return  dli_get_post_types_group($tipo_post);
-				}
-				if (is_author()) {
-						return 'school';
-				}
-				if ( is_archive()  ) {
-						$tipo_post = get_queried_object() -> name;
-						return  dli_get_post_types_group($tipo_post);
-				}
-				if (is_page()) {
-						return get_the_title();
-				}
-				$current_post_type = get_post_type();
-				if ($current_post_type == 'documento') {
-						$term = wp_get_post_terms(get_the_ID(),'tipologia-documento');
-						if ($term[0]->slug == 'albo-online'){
-								return 'news';
-						}
-				}
-				if ( ($current_post_type != false)) {
-						return dli_get_post_types_group(get_post_type());
-				}
-				return null;
-		}
-}
+// 						if ($taxonomy == 'tipologia-documento'){
+// 								$tipo_post ='documento';
+// 						}
+// 						if ($taxonomy == 'tipologia-articolo'){
+// 								$tipo_post = 'post';
+// 						}
+// 						if ($tipo_post == 'documento' && $term == 'albo-online') {
+// 								return 'news';
+// 						}
+// 						return  dli_get_post_types_group($tipo_post);
+// 				}
+// 				if (is_author()) {
+// 						return 'school';
+// 				}
+// 				if ( is_archive()  ) {
+// 						$tipo_post = get_queried_object() -> name;
+// 						return  dli_get_post_types_group($tipo_post);
+// 				}
+// 				if (is_page()) {
+// 						return get_the_title();
+// 				}
+// 				$current_post_type = get_post_type();
+// 				if ($current_post_type == 'documento') {
+// 						$term = wp_get_post_terms(get_the_ID(),'tipologia-documento');
+// 						if ($term[0]->slug == 'albo-online'){
+// 								return 'news';
+// 						}
+// 				}
+// 				if ( ($current_post_type != false)) {
+// 						return dli_get_post_types_group(get_post_type());
+// 				}
+// 				return null;
+// 		}
+// }
 
 if( ! function_exists( 'dli_get_projects_by_event_id' ) ) {
 	function dli_get_projects_by_event_id( $event_id ) {

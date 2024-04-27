@@ -1,5 +1,5 @@
 <?php
-	$current_group = $args['current_group'];
+	// $current_group = $args['current_group'];
 	$locations     = $args['locations'];
 ?>
 
@@ -16,7 +16,7 @@
 					'container'       => '',
 					'list_item_class' => 'nav-item',
 					'link_class'      => 'nav-link',
-					'current_group'   => $current_group,
+					// 'current_group'   => $current_group,
 					'walker'          => new Main_Menu_Walker(),
 				)
 			);
