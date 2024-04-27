@@ -12,7 +12,7 @@ function dli_register_main_options_metabox() {
 		'option_key'   => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Opzioni di base', 'design_laboratori_italia' ),
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'position'     => 2, // Menu position. Only applicable if 'parent_slug' is left empty.
 		'icon_url'     => 'dashicons-admin-tools', // Menu icon. Only applicable if 'parent_slug' is left empty.
 	);
@@ -221,7 +221,7 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Messaggi', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'home_messages',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Avvisi in Home', 'design_laboratori_italia' ),
@@ -311,7 +311,7 @@ function dli_register_main_options_metabox() {
 				'title'        => esc_html__( 'Home Page', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'homepage',
-				'capability'   => 'manage_options',
+				'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
 				'tab_title'    => __( 'Home', 'design_laboratori_italia' ),	);
@@ -735,7 +735,7 @@ function dli_register_main_options_metabox() {
 		'id'           => 'dli_options_il_laboratorio',
 		'title'        => esc_html__( 'Il Laboratorio', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'option_key'   => 'il_laboratorio',
 		'tab_title'    => __( 'Laboratorio', 'design_laboratori_italia' ),
 		'parent_slug'  => 'dli_options',
@@ -828,7 +828,7 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Il blog', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'blog',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Blog', 'design_laboratori_italia' ),
@@ -898,7 +898,7 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Le Novità', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'notizie',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),
@@ -969,7 +969,7 @@ function dli_register_main_options_metabox() {
 		'title'        => esc_html__( 'Gli eventi', 'design_laboratori_italia' ),
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'eventi',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Eventi', 'design_laboratori_italia' ),
@@ -1041,7 +1041,7 @@ function dli_register_main_options_metabox() {
 		'option_key'   => 'persone',
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
-		'capability'    => 'manage_options',
+		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
 		'tab_title'    => __( 'Persone', 'design_laboratori_italia' ),	);
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -1108,7 +1108,7 @@ function dli_register_main_options_metabox() {
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'pubblicazioni',
 		'parent_slug'  => 'dli_options',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Pubblicazioni', 'design_laboratori_italia' ),
 	);
@@ -1177,7 +1177,7 @@ function dli_register_main_options_metabox() {
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'progetti',
 		'parent_slug'  => 'dli_options',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Progetti', 'design_laboratori_italia' ),
 	);
@@ -1246,7 +1246,7 @@ function dli_register_main_options_metabox() {
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'ricerca',
 		'parent_slug'  => 'dli_options',
-		'capability'   => 'manage_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 		'tab_group'    => 'dli_options',
 		'tab_title'    => __( 'Indirizzi di ricerca', 'design_laboratori_italia' ),
 	);
@@ -1319,7 +1319,7 @@ function dli_register_main_options_metabox() {
 				'option_key'   => 'luoghi',
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
-				'capability'    => 'manage_options',
+				'capability'    => DLI_EDIT_CONFIG_PERMISSION,
 				'tab_title'    => __( 'Luoghi', 'design_laboratori_italia' ),	);
 
 		// 'tab_group' property is supported in > 2.4.0.
@@ -1391,7 +1391,7 @@ function dli_register_main_options_metabox() {
 				'title'        => esc_html__( 'Socialmedia', 'design_laboratori_italia' ),
 				'object_types' => array( 'options-page' ),
 				'option_key'   => 'socials',
-				'capability'    => 'manage_options',
+				'capability'    => DLI_EDIT_CONFIG_PERMISSION,
 				'parent_slug'  => 'dli_options',
 				'tab_group'    => 'dli_options',
 				'tab_title'    => __( 'Socialmedia', 'design_laboratori_italia' ),	);
@@ -1491,7 +1491,7 @@ $social_options->add_field( array(
 		'tab_title'    => __( 'Altro', 'design_laboratori_italia' ),
 		'parent_slug'  => 'dli_options',
 		'tab_group'    => 'dli_options',
-				'capability'    => 'manage_options',
+				'capability'    => DLI_EDIT_CONFIG_PERMISSION,
 		);
 
 	// 'tab_group' property is supported in > 2.4.0.

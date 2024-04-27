@@ -5,6 +5,10 @@
  * @package Design_Laboratori_Italia
  */
 
+ if ( ! class_exists( 'DLI_AuthorizationManager' ) ) {
+	include_once 'class-authmanager.php';
+}
+
 if ( ! class_exists( 'PeopleManager' ) ) {
 	include_once 'class-peoplemanager.php';
 }
@@ -48,7 +52,7 @@ if ( ! class_exists( 'Place_Manager' ) ) {
 /**
  * The manager that builds the tool and configures Wordpress.
  */
-class LabManager {
+class DLI_LabManager {
 
 	/**
 	 * The static instance of the LabManager.
@@ -87,6 +91,10 @@ class LabManager {
 		// Setup di Polylang.
 		$polylang = new Polylang_Manager();
 		$polylang->setup();
+
+		// Setup dei reuoli e dei permessi.
+		$authm = new DLI_AuthorizationManager();
+		$authm->setup();
 
 		// Setup del post type Persona.
 		$cpm = new People_Manager();

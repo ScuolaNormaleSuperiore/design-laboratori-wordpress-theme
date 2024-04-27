@@ -80,10 +80,10 @@ require get_template_directory() . '/inc/dompdf.php';
 
 
 ////// SETUP THE POST TYPES  USED BY THE THEME. //////
-if ( ! class_exists( 'LabManager' ) ) {
+if ( ! class_exists( 'DLI_LabManager' ) ) {
 	include_once 'inc/classes/class-labmanager.php';
 	global $lab_manager;
-	$lab_manager = new LabManager();
+	$lab_manager = new DLI_LabManager();
 	$lab_manager->plugin_setup();
 }
 

@@ -24,13 +24,18 @@ function dli_create_pages_on_theme_activation() {
 		return false;
 	}
 
-	// Create the default pages.
+	// Create permissions and roles.
+
+	$auth_manager = new DLI_AuthorizationManager();
+	$auth_manager->create_permissions_and_roles();
+
+	// Crea le pagine di default se non esistono già.
 	create_the_pages();
 
 	// Create the tipologia-persona entities.
 	create_the_tipologia_persona();
 
-	// Add some term to taxonomies.
+	// Crea le tassonomie di default.
 	create_the_taxonomies();
 
 	// Create all the menus of the site.
@@ -52,7 +57,7 @@ function dli_create_pages_on_theme_activation() {
  */
 function create_the_tipologia_persona() {
 	// Qui crea la tipologia direttore in italiano e in inglese.
-	// 'tipologia-persona'
+	// Ora e un tipo di contenuto PEOPLE_TYPE_POST_TYPE e non più una tassonomia.
 }
 
 

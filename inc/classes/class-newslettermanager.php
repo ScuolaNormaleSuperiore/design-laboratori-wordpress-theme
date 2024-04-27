@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Definition of the Newsletter Manager used to manage the external newsletter API.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 class NewsletterData {
 

@@ -1,9 +1,11 @@
 <?php
-
-
 /**
- * The manager that setups Course post types.
+ * Definition of the Event Manager used to setup Course post types.
+ *
+ * @package Design_Laboratori_Italia
  */
+
+
 class Event_Manager {
 	/**
 	 * Constructor of the Manager.
