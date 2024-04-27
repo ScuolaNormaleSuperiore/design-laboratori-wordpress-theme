@@ -24,11 +24,6 @@ function dli_create_pages_on_theme_activation() {
 		return false;
 	}
 
-	// Create permissions and roles.
-
-	$auth_manager = new DLI_AuthorizationManager();
-	$auth_manager->create_permissions_and_roles();
-
 	// Crea le pagine di default se non esistono già.
 	create_the_pages();
 
