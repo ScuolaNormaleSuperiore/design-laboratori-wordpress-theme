@@ -5,7 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
- if ( ! class_exists( 'DLI_AuthorizationManager' ) ) {
+if ( ! class_exists( 'DLI_AuthorizationManager' ) ) {
 	include_once 'class-authmanager.php';
 }
 
