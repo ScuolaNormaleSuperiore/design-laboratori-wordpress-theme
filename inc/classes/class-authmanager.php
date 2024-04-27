@@ -21,7 +21,7 @@ class DLI_AuthorizationManager {
 		// Recupera il ruolo Editor.
 		$base_role = get_role( 'editor' );
 		// Controlla se il ruolo Editor esiste.
-		if ( ! $base_role ) {
+		if ( $base_role ) {
 
 			// Aggiungi un nuovo ruolo basato sul ruolo Editor, se non esiste.
 			$new_role = get_role( DLI_SUPER_EDITOR_ROLE_SLUG );
