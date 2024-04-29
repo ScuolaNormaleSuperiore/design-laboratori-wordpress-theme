@@ -17,6 +17,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto ruolo "Super Editor".
 - Aggiunta della sezione "Elenco contenuti" con le strisce "News", "Eventi" e "Pubblicazioni".
 
+### Modificato
+- Aggiornata libreria Bootstrap Italia alla versione 2.8.4.
+
 ### Corretto
 - 
 
