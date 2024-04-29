@@ -95,10 +95,31 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 	 * @param [type] $related_posts
 	 * @return void
 	 */
-	function dli_get_post_translations( $related_posts ) {
-		return pll_get_post_translations( $related_posts );
+	function dli_get_post_translations( $post_id ): array {
+		return pll_get_post_translations( $post_id );
 	}
 }
+
+function dli_get_translated_page_url_by_slug( $slug ) {
+	$page_url = '';
+	$page     = get_page_by_path( $slug );
+	$args     = array(
+		'name' => SLUG_EVENTI_IT,
+		'post_type' => 'page',
+		'post_status' => 'publish',
+		'posts_per_page' => 1
+	);
+	$query        = new WP_Query( $args );
+	if ( $query->have_posts() ){
+		$page         = $query->posts[0];
+		$translations = dli_get_post_translations( $page->ID );
+		$page_id      = array_key_exists( dli_current_language( 'slug' ), $translations ) ?
+		$translations[ dli_current_language( 'slug' ) ] : null;
+		$page_url     = $page_id ? get_permalink( $page_id ) : '';
+	}
+	return $page_url;
+}
+
 
 if ( ! function_exists( 'dli_homepage_url' ) ) {
 	function dli_homepage_url() {

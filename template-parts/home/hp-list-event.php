@@ -83,7 +83,12 @@ if ( $num_items > 0 ) {
 					</ul>
 				</div>
 				<div class="text-center pt-5">
-					<a href="#" class="btn btn-secondary">Tutti gli eventi</a>
+					<?php
+						$page_url = dli_get_translated_page_url_by_slug( SLUG_EVENTI_IT );
+					?>
+					<a href="<?php echo  $page_url; ?>" class="btn btn-secondary">
+						<?php echo __( 'Tutti gli eventi', 'design_laboratori_italia' ); ?>
+					</a>
 				</div>
 			</div>
 		</div>
