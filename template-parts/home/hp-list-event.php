@@ -1,34 +1,96 @@
 <?php
-	$featuredcontents_enabled = dli_get_option( 'home_event_list_is_visible', 'homepage' );
+$section_enabled = dli_get_option( 'home_event_list_is_visible', 'homepage' );
+$order_field     = 'post_date';
 
-	if ( 'true' === $featuredcontents_enabled ) {
+if ( 'true' === $section_enabled ) {
 
+$query = new WP_Query(
+	array(
+		'post_type'      => array( EVENT_POST_TYPE ),
+		'orderby'        => $order_field,
+		'order'          => 'DESC',
+		'posts_per_page' => 6,
+		'meta_query'     => array(
+			array(
+				'key'     => 'promuovi_in_home',
+				'compare' => '=',
+				'value'   => 1,
+			),
+		),
+	)
+);
+$num_items = $query->post_count;
+if ( $num_items > 0 ) {
 ?>
-<!-- BLOCCO CARD - CONTENUTI IN EVIDENZA (Featured contents) -->
-<section id="blocco-card" aria-describedby="Blocco news, eventi e pubblicazioni" class="section pt-5" >
+
+<!-- INIZIO ELENCO EVENTI HP -->
+<section id="blocco-eventi-slide" class="section pt-5" >
 	<div class="section-content">
 		<div class="container">
-		<div class="row">
-			<?php
-			// Mostra 3 box nella sezione Contenuti in evideza.
-			$boxes= array( 1, 2, 3 );
-			foreach( $boxes as $index ) {
-				// Print BOX i.
-				$fc        = dli_get_option( 'featured_contents_' . $index, 'homepage' )[0];
-				$label     = $fc[ 'featured_contents_label_box_' . $index ];
-				$template  = $fc[ 'featured_contents_template_box_' . $index];
-				$pt        = $fc[ 'featured_contents_type_box_' . $index];
-				$num_items = $fc[ 'featured_contents_num_box_' . $index ];
+			<h2 class="h3 pb-2 "><?php echo __('Eventi', 'design_laboratori_italia' ); ?></h2>
+			<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide>
+				<div class="splide__track">
+					<ul class="splide__list">
 
-				// Template eventi.
-				get_template_part( 'template-parts/home/card-eventi', null, array( $index, $label, $template, $pt, $num_items, true ) );
-			}
-			?>
+					<?php
+						foreach ( $query->posts as $post ){
+							$postitem      = dli_get_post_wrapper( $post );
+							$date          = $postitem['date'];
+							$item_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+							$orario_inizio = $postitem['orario_inizio']
+					?>
+						<!-- SINGOLO EVENTO -->
+						<li class="splide__slide lined_slide">
+							<div class="it-single-slide-wrapper"> 
+								<div class="card-wrapper">
+									<div class="card card-img no-after">
+										<div class="img-responsive-wrapper">
+											<div class="img-responsive img-responsive-panoramic">
+												<figure class="img-wrapper">
+												<img src="<?php echo esc_url( $postitem['image_url'] ); ?>"
+													alt="<?php echo esc_attr( $postitem['image_alt'] ); ?>"
+													title="<?php echo esc_attr( $postitem['image_title'] ); ?>"
+												>
+												</figure>
+												<div class="card-calendar d-flex flex-column justify-content-center">
+													<span class="card-date"><?php echo intval( $item_date->format( 'd' ) ); ?></span>
+													<span class="card-day"><?php echo __( dli_get_monthname( $item_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
+												</div>
+											</div>
+										</div>
+										<div class="card-body p-4">
+											<h3 class="card-title h4"><?php echo $postitem['title']; ?></h3>
+											<p class="card-text">
+												<?php echo esc_html( wp_trim_words( $postitem['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+											</p>
+											<a class="read-more" href="<?php echo $postitem['link']; ?>">
+												<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+												<svg class="icon" role="img" aria-labelledby="Arrow right">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>">
+													</use>
+												</svg>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<!-- FINE SINGOLO EVENTO -->
+					<?php
+						}
+					?>
+
+					</ul>
+				</div>
+				<div class="text-center pt-5">
+					<a href="#" class="btn btn-secondary">Tutti gli eventi</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-- FINE BLOCCO CARD -->
+<!-- FINE ELENCO EVENTI HP -->
 <?php
 	}
+}
 ?>

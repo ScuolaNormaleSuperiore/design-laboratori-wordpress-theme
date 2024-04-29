@@ -722,9 +722,9 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id' => $prefix . 'home_news_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco delle notizie', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'id' => $prefix . 'home_event_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco degli eventi', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -736,9 +736,9 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id' => $prefix . 'home_event_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco degli eventi', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'id' => $prefix . 'home_news_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco delle notizie', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
