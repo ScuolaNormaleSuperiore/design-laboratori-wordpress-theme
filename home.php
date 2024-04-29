@@ -39,6 +39,11 @@ $carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled
 <!-- Section Featured Contents (Contenuti in evidenza) -->
 <?php get_template_part( 'template-parts/home/featured-contents' ); ?>
 
+<!-- Section Content List (elenco contenuti) -->
+<?php get_template_part( 'template-parts/home/hp-list-news' ); ?>
+<?php get_template_part( 'template-parts/home/hp-list-event' ); ?>
+<?php get_template_part( 'template-parts/home/hp-list-publication' ); ?>
+
 </main>
 <?php
 get_footer();

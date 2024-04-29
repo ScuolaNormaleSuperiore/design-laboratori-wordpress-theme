@@ -114,9 +114,7 @@ function dli_register_main_options_metabox() {
 			'name'       => __( 'PEC', 'design_laboratori_italia' ),
 			'desc'       => __( "La PEC del Laboratorio" , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'attributes' => array(
-				// 'required' => 'required',
-			),
+			'attributes' => array(),
 		)
 	);
 
@@ -267,22 +265,6 @@ function dli_register_main_options_metabox() {
 			'default' => 'info',
 	) );
 
-	// $alerts_options->add_group_field( $alerts_group_id, array(
-	// 		'name' => 'Visualizza icona',
-	// 		'id'   => 'icona_message',
-	// 		'type' => 'checkbox',
-	// ) );
-
-	// $alerts_options->add_group_field( $alerts_group_id, array(
-	// 		'id' => $prefix . 'data_message',
-	// 		'name'        => __( 'Data fine', 'design_laboratori_italia' ),
-	// 		'type' => 'text_date',
-	// 		'date_format' => 'd-m-Y',
-	// 		'data-datepicker' => json_encode( array(
-	// 				'yearRange' => '-100:+0',
-	// 		) ),
-	// ) );
-
 	$alerts_options->add_group_field( $alerts_group_id, array(
 			'id' => $prefix . 'testo_message',
 			'name'        => __( 'Testo', 'design_laboratori_italia' ),
@@ -331,7 +313,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'   => $prefix . 'home_main_hero',
 			'name' => __( 'Sezione hero principale', 'design_laboratori_italia' ),
-			'desc' => __( 'Gestione sezione Hero principale (opzionale) mostrato in Home Page' , 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione sezione Hero principale (opzionale) mostrato in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ),
 			'type' => 'title',
 		)
 	);
@@ -727,6 +709,58 @@ function dli_register_main_options_metabox() {
 				'escape_cb'       => 'absint',
 			)
 		);
+
+	// *** SEZIONE ELENCO CONTENUTI (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_content_list',
+			'name'        => __( 'Sezione elenco contenuti', 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione della sezione delle righe di contenuti in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ) . '&nbsp;.',
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_news_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco delle notizie', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_event_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco degli eventi', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_publication_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco delle pubblicazioni', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco delle pubblicazionideve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
 
 	/**
 	* 4 - Registers options page "Laboratorio".

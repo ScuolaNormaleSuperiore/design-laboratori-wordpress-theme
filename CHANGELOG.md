@@ -11,11 +11,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 
-### Sicurezza
-- Modificare la url della pagina di login.
-- Verificare opportunità di usare Content Security Policy (CSP).
-- DISALLOW_FILE_EDIT.
 
+## [1.2.7] - 2024-04-30
+### Aggiunto
+- Aggiunto ruolo "Super Editor".
+- Aggiunta della sezione "Elenco contenuti" con le strisce "News", "Eventi" e "Pubblicazioni"
+
+### Corretto
+- 
 
 ## [1.2.6] - 2024-03-07
 
