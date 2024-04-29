@@ -15,7 +15,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.2.7] - 2024-04-30
 ### Aggiunto
 - Aggiunto ruolo "Super Editor".
-- Aggiunta della sezione "Elenco contenuti" con le strisce "News", "Eventi" e "Pubblicazioni"
+- Aggiunta della sezione "Elenco contenuti" con le strisce "News", "Eventi" e "Pubblicazioni".
 
 ### Corretto
 - 
