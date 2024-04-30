@@ -32,11 +32,11 @@ $num_items = $query->post_count;
 		if ( $num_items != 0 ) {
 			$carditem = $query->posts[0];
 			$postitem = dli_get_post_wrapper( $carditem );
-			// $termitem = dli_get_post_main_category( $carditem, 'category' );
 		?>
 			<div class="card-body">
 				<div class="category-top">
-					<a class="category" href="<?php echo esc_url( $postitem['category_link'] ); ?>">
+					<a class="category" 
+						href="<?php echo esc_url( $postitem['category_link'] ); ?>">
 						<?php echo esc_attr( $postitem['category'] ); ?>
 					</a>
 					<span class="data"><?php echo $postitem['date'] ?></span>

@@ -102,9 +102,8 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 
 function dli_get_translated_page_url_by_slug( $slug ) {
 	$page_url = '';
-	$page     = get_page_by_path( $slug );
 	$args     = array(
-		'name' => SLUG_EVENTI_IT,
+		'name' => $slug,
 		'post_type' => 'page',
 		'post_status' => 'publish',
 		'posts_per_page' => 1
