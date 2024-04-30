@@ -5,7 +5,7 @@ $etichetta_laboratorio     = dli_get_configuration_field_by_lang( 'etichetta', '
 
 if ( $testo_sezione_laboratorio ) {
 	?>
-<section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted pt-5">
+<section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted">
 	<div>
 		<div class="container my-12">
 			<h2 class="h3 pb-1"><?php echo $etichetta_laboratorio; ?></h2>
