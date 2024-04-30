@@ -7,14 +7,20 @@ global $post;
 get_header();
 
 define( 'PROG_CELLS_PER_ROW', 3 );
-
 $today = date( 'Ymd' );
-
 $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => PROGETTO_POST_TYPE,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
+    'meta_query' => array(
+			array(
+					'key' => 'archiviato',
+					'value' => true,
+					'compare' => '=',
+					'type' => 'BOOLEAN',
+			),
+	),
 		)
 );
 $num_results = $the_query->found_posts;
