@@ -33,7 +33,7 @@ $num_items = $query->post_count;
 	?>
 	<div class="card card-teaser rounded shadow">
 		<div class="card-body">
-			<h3 class="card-title h5"><?php echo $postitem['title']; ?></h3>
+			<h3 class="card-title h5"><?php echo esc_attr( $postitem['title'] ); ?></h3>
 			<p class="card-text"><?php echo esc_attr( $postitem['description'] ); ?></p>
 		</div>
 	</div>

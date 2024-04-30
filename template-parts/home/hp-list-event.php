@@ -39,7 +39,9 @@ if ( 'true' === $section_enabled ) {
 	<section id="blocco-eventi-slide" class="section pt-5" >
 		<div class="section-content">
 			<div class="container">
-				<h2 class="h3 pb-2 "><?php echo __('Eventi', 'design_laboratori_italia' ); ?></h2>
+				<h2 class="h3 pb-2 ">
+					<?php echo __('Eventi', 'design_laboratori_italia' ); ?>
+				</h2>
 				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide>
 					<div class="splide__track">
 						<ul class="splide__list">

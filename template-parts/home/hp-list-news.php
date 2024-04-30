@@ -25,12 +25,14 @@ if ( 'true' === $section_enabled ) {
 	<section id="blocco-news" class="section pt-3 pb-3" >
 		<div class="section-content">
 			<div class="container">
-				<h2 class="h3 pb-2 "><?php echo __('Notizie', 'design_laboratori_italia' ); ?></h2>
+				<h2 class="h3 pb-2 ">
+					<?php echo __('Notizie', 'design_laboratori_italia' ); ?>
+				</h2>
 				<div class="row">
 				<?php
 					foreach ( $query->posts as $post ){
 						$postitem = dli_get_post_wrapper( $post );
-					?>
+				?>
 					<!-- NEWS -->
 					<div class="col-12 col-lg-4"> 
 						<div class="card-wrapper">
