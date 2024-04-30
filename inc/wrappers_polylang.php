@@ -140,10 +140,8 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 	 */
 	function dli_get_page_selectors() {
 		global $post;
-		$selectors = array();
-
+		$selectors        = array();
 		$site_url         = get_site_url();
-		$traduzioni       = dli_get_post_translations( $post->ID );
 		$languages_list   = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
 		$default_language = pll_default_language( 'slug' );
 		$current_language = dli_current_language( 'slug' );
@@ -151,6 +149,7 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 		// La home page è la stessa per tutte le lingue.
 		if ( is_home() ) {
 
+			// Home Page.
 			foreach( $languages_list as $lang_slug ) {
 				if ( $lang_slug != $default_language ) {
 					$url = $site_url . '/' . $lang_slug;
@@ -165,11 +164,12 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 					)
 				);
 			}
-			return $selectors;
 
 		} else {
 
-			$selectors = array(
+			// Altre pagine del sito (non HP).
+			$traduzioni = dli_get_post_translations( $post->ID );
+			$selectors  = array(
 				array(
 					'slug' => $current_language,
 					'url'  => get_permalink( $post ),
@@ -186,10 +186,9 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 					);
 				}
 			}
-			return $selectors;
 
 		}
-
+		return $selectors;
 	}
 }
 
