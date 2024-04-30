@@ -19,6 +19,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Modificato
 - Aggiornata libreria Bootstrap Italia alla versione 2.8.4.
+- Corretta traduzione etichette.
+- Aggiornato sito demo.
 
 ### Corretto
 - 
