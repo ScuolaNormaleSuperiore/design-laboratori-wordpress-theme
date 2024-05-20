@@ -12,7 +12,7 @@
 FROM php:8.2-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.5.2.tar.gz
+ARG WP_ARCHIVE=wordpress-6.5.3.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
@@ -21,13 +21,12 @@ ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.6.zip
 ARG PLG_ACF=advanced-custom-fields.6.2.9.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_COOKIES=cookie-law-info.3.2.2.zip
-ARG PLG_GUTENBERG=disable-gutenberg.3.1.1.zip
 ARG PLG_POLYLANG=polylang.3.6.1.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.4.0.1.zip
 
 # Plugion facoltativi o di sviluppo
-ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.7.zip
+ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.9.zip
 ARG PLG_PUBLISH_PRESS_CAPABILITIES=press-permit-core.zip
 ARG PLG_PUBLISH_PRESS_PERMISSIONS=capability-manager-enhanced.2.13.0.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
@@ -107,8 +106,6 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_PUBLISH_PRESS_CAPABILITIES}  && \
 	curl -o /tmp/${PLG_PUBLISH_PRESS_PERMISSIONS} ${BASE_PLUGIN_URL}/${PLG_PUBLISH_PRESS_PERMISSIONS} && \
 	unzip /tmp/${PLG_PUBLISH_PRESS_PERMISSIONS}  && \
-	curl -o /tmp/${PLG_GUTENBERG} ${BASE_PLUGIN_URL}/${PLG_GUTENBERG} && \
-	unzip /tmp/${PLG_GUTENBERG}  && \
 	curl -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
 	unzip /tmp/${PLG_SMTP}  && \
 	curl -o /tmp/${PLG_CAPTCHA} ${BASE_PLUGIN_URL}/${PLG_CAPTCHA} && \

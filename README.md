@@ -74,7 +74,6 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 * [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
 * [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
 * [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
-* [Disable Gutenberg](https://wordpress.org/plugins/disable-gutenberg/)
 * [Polylang](https://it.wordpress.org/plugins/polylang/)
 * [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
 * [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)

@@ -201,11 +201,6 @@ define(
 			'required' => true,
 		),
 		array(
-			'name'     => 'Disable Gutenberg',
-			'slug'     => 'disable-gutenberg',
-			'required' => true,
-		),
-		array(
 			'name'     => 'Better aria label support',
 			'slug'     => 'better-aria-label-support',
 			'required' => true,

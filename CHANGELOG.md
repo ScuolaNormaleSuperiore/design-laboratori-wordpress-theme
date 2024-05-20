@@ -11,6 +11,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 
+## [1.2.8] - 2024-05-30
+
+### Aggiunto
+
+### Modificato
+- Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
+
 
 ## [1.2.7] - 2024-04-30
 ### Aggiunto
