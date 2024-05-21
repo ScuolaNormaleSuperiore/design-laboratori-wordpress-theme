@@ -10,7 +10,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Tipologia eventi ??
+- Tipologia eventi.
+- Link alla categoria in news ed eventi.
 
 
 ## [1.2.8] - 2024-05-30
@@ -24,7 +25,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corrette errate invocazioni della funzione: dli_get_post_main_category.
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
-
+- Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
 
 
 ## [1.2.7] - 2024-04-30

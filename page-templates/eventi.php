@@ -26,7 +26,7 @@ $the_query = new WP_Query(
 	)
 );
 $num_results    = $the_query->found_posts;
-$all_categories = dli_get_all_categories( 'category' );
+$all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 ?>
 
 <main id="main-container" class="main-container bluelectric" role="main">

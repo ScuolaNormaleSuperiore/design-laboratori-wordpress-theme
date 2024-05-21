@@ -502,9 +502,60 @@ if( ! function_exists( 'dli_get_post_main_category' ) ) {
 }
 
 if( ! function_exists( 'dli_get_all_categories' ) ) {
+	/**
+	 * Recupera tutti i termini di una tassonomia ($taxonomy).
+	 *
+	 * @param string $taxonomy
+	 * @param boolean $exclude_uncategorized
+	 * @return array
+	 */
 	function dli_get_all_categories( $taxonomy, $exclude_uncategorized=true ) {
 		$terms      = get_terms( $taxonomy );
 		$categories = array();
+		if ( $terms ) {
+			foreach ( $terms as $term ) {
+				if ( ! $exclude_uncategorized || $term->name != 'Uncategorized' ) {
+					array_push (
+						$categories,
+						array(
+							'id'          => $term->term_id,
+							'slug'        => $term->slug,
+							'name'        => $term->name,
+							'description' => $term->description,
+							'url'         => get_term_link( $term ),
+						)
+					);
+				}
+			}
+		}
+		return $categories;
+	}
+}
+
+if( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
+	/**
+	 * Ritorna tutti i termini di una tassonomia ($taxonomy) associati a dei contenuti di tipo $post_type.
+	 *
+	 * @param string $taxonomy
+	 * @param string $post_type
+	 * @param boolean $exclude_uncategorized
+	 * @return array
+	 */
+	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $exclude_uncategorized=true ) {
+		$categories = array();
+		$terms      = get_terms(
+			array (
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => true,
+				'object_ids' => get_posts(
+					array(
+						'post_type'   => $post_type,
+						'numberposts' => -1,
+						'fields' => 'ids',
+				 )
+				),
+			)
+		);
 		if ( $terms ) {
 			foreach ( $terms as $term ) {
 				if ( ! $exclude_uncategorized || $term->name != 'Uncategorized' ) {

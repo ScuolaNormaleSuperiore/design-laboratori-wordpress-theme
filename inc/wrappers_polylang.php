@@ -133,6 +133,20 @@ if ( ! function_exists( 'dli_homepage_url' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_term' ) ) {
+	/**
+	 * Ritorna l'id del termine $term_id nella lingua $lang.
+	 *
+	 * @param int $term_id
+	 * @param string $lang
+	 * @return int
+	 */
+	function dli_get_term( $term_id, $lang ) {
+		return pll_get_term( $term_id, $lang );
+	}
+}
+
+
 if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 	/**
 	 * Ritorna la lista di elementi del selettore in base alla lingua della pagina.
