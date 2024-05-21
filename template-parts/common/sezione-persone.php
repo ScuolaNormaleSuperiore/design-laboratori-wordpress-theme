@@ -29,22 +29,52 @@
 				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
 				$post_link                  = get_the_permalink( $id );
 				$categoria                  = get_field( 'categoria_appartenenza', $id );
-				$cat_label                  = count( $categoria ) ? $categoria[0]->post_title : '';
+				$cat_label                  = $categoria && count($categoria) ? $categoria[0]->post_title : '';
+				$sitoweb                    = get_field( 'sito_web', $id );
+				$link_persona               = get_the_permalink( $id );
+				$abilita_link_diretto_pagina_persona = get_field( 'abilita_link_diretto_pagina_persona', $id );
 			?>
 
 				<!-- begin card person -->
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">
-					<div class="avatar size-xl">
-						<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" 
-						alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
-						title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
-						aria-hidden="true">
-					</div>
-					<div class="extra-text">
-					<h4><a href="<?php echo $post_link; ?>"><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></a></h4>
-					<span><?php echo esc_attr( $cat_label ); ?></span>
-					</div>
+
+						<div class="avatar size-xl">
+							<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" 
+							alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+							title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+							aria-hidden="true">
+						</div>
+
+						<div class="extra-text">
+							<?php
+								if ( ! $disattiva_pagina_dettaglio ) {
+									if ( ! $abilita_link_diretto_pagina_persona ) {
+										?>
+										<h4>
+											<a href="<?php echo $link_persona; ?>">
+												<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+											</a>
+										</h4>
+										<?php
+									} else {
+										?>
+											<h4>
+												<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
+													<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+												</a>
+											</h4>
+										<?php
+									}
+								} else {
+									?>
+									<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
+								<?php
+								}
+							?>
+							<span><?php echo esc_attr( $cat_label ); ?></span>
+						</div>
+
 					</div>
 				</div>
 				<!-- end card person -->

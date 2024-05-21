@@ -20,10 +20,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Modificata gestione dei template nella sezione "Contenuti in evidenza".
 
 ### Corretto
-- Aggiornato sito demo.
+- Aggiornato sito demo su dockerfile.
 - Corrette errate invocazioni della funzione: dli_get_post_main_category.
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
-
+- Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
 
 
 
