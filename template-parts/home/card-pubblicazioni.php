@@ -3,7 +3,7 @@ $box_number    = $args[0];
 $box_label     = $args[1];
 $box_template  = $args[2];
 $box_post_type = $args[3];
-$box_items     = $args[4];
+$box_items     = 2;
 $order_field   = 'post_date';
 
 $query = new WP_Query(
@@ -11,7 +11,7 @@ $query = new WP_Query(
 		'post_type'      => array( $box_post_type ),
 		'orderby'        => $order_field,
 		'order'          => 'DESC',
-		'posts_per_page' => 2,
+		'posts_per_page' => $box_items ,
 		'meta_query'     => array(
 			array(
 				'key'     => 'promuovi_in_home',

@@ -549,26 +549,10 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-news',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( 'Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Eventi', 'design_laboratori_italia' ),
+					'card-news'             => __( 'News singola', 'design_laboratori_italia' ),
+					'card-pubblicazioni'    => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'           => __( 'Evento singolo', 'design_laboratori_italia' ),
 				),
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'              => $prefix . 'featured_contents_num_box_1',
-				'name'            => __( 'Numero elementi', 'design_laboratori_italia' ),
-				'desc'            => __( 'Numero di elementi da visualizzare' , 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
 			)
 		);
 
@@ -618,26 +602,10 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-eventi',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( 'Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Eventi', 'design_laboratori_italia' ),
+					'card-news'             => __( 'News singola', 'design_laboratori_italia' ),
+					'card-pubblicazioni'    => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'           => __( 'Evento singolo', 'design_laboratori_italia' ),
 				),
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'              => $prefix . 'featured_contents_num_box_2',
-				'name'            => __( 'Numero elementi', 'design_laboratori_italia' ),
-				'desc'            => __( 'Numero di elementi da visualizzare' , 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
 			)
 		);
 
@@ -687,26 +655,10 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-pubblicazioni',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( 'Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Eventi', 'design_laboratori_italia' ),
+					'card-news'             => __( 'News singola', 'design_laboratori_italia' ),
+					'card-pubblicazioni'    => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'           => __( 'Evento singolo', 'design_laboratori_italia' ),
 				),
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'              => $prefix . 'featured_contents_num_box_3',
-				'name'            => __( 'Numero elementi', 'design_laboratori_italia' ),
-				'desc'            => __( 'Numero di elementi da visualizzare' , 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
 			)
 		);
 

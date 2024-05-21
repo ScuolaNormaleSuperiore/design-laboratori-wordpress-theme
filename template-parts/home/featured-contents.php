@@ -18,17 +18,16 @@
 				$label     = $fc[ 'featured_contents_label_box_' . $index ];
 				$template  = $fc[ 'featured_contents_template_box_' . $index];
 				$pt        = $fc[ 'featured_contents_type_box_' . $index];
-				$num_items = $fc[ 'featured_contents_num_box_' . $index ];
 
 				if ( 'card-news' === $template ) {
 					// CARD NOTIZIE.
-					get_template_part( 'template-parts/home/card-news', null, array( $index, $label, $template, $pt, $num_items ) );
+					get_template_part( 'template-parts/home/card-news', null, array( $index, $label, $template, $pt ) );
 				} elseif ( 'card-eventi' === $template ) {
 					// CARD_EVENTI.
-					get_template_part( 'template-parts/home/card-eventi', null, array( $index, $label, $template, $pt, $num_items ) );
+					get_template_part( 'template-parts/home/card-eventi', null, array( $index, $label, $template, $pt ) );
 				} else {
 					// CARD PUBBLICAZIONI.
-					get_template_part( 'template-parts/home/card-pubblicazioni', null, array( $index, $label, $template, $pt, $num_items ) );
+					get_template_part( 'template-parts/home/card-pubblicazioni', null, array( $index, $label, $template, $pt ) );
 				}
 			}
 			?>
