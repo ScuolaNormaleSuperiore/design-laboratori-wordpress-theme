@@ -541,7 +541,8 @@ if( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 	 * @param boolean $exclude_uncategorized
 	 * @return array
 	 */
-	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $exclude_uncategorized=true ) {
+	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $content_status='publish' ) {
+		$exclude_uncategorized=true;
 		$categories = array();
 		$terms      = get_terms(
 			array (
@@ -549,9 +550,10 @@ if( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 				'hide_empty' => true,
 				'object_ids' => get_posts(
 					array(
-						'post_type'   => $post_type,
-						'numberposts' => -1,
-						'fields' => 'ids',
+						'post_type'      => $post_type,
+						'numberposts'    => -1,
+						'fields'         => 'ids',
+						'content_status' => $content_status,
 				 )
 				),
 			)
