@@ -88,7 +88,7 @@ $all_categories = dli_get_all_categories( 'category' );
 					<?php
 					}
 					$post_id  = get_the_ID();
-					$termitem = dli_get_post_main_category( $post_id, 'category' );
+					$termitem = dli_get_post_main_category( $post, 'category' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">

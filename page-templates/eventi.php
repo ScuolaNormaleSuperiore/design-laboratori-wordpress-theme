@@ -91,7 +91,7 @@ $all_categories = dli_get_all_categories( 'category' );
 					<?php
 					}
 					$post_id        = get_the_ID();
-					$termitem       = dli_get_post_main_category( $post_id, 'category' );
+					$termitem       = dli_get_post_main_category( $post, 'category' );
 					$date           = get_field( 'data_inizio', $post_id );
 					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 					$orario_inizio  = get_field( 'orario_inizio', $post_id );

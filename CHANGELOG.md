@@ -10,13 +10,24 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
+- Fix contenuti in evidenza
+- Tipologia eventi
+- 
+
 
 ## [1.2.8] - 2024-05-30
 
 ### Aggiunto
+- 
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
+-
+
+### Corretto
+- Aggiornato sito demo.
+- Corrette errate invocazioni della funzione: dli_get_post_main_category.
+- Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 
 
 ## [1.2.7] - 2024-04-30
@@ -27,10 +38,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Aggiornata libreria Bootstrap Italia alla versione 2.8.4.
 - Corretta traduzione etichette.
-- Aggiornato sito demo.
 
 ### Corretto
-- 
+- Aggiornato sito demo.
+
+
 
 ## [1.2.6] - 2024-03-07
 

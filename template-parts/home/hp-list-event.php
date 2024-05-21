@@ -12,12 +12,12 @@ if ( 'true' === $section_enabled ) {
 			'posts_per_page' => 6,
 			'meta_query' => array(
 				'relation' => 'AND',
-				array(
-						'key' => 'data_inizio',
-						'value' => date('Y-m-d'),
-						'compare' => '>=',
-						'type' => 'DATE'
-				),
+				// array(
+				// 		'key' => 'data_inizio',
+				// 		'value' => date('Y-m-d'),
+				// 		'compare' => '>=',
+				// 		'type' => 'DATE'
+				// ),
 				array(
 						'key' => 'data_fine',
 						'value' => date('Y-m-d'),
