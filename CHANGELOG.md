@@ -10,8 +10,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Tipologia eventi.
-- Link alla categoria in news ed eventi.
+- Integrazione con Indico.
 
 
 ## [1.2.8] - 2024-05-30
@@ -19,6 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
 - Modificata gestione dei template nella sezione "Contenuti in evidenza".
+- Aggiornata versione di Bootstrap Italia alla versione 2.8.7.
 
 ### Corretto
 - Aggiornato sito demo su dockerfile.
