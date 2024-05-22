@@ -9,7 +9,7 @@
 
 global $post;
 get_header();
-$category       = dli_get_post_main_category( $post, 'category' );
+$categories     = dli_get_post_categories( $post, 'category' );
 $date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $news_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_metadata = dli_get_image_metadata( $post );
@@ -38,9 +38,18 @@ $pg_link        = get_permalink( $pg->ID );
 							<p class="font-weight-normal">
 								<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							</p>
+							<?php
+								foreach( $categories as $category ) {
+									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/notizie' );
+							?>
 							<div class="chip chip-primary chip-lg chip-simple">
-								<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
+									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								</a>
 							</div>
+							<?php
+								}
+							?>
 						</div>
 					</div>
 					<div class="col-sm-7">
@@ -48,11 +57,11 @@ $pg_link        = get_permalink( $pg->ID );
 						if( $image_metadata['image_url'] ) {
 						?>
 						<figure class="figure">
-							<img src="<?php echo $image_metadata['image_url']; ?>" 
-							class="d-block mx-lg-auto img-fluid figure-img" 
-							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
-							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
-							loading="lazy">
+							<img src="<?php echo $image_metadata['image_url']; ?>"
+								class="d-block mx-lg-auto img-fluid figure-img" 
+								alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
+								title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+								loading="lazy">
 							<?php
 							if( $image_metadata['image_caption'] ) {
 							?>

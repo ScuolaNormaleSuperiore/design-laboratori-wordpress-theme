@@ -9,7 +9,7 @@
 
 global $post;
 get_header();
-$category            = dli_get_post_main_category( $post, 'category' );
+$categories          = dli_get_post_categories( $post, 'category' );
 $image_metadata      = dli_get_image_metadata( $post );
 $pg                  = dli_get_page_by_post_type( $post->post_type );
 $pg_link             = get_permalink( $pg->ID );
@@ -73,6 +73,18 @@ $short_descr         = get_field( 'descrizione_breve' );
 							<p class="font-weight-normal">
 								<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							</p>
+							<?php
+								foreach( $categories as $category ) {
+									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/eventi' );
+							?>
+							<div class="chip chip-primary chip-lg chip-simple">
+								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
+									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								</a>
+							</div>
+							<?php
+								}
+							?>
 						</div>
 					</div>
 					<div class="col-sm-7">

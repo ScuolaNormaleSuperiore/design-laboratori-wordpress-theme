@@ -141,7 +141,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 				?>
 
 
-				</div> 
+				</div>
 				<!-- Fine elenco news-->
 
 			</div>

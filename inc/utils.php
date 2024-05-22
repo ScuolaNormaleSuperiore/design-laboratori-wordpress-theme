@@ -485,19 +485,54 @@ if( ! function_exists( 'dli_get_image_metadata' ) ) {
 if( ! function_exists( 'dli_get_post_main_category' ) ) {
 	function dli_get_post_main_category( $post, $taxonomy ) {
 		$terms = get_the_terms( $post, $taxonomy );
-		if ( ! is_array( $terms ) || count($terms) ==0 ) {
+		if ( ! is_array( $terms ) || count( $terms ) ==0 ) {
 			$pg        = dli_get_page_by_post_type( $post->post_type );
 			$pg_link   = get_permalink( $pg->ID );
 			return array(
 				'title' => $pg->post_title,
 				'url'   => $pg_link,
+				'id'    => null,
 			);
 		} else {
 			return array(
 				'title' => $terms[0]->name,
 				'url'   => get_term_link( $terms[0] ),
+				'id'    => $terms[0]->term_id,
 			);
 		}
+	}
+}
+
+if( ! function_exists( 'dli_get_post_categories' ) ) {
+	function dli_get_post_categories( $post, $taxonomy ) {
+		$categories = array();
+		$terms      = get_the_terms( $post, $taxonomy );
+
+		if ( ! is_array( $terms ) || count( $terms ) ==0 ) {
+			$pg        = dli_get_page_by_post_type( $post->post_type );
+			$pg_link   = get_permalink( $pg->ID );
+			array_push(
+				$categories,
+				array(
+					'title' => $pg->post_title,
+					'url'   => $pg_link,
+					'id'    => null,
+				)
+			);
+		} else {
+			foreach( $terms as $term ) {
+				array_push(
+					$categories,
+					array(
+						'title' => $term->name,
+						'url'   => get_term_link( $term ),
+						'id'    => $term->term_id,
+					)
+				);
+			}
+		}
+	
+		return $categories;
 	}
 }
 

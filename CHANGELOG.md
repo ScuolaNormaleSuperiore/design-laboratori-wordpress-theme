@@ -26,6 +26,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
 - Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
+- Corretta visualizzazione delle categorie nelle pagine di dettaglio di eventi e notizie.
 
 
 ## [1.2.7] - 2024-04-30
