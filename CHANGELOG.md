@@ -18,15 +18,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
 - Modificata gestione dei template nella sezione "Contenuti in evidenza".
-- Aggiornata versione di Bootstrap Italia alla versione 2.8.7.
+- Aggiornata la versione di Bootstrap Italia alla versione 2.8.7.
 
 ### Corretto
-- Aggiornato sito demo su dockerfile.
+- Aggiornato Dockerfile per sito demo.
 - Corrette errate invocazioni della funzione: dli_get_post_main_category.
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
 - Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
-- Corretta visualizzazione delle categorie nelle pagine di dettaglio di eventi e notizie.
+- Corretta visualizzazione dei chip delle categorie nelle pagine di dettaglio di eventi e notizie.
 
 
 ## [1.2.7] - 2024-04-30
