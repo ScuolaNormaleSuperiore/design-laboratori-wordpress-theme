@@ -231,6 +231,9 @@ $short_descr         = get_field( 'descrizione_breve' );
 								</div>
 							</div>
 							<div class="point-list-content">
+								<?php
+									if ( $orario_inizio || $orario_fine ) {
+								?>
 								<div class="card card-teaser shadow p-4 rounded border">
 									<div class="card-body">
 										<h5 class="card-title">
@@ -250,6 +253,9 @@ $short_descr         = get_field( 'descrizione_breve' );
 										</h5>
 									</div>
 								</div>
+								<?php
+									}
+								?>
 							</div>
 						</div>
 					</div>
