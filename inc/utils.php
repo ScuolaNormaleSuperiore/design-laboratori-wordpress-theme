@@ -634,6 +634,27 @@ if( ! function_exists( 'dli_get_monthname' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_monthname_short' ) ) {
+	function dli_get_monthname_short( $month ) {
+		$index = intval( $month ) - 1;
+		$months = array(
+			'gen',
+			'feb',
+			'mar',
+			'apr',
+			'mag',
+			'giu',
+			'lug',
+			'ago',
+			'set',
+			'ott',
+			'nov',
+			'dic'
+		);
+		return $months[ $index ];
+	}
+}
+
 if( ! function_exists( 'dli_get_content' ) ) {
 	function dli_get_content( $slug, $content_type='post' ) {
 		$args = array(

@@ -14,10 +14,17 @@ $image_metadata      = dli_get_image_metadata( $post );
 $pg                  = dli_get_page_by_post_type( $post->post_type );
 $pg_link             = get_permalink( $pg->ID );
 $start_date          = get_field( 'data_inizio', $post );
+$timestamp           = strtotime(str_replace('/', '-', $start_date));
+$event_day           = $timestamp ? date( 'd', $timestamp ) : '';
+$event_month_number  = $timestamp ? date( 'm', $timestamp ) : '';
+$event_mont_name     = $event_month_number ? dli_get_monthname_short( $event_month_number ) : '';
 $start_event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
 $end_date            = get_field( 'data_fine', $post );
 $end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
 $orario_inizio       = get_field( 'orario_inizio', $post );
+$orario_inizio       = $orario_inizio ? $orario_inizio : '';
+$orario_fine         = get_field( 'orario_fine', $post );
+$orario_fine         = $orario_fine ? $orario_fine : '';
 $luogo               = dli_get_field( 'luogo' );
 $label_contatti      = dli_get_field( 'label_contatti' );
 $telefono            = dli_get_field( 'telefono' );
@@ -33,51 +40,74 @@ $short_descr         = get_field( 'descrizione_breve' );
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	
-	<!-- BANNER EVENTI-->
-	<section id="banner-eventi" class="bg-banner-eventi">
-		<div class="section-muted  primary-bg-c1">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-5 align-middle">
-						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
+		<!-- INIZIO BANNER HERO -->
+	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
+		<!-- - img-->
+		<div class="img-responsive-wrapper">
+			<div class="img-responsive">
+				<div class="img-wrapper">
+					<img src="<?php echo $image_metadata['image_url']; ?>"
+						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+					>
+					<?php
+							if( $image_metadata['image_caption'] ) {
+						?>
+							<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+						<?php
+							}
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="it-hero-text-wrapper bg-dark">
+						<!-- Data -->
+						<span class="it-Categoria">
 							<?php
-							if ( $start_date === $end_date ){
-							?>
-							<p class="card-date">
-								<?php 
-									echo $start_date; 
-									if ( $orario_inizio ) {
-										echo ', ' . $orario_inizio;
-									}
+								if ( $start_date === $end_date ){
 								?>
-							</p>
-							<?php
-							} else {
-							?>
-							<p class="card-date">
-								<?php
-									echo __( 'dal', 'design_laboratori_italia' );
-									echo ' ' . $start_date;
-									echo ' ' . __( 'al', 'design_laboratori_italia' );
-									echo ' ' . $end_date;
-									if ( $orario_inizio ) {
-										echo ', ' . $orario_inizio;
-									}
-								?>
+								<p class="card-date">
+									<?php 
+										echo $start_date; 
+										if ( $orario_inizio ) {
+											echo ', ' . $orario_inizio;
+										}
+									?>
 								</p>
 								<?php
-							}
-							?>
-							<h2 class="p-0  "><?php echo get_the_title( ); ?></h2>
-							<p class="font-weight-normal">
-								<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
-							</p>
-							<?php
+								} else {
+								?>
+								<p class="card-date">
+									<?php
+										echo __( 'dal', 'design_laboratori_italia' );
+										echo ' ' . $start_date;
+										echo ' ' . __( 'al', 'design_laboratori_italia' );
+										echo ' ' . $end_date;
+										if ( $orario_inizio ) {
+											echo ', ' . $orario_inizio;
+										}
+									?>
+									</p>
+									<?php
+								}
+								?>
+						</span>
+						<!-- Titolo -->
+						<h2><?php echo get_the_title( ); ?></h2>
+						<!-- Testo -->
+						<p class="d-none d-lg-block">
+							<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
+						</p>
+						<!-- Categorie -->
+						<?php
 								foreach( $categories as $category ) {
 									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/eventi' );
 							?>
-							<div class="chip chip-primary chip-lg chip-simple">
+							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
 									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
 								</a>
@@ -85,37 +115,20 @@ $short_descr         = get_field( 'descrizione_breve' );
 							<?php
 								}
 							?>
-						</div>
-					</div>
-					<div class="col-sm-7">
-					<?php
-						if( $image_metadata['image_url'] ) {
-						?>
-							<figure class="figure">
-								<img src="<?php echo $image_metadata['image_url']; ?>"
-										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
-								<?php
-									if( $image_metadata['image_caption'] ) {
-								?>
-									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
-								<?php
-									}
-								?>
-							</figure>
-						<?php
-						}
-						?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- FINE BANNER HERO-->
 
-	<!-- DETTAGLIO EVENTO -->
+
+
+	<!-- BODY EVENTO -->
 	<div class="container py-lg-5">
 		<div class="row">
+
+			<!-- Dettagli dell'evento -->
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">
 					<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
@@ -146,6 +159,7 @@ $short_descr         = get_field( 'descrizione_breve' );
 											<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<li class="nav-item"> <a class="nav-link" href="#date_e_orari"> <span>Data e orari</span> </a> </li>
 										<?php
 											}
 											if ( $luogo ) {
@@ -193,111 +207,156 @@ $short_descr         = get_field( 'descrizione_breve' );
 					</nav>
 				</div>
 			</div>
-			<div class="col-12 col-lg-9 it-page-sections-container">
-				<!-- DESCRIZIONE --> 
-				<h3 class="it-page-section h4 visually-hidden" id="descrizione"><?php echo __( 'Descrizione evento', 'design_laboratori_italia' ); ?></h3>
-				<div class="row pb-3">
-					<p><?php the_content(); ?></p>
-				</div>
 
+			<!-- Colonna destra --> 
+			<div class="col-12 col-lg-9 it-page-sections-container">
+
+
+				<!-- Descrizione -->
+				<article id="descrizione" class="it-page-section mb-4 anchor-offset clearfix">
+					<p><?php the_content(); ?></p>
+				</article>
+
+				<!-- DATE E ORARI -->
+				<article id="date_e_orari" class="it-page-section mb-4 anchor-offset clearfix">
+					<h4><?php echo __( 'Date e orari', 'design_laboratori_italia' ); ?></h4>
+					<div class="point-list-wrapper my-4">
+						<div class="point-list">
+							<div class="point-list-aside point-list-warning">
+								<div class="point-date text-monospace">
+									<?php echo $event_day; ?>
+								</div>
+								<div class="point-month text-monospace">
+									<?php echo $event_mont_name; ?>
+								</div>
+							</div>
+							<div class="point-list-content">
+								<div class="card card-teaser shadow p-4 rounded border">
+									<div class="card-body">
+										<h5 class="card-title">
+											<?php
+											if ( $orario_inizio ) {
+											?>
+											<?php echo __( 'Inizio evento', 'design_laboratori_italia' ); ?> <?php echo $orario_inizio; ?>
+											<?php
+											}
+											if ( $orario_fine ) {
+											?>
+											-
+											<?php echo __( 'Fine evento', 'design_laboratori_italia' ); ?> <?php echo $orario_fine; ?>
+											<?php
+											}
+											?>
+										</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+	
 				<!-- LUOGO -->
 				<?php
 				if ( $luogo ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="luogo"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
-				<section id="responsabile">
-				<div class="row pb-3 pt-3">
-				<p><?php echo esc_attr( $luogo ); ?></p>
-				</div>
-				</section>
+					<article id="luogo" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="it-page-section h4 pt-3" id="luogo"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
+						<div class="row pb-3 pt-3">
+						<p><?php echo esc_attr( $luogo ); ?></p>
+						</div>
+					</article>
 				<?php
 				}
 				?>
 
 				<!-- CONTATTI -->
-				<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">
-					<?php
-					if ( $label_contatti ) {
-					?>
-					<span><?php echo esc_attr( $label_contatti ) ?></span>
-					<?php
-					} else {
-					?>
-					<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
-					<?php
-					}
-					?>
-				</h3>
-				<div class="it-list-wrapper">
-					<ul class="it-list">
+				<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">
+					<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">
 						<?php
-							if ( $telefono ) {
+						if ( $label_contatti ) {
 						?>
-						<li>
-							<div class="list-item">
+						<span><?php echo esc_attr( $label_contatti ) ?></span>
+						<?php
+						} else {
+						?>
+						<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
+						<?php
+						}
+						?>
+					</h3>
+					<div class="it-list-wrapper">
+						<ul class="it-list">
+							<?php
+								if ( $telefono ) {
+							?>
+							<li>
+								<div class="list-item">
+									<div class="it-rounded-icon">
+										<svg class="icon" role="img" aria-labelledby="Telephone">
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+										</svg>
+									</div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+								</div>
+							</li>
+							<?php
+								}
+								if ( $email ) {
+							?>
+							<li>
+								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
 								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Telephone">
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+									<svg class="icon" role="img" aria-labelledby="Mail">
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 									</svg>
 								</div>
-								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
-							</div>
-						</li>
-						<?php
-							}
-							if ( $email ) {
-						?>
-						<li>
-							<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
-							<div class="it-rounded-icon">
-								<svg class="icon" role="img" aria-labelledby="Mail">
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
-								</svg>
-							</div>
-							<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
-							</a>
-						</li>
-						<?php
-							}
-							if ( $sitoweb ) {
-						?>
-						<li>
-							<a class="list-item" target="_blank" href="<?php echo $sitoweb; ?>">
-							<div class="it-rounded-icon">
-								<svg class="icon" role="img" aria-labelledby="Link">
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-								</svg>
-							</div>
-							<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
-							</a>
-						</li>
-						<?php
-							}
-						?>
-					</ul>
-				</div>
+								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+								</a>
+							</li>
+							<?php
+								}
+								if ( $sitoweb ) {
+							?>
+							<li>
+								<a class="list-item" target="_blank" href="<?php echo $sitoweb; ?>">
+								<div class="it-rounded-icon">
+									<svg class="icon" role="img" aria-labelledby="Link">
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+									</svg>
+								</div>
+								<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
+								</a>
+							</li>
+							<?php
+								}
+							?>
+						</ul>
+					</div>
+				</article>
 
 				<!-- ALLEGATI -->
 				<?php
 				if ( $allegato ){
 				?>
-				<h3 class="it-page-section h4 pt-3 pb-3" id="allegati"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
-					<div class="row ">
-						<div class="card-wrapper card-teaser-wrapper">
-							<!--start card-->
-							<div class="card card-teaser rounded shadow ">
-								<div class="card-body">
-									<h3 class="card-title h5 ">
-										<svg class="icon" role="img" aria-labelledby="File PDF">
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use>
-										</svg>
-										<a target="_blank" href="<?php echo esc_attr( $allegato['url'] ); ?>"><?php echo esc_attr( $allegato['title'] ); ?></a>
-									</h3>
-								</div>
+					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="it-page-section h4 pt-3 pb-3" id="allegati"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+							<div class="row ">
+								<div class="card-wrapper card-teaser-wrapper">
+									<!--start card-->
+									<div class="card card-teaser rounded shadow border">
+										<div class="card-body">
+											<h3 class="card-title h5 ">
+												<svg class="icon">
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use>
+												</svg>
+												<a target="_blank" href="<?php echo esc_attr( $allegato['url'] ); ?>"><?php echo esc_attr( $allegato['title'] ); ?></a>
+											</h3>
+										</div>
+									</div>
+									<!--end card-->
+								</div>  
 							</div>
-							<!--end card-->
-						</div>  
-					</div>
+					</article>
 				<?php
 					}
 				?>
@@ -306,24 +365,43 @@ $short_descr         = get_field( 'descrizione_breve' );
 				<?php
 				if ( $video ){
 				?>
-				<h3 id="video" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
-				<div class="row variable-gutters mb-5">
-					<div class="col-lg-9">
-						<div class="video-wrapper">
-							<iframe title="<?php echo get_the_title( ); ?> Video'" width="500"
-								height="281" src="<?php echo esc_url( $video ); ?>"
-								frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen="">
-							</iframe>
+					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
+						<div class="row variable-gutters mb-5">
+							<div class="col-lg-9">
+								<div class="video-wrapper">
+									<iframe title="<?php echo get_the_title( ); ?> Video'"
+														aria-label="<?php echo get_the_title( ); ?> Video'"
+														width="500"
+														height="281"
+														src="<?php echo esc_url( $video ); ?>"
+														frameborder="0"
+														allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+														allowfullscreen=""></iframe>
+								</div>
+								<!--
+								<div id="accordionDiv1" class="collapse-div transcription-accordion">
+									<div class="collapse-header" id="headingA2">
+										<button data-toggle="collapse" data-target="#accordion2" aria-expanded="false"
+															aria-controls="accordion2"> Trascrizione del video </button>
+									</div>
+									<div id="accordion2" class="collapse" role="region" aria-labelledby="headingA2"
+														data-parent="#accordionDiv1">
+										<div class="collapse-body"> Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
+											denim
+											aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
+											VHS. </div>
+									</div>
+								</div>
+								-->
+							</div>
 						</div>
-					</div><!-- /col-lg-9 -->
-				</div><!-- /row -->
+				</article>
 				<?php
 					}
 				?>
 			</div>
-
+			<!-- END Colonna destra -->
 
 		</div> <!-- END row -->
 	</div>   <!-- END container -->
