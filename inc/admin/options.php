@@ -172,7 +172,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'logo_footer_visible',
 			'name' => __( 'Visualizza il logo nel footer', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se il logo nel footer deve essere visualizzato', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Indicare se il logo nel footer deve essere visualizzato', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
@@ -235,14 +235,14 @@ function dli_register_main_options_metabox() {
 	$alerts_options->add_field( array(
 			'id' => $prefix . 'messages_istruzioni',
 			'name'        => __( 'Avvisi di allerta in Home Page', 'design_laboratori_italia' ),
-			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage' , 'design_laboratori_italia' )  . '&nbsp;.',
+			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage' , 'design_laboratori_italia' )  . '.',
 			'type' => 'title',
 	) );
 
 	$alerts_group_id = $alerts_options->add_field( array(
 			'id'           => $prefix . 'messages',
 			'type'        => 'group',
-			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)' , 'design_laboratori_italia' )   . '&nbsp;.',
+			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)' , 'design_laboratori_italia' )   . '.',
 			'repeatable'  => true,
 			'options'     => array(
 					'group_title'   => __( 'Messaggio', 'design_laboratori_italia' ) . '&nbsp{#}',
@@ -424,7 +424,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_carousel_is_visible',
 			'name' => __( 'Visualizza carousel', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
@@ -437,8 +437,8 @@ function dli_register_main_options_metabox() {
 	$home_options->add_field(
 		array(
 			'id' => $prefix . 'home_carousel_after_presentation_enabled',
-			'name' => __( 'Mostra carousel dopo presentazione', 'design_laboratori_italia' ) . '&nbsp;.',
-			'desc' => __( 'Il carousel dopo la presentazione', 'design_laboratori_italia' ) . '&nbsp;.',
+			'name' => __( 'Mostra carousel dopo presentazione', 'design_laboratori_italia' ) . '.',
+			'desc' => __( 'Il carousel dopo la presentazione', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -452,7 +452,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_carousel_is_selezione_automatica',
 			'name' => __( 'Selezione Automatica', 'design_laboratori_italia' ),
-			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali è stato settato il flag "Promuovi in carousel". <b>No</b> per sceglierli manualmente nella sezione seguente', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
@@ -485,7 +485,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_featured_contents',
 				'name'        => __( 'Sezione contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page' , 'design_laboratori_italia' ) . '&nbsp;.',
+				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page' , 'design_laboratori_italia' ) . '.',
 				'type' => 'title',
 			)
 		);
@@ -494,7 +494,7 @@ function dli_register_main_options_metabox() {
 			array(
 				'id' => $prefix . 'home_featuredcontents_is_visible',
 				'name' => __( 'Visualizza contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata', 'design_laboratori_italia' ) . '&nbsp;.',
+				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata', 'design_laboratori_italia' ) . '.',
 				'type' => 'radio_inline',
 				'default' => 'true',
 				'options' => array(
@@ -667,7 +667,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_content_list',
 			'name'        => __( 'Sezione elenco contenuti', 'design_laboratori_italia' ),
-			'desc' => __( 'Gestione della sezione delle righe di contenuti in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Gestione della sezione delle righe di contenuti in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ) . '.',
 			'type' => 'title',
 		)
 	);
@@ -676,7 +676,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_event_list_is_visible',
 			'name' => __( 'Visualizza l\'elenco degli eventi', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -690,7 +690,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_news_list_is_visible',
 			'name' => __( 'Visualizza l\'elenco delle notizie', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -704,7 +704,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_publication_list_is_visible',
 			'name' => __( 'Visualizza l\'elenco delle pubblicazioni', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle pubblicazionideve essere visualizzato in  HP', 'design_laboratori_italia' ) . '&nbsp;.',
+			'desc' => __( 'Indicare se l\'elenco delle pubblicazionideve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -1392,14 +1392,14 @@ function dli_register_main_options_metabox() {
 		$social_options->add_field( array(
 				'id' => $prefix . 'socials_istruzioni',
 				'name'        => __( 'Sezione socialmedia', 'design_laboratori_italia' ),
-				'desc' => __( 'Inserisci qui i link ai tuoi socialmedia' , 'design_laboratori_italia' ) . '&nbsp;.',
+				'desc' => __( 'Inserisci qui i link ai tuoi socialmedia' , 'design_laboratori_italia' ) . '.',
 				'type' => 'title',
 		) );
 
 		$social_options->add_field(array(
 				'id' => $prefix . 'show_socials',
 				'name' => __( 'Mostra le icone social', 'design_laboratori_italia' ),
-				'desc' => __( "Abilita la visualizzazione dei socialmedia nell'header e nel footer della pagina", 'design_laboratori_italia' ) . '&nbsp;.',
+				'desc' => __( "Abilita la visualizzazione dei socialmedia nell'header e nel footer della pagina", 'design_laboratori_italia' ) . '.',
 				'type' => 'radio_inline',
 				'default' => 'false',
 				'options' => array(
@@ -1451,22 +1451,142 @@ function dli_register_main_options_metabox() {
 		'id' => $prefix . 'pinterest',
 		'name' => 'Pinterest',
 		'type' => 'text_url',
-) );
+	) );
 
-$social_options->add_field( array(
-	'id' => $prefix . 'iris',
-	'name' => 'Iris',
-	'type' => 'text_url',
-) );
+	$social_options->add_field( array(
+		'id' => $prefix . 'iris',
+		'name' => 'Iris',
+		'type' => 'text_url',
+	) );
 
-$social_options->add_field( array(
-	'id' => $prefix . 'alumni',
-	'name' => 'Alumni',
-	'type' => 'text_url',
-) );
+	$social_options->add_field( array(
+		'id' => $prefix . 'alumni',
+		'name' => 'Alumni',
+		'type' => 'text_url',
+	) );
 
 	/**
-	* 14 - Registers options page "Altro".
+	* 14 - Registers options page "Integrazione con Indico".
+	*/
+	$args = array(
+		'id'           => 'dli_options_indico',
+		'title'        => esc_html__( 'Indico', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'indico',
+		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),	);
+
+
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$indico_options = new_cmb2_box( $args );
+
+	$indico_options->add_field( array(
+			'id' => $prefix . 'indico_istruzioni',
+			'name'        => __( 'Sezione integrazione con Indico', 'design_laboratori_italia' ),
+			'desc' => __( 'Impostazioni per configurare l\'integrazione con Indico' , 'design_laboratori_italia' ) . '.',
+			'type' => 'title',
+	) );
+
+	$indico_options->add_field(array(
+			'id' => $prefix . 'indico_enabled',
+			'name' => __( "Attiva l'integrazione con Indico", 'design_laboratori_italia' ),
+			'desc' => __( "Abilita l'integrazione con Indico", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+					'data-conditional-value' => "false",
+			),
+	));
+
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_baseurl',
+			'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_token_api',
+			'name'       => __( 'Token API', 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'type'     => 'password',
+				'required' => 'required',
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_categories',
+			'name'       => __( 'Categorie', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'Gli ID delle categorie degli eventi da importare, separate da virgola' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_keywords',
+			'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_imp_item_status',
+			'name'             => __( "Stato dell'oggetto importato", 'design_laboratori_italia' ),
+			'desc'             => __( "Stato di pubblicazione in cui un oggetto importato viene salvato" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'draft',
+			'show_option_none' => false,
+			'options'          => array(
+				'publish' => __( 'Pubblicato', 'design_laboratori_italia' ),
+				'draft'   => __( 'Bozza', 'design_laboratori_italia' ),
+		),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_import_type',
+			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'dryrun',
+			'show_option_none' => false,
+			'options'          => array(
+				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+		),
+		)
+	);
+
+	/**
+	* 15 - Registers options page "Altro".
 	*/
 
 	$args = array(
@@ -1490,7 +1610,7 @@ $social_options->add_field( array(
 	$setup_options->add_field( array(
 				'id' => $prefix . 'altro_istruzioni',
 				'name'        => __( 'Altre Informazioni', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione delle opzioni generali del tema' , 'design_laboratori_italia' ) . '&nbsp;.',
+				'desc' => __( 'Area di configurazione delle opzioni generali del tema' , 'design_laboratori_italia' ) . '.',
 				'type' => 'title',
 		) );
 
@@ -1557,6 +1677,9 @@ $social_options->add_field( array(
 				'id'         => $prefix . 'newsletter_api_token',
 				'name'       => __( 'Token API', 'design_laboratori_italia' ),
 				'type'       => 'text',
+				'attributes' => array(
+					'type' => 'password',
+				),
 			)
 		);
 

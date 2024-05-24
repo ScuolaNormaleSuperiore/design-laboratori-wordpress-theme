@@ -1097,3 +1097,11 @@ if( ! function_exists( 'check_mandatory_plugins' ) ) {
 		return true;
 	}
 }
+
+if ( ! function_exists( 'dli_generate_slug' ) ) {
+	function dli_generate_slug( $text ) {
+		$new_text = sanitize_title( $text );
+		$new_text = substr( $new_text, 0, 100 );
+		return $new_text;
+	}
+}
