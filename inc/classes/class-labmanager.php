@@ -49,6 +49,10 @@ if ( ! class_exists( 'Place_Manager' ) ) {
 	include_once 'class-placemanager.php';
 }
 
+if ( ! class_exists( 'DLI_IndicoManager' ) ) {
+	include_once 'class-indicomanager.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -131,6 +135,11 @@ class DLI_LabManager {
 		// Setup del post type Luoghi.
 		$ctluoghi = new Place_Manager();
 		$ctluoghi->setup();
+
+
+		// Setup the Indico Manager.
+		$indicom = new DLI_IndicoManager();
+		$indicom->setup();
 
 	}
 
