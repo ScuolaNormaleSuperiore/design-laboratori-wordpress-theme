@@ -15,3 +15,9 @@ if ( ! function_exists( 'dli_get_field' ) ) {
 		return get_field( $selector, $post_id = false, $format_value = true );
 	}
 }
+
+if ( ! function_exists( 'dli_update_field' ) ) {
+	function dli_update_field( $fieldname, $fieldvalue, $post_id ) {
+		update_field( $fieldname, $fieldvalue, $post_id );
+	}
+}

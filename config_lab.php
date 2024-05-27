@@ -1,5 +1,8 @@
 <?php
 
+// Constants.
+define( 'DLI_SHORT_DESCRIPTION_SIZE', 255 );
+
 // Multilanguage options.
 define( 'DLI_IT_SLUG', 'it' );
 define( 'DLI_EN_SLUG', 'en' );
