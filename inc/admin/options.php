@@ -1468,122 +1468,122 @@ function dli_register_main_options_metabox() {
 	/**
 	* 14 - Registers options page "Integrazione con Indico".
 	*/
-	// $args = array(
-	// 	'id'           => 'dli_options_indico',
-	// 	'title'        => esc_html__( 'Indico', 'design_laboratori_italia' ),
-	// 	'object_types' => array( 'options-page' ),
-	// 	'option_key'   => 'indico',
-	// 	'capability'    => DLI_EDIT_CONFIG_PERMISSION,
-	// 	'parent_slug'  => 'dli_options',
-	// 	'tab_group'    => 'dli_options',
-	// 	'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),	);
+	$args = array(
+		'id'           => 'dli_options_indico',
+		'title'        => esc_html__( 'Indico', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'indico',
+		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),	);
 
 
-	// if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-	// 		$args['display_cb'] = 'dli_options_display_with_tabs';
-	// }
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
 
-	// $indico_options = new_cmb2_box( $args );
+	$indico_options = new_cmb2_box( $args );
 
-	// $indico_options->add_field( array(
-	// 		'id' => $prefix . 'indico_istruzioni',
-	// 		'name'        => __( 'Sezione integrazione con Indico', 'design_laboratori_italia' ),
-	// 		'desc' => __( 'Impostazioni per configurare l\'integrazione con Indico' , 'design_laboratori_italia' ) . '.',
-	// 		'type' => 'title',
-	// ) );
+	$indico_options->add_field( array(
+			'id' => $prefix . 'indico_istruzioni',
+			'name'        => __( 'Sezione integrazione con Indico', 'design_laboratori_italia' ),
+			'desc' => __( 'Impostazioni per configurare l\'integrazione con Indico' , 'design_laboratori_italia' ) . '.',
+			'type' => 'title',
+	) );
 
-	// $indico_options->add_field(array(
-	// 		'id' => $prefix . 'indico_enabled',
-	// 		'name' => __( "Attiva l'integrazione con Indico", 'design_laboratori_italia' ),
-	// 		'desc' => __( "Abilita l'integrazione con Indico", 'design_laboratori_italia' ) . '.',
-	// 		'type' => 'radio_inline',
-	// 		'default' => 'false',
-	// 		'options' => array(
-	// 				'true' => __( 'Si', 'design_laboratori_italia' ),
-	// 				'false' => __( 'No', 'design_laboratori_italia' ),
-	// 		),
-	// 		'attributes' => array(
-	// 				'data-conditional-value' => "false",
-	// 		),
-	// ));
+	$indico_options->add_field(array(
+			'id' => $prefix . 'indico_enabled',
+			'name' => __( "Attiva l'integrazione con Indico", 'design_laboratori_italia' ),
+			'desc' => __( "Abilita l'integrazione con Indico", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+					'data-conditional-value' => "false",
+			),
+	));
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'         => $prefix . 'indico_baseurl',
-	// 		'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
-	// 		'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
-	// 		'type'       => 'text',
-	// 		'attributes' => array(
-	// 			'required' => 'required',
-	// 		),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_baseurl',
+			'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'         => $prefix . 'indico_token_api',
-	// 		'name'       => __( 'Token API', 'design_laboratori_italia' ),
-	// 		'type'       => 'text',
-	// 		'attributes' => array(
-	// 			'type'     => 'password',
-	// 			'required' => 'required',
-	// 		),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_token_api',
+			'name'       => __( 'Token API', 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'type'     => 'password',
+				'required' => 'required',
+			),
+		)
+	);
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'         => $prefix . 'indico_categories',
-	// 		'name'       => __( 'Categorie', 'design_laboratori_italia' ) . '&nbsp;*',
-	// 		'desc'       => __( 'Gli ID delle categorie degli eventi da importare, separate da virgola' , 'design_laboratori_italia' ),
-	// 		'type'       => 'text',
-	// 		'attributes' => array(
-	// 			'required' => 'required',
-	// 		),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_categories',
+			'name'       => __( 'Categorie', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'Gli ID delle categorie degli eventi da importare, separate da virgola' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'         => $prefix . 'indico_keywords',
-	// 		'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
-	// 		'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
-	// 		'type'       => 'text',
-	// 		'attributes' => array(
-	// 			'required' => 'required',
-	// 		),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'         => $prefix . 'indico_keywords',
+			'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'               => $prefix . 'indico_imp_item_status',
-	// 		'name'             => __( "Stato dell'oggetto importato", 'design_laboratori_italia' ),
-	// 		'desc'             => __( "Stato di pubblicazione in cui un oggetto importato viene salvato" , 'design_laboratori_italia' ),
-	// 		'type'             => 'select',
-	// 		'default'          => 'draft',
-	// 		'show_option_none' => false,
-	// 		'options'          => array(
-	// 			'publish' => __( 'Pubblicato', 'design_laboratori_italia' ),
-	// 			'draft'   => __( 'Bozza', 'design_laboratori_italia' ),
-	// 	),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_imp_item_status',
+			'name'             => __( "Stato dell'oggetto importato", 'design_laboratori_italia' ),
+			'desc'             => __( "Stato di pubblicazione in cui un oggetto importato viene salvato" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'draft',
+			'show_option_none' => false,
+			'options'          => array(
+				'publish' => __( 'Pubblicato', 'design_laboratori_italia' ),
+				'draft'   => __( 'Bozza', 'design_laboratori_italia' ),
+		),
+		)
+	);
 
-	// $indico_options->add_field(
-	// 	array(
-	// 		'id'               => $prefix . 'indico_import_type',
-	// 		'name'             => __( "Tipo import", 'design_laboratori_italia' ),
-	// 		'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
-	// 		'type'             => 'select',
-	// 		'default'          => 'dryrun',
-	// 		'show_option_none' => false,
-	// 		'options'          => array(
-	// 			'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
-	// 			'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
-	// 	),
-	// 	)
-	// );
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_import_type',
+			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'dryrun',
+			'show_option_none' => false,
+			'options'          => array(
+				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+		),
+		)
+	);
 
 	/**
 	* 15 - Registers options page "Altro".
