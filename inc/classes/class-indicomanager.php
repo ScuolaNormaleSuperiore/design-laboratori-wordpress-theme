@@ -152,44 +152,76 @@ class DLI_IndicoManager {
 	}
 
 	private function create_event( $event, $conf ): int {
-		$post_name = dli_generate_slug( $event['title'] );
+		$post_name    = dli_generate_slug( $event['title'] );
+		$post_content = $this->prepare_post_content( $event['description'], $conf['base_url'] );
 		$new_page = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,
 			'post_title'   => $event['title'],
-			'post_content' => $event['description'],
+			'post_content' => $post_content,
 			'post_status'  => $conf['post_status'],
 			'post_parent'  => 0,
 		);
-		$update_existent = $conf['action'] === 'update';
+		$update_existent = ( $conf['action'] === 'update' ) ? true : false;
 		// Creazione degli eventi su WordPress.
 		// Verifico esistenza evento.
 		$page_check     = dli_get_content( $post_name, EVENT_POST_TYPE );
-		$new_post_it_id = $page_check ? $page_check->ID : 0;
-		if ( ! $new_post_it_id ) {
-			$new_post_it_id = wp_insert_post( $new_page );
-			$this->update_custom_fields( $new_post_it_id, $event );
+		$post_id = $page_check ? $page_check->ID : 0;
+		if ( ! $post_id ) {
+			$post_id = wp_insert_post( $new_page );
+			$this->update_custom_fields( $post_id, $event );
+
+			$this->add_post_featured_image( $post_id, $event['url'], $conf['base_url'] );
+			// Scarico e aggiungo l'immagine.
+
 
 			// @TODO: Gestione multilingua.
-			// update_post_meta( $new_post_it_id, '_wp_page_template', $new_content_template );
+			// update_post_meta( $post_id, '_wp_page_template', $new_content_template );
 			// Assign the IT language to the page.
 			// Create the EN page.
 			// Associate it and en translations.
 			// $related_posts = array(
-			// 	'it' => $new_post_it_id,
+			// 	'it' => $post_id,
 			// 	'en' => $new_page_en_id,
 			// );
 			// dli_save_post_translations( $related_posts );
 
-			dli_set_post_language( $new_post_it_id, 'it' );
+			dli_set_post_language( $post_id, 'it' );
 		} else {
 			if ( $update_existent ) {
 				// Aggiorna i campi del post.
 				wp_update_post( $new_page );
-				$this->update_custom_fields( $new_post_it_id, $event );
+				$this->update_custom_fields( $post_id, $event );
 			}
 		}
-		return $new_post_it_id;
+		return $post_id;
+	}
+
+	private function add_post_featured_image( $post_id, $event_url, $base_url ) {
+		if ( $event_url ) {
+			$property = 'og:image';
+			try {
+				$content = $this->get_meta_content( $event_url, $property );
+				if ( strpos( $content, 'http' ) !== false ) {
+					$img_url = $content;
+				} else {
+					$img_url = $base_url . $content;
+				}
+				error_log( $img_url );
+				dli_set_post_featured_image_from_url( $post_id,  $img_url );
+			} catch ( Exception $e ) {
+				error_log( $e->getMessage() );
+			}
+		}
+	}
+
+	private function prepare_post_content( $post_content, $base_url ) {
+		$pattern = '/src="\/([^"]*)"/';
+		// Sostituisce il pattern con la base URL.
+		$replacement = 'src="' .$base_url . '/$1"';
+		// Esegui la sostituzione.
+		$new_content = preg_replace( $pattern, $replacement, $post_content );
+		return $new_content;
 	}
 
 	private function update_custom_fields( $post_id, $event ){
@@ -200,14 +232,24 @@ class DLI_IndicoManager {
 				$truncated_text .= '...';
 			}
 			dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
-			// dli_update_field( 'data_inizio', $truncated_text, $new_post_it_id ); // data_inizio d/m/Y
-			// dli_update_field( 'data_fine', $truncated_text, $new_post_it_id ); // data_fine  d/m/Y
-			// dli_update_field( 'orario_inizio', $truncated_text, $new_post_it_id ); // orario_inizio g:i a
-			// dli_update_field( 'label_contatti', $truncated_text, $new_post_it_id );
-			// dli_update_field( 'luogo', $truncated_text, $new_post_it_id );
-			// dli_update_field( 'telefono', $truncated_text, $new_post_it_id );
-			// dli_update_field( 'email', $truncated_text, $new_post_it_id );
-			// dli_update_field( 'sitoweb', $truncated_text, $new_post_it_id );
+
+			$start_date = $event['startDate']['date'];
+			$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Y-m-d');
+			dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
+			$orario_inizio = $event['startDate']['time'];
+			dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario_inizio g:i a.
+			$end_date   = $event['endDate']['date'];
+			$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Y-m-d');
+			dli_update_field( 'data_fine', $start_date, $post_id ); // data_inizio d/m/Y.
+			if ( $event['url'] ) {
+				dli_update_field( 'sitoweb', $event['url'], $post_id );
+			}
+			$address = array();
+			if ( $event['roomFullname'] ) array_push( $address, $event['roomFullname'] );
+			if ( $event['location'] ) array_push( $address, $event['location'] );
+			if ( $event['address'] ) array_push( $address, $event['address'] );
+			$full_location = implode( ' - ', $address );
+			dli_update_field( 'luogo', $full_location, $post_id );
 	}
 
 	private function send_response( $code, $message, $data ){
@@ -217,6 +259,33 @@ class DLI_IndicoManager {
 			'data'    => $data,
 		);
 		return new WP_REST_Response( $result, $code );
+	}
+
+	private function get_meta_content($url, $property) {
+		$html = file_get_contents($url);
+		if ($html === FALSE) {
+				die("Errore nel caricare la pagina");
+		}
+		// Crea un nuovo DOMDocument.
+		$dom = new DOMDocument();
+		// Sopprimi gli errori dovuti a HTML non valido.
+		libxml_use_internal_errors(true);
+		// Carica l'HTML
+		$dom->loadHTML($html);
+		// Ripristina la gestione degli errori.
+		libxml_clear_errors();
+		// Crea un nuovo DOMXPath.
+		$xpath = new DOMXPath($dom);
+		// Cerca i tag <meta> con l'attributo property specificato.
+		$meta_tags = $xpath->query("//meta[@property='$property']");
+		// Verifica se sono stati trovati tag <meta>.
+		if ($meta_tags->length > 0) {
+				// Ottieni il valore dell'attributo content.
+				$content = $meta_tags->item(0)->getAttribute('content');
+				return $content;
+		}
+		// Restituisce null se il tag <meta> non è trovato.
+		return null;
 	}
 
 }

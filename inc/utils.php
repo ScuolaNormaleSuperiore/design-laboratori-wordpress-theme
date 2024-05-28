@@ -656,9 +656,9 @@ if( ! function_exists( 'dli_get_monthname_short' ) ) {
 }
 
 if( ! function_exists( 'dli_get_content' ) ) {
-	function dli_get_content( $slug, $content_type='post' ) {
+	function dli_get_content( $slug, $content_type ) {
 		$args = array(
-			'name'        => $slug,
+			'post_name'   => $slug,
 			'post_type'   => $content_type,
 			'numberposts' => 1,
 		);
@@ -1105,3 +1105,51 @@ if ( ! function_exists( 'dli_generate_slug' ) ) {
 		return $new_text;
 	}
 }
+
+
+if ( ! function_exists( 'dli_set_post_featured_image_from_url' ) ) {
+	function dli_set_post_featured_image_from_url( $post_id, $image_url ) {
+		// Controlla che il post ID e l'URL dell'immagine siano validi.
+		if ( !$post_id || !$image_url ) {
+			return false;
+		}
+		// Scarica l'immagine dall'URL.
+		$image_data = file_get_contents( $image_url );
+		if ( !$image_data ) {
+			return false;
+		}
+		// Ottieni il nome del file dall'URL.
+		$filename = basename( $image_url );
+		// Carica l'immagine nella directory degli upload di WordPress.
+		$upload_file = wp_upload_bits( $filename, null, $image_data );
+		if ( $upload_file['error'] ) {
+			return false;
+		}
+		// Prepara l'array dei dati per l'inserimento come allegato.
+		$wp_filetype = wp_check_filetype( $filename, null );
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title'     => sanitize_file_name($filename),
+			'post_content'   => '',
+			'post_status'    => 'inherit',
+		);
+		// Inserisci l'immagine come allegato nel database.
+		$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $post_id );
+		if (!$attachment_id) {
+			return false;
+		}
+		// Genera i metadati dell'allegato e aggiorna il database.
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+		wp_update_attachment_metadata( $attachment_id, $attachment_data );
+		// Imposta l'immagine come immagine in evidenza del post.
+		set_post_thumbnail( $post_id, $attachment_id );
+		return true;
+	}
+}
+
+
+
+
+
+
