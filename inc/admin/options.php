@@ -1526,20 +1526,24 @@ function dli_register_main_options_metabox() {
 			'type'       => 'text',
 			'attributes' => array(
 				'type'     => 'password',
-				'required' => 'required',
+				// 'required' => 'required',
 			),
 		)
 	);
 
 	$indico_options->add_field(
 		array(
-			'id'         => $prefix . 'indico_categories',
-			'name'       => __( 'Categorie', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( 'Gli ID delle categorie degli eventi da importare, separate da virgola' , 'design_laboratori_italia' ),
-			'type'       => 'text',
+			'id'         => $prefix . 'indico_category',
+			'name'       => __( 'Categoria', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'ID della categoria degli eventi da importare' , 'design_laboratori_italia' ),
+			'type'       => 'text_small',
 			'attributes' => array(
 				'required' => 'required',
+				'type'    => 'number',
+				'pattern' => '\d*',
 			),
+			'sanitization_cb' => 'absint',
+			'escape_cb'       => 'absint',
 		)
 	);
 
@@ -1551,6 +1555,37 @@ function dli_register_main_options_metabox() {
 			'type'       => 'text',
 			'attributes' => array(
 				'required' => 'required',
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_import_type',
+			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'dryrun',
+			'show_option_none' => false,
+			'options'          => array(
+				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$indico_options->add_field(
+		array(
+			'id'               => $prefix . 'indico_import_criteria',
+			'name'             => __( 'Scelta eventi', 'design_laboratori_italia' ),
+			'desc'             => __( 'Criterio di scelta degli eventi da importare' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'this-year',
+			'show_option_none' => false,
+			'options'          => array(
+				'all'      => __( 'Tutti gli eventi', 'design_laboratori_italia' ),
+				'future'   => __( 'Solo eventi futuri', 'design_laboratori_italia' ),
+				'this-year' => __( "Solo eventi di quest'anno", 'design_laboratori_italia' ),
 			),
 		)
 	);
@@ -1572,16 +1607,16 @@ function dli_register_main_options_metabox() {
 
 	$indico_options->add_field(
 		array(
-			'id'               => $prefix . 'indico_import_type',
-			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
-			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+			'id'               => $prefix . 'indico_item_existent_action',
+			'name'             => __( 'Evento esistente', 'design_laboratori_italia' ),
+			'desc'             => __( "Azione da intraprendere se l'evento esiste già" , 'design_laboratori_italia' ),
 			'type'             => 'select',
-			'default'          => 'dryrun',
+			'default'          => 'draft',
 			'show_option_none' => false,
 			'options'          => array(
-				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
-				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
-		),
+				'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
+				'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
+			),
 		)
 	);
 

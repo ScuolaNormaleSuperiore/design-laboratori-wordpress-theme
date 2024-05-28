@@ -55,8 +55,8 @@ if ( 'true' === $section_enabled ) {
 						?>
 							<!-- SINGOLO EVENTO -->
 							<li class="splide__slide lined_slide">
-								<div class="it-single-slide-wrapper"> 
-									<div class="card-wrapper">
+								<div class="it-single-slide-wrapper h-100">
+									<div class="card-wrapper h-100">
 										<div class="card card-img">
 											<div class="img-responsive-wrapper">
 												<div class="img-responsive img-responsive-panoramic">
