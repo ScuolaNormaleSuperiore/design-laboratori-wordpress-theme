@@ -128,6 +128,7 @@ class DLI_IndicoManager {
 				'criteria'    => dli_get_option( 'indico_import_criteria', 'indico' ),
 				'action'      => dli_get_option( 'indico_item_existent_action', 'indico' ),
 				'schedule'    => dli_get_option( 'indico_schedule', 'indico' ),
+				'debug'       => dli_get_option( 'indico_debug_enabled', 'indico' ),
 				'start_date'  => $start_date,
 			);
 
@@ -374,11 +375,15 @@ class DLI_IndicoManager {
 	}
 
 	private function send_response( $code, $message, $data ){
+		$debug_enabled = dli_get_option( 'indico_debug_enabled', 'indico' ) === 'true';
 		$result = array(
 			'code'    => $code,
 			'message' => $message,
 			'data'    => $data,
 		);
+		if ( $debug_enabled ){
+			error_log( json_encode( $result ) );
+		}
 		return new WP_REST_Response( $result, $code );
 	}
 

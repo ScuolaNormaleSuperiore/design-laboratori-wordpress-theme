@@ -1499,13 +1499,28 @@ function dli_register_main_options_metabox() {
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
 			'attributes' => array(
 					'data-conditional-value' => "false",
 			),
 	));
+
+	$indico_options->add_field(array(
+		'id' => $prefix . 'indico_debug_enabled',
+		'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
+		'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
+		'type' => 'radio_inline',
+		'default' => 'false',
+		'options' => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+		),
+		'attributes' => array(
+				'data-conditional-value' => "false",
+		),
+));
 
 	$indico_options->add_field(
 		array(
