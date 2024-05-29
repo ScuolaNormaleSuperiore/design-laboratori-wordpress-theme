@@ -658,8 +658,9 @@ if( ! function_exists( 'dli_get_monthname_short' ) ) {
 if( ! function_exists( 'dli_get_content' ) ) {
 	function dli_get_content( $slug, $content_type ) {
 		$args = array(
-			'post_name'   => $slug,
+			'name'        => $slug,
 			'post_type'   => $content_type,
+			'post_status' => array( 'publish', 'draft' ),
 			'numberposts' => 1,
 		);
 		$posts = get_posts( $args );

@@ -12,8 +12,13 @@ define( 'MSG_IMPORT_ERROR', __( "Si è verificato un errore durante l'esecuzione
 define( 'MSG_IMPORT_SUCCESSFUL', __( 'Importazione eseguita correttamente', 'design_laboratori_italia' ) );
 define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo evento: ', 'design_laboratori_italia' ) );
 define( 'MSG_IMPORTED_EVENT', __( 'Importato evento: ', 'design_laboratori_italia' ) );
+define( 'MSG_UPDATED_EVENT', __( 'Aggiornato evento: ', 'design_laboratori_italia' ) );
+define( 'MSG_IGNORED_EVENT', __( 'Ignorato evento: ', 'design_laboratori_italia' ) );
 define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importanto l'evento: ", 'design_laboratori_italia' ) );
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
+define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***', 'design_laboratori_italia' ) );
+define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, eventi creati realmente ***', 'design_laboratori_italia' ) );
+
 class DLI_IndicoManager {
 	/**
 	 * Constructor of the Manager.
@@ -24,7 +29,9 @@ class DLI_IndicoManager {
 		// Register the indico import endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_indico_import' ) );
 		// @TODO: Schedule indico import.
+		// add_action( 'dl_indico_import_schedule',array ( $this, 'manage_schedule' ) );
 	}
+
 
 	public function register_indico_import(){
 		register_rest_route(
@@ -61,6 +68,7 @@ class DLI_IndicoManager {
 				'post_status' => dli_get_option( 'indico_imp_item_status', 'indico' ),
 				'criteria'    => dli_get_option( 'indico_import_criteria', 'indico' ),
 				'action'      => dli_get_option( 'indico_item_existent_action', 'indico' ),
+				'schedule'    => dli_get_option( 'indico_schedule', 'indico' ),
 				'start_date'  => $start_date,
 			);
 
@@ -105,7 +113,7 @@ class DLI_IndicoManager {
 		$base_url    = $conf['base_url'];
 		$start_date  = $conf['start_date'];
 		$import_type = $conf['import_type'];
-		$data       = array();
+		$data        = array();
 		// Creazione del client.
 		// Invocazione del servizio.
 		$api_url = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
@@ -122,36 +130,84 @@ class DLI_IndicoManager {
 			throw new Exception( $msg );
 		}
 
+		// Import type header.
+		array_push( $data, ( $import_type === 'dryrun' ) ? MSG_HEADER_DRY_RUN : MSG_HEADER_REAL_IMPORT );
+
 		// Loop di importazione.
+		$total     = count( $resp_data['results'] );
+		$counter   = 0;
+		$discarded = 0;
+		$errors    = 0;
+		$processed = 0;
+		$updated   = 0;
+		$ignored   = 0;
 		foreach ( $resp_data['results'] as $event ) {
+			$counter++;
 			$event_title = $event['title'];
 			$msg         = '';
+
+			$source_array = $this->trim_array( $conf['keywords'] ? explode(',', $conf['keywords']) : array() );
+			$dest_array   = $this->trim_array( $event['keywords'] ? $event['keywords'] : array() );
+			if ( ( ! $source_array ) || ( ! $dest_array ) || ( count( array_intersect( $source_array, $dest_array ) ) === 0 ) ) {
+				$discarded++;
+				continue;
+			}
+
 			if ( $import_type === 'dryrun' ){
 				// Importazione dry run.
 				array_push(
 					$data,
 					MSG_IMPORT_DRY_RUN . $event_title,
 				);
+				$processed++;
 			} else {
 				// Importazione effettiva.
 				try {
-					$event_code = $this->create_event( $event, $conf );
-					array_push(
-						$data,
-						MSG_IMPORTED_EVENT . $event_code . ' - ' . $event_title,
-					);
+					$updated    = false;
+					$ignored    = false;
+					$event_code = $this->create_event( $event, $conf, $updated, $ignored );
+					if ( $updated ) {
+						array_push(
+							$data,
+							MSG_UPDATED_EVENT . $event_code . ' - ' . $event_title,
+						);
+						$updated++;
+					} else if ( $ignored ){
+						array_push(
+							$data,
+							MSG_IGNORED_EVENT . $event_code . ' - ' . $event_title,
+						);
+						$ignored++;
+					} else {
+						array_push(
+							$data,
+							MSG_IMPORTED_EVENT . $event_code . ' - ' . $event_title,
+						);
+						$processed++;
+					}
 				} catch ( Exception $e ) {
 					array_push(
 						$data,
 						MSG_ERROR_IMPORTING_EVENT . $event_title . ' - ' . $e->getMessage(),
 					);
+					$errors++;
 				}
 			}
 		}
+		// Import footer.
+		$msg = sprintf(
+			__( "*** Totali: %d - Scartati: %d - Processati: %d - Aggiornati: %d - Ignorati: %d - Errori: %d ***" ), 
+			$total, $discarded, $processed, $updated, $ignored, $errors
+		);
+		array_push( $data, $msg );
 		return $data;
 	}
 
-	private function create_event( $event, $conf ): int {
+	private function trim_array( $array ): array {
+		return array_map( 'trim', $array );
+	}
+
+	private function create_event( $event, $conf, &$updated, &$ignored ): int {
 		$post_name    = dli_generate_slug( $event['title'] );
 		$post_content = $this->prepare_post_content( $event['description'], $conf['base_url'] );
 		$new_page = array(
@@ -165,16 +221,15 @@ class DLI_IndicoManager {
 		$update_existent = ( $conf['action'] === 'update' ) ? true : false;
 		// Creazione degli eventi su WordPress.
 		// Verifico esistenza evento.
-		$page_check     = dli_get_content( $post_name, EVENT_POST_TYPE );
-		$post_id = $page_check ? $page_check->ID : 0;
+		$page_check = dli_get_content( $post_name, EVENT_POST_TYPE );
+		$post_id    = $page_check ? $page_check->ID : 0;
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_page );
+			$updated = false;
 			$this->update_custom_fields( $post_id, $event );
-
-			$this->add_post_featured_image( $post_id, $event['url'], $conf['base_url'] );
 			// Scarico e aggiungo l'immagine.
-
-
+			$this->add_post_featured_image( $post_id, $event['url'], $conf['base_url'] );
+			
 			// @TODO: Gestione multilingua.
 			// update_post_meta( $post_id, '_wp_page_template', $new_content_template );
 			// Assign the IT language to the page.
@@ -190,8 +245,15 @@ class DLI_IndicoManager {
 		} else {
 			if ( $update_existent ) {
 				// Aggiorna i campi del post.
-				wp_update_post( $new_page );
+				$pars = array(
+					'ID'           => $post_id,
+					'post_content' => $new_page['post_content'],
+				);
+				wp_update_post( $pars );
 				$this->update_custom_fields( $post_id, $event );
+				$updated = true;
+			} else {
+				$ignored = true;
 			}
 		}
 		return $post_id;
