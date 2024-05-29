@@ -11,7 +11,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 - Integrazione con Indico.
-
+- Cancellazione job al momento della disinstallazione del tema.
+- Fascia articoli.
+- Nuovo dettaglio news.
+- Bug categoria in elenco articoli.
+- Verifica Docker e salvataggio configurazione con nuovi parametri.
 
 ## [1.2.8] - 2024-05-30
 
