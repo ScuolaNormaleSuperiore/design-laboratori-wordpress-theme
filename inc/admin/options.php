@@ -1569,10 +1569,10 @@ function dli_register_main_options_metabox() {
 			'show_option_none' => false,
 			'options'          => array(
 				'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
-				'once-hour'  => __( 'Ogni ora', 'design_laboratori_italia' ),
-				'once-day'   => __( 'Una volta al giorno', 'design_laboratori_italia' ),
-				'once-week'  => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
-				'once-month' => __( 'Una volta al mese', 'design_laboratori_italia' ),
+				'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
+				'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
+				'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
+				'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
 			),
 		)
 	);

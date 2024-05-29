@@ -20,31 +20,90 @@ define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun
 define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, eventi creati realmente ***', 'design_laboratori_italia' ) );
 
 class DLI_IndicoManager {
+	private string $job_name;
+
 	/**
 	 * Constructor of the Manager.
 	 */
-	public function __construct() {}
+	public function __construct() {
+		$this->job_name = 'dli_indico_import_job';
+		// Schedule indico import.
+		$this->manage_import_job();
+	}
 
 	public function setup(){
 		// Register the indico import endpoint.
-		add_action( 'rest_api_init', array( $this, 'register_indico_import' ) );
-		// @TODO: Schedule indico import.
-		// add_action( 'dl_indico_import_schedule',array ( $this, 'manage_schedule' ) );
+		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
+		add_action( $this->job_name, [$this, 'execute_job'] );
 	}
 
+	private function manage_import_job() {
+		// SELECT * FROM wp_options WHERE option_name = 'cron'.
+		$schedule       = dli_get_option( 'indico_schedule', 'indico' );
+		$module_enabled = dli_get_option( 'indico_enabled', 'indico' );
+		
+		if ( ( $module_enabled==='false' ) || ( $schedule === 'never' ) ){
+			$this->remove_all_import_jobs();
+		} else {
+			$next_scheduled = wp_get_scheduled_event( $this->job_name );
+			if ( ! $next_scheduled ) {
+				error_log('@@@ CREO schedulazione @@@ ');
+				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
+			} else if ( $next_scheduled->schedule !== $schedule ) {
+				error_log('@@@ Cambio schedulazione @@@ ');
+				wp_clear_scheduled_hook( $this->job_name );
+				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
+			}
+		}
+	}
 
-	public function register_indico_import(){
+	function remove_all_import_jobs() {
+		error_log('@@@ CANCELLO schedulazione @@@ ');
+		wp_clear_scheduled_hook( $this->job_name );
+	}
+	public function execute_job() {
+		error_log( '****** ESEGUO IL JOB ******' );
+		$this->indico_import();
+	}
+	public function register_import_endpoint(){
 		register_rest_route(
 			'custom/v1',
 			'/indico-import',
 			array(
-				'methods'  => 'GET',
-				'callback' => array( $this, 'indico_import' ),
-				// 'permission_callback' => function () {
-				// 	return is_user_logged_in();
-				// },
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'indico_import' ),
+				'permission_callback' => array( $this, 'dli_permission_callback' ),
 			)
 		);
+	}
+
+	/**
+	 * Verifica la Basic Authentication.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return bool | WP_Error
+	 */
+	public function dli_permission_callback( WP_REST_Request $request ) {
+		$auth_header = $request->get_header( 'Authorization' );
+		if ( ! $auth_header ) {
+			return new WP_Error(
+				'rest_not_logged_in',
+				'Non sei autenticato.',
+				array(
+					'status' => 401
+				),
+			);
+		}
+		list( $username, $password ) = explode(':', base64_decode( substr( $auth_header, 6 ) ) );
+		$user = wp_authenticate( $username, $password );
+		if ( is_wp_error( $user ) ) {
+			return new WP_Error(
+				'rest_authentication_failed',
+				'Credenziali non valide.',
+				array('status' => 401)
+			);
+		}
+		return true;
 	}
 
 	public function indico_import() {
