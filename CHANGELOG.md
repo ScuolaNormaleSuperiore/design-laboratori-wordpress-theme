@@ -10,14 +10,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Integrazione con Indico.
 - Cancellazione job al momento della disinstallazione del tema.
 - Fascia articoli.
 - Nuovo dettaglio news.
 - Bug categoria in elenco articoli.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
+- Banner in hp
+  
 
-## [1.2.8] - 2024-05-30
+## [1.2.8] - 2024-06-05
+
+### Aggiunto
+- Integrazione con Indico.
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
