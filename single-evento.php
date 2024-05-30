@@ -15,18 +15,25 @@ $cat_page            = DLI_PAGE_PER_CT[EVENT_POST_TYPE][$current_lang];
 $image_metadata      = dli_get_image_metadata( $post );
 $pg                  = dli_get_page_by_post_type( $post->post_type );
 $pg_link             = get_permalink( $pg->ID );
+
 $start_date          = get_field( 'data_inizio', $post );
-$timestamp           = strtotime(str_replace('/', '-', $start_date));
-$event_day           = $timestamp ? date( 'd', $timestamp ) : '';
-$event_month_number  = $timestamp ? date( 'm', $timestamp ) : '';
-$event_mont_name     = $event_month_number ? dli_get_monthname_short( $event_month_number ) : '';
+$tmstp_start         = strtotime( str_replace('/', '-', $start_date ) );
+$start_day           = $tmstp_start ? date( 'd', $tmstp_start ) : '';
+$start_month_number  = $tmstp_start ? date( 'm', $tmstp_start ) : '';
+$start_month_name    = $start_month_number ? dli_get_monthname_short( $start_month_number ) : '';
 $start_event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
-$end_date            = get_field( 'data_fine', $post );
-$end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
 $orario_inizio       = get_field( 'orario_inizio', $post );
 $orario_inizio       = $orario_inizio ? $orario_inizio : '';
+
+$end_date            = get_field( 'data_fine', $post );
+$tmstp_end           = strtotime( str_replace('/', '-', $end_date  ) );
+$end_day             = $tmstp_start ? date( 'd', $tmstp_end ) : '';
+$end_month_number    = $tmstp_start ? date( 'm', $tmstp_end ) : '';
+$end_month_name      = $start_month_number ? dli_get_monthname_short( $end_month_number ) : '';
+$end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
 $orario_fine         = get_field( 'orario_fine', $post );
 $orario_fine         = $orario_fine ? $orario_fine : '';
+
 $luogo               = dli_get_field( 'luogo' );
 $label_contatti      = dli_get_field( 'label_contatti' );
 $telefono            = dli_get_field( 'telefono' );
@@ -223,18 +230,19 @@ $short_descr         = get_field( 'descrizione_breve' );
 				<article id="date_e_orari" class="it-page-section mb-4 anchor-offset clearfix">
 					<h4><?php echo __( 'Date e orari', 'design_laboratori_italia' ); ?></h4>
 					<div class="point-list-wrapper my-4">
+						<!-- data inizio -->
 						<div class="point-list">
 							<div class="point-list-aside point-list-warning">
 								<div class="point-date text-monospace">
-									<?php echo $event_day; ?>
+									<?php echo $start_day; ?>
 								</div>
 								<div class="point-month text-monospace">
-									<?php echo $event_mont_name; ?>
+									<?php echo $start_month_name; ?>
 								</div>
 							</div>
 							<div class="point-list-content">
 								<?php
-									if ( $orario_inizio || $orario_fine ) {
+									if ( $orario_inizio ) {
 								?>
 								<div class="card card-teaser shadow p-4 rounded border">
 									<div class="card-body">
@@ -245,9 +253,35 @@ $short_descr         = get_field( 'descrizione_breve' );
 											<?php echo __( 'Inizio evento', 'design_laboratori_italia' ); ?> <?php echo $orario_inizio; ?>
 											<?php
 											}
+											?>
+										</h5>
+									</div>
+								</div>
+								<?php
+									}
+								?>
+							</div>
+						</div>
+						<!-- data fine -->
+						<div class="point-list">
+							<div class="point-list-aside point-list-warning">
+								<div class="point-date text-monospace">
+									<?php echo $end_day; ?>
+								</div>
+								<div class="point-month text-monospace">
+									<?php echo $end_month_name; ?>
+								</div>
+							</div>
+							<div class="point-list-content">
+								<?php
+									if ( $orario_fine ) {
+								?>
+								<div class="card card-teaser shadow p-4 rounded border">
+									<div class="card-body">
+										<h5 class="card-title">
+											<?php
 											if ( $orario_fine ) {
 											?>
-											-
 											<?php echo __( 'Fine evento', 'design_laboratori_italia' ); ?> <?php echo $orario_fine; ?>
 											<?php
 											}

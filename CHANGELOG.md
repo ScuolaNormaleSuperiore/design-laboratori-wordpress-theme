@@ -10,20 +10,21 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
+- Gestione della lingua del import degli eventi di Indico (usa quella principale).
+- Nuova pagina di dettaglio di notizie.
 - Cancellazione job import Indico al momento della disinstallazione del tema.
-- Gestione della lingua del import degli eventi di Indico.
-- Bug categoria in elenco articoli.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
-- Banner in hp
+- Traduzione etichette.
+- Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
-
+- Aggiungere orario fine (non obbligatorio) ad eventi.
 
 ## [1.2.8] - 2024-06-05
 
 ### Aggiunto
 - Integrazione con Indico.
 - Sezione articoli in Home Page.
-- Nuova pagina di dettaglio di eventi e notizie ???
+- Nuova pagina di dettaglio di eventi.
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".

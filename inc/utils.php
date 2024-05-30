@@ -658,7 +658,7 @@ if( ! function_exists( 'dli_get_content' ) ) {
 		$args = array(
 			'name'        => $slug,
 			'post_type'   => $content_type,
-			'post_status' => array( 'publish', 'draft' ),
+			'post_status' => array( 'publish', 'draft', 'trash', 'pending', 'private' ),
 			'numberposts' => 1,
 		);
 		$posts = get_posts( $args );
