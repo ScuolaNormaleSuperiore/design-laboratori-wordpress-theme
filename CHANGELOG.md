@@ -18,6 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
 - Aggiungere orario fine (non obbligatorio) ad eventi.
+  
 
 ## [1.2.8] - 2024-06-05
 
