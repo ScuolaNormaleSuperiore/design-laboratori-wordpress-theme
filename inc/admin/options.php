@@ -704,7 +704,21 @@ function dli_register_main_options_metabox() {
 		array(
 			'id' => $prefix . 'home_publication_list_is_visible',
 			'name' => __( 'Visualizza l\'elenco delle pubblicazioni', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle pubblicazionideve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
+			'desc' => __( 'Indicare se l\'elenco delle pubblicazioni deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_article_list_is_visible',
+			'name' => __( 'Visualizza l\'elenco degli articoli', 'design_laboratori_italia' ),
+			'desc' => __( 'Indicare se l\'elenco degli articoli deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
 			'default' => 'false',
 			'options' => array(

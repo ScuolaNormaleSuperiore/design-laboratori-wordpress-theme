@@ -10,18 +10,20 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Cancellazione job al momento della disinstallazione del tema.
-- Fascia articoli.
-- Nuovo dettaglio news.
+- Cancellazione job import Indico al momento della disinstallazione del tema.
+- Gestione della lingua del import degli eventi di Indico.
 - Bug categoria in elenco articoli.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
 - Banner in hp
-  
+- Refactoring codice menu configurazione.
+
 
 ## [1.2.8] - 2024-06-05
 
 ### Aggiunto
 - Integrazione con Indico.
+- Sezione articoli in Home Page.
+- Nuova pagina di dettaglio di eventi e notizie ???
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
