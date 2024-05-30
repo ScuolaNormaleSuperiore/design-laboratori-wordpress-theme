@@ -9,7 +9,9 @@
 
 global $post;
 get_header();
-$category       = dli_get_post_main_category( $post, 'category' );
+$categories     = dli_get_post_categories( $post, 'category' );
+$current_lang   = dli_current_language();
+$cat_page       = DLI_PAGE_PER_CT[WP_DEFAULT_POST][$current_lang];
 $date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $post_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_metadata = dli_get_image_metadata( $post );
@@ -38,9 +40,18 @@ $pg_link        = get_permalink( $pg->ID );
 							<p class="font-weight-normal">
 								<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							</p>
+							<?php
+								foreach( $categories as $category ) {
+									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/' . $cat_page );
+							?>
 							<div class="chip chip-primary chip-lg chip-simple">
-								<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
+									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								</a>
 							</div>
+							<?php
+								}
+							?>
 						</div>
 					</div>
 					<div class="col-sm-7">

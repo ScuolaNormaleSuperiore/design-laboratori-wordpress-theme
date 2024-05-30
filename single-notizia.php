@@ -10,6 +10,8 @@
 global $post;
 get_header();
 $categories     = dli_get_post_categories( $post, 'category' );
+$current_lang   = dli_current_language();
+$cat_page       = DLI_PAGE_PER_CT[NEWS_POST_TYPE][$current_lang];
 $date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $news_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_metadata = dli_get_image_metadata( $post );
@@ -40,7 +42,7 @@ $pg_link        = get_permalink( $pg->ID );
 							</p>
 							<?php
 								foreach( $categories as $category ) {
-									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/notizie' );
+									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/' . $cat_page );
 							?>
 							<div class="chip chip-primary chip-lg chip-simple">
 								<a class="text-decoration-none" href="<?php echo $cat_url ?>">

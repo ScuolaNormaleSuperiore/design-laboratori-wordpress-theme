@@ -26,7 +26,7 @@ if ( 'true' === $section_enabled ) {
 		<div class="section-content">
 			<div class="container">
 				<h2 class="h3 pb-2 ">
-					<?php echo __('', 'design_laboratori_italia' ); ?>
+					<?php echo __('Articoli', 'design_laboratori_italia' ); ?>
 				</h2>
 				<div class="row">
 				<?php

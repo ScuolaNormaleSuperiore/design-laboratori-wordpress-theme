@@ -10,6 +10,8 @@
 global $post;
 get_header();
 $categories          = dli_get_post_categories( $post, 'category' );
+$current_lang        = dli_current_language();
+$cat_page            = DLI_PAGE_PER_CT[EVENT_POST_TYPE][$current_lang];
 $image_metadata      = dli_get_image_metadata( $post );
 $pg                  = dli_get_page_by_post_type( $post->post_type );
 $pg_link             = get_permalink( $pg->ID );
@@ -105,7 +107,7 @@ $short_descr         = get_field( 'descrizione_breve' );
 						<!-- Categorie -->
 						<?php
 								foreach( $categories as $category ) {
-									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/eventi' );
+									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/' . $cat_page );
 							?>
 							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 								<a class="text-decoration-none" href="<?php echo $cat_url ?>">

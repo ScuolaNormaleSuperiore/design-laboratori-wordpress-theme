@@ -414,8 +414,6 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 	function dli_from_page_to_carousel_item( $item ) {
 		$post_type = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
-
-		$page = dli_get_page_by_post_type( $post_type );
 		$post_title  = get_the_title( $item );
 		$categories  = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
 		$pt_slugs    = dli_get_sluglist_by_category( $categories );
