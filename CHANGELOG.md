@@ -10,15 +10,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Gestione della lingua del import degli eventi di Indico (usa quella principale).
-- Nuova pagina di dettaglio di notizie.
+- Gestione della lingua dell'import degli eventi di Indico (usare quella principale).
+- Nuova pagina di dettaglio delle notizie.
 - Cancellazione job import Indico al momento della disinstallazione del tema.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
 - Traduzione etichette.
+- Aggiungere orario fine (non obbligatorio) al post-type degli eventi.
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
-- Aggiungere orario fine (non obbligatorio) ad eventi.
-  
 
 ## [1.2.8] - 2024-06-05
 
