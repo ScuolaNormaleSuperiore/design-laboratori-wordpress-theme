@@ -45,6 +45,9 @@ $carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled
 <?php get_template_part( 'template-parts/home/hp-list-publication' ); ?>
 <?php get_template_part( 'template-parts/home/hp-list-article' ); ?>
 
+<!-- Section banners -->
+<?php get_template_part( 'template-parts/home/hp-banners-section' ); ?>
+
 </main>
 <?php
 get_footer();

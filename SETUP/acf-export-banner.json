@@ -89,7 +89,7 @@
                 "aria-label": "",
                 "type": "true_false",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -97,7 +97,7 @@
                     "id": ""
                 },
                 "message": "Apri in nuova finestra",
-                "default_value": 1,
+                "default_value": 0,
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""

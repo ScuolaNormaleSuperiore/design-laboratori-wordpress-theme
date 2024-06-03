@@ -269,12 +269,11 @@ if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 
 if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	function dli_from_event_to_carousel_item( $item ) {
-		$result    =  DLI_POST_WRAPPER;
-		$post_type = get_post_type( $item );
+		$result         =  DLI_POST_WRAPPER;
+		$post_type      = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
-
-		$page        = dli_get_page_by_post_type( $post_type );
-		$post_title  = get_the_title( $item );
+		$page           = dli_get_page_by_post_type( $post_type );
+		$post_title     = get_the_title( $item );
 		
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
@@ -297,12 +296,11 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 
 	if( ! function_exists( 'dli_from_news_to_carousel_item' ) ) {
 		function dli_from_news_to_carousel_item( $item ) {
-			$result    =  DLI_POST_WRAPPER;
-			$post_type = get_post_type( $item );
+			$result         =  DLI_POST_WRAPPER;
+			$post_type      = get_post_type( $item );
 			$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
-
-			$page        = dli_get_page_by_post_type( $post_type );
-			$post_title  = get_the_title( $item );
+			$page           = dli_get_page_by_post_type( $post_type );
+			$post_title     = get_the_title( $item );
 
 			// @TODO: Popolare $result e non ridefinirlo.
 			$result      = array(
