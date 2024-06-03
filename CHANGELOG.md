@@ -11,7 +11,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 - Refactoring codice menu configurazione.
-- Traduzione etichette.
 
 
 ## [1.2.8] - 2024-06-05
