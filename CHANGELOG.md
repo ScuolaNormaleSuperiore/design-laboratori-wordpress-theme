@@ -10,7 +10,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Gestione della lingua dell'import degli eventi di Indico (usare quella principale).
 - Cancellazione job import Indico al momento della disinstallazione del tema.
 - Nuova pagina di dettaglio delle notizie.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
@@ -18,6 +17,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiungere orario fine (non obbligatorio) al post-type degli eventi.
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
+- Aggiornato Dockerfile per sito demo.
 
 ## [1.2.8] - 2024-06-05
 
@@ -32,7 +32,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornata la versione di Bootstrap Italia alla versione 2.8.7.
 
 ### Corretto
-- Aggiornato Dockerfile per sito demo.
+
 - Corrette errate invocazioni della funzione: dli_get_post_main_category.
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.

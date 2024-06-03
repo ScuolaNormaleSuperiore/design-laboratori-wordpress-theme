@@ -34,7 +34,9 @@ class DLI_IndicoManager {
 	public function setup(){
 		// Register the indico import endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
-		add_action( $this->job_name, [$this, 'execute_job'] );
+		add_action( $this->job_name, array( $this, 'execute_job' ) );
+		add_action('delete_theme', array( $this, 'remove_all_import_jobs' ) );
+		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
 	}
 
 	private function logString( $text ){
@@ -64,7 +66,7 @@ class DLI_IndicoManager {
 		}
 	}
 
-	function remove_all_import_jobs() {
+	public function remove_all_import_jobs() {
 		$this->logString('@@@ CANCELLO schedulazione @@@ ');
 		wp_clear_scheduled_hook( $this->job_name );
 	}
