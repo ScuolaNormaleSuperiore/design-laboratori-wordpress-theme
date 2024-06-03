@@ -10,21 +10,20 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Cancellazione job import Indico al momento della disinstallazione del tema.
-- Nuova pagina di dettaglio delle notizie.
-- Verifica Docker e salvataggio configurazione con nuovi parametri.
-- Traduzione etichette.
+- Nuova pagina di dettaglio dei post del blog.
 - Aggiungere orario fine (non obbligatorio) al post-type degli eventi.
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
-- Aggiornato Dockerfile per sito demo.
+- Verifica Docker e salvataggio configurazione con nuovi parametri.
+- Traduzione etichette. 
+
 
 ## [1.2.8] - 2024-06-05
 
 ### Aggiunto
 - Integrazione con Indico.
 - Sezione articoli in Home Page.
-- Nuova pagina di dettaglio di eventi.
+- Nuova pagina di dettaglio per eventi e notizie.
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".
@@ -32,12 +31,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornata la versione di Bootstrap Italia alla versione 2.8.7.
 
 ### Corretto
-
 - Corrette errate invocazioni della funzione: dli_get_post_main_category.
 - Corretta selezione degli eventi da mostrare nella sezione Eventi della Home Page.
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
 - Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
 - Corretta visualizzazione dei chip delle categorie nelle pagine di dettaglio di eventi e notizie.
+- Aggiornato Dockerfile per sito demo.
 
 
 ## [1.2.7] - 2024-04-30

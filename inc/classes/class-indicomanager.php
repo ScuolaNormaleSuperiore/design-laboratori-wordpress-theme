@@ -14,7 +14,7 @@ define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo evento: ', 'design_laborato
 define( 'MSG_IMPORTED_EVENT', __( 'Importato evento: ', 'design_laboratori_italia' ) );
 define( 'MSG_UPDATED_EVENT', __( 'Aggiornato evento: ', 'design_laboratori_italia' ) );
 define( 'MSG_IGNORED_EVENT', __( 'Ignorato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importanto l'evento: ", 'design_laboratori_italia' ) );
+define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importando l'evento: ", 'design_laboratori_italia' ) );
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
 define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***', 'design_laboratori_italia' ) );
 define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, eventi creati realmente ***', 'design_laboratori_italia' ) );
@@ -58,7 +58,7 @@ class DLI_IndicoManager {
 			if ( ! $next_scheduled ) {
 				$this->logString( '@@@ CREO schedulazione @@@ ' );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
-			} else if ( $next_scheduled->schedule !== $schedule ) {
+			} elseif ( $next_scheduled->schedule !== $schedule ) {
 				$this->logString( '@@@ Cambio schedulazione @@@ ' );
 				wp_clear_scheduled_hook( $this->job_name );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
