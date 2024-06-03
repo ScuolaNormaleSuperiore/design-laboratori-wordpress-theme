@@ -84,7 +84,7 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	rm -rf /var/www/html/wp-content/plugins/akismet && \
 	rm -rf /var/www/html/wp-content/plugins/hello.php && \
 	cd /var/www/html/wp-content/themes && \
-	git clone ${DLI_THEME} && \
+	git clone -b dev ${DLI_THEME} && \
 	cd /var/www/html/wp-content/plugins && \
 	curl -o /tmp/${PLG_ACF_OPENSTRRETMAP} ${BASE_PLUGIN_URL}/${PLG_ACF_OPENSTRRETMAP} && \
 	unzip /tmp/${PLG_ACF_OPENSTRRETMAP}  && \

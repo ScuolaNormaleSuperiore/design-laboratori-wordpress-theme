@@ -36,6 +36,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
 - Corretta visualizzazione dei chip delle categorie nelle pagine di dettaglio di eventi e notizie.
 - Aggiornato Dockerfile per sito demo.
+- Corretto l'ordine di visualizzazione degli eventi nella sezione eventi in HP.
 
 
 ## [1.2.7] - 2024-04-30
