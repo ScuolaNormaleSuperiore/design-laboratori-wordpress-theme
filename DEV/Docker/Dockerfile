@@ -20,8 +20,8 @@ ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.6.zip
 ARG PLG_ACF=advanced-custom-fields.6.3.0.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_COOKIES=cookie-law-info.3.2.3.zip
-ARG PLG_POLYLANG=polylang.3.6.1.zip
+ARG PLG_COOKIES=cookie-law-info.3.2.4.zip
+ARG PLG_POLYLANG=polylang.3.6.2.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.4.0.1.zip
 

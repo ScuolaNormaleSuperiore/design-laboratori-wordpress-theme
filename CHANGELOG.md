@@ -10,10 +10,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
-- Traduzione etichette. 
+- Traduzione etichette.
 
 
 ## [1.2.8] - 2024-06-05
@@ -23,6 +22,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezione articoli in Home Page.
 - Nuova pagina di dettaglio per eventi, notizie e blog.
 - Aggiunta gestione dei tag nei post type.
+- Aggiunta gestione dei banner in Home Page con un post type personalizzato.
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".

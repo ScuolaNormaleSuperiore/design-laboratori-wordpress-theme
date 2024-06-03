@@ -49,7 +49,7 @@ if ( 'true' === $section_enabled ) {
 								</div>
 								<div class="card-body">
 									<div class="category-top">
-										<a class="category" 
+										<a class="category"
 											href="<?php echo esc_url( $postitem['category_link'] ); ?>">
 											<?php echo esc_attr( $postitem['category'] ); ?>
 										</a>
