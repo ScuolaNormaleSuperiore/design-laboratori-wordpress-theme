@@ -37,6 +37,13 @@ class DLI_IndicoManager {
 		add_action( $this->job_name, [$this, 'execute_job'] );
 	}
 
+	private function logString( $text ){
+		$debug_enabled = ( dli_get_option( 'indico_debug_enabled', 'indico' ) === 'true' );
+		if ( $debug_enabled ) {
+			error_log( $text );
+		}
+	}
+
 	private function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
 		$schedule       = dli_get_option( 'indico_schedule', 'indico' );
@@ -47,10 +54,10 @@ class DLI_IndicoManager {
 		} else {
 			$next_scheduled = wp_get_scheduled_event( $this->job_name );
 			if ( ! $next_scheduled ) {
-				error_log('@@@ CREO schedulazione @@@ ');
+				$this->logString( '@@@ CREO schedulazione @@@ ' );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
 			} else if ( $next_scheduled->schedule !== $schedule ) {
-				error_log('@@@ Cambio schedulazione @@@ ');
+				$this->logString( '@@@ Cambio schedulazione @@@ ' );
 				wp_clear_scheduled_hook( $this->job_name );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
 			}
@@ -58,13 +65,15 @@ class DLI_IndicoManager {
 	}
 
 	function remove_all_import_jobs() {
-		error_log('@@@ CANCELLO schedulazione @@@ ');
+		$this->logString('@@@ CANCELLO schedulazione @@@ ');
 		wp_clear_scheduled_hook( $this->job_name );
 	}
+
 	public function execute_job() {
-		error_log( '****** ESEGUO IL JOB ******' );
+		$this->logString( '****** ESEGUO IL JOB ******' );
 		$this->indico_import();
 	}
+
 	public function register_import_endpoint(){
 		register_rest_route(
 			'custom/v1',
@@ -289,19 +298,10 @@ class DLI_IndicoManager {
 			$this->update_custom_fields( $post_id, $event );
 			// Scarico e aggiungo l'immagine.
 			$this->add_post_featured_image( $post_id, $event['url'], $conf['base_url'] );
-			
-			// @TODO: Gestione multilingua.
-			// update_post_meta( $post_id, '_wp_page_template', $new_content_template );
-			// Assign the IT language to the page.
-			// Create the EN page.
-			// Associate it and en translations.
-			// $related_posts = array(
-			// 	'it' => $post_id,
-			// 	'en' => $new_page_en_id,
-			// );
-			// dli_save_post_translations( $related_posts );
+			// La lingua impostata per l'oggetto importato è quella settata come lingua di default.
+			$lang = dli_current_language();
+			dli_set_post_language( $post_id, $lang );
 
-			dli_set_post_language( $post_id, 'it' );
 		} else {
 			if ( $update_existent ) {
 				// Aggiorna i campi del post.
@@ -329,7 +329,7 @@ class DLI_IndicoManager {
 				} else {
 					$img_url = $base_url . $content;
 				}
-				error_log( $img_url );
+				$this->logString( $img_url );
 				dli_set_post_featured_image_from_url( $post_id,  $img_url );
 			} catch ( Exception $e ) {
 				error_log( $e->getMessage() );
@@ -374,16 +374,13 @@ class DLI_IndicoManager {
 			dli_update_field( 'luogo', $full_location, $post_id );
 	}
 
-	private function send_response( $code, $message, $data ){
-		$debug_enabled = dli_get_option( 'indico_debug_enabled', 'indico' ) === 'true';
+	private function send_response( $code, $message, $data ) {
 		$result = array(
 			'code'    => $code,
 			'message' => $message,
 			'data'    => $data,
 		);
-		if ( $debug_enabled ){
-			error_log( json_encode( $result ) );
-		}
+		$this->logString( json_encode( $result ) );
 		return new WP_REST_Response( $result, $code );
 	}
 

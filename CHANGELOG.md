@@ -11,8 +11,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 - Gestione della lingua dell'import degli eventi di Indico (usare quella principale).
-- Nuova pagina di dettaglio delle notizie.
 - Cancellazione job import Indico al momento della disinstallazione del tema.
+- Nuova pagina di dettaglio delle notizie.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.
 - Traduzione etichette.
 - Aggiungere orario fine (non obbligatorio) al post-type degli eventi.

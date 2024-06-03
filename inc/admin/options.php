@@ -1211,7 +1211,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em,p,br', 
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
@@ -1231,7 +1231,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em,p,br', 
+					'valid_elements' => 'a[href],strong,em,p,br',
 				),
 			),
 		)
