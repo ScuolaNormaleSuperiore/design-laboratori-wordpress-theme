@@ -10,7 +10,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Aggiungere orario fine (non obbligatorio) al post-type degli eventi.
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
 - Verifica Docker e salvataggio configurazione con nuovi parametri.

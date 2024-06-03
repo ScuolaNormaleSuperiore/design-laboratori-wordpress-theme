@@ -164,6 +164,23 @@ class Event_Manager {
 						'return_format' => 'g:i a',
 					),
 					array(
+						'key' => 'field_665d964dad6d1',
+						'label' => 'Orario fine',
+						'name' => 'orario_fine',
+						'aria-label' => '',
+						'type' => 'time_picker',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'display_format' => 'g:i a',
+						'return_format' => 'g:i a',
+					),
+					array(
 						'key' => 'field_63ca9b49b8fcf',
 						'label' => 'Luogo',
 						'name' => 'luogo',
