@@ -56,8 +56,7 @@ class Event_Manager {
 			'menu_icon'       => 'dashicons-calendar',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'taxonomies'      => array( WP_DEFAULT_CATEGORY ),
-			// 'capability_type' => array( 'evento', 'eventi' ),
+			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( EVENT_POST_TYPE, $args );

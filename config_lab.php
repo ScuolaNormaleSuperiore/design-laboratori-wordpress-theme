@@ -48,6 +48,7 @@ define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
 define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
+define( 'WP_DEFAULT_TAGS', 'post_tag' );
 
 // The slug is the name of the post, that is the name that appears in the url.
 // Archive pages of the site.

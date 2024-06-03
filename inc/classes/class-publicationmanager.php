@@ -55,12 +55,6 @@ class Publication_Manager {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
 			'show_in_rest'      => true,
-			// 'capabilities'      => array(
-			// 	'manage_terms' => 'manage_tipo_pubblicazione',
-			// 	'edit_terms'   => 'edit_tipo_pubblicazione',
-			// 	'delete_terms' => 'delete_tipo_pubblicazione',
-			// 	'assign_terms' => 'assign_tipo_pubblicazione',
-			// ),
 		);
 
 		register_taxonomy( PUBLICATION_TYPE_TAXONOMY, array( PUBLICATION_POST_TYPE ), $publ_types_args );
@@ -94,6 +88,7 @@ class Publication_Manager {
 			'has_archive'     => true,
 			'show_in_rest'    => true,
 			'rewrite'         => array( 'slug' => 'pubblicazioni' ),
+			'taxonomies'      => array( WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( PUBLICATION_POST_TYPE, $args );

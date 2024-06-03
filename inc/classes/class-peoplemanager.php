@@ -58,12 +58,6 @@ class People_Manager {
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'struttura' ),
 			'show_in_rest'      => true,
-			// 'capabilities'      => array(
-			// 	'manage_terms' => 'manage_strutture',
-			// 	'edit_terms'   => 'edit_strutture',
-			// 	'delete_terms' => 'delete_strutture',
-			// 	'assign_terms' => 'assign_strutture',
-			// ),
 		);
 
 		register_taxonomy( STRUCTURE_TAXONOMY, array( PEOPLE_POST_TYPE ), $structure_args );
@@ -102,6 +96,7 @@ class People_Manager {
 			'show_in_rest'    => true,
 			'hierarchical'    => true,
 			'rewrite'         => array('slug' => 'persone'),
+			'taxonomies'        => array( WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( PEOPLE_POST_TYPE, $args );

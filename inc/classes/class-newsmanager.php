@@ -59,8 +59,7 @@ class News_Manager {
 			'menu_icon'       => 'dashicons-welcome-widgets-menus',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'taxonomies'      => array( WP_DEFAULT_CATEGORY ),
-			// 'capability_type' => array( 'notizia', 'notizie' ),
+			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( NEWS_POST_TYPE, $args );

@@ -48,6 +48,7 @@ class ResearchActivities_Manager {
 						'menu_icon'     => 'dashicons-book-alt',
 						'has_archive'   => true,
 						'rewrite'       => array( 'slug' => 'indirizzi-di-ricerca' ),
+						'taxonomies'    => array( WP_DEFAULT_TAGS ),
 				);
 
 				register_post_type( RESEARCHACTIVITY_POST_TYPE, $args );
