@@ -7,17 +7,17 @@ if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(
 		array(
 			'post_type'      => array( EVENT_POST_TYPE ),
-			'orderby'        => $order_field,
+			'orderby'        => $order_field ,
 			'order'          => 'DESC',
 			'posts_per_page' => 6,
 			'meta_query' => array(
-				'relation' => 'AND',
-				// array(
-				// 		'key' => 'data_inizio',
-				// 		'value' => date('Y-m-d'),
-				// 		'compare' => '>=',
-				// 		'type' => 'DATE'
-				// ),
+				'relation' => 'OR',
+				array(
+						'key' => 'data_inizio',
+						'value' => date('Y-m-d'),
+						'compare' => '>=',
+						'type' => 'DATE'
+				),
 				array(
 						'key' => 'data_fine',
 						'value' => date('Y-m-d'),
