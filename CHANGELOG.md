@@ -11,7 +11,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [Non rilasciato]
 - Refactoring codice menu configurazione.
-- Verifica Docker e salvataggio configurazione con nuovi parametri.
 - Traduzione etichette.
 
 
