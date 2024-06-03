@@ -10,7 +10,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Nuova pagina di dettaglio dei post del blog.
 - Aggiungere orario fine (non obbligatorio) al post-type degli eventi.
 - Banner in hp (fare post type personalizzato).
 - Refactoring codice menu configurazione.
@@ -23,7 +22,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Aggiunto
 - Integrazione con Indico.
 - Sezione articoli in Home Page.
-- Nuova pagina di dettaglio per eventi e notizie.
+- Nuova pagina di dettaglio per eventi, notizie e blog.
+- Aggiunta gestione dei tag nei post type.
 
 ### Modificato
 - Tolta dipendenza da plugin "Disable Gutenberg". Se serve va installato "a mano".

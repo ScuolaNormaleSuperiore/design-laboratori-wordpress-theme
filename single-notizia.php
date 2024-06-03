@@ -84,10 +84,6 @@ $current_url    = get_permalink();
 		<div class="container my-4">
 			<div class="row pt-0">
 				<!-- SIDEBAR NEWS  -->
-
-
-
-				<!-- Condividi-->
 				<div class="col-12 col-lg-2 border-end">
 					<!-- Tutte le notizie -->
 					<div>
