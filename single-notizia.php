@@ -58,7 +58,7 @@ $current_url    = get_permalink();
 								foreach( $categories as $category ) {
 									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/' . $cat_page );
 							?>
-							<div class="chip chip-primary chip-lg chip-simple">
+							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
 									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
 								</a>

@@ -42,6 +42,7 @@ define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'RESEARCHACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
 define( 'WP_DEFAULT_POST', 'post' );
 define( 'WP_DEFAULT_PAGE', 'page' );
+define( 'BANNER_POST_TYPE', 'banner' );
 
 // CUSTOM TAXONOMIES.
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
@@ -151,6 +152,7 @@ define(
 		PLACE_POST_TYPE,
 		WP_DEFAULT_PAGE,
 		WP_DEFAULT_POST,
+		BANNER_POST_TYPE
 	)
 );
 
