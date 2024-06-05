@@ -160,8 +160,8 @@ class Event_Manager {
 							'class' => '',
 							'id' => '',
 						),
-						'display_format' => 'g:i a',
-						'return_format' => 'g:i a',
+						'display_format' => 'H:i',
+						'return_format' => 'H:i',
 					),
 					array(
 						'key' => 'field_665d964dad6d1',
@@ -177,8 +177,8 @@ class Event_Manager {
 							'class' => '',
 							'id' => '',
 						),
-						'display_format' => 'g:i a',
-						'return_format' => 'g:i a',
+						'display_format' => 'H:i',
+						'return_format' => 'H:i',
 					),
 					array(
 						'key' => 'field_63ca9b49b8fcf',

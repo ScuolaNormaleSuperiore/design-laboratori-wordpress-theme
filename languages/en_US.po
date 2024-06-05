@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2024-06-03 14:38+0000\n"
+"PO-Revision-Date: 2024-06-05 13:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -54,7 +54,7 @@ msgstr "Enable debug messages"
 msgid "Abilita messaggi debug nel file error.log"
 msgstr "Enable debug messages in error.log file"
 
-#: inc/admin/options.php:1886
+#: inc/admin/options.php:1889
 msgid "Abilita REST API"
 msgstr "Enable REST API"
 
@@ -62,7 +62,7 @@ msgstr "Enable REST API"
 msgid "Accedi"
 msgstr "Login"
 
-#: inc/admin/options.php:1678
+#: inc/admin/options.php:1681
 msgid "Aggiorna"
 msgstr "Update"
 
@@ -107,11 +107,11 @@ msgstr "to"
 msgid "Allegati"
 msgstr "Attachments"
 
-#: inc/admin/options.php:1708
+#: inc/admin/options.php:1711
 msgid "Altre Informazioni"
 msgstr "More Information"
 
-#: inc/admin/options.php:1690 inc/admin/options.php:1693
+#: inc/admin/options.php:1693 inc/admin/options.php:1696
 msgid "Altro"
 msgstr "Other"
 
@@ -145,7 +145,7 @@ msgstr "Projects archive."
 msgid "Area di configurazione delle informazioni di base"
 msgstr "Configuration of basic information"
 
-#: inc/admin/options.php:1709
+#: inc/admin/options.php:1712
 #| msgid "Area di configurazione delle opzioni generali del tema."
 msgid "Area di configurazione delle opzioni generali del tema"
 msgstr "Configuration of theme general options"
@@ -168,7 +168,7 @@ msgstr "Enable main hero in Home Page"
 msgid "Attiva l'integrazione con Indico"
 msgstr "Enable Indico integration"
 
-#: inc/admin/options.php:1747
+#: inc/admin/options.php:1750
 msgid "Attiva la newsletter"
 msgstr "Enable newsletter"
 
@@ -189,7 +189,7 @@ msgstr "Alerts in Home Page"
 msgid "Avvisi in Home"
 msgstr "Alerts in Home"
 
-#: inc/admin/options.php:1673
+#: inc/admin/options.php:1676
 msgid "Azione da intraprendere se l'evento esiste già"
 msgstr "Action to take if the event already exists"
 
@@ -228,11 +228,11 @@ msgstr "Box 2 of highlighted contents"
 msgid "Box 3 dei contenuti in evidenza"
 msgstr "Box 3 of highlighted contents"
 
-#: inc/admin/options.php:1664
+#: inc/admin/options.php:1667
 msgid "Bozza"
 msgstr "Draft"
 
-#: inc/admin/options.php:1766
+#: inc/admin/options.php:1769
 msgid "Brevo"
 msgstr "Brevo"
 
@@ -241,7 +241,7 @@ msgid "Cancella"
 msgstr "Cancel"
 
 #: page-templates/blog.php:49 page-templates/eventi.php:52
-#: page-templates/notizie.php:49 inc/admin/options.php:1580
+#: page-templates/notizie.php:49 inc/admin/options.php:1581
 msgid "Categoria"
 msgstr "Category"
 
@@ -338,7 +338,7 @@ msgstr "Contents of the box"
 msgid "Copia del messaggio non inviata."
 msgstr "Copy of message not sent."
 
-#: inc/admin/options.php:1642
+#: inc/admin/options.php:1645
 msgid "Criterio di scelta degli eventi da importare"
 msgstr "Criteria for selecting events to import"
 
@@ -350,7 +350,7 @@ msgstr "from"
 msgid "Danger"
 msgstr "Danger"
 
-#: single-evento.php:231
+#: single-evento.php:171 single-evento.php:231
 msgid "Date e orari"
 msgstr "Dates and times"
 
@@ -465,7 +465,7 @@ msgstr "Event details"
 msgid "DETTAGLI della persona"
 msgstr "Person details"
 
-#: inc/admin/options.php:1633
+#: inc/admin/options.php:1636
 msgid "Dry Run (test import)"
 msgstr "Dry Run (test import)"
 
@@ -473,7 +473,7 @@ msgstr "Dry Run (test import)"
 msgid "Dry-run - Importo evento: "
 msgstr "Dry-run - Importing event:"
 
-#: inc/admin/options.php:1617
+#: inc/admin/options.php:1620
 msgid "Due volte al giorno"
 msgstr "Twice daily"
 
@@ -594,7 +594,7 @@ msgstr "Events"
 msgid "Evento"
 msgstr "Event"
 
-#: inc/admin/options.php:1672
+#: inc/admin/options.php:1675
 msgid "Evento esistente"
 msgstr "Existing event"
 
@@ -611,7 +611,7 @@ msgstr "Filter by"
 msgid "Filtra per tipo di contenuto"
 msgstr "Filter by content type"
 
-#: inc/admin/options.php:1632
+#: inc/admin/options.php:1635
 msgid "Finalizza import"
 msgstr "Finalize import"
 
@@ -637,7 +637,7 @@ msgstr ""
 "Management of the content rows section in the Home Page. To show a content "
 "in this section, set the \"Promote on home\" field"
 
-#: inc/admin/options.php:1716
+#: inc/admin/options.php:1719
 msgid "Gestione dello stile del sito"
 msgstr "Style website management"
 
@@ -650,7 +650,7 @@ msgstr ""
 "Main Hero section management (optional) shown on Home Page. To view content "
 "in this section, tick the \"Promote on home\" field"
 
-#: inc/admin/options.php:1760
+#: inc/admin/options.php:1763
 msgid "Gestore delle newsletter"
 msgstr "Gestore delle newsletter"
 
@@ -696,27 +696,27 @@ msgstr "Projects."
 msgid "ICT SNS"
 msgstr "ICT SNS"
 
-#: inc/admin/options.php:1800
+#: inc/admin/options.php:1803
 msgid "ID del template"
 msgstr "Template ID"
 
-#: inc/admin/options.php:1801
+#: inc/admin/options.php:1804
 msgid "ID del template della pagina che gestisce la double OptIn"
 msgstr "Template ID of the page that manages the double OptIn"
 
-#: inc/admin/options.php:1581
+#: inc/admin/options.php:1582
 msgid "ID della categoria degli eventi da importare"
 msgstr "Category ID of the events to import"
 
-#: inc/admin/options.php:1785
+#: inc/admin/options.php:1788
 msgid "ID della lista"
 msgstr "List ID"
 
-#: inc/admin/options.php:1786
+#: inc/admin/options.php:1789
 msgid "ID della lista associata al sito"
 msgstr "ID of the list associated with the site"
 
-#: inc/admin/options.php:1679
+#: inc/admin/options.php:1682
 msgid "Ignora"
 msgstr "Ignore"
 
@@ -825,7 +825,7 @@ msgstr ""
 "in which the activity of the laboratory takes place. Places can be "
 "structures locations and physical channels of service delivery"
 
-#: inc/admin/options.php:1627
+#: inc/admin/options.php:1630
 msgid ""
 "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova "
 "(dry-run)"
@@ -833,7 +833,7 @@ msgstr ""
 "Indicates whether the import should be finalized or just a test (dry-run) "
 "should be performed"
 
-#: inc/admin/options.php:1609
+#: inc/admin/options.php:1612
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
@@ -937,7 +937,7 @@ msgstr ""
 "Enter in the title the full name of the person and, where appropriate, the "
 "full name to facilitate the search"
 
-#: inc/admin/options.php:1866
+#: inc/admin/options.php:1869
 msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
@@ -1072,7 +1072,7 @@ msgstr "Sign me up..."
 msgid "Iscrizione avvenuta correttamente"
 msgstr "Registration successful"
 
-#: inc/admin/options.php:1596
+#: inc/admin/options.php:1598
 msgid "Keywords"
 msgstr "Keywords"
 
@@ -1133,7 +1133,7 @@ msgstr "Research activities"
 msgid "Le Novità"
 msgstr "The News"
 
-#: inc/admin/options.php:1597
+#: inc/admin/options.php:1599
 msgid ""
 "Le parole chiave degli eventi da importare, separate da virgola (operatore "
 "usato per la selezione: OR)"
@@ -1172,7 +1172,7 @@ msgstr "Link to an in-depth page also external to the site"
 msgid "Link utili"
 msgstr "Useful links"
 
-#: inc/admin/options.php:1815
+#: inc/admin/options.php:1818
 msgid "Login"
 msgstr "Login"
 
@@ -1271,7 +1271,7 @@ msgstr "Show carousel after presentation"
 msgid "Mostra le icone social"
 msgstr "Show social media icons"
 
-#: inc/admin/options.php:1836
+#: inc/admin/options.php:1839
 msgid "Multilingua"
 msgstr "Multi-language"
 
@@ -1284,7 +1284,7 @@ msgstr "News e contacts"
 msgid "News singola"
 msgstr "Single news"
 
-#: page-templates/newsletter.php:85 inc/admin/options.php:1739
+#: page-templates/newsletter.php:85 inc/admin/options.php:1742
 #: template-parts/common/newsletter.php:10
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -1301,9 +1301,9 @@ msgstr "Newsletter."
 #: inc/admin/options.php:712 inc/admin/options.php:726
 #: inc/admin/options.php:740 inc/admin/options.php:1396
 #: inc/admin/options.php:1435 inc/admin/options.php:1531
-#: inc/admin/options.php:1546 inc/admin/options.php:1752
-#: inc/admin/options.php:1828 inc/admin/options.php:1849
-#: inc/admin/options.php:1891
+#: inc/admin/options.php:1546 inc/admin/options.php:1755
+#: inc/admin/options.php:1831 inc/admin/options.php:1852
+#: inc/admin/options.php:1894
 msgid "No"
 msgstr "No"
 
@@ -1393,7 +1393,7 @@ msgstr ""
 "Each message is built through short description (max 140 characters) and "
 "expiration date"
 
-#: inc/admin/options.php:1615
+#: inc/admin/options.php:1618
 msgid "Ogni ora"
 msgstr "Hourly"
 
@@ -1705,7 +1705,7 @@ msgstr "Projects"
 msgid "Progetto"
 msgstr "Project"
 
-#: inc/admin/options.php:1663
+#: inc/admin/options.php:1666
 msgid "Pubblicato"
 msgstr "Published"
 
@@ -1719,7 +1719,7 @@ msgstr "Publication"
 msgid "Pubblicazioni"
 msgstr "Publications"
 
-#: inc/admin/options.php:1823
+#: inc/admin/options.php:1826
 msgid "Pulsante per il login visibile"
 msgstr "Button for login visible"
 
@@ -1728,7 +1728,7 @@ msgstr "Button for login visible"
 msgid "Responsabile"
 msgstr "Manager"
 
-#: inc/admin/options.php:1878
+#: inc/admin/options.php:1881
 msgid "REST API"
 msgstr "REST API"
 
@@ -1773,15 +1773,15 @@ msgstr "Results"
 msgid "Scegli un'opzione"
 msgstr "Select an option"
 
-#: inc/admin/options.php:1641
+#: inc/admin/options.php:1644
 msgid "Scelta eventi"
 msgstr "Event selection"
 
-#: inc/admin/options.php:1608
+#: inc/admin/options.php:1611
 msgid "Schedulazione"
 msgstr "Scheduling"
 
-#: inc/admin/options.php:1614
+#: inc/admin/options.php:1617
 msgid "Schedulazione disabilitata"
 msgstr "Scheduling disabled"
 
@@ -1790,7 +1790,7 @@ msgstr "Scheduling disabled"
 msgid "Seguici su"
 msgstr "Follow us on"
 
-#: inc/admin/options.php:1844
+#: inc/admin/options.php:1847
 msgid "Selettore lingua visibile"
 msgstr "Language selector visible"
 
@@ -1842,7 +1842,7 @@ msgstr "Selection of Articles"
 msgid "Selezione Automatica"
 msgstr "Automatic selection"
 
-#: inc/admin/options.php:1761
+#: inc/admin/options.php:1764
 msgid "Selezione del programma usato per gestire la newsletter del sito"
 msgstr "Selection of the program used to manage the site's newsletter"
 
@@ -1850,7 +1850,7 @@ msgstr "Selection of the program used to manage the site's newsletter"
 msgid "Selezione lingua: lingua selezionata"
 msgstr "Language selection: selected language"
 
-#: inc/admin/options.php:1725
+#: inc/admin/options.php:1728
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
 "Designers Italia)"
@@ -1925,9 +1925,9 @@ msgstr "Socialmedia section"
 #: inc/admin/options.php:711 inc/admin/options.php:725
 #: inc/admin/options.php:739 inc/admin/options.php:1395
 #: inc/admin/options.php:1434 inc/admin/options.php:1530
-#: inc/admin/options.php:1545 inc/admin/options.php:1751
-#: inc/admin/options.php:1827 inc/admin/options.php:1848
-#: inc/admin/options.php:1890
+#: inc/admin/options.php:1545 inc/admin/options.php:1754
+#: inc/admin/options.php:1830 inc/admin/options.php:1851
+#: inc/admin/options.php:1893
 msgid "Si"
 msgstr "Yes"
 
@@ -1944,31 +1944,31 @@ msgstr "Website"
 msgid "Socialmedia"
 msgstr "Socialmedia"
 
-#: inc/admin/options.php:1649
+#: inc/admin/options.php:1652
 msgid "Solo eventi di quest'anno"
 msgstr "Only this year's events"
 
-#: inc/admin/options.php:1648
+#: inc/admin/options.php:1651
 msgid "Solo eventi futuri"
 msgstr "Future events only"
 
-#: inc/admin/options.php:1657
+#: inc/admin/options.php:1660
 msgid "Stato dell'oggetto importato"
 msgstr "Status of the imported object"
 
-#: inc/admin/options.php:1658
+#: inc/admin/options.php:1661
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr "Published state in which an imported object is saved"
 
-#: inc/admin/options.php:1730
+#: inc/admin/options.php:1733
 msgid "Stile Bootstrap Italia standard"
 msgstr "Standard Italian Bootstrap style"
 
-#: inc/admin/options.php:1724
+#: inc/admin/options.php:1727
 msgid "Stile del sito"
 msgstr "Style of website"
 
-#: inc/admin/options.php:1731
+#: inc/admin/options.php:1734
 msgid "Stile personalizzato"
 msgstr "Personalized style"
 
@@ -2039,7 +2039,7 @@ msgstr "Hero text"
 msgid "Testo hero ENG"
 msgstr "Hero text in English"
 
-#: inc/admin/options.php:1626
+#: inc/admin/options.php:1629
 msgid "Tipo import"
 msgstr "Import type"
 
@@ -2080,7 +2080,7 @@ msgstr "Hero title"
 msgid "Titolo hero ENG"
 msgstr "Hero title in English"
 
-#: inc/admin/options.php:1568 inc/admin/options.php:1774
+#: inc/admin/options.php:1569 inc/admin/options.php:1777
 msgid "Token API"
 msgstr "Token API"
 
@@ -2112,7 +2112,7 @@ msgstr "All Place types"
 msgid "Tutti gli articoli"
 msgstr "All articles"
 
-#: inc/admin/options.php:1647 template-parts/home/hp-list-event.php:104
+#: inc/admin/options.php:1650 template-parts/home/hp-list-event.php:105
 msgid "Tutti gli eventi"
 msgstr "All events"
 
@@ -2124,11 +2124,11 @@ msgstr "All types"
 msgid "Ulteriori informazioni"
 msgstr "More info"
 
-#: inc/admin/options.php:1616
+#: inc/admin/options.php:1619
 msgid "Una volta al giorno"
 msgstr "Once a day"
 
-#: inc/admin/options.php:1618
+#: inc/admin/options.php:1621
 msgid "Una volta alla settimana"
 msgstr "Once a week"
 
@@ -2258,7 +2258,7 @@ msgstr "Would you like to receive email notification"
 msgid "Warning"
 msgstr "Warning"
 
-#: inc/admin/options.php:1857
+#: inc/admin/options.php:1860
 msgid "Web Analytics Italia"
 msgstr "Web Analytics Italia"
 

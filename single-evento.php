@@ -168,7 +168,7 @@ $short_descr         = get_field( 'descrizione_breve' );
 											<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<li class="nav-item"> <a class="nav-link" href="#date_e_orari"> <span>Data e orari</span> </a> </li>
+										<li class="nav-item"> <a class="nav-link" href="#date_e_orari"> <span><?php echo __( 'Date e orari', 'design_laboratori_italia' ); ?></span> </a> </li>
 										<?php
 											}
 											if ( $luogo ) {
