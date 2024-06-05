@@ -55,7 +55,7 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( 'Il Nome del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(
-				'required'   => 'required',
+				'required' => 'required',
 			),
 		)
 	);
@@ -170,13 +170,13 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
-			'id' => $prefix . 'logo_footer_visible',
-			'name' => __( 'Visualizza il logo nel footer', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se il logo nel footer deve essere visualizzato', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
+			'id'      => $prefix . 'logo_footer_visible',
+			'name'    => __( 'Visualizza il logo nel footer', 'design_laboratori_italia' ),
+			'desc'    => __( 'Indicare se il logo nel footer deve essere visualizzato', 'design_laboratori_italia' ) . '.',
+			'type'    => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
 		)
@@ -233,16 +233,16 @@ function dli_register_main_options_metabox() {
 	$alerts_options = new_cmb2_box( $args );
 
 	$alerts_options->add_field( array(
-			'id' => $prefix . 'messages_istruzioni',
-			'name'        => __( 'Avvisi di allerta in Home Page', 'design_laboratori_italia' ),
+			'id'   => $prefix . 'messages_istruzioni',
+			'name' => __( 'Avvisi di allerta in Home Page', 'design_laboratori_italia' ),
 			'desc' => __( 'Inserisci messaggi che saranno visualizzati nella homepage' , 'design_laboratori_italia' )  . '.',
 			'type' => 'title',
 	) );
 
 	$alerts_group_id = $alerts_options->add_field( array(
-			'id'           => $prefix . 'messages',
+			'id'          => $prefix . 'messages',
 			'type'        => 'group',
-			'desc' => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)' , 'design_laboratori_italia' )   . '.',
+			'desc'        => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)' , 'design_laboratori_italia' )   . '.',
 			'repeatable'  => true,
 			'options'     => array(
 					'group_title'   => __( 'Messaggio', 'design_laboratori_italia' ) . '&nbsp{#}',
@@ -257,7 +257,7 @@ function dli_register_main_options_metabox() {
 			'id'      => 'colore_message',
 			'type'    => 'radio_inline',
 			'options' => array(
-					'danger' => '<span class="radio-color red"></span>' . __( 'Danger', 'design_laboratori_italia' ),
+					'danger'  => '<span class="radio-color red"></span>' . __( 'Danger', 'design_laboratori_italia' ),
 					'success' => '<span class="radio-color green"></span>' . __( 'Success', 'design_laboratori_italia' ),
 					'warning' => '<span class="radio-color brown"></span>' . __( 'Warning', 'design_laboratori_italia' ),
 					'info'    => '<span class="radio-color gray"></span>' . __( 'Info', 'design_laboratori_italia' ),
@@ -266,19 +266,19 @@ function dli_register_main_options_metabox() {
 	) );
 
 	$alerts_options->add_group_field( $alerts_group_id, array(
-			'id' => $prefix . 'testo_message',
-			'name'        => __( 'Testo', 'design_laboratori_italia' ),
-			'desc' => __( 'Massimo 140 caratteri' , 'design_laboratori_italia' ),
-			'type' => 'textarea_small',
-			'attributes'    => array(
-					'rows'  => 3,
-					'maxlength'  => '140',
+			'id'         => $prefix . 'testo_message',
+			'name'       => __( 'Testo', 'design_laboratori_italia' ),
+			'desc'       => __( 'Massimo 140 caratteri' , 'design_laboratori_italia' ),
+			'type'       => 'textarea_small',
+			'attributes' => array(
+					'rows'      => 3,
+					'maxlength' => '140',
 			),
 	) );
 
 	$alerts_options->add_group_field( $alerts_group_id, array(
-			'id' => $prefix . 'link_message',
-			'name'        => __( 'Collegamento', 'design_laboratori_italia' ),
+			'id'   => $prefix . 'link_message',
+			'name' => __( 'Collegamento', 'design_laboratori_italia' ),
 			'desc' => __( 'Link a una pagina di approfondimento anche esterna al sito' , 'design_laboratori_italia' ),
 			'type' => 'text_url',
 	) );
@@ -320,13 +320,13 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id' => $prefix . 'home_main_hero_enabled',
-			'name' => __( 'Hero principale attivo', 'design_laboratori_italia' ),
-			'desc' => __( 'Attiva l\'hero principale in Home Page', 'design_laboratori_italia' ),
-			'type' => 'radio_inline',
+			'id'      => $prefix . 'home_main_hero_enabled',
+			'name'    => __( 'Hero principale attivo', 'design_laboratori_italia' ),
+			'desc'    => __( 'Attiva l\'hero principale in Home Page', 'design_laboratori_italia' ),
+			'type'    => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
 		)
@@ -334,17 +334,17 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_title',
-			'name'       => __( 'Titolo hero', 'design_laboratori_italia' ),
-			'type'       => 'text',
+			'id'   => $prefix . 'home_main_hero_title',
+			'name' => __( 'Titolo hero', 'design_laboratori_italia' ),
+			'type' => 'text',
 		)
 	);
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_title' . DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( 'Titolo hero ENG', 'design_laboratori_italia' ),
-			'type'       => 'text',
+			'id'   => $prefix . 'home_main_hero_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo hero ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
 		)
 	);
 
@@ -380,17 +380,17 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_button_label'. DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( 'Label bottone ENG', 'design_laboratori_italia' ),
-			'type'       => 'text',
+			'id'   => $prefix . 'home_main_hero_button_label'. DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Label bottone ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
 		)
 	);
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_main_hero_url',
-			'name'       => __( 'Url', 'design_laboratori_italia' ),
-			'type'       => 'text',
+			'id'   => $prefix . 'home_main_hero_url',
+			'name' => __( 'Url', 'design_laboratori_italia' ),
+			'type' => 'text',
 		)
 	);
 
@@ -413,8 +413,8 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id' => $prefix . 'home_istruzioni_1',
-			'name'        => __( 'Sezione Carousel', 'design_laboratori_italia' ),
+			'id'   => $prefix . 'home_istruzioni_1',
+			'name' => __( 'Sezione Carousel', 'design_laboratori_italia' ),
 			'desc' => __( 'Gestione del carousel in Home Page' , 'design_laboratori_italia' ),
 			'type' => 'title',
 		)
@@ -422,13 +422,13 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id' => $prefix . 'home_carousel_is_visible',
-			'name' => __( 'Visualizza carousel', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
+			'id'      => $prefix . 'home_carousel_is_visible',
+			'name'    => __( 'Visualizza carousel', 'design_laboratori_italia' ),
+			'desc'    => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '.',
+			'type'    => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
 		)
@@ -1581,6 +1581,7 @@ function dli_register_main_options_metabox() {
 			'name'       => __( 'Categoria', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'ID della categoria degli eventi da importare' , 'design_laboratori_italia' ),
 			'type'       => 'text_small',
+			'default'    => 1,
 			'attributes' => array(
 				'required' => 'required',
 				'type'    => 'number',
