@@ -1556,6 +1556,7 @@ function dli_register_main_options_metabox() {
 			'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
 			'type'       => 'text',
+			'default'    => 'xxx',
 			'attributes' => array(
 				'required' => 'required',
 			),
@@ -1567,9 +1568,9 @@ function dli_register_main_options_metabox() {
 			'id'         => $prefix . 'indico_token_api',
 			'name'       => __( 'Token API', 'design_laboratori_italia' ),
 			'type'       => 'text',
+			'default'    => 'xxx',
 			'attributes' => array(
 				'type'     => 'password',
-				// 'required' => 'required',
 			),
 		)
 	);
@@ -1596,6 +1597,7 @@ function dli_register_main_options_metabox() {
 			'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
 			'type'       => 'text',
+			'default'    => 'xxx',
 			'attributes' => array(
 				'required' => 'required',
 			),
@@ -1672,7 +1674,7 @@ function dli_register_main_options_metabox() {
 			'name'             => __( 'Evento esistente', 'design_laboratori_italia' ),
 			'desc'             => __( "Azione da intraprendere se l'evento esiste già" , 'design_laboratori_italia' ),
 			'type'             => 'select',
-			'default'          => 'draft',
+			'default'          => 'ignore',
 			'show_option_none' => false,
 			'options'          => array(
 				'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
