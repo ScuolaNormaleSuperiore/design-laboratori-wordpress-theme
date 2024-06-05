@@ -13,7 +13,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice menu configurazione.
 
 
-## [1.2.9] - 2024-07-05
+## [1.2.9] - 2024-06-05
+### Corretto
+- Corretto bug visualizzazione orario eventi.
 
 
 ## [1.2.8] - 2024-06-04
