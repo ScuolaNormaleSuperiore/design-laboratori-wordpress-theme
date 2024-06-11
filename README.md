@@ -40,6 +40,12 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Catalogo del riuso
 Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home page del progetto è [questa](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html).
 
+## Siti d'esempio
+Alcuni siti in produzione realizzati con questo tema:
+* [Istituto ciampi](https://istitutociampi.sns.it)
+* [POCKET - Knowledge Transfer Office](https://kto.sns.it/)
+* [EDEV PRO 3](https://edevpro3.sns.it/it/)
+
 ## Demo
 ### Docker
 E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugins + contenuti d'esempio). 
