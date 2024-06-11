@@ -42,7 +42,7 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 ## Siti d'esempio
 Alcuni siti in produzione realizzati con questo tema:
-* [Istituto ciampi](https://istitutociampi.sns.it)
+* [Istituto di Studi Avanzati "Carlo Azeglio Ciampi"](https://istitutociampi.sns.it)
 * [POCKET - Knowledge Transfer Office](https://kto.sns.it/)
 * [EDEV PRO 3](https://edevpro3.sns.it/it/)
 
