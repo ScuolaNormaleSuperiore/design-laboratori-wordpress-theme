@@ -10,7 +10,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [Non rilasciato]
-- Refactoring codice menu configurazione.
+- Refactoring codice menu configurazione (creazione ConfigurationManager).
+- Refactoring codice wrapper Polylang (creazione PolylangManager).
+
+
+
+## [1.3.0] - 2024-06-12
+### Corretto
+- Corretta associazione dei template alle pagine.
+- Aggiornato Dockerfile per sito demo.
+- 
+### Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.8.8.
 
 
 ## [1.2.9] - 2024-06-05
@@ -19,7 +30,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.2.8] - 2024-06-04
-
 ### Aggiunto
 - Integrazione con Indico.
 - Sezione articoli in Home Page.
