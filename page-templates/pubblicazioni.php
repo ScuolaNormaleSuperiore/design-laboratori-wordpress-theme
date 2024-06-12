@@ -1,7 +1,7 @@
 <?php
 define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
 
-/* Template Name: Le pubblicazioni.
+/* Template Name: Le pubblicazioni
  *
  * @package Design_Laboratori_Italia
  */

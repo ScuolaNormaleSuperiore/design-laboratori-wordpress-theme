@@ -1,5 +1,5 @@
 <?php
-/* Template Name: I progetti.
+/* Template Name: I progetti
 *
 * @package Design_Laboratori_Italia
 */

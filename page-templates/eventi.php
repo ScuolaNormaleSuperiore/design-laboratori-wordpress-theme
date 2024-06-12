@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Eventi.
+/* Template Name: Eventi
  *
  * @package Design_Laboratori_Italia
  */

@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Ricerca.
+/* Template Name: Ricerca
  *
  * @package Design_Laboratori_Italia
  */

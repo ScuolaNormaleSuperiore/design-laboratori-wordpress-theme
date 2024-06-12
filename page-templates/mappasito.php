@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Notizie.
+/* Template Name: Mappa del sito
  *
  * @package Design_Laboratori_Italia
  */

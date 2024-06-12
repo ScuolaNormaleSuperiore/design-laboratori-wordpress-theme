@@ -1,5 +1,5 @@
 <?php
-/* Template Name: I Luoghi.
+/* Template Name: I Luoghi
  *
  * @package Design_Laboratori_Italia
  */

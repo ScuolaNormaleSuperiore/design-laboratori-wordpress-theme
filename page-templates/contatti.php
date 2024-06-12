@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Contatti.
+/* Template Name: Contatti
  *
  * @package Design_Laboratori_Italia
  */

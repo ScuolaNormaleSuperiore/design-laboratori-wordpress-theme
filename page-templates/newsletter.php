@@ -1,5 +1,5 @@
 <?php
-/** Template Name: Newsletter.
+/** Template Name: Newsletter
  *
  * @package Design_Laboratori_Italia
  */

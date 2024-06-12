@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Notizie.
+/* Template Name: Notizie
  *$all_categories
  * @package Design_Laboratori_Italia
  */

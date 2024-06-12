@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Blog.
+/* Template Name: Blog
  *$all_categories
  * @package Design_Laboratori_Italia
  */
