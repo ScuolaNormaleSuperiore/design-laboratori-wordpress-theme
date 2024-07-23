@@ -1,6 +1,5 @@
 <?php
-	// $current_group = $args['current_group'];
-	$locations     = $args['locations'];
+	$locations = $args['locations'];
 ?>
 
 <nav aria-label="Secondaria">
