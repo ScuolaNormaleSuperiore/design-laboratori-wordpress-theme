@@ -13,6 +13,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 
+## [1.3.2] - 2024-08-01
+### Corretto
+- 
 
 ## [1.3.1] - 2024-07-26
 ### Corretto
