@@ -138,6 +138,14 @@ Queste le sono le principali funzionalità previste per le prossime versioni del
 * Autenticazione degli operatori tramite LDAP.
 * Autenticazione degli operatori tramite Shibboleth.
 
+## Verifica file publiccode.yml
+Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go).
+```
+go install github.com/italia/publiccode-parser-go/v4/publiccode-parser@latest
+cd <root_cartella_plugin>
+publiccode-parser publiccode.yml
+```
+
 ## Galleria
 
 **Immagine 1:** Backoffice: configurazione del carousel.
