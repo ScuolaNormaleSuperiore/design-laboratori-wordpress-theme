@@ -194,6 +194,7 @@ $pubblicazioni = new WP_Query(
 												</li>
 												<?php
 												}
+												wp_reset_postdata();
 												if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $allegato1 ) && count( $allegato1 ) > 0 )
 												|| ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) || ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
 												?>
@@ -227,7 +228,7 @@ $pubblicazioni = new WP_Query(
 							?>
 						<h3 class="it-page-section h4" id="p1"><?php _e( 'Biografia', "design_laboratori_italia" ); ?></h3>
 						<div class="row pb-3">
-							<p><?php echo wp_kses_post( $bio ); ?></p>
+							<?php the_content(); ?>
 						</div>
 							<?php
 						}
@@ -357,6 +358,8 @@ $pubblicazioni = new WP_Query(
 						</section>
 							<?php
 						}
+						wp_reset_postdata(); // pubblicazioni.
+
 						if ( ( is_array( $allegato_cv ) && count( $allegato_cv ) > 0 ) || ( is_array( $allegato1 ) && count( $allegato1 ) > 0 )
 						|| ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) || ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
 							?>
@@ -483,4 +486,5 @@ $pubblicazioni = new WP_Query(
 			</main>
 <!-- END CONTENT -->
 <?php
+wp_reset_postdata();
 get_footer();
