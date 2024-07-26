@@ -12,7 +12,6 @@ description:
     documentation: >-
       https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/README.md
     features:
-      - Personalizzazione del layout della Home page.
       - Popolamento automatico del sito (pagine e menu).
       - Sezione per la configurazione del tema e dei contenuti.
       - Gestione delle persone del laboratorio.
@@ -31,25 +30,19 @@ description:
       - Carousel in home page con contenuti selezionabili.
       - Supporto delle lingue italiano ed inglese.
       - Integrazione con il software di gestione delle newsletter Brevo.
-      - Integrazione con Indico (importazione eventi).
     genericName: Tema Wordpress
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
       Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le 
       scuole italiane e sviluppato dalla Scuola Normale Superiore con l’obiettivo di creare un modello 
-      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l’ambiente offre 
-      una serie di contenuti predefiniti che rendono semplice e veloce l’allestimento del sito.  
+      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre 
+      una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.  
       Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: 
       personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di 
       ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
-      Il progetto si  pone l’obiettivo di obiettivo di dare evidenza e valore alle attività e al personale 
-      di ricerca delle strutture. E’ possibile provare in modo semplice il sistema in locale utilizzando il 
+      Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale 
+      di ricerca delle strutture. E' possibile provare in modo semplice il sistema in locale utilizzando il 
       Dockerfile predente nel sorgente del progetto.
-      Examples:
-      <ul>
-      <li>Istituto Ciampi (https://istitutociampi.sns.it)</li>
-      <li>POCKET - Knowledge Transfer Office (https://kto.sns.it)</li>
-      </ul>
     screenshots:
       - assets/screenshots/homepage.png
       - assets/screenshots/homepage2.png
@@ -63,9 +56,6 @@ description:
       - assets/screenshots/indirizzi-di-ricerca.png
       - assets/screenshots/ricerca.png
       - assets/screenshots/eventi.png
-      - assets/screenshots/kto1.png
-      - assets/screenshots/kto2.png
-      - assets/screenshots/ciampi1.png
     shortDescription: >-
         Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l’obiettivo di creare un modello di sito per le strutture di ricerca.
 developmentStatus: development 
@@ -76,7 +66,6 @@ intendedAudience:
     - education
 usedBy:
   - Istituto di Studi Avanzati Carlo Azeglio Ciampi - Scuola Normale Superiore
-  - POCKET - Knowledge Transfer Office - Scuola Normale Superiore
 it:
   countryExtensionVersion: '0.2'
   riuso:
@@ -94,7 +83,7 @@ legal:
   license: GPL-3.0-only
 localisation:
   availableLanguages:
-    - it, en
+    - it
   localisationReady: true
 dependsOn:
   open:
