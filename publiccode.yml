@@ -55,6 +55,9 @@ description:
       - assets/screenshots/indirizzi-di-ricerca.png
       - assets/screenshots/ricerca.png
       - assets/screenshots/eventi.png
+      - assets/screenshots/ciampi1.png
+      - assets/screenshots/kto1.png
+      - assets/screenshots/kto2.png
     shortDescription: >-
         Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l’obiettivo di creare un modello di sito per le strutture di ricerca.
 developmentStatus: development 
@@ -64,7 +67,8 @@ intendedAudience:
   scope:
     - education
 usedBy:
-  - Istituto di Studi Avanzati Carlo Azeglio Ciampi - Scuola Normale Superiore
+  - Istituto di Studi Avanzati Carlo Azeglio Ciampi - Scuola Normale Superiore - https://istitutociampi.sns.it
+  - POCKET - Knowledge Transfer Office - Scuola Normale Superiore - https://kto.sns.it
 it:
   countryExtensionVersion: '0.2'
   riuso:
@@ -83,6 +87,7 @@ legal:
 localisation:
   availableLanguages:
     - it
+    - en
   localisationReady: true
 dependsOn:
   open:
