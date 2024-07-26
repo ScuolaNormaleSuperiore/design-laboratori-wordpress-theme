@@ -2,7 +2,7 @@
 # metadata file that makes public software easily discoverable.
 # More info at https://github.com/italia/publiccode.yml
 
-publiccodeYmlVersion: '0.2'
+publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
 softwareVersion: 1.3.1
 categories:
@@ -30,7 +30,6 @@ description:
       - Carousel in home page con contenuti selezionabili.
       - Supporto delle lingue italiano ed inglese.
       - Integrazione con il software di gestione delle newsletter Brevo.
-    genericName: Tema Wordpress
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
       Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le 
