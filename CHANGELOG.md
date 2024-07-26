@@ -14,11 +14,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 
 
-## [1.3.1] - 2024-07-23
+## [1.3.1] - 2024-07-26
 ### Corretto
 - Spostato codice analytics in template a parte.
 - Corretta visualizzazione data blog.
 - Corretto bug visualizzazione biografia nella scheda di una persona.
+- Corretto file publicode.yml.
 
 
 ## [1.3.0] - 2024-06-12
