@@ -16,8 +16,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.3.1] - 2024-07-23
 ### Corretto
-- spostato codice analytics in template a parte.
+- Spostato codice analytics in template a parte.
 - Corretta visualizzazione data blog.
+- Corretto bug visualizzazione biografia nella scheda di una persona.
 
 
 ## [1.3.0] - 2024-06-12
