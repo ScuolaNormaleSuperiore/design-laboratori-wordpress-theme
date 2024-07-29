@@ -12,20 +12,20 @@ define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 $allcontentypes = dli_get_all_contenttypes_with_results();
 $num_results = 0;
 
-if ( isset( $_POST['isreset'] ) && ( sanitize_text_field( $_POST['isreset'] ) === 'yes' ) ) {
+if ( isset( $_GET['isreset'] ) && ( sanitize_text_field( $_GET['isreset'] ) === 'yes' ) ) {
 	$selected_contents = array();
 	$searchstring      = '';
 } else {
-	if ( isset( $_POST['selected_contents'] ) ) {
-		$selected_contents = $_POST['selected_contents'];
+	if ( isset( $_GET['selected_contents'] ) ) {
+		$selected_contents = $_GET['selected_contents'];
 	} else {
 		$selected_contents = array();
 	}
 	if ( ! is_array( $selected_contents ) ) {
 		$selected_contents = array();
 	}
-	if ( isset( $_POST['searchstring'] ) ) {
-		$searchstring = sanitize_text_field( $_POST['searchstring'] );
+	if ( isset( $_GET['searchstring'] ) ) {
+		$searchstring = sanitize_text_field( $_GET['searchstring'] );
 	} else {
 		$searchstring = '';
 	}
@@ -35,7 +35,7 @@ $the_query = null;
 
 if ( '' !== $searchstring ) {
 	// Verifica del NONCE.
-	if ( isset( $_POST['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_POST['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
+	if ( isset( $_GET['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_GET['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
 		$the_query = dli_main_search_query(
 			$selected_contents,
 			$searchstring,
@@ -55,7 +55,7 @@ if ( '' !== $searchstring ) {
 	<!-- SEZIONE BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<FORM action="." id="ricercasitoform" method="POST">
+	<FORM action="." id="ricercasitoform" method="GET">
 		<?php wp_nonce_field( 'sf_cercasito_nonce', 'cercasito_nonce_field' ); ?>
 
 	<!-- SEZIONE BANNER -->
