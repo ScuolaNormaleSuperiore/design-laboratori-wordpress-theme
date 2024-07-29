@@ -41,6 +41,9 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home page del progetto è [questa](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html).
 
 ## Siti d'esempio
+Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
+* [Sito Federato DEV](https://sitofederato-dev.sns.it)
+  
 Alcuni siti in produzione realizzati con questo tema:
 * <a href="https://istitutociampi.sns.it" target="_blank">Istituto di Studi Avanzati "Carlo Azeglio Ciampi"</a>
 * <a href="https://kto.sns.it" target="_blank">POCKET - Knowledge Transfer Office</a>
