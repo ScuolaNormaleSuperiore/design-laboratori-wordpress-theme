@@ -16,6 +16,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.3.2] - 2024-07-29
 ### Corretto
 - Corretto bug paginazione ricerca.
+- Corretto bug visualizzazione data eventi e notizie.
 
 ### Modificato
 - Aggiornato Dockerfile per sito demo.
