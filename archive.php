@@ -72,7 +72,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 											<?php
 											}
 											?>
-											<span class="data">10/12/2023</span>
+											<span class="data"><?php echo get_the_date( 'd/m/Y' ); ?></span>
 										</div>
 										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
 										<p class="card-text">
