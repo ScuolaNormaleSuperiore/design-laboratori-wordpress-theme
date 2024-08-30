@@ -16,11 +16,11 @@ check_mandatory_plugins();
 require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
 require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
 
-$locations       = get_nav_menu_locations();
-// $current_group   = dli_get_current_group();
+$locations    = get_nav_menu_locations();
+$current_lang = dli_current_language();
 ?>
 <!doctype html>
-<html lang="it">
+<html lang="<?php echo $current_lang; ?>">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,7 +31,9 @@ $locations       = get_nav_menu_locations();
 </head>
 <body <?php body_class(); ?>>
 
-<?php 
+	<script type="module" src="<?php echo get_template_directory_uri() . '/cookieconsent-config.js'; ?>"></script>
+
+<?php
 	get_template_part( 'template-parts/common/svg' );
 	get_template_part( 'template-parts/common/sprites' );
 	get_template_part( 'template-parts/common/skiplink' );

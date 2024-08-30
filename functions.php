@@ -168,13 +168,16 @@ function dli_scripts() {
 	} else {
 		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css' );
 	}
-	// wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia-comuni.min.css' );
 	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css' );
 
 	// Importazione dei file JAVASCRIPT.
 	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js' );
 	wp_enqueue_script( 'dli-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js' );
 	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js', array(), false, true);
+
+	// Importazione CookieConsent da CDN.
+	wp_enqueue_style( 'cookieconsent-css', get_template_directory_uri() . '/assets/cookieconsent/cookieconsent.css' );
+	wp_enqueue_script( 'cookieconsent-js', get_template_directory_uri() . '/assets/cookieconsent/cookieconsent.umd.js' );
 
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
