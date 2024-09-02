@@ -56,7 +56,7 @@ CookieConsent.run({
 			it: {
 				consentModal: {
 					title: 'Questo sito usa dei cookies',
-					description: 'Cookie modal description',
+					description: 'Modulo informativo sui cookies',
 					acceptAllBtn: 'Accetta tutti',
 					acceptNecessaryBtn: 'Rifiuta tutti',
 					showPreferencesBtn: 'Gestisci le preferenze individualmente'
@@ -75,7 +75,6 @@ CookieConsent.run({
 						{
 							title: 'Cookies strettamente necessari',
 							description: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
-							//this field will generate a toggle linked to the 'necessary' category
 							linkedCategory: 'necessary'
 						},
 						{
