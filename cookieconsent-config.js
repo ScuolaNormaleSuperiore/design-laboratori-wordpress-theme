@@ -47,8 +47,8 @@ CookieConsent.run({
 					closeIconLabel: 'Close modal',
 					sections: [
 						{
-							title: 'Somebody said ... cookies?',
-							description: 'I want one!'
+							title: 'Customize Consent Preferences',
+							description: 'We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies under each consent category below. The cookies that are categorized as "Necessary" are stored on your browser as they are essential for enabling the basic functionalities of the site. We also use third-party cookies that help us analyze how you use this website, store your preferences, and provide the content and advertisements that are relevant to you. These cookies will only be stored in your browser with your prior consent. You can choose to enable or disable some or all of these cookies but disabling some of them may affect your browsing experience.'
 						},
 
 						{
@@ -99,8 +99,8 @@ CookieConsent.run({
 					closeIconLabel: 'Chiudi',
 					sections: [
 						{
-							title: 'Qualcuno ha detto... cookies?',
-							description: 'Ne voglio uno!'
+							title: 'Personalizza le preferenze di consenso',
+							description: 'Utilizziamo i cookie per aiutarti a navigare in modo efficiente ed eseguire determinate funzioni. Troverai informazioni dettagliate su tutti i cookie in ogni categoria di consenso qui sotto. I cookie che sono classificati come "Necessari" vengono memorizzati sul tuo browser in quanto sono essenziali per abilitare le funzionalità di base del sito. Utilizziamo anche cookie di terze parti che ci aiutano ad analizzare come utilizzi questo sito Web, a memorizzare le tue preferenze e a fornire i contenuti e le pubblicità che sono rilevanti per te. Questi cookie verranno memorizzati nel tuo browser solo con il tuo previo consenso. Puoi scegliere di abilitare o disabilitare alcuni o tutti questi cookie, ma disabilitarne alcuni potrebbe influire sulla tua esperienza di navigazione.'
 						},
 						{
 							title: 'Cookie strettamente necessari',
