@@ -86,6 +86,8 @@ define( 'SLUG_CONTATTI_IT', 'contatti' );
 define( 'SLUG_CONTATTI_EN', 'contacts' );
 define( 'SLUG_PRIVACY_IT', 'privacy-policy' );
 define( 'SLUG_PRIVACY_EN', 'privacy-policy-en' );
+define( 'SLUG_COOKIES_POLICY_IT', 'cookies-policy' );
+define( 'SLUG_COOKIES_POLICY_EN', 'cookies-policy-en' );
 define( 'SLUG_MEDIA_POLICY_IT', 'media-policy' );
 define( 'SLUG_MEDIA_POLICY_EN', 'media-policy-en' );
 define( 'SLUG_NOTE_LEGALI_IT', 'note-legali' );
