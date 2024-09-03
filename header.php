@@ -31,8 +31,6 @@ $current_lang = dli_current_language();
 </head>
 <body <?php body_class(); ?>>
 
-	<script type="module" src="<?php echo get_template_directory_uri() . '/cookieconsent-config.js'; ?>"></script>
-
 <?php
 	get_template_part( 'template-parts/common/svg' );
 	get_template_part( 'template-parts/common/sprites' );

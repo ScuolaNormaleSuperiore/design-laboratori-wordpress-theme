@@ -12,6 +12,13 @@ CookieConsent.run({
 		functional: {
 			enabled: false,
 			readOnly: false,
+			autoClear: {
+				cookies: [
+					{
+						name: /^yt-/,
+					},
+				]
+			},
 		},
 		analytics: {
 			enabled: false,
@@ -24,6 +31,22 @@ CookieConsent.run({
 		advertisement: {
 			enabled: false,
 			readOnly: false,
+			services: {
+				ga: {
+						label: 'Google Analytics',
+						onAccept: () => {
+								// enable ga
+						},
+						onReject: () => {
+								// disable ga
+						},
+						cookies: [
+								{
+										name: /^(_ga|_gid)/
+								}
+						]
+				},
+			}
 		},
 	},
 
