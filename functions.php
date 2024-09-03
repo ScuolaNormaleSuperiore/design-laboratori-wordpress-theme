@@ -203,3 +203,5 @@ add_filter( 'the_generator', '__return_null' );
 add_filter( 'login_errors', function( $message ){
 	return 'Invalid username or password';
 } );
+
+add_filter('xmlrpc_enabled', '__return_false');
