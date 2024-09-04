@@ -14,6 +14,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 
 
+## [1.3.3] - 2024-09-20
+### Corretto
+### Aggiunto
+
+
 ## [1.3.2] - 2024-09-04
 ### Corretto
 - Corretto bug paginazione ricerca.
@@ -22,8 +27,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Aggiornato Dockerfile per sito demo.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.9.0.
-
-
 
 
 ## [1.3.1] - 2024-07-26
