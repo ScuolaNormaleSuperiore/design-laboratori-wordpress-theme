@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "^2.8.8"
+    "bootstrap-italia": "^2.9.0"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.1",

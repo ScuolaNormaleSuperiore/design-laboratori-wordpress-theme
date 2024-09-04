@@ -17,13 +17,13 @@ ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpr
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
-ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.6.zip
-ARG PLG_ACF=advanced-custom-fields.6.3.4.zip
+ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.5.7.zip
+ARG PLG_ACF=advanced-custom-fields.6.3.6.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_COOKIES=cookie-law-info.3.2.5.zip
-ARG PLG_POLYLANG=polylang.3.6.3.zip
+ARG PLG_COOKIES=cookie-law-info.3.2.6.zip
+ARG PLG_POLYLANG=polylang.3.6.4.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
-ARG PLG_SMTP=wp-mail-smtp.4.1.0.zip
+ARG PLG_SMTP=wp-mail-smtp.4.1.1.zip
 
 # Plugion facoltativi o di sviluppo
 ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.11.zip
@@ -84,7 +84,7 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	rm -rf /var/www/html/wp-content/plugins/akismet && \
 	rm -rf /var/www/html/wp-content/plugins/hello.php && \
 	cd /var/www/html/wp-content/themes && \
-	git clone ${DLI_THEME} && \
+	git clone -b dev ${DLI_THEME} && \
 	cd /var/www/html/wp-content/plugins && \
 	curl -o /tmp/${PLG_ACF_OPENSTRRETMAP} ${BASE_PLUGIN_URL}/${PLG_ACF_OPENSTRRETMAP} && \
 	unzip /tmp/${PLG_ACF_OPENSTRRETMAP}  && \
