@@ -14,7 +14,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 
 
-## [1.3.3] - 2024-09-20
+## [1.3.3] - 2024-09-xx
 ### Corretto
 ### Aggiunto
 
