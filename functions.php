@@ -79,6 +79,16 @@ require get_template_directory() . '/inc/actions.php';
 require get_template_directory() . '/inc/dompdf.php';
 
 
+/**
+ * Import the Contents Manager.
+ */
+if ( ! class_exists( 'DLI_ContentsManager' ) ) {
+	require get_template_directory() . '/inc/classes/class-contents-manager.php';
+}
+
+
+// @TODO: Spostare nel ThemeManager tutte le configurazioni fatte nel file functions.php.
+
 ////// SETUP THE POST TYPES  USED BY THE THEME. //////
 if ( ! class_exists( 'DLI_LabManager' ) ) {
 	include_once 'inc/classes/class-labmanager.php';
@@ -86,6 +96,7 @@ if ( ! class_exists( 'DLI_LabManager' ) ) {
 	$lab_manager = new DLI_LabManager();
 	$lab_manager->plugin_setup();
 }
+
 
 
 if ( ! function_exists( 'dli_setup' ) ) :
@@ -138,7 +149,6 @@ if ( ! function_exists( 'dli_setup' ) ) :
 		 * This theme uses wp_nav_menu().
 		 * Definizione delle locations dei menu: wp-admin/nav-menus.php?action=locations.
 		 */
-		// error_log( '@@@ HERE WE REGISTER THE MENU POSITIONS @@@' );
 		register_nav_menus(
 			array(
 				'menu-lab'          => esc_html__( 'Menu principale di link a sinistra', 'design_laboratori_italia' ),
@@ -195,18 +205,3 @@ function enable_svg_upload( $upload_mimes ) {
 	return $upload_mimes;
 }
 add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
-
-
-
-
-
-
-// @TODO: Move here all the above the configurations in an "object oriented" way.
-
-////// CONFIGURAZIONE DEL TEMA //////
-if ( ! class_exists( 'DLI_ThemeManager' ) ) {
-	include_once 'inc/classes/class-theme-manager.php';
-	global $theme_manager;
-	$theme_manager = new DLI_ThemeManager();
-	$theme_manager->theme_setup();
-}

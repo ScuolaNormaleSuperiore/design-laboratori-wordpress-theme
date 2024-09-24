@@ -12,11 +12,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [Non rilasciato]
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
+- Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
-
-## [1.3.3] - 2024-09-xx
+## [1.3.3] - 2024-09-30
 ### Corretto
+- Corretta sezione di condivisione dei contenuti sui social.
+
 ### Aggiunto
+- Aggiunti OG tags per indicizzazione e condivisione dei contenuti sui social.
+
+### Sicurezza
+- Disabilitato XMLRPC.
 
 
 ## [1.3.2] - 2024-09-04

@@ -25,8 +25,13 @@ $current_lang = dli_current_language();
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<?php wp_head(); ?>
+	<!-- ANALYTICS CODE -->
 	<?php get_template_part( 'template-parts/header/analytics' ); ?>
+	<!-- META TAGS -->
 	<?php get_template_part( 'template-parts/header/metatags' ); ?>
+	<!-- SEO - OG Internal Management -->
+	<?php get_template_part( 'template-parts/header/seo_tags' ); ?>
+	<!-- FAVICON -->
 	<link rel="icon" href="<?php echo get_template_directory_uri() . '/assets/img/favicon.ico'; ?> " />
 </head>
 <body <?php body_class(); ?>>

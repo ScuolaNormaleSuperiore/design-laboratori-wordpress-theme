@@ -214,6 +214,8 @@ $short_descr         = get_field( 'descrizione_breve' );
 							</div>
 						</div>
 					</nav>
+					<!-- Condividi -->
+					<?php get_template_part( 'template-parts/common/social_sharing'); ?>
 				</div>
 			</div>
 

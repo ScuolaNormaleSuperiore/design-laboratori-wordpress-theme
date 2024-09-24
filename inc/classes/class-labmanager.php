@@ -95,6 +95,9 @@ class DLI_LabManager {
 		// Setup REST API.
 		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
 
+		// Imposta configurazioni di sicurezza.
+		$this->enable_security_configurations();
+
 		// Setup dei post type personalizzati e delle tassonomie associate.
 		// Setup di Polylang.
 		$polylang = new Polylang_Manager();
@@ -172,6 +175,19 @@ class DLI_LabManager {
 				array( 'status' => rest_authorization_required_code() )
 			);
 		}
+	}
+
+
+	private function enable_security_configurations() {
+		// Hook per nascondere sovrascrivere il messaggio di errore in fase di login.
+		add_filter( 'login_errors', function(){
+				return __( 'Invalid username or password', 'kk_writer_theme' );
+			}
+		);
+		// Hook per nascondere la versione del CMS (tag generator).
+		add_filter( 'the_generator', '__return_null' );
+		// Disable XMLRPC service.
+		add_filter('xmlrpc_enabled', '__return_false');
 	}
 
 }
