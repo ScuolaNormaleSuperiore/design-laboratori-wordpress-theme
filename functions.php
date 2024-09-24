@@ -196,12 +196,17 @@ function enable_svg_upload( $upload_mimes ) {
 }
 add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
 
-// Hook per nascondere la versione del CMS (tag generator).
-add_filter( 'the_generator', '__return_null' );
 
-// Hook per nascondere sovrascrivere il messaggio di errore in fase di login.
-add_filter( 'login_errors', function( $message ){
-	return 'Invalid username or password';
-} );
 
-add_filter('xmlrpc_enabled', '__return_false');
+
+
+
+// @TODO: Move here all the above the configurations in an "object oriented" way.
+
+////// CONFIGURAZIONE DEL TEMA //////
+if ( ! class_exists( 'DLI_ThemeManager' ) ) {
+	include_once 'inc/classes/class-theme-manager.php';
+	global $theme_manager;
+	$theme_manager = new DLI_ThemeManager();
+	$theme_manager->theme_setup();
+}

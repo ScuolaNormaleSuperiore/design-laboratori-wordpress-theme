@@ -1895,6 +1895,28 @@ function dli_register_main_options_metabox() {
 				),
 			)
 		);
+
+		$setup_options->add_field(
+			array(
+				'id'   => 'seo_section',
+				'name' => __( 'SEO', 'kk_writer_theme' ),
+				'type' => 'title',
+			)
+		);
+		$setup_options->add_field(
+			array(
+				'id'      => 'seo_internal_management_enabled',
+				'name'    => __( 'Enable internal SEO management', 'kk_writer_theme' ),
+				'desc'    => __( 'Enable the internal management of SEO and OG tags or disable it to delegate this job to an external plugin.', 'kk_writer_theme' ),
+				'type'    => 'radio_inline',
+				'default' => 'true',
+				'options' => array(
+						'true'  => __( 'Yes', 'kk_writer_theme' ),
+						'false' => __( 'No', 'kk_writer_theme' ),
+				),
+			)
+		);
+
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
 
