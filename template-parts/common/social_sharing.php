@@ -11,8 +11,6 @@ $fb_share_url = 'https://facebook.com/sharer/sharer.php?u=' . $enc_page_url;
 $tw_share_url = 'https://twitter.com/share?url=' . $enc_page_url .'&text=' . $enc_shared_title;
 $lk_share_url = 'https://www.linkedin.com/sharing/share-offsite/?mini=true&url=' . $enc_page_url;
 $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' . $enc_page_url;
-$gm_share_url = 'https://mail.google.com/mail/u/0/?ui=2&fs=1&tf=cm&su=' . $enc_shared_title . ' &body=' . $og_data->description . ' - ' . $og_data->url;
-$mm_share_url = 'mailto:?subject=' . $enc_shared_title . '&body=' . $og_data->description . ' - ' . $og_data->url;
 ?>
 
 <div class="dropdown d-inline">
@@ -70,17 +68,6 @@ $mm_share_url = 'mailto:?subject=' . $enc_shared_title . '&body=' . $og_data->de
 							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-whatsapp'?>"></use>
 						</svg>
 						<span class="display_block">Whatsapp</span>
-					</a>
-				</li>
-				<li>
-					<a class="list-item"
-						href="<?php echo esc_url( $mm_share_url ); ?>"
-						target="_blank" rel="noopener noreferrer"
-						aria-label="<?php echo __( 'Share by e-mail', 'kk_writer_theme' ); ?>">
-						<svg class="icon" aria-hidden="true" focusable="false">
-							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'?>"></use>
-						</svg>
-						<span class="display_block">E-mail</span>
 					</a>
 				</li>
 			</ul>
