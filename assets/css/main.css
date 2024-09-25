@@ -105,3 +105,7 @@ html {
 .it-brand-tagline {
 	font-size: 1em !important;
 }
+
+.display_block {
+	display: block !important;
+}
