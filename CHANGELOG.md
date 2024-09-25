@@ -24,6 +24,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Sicurezza
 - Disabilitato XMLRPC.
 
+### Modificato
+- Aggiornata libreria BootstrapItalia alla versione 2.9.1.
+
 
 ## [1.3.2] - 2024-09-04
 ### Corretto
