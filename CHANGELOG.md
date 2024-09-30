@@ -20,6 +20,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Aggiunto
 - Aggiunti OG tags per indicizzazione e condivisione dei contenuti sui social.
+- Integrazione con Iris (AP brevetti).
 
 ### Sicurezza
 - Disabilitato XMLRPC.
