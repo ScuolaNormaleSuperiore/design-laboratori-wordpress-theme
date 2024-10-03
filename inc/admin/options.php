@@ -1182,7 +1182,76 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 10 - Registers options page "Progetti".
+	* 10 - Registers options page "Brevetti".
+	*/
+	// Intestazione della sezione.
+	$args = array(
+		'id'           => 'dli_options_brevetti',
+		'title'        => esc_html__( 'I brevetti', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'brevetti',
+		'parent_slug'  => 'dli_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Brevetti', 'design_laboratori_italia' ),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$brevetti_options = new_cmb2_box( $args );
+	$brevetti_landing_url = dli_get_template_page_url( 'page-templates/brevetti.php' );
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica dei Brevetti</a>', 'design_laboratori_italia' ), $brevetti_landing_url	);
+	$brevetti_options->add_field(
+		array(
+		'id'   => $prefix . 'brevetti_istruzioni',
+		'name' => __( 'Sezione I Brevetti', 'design_laboratori_italia' ),
+		'desc' => $descr,
+		'type' => 'title',
+		)
+	);
+	
+	// Campi descrizione della sezione.
+	$brevetti_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_brevetti',
+			'name'       => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Brevetti dei membri del Laboratorio."' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br', 
+				),
+			),
+		)
+	);
+
+	$brevetti_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_brevetti'. DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Publications by Lab members."' , 'design_laboratori_italia' ),
+			'type' => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br', 
+				),
+			),
+		)
+	);
+
+	/**
+	* 11 - Registers options page "Progetti".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -1252,7 +1321,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 11 - Registers options page "Attività di ricerca".
+	* 12 - Registers options page "Attività di ricerca".
 	*/
 	$args = array(
 		'id'           => 'dli_options_ricerca',
@@ -1324,7 +1393,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 12 - Registers options page "Attività di ricerca".
+	* 13 - Registers options page "Attività di ricerca".
 	*/
 		$args = array(
 				'id'           => 'dli_options_luoghi',
@@ -1398,7 +1467,7 @@ function dli_register_main_options_metabox() {
 		));
 
 	/**
-	* 13 - Registers options page "Social media".
+	* 14 - Registers options page "Social media".
 	*/
 		$args = array(
 				'id'           => 'dli_options_socials',
@@ -1494,7 +1563,7 @@ function dli_register_main_options_metabox() {
 	) );
 
 	/**
-	* 14 - Registers options page "Integrazione con Indico".
+	* 15 - Registers options page "Integrazione con Indico".
 	*/
 	$args = array(
 		'id'           => 'dli_options_indico',
@@ -1685,7 +1754,143 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 15 - Registers options page "Altro".
+	* 16 - Registers options page "Integrazione con IRIS".
+	*/
+	$args = array(
+		'id'           => 'dli_options_iris',
+		'title'        => esc_html__( 'Iris', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'iris',
+		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Iris', 'design_laboratori_italia' ),	);
+
+
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$iris_options = new_cmb2_box( $args );
+
+	$iris_options->add_field( array(
+			'id' => $prefix . 'iris_brevetti_istruzioni',
+			'name'        => __( 'Sezione integrazione con IRIS AP Brevetti', 'design_laboratori_italia' ),
+			'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (AP Brevetti)' , 'design_laboratori_italia' ) . '.',
+			'type' => 'title',
+	) );
+
+	$iris_options->add_field(array(
+			'id' => $prefix . 'iris_ap_brevetti_enabled',
+			'name' => __( "Attiva l'importazione dei brevetti", 'design_laboratori_italia' ),
+			'desc' => __( "Abilita l'integrazione con IRIS AP Brevetti", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+					'data-conditional-value' => "false",
+			),
+	));
+
+	$iris_options->add_field(
+		array(
+			'id'         => $prefix . 'iris_ap_brevetti_url',
+			'name'       => __( 'Url endpoint brevetti', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( "L'url dell'endpoint da invocare per scaricare i brevetti." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'xxx',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$iris_options->add_field(
+		array(
+			'id'         => $prefix . 'iris_ap_brevetti_username',
+			'name'       => __( 'Username', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'Lo username per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(
+				'required' => 'required',
+			),
+		)
+	);
+
+	$iris_options->add_field(
+		array(
+			'id'         => $prefix . 'iris_ap_brevetti_password',
+			'name'       => __( 'Password', 'design_laboratori_italia' ) . '&nbsp;*',
+			'desc'       => __( 'La password per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'xxx',
+			'attributes' => array(
+				'type'     => 'password',
+			),
+		)
+	);
+
+	$iris_options->add_field(
+		array(
+			'id'               => $prefix . 'iris_ap_brevetti_schedule',
+			'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
+			'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/iris-ap-brevetti-import." , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'never',
+			'show_option_none' => false,
+			'options'          => array(
+				'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
+				'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
+				'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
+				'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
+				'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$iris_options->add_field(
+		array(
+			'id'               => $prefix . 'iris_ap_brevetti_import_type',
+			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'dryrun',
+			'show_option_none' => false,
+			'options'          => array(
+				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$iris_options->add_field(
+		array(
+			'id'               => $prefix . 'iris_ap_brevetti_item_existent_action',
+			'name'             => __( 'Brevetto esistente', 'design_laboratori_italia' ),
+			'desc'             => __( "Azione da intraprendere se il brevetto esiste già" , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'ignore',
+			'show_option_none' => false,
+			'options'          => array(
+				'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
+				'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$iris_options->add_field( array(
+		'id' => $prefix . 'iris_pubblicazioni_istruzioni',
+		'name'        => __( 'Sezione integrazione con IRIS Pubblicazioni', 'design_laboratori_italia' ),
+		'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (Pubblicazioni)' , 'design_laboratori_italia' ) . '.',
+		'type' => 'title',
+) );
+
+
+	/**
+	* 17 - Registers options page "Altro".
 	*/
 
 	$args = array(

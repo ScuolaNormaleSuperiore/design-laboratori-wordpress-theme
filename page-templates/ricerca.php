@@ -11,7 +11,7 @@ define( 'RIC_CELLS_PER_ROW', 3 );
 $the_query = new WP_Query(
 	array(
 		'paged'           => get_query_var( 'paged', 1 ),
-		'post_type'       => RESEARCHACTIVITY_POST_TYPE,
+		'post_type'       => RESEARCH_ACTIVITY_POST_TYPE,
 		'posts_per_page'  => DLI_POSTS_PER_PAGE,
 
 	)

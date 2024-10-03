@@ -25,6 +25,10 @@ if ( ! class_exists( 'Publication_Manager' ) ) {
 	include_once 'class-publicationmanager.php';
 }
 
+if ( ! class_exists( 'Patent_Manager' ) ) {
+	include_once 'class-patentmanager.php';
+}
+
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
@@ -122,6 +126,10 @@ class DLI_LabManager {
 		// Setup del post type Pubblicazione.
 		$publm = new Publication_Manager();
 		$publm->setup();
+
+		// Setup del post type Brevetto.
+		$pat = new Patent_Manager();
+		$pat->setup();
 
 		// Setup del post type Indirizzo di ricerca.
 		$ctram = new ResearchActivities_Manager();

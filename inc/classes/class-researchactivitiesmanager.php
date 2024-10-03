@@ -51,7 +51,7 @@ class ResearchActivities_Manager {
 						'taxonomies'    => array( WP_DEFAULT_TAGS ),
 				);
 
-				register_post_type( RESEARCHACTIVITY_POST_TYPE, $args );
+				register_post_type( RESEARCH_ACTIVITY_POST_TYPE, $args );
 
 				// Add the custom fields.
 				$this->add_fields();
@@ -64,7 +64,7 @@ class ResearchActivities_Manager {
 	 * @return string
 	 */
 	public function custom_layout( $post ) {
-		if ( RESEARCHACTIVITY_POST_TYPE === $post->post_type ) {
+		if ( RESEARCH_ACTIVITY_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
 			_e( 'Descrizione indirizzo di ricerca', 'design_laboratori_italia' );
 			echo '</h1>';

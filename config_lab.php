@@ -39,7 +39,8 @@ define( 'PEOPLE_TYPE_POST_TYPE', 'tipologia-persona' );
 define( 'PLACE_POST_TYPE', 'luogo' );
 define( 'PROGETTO_POST_TYPE', 'progetto' );
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
-define( 'RESEARCHACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
+define( 'PATENT_POST_TYPE', 'brevetto' );
+define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
 define( 'WP_DEFAULT_POST', 'post' );
 define( 'WP_DEFAULT_PAGE', 'page' );
 define( 'BANNER_POST_TYPE', 'banner' );
@@ -48,6 +49,8 @@ define( 'BANNER_POST_TYPE', 'banner' );
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
 define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
+define( 'THEMATIC_AREA_TAXONOMY', 'area-tematica' );
+define( 'HOLDER_TAXONOMY', 'titolare-brevetto' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 define( 'WP_DEFAULT_TAGS', 'post_tag' );
 
@@ -63,6 +66,8 @@ define( 'SLUG_NOTIZIE_IT', 'notizie' );
 define( 'SLUG_NOTIZIE_EN', 'news' );
 define( 'SLUG_PUBBLICAZIONI_IT', 'pubblicazioni' );
 define( 'SLUG_PUBBLICAZIONI_EN', 'publications' );
+define( 'SLUG_BREVETTI_IT', 'brevetti' );
+define( 'SLUG_BREVETTI_EN', 'patents' );
 define( 'SLUG_RICERCA_IT', 'ricerca' );
 define( 'SLUG_RICERCA_EN', 'research' );
 define( 'SLUG_PROGETTI_IT', 'progetti' );
@@ -129,7 +134,11 @@ define(
 			'it' => SLUG_PUBBLICAZIONI_IT,
 			'en' => SLUG_PUBBLICAZIONI_EN,
 		),
-		RESEARCHACTIVITY_POST_TYPE => array(
+		PATENT_POST_TYPE => array(
+			'it' => SLUG_BREVETTI_IT,
+			'en' => SLUG_BREVETTI_EN,
+		),
+		RESEARCH_ACTIVITY_POST_TYPE => array(
 			'it' => SLUG_RICERCA_IT,
 			'en' => SLUG_RICERCA_EN,
 		),
@@ -149,7 +158,8 @@ define(
 		NEWS_POST_TYPE,
 		PROGETTO_POST_TYPE,
 		PUBLICATION_POST_TYPE,
-		RESEARCHACTIVITY_POST_TYPE,
+		PATENT_POST_TYPE,
+		RESEARCH_ACTIVITY_POST_TYPE,
 		PEOPLE_TYPE_POST_TYPE,
 		PLACE_POST_TYPE,
 		WP_DEFAULT_PAGE,
@@ -165,6 +175,7 @@ define(
 		PLACE_TYPE_TAXONOMY,
 		STRUCTURE_TAXONOMY,
 		PUBLICATION_TYPE_TAXONOMY,
+		THEMATIC_AREA_TAXONOMY,
 		WP_DEFAULT_CATEGORY,
 	)
 );
