@@ -81,15 +81,24 @@
 		</div>
 		<!-- LINK UTILI -->
 		<div class="col-lg-4 col-md-4 pb-2">
+			<?php
+				$location   = 'menu-links';
+				$locations  = get_nav_menu_locations();
+				$menu_id    = $locations ? $locations[ $location ] : 0;
+				$menu_items =  $menu_id ? wp_get_nav_menu_items( $menu_id) : array();
+				if ( count( $menu_items ) > 0 ) {
+			?>
 			<h4>
 				<a href='#' title='Vai alla pagina: Lorem Ipsum'>
 					<?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>
 				</a>
 			</h4>
+			<?php
+				}
+			?>
 			<div class="link-list-wrapper" id="link-utili">
 			<?php
-				$location = 'menu-links';
-				if ( has_nav_menu( $location ) ) {
+				if ( has_nav_menu( $location ) && ( count( $menu_items ) > 0 ) ) {
 					wp_nav_menu(
 						array(
 							'theme_location' => $location,
