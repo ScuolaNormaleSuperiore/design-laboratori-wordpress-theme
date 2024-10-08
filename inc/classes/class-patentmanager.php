@@ -54,29 +54,6 @@ class Patent_Manager {
 			'show_in_rest'      => true,
 		);
 		register_taxonomy( THEMATIC_AREA_TAXONOMY, array( PATENT_POST_TYPE ), $taxnomy_args );
-
-		// Aggiungo la tassonomia titolare della pubblicazione.
-		$tit_labels = array(
-			'name'              => _x( 'Titolare', 'taxonomy general name', 'design_laboratori_italia' ),
-			'singular_name'     => _x( 'Titolare', 'taxonomy singular name', 'design_laboratori_italia' ),
-			'search_items'      => __( 'Cerca titolare', 'design_laboratori_italia' ),
-			'all_items'         => __( 'Tutti i titolari', 'design_laboratori_italia' ),
-			'edit_item'         => __( 'Modifica titolare', 'design_laboratori_italia' ),
-			'update_item'       => __( 'Aggiorna titolare', 'design_laboratori_italia' ),
-			'add_new_item'      => __( 'Aggiungi un titolare', 'design_laboratori_italia' ),
-			'new_item_name'     => __( 'Nuovo titolare', 'design_laboratori_italia' ),
-			'menu_name'         => __( 'Titolare', 'design_laboratori_italia' ),
-		);
-		$holder_args = array(
-			'hierarchical'      => true,
-			'labels'            => $tit_labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
-			'show_in_rest'      => true,
-		);
-		register_taxonomy( HOLDER_TAXONOMY, array( PATENT_POST_TYPE ), $holder_args );
 	}
 
 	/**
