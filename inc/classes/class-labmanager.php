@@ -61,6 +61,10 @@ if ( ! class_exists( 'DLI_IndicoManager' ) ) {
 	include_once 'class-indicomanager.php';
 }
 
+if ( ! class_exists( 'DLI_IrisPatentImporter' ) ) {
+	include_once 'class-irispatentimporter.php';
+}
+
 /**
  * The manager that builds the tool and configures Wordpress.
  */
@@ -158,6 +162,10 @@ class DLI_LabManager {
 		// Setup the Indico Manager.
 		$indicom = new DLI_IndicoManager();
 		$indicom->setup();
+
+		// Setup the Patent Importer.
+		$ipm = new DLI_IrisPatentImporter();
+		$ipm->setup();
 
 	}
 

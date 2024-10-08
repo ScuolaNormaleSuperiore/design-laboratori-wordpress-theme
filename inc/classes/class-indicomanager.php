@@ -6,18 +6,19 @@
  */
 
 
-define( 'MSG_MODULE_DISABLED', __( 'Import da Indico disabilitato', 'design_laboratori_italia' ) );
-define( 'MSG_MODULE_NOT_CONFIGURED',  __( 'Import da Indico non configurato correttamente', 'design_laboratori_italia' ) );
+define( 'MSG_MODULE_DISABLED', __( 'Import disabilitato', 'design_laboratori_italia' ) );
+define( 'MSG_MODULE_NOT_CONFIGURED',  __( 'Import non configurato correttamente', 'design_laboratori_italia' ) );
 define( 'MSG_IMPORT_ERROR', __( "Si è verificato un errore durante l'esecuzione dell'import", 'design_laboratori_italia' ) );
 define( 'MSG_IMPORT_SUCCESSFUL', __( 'Importazione eseguita correttamente', 'design_laboratori_italia' ) );
-define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_IMPORTED_EVENT', __( 'Importato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_UPDATED_EVENT', __( 'Aggiornato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_IGNORED_EVENT', __( 'Ignorato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importando l'evento: ", 'design_laboratori_italia' ) );
+define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo oggetto: ', 'design_laboratori_italia' ) );
+define( 'MSG_IMPORTED_EVENT', __( 'Importato oggetto: ', 'design_laboratori_italia' ) );
+define( 'MSG_UPDATED_EVENT', __( 'Aggiornato oggetto: ', 'design_laboratori_italia' ) );
+define( 'MSG_IGNORED_EVENT', __( 'Ignorato oggetto: ', 'design_laboratori_italia' ) );
+define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importando l'oggetto: ", 'design_laboratori_italia' ) );
+define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun oggetto creato realmente) ***', 'design_laboratori_italia' ) );
+define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, oggetti creati realmente ***', 'design_laboratori_italia' ) );
+
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
-define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***', 'design_laboratori_italia' ) );
-define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, eventi creati realmente ***', 'design_laboratori_italia' ) );
 
 class DLI_IndicoManager {
 	private string $job_name;
