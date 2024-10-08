@@ -808,7 +808,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em,p,br,img,img[src|alt|class|width|height]',
+					'valid_elements' => 'a[href],strong,em,p,br,img[src|alt|class|width|height]',
 				),
 			),
 		)
@@ -828,7 +828,7 @@ function dli_register_main_options_metabox() {
 				'quicktags'     => false,
 				'tinymce'       => array(
 					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-					'valid_elements' => 'a[href],strong,em,p,br,img,img[src|alt|class|width|height]',
+					'valid_elements' => 'a[href],strong,em,p,br,img[src|alt|class|width|height]',
 				),
 			),
 		)
