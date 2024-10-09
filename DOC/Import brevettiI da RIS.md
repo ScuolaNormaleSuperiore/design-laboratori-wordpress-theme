@@ -12,6 +12,7 @@ Si può configurare il servizio da back-office nella sezione: *Configurazione-->
 ## Import da Web Service
 Dopo aver attivato e configurato ilo servizio, lo si può invocare utilizzando la REST api di WordPress e l'end-point:
 E' richiesta la basic authentication con un account da amministratore.
+Url da invocare: wp-json/custom/v1/iris-patent-import
 
 ## Import schedulato
 L'impoirtazione può essere eseguita, attivando la registrazione del cronjob associato all'import nella maschera di configurazione del servizio.

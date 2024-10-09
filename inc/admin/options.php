@@ -1781,7 +1781,7 @@ function dli_register_main_options_metabox() {
 	) );
 
 	$iris_options->add_field(array(
-			'id' => $prefix . 'iris_ap_brevetti_enabled',
+			'id' => $prefix . 'iris_brevetti_enabled',
 			'name' => __( "Attiva l'importazione dei brevetti", 'design_laboratori_italia' ),
 			'desc' => __( "Abilita l'integrazione con IRIS AP Brevetti", 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
@@ -1795,9 +1795,24 @@ function dli_register_main_options_metabox() {
 			),
 	));
 
+	$iris_options->add_field(array(
+		'id' => $prefix . 'iris_debug_enabled',
+		'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
+		'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
+		'type' => 'radio_inline',
+		'default' => 'false',
+		'options' => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+		),
+		'attributes' => array(
+				'data-conditional-value' => "false",
+		),
+));
+
 	$iris_options->add_field(
 		array(
-			'id'         => $prefix . 'iris_ap_brevetti_url',
+			'id'         => $prefix . 'iris_brevetti_url',
 			'name'       => __( 'Url endpoint brevetti', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( "L'url dell'endpoint da invocare per scaricare i brevetti." , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -1810,7 +1825,7 @@ function dli_register_main_options_metabox() {
 
 	$iris_options->add_field(
 		array(
-			'id'         => $prefix . 'iris_ap_brevetti_username',
+			'id'         => $prefix . 'iris_brevetti_username',
 			'name'       => __( 'Username', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'Lo username per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -1822,7 +1837,7 @@ function dli_register_main_options_metabox() {
 
 	$iris_options->add_field(
 		array(
-			'id'         => $prefix . 'iris_ap_brevetti_password',
+			'id'         => $prefix . 'iris_brevetti_password',
 			'name'       => __( 'Password', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'La password per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
 			'type'       => 'text',
@@ -1835,7 +1850,7 @@ function dli_register_main_options_metabox() {
 
 	$iris_options->add_field(
 		array(
-			'id'               => $prefix . 'iris_ap_brevetti_schedule',
+			'id'               => $prefix . 'iris_brevetti_schedule',
 			'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
 			'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/iris-ap-brevetti-import." , 'design_laboratori_italia' ),
 			'type'             => 'select',
@@ -1853,7 +1868,7 @@ function dli_register_main_options_metabox() {
 
 	$iris_options->add_field(
 		array(
-			'id'               => $prefix . 'iris_ap_brevetti_import_type',
+			'id'               => $prefix . 'iris_brevetti_import_type',
 			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
 			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
 			'type'             => 'select',
@@ -1868,7 +1883,7 @@ function dli_register_main_options_metabox() {
 
 	$iris_options->add_field(
 		array(
-			'id'               => $prefix . 'iris_ap_brevetti_item_existent_action',
+			'id'               => $prefix . 'iris_brevetti_item_existent_action',
 			'name'             => __( 'Brevetto esistente', 'design_laboratori_italia' ),
 			'desc'             => __( "Azione da intraprendere se il brevetto esiste già" , 'design_laboratori_italia' ),
 			'type'             => 'select',

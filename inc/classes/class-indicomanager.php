@@ -217,7 +217,6 @@ class DLI_IndicoManager {
 			$counter++;
 			$event_title = $event['title'];
 			$msg         = '';
-
 			$source_array = $this->trim_array( $conf['keywords'] ? explode(',', $conf['keywords']) : array() );
 			$dest_array   = $this->trim_array( $event['keywords'] ? $event['keywords'] : array() );
 			if ( ( ! $source_array ) || ( ! $dest_array ) || ( count( array_intersect( $source_array, $dest_array ) ) === 0 ) ) {
@@ -237,7 +236,7 @@ class DLI_IndicoManager {
 				try {
 					$updated    = false;
 					$ignored    = false;
-					$event_code = $this->create_event( $event, $conf, $updated, $ignored );
+					$event_code = $this->create_wp_content( $event, $conf, $updated, $ignored );
 					if ( $updated ) {
 						array_push(
 							$data,
@@ -279,7 +278,7 @@ class DLI_IndicoManager {
 		return array_map( 'trim', $array );
 	}
 
-	private function create_event( $event, $conf, &$updated, &$ignored ): int {
+	private function create_wp_content( $event, $conf, &$updated, &$ignored ): int {
 		$post_name    = dli_generate_slug( $event['title'] );
 		$post_content = $this->prepare_post_content( $event['description'], $conf['base_url'] );
 		$new_page = array(
