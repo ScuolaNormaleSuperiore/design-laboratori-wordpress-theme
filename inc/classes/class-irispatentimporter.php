@@ -69,23 +69,24 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 * @return int
 	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {
-		$post_name = dli_generate_slug( $item->title );
-		$new_content = array(
+		$post_name    = dli_generate_slug( $item->title );
+		$post_content = $item->abstract_en ?? $item->abstract ?? '.';
+		$new_content  = array(
 			'post_type'    => $this->post_type,
 			'post_name'    => $post_name,
 			'post_title'   => $item->displayValue,
-			'post_content' => $item->abstract,
+			'post_content' => $post_content,
 			'post_status'  => 'draft',
 			'post_parent'  => 0,
 		);
-		$update_content = ( $conf['action'] === 'update' ) ? true : false;
+		$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
 
 		// Verifico l'esistenza dell'oggetto su Worpress.
 		$post_id = $this->get_wp_content_id( $item );
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_content );
 			$updated = false;
-			// $this->update_custom_fields( $post_id, $item );
+			$this->update_custom_fields( $post_id, $item );
 			// La lingua impostata per l'oggetto importato è quella settata come lingua di default.
 			$lang = dli_current_language();
 			dli_set_post_language( $post_id, $lang );
@@ -97,7 +98,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					'post_content' => $new_content['post_content'],
 				);
 				wp_update_post( $pars );
-				// $this->update_custom_fields( $post_id, $item );
+				$this->update_custom_fields( $post_id, $item );
 				$updated = true;
 			} else {
 				$ignored = true;
@@ -106,22 +107,50 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $post_id;
 	}
 
+	private function update_custom_fields( $post_id, $item ){
+		// Codice Brevetto (codice_brevetto).
+		$item_code = 'PAT-' . $item->id;
+		dli_update_field( 'codice_brevetto', $item_code, $post_id );
+		// Sottotitolo (sottotitolo): non si importa.
+
+		// Stato Legale (stato_legale).
+		// Data deposito (data_deposito).
+		// Anno Deposito (anno_deposito).
+		// Numero Deposito (numero_deposito).
+		dli_update_field( 'numero_deposito', $item->applicationNumber, $post_id );
+
+		// Inventori referenti (inventori_referenti).
+		// Inventori (inventori).
+		// Titolari (titolari).
+
+		// $start_date = $event['startDate']['date'];
+		// $start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Y-m-d');
+		// dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
+		// $address = array();
+		// if ( $event['roomFullname'] ) array_push( $address, $event['roomFullname'] );
+		// if ( $event['location'] ) array_push( $address, $event['location'] );
+		// if ( $event['address'] ) array_push( $address, $event['address'] );
+		// $full_location = implode( ' - ', $address );
+		// dli_update_field( 'luogo', $full_location, $post_id );
+	}
+
 	private function get_wp_content_id( $item ){
-		$item_code  = 'PAT-' . $item->id; //@TODO: Remove this (use pid).
+		$item_code = 'PAT-' . $item->id; //@TODO: Remove this (use pid).
 		$args = array(
 			'post_type' => $this->post_type,
 			'meta_query' => array(
 				array(
-					'key'   => 'codice_brevetto',
-					'value' => $item_code,
+					'key'     => 'codice_brevetto',
+					'value'   => $item_code,
 					'compare' => '='
 				)
 			),
-			'posts_per_page' => 1 // Limita a un solo risultato
-	);
-	$query = new WP_Query($args);
-	return $query->found_posts ? $query->posts[0]->ID : 0;
-}
+			'posts_per_page' => 1,
+			'post_status'    => 'any',
+		);
+		$query = new WP_Query($args);
+		return $query->found_posts ? $query->posts[0]->ID : 0;
+	}
 
 	// *** FUNZIONI DI UTILITA' *** //
 

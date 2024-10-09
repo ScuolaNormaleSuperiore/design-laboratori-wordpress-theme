@@ -252,8 +252,8 @@ class Patent_Manager {
 				),
 				array(
 					'key' => 'field_6704ef0dffeca',
-					'label' => 'Inventore referente',
-					'name' => 'inventore_referente',
+					'label' => 'Inventori referenti',
+					'name' => 'inventori_referenti',
 					'aria-label' => '',
 					'type' => 'text',
 					'instructions' => '',
