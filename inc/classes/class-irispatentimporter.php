@@ -190,34 +190,4 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $results;
 	}
 
-	private function get_rest_data( $ws_url, $username, $password ) {
-		$data = array();
-		// Recupero JSON dati.
-		$auth = base64_encode("$username:$password");
-		$args = array(
-			'headers' => array(
-					'Authorization' => "Basic $auth"
-			)
-		);
-		// Invocazione dell'endpoint.
-		$response    = wp_remote_get($ws_url, $args);
-		// Controllo della risposta
-		if ( is_wp_error($response ) ) {
-			// Errore invocando il web service.
-			throw new Exception( $response->get_error_message());
-		}
-		$status_code = wp_remote_retrieve_response_code( $response );
-		if ( $status_code != 200 ) {
-			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
-			throw new Exception( $error_msg );
-		} else {
-			// Recupera dati dalla risposta.
-			$body = wp_remote_retrieve_body($response);
-			if ( $body ){
-				$data = json_decode($body);
-			}
-		}
-		return $data;
-	}
-
 }

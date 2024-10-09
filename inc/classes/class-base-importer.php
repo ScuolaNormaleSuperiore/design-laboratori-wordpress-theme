@@ -33,6 +33,48 @@ class DLI_BaseImporter {
 		// add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
 	}
 
+	public function register_import_endpoint() {
+		register_rest_route(
+			'custom/v1',
+			$this->endpoint,
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'import' ),
+				'permission_callback' => array( $this, 'dli_permission_callback' ),
+			)
+		);
+	}
+
+	public function get_rest_data( $ws_url, $username, $password ) {
+		$data = array();
+		// Recupero JSON dati.
+		$auth = base64_encode("$username:$password");
+		$args = array(
+			'headers' => array(
+				'Authorization' => "Basic $auth"
+			)
+		);
+		// Invocazione dell'endpoint.
+		$response = wp_remote_get($ws_url, $args);
+		// Controllo della risposta
+		if ( is_wp_error($response ) ) {
+			// Errore invocando il web service.
+			throw new Exception( $response->get_error_message());
+		}
+		$status_code = wp_remote_retrieve_response_code( $response );
+		if ( $status_code != 200 ) {
+			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
+			throw new Exception( $error_msg );
+		} else {
+			// Recupera dati dalla risposta.
+			$body = wp_remote_retrieve_body($response);
+			if ( $body ){
+				$data = json_decode($body);
+			}
+		}
+		return $data;
+	}
+
 	/**
 	 * Verifica la Basic Authentication.
 	 *
@@ -58,18 +100,6 @@ class DLI_BaseImporter {
 			);
 		}
 		return true;
-	}
-
-	public function register_import_endpoint() {
-		register_rest_route(
-			'custom/v1',
-			$this->endpoint,
-			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'import' ),
-				'permission_callback' => array( $this, 'dli_permission_callback' ),
-			)
-		);
 	}
 
 	public function send_response( $code, $message, $data ) {
