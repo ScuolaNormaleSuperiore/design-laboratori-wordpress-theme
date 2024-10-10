@@ -69,7 +69,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 * @return int
 	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {
-		$post_name    = dli_generate_slug( $item->title );
+		$post_name    = dli_generate_slug( $item->displayValue );
 		$post_content = $item->abstract_en ?? $item->abstract ?? '.';
 		$new_content  = array(
 			'post_type'    => $this->post_type,
@@ -109,7 +109,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 	private function update_custom_fields( $post_id, $item ){
 		// Codice Brevetto (codice_brevetto).
-		$item_code = 'PAT-' . $item->id;
+		$item_code =  $item->pid;
 		dli_update_field( 'codice_brevetto', $item_code, $post_id );
 		// Sottotitolo (sottotitolo): non si importa.
 
@@ -135,13 +135,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	private function get_wp_content_id( $item ){
-		$item_code = 'PAT-' . $item->id; //@TODO: Remove this (use pid).
 		$args = array(
 			'post_type' => $this->post_type,
 			'meta_query' => array(
 				array(
 					'key'     => 'codice_brevetto',
-					'value'   => $item_code,
+					'value'   => $item->pid,
 					'compare' => '='
 				)
 			),
@@ -167,11 +166,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$updated   = 0;
 		$ignored   = 0;
 
+		// @TODO: Remove the following line:
 		$data = array_slice($data, 0, 2);
 		foreach ( $data as $item ){
 			$counter++;
-			// @TODO Aggiungere PID al json.
-			$item_code  = 'PAT-' . $item->id;
+			$item_code  = $item->pid;
 			$item_title = $item->displayValue;
 
 			if ( $conf['import_type'] === 'dryrun' ){

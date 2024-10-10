@@ -4,9 +4,9 @@
         "title": "Campi Brevetto",
         "fields": [
             {
-                "key": "field_670502099b7a3",
-                "label": "Sottotitolo",
-                "name": "sottotitolo",
+                "key": "field_6707df1a481eb",
+                "label": "Sommario elenco",
+                "name": "sommario_elenco",
                 "aria-label": "",
                 "type": "textarea",
                 "instructions": "",
@@ -23,6 +23,27 @@
                 "rows": "",
                 "placeholder": "",
                 "new_lines": ""
+            },
+            {
+                "key": "field_670502099b7a3",
+                "label": "Note",
+                "name": "note",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 1,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
             },
             {
                 "key": "field_66fbbf1fa1cfa",
