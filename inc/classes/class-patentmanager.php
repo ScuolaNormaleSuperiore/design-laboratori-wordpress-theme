@@ -335,6 +335,27 @@ class Patent_Manager {
 				'prepend' => '',
 				'append' => '',
 			),
+			array(
+				'key' => 'field_6707e403dbf67',
+				'label' => 'Prioritario',
+				'name' => 'prioritario',
+				'aria-label' => '',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 1,
+				'allow_in_bindings' => 0,
+				'ui' => 0,
+				'ui_on_text' => '',
+				'ui_off_text' => '',
+			),
 		),
 		'location' => array(
 			array(
