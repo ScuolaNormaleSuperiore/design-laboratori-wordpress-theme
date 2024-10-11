@@ -172,7 +172,7 @@ class Patent_Manager {
 				'label' => 'Stato legale',
 				'name' => 'stato_legale',
 				'aria-label' => '',
-				'type' => 'text',
+				'type' => 'select',
 				'instructions' => '',
 				'required' => 1,
 				'conditional_logic' => 0,
@@ -181,12 +181,22 @@ class Patent_Manager {
 					'class' => '',
 					'id' => '',
 				),
-				'default_value' => '',
-				'maxlength' => '',
-				'allow_in_bindings' => 0,
+				'choices' => array(
+					'Abbandonato' => 'Abbandonato',
+					'Ceduto' => 'Ceduto',
+					'Concesso' => 'Concesso',
+					'Licenza' => 'Licenza',
+					'Pending' => 'Pending',
+					'Terminato' => 'Terminato',
+				),
+				'default_value' => 'Pending',
+				'return_format' => 'value',
+				'multiple' => 0,
+				'allow_null' => 0,
+				'allow_in_bindings' => 1,
+				'ui' => 0,
+				'ajax' => 0,
 				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
 			),
 			array(
 				'key' => 'field_66fbbef9af705',
@@ -376,7 +386,6 @@ class Patent_Manager {
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
-
 	}
 	
 }

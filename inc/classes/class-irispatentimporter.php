@@ -109,29 +109,69 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 	private function update_custom_fields( $post_id, $item ){
 		// Codice Brevetto (codice_brevetto).
-		$item_code =  $item->pid;
+		$item_code = $item->pid;
 		dli_update_field( 'codice_brevetto', $item_code, $post_id );
-		// Sottotitolo (sottotitolo): non si importa.
-
 		// Stato Legale (stato_legale).
-		// Data deposito (data_deposito).
-		// Anno Deposito (anno_deposito).
+		dli_update_field( 'stato_legale', $item->legal_status, $post_id );
 		// Numero Deposito (numero_deposito).
 		dli_update_field( 'numero_deposito', $item->applicationNumber, $post_id );
+		if ( $item->deposit_date ){
+			// Data deposito (data_deposito).
+			$dp_date_str  = $item->deposit_date;
+			$deposit_date = DateTime::createFromFormat('d-m-Y', $dp_date_str )->format('d/m/Y');
+			dli_update_field( 'data_deposito', $deposit_date, $post_id );
+			// Anno Deposito (anno_deposito).
+			$deposit_year = DateTime::createFromFormat('d-m-Y', $dp_date_str )->format('Y');
+			dli_update_field( 'anno_deposito', $deposit_year, $post_id );
+		}
+		// isPriority
+		if ( $item->isPriority ) {
+			dli_update_field( 'prioritario', true, $post_id );
+		} else {
+			dli_update_field( 'prioritario', false, $post_id );
+		}
 
-		// Inventori referenti (inventori_referenti).
-		// Inventori (inventori).
+		// Inventori referenti e non (inventori_referenti, inventori).
+		$inv_ref = array();
+		$inv     = array();
+		if ( $item->ownerSet && count( $item->ownerSet ) > 0) {
+			foreach ( $item->ownerSet as $i ) {
+				$inv_name = $i->person->firstName . ' ' . $i->person->lastName;
+				if ( $i->role->description === 'Titolare' ) {
+					array_push( $inv, trim( $inv_name ) );
+				} else {
+					array_push( $inv_ref, trim( $inv_name ) );
+				}
+			}
+		}
+		$inv_ref_str = implode( ', ', $inv_ref );
+		$inv_str     = implode( ', ', $inv );
+		dli_update_field( 'inventori', $inv_ref_str, $post_id );
+		dli_update_field( 'inventori_referenti', $inv_str, $post_id );
+
 		// Titolari (titolari).
+		$tit = array();
+		if ( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet && count( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet ) > 0) {
+			foreach ( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet as $o ) {
+				$tit_name = $o->organizationUnit->description;
+				array_push( $tit, trim( $tit_name ) );
+			}
+		}
+		$tit_str     = implode( ', ', $tit );
+		dli_update_field( 'titolari', $tit_str, $post_id );
 
-		// $start_date = $event['startDate']['date'];
-		// $start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Y-m-d');
-		// dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
-		// $address = array();
-		// if ( $event['roomFullname'] ) array_push( $address, $event['roomFullname'] );
-		// if ( $event['location'] ) array_push( $address, $event['location'] );
-		// if ( $event['address'] ) array_push( $address, $event['address'] );
-		// $full_location = implode( ' - ', $address );
-		// dli_update_field( 'luogo', $full_location, $post_id );
+		// Aree tematiche (area_tematica)
+		$thematic_area_list_str = $item->thematic_area_list;
+		if ( $thematic_area_list_str ) {
+			$thematic_areas = explode( '###', $thematic_area_list_str );
+			foreach ( $thematic_areas as $t ) {
+				$area_slug = dli_generate_slug( trim( $t ) );
+				$area_name = $t;
+				// Controllo esistenza tassonomia
+				// Creo tassonomia
+				// Associo tassonomia.
+			}
+		}
 	}
 
 	private function get_wp_content_id( $item ){
