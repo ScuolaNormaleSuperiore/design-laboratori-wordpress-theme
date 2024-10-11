@@ -154,22 +154,34 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet && count( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet ) > 0) {
 			foreach ( $item->ownerPersonCurrentOrLastInternalOrganizationUnitSet as $o ) {
 				$tit_name = $o->organizationUnit->description;
-				array_push( $tit, trim( $tit_name ) );
+				if ( $tit_name ) {
+					array_push( $tit, trim( $tit_name ) );
+				}
+				
 			}
 		}
-		$tit_str     = implode( ', ', $tit );
+		$tit_str = implode( ', ', $tit );
 		dli_update_field( 'titolari', $tit_str, $post_id );
 
 		// Aree tematiche (area_tematica)
 		$thematic_area_list_str = $item->thematic_area_list;
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
-			foreach ( $thematic_areas as $t ) {
-				$area_slug = dli_generate_slug( trim( $t ) );
-				$area_name = $t;
+			foreach ( $thematic_areas as $term ) {
+				// $area_slug = dli_generate_slug( trim( $t ) );
 				// Controllo esistenza tassonomia
 				// Creo tassonomia
-				// Associo tassonomia.
+				$lang     = dli_current_language();
+				$termitem = term_exists( $term, THEMATIC_AREA_TAXONOMY );
+				if ( $termitem ) {
+					$term_id = $termitem['term_id'];
+				} else {
+					$new_term = wp_insert_term( $term, THEMATIC_AREA_TAXONOMY );
+					$term_id  = $new_term['term_id'];
+				}
+				dli_set_term_language( $term_id, $lang );
+				// Associo la tassonomia al contenuto.
+				wp_set_post_terms( $post_id, array( $term_id ), THEMATIC_AREA_TAXONOMY, true );
 			}
 		}
 	}
@@ -207,7 +219,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$ignored   = 0;
 
 		// @TODO: Remove the following line:
-		$data = array_slice($data, 0, 2);
+		$data = array_slice($data, 0, 10);
 		foreach ( $data as $item ){
 			$counter++;
 			$item_code  = $item->pid;
