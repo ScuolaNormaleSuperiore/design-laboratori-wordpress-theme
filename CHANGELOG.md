@@ -27,7 +27,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Disabilitato XMLRPC.
 
 ### Modificato
-- Aggiornata libreria BootstrapItalia alla versione 2.9.1.
+- Aggiornata libreria BootstrapItalia alla versione 2.10.0.
 
 ### Refactoring
 - Rifattorizzazione della creazione dei menu tramite file di configurazione dedicato.
