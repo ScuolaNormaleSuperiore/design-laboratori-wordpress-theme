@@ -76,4 +76,18 @@ class DLI_ContentsManager
 		return $og_data;
 	}
 
+
+	public static function get_patent_data_query( $params ) {
+		$the_query = new WP_Query(
+			array(
+				'paged'          => get_query_var( 'paged', 1 ),
+				'post_type'      => PATENT_POST_TYPE,
+				'posts_per_page' => 2,
+				// 'category__in'   => $selected_categories,
+			)
+		);
+		return $the_query;
+	}
+
+
 }

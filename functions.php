@@ -12,10 +12,17 @@
  */
 require get_template_directory() . '/config_lab.php';
 
+
 /**
  * Define the static pages of the site.
  */
 require get_template_directory() . '/config_pages.php';
+
+/**
+ * Define the menu of the site.
+ */
+require get_template_directory() . '/config_menu.php';
+
 
 /**
  * Warappers functions fo Polylang.

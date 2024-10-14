@@ -1,6 +1,6 @@
 <?php
 /* Template Name: Notizie
- *$all_categories
+ *
  * @package Design_Laboratori_Italia
  */
 
