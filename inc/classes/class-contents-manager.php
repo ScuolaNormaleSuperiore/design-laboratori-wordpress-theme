@@ -82,7 +82,7 @@ class DLI_ContentsManager
 			array(
 				'paged'          => get_query_var( 'paged', 1 ),
 				'post_type'      => PATENT_POST_TYPE,
-				'posts_per_page' => 2,
+				'posts_per_page' => DLI_POSTS_PER_PAGE,
 				// 'category__in'   => $selected_categories,
 			)
 		);

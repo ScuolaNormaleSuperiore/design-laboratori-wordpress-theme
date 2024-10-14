@@ -430,6 +430,7 @@ class Patent_Manager {
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
+
 	}
 	
 }

@@ -31,6 +31,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Refactoring
 - Rifattorizzazione della creazione dei menu tramite file di configurazione dedicato.
+- Introdotto DLI_ContentsManager per la gestione delle query dei contenuti e delle tassonomie.
 
 
 ## [1.3.2] - 2024-09-04
