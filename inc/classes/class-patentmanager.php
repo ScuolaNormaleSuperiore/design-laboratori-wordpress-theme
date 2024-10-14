@@ -6,6 +6,8 @@
  */
 
 
+define( 'PATENT_SORTABLE_FIELD', 'codice_brevetto' );
+
 class Patent_Manager {
 	/**
 	 * Constructor of the Manager.
@@ -24,7 +26,14 @@ class Patent_Manager {
 		add_action( 'init', array( $this, 'add_post_type' ) );
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
+
+		// Add column to the list of items in the back-office.
+		add_action( 'manage_edit-brevetto_columns', array( $this, 'add_custom_admin_columns' ) );
+		add_action( 'manage_brevetto_posts_custom_column', array( $this, 'populate_custom_admin_columns' ), 10, 2 );
+		add_filter( 'manage_edit-brevetto_sortable_columns', array( $this, 'sort_custom_admin_columns' ) );
+		add_action( 'pre_get_posts', array( $this, 'order_custom_admin_columns' ) );
 	}
+
 
 	/**
 	 * Register the taxonomies.
@@ -105,10 +114,45 @@ class Patent_Manager {
 	public function custom_layout( $post ) {
 		if ( PATENT_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione brevetto', 'design_laboratori_italia' );
+			_e( 'Abstract del brevetto', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}
+
+
+	function add_custom_admin_columns( $columns ) {
+		// Inserisci una nuova colonna per il meta field PATENT_SORTABLE_FIELD.
+		$columns[PATENT_SORTABLE_FIELD] = __( 'Codice', 'design_laboratori_italia' );
+		return $columns;
+	}
+
+	function populate_custom_admin_columns( $column, $post_id ) {
+		// Popolare la colonna personalizzata con i dati del meta field.
+		if ( $column == PATENT_SORTABLE_FIELD ) {
+				// Ottieni il valore del meta field PATENT_SORTABLE_FIELD
+				$value = get_post_meta( $post_id, PATENT_SORTABLE_FIELD, true );
+				echo $value ? esc_html( $value ) : __( 'N/D', 'design_laboratori_italia' );
+		}
+	}
+
+
+	function sort_custom_admin_columns( $columns ) {
+		// Rendere la colonna PATENT_SORTABLE_FIELD ordinabile.
+		$columns[PATENT_SORTABLE_FIELD] = PATENT_SORTABLE_FIELD;
+		return $columns;
+	}
+
+	function order_custom_admin_columns( $query ) {
+		if ( ! is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+		if ( $query->get('orderby') == PATENT_SORTABLE_FIELD ) {
+			// Ordina per meta field PATENT_SORTABLE_FIELD.
+			$query->set('meta_key', PATENT_SORTABLE_FIELD);
+			$query->set('orderby', 'meta_value');
+		}
+	}
+
 
 	/**
 	 * Add the custom fields of the custom post-type.
