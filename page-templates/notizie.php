@@ -78,7 +78,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 				?>
 				<!-- Inizio ELENCO NEWS -->
 				<div class="col-12 col-lg-8">
-				<?php
+					<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
 						if ( ( $pindex % NEWS_CELLS_PER_ROW ) == 0 ) {
@@ -136,7 +136,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 							<?php echo __( 'Non è stata trovata nessuna notizia', 'design_laboratori_italia' ); ?>
 						</div>
 					</div>
-					<?php
+				<?php
 				}
 				?>
 
@@ -148,9 +148,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 		</div>
 	</section>
 
-		<!-- RESTORE ORIGINAL Post Data -->
-		<?php
-		wp_reset_postdata();
+	<!-- RESTORE ORIGINAL Post Data -->
+	<?php
+	wp_reset_postdata();
 	?>
 
 	<!-- PAGINAZIONE -->

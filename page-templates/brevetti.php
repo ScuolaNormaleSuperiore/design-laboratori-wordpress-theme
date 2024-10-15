@@ -6,6 +6,7 @@
 
 global $post;
 get_header();
+define( 'PATENT_CELLS_PER_ROW', 2 );
 
 if ( isset( $_GET['area'] ) ){
 	$selected_areas = $_GET['area'];
@@ -13,15 +14,17 @@ if ( isset( $_GET['area'] ) ){
 	$selected_areas = array();
 }
 
-$params = array(
+$post_per_page = 10;
+$params        = array(
 	'search_string' => '',
 	'areas'         => array(),
 	'deposit_year'  => '',
+	'post_per_page' => $post_per_page,
 );
 
-$the_query = DLI_ContentsManager::get_patent_data_query( $params );
+$the_query     = DLI_ContentsManager::get_patent_data_query( $params );
+$num_results   = $the_query->found_posts;
 
-$num_results    = $the_query->found_posts;
 // $all_areas = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 ?>
 
@@ -36,6 +39,7 @@ $num_results    = $the_query->found_posts;
 	<!-- ELENCO BREVETTI -->
 	<section id="brevetti">
 		<div class="container p-5">
+			<!-- inizio row principale -->
 			<div class="row">
 				<div class="col-12 col-lg-3 border-end pb-3">
 					<!--COLONNA FILTRI -->
@@ -92,63 +96,104 @@ $num_results    = $the_query->found_posts;
 					</div>
 				</div>
 
-				<!-- BREVETTI 6 per pagina -->
-				<div class="col-12 col-lg-8 pt-3"> <!-- inizio contenitore brevetti -->
-					<div class="row"> <!-- prima row -->
-						<div class="col-12 col-lg-6"> 
-							<!--start card-->
-							<div class="card-wrapper shadow">
-								<div class="card card-img no-after">
-									<div class="img-responsive-wrapper">
-										<div class="img-responsive ">
-											<figure class="img-wrapper"> <img src="img/esempiobrevetti1.png?text=IMMAGINE DI ESEMPIO" title="titolo immagine" alt="descrizione immagine"> </figure>
-										</div>
-									</div>
-										<div class="card-body">
-									<h3 class="h5">MULTICOMPONENT LIPID NANOPARTICLES WITH HIGH CELLULAR FUSOGENICITY FOR THE DELIVERY OF NUCLEIC ACIDS AND RELATED PREPARATION PROCESS
-										</h3>
-										<p class="card-text font-serif">The present invention relates to the process of preparing multicomponent lipidic nanoparticles (LNP) with high cellular fusogenicity for the delivery of nucleic acids and in particular for DNA vaccination.</p>
-										<p class="card-text font-serif titolari"><em>Scuola Normale Superiore, Università degli Studi di Camerino, Università degli Studi ROMA La Sapienza</em></p>
-													<p class="card-text font-serif area"><strong>Sanità e Biomedicale</strong> - Pending</p>
-										<div class="pt-5"><a class="read-more" href="sf-scheda-brevetto.html"> <span class="text">Leggi di più</span> <span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
-										<svg class="icon">
-											<use href="/bootstrap-italia/dist/svg/sprites.svg#it-arrow-right"></use>
-										</svg>
-									</a></div></div>
-								</div>
-							</div>
-							<!--end card--> 
-						</div>
-							<div class="col-12 col-lg-6"> 
-							<!--start card-->
-							<div class="card-wrapper shadow">
-								<div class="card card-img no-after">
-									<div class="img-responsive-wrapper">
-										<div class="img-responsive ">
-											<figure class="img-wrapper"> <img src="img/brevetti img2.png?text=IMMAGINE DI ESEMPIO" title="titolo immagine" alt="descrizione immagine"> </figure>
-										</div>
-									</div>
-										<div class="card-body">
-									<h3 class="h5">PEPTIDES AND THEIR DERIVATIVES INHIBITING EXTRACELLULAR RELEASE OF HIV-1 TAT PROTEIN AND HIV-1 REPLICATION</h3>
-										<p class="card-text font-serif">A protein comprising a single or a combination of three intracytoplasmatic peptide stretches of the C- terminal domain of the Na+, K+-ATPase alpha sub-unit is herein disclosed, all said peptide stretches binding HIV-1 Tat protein. </p>
-										<p class="card-text font-serif author"><em>Scuola Normale, Università di Pisa</em></p>
-													<p class="card-text font-serif area"><strong>Sanità e Biomedicale </strong></p>
-										<div class="pt-5"><a class="read-more" href="#"> <span class="text">Leggi di più</span> <span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
-										<svg class="icon">
-											<use href="/bootstrap-italia/dist/svg/sprites.svg#it-arrow-right"></use>
-										</svg>
-												</a></div></div>
-								</div>
-							</div>
-							<!--end card--> 
-						</div>
-					</div> <!-- end prima row -->
-				</div> <!-- end contenitore brevetti -->
 
-			</div> <!-- end row principale -->
+				<!-- BREVETTI 6 per pagina -->
+				<?php
+				// The mani loop of the page.
+				$pindex = 0;
+				if ( $num_results > 0 ) {
+				?>
+					<!-- inizio contenitore brevetti -->
+					<div class="cKl-12 col-lg-8 pt-3">
+						<?php
+						while ( $the_query->have_posts() ) {
+							$the_query->the_post();
+							if ( ( $pindex % PATENT_CELLS_PER_ROW ) == 0 ) {
+						?>
+						<div class="row pt-5"> <!-- row -->
+							<?php
+								}
+								$post_id       = get_the_ID();
+								$summary       = dli_get_field( 'sommario_elenco' );
+								$stato         = dli_get_field( 'stato_legale' );
+								$titolari      = dli_get_field( 'titolari' );
+								$area_tematica = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
+							?>
+							<div class="col-12 col-lg-6"> 
+								<!--start card-->
+								<div class="card-wrapper shadow">
+									<div class="card card-img no-after">
+										<div class="img-responsive-wrapper">
+											<div class="img-responsive ">
+												<figure class="img-wrapper">
+													<img
+														src="img/esempiobrevetti1.png?text=IMMAGINE DI ESEMPIO"
+														title="titolo immagine"
+														alt="descrizione immagine">
+												</figure>
+											</div>
+										</div>
+										<div class="card-body">
+											<h3 class="h5"><?php the_title(); ?></h3>
+											<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
+											<p class="card-text font-serif titolari">
+												<em><?php echo esc_attr( $titolari ); ?></em>
+											</p>
+											<p class="card-text font-serif area">
+												<?php
+												if ($area_tematica && array_key_exists('title', $area_tematica ) ) {
+												?>
+												<strong><?php echo esc_attr( $area_tematica['title'] ); ?></strong> - 
+												<?php
+												}
+												?>
+												<?php echo esc_attr( $stato ); ?>
+											</p>
+											<div class="pt-5">
+												<a class="read-more" href="sf-scheda-brevetto.html"> <span class="text">Leggi di più</span> <span class="visually-hidden">su Lorem ipsum dolor sit amet, consectetur adipiscing elit…</span>
+													<svg class="icon">
+														<use href="/bootstrap-italia/dist/svg/sprites.svg#it-arrow-right"></use>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--end card--> 
+							</div>
+						<?php
+						if ( ( ( $pindex % PATENT_CELLS_PER_ROW ) === PATENT_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+						?>
+						</div>
+						<!-- end row -->
+						<?php
+							}
+							$pindex++;
+						}
+						?>
+					</div>
+					<!-- end contenitore brevetti -->
+				<?php
+				} else {
+				?>
+				<div class="col-12 col-lg-8">
+					<div clas="row pt-2">
+						<?php echo __( 'Non è stato trovato alcun brevetto', 'design_laboratori_italia' ); ?>
+					</div>
+				</div>
+				<?php
+				}
+				?>
+			</div>
+			<!-- end row principale -->
 		</div> <!-- end container -->
 	</section>
 
+	<!-- RESTORE ORIGINAL Post Data -->
+	<?php
+	wp_reset_postdata();
+	?>
+	
 	<!-- PAGINAZIONE con selettore  -->
 	<nav class="pagination-wrapper justify-content-center" aria-label="Esempio di navigazione con page changer">
 		<ul class="pagination">
