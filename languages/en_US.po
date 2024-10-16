@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2024-06-05 13:46+0000\n"
+"PO-Revision-Date: 2024-10-16 09:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -58,7 +58,7 @@ msgstr "Enable debug messages in error.log file"
 msgid "Abilita REST API"
 msgstr "Enable REST API"
 
-#: header.php:119
+#: header.php:124
 msgid "Accedi"
 msgstr "Login"
 
@@ -102,7 +102,7 @@ msgstr "Add a place type"
 msgid "al"
 msgstr "to"
 
-#: single-evento.php:197 single-evento.php:384 single-progetto.php:152
+#: single-evento.php:197 single-evento.php:386 single-progetto.php:152
 #: single-progetto.php:245
 msgid "Allegati"
 msgstr "Attachments"
@@ -132,14 +132,11 @@ msgstr "Archive."
 msgid "Archivio articoli"
 msgstr "Articles archive"
 
+#. Name of the template
+#: page-templates/archive-progetti.php:2
 #: template-parts/hero/progetti-archive.php:8
 msgid "Archivio progetti"
 msgstr "Project archive"
-
-#. Name of the template
-#: page-templates/archive-progetti.php:2
-msgid "Archivio progetti."
-msgstr "Projects archive."
 
 #: inc/admin/options.php:34
 msgid "Area di configurazione delle informazioni di base"
@@ -150,11 +147,11 @@ msgstr "Configuration of basic information"
 msgid "Area di configurazione delle opzioni generali del tema"
 msgstr "Configuration of theme general options"
 
-#: single-notizia.php:151 single-post.php:151
+#: single-notizia.php:105 single-post.php:105
 msgid "Argomenti"
 msgstr "Subjects"
 
-#: inc/utils.php:1090
+#: inc/utils.php:1025
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -172,14 +169,11 @@ msgstr "Enable Indico integration"
 msgid "Attiva la newsletter"
 msgstr "Enable newsletter"
 
-#: single-persona.php:182 single-persona.php:282 inc/utils.php:258
+#. Name of the template
+#: single-persona.php:182 single-persona.php:283 inc/utils.php:193
+#: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr "Research activities"
-
-#. Name of the template
-#: page-templates/ricerca.php:2
-msgid "Attività di ricerca."
-msgstr "Research activity."
 
 #: inc/admin/options.php:237
 msgid "Avvisi di allerta in Home Page"
@@ -197,7 +191,7 @@ msgstr "Action to take if the event already exists"
 msgid "Banner"
 msgstr "Banner"
 
-#: single-persona.php:152 single-persona.php:228
+#: single-persona.php:152 single-persona.php:229
 #: inc/classes/class-peoplemanager.php:120
 msgid "Biografia"
 msgstr "Biography"
@@ -206,15 +200,11 @@ msgstr "Biography"
 msgid "Biografia della persona"
 msgstr "Biography of the person"
 
-#: inc/admin/options.php:848 template-parts/hero/blog.php:9
-#: template-parts/home/hp-list-article.php:29
+#. Name of the template
+#: page-templates/blog.php:2 inc/admin/options.php:848
+#: template-parts/hero/blog.php:9 template-parts/home/hp-list-article.php:29
 msgid "Blog"
 msgstr "Blog"
-
-#. Name of the template
-#: page-templates/blog.php:2
-msgid "Blog."
-msgstr "Blog."
 
 #: inc/admin/options.php:514
 msgid "Box 1 dei contenuti in evidenza"
@@ -245,11 +235,11 @@ msgstr "Cancel"
 msgid "Categoria"
 msgstr "Category"
 
-#: header.php:153 page-templates/cerca.php:83
+#: header.php:158 page-templates/cerca.php:83
 msgid "Cerca"
 msgstr "Search"
 
-#: header.php:157 page-templates/cerca.php:66 page-templates/cerca.php:70
+#: header.php:162 page-templates/cerca.php:66 page-templates/cerca.php:70
 msgid "Cerca nel sito"
 msgstr "Search this site"
 
@@ -297,7 +287,7 @@ msgstr ""
 msgid "Compilare tutti i campi obbligatori."
 msgstr "Fill in all mandatory fields."
 
-#: single-notizia.php:103 single-post.php:103
+#: template-parts/common/social_sharing.php:22
 msgid "Condividi"
 msgstr "share"
 
@@ -317,17 +307,13 @@ msgstr "Configuration"
 msgid "Configurazione Laboratorio"
 msgstr "Lab configuration"
 
-#: footer.php:38 single-evento.php:188 single-evento.php:324
+#. Name of the template
+#: footer.php:38 single-evento.php:188 single-evento.php:326
 #: single-indirizzo-di-ricerca.php:134 single-indirizzo-di-ricerca.php:206
-#: single-persona.php:211 single-persona.php:432
+#: single-persona.php:212 single-persona.php:435 page-templates/contatti.php:2
 #: page-templates/contatti.php:124 page-templates/contatti.php:179
 msgid "Contatti"
 msgstr "Contacts"
-
-#. Name of the template
-#: page-templates/contatti.php:2
-msgid "Contatti."
-msgstr "Contacts."
 
 #: inc/admin/options.php:534 inc/admin/options.php:587
 #: inc/admin/options.php:640
@@ -350,7 +336,7 @@ msgstr "from"
 msgid "Danger"
 msgstr "Danger"
 
-#: single-evento.php:171 single-evento.php:231
+#: single-evento.php:171 single-evento.php:233
 msgid "Date e orari"
 msgstr "Dates and times"
 
@@ -578,16 +564,12 @@ msgstr "Label"
 msgid "Etichetta ENG"
 msgstr "Label in English"
 
-#: single-indirizzo-di-ricerca.php:141 single-indirizzo-di-ricerca.php:223
-#: single-progetto.php:159 single-progetto.php:259 inc/utils.php:259
-#: inc/admin/options.php:989 template-parts/hero/eventi.php:9
-#: template-parts/home/hp-list-event.php:43
-msgid "Eventi"
-msgstr "Events"
-
 #. Name of the template
-#: page-templates/eventi.php:2
-msgid "Eventi."
+#: single-indirizzo-di-ricerca.php:141 single-indirizzo-di-ricerca.php:223
+#: single-progetto.php:159 single-progetto.php:259 inc/utils.php:194
+#: page-templates/eventi.php:2 inc/admin/options.php:989
+#: template-parts/hero/eventi.php:9 template-parts/home/hp-list-event.php:43
+msgid "Eventi"
 msgstr "Events"
 
 #: inc/classes/class-eventmanager.php:49
@@ -615,7 +597,7 @@ msgstr "Filter by content type"
 msgid "Finalizza import"
 msgstr "Finalize import"
 
-#: single-evento.php:285
+#: single-evento.php:287
 msgid "Fine evento"
 msgstr "End of event"
 
@@ -674,23 +656,15 @@ msgstr "Home Page"
 msgid "https://ict.sns.it"
 msgstr "https://ict.sns.it"
 
-#: template-parts/hero/luoghi.php:8
+#. Name of the template
+#: page-templates/luoghi.php:2 template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
 msgstr "Places"
 
 #. Name of the template
-#: page-templates/luoghi.php:2
-msgid "I Luoghi."
-msgstr "Places"
-
-#: inc/admin/options.php:1190
+#: page-templates/progetti.php:2 inc/admin/options.php:1190
 msgid "I progetti"
 msgstr "Projects"
-
-#. Name of the template
-#: page-templates/progetti.php:2
-msgid "I progetti."
-msgstr "Projects."
 
 #. Author of the theme
 msgid "ICT SNS"
@@ -740,14 +714,10 @@ msgstr "Carousel after presentation"
 msgid "Il codice di controllo non è valido."
 msgstr "The check code is invalid."
 
-#: inc/admin/options.php:750
+#. Name of the template
+#: page-templates/il-laboratorio.php:2 inc/admin/options.php:750
 msgid "Il Laboratorio"
 msgstr "The Lab"
-
-#. Name of the template
-#: page-templates/il-laboratorio.php:2
-msgid "Il Laboratorio."
-msgstr "The Lab."
 
 #: inc/admin/options.php:161
 msgid ""
@@ -925,7 +895,7 @@ msgstr "E-mail address"
 msgid "Info"
 msgstr "Info"
 
-#: single-evento.php:253
+#: single-evento.php:255
 msgid "Inizio evento"
 msgstr "Event start"
 
@@ -1076,7 +1046,7 @@ msgstr "Registration successful"
 msgid "Keywords"
 msgstr "Keywords"
 
-#: inc/classes/class-labmanager.php:171
+#: inc/classes/class-labmanager.php:182
 msgid "L'API REST di WordPress è disabilitata."
 msgstr "WordPress REST API is disabled."
 
@@ -1145,14 +1115,11 @@ msgstr ""
 msgid "Le persone"
 msgstr "People"
 
-#: inc/admin/options.php:1121 template-parts/hero/pubblicazioni.php:9
+#. Name of the template
+#: page-templates/pubblicazioni.php:4 inc/admin/options.php:1121
+#: template-parts/hero/pubblicazioni.php:9
 msgid "Le pubblicazioni"
 msgstr "Publications"
-
-#. Name of the template
-#: page-templates/pubblicazioni.php:4
-msgid "Le pubblicazioni."
-msgstr "The publications."
 
 #: archive.php:82 page-templates/blog.php:113 page-templates/eventi.php:135
 #: page-templates/notizie.php:113 template-parts/common/sezione-eventi.php:64
@@ -1168,7 +1135,7 @@ msgstr "Read more"
 msgid "Link a una pagina di approfondimento anche esterna al sito"
 msgstr "Link to an in-depth page also external to the site"
 
-#: footer.php:86
+#: footer.php:93
 msgid "Link utili"
 msgstr "Useful links"
 
@@ -1197,16 +1164,17 @@ msgstr "News identification logo"
 msgid "Logo per mobile"
 msgstr "Mobile logo"
 
-#: inc/utils.php:260 inc/admin/options.php:1331 inc/admin/options.php:1337
+#: inc/utils.php:195 inc/admin/options.php:1331 inc/admin/options.php:1337
 msgid "Luoghi"
 msgstr "Places"
 
-#: single-evento.php:178 single-evento.php:305
+#: single-evento.php:178 single-evento.php:307
 #: inc/classes/class-placemanager.php:96
 msgid "Luogo"
 msgstr "Location"
 
-#: template-parts/hero/mappasito.php:9
+#. Name of the template
+#: page-templates/mappasito.php:2 template-parts/hero/mappasito.php:9
 msgid "Mappa del sito"
 msgstr "Site Map"
 
@@ -1214,23 +1182,23 @@ msgstr "Site Map"
 msgid "Massimo 140 caratteri"
 msgstr "Maximum 140 characters"
 
-#: functions.php:148
+#: functions.php:159
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
-#: functions.php:146
+#: functions.php:157
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:147
+#: functions.php:158
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:144
+#: functions.php:155
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:145
+#: functions.php:156
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -1275,6 +1243,10 @@ msgstr "Show social media icons"
 msgid "Multilingua"
 msgstr "Multi-language"
 
+#: template-parts/common/sezione-related-items.php:8
+msgid "News &amp; Eventi"
+msgstr "News &amp; Eventi"
+
 #: template-parts/header/top-menu.php:9
 msgid "News e contatti"
 msgstr "News e contacts"
@@ -1284,15 +1256,11 @@ msgstr "News e contacts"
 msgid "News singola"
 msgstr "Single news"
 
-#: page-templates/newsletter.php:85 inc/admin/options.php:1742
-#: template-parts/common/newsletter.php:10
+#. Name of the template
+#: page-templates/newsletter.php:2 page-templates/newsletter.php:85
+#: inc/admin/options.php:1742 template-parts/common/newsletter.php:10
 msgid "Newsletter"
 msgstr "Newsletter"
-
-#. Name of the template
-#: page-templates/newsletter.php:2
-msgid "Newsletter."
-msgstr "Newsletter."
 
 #: inc/admin/options.php:180 inc/admin/options.php:330
 #: inc/admin/options.php:432 inc/admin/options.php:446
@@ -1359,14 +1327,10 @@ msgstr "No projects available"
 msgid "Notizia"
 msgstr "News"
 
-#: inc/utils.php:261 template-parts/hero/notizie.php:9
-#: template-parts/home/hp-list-news.php:29
-msgid "Notizie"
-msgstr "News"
-
 #. Name of the template
-#: page-templates/mappasito.php:2 page-templates/notizie.php:2
-msgid "Notizie."
+#: inc/utils.php:196 page-templates/notizie.php:2
+#: template-parts/hero/notizie.php:9 template-parts/home/hp-list-news.php:29
+msgid "Notizie"
 msgstr "News"
 
 #: inc/admin/options.php:918
@@ -1415,7 +1379,7 @@ msgstr "Basic options"
 msgid "Pagina non trovata"
 msgstr "Page not found"
 
-#: page.php:91
+#: page.php:68
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
@@ -1432,7 +1396,7 @@ msgid "Persona"
 msgstr "Person"
 
 #. Name of the template
-#: inc/utils.php:262 page-templates/persone.php:2 inc/admin/options.php:1053
+#: inc/utils.php:197 page-templates/persone.php:2 inc/admin/options.php:1053
 #: inc/admin/options.php:1059
 msgid "Persone"
 msgstr "People"
@@ -1441,7 +1405,7 @@ msgstr "People"
 msgid "Posizione"
 msgstr "Location"
 
-#: inc/utils.php:263
+#: inc/utils.php:198
 msgid "Post"
 msgstr "Post"
 
@@ -1696,7 +1660,7 @@ msgid "Posta Elettronica Certificata"
 msgstr "Certified E-mail"
 
 #: single-indirizzo-di-ricerca.php:127 single-indirizzo-di-ricerca.php:189
-#: single-persona.php:161 single-persona.php:236 inc/utils.php:264
+#: single-persona.php:161 single-persona.php:237 inc/utils.php:199
 #: inc/admin/options.php:1196 template-parts/hero/progetti.php:9
 msgid "Progetti"
 msgstr "Projects"
@@ -1713,8 +1677,8 @@ msgstr "Published"
 msgid "Pubblicazione"
 msgstr "Publication"
 
-#: single-persona.php:192 single-persona.php:318 single-progetto.php:145
-#: single-progetto.php:231 inc/utils.php:265 inc/admin/options.php:1127
+#: single-persona.php:192 single-persona.php:319 single-progetto.php:145
+#: single-progetto.php:231 inc/utils.php:200 inc/admin/options.php:1127
 #: template-parts/home/hp-list-publication.php:29
 msgid "Pubblicazioni"
 msgstr "Publications"
@@ -1734,7 +1698,9 @@ msgstr "REST API"
 
 #. Name of the template
 #: page-templates/cerca.php:2
-msgid "Ricerca."
+#, fuzzy
+#| msgid "Ricerca."
+msgid "Ricerca"
 msgstr "Search."
 
 #: page-templates/contatti.php:86
@@ -1846,7 +1812,7 @@ msgstr "Automatic selection"
 msgid "Selezione del programma usato per gestire la newsletter del sito"
 msgstr "Selection of the program used to manage the site's newsletter"
 
-#: header.php:81
+#: header.php:86
 msgid "Selezione lingua: lingua selezionata"
 msgstr "Language selection: selected language"
 
@@ -1935,7 +1901,7 @@ msgstr "Yes"
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr "An error occurred while performing the import"
 
-#: single-evento.php:369 single-persona.php:471 single-progetto.php:70
+#: single-evento.php:371 single-persona.php:474 single-progetto.php:70
 #: template-parts/common/sezione-contatti.php:60
 msgid "Sito web"
 msgstr "Website"
@@ -2084,7 +2050,7 @@ msgstr "Hero title in English"
 msgid "Token API"
 msgstr "Token API"
 
-#: page.php:86
+#: page.php:63
 msgid "Torna indietro"
 msgstr "Go back"
 
@@ -2120,7 +2086,7 @@ msgstr "All events"
 msgid "Tutti i tipi"
 msgstr "All types"
 
-#: single-persona.php:202 single-persona.php:363
+#: single-persona.php:203 single-persona.php:366
 msgid "Ulteriori informazioni"
 msgstr "More info"
 
@@ -2210,7 +2176,7 @@ msgstr "Incorrect Nonce value."
 msgid "Vedi tutti"
 msgstr "View all"
 
-#: single-evento.php:206 single-evento.php:411
+#: single-evento.php:206 single-evento.php:413
 msgid "Video"
 msgstr "Video"
 

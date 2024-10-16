@@ -258,16 +258,17 @@ $eventi = new WP_Query(
 				<!-- EVENTI -->
 				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 					<?php
-					get_template_part(
-						'template-parts/common/sezione-eventi',
-						null,
-						array(
-							'section_id' => 'eventi',
-							'items'      => $eventi->posts,
-						)
-					);
+						if ( $eventi->posts ) {
+							get_template_part(
+								'template-parts/common/sezione-related-items',
+								null,
+								array(
+									'related_items' => $eventi->posts,
+								)
+							);
+						}
 				}
-				?>
+					?>
 			</div>
 		</div>
 	</div> <!-- scheda_progetto -->

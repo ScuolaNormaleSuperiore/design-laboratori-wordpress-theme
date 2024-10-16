@@ -12,7 +12,7 @@
 
 if ( ! function_exists( 'dli_get_field' ) ) {
 	function dli_get_field( $selector, $post_id = false, $format_value = true ) {
-		return get_field( $selector, $post_id = false, $format_value = true );
+		return get_field( $selector, $post_id, $format_value);
 	}
 }
 

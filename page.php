@@ -9,7 +9,8 @@
 
 global $post;
 get_header();
-$image_metadata = dli_get_image_metadata( $post );
+$image_metadata = dli_get_image_metadata( $post, 'page-body' );
+$related_items  = dli_get_field( 'pagine_collegate' );
 ?>
 
 <main id="main-container" role="main">
@@ -18,39 +19,14 @@ $image_metadata = dli_get_image_metadata( $post );
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- BANNER PAGINA -->
-	<section id="banner-news" aria-describedby="Testo introduttivo eventi" class="bg-banner-eventi">
-		<div class="section-muted  primary-bg-c1">
+	<section id="banner-paginabase" aria-describedby="Testo introduttivo paginabase" class="bg-banner-paginabase">
+		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-5 align-middle">
-						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
-							<h2 class="p-0  "><?php echo get_the_title(); ?></h2>
-							<p class="font-weight-normal">
-								<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<?php
-						if ( $image_metadata['image_url'] ) {
-						?>
-							<figure class="figure">
-								<img src="<?php echo $image_metadata['image_url']; ?>"
-										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
-								<?php
-									if( $image_metadata['image_caption'] ) {
-								?>
-									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
-								<?php
-									}
-								?>
-							</figure>
-						<?php
-						}
-						?>
-					</div>
+				<div class="hero-title text-left ms-4 pb-3 pt-3">
+					<h2 class="p-0"><?php echo get_the_title(); ?></h2>
+					<p class="font-weight-normal">
+						<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -75,7 +51,8 @@ $image_metadata = dli_get_image_metadata( $post );
 						));
 					if($pages) {
 						?>
-				<!-- SIDEBAR -->
+
+				<!-- MENU LATERALE (INIZIO SIDEBAR) -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3">
 					<?php if ( $post->post_parent !== 0 ) {
 					?>
@@ -105,7 +82,7 @@ $image_metadata = dli_get_image_metadata( $post );
 												</span>
 											</a>
 											<?php
-											//show subpages of current branch page till second level
+											//Show subpages of current branch page till second level.
 											$subspg = get_pages( array(
 												'child_of' => $pg->ID,
 												'offset'   => 0,
@@ -138,9 +115,47 @@ $image_metadata = dli_get_image_metadata( $post );
 				<?php
 				}
 				?>
+
+				<!-- CORPO ARTICOLO-->
 				<div class="col-lg-8 pt84">
+					<div class="mb-4">
+						<?php
+						if ( $image_metadata['image_url'] ) {
+						?>
+							<figure class="figure">
+								<img src="<?php echo $image_metadata['image_url']; ?>"
+										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+								<?php
+									if( $image_metadata['image_caption'] ) {
+								?>
+									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<?php
+									}
+								?>
+							</figure>
+						<?php
+						}
+						?>
+					</div>
 					<article class="article-wrapper"><?php the_content(); ?></article>
+
+					<!-- NEWS ED EVENTI (related_items) -->
+					<?php
+						if ( $related_items ){
+							get_template_part(
+								'template-parts/common/sezione-related-items',
+								null,
+								array(
+									'related_items' => $related_items,
+								)
+							);
+						}
+					?>
+
 				</div><!-- /col-lg-8 -->
+
 			</div><!-- /row -->
 		</div><!-- /container -->
 	</section>
