@@ -21,7 +21,7 @@ if ( $newsletter_enabled === 'true' ) {
 							</svg>
 						</div>
 				</div>
-					<input type="text" class="form-control bg-transparent text-white border-white"
+					<input type="text" title="<?php echo __( 'Inserisci il tuo indirizzo email per ricevere aggiornamenti', 'design_laboratori_italia' ); ?>" class="form-control bg-transparent text-white border-white"
 						id="user_mail" name="user_mail"
 						placeholder="<?php echo __( 'Indirizzo e-mail', 'design_laboratori_italia' ); ?>">
 					<?php wp_nonce_field( 'sf_newsletter_nonce', 'newsletter_nonce_field' ); ?>
