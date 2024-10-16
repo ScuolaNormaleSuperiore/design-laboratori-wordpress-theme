@@ -107,8 +107,8 @@ $num_results = $luoghi->found_posts;
 									$luoghi->the_post();
 									$ID        = get_the_ID();
 									$title     = get_the_title( $ID );
-									$desc      = get_field( 'descrizione_breve' );
-									$indirizzo = get_field( 'indirizzo' );
+									$desc      = dli_get_field( 'descrizione_breve' );
+									$indirizzo = dli_get_field( 'indirizzo' );
 									$terms     = get_the_terms( $ID, PLACE_TYPE_TAXONOMY );
 									$tipo      = $terms[0]->name;
 									?>

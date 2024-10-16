@@ -20,10 +20,10 @@ if ( 'true' === $section_enabled ) {
 	foreach ( $query->posts as $post ){
 		$image_metadata = dli_get_image_metadata( $post, 'item-carousel', '/assets/img/yourimage.png' );
 		$post_id        = $post->ID;
-		$section        = get_field( 'sezione', $post_id );
-		$button_label   = __( get_field( 'label_pulsante', $post_id ), 'design_laboratori_italia' );
-		$button_link    = get_field( 'link_pulsante', $post_id );
-		$is_external    = get_field( 'apri_in_nuova_finestra', $post_id ) ? true : false;
+		$section        = dli_get_field( 'sezione', $post_id );
+		$button_label   = __( dli_get_field( 'label_pulsante', $post_id ), 'design_laboratori_italia' );
+		$button_link    = dli_get_field( 'link_pulsante', $post_id );
+		$is_external    = dli_get_field( 'apri_in_nuova_finestra', $post_id ) ? true : false;
 	?>
 
 		<section class="it-hero-wrapper it-hero-small-size it-primary it-overlay mt-5">

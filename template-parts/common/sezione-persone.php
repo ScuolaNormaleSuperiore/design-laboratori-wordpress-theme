@@ -22,17 +22,17 @@
 				} else {
 					$nome_struttura = '';
 				}
-				$escludi_da_elenco          = get_field( 'escludi_da_elenco', $id );
-				$nome                       = get_field( 'nome', $id );
-				$cognome                    = get_field( 'cognome', $id );
+				$escludi_da_elenco          = dli_get_field( 'escludi_da_elenco', $id );
+				$nome                       = dli_get_field( 'nome', $id );
+				$cognome                    = dli_get_field( 'cognome', $id );
 				$title                      = get_the_title( $id );
-				$disattiva_pagina_dettaglio = get_field( 'disattiva_pagina_dettaglio', $id );
+				$disattiva_pagina_dettaglio = dli_get_field( 'disattiva_pagina_dettaglio', $id );
 				$post_link                  = get_the_permalink( $id );
-				$categoria                  = get_field( 'categoria_appartenenza', $id );
+				$categoria                  = dli_get_field( 'categoria_appartenenza', $id );
 				$cat_label                  = $categoria && count($categoria) ? $categoria[0]->post_title : '';
-				$sitoweb                    = get_field( 'sito_web', $id );
+				$sitoweb                    = dli_get_field( 'sito_web', $id );
 				$link_persona               = get_the_permalink( $id );
-				$abilita_link_diretto_pagina_persona = get_field( 'abilita_link_diretto_pagina_persona', $id );
+				$abilita_link_diretto_pagina_persona = dli_get_field( 'abilita_link_diretto_pagina_persona', $id );
 			?>
 
 				<!-- begin card person -->

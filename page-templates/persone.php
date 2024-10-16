@@ -81,7 +81,7 @@ $num_results = $the_query->found_posts;
 							// INIZIO LOOP CATEGORIE.
 							while ( $categorie_persone->have_posts() ) {
 								$categorie_persone->the_post();
-								$nome_categoria = get_field( 'nome' );
+								$nome_categoria = dli_get_field( 'nome' );
 
 								$categoria_id = get_the_ID();
 								if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != '' ) {
@@ -148,15 +148,15 @@ $num_results = $the_query->found_posts;
 											<?php
 											while ( $persone->have_posts() ) {
 												$persone->the_post();
-												$escludi_da_elenco = get_field( 'escludi_da_elenco' );
+												$escludi_da_elenco = dli_get_field( 'escludi_da_elenco' );
 												if ( ! $escludi_da_elenco ) {
-													$nome                                = get_field( 'nome' );
-													$cognome                             = get_field( 'cognome' );
-													$disattiva_pagina_dettaglio          = get_field( 'disattiva_pagina_dettaglio' );
-													$abilita_link_diretto_pagina_persona = get_field( 'abilita_link_diretto_pagina_persona' );
+													$nome                                = dli_get_field( 'nome' );
+													$cognome                             = dli_get_field( 'cognome' );
+													$disattiva_pagina_dettaglio          = dli_get_field( 'disattiva_pagina_dettaglio' );
+													$abilita_link_diretto_pagina_persona = dli_get_field( 'abilita_link_diretto_pagina_persona' );
 													$ID                                  = get_the_ID();
 													$link_persona                        = get_the_permalink( $ID );
-													$sitoweb                             = get_field( 'sito_web' );
+													$sitoweb                             = dli_get_field( 'sito_web' );
 													$title                               = get_the_title( $ID );
 													?>
 													<div class="col-lg-4">

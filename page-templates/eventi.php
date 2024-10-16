@@ -92,9 +92,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 					}
 					$post_id        = get_the_ID();
 					$termitem       = dli_get_post_main_category( $post, 'category' );
-					$date           = get_field( 'data_inizio', $post_id );
+					$date           = dli_get_field( 'data_inizio', $post_id );
 					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-					$orario_inizio  = get_field( 'orario_inizio', $post_id );
+					$orario_inizio  = dli_get_field( 'orario_inizio', $post_id );
 					$evento         = get_post( $post_id );
 					$image_metadata = dli_get_image_metadata( $evento, 'item-hero-event' );
 					?>
@@ -121,7 +121,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 									<div class="card-body p-4">
 										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
 										<?php if( $orario_inizio ) {
 											?>
