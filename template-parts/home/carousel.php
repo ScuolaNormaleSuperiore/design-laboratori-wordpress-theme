@@ -41,7 +41,7 @@
 											}
 											?>
 											</div>
-											<h5 class="h5 card-title big-heading"><?php echo $item['title']; ?></h5>
+											<h3 class="h3 card-title big-heading"><?php echo $item['title']; ?></h3>
 											<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>
 											<?php
 											if ( $item['link'] ) {

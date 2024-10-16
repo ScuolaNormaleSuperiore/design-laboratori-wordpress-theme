@@ -109,3 +109,9 @@ html {
 .display_block {
 	display: block !important;
 }
+
+.it-footer-small-prints a:hover:not(.disabled) {
+    color:#fff;
+    font-size:1rem;
+    text-decoration: underline !important;
+}

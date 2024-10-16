@@ -89,7 +89,7 @@
 				if ( count( $menu_items ) > 0 ) {
 			?>
 			<h4>
-				<a href='#' title='Vai alla pagina: Lorem Ipsum'>
+				<a href='#' title='Vai alla pagina: <?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>'>
 					<?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>
 				</a>
 			</h4>
