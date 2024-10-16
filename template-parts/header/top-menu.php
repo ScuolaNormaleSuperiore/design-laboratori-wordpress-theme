@@ -7,7 +7,7 @@
 	<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menu1a" role="button"
 	aria-expanded="false" aria-controls="menu4">
 	<span><?php echo __( 'News e contatti', 'design_laboratori_italia');?></span>
-	<svg class="icon" aria-hidden="true" role="img" aria-labelledby="Expand">
+	<svg class="icon" aria-hidden="true" role="img" aria-labelledby="Expand" aria-label="Expand">
 		<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 	</svg>
 	</a>
