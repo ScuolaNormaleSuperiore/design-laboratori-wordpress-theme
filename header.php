@@ -86,6 +86,7 @@ $current_lang = dli_current_language();
 							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
 							<span><?php echo $current_language; ?></span>
 							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
+								<title>Expand</title>
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 							</svg>
 							</a>

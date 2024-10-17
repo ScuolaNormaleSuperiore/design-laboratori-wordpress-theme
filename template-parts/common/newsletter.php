@@ -16,6 +16,7 @@ if ( $newsletter_enabled === 'true' ) {
 				<div class="input-group-prepend">
 						<div class="input-group-text bg-transparent border-white">
 							<svg class="icon icon-sm icon-white" role="img" aria-labelledby="Mail">
+								<title>Mail</title>
 								<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ?>">
 								</use>
 							</svg>
