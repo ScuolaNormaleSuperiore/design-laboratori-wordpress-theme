@@ -110,8 +110,19 @@ html {
 	display: block !important;
 }
 
+
+/** Accessibilità*/
+
 .it-footer-small-prints a:hover:not(.disabled) {
-    color:#fff;
-    font-size:1rem;
-    text-decoration: underline !important;
+	color:#fff;
+	font-size:1rem;
+	text-decoration: underline !important;
+}
+
+#button-newsletter-iscriviti {
+	background-color: inherit !important;
+}
+
+#button-newsletter-iscriviti:hover {
+	background-color: #17324d !important;
 }

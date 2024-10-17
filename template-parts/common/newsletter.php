@@ -27,7 +27,7 @@ if ( $newsletter_enabled === 'true' ) {
 					<?php wp_nonce_field( 'sf_newsletter_nonce', 'newsletter_nonce_field' ); ?>
 					<input type="hidden" name="redirection" id="redirection" value="yes" />
 					<div class="input-group-append">
-						<button class="btn btn-primary bg-transparent text-white text-light border-white border" type="submit" id="button-3">
+						<button class="btn btn-primary bg-transparent text-white text-light border-white border" type="submit" id="button-newsletter-iscriviti">
 						<?php echo __( 'Iscrivimi...', 'design_laboratori_italia' ); ?>
 						</button>
 					</div>
