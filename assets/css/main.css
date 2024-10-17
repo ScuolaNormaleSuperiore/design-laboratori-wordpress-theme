@@ -119,6 +119,15 @@ html {
 	text-decoration: underline !important;
 }
 
+.mappasitolink {
+	display: flex;
+	gap: 4px;
+}
+
+.mappasitolink:hover {
+	text-decoration: underline !important;
+}
+
 #button-newsletter-iscriviti {
 	background-color: inherit !important;
 }
