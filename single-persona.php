@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying persona
+ * Detail page for the post-type: persona.
  *
  * @package Design_Laboratori_Italia
  */

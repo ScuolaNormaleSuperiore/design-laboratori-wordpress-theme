@@ -1,6 +1,6 @@
 <?php
 /**
- * Articolo blog template file
+ * Detail page for the post-type: post.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

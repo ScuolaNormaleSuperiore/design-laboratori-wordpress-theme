@@ -1,6 +1,6 @@
 <?php
 /**
- * Servizio template file
+ * Detail page for the post-type: indirizzo-di-ricerca.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

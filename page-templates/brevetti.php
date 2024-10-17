@@ -59,6 +59,7 @@ $num_results   = $the_query->found_posts;
 							</select>
 						</div>
 					</div>
+
 					<!-- FILTRO PER AREA TEMATICA - Se esiste -->
 					<div class="row pt-5">
 						<h3 class="h6 text-uppercase border-bottom">AREA TEMATICA</h3>
@@ -77,6 +78,7 @@ $num_results   = $the_query->found_posts;
 							</div>
 						</div>
 					</div>
+
 					<!-- FILTRO PER RICERCA LIBERA -->
 					<!--fine filtri -->
 					<div class="row pt-4">
@@ -97,7 +99,7 @@ $num_results   = $the_query->found_posts;
 				</div>
 
 
-				<!-- BREVETTI 6 per pagina -->
+				<!-- ELENCO BREVETTI 6 per pagina -->
 				<?php
 				// The mani loop of the page.
 				$pindex = 0;

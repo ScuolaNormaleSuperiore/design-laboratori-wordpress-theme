@@ -1,6 +1,6 @@
 <?php
 /**
- * Servizio template file$start_event_date
+ * Detail page for the post-type: evento.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying luogo
+ * Detail page for the post-type: luogo.
  *
  * @package Design_Laboratori_Italia
  */

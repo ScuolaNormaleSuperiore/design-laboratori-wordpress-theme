@@ -175,6 +175,9 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 						$item = dli_from_publication_to_carousel_item ( $result );
 						break;
 				case PATENT_POST_TYPE:
+							$item = dli_from_patent_to_carousel_item ( $result );
+							break;
+				case PATENT_POST_TYPE:
 						$item = dli_from_patent_to_carousel_item ( $result );
 						break;
 				case WP_DEFAULT_PAGE:
@@ -291,6 +294,35 @@ if( ! function_exists( 'dli_from_publication_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
 	function dli_from_patent_to_carousel_item( $item ) {
+		$result         =  DLI_POST_WRAPPER;
+		$post_type      = get_post_type( $item );
+		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
+		$page           = dli_get_page_by_post_type( $post_type );
+		$post_title     = get_the_title( $item );
+		$link_pubbl     = dli_get_field( 'url', $item );
+		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
+		$summary        = dli_get_field( 'sommario_elenco', $item );
+		$result         = array(
+			'type'          => $post_type,
+			'category'      => $page->post_title,
+			'category_link' => get_permalink( $page->ID ),
+			'date'          => dli_get_field('data_deposito', $item),
+			'orario_inizio' => null,
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $summary, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => get_the_content( $item ),
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_metadata['image_url'],
+			'image_alt'     => $image_metadata['image_alt'],
+			'image_title'   => $image_metadata['image_title'],
+		);
+		return $result;
+	}
+}
+
+
+if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
+	function dli_from_patent_to_carousel_item( $item ) {
 		$result    =  DLI_POST_WRAPPER;
 		$post_type = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
@@ -377,11 +409,11 @@ if( ! function_exists( 'dli_from_post_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 	function dli_from_page_to_carousel_item( $item ) {
-		$post_type = get_post_type( $item );
+		$post_type      = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
-		$post_title  = get_the_title( $item );
-		$categories  = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
-		$pt_slugs    = dli_get_sluglist_by_category( $categories );
+		$post_title     = get_the_title( $item );
+		$categories     = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
+		$pt_slugs       = dli_get_sluglist_by_category( $categories );
 
 		if ( in_array( $item->post_name, $pt_slugs ) ) {
 			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
@@ -393,7 +425,7 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 			$fullcontent = get_the_content( $item );
 		}
 		// @TODO: Popolare $result e non ridefinirlo.
-		$result      = array(
+		$result = array(
 			'type'          => $post_type,
 			'category'      => 'Home',
 			'category_link' => get_site_url(),
@@ -413,8 +445,8 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
 	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = null ) {
-		$result    =  DLI_POST_WRAPPER;
-		$image_url = get_the_post_thumbnail_url( $item, $image_size );
+		$result        =  DLI_POST_WRAPPER;
+		$image_url     = get_the_post_thumbnail_url( $item, $image_size );
 		$image_caption = '';
 		if ( ! $image_url && $partial_default_img_url ) {
 			$image_url = get_template_directory_uri() . $partial_default_img_url;
