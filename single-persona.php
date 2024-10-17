@@ -13,14 +13,14 @@ while ( have_posts() ) {
 	$title                  = get_the_title( $ID );
 	$image_url              = dli_get_persona_avatar( $post, $ID );
 	$bio                    = get_the_content();
-	$categoria_appartenenza = get_field( 'categoria_appartenenza' )[0]->nome;
-	$allegato_cv            = get_field( 'allegato_cv' );
-	$allegato1              = get_field( 'allegato1' );
-	$allegato2              = get_field( 'allegato2' );
-	$allegato3              = get_field( 'allegato3' );
-	$telefono               = get_field( 'telefono' );
-	$email                  = get_field( 'email' );
-	$sitoweb                = get_field( 'sito_web' );
+	$categoria_appartenenza = dli_get_field( 'categoria_appartenenza' )[0]->nome;
+	$allegato_cv            = dli_get_field( 'allegato_cv' );
+	$allegato1              = dli_get_field( 'allegato1' );
+	$allegato2              = dli_get_field( 'allegato2' );
+	$allegato3              = dli_get_field( 'allegato3' );
+	$telefono               = dli_get_field( 'telefono' );
+	$email                  = dli_get_field( 'email' );
+	$sitoweb                = dli_get_field( 'sito_web' );
 	$terms                  = get_the_terms( $ID, 'struttura' );
 	$terms                  = $terms ? $terms : array();
 	$nome_struttura         = count( $terms ) ? $terms[0]->name : '';
@@ -80,8 +80,8 @@ $pubblicazioni = new WP_Query(
 								<div class="avatar size-xxl">
 								<?php
 								if ( $image_url ) {
-									echo "<img src='" . esc_url($image_url) . "' alt='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) )
-									. "' title='" . esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) );
+									echo "<img src='" . esc_url($image_url) . "' alt='" . esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $title ) )
+									. "' title='" . esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $title ) );
 									if ( $nome_struttura ) {
 										echo '- ' . esc_attr($nome_struttura);
 									}
@@ -92,7 +92,7 @@ $pubblicazioni = new WP_Query(
 							</div><!-- /col-lg-3 -->
 							<div class="col-12 col-lg-9">
 								<div class="section-title">
-									<h2 class="mb-3 mt-3"><?php echo esc_attr( dli_get_persona_display_name( get_field( 'nome' ), get_field( 'cognome' ), $title ) ); ?></h2>
+									<h2 class="mb-3 mt-3"><?php echo esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $title ) ); ?></h2>
 									<p>
 										<?php
 										echo $categoria_appartenenza;
@@ -168,7 +168,7 @@ $pubblicazioni = new WP_Query(
 												while ( $progetti->have_posts() ) {
 													$progetti->the_post();
 													$ID        = get_the_ID();
-													$indirizzi = get_field( 'elenco_indirizzi_di_ricerca_correlati' );
+													$indirizzi = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
 													$indirizzi = $indirizzi ? $indirizzi : array();
 													foreach ( $indirizzi as $indirizzo ) {
 														array_push( $indirizzi_di_ricerca_ids, $indirizzo->ID );
@@ -255,7 +255,7 @@ $pubblicazioni = new WP_Query(
 												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
 											</h3>
 											<div class="card-text">
-												<p><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
+												<p><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
 											</div>
 										</div>
 									</div>
@@ -301,7 +301,7 @@ $pubblicazioni = new WP_Query(
 														<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $indirizzo_ricerca_title ); ?></a>
 													</h3>
 													<div class="card-text">
-														<p><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
+														<p><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
 													</div>
 												</div>
 											</div>
@@ -326,7 +326,7 @@ $pubblicazioni = new WP_Query(
 									$pubblicazioni->the_post();
 									$ID    = get_the_ID();
 									$title = get_the_title( $ID );
-									$url      = get_field( 'url' );
+									$url      = dli_get_field( 'url' );
 									?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">

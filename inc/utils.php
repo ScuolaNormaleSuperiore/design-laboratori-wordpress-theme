@@ -219,10 +219,10 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			'type'          => $post_type,
 			'category'      => $page->post_title,
 			'category_link' => get_permalink( $page->ID ),
-			'date'          => get_field( 'data_inizio', $item ),
-			'orario_inizio' => get_field( 'orario_inizio', $item ),
+			'date'          => dli_get_field( 'data_inizio', $item ),
+			'orario_inizio' => dli_get_field( 'orario_inizio', $item ),
 			'title'         => $post_title,
-			'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
+			'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 			'full_content'  => get_the_content( $item ),
 			'link'          => get_the_permalink( $item ),
 			'image_url'     => $image_metadata['image_url'],
@@ -248,7 +248,7 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 				'category_link' => get_permalink( $page->ID ),
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => $post_title,
-				'description'   => wp_trim_words( get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
+				'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 				'full_content'  => get_the_content( $item ),
 				'link'          => get_the_permalink( $item ),
 				'image_url'     => $image_metadata['image_url'],
@@ -268,14 +268,14 @@ if( ! function_exists( 'dli_from_publication_to_carousel_item' ) ) {
 
 		$page        = dli_get_page_by_post_type( $post_type );
 		$post_title  = get_the_title( $item );
-		$link_pubbl  = get_field('url', $item);
+		$link_pubbl  = dli_get_field('url', $item);
 		$link_pubbl  = $link_pubbl ? $link_pubbl : '';
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result      = array(
 			'type'          => $post_type,
 			'category'      => $page->post_title,
 			'category_link' => get_permalink( $page->ID ),
-			'date'          => get_field('anno', $item),
+			'date'          => dli_get_field('anno', $item),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),

@@ -45,6 +45,10 @@ if ( ! class_exists( 'Post_Manager' ) ) {
 	include_once 'class-postmanager.php';
 }
 
+if ( ! class_exists( 'Page_Manager' ) ) {
+	include_once 'class-pagemanager.php';
+}
+
 if ( ! class_exists( 'Polylang_Manager' ) ) {
 	include_once 'class-polylangmanager.php';
 }
@@ -147,9 +151,13 @@ class DLI_LabManager {
 		$ctprog = new Event_Manager();
 		$ctprog->setup();
 
-		// Setup del post.
+		// Setup del post base.
 		$ctprog = new Post_Manager();
 		$ctprog->setup();
+
+		// Setup della pagina base.
+		$pgprog = new Page_Manager();
+		$pgprog->setup();
 
 		// Setup del post type Luoghi.
 		$ctluoghi = new Place_Manager();

@@ -16,7 +16,7 @@
 				$id    = $item->ID;
 				$link  = get_the_permalink( $id );
 				$title = get_the_title( $id );
-				$desc  = get_field( 'descrizione_breve', $id );
+				$desc  = dli_get_field( 'descrizione_breve', $id );
 	?>
 
 		<!--begin card progetti-->
@@ -29,7 +29,7 @@
 					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_attr( $title ); ?></a>
 				</h3>
 				<div class="card-text">
-					<p><?php echo wp_trim_words( get_field( 'descrizione_breve', $id ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+					<p><?php echo wp_trim_words( dli_get_field( 'descrizione_breve', $id ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 				</div>
 			</div>
 		</div>

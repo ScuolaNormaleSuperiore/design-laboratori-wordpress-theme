@@ -191,7 +191,7 @@ $num_results = $pubblicazioni->found_posts;
 									$pubblicazioni->the_post();
 									$ID       = get_the_ID();
 									$title    = get_the_title( $ID );
-									$url      = get_field( 'url' );
+									$url      = dli_get_field( 'url' );
 									?>
 									<!--start card-->
 									<div class="card-wrapper pt-3">

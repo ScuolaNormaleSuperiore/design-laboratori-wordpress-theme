@@ -16,22 +16,22 @@ $image_metadata      = dli_get_image_metadata( $post );
 $pg                  = dli_get_page_by_post_type( $post->post_type );
 $pg_link             = get_permalink( $pg->ID );
 
-$start_date          = get_field( 'data_inizio', $post );
+$start_date          = dli_get_field( 'data_inizio', $post );
 $tmstp_start         = strtotime( str_replace('/', '-', $start_date ) );
 $start_day           = $tmstp_start ? date( 'd', $tmstp_start ) : '';
 $start_month_number  = $tmstp_start ? date( 'm', $tmstp_start ) : '';
 $start_month_name    = $start_month_number ? dli_get_monthname_short( $start_month_number ) : '';
 $start_event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
-$orario_inizio       = get_field( 'orario_inizio', $post );
+$orario_inizio       = dli_get_field( 'orario_inizio', $post );
 $orario_inizio       = $orario_inizio ? $orario_inizio : '';
 
-$end_date            = get_field( 'data_fine', $post );
+$end_date            = dli_get_field( 'data_fine', $post );
 $tmstp_end           = strtotime( str_replace('/', '-', $end_date  ) );
 $end_day             = $tmstp_start ? date( 'd', $tmstp_end ) : '';
 $end_month_number    = $tmstp_start ? date( 'm', $tmstp_end ) : '';
 $end_month_name      = $start_month_number ? dli_get_monthname_short( $end_month_number ) : '';
 $end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
-$orario_fine         = get_field( 'orario_fine', $post );
+$orario_fine         = dli_get_field( 'orario_fine', $post );
 $orario_fine         = $orario_fine ? $orario_fine : '';
 
 $luogo               = dli_get_field( 'luogo' );
@@ -41,7 +41,7 @@ $email               = dli_get_field( 'email' );
 $sitoweb             = dli_get_field( 'sitoweb' );
 $video               = dli_get_field( 'video' );
 $allegato            = dli_get_field( 'allegato' );
-$short_descr         = get_field( 'descrizione_breve' );
+$short_descr         = dli_get_field( 'descrizione_breve' );
 ?>
 
 <main id="main-container" role="main">

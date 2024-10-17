@@ -14,14 +14,14 @@ while ( have_posts() ) {
 	$title             = get_the_title( $ID );
 	$image_metadata    = dli_get_image_metadata( $post );
 	$descrizione       = get_the_content();
-	$posizione         = get_field( 'posizione_gps' );
-	$come_raggiungerci = get_field( 'come_raggiungerci' );
-	$indirizzo         = get_field( 'indirizzo' );
-	$cap               = get_field( 'cap' );
-	$orari             = get_field( 'orario_per_il_pubblico' );
-	$telefono          = get_field( 'riferimento_telefonico' );
-	$mail              = get_field( 'riferimento_mail' );
-	$pec               = get_field( 'pec' );
+	$posizione         = dli_get_field( 'posizione_gps' );
+	$come_raggiungerci = dli_get_field( 'come_raggiungerci' );
+	$indirizzo         = dli_get_field( 'indirizzo' );
+	$cap               = dli_get_field( 'cap' );
+	$orari             = dli_get_field( 'orario_per_il_pubblico' );
+	$telefono          = dli_get_field( 'riferimento_telefonico' );
+	$mail              = dli_get_field( 'riferimento_mail' );
+	$pec               = dli_get_field( 'pec' );
 
 }
 ?>
@@ -40,7 +40,7 @@ while ( have_posts() ) {
 						<div class="col-sm-5 align-middle">
 							<div class="hero-title text-left ms-4 pb-3 pt-5 ">
 								<h2 class="p-0  "><?php echo esc_attr($title)?>&nbsp;</h2>
-								<p class="font-weight-normal"><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
+								<p class="font-weight-normal"><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
 							</div>
 						</div>
 						<div class="col-sm-7">

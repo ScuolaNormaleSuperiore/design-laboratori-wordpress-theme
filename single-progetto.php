@@ -12,19 +12,19 @@ get_header();
 $ID                 = get_the_ID();
 $image_metadata     = dli_get_image_metadata( $post, 'item-gallery' );
 $descrizione        = apply_filters( 'the_content', $post->post_content );
-$responsabili       = get_field( 'responsabile_del_progetto' );
-$partecipanti       = get_field( 'persone' );
-$indirizzidiricerca = get_field( 'elenco_indirizzi_di_ricerca_correlati' );
-$pubblicazioni      = get_field( 'pubblicazioni' );
+$responsabili       = dli_get_field( 'responsabile_del_progetto' );
+$partecipanti       = dli_get_field( 'persone' );
+$indirizzidiricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
+$pubblicazioni      = dli_get_field( 'pubblicazioni' );
 $fields_allegati    = array( 'allegato1', 'allegato2', 'allegato3' );
 $allegati           = array();
 foreach ( $fields_allegati as $field ) {
-	$item = get_field( $field );
+	$item = dli_get_field( $field );
 	if ( $item ) {
 		array_push( $allegati, $item );
 	}
 }
-$websiteurl = get_field( 'url' );
+$websiteurl = dli_get_field( 'url' );
 
 // recupero la lista degli eventi correlati ad un progetto.
 $eventi = new WP_Query(
@@ -65,7 +65,7 @@ $eventi = new WP_Query(
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block"><?php echo wp_trim_words( get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+						<p class="d-none d-lg-block"><?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 						<div class="it-btn-container">
 							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl) ; ?>"><?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 						</div>
@@ -258,16 +258,17 @@ $eventi = new WP_Query(
 				<!-- EVENTI -->
 				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 					<?php
-					get_template_part(
-						'template-parts/common/sezione-eventi',
-						null,
-						array(
-							'section_id' => 'eventi',
-							'items'      => $eventi->posts,
-						)
-					);
+						if ( $eventi->posts ) {
+							get_template_part(
+								'template-parts/common/sezione-related-items',
+								null,
+								array(
+									'related_items' => $eventi->posts,
+								)
+							);
+						}
 				}
-				?>
+					?>
 			</div>
 		</div>
 	</div> <!-- scheda_progetto -->

@@ -12,11 +12,11 @@ get_header();
 $ID             = get_the_ID();
 $image_metadata = dli_get_image_metadata( $post, 'item-gallery' );
 $description    = trim( get_the_content() );
-$responsabili   = get_field( 'responsabile_attivita_di_ricerca' );
+$responsabili   = dli_get_field( 'responsabile_attivita_di_ricerca' );
 $progetti       = dli_get_projects_by_event_id( get_the_ID() );
-$website        = get_field( 'sitioweb' ) ? get_field( 'sitioweb' ) : '';
-$phone          = get_field( 'telefono' )? get_field( 'telefono' ) : '';
-$email          = get_field( 'email' )? get_field( 'email' ) : '';
+$website        = dli_get_field( 'sitioweb' ) ? dli_get_field( 'sitioweb' ) : '';
+$phone          = dli_get_field( 'telefono' )? dli_get_field( 'telefono' ) : '';
+$email          = dli_get_field( 'email' )? dli_get_field( 'email' ) : '';
 $cont_pres      = $website || $phone || $email;
 $contatti       = array(
 	'email'   => $email,

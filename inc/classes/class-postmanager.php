@@ -1,6 +1,6 @@
 <?php
 /**
- * Creazione dei post.
+ * Personalizzazione dei post base di WordPress.
  *
  * @package Design_Laboratori_Italia
  */
@@ -15,7 +15,7 @@ class Post_Manager {
 	public function __construct() {}
 
 	/**
-	 * Install and configure the Course post type.
+	 * Configure the post type.
 	 *
 	 * @return void
 	 */

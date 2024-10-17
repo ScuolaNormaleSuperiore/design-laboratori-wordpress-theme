@@ -1,6 +1,6 @@
 <?php
 /* Template Name: Archive.
- *$all_categories
+ *
  * @package Design_Laboratori_Italia
  */
 

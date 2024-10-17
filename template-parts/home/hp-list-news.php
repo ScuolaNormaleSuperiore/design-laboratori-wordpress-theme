@@ -55,10 +55,16 @@ if ( 'true' === $section_enabled ) {
 										</a>
 										<span class="data"><?php echo $postitem['date'] ?></span>
 									</div>
-									<h3 class="card-title h4"><?php echo esc_attr( $postitem['title'] ); ?></h3>
-									<p class="card-text"><?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+									<h3 class="card-title h4">
+										<?php echo esc_attr( $postitem['title'] ); ?>
+									</h3>
+									<p class="card-text">
+										<?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?>
+									</p>
 									<a class="read-more" href="<?php echo esc_url( $postitem['link'] ); ?>">
-										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+										<span class="text">
+											<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>
+										</span>
 										<svg class="icon">
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>">
 										</svg>
