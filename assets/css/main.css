@@ -135,3 +135,14 @@ html {
 #button-newsletter-iscriviti:hover {
 	background-color: #17324d !important;
 }
+
+.customSpacing {
+	height: 24px !important;
+	transform: translateY(-2px) !important;
+}
+
+.customSpacing a {
+	display: block !important;
+	min-width: 24px !important;
+	min-height: 24px !important;
+}

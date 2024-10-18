@@ -4,7 +4,7 @@
 	$show_socials = dli_get_option( 'show_socials', 'socials' );
 	if( $show_socials === 'true' ) {
 ?>
-	<h4><a href="#" title="<?php echo __("Seguici su", 'design_laboratori_italia'); ?>"><?php echo __("Seguici su", 'design_laboratori_italia'); ?></a></h4>
+	<h4 class="customSpacing"><a href="#" title="<?php echo __("Seguici su", 'design_laboratori_italia'); ?>"><?php echo __("Seguici su", 'design_laboratori_italia'); ?></a></h4>
 	<ul class="list-inline text-left social">
 		<?php
 		if ( $facebook = dli_get_option( 'facebook', 'socials' ) ) {

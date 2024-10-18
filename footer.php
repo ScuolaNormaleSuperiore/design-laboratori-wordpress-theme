@@ -35,7 +35,7 @@
 			<section class="py-4 border-white border-top">
 				<div class="row">
 		<div class="col-lg-4 col-md-4 pb-2">
-			<h4><a href="#" title="Vai alla pagina: Contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></a></h4>
+			<h4 class="customSpacing"><a href="#" title="Vai alla pagina: Contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></a></h4>
 			<p>
 				<strong><?php echo dli_get_option( 'nome_laboratorio' ); ?></strong><br />
 				<?php echo dli_get_option( 'indirizzo_laboratorio' ); ?>
@@ -88,7 +88,7 @@
 				$menu_items =  $menu_id ? wp_get_nav_menu_items( $menu_id) : array();
 				if ( count( $menu_items ) > 0 ) {
 			?>
-			<h4>
+			<h4 class="customSpacing">
 				<a href='#' title='Vai alla pagina: <?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>'>
 					<?php echo __( 'Link utili', 'design_laboratori_italia' ) ?>
 				</a>
