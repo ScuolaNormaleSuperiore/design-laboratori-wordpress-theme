@@ -48,7 +48,7 @@ $num_results = $the_query->found_posts;
 					}
 					$post_id     = get_the_ID();
 					$ind_ricerca = get_post( $post_id );
-					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'full' );
+					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'item-card-list' );
 
 				?>
 						<!--start card-->

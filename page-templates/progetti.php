@@ -66,7 +66,7 @@ $num_results = $the_query->found_posts;
 					}
 					$post_id        = get_the_ID();
 					$progetto       = get_post( $post_id );
-					$image_metadata = dli_get_image_metadata( $progetto, 'full' );
+					$image_metadata = dli_get_image_metadata( $progetto, 'item-card-list' );
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">
