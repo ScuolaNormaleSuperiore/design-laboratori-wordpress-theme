@@ -57,7 +57,8 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 					<?php if ( $post->post_parent !== 0 ) {
 					?>
 					<a href="<?php echo get_permalink( $post->post_parent ); ?>" class="btn btn-primary btn-xs btn-me mb-5" role="button">
-						<svg class="icon icon-sm icon-white me-2">
+						<svg class="icon icon-sm icon-white me-2" role="img" aria-labelledby="<?php echo __( 'Torna indietro', 'design_laboratori_italia' ); ?>">
+							<title><?php echo __( 'Torna indietro', 'design_laboratori_italia' ); ?></title>
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left';?>"></use>
 						</svg>
 						<?php echo __( 'Torna indietro', 'design_laboratori_italia' ); ?>
