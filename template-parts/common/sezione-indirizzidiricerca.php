@@ -27,8 +27,9 @@
 								<!--begin card indirizzodiricerca -->
 								<div class="card card-teaser rounded shadow">
 									<div class="card-body">
-										<h3 class="card-title h5 ">
-											<svg class="icon">
+										<h3 class="card-title cardTitlecustomSpacing h5 ">
+											<svg class="icon" aria-label="Folder">
+												<title>Folder</title>
 												<use href="<?php echo $src_icon; ?>"></use>
 											</svg>
 											<a href="<?php echo $link; ?>"><?php echo $nome; ?></a>
