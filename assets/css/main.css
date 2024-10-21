@@ -146,3 +146,12 @@ html {
 	min-width: 24px !important;
 	min-height: 24px !important;
 }
+
+.cardTitlecustomSpacing {
+
+}
+
+.cardTitlecustomSpacing a {
+	display: inline-block !important;
+	min-height: 24px !important;
+}

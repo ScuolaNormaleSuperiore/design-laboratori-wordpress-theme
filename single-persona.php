@@ -131,6 +131,7 @@ $pubblicazioni = new WP_Query(
 									<div class="overlay"></div>
 									<a class="it-back-button" href="#" role="button">
 										<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
+											<title>Chevron Left</title>
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left';?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'?>"></use>
 										</svg>
 										<span>Indietro</span>
@@ -248,8 +249,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5">
 												<svg class="icon" role="img" aria-labelledby="Folder">
+													<title>Folder</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 												</svg>
 												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
@@ -294,8 +296,9 @@ $pubblicazioni = new WP_Query(
 											<!--start card-->
 											<div class="card card-teaser rounded shadow">
 												<div class="card-body">
-													<h3 class="card-title h5 ">
+													<h3 class="card-title cardTitlecustomSpacing h5 ">
 														<svg class="icon" role="img" aria-labelledby="Folder">
+															<title>Folder</title>
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 														</svg>
 														<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $indirizzo_ricerca_title ); ?></a>
@@ -331,8 +334,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
 												<svg class="icon" role="img" aria-labelledby="Note">
+													<title>Note</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note';?>"></use>
 												</svg>
 												<?php
@@ -373,8 +377,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
 												<svg class="icon" role="img" aria-labelledby="File PDF">
+													<title>File PDF</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato_cv['url']); ?>"><?php echo esc_attr( $allegato_cv['title'] ); ?>&nbsp;</a>
@@ -388,8 +393,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
 												<svg class="icon" role="img" aria-labelledby="File PDF">
+													<title>File PDF</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato1['url']); ?>"><?php echo esc_attr( $allegato1['title'] ); ?></a>
@@ -402,8 +408,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
 												<svg class="icon" role="img" aria-labelledby="File PDF">
+													<title>File PDF</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato2['url']); ?>"><?php echo esc_attr( $allegato2['title'] ); ?></a>
@@ -416,8 +423,9 @@ $pubblicazioni = new WP_Query(
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
-											<h3 class="card-title h5 ">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
 												<svg class="icon" role="img" aria-labelledby="File PDF">
+													<title>File PDF</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
 												</svg>
 												<a href="<?php echo esc_url($allegato3['url']); ?>"><?php echo esc_attr( $allegato3['title'] ); ?></a>
@@ -440,6 +448,7 @@ $pubblicazioni = new WP_Query(
 										<div class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Telephone">
+													<title>Telephone</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone';?>"></use>
 												</svg>
 											</div>
@@ -454,6 +463,7 @@ $pubblicazioni = new WP_Query(
 										<a href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Mail">
+													<title>Mail</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
 												</svg>
 											</div>
@@ -468,6 +478,7 @@ $pubblicazioni = new WP_Query(
 										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sitoweb ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Link">
+													<title>Link</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
 												</svg>
 											</div>
