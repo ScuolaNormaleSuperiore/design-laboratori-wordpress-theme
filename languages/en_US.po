@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2024-10-16 09:00+0000\n"
+"PO-Revision-Date: 2024-10-16 15:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -931,6 +931,10 @@ msgstr "Enter your last name"
 msgid "Inserisci il tuo indirizzo email"
 msgstr "Enter your email address"
 
+#: template-parts/common/newsletter.php:24
+msgid "Inserisci il tuo indirizzo email per ricevere aggiornamenti"
+msgstr "Enter your email address to receive updates"
+
 #: page-templates/contatti.php:236 page-templates/newsletter.php:170
 msgid "Inserisci il tuo nome"
 msgstr "Enter your name"
@@ -1122,12 +1126,14 @@ msgid "Le pubblicazioni"
 msgstr "Publications"
 
 #: archive.php:82 page-templates/blog.php:113 page-templates/eventi.php:135
-#: page-templates/notizie.php:113 template-parts/common/sezione-eventi.php:64
+#: page-templates/notizie.php:113
+#: template-parts/common/sezione-box-evento.php:47
+#: template-parts/common/sezione-box-notizia.php:26
 #: template-parts/home/card-eventi.php:67 template-parts/home/card-news.php:47
 #: template-parts/home/carousel.php:50
 #: template-parts/home/hp-list-article.php:61
 #: template-parts/home/hp-list-event.php:81
-#: template-parts/home/hp-list-news.php:61
+#: template-parts/home/hp-list-news.php:66
 msgid "Leggi di più"
 msgstr "Read more"
 
@@ -1243,7 +1249,7 @@ msgstr "Show social media icons"
 msgid "Multilingua"
 msgstr "Multi-language"
 
-#: template-parts/common/sezione-related-items.php:8
+#: template-parts/common/sezione-related-items.php:10
 msgid "News &amp; Eventi"
 msgstr "News &amp; Eventi"
 
@@ -2058,7 +2064,7 @@ msgstr "Go back"
 msgid "Tutta l’organizzazione"
 msgstr "Whole organization"
 
-#: single-notizia.php:91 template-parts/home/hp-list-news.php:80
+#: single-notizia.php:91 template-parts/home/hp-list-news.php:86
 msgid "Tutte le notizie"
 msgstr "All news"
 

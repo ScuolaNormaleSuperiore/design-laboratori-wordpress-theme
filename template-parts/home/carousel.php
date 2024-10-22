@@ -41,14 +41,14 @@
 											}
 											?>
 											</div>
-											<h5 class="h5 card-title big-heading"><?php echo $item['title']; ?></h5>
+											<h3 class="h5 card-title big-heading"><?php echo $item['title']; ?></h3>
 											<p class="card-text"><?php echo esc_attr( $item['description'] ); ?></p>
 											<?php
 											if ( $item['link'] ) {
 											?>
 											<a class="read-more" href="<?php echo esc_attr( $item['link'] ); ?>">
 												<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-												<svg class="icon" role="img" aria-labelledby="Arrow right">
+												<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ) ?>"></use>
 												</svg>
 											</a>

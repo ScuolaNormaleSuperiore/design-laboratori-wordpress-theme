@@ -182,7 +182,8 @@ if ( 'yes' === $forminviato ) {
 									<div class="list-item">
 										<div class="it-rounded-icon">
 											<svg class="icon" role="img" aria-labelledby="Telephone">
-											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
+												<title>Telephone</title>
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 											</svg>
 										</div>
 										<div class="it-right-zone">
@@ -198,7 +199,8 @@ if ( 'yes' === $forminviato ) {
 									<a href="<?php echo esc_attr( 'mailto:' . $email_sito ); ?>" class="list-item">
 									<div class="it-rounded-icon">
 										<svg class="icon" role="img" aria-labelledby="Mail">
-									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
+											<title>Mail</title>
+											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 										</svg>
 									</div>
 									<div class="it-right-zone">
@@ -212,6 +214,7 @@ if ( 'yes' === $forminviato ) {
 									<a class="list-item" href="<?php echo esc_url( $website ); ?>">
 									<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Link">
+										<title>Website Link</title>
 										<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 									</svg>
 									</div>

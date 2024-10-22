@@ -21,8 +21,8 @@ if ( 'true' === $section_enabled ) {
 	$num_items = $query->post_count;
 	if ( $num_items > 0 ) {
 ?>
-	<!-- INIZIO ELENCO NOTIZIE HP -->
-	<section id="blocco-news" class="section pt-3 pb-3" >
+	<!-- INIZIO ELENCO ARTICOLI HP -->
+	<section id="blocco-articoli" class="section pt-3 pb-3" >
 		<div class="section-content">
 			<div class="container">
 				<h2 class="h3 pb-2 ">
@@ -33,7 +33,7 @@ if ( 'true' === $section_enabled ) {
 					foreach ( $query->posts as $post ){
 						$postitem = dli_get_post_wrapper( $post );
 				?>
-					<!-- NEWS -->
+					<!-- ARTICOLI -->
 					<div class="col-12 col-lg-4"> 
 						<div class="card-wrapper">
 							<div class="card card-bg">
@@ -59,7 +59,7 @@ if ( 'true' === $section_enabled ) {
 									<p class="card-text"><?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 									<a class="read-more" href="<?php echo esc_url( $postitem['link'] ); ?>">
 										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon">
+										<svg class="icon" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>">
 										</svg>
 									</a>
@@ -67,7 +67,7 @@ if ( 'true' === $section_enabled ) {
 							</div>
 						</div>
 					</div>
-					<!-- FINE NEWS -->
+					<!-- FINE ARTICOLI -->
 					<?php
 						}
 					?>
@@ -83,7 +83,7 @@ if ( 'true' === $section_enabled ) {
 			</div>
 		</div>
 	</section>
-	<!-- FINE ELENCO NOTIZIE HP -->
+	<!-- FINE ELENCO ARTICOLI HP -->
 <?php
 	}
 }

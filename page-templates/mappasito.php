@@ -31,31 +31,31 @@ try {
 		<div class="row variable-gutters d-flex justify-content-center">
 			<div class="col-lg-8 pt84">
 				<ul class="menutree">
-					<li><a href="<?php echo $pt[DLI_HOMEPAGE_SLUG]['link']; ?>"><?php echo $pt[DLI_HOMEPAGE_SLUG]['name']; ?></a></li>
+					<li><a class="mappasitolink" href="<?php echo $pt[DLI_HOMEPAGE_SLUG]['link']; ?>"><?php echo $pt[DLI_HOMEPAGE_SLUG]['name']; ?></a></li>
 					<ul>
 						<?php
 						// I livello.
 						foreach ( $pt[DLI_HOMEPAGE_SLUG]['children'] as $item ) {
 							if ( $item['external'] ) {
-								echo '<li><a target="_blank" href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
+								echo '<li><a class="mappasitolink" target="_blank" href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
 							} else {
-								echo '<li><a href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
+								echo '<li><a class="mappasitolink" href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
 							}
 							// II livello.
 							echo '<ul>';
 							foreach ( $item['children'] as $childitem ) {
 								if ( $childitem['external'] ) {
-									echo '<li><a target="_blank" href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
+									echo '<li><a class="mappasitolink" target="_blank" href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
 								} else {
-									echo '<li><a href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
+									echo '<li><a class="mappasitolink" href="' . $childitem['link'] . '">' . $childitem['name'] . '</a></li>';
 								}
 								// III livello.
 								echo '<ul>';
 								foreach ( $childitem['children'] as $grandchilditem ) {
 									if ( $grandchilditem['external'] ) {
-										echo '<li><a target="_blank" href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
+										echo '<li><a class="mappasitolink" target="_blank" href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
 									} else {
-										echo '<li><a href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
+										echo '<li><a class="mappasitolink" href="' . $grandchilditem['link'] . '">' . $grandchilditem['name'] . '</a></li>';
 									}
 								}
 								echo '</ul>';

@@ -86,6 +86,7 @@ $current_lang = dli_current_language();
 							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
 							<span><?php echo $current_language; ?></span>
 							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
+								<title>Expand</title>
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 							</svg>
 							</a>
@@ -160,7 +161,7 @@ $current_lang = dli_current_language();
 								$search_link = dli_get_search_link( $current_language );
 							?>
 							<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
-								<svg class="icon" role="img" aria-labelledby="Search">
+								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 								</svg>
 							</a>
@@ -189,7 +190,7 @@ $current_lang = dli_current_language();
 					<div class="close-div">
 					<button class="btn close-menu" type="button">
 						<span class="visually-hidden">Nascondi la navigazione</span>
-						<svg class="icon" role="img" aria-labelledby="Close big">
+						<svg class="icon" role="img" aria-labelledby="Close big" aria-label="Nascondi la navigazione">
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big'; ?>"></use>
 						</svg>
 					</button>

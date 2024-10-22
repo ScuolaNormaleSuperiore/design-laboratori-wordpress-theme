@@ -15,7 +15,7 @@ $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' 
 
 <div class="dropdown d-inline">
 	<button class="btn btn-dropdown dropdown-toggle" type="button" id="shareActions" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<svg class="icon" aria-hidden="true" focusable="false">
+		<svg class="icon" aria-hidden="true" focusable="false" aria-label="Share">
 			<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-share' ?>"></use>
 		</svg>
 		<small>
@@ -29,8 +29,8 @@ $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' 
 					<a class="list-item"
 						href="<?php echo esc_url( $fb_share_url ); ?>"
 						target="_blank" rel="noopener"
-						aria-label="<?php echo __( 'Share on Facebook', 'kk_writer_theme' ); ?>">
-						<svg class="icon" aria-hidden="true" focusable="false">
+						aria-label="<?php echo __( 'Share on Facebook', 'design_laboratori_italia' ); ?>">
+						<svg class="icon" aria-hidden="true" focusable="false" aria-label="<?php echo __( 'Share on Facebook', 'design_laboratori_italia' ); ?>">
 							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-facebook'?>"></use>
 						</svg>
 						<span class="display_block">Facebook</span>
@@ -40,8 +40,8 @@ $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' 
 					<a class="list-item"
 						href="<?php echo esc_url( $tw_share_url ); ?>"
 						target="_blank" rel="noopener noreferrer"
-						aria-label="<?php echo __( 'Share on Twitter', 'kk_writer_theme' ); ?>">
-						<svg class="icon" aria-hidden="true" focusable="false">
+						aria-label="<?php echo __( 'Share on Twitter', 'design_laboratori_italia' ); ?>">
+						<svg class="icon" aria-hidden="true" focusable="false" aria-label="<?php echo __( 'Share on Twitter', 'design_laboratori_italia' ); ?>">
 							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-twitter'?>"></use>
 						</svg>
 						<br/>
@@ -52,8 +52,8 @@ $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' 
 					<a class="list-item"
 						href="<?php echo esc_url( $lk_share_url ); ?>"
 						target="_blank" rel="noopener noreferrer"
-						aria-label="<?php echo __( 'Share on Linkedin', 'kk_writer_theme' ); ?>">
-						<svg class="icon" aria-hidden="true" focusable="false">
+						aria-label="<?php echo __( 'Share on Linkedin', 'design_laboratori_italia' ); ?>">
+						<svg class="icon" aria-hidden="true" focusable="false" aria-label="<?php echo __( 'Share on Linkedin', 'design_laboratori_italia' ); ?>">
 							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-linkedin'?>"></use>
 						</svg>
 						<span class="display_block">Linkedin</span>
@@ -63,8 +63,8 @@ $wa_share_url = 'https://api.whatsapp.com/send?text=' . $enc_shared_title . ' ' 
 					<a class="list-item"
 						href="<?php echo esc_url( $wa_share_url ); ?>"
 						target="_blank" rel="noopener noreferrer"
-						aria-label="<?php echo __( 'Share on WhatsApp', 'kk_writer_theme' ); ?>">
-						<svg class="icon" aria-hidden="true" focusable="false">
+						aria-label="<?php echo __( 'Share on WhatsApp', 'design_laboratori_italia' ); ?>">
+						<svg class="icon" aria-hidden="true" focusable="false" aria-label="<?php echo __( 'Share on WhatsApp', 'design_laboratori_italia' ); ?>">
 							<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-whatsapp'?>"></use>
 						</svg>
 						<span class="display_block">Whatsapp</span>

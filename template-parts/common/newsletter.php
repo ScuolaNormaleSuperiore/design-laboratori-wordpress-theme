@@ -16,18 +16,19 @@ if ( $newsletter_enabled === 'true' ) {
 				<div class="input-group-prepend">
 						<div class="input-group-text bg-transparent border-white">
 							<svg class="icon icon-sm icon-white" role="img" aria-labelledby="Mail">
+								<title>Mail</title>
 								<use xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ?>">
 								</use>
 							</svg>
 						</div>
 				</div>
-					<input type="text" class="form-control bg-transparent text-white border-white"
+					<input type="text" title="<?php echo __( 'Inserisci il tuo indirizzo email per ricevere aggiornamenti', 'design_laboratori_italia' ); ?>" class="form-control bg-transparent text-white border-white"
 						id="user_mail" name="user_mail"
 						placeholder="<?php echo __( 'Indirizzo e-mail', 'design_laboratori_italia' ); ?>">
 					<?php wp_nonce_field( 'sf_newsletter_nonce', 'newsletter_nonce_field' ); ?>
 					<input type="hidden" name="redirection" id="redirection" value="yes" />
 					<div class="input-group-append">
-						<button class="btn btn-primary bg-transparent text-white text-light border-white border" type="submit" id="button-3">
+						<button class="btn btn-primary bg-transparent text-white text-light border-white border" type="submit" id="button-newsletter-iscriviti">
 						<?php echo __( 'Iscrivimi...', 'design_laboratori_italia' ); ?>
 						</button>
 					</div>

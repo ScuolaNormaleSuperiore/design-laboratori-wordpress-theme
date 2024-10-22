@@ -109,3 +109,49 @@ html {
 .display_block {
 	display: block !important;
 }
+
+
+/** Accessibilità*/
+
+.it-footer-small-prints a:hover:not(.disabled) {
+	color:#fff;
+	font-size:1rem;
+	text-decoration: underline !important;
+}
+
+.mappasitolink {
+	display: flex;
+	gap: 4px;
+}
+
+.mappasitolink:hover {
+	text-decoration: underline !important;
+}
+
+#button-newsletter-iscriviti {
+	background-color: inherit !important;
+}
+
+#button-newsletter-iscriviti:hover {
+	background-color: #17324d !important;
+}
+
+.customSpacing {
+	height: 24px !important;
+	transform: translateY(-2px) !important;
+}
+
+.customSpacing a {
+	display: block !important;
+	min-width: 24px !important;
+	min-height: 24px !important;
+}
+
+.cardTitlecustomSpacing {
+
+}
+
+.cardTitlecustomSpacing a {
+	display: inline-block !important;
+	min-height: 24px !important;
+}
