@@ -478,7 +478,7 @@ $pubblicazioni = new WP_Query(
 										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sitoweb ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Link">
-													<title>Link</title>
+													<title>Website Link</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link';?>"></use>
 												</svg>
 											</div>

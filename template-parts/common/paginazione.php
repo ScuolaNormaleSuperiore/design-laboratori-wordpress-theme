@@ -5,8 +5,8 @@
 		<div class="row pt-5" id='pagination_links'>
 		<?php
 		if ( $the_query ) {
-			$prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
-			$next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
+			$prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><title>Chevron Left</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
+			$next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><title>Chevron Right</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
 			echo paginate_links(
 				array(
 					'total'     => $the_query->max_num_pages,

@@ -66,6 +66,7 @@ if ( 'true' === $section_enabled ) {
 											<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>
 										</span>
 										<svg class="icon" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
+											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ?>">
 										</svg>
 									</a>

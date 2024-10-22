@@ -102,6 +102,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 				<?php echo esc_html ( __( 'Conferma dell\'iscrizione alla newsletter avvenuta con successo', 'design_laboratori_italia' ) . '&nbsp;.' ); ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 						<svg class="icon" role="img" aria-labelledby="Close" aria-label="Close">
+							<title>Chiudi avviso</title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 						</svg>
 					</button>
@@ -117,6 +118,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 				<?php echo esc_html ( __( 'Iscrizione avvenuta correttamente', 'design_laboratori_italia' ) . '&nbsp;.' ); ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 						<svg class="icon" role="img" aria-labelledby="Close" aria-label="Close">
+							<title>Chiudi avviso</title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 						</svg>
 					</button>
@@ -135,6 +137,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 				?>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 					<svg class="icon" role="img" aria-labelledby="Close" aria-label="Close">
+						<title>Chiudi avviso</title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 					</svg>
 				</button>

@@ -141,6 +141,7 @@ if ( 'yes' === $forminviato ) {
 				<?php echo esc_html( __( 'Messaggio inviato correttamente', 'design_laboratori_italia' ) ) . '&nbsp;.'; ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 						<svg class="icon" role="img" aria-labelledby="Close">
+							<title>Chiudi avviso</title>
 							<use href="<?php echo esc_attr( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 						</svg>
 					</button>
@@ -156,6 +157,7 @@ if ( 'yes' === $forminviato ) {
 				<?php echo esc_html( __( $testorisultato, 'design_laboratori_italia' ) ); ?>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 					<svg class="icon" role="img" aria-labelledby="Close">
+						<title>Chiudi avviso</title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 					</svg>
 				</button>

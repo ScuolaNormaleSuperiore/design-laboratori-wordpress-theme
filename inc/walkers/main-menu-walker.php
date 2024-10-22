@@ -40,6 +40,7 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 				<span>';
 				$output .= esc_attr( $item->title );
 				$output .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
+					<title>Expand</title>
 					<use href="';
 				$output .= get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand';
 				$output .= '"></use></svg></a>';

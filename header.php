@@ -162,6 +162,7 @@ $current_lang = dli_current_language();
 							?>
 							<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
 								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
+									<title><?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?></title>
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 								</svg>
 							</a>
@@ -182,7 +183,8 @@ $current_lang = dli_current_language();
 				<button class="custom-navbar-toggler" type="button" aria-controls="nav1" aria-expanded="false"
 					aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
 					<svg class="icon bg-override" role="img" aria-labelledby="Burger">
-					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger'; ?>"></use>
+						<title>Mostra/Nascondi la navigazione</title>
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger'; ?>"></use>
 					</svg>
 				</button>
 				<div class="navbar-collapsable" id="nav1" style="display: none;">
@@ -191,7 +193,8 @@ $current_lang = dli_current_language();
 					<button class="btn close-menu" type="button">
 						<span class="visually-hidden">Nascondi la navigazione</span>
 						<svg class="icon" role="img" aria-labelledby="Close big" aria-label="Nascondi la navigazione">
-						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big'; ?>"></use>
+							<title>Nascondi la navigazione</title>
+							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big'; ?>"></use>
 						</svg>
 					</button>
 					</div>

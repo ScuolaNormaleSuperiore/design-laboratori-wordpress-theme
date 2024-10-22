@@ -134,6 +134,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
 											<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 											<svg class="icon" role="img" aria-labelledby="Arrow right">
+												<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>">
 											</use>
 										</svg>
