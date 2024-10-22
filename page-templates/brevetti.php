@@ -191,7 +191,7 @@ $num_results   = $the_query->found_posts;
 													<?php echo esc_attr( $stato ); ?>
 												</p>
 												<div class="pt-5">
-													<a class="read-more" href="sf-scheda-brevetto.html">
+													<a class="read-more" href="<?php echo get_permalink(); ?>">
 														<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 														<svg class="icon">
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>

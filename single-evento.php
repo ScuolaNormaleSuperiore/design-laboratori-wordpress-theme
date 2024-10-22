@@ -106,7 +106,7 @@ $short_descr         = dli_get_field( 'descrizione_breve' );
 								?>
 						</span>
 						<!-- Titolo -->
-						<h2><?php echo get_the_title( ); ?></h2>
+						<h2><?php echo get_the_title(); ?></h2>
 						<!-- Testo -->
 						<p class="d-none d-lg-block">
 							<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
