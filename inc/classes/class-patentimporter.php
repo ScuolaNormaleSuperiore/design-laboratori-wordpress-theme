@@ -7,7 +7,7 @@
 
 require_once 'class-base-importer.php';
 
-// @TODO: Rifattorizzare class-irismanager e class-irispatentimporter.
+// @TODO: Rifattorizzare class-irismanager e class-patentimporter.
 // .
 // Definizione delle costanti in class.irismanager.php.
 
@@ -115,6 +115,10 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		dli_update_field( 'stato_legale', $item->legal_status, $post_id );
 		// Numero Deposito (numero_deposito).
 		dli_update_field( 'numero_deposito', $item->applicationNumber, $post_id );
+		if ( $item->id_family ) {
+			// Id famiglia (id_famiglia).
+			dli_update_field( 'id_famiglia', $item->id_family, $post_id );
+		}
 		if ( $item->deposit_date ){
 			// Data deposito (data_deposito).
 			$dp_date_str  = $item->deposit_date;

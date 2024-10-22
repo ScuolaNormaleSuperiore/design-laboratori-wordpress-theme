@@ -145,7 +145,8 @@ $num_results   = $the_query->found_posts;
 								$the_query->the_post();
 								if ( ( $pindex % PATENT_CELLS_PER_ROW ) == 0 ) {
 							?>
-							<div class="row pt-5"> <!-- row -->
+							<div class="row pt-5">
+								<!-- row -->
 								<?php
 									}
 									$post_id        = get_the_ID();
