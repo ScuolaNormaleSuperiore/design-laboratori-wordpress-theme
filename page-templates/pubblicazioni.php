@@ -200,7 +200,7 @@ $num_results = $pubblicazioni->found_posts;
 												<?php
 												if ( $url ) {
 													?>
-													<h3 class="card-title h5">
+													<h3 class="card-title cardTitlecustomSpacing h5">
 														<svg class="icon" role="img" aria-labelledby="Note">
 															<title>Note</title>
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
@@ -211,7 +211,7 @@ $num_results = $pubblicazioni->found_posts;
 												}
 												else {
 													?>
-													<h3 class="card-title h5">
+													<h3 class="card-title cardTitlecustomSpacing h5">
 														<svg class="icon" role="img" aria-labelledby="Note">
 															<title>Note</title>
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>

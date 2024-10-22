@@ -105,12 +105,12 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 											?>
 											<span class="data"><?php echo get_the_date( 'd/m/Y' ); ?></span>
 										</div>
-										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title cardTitlecustomSpacing h4"><?php echo get_the_title(); ?></h3>
 										<p class="card-text">
 											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
 										<a class="read-more" href="<?php echo get_permalink(); ?>">
-										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+										<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 										<svg class="icon" role="img" aria-labelledby="Arrow right">
 											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
