@@ -20,6 +20,7 @@
 					<div class="list-item">
 						<div class="it-rounded-icon">
 							<svg class="icon" role="img" aria-labelledby="Telephone">
+								<title>Telephone</title>
 								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 							</svg>
 						</div>
@@ -37,6 +38,7 @@
 				<a href="<?php echo 'mailto:' . esc_attr( $email ); ?>" class="list-item" target="_blank">
 					<div class="it-rounded-icon">
 					<svg class="icon" role="img" aria-labelledby="Mail">
+						<title>Mail</title>
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 					</svg>
 					</div>
@@ -53,6 +55,7 @@
 				<a class="list-item" target="_blank" href="<?php echo esc_url( $website ); ?>">
 					<div class="it-rounded-icon">
 					<svg class="icon" role="img" aria-labelledby="Link">
+						<title>Link</title>
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
 					</svg>
 					</div>

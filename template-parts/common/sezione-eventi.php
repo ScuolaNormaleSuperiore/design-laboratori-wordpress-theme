@@ -50,7 +50,7 @@
 										</div>
 									</div>
 									<div class="card-body p-4">
-										<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
+										<h3 class="card-title cardTitlecustomSpacing h4"><?php echo esc_attr( $title ); ?></h3>
 										<p class="card-text"><?php echo esc_attr( get_field( 'descrizione_breve' ) ); ?></p>
 										<?php if ( $orario_inizio ) {
 										?>
@@ -61,9 +61,10 @@
 										}
 										?>
 										<a class="read-more" href="<?php echo esc_url( $link ); ?>">
-											<span class="text"><?php echo __('Leggi di più', 'design_laboratori_italia' ) ?></span>
+											<span class="text customSpacing"><?php echo __('Leggi di più', 'design_laboratori_italia' ) ?></span>
 											<span class="visually-hidden"><?php echo $desc; ?></span>
 											<svg class="icon" role="img" aria-labelledby="Arrow right">
+												<title><?php echo __('Leggi di più', 'design_laboratori_italia' ) ?></title>
 												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
 											</svg>
 										</a>

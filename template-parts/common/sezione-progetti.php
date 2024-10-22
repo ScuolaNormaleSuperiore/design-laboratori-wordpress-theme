@@ -22,8 +22,9 @@
 		<!--begin card progetti-->
 		<div class="card card-teaser rounded shadow">
 			<div class="card-body">
-				<h3 class="card-title h5 ">
+				<h3 class="card-title cardTitlecustomSpacing h5 ">
 					<svg class="icon" role="img" aria-labelledby="Folder">
+						<title>Folder</title>
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder'; ?>"></use>
 					</svg>
 					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_attr( $title ); ?></a>

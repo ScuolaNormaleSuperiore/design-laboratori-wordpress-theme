@@ -169,7 +169,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $responsabili ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-responsabile"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-persone',
@@ -186,7 +186,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $progetti ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-progetti"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-progetti',
@@ -203,7 +203,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $cont_pres ) {
 				?>
-				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section pt-3 h4" id="sezione-contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 				<?php
 						get_template_part(
 							'template-parts/common/sezione-contatti',
@@ -220,7 +220,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $eventi->posts ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-eventi"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-eventi',
