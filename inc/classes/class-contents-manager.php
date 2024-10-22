@@ -76,7 +76,6 @@ class DLI_ContentsManager
 	}
 
 	public static function get_patent_data_query( $args ) {
-		error_log('********* get_patent_data_query' . json_encode( $args ) );
 		// Pulisci parametri di ricerca.
 		if ( isset( $args['thematic_area'] ) && is_array( $args['thematic_area'] ) && ! empty( $args['thematic_area'] ) ) {
 			$areas = array_map( 'intval', $args['thematic_area'] );

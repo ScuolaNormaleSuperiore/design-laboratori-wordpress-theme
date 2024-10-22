@@ -14,7 +14,11 @@ $search_string  = '';
 $all_areas      = dli_get_all_categories_by_ct( THEMATIC_AREA_TAXONOMY, PATENT_POST_TYPE );
 $all_area_ids   = $all_areas ? array_map( function( $item ) { return $item['id']; }, $all_areas ) : [];
 $all_years      = DLI_ContentsManager::dli_get_all_patent_years();
+$per_page       = DLI_DEFAULT_PER_PAGE;
 
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
 if ( isset( $_GET['thematic_area'] ) && is_array(  $_GET['thematic_area'] )  ) {
 	foreach ($_GET['thematic_area'] as $ar ) {
 		array_push( $selected_areas, sanitize_text_field( $ar ) );
@@ -235,8 +239,17 @@ $num_results   = $the_query->found_posts;
 	?>
 	
 	<!-- PAGINAZIONE con selettore  -->
-
-
+	<?php
+		get_template_part(
+			'template-parts/common/paginazione',
+			null,
+			array(
+				'query'    => $the_query,
+				'per_page' => $per_page ,
+			)
+		);
+	?>
+	
 </main>
 
 <?php

@@ -1,21 +1,68 @@
 <?php
- $the_query = $args['query'];
+ $the_query     = $args['query'];
+ $show_per_page = isset( $args['per_page'] );
+ $per_page      = isset( $args['per_page'] ) && $args['per_page'] ? $args['per_page'] : DLI_DEFAULT_PER_PAGE;
 ?>
-<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
-		<div class="row pt-5" id='pagination_links'>
-		<?php
-		if ( $the_query ) {
-			$prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
-			$next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
-			echo paginate_links(
-				array(
-					'total'     => $the_query->max_num_pages,
-					'prev_text' => $prev_label,
-					'next_text' => $next_label,
-					'type'      => 'list',
-				)
-			);
-		}
-		?>
+
+<!-- PAGINAZIONE condivisa -->
+<nav class="pagination-wrapper justify-content-center mt-3" aria-label="Navigazione centrata">
+	<div class="row w-100" id='pagination_links'>
+
+		<!-- Navigazione pagine -->
+		<div class="col-md-8 pt-2">
+			<?php
+			if ( $the_query ) {
+				$prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
+				$next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
+				echo paginate_links(
+					array(
+						'total'     => $the_query->max_num_pages,
+						'prev_text' => $prev_label,
+						'next_text' => $next_label,
+						'type'      => 'list',
+						'add_args'  => array( 'per_page' => $per_page ),
+					)
+				);
+			}
+			?>
 		</div>
-	</nav>
+
+		<!-- Scelta numero elementi per pagina -->
+		<?php
+		 if ( $show_per_page ) {
+		?>
+		<div class="col-md-4 dli-dropdown-container">
+			<div class="dropdown">
+				<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger"
+					data-bs-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" aria-label="Salta alla pagina">
+					<?php echo $per_page; ?>/<?php echo __( 'pagina', 'design_laboratori_italia' ); ?>
+					<svg class="icon icon-primary icon-sm">
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+					</svg>
+				</button>
+				<div class="dropdown-menu" aria-labelledby="pagerChanger">
+					<div class="link-list-wrapper">
+						<ul class="link-list">
+							<?php foreach( DLI_PER_PAGE_VALUES as $pvalue ) {
+								$is_active = ( $pvalue === $per_page );
+							?>
+							<li>
+								<a class="dropdown-item list-item <?php if( $is_active ) { echo 'active'; } ?>"
+									href="#" data-perpage="<?php echo $pvalue; ?>"><span><?php echo $pvalue; ?>/
+									<?php echo __( 'pagina', 'design_laboratori_italia' ); ?></span>
+								</a>
+								</li>
+							<?php
+							}
+							?>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		 }
+		?>
+	</div>
+</nav>
