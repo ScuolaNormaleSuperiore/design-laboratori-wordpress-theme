@@ -19,8 +19,11 @@ define( 'DLI_ENTE_SLUG', 'enteappartenenza' );
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
-define( 'DLI_POSTS_PER_PAGE', 2 );
+
+// Pagination.
 define( 'PERSONE_PER_ROW', 2 );
+define( 'DLI_POSTS_PER_PAGE', 6 );
+define( 'DLI_POST_PER_PAGE_VALUES', array( '6', '12', '24', '48', '96' ) );
 
 // Define roles and permissions.
 define( 'DLI_SUPER_EDITOR_ROLE_SLUG', 'dli_super_editor' );
@@ -247,6 +250,3 @@ define(
 	)
 );
 
-// PAGINATION
-define( 'DLI_DEFAULT_PER_PAGE', '10' );
-define( 'DLI_PER_PAGE_VALUES', array( '10', '20', '30', '40', '50' ) );

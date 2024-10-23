@@ -92,17 +92,20 @@ class DLI_ContentsManager
 		} else {
 			$search_string = '';
 		}
+		if ( isset( $args['per_page'] ) && is_string( $args['per_page'] ) ) {
+			$per_page = intval( $args['per_page'] );
+		} else {
+			$per_page = intval( DLI_PATENTS_PER_PAGE ) ;
+		}
 
 
 		$params = array(
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => PATENT_POST_TYPE,
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
+			'posts_per_page' => $per_page,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			's'              => $search_string,
-			// 'tax_query'      => array(),
-			// 'meta_query'     => array(),
 			'meta_query'     =>  array(
 				array(
 						'key'     => 'anno_deposito',

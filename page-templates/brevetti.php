@@ -6,15 +6,19 @@
 
 global $post;
 get_header();
+define( 'DLI_PATENT_CELLS_PER_ROW', 2 );
+define( 'DLI_PATENTS_PER_PAGE', 2 );
+define( 'DLI_PATENTS_PER_PAGE_VALUES', array( '2', '10', '20', '30', '40', '50' ) );
 
-define( 'PATENT_CELLS_PER_ROW', 2 );
-$selected_year  = '';
-$selected_areas = array();
-$search_string  = '';
-$all_areas      = dli_get_all_categories_by_ct( THEMATIC_AREA_TAXONOMY, PATENT_POST_TYPE );
-$all_area_ids   = $all_areas ? array_map( function( $item ) { return $item['id']; }, $all_areas ) : [];
-$all_years      = DLI_ContentsManager::dli_get_all_patent_years();
-$per_page       = DLI_DEFAULT_PER_PAGE;
+
+$selected_year   = '';
+$selected_areas  = array();
+$search_string   = '';
+$all_areas       = dli_get_all_categories_by_ct( THEMATIC_AREA_TAXONOMY, PATENT_POST_TYPE );
+$all_area_ids    = $all_areas ? array_map( function( $item ) { return $item['id']; }, $all_areas ) : [];
+$all_years       = DLI_ContentsManager::dli_get_all_patent_years();
+$per_page        = strval( DLI_PATENTS_PER_PAGE );
+$per_page_values = DLI_PATENTS_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
@@ -31,12 +35,11 @@ if ( isset( $_GET['deposit_year'] ) && is_numeric( $_GET['deposit_year'] ) ) {
 	$selected_year = sanitize_text_field( $_GET['deposit_year'] );
 }
 
-$post_per_page = 10;
 $params        = array(
 	'search_string' => $search_string,
 	'thematic_area' => $selected_areas ? $selected_areas : $all_area_ids,
 	'deposit_year'  => $selected_year ? array( $selected_year ) : $all_years,
-	'post_per_page' => $post_per_page,
+	'per_page'      => $per_page,
 );
 $the_query     = DLI_ContentsManager::get_patent_data_query( $params );
 $num_results   = $the_query->found_posts;
@@ -143,7 +146,7 @@ $num_results   = $the_query->found_posts;
 							<?php
 							while ( $the_query->have_posts() ) {
 								$the_query->the_post();
-								if ( ( $pindex % PATENT_CELLS_PER_ROW ) == 0 ) {
+								if ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) == 0 ) {
 							?>
 							<div class="row pt-5">
 								<!-- row -->
@@ -205,7 +208,7 @@ $num_results   = $the_query->found_posts;
 									<!--end card-->
 								</div>
 							<?php
-							if ( ( ( $pindex % PATENT_CELLS_PER_ROW ) === PATENT_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+							if ( ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) === DLI_PATENT_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
 							?>
 							</div>
 							<!-- end row -->
@@ -245,8 +248,9 @@ $num_results   = $the_query->found_posts;
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query'    => $the_query,
-				'per_page' => $per_page ,
+				'query'           => $the_query,
+				'per_page'        => $per_page ,
+				'per_page_values' => $per_page_values ,
 			)
 		);
 	?>
