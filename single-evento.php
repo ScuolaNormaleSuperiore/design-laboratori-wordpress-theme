@@ -305,7 +305,7 @@ $short_descr         = dli_get_field( 'descrizione_breve' );
 				if ( $luogo ) {
 				?>
 					<article id="luogo" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 pt-3" id="luogo"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="it-page-section h4 pt-3" id="luogo-title"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
 						<div class="row pb-3 pt-3">
 						<p><?php echo esc_attr( $luogo ); ?></p>
 						</div>
@@ -316,7 +316,7 @@ $short_descr         = dli_get_field( 'descrizione_breve' );
 
 				<!-- CONTATTI -->
 				<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="it-page-section h4 pt-3 pb-3" id="contatti">
+					<h3 class="it-page-section h4 pt-3 pb-3" id="contatti-title">
 						<?php
 						if ( $label_contatti ) {
 						?>
@@ -387,7 +387,7 @@ $short_descr         = dli_get_field( 'descrizione_breve' );
 				if ( $allegato ){
 				?>
 					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 pt-3 pb-3" id="allegati"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="it-page-section h4 pt-3 pb-3" id="allegati-title"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
 							<div class="row ">
 								<div class="card-wrapper card-teaser-wrapper">
 									<!--start card-->
