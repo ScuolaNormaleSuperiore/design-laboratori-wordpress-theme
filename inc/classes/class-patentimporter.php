@@ -270,7 +270,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				}
 			}
 		}
-		$this->log_string(text: "*** FINE importazione da IRIS (brevetti) ***");
+		$this->log_string( "*** FINE importazione da IRIS (brevetti) ***");
 		return $results;
 	}
 
