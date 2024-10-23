@@ -15,11 +15,11 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2\n"
 "X-Domain: design_laboratori_italia"
 
-#: inc/classes/class-indicomanager.php:20
+#: inc/classes/class-indicoimporter.php:20
 msgid "*** Importazione effettiva, eventi creati realmente ***"
 msgstr "*** Actual import, events actually created ***"
 
-#: inc/classes/class-indicomanager.php:19
+#: inc/classes/class-indicoimporter.php:19
 msgid ""
 "*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***"
 msgstr "*** Import in DRY-RUN mode (no events actually created) ***"
@@ -78,7 +78,7 @@ msgstr "Update the structure"
 msgid "Aggiorna la Tipologia luogo"
 msgstr "Update the place type"
 
-#: inc/classes/class-indicomanager.php:15
+#: inc/classes/class-indicoimporter.php:15
 msgid "Aggiornato evento: "
 msgstr "Event updated:"
 
@@ -455,7 +455,7 @@ msgstr "Person details"
 msgid "Dry Run (test import)"
 msgstr "Dry Run (test import)"
 
-#: inc/classes/class-indicomanager.php:13
+#: inc/classes/class-indicoimporter.php:13
 msgid "Dry-run - Importo evento: "
 msgstr "Dry-run - Importing event:"
 
@@ -488,7 +488,7 @@ msgstr "Membership institution"
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr "Error while subscribing to the newsletter."
 
-#: inc/classes/class-indicomanager.php:17
+#: inc/classes/class-indicoimporter.php:17
 msgid "Errore importando l'evento: "
 msgstr "Error importing event:"
 
@@ -694,7 +694,7 @@ msgstr "ID of the list associated with the site"
 msgid "Ignora"
 msgstr "Ignore"
 
-#: inc/classes/class-indicomanager.php:16
+#: inc/classes/class-indicoimporter.php:16
 msgid "Ignorato evento: "
 msgstr "Ignored event:"
 
@@ -767,19 +767,19 @@ msgstr "Place main image"
 msgid "Immagine principale della Persona"
 msgstr "Person main image"
 
-#: inc/classes/class-indicomanager.php:9
+#: inc/classes/class-indicoimporter.php:9
 msgid "Import da Indico disabilitato"
 msgstr "Import from Indico disabled"
 
-#: inc/classes/class-indicomanager.php:10
+#: inc/classes/class-indicoimporter.php:10
 msgid "Import da Indico non configurato correttamente"
 msgstr "Import from Indico not configured correctly"
 
-#: inc/classes/class-indicomanager.php:14
+#: inc/classes/class-indicoimporter.php:14
 msgid "Importato evento: "
 msgstr "Imported event:"
 
-#: inc/classes/class-indicomanager.php:12
+#: inc/classes/class-indicoimporter.php:12
 msgid "Importazione eseguita correttamente"
 msgstr "Import completed successfully"
 
@@ -1903,7 +1903,7 @@ msgstr "Socialmedia section"
 msgid "Si"
 msgstr "Yes"
 
-#: inc/classes/class-indicomanager.php:11
+#: inc/classes/class-indicoimporter.php:11
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr "An error occurred while performing the import"
 

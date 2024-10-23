@@ -16,11 +16,11 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.3\n"
 "X-Domain: design_laboratori_italia"
 
-#: inc/classes/class-indicomanager.php:20
+#: inc/classes/class-indicoimporter.php:20
 msgid "*** Importazione effettiva, eventi creati realmente ***"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:19
+#: inc/classes/class-indicoimporter.php:19
 msgid ""
 "*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***"
 msgstr ""
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Aggiorna la Tipologia luogo"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:15
+#: inc/classes/class-indicoimporter.php:15
 msgid "Aggiornato evento: "
 msgstr ""
 
@@ -446,7 +446,7 @@ msgstr ""
 msgid "Dry Run (test import)"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:13
+#: inc/classes/class-indicoimporter.php:13
 msgid "Dry-run - Importo evento: "
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr ""
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:17
+#: inc/classes/class-indicoimporter.php:17
 msgid "Errore importando l'evento: "
 msgstr ""
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Ignora"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:16
+#: inc/classes/class-indicoimporter.php:16
 msgid "Ignorato evento: "
 msgstr ""
 
@@ -749,19 +749,19 @@ msgstr ""
 msgid "Immagine principale della Persona"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:9
+#: inc/classes/class-indicoimporter.php:9
 msgid "Import da Indico disabilitato"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:10
+#: inc/classes/class-indicoimporter.php:10
 msgid "Import da Indico non configurato correttamente"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:14
+#: inc/classes/class-indicoimporter.php:14
 msgid "Importato evento: "
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:12
+#: inc/classes/class-indicoimporter.php:12
 msgid "Importazione eseguita correttamente"
 msgstr ""
 
@@ -1822,7 +1822,7 @@ msgstr ""
 msgid "Si"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:11
+#: inc/classes/class-indicoimporter.php:11
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr ""
 

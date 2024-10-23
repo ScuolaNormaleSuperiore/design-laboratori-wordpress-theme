@@ -25,6 +25,8 @@ class DLI_BaseImporter {
 	protected bool $module_enabled;
 	protected string $post_type;
 
+	public function __construct() {}
+
 	public function setup(){
 		// Register the import endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );

@@ -27,6 +27,56 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$this->module_enabled = ( dli_get_option( 'iris_brevetti_enabled', 'iris' ) === 'true' );
 	}
 
+	public function setup(){
+		// Register the indico import endpoint.
+		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
+		add_action( $this->job_name, array( $this, 'execute_job' ) );
+		add_action('delete_theme', array( $this, 'remove_all_import_jobs' ) );
+		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
+	}
+
+	private function manage_import_job() {
+		// SELECT * FROM wp_options WHERE option_name = 'cron'.
+		$schedule       = dli_get_option( 'indico_schedule', 'indico' );
+		$module_enabled = dli_get_option( 'indico_enabled', 'indico' );
+		
+		if ( ( $module_enabled==='false' ) || ( $schedule === 'never' ) ){
+			$this->remove_all_import_jobs();
+		} else {
+			$next_scheduled = wp_get_scheduled_event( $this->job_name );
+			if ( ! $next_scheduled ) {
+				$this->log_string( '@@@ CREO schedulazione @@@ ' );
+				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
+			} elseif ( $next_scheduled->schedule !== $schedule ) {
+				$this->log_string( '@@@ Cambio schedulazione @@@ ' );
+				wp_clear_scheduled_hook( $this->job_name );
+				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
+			}
+		}
+	}
+
+	public function remove_all_import_jobs() {
+		$this->log_string('@@@ CANCELLO schedulazione @@@ ');
+		wp_clear_scheduled_hook( $this->job_name );
+	}
+
+	public function execute_job() {
+		$this->log_string( '****** ESEGUO IL JOB ******' );
+		$this->import();
+	}
+
+	public function register_import_endpoint(){
+		register_rest_route(
+			'custom/v1',
+			'/indico-import',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'indico_import' ),
+				'permission_callback' => array( $this, 'dli_permission_callback' ),
+			)
+		);
+	}
+
 	public function import( $request ) {
 		$code = 200;
 		$data = array();
