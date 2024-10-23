@@ -181,26 +181,27 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 
 		} else {
 
-			// Altre pagine del sito (non HP).
-			$traduzioni = dli_get_post_translations( $post->ID );
-			$selectors  = array(
-				array(
-					'slug' => $current_language,
-					'url'  => get_permalink( $post ),
-				),
-			);
-			foreach( $languages_list as $lang_slug ) {
-				if ( (  $lang_slug !== $current_language ) && array_key_exists(  $lang_slug , $traduzioni ) ){
-					array_push(
-						$selectors,
-						array(
-							'slug' => $lang_slug,
-							'url'  => get_permalink( $traduzioni[ $lang_slug ] ),
-						)
-					);
+			if ( $post ){
+				// Altre pagine del sito (non HP).
+				$traduzioni = dli_get_post_translations( $post->ID );
+				$selectors  = array(
+					array(
+						'slug' => $current_language,
+						'url'  => get_permalink( $post ),
+					),
+				);
+				foreach( $languages_list as $lang_slug ) {
+					if ( (  $lang_slug !== $current_language ) && array_key_exists(  $lang_slug , $traduzioni ) ){
+						array_push(
+							$selectors,
+							array(
+								'slug' => $lang_slug,
+								'url'  => get_permalink( $traduzioni[ $lang_slug ] ),
+							)
+						);
+					}
 				}
 			}
-
 		}
 		return $selectors;
 	}

@@ -5,19 +5,9 @@
  * @package Design_Laboratori_Italia
  */
 
+require_once 'class-base-importer.php';
 
-define( 'MSG_MODULE_DISABLED', __( 'Import da Indico disabilitato', 'design_laboratori_italia' ) );
-define( 'MSG_MODULE_NOT_CONFIGURED',  __( 'Import da Indico non configurato correttamente', 'design_laboratori_italia' ) );
-define( 'MSG_IMPORT_ERROR', __( "Si è verificato un errore durante l'esecuzione dell'import", 'design_laboratori_italia' ) );
-define( 'MSG_IMPORT_SUCCESSFUL', __( 'Importazione eseguita correttamente', 'design_laboratori_italia' ) );
-define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_IMPORTED_EVENT', __( 'Importato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_UPDATED_EVENT', __( 'Aggiornato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_IGNORED_EVENT', __( 'Ignorato evento: ', 'design_laboratori_italia' ) );
-define( 'MSG_ERROR_IMPORTING_EVENT', __( "Errore importando l'evento: ", 'design_laboratori_italia' ) );
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
-define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***', 'design_laboratori_italia' ) );
-define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, eventi creati realmente ***', 'design_laboratori_italia' ) );
 
 class DLI_IndicoManager {
 	private string $job_name;
@@ -216,7 +206,6 @@ class DLI_IndicoManager {
 			$counter++;
 			$event_title = $event['title'];
 			$msg         = '';
-
 			$source_array = $this->trim_array( $conf['keywords'] ? explode(',', $conf['keywords']) : array() );
 			$dest_array   = $this->trim_array( $event['keywords'] ? $event['keywords'] : array() );
 			if ( ( ! $source_array ) || ( ! $dest_array ) || ( count( array_intersect( $source_array, $dest_array ) ) === 0 ) ) {
@@ -236,7 +225,7 @@ class DLI_IndicoManager {
 				try {
 					$updated    = false;
 					$ignored    = false;
-					$event_code = $this->create_event( $event, $conf, $updated, $ignored );
+					$event_code = $this->create_wp_content( $event, $conf, $updated, $ignored );
 					if ( $updated ) {
 						array_push(
 							$data,
@@ -278,7 +267,7 @@ class DLI_IndicoManager {
 		return array_map( 'trim', $array );
 	}
 
-	private function create_event( $event, $conf, &$updated, &$ignored ): int {
+	private function create_wp_content( $event, $conf, &$updated, &$ignored ): int {
 		$post_name    = dli_generate_slug( $event['title'] );
 		$post_content = $this->prepare_post_content( $event['description'], $conf['base_url'] );
 		$new_page = array(

@@ -72,8 +72,73 @@ class DLI_ContentsManager
 			$og_data->domain       = $domain;
 			$og_data->shared_title = $shared_title;
 		}
-
 		return $og_data;
+	}
+
+	public static function get_patent_data_query( $args ) {
+		// Pulisci parametri di ricerca.
+		if ( isset( $args['thematic_area'] ) && is_array( $args['thematic_area'] ) && ! empty( $args['thematic_area'] ) ) {
+			$areas = array_map( 'intval', $args['thematic_area'] );
+		} else {
+			$areas = [];
+		}
+		if ( isset( $args['deposit_year'] ) && is_array( $args['deposit_year'] ) && ! empty( $args['deposit_year'] ) ) {
+			$deposit_years = array_map( 'strval', $args['deposit_year'] );
+		} else {
+			$deposit_years = [];
+		}
+		if ( isset( $args['search_string'] ) && is_string( $args['search_string'] ) ) {
+			$search_string = sanitize_text_field( trim( $args['search_string'] ) );
+		} else {
+			$search_string = '';
+		}
+		if ( isset( $args['per_page'] ) && is_string( $args['per_page'] ) ) {
+			$per_page = intval( $args['per_page'] );
+		} else {
+			$per_page = intval( DLI_PATENTS_PER_PAGE ) ;
+		}
+
+
+		$params = array(
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_type'      => PATENT_POST_TYPE,
+			'posts_per_page' => $per_page,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			's'              => $search_string,
+			'meta_query'     =>  array(
+				array(
+						'key'     => 'anno_deposito',
+						'value'   => $deposit_years,
+						'compare' => 'IN',
+				),
+			),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => THEMATIC_AREA_TAXONOMY,
+					'field'    => 'term_id',
+					'operator' => 'IN',
+					'terms'    => $areas,
+				)
+			)
+		);
+		return new WP_Query( $params );
+	}
+
+	public static function dli_get_all_patent_years() {
+		global $wpdb;
+		$results = $wpdb->get_col(
+			$wpdb->prepare( "
+			SELECT DISTINCT pm.meta_value AS anno_deposito
+			FROM {$wpdb->postmeta} pm
+			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+			WHERE p.post_type = '%s'
+			AND p.post_status = 'publish'
+			AND pm.meta_key = '%s'
+			AND pm.meta_value != ''
+			ORDER BY pm.meta_value DESC
+		", PATENT_POST_TYPE, 'anno_deposito' ) );
+		return $results;
 	}
 
 }

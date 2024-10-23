@@ -129,7 +129,7 @@ if( ! function_exists( 'dli_get_carousel_items' ) ) {
 			$query = new WP_Query(
 				array(
 					'posts_per_page' => -1,
-					'post_type'      => array( EVENT_POST_TYPE, NEWS_POST_TYPE, PUBLICATION_POST_TYPE, PROGETTO_POST_TYPE, WP_DEFAULT_POST ),
+					'post_type'      => array( EVENT_POST_TYPE, NEWS_POST_TYPE, PUBLICATION_POST_TYPE, PATENT_POST_TYPE, PROGETTO_POST_TYPE, WP_DEFAULT_POST ),
 					'orderby'        => 'post_date',
 					'order'          => 'DESC',
 					'meta_query'     => array(
@@ -174,6 +174,12 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 				case PUBLICATION_POST_TYPE:
 						$item = dli_from_publication_to_carousel_item ( $result );
 						break;
+				case PATENT_POST_TYPE:
+							$item = dli_from_patent_to_carousel_item ( $result );
+							break;
+				case PATENT_POST_TYPE:
+						$item = dli_from_patent_to_carousel_item ( $result );
+						break;
 				case WP_DEFAULT_PAGE:
 					$item = dli_from_page_to_carousel_item ( $result );
 					break;
@@ -190,7 +196,7 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 	function dli_get_boxes_post_types( $item ) {
 		return array(
-			RESEARCHACTIVITY_POST_TYPE => __( 'Attività di ricerca', 'design_laboratori_italia' ),
+			RESEARCH_ACTIVITY_POST_TYPE => __( 'Attività di ricerca', 'design_laboratori_italia' ),
 			EVENT_POST_TYPE            => __( 'Eventi', 'design_laboratori_italia' ),
 			PLACE_POST_TYPE            => __( 'Luoghi', 'design_laboratori_italia' ),
 			NEWS_POST_TYPE             => __( 'Notizie', 'design_laboratori_italia' ),
@@ -198,6 +204,7 @@ if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 			WP_DEFAULT_POST            => __( 'Post', 'design_laboratori_italia' ),
 			PROGETTO_POST_TYPE         => __( 'Progetti', 'design_laboratori_italia' ),
 			PUBLICATION_POST_TYPE      => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+			PATENT_POST_TYPE           => __( 'Brevetti', 'design_laboratori_italia' ),
 		);
 	}
 }
@@ -285,6 +292,63 @@ if( ! function_exists( 'dli_from_publication_to_carousel_item' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
+	function dli_from_patent_to_carousel_item( $item ) {
+		$result         =  DLI_POST_WRAPPER;
+		$post_type      = get_post_type( $item );
+		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
+		$page           = dli_get_page_by_post_type( $post_type );
+		$post_title     = get_the_title( $item );
+		$link_pubbl     = dli_get_field( 'url', $item );
+		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
+		$summary        = dli_get_field( 'sommario_elenco', $item );
+		$result         = array(
+			'type'          => $post_type,
+			'category'      => $page->post_title,
+			'category_link' => get_permalink( $page->ID ),
+			'date'          => dli_get_field('data_deposito', $item),
+			'orario_inizio' => null,
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $summary, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => get_the_content( $item ),
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_metadata['image_url'],
+			'image_alt'     => $image_metadata['image_alt'],
+			'image_title'   => $image_metadata['image_title'],
+		);
+		return $result;
+	}
+}
+
+
+if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
+	function dli_from_patent_to_carousel_item( $item ) {
+		$result    =  DLI_POST_WRAPPER;
+		$post_type = get_post_type( $item );
+		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
+		$page        = dli_get_page_by_post_type( $post_type );
+		$post_title  = get_the_title( $item );
+		$link_pubbl  = get_field('url', $item);
+		$link_pubbl  = $link_pubbl ? $link_pubbl : '';
+		$result      = array(
+			'type'          => $post_type,
+			'category'      => $page->post_title,
+			'category_link' => get_permalink( $page->ID ),
+			'date'          => get_field('anno', $item),
+			'orario_inizio' => null,
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => get_the_content( $item ),
+			'link'          => $link_pubbl,
+			'image_url'     => $image_metadata['image_url'],
+			'image_alt'     => $image_metadata['image_alt'],
+			'image_title'   => $image_metadata['image_title'],
+		);
+		return $result;
+	}
+}
+
+
 if( ! function_exists( 'dli_from_progetto_to_carousel_item' ) ) {
 	function dli_from_progetto_to_carousel_item( $item ) {
 		$result    =  DLI_POST_WRAPPER;
@@ -345,11 +409,11 @@ if( ! function_exists( 'dli_from_post_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 	function dli_from_page_to_carousel_item( $item ) {
-		$post_type = get_post_type( $item );
+		$post_type      = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
-		$post_title  = get_the_title( $item );
-		$categories  = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
-		$pt_slugs    = dli_get_sluglist_by_category( $categories );
+		$post_title     = get_the_title( $item );
+		$categories     = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
+		$pt_slugs       = dli_get_sluglist_by_category( $categories );
 
 		if ( in_array( $item->post_name, $pt_slugs ) ) {
 			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
@@ -361,7 +425,7 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 			$fullcontent = get_the_content( $item );
 		}
 		// @TODO: Popolare $result e non ridefinirlo.
-		$result      = array(
+		$result = array(
 			'type'          => $post_type,
 			'category'      => 'Home',
 			'category_link' => get_site_url(),
@@ -381,8 +445,8 @@ if( ! function_exists( 'dli_from_page_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
 	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = null ) {
-		$result    =  DLI_POST_WRAPPER;
-		$image_url = get_the_post_thumbnail_url( $item, $image_size );
+		$result        =  DLI_POST_WRAPPER;
+		$image_url     = get_the_post_thumbnail_url( $item, $image_size );
 		$image_caption = '';
 		if ( ! $image_url && $partial_default_img_url ) {
 			$image_url = get_template_directory_uri() . $partial_default_img_url;

@@ -5,6 +5,24 @@
  $num_results     = $the_query->found_posts;
  $pagination_on   = ( $num_results > intval ( $per_page) ) ? true : false;
 ?>
+<<<<<<< HEAD
+<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione centrata">
+		<div class="row pt-5" id='pagination_links'>
+		<?php
+		if ( $the_query ) {
+			$prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><title>Chevron Left</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
+			$next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><title>Chevron Right</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
+			echo paginate_links(
+				array(
+					'total'     => $the_query->max_num_pages,
+					'prev_text' => $prev_label,
+					'next_text' => $next_label,
+					'type'      => 'list',
+				)
+			);
+		}
+		?>
+=======
 
 <!-- PAGINAZIONE condivisa -->
 <nav class="pagination-wrapper justify-content-center mt-3" aria-label="Navigazione centrata">
@@ -30,6 +48,7 @@
 				);
 			}
 			?>
+>>>>>>> feature/patentManagement
 		</div>
 
 		<!-- Scelta numero elementi per pagina -->

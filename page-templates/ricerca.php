@@ -11,7 +11,7 @@ define( 'RIC_CELLS_PER_ROW', 3 );
 $the_query = new WP_Query(
 	array(
 		'paged'           => get_query_var( 'paged', 1 ),
-		'post_type'       => RESEARCHACTIVITY_POST_TYPE,
+		'post_type'       => RESEARCH_ACTIVITY_POST_TYPE,
 		'posts_per_page'  => DLI_POSTS_PER_PAGE,
 
 	)
@@ -48,7 +48,7 @@ $num_results = $the_query->found_posts;
 					}
 					$post_id     = get_the_ID();
 					$ind_ricerca = get_post( $post_id );
-					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'full' );
+					$image_metadata = dli_get_image_metadata( $ind_ricerca, 'item-card-list' );
 
 				?>
 						<!--start card-->

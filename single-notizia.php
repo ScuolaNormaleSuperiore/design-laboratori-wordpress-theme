@@ -1,6 +1,6 @@
 <?php
 /**
- * Notizia template file
+ * Detail page for the post-type: notizia.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

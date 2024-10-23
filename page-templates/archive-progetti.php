@@ -52,7 +52,7 @@ $num_results = $the_query->found_posts;
 				<div class="row">
 				<?php
 					}
-					$image_metadata = dli_get_image_metadata( $post, 'full' );
+					$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">

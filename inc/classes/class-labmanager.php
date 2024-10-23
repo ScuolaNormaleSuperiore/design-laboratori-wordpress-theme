@@ -25,6 +25,10 @@ if ( ! class_exists( 'Publication_Manager' ) ) {
 	include_once 'class-publicationmanager.php';
 }
 
+if ( ! class_exists( 'Patent_Manager' ) ) {
+	include_once 'class-patentmanager.php';
+}
+
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
@@ -59,6 +63,10 @@ if ( ! class_exists( 'Banner_Manager' ) ) {
 
 if ( ! class_exists( 'DLI_IndicoManager' ) ) {
 	include_once 'class-indicomanager.php';
+}
+
+if ( ! class_exists( 'DLI_IrisPatentImporter' ) ) {
+	include_once 'class-patentimporter.php';
 }
 
 /**
@@ -127,6 +135,10 @@ class DLI_LabManager {
 		$publm = new Publication_Manager();
 		$publm->setup();
 
+		// Setup del post type Brevetto.
+		$pat = new Patent_Manager();
+		$pat->setup();
+
 		// Setup del post type Indirizzo di ricerca.
 		$ctram = new ResearchActivities_Manager();
 		$ctram->setup();
@@ -158,6 +170,10 @@ class DLI_LabManager {
 		// Setup the Indico Manager.
 		$indicom = new DLI_IndicoManager();
 		$indicom->setup();
+
+		// Setup the Patent Importer.
+		$ipm = new DLI_IrisPatentImporter();
+		$ipm->setup();
 
 	}
 

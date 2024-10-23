@@ -1,6 +1,6 @@
 <?php
 /**
- * Progetto template file
+ * Detail page for the post-type: progetto.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

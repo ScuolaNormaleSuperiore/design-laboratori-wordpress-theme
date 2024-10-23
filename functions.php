@@ -12,10 +12,17 @@
  */
 require get_template_directory() . '/config_lab.php';
 
+
 /**
  * Define the static pages of the site.
  */
 require get_template_directory() . '/config_pages.php';
+
+/**
+ * Define the menu of the site.
+ */
+require get_template_directory() . '/config_menu.php';
+
 
 /**
  * Warappers functions fo Polylang.
@@ -206,3 +213,48 @@ function enable_svg_upload( $upload_mimes ) {
 	return $upload_mimes;
 }
 add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
+
+function load_pagination_script(){
+	if (is_page_template() || is_singular()) {
+	?>
+		<script>
+			if (document.querySelector('.dli-dropdown-container')) {
+
+					// Disabilita il comportamento di default del click.
+					var dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+					dropdownLinks.forEach(function(link) {
+					link.addEventListener('click', function(event) {
+						event.preventDefault();
+						// Rimuovi la classe 'active' da tutti i link.
+						dropdownLinks.forEach(function(item) {
+							item.classList.remove('active');
+						});
+						// Aggiungi la classe 'active' al link cliccato.
+						link.classList.add('active');
+					});
+				});
+
+				// Ricarica pagina con il valore per_page selezionato.
+				var pagerDropDown = document.getElementById('pagerChanger');
+				pagerDropDown.addEventListener('hidden.bs.dropdown', function (event) {
+					console.log("********* ECCOMI dropdon-hidden****");
+					var selectedItem = document.querySelector('.dropdown-menu .active');
+					if (selectedItem) {
+						// Recupera il valore dell'attributo 'data-perpage'.
+						var perPageValue = selectedItem.getAttribute('data-perpage');
+						console.log("Valore selezionato:", perPageValue);
+						// Ottiene l'URL corrente e i parametri GET.
+						var currentUrl = new URL(window.location.href);
+						var params = currentUrl.searchParams;
+						// Aggiunge o aggiorna il parametro per_page.
+						params.set('per_page', perPageValue);
+						// Aggiorna l'URL e ricarica la pagina.
+						window.location.href = currentUrl.toString();
+					}
+				});
+			}
+		</script>
+	<?php
+	}
+}
+add_action('wp_footer', 'load_pagination_script');
