@@ -116,7 +116,7 @@ $num_results = $luoghi->found_posts;
 									<div class="card-wrapper ">
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body">
-										<h3 class="card-title h5 ">
+										<h3 class="card-title cardTitlecustomSpacing h5 ">
 											<svg class="icon" role="img" aria-labelledby="Map marker">
 												<title>Map Marker</title>
 												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker'; ?>"></use>
