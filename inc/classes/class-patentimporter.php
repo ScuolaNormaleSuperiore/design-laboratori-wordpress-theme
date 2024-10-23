@@ -7,85 +7,30 @@
 
 require_once 'class-base-importer.php';
 
-// @TODO: Rifattorizzare class-irismanager e class-patentimporter.
-// .
-// Definizione delle costanti in class.irismanager.php.
-
 class DLI_IrisPatentImporter extends DLI_BaseImporter {
-	/**
-	 * Constructor of the Manager.
-	 */
+
 	public function __construct() {
-		$this->job_name       = 'dli_iris_patent_import_job';
-		$this->endpoint       = '/iris-patent-import';
-		$this->debug_enabled  = false;
-		$this->module_enabled = false;
-		$this->post_type      = PATENT_POST_TYPE;
-		// Schedule import.
+		$this->importer_name    = 'Iris Patent Importer';
+		$this->job_name         = 'dli_iris_patent_import_job';
+		$this->endpoint         = '/iris-patent-import';
+		$this->post_type        = PATENT_POST_TYPE;
+		$this->debug_enabled    = ( dli_get_option( 'iris_debug_enabled', 'iris' ) === 'true' );
+		$this->module_enabled   = ( dli_get_option( 'iris_brevetti_enabled', 'iris' ) === 'true' );
+		$this->schedule_enabled = ( dli_get_option( 'iris_brevetti_schedule', 'iris' ) === 'true' );
+		// Schedule patent import.
 		// @TODO: $this->manage_import_job();
-		$this->debug_enabled  = ( dli_get_option( 'iris_debug_enabled', 'iris' ) === 'true' );
-		$this->module_enabled = ( dli_get_option( 'iris_brevetti_enabled', 'iris' ) === 'true' );
 	}
 
-	public function setup(){
-		// Register the indico import endpoint.
-		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
-		add_action( $this->job_name, array( $this, 'execute_job' ) );
-		add_action('delete_theme', array( $this, 'remove_all_import_jobs' ) );
-		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
-	}
-
-	private function manage_import_job() {
-		// SELECT * FROM wp_options WHERE option_name = 'cron'.
-		$schedule       = dli_get_option( 'indico_schedule', 'indico' );
-		$module_enabled = dli_get_option( 'indico_enabled', 'indico' );
-		
-		if ( ( $module_enabled==='false' ) || ( $schedule === 'never' ) ){
-			$this->remove_all_import_jobs();
-		} else {
-			$next_scheduled = wp_get_scheduled_event( $this->job_name );
-			if ( ! $next_scheduled ) {
-				$this->log_string( '@@@ CREO schedulazione @@@ ' );
-				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
-			} elseif ( $next_scheduled->schedule !== $schedule ) {
-				$this->log_string( '@@@ Cambio schedulazione @@@ ' );
-				wp_clear_scheduled_hook( $this->job_name );
-				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
-			}
-		}
-	}
-
-	public function remove_all_import_jobs() {
-		$this->log_string('@@@ CANCELLO schedulazione @@@ ');
-		wp_clear_scheduled_hook( $this->job_name );
-	}
-
-	public function execute_job() {
-		$this->log_string( '****** ESEGUO IL JOB ******' );
-		$this->import();
-	}
-
-	public function register_import_endpoint(){
-		register_rest_route(
-			'custom/v1',
-			'/indico-import',
-			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'indico_import' ),
-				'permission_callback' => array( $this, 'dli_permission_callback' ),
-			)
-		);
-	}
-
-	public function import( $request ) {
+	public function import( ) {
+		// $request
 		$code = 200;
 		$data = array();
 		// Verifica modulo abilitato.
 		if ( ! $this->module_enabled ) {
-		// Modulo disabilitato.
-		return $this->send_response( 500, MSG_MODULE_DISABLED, $data );
+			// Modulo disabilitato.
+			return $this->send_response( 500, MSG_MODULE_DISABLED, $data );
 		}
-
+	
 		// Recupero parametri di configurazione.
 		$conf = array(
 			'ws_url'        => dli_get_option( 'iris_brevetti_url', 'iris' ),
@@ -109,15 +54,105 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			return $this->send_response( 500, MSG_MODULE_NOT_CONFIGURED, $data );
 		}
 	}
-	/**
-	 *  Creazione/Modifica dell'post su WordPress
-	 * 
-	 * @param mixed $item
-	 * @param mixed $conf
-	 * @param mixed $updated
-	 * @param mixed $ignored
-	 * @return int
-	 */
+
+	public function get_data_to_import( $conf ) {
+		$ws_url   = $conf['ws_url'];
+		$username = $conf['username'];
+		$password = $conf['password'];
+		$data = array();
+		// Recupero JSON dati.
+		$auth = base64_encode("$username:$password");
+		$args = array(
+			'headers' => array(
+				'Authorization' => "Basic $auth"
+			)
+		);
+		// Invocazione dell'endpoint.
+		$response = wp_remote_get($ws_url, $args);
+		// Controllo della risposta
+		if ( is_wp_error($response ) ) {
+			// Errore invocando il web service.
+			throw new Exception( $response->get_error_message());
+		}
+		$status_code = wp_remote_retrieve_response_code( $response );
+		if ( $status_code != 200 ) {
+			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
+			throw new Exception( $error_msg );
+		} else {
+			// Recupera dati dalla risposta.
+			$body = wp_remote_retrieve_body($response);
+			if ( $body ){
+				$data = json_decode($body);
+			}
+		}
+		return $data;
+	}
+
+	private function execute_import( $conf = array() ): array {
+		$this->log_string("*** INIZIO importazione da IRIS (brevetti) ***");
+		// Invocazione del web service per recuperare i dati da Iris.
+		$data    = $this->get_data_to_import( $conf );
+		$results = array();
+
+		// Loop di importazione.
+		$counter   = 0;
+		$errors    = 0;
+		$processed = 0;
+		$updated   = 0;
+		$ignored   = 0;
+
+		// @TODO: Remove the following line:
+		// $data = array_slice($data, 0, 10);
+		foreach ( $data as $item ){
+			$counter++;
+			$item_code  = $item->pid;
+			$item_title = $item->displayValue;
+
+			if ( $conf['import_type'] === 'dryrun' ){
+				// Importazione dry run.
+				array_push(
+					$results,
+					MSG_IMPORT_DRY_RUN . $item_code . ' - ' . $item_title,
+				);
+				$processed++;
+			} else {
+				// Importazione effettiva.
+				try{
+					$updated    = false;
+					$ignored    = false;
+					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored );
+					if ( $updated ) {
+						array_push(
+							$results,
+							MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title,
+						);
+						$updated++;
+					} else if ( $ignored ){
+						array_push(
+							$results,
+							MSG_IGNORED_ITEM . $item_code . ' - ' . $item_title,
+						);
+						$ignored++;
+					} else {
+						array_push(
+							$results,
+							MSG_IMPORTED_ITEM . $item_code . ' - ' . $item_title,
+						);
+						$processed++;
+					}
+				} catch ( Exception $e ) {
+					array_push(
+						$results,
+						MSG_ERROR_IMPORTING_ITEM . $item_title . ' - ' . $e->getMessage(),
+					);
+					$errors++;
+				}
+			}
+		}
+		$this->log_string( "*** FINE importazione da IRIS (brevetti) ***");
+		return $results;
+	}
+
 	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {
 		$post_name    = dli_generate_slug( $item->displayValue );
 		$post_content = $item->abstract_en ?? $item->abstract ?? '.';
@@ -257,71 +292,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $query->found_posts ? $query->posts[0]->ID : 0;
 	}
 
-	// *** FUNZIONI DI UTILITA' *** //
 
-	private function execute_import( $conf ): array {
-		$this->log_string("*** INIZIO importazione da IRIS (brevetti) ***");
-		// Invocazione del web service per recuperare i dati da Iris.
-		$data = $this->get_rest_data( $conf['ws_url'], $conf['username'], $conf['password'] );
-		$results = array();
-
-		// Loop di importazione.
-		$counter   = 0;
-		$errors    = 0;
-		$processed = 0;
-		$updated   = 0;
-		$ignored   = 0;
-
-		// @TODO: Remove the following line:
-		// $data = array_slice($data, 0, 10);
-		foreach ( $data as $item ){
-			$counter++;
-			$item_code  = $item->pid;
-			$item_title = $item->displayValue;
-
-			if ( $conf['import_type'] === 'dryrun' ){
-				// Importazione dry run.
-				array_push(
-					$results,
-					MSG_IMPORT_DRY_RUN . $item_code . ' - ' . $item_title,
-				);
-				$processed++;
-			} else {
-				// Importazione effettiva.
-				try{
-					$updated    = false;
-					$ignored    = false;
-					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored );
-					if ( $updated ) {
-						array_push(
-							$results,
-							MSG_UPDATED_EVENT . $item_code . ' - ' . $item_title,
-						);
-						$updated++;
-					} else if ( $ignored ){
-						array_push(
-							$results,
-							MSG_IGNORED_EVENT . $item_code . ' - ' . $item_title,
-						);
-						$ignored++;
-					} else {
-						array_push(
-							$results,
-							MSG_IMPORTED_EVENT . $item_code . ' - ' . $item_title,
-						);
-						$processed++;
-					}
-				} catch ( Exception $e ) {
-					array_push(
-						$results,
-						MSG_ERROR_IMPORTING_EVENT . $item_title . ' - ' . $e->getMessage(),
-					);
-					$errors++;
-				}
-			}
-		}
-		$this->log_string( "*** FINE importazione da IRIS (brevetti) ***");
-		return $results;
-	}
+	// *** Funzioni di utilità dedicate *** //
 
 }
