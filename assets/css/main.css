@@ -136,6 +136,11 @@ html {
 	background-color: #17324d !important;
 }
 
+.customSpacingDiv {
+	display: flex;
+	gap: 4px;
+}
+
 .customSpacing {
 	height: 24px !important;
 	transform: translateY(-2px) !important;

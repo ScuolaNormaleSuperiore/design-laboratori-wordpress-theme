@@ -80,17 +80,17 @@ $current_url    = get_permalink();
 	</section>
 
 	<!-- CORPO NEWS -->
-	<section id="news" class="p-4">
+	<section id="news-section" class="p-4">
 		<div class="container my-4">
 			<div class="row pt-0">
 				<!-- SIDEBAR NEWS  -->
 				<div class="col-12 col-lg-2 border-end">
 					<!-- Tutte le notizie -->
-					<div>
+					<div class="customSpacingDiv">
 						<?php
 							$link_msg =  __( 'Tutte le notizie', 'design_laboratori_italia' );
 						?>
-						<a href="<?php echo esc_url( $pg_link); ?>" title="<?php echo $link_msg; ?>" alt="<?php echo $link_msg; ?>" ><?php echo $link_msg; ?></a>
+						<a class="customSpacing" href="<?php echo esc_url( $pg_link); ?>" title="<?php echo $link_msg; ?>" alt="<?php echo $link_msg; ?>" ><?php echo $link_msg; ?></a>
 						<br /><br />
 					</div>
 
