@@ -20,16 +20,20 @@ description:
       - Gestione dei luoghi del laboratorio.
       - Gestione delle pubblicazioni del laboratorio.
       - Gestione degli indirizzi di ricerca.
+      - Gestione dei brevetti del laboratorio.
       - Gestione del blog del laboratorio.
       - Pagine di archivio con paginazione.
       - Ricerca in tutti i contenuti del sito.
       - Gestione degli avvisi in home page.
       - Gestione dei cookies.
       - Form di contatti.
+      - Mappa del sito.
       - Gestione hero in home page.
       - Carousel in home page con contenuti selezionabili.
       - Supporto delle lingue italiano ed inglese.
       - Integrazione con il software di gestione delle newsletter Brevo.
+      - Importazione degli eventi da Indico.
+      - Importazione dei brevetti da IRIS.
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
       Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le 

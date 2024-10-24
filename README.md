@@ -19,6 +19,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione dei luoghi del laboratorio.
 - Gestione delle pubblicazioni del laboratorio.
 - Gestione degli indirizzi di ricerca.
+- Gestione dei brevetti del laboratorio.
 - Gestione del blog del laboratorio.
 - Pagine di archivio con paginazione.
 - Ricerca in tutti i contenuti del sito.
@@ -29,6 +30,10 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione hero in home page.
 - Carousel in home page con contenuti selezionabili.
 - Supporto delle lingue italiano ed inglese.
+- Integrazione con il software di gestione delle newsletter Brevo.
+- Importazione degli eventi da Indico.
+- Importazione dei brevetti da IRIS.
+
 
 ## Requisiti software
 1. Il CMS Wordpress (versione >= 6.1.1).
