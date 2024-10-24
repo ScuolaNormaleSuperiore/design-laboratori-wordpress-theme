@@ -31,14 +31,31 @@ class DLI_BaseImporter {
 
 	protected function __construct() {}
 
+	/**
+	 * Gestione dell'import.
+	 *
+	 * @return void
+	 */
 	protected function import() {}
 
+	/**
+	 * Esecuzione dell'import.
+	 *
+	 * @param [type] $conf
+	 * @return void
+	 */
 	private function execute_import( $conf ) {}
 
+	/**
+	 * Recupera dalla sorgente i dati da importare.
+	 *
+	 * @param [type] $conf
+	 * @return void
+	 */
 	private function get_data_to_import( $conf ) {}
 
 	/**
-	 *  Creazione/Modifica dell'post su WordPress
+	 *  Creazione/Modifica dell'post su WordPress.
 	 * 
 	 * @param mixed $item
 	 * @param mixed $conf
@@ -48,9 +65,21 @@ class DLI_BaseImporter {
 	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {}
 
+	/**
+	 * Modifica dei post su WordPress.
+	 *
+	 * @param [type] $post_id
+	 * @param [type] $item
+	 * @return void
+	 */
 	private function update_custom_fields( $post_id, $item ){ }
 
 
+	/**
+	 * Register hooks for jobs and REST endpoints.
+	 *
+	 * @return void
+	 */
 	public function setup(){
 		// Register the import endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
@@ -59,6 +88,11 @@ class DLI_BaseImporter {
 		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
 	}
 
+	/**
+	 * Add o modify a cron job.
+	 *
+	 * @return void
+	 */
 	public function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
 		$this->log_string('*** manage_import_job: ' . $this->importer_name . '  ***');
@@ -84,11 +118,22 @@ class DLI_BaseImporter {
 		wp_clear_scheduled_hook( $this->job_name );
 	}
 
+	/**
+	 * Execute a scheduled job.
+	 *
+	 * @return void
+	 */
 	public function execute_job() {
 		$this->log_string( '*** ESEGUO il job: ' . $this->job_name . ' ***' );
 		$this->import();
 	}
 
+	/**
+	 * Register the REST API endpoint to execute the script.
+	 * Basi authentication of administrator user is required.
+	 *
+	 * @return void
+	 */
 	public function register_import_endpoint() {
 		register_rest_route(
 			'custom/v1',
@@ -106,7 +151,7 @@ class DLI_BaseImporter {
 	// *** Funzioni di utilità generali *** //
 
 	/**
-	 * Verifica la Basic Authentication.
+	 * Verifica la Basic Authentication e che l'utente sia Amministratore.
 	 *
 	 * @param WP_REST_Request $request
 	 * @return bool | WP_Error
@@ -128,10 +173,24 @@ class DLI_BaseImporter {
 				__( 'Credenziali non valide.', 'design_laboratori_italia' ),
 				array( 'status' => 401 )
 			);
+		} elseif ( ! user_can( $user, 'administrator' ) ) {
+			return new WP_Error(
+				'rest_authentication_failed',
+				__( 'Utente non autorizzato', 'design_laboratori_italia' ),
+				array( 'status' => 401 )
+			);
 		}
 		return true;
 	}
 
+	/**
+	 * Stampa il report dell'importazione.
+	 *
+	 * @param [type] $code
+	 * @param [type] $message
+	 * @param [type] $data
+	 * @return void
+	 */
 	public function send_response( $code, $message, $data ) {
 		$result = array(
 			'code'    => $code,
@@ -142,12 +201,24 @@ class DLI_BaseImporter {
 		return new WP_REST_Response( $result, $code );
 	}
 
+	/**
+	 * Stampa messaggi di log, se abilitati da Configurazione.
+	 *
+	 * @param [type] $text
+	 * @return void
+	 */
 	public function log_string( $text ){
 		if ( $this->debug_enabled ) {
 			error_log( $text );
 		}
 	}
 
+	/**
+	 * Trim delle stringhe di un array.
+	 *
+	 * @param [type] $array
+	 * @return array
+	 */
 	public function trim_array( $array ): array {
 		return array_map( 'trim', $array );
 	}

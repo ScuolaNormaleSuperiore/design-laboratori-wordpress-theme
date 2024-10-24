@@ -1563,7 +1563,7 @@ function dli_register_main_options_metabox() {
 	) );
 
 	// BEGIN SECTION FOR ADMINISTRATORS
-	if ( current_user_can( 'manage_options' ) ) {
+	if ( current_user_can( DLI_ADMIN_EDIT_CONFIG_PERMISSION ) ) {
 		/**
 		* 15 - Registers options page "Integrazione con Indico".
 		*/
