@@ -75,56 +75,6 @@ class DLI_ContentsManager
 		return $og_data;
 	}
 
-	public static function get_patent_data_query( $args ) {
-		// Pulisci parametri di ricerca.
-		if ( isset( $args['thematic_area'] ) && is_array( $args['thematic_area'] ) && ! empty( $args['thematic_area'] ) ) {
-			$areas = array_map( 'intval', $args['thematic_area'] );
-		} else {
-			$areas = [];
-		}
-		if ( isset( $args['deposit_year'] ) && is_array( $args['deposit_year'] ) && ! empty( $args['deposit_year'] ) ) {
-			$deposit_years = array_map( 'strval', $args['deposit_year'] );
-		} else {
-			$deposit_years = [];
-		}
-		if ( isset( $args['search_string'] ) && is_string( $args['search_string'] ) ) {
-			$search_string = sanitize_text_field( trim( $args['search_string'] ) );
-		} else {
-			$search_string = '';
-		}
-		if ( isset( $args['per_page'] ) && is_string( $args['per_page'] ) ) {
-			$per_page = intval( $args['per_page'] );
-		} else {
-			$per_page = intval( DLI_PATENTS_PER_PAGE ) ;
-		}
-
-
-		$params = array(
-			'paged'          => get_query_var( 'paged', 1 ),
-			'post_type'      => PATENT_POST_TYPE,
-			'posts_per_page' => $per_page,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-			's'              => $search_string,
-			'meta_query'     =>  array(
-				array(
-						'key'     => 'anno_deposito',
-						'value'   => $deposit_years,
-						'compare' => 'IN',
-				),
-			),
-			'tax_query'      => array(
-				array(
-					'taxonomy' => THEMATIC_AREA_TAXONOMY,
-					'field'    => 'term_id',
-					'operator' => 'IN',
-					'terms'    => $areas,
-				)
-			)
-		);
-		return new WP_Query( $params );
-	}
-
 	public static function dli_get_all_patent_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
@@ -139,6 +89,58 @@ class DLI_ContentsManager
 			ORDER BY pm.meta_value DESC
 		", PATENT_POST_TYPE, 'anno_deposito' ) );
 		return $results;
+	}
+
+	public static function get_patent_data_query( $args ) {
+		$args = array(
+			'paged'          => $args['paged'],
+			'post_type'      => PATENT_POST_TYPE,
+			'posts_per_page' => $args['per_page'],
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			's'              => $args['search_string'],
+			'meta_query'     =>  array(
+				array(
+						'key'     => 'anno_deposito',
+						'value'   => $args['deposit_year'],
+						'compare' => 'IN',
+				),
+			),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => THEMATIC_AREA_TAXONOMY,
+					'field'    => 'term_id',
+					'operator' => 'IN',
+					'terms'    => $args['thematic_area'],
+				)
+			)
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function dli_get_event_data_query( $args ) {
+		$args = array(
+				'paged'          => $args['paged'],
+				'post_type'      => EVENT_POST_TYPE,
+				'posts_per_page' => $args['per_page'],
+				'category__in'   => $args['selected_categories'],
+				'meta_key'       => 'data_inizio',
+				'orderby'        => 'meta_value_num',
+				'order'          => 'DESC',
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function dli_get_news_data_query( $args ){
+		$args = array(
+			'paged'          => $args['paged'],
+			'post_type'      => NEWS_POST_TYPE,
+			'posts_per_page' => $args['per_page'],
+			'category__in'   => $args['selected_categories'],
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		);
+		return new WP_Query( $args );
 	}
 
 }

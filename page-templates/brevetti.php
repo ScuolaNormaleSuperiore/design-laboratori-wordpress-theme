@@ -7,9 +7,8 @@
 global $post;
 get_header();
 define( 'DLI_PATENT_CELLS_PER_ROW', 2 );
-define( 'DLI_PATENTS_PER_PAGE', 2 );
-define( 'DLI_PATENTS_PER_PAGE_VALUES', array( '2', '10', '20', '30', '40', '50' ) );
-
+define( 'DLI_PATENTS_PER_PAGE', 4 );
+define( 'DLI_PATENTS_PER_PAGE_VALUES', array( '4', '10', '20', '30', '40', '50' ) );
 
 $selected_year   = '';
 $selected_areas  = array();
@@ -35,11 +34,12 @@ if ( isset( $_GET['deposit_year'] ) && is_numeric( $_GET['deposit_year'] ) ) {
 	$selected_year = sanitize_text_field( $_GET['deposit_year'] );
 }
 
-$params        = array(
+$params = array(
 	'search_string' => $search_string,
 	'thematic_area' => $selected_areas ? $selected_areas : $all_area_ids,
 	'deposit_year'  => $selected_year ? array( $selected_year ) : $all_years,
 	'per_page'      => $per_page,
+	'paged'         => get_query_var( 'paged', 1 ),
 );
 $the_query     = DLI_ContentsManager::get_patent_data_query( $params );
 $num_results   = $the_query->found_posts;
@@ -247,8 +247,8 @@ $num_results   = $the_query->found_posts;
 			null,
 			array(
 				'query'           => $the_query,
-				'per_page'        => $per_page ,
-				'per_page_values' => $per_page_values ,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>
