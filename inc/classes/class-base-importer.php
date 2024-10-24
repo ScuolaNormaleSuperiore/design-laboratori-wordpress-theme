@@ -61,6 +61,7 @@ class DLI_BaseImporter {
 
 	public function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
+		$this->log_string('*** manage_import_job: ' . $this->importer_name . '  ***');
 		$schedule       = $this->schedule_type;
 		$module_enabled = $this->module_enabled;
 		if ( ( $module_enabled ==='false' ) || ( $schedule === 'never' ) ){
