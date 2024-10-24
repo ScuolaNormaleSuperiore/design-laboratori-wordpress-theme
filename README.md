@@ -29,6 +29,9 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Mappa del sito.
 - Gestione hero in home page.
 - Carousel in home page con contenuti selezionabili.
+- Gestione contenuti in evidenza in home page.
+- Gestione sezioni eventi, news e pubblicazioni in home page.
+- Gestione banner in home page.
 - Supporto delle lingue italiano ed inglese.
 - Integrazione con il software di gestione delle newsletter Brevo.
 - Importazione degli eventi da Indico.
