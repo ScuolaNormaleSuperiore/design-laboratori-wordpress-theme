@@ -91,18 +91,18 @@ class DLI_ContentsManager
 		return $results;
 	}
 
-	public static function get_patent_data_query( $args ) {
+	public static function get_patent_data_query( $params ) {
 		$args = array(
-			'paged'          => $args['paged'],
+			'paged'          => $params['paged'],
 			'post_type'      => PATENT_POST_TYPE,
-			'posts_per_page' => $args['per_page'],
+			'posts_per_page' => $params['per_page'],
 			'orderby'        => 'title',
 			'order'          => 'ASC',
-			's'              => $args['search_string'],
+			's'              => $params['search_string'],
 			'meta_query'     =>  array(
 				array(
 						'key'     => 'anno_deposito',
-						'value'   => $args['deposit_year'],
+						'value'   => $params['deposit_year'],
 						'compare' => 'IN',
 				),
 			),
@@ -111,19 +111,19 @@ class DLI_ContentsManager
 					'taxonomy' => THEMATIC_AREA_TAXONOMY,
 					'field'    => 'term_id',
 					'operator' => 'IN',
-					'terms'    => $args['thematic_area'],
+					'terms'    => $params['thematic_area'],
 				)
 			)
 		);
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_event_data_query( $args ) {
+	public static function dli_get_event_data_query( $params ) {
 		$args = array(
-				'paged'          => $args['paged'],
+				'paged'          => $params['paged'],
 				'post_type'      => EVENT_POST_TYPE,
-				'posts_per_page' => $args['per_page'],
-				'category__in'   => $args['selected_categories'],
+				'posts_per_page' => $params['per_page'],
+				'category__in'   => $params['selected_categories'],
 				'meta_key'       => 'data_inizio',
 				'orderby'        => 'meta_value_num',
 				'order'          => 'DESC',
@@ -131,14 +131,41 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_news_data_query( $args ){
+	public static function dli_get_news_data_query( $params){
 		$args = array(
-			'paged'          => $args['paged'],
+			'paged'          => $params['paged'],
 			'post_type'      => NEWS_POST_TYPE,
-			'posts_per_page' => $args['per_page'],
-			'category__in'   => $args['selected_categories'],
+			'posts_per_page' => $params['per_page'],
+			'category__in'   => $params['selected_categories'],
 			'orderby'        => 'date',
 			'order'          => 'DESC',
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function dli_get_projects_data_query( $params ){
+		$args = array(
+			'paged'          => $params['paged'],
+			'post_type'      => PROGETTO_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'meta_query' => array(
+				'relation'     => 'AND',
+				array(
+					'key'      => 'data_inizio',
+					'compare'  => '<=',
+					'value'    => $params['today'],
+				),
+				array(
+					'key'      => 'data_fine',
+					'compare'  => '>=',
+					'value'    => $params['today'],
+				),
+				array(
+					'key'     => 'archiviato',
+					'compare' => '=',
+					'value'   => 0,
+				),
+			),
 		);
 		return new WP_Query( $args );
 	}
