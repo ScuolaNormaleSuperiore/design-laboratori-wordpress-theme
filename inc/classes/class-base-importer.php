@@ -27,11 +27,10 @@ class DLI_BaseImporter {
 	protected bool $module_enabled;
 	protected string $post_type;
 
-	/**
-	 * Constructor of the Manager.
-	 */
 	protected function __construct() {}
+
 	protected function import() {}
+
 	private function execute_import( $conf ) {}
 
 	private function get_data_to_import( $conf ) {}

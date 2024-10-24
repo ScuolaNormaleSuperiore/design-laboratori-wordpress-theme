@@ -70,11 +70,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 
 	private function get_data_to_import( $conf ) {
 		$category    = $conf['category'];
-		$keywords    = explode( ',', $conf['keywords'] );
 		$base_url    = $conf['base_url'];
 		$start_date  = $conf['start_date'];
-		// Creazione del client.
-		// Invocazione del servizio.
+		// Creazione del client e invocazione del servizio.
 		$api_url = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
 		$response = wp_remote_get( $api_url );
 		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
