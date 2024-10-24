@@ -148,6 +148,8 @@ class DLI_ContentsManager
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
+			'orderby'        => 'title',
+			'order'          => 'ASC',
 			'meta_query' => array(
 				'relation'     => 'AND',
 				array(
@@ -166,6 +168,34 @@ class DLI_ContentsManager
 					'value'   => 0,
 				),
 			),
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function dli_get_archived_projects_data_query( $params ){
+		$args = 	array(
+			'paged'          => $params['paged'],
+			'post_type'      => PROGETTO_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'meta_query'     => array(
+				array(
+						'key' => 'archiviato',
+						'value' => true,
+						'compare' => '=',
+						'type' => 'BOOLEAN',
+				),
+			),
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function dli_get_research_area_data_query( $params ){
+		$args = array(
+			'paged'          => $params['paged'],
+			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'orderby'        => 'title',
+			'order'          => 'ASC',
 		);
 		return new WP_Query( $args );
 	}

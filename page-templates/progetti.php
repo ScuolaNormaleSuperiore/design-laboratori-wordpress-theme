@@ -5,6 +5,7 @@
 */
 global $post;
 get_header();
+
 define( 'PROG_CELLS_PER_ROW', 3 );
 $per_page        =  DLI_POSTS_PER_PAGE;
 $per_page_values = DLI_POST_PER_PAGE_VALUES;

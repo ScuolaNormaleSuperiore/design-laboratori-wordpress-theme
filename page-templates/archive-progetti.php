@@ -7,22 +7,20 @@ global $post;
 get_header();
 
 define( 'PROG_CELLS_PER_ROW', 3 );
+$per_page        =  DLI_POSTS_PER_PAGE;
+$per_page_values = DLI_POST_PER_PAGE_VALUES;
 $today = date( 'Ymd' );
-$the_query = new WP_Query(
-	array(
-		'paged'          => get_query_var( 'paged', 1 ),
-		'post_type'      => PROGETTO_POST_TYPE,
-		'posts_per_page' => DLI_POSTS_PER_PAGE,
-    'meta_query' => array(
-			array(
-					'key' => 'archiviato',
-					'value' => true,
-					'compare' => '=',
-					'type' => 'BOOLEAN',
-			),
-	),
-		)
+
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
+
+$params = array(
+	'today'    => $today,
+	'per_page' => $per_page,
+	'paged'    => get_query_var( 'paged', 1 ),
 );
+$the_query   = DLI_ContentsManager::dli_get_archived_projects_data_query( $params );
 $num_results = $the_query->found_posts;
 ?>
 
@@ -123,7 +121,9 @@ $num_results = $the_query->found_posts;
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $the_query,
+				'query'           => $the_query,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>
