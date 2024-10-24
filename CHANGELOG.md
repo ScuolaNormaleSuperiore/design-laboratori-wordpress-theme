@@ -14,9 +14,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
+
 ## [1.3.3] - 2024-10-24
 ### Corretto
 - Corretta sezione di condivisione dei contenuti sui social.
+- Corretta accessibilità del sito.
 
 ### Aggiunto
 - Aggiunti OG tags per indicizzazione e condivisione dei contenuti sui social.
@@ -28,10 +30,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Modificato
 - Aggiornata libreria BootstrapItalia alla versione 2.10.0.
+- Aggiornati file delle traduzioni.
+- Aggiornato Dockerfile per sito demo.
 
 ### Refactoring
 - Rifattorizzazione della creazione dei menu tramite file di configurazione dedicato.
+- Rifattorizzazione della gestione degli import da Indico e IRIS.
 - Introdotto DLI_ContentsManager per la gestione delle query dei contenuti e delle tassonomie.
+
 
 
 ## [1.3.2] - 2024-09-04
@@ -96,7 +102,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Modificato
 - Aggiornata libreria Bootstrap Italia alla versione 2.8.4.
-- Corretta traduzione etichette.
+- Aggiornati file delle traduzioni.
 
 ### Corretto
 - Aggiornato sito demo.
