@@ -19,13 +19,15 @@ define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, oggetti creat
 
 
 class DLI_BaseImporter {
+
 	protected string $importer_name;
 	protected string $job_name;
 	protected string $endpoint;
+	protected string $schedule_type;
+	protected string $post_type;
 	protected bool $debug_enabled;
 	protected bool $schedule_enabled;
 	protected bool $module_enabled;
-	protected string $post_type;
 
 	protected function __construct() {}
 
@@ -57,19 +59,19 @@ class DLI_BaseImporter {
 		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
 	}
 
-	private function manage_import_job() {
+	public function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
-		$schedule       = $this->schedule_enabled;
+		$schedule       = $this->schedule_type;
 		$module_enabled = $this->module_enabled;
 		if ( ( $module_enabled ==='false' ) || ( $schedule === 'never' ) ){
 			$this->remove_all_import_jobs();
 		} else {
 			$next_scheduled = wp_get_scheduled_event( $this->job_name );
 			if ( ! $next_scheduled ) {
-				$this->log_string( '@@@ CREO schedulazione @@@ ' );
+				$this->log_string( '*** CREO schedulazione per job: ' . $this->job_name . ' ***' );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
 			} elseif ( $next_scheduled->schedule !== $schedule ) {
-				$this->log_string( '@@@ Cambio schedulazione @@@ ' );
+				$this->log_string( '*** CAMBIO schedulazione per job: ' . $this->job_name . ' ***' );
 				wp_clear_scheduled_hook( $this->job_name );
 				wp_schedule_event( current_time( 'timestamp' ), $schedule, $this->job_name );
 			}
@@ -82,7 +84,7 @@ class DLI_BaseImporter {
 	}
 
 	public function execute_job() {
-		$this->log_string( '*** ESEGUO il job: ' . $this->job_name . '***' );
+		$this->log_string( '*** ESEGUO il job: ' . $this->job_name . ' ***' );
 		$this->import();
 	}
 
@@ -97,6 +99,7 @@ class DLI_BaseImporter {
 			)
 		);
 	}
+
 
 
 	// *** Funzioni di utilità generali *** //
@@ -143,6 +146,7 @@ class DLI_BaseImporter {
 			error_log( $text );
 		}
 	}
+
 	public function trim_array( $array ): array {
 		return array_map( 'trim', $array );
 	}

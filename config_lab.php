@@ -29,6 +29,7 @@ define( 'DLI_POST_PER_PAGE_VALUES', array( '6', '12', '24', '48', '96' ) );
 define( 'DLI_SUPER_EDITOR_ROLE_SLUG', 'dli_super_editor' );
 define( 'DLI_SUPER_EDITOR_ROLE_NAME', 'Super Editor' );
 define( 'DLI_EDIT_CONFIG_PERMISSION', 'dli_edit_site_configuration' );
+define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 
 // Define template active sting.
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );

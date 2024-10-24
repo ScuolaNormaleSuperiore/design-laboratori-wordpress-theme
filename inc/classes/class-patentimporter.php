@@ -17,8 +17,9 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$this->debug_enabled    = ( dli_get_option( 'iris_debug_enabled', 'iris' ) === 'true' );
 		$this->module_enabled   = ( dli_get_option( 'iris_brevetti_enabled', 'iris' ) === 'true' );
 		$this->schedule_enabled = ( dli_get_option( 'iris_brevetti_schedule', 'iris' ) === 'true' );
+		$this->schedule_type    = dli_get_option( 'iris_brevetti_schedule', 'iris' );
 		// Schedule patent import.
-		// @TODO: $this->manage_import_job();
+		$this->manage_import_job();
 	}
 
 	public function import( ) {
@@ -291,6 +292,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$query = new WP_Query($args);
 		return $query->found_posts ? $query->posts[0]->ID : 0;
 	}
+
 
 
 	// *** Funzioni di utilità dedicate *** //

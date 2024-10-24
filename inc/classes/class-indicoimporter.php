@@ -19,8 +19,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$this->debug_enabled    = ( dli_get_option( 'indico_debug_enabled', 'indico' ) === 'true' );
 		$this->module_enabled   = ( dli_get_option( 'indico_enabled', 'indico' ) === 'true' );
 		$this->schedule_enabled = ( dli_get_option( 'indico_schedule', 'indico' ) === 'true' );
+		$this->schedule_type    = dli_get_option( 'indico_schedule', 'indico' );
 		// Schedule indico events import.
-		// $this->manage_import_job();
+		$this->manage_import_job();
 	}
 
 	public function import() {
@@ -238,6 +239,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
 	}
+
 
 
 	// *** Funzioni di utilità dedicate *** //
