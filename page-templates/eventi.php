@@ -7,7 +7,7 @@
 global $post;
 get_header();
 define( 'EVENTS_CELLS_PER_ROW', 3 );
-$per_page        =  DLI_POSTS_PER_PAGE;
+$per_page        = DLI_POSTS_PER_PAGE;
 $per_page_values = DLI_POST_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {

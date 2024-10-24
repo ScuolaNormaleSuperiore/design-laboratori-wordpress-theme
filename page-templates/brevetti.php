@@ -7,8 +7,6 @@
 global $post;
 get_header();
 define( 'DLI_PATENT_CELLS_PER_ROW', 2 );
-define( 'DLI_PATENTS_PER_PAGE', 4 );
-define( 'DLI_PATENTS_PER_PAGE_VALUES', array( '4', '10', '20', '30', '40', '50' ) );
 
 $selected_year   = '';
 $selected_areas  = array();
@@ -16,8 +14,8 @@ $search_string   = '';
 $all_areas       = dli_get_all_categories_by_ct( THEMATIC_AREA_TAXONOMY, PATENT_POST_TYPE );
 $all_area_ids    = $all_areas ? array_map( function( $item ) { return $item['id']; }, $all_areas ) : [];
 $all_years       = DLI_ContentsManager::dli_get_all_patent_years();
-$per_page        = strval( DLI_PATENTS_PER_PAGE );
-$per_page_values = DLI_PATENTS_PER_PAGE_VALUES;
+$per_page        = strval( DLI_PER_PAGE );
+$per_page_values = DLI_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );

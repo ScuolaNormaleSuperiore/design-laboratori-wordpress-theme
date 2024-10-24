@@ -11,6 +11,12 @@ $anni_pubblicazioni      = $wpdb->get_results( "SELECT DISTINCT meta_value FROM 
 $anno_filter_array       = null;
 $tipi_pubbl_filter_array = null;
 $anno_select             = null;
+$per_page                = strval( DLI_PER_PAGE );
+$per_page_values         = DLI_PER_PAGE_VALUES;
+
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
@@ -43,7 +49,7 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
+			'posts_per_page' => $per_page,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -61,7 +67,7 @@ if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
+			'posts_per_page' => $per_page,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -79,7 +85,7 @@ if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
+			'posts_per_page' => $per_page,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -94,7 +100,7 @@ if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
+			'posts_per_page' => $per_page,
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
@@ -251,7 +257,9 @@ $num_results = $pubblicazioni->found_posts;
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $pubblicazioni,
+				'query'           => $pubblicazioni,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>

@@ -27,6 +27,9 @@ define( 'DLI_POSTS_PER_PAGE', 3 );
 // define( 'DLI_POST_PER_PAGE_VALUES', array( '6', '12', '24', '48', '96' ) );
 define( 'DLI_POST_PER_PAGE_VALUES', array( '3', '6', '9' , '12', '24', '48', '96' ) );
 
+define( 'DLI_PER_PAGE', 4 );
+define( 'DLI_PER_PAGE_VALUES', array( '4', '10', '20', '30', '40', '50' ) );
+
 // Define roles and permissions.
 define( 'DLI_SUPER_EDITOR_ROLE_SLUG', 'dli_super_editor' );
 define( 'DLI_SUPER_EDITOR_ROLE_NAME', 'Super Editor' );
