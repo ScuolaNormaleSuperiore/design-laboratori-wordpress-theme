@@ -58,9 +58,9 @@ $num_results   = $the_query->found_posts;
 	<section id="brevetti">
 		<div class="container p-5">
 			<!-- inizio row principale -->
-			<form action="<?php $_SERVER['PHP_SELF']; ?>" id="brevettiform" method="GET">
-				<div class="row">
-					<div class="col-12 col-lg-3 border-end pb-3">
+			<div class="row">
+				<div class="col-12 col-lg-3 border-end pb-3">
+					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="brevettiform" method="GET">
 						<!--COLONNA FILTRI -->
 						
 						<!-- FILTRO PER ANNO -->
@@ -132,107 +132,105 @@ $num_results   = $the_query->found_posts;
 								<?php echo __( 'Filtra', 'design_laboratori_italia' ); ?>
 							</button>
 						</div>
+					</form>
+				</div>
 
-					</div>
-
-					<!-- ELENCO BREVETTI 6 per pagina -->
-					<?php
-					// The mani loop of the page.
-					$pindex = 0;
-					if ( $num_results > 0 ) {
-					?>
-						<!-- inizio contenitore brevetti -->
-						<div class="col-12 col-lg-9 pt-3">
+				<!-- ELENCO BREVETTI 6 per pagina -->
+				<?php
+				// The mani loop of the page.
+				$pindex = 0;
+				if ( $num_results > 0 ) {
+				?>
+					<!-- inizio contenitore brevetti -->
+					<div class="col-12 col-lg-9 pt-3">
+						<?php
+						while ( $the_query->have_posts() ) {
+							$the_query->the_post();
+							if ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) == 0 ) {
+						?>
+						<div class="row pb-5">
+							<!-- row -->
 							<?php
-							while ( $the_query->have_posts() ) {
-								$the_query->the_post();
-								if ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) == 0 ) {
+								}
+								$post_id        = get_the_ID();
+								$summary        = dli_get_field( 'sommario_elenco' );
+								$stato          = dli_get_field( 'stato_legale' );
+								$titolari       = dli_get_field( 'titolari' );
+								$area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
+								$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
 							?>
-							<div class="row pb-5">
-								<!-- row -->
-								<?php
-									}
-									$post_id        = get_the_ID();
-									$summary        = dli_get_field( 'sommario_elenco' );
-									$stato          = dli_get_field( 'stato_legale' );
-									$titolari       = dli_get_field( 'titolari' );
-									$area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
-									$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
-								?>
-								<div class="col-12 col-lg-6"> 
-									<!--start card-->
-									<div class="card-wrapper shadow">
-										<div class="card card-img no-after">
-										<?php
-										if ( $image_metadata['image_url'] ) {
-										?>
-											<div class="img-responsive-wrapper">
-												<div class="img-responsive img-responsive-panoramic">
-													<figure class="img-wrapper">
-														<img src="<?php echo $image_metadata['image_url']; ?>" 
-														title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-														alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
-													</figure>
-												</div>
+							<div class="col-12 col-lg-6"> 
+								<!--start card-->
+								<div class="card-wrapper shadow">
+									<div class="card card-img no-after">
+									<?php
+									if ( $image_metadata['image_url'] ) {
+									?>
+										<div class="img-responsive-wrapper">
+											<div class="img-responsive img-responsive-panoramic">
+												<figure class="img-wrapper">
+													<img src="<?php echo $image_metadata['image_url']; ?>" 
+													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+												</figure>
 											</div>
-										<?php
-										}
-										?>
-											<div class="card-body">
-												<h3 class="h5"><?php the_title(); ?></h3>
-												<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
-												<p class="card-text font-serif titolari">
-													<em><?php echo esc_attr( $titolari ); ?></em>
-												</p>
-												<p class="card-text font-serif area">
-													<?php
-													if ($area_tematica && array_key_exists('title', $area_tematica ) ) {
-													?>
-													<strong><?php echo esc_attr( $area_tematica['title'] ); ?></strong> - 
-													<?php
-													}
-													?>
-													<?php echo esc_attr( $stato ); ?>
-												</p>
-												<div class="pt-5">
-													<a class="read-more" href="<?php echo get_permalink(); ?>">
-														<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-														<svg class="icon">
-															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
-														</svg>
-													</a>
-												</div>
+										</div>
+									<?php
+									}
+									?>
+										<div class="card-body">
+											<h3 class="h5"><?php the_title(); ?></h3>
+											<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
+											<p class="card-text font-serif titolari">
+												<em><?php echo esc_attr( $titolari ); ?></em>
+											</p>
+											<p class="card-text font-serif area">
+												<?php
+												if ($area_tematica && array_key_exists('title', $area_tematica ) ) {
+												?>
+												<strong><?php echo esc_attr( $area_tematica['title'] ); ?></strong> - 
+												<?php
+												}
+												?>
+												<?php echo esc_attr( $stato ); ?>
+											</p>
+											<div class="pt-5">
+												<a class="read-more" href="<?php echo get_permalink(); ?>">
+													<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+													<svg class="icon">
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
+													</svg>
+												</a>
 											</div>
 										</div>
 									</div>
-									<!--end card-->
 								</div>
-							<?php
-							if ( ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) === DLI_PATENT_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
-							?>
+								<!--end card-->
 							</div>
-							<!-- end row -->
-							<?php
-								}
-								$pindex++;
+						<?php
+						if ( ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) === DLI_PATENT_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+						?>
+						</div>
+						<!-- end row -->
+						<?php
 							}
-							?>
-						</div>
-						<!-- end contenitore brevetti -->
-					<?php
-					} else {
-					?>
-					<div class="col-12 col-lg-8">
-						<div clas="row pt-2">
-							<?php echo __( 'Non è stato trovato alcun brevetto', 'design_laboratori_italia' ); ?>
-						</div>
+							$pindex++;
+						}
+						?>
 					</div>
-					<?php
-					}
-					?>
+					<!-- end contenitore brevetti -->
+				<?php
+				} else {
+				?>
+				<div class="col-12 col-lg-8">
+					<div clas="row pt-2">
+						<?php echo __( 'Non è stato trovato alcun brevetto', 'design_laboratori_italia' ); ?>
+					</div>
 				</div>
-			</form>
-
+				<?php
+				}
+				?>
+			</div>
 			<!-- end row principale -->
 		</div> <!-- end container -->
 	</section>
