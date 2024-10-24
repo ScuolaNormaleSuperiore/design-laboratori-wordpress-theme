@@ -142,13 +142,13 @@ $num_results   = $the_query->found_posts;
 					if ( $num_results > 0 ) {
 					?>
 						<!-- inizio contenitore brevetti -->
-						<div class="cKl-12 col-lg-8 pt-3">
+						<div class="col-12 col-lg-9 pt-3">
 							<?php
 							while ( $the_query->have_posts() ) {
 								$the_query->the_post();
 								if ( ( $pindex % DLI_PATENT_CELLS_PER_ROW ) == 0 ) {
 							?>
-							<div class="row pt-5">
+							<div class="row pb-5">
 								<!-- row -->
 								<?php
 									}
