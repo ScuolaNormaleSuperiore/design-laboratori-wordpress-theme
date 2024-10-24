@@ -110,20 +110,21 @@ $num_results = $pubblicazioni->found_posts;
 
 ?>
 
-<form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
-	<main id="main-container" role="main">
 
-		<!-- BREADCRUMB -->
-		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+<main id="main-container" role="main">
 
-		<!-- BANNER PUBBLICAZIONI -->
-		<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
+	<!-- BREADCRUMB -->
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-		<!-- ELENCO PUBBLICAZIONI -->
-		<section id="pubblicazioni">
-			<div class="container p-5"> 
-				<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
-					<div class="col-12 col-lg-3 border-end pb-3">
+	<!-- BANNER PUBBLICAZIONI -->
+	<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
+
+	<!-- ELENCO PUBBLICAZIONI -->
+	<section id="pubblicazioni">
+		<div class="container p-5"> 
+			<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
+				<div class="col-12 col-lg-3 border-end pb-3">
+					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
 						<!--COLONNA FILTRI -->
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
@@ -176,77 +177,75 @@ $num_results = $pubblicazioni->found_posts;
 						}
 						?>
 						<!--fine filtri -->
-					</div>
-
-					<!-- PUBBLICAZIONI -->
-					<?php
-
-					if ( $num_results ) {
-					?>
-
-						<div class="col-12 col-lg-8 pt-3">
-							<div class="row">
-								<?php
-								while ( $pubblicazioni->have_posts() ) {
-									$pubblicazioni->the_post();
-									$ID       = get_the_ID();
-									$title    = get_the_title( $ID );
-									$url      = dli_get_field( 'url' );
-									?>
-									<!--start card-->
-									<div class="card-wrapper pt-3">
-										<div class="card card-teaser rounded shadow">
-											<div class="card-body">
+					</form>
+				</div>
+				<!-- PUBBLICAZIONI -->
+				<?php
+				if ( $num_results ) {
+				?>
+					<div class="col-12 col-lg-8 pt-3">
+						<div class="row">
+							<?php
+							while ( $pubblicazioni->have_posts() ) {
+								$pubblicazioni->the_post();
+								$ID       = get_the_ID();
+								$title    = get_the_title( $ID );
+								$url      = dli_get_field( 'url' );
+								?>
+								<!--start card-->
+								<div class="card-wrapper pt-3">
+									<div class="card card-teaser rounded shadow">
+										<div class="card-body">
+											<?php
+											if ( $url ) {
+												?>
+												<h3 class="card-title cardTitlecustomSpacing h5">
+													<svg class="icon" role="img" aria-labelledby="Note">
+														<title>Note</title>
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
+													</svg>
+													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+												</h3>
 												<?php
-												if ( $url ) {
-													?>
-													<h3 class="card-title cardTitlecustomSpacing h5">
-														<svg class="icon" role="img" aria-labelledby="Note">
-															<title>Note</title>
-															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-														</svg>
-														<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
-													</h3>
-													<?php
-												}
-												else {
-													?>
-													<h3 class="card-title cardTitlecustomSpacing h5">
-														<svg class="icon" role="img" aria-labelledby="Note">
-															<title>Note</title>
-															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-														</svg>
-														<?php echo esc_attr( $title ); ?>
-													</h3>
-												<?php } ?>
-												<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
-											</div>
+											}
+											else {
+												?>
+												<h3 class="card-title cardTitlecustomSpacing h5">
+													<svg class="icon" role="img" aria-labelledby="Note">
+														<title>Note</title>
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
+													</svg>
+													<?php echo esc_attr( $title ); ?>
+												</h3>
+											<?php } ?>
+											<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
 										</div>
 									</div>
-									<!--end card-->
-								<?php } 
-								?>
-							</div>
+								</div>
+								<!--end card-->
+							<?php } 
+							?>
 						</div>
-						<?php
-							wp_reset_postdata();
-					}
-					else {
-						?>
-						<div class="col-12 col-lg-8">
-							<div class="row pt-2">
-							<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
-							</div>
 					</div>
 					<?php
-					}
+						wp_reset_postdata();
+				}
+				else {
 					?>
+					<div class="col-12 col-lg-8">
+						<div class="row pt-2">
+						<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
+						</div>
 				</div>
+				<?php
+				}
+				?>
 			</div>
-		</section>
+		</div>
+	</section>
 
 
-		<!-- PAGINAZIONE -->
+	<!-- PAGINAZIONE -->
 	<?php
 		get_template_part(
 			'template-parts/common/paginazione',
@@ -257,8 +256,7 @@ $num_results = $pubblicazioni->found_posts;
 		);
 	?>
 
-	</main>
-</form>
+</main>
 <!-- END CONTENT -->
 
 <?php
