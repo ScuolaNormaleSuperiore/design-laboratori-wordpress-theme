@@ -102,8 +102,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$updated   = 0;
 		$ignored   = 0;
 
-		// @TODO: Remove the following line:
-		// $data = array_slice($data, 0, 10);
 		foreach ( $data as $item ){
 			$counter++;
 			$item_code  = $item->pid;
