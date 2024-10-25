@@ -15,7 +15,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.3.3] - 2024-10-24
+## [1.3.4] - 2024-10-25
+### Corretto
+### Modificato
+
+
+## [1.3.3] - 2024-10-25
 ### Corretto
 - Corretta sezione di condivisione dei contenuti sui social.
 - Corretta accessibilità del sito.
@@ -37,7 +42,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Rifattorizzazione della creazione dei menu tramite file di configurazione dedicato.
 - Rifattorizzazione della gestione degli import da Indico e IRIS.
 - Introdotto DLI_ContentsManager per la gestione delle query dei contenuti e delle tassonomie.
-
 
 
 ## [1.3.2] - 2024-09-04
