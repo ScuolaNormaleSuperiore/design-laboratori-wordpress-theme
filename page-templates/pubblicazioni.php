@@ -17,6 +17,11 @@ $per_page_values         = DLI_PER_PAGE_VALUES;
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
@@ -50,7 +55,7 @@ if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
 			'posts_per_page' => $per_page,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -68,7 +73,7 @@ if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
 			'posts_per_page' => $per_page,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -86,7 +91,7 @@ if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
 			'posts_per_page' => $per_page,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -101,7 +106,7 @@ if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
 			'posts_per_page' => $per_page,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',

@@ -31,13 +31,18 @@ if ( isset( $_GET['search_string'] ) ) {
 if ( isset( $_GET['deposit_year'] ) && is_numeric( $_GET['deposit_year'] ) ) {
 	$selected_year = sanitize_text_field( $_GET['deposit_year'] );
 }
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
 $params = array(
 	'search_string' => $search_string,
 	'thematic_area' => $selected_areas ? $selected_areas : $all_area_ids,
 	'deposit_year'  => $selected_year ? array( $selected_year ) : $all_years,
 	'per_page'      => $per_page,
-	'paged'         => get_query_var( 'paged', 1 ),
+	'paged'         => $paged,
 );
 $the_query     = DLI_ContentsManager::get_patent_data_query( $params );
 $num_results   = $the_query->found_posts;

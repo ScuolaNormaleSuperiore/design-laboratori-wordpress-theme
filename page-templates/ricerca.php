@@ -13,10 +13,15 @@ $per_page_values = DLI_POST_PER_PAGE_VALUES;
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
 $params = array(
 	'per_page' => $per_page,
-	'paged'    => get_query_var( 'paged', 1 ),
+	'paged'    => $paged,
 );
 $the_query   = DLI_ContentsManager::dli_get_research_area_data_query( $params );
 $num_results = $the_query->found_posts;

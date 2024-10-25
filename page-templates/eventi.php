@@ -18,11 +18,16 @@ if ( isset( $_GET['cat'] ) ){
 } else {
 	$selected_categories = array();
 }
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
 $params = array(
 	'selected_categories' => $selected_categories,
 	'per_page'            => $per_page,
-	'paged'               => get_query_var( 'paged', 1 ),
+	'paged'               => $paged,
 );
 $the_query      = DLI_ContentsManager::dli_get_event_data_query( $params );
 $num_results    = $the_query->found_posts;

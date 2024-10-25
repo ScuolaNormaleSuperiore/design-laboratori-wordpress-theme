@@ -35,7 +35,7 @@
 		<!-- Scelta numero elementi per pagina -->
 		<div class="col-md-3 dli-dropdown-container">
 			<?php
-			if ( $pagination_on ) {
+			if ( $pagination_on || isset( $_GET['per_page'] ) ) {
 			?>
 				<div class="dropdown">
 					<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger"

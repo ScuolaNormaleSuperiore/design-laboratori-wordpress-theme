@@ -236,22 +236,29 @@ function load_pagination_script(){
 
 				// Ricarica pagina con il valore per_page selezionato.
 				var pagerDropDown = document.getElementById('pagerChanger');
-				pagerDropDown.addEventListener('hidden.bs.dropdown', function (event) {
-					console.log("********* ECCOMI dropdon-hidden****");
-					var selectedItem = document.querySelector('.dropdown-menu .active');
-					if (selectedItem) {
-						// Recupera il valore dell'attributo 'data-perpage'.
-						var perPageValue = selectedItem.getAttribute('data-perpage');
-						console.log("Valore selezionato:", perPageValue);
-						// Ottiene l'URL corrente e i parametri GET.
-						var currentUrl = new URL(window.location.href);
-						var params = currentUrl.searchParams;
-						// Aggiunge o aggiorna il parametro per_page.
-						params.set('per_page', perPageValue);
-						// Aggiorna l'URL e ricarica la pagina.
-						window.location.href = currentUrl.toString();
-					}
-				});
+				if( pagerDropDown ){
+					pagerDropDown.addEventListener('hidden.bs.dropdown', function (event) {
+						var selectedItem = document.querySelector('.dropdown-menu .active');
+						if (selectedItem) {
+							// Recupera il valore dell'attributo 'data-perpage'.
+							var perPageValue = selectedItem.getAttribute('data-perpage');
+							// Ottiene l'URL corrente e i parametri GET.
+							var currentUrl = new URL(window.location.href);
+							var params = currentUrl.searchParams;
+							const oldPerPage = params.get('per_page');
+							// Per evitare incongruenze,
+							// quando si cambia numero di elementi per pagina,
+							// si riparte dalla pagina numero 1.
+							if (perPageValue != oldPerPage){
+								params.set('paged', 1);
+							}
+							// Aggiunge o aggiorna il parametro per_page.
+							params.set('per_page', perPageValue);
+							// Aggiorna l'URL e ricarica la pagina.
+							window.location.href = currentUrl.toString();
+						}
+					});
+				}
 			}
 		</script>
 	<?php
