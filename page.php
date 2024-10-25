@@ -33,8 +33,8 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 	</section>
 
 	<!-- CONTENUTO PAGINA-->
-	<section class="section bg-white">
-		<div class="container container-border-top">
+	<section id="paginabase" class="pb-3">
+		<div class="container container-border-top pt-5">
 			<div class="row">
 				<?php
 					//get top parent page id
@@ -123,19 +123,17 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 						<?php
 						if ( $image_metadata['image_url'] ) {
 						?>
-							<figure class="figure">
-								<img src="<?php echo $image_metadata['image_url']; ?>"
-										alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-										class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
-								<?php
-									if( $image_metadata['image_caption'] ) {
-								?>
-									<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
-								<?php
-									}
-								?>
-							</figure>
+							<img src="<?php echo $image_metadata['image_url']; ?>"
+									alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+									title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+									class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+							<?php
+								if( $image_metadata['image_caption'] ) {
+							?>
+								<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<?php
+								}
+							?>
 						<?php
 						}
 						?>
