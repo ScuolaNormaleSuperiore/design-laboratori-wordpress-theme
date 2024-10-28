@@ -119,6 +119,7 @@ $num_results   = $the_query->found_posts;
 								<div class="form-group">
 									<div class="input-group"> <span class="input-group-text">
 										<svg class="icon icon-sm">
+											<title><?php echo __( 'Cerca contenuto', 'design_laboratori_italia' ); ?></title>
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
 										</svg>
 										</span>
@@ -182,7 +183,7 @@ $num_results   = $the_query->found_posts;
 									}
 									?>
 										<div class="card-body">
-											<h3 class="h5"><?php the_title(); ?></h3>
+											<h3 class="card-title cardTitlecustomSpacing h5"><?php the_title(); ?></h3>
 											<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
 											<p class="card-text font-serif titolari">
 												<em><?php echo esc_attr( $titolari ); ?></em>
@@ -201,6 +202,7 @@ $num_results   = $the_query->found_posts;
 												<a class="read-more" href="<?php echo get_permalink(); ?>">
 													<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 													<svg class="icon">
+														<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
 													</svg>
 												</a>

@@ -105,6 +105,7 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top">
+									<title><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></title>
 									<use href="bootstrap-italia/svg/sprites.svg#it-chevron-left" xlink:href="bootstrap-italia/svg/sprites.svg#it-chevron-left"></use>
 								</svg>
 								<span><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></span>
@@ -190,14 +191,19 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 
 			<!-- DESCRIZIONE -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
-				<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
-					<p>
-						<?php echo $descrizione; ?>
-					</p>
-				
-				</article>
-				
+				<?php
+				if ( $descrizione ) {
+				?>
+					<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
+						<p>
+							<?php echo $descrizione; ?>
+						</p>
+					
+					</article>
+				<?php
+				}
+				?>
 				<!-- TTOLARI -->
 				<?php
 				if ( $titolari ) {
