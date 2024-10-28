@@ -7,24 +7,29 @@
 global $post;
 get_header();
 define( 'EVENTS_CELLS_PER_ROW', 3 );
+$per_page        = DLI_POSTS_PER_PAGE;
+$per_page_values = DLI_POST_PER_PAGE_VALUES;
 
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
 if ( isset( $_GET['cat'] ) ){
 	$selected_categories = $_GET['cat'];
 } else {
 	$selected_categories = array();
 }
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
-$the_query = new WP_Query(
-	array(
-		'paged'          => get_query_var( 'paged', 1 ),
-		'post_type'      => EVENT_POST_TYPE,
-		'posts_per_page' => DLI_POSTS_PER_PAGE,
-		'category__in'   => $selected_categories,
-		'meta_key'       => 'data_inizio',
-		'orderby'        => 'meta_value_num',
-		'order'          => 'DESC',
-	)
+$params = array(
+	'selected_categories' => $selected_categories,
+	'per_page'            => $per_page,
+	'paged'               => $paged,
 );
+$the_query      = DLI_ContentsManager::dli_get_event_data_query( $params );
 $num_results    = $the_query->found_posts;
 $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 ?>
@@ -184,7 +189,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $the_query,
+				'query'           => $the_query,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>

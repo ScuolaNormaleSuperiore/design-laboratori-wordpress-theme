@@ -14,7 +14,8 @@ $the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => PEOPLE_POST_TYPE,
-		'posts_per_page' => DLI_POSTS_PER_PAGE,
+		'posts_per_page' => -1,
+		// 'posts_per_page' => DLI_POSTS_PER_PAGE,
 	)
 );
 $num_results = $the_query->found_posts;

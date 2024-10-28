@@ -61,8 +61,8 @@ if ( ! class_exists( 'Banner_Manager' ) ) {
 	include_once 'class-bannermanager.php';
 }
 
-if ( ! class_exists( 'DLI_IndicoManager' ) ) {
-	include_once 'class-indicomanager.php';
+if ( ! class_exists( 'DLI_IndicoImporter' ) ) {
+	include_once 'class-indicoimporter.php';
 }
 
 if ( ! class_exists( 'DLI_IrisPatentImporter' ) ) {
@@ -168,8 +168,8 @@ class DLI_LabManager {
 		$bm->setup();
 
 		// Setup the Indico Manager.
-		$indicom = new DLI_IndicoManager();
-		$indicom->setup();
+		$indicoi = new DLI_IndicoImporter();
+		$indicoi->setup();
 
 		// Setup the Patent Importer.
 		$ipm = new DLI_IrisPatentImporter();

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-16 15:00+0000\n"
+"POT-Creation-Date: 2024-10-24 12:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.3\n"
 "X-Domain: design_laboratori_italia"
 
-#: inc/classes/class-indicomanager.php:20
-msgid "*** Importazione effettiva, eventi creati realmente ***"
+#: inc/classes/class-base-importer.php:18
+msgid "*** Importazione effettiva, oggetti creati realmente ***"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:19
+#: inc/classes/class-base-importer.php:17
 msgid ""
-"*** Importazione in modalità DRY-RUN (nessun evento creato realmente) ***"
+"*** Importazione in modalità DRY-RUN (nessun oggetto creato realmente) ***"
 msgstr ""
 
 #: inc/admin/options.php:553 inc/admin/options.php:606
@@ -34,34 +34,54 @@ msgstr ""
 msgid "404"
 msgstr ""
 
-#: inc/admin/options.php:1526
+#: inc/admin/options.php:1597
 msgid "Abilita l'integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:1430
+#: inc/admin/options.php:1788
+msgid "Abilita l'integrazione con IRIS AP Brevetti"
+msgstr ""
+
+#: inc/admin/options.php:1499
 msgid ""
 "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
 "pagina"
 msgstr ""
 
-#: inc/admin/options.php:1540
+#: inc/admin/options.php:1611 inc/admin/options.php:1802
 msgid "Abilita messaggi debug"
 msgstr ""
 
-#: inc/admin/options.php:1541
+#: inc/admin/options.php:1612 inc/admin/options.php:1803
 msgid "Abilita messaggi debug nel file error.log"
 msgstr ""
 
-#: inc/admin/options.php:1889
+#: inc/admin/options.php:2111
 msgid "Abilita REST API"
 msgstr ""
 
-#: header.php:124
+#: single-brevetto.php:122
+msgid "Abstract"
+msgstr ""
+
+#: single-brevetto.php:194
+msgid "Abstract brevetto"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:117
+msgid "Abstract del brevetto"
+msgstr ""
+
+#: header.php:125
 msgid "Accedi"
 msgstr ""
 
-#: inc/admin/options.php:1681
+#: inc/admin/options.php:1752 inc/admin/options.php:1895
 msgid "Aggiorna"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:51
+msgid "Aggiorna area tematica"
 msgstr ""
 
 #: inc/classes/class-publicationmanager.php:44
@@ -76,8 +96,8 @@ msgstr ""
 msgid "Aggiorna la Tipologia luogo"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:15
-msgid "Aggiornato evento: "
+#: inc/classes/class-base-importer.php:14
+msgid "Aggiornato oggetto: "
 msgstr ""
 
 #: inc/admin/options.php:249
@@ -86,6 +106,10 @@ msgstr ""
 
 #: inc/classes/class-publicationmanager.php:45
 msgid "Aggiungi un tipo pubblicazione"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:52
+msgid "Aggiungi un'area tematica"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:48
@@ -100,24 +124,29 @@ msgstr ""
 msgid "al"
 msgstr ""
 
-#: single-evento.php:197 single-evento.php:386 single-progetto.php:152
-#: single-progetto.php:245
+#: single-evento.php:198 single-evento.php:390 single-progetto.php:153
+#: single-progetto.php:246
 msgid "Allegati"
 msgstr ""
 
-#: inc/admin/options.php:1711
+#: inc/admin/options.php:1933
 msgid "Altre Informazioni"
 msgstr ""
 
-#: inc/admin/options.php:1693 inc/admin/options.php:1696
+#: single-brevetto.php:180 single-brevetto.php:264
+msgid "Altre informazioni"
+msgstr ""
+
+#: inc/admin/options.php:1915 inc/admin/options.php:1918
 msgid "Altro"
 msgstr ""
 
+#: page-templates/brevetti.php:68 page-templates/brevetti.php:70
 #: page-templates/pubblicazioni.php:130 page-templates/pubblicazioni.php:132
 msgid "Anno"
 msgstr ""
 
-#: page-templates/contatti.php:297
+#: page-templates/contatti.php:302
 msgid "Annulla"
 msgstr ""
 
@@ -140,15 +169,24 @@ msgstr ""
 msgid "Area di configurazione delle informazioni di base"
 msgstr ""
 
-#: inc/admin/options.php:1712
+#: inc/admin/options.php:1934
 msgid "Area di configurazione delle opzioni generali del tema"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:54
+msgid "Area Tematica"
+msgstr ""
+
+#: single-brevetto.php:175 single-brevetto.php:255
+#: page-templates/brevetti.php:90
+msgid "Area tematica"
 msgstr ""
 
 #: single-notizia.php:105 single-post.php:105
 msgid "Argomenti"
 msgstr ""
 
-#: inc/utils.php:1025
+#: inc/utils.php:1089
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -158,16 +196,20 @@ msgstr ""
 msgid "Attiva l'hero principale in Home Page"
 msgstr ""
 
-#: inc/admin/options.php:1525
+#: inc/admin/options.php:1787
+msgid "Attiva l'importazione dei brevetti"
+msgstr ""
+
+#: inc/admin/options.php:1596
 msgid "Attiva l'integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:1750
+#: inc/admin/options.php:1972
 msgid "Attiva la newsletter"
 msgstr ""
 
 #. Name of the template
-#: single-persona.php:182 single-persona.php:283 inc/utils.php:193
+#: single-persona.php:183 single-persona.php:285 inc/utils.php:199
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr ""
@@ -180,7 +222,11 @@ msgstr ""
 msgid "Avvisi in Home"
 msgstr ""
 
-#: inc/admin/options.php:1676
+#: inc/admin/options.php:1890
+msgid "Azione da intraprendere se il brevetto esiste già"
+msgstr ""
+
+#: inc/admin/options.php:1747
 msgid "Azione da intraprendere se l'evento esiste già"
 msgstr ""
 
@@ -188,7 +234,7 @@ msgstr ""
 msgid "Banner"
 msgstr ""
 
-#: single-persona.php:152 single-persona.php:229
+#: single-persona.php:153 single-persona.php:230
 #: inc/classes/class-peoplemanager.php:120
 msgid "Biografia"
 msgstr ""
@@ -215,11 +261,24 @@ msgstr ""
 msgid "Box 3 dei contenuti in evidenza"
 msgstr ""
 
-#: inc/admin/options.php:1667
+#: inc/admin/options.php:1738
 msgid "Bozza"
 msgstr ""
 
-#: inc/admin/options.php:1769
+#. Name of the template
+#: inc/utils.php:207 page-templates/brevetti.php:2 inc/admin/options.php:1196
+msgid "Brevetti"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:89
+msgid "Brevetto"
+msgstr ""
+
+#: inc/admin/options.php:1889
+msgid "Brevetto esistente"
+msgstr ""
+
+#: inc/admin/options.php:1991
 msgid "Brevo"
 msgstr ""
 
@@ -228,15 +287,24 @@ msgid "Cancella"
 msgstr ""
 
 #: page-templates/blog.php:49 page-templates/eventi.php:52
-#: page-templates/notizie.php:49 inc/admin/options.php:1581
+#: page-templates/notizie.php:49 inc/admin/options.php:1652
 msgid "Categoria"
 msgstr ""
 
-#: header.php:158 page-templates/cerca.php:83
+#: header.php:159 page-templates/cerca.php:83
 msgid "Cerca"
 msgstr ""
 
-#: header.php:162 page-templates/cerca.php:66 page-templates/cerca.php:70
+#: inc/classes/class-patentmanager.php:48
+msgid "Cerca area tematica"
+msgstr ""
+
+#: page-templates/brevetti.php:122
+msgid "Cerca contenuto"
+msgstr ""
+
+#: header.php:163 header.php:164 header.php:165 page-templates/cerca.php:66
+#: page-templates/cerca.php:70
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -252,7 +320,7 @@ msgstr ""
 msgid "Cerca Tipologia luogo"
 msgstr ""
 
-#: template-parts/header/alert.php:26
+#: template-parts/header/alert.php:26 template-parts/header/alert.php:27
 msgid "Chiudi avviso"
 msgstr ""
 
@@ -260,7 +328,11 @@ msgstr ""
 msgid "Città"
 msgstr ""
 
-#: page-templates/newsletter.php:173
+#: inc/classes/class-patentmanager.php:125
+msgid "Codice"
+msgstr ""
+
+#: page-templates/newsletter.php:176
 msgid "Cognome"
 msgstr ""
 
@@ -268,7 +340,7 @@ msgstr ""
 msgid "Collegamento"
 msgstr ""
 
-#: single-luogo.php:129 single-luogo.php:268
+#: single-luogo.php:130 single-luogo.php:274
 msgid "Come raggiungerci"
 msgstr ""
 
@@ -282,11 +354,36 @@ msgstr ""
 msgid "Compilare tutti i campi obbligatori."
 msgstr ""
 
-#: template-parts/common/social_sharing.php:22
+#: template-parts/common/social_sharing.php:19
+#: template-parts/common/social_sharing.php:23
 msgid "Condividi"
 msgstr ""
 
-#: page-templates/contatti.php:298
+#: template-parts/common/social_sharing.php:33
+#: template-parts/common/social_sharing.php:34
+#: template-parts/common/social_sharing.php:35
+msgid "Condividi su Facebook"
+msgstr ""
+
+#: template-parts/common/social_sharing.php:58
+#: template-parts/common/social_sharing.php:59
+#: template-parts/common/social_sharing.php:60
+msgid "Condividi su Linkedin"
+msgstr ""
+
+#: template-parts/common/social_sharing.php:45
+#: template-parts/common/social_sharing.php:46
+#: template-parts/common/social_sharing.php:47
+msgid "Condividi su Twitter"
+msgstr ""
+
+#: template-parts/common/social_sharing.php:70
+#: template-parts/common/social_sharing.php:71
+#: template-parts/common/social_sharing.php:72
+msgid "Condividi su WhatsApp"
+msgstr ""
+
+#: page-templates/contatti.php:303
 msgid "Conferma"
 msgstr ""
 
@@ -303,10 +400,10 @@ msgid "Configurazione Laboratorio"
 msgstr ""
 
 #. Name of the template
-#: footer.php:38 single-evento.php:188 single-evento.php:326
-#: single-indirizzo-di-ricerca.php:134 single-indirizzo-di-ricerca.php:206
-#: single-persona.php:212 single-persona.php:435 page-templates/contatti.php:2
-#: page-templates/contatti.php:124 page-templates/contatti.php:179
+#: footer.php:38 single-evento.php:189 single-evento.php:327
+#: single-indirizzo-di-ricerca.php:135 single-indirizzo-di-ricerca.php:207
+#: single-persona.php:213 single-persona.php:443 page-templates/contatti.php:2
+#: page-templates/contatti.php:124 page-templates/contatti.php:181
 msgid "Contatti"
 msgstr ""
 
@@ -319,7 +416,11 @@ msgstr ""
 msgid "Copia del messaggio non inviata."
 msgstr ""
 
-#: inc/admin/options.php:1645
+#: inc/classes/class-base-importer.php:173
+msgid "Credenziali non valide."
+msgstr ""
+
+#: inc/admin/options.php:1716
 msgid "Criterio di scelta degli eventi da importare"
 msgstr ""
 
@@ -331,13 +432,17 @@ msgstr ""
 msgid "Danger"
 msgstr ""
 
-#: single-evento.php:171 single-evento.php:233
+#: single-brevetto.php:228
+msgid "Data deposito"
+msgstr ""
+
+#: single-evento.php:172 single-evento.php:234
 msgid "Date e orari"
 msgstr ""
 
-#: single-evento.php:168 single-indirizzo-di-ricerca.php:113
-#: single-indirizzo-di-ricerca.php:158 single-luogo.php:111
-#: single-progetto.php:117 single-progetto.php:176 inc/admin/options.php:800
+#: single-evento.php:169 single-indirizzo-di-ricerca.php:114
+#: single-indirizzo-di-ricerca.php:159 single-luogo.php:112
+#: single-progetto.php:118 single-progetto.php:177 inc/admin/options.php:800
 #: inc/admin/options.php:801
 msgid "Descrizione"
 msgstr ""
@@ -378,7 +483,7 @@ msgstr ""
 msgid "Descrizione indirizzo di ricerca"
 msgstr ""
 
-#: single-luogo.php:149
+#: single-luogo.php:150
 msgid "Descrizione luogo"
 msgstr ""
 
@@ -389,20 +494,22 @@ msgstr ""
 #: inc/admin/options.php:872 inc/admin/options.php:943
 #: inc/admin/options.php:1013 inc/admin/options.php:1149
 #: inc/admin/options.php:1218 inc/admin/options.php:1287
+#: inc/admin/options.php:1356
 msgid "Descrizione Sezione"
 msgstr ""
 
 #: inc/admin/options.php:891 inc/admin/options.php:962
 #: inc/admin/options.php:1032 inc/admin/options.php:1168
-#: inc/admin/options.php:1238 inc/admin/options.php:1307
+#: inc/admin/options.php:1237 inc/admin/options.php:1307
+#: inc/admin/options.php:1376
 msgid "Descrizione Sezione ENG"
 msgstr ""
 
-#: inc/admin/options.php:1356
+#: inc/admin/options.php:1425
 msgid "Descrizione Sezione Luoghi"
 msgstr ""
 
-#: inc/admin/options.php:1373
+#: inc/admin/options.php:1442
 msgid "Descrizione Sezione Luoghi ENG"
 msgstr ""
 
@@ -426,36 +533,40 @@ msgid ""
 "Bootstrap Italia. Basato sul precedente lavoro di Marco Buttarini."
 msgstr ""
 
-#: single-luogo.php:102
+#: single-luogo.php:103
 msgid "Dettagli del luogo"
 msgstr ""
 
-#: single-indirizzo-di-ricerca.php:104 single-progetto.php:108
+#: single-indirizzo-di-ricerca.php:105 single-progetto.php:109
 msgid "Dettagli del progetto"
 msgstr ""
 
-#: single-evento.php:158
+#: single-evento.php:159
 msgid "Dettagli dell'evento"
 msgstr ""
 
-#: single-persona.php:142
+#: single-persona.php:143
 msgid "DETTAGLI della persona"
 msgstr ""
 
-#: inc/admin/options.php:1636
+#: single-brevetto.php:148 single-brevetto.php:224
+msgid "Domanda di priorità"
+msgstr ""
+
+#: inc/admin/options.php:1707 inc/admin/options.php:1881
 msgid "Dry Run (test import)"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:13
-msgid "Dry-run - Importo evento: "
+#: inc/classes/class-base-importer.php:12
+msgid "Dry-run - Importo oggetto: "
 msgstr ""
 
-#: inc/admin/options.php:1620
+#: inc/admin/options.php:1691 inc/admin/options.php:1865
 msgid "Due volte al giorno"
 msgstr ""
 
-#: footer.php:64 page-templates/contatti.php:249
-#: page-templates/newsletter.php:181
+#: footer.php:64 page-templates/contatti.php:254
+#: page-templates/newsletter.php:184
 msgid "E-mail"
 msgstr ""
 
@@ -479,8 +590,12 @@ msgstr ""
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:17
-msgid "Errore importando l'evento: "
+#: inc/classes/class-base-importer.php:16
+msgid "Errore importando l'oggetto: "
+msgstr ""
+
+#: inc/admin/options.php:1219
+msgid "es: \"Brevetti dei membri del Laboratorio.\""
 msgstr ""
 
 #: inc/admin/options.php:1033
@@ -495,23 +610,23 @@ msgstr ""
 msgid "es: \"Gli eventi del laboratorio\""
 msgstr ""
 
-#: inc/admin/options.php:1288
+#: inc/admin/options.php:1357
 msgid "es: \"Gli indirizzi di ricerca del Laboratorio\""
 msgstr ""
 
-#: inc/admin/options.php:1219
+#: inc/admin/options.php:1288
 msgid "es: \"I progetti del Laboratorio\""
 msgstr ""
 
-#: inc/admin/options.php:1374
+#: inc/admin/options.php:1443
 msgid "es: \"Lab places\""
 msgstr ""
 
-#: inc/admin/options.php:1239
+#: inc/admin/options.php:1308
 msgid "es: \"Lab projects\""
 msgstr ""
 
-#: inc/admin/options.php:1308
+#: inc/admin/options.php:1377
 msgid "es: \"Lab research activities\""
 msgstr ""
 
@@ -535,11 +650,11 @@ msgstr ""
 msgid "es: \"Pubblicazioni dei membri del Laboratorio.\""
 msgstr ""
 
-#: inc/admin/options.php:1169
+#: inc/admin/options.php:1169 inc/admin/options.php:1238
 msgid "es: \"Publications by Lab members.\""
 msgstr ""
 
-#: inc/admin/options.php:1357
+#: inc/admin/options.php:1426
 msgid "es: \"Questi i luoghi del laboratorio\""
 msgstr ""
 
@@ -556,8 +671,8 @@ msgid "Etichetta ENG"
 msgstr ""
 
 #. Name of the template
-#: single-indirizzo-di-ricerca.php:141 single-indirizzo-di-ricerca.php:223
-#: single-progetto.php:159 single-progetto.php:259 inc/utils.php:194
+#: single-indirizzo-di-ricerca.php:142 single-indirizzo-di-ricerca.php:224
+#: single-progetto.php:160 single-progetto.php:260 inc/utils.php:200
 #: page-templates/eventi.php:2 inc/admin/options.php:989
 #: template-parts/hero/eventi.php:9 template-parts/home/hp-list-event.php:43
 msgid "Eventi"
@@ -567,13 +682,21 @@ msgstr ""
 msgid "Evento"
 msgstr ""
 
-#: inc/admin/options.php:1675
+#: inc/admin/options.php:1746
 msgid "Evento esistente"
 msgstr ""
 
 #: inc/admin/options.php:554 inc/admin/options.php:607
 #: inc/admin/options.php:660
 msgid "Evento singolo"
+msgstr ""
+
+#: single-brevetto.php:157 single-brevetto.php:246
+msgid "Famiglia brevettuale"
+msgstr ""
+
+#: page-templates/brevetti.php:132
+msgid "Filtra"
 msgstr ""
 
 #: page-templates/persone.php:55
@@ -584,11 +707,11 @@ msgstr ""
 msgid "Filtra per tipo di contenuto"
 msgstr ""
 
-#: inc/admin/options.php:1635
+#: inc/admin/options.php:1706 inc/admin/options.php:1880
 msgid "Finalizza import"
 msgstr ""
 
-#: single-evento.php:287
+#: single-evento.php:288
 msgid "Fine evento"
 msgstr ""
 
@@ -607,7 +730,7 @@ msgid ""
 "home\""
 msgstr ""
 
-#: inc/admin/options.php:1719
+#: inc/admin/options.php:1941
 msgid "Gestione dello stile del sito"
 msgstr ""
 
@@ -618,7 +741,7 @@ msgid ""
 "home\""
 msgstr ""
 
-#: inc/admin/options.php:1763
+#: inc/admin/options.php:1985
 msgid "Gestore delle newsletter"
 msgstr ""
 
@@ -642,13 +765,17 @@ msgstr ""
 msgid "https://ict.sns.it"
 msgstr ""
 
+#: inc/admin/options.php:1190 template-parts/hero/brevetti.php:9
+msgid "I brevetti"
+msgstr ""
+
 #. Name of the template
 #: page-templates/luoghi.php:2 template-parts/hero/luoghi.php:8
 msgid "I Luoghi"
 msgstr ""
 
 #. Name of the template
-#: page-templates/progetti.php:2 inc/admin/options.php:1190
+#: page-templates/progetti.php:2 inc/admin/options.php:1259
 msgid "I progetti"
 msgstr ""
 
@@ -656,32 +783,36 @@ msgstr ""
 msgid "ICT SNS"
 msgstr ""
 
-#: inc/admin/options.php:1803
+#: inc/admin/options.php:2025
 msgid "ID del template"
 msgstr ""
 
-#: inc/admin/options.php:1804
+#: inc/admin/options.php:2026
 msgid "ID del template della pagina che gestisce la double OptIn"
 msgstr ""
 
-#: inc/admin/options.php:1582
+#: inc/admin/options.php:1653
 msgid "ID della categoria degli eventi da importare"
 msgstr ""
 
-#: inc/admin/options.php:1788
+#: inc/admin/options.php:2010
 msgid "ID della lista"
 msgstr ""
 
-#: inc/admin/options.php:1789
+#: inc/admin/options.php:2011
 msgid "ID della lista associata al sito"
 msgstr ""
 
-#: inc/admin/options.php:1682
+#: single-brevetto.php:247
+msgid "Identificativo famiglia"
+msgstr ""
+
+#: inc/admin/options.php:1753 inc/admin/options.php:1896
 msgid "Ignora"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:16
-msgid "Ignorato evento: "
+#: inc/classes/class-base-importer.php:15
+msgid "Ignorato oggetto: "
 msgstr ""
 
 #: inc/classes/class-placemanager.php:124
@@ -690,6 +821,10 @@ msgstr ""
 
 #: inc/admin/options.php:842
 msgid "Il blog"
+msgstr ""
+
+#: single-brevetto.php:114
+msgid "IL BREVETTO"
 msgstr ""
 
 #: inc/admin/options.php:441
@@ -749,24 +884,34 @@ msgstr ""
 msgid "Immagine principale della Persona"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:9
-msgid "Import da Indico disabilitato"
+#: inc/classes/class-base-importer.php:8
+msgid "Import disabilitato"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:10
-msgid "Import da Indico non configurato correttamente"
+#: inc/classes/class-base-importer.php:9
+msgid "Import non configurato correttamente"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:14
-msgid "Importato evento: "
+#: inc/classes/class-base-importer.php:13
+msgid "Importato oggetto: "
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:12
+#: inc/classes/class-base-importer.php:11
 msgid "Importazione eseguita correttamente"
 msgstr ""
 
-#: inc/admin/options.php:1519
+#: inc/admin/options.php:1590
 msgid "Impostazioni per configurare l'integrazione con Indico"
+msgstr ""
+
+#: inc/admin/options.php:1781
+msgid ""
+"Impostazioni per configurare l'integrazione con IRIS Cineca (AP Brevetti)"
+msgstr ""
+
+#: inc/admin/options.php:1904
+msgid ""
+"Impostazioni per configurare l'integrazione con IRIS Cineca (Pubblicazioni)"
 msgstr ""
 
 #: inc/classes/class-placemanager.php:132
@@ -775,17 +920,24 @@ msgid ""
 "strutture e canali fisici di erogazione di un servizio"
 msgstr ""
 
-#: inc/admin/options.php:1630
+#: inc/admin/options.php:1701 inc/admin/options.php:1875
 msgid ""
 "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova "
 "(dry-run)"
 msgstr ""
 
-#: inc/admin/options.php:1612
+#: inc/admin/options.php:1683
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
 "autenticazione http://miosito/wp-json/custom/v1/indico-import."
+msgstr ""
+
+#: inc/admin/options.php:1857
+msgid ""
+"Indica se l'import deve essere schedulato. L'import, in alternativa, può "
+"essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
+"autenticazione http://miosito/wp-json/custom/v1/iris-ap-brevetti-import."
 msgstr ""
 
 #: template-parts/home/carousel.php:14
@@ -830,16 +982,16 @@ msgstr ""
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
-#: inc/admin/options.php:1501 inc/admin/options.php:1507
+#: inc/admin/options.php:1572 inc/admin/options.php:1578
 msgid "Indico"
 msgstr ""
 
-#: single-evento.php:154
+#: single-brevetto.php:110 single-evento.php:151 single-evento.php:155
 msgid "Indietro"
 msgstr ""
 
-#: single-progetto.php:138 single-progetto.php:217 inc/admin/options.php:1259
-#: inc/admin/options.php:1265
+#: single-progetto.php:139 single-progetto.php:218 inc/admin/options.php:1328
+#: inc/admin/options.php:1334
 msgid "Indirizzi di ricerca"
 msgstr ""
 
@@ -855,7 +1007,7 @@ msgstr ""
 msgid "Indirizzo di ricerca"
 msgstr ""
 
-#: template-parts/common/newsletter.php:26
+#: template-parts/common/newsletter.php:27
 msgid "Indirizzo e-mail"
 msgstr ""
 
@@ -863,7 +1015,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: single-evento.php:255
+#: single-evento.php:256
 msgid "Inizio evento"
 msgstr ""
 
@@ -873,7 +1025,7 @@ msgid ""
 "completo per facilitare la ricerca"
 msgstr ""
 
-#: inc/admin/options.php:1869
+#: inc/admin/options.php:2091
 msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
@@ -883,27 +1035,27 @@ msgstr ""
 msgid "Inserisci il testo da cercare"
 msgstr ""
 
-#: page-templates/contatti.php:244
+#: page-templates/contatti.php:249
 msgid "Inserisci il testo del messaggio"
 msgstr ""
 
-#: page-templates/newsletter.php:176
+#: page-templates/newsletter.php:179
 msgid "Inserisci il tuo cognome"
 msgstr ""
 
-#: page-templates/contatti.php:252 page-templates/newsletter.php:184
+#: page-templates/contatti.php:257 page-templates/newsletter.php:187
 msgid "Inserisci il tuo indirizzo email"
 msgstr ""
 
-#: template-parts/common/newsletter.php:24
+#: template-parts/common/newsletter.php:25
 msgid "Inserisci il tuo indirizzo email per ricevere aggiornamenti"
 msgstr ""
 
-#: page-templates/contatti.php:236 page-templates/newsletter.php:170
+#: page-templates/contatti.php:241 page-templates/newsletter.php:173
 msgid "Inserisci il tuo nome"
 msgstr ""
 
-#: page-templates/contatti.php:258
+#: page-templates/contatti.php:263
 msgid "Inserisci il tuo numero di telefono"
 msgstr ""
 
@@ -911,7 +1063,7 @@ msgstr ""
 msgid "Inserisci messaggi che saranno visualizzati nella homepage"
 msgstr ""
 
-#: inc/admin/options.php:1423
+#: inc/admin/options.php:1492
 msgid "Inserisci qui i link ai tuoi socialmedia"
 msgstr ""
 
@@ -921,7 +1073,7 @@ msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> il blog</a>"
 msgstr ""
 
-#: inc/admin/options.php:1345
+#: inc/admin/options.php:1414
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina dei "
@@ -935,7 +1087,7 @@ msgid ""
 "panoramica degli Eventi</a>"
 msgstr ""
 
-#: inc/admin/options.php:1273
+#: inc/admin/options.php:1342
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -943,6 +1095,13 @@ msgid ""
 msgstr ""
 
 #: inc/admin/options.php:1204
+#, php-format
+msgid ""
+"Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
+"panoramica dei Brevetti</a>"
+msgstr ""
+
+#: inc/admin/options.php:1273
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -977,23 +1136,31 @@ msgid ""
 "panoramica delle Pubblicazioni</a>"
 msgstr ""
 
-#: page-templates/newsletter.php:211
+#: single-brevetto.php:139 single-brevetto.php:215
+msgid "Inventori"
+msgstr ""
+
+#: inc/admin/options.php:1763 inc/admin/options.php:1769
+msgid "Iris"
+msgstr ""
+
+#: page-templates/newsletter.php:214
 msgid "Iscrivimi alla newsletter"
 msgstr ""
 
-#: template-parts/common/newsletter.php:31
+#: template-parts/common/newsletter.php:32
 msgid "Iscrivimi..."
 msgstr ""
 
-#: page-templates/newsletter.php:117
+#: page-templates/newsletter.php:118
 msgid "Iscrizione avvenuta correttamente"
 msgstr ""
 
-#: inc/admin/options.php:1598
+#: inc/admin/options.php:1669
 msgid "Keywords"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:182
+#: inc/classes/class-labmanager.php:198
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
 
@@ -1005,8 +1172,12 @@ msgstr ""
 msgid "L'indirizzo del Laboratorio"
 msgstr ""
 
-#: inc/admin/options.php:1557
+#: inc/admin/options.php:1628
 msgid "L'url del sito Indico da cui importare i dati"
+msgstr ""
+
+#: inc/admin/options.php:1819
+msgid "L'url dell'endpoint da invocare per scaricare i brevetti."
 msgstr ""
 
 #: inc/admin/options.php:149
@@ -1015,6 +1186,10 @@ msgstr ""
 
 #: inc/admin/options.php:79
 msgid "La città dove risiede il Laboratorio"
+msgstr ""
+
+#: inc/admin/options.php:1844
+msgid "La password per autenticarsi sul web-service."
 msgstr ""
 
 #: inc/admin/options.php:115
@@ -1050,7 +1225,7 @@ msgstr ""
 msgid "Le Novità"
 msgstr ""
 
-#: inc/admin/options.php:1599
+#: inc/admin/options.php:1670
 msgid ""
 "Le parole chiave degli eventi da importare, separate da virgola (operatore "
 "usato per la selezione: OR)"
@@ -1066,15 +1241,34 @@ msgstr ""
 msgid "Le pubblicazioni"
 msgstr ""
 
-#: archive.php:82 page-templates/blog.php:113 page-templates/eventi.php:135
-#: page-templates/notizie.php:113
+#: archive.php:82 archive.php:84 page-templates/blog.php:113
+#: page-templates/blog.php:114 page-templates/blog.php:115
+#: page-templates/brevetti.php:199 page-templates/eventi.php:135
+#: page-templates/eventi.php:137 page-templates/notizie.php:113
+#: page-templates/notizie.php:115
 #: template-parts/common/sezione-box-evento.php:47
+#: template-parts/common/sezione-box-evento.php:49
+#: template-parts/common/sezione-box-evento.php:50
 #: template-parts/common/sezione-box-notizia.php:26
-#: template-parts/home/card-eventi.php:67 template-parts/home/card-news.php:47
-#: template-parts/home/carousel.php:50
+#: template-parts/common/sezione-box-notizia.php:28
+#: template-parts/common/sezione-box-notizia.php:29
+#: template-parts/common/sezione-eventi.php:64
+#: template-parts/common/sezione-eventi.php:67
+#: template-parts/home/card-eventi.php:67
+#: template-parts/home/card-eventi.php:68
+#: template-parts/home/card-eventi.php:69 template-parts/home/card-news.php:47
+#: template-parts/home/card-news.php:48 template-parts/home/card-news.php:49
+#: template-parts/home/carousel.php:50 template-parts/home/carousel.php:51
+#: template-parts/home/carousel.php:52
 #: template-parts/home/hp-list-article.php:61
+#: template-parts/home/hp-list-article.php:62
+#: template-parts/home/hp-list-article.php:63
 #: template-parts/home/hp-list-event.php:81
+#: template-parts/home/hp-list-event.php:82
+#: template-parts/home/hp-list-event.php:83
 #: template-parts/home/hp-list-news.php:66
+#: template-parts/home/hp-list-news.php:68
+#: template-parts/home/hp-list-news.php:69
 msgid "Leggi di più"
 msgstr ""
 
@@ -1082,11 +1276,15 @@ msgstr ""
 msgid "Link a una pagina di approfondimento anche esterna al sito"
 msgstr ""
 
-#: footer.php:93
+#: footer.php:92 footer.php:93
 msgid "Link utili"
 msgstr ""
 
-#: inc/admin/options.php:1818
+#: inc/admin/options.php:1832
+msgid "Lo username per autenticarsi sul web-service."
+msgstr ""
+
+#: inc/admin/options.php:2040
 msgid "Login"
 msgstr ""
 
@@ -1096,6 +1294,10 @@ msgstr ""
 
 #: inc/admin/options.php:160
 msgid "Logo header"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:82
+msgid "Logo Identificativo dell'Brevetto"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:42
@@ -1110,11 +1312,11 @@ msgstr ""
 msgid "Logo per mobile"
 msgstr ""
 
-#: inc/utils.php:195 inc/admin/options.php:1331 inc/admin/options.php:1337
+#: inc/utils.php:201 inc/admin/options.php:1400 inc/admin/options.php:1406
 msgid "Luoghi"
 msgstr ""
 
-#: single-evento.php:178 single-evento.php:307
+#: single-evento.php:179 single-evento.php:308
 #: inc/classes/class-placemanager.php:96
 msgid "Luogo"
 msgstr ""
@@ -1128,23 +1330,23 @@ msgstr ""
 msgid "Massimo 140 caratteri"
 msgstr ""
 
-#: functions.php:159
+#: functions.php:166
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
-#: functions.php:157
+#: functions.php:164
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:158
+#: functions.php:165
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:155
+#: functions.php:162
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:156
+#: functions.php:163
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1164,6 +1366,10 @@ msgstr ""
 msgid "Messaggio non inviato"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:50
+msgid "Modifica area tematica"
+msgstr ""
+
 #: inc/classes/class-publicationmanager.php:43
 msgid "Modifica il tipo pubblicazione"
 msgstr ""
@@ -1180,12 +1386,16 @@ msgstr ""
 msgid "Mostra carousel dopo presentazione"
 msgstr ""
 
-#: inc/admin/options.php:1429
+#: inc/admin/options.php:1498
 msgid "Mostra le icone social"
 msgstr ""
 
-#: inc/admin/options.php:1839
+#: inc/admin/options.php:2061
 msgid "Multilingua"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:134
+msgid "N/D"
 msgstr ""
 
 #: template-parts/common/sezione-related-items.php:10
@@ -1203,7 +1413,7 @@ msgstr ""
 
 #. Name of the template
 #: page-templates/newsletter.php:2 page-templates/newsletter.php:85
-#: inc/admin/options.php:1742 template-parts/common/newsletter.php:10
+#: inc/admin/options.php:1964 template-parts/common/newsletter.php:10
 msgid "Newsletter"
 msgstr ""
 
@@ -1212,15 +1422,16 @@ msgstr ""
 #: inc/admin/options.php:460 inc/admin/options.php:502
 #: inc/admin/options.php:684 inc/admin/options.php:698
 #: inc/admin/options.php:712 inc/admin/options.php:726
-#: inc/admin/options.php:740 inc/admin/options.php:1396
-#: inc/admin/options.php:1435 inc/admin/options.php:1531
-#: inc/admin/options.php:1546 inc/admin/options.php:1755
-#: inc/admin/options.php:1831 inc/admin/options.php:1852
-#: inc/admin/options.php:1894
+#: inc/admin/options.php:740 inc/admin/options.php:1465
+#: inc/admin/options.php:1504 inc/admin/options.php:1602
+#: inc/admin/options.php:1617 inc/admin/options.php:1793
+#: inc/admin/options.php:1808 inc/admin/options.php:1977
+#: inc/admin/options.php:2053 inc/admin/options.php:2074
+#: inc/admin/options.php:2116
 msgid "No"
 msgstr ""
 
-#: page-templates/newsletter.php:167
+#: page-templates/newsletter.php:170
 msgid "Nome"
 msgstr ""
 
@@ -1228,7 +1439,7 @@ msgstr ""
 msgid "Nome del Luogo"
 msgstr ""
 
-#: page-templates/contatti.php:233
+#: page-templates/contatti.php:238
 msgid "Nome e cognome"
 msgstr ""
 
@@ -1236,11 +1447,15 @@ msgstr ""
 msgid "Nome Laboratorio"
 msgstr ""
 
-#: page-templates/ricerca.php:99
+#: inc/classes/class-base-importer.php:164
+msgid "Non sei autenticato."
+msgstr ""
+
+#: page-templates/ricerca.php:100
 msgid "Non è stata trovata nessuna attività di ricerca"
 msgstr ""
 
-#: page-templates/notizie.php:136
+#: page-templates/notizie.php:137
 msgid "Non è stata trovata nessuna notizia"
 msgstr ""
 
@@ -1248,23 +1463,27 @@ msgstr ""
 msgid "Non è stata trovata nessuna persona"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:236
+#: page-templates/pubblicazioni.php:238
 msgid "Non è stata trovata nessuna pubblicazione"
 msgstr ""
 
-#: page-templates/luoghi.php:145
+#: page-templates/luoghi.php:146
 msgid "Non è stata trovato nessun luogo"
 msgstr ""
 
-#: page-templates/eventi.php:160
+#: page-templates/brevetti.php:227
+msgid "Non è stato trovato alcun brevetto"
+msgstr ""
+
+#: page-templates/eventi.php:161
 msgid "Non è stato trovato alcun evento"
 msgstr ""
 
-#: archive.php:104 page-templates/blog.php:136
+#: archive.php:105 page-templates/blog.php:137
 msgid "Non è stato trovato nessun articolo"
 msgstr ""
 
-#: page-templates/archive-progetti.php:103 page-templates/progetti.php:118
+#: page-templates/archive-progetti.php:104 page-templates/progetti.php:119
 msgid "Non è stato trovato nessun progetto"
 msgstr ""
 
@@ -1273,13 +1492,21 @@ msgid "Notizia"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:196 page-templates/notizie.php:2
+#: inc/utils.php:202 page-templates/notizie.php:2
 #: template-parts/hero/notizie.php:9 template-parts/home/hp-list-news.php:29
 msgid "Notizie"
 msgstr ""
 
 #: inc/admin/options.php:918
 msgid "Novità"
+msgstr ""
+
+#: single-brevetto.php:226
+msgid "Numero deposito"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:53
+msgid "Nuova area tematica"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:49
@@ -1300,7 +1527,7 @@ msgid ""
 "e data di scadenza (opzionale)"
 msgstr ""
 
-#: inc/admin/options.php:1618
+#: inc/admin/options.php:1689 inc/admin/options.php:1863
 msgid "Ogni ora"
 msgstr ""
 
@@ -1315,16 +1542,25 @@ msgstr ""
 msgid "Opzioni di base"
 msgstr ""
 
+#: template-parts/common/paginazione.php:44
+#: template-parts/common/paginazione.php:57
+msgid "pagina"
+msgstr ""
+
 #: 404.php:22
 msgid "Pagina non trovata"
 msgstr ""
 
-#: page.php:68
+#: page.php:69
 msgid "Pagine collegate"
 msgstr ""
 
-#: single-progetto.php:131 single-progetto.php:203
+#: single-progetto.php:132 single-progetto.php:204
 msgid "Partecipanti"
+msgstr ""
+
+#: inc/admin/options.php:1843
+msgid "Password"
 msgstr ""
 
 #: inc/admin/options.php:114
@@ -1336,22 +1572,27 @@ msgid "Persona"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:197 page-templates/persone.php:2 inc/admin/options.php:1053
+#: inc/utils.php:203 page-templates/persone.php:2 inc/admin/options.php:1053
 #: inc/admin/options.php:1059
 msgid "Persone"
 msgstr ""
 
-#: single-luogo.php:120 single-luogo.php:160
+#: single-luogo.php:121 single-luogo.php:161
 msgid "Posizione"
 msgstr ""
 
-#: inc/utils.php:198
+#: inc/utils.php:204
 msgid "Post"
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:39
 msgctxt "Post Type General Name"
 msgid "Banner"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:76
+msgctxt "Post Type General Name"
+msgid "Brevetti"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:36
@@ -1440,6 +1681,12 @@ msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Banner"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:78
+#: inc/classes/class-patentmanager.php:79
+msgctxt "Post Type Singular Name"
+msgid "Aggiungi un Brevetto"
+msgstr ""
+
 #: inc/classes/class-eventmanager.php:38 inc/classes/class-eventmanager.php:39
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi un Evento"
@@ -1475,6 +1722,11 @@ msgctxt "Post Type Singular Name"
 msgid "Banner"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:77
+msgctxt "Post Type Singular Name"
+msgid "Brevetto"
+msgstr ""
+
 #: inc/classes/class-eventmanager.php:37
 msgctxt "Post Type Singular Name"
 msgid "Evento"
@@ -1493,6 +1745,11 @@ msgstr ""
 #: inc/classes/class-bannermanager.php:43
 msgctxt "Post Type Singular Name"
 msgid "Modifica il Banner"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:80
+msgctxt "Post Type Singular Name"
+msgid "Modifica il Brevetto"
 msgstr ""
 
 #: inc/classes/class-eventmanager.php:40
@@ -1565,6 +1822,11 @@ msgctxt "Post Type Singular Name"
 msgid "Visualizza il Banner"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:81
+msgctxt "Post Type Singular Name"
+msgid "Visualizza il Brevetto"
+msgstr ""
+
 #: inc/classes/class-eventmanager.php:41
 msgctxt "Post Type Singular Name"
 msgid "Visualizza il Evento"
@@ -1599,9 +1861,9 @@ msgstr ""
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
-#: single-indirizzo-di-ricerca.php:127 single-indirizzo-di-ricerca.php:189
-#: single-persona.php:161 single-persona.php:237 inc/utils.php:199
-#: inc/admin/options.php:1196 template-parts/hero/progetti.php:9
+#: single-indirizzo-di-ricerca.php:128 single-indirizzo-di-ricerca.php:190
+#: single-persona.php:162 single-persona.php:238 inc/utils.php:205
+#: inc/admin/options.php:1265 template-parts/hero/progetti.php:9
 msgid "Progetti"
 msgstr ""
 
@@ -1609,7 +1871,7 @@ msgstr ""
 msgid "Progetto"
 msgstr ""
 
-#: inc/admin/options.php:1666
+#: inc/admin/options.php:1737
 msgid "Pubblicato"
 msgstr ""
 
@@ -1617,28 +1879,32 @@ msgstr ""
 msgid "Pubblicazione"
 msgstr ""
 
-#: single-persona.php:192 single-persona.php:319 single-progetto.php:145
-#: single-progetto.php:231 inc/utils.php:200 inc/admin/options.php:1127
+#: single-persona.php:193 single-persona.php:322 single-progetto.php:146
+#: single-progetto.php:232 inc/utils.php:206 inc/admin/options.php:1127
 #: template-parts/home/hp-list-publication.php:29
 msgid "Pubblicazioni"
 msgstr ""
 
-#: inc/admin/options.php:1826
+#: inc/admin/options.php:2048
 msgid "Pulsante per il login visibile"
 msgstr ""
 
-#: single-indirizzo-di-ricerca.php:120 single-indirizzo-di-ricerca.php:172
-#: single-progetto.php:124 single-progetto.php:189
+#: single-indirizzo-di-ricerca.php:121 single-indirizzo-di-ricerca.php:173
+#: single-progetto.php:125 single-progetto.php:190
 msgid "Responsabile"
 msgstr ""
 
-#: inc/admin/options.php:1881
+#: inc/admin/options.php:2103
 msgid "REST API"
 msgstr ""
 
 #. Name of the template
 #: page-templates/cerca.php:2
 msgid "Ricerca"
+msgstr ""
+
+#: page-templates/brevetti.php:113
+msgid "Ricerca libera"
 msgstr ""
 
 #: page-templates/contatti.php:86
@@ -1657,6 +1923,10 @@ msgstr ""
 msgid "Rimuovi Immagine Banner"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:84
+msgid "Rimuovi Immagine Brevetto"
+msgstr ""
+
 #: inc/classes/class-eventmanager.php:44
 msgid "Rimuovi Immagine Evento"
 msgstr ""
@@ -1665,7 +1935,7 @@ msgstr ""
 msgid "Rimuovi Immagine Notizia"
 msgstr ""
 
-#: page-templates/contatti.php:286 page-templates/newsletter.php:199
+#: page-templates/contatti.php:291 page-templates/newsletter.php:202
 msgid "Riscrivi qui il codice di conferma"
 msgstr ""
 
@@ -1673,19 +1943,19 @@ msgstr ""
 msgid "Risultati"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:134
+#: page-templates/brevetti.php:72 page-templates/pubblicazioni.php:134
 msgid "Scegli un'opzione"
 msgstr ""
 
-#: inc/admin/options.php:1644
+#: inc/admin/options.php:1715
 msgid "Scelta eventi"
 msgstr ""
 
-#: inc/admin/options.php:1611
+#: inc/admin/options.php:1682 inc/admin/options.php:1856
 msgid "Schedulazione"
 msgstr ""
 
-#: inc/admin/options.php:1617
+#: inc/admin/options.php:1688 inc/admin/options.php:1862
 msgid "Schedulazione disabilitata"
 msgstr ""
 
@@ -1694,11 +1964,11 @@ msgstr ""
 msgid "Seguici su"
 msgstr ""
 
-#: inc/admin/options.php:1847
+#: inc/admin/options.php:2069
 msgid "Selettore lingua visibile"
 msgstr ""
 
-#: inc/admin/options.php:1391
+#: inc/admin/options.php:1460
 msgid ""
 "Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo "
 "l'elenco delle strutture."
@@ -1735,7 +2005,7 @@ msgstr ""
 msgid "Selezione Automatica"
 msgstr ""
 
-#: inc/admin/options.php:1764
+#: inc/admin/options.php:1986
 msgid "Selezione del programma usato per gestire la newsletter del sito"
 msgstr ""
 
@@ -1743,7 +2013,7 @@ msgstr ""
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
-#: inc/admin/options.php:1728
+#: inc/admin/options.php:1950
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
 "Designers Italia)"
@@ -1769,7 +2039,11 @@ msgstr ""
 msgid "Sezione hero principale"
 msgstr ""
 
-#: inc/admin/options.php:1209
+#: inc/admin/options.php:1208
+msgid "Sezione I Brevetti"
+msgstr ""
+
+#: inc/admin/options.php:1278
 msgid "Sezione I Progetti"
 msgstr ""
 
@@ -1781,12 +2055,20 @@ msgstr ""
 msgid "Sezione Il Laboratorio"
 msgstr ""
 
-#: inc/admin/options.php:1278
+#: inc/admin/options.php:1347
 msgid "Sezione Indirizzi Ricerca"
 msgstr ""
 
-#: inc/admin/options.php:1518
+#: inc/admin/options.php:1589
 msgid "Sezione integrazione con Indico"
+msgstr ""
+
+#: inc/admin/options.php:1780
+msgid "Sezione integrazione con IRIS AP Brevetti"
+msgstr ""
+
+#: inc/admin/options.php:1903
+msgid "Sezione integrazione con IRIS Pubblicazioni"
 msgstr ""
 
 #: inc/admin/options.php:934
@@ -1797,7 +2079,7 @@ msgstr ""
 msgid "Sezione Le Pubblicazioni"
 msgstr ""
 
-#: inc/admin/options.php:1349
+#: inc/admin/options.php:1418
 msgid "Sezione Luoghi"
 msgstr ""
 
@@ -1805,7 +2087,7 @@ msgstr ""
 msgid "Sezione Persone"
 msgstr ""
 
-#: inc/admin/options.php:1422
+#: inc/admin/options.php:1491
 msgid "Sezione socialmedia"
 msgstr ""
 
@@ -1814,52 +2096,57 @@ msgstr ""
 #: inc/admin/options.php:459 inc/admin/options.php:501
 #: inc/admin/options.php:683 inc/admin/options.php:697
 #: inc/admin/options.php:711 inc/admin/options.php:725
-#: inc/admin/options.php:739 inc/admin/options.php:1395
-#: inc/admin/options.php:1434 inc/admin/options.php:1530
-#: inc/admin/options.php:1545 inc/admin/options.php:1754
-#: inc/admin/options.php:1830 inc/admin/options.php:1851
-#: inc/admin/options.php:1893
+#: inc/admin/options.php:739 inc/admin/options.php:1464
+#: inc/admin/options.php:1503 inc/admin/options.php:1601
+#: inc/admin/options.php:1616 inc/admin/options.php:1792
+#: inc/admin/options.php:1807 inc/admin/options.php:1976
+#: inc/admin/options.php:2052 inc/admin/options.php:2073
+#: inc/admin/options.php:2115
 msgid "Si"
 msgstr ""
 
-#: inc/classes/class-indicomanager.php:11
+#: inc/classes/class-base-importer.php:10
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr ""
 
-#: single-evento.php:371 single-persona.php:474 single-progetto.php:70
-#: template-parts/common/sezione-contatti.php:60
+#: single-evento.php:375 single-persona.php:485 single-progetto.php:70
+#: template-parts/common/sezione-contatti.php:63
 msgid "Sito web"
 msgstr ""
 
-#: inc/admin/options.php:1405 inc/admin/options.php:1411
+#: inc/admin/options.php:1474 inc/admin/options.php:1480
 msgid "Socialmedia"
 msgstr ""
 
-#: inc/admin/options.php:1652
+#: inc/admin/options.php:1723
 msgid "Solo eventi di quest'anno"
 msgstr ""
 
-#: inc/admin/options.php:1651
+#: inc/admin/options.php:1722
 msgid "Solo eventi futuri"
 msgstr ""
 
-#: inc/admin/options.php:1660
+#: inc/admin/options.php:1731
 msgid "Stato dell'oggetto importato"
 msgstr ""
 
-#: inc/admin/options.php:1661
+#: inc/admin/options.php:1732
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr ""
 
-#: inc/admin/options.php:1733
+#: single-brevetto.php:166 single-brevetto.php:237
+msgid "Status"
+msgstr ""
+
+#: inc/admin/options.php:1955
 msgid "Stile Bootstrap Italia standard"
 msgstr ""
 
-#: inc/admin/options.php:1727
+#: inc/admin/options.php:1949
 msgid "Stile del sito"
 msgstr ""
 
-#: inc/admin/options.php:1734
+#: inc/admin/options.php:1956
 msgid "Stile personalizzato"
 msgstr ""
 
@@ -1873,6 +2160,11 @@ msgstr ""
 
 #: inc/admin/options.php:66
 msgid "Tagline"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:46
+msgctxt "taxonomy general name"
+msgid "Area tematica"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:42
@@ -1890,6 +2182,11 @@ msgctxt "taxonomy general name"
 msgid "Tipologia luogo"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:47
+msgctxt "taxonomy singular name"
+msgid "Area tematica"
+msgstr ""
+
 #: inc/classes/class-peoplemanager.php:43
 msgctxt "taxonomy singular name"
 msgid "Struttura"
@@ -1905,7 +2202,7 @@ msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
 msgstr ""
 
-#: footer.php:73 page-templates/contatti.php:255 inc/admin/options.php:124
+#: footer.php:73 page-templates/contatti.php:260 inc/admin/options.php:124
 msgid "Telefono"
 msgstr ""
 
@@ -1918,7 +2215,7 @@ msgstr ""
 msgid "Testo"
 msgstr ""
 
-#: page-templates/contatti.php:241
+#: page-templates/contatti.php:246
 msgid "Testo del messaggio"
 msgstr ""
 
@@ -1930,7 +2227,7 @@ msgstr ""
 msgid "Testo hero ENG"
 msgstr ""
 
-#: inc/admin/options.php:1629
+#: inc/admin/options.php:1700 inc/admin/options.php:1874
 msgid "Tipo import"
 msgstr ""
 
@@ -1949,6 +2246,10 @@ msgstr ""
 
 #: inc/classes/class-peopletypemanager.php:40
 msgid "Tipologia Persona"
+msgstr ""
+
+#: single-brevetto.php:130 single-brevetto.php:206
+msgid "Titolari"
 msgstr ""
 
 #: inc/classes/class-placemanager.php:126
@@ -1971,11 +2272,11 @@ msgstr ""
 msgid "Titolo hero ENG"
 msgstr ""
 
-#: inc/admin/options.php:1569 inc/admin/options.php:1777
+#: inc/admin/options.php:1640 inc/admin/options.php:1999
 msgid "Token API"
 msgstr ""
 
-#: page.php:63
+#: page.php:60 page.php:61 page.php:64
 msgid "Torna indietro"
 msgstr ""
 
@@ -1983,7 +2284,7 @@ msgstr ""
 msgid "Tutta l’organizzazione"
 msgstr ""
 
-#: single-notizia.php:91 template-parts/home/hp-list-news.php:86
+#: single-notizia.php:91 template-parts/home/hp-list-news.php:87
 msgid "Tutte le notizie"
 msgstr ""
 
@@ -1999,27 +2300,28 @@ msgstr ""
 msgid "Tutte le tipologie luogo"
 msgstr ""
 
-#: single-post.php:91 template-parts/home/hp-list-article.php:80
+#: single-post.php:91 template-parts/home/hp-list-article.php:81
 msgid "Tutti gli articoli"
 msgstr ""
 
-#: inc/admin/options.php:1650 template-parts/home/hp-list-event.php:105
+#: inc/admin/options.php:1721 template-parts/home/hp-list-event.php:106
 msgid "Tutti gli eventi"
 msgstr ""
 
+#: inc/classes/class-patentmanager.php:49
 #: inc/classes/class-publicationmanager.php:42
 msgid "Tutti i tipi"
 msgstr ""
 
-#: single-persona.php:203 single-persona.php:366
+#: single-persona.php:204 single-persona.php:370
 msgid "Ulteriori informazioni"
 msgstr ""
 
-#: inc/admin/options.php:1619
+#: inc/admin/options.php:1690 inc/admin/options.php:1864
 msgid "Una volta al giorno"
 msgstr ""
 
-#: inc/admin/options.php:1621
+#: inc/admin/options.php:1692 inc/admin/options.php:1866
 msgid "Una volta alla settimana"
 msgstr ""
 
@@ -2027,16 +2329,24 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
+#: inc/admin/options.php:1818
+msgid "Url endpoint brevetti"
+msgstr ""
+
 #: inc/admin/options.php:148
 msgid "Url ente padre"
 msgstr ""
 
-#: inc/admin/options.php:1556
+#: inc/admin/options.php:1627
 msgid "Url Indico"
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:48
 msgid "Usa come Immagine Banner"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:85
+msgid "Usa come Immagine Brevetto"
 msgstr ""
 
 #: inc/classes/class-placemanager.php:92
@@ -2049,6 +2359,14 @@ msgstr ""
 
 #: inc/classes/class-newsmanager.php:48
 msgid "Usa come Immagine Notizia"
+msgstr ""
+
+#: inc/admin/options.php:1831
+msgid "Username"
+msgstr ""
+
+#: inc/classes/class-base-importer.php:179
+msgid "Utente non autorizzato"
 msgstr ""
 
 #: page-templates/contatti.php:126
@@ -2078,11 +2396,13 @@ msgstr ""
 msgid "Vai al menu di navigazione"
 msgstr ""
 
-#: page-templates/archive-progetti.php:81 page-templates/progetti.php:96
+#: page-templates/archive-progetti.php:81
+#: page-templates/archive-progetti.php:83 page-templates/progetti.php:96
+#: page-templates/progetti.php:98
 msgid "Vai al progetto"
 msgstr ""
 
-#: page-templates/ricerca.php:77
+#: page-templates/ricerca.php:77 page-templates/ricerca.php:79
 msgid "Vai all'attività"
 msgstr ""
 
@@ -2098,7 +2418,7 @@ msgstr ""
 msgid "Vedi tutti"
 msgstr ""
 
-#: single-evento.php:206 single-evento.php:413
+#: single-evento.php:207 single-evento.php:418
 msgid "Video"
 msgstr ""
 
@@ -2134,11 +2454,11 @@ msgstr ""
 msgid "Visualizza la sezione dei banner"
 msgstr ""
 
-#: inc/admin/options.php:1390
+#: inc/admin/options.php:1459
 msgid "Visualizza mappa"
 msgstr ""
 
-#: page-templates/contatti.php:267
+#: page-templates/contatti.php:272
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
 msgstr ""
 
@@ -2146,7 +2466,7 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: inc/admin/options.php:1860
+#: inc/admin/options.php:2082
 msgid "Web Analytics Italia"
 msgstr ""
 

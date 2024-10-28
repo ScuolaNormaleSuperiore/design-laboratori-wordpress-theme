@@ -11,6 +11,17 @@ $anni_pubblicazioni      = $wpdb->get_results( "SELECT DISTINCT meta_value FROM 
 $anno_filter_array       = null;
 $tipi_pubbl_filter_array = null;
 $anno_select             = null;
+$per_page                = strval( DLI_PER_PAGE );
+$per_page_values         = DLI_PER_PAGE_VALUES;
+
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
 
 if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
 	$anno_select = $_GET['annoSelect'];
@@ -43,8 +54,8 @@ if ( count( $tipi_pubblicazione_params ) > 0 ) {
 if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'posts_per_page' => $per_page,
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -61,8 +72,8 @@ if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'posts_per_page' => $per_page,
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -79,8 +90,8 @@ if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'posts_per_page' => $per_page,
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -94,8 +105,8 @@ if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
 if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
 	$pubblicazioni = new WP_Query(
 		array(
-			'posts_per_page' => DLI_POSTS_PER_PAGE,
-			'paged'          => get_query_var( 'paged', 1 ),
+			'posts_per_page' => $per_page,
+			'paged'          => $paged,
 			'post_type'      => 'pubblicazione',
 			'orderby'        => 'anno',
 			'order'          => 'ASC',
@@ -110,20 +121,21 @@ $num_results = $pubblicazioni->found_posts;
 
 ?>
 
-<form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
-	<main id="main-container" role="main">
 
-		<!-- BREADCRUMB -->
-		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+<main id="main-container" role="main">
 
-		<!-- BANNER PUBBLICAZIONI -->
-		<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
+	<!-- BREADCRUMB -->
+	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-		<!-- ELENCO PUBBLICAZIONI -->
-		<section id="pubblicazioni">
-			<div class="container p-5"> 
-				<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
-					<div class="col-12 col-lg-3 border-end pb-3">
+	<!-- BANNER PUBBLICAZIONI -->
+	<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
+
+	<!-- ELENCO PUBBLICAZIONI -->
+	<section id="pubblicazioni">
+		<div class="container p-5"> 
+			<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
+				<div class="col-12 col-lg-3 border-end pb-3">
+					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
 						<!--COLONNA FILTRI -->
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
@@ -176,89 +188,88 @@ $num_results = $pubblicazioni->found_posts;
 						}
 						?>
 						<!--fine filtri -->
-					</div>
-
-					<!-- PUBBLICAZIONI -->
-					<?php
-
-					if ( $num_results ) {
-					?>
-
-						<div class="col-12 col-lg-8 pt-3">
-							<div class="row">
-								<?php
-								while ( $pubblicazioni->have_posts() ) {
-									$pubblicazioni->the_post();
-									$ID       = get_the_ID();
-									$title    = get_the_title( $ID );
-									$url      = dli_get_field( 'url' );
-									?>
-									<!--start card-->
-									<div class="card-wrapper pt-3">
-										<div class="card card-teaser rounded shadow">
-											<div class="card-body">
+					</form>
+				</div>
+				<!-- PUBBLICAZIONI -->
+				<?php
+				if ( $num_results ) {
+				?>
+					<div class="col-12 col-lg-8 pt-3">
+						<div class="row">
+							<?php
+							while ( $pubblicazioni->have_posts() ) {
+								$pubblicazioni->the_post();
+								$ID       = get_the_ID();
+								$title    = get_the_title( $ID );
+								$url      = dli_get_field( 'url' );
+								?>
+								<!--start card-->
+								<div class="card-wrapper pt-3">
+									<div class="card card-teaser rounded shadow">
+										<div class="card-body">
+											<?php
+											if ( $url ) {
+												?>
+												<h3 class="card-title cardTitlecustomSpacing h5">
+													<svg class="icon" role="img" aria-labelledby="Note">
+														<title>Note</title>
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
+													</svg>
+													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+												</h3>
 												<?php
-												if ( $url ) {
-													?>
-													<h3 class="card-title cardTitlecustomSpacing h5">
-														<svg class="icon" role="img" aria-labelledby="Note">
-															<title>Note</title>
-															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-														</svg>
-														<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
-													</h3>
-													<?php
-												}
-												else {
-													?>
-													<h3 class="card-title cardTitlecustomSpacing h5">
-														<svg class="icon" role="img" aria-labelledby="Note">
-															<title>Note</title>
-															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-														</svg>
-														<?php echo esc_attr( $title ); ?>
-													</h3>
-												<?php } ?>
-												<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
-											</div>
+											}
+											else {
+												?>
+												<h3 class="card-title cardTitlecustomSpacing h5">
+													<svg class="icon" role="img" aria-labelledby="Note">
+														<title>Note</title>
+														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
+													</svg>
+													<?php echo esc_attr( $title ); ?>
+												</h3>
+											<?php } ?>
+											<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
 										</div>
 									</div>
-									<!--end card-->
-								<?php } 
-								?>
-							</div>
+								</div>
+								<!--end card-->
+							<?php } 
+							?>
 						</div>
-						<?php
-							wp_reset_postdata();
-					}
-					else {
-						?>
-						<div class="col-12 col-lg-8">
-							<div class="row pt-2">
-							<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
-							</div>
 					</div>
 					<?php
-					}
+						wp_reset_postdata();
+				}
+				else {
 					?>
+					<div class="col-12 col-lg-8">
+						<div class="row pt-2">
+						<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
+						</div>
 				</div>
+				<?php
+				}
+				?>
 			</div>
-		</section>
+		</div>
+	</section>
 
 
-		<!-- PAGINAZIONE -->
+	<!-- PAGINAZIONE -->
 	<?php
 		get_template_part(
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $pubblicazioni,
+				'query'           => $pubblicazioni,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>
 
-	</main>
-</form>
+</main>
 <!-- END CONTENT -->
 
 <?php

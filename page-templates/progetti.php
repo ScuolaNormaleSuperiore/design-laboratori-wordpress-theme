@@ -7,34 +7,25 @@ global $post;
 get_header();
 
 define( 'PROG_CELLS_PER_ROW', 3 );
-
+$per_page        =  DLI_POSTS_PER_PAGE;
+$per_page_values = DLI_POST_PER_PAGE_VALUES;
 $today = date( 'Ymd' );
 
-$the_query = new WP_Query(
-	array(
-		'paged'          => get_query_var( 'paged', 1 ),
-		'post_type'      => PROGETTO_POST_TYPE,
-		'posts_per_page' => DLI_POSTS_PER_PAGE,
-		'meta_query' => array(
-				'relation'     => 'AND',
-				array(
-					'key' => 'data_inizio',
-					'compare'  => '<=',
-					'value'    => $today,
-				),
-				array(
-					'key' => 'data_fine',
-					'compare'  => '>=',
-					'value'    => $today,
-				),
-				array(
-					'key'     => 'archiviato',
-					'compare' => '=',
-					'value'   => 0,
-				),
-			),
-		),
+if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
+	$per_page = sanitize_text_field( $_GET['per_page'] );
+}
+if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+	$paged = 1;
+} else {
+	$paged = get_query_var( 'paged', 1 );
+}
+
+$params = array(
+	'today'    => $today,
+	'per_page' => $per_page,
+	'paged'    => $paged,
 );
+$the_query   = DLI_ContentsManager::dli_get_projects_data_query( $params );
 $num_results = $the_query->found_posts;
 ?>
 
@@ -137,7 +128,9 @@ $num_results = $the_query->found_posts;
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $the_query,
+				'query'           => $the_query,
+				'per_page'        => $per_page,
+				'per_page_values' => $per_page_values,
 			)
 		);
 	?>

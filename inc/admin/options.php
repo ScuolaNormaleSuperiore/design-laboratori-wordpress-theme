@@ -1562,580 +1562,584 @@ function dli_register_main_options_metabox() {
 		'type' => 'text_url',
 	) );
 
-	/**
-	* 15 - Registers options page "Integrazione con Indico".
-	*/
-	$args = array(
-		'id'           => 'dli_options_indico',
-		'title'        => esc_html__( 'Indico', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'indico',
-		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),	);
+	// BEGIN SECTION FOR ADMINISTRATORS
+	if ( current_user_can( DLI_ADMIN_EDIT_CONFIG_PERMISSION ) ) {
+		/**
+		* 15 - Registers options page "Integrazione con Indico".
+		*/
+		$args = array(
+			'id'           => 'dli_options_indico',
+			'title'        => esc_html__( 'Indico', 'design_laboratori_italia' ),
+			'object_types' => array( 'options-page' ),
+			'option_key'   => 'indico',
+			'capability'    => DLI_ADMIN_EDIT_CONFIG_PERMISSION,
+			'parent_slug'  => 'dli_options',
+			'tab_group'    => 'dli_options',
+			'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),	);
 
 
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-			$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
+		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+				$args['display_cb'] = 'dli_options_display_with_tabs';
+		}
 
-	$indico_options = new_cmb2_box( $args );
+		$indico_options = new_cmb2_box( $args );
 
-	$indico_options->add_field( array(
-			'id' => $prefix . 'indico_istruzioni',
-			'name'        => __( 'Sezione integrazione con Indico', 'design_laboratori_italia' ),
-			'desc' => __( 'Impostazioni per configurare l\'integrazione con Indico' , 'design_laboratori_italia' ) . '.',
-			'type' => 'title',
-	) );
-
-	$indico_options->add_field(array(
-			'id' => $prefix . 'indico_enabled',
-			'name' => __( "Attiva l'integrazione con Indico", 'design_laboratori_italia' ),
-			'desc' => __( "Abilita l'integrazione con Indico", 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true'  => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-			'attributes' => array(
-					'data-conditional-value' => "false",
-			),
-	));
-
-	$indico_options->add_field(array(
-		'id' => $prefix . 'indico_debug_enabled',
-		'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
-		'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
-		'type' => 'radio_inline',
-		'default' => 'false',
-		'options' => array(
-				'true'  => __( 'Si', 'design_laboratori_italia' ),
-				'false' => __( 'No', 'design_laboratori_italia' ),
-		),
-		'attributes' => array(
-				'data-conditional-value' => "false",
-		),
-));
-
-	$indico_options->add_field(
-		array(
-			'id'         => $prefix . 'indico_baseurl',
-			'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'default'    => 'xxx',
-			'attributes' => array(
-				'required' => 'required',
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'         => $prefix . 'indico_token_api',
-			'name'       => __( 'Token API', 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'default'    => 'xxx',
-			'attributes' => array(
-				'type'     => 'password',
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'         => $prefix . 'indico_category',
-			'name'       => __( 'Categoria', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( 'ID della categoria degli eventi da importare' , 'design_laboratori_italia' ),
-			'type'       => 'text_small',
-			'default'    => 1,
-			'attributes' => array(
-				'required' => 'required',
-				'type'    => 'number',
-				'pattern' => '\d*',
-			),
-			'sanitization_cb' => 'absint',
-			'escape_cb'       => 'absint',
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'         => $prefix . 'indico_keywords',
-			'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'default'    => 'xxx',
-			'attributes' => array(
-				'required' => 'required',
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'               => $prefix . 'indico_schedule',
-			'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
-			'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/indico-import." , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'never',
-			'show_option_none' => false,
-			'options'          => array(
-				'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
-				'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
-				'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
-				'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
-				'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'               => $prefix . 'indico_import_type',
-			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
-			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'dryrun',
-			'show_option_none' => false,
-			'options'          => array(
-				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
-				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'               => $prefix . 'indico_import_criteria',
-			'name'             => __( 'Scelta eventi', 'design_laboratori_italia' ),
-			'desc'             => __( 'Criterio di scelta degli eventi da importare' , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'this-year',
-			'show_option_none' => false,
-			'options'          => array(
-				'all'      => __( 'Tutti gli eventi', 'design_laboratori_italia' ),
-				'future'   => __( 'Solo eventi futuri', 'design_laboratori_italia' ),
-				'this-year' => __( "Solo eventi di quest'anno", 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'               => $prefix . 'indico_imp_item_status',
-			'name'             => __( "Stato dell'oggetto importato", 'design_laboratori_italia' ),
-			'desc'             => __( "Stato di pubblicazione in cui un oggetto importato viene salvato" , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'draft',
-			'show_option_none' => false,
-			'options'          => array(
-				'publish' => __( 'Pubblicato', 'design_laboratori_italia' ),
-				'draft'   => __( 'Bozza', 'design_laboratori_italia' ),
-		),
-		)
-	);
-
-	$indico_options->add_field(
-		array(
-			'id'               => $prefix . 'indico_item_existent_action',
-			'name'             => __( 'Evento esistente', 'design_laboratori_italia' ),
-			'desc'             => __( "Azione da intraprendere se l'evento esiste già" , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'ignore',
-			'show_option_none' => false,
-			'options'          => array(
-				'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
-				'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	/**
-	* 16 - Registers options page "Integrazione con IRIS".
-	*/
-	$args = array(
-		'id'           => 'dli_options_iris',
-		'title'        => esc_html__( 'Iris', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'iris',
-		'capability'    => DLI_EDIT_CONFIG_PERMISSION,
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Iris', 'design_laboratori_italia' ),	);
-
-
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-			$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-
-	$iris_options = new_cmb2_box( $args );
-
-	$iris_options->add_field( array(
-			'id' => $prefix . 'iris_brevetti_istruzioni',
-			'name'        => __( 'Sezione integrazione con IRIS AP Brevetti', 'design_laboratori_italia' ),
-			'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (AP Brevetti)' , 'design_laboratori_italia' ) . '.',
-			'type' => 'title',
-	) );
-
-	$iris_options->add_field(array(
-			'id' => $prefix . 'iris_brevetti_enabled',
-			'name' => __( "Attiva l'importazione dei brevetti", 'design_laboratori_italia' ),
-			'desc' => __( "Abilita l'integrazione con IRIS AP Brevetti", 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true'  => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-			'attributes' => array(
-					'data-conditional-value' => "false",
-			),
-	));
-
-	$iris_options->add_field(array(
-		'id' => $prefix . 'iris_debug_enabled',
-		'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
-		'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
-		'type' => 'radio_inline',
-		'default' => 'false',
-		'options' => array(
-				'true'  => __( 'Si', 'design_laboratori_italia' ),
-				'false' => __( 'No', 'design_laboratori_italia' ),
-		),
-		'attributes' => array(
-				'data-conditional-value' => "false",
-		),
-));
-
-	$iris_options->add_field(
-		array(
-			'id'         => $prefix . 'iris_brevetti_url',
-			'name'       => __( 'Url endpoint brevetti', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( "L'url dell'endpoint da invocare per scaricare i brevetti." , 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'default'    => 'xxx',
-			'attributes' => array(
-				'required' => 'required',
-			),
-		)
-	);
-
-	$iris_options->add_field(
-		array(
-			'id'         => $prefix . 'iris_brevetti_username',
-			'name'       => __( 'Username', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( 'Lo username per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'attributes' => array(
-				'required' => 'required',
-			),
-		)
-	);
-
-	$iris_options->add_field(
-		array(
-			'id'         => $prefix . 'iris_brevetti_password',
-			'name'       => __( 'Password', 'design_laboratori_italia' ) . '&nbsp;*',
-			'desc'       => __( 'La password per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
-			'type'       => 'text',
-			'default'    => 'xxx',
-			'attributes' => array(
-				'type'     => 'password',
-			),
-		)
-	);
-
-	$iris_options->add_field(
-		array(
-			'id'               => $prefix . 'iris_brevetti_schedule',
-			'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
-			'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/iris-ap-brevetti-import." , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'never',
-			'show_option_none' => false,
-			'options'          => array(
-				'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
-				'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
-				'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
-				'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
-				'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$iris_options->add_field(
-		array(
-			'id'               => $prefix . 'iris_brevetti_import_type',
-			'name'             => __( "Tipo import", 'design_laboratori_italia' ),
-			'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'dryrun',
-			'show_option_none' => false,
-			'options'          => array(
-				'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
-				'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$iris_options->add_field(
-		array(
-			'id'               => $prefix . 'iris_brevetti_item_existent_action',
-			'name'             => __( 'Brevetto esistente', 'design_laboratori_italia' ),
-			'desc'             => __( "Azione da intraprendere se il brevetto esiste già" , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'ignore',
-			'show_option_none' => false,
-			'options'          => array(
-				'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
-				'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$iris_options->add_field( array(
-		'id' => $prefix . 'iris_pubblicazioni_istruzioni',
-		'name'        => __( 'Sezione integrazione con IRIS Pubblicazioni', 'design_laboratori_italia' ),
-		'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (Pubblicazioni)' , 'design_laboratori_italia' ) . '.',
-		'type' => 'title',
-) );
-
-
-	/**
-	* 17 - Registers options page "Altro".
-	*/
-
-	$args = array(
-		'id'           => 'dli_setup_menu',
-		'title'        => esc_html__( 'Altro', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'setup',
-		'tab_title'    => __( 'Altro', 'design_laboratori_italia' ),
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-				'capability'    => DLI_EDIT_CONFIG_PERMISSION,
-		);
-
-	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-
-	$setup_options = new_cmb2_box( $args );
-
-	$setup_options->add_field( array(
-				'id' => $prefix . 'altro_istruzioni',
-				'name'        => __( 'Altre Informazioni', 'design_laboratori_italia' ),
-				'desc' => __( 'Area di configurazione delle opzioni generali del tema' , 'design_laboratori_italia' ) . '.',
+		$indico_options->add_field( array(
+				'id' => $prefix . 'indico_istruzioni',
+				'name'        => __( 'Sezione integrazione con Indico', 'design_laboratori_italia' ),
+				'desc' => __( 'Impostazioni per configurare l\'integrazione con Indico' , 'design_laboratori_italia' ) . '.',
 				'type' => 'title',
 		) );
 
-	$setup_options->add_field(
-		array(
-			'id'   => $prefix . 'style_manager',
-			'name' => __( 'Gestione dello stile del sito', 'design_laboratori_italia' ),
-			'type' => 'title',
-		)
-	);
-
-	$setup_options->add_field(
-		array(
-			'id'               => $prefix . 'choose_style',
-			'name'             => __( 'Stile del sito', 'design_laboratori_italia' ),
-			'desc'             => __( 'Selezione lo stile del sito (scegliere default per usare quello standard di Designers Italia)' , 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'default',
-			'show_option_none' => false,
-			'options'          => array(
-				'standard' => __( 'Stile Bootstrap Italia standard', 'design_laboratori_italia' ),
-				'custom'   => __( 'Stile personalizzato', 'design_laboratori_italia' ),
-		),
-		)
-	);
-	
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'newsletter',
-				'name' => __( 'Newsletter', 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
-	
-		$setup_options->add_field(
-			array(
-				'id'      => $prefix . 'newsletter_enabled',
-				'name'    => __( 'Attiva la newsletter', 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
+		$indico_options->add_field(array(
+				'id' => $prefix . 'indico_enabled',
+				'name' => __( "Attiva l'integrazione con Indico", 'design_laboratori_italia' ),
+				'desc' => __( "Abilita l'integrazione con Indico", 'design_laboratori_italia' ) . '.',
+				'type' => 'radio_inline',
 				'default' => 'false',
 				'options' => array(
 						'true'  => __( 'Si', 'design_laboratori_italia' ),
 						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
+				'attributes' => array(
+						'data-conditional-value' => "false",
+				),
+		));
+
+		$indico_options->add_field(array(
+			'id' => $prefix . 'indico_debug_enabled',
+			'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
+			'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+					'data-conditional-value' => "false",
+			),
+		));
+
+		$indico_options->add_field(
+			array(
+				'id'         => $prefix . 'indico_baseurl',
+				'name'       => __( 'Url Indico', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( "L'url del sito Indico da cui importare i dati" , 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'default'    => 'xxx',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'         => $prefix . 'indico_token_api',
+				'name'       => __( 'Token API', 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'default'    => 'xxx',
+				'attributes' => array(
+					'type'     => 'password',
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'         => $prefix . 'indico_category',
+				'name'       => __( 'Categoria', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( 'ID della categoria degli eventi da importare' , 'design_laboratori_italia' ),
+				'type'       => 'text_small',
+				'default'    => 1,
+				'attributes' => array(
+					'required' => 'required',
+					'type'    => 'number',
+					'pattern' => '\d*',
+				),
+				'sanitization_cb' => 'absint',
+				'escape_cb'       => 'absint',
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'         => $prefix . 'indico_keywords',
+				'name'       => __( 'Keywords', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( 'Le parole chiave degli eventi da importare, separate da virgola (operatore usato per la selezione: OR)' , 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'default'    => 'xxx',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'               => $prefix . 'indico_schedule',
+				'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
+				'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/indico-import." , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'never',
+				'show_option_none' => false,
+				'options'          => array(
+					'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
+					'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
+					'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
+					'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
+					'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'               => $prefix . 'indico_import_type',
+				'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+				'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'dryrun',
+				'show_option_none' => false,
+				'options'          => array(
+					'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+					'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'               => $prefix . 'indico_import_criteria',
+				'name'             => __( 'Scelta eventi', 'design_laboratori_italia' ),
+				'desc'             => __( 'Criterio di scelta degli eventi da importare' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'this-year',
+				'show_option_none' => false,
+				'options'          => array(
+					'all'      => __( 'Tutti gli eventi', 'design_laboratori_italia' ),
+					'future'   => __( 'Solo eventi futuri', 'design_laboratori_italia' ),
+					'this-year' => __( "Solo eventi di quest'anno", 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'               => $prefix . 'indico_imp_item_status',
+				'name'             => __( "Stato dell'oggetto importato", 'design_laboratori_italia' ),
+				'desc'             => __( "Stato di pubblicazione in cui un oggetto importato viene salvato" , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'draft',
+				'show_option_none' => false,
+				'options'          => array(
+					'publish' => __( 'Pubblicato', 'design_laboratori_italia' ),
+					'draft'   => __( 'Bozza', 'design_laboratori_italia' ),
+			),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
+				'id'               => $prefix . 'indico_item_existent_action',
+				'name'             => __( 'Evento esistente', 'design_laboratori_italia' ),
+				'desc'             => __( "Azione da intraprendere se l'evento esiste già" , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'ignore',
+				'show_option_none' => false,
+				'options'          => array(
+					'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
+					'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		/**
+		* 16 - Registers options page "Integrazione con IRIS".
+		*/
+		$args = array(
+			'id'           => 'dli_options_iris',
+			'title'        => esc_html__( 'Iris', 'design_laboratori_italia' ),
+			'object_types' => array( 'options-page' ),
+			'option_key'   => 'iris',
+			'capability'    => DLI_ADMIN_EDIT_CONFIG_PERMISSION,
+			'parent_slug'  => 'dli_options',
+			'tab_group'    => 'dli_options',
+			'tab_title'    => __( 'Iris', 'design_laboratori_italia' ),	);
+
+
+		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+				$args['display_cb'] = 'dli_options_display_with_tabs';
+		}
+
+		$iris_options = new_cmb2_box( $args );
+
+		$iris_options->add_field( array(
+				'id' => $prefix . 'iris_brevetti_istruzioni',
+				'name'        => __( 'Sezione integrazione con IRIS AP Brevetti', 'design_laboratori_italia' ),
+				'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (AP Brevetti)' , 'design_laboratori_italia' ) . '.',
+				'type' => 'title',
+		) );
+
+		$iris_options->add_field(array(
+				'id' => $prefix . 'iris_brevetti_enabled',
+				'name' => __( "Attiva l'importazione dei brevetti", 'design_laboratori_italia' ),
+				'desc' => __( "Abilita l'integrazione con IRIS AP Brevetti", 'design_laboratori_italia' ) . '.',
+				'type' => 'radio_inline',
+				'default' => 'false',
+				'options' => array(
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+				),
+				'attributes' => array(
+						'data-conditional-value' => "false",
+				),
+		));
+
+		$iris_options->add_field(array(
+			'id' => $prefix . 'iris_debug_enabled',
+			'name' => __( "Abilita messaggi debug", 'design_laboratori_italia' ),
+			'desc' => __( "Abilita messaggi debug nel file error.log", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+					'data-conditional-value' => "false",
+			),
+		));
+
+		$iris_options->add_field(
+			array(
+				'id'         => $prefix . 'iris_brevetti_url',
+				'name'       => __( 'Url endpoint brevetti', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( "L'url dell'endpoint da invocare per scaricare i brevetti." , 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'default'    => 'xxx',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+		$iris_options->add_field(
+			array(
+				'id'         => $prefix . 'iris_brevetti_username',
+				'name'       => __( 'Username', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( 'Lo username per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+		$iris_options->add_field(
+			array(
+				'id'         => $prefix . 'iris_brevetti_password',
+				'name'       => __( 'Password', 'design_laboratori_italia' ) . '&nbsp;*',
+				'desc'       => __( 'La password per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
+				'type'       => 'text',
+				'default'    => 'xxx',
+				'attributes' => array(
+					'type'     => 'password',
+				),
+			)
+		);
+
+		$iris_options->add_field(
+			array(
+				'id'               => $prefix . 'iris_brevetti_schedule',
+				'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
+				'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/iris-ap-brevetti-import." , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'never',
+				'show_option_none' => false,
+				'options'          => array(
+					'never'      => __( 'Schedulazione disabilitata', 'design_laboratori_italia' ),
+					'hourly'     => __( 'Ogni ora', 'design_laboratori_italia' ),
+					'daily'      => __( 'Una volta al giorno', 'design_laboratori_italia' ),
+					'twicedaily' => __( 'Due volte al giorno', 'design_laboratori_italia' ),
+					'weekly'     => __( 'Una volta alla settimana', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$iris_options->add_field(
+			array(
+				'id'               => $prefix . 'iris_brevetti_import_type',
+				'name'             => __( "Tipo import", 'design_laboratori_italia' ),
+				'desc'             => __( "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova (dry-run)" , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'dryrun',
+				'show_option_none' => false,
+				'options'          => array(
+					'commit'   => __( 'Finalizza import', 'design_laboratori_italia' ),
+					'dryrun'   => __( 'Dry Run (test import)', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$iris_options->add_field(
+			array(
+				'id'               => $prefix . 'iris_brevetti_item_existent_action',
+				'name'             => __( 'Brevetto esistente', 'design_laboratori_italia' ),
+				'desc'             => __( "Azione da intraprendere se il brevetto esiste già" , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'ignore',
+				'show_option_none' => false,
+				'options'          => array(
+					'update' => __( 'Aggiorna', 'design_laboratori_italia' ),
+					'ignore' => __( 'Ignora', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$iris_options->add_field( array(
+			'id' => $prefix . 'iris_pubblicazioni_istruzioni',
+			'name'        => __( 'Sezione integrazione con IRIS Pubblicazioni', 'design_laboratori_italia' ),
+			'desc' => __( 'Impostazioni per configurare l\'integrazione con IRIS Cineca (Pubblicazioni)' , 'design_laboratori_italia' ) . '.',
+			'type' => 'title',
+		) );
+
+
+		/**
+		* 17 - Registers options page "Altro".
+		*/
+
+		$args = array(
+			'id'           => 'dli_setup_menu',
+			'title'        => esc_html__( 'Altro', 'design_laboratori_italia' ),
+			'object_types' => array( 'options-page' ),
+			'option_key'   => 'setup',
+			'tab_title'    => __( 'Altro', 'design_laboratori_italia' ),
+			'parent_slug'  => 'dli_options',
+			'tab_group'    => 'dli_options',
+			'capability'   => DLI_ADMIN_EDIT_CONFIG_PERMISSION,
+			);
+
+		// 'tab_group' property is supported in > 2.4.0.
+		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+		}
+
+		$setup_options = new_cmb2_box( $args );
+
+		$setup_options->add_field( array(
+					'id' => $prefix . 'altro_istruzioni',
+					'name'        => __( 'Altre Informazioni', 'design_laboratori_italia' ),
+					'desc' => __( 'Area di configurazione delle opzioni generali del tema' , 'design_laboratori_italia' ) . '.',
+					'type' => 'title',
+			) );
+
+		$setup_options->add_field(
+			array(
+				'id'   => $prefix . 'style_manager',
+				'name' => __( 'Gestione dello stile del sito', 'design_laboratori_italia' ),
+				'type' => 'title',
 			)
 		);
 
 		$setup_options->add_field(
 			array(
-				'id'               => $prefix . 'newsletter_manager',
-				'name'             => __( 'Gestore delle newsletter', 'design_laboratori_italia' ),
-				'desc'             => __( 'Selezione del programma usato per gestire la newsletter del sito' , 'design_laboratori_italia' ),
+				'id'               => $prefix . 'choose_style',
+				'name'             => __( 'Stile del sito', 'design_laboratori_italia' ),
+				'desc'             => __( 'Selezione lo stile del sito (scegliere default per usare quello standard di Designers Italia)' , 'design_laboratori_italia' ),
 				'type'             => 'select',
 				'default'          => 'default',
 				'show_option_none' => false,
 				'options'          => array(
-					'brevo' => __( 'Brevo', 'design_laboratori_italia' ),
+					'standard' => __( 'Stile Bootstrap Italia standard', 'design_laboratori_italia' ),
+					'custom'   => __( 'Stile personalizzato', 'design_laboratori_italia' ),
 			),
 			)
 		);
+		
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'newsletter',
+					'name' => __( 'Newsletter', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
+		
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'newsletter_enabled',
+					'name'    => __( 'Attiva la newsletter', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'false',
+					'options' => array(
+							'true'  => __( 'Si', 'design_laboratori_italia' ),
+							'false' => __( 'No', 'design_laboratori_italia' ),
+					),
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'         => $prefix . 'newsletter_api_token',
-				'name'       => __( 'Token API', 'design_laboratori_italia' ),
-				'type'       => 'text',
-				'attributes' => array(
-					'type' => 'password',
+			$setup_options->add_field(
+				array(
+					'id'               => $prefix . 'newsletter_manager',
+					'name'             => __( 'Gestore delle newsletter', 'design_laboratori_italia' ),
+					'desc'             => __( 'Selezione del programma usato per gestire la newsletter del sito' , 'design_laboratori_italia' ),
+					'type'             => 'select',
+					'default'          => 'default',
+					'show_option_none' => false,
+					'options'          => array(
+						'brevo' => __( 'Brevo', 'design_laboratori_italia' ),
 				),
-			)
-		);
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'              => $prefix . 'newsletter_list_id',
-				'name'            => __( 'ID della lista', 'design_laboratori_italia' ),
-				'desc'            => __( 'ID della lista associata al sito' , 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'         => $prefix . 'newsletter_api_token',
+					'name'       => __( 'Token API', 'design_laboratori_italia' ),
+					'type'       => 'text',
+					'attributes' => array(
+						'type' => 'password',
+					),
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'              => $prefix . 'newsletter_template_id',
-				'name'            => __( 'ID del template', 'design_laboratori_italia' ),
-				'desc'            => __( 'ID del template della pagina che gestisce la double OptIn' , 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-				'escape_cb'       => 'absint',
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'newsletter_list_id',
+					'name'            => __( 'ID della lista', 'design_laboratori_italia' ),
+					'desc'            => __( 'ID della lista associata al sito' , 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'login',
-				'name' => __( 'Login', 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
-	
-		$setup_options->add_field(
-			array(
-				'id'      => $prefix . 'login_button_visible',
-				'name'    => __( 'Pulsante per il login visibile', 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
-				'default' => 'true',
-				'options' => array(
-						'true'  => __( 'Si', 'design_laboratori_italia' ),
-						'false' => __( 'No', 'design_laboratori_italia' ),
-				),
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'newsletter_template_id',
+					'name'            => __( 'ID del template', 'design_laboratori_italia' ),
+					'desc'            => __( 'ID del template della pagina che gestisce la double OptIn' , 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'multilingua',
-				'name' => __( 'Multilingua', 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
-	
-		$setup_options->add_field(
-			array(
-				'id'      => $prefix . 'selettore_lingua_visible',
-				'name'    => __( 'Selettore lingua visibile', 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
-				'default' => 'true',
-				'options' => array(
-						'true'  => __( 'Si', 'design_laboratori_italia' ),
-						'false' => __( 'No', 'design_laboratori_italia' ),
-				),
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'login',
+					'name' => __( 'Login', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
+		
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'login_button_visible',
+					'name'    => __( 'Pulsante per il login visibile', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'true',
+					'options' => array(
+							'true'  => __( 'Si', 'design_laboratori_italia' ),
+							'false' => __( 'No', 'design_laboratori_italia' ),
+					),
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'analytics',
-				'name' => __( 'Web Analytics Italia', 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
-	
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'analytics_code',
-				'name' => 'Codice analytics',
-				'desc' => __( 'Inserisci il codice Analytics. Puoi crearlo <a target="_blank" href="https://webanalytics.italia.it/">da qui</a>', 'design_laboratori_italia' ),
-				'type' => 'textarea_code',
-				'attributes'    => array(
-						'rows'  => 10,
-						'maxlength'  => '1000',
-				),
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'multilingua',
+					'name' => __( 'Multilingua', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
+		
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'selettore_lingua_visible',
+					'name'    => __( 'Selettore lingua visibile', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'true',
+					'options' => array(
+							'true'  => __( 'Si', 'design_laboratori_italia' ),
+							'false' => __( 'No', 'design_laboratori_italia' ),
+					),
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'   => $prefix . 'restapi',
-				'name' => __( 'REST API', 'design_laboratori_italia' ),
-				'type' => 'title',
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'analytics',
+					'name' => __( 'Web Analytics Italia', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
+		
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'analytics_code',
+					'name' => 'Codice analytics',
+					'desc' => __( 'Inserisci il codice Analytics. Puoi crearlo <a target="_blank" href="https://webanalytics.italia.it/">da qui</a>', 'design_laboratori_italia' ),
+					'type' => 'textarea_code',
+					'attributes'    => array(
+							'rows'  => 10,
+							'maxlength'  => '1000',
+					),
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'      => $prefix . 'rest_api_enabled',
-				'name'    => __( 'Abilita REST API', 'design_laboratori_italia' ),
-				'type'    => 'radio_inline',
-				'default' => 'false',
-				'options' => array(
-						'true'  => __( 'Si', 'design_laboratori_italia' ),
-						'false' => __( 'No', 'design_laboratori_italia' ),
-				),
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'   => $prefix . 'restapi',
+					'name' => __( 'REST API', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
 
-		$setup_options->add_field(
-			array(
-				'id'   => 'seo_section',
-				'name' => __( 'SEO', 'kk_writer_theme' ),
-				'type' => 'title',
-			)
-		);
-		$setup_options->add_field(
-			array(
-				'id'      => 'seo_internal_management_enabled',
-				'name'    => __( 'Enable internal SEO management', 'kk_writer_theme' ),
-				'desc'    => __( 'Enable the internal management of SEO and OG tags or disable it to delegate this job to an external plugin.', 'kk_writer_theme' ),
-				'type'    => 'radio_inline',
-				'default' => 'true',
-				'options' => array(
-						'true'  => __( 'Yes', 'kk_writer_theme' ),
-						'false' => __( 'No', 'kk_writer_theme' ),
-				),
-			)
-		);
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'rest_api_enabled',
+					'name'    => __( 'Abilita REST API', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'false',
+					'options' => array(
+							'true'  => __( 'Si', 'design_laboratori_italia' ),
+							'false' => __( 'No', 'design_laboratori_italia' ),
+					),
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'   => 'seo_section',
+					'name' => __( 'SEO', 'kk_writer_theme' ),
+					'type' => 'title',
+				)
+			);
+			$setup_options->add_field(
+				array(
+					'id'      => 'seo_internal_management_enabled',
+					'name'    => __( 'Enable internal SEO management', 'kk_writer_theme' ),
+					'desc'    => __( 'Enable the internal management of SEO and OG tags or disable it to delegate this job to an external plugin.', 'kk_writer_theme' ),
+					'type'    => 'radio_inline',
+					'default' => 'true',
+					'options' => array(
+							'true'  => __( 'Yes', 'kk_writer_theme' ),
+							'false' => __( 'No', 'kk_writer_theme' ),
+					),
+				)
+			);
+
+	} // END SECTION FOR ADMINISTRATORS
 
 }
 add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
