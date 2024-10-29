@@ -68,9 +68,9 @@ $num_results   = $the_query->found_posts;
 						
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
-							<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Anno', 'design_laboratori_italia' ); ?></h3>
+							<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Anno deposito', 'design_laboratori_italia' ); ?></h3>
 							<div class="select-wrapper">
-								<label for="deposit_year" class="visually-hidden"><?php echo __( 'Anno', 'design_laboratori_italia' ); ?></label>
+								<label for="deposit_year" class="visually-hidden"><?php echo __( 'Anno deposito', 'design_laboratori_italia' ); ?></label>
 								<select id="deposit_year" name="deposit_year">
 									<option selected="" value=""><?php echo __( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
 									<?php
