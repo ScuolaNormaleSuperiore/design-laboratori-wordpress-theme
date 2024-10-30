@@ -8,8 +8,8 @@
  */
 global $post;
 get_header();
-$image_metadata = dli_get_image_metadata( $post );
-$abstract    = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
+$image_metadata = dli_get_image_metadata( $post, 'full' );
+$abstract       = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 $summary        = dli_get_field( 'sommario_elenco' );
 $note           = dli_get_field( 'note' );
 $stato          = dli_get_field( 'stato_legale' );

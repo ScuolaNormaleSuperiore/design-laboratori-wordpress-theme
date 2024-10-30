@@ -161,7 +161,7 @@ $num_results   = $the_query->found_posts;
 								$stato          = dli_get_field( 'stato_legale' );
 								$titolari       = dli_get_field( 'titolari' );
 								$area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
-								$image_metadata = dli_get_image_metadata( $post, 'page-body' );
+								$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
 							?>
 							<div class="col-12 col-lg-6"> 
 								<!--start card-->
