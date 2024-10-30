@@ -9,7 +9,7 @@
 
 global $post;
 get_header();
-$image_metadata = dli_get_image_metadata( $post, 'page-body' );
+$image_metadata = dli_get_image_metadata( $post, 'full' );
 $related_items  = dli_get_field( 'pagine_collegate' );
 ?>
 
@@ -40,15 +40,17 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 					//get top parent page id
 					$top_parent = dli_get_page_anchestor_id( $post );
 					$slugs      = array_reverse ( dli_get_page_slug_anchestors( $post ) );
-					if ( count ( $slugs ) > 0 && ($slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
+					if ( count ( $slugs ) > 0 && ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
 						$top_parent = get_page_by_path( $slugs[0] . '/' . $slugs[1] )->ID;
 					}
 					//Retrieve till second level pages
-						$pages = get_pages( array(
-							'child_of'     => $top_parent,
-							'offset'       => 0,
-							'parent'       => $top_parent,
-						));
+					$pages = get_pages(
+						array(
+						'child_of'     => $top_parent,
+						'offset'       => 0,
+						'parent'       => $top_parent,
+						)
+					);
 					if($pages) {
 						?>
 
@@ -124,13 +126,15 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 						if ( $image_metadata['image_url'] ) {
 						?>
 							<img src="<?php echo $image_metadata['image_url']; ?>"
-									alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-									title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-									class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
+								alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
+								title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+								class="img-fluid">
 							<?php
 								if( $image_metadata['image_caption'] ) {
 							?>
-								<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<figcaption class="figure-caption">
+									<?php echo esc_attr( $image_metadata['image_caption'] ); ?>
+								</figcaption>
 							<?php
 								}
 							?>

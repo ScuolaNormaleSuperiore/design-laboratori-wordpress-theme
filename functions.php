@@ -150,7 +150,7 @@ if ( ! function_exists( 'dli_setup' ) ) :
 			add_image_size( 'item-card-list', 416, 232 , true );
 			add_image_size( 'item-carousel', 592, 334 , true );
 			add_image_size( 'banner', 600, 250 , false );
-			add_image_size( 'page-body', 860, 238 , false );
+			add_image_size( 'page-body', 860, 238 , true );
 		}
 
 		/**
