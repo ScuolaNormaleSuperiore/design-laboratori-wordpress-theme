@@ -192,7 +192,7 @@ class Patent_Manager {
 			),
 			array(
 				'key' => 'field_670502099b7a3',
-				'label' => 'Note**',
+				'label' => 'Altre informazioni**',
 				'name' => 'note',
 				'aria-label' => '',
 				'type' => 'wysiwyg',
