@@ -171,7 +171,7 @@ class Patent_Manager {
 		'fields' => array(
 			array(
 				'key' => 'field_6707df1a481eb',
-				'label' => 'Sommario elenco',
+				'label' => 'Sommario elenco**',
 				'name' => 'sommario_elenco',
 				'aria-label' => '',
 				'type' => 'textarea',
@@ -192,7 +192,7 @@ class Patent_Manager {
 			),
 			array(
 				'key' => 'field_670502099b7a3',
-				'label' => 'Note',
+				'label' => 'Note**',
 				'name' => 'note',
 				'aria-label' => '',
 				'type' => 'wysiwyg',
@@ -472,6 +472,27 @@ class Patent_Manager {
 				'ui' => 0,
 				'ui_on_text' => '',
 				'ui_off_text' => '',
+			),
+			array(
+				'key' => 'field_6722333ce1a5c',
+				'label' => 'Famiglia',
+				'name' => 'famiglia',
+				'aria-label' => '',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'maxlength' => '',
+				'allow_in_bindings' => 0,
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
 			),
 		),
 		'location' => array(
