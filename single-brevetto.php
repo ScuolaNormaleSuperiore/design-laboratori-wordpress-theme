@@ -9,14 +9,13 @@
 global $post;
 get_header();
 $image_metadata = dli_get_image_metadata( $post );
-$descrizione    = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
+$abstract    = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 $summary        = dli_get_field( 'sommario_elenco' );
 $note           = dli_get_field( 'note' );
 $stato          = dli_get_field( 'stato_legale' );
 $titolari       = dli_get_field( 'titolari' );
 $inventori      = dli_get_field( 'inventori' );
 $cod_brevetto   = dli_get_field( 'codice_brevetto' );
-$id_famiglia    = dli_get_field( 'id_famiglia' );
 $data_deposito  = dli_get_field( 'data_deposito' );
 $num_deposito   = dli_get_field( 'numero_deposito' );
 $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
@@ -118,12 +117,16 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 										</div>
 									</div>
 									<ul class="link-list">
+										<?php
+										if ( $abstract ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link active" href="#abstract">
 												<span><?php echo __( 'Abstract', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<?php
+										}
 										if ( $titolari ) {
 										?>
 										<li class="nav-item">
@@ -151,15 +154,6 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 										</li>
 										<?php
 										}
-										if ( $id_famiglia ) {
-										?>
-										<li class="nav-item">
-											<a class="nav-link" href="#famiglia">
-												<span><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></span>
-											</a>
-										</li>
-										<?php
-										}
 										if ( $stato ) {
 										?>
 										<li class="nav-item">
@@ -169,18 +163,25 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 										</li>
 										<?php
 										}
-										// if ( $id_famiglia ) {
+										if ( $area_tematica  ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#areatematica">
 												<span><?php echo __( 'Area tematica', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+										}
+										if ( $note ) {
+										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#altreinformazioni">
 												<span><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
+										<?php
+										}
+										?>
 									</ul>
 								</div>
 							</div>
@@ -192,12 +193,12 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 			<!-- DESCRIZIONE -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 				<?php
-				if ( $descrizione ) {
+				if ( $abstract ) {
 				?>
 					<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<?php echo $descrizione; ?>
+							<?php echo $abstract; ?>
 						</p>
 					
 					</article>
@@ -242,15 +243,6 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Status', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_attr( $stato ) ; ?></p>
-				</article>
-				<?php
-				}
-				if ( $id_famiglia ) {
-				?>
-				<!-- Famiglia -->
-				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo __( 'Identificativo famiglia', 'design_laboratori_italia' ); ?>: <?php echo esc_attr( $id_famiglia ) ; ?></p>
 				</article>
 				<?php
 				}
