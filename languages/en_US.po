@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2024-10-24 12:23+0000\n"
+"PO-Revision-Date: 2024-10-30 12:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -67,11 +67,11 @@ msgstr "Enable debug messages in error.log file"
 msgid "Abilita REST API"
 msgstr "Enable REST API"
 
-#: single-brevetto.php:122
+#: single-brevetto.php:123
 msgid "Abstract"
 msgstr "Abstract"
 
-#: single-brevetto.php:194
+#: single-brevetto.php:198
 msgid "Abstract brevetto"
 msgstr "Patent abstract"
 
@@ -142,7 +142,7 @@ msgstr "Attachments"
 msgid "Altre Informazioni"
 msgstr "More Information"
 
-#: single-brevetto.php:180 single-brevetto.php:264
+#: single-brevetto.php:181 single-brevetto.php:270
 msgid "Altre informazioni"
 msgstr "More information"
 
@@ -150,10 +150,13 @@ msgstr "More information"
 msgid "Altro"
 msgstr "Other"
 
-#: page-templates/brevetti.php:68 page-templates/brevetti.php:70
-#: page-templates/pubblicazioni.php:130 page-templates/pubblicazioni.php:132
+#: page-templates/pubblicazioni.php:142 page-templates/pubblicazioni.php:144
 msgid "Anno"
 msgstr "Year"
+
+#: page-templates/brevetti.php:71 page-templates/brevetti.php:73
+msgid "Anno di deposito"
+msgstr "Deposit year"
 
 #: page-templates/contatti.php:302
 msgid "Annulla"
@@ -187,8 +190,8 @@ msgstr "Configuration of theme general options"
 msgid "Area Tematica"
 msgstr "Thematic Area"
 
-#: single-brevetto.php:175 single-brevetto.php:255
-#: page-templates/brevetti.php:90
+#: single-brevetto.php:176 single-brevetto.php:261
+#: page-templates/brevetti.php:93
 msgid "Area tematica"
 msgstr "Thematic Area"
 
@@ -296,8 +299,8 @@ msgstr "Brevo"
 msgid "Cancella"
 msgstr "Cancel"
 
-#: page-templates/blog.php:49 page-templates/eventi.php:52
-#: page-templates/notizie.php:49 inc/admin/options.php:1652
+#: page-templates/blog.php:49 page-templates/eventi.php:57
+#: page-templates/notizie.php:56 inc/admin/options.php:1652
 msgid "Categoria"
 msgstr "Category"
 
@@ -309,7 +312,7 @@ msgstr "Search"
 msgid "Cerca area tematica"
 msgstr "Search thematic area"
 
-#: page-templates/brevetti.php:122
+#: page-templates/brevetti.php:122 page-templates/brevetti.php:126
 msgid "Cerca contenuto"
 msgstr "Search content"
 
@@ -444,7 +447,7 @@ msgstr "from"
 msgid "Danger"
 msgstr "Danger"
 
-#: single-brevetto.php:228
+#: single-brevetto.php:234
 msgid "Data deposito"
 msgstr "Deposit date"
 
@@ -565,7 +568,7 @@ msgstr "Event details"
 msgid "DETTAGLI della persona"
 msgstr "Person details"
 
-#: single-brevetto.php:148 single-brevetto.php:224
+#: single-brevetto.php:149 single-brevetto.php:230
 msgid "Domanda di priorità"
 msgstr "Priority question"
 
@@ -711,15 +714,15 @@ msgstr "Existing event"
 msgid "Evento singolo"
 msgstr "Single event"
 
-#: single-brevetto.php:157 single-brevetto.php:246
+#: single-brevetto.php:158 single-brevetto.php:252
 msgid "Famiglia brevettuale"
 msgstr "Patent family"
 
-#: page-templates/brevetti.php:132
+#: page-templates/brevetti.php:136
 msgid "Filtra"
 msgstr "Filter"
 
-#: page-templates/persone.php:55
+#: page-templates/persone.php:56
 msgid "Filtra per"
 msgstr "Filter by"
 
@@ -828,7 +831,7 @@ msgstr "List ID"
 msgid "ID della lista associata al sito"
 msgstr "ID of the list associated with the site"
 
-#: single-brevetto.php:247
+#: single-brevetto.php:253
 msgid "Identificativo famiglia"
 msgstr "Family ID"
 
@@ -850,7 +853,7 @@ msgstr "the"
 msgid "Il blog"
 msgstr "The blog"
 
-#: single-brevetto.php:114
+#: single-brevetto.php:115
 msgid "IL BREVETTO"
 msgstr "THE PATENT"
 
@@ -1039,7 +1042,8 @@ msgstr "Please provide a valid email address."
 msgid "Indico"
 msgstr "Indico"
 
-#: single-brevetto.php:110 single-evento.php:151 single-evento.php:155
+#: single-brevetto.php:108 single-brevetto.php:111 single-evento.php:151
+#: single-evento.php:155
 msgid "Indietro"
 msgstr "Back"
 
@@ -1216,7 +1220,7 @@ msgstr ""
 "Insert here the useful information to populate <a href=\"%s\"> the "
 "Publications overview page</a>"
 
-#: single-brevetto.php:139 single-brevetto.php:215
+#: single-brevetto.php:140 single-brevetto.php:221
 msgid "Inventori"
 msgstr "Inventors"
 
@@ -1325,9 +1329,9 @@ msgstr "Publications"
 
 #: archive.php:82 archive.php:84 page-templates/blog.php:113
 #: page-templates/blog.php:114 page-templates/blog.php:115
-#: page-templates/brevetti.php:199 page-templates/eventi.php:135
-#: page-templates/eventi.php:137 page-templates/notizie.php:113
-#: page-templates/notizie.php:115
+#: page-templates/brevetti.php:203 page-templates/brevetti.php:205
+#: page-templates/eventi.php:140 page-templates/eventi.php:142
+#: page-templates/notizie.php:120 page-templates/notizie.php:122
 #: template-parts/common/sezione-box-evento.php:47
 #: template-parts/common/sezione-box-evento.php:49
 #: template-parts/common/sezione-box-evento.php:50
@@ -1535,19 +1539,19 @@ msgstr "Lab name"
 msgid "Non sei autenticato."
 msgstr "You are not authenticated."
 
-#: page-templates/ricerca.php:100
+#: page-templates/ricerca.php:108
 msgid "Non è stata trovata nessuna attività di ricerca"
 msgstr "No research activities available"
 
-#: page-templates/notizie.php:137
+#: page-templates/notizie.php:144
 msgid "Non è stata trovata nessuna notizia"
 msgstr "No news available"
 
-#: page-templates/persone.php:224
+#: page-templates/persone.php:225
 msgid "Non è stata trovata nessuna persona"
 msgstr "No people available"
 
-#: page-templates/pubblicazioni.php:238
+#: page-templates/pubblicazioni.php:248
 msgid "Non è stata trovata nessuna pubblicazione"
 msgstr "No publications available"
 
@@ -1555,11 +1559,11 @@ msgstr "No publications available"
 msgid "Non è stata trovato nessun luogo"
 msgstr "Places not available"
 
-#: page-templates/brevetti.php:227
+#: page-templates/brevetti.php:232
 msgid "Non è stato trovato alcun brevetto"
 msgstr "No patent found"
 
-#: page-templates/eventi.php:161
+#: page-templates/eventi.php:166
 msgid "Non è stato trovato alcun evento"
 msgstr "No events available"
 
@@ -1567,7 +1571,7 @@ msgstr "No events available"
 msgid "Non è stato trovato nessun articolo"
 msgstr "No posts available"
 
-#: page-templates/archive-progetti.php:104 page-templates/progetti.php:119
+#: page-templates/archive-progetti.php:107 page-templates/progetti.php:110
 msgid "Non è stato trovato nessun progetto"
 msgstr "No projects available"
 
@@ -1585,7 +1589,7 @@ msgstr "News"
 msgid "Novità"
 msgstr "News"
 
-#: single-brevetto.php:226
+#: single-brevetto.php:232
 msgid "Numero deposito"
 msgstr "Deposit number"
 
@@ -1994,7 +1998,7 @@ msgstr "REST API"
 msgid "Ricerca"
 msgstr "Search."
 
-#: page-templates/brevetti.php:113
+#: page-templates/brevetti.php:116
 msgid "Ricerca libera"
 msgstr "Free search"
 
@@ -2034,7 +2038,7 @@ msgstr "Retype the confirmation code here"
 msgid "Risultati"
 msgstr "Results"
 
-#: page-templates/brevetti.php:72 page-templates/pubblicazioni.php:134
+#: page-templates/brevetti.php:75 page-templates/pubblicazioni.php:146
 msgid "Scegli un'opzione"
 msgstr "Select an option"
 
@@ -2238,7 +2242,7 @@ msgstr "Status of the imported object"
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr "Published state in which an imported object is saved"
 
-#: single-brevetto.php:166 single-brevetto.php:237
+#: single-brevetto.php:167 single-brevetto.php:243
 msgid "Status"
 msgstr "Status"
 
@@ -2339,7 +2343,7 @@ msgstr "Import type"
 msgid "Tipo Pubblicazione"
 msgstr "Publication type"
 
-#: page-templates/luoghi.php:75 page-templates/pubblicazioni.php:157
+#: page-templates/luoghi.php:75 page-templates/pubblicazioni.php:169
 #: inc/admin/options.php:42
 msgid "Tipologia"
 msgstr "Type"
@@ -2352,7 +2356,7 @@ msgstr "Place type"
 msgid "Tipologia Persona"
 msgstr "People type"
 
-#: single-brevetto.php:130 single-brevetto.php:206
+#: single-brevetto.php:131 single-brevetto.php:212
 msgid "Titolari"
 msgstr "Owners"
 
@@ -2396,7 +2400,7 @@ msgstr "All news"
 msgid "Tutte le pubblicazioni"
 msgstr "All publications"
 
-#: page-templates/persone.php:60 inc/classes/class-peoplemanager.php:45
+#: page-templates/persone.php:61 inc/classes/class-peoplemanager.php:45
 msgid "Tutte le strutture"
 msgstr "All structures"
 
@@ -2503,13 +2507,13 @@ msgstr "Go to the lab"
 msgid "Vai al menu di navigazione"
 msgstr "Skip to main navigation"
 
-#: page-templates/archive-progetti.php:81
-#: page-templates/archive-progetti.php:83 page-templates/progetti.php:96
-#: page-templates/progetti.php:98
+#: page-templates/archive-progetti.php:84
+#: page-templates/archive-progetti.php:86 page-templates/progetti.php:87
+#: page-templates/progetti.php:89
 msgid "Vai al progetto"
 msgstr "Go to project"
 
-#: page-templates/ricerca.php:77 page-templates/ricerca.php:79
+#: page-templates/ricerca.php:85 page-templates/ricerca.php:87
 msgid "Vai all'attività"
 msgstr "Go to research activity"
 
