@@ -67,7 +67,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 							<?php
-								if ( count( $area_tematica ) > 0 ) {
+								if ( ! empty( $area_tematica ) ) {
 							?>
 							<span class="chip-label text-light">
 								<a href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] );?>" class="text-white text-decoration-white">
@@ -160,7 +160,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 										</li>
 										<?php
 										}
-										if ( $famiglia && count( $famiglia) > 0 ) {
+										if ( $famiglia && ( ! empty( $famiglia ) ) ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#famiglia">
@@ -261,7 +261,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				</article>
 				<?php
 				}
-				if ( $famiglia && count( $famiglia) > 0 ) {
+				if ( $famiglia && ( ! empty ( $famiglia ) ) ) {
 				?>
 				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
