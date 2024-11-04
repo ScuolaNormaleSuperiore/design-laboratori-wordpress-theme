@@ -19,6 +19,12 @@ $cod_brevetto   = dli_get_field( 'codice_brevetto' );
 $data_deposito  = dli_get_field( 'data_deposito' );
 $num_deposito   = dli_get_field( 'numero_deposito' );
 $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
+$str_famiglia   = dli_get_field( 'famiglia' );
+$jsonObject     = json_decode( $str_famiglia );
+$famiglia       = null;
+if ( json_last_error() === JSON_ERROR_NONE ) {
+	$famiglia = $jsonObject;
+}
 ?>
 
 <main id="main-container" role="main">
@@ -154,6 +160,15 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 										</li>
 										<?php
 										}
+										if ( $famiglia && count( $famiglia) > 0 ) {
+										?>
+										<li class="nav-item">
+											<a class="nav-link" href="#famiglia">
+												<span><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></span>
+											</a>
+										</li>
+										<?php
+										}
 										if ( $stato ) {
 										?>
 										<li class="nav-item">
@@ -243,6 +258,31 @@ $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Status', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_attr( $stato ) ; ?></p>
+				</article>
+				<?php
+				}
+				if ( $famiglia && count( $famiglia) > 0 ) {
+				?>
+				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
+					<h3 class="h4"><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
+					<table class="table table-striped">
+						<thead>
+							<tr> 
+								<th scope="col"><?php echo __( 'Numero di deposito', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php echo __( 'Data deposito', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php echo __( 'Titolo', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php echo __( 'Nazione deposito', 'design_laboratori_italia' ); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row"><?php echo $famiglia[0]->numero_deposito; ?></th>
+								<td><?php echo $famiglia[0]->data_deposito; ?></td>
+								<td><?php echo $famiglia[0]->titolo; ?></td>
+								<td><?php echo $famiglia[0]->nazione_deposito; ?></td>
+							</tr>
+						</tbody>
+					</table>
 				</article>
 				<?php
 				}

@@ -203,6 +203,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			// Id famiglia (id_famiglia).
 			dli_update_field( 'id_famiglia', $item->id_family, $post_id );
 		}
+		// Famiglia.
+		if ( $item->family ) {
+			dli_update_field( 'famiglia', $item->family, $post_id );
+		}
+
 		if ( $item->deposit_date ){
 			// Data deposito (data_deposito).
 			$dp_date_str  = $item->deposit_date;
