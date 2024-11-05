@@ -118,6 +118,7 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 				<?php
 				} else {
 				?>
+				<!-- La pagina non ha genitori e figli -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3"></div>
 				<?php
 				}
