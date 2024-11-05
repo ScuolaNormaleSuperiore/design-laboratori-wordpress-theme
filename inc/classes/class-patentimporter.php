@@ -205,7 +205,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 		// Famiglia.
 		if ( $item->family ) {
-			dli_update_field( 'famiglia', $item->family, $post_id );
+			try {
+				dli_update_field( 'famiglia', json_encode( $item->family ), $post_id );
+			} catch ( Exception $e ) {
+				$this->log_string( '*** Error: Msg:' . $e->getMessage() . ' - Code: ' . $e->getCode() );
+			}
 		}
 
 		if ( $item->deposit_date ){
