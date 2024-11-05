@@ -116,6 +116,10 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 				</div>
 				<!-- FINE SIDEBAR -->
 				<?php
+				} else {
+				?>
+				<div class="sidebar-wrapper border-end col-12 col-lg-3"></div>
+				<?php
 				}
 				?>
 
