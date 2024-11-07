@@ -82,6 +82,10 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		} else {
 			// Recupera dati dalla risposta.
 			$body = wp_remote_retrieve_body($response);
+			// Se la codifica della risposta non è UTF-8, converti in UTF-8.
+			if ( ! mb_check_encoding($body, 'UTF-8' ) ) {
+				$body = mb_convert_encoding($body, 'UTF-8', 'auto' );
+			}
 			if ( $body ){
 				$data = json_decode($body);
 			}

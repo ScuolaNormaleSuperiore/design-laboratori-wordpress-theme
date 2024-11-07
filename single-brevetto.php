@@ -21,9 +21,9 @@ $num_deposito   = dli_get_field( 'numero_deposito' );
 $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 $str_famiglia   = dli_get_field( 'famiglia' );
 $jsonObject     = json_decode( $str_famiglia );
-$famiglia       = null;
+$famiglie       = null;
 if ( json_last_error() === JSON_ERROR_NONE ) {
-	$famiglia = $jsonObject;
+	$famiglie = $jsonObject;
 }
 ?>
 
@@ -160,7 +160,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 										</li>
 										<?php
 										}
-										if ( $famiglia && ( ! empty( $famiglia ) ) ) {
+										if ( $famiglie && ( ! empty( $famiglie ) ) ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#famiglia">
@@ -261,7 +261,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				</article>
 				<?php
 				}
-				if ( $famiglia && ( ! empty ( $famiglia ) ) ) {
+				if ( $famiglie && ( ! empty ( $famiglie ) ) ) {
 				?>
 				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
@@ -275,12 +275,25 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								foreach( $famiglie as $fam ){
+							?>
 							<tr>
-								<th scope="row"><?php echo $famiglia[0]->numero_deposito; ?></th>
-								<td><?php echo $famiglia[0]->data_deposito; ?></td>
-								<td><?php echo $famiglia[0]->titolo; ?></td>
-								<td><?php echo $famiglia[0]->nazione_deposito; ?></td>
+								<th scope="row"><?php echo $fam->numero_deposito; ?></th>
+								<td><?php echo $fam->data_deposito; ?></td>
+								<td><?php
+									// $stringa = preg_replace('/([a-fA-F0-9]{4})/', '\\\\u$1', $fam->titolo);
+									// $stringa        = preg_replace('/([a-fA-F0-9]{4})/', '\\\\u$1', str_replace('u', '', $fam->titolo));
+									// $decoded_string = json_decode('"' . $stringa . '"');
+									$decoded_string = dli_decode_unicode_string( $fam->titolo ) ;
+									echo $decoded_string;
+									// echo $fam->titolo;
+								?></td>
+								<td><?php echo $fam->nazione_deposito; ?></td>
 							</tr>
+							<?php
+								}
+							?>
 						</tbody>
 					</table>
 				</article>
