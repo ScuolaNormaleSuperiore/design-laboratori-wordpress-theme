@@ -9,39 +9,36 @@
 
 global $post;
 get_header();
-$categories          = dli_get_post_categories( $post, 'category' );
-$current_lang        = dli_current_language();
-$cat_page            = DLI_PAGE_PER_CT[EVENT_POST_TYPE][$current_lang];
-$image_metadata      = dli_get_image_metadata( $post );
-$pg                  = dli_get_page_by_post_type( $post->post_type );
-$pg_link             = get_permalink( $pg->ID );
-
-$start_date          = dli_get_field( 'data_inizio', $post );
-$tmstp_start         = strtotime( str_replace('/', '-', $start_date ) );
-$start_day           = $tmstp_start ? date( 'd', $tmstp_start ) : '';
-$start_month_number  = $tmstp_start ? date( 'm', $tmstp_start ) : '';
-$start_month_name    = $start_month_number ? dli_get_monthname_short( $start_month_number ) : '';
-$start_event_date    = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
-$orario_inizio       = dli_get_field( 'orario_inizio', $post );
-$orario_inizio       = $orario_inizio ? $orario_inizio : '';
-
-$end_date            = dli_get_field( 'data_fine', $post );
-$tmstp_end           = strtotime( str_replace('/', '-', $end_date  ) );
-$end_day             = $tmstp_start ? date( 'd', $tmstp_end ) : '';
-$end_month_number    = $tmstp_start ? date( 'm', $tmstp_end ) : '';
-$end_month_name      = $start_month_number ? dli_get_monthname_short( $end_month_number ) : '';
-$end_event_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
-$orario_fine         = dli_get_field( 'orario_fine', $post );
-$orario_fine         = $orario_fine ? $orario_fine : '';
-
-$luogo               = dli_get_field( 'luogo' );
-$label_contatti      = dli_get_field( 'label_contatti' );
-$telefono            = dli_get_field( 'telefono' );
-$email               = dli_get_field( 'email' );
-$sitoweb             = dli_get_field( 'sitoweb' );
-$video               = dli_get_field( 'video' );
-$allegato            = dli_get_field( 'allegato' );
-$short_descr         = dli_get_field( 'descrizione_breve' );
+$categories         = dli_get_post_categories( $post, 'category' );
+$current_lang       = dli_current_language();
+$cat_page           = DLI_PAGE_PER_CT[EVENT_POST_TYPE][$current_lang];
+$image_metadata     = dli_get_image_metadata( $post );
+$pg                 = dli_get_page_by_post_type( $post->post_type );
+$pg_link            = get_permalink( $pg->ID );
+$start_date         = dli_get_field( 'data_inizio', $post );
+$tmstp_start        = strtotime( str_replace('/', '-', $start_date ) );
+$start_day          = $tmstp_start ? date( 'd', $tmstp_start ) : '';
+$start_month_number = $tmstp_start ? date( 'm', $tmstp_start ) : '';
+$start_month_name   = $start_month_number ? dli_get_monthname_short( $start_month_number ) : '';
+$start_event_date   = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $start_date );
+$orario_inizio      = dli_get_field( 'orario_inizio', $post );
+$orario_inizio      = $orario_inizio ? $orario_inizio : '';
+$end_date           = dli_get_field( 'data_fine', $post );
+$tmstp_end          = strtotime( str_replace('/', '-', $end_date  ) );
+$end_day            = $tmstp_start ? date( 'd', $tmstp_end ) : '';
+$end_month_number   = $tmstp_start ? date( 'm', $tmstp_end ) : '';
+$end_month_name     = $start_month_number ? dli_get_monthname_short( $end_month_number ) : '';
+$end_event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
+$orario_fine        = dli_get_field( 'orario_fine', $post );
+$orario_fine        = $orario_fine ? $orario_fine : '';
+$luogo              = dli_get_field( 'luogo' );
+$label_contatti     = dli_get_field( 'label_contatti' );
+$telefono           = dli_get_field( 'telefono' );
+$email              = dli_get_field( 'email' );
+$sitoweb            = dli_get_field( 'sitoweb' );
+$video              = dli_get_field( 'video' );
+$allegato           = dli_get_field( 'allegato' );
+$short_descr        = dli_get_field( 'descrizione_breve' );
 ?>
 
 <main id="main-container" role="main">
@@ -420,29 +417,14 @@ $short_descr         = dli_get_field( 'descrizione_breve' );
 							<div class="col-lg-9">
 								<div class="video-wrapper">
 									<iframe title="<?php echo get_the_title( ); ?> Video'"
-														aria-label="<?php echo get_the_title( ); ?> Video'"
-														width="500"
-														height="281"
-														src="<?php echo esc_url( $video ); ?>"
-														frameborder="0"
-														allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-														allowfullscreen=""></iframe>
+										aria-label="<?php echo get_the_title( ); ?> Video'"
+										width="500"
+										height="281"
+										src="<?php echo esc_url( $video ); ?>"
+										frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowfullscreen=""></iframe>
 								</div>
-								<!--
-								<div id="accordionDiv1" class="collapse-div transcription-accordion">
-									<div class="collapse-header" id="headingA2">
-										<button data-toggle="collapse" data-target="#accordion2" aria-expanded="false"
-															aria-controls="accordion2"> Trascrizione del video </button>
-									</div>
-									<div id="accordion2" class="collapse" role="region" aria-labelledby="headingA2"
-														data-parent="#accordionDiv1">
-										<div class="collapse-body"> Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
-											denim
-											aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-											VHS. </div>
-									</div>
-								</div>
-								-->
 							</div>
 						</div>
 				</article>

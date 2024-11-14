@@ -18,6 +18,7 @@ $inventori      = dli_get_field( 'inventori' );
 $cod_brevetto   = dli_get_field( 'codice_brevetto' );
 $data_deposito  = dli_get_field( 'data_deposito' );
 $num_deposito   = dli_get_field( 'numero_deposito' );
+$video          = dli_get_field( 'video' );
 $area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 $str_famiglia   = dli_get_field( 'famiglia' );
 $jsonObject     = json_decode( $str_famiglia );
@@ -196,6 +197,15 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 										</li>
 										<?php
 										}
+										if ( $video ) {
+										?>
+										<li class="nav-item">
+											<a class="nav-link" href="#video">
+											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
+											</a>
+										</li>
+										<?php
+										}
 										?>
 									</ul>
 								</div>
@@ -317,6 +327,27 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				</article>
 				<?php
 				}
+				if ( $video ){
+				?>
+					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
+						<div class="row variable-gutters mb-5">
+							<div class="col-lg-9">
+								<div class="video-wrapper">
+									<iframe title="<?php echo get_the_title( ); ?> Video'"
+										aria-label="<?php echo get_the_title( ); ?> Video'"
+										width="500"
+										height="281"
+										src="<?php echo esc_url( $video ); ?>"
+										frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowfullscreen=""></iframe>
+								</div>
+							</div>
+						</div>
+				</article>
+				<?php
+					}
 				?>
 			</div>
 
