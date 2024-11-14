@@ -51,7 +51,7 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 ## Documentazione
 Sono in fase di realizzazione il *Manuale utente* e il *Manuale operatore*.
-Lo schema dei tipi di contenuto e delle categorie introdotte dal tema si trovano nel documento: [Schema-Contenuti-SitoFederato.pdf](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/Schema-Contenuti-SitoFederato.pdf).
+Lo schema dei tipi di contenuto e delle tassonomie introdotte dal tema si trovano nel documento: [Schema-Contenuti-SitoFederato.pdf](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/Schema-Contenuti-SitoFederato.pdf).
 
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
