@@ -48,6 +48,11 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Catalogo del riuso
 Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home page del progetto è [questa](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html).
 
+
+## Documentazione
+Sono in fase di realizzazione il *Manuale utente* e il *Manuale operatore*.
+Lo schema dei tipi di contenuto e delle categorie introdotte dal tema si trovano nel documento: [Schema-Contenuti-SitoFederato.pdf](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/Schema-Contenuti-SitoFederato.pdf).
+
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
 * [Sito Federato DEV](https://sitofederato-dev.sns.it)
