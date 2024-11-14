@@ -46,6 +46,24 @@
                 "delay": 0
             },
             {
+                "key": "field_6735bc07070e9",
+                "label": "Video**",
+                "name": "video",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
                 "key": "field_66fbbf1fa1cfa",
                 "label": "Stato legale",
                 "name": "stato_legale",
