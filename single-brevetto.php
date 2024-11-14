@@ -331,24 +331,25 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				?>
 					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
-						<div class="row variable-gutters mb-5">
-							<div class="col-lg-9">
-								<div class="video-wrapper">
-									<iframe title="<?php echo get_the_title( ); ?> Video'"
-										aria-label="<?php echo get_the_title( ); ?> Video'"
-										width="500"
-										height="281"
-										src="<?php echo esc_url( $video ); ?>"
-										frameborder="0"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-										allowfullscreen=""></iframe>
-								</div>
-							</div>
-						</div>
+
+						<?php
+							$video_text = null;
+							get_template_part(
+								'template-parts/common/sezione-video',
+								null,
+								array(
+									'video'       => $video,
+									'video_text'  => $video_text,
+									'video_title' => get_the_title(),
+								)
+							);
+						?>
+
 				</article>
 				<?php
 					}
 				?>
+
 			</div>
 
 		</div> <!-- END row -->
