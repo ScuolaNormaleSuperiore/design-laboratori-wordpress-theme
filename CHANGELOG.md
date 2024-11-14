@@ -15,6 +15,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.3.5] - 2024-11-20
+### Modificato
+- Aggiunto campo video al contenuto brevetto.
+- - Aggiornata libreria BootstrapItalia alla versione 2.11.0.
+
+
+
 ## [1.3.4] - 2024-11-13
 ### Corretto
 - Corretti bug: brevetti, visualizzazione eventi nelle pagine.
@@ -22,7 +29,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ### Modificato
 - Modificata visualizzazione brevetti
-
 
 
 ## [1.3.3] - 2024-10-25
