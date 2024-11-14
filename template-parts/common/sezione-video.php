@@ -20,7 +20,7 @@
 				</div>
 					<p>
 					<?php echo __( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>
-					<a href="<?php echo esc_url( $cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
+					<a target="_blank" href="<?php echo esc_url( $cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
