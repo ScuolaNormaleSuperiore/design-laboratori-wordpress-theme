@@ -18,8 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.3.5] - 2024-11-20
 ### Modificato
 - Aggiunto campo video al contenuto brevetto.
-- - Aggiornata libreria BootstrapItalia alla versione 2.11.0.
-
+- Aggiornata libreria BootstrapItalia alla versione 2.11.0.
 
 
 ## [1.3.4] - 2024-11-13
