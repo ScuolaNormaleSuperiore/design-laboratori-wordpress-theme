@@ -218,7 +218,7 @@ function load_pagination_script(){
 	if (is_page_template() || is_singular()) {
 	?>
 		<script>
-			if (document.querySelector('.dli-dropdown-container')) {
+			if (document.querySelector('.dropdown-menu.dli-pagination-dropdown')) {
 
 				// Disabilita il comportamento di default del click.
 				var dropdownLinks = document.querySelectorAll('.dropdown-menu.dli-pagination-dropdown a');
