@@ -16,9 +16,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [1.3.7] - 2024-12-01
+### Corretto
+### Modificato
+### Aggiunto
+
+
+
 ## [1.3.6] - 2024-11-18
 ### Corretto
 - corretto bug in cambio lingua.
+
 
 ## [1.3.5] - 2024-11-15
 ### Modificato
