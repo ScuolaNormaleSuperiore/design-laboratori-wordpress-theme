@@ -46,7 +46,7 @@
 							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
 						</svg>
 					</button>
-					<div class="dropdown-menu" aria-labelledby="pagerChanger">
+					<div class="dropdown-menu dli-pagination-dropdown" aria-labelledby="pagerChanger">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<?php foreach( $per_page_values as $pvalue ) {

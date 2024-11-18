@@ -220,9 +220,9 @@ function load_pagination_script(){
 		<script>
 			if (document.querySelector('.dli-dropdown-container')) {
 
-					// Disabilita il comportamento di default del click.
-					var dropdownLinks = document.querySelectorAll('.dropdown-menu a');
-					dropdownLinks.forEach(function(link) {
+				// Disabilita il comportamento di default del click.
+				var dropdownLinks = document.querySelectorAll('.dropdown-menu.dli-pagination-dropdown a');
+				dropdownLinks.forEach(function(link) {
 					link.addEventListener('click', function(event) {
 						event.preventDefault();
 						// Rimuovi la classe 'active' da tutti i link.
@@ -238,7 +238,7 @@ function load_pagination_script(){
 				var pagerDropDown = document.getElementById('pagerChanger');
 				if( pagerDropDown ){
 					pagerDropDown.addEventListener('hidden.bs.dropdown', function (event) {
-						var selectedItem = document.querySelector('.dropdown-menu .active');
+						var selectedItem = document.querySelector('.dropdown-menu.dli-pagination-dropdown .active');
 						if (selectedItem) {
 							// Recupera il valore dell'attributo 'data-perpage'.
 							var perPageValue = selectedItem.getAttribute('data-perpage');
