@@ -265,3 +265,18 @@ function load_pagination_script(){
 	}
 }
 add_action('wp_footer', 'load_pagination_script');
+
+
+
+// ATT: Temporary fix: https://core.trac.wordpress.org/ticket/62337
+// Togliere dopo aver installato 6.7.1: https://make.wordpress.org/core/2024/11/19/wordpress-6-7-1-release-schedule/
+add_action('init', function() {
+	global $l10n, $wp_textdomain_registry;
+	$domain = 'design_laboratori_italia';
+	$locale = get_locale();
+	$wp_textdomain_registry->set( $domain, $locale, get_template_directory() . '/languages' );
+	if ( isset( $l10n[ $domain ] ) ) {
+		unset( $l10n[ $domain ] );
+	}
+	load_theme_textdomain( $domain, get_template_directory() . '/languages' );
+});

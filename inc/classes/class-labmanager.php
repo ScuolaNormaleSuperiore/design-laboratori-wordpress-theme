@@ -101,8 +101,8 @@ class DLI_LabManager {
 	 */
 	public function plugin_setup() {
 
-		// Setup internationalisation.
-		add_action( 'init', array( $this, 'languages' ) );
+		// // Setup internationalisation.
+		// add_action( 'init', array( $this, 'languages' ) );
 
 		// Setup REST API.
 		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
@@ -177,14 +177,14 @@ class DLI_LabManager {
 
 	}
 
-	/**
-	 * Imposta la cartella con i file delle traduzioni.
-	 *
-	 * @return void
-	 */
-	function languages() {
-		load_plugin_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
-	}
+	// /**
+	//  * Imposta la cartella con i file delle traduzioni.
+	//  *
+	//  * @return void
+	//  */
+	// function languages() {
+	// 	// load_theme_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
+	// }
 
 	/**
 	 * Disabilita la REST API se necessario.
