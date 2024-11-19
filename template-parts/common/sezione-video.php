@@ -25,7 +25,7 @@
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
 						onclick="loadYouTubeVideo('<?php echo esc_url( $video ); ?>')">
-						<?php echo __( 'Accept', 'design_laboratori_italia' ); ?>
+						<?php echo __( 'Accetta', 'design_laboratori_italia' ); ?>
 					</button>
 					<div class="form-check">
 						<input id="chk-remember" type="checkbox" data-bs-accept-remember>

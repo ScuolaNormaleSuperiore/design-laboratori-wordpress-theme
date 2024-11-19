@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2024-10-30 12:05+0000\n"
+"PO-Revision-Date: 2024-11-19 11:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -67,11 +67,11 @@ msgstr "Enable debug messages in error.log file"
 msgid "Abilita REST API"
 msgstr "Enable REST API"
 
-#: single-brevetto.php:123
+#: single-brevetto.php:132
 msgid "Abstract"
 msgstr "Abstract"
 
-#: single-brevetto.php:198
+#: single-brevetto.php:224
 msgid "Abstract brevetto"
 msgstr "Patent abstract"
 
@@ -82,6 +82,18 @@ msgstr "Patent abstract"
 #: header.php:125
 msgid "Accedi"
 msgstr "Login"
+
+#: template-parts/common/sezione-video.php:28
+msgid "Accetta"
+msgstr "Accept"
+
+#: template-parts/common/sezione-video.php:22
+msgid ""
+"Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze "
+"nella "
+msgstr ""
+"Accept YouTube cookies to watch the video. You can manage your preferences "
+"in the"
 
 #: inc/admin/options.php:1752 inc/admin/options.php:1895
 msgid "Aggiorna"
@@ -129,11 +141,11 @@ msgstr "Add a structure"
 msgid "Aggiungi una Tipologia luogo"
 msgstr "Add a place type"
 
-#: single-evento.php:97
+#: single-evento.php:94
 msgid "al"
 msgstr "to"
 
-#: single-evento.php:198 single-evento.php:390 single-progetto.php:153
+#: single-evento.php:195 single-evento.php:387 single-progetto.php:153
 #: single-progetto.php:246
 msgid "Allegati"
 msgstr "Attachments"
@@ -142,7 +154,7 @@ msgstr "Attachments"
 msgid "Altre Informazioni"
 msgstr "More Information"
 
-#: single-brevetto.php:181 single-brevetto.php:270
+#: single-brevetto.php:195 single-brevetto.php:325
 msgid "Altre informazioni"
 msgstr "More information"
 
@@ -190,7 +202,7 @@ msgstr "Configuration of theme general options"
 msgid "Area Tematica"
 msgstr "Thematic Area"
 
-#: single-brevetto.php:176 single-brevetto.php:261
+#: single-brevetto.php:186 single-brevetto.php:316
 #: page-templates/brevetti.php:93
 msgid "Area tematica"
 msgstr "Thematic Area"
@@ -415,7 +427,7 @@ msgid "Configurazione Laboratorio"
 msgstr "Lab configuration"
 
 #. Name of the template
-#: footer.php:38 single-evento.php:189 single-evento.php:327
+#: footer.php:38 single-evento.php:186 single-evento.php:324
 #: single-indirizzo-di-ricerca.php:135 single-indirizzo-di-ricerca.php:207
 #: single-persona.php:213 single-persona.php:443 page-templates/contatti.php:2
 #: page-templates/contatti.php:124 page-templates/contatti.php:181
@@ -439,7 +451,7 @@ msgstr "Invalid credentials."
 msgid "Criterio di scelta degli eventi da importare"
 msgstr "Criteria for selecting events to import"
 
-#: single-evento.php:95
+#: single-evento.php:92
 msgid "dal"
 msgstr "from"
 
@@ -447,15 +459,15 @@ msgstr "from"
 msgid "Danger"
 msgstr "Danger"
 
-#: single-brevetto.php:234
+#: single-brevetto.php:260 single-brevetto.php:282
 msgid "Data deposito"
 msgstr "Deposit date"
 
-#: single-evento.php:172 single-evento.php:234
+#: single-evento.php:169 single-evento.php:231
 msgid "Date e orari"
 msgstr "Dates and times"
 
-#: single-evento.php:169 single-indirizzo-di-ricerca.php:114
+#: single-evento.php:166 single-indirizzo-di-ricerca.php:114
 #: single-indirizzo-di-ricerca.php:159 single-luogo.php:112
 #: single-progetto.php:118 single-progetto.php:177 inc/admin/options.php:800
 #: inc/admin/options.php:801
@@ -560,7 +572,7 @@ msgstr "Place details"
 msgid "Dettagli del progetto"
 msgstr "Project deatils"
 
-#: single-evento.php:159
+#: single-evento.php:156
 msgid "Dettagli dell'evento"
 msgstr "Event details"
 
@@ -568,7 +580,7 @@ msgstr "Event details"
 msgid "DETTAGLI della persona"
 msgstr "Person details"
 
-#: single-brevetto.php:149 single-brevetto.php:230
+#: single-brevetto.php:159 single-brevetto.php:256
 msgid "Domanda di priorità"
 msgstr "Priority question"
 
@@ -714,7 +726,7 @@ msgstr "Existing event"
 msgid "Evento singolo"
 msgstr "Single event"
 
-#: single-brevetto.php:158 single-brevetto.php:252
+#: single-brevetto.php:168 single-brevetto.php:277
 msgid "Famiglia brevettuale"
 msgstr "Patent family"
 
@@ -734,7 +746,7 @@ msgstr "Filter by content type"
 msgid "Finalizza import"
 msgstr "Finalize import"
 
-#: single-evento.php:288
+#: single-evento.php:285
 msgid "Fine evento"
 msgstr "End of event"
 
@@ -831,10 +843,6 @@ msgstr "List ID"
 msgid "ID della lista associata al sito"
 msgstr "ID of the list associated with the site"
 
-#: single-brevetto.php:253
-msgid "Identificativo famiglia"
-msgstr "Family ID"
-
 #: inc/admin/options.php:1753 inc/admin/options.php:1896
 msgid "Ignora"
 msgstr "Ignore"
@@ -853,7 +861,7 @@ msgstr "the"
 msgid "Il blog"
 msgstr "The blog"
 
-#: single-brevetto.php:115
+#: single-brevetto.php:121
 msgid "IL BREVETTO"
 msgstr "THE PATENT"
 
@@ -1042,8 +1050,8 @@ msgstr "Please provide a valid email address."
 msgid "Indico"
 msgstr "Indico"
 
-#: single-brevetto.php:108 single-brevetto.php:111 single-evento.php:151
-#: single-evento.php:155
+#: single-brevetto.php:114 single-brevetto.php:117 single-evento.php:148
+#: single-evento.php:152
 msgid "Indietro"
 msgstr "Back"
 
@@ -1072,7 +1080,7 @@ msgstr "E-mail address"
 msgid "Info"
 msgstr "Info"
 
-#: single-evento.php:256
+#: single-evento.php:253
 msgid "Inizio evento"
 msgstr "Event start"
 
@@ -1220,7 +1228,7 @@ msgstr ""
 "Insert here the useful information to populate <a href=\"%s\"> the "
 "Publications overview page</a>"
 
-#: single-brevetto.php:140 single-brevetto.php:221
+#: single-brevetto.php:150 single-brevetto.php:247
 msgid "Inventori"
 msgstr "Inventors"
 
@@ -1300,10 +1308,6 @@ msgstr "Button label in English"
 #: inc/admin/options.php:754
 msgid "Laboratorio"
 msgstr "Lab"
-
-#: template-parts/hero/ricerca.php:9
-msgid "Le attività di ricerca"
-msgstr "Research activities"
 
 #: inc/admin/options.php:912
 msgid "Le Novità"
@@ -1403,7 +1407,7 @@ msgstr "Mobile logo"
 msgid "Luoghi"
 msgstr "Places"
 
-#: single-evento.php:179 single-evento.php:308
+#: single-evento.php:176 single-evento.php:305
 #: inc/classes/class-placemanager.php:96
 msgid "Luogo"
 msgstr "Location"
@@ -1485,6 +1489,10 @@ msgstr "Multi-language"
 #: inc/classes/class-patentmanager.php:134
 msgid "N/D"
 msgstr "N/A"
+
+#: single-brevetto.php:284
+msgid "Nazione deposito"
+msgstr "Deposit country"
 
 #: template-parts/common/sezione-related-items.php:10
 msgid "News &amp; Eventi"
@@ -1589,8 +1597,12 @@ msgstr "News"
 msgid "Novità"
 msgstr "News"
 
-#: single-brevetto.php:232
+#: single-brevetto.php:258
 msgid "Numero deposito"
+msgstr "Deposit number"
+
+#: single-brevetto.php:281
+msgid "Numero di deposito"
 msgstr "Deposit number"
 
 #: inc/classes/class-patentmanager.php:53
@@ -1644,7 +1656,7 @@ msgstr "page"
 msgid "Pagina non trovata"
 msgstr "Page not found"
 
-#: page.php:69
+#: page.php:71
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
@@ -2006,6 +2018,10 @@ msgstr "Free search"
 msgid "Ricevuta"
 msgstr "Received"
 
+#: template-parts/common/sezione-video.php:32
+msgid "Ricorda per tutti i video"
+msgstr "Remember for all videos"
+
 #: inc/admin/options.php:250
 msgid "Rimuovi il messaggio"
 msgstr "Remove the message"
@@ -2217,7 +2233,7 @@ msgstr "Yes"
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr "An error occurred while performing the import"
 
-#: single-evento.php:375 single-persona.php:485 single-progetto.php:70
+#: single-evento.php:372 single-persona.php:485 single-progetto.php:70
 #: template-parts/common/sezione-contatti.php:63
 msgid "Sito web"
 msgstr "Website"
@@ -2242,7 +2258,7 @@ msgstr "Status of the imported object"
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr "Published state in which an imported object is saved"
 
-#: single-brevetto.php:167 single-brevetto.php:243
+#: single-brevetto.php:177 single-brevetto.php:269
 msgid "Status"
 msgstr "Status"
 
@@ -2356,11 +2372,11 @@ msgstr "Place type"
 msgid "Tipologia Persona"
 msgstr "People type"
 
-#: single-brevetto.php:131 single-brevetto.php:212
+#: single-brevetto.php:141 single-brevetto.php:238
 msgid "Titolari"
 msgstr "Owners"
 
-#: inc/classes/class-placemanager.php:126
+#: single-brevetto.php:283 inc/classes/class-placemanager.php:126
 msgid "Titolo"
 msgstr "Title"
 
@@ -2384,9 +2400,13 @@ msgstr "Hero title in English"
 msgid "Token API"
 msgstr "Token API"
 
-#: page.php:60 page.php:61 page.php:64
+#: page.php:62 page.php:63 page.php:66
 msgid "Torna indietro"
 msgstr "Go back"
+
+#: template-parts/common/sezione-video.php:52
+msgid "Trascrizione"
+msgstr "Transcription"
 
 #: template-parts/home/strutture.php:58
 msgid "Tutta l’organizzazione"
@@ -2529,7 +2549,8 @@ msgstr "Incorrect Nonce value."
 msgid "Vedi tutti"
 msgstr "View all"
 
-#: single-evento.php:207 single-evento.php:418
+#: single-brevetto.php:204 single-brevetto.php:333 single-evento.php:204
+#: single-evento.php:415
 msgid "Video"
 msgstr "Video"
 
