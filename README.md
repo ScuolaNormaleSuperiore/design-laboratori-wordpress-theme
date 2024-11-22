@@ -7,7 +7,7 @@ Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle att
 Il progetto è in fase di beta testing.
 
 ## Credits
-Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia 2.11.1***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CREDITS.txt).
+Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia 2.11.2***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CREDITS.txt).
 
 ## Funzionalità
 - Popolamento automatico del sito (pagine e menu).
@@ -50,8 +50,9 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 
 ## Documentazione
-Sono in fase di realizzazione il *Manuale utente* e il *Manuale operatore*.
+Il *Manuale operatore* è in fase di realizzazione.
 Lo schema dei tipi di contenuto e delle tassonomie introdotte dal tema si trovano nel documento: [Schema-Contenuti-SitoFederato.pdf](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/Schema-Contenuti-SitoFederato.pdf).
+La procedura per aggiornare la versione usata di Bootstrap Italia è nel documento: [HowTo Aggiornare Bootstrap Italia.md](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/HowTo Aggiornare Bootstrap Italia.md).
 
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
@@ -135,7 +136,7 @@ In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
 Il file  [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria/) oppure seguendo i seguenti passi:
 
 1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
-2. Eseguire il comando ***npm run*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
+2. Eseguire il comando ***npm install*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
 3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss) indicando i valori che devono essere modificati e rigenerati.
 4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***. Questo comando produce un nuovo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
 

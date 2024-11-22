@@ -19,7 +19,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.3.7] - 2024-12-01
 ### Modificato
 - Aggiornati file delle traduzioni.
-- Aggiornata la versione di Bootstrap Italia alla versione 2.11.1.
+- Aggiornata la versione di Bootstrap Italia alla versione 2.11.2.
 
 
 
