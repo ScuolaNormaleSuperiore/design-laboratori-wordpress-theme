@@ -12,7 +12,7 @@
 FROM php:8.3-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.7.tar.gz
+ARG WP_ARCHIVE=wordpress-6.7.1.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
@@ -26,7 +26,7 @@ ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.4.2.0.zip
 
 # Plugion facoltativi o di sviluppo
-ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.11.zip
+ARG PLG_LOCO_TRANSLATE=loco-translate.2.6.14.zip
 ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
 ##############################################################################
 
