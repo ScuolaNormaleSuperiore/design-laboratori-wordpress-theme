@@ -15,12 +15,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.3.8] - 2024-11-27
+### Aggiunto
+- Aggiunta configurazione per attivazione sezione "descrizione del sito" in Home Page.
+### Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.12.0.
 
-## [1.3.7] - 2024-12-01
+
+
+## [1.3.7] - 2024-11-22
 ### Modificato
 - Aggiornati file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.11.2.
-
 
 
 ## [1.3.6] - 2024-11-18

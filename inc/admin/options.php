@@ -410,6 +410,29 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_istruzioni_x',
+			'name' => __( 'Sezione Descrizione del sito', 'design_laboratori_italia' ),
+			'desc' => __( 'Gestione della descrizione del sito in Home Page' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'      => $prefix . 'site_description_is_visible',
+			'name'    => __( 'Visualizza la descrizione del sito', 'design_laboratori_italia' ),
+			'desc'    => __( 'Indicare se la descrizione del sito in Home Page deve essere visualizzata', 'design_laboratori_italia' ) . '.',
+			'type'    => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
 
 	$home_options->add_field(
 		array(
@@ -1831,6 +1854,7 @@ function dli_register_main_options_metabox() {
 				'name'       => __( 'Username', 'design_laboratori_italia' ) . '&nbsp;*',
 				'desc'       => __( 'Lo username per autenticarsi sul web-service.' , 'design_laboratori_italia' ),
 				'type'       => 'text',
+				'default'    => 'xxx',
 				'attributes' => array(
 					'required' => 'required',
 				),

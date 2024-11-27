@@ -25,7 +25,12 @@ $carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled
 ?>
 
 <!-- PRESENTAZIONE -->
-<?php get_template_part( 'template-parts/home/site-presentation' ); ?>
+<?php
+	$description_enabled = dli_get_option( 'site_description_is_visible', 'homepage' );
+	if ( 'false' !== $description_enabled ) {
+		get_template_part( 'template-parts/home/site-presentation' );
+	}
+?>
 
 <!-- Section CAROUSEL -->
 <?php

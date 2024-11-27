@@ -36,8 +36,7 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 		if ( $item->url && $item->url != '#' ) {
 			if ( $args->walker->has_children && $depth === 0 && $item->menu_item_parent === '0' ) {
 				$output .= '<li class="nav-item dropdown">';
-				// $output .= '<a class="nav-link ' .$active_class. ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
-				$output .= '<a class="nav-link ' .$active_class. ' " href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
+				$output .= '<a class="nav-link ' .$active_class. ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 				<span>';
 				$output .= esc_attr( $item->title );
 				$output .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
