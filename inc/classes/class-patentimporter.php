@@ -187,12 +187,23 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				);
 				wp_update_post( $pars );
 				$this->update_custom_fields( $post_id, $item );
+				$this->update_title( $post_id, $item );
 				$updated = true;
 			} else {
 				$ignored = true;
 			}
 		}
 		return $post_id;
+	}
+
+	private function update_title( $post_id, $item ){
+		// Dati da aggiornare
+		$updated_post = array(
+			'ID'         =>  $post_id,
+			'post_title' => $item->displayValue,
+		);
+		// Aggiorna il post.
+		wp_update_post($updated_post, true);
 	}
 
 	private function update_custom_fields( $post_id, $item ){
@@ -216,7 +227,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			}
 		}
 
-		if ( $item->deposit_date ){
+		if ( $item->deposit_date ) {
 			// Data deposito (data_deposito).
 			$dp_date_str  = $item->deposit_date;
 			$deposit_date = DateTime::createFromFormat('d-m-Y', $dp_date_str )->format('d/m/Y');

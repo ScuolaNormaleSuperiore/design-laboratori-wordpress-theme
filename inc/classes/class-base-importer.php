@@ -74,6 +74,14 @@ class DLI_BaseImporter {
 	 */
 	private function update_custom_fields( $post_id, $item ){ }
 
+	/**
+	 * Modifica del titolo del post.
+	 *
+	 * @param [type] $post_id
+	 * @param [type] $item
+	 * @return void
+	 */
+	private function update_title( $post_id, $item ){ }
 
 	/**
 	 * Register hooks for jobs and REST endpoints.
