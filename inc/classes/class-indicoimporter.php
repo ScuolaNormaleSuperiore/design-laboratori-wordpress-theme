@@ -222,12 +222,12 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
 
 		$start_date = $item['startDate']['date'];
-		$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Y-m-d');
+		$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Ymd');
 		dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
 		$orario_inizio = $item['startDate']['time'];
 		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario_inizio g:i a.
 		$end_date   = $item['endDate']['date'];
-		$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Y-m-d');
+		$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Ymd');
 		dli_update_field( 'data_fine', $start_date, $post_id ); // data_inizio d/m/Y.
 		if ( $item['url'] ) {
 			dli_update_field( 'sitoweb', $item['url'], $post_id );

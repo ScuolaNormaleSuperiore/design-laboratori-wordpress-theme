@@ -298,7 +298,6 @@ class Patent_Manager {
 				'display_format' => 'd/m/Y',
 				'return_format' => 'd/m/Y',
 				'first_day' => 1,
-				'allow_in_bindings' => 0,
 			),
 			array(
 				'key' => 'field_66fbbf55d8169',

@@ -295,12 +295,8 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 								<th scope="row"><?php echo $fam->numero_deposito; ?></th>
 								<td><?php echo $fam->data_deposito; ?></td>
 								<td><?php
-									// $stringa = preg_replace('/([a-fA-F0-9]{4})/', '\\\\u$1', $fam->titolo);
-									// $stringa        = preg_replace('/([a-fA-F0-9]{4})/', '\\\\u$1', str_replace('u', '', $fam->titolo));
-									// $decoded_string = json_decode('"' . $stringa . '"');
 									$decoded_string = dli_decode_unicode_string( $fam->titolo ) ;
 									echo $decoded_string;
-									// echo $fam->titolo;
 								?></td>
 								<td><?php echo $fam->nazione_deposito; ?></td>
 							</tr>
