@@ -18,7 +18,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.3.9] - 2024-12-05
 ### Corretto
 - Corretti dei bug riguardanti la sezione dei brevetti.
-
+### Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.12.1.
 
 
 ## [1.3.8] - 2024-11-27
