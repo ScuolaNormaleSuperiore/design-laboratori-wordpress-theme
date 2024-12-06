@@ -1,5 +1,5 @@
 <?php
-$show_logo_header = esc_attr( dli_get_option( 'logo_header_visible' ) );
+$show_logo_header = esc_attr( text: dli_get_option( 'logo_header_visible' ) );
 
 if ( $show_logo_header !== 'false' ) {
 	$nome_laboratorio = esc_attr( dli_get_option( 'nome_laboratorio' ) );
