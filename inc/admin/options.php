@@ -1370,6 +1370,33 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	$progetti_options->add_field(
+		array(
+			'id'               => $prefix . 'pagination_mode',
+			'name'             => __( 'Modalità di paginazione', 'design_laboratori_italia' ),
+			'desc'             => __( 'Mostra tutti i risultati o attiva la paginazione' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'Grande',
+			'show_option_none' => false,
+			'options'          => array(
+				'show_all'      => __( 'Mostra tutti risultati', 'design_laboratori_italia' ),
+				'show_paged'    => __( 'Attiva la paginazione', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$progetti_options->add_field(
+		array(
+			'id'               => $prefix . 'pagination_number',
+			'name'             => __( 'Numero di elementi mostrati', 'design_laboratori_italia' ),
+			'desc'             => __( 'Numero di elementi mostrati di default, se è attivata la paginazione' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => DLI_POSTS_PER_PAGE.'',
+			'show_option_none' => false,
+			'options'          => DLI_POST_PER_PAGE_VALUES_COMBINED,
+		)
+	);
+
 	/**
 	* 12 - Registers options page "Attività di ricerca".
 	*/

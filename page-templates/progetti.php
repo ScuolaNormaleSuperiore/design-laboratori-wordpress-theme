@@ -7,9 +7,11 @@ global $post;
 get_header();
 
 define( 'PROG_CELLS_PER_ROW', 3 );
-$per_page        =  DLI_POSTS_PER_PAGE;
+$pagination_mode = dli_get_option('pagination_mode', 'progetti' );
+$custom_per_page = dli_get_option('pagination_number', 'progetti' );
+$per_page        = ( $pagination_mode === 'all' ) ? 999 : DLI_POSTS_PER_PAGE;
 $per_page_values = DLI_POST_PER_PAGE_VALUES;
-$today = date( 'Ymd' );
+$today           = date( 'Ymd' );
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
@@ -128,6 +130,7 @@ $num_results = $the_query->found_posts;
 			'template-parts/common/paginazione',
 			null,
 			array(
+				'mode'            => $pagination_mode,
 				'query'           => $the_query,
 				'per_page'        => $per_page,
 				'per_page_values' => $per_page_values,
