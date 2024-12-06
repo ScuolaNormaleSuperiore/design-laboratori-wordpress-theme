@@ -346,6 +346,21 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
+			'id'               => $prefix . 'home_main_hero_size',
+			'name'             => __( 'Dimensione hero', 'design_laboratori_italia' ),
+			'desc'             => __( 'Scegli il formato dello header in home page' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'Grande',
+			'show_option_none' => false,
+			'options'          => array(
+				'big'   => __( 'Grande', 'design_laboratori_italia' ),
+				'small' => __( 'Piccolo', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
 			'id'   => $prefix . 'home_main_hero_title',
 			'name' => __( 'Titolo hero', 'design_laboratori_italia' ),
 			'type' => 'text',

@@ -4,18 +4,19 @@
 $main_hero_enabled = dli_get_option( 'home_main_hero_enabled', 'homepage' );
 
 if ( 'true' === $main_hero_enabled ) {
-	$image_url   = dli_get_option( 'home_main_hero_image', 'homepage' );
-	$image_id    = attachment_url_to_postid( $image_url );
-	$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
-	$image_title = get_the_title( $image_id );
-	$hero_title  = dli_get_configuration_field_by_lang( 'home_main_hero_title', 'homepage' );
-	$hero_text   = dli_get_configuration_field_by_lang( 'home_main_hero_text', 'homepage' );
-
-	$hero_url     = dli_get_option( 'home_main_hero_url', 'homepage' );
-	$button_label = dli_get_configuration_field_by_lang( 'home_main_hero_button_label', 'homepage' );
+	$hero_size_big = dli_get_option( 'home_main_hero_size', 'homepage' ) !== 'small' ? true : false;
+	$hero_class    = $hero_size_big ? '' : 'it-hero-small-size';
+	$image_url     = dli_get_option( 'home_main_hero_image', 'homepage' );
+	$image_id      = attachment_url_to_postid( $image_url );
+	$image_alt     = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+	$image_title   = get_the_title( $image_id );
+	$hero_title    = dli_get_configuration_field_by_lang( 'home_main_hero_title', 'homepage' );
+	$hero_text     = dli_get_configuration_field_by_lang( 'home_main_hero_text', 'homepage' );
+	$hero_url      = dli_get_option( 'home_main_hero_url', 'homepage' );
+	$button_label  = dli_get_configuration_field_by_lang( 'home_main_hero_button_label', 'homepage' );
 
 ?>
-	<section class="it-hero-wrapper it-dark it-overlay">
+	<section class="it-hero-wrapper it-dark it-overlay <?php echo $hero_class; ?>">
 	<?php
 	if ( $image_url && '' !== $image_url ) {
 		?>
