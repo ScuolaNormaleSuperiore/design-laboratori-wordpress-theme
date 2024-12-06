@@ -154,6 +154,20 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
+			'id'      => $prefix . 'logo_header_visible',
+			'name'    => __( 'Visualizza il logo nello header', 'design_laboratori_italia' ),
+			'desc'    => __( 'Indicare se il logo nello header deve essere visualizzato', 'design_laboratori_italia' ) . '.',
+			'type'    => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$header_options->add_field(
+		array(
 			'id'         => $prefix . 'logo_laboratorio',
 			'name'       => __( 'Logo header', 'design_laboratori_italia' ),
 			'desc'       => __( 'Il logo del laboratorio. Si raccomanda di caricare un\'immagine in formato svg' , 'design_laboratori_italia' ),

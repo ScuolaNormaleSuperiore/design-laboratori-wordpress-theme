@@ -15,13 +15,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-
 ## [1.4.0] - 2024-12-11
 ### Aggiunto
 ### Modificato
 Portata configurazione lingue nel LabManager.
+Tagline non più obbligatoria.
+Refactoring gestione logo nello header e nel footer.
 ### Corretto
-Impostata struttura permalink in moidalità articolo nel LabManager.
+Impostata struttura permalink in modalità articolo nel LabManager.
+
 
 
 ## [1.3.9] - 2024-12-05
