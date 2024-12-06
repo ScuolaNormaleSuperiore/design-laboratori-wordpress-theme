@@ -101,8 +101,11 @@ class DLI_LabManager {
 	 */
 	public function plugin_setup() {
 
-		// // Setup internationalisation.
-		// add_action( 'init', array( $this, 'languages' ) );
+		// Setup internationalisation.
+		add_action( 'init', array( $this, 'configure_languages' ) );
+
+		// Setup permalink structure.
+		add_action( 'init', array( $this, 'configure_permalink' ) );
 
 		// Setup REST API.
 		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
@@ -177,14 +180,25 @@ class DLI_LabManager {
 
 	}
 
-	// /**
-	//  * Imposta la cartella con i file delle traduzioni.
-	//  *
-	//  * @return void
-	//  */
-	// function languages() {
-	// 	// load_theme_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
-	// }
+	/**
+	 * Imposta la cartella con i file delle traduzioni.
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Design Laboratori Italia, use a find and replace
+	 * to change 'design_laboratori_italia' to the name of your theme in all the template files.
+	 * 
+	 * @return void
+	 */
+	function configure_languages() {
+		// load_theme_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
+		load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
+	}
+
+	function configure_permalink() {
+		update_option('permalink_structure', '/%postname%/');
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
+	}
 
 	/**
 	 * Disabilita la REST API se necessario.

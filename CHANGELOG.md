@@ -19,7 +19,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.4.0] - 2024-12-11
 ### Aggiunto
 ### Modificato
-
+Portata configurazione lingue nel LabManager.
+### Corretto
+Impostata struttura permalink in moidalità articolo nel LabManager.
 
 
 ## [1.3.9] - 2024-12-05
