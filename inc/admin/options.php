@@ -63,12 +63,10 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'tagline_laboratorio',
-			'name'       => __( 'Tagline', 'design_laboratori_italia' ) . '&nbsp;*',
+			'name'       => __( 'Tagline', 'design_laboratori_italia' ) . '&nbsp;',
 			'desc'       => __( 'La tagline del Laboratorio' , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'attributes' => array(
-				'required' => 'required',
-			),
+			'attributes' => array(),
 		)
 	);
 
