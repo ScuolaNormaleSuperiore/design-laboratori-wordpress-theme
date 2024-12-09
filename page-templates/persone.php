@@ -71,13 +71,17 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									foreach ( $strutture as $struttura ) {
 									?>
 										<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === $struttura->slug ) echo " chip-selected" ?>">
-											<span class="chip-label customSpacing"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
+											<span class="chip-label customSpacing">
+												<a class="hover-text-white" href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a>
+											</span>
 										</div>
 									<?php
 									}
 									?>
 									<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === '' ) echo " chip-selected" ?>">
-										<span class="chip-label customSpacing"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
+										<span class="chip-label customSpacing">
+											<a class="hover-text-white" href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a>
+										</span>
 									</div>
 								</div>
 							</div>
