@@ -21,15 +21,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Elenco persone: Possibilità di attivare/disattivare il filtro struttura e, se attivato, di scegliere tra un filtro chip o select.
 ### Modificato
 - Portata configurazione lingue nel LabManager.
-- Tagline non più obbligatoria.
-- Refactoring gestione logo nello header e nel footer.
-- Aggiornati file delle traduzioni.
+- Il campo Tagline, nella configurazione del sito, non è più obbligatorio.
+- Aggiornati i file delle traduzioni.
 - Aggiornato Dockerfile per sito demo.
 - Refactoring sezione filtri nelle'elenco delle persone.
+- Corretto overlay nella visualizzazione di banner e hero.
 ### Corretto
 - Impostata struttura permalink in modalità articolo nel LabManager.
 - Corretta visualizzazione chips persone.
-
+- Refactoring nella gestione logo nello header e nel footer.
 
 
 ## [1.3.9] - 2024-12-05
