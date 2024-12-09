@@ -17,7 +17,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.4.0] - 2024-12-11
 ### Aggiunto
-- Home Page: Possibilità di scegliere tra hero grande e hero piccolo.
+- Home Page: Possibilità di visualizzare l'header principale in modalità "grande" o "piccolo".
 - Elenco persone: Possibilità di attivare/disattivare il filtro struttura e, se attivato, di scegliere tra un filtro chip o select.
 ### Modificato
 - Portata configurazione lingue nel LabManager.
@@ -28,6 +28,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring sezione filtri nelle'elenco delle persone.
 ### Corretto
 - Impostata struttura permalink in modalità articolo nel LabManager.
+- Corretta visualizzazione chips persone.
 
 
 

@@ -165,3 +165,22 @@ html {
 .hover-text-white:hover {
 	color: white !important;
 }
+
+/* modifiche visibilità hero e banner */
+
+.it-hero-wrapper .it-hero-text-wrapper span, .it-hero-wrapper .it-hero-text-wrapper h1, .it-hero-wrapper .it-hero-text-wrapper .h1, .it-hero-wrapper .it-hero-text-wrapper h2, .it-hero-wrapper .it-hero-text-wrapper .h2, .it-hero-wrapper .it-hero-text-wrapper h3, .it-hero-wrapper .it-hero-text-wrapper .h3, .it-hero-wrapper .it-hero-text-wrapper h4, .it-hero-wrapper .it-hero-text-wrapper .h4, .it-hero-wrapper .it-hero-text-wrapper h5, .it-hero-wrapper .it-hero-text-wrapper .h5, .it-hero-wrapper .it-hero-text-wrapper h6, .it-hero-wrapper .it-hero-text-wrapper .h6, .it-hero-wrapper .it-hero-text-wrapper p {
+	text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after {
+	 background: rgba(0, 0, 0, 0.2);
+}
+
+.it-hero-wrapper.it-overlay.it-primary .img-responsive-wrapper:after {
+	 background: rgba(0, 0, 0, 0.2);
+}
+
+.container-banner-home .it-hero-wrapper .it-hero-text-wrapper {
+	 background: rgba(0, 0, 0, 0.4) !important;
+}
+

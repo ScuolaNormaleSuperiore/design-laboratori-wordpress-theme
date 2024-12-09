@@ -26,6 +26,7 @@ if ( 'true' === $section_enabled ) {
 		$is_external    = dli_get_field( 'apri_in_nuova_finestra', $post_id ) ? true : false;
 	?>
 
+	<div class="container-banner-home">
 		<section class="it-hero-wrapper it-hero-small-size it-primary it-overlay mt-5">
 			<!-- img -->
 			<div class="img-responsive-wrapper">
@@ -71,6 +72,7 @@ if ( 'true' === $section_enabled ) {
 				</div>
 			</div>
 		</section>
+	</div>
 
 <?php
 		}
