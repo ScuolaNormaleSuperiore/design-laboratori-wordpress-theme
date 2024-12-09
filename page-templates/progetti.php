@@ -9,7 +9,7 @@ get_header();
 define( 'PROG_CELLS_PER_ROW', 3 );
 $pagination_mode = dli_get_option('pagination_mode', 'progetti' );
 $custom_per_page = dli_get_option('pagination_number', 'progetti' );
-$per_page        = ( $pagination_mode === 'all' ) ? 999 : DLI_POSTS_PER_PAGE;
+$per_page        = ( $pagination_mode === 'show_all' ) ? 999 : DLI_POSTS_PER_PAGE;
 $per_page_values = DLI_POST_PER_PAGE_VALUES;
 $today           = date( 'Ymd' );
 
