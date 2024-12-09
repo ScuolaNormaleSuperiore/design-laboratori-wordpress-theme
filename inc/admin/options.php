@@ -1192,6 +1192,51 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'seleziona_livello_persone',
+			'name'       => __( "Etichetta 'Seleziona livello' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Seleziona livello',
+			'attributes' => array(),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'seleziona_livello_persone' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( "Etichetta 'Seleziona livello' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Select level',
+			'attributes' => array(),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'tutti_i_livelli_persone',
+			'name'       => __( "Etichetta 'Tutti i livelli' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Tutti i livelli',
+			'attributes' => array(),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'tutti_i_livelli_persone' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( "Etichetta 'Tutti i livelli' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'All levels',
+			'attributes' => array(),
+		)
+	);
+
+
 	/**
 	* 9 - Registers options page "Pubblicazioni".
 	*/
@@ -1383,7 +1428,7 @@ function dli_register_main_options_metabox() {
 	// Campi descrizione della sezione.
 	$progetti_options->add_field(
 		array(
-			'id'         => $prefix . 'testo_progetti'. DLI_ENG_SUFFIX_LANGUAGE,
+			'id'         => $prefix . 'testo_progetti' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'es: "Lab projects"' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
@@ -1424,6 +1469,50 @@ function dli_register_main_options_metabox() {
 			'default'          => DLI_POSTS_PER_PAGE.'',
 			'show_option_none' => false,
 			'options'          => DLI_POST_PER_PAGE_VALUES_COMBINED,
+		)
+	);
+
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'seleziona_livello_progetti',
+			'name'       => __( "Etichetta 'Seleziona livello' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Seleziona livello',
+			'attributes' => array(),
+		)
+	);
+
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'seleziona_livello_progetti' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( "Etichetta 'Seleziona livello' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Select level',
+			'attributes' => array(),
+		)
+	);
+
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'tutti_i_livelli_progetti',
+			'name'       => __( "Etichetta 'Tutti i livelli' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'Tutti i livelli',
+			'attributes' => array(),
+		)
+	);
+
+	$progetti_options->add_field(
+		array(
+			'id'         => $prefix . 'tutti_i_livelli_progetti' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( "Etichetta 'Tutti i livelli' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'default'    => 'All levels',
+			'attributes' => array(),
 		)
 	);
 

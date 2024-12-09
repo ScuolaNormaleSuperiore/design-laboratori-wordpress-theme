@@ -29,6 +29,9 @@ $params = array(
 );
 $the_query   = DLI_ContentsManager::dli_get_projects_data_query( $params );
 $num_results = $the_query->found_posts;
+
+// Get the tag used into published projects.
+$tags = DLI_ContentsManager::dli_get_tags_by_post_type( PROGETTO_POST_TYPE );
 ?>
 
 <main id="main-container" role="main">
@@ -48,27 +51,35 @@ $num_results = $the_query->found_posts;
 	<section id="progetti">
 		<div class="container p-5">
 
-			<!-- Filtro per TAG (opzionale)--> 
-			<div class="row text-center pb-5">
-				<div class="col-12 col-lg-12">
-
-					<div class="title-section">
-						<div class="chip chip-simple">
-						<span class="chip-label customSpacing">Tag 1</span>
+		<!-- Filtro per TAG --> 
+		<div class="row text-center pb-5">
+			<div class="col-12 col-lg-12">
+				<div class="title-section">
+					<?php
+						foreach( $tags as $tag ) {
+					?>
+					<div class="chip chip-primary chip-lg chip-simple ">
+						<span class="chip-label customSpacing">
+							<a class="hover-text-white" 
+								href="?struttura=prima-struttura"
+								title="Filtra per: Prima struttura"
+								data-focus-mouse="false"><?php echo esc_attr( $tag->name ); ?></a>
+						</span>
 					</div>
-
-					<div class="chip chip-simple">
-						<span class="chip-label customSpacing">Tag 2</span>
-					</div>
-
-					<div class="chip chip-simple">
-						<span class="chip-label customSpacing">Tutti i tag</span>
-					</div>
-
+					<?php
+						}
+					?>
+					<div class="chip chip-primary chip-lg chip-simple  chip-selected">
+						<span class="chip-label customSpacing">
+							<a class="hover-text-white" 
+							href="https://sitofederato-dev.sns.it/il-laboratorio/persone/" 
+							title="Tutte le strutture">Tutte le strutture</a>
+						</span>
 					</div>
 				</div>
 			</div>
-			<!-- FINE FILTRO PER TAG -->
+		</div>
+		<!-- FINE FILTRO PER TAG -->
 
 
 			<?php
