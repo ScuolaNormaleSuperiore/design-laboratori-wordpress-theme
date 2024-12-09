@@ -173,7 +173,7 @@ html {
 }
 
 .it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after {
-	 background: rgba(0, 0, 0, 0.2);
+	 background: rgba(0, 64, 89, 0.2);
 }
 
 .it-hero-wrapper.it-overlay.it-primary .img-responsive-wrapper:after {
@@ -181,6 +181,5 @@ html {
 }
 
 .container-banner-home .it-hero-wrapper .it-hero-text-wrapper {
-	 background: rgba(0, 0, 0, 0.4) !important;
+	 background: rgba(0, 64, 89, 0.4) !important;
 }
-

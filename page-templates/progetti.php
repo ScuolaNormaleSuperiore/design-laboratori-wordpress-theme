@@ -47,6 +47,30 @@ $num_results = $the_query->found_posts;
 	<!-- ELENCO PROGETTI -->
 	<section id="progetti">
 		<div class="container p-5">
+
+			<!-- Filtro per TAG (opzionale)--> 
+			<div class="row text-center pb-5">
+				<div class="col-12 col-lg-12">
+
+					<div class="title-section">
+						<div class="chip chip-simple">
+						<span class="chip-label customSpacing">Tag 1</span>
+					</div>
+
+					<div class="chip chip-simple">
+						<span class="chip-label customSpacing">Tag 2</span>
+					</div>
+
+					<div class="chip chip-simple">
+						<span class="chip-label customSpacing">Tutti i tag</span>
+					</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- FINE FILTRO PER TAG -->
+
+
 			<?php
 			if ( $num_results ) {
 			while ( $the_query->have_posts() ) {
