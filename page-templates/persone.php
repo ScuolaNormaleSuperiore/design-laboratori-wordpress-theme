@@ -18,8 +18,21 @@ $the_query = new WP_Query(
 		// 'posts_per_page' => DLI_POSTS_PER_PAGE,
 	)
 );
-$num_results = $the_query->found_posts;
+$num_results              = $the_query->found_posts;
+$filter_mode              = dli_get_option('pagination_mode', 'persone' );
+$select_structure_enabled = $filter_mode === 'disabled' ? false :  true;
+$filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !== 'true' ? false : true ;
 ?>
+<script>
+	function redirectToPage(baseUrl, parname, selectedValue ) {
+		if (selectedValue) {
+			// Aggiungi il parametro con il valore selezionato.
+			window.location.href = baseUrl + "?" + parname + "=" + encodeURIComponent(selectedValue);
+		} else {
+			window.location.href = baseUrl;
+		}
+	}
+</script>
 
 <!-- START CONTENT -->
 <form action="<?php $_SERVER['PHP_SELF']; ?>" id="personeform" method="GET">
@@ -44,27 +57,90 @@ $num_results = $the_query->found_posts;
 								'hide_empty' => false,
 							]
 						);
-						// visualizzo i filtri sulle strutture solo se ne esistono almeno 2.
-						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) ) {
+						// visualizzo il filtro con CHIP sulle strutture solo se ne esistono almeno 2 e se il filtro è abilitato.
+						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled && ( $filter_mode !== 'combobox' ) ) {
 							?>
 						<!-- FILTRI SU STRUTTURE chips se presenti -->
-						<div class="title-section text-center mb-5">
-							<?php
-							foreach ( $strutture as $struttura ) {
-								?>
-								<div class="chip chip-primary chip-lg chip-simple <?php if ( isset( $_GET['struttura'] ) && $_GET['struttura'] == $struttura->slug ) echo " chip-selected" ?>">
-									<span class="chip-label customSpacing"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
-								</div>
-							<?php } ?>
 
-							<div class="chip chip-primary chip-lg chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
-								<span class="chip-label customSpacing"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
+						<div class="row mb-5">
+							<div class="col-lg-3"></div>
+							<div class="col-lg-9">
+								<div class="title-section">
+									<?php
+									foreach ( $strutture as $struttura ) {
+									?>
+										<div class="chip chip-primary chip-lg chip-simple <?php if ( isset( $_GET['struttura'] ) && $_GET['struttura'] == $struttura->slug ) echo " chip-selected" ?>">
+											<span class="chip-label customSpacing"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
+										</div>
+									<?php
+									}
+									?>
+									<div class="chip chip-primary chip-lg chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
+										<span class="chip-label customSpacing"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<!-- FINE FILTRI -->
 							<?php
 						}
 
+							// visualizzo il filtro con CHIP sulle strutture solo se ne esistono almeno 2 e se il filtro è abilitato.
+							if ( $select_structure_enabled || $filter_level_enabled ) {
+						?>
+
+							<!-- FILTRO CON COMBOBOX -->
+							<div class="row mb-5">
+								<div class="col-lg-3"></div>
+								<div class="col-lg-4">
+									<?php
+										if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled & ( $filter_mode === 'combobox' ) ) {
+											$selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
+									?>
+									<div class="select-wrapper">
+										<label for="defaultSelect"><?php _e( 'Seleziona la struttura', "design_laboratori_italia" ); ?></label>
+										<select id="peopleSelect" onchange="redirectToPage('<?php the_permalink(); ?>', 'struttura', this.value)">
+											<option value="" <?php if ( $selected_structure === '' ) echo "selected" ?> >
+												<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>
+											</option>
+											<?php
+											foreach ( $strutture as $struttura ) {
+											?>
+											<option value="<?php echo $struttura->slug; ?>" <?php if ( $selected_structure === $struttura->slug ) echo "selected" ?> >
+											<?php echo esc_attr( $struttura->name ); ?>
+											</option>
+											<?php
+												}
+											?>
+										</select>
+									</div>
+									<?php
+										}
+									?>
+								</div>
+								<div class="col-lg-4">
+									<?php
+										if ( $filter_level_enabled ) {
+									?>
+									<div class="select-wrapper">
+										<label for="defaultSelect">Seleziona ciclo</label>
+										<select id="defaultSelect">
+											<option selected="" value="">Scegli un ciclo</option>
+											<option value="Value 1">Tutti i cicli</option>
+											<option value="Value 2">Opzione 1</option>
+											<option value="Value 3">Opzione 2</option>
+											<option value="Value 4">Opzione 3</option>
+											<option value="Value 5">Opzione 4</option>
+										</select>
+									</div>
+									<?php
+									}
+									?>
+								</div>
+							</div>
+
+
+						<?php
+						}
 						if( $num_results ) {
 							// recupero tutte le categorie.
 							$categorie_persone = new WP_Query(

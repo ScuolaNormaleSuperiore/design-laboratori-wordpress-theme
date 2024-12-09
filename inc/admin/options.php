@@ -1124,7 +1124,7 @@ function dli_register_main_options_metabox() {
 	) );
 
 
-	$persone_options->add_field( 
+	$persone_options->add_field(
 		array(
 			'id' => $prefix . 'testo_sezione_persone',
 			'name'        => __( 'Descrizione Sezione Persone', 'design_laboratori_italia' ),
@@ -1143,7 +1143,7 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
-	$persone_options->add_field( 
+	$persone_options->add_field(
 		array(
 			'id' => $prefix . 'testo_sezione_persone'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'        => __( 'Descrizione Sezione Persone ENG', 'design_laboratori_italia' ),
@@ -1160,6 +1160,36 @@ function dli_register_main_options_metabox() {
 				),
 			),
 		),
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'               => $prefix . 'pagination_mode',
+			'name'             => __( 'Modalità scelta struttura', 'design_laboratori_italia' ),
+			'desc'             => __( 'Scegli se filtrare le strutture con dei chip o una select oppure non mostrare alcun filtro' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'chip',
+			'show_option_none' => false,
+			'options'          => array(
+				'chip'          => __( 'Mostra chip', 'design_laboratori_italia' ),
+				'combobox'      => __( 'Mostra select', 'design_laboratori_italia' ),
+				'disabled'      => __( 'Non mostrare filtro', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'      => $prefix . 'level_filter_enabled',
+			'name'    => __( 'Filtra per livello', 'design_laboratori_italia' ),
+			'desc'    => __( 'Attiva il filtro per livello', 'design_laboratori_italia' ),
+			'type'    => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true'  => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
 	);
 
 	/**
