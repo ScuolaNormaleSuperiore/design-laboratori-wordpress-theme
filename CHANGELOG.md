@@ -17,13 +17,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.4.0] - 2024-12-11
 ### Aggiunto
-- Possibilità di scegliere tra hero grande e hero piccolo in Home Page.
+- Home Page: Possibilità di scegliere tra hero grande e hero piccolo.
+- Elenco persone: Possibilità di attivare/disattivare il filtro struttura e, se attivato, di scegliere tra un filtro chip o select.
 ### Modificato
 - Portata configurazione lingue nel LabManager.
 - Tagline non più obbligatoria.
 - Refactoring gestione logo nello header e nel footer.
 - Aggiornati file delle traduzioni.
 - Aggiornato Dockerfile per sito demo.
+- Refactoring sezione filtri nelle'elenco delle persone.
 ### Corretto
 - Impostata struttura permalink in modalità articolo nel LabManager.
 

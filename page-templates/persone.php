@@ -59,7 +59,8 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 						);
 						// visualizzo il filtro con CHIP sulle strutture solo se ne esistono almeno 2 e se il filtro è abilitato.
 						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled && ( $filter_mode !== 'combobox' ) ) {
-							?>
+							$selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
+						?>
 						<!-- FILTRI SU STRUTTURE chips se presenti -->
 
 						<div class="row mb-5">
@@ -69,13 +70,13 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									<?php
 									foreach ( $strutture as $struttura ) {
 									?>
-										<div class="chip chip-primary chip-lg chip-simple <?php if ( isset( $_GET['struttura'] ) && $_GET['struttura'] == $struttura->slug ) echo " chip-selected" ?>">
+										<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === $struttura->slug ) echo " chip-selected" ?>">
 											<span class="chip-label customSpacing"><a href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a></span>
 										</div>
 									<?php
 									}
 									?>
-									<div class="chip chip-primary chip-lg chip-simple <?php if (! isset( $_GET['struttura'] )) echo " chip-selected" ?>">
+									<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === '' ) echo " chip-selected" ?>">
 										<span class="chip-label customSpacing"><a href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a></span>
 									</div>
 								</div>
