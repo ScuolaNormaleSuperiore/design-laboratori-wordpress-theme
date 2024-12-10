@@ -1181,8 +1181,8 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'      => $prefix . 'level_filter_enabled',
-			'name'    => __( 'Filtra per livello', 'design_laboratori_italia' ),
-			'desc'    => __( 'Attiva il filtro per livello', 'design_laboratori_italia' ),
+			'name'    => __( 'Filtra per TAG', 'design_laboratori_italia' ),
+			'desc'    => __( 'Attiva il filtro per TAG', 'design_laboratori_italia' ),
 			'type'    => 'radio_inline',
 			'default' => 'false',
 			'options' => array(
@@ -1195,10 +1195,10 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'         => $prefix . 'seleziona_livello_persone',
-			'name'       => __( "Etichetta 'Seleziona livello' ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Seleziona TAG' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Seleziona livello',
+			'default'    => 'Seleziona TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1206,10 +1206,10 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'         => $prefix . 'seleziona_livello_persone' . DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( "Etichetta 'Seleziona livello' ENG ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Seleziona TAG' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Select level',
+			'default'    => 'Select TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1217,10 +1217,10 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'         => $prefix . 'tutti_i_livelli_persone',
-			'name'       => __( "Etichetta 'Tutti i livelli' ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Tutti i TAG' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Tutti i livelli',
+			'default'    => 'Tutti i TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1228,10 +1228,10 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'         => $prefix . 'tutti_i_livelli_persone' . DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( "Etichetta 'Tutti i livelli' ENG ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Tutti i TAG' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'All levels',
+			'default'    => 'All TAGs',
 			'attributes' => array(),
 		)
 	);
@@ -1475,10 +1475,10 @@ function dli_register_main_options_metabox() {
 	$progetti_options->add_field(
 		array(
 			'id'         => $prefix . 'seleziona_livello_progetti',
-			'name'       => __( "Etichetta 'Seleziona livello' ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Seleziona TAG' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Seleziona livello',
+			'default'    => 'Seleziona TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1486,10 +1486,10 @@ function dli_register_main_options_metabox() {
 	$progetti_options->add_field(
 		array(
 			'id'         => $prefix . 'seleziona_livello_progetti' . DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( "Etichetta 'Seleziona livello' ENG ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona livello' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Seleziona TAG' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Select level',
+			'default'    => 'Select TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1497,10 +1497,10 @@ function dli_register_main_options_metabox() {
 	$progetti_options->add_field(
 		array(
 			'id'         => $prefix . 'tutti_i_livelli_progetti',
-			'name'       => __( "Etichetta 'Tutti i livelli' ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Tutti i TAG' ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG'. E' usata per filtrare i contenuti per tag." , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'Tutti i livelli',
+			'default'    => 'Tutti i TAG',
 			'attributes' => array(),
 		)
 	);
@@ -1508,10 +1508,10 @@ function dli_register_main_options_metabox() {
 	$progetti_options->add_field(
 		array(
 			'id'         => $prefix . 'tutti_i_livelli_progetti' . DLI_ENG_SUFFIX_LANGUAGE,
-			'name'       => __( "Etichetta 'Tutti i livelli' ENG ", 'design_laboratori_italia' ),
-			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i livelli' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
+			'name'       => __( "Etichetta 'Tutti i TAG' ENG ", 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG' in inglese.  E' usata per filtrare i contenuti per tag" , 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'default'    => 'All levels',
+			'default'    => 'All TAGs',
 			'attributes' => array(),
 		)
 	);
