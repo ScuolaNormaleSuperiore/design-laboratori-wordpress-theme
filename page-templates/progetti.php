@@ -59,7 +59,10 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 	<section id="progetti">
 		<div class="container p-5">
 
-		<!-- Filtro per TAG --> 
+		<!-- Filtro per TAG -->
+		 <?php
+		 if ( count( $tags ) > 0 ) {
+		?>
 		<div class="row text-center pb-5">
 			<div class="col-12 col-lg-12">
 				<div class="title-section">
@@ -91,6 +94,9 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 				</div>
 			</div>
 		</div>
+		<?php
+		 }
+		?>
 		<!-- FINE FILTRO PER TAG -->
 
 
