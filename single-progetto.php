@@ -74,7 +74,7 @@ $eventi = new WP_Query(
 								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 							</a>
 						</div>
-						<!-- tag livello -->
+						<!-- tag -->
 						 <?php
 						 foreach( $levels as $level ){
 						?>

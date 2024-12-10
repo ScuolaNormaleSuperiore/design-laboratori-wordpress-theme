@@ -269,7 +269,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pers
 													$link_persona                        = get_the_permalink( $ID );
 													$sitoweb                             = dli_get_field( 'sito_web' );
 													$title                               = get_the_title( $ID );
-													// $levels                              = wp_get_post_terms( $post_id, 'post_tag' );
+													$levels                              = wp_get_post_terms( $ID, 'post_tag' );
 													?>
 													<div class="col-lg-4">
 														<div class="avatar-wrapper avatar-extra-text">
@@ -311,7 +311,11 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pers
 																	?>
 																		<p><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</p>
 																	<?php
-
+																		if ( count($levels) ) {
+																	?>
+																		<p><?php echo esc_attr($levels[0]->name); ?></p>
+																	<?php
+																		}
 																	}
 																?>
 															</div>
