@@ -169,6 +169,16 @@ class DLI_ContentsManager
 				),
 			),
 		);
+		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
+		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'term_id', // 'slug', 'name' o 'term_id'.
+					'terms'    => $params['tag_level'],
+				),
+			);
+		}
 		return new WP_Query( $args );
 	}
 
@@ -192,7 +202,7 @@ class DLI_ContentsManager
 	public static function dli_get_research_area_data_query( $params ){
 		$args = array(
 			'paged'          => $params['paged'],
-			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
+			'post_type'      => $params['post_type'],
 			'posts_per_page' => $params['per_page'],
 			'orderby'        => 'title',
 			'order'          => 'ASC',
@@ -216,6 +226,18 @@ class DLI_ContentsManager
 				ORDER BY t.term_id ASC
 		", $taxonomy, $post_type);
 		return $wpdb->get_results($query);
+	}
+
+	// PROGETTI
+	public static function dli_get_projects_query( $params ){
+		$the_query = new WP_Query(
+			array(
+				'paged'          => $params['paged'],
+				'post_type'      => $params['post_type'],
+				'posts_per_page' => $params['per_page'],
+			)
+		);
+		return $the_query;
 	}
 
 }

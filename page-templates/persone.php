@@ -10,14 +10,18 @@
 global $post;
 get_header();
 
-$the_query = new WP_Query(
-	array(
-		'paged'          => get_query_var( 'paged', 1 ),
-		'post_type'      => PEOPLE_POST_TYPE,
-		'posts_per_page' => -1,
-		// 'posts_per_page' => DLI_POSTS_PER_PAGE,
-	)
+// Gestione del parametro struttura.
+$selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
+// Gestione del parametro: TAG livello.
+// ...
+
+// Recupero dati da visualizzare.
+$params = array(
+	'paged'     => get_query_var( 'paged', 1 ),
+	'post_type' => PEOPLE_POST_TYPE,
+	'per_page'  => -1,
 );
+$the_query                = DLI_ContentsManager::dli_get_projects_query( $params );
 $num_results              = $the_query->found_posts;
 $filter_mode              = dli_get_option('pagination_mode', 'persone' );
 $select_structure_enabled = $filter_mode === 'disabled' ? false :  true;
@@ -59,7 +63,6 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 						);
 						// visualizzo il filtro con CHIP sulle strutture solo se ne esistono almeno 2 e se il filtro è abilitato.
 						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled && ( $filter_mode !== 'combobox' ) ) {
-							$selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
 						?>
 						<!-- FILTRI SU STRUTTURE chips se presenti -->
 
@@ -72,7 +75,8 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									?>
 										<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === $struttura->slug ) echo " chip-selected" ?>">
 											<span class="chip-label customSpacing">
-												<a class="hover-text-white" href="?struttura=<?php echo $struttura->slug; ?>" title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a>
+												<a class="hover-text-white" href="?struttura=<?php echo $struttura->slug; ?>"
+													title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a>
 											</span>
 										</div>
 									<?php
@@ -80,7 +84,11 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									?>
 									<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === '' ) echo " chip-selected" ?>">
 										<span class="chip-label customSpacing">
-											<a class="hover-text-white" href="<?php the_permalink(); ?>" title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>"><?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?></a>
+											<a class="hover-text-white"
+												href="<?php the_permalink(); ?>"
+												title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>">
+												<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>
+											</a>
 										</span>
 									</div>
 								</div>
@@ -99,7 +107,6 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 								<div class="col-lg-4">
 									<?php
 										if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled & ( $filter_mode === 'combobox' ) ) {
-											$selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
 									?>
 									<div class="select-wrapper">
 										<label for="defaultSelect"><?php _e( 'Seleziona la struttura', "design_laboratori_italia" ); ?></label>

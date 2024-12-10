@@ -21,17 +21,24 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 } else {
 	$paged = get_query_var( 'paged', 1 );
 }
+// Gestione del parametro: TAG livello.
+$selected_level = isset( $_GET['level'] ) ? sanitize_text_field( $_GET['level'] ) : '';
 
+// Recupero dati da visualizzare.
 $params = array(
-	'today'    => $today,
-	'per_page' => $per_page,
-	'paged'    => $paged,
+	'today'     => $today,
+	'per_page'  => $per_page,
+	'paged'     => $paged,
+	'tag_level' => $selected_level,
 );
 $the_query   = DLI_ContentsManager::dli_get_projects_data_query( $params );
 $num_results = $the_query->found_posts;
 
 // Get the tag used into published projects.
 $tags = DLI_ContentsManager::dli_get_tags_by_post_type( PROGETTO_POST_TYPE );
+
+$label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_progetti', 'progetti' );
+$label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_progetti', 'progetti' );
 ?>
 
 <main id="main-container" role="main">
@@ -60,20 +67,24 @@ $tags = DLI_ContentsManager::dli_get_tags_by_post_type( PROGETTO_POST_TYPE );
 					?>
 					<div class="chip chip-primary chip-lg chip-simple ">
 						<span class="chip-label customSpacing">
-							<a class="hover-text-white" 
-								href="?struttura=prima-struttura"
-								title="Filtra per: Prima struttura"
+							<a class="hover-text-white <?php if ( $selected_level === $tag->term_id ) echo " chip-selected" ?>"
+								href="#"
+           			onclick="addParameterAndReloadPage('level', <?php echo esc_attr( $tag->term_id ); ?>); return false;"
+								title="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $tag->name ); ?>"
 								data-focus-mouse="false"><?php echo esc_attr( $tag->name ); ?></a>
 						</span>
 					</div>
 					<?php
 						}
 					?>
-					<div class="chip chip-primary chip-lg chip-simple  chip-selected">
+					<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_level === '' ) echo " chip-selected" ?>">
 						<span class="chip-label customSpacing">
-							<a class="hover-text-white" 
-							href="https://sitofederato-dev.sns.it/il-laboratorio/persone/" 
-							title="Tutte le strutture">Tutte le strutture</a>
+							<a class="hover-text-white"
+								href="#"
+								onclick="addParameterAndReloadPage('level', ''); return false;"
+								title="<?php echo $label_all_levels; ?>">
+								<?php echo $label_all_levels; ?>
+							</a>
 						</span>
 					</div>
 				</div>

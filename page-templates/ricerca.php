@@ -10,6 +10,7 @@ define( 'RIC_CELLS_PER_ROW', 3 );
 $per_page        =  DLI_POSTS_PER_PAGE;
 $per_page_values = DLI_POST_PER_PAGE_VALUES;
 
+// Gestione dei parametri.
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
@@ -19,6 +20,7 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 	$paged = get_query_var( 'paged', 1 );
 }
 
+// Recupero dati da visualizzare.
 $params = array(
 	'per_page' => $per_page,
 	'paged'    => $paged,
