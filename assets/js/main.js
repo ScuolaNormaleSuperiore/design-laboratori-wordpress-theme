@@ -11,9 +11,9 @@ function addParameterAndReloadPage($par_name, $par_value) {
 	const url = new URL(window.location.href);
 	const params = url.searchParams;
 
-	// Togliere la parte del path che mostra pagine diverse dalla prima,
+	// Usa una regex per trovare "page/{numero}/" nel pathname e sostituirlo con "page/1/"
 	// cioè mostra sempre la prima pagina della paginazione.
-	const newPath = url.pathname.replace(/\/page\/\d+\//, "/");
+	const newPath = url.pathname.replace(/\/page\/\d+\//, '/page/1/');
 	url.pathname = newPath; 
 
 	// Aggiungi o aggiorna il parametro $par_name con il valore $par_value.
