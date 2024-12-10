@@ -174,7 +174,7 @@ class DLI_ContentsManager
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
-					'field'    => 'term_id', // 'slug', 'name' o 'term_id'.
+					'field'    => 'slug', // 'slug', 'name' o 'term_id'.
 					'terms'    => $params['tag_level'],
 				),
 			);
@@ -213,7 +213,7 @@ class DLI_ContentsManager
 	public static function dli_get_tags_by_post_type( $post_type, $taxonomy=WP_DEFAULT_TAGS ){
 		global $wpdb;
 		$query = $wpdb->prepare("
-				SELECT t.term_id, t.name, COUNT(tr.object_id) as count
+				SELECT t.term_id, t.slug, t.name, COUNT(tr.object_id) as count
 				FROM {$wpdb->terms} t
 				INNER JOIN {$wpdb->term_taxonomy} tt ON t.term_id = tt.term_id
 				INNER JOIN {$wpdb->term_relationships} tr ON tt.term_taxonomy_id = tr.term_taxonomy_id

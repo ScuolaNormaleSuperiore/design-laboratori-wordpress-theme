@@ -67,9 +67,9 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 					?>
 					<div class="chip chip-primary chip-lg chip-simple ">
 						<span class="chip-label customSpacing">
-							<a class="hover-text-white <?php if ( $selected_level === $tag->term_id ) echo " chip-selected" ?>"
+							<a class="hover-text-white <?php if ( $selected_level === $tag->slug ) echo " chip-selected" ?>"
 								href="#"
-           			onclick="addParameterAndReloadPage('level', <?php echo esc_attr( $tag->term_id ); ?>); return false;"
+           			onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $tag->slug ); ?>'); return false;"
 								title="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $tag->name ); ?>"
 								data-focus-mouse="false"><?php echo esc_attr( $tag->name ); ?></a>
 						</span>
@@ -106,6 +106,8 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 					$post_id        = get_the_ID();
 					$progetto       = get_post( $post_id );
 					$image_metadata = dli_get_image_metadata( $progetto, 'item-card-list' );
+					$responsabili   = dli_get_field( 'responsabile_del_progetto', $post_id );
+					$levels         = wp_get_post_terms( $post_id, 'post_tag' );
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">
@@ -127,17 +129,34 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 								}
 								?>
 									<div class="card-body">
+										<div class="head-tags">
+											<?php
+											foreach ( $levels as $level ) {
+											?>
+											<a class="card-tag" href="#"
+												onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
+												<?php echo esc_attr(  $level->name ); ?>
+											</a>
+											<?php
+											}
+											?>
+										</div>
 										<h3 class="card-title h5 "><?php echo get_the_title(); ?></h3>
-										<p class="card-text">
+										<p class="card-text font-serif">
 											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
-										<a class="read-more" href="<?php echo get_permalink(); ?>">
-										<span class="text customSpacing"><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon" role="img" aria-labelledby="Arrow right">
-											<title><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
-										</svg>
-										</a>
+										<span class="card-signature">Nome Cognome, Nome cognome 2</span>
+
+										<div class="it-card-footer">
+											<a class="read-more" href="<?php echo get_permalink(); ?>">
+												<span class="text customSpacing"><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
+												<svg class="icon" role="img" aria-labelledby="Arrow right">
+													<title><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></title>
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
+												</svg>
+											</a>
+										</div>
+
 									</div>
 								</div>
 							</div>
