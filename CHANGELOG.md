@@ -19,6 +19,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Aggiunto
 - Home Page: Possibilità di visualizzare l'header principale in modalità "grande" o "piccolo".
 - Elenco persone: Possibilità di attivare/disattivare il filtro struttura e, se attivato, di scegliere tra un filtro chip o select.
+- Progetti: Possibile classificazione e filtro per TAG.
+- Persone: Possibile classificazione e filtro per TAG.
 ### Modificato
 - Portata configurazione lingue nel LabManager.
 - Il campo Tagline, nella configurazione del sito, non è più obbligatorio.
