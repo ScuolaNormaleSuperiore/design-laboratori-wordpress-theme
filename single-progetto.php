@@ -16,6 +16,7 @@ $responsabili       = dli_get_field( 'responsabile_del_progetto' );
 $partecipanti       = dli_get_field( 'persone' );
 $indirizzidiricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
 $pubblicazioni      = dli_get_field( 'pubblicazioni' );
+$levels             = wp_get_post_terms( $ID, 'post_tag' );
 $fields_allegati    = array( 'allegato1', 'allegato2', 'allegato3' );
 $allegati           = array();
 foreach ( $fields_allegati as $field ) {
@@ -24,7 +25,9 @@ foreach ( $fields_allegati as $field ) {
 		array_push( $allegati, $item );
 	}
 }
-$websiteurl = dli_get_field( 'url' );
+$websiteurl   = dli_get_field( 'url' );
+$current_lang = dli_current_language();
+$tag_page     = DLI_PAGE_PER_CT[PROGETTO_POST_TYPE][$current_lang];
 
 // recupero la lista degli eventi correlati ad un progetto.
 $eventi = new WP_Query(
@@ -67,8 +70,23 @@ $eventi = new WP_Query(
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
 						<div class="it-btn-container">
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl) ; ?>"><?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl ) ; ?>">
+								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
+							</a>
 						</div>
+						<!-- tag livello -->
+						 <?php
+						 foreach( $levels as $level ){
+						?>
+							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
+								<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
+									<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
+								</a>
+							</div>
+						 <?php
+						 }
+						 ?>
+						<figcaption class="figure-caption mt-3 text-light"><?php echo esc_attr( $image_metadata['image_alt'] );?></figcaption>
 					</div>
 				</div>
 			</div>
@@ -90,7 +108,7 @@ $eventi = new WP_Query(
 							data-bs-toggle="navbarcollapsible"
 							data-bs-target="#navbarNav"
 						>
-						<span class="it-list"></span>1. Introduzione
+						<span class="it-list"></span>
 						</button>
 						<div class="progress custom-navbar-progressbar">
 							<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>

@@ -65,9 +65,9 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 					<?php
 						foreach( $tags as $tag ) {
 					?>
-					<div class="chip chip-primary chip-lg chip-simple ">
+					<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_level === $tag->slug ) echo " chip-selected" ?>">
 						<span class="chip-label customSpacing">
-							<a class="hover-text-white <?php if ( $selected_level === $tag->slug ) echo " chip-selected" ?>"
+							<a class="hover-text-white"
 								href="#"
            			onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $tag->slug ); ?>'); return false;"
 								title="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $tag->name ); ?>"
@@ -108,6 +108,10 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 					$image_metadata = dli_get_image_metadata( $progetto, 'item-card-list' );
 					$responsabili   = dli_get_field( 'responsabile_del_progetto', $post_id );
 					$levels         = wp_get_post_terms( $post_id, 'post_tag' );
+					$nomi_resp      = ( $responsabili && count( $responsabili ) >0 ) ? implode(', ', array_map(function($persona) {
+						return $persona->post_title;
+					}, $responsabili)) : '' ;
+
 				?>
 						<!--start card-->
 						<div class="col-12 col-lg-4">
@@ -133,7 +137,8 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 											<?php
 											foreach ( $levels as $level ) {
 											?>
-											<a class="card-tag" href="#"
+											<!-- <a class="card-tag" href="#"> -->
+											<a class="card-tag text-decoration-none" href="#"
 												onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
 												<?php echo esc_attr(  $level->name ); ?>
 											</a>
@@ -145,7 +150,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 										<p class="card-text font-serif">
 											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
-										<span class="card-signature">Nome Cognome, Nome cognome 2</span>
+										<span class="card-signature"><?php echo $nomi_resp;?></span>
 
 										<div class="it-card-footer">
 											<a class="read-more" href="<?php echo get_permalink(); ?>">

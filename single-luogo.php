@@ -84,7 +84,7 @@ while ( have_posts() ) {
 								data-bs-toggle="navbarcollapsible"
 								data-bs-target="#navbarNav"
 							>
-								<span class="it-list"></span>1. Introduzione
+								<span class="it-list"></span>
 							</button>
 							<div class="progress custom-navbar-progressbar">
 								<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
