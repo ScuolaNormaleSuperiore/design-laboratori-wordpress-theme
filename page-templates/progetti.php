@@ -37,6 +37,7 @@ $num_results = $the_query->found_posts;
 // Get the tag used into published projects.
 $tags = DLI_ContentsManager::dli_get_tags_by_post_type( PROGETTO_POST_TYPE );
 
+// Etichette per la gestione dei tag.
 $label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_progetti', 'progetti' );
 $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_progetti', 'progetti' );
 ?>

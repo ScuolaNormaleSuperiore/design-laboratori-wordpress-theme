@@ -22,3 +22,13 @@ function addParameterAndReloadPage($par_name, $par_value) {
 	// Ricarica la pagina con il nuovo URL
 	window.location.href = url.toString();
 }
+
+
+function reloadWithSelectedItem( $id_item, $par_name) {
+	// Recupera il valore selezionato nella select con id=$id_item.
+	const $par_value = document.getElementById($id_item).value;
+	// Ricarica la pagina aggiungendo il parametro $par_name con $par_value.
+	if ($par_value) {
+		addParameterAndReloadPage($par_name, $par_value);
+	}
+}

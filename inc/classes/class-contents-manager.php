@@ -229,15 +229,23 @@ class DLI_ContentsManager
 	}
 
 	// PROGETTI
-	public static function dli_get_projects_query( $params ){
-		$the_query = new WP_Query(
-			array(
-				'paged'          => $params['paged'],
-				'post_type'      => $params['post_type'],
-				'posts_per_page' => $params['per_page'],
-			)
+	public static function dli_get_people_query( $params ){
+		$args = array(
+			'paged'          => $params['paged'],
+			'post_type'      => $params['post_type'],
+			'posts_per_page' => $params['per_page'],
 		);
-		return $the_query;
+		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
+		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'slug', // 'slug', 'name' o 'term_id'.
+					'terms'    => $params['tag_level'],
+				),
+			);
+		}
+		return new WP_Query( $args );
 	}
 
 }

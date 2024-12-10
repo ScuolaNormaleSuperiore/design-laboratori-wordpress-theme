@@ -13,19 +13,25 @@ get_header();
 // Gestione del parametro struttura.
 $selected_structure = isset( $_GET['struttura'] ) ? sanitize_text_field( $_GET['struttura'] ) : '';
 // Gestione del parametro: TAG livello.
-// ...
+$selected_level = isset( $_GET['level'] ) ? sanitize_text_field( $_GET['level'] ) : '';
 
 // Recupero dati da visualizzare.
 $params = array(
 	'paged'     => get_query_var( 'paged', 1 ),
 	'post_type' => PEOPLE_POST_TYPE,
 	'per_page'  => -1,
+	'tag_level' => $selected_level,
 );
-$the_query                = DLI_ContentsManager::dli_get_projects_query( $params );
+$the_query                = DLI_ContentsManager::dli_get_people_query( $params );
 $num_results              = $the_query->found_posts;
 $filter_mode              = dli_get_option('pagination_mode', 'persone' );
 $select_structure_enabled = $filter_mode === 'disabled' ? false :  true;
 $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !== 'true' ? false : true ;
+// Get the tag used into published people.
+$tags = DLI_ContentsManager::dli_get_tags_by_post_type( PEOPLE_POST_TYPE );
+// Etichette per la gestione dei tag.
+$label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_persone', 'persone' );
+$label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_persone', 'persone' );
 ?>
 <script>
 	function redirectToPage(baseUrl, parname, selectedValue ) {
@@ -64,8 +70,8 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 						// visualizzo il filtro con CHIP sulle strutture solo se ne esistono almeno 2 e se il filtro è abilitato.
 						if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled && ( $filter_mode !== 'combobox' ) ) {
 						?>
-						<!-- FILTRI SU STRUTTURE chips se presenti -->
 
+						<!-- FILTRO STRUTTURE con chips -->
 						<div class="row mb-5">
 							<div class="col-lg-3"></div>
 							<div class="col-lg-9">
@@ -75,7 +81,9 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									?>
 										<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === $struttura->slug ) echo " chip-selected" ?>">
 											<span class="chip-label customSpacing">
-												<a class="hover-text-white" href="?struttura=<?php echo $struttura->slug; ?>"
+												<a class="hover-text-white" 
+													href="#"
+													onclick="addParameterAndReloadPage('struttura', '<?php echo esc_attr( $struttura->slug ); ?>'); return false;"
 													title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a>
 											</span>
 										</div>
@@ -85,7 +93,8 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									<div class="chip chip-primary chip-lg chip-simple <?php if ( $selected_structure === '' ) echo " chip-selected" ?>">
 										<span class="chip-label customSpacing">
 											<a class="hover-text-white"
-												href="<?php the_permalink(); ?>"
+												href="#"
+												onclick="addParameterAndReloadPage('struttura', ''); return false;"
 												title="<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>">
 												<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>
 											</a>
@@ -101,24 +110,25 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 							if ( $select_structure_enabled || $filter_level_enabled ) {
 						?>
 
-							<!-- FILTRO CON COMBOBOX -->
+							
 							<div class="row mb-5">
 								<div class="col-lg-3"></div>
 								<div class="col-lg-4">
+									<!-- FILTRO STRUTTURE con combo -->
 									<?php
 										if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled & ( $filter_mode === 'combobox' ) ) {
 									?>
 									<div class="select-wrapper">
-										<label for="defaultSelect"><?php _e( 'Seleziona la struttura', "design_laboratori_italia" ); ?></label>
-										<select id="peopleSelect" onchange="redirectToPage('<?php the_permalink(); ?>', 'struttura', this.value)">
-											<option value="" <?php if ( $selected_structure === '' ) echo "selected" ?> >
+										<label for="selectPeopleStructure"><?php _e( 'Seleziona la struttura', "design_laboratori_italia" ); ?></label>
+										<select id="selectPeopleStructure" onchange="reloadWithSelectedItem('selectPeopleStructure', 'struttura')">
+											<option value=" " <?php if ( $selected_structure === '' ) echo "selected" ?> >
 												<?php _e( 'Tutte le strutture', "design_laboratori_italia" ); ?>
 											</option>
 											<?php
 											foreach ( $strutture as $struttura ) {
 											?>
 											<option value="<?php echo $struttura->slug; ?>" <?php if ( $selected_structure === $struttura->slug ) echo "selected" ?> >
-											<?php echo esc_attr( $struttura->name ); ?>
+												<?php echo esc_attr( $struttura->name ); ?>
 											</option>
 											<?php
 												}
@@ -130,18 +140,26 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 									?>
 								</div>
 								<div class="col-lg-4">
+									<!-- Filtro per TAG livello -->
 									<?php
-										if ( $filter_level_enabled ) {
+										if ( ( $filter_level_enabled ) && count( $tags )> 0 ) {
 									?>
+
 									<div class="select-wrapper">
-										<label for="defaultSelect">Seleziona ciclo</label>
-										<select id="defaultSelect">
-											<option selected="" value="">Scegli un ciclo</option>
-											<option value="Value 1">Tutti i cicli</option>
-											<option value="Value 2">Opzione 1</option>
-											<option value="Value 3">Opzione 2</option>
-											<option value="Value 4">Opzione 3</option>
-											<option value="Value 5">Opzione 4</option>
+										<label for="selectPeopleLevel"><?php echo esc_attr( $label_select_level ); ?></label>
+										<select id="selectPeopleLevel" onchange="reloadWithSelectedItem('selectPeopleLevel', 'level')">
+											<option value=" " <?php if ( $selected_level === '' ) echo "selected" ?> >
+												<?php echo esc_attr( $label_all_levels ); ?>
+											</option>
+											<?php
+											foreach( $tags as $tag ){
+											?>
+												<option value="<?php echo esc_attr( $tag->slug ); ?>" <?php if ( $selected_level === $tag->slug ) echo "selected" ?> >
+													<?php echo esc_attr( $tag->name ); ?>
+												</option>
+											<?php
+											}
+											?>
 										</select>
 									</div>
 									<?php
@@ -171,54 +189,58 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 							while ( $categorie_persone->have_posts() ) {
 								$categorie_persone->the_post();
 								$nome_categoria = dli_get_field( 'nome' );
+								$categoria_id   = get_the_ID();
 
-								$categoria_id = get_the_ID();
-								if ( isset( $_GET['struttura'] ) && $_GET['struttura'] != '' ) {
-									$struttura = $_GET['struttura'];
+								$args = array(
+									'posts_per_page' => -1,
+									'post_type'      => 'persona',
+									'meta_key'       => 'cognome',
+									'orderby'        => 'meta_value',
+									'order'          => 'ASC',
+									'meta_query'     => array(
+										array(
+											'key'     => 'categoria_appartenenza',
+											'compare' => 'LIKE',
+											'value'   => '"' . $categoria_id . '"',
+										),
+									),
+								);
+
+								// Aggiungo il filtro su struttura, se richiesto.
+								if ( $selected_structure !== '' ) {
 									// recupero la lista delle persone filtrate per struttura.
-									$persone = new WP_Query(
+									$args['tax_query'] = array(
 										array(
-											'posts_per_page' => -1,
-											'post_type'      => 'persona',
-											'meta_key'       => 'cognome',
-											'orderby'        => 'meta_value',
-											'order'          => 'ASC',
-											'meta_query'     => array(
-												array(
-													'key'     => 'categoria_appartenenza',
-													'compare' => 'LIKE',
-													'value'   => '"' . $categoria_id . '"',
-												),
-											),
-											'tax_query'   => array(
-												array(
-													'taxonomy' => 'struttura',
-													'field'    => 'slug',
-													'terms'    => "'" . $struttura . "'",
-												),
-											),
-										)
+											'taxonomy' => 'struttura',
+											'field'    => 'slug',
+											'terms'    => "'" . $selected_structure . "'",
+										),
 									);
 								}
-								else {
-									// recupero la lista DI TUTTE persone.
-									$persone = new WP_Query(
-										array(
-											'posts_per_page' => -1,
-											'post_type'      => 'persona',
-											'meta_key'       => 'cognome',
-											'orderby'        => 'meta_value',
-											'order'          => 'ASC',
-											'meta_query'     => array(
-												array(
-													'key' => 'categoria_appartenenza',
-													'compare' => 'LIKE',
-													'value' => '"' . $categoria_id . '"',
-												),
+
+								// Aggiungo il filtro su persona, se richiesto.
+								if ( $selected_level ) {
+									if (! isset( $args['tax_query'] ) ) {
+										$args['tax_query'] = array(
+											array(
+												'taxonomy' => 'post_tag',
+												'field'    => 'slug',
+												'terms'    => $params['tag_level'],
 											),
-										)
-									);
+										);
+									} else {
+										array_push(
+											$args['tax_query'],
+											array(
+												'taxonomy' => 'post_tag',
+												'field'    => 'slug',
+												'terms'    => $params['tag_level'],
+											)
+										);
+									}
 								}
+
+								$persone = new WP_Query( $args );
 
 								if ( $persone ) {
 									?>
@@ -247,6 +269,7 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 													$link_persona                        = get_the_permalink( $ID );
 													$sitoweb                             = dli_get_field( 'sito_web' );
 													$title                               = get_the_title( $ID );
+													// $levels                              = wp_get_post_terms( $post_id, 'post_tag' );
 													?>
 													<div class="col-lg-4">
 														<div class="avatar-wrapper avatar-extra-text">
@@ -262,7 +285,7 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 																		if ( ! $abilita_link_diretto_pagina_persona ) {
 																			?>
 																			<h4>
-																				<a href="<?php echo $link_persona; ?>">
+																				<a class="text-decoration-none" href="<?php echo $link_persona; ?>">
 																					<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
 																				</a>
 																			</h4>
@@ -271,7 +294,7 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 																		else {
 																			?>
 																				<h4>
-																					<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
+																					<a class="text-decoration-none" href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
 																						<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
 																					</a>
 																				</h4>
@@ -286,8 +309,9 @@ $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !
 																	if ( $terms ) {
 																		$nome_struttura = $terms[0]->name;
 																	?>
-																		<time datetime="2023-09-15"><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</time>
+																		<p><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</p>
 																	<?php
+
 																	}
 																?>
 															</div>
