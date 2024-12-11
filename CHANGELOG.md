@@ -28,6 +28,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornato Dockerfile per sito demo.
 - Refactoring sezione filtri nelle'elenco delle persone.
 - Corretto overlay nella visualizzazione di banner e hero.
+- Visualizzazione dei contenuti correlati come carousel nelle pagine del sito.
 ### Corretto
 - Impostata struttura permalink in modalità articolo nel LabManager.
 - Corretta visualizzazione chips persone.
