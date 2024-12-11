@@ -5,7 +5,7 @@
 ?>
 
 <section id="sezione-eventi">
-	<div class="it-carousel-wrapper it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide>
+	<div class="it-carousel-wrapper it-carousel-landscape-abstract-three-cols splide pt-4" data-bs-carousel-splide>
 		<div class="it-header-block">
 			<div class="it-header-block-title">
 			<h2 class="it-page-section h4 pb-2"><?php echo __( 'News &amp; Eventi', 'design_laboratori_italia' ); ?></h2>
