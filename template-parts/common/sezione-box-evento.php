@@ -13,36 +13,36 @@ if ( $item ) {
 ?>
 
 	<!--start card-->
-	<div class="card-wrapper">
-		<div class="card card-img no-after card-bg">
-			<div class="img-responsive-wrapper">
-				<div class="img-responsive img-responsive-panoramic">
-					<figure class="img-wrapper">
-						<img src="<?php echo $image_metadata['image_url']; ?>"
-							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
-							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
-					</figure>
-					<div class="card-calendar d-flex flex-column justify-content-center">
-						<span class="card-date">
-							<?php echo $event_date->format( 'd' ); ?>
-						</span>
-						<span class="card-day">
-							<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
-						</span>
-					</div>
+	<div class="card card-img no-after card-bg">
+		<div class="img-responsive-wrapper">
+			<div class="img-responsive img-responsive-panoramic">
+				<figure class="img-wrapper">
+					<img src="<?php echo $image_metadata['image_url']; ?>"
+						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+				</figure>
+				<div class="card-calendar d-flex flex-column justify-content-center">
+					<span class="card-date">
+						<?php echo $event_date->format( 'd' ); ?>
+					</span>
+					<span class="card-day">
+						<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
+					</span>
 				</div>
 			</div>
-			<div class="card-body p-4">
-				<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
-				<p class="card-text"><?php echo esc_attr( $desc ); ?></p>
-				<?php if ( $orario_inizio && false ) {
-				?>
-					<p class="card-text">
-						<?php echo $orario_inizio; ?>
-					</p>
-				<?php
-				}
-				?>
+		</div>
+		<div class="card-body p-4">
+			<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
+			<p class="card-text"><?php echo esc_attr( $desc ); ?></p>
+			<?php if ( $orario_inizio && false ) {
+			?>
+				<p class="card-text">
+					<?php echo $orario_inizio; ?>
+				</p>
+			<?php
+			}
+			?>
+			<p class="pt-1">
 				<a class="read-more" href="<?php echo esc_url( $link ); ?>">
 					<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ) ?></span>
 					<span class="visually-hidden"><?php echo $desc; ?></span>
@@ -51,7 +51,7 @@ if ( $item ) {
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
 					</svg>
 				</a>
-			</div>
+			</p>
 		</div>
 	</div>
 	<!--end card-->
