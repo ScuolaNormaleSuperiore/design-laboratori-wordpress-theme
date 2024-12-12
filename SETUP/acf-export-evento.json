@@ -42,6 +42,23 @@
                 "first_day": 1
             },
             {
+                "key": "field_63f3233053149",
+                "label": "Ora inizio",
+                "name": "orario_inizio",
+                "aria-label": "",
+                "type": "time_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "H:i",
+                "return_format": "H:i"
+            },
+            {
                 "key": "field_63ca9adab8fce",
                 "label": "Data fine",
                 "name": "data_fine",
@@ -58,23 +75,6 @@
                 "display_format": "d\/m\/Y",
                 "return_format": "d\/m\/Y",
                 "first_day": 1
-            },
-            {
-                "key": "field_63f3233053149",
-                "label": "Ora inizio",
-                "name": "orario_inizio",
-                "aria-label": "",
-                "type": "time_picker",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "H:i",
-                "return_format": "H:i"
             },
             {
                 "key": "field_665d964dad6d1",

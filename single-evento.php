@@ -31,6 +31,7 @@ $end_month_name     = $start_month_number ? dli_get_monthname_short( $end_month_
 $end_event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $end_date );
 $orario_fine        = dli_get_field( 'orario_fine', $post );
 $orario_fine        = $orario_fine ? $orario_fine : '';
+$same_date          = ( $start_date === $end_date ) ? true : false;
 $luogo              = dli_get_field( 'luogo' );
 $label_contatti     = dli_get_field( 'label_contatti' );
 $telefono           = dli_get_field( 'telefono' );
@@ -242,7 +243,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 							</div>
 							<div class="point-list-content">
 								<?php
-									if ( $orario_inizio ) {
+									if ( ( $orario_inizio ) || ( $orario_fine && $same_date ) ) {
 								?>
 								<div class="card card-teaser shadow p-4 rounded border">
 									<div class="card-body">
@@ -253,6 +254,13 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 											<?php echo __( 'Inizio evento', 'design_laboratori_italia' ); ?> <?php echo $orario_inizio; ?>
 											<?php
 											}
+											if ( $orario_inizio && $orario_fine && $same_date ) {
+												echo '&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;';
+											}
+											if ( $orario_fine && $same_date ) {
+												echo __( 'Fine evento', 'design_laboratori_italia' );
+												echo $orario_fine;
+											}
 											?>
 										</h5>
 									</div>
@@ -262,6 +270,9 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								?>
 							</div>
 						</div>
+						<?php
+						if ( ! $same_date ){
+						?>
 						<!-- data fine -->
 						<div class="point-list">
 							<div class="point-list-aside point-list-warning">
@@ -294,6 +305,9 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								?>
 							</div>
 						</div>
+						<?php
+						}
+						?>
 					</div>
 				</article>
 	
