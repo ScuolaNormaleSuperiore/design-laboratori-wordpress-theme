@@ -18,7 +18,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.4.1] - 2024-12-12
 ## Corretto
+- Corretta visualizzazione sezione "Seguici su".
 ## Modificato
+- Modificata visualizzazione della data di un evento, negli eventi di un solo giorno.
 
 
 
