@@ -15,7 +15,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.4.0] - 2024-12-11
+
+## [1.4.1] - 2024-12-12
+## Corretto
+## Modificato
+
+
+
+## [1.4.0] - 2024-12-10
 ### Aggiunto
 - Home Page: Possibilità di visualizzare l'header principale in modalità "grande" o "piccolo".
 - Elenco persone: Possibilità di attivare/disattivare il filtro struttura e, se attivato, di scegliere tra un filtro chip o select.
@@ -33,7 +40,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Impostata struttura permalink in modalità articolo nel LabManager.
 - Corretta visualizzazione chips persone.
 - Refactoring nella gestione logo nello header e nel footer.
-
 
 ## [1.3.9] - 2024-12-05
 ### Corretto
