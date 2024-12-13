@@ -10,6 +10,13 @@
  */
 ?>
 
+<?php
+  $tagline       = dli_get_option( 'tagline_laboratorio' );
+	$label_footer  = dli_get_option( 'label_contact_footer');
+	$site_name     = dli_get_option( 'nome_laboratorio' );
+	$label_contact = $label_footer ? $label_footer : $site_name;
+?>
+
 <!-- START FOOTER -->
 <footer class="it-footer" id="footer-container" role="contentinfo">
 	<!-- TAGLINE -->
@@ -23,8 +30,8 @@
 								<!-- footer logo -->
 								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
 								<div class="it-brand-text ms-4">
-									<h2 class="no_toc h2"><?php echo dli_get_option( 'nome_laboratorio' ); ?></h2>
-									<h3 class="no_toc h3 d-none d-md-block"><?php echo dli_get_option( 'tagline_laboratorio' ); ?></h3>
+									<h2 class="no_toc h2"><?php echo esc_attr( $label_contact ); ?></h2>
+									<h3 class="no_toc h3 d-none d-md-block"><?php echo esc_attr(  $tagline ); ?></h3>
 								</div>
 							</a>
 						</div>

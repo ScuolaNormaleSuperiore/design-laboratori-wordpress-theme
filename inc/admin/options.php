@@ -72,6 +72,15 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
+			'id'         => $prefix . 'label_contact_footer',
+			'name'       => __( 'Etichetta contatto', 'design_laboratori_italia' ),
+			'desc'       => __( 'Etichetta da mostrare nei contatti del footer, se non specificato viene usato il contenuto del campo Nome laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+
+	$header_options->add_field(
+		array(
 			'id'         => $prefix . 'luogo_laboratorio',
 			'name'       => __( 'Città', 'design_laboratori_italia' ) . '&nbsp;*',
 			'desc'       => __( 'La città dove risiede il Laboratorio' , 'design_laboratori_italia' ),
