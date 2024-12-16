@@ -221,6 +221,27 @@
                 "append": ""
             },
             {
+                "key": "field_6760052a7260e",
+                "label": "Altri inventori**",
+                "name": "altri_inventori",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
                 "key": "field_6704eeeaffec8",
                 "label": "Titolari",
                 "name": "titolari",
