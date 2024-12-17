@@ -186,8 +186,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					'post_content' => $new_content['post_content'],
 				);
 				wp_update_post( $pars );
-				$this->update_custom_fields( $post_id, $item );
 				$this->update_title( $post_id, $item );
+				$this->update_custom_fields( $post_id, $item );
 				$updated = true;
 			} else {
 				$ignored = true;
@@ -210,7 +210,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 			if ( ! isset( $contents['en'] ) ) {
 				// Crea nuova versione in inglese.
-				$new_content_en  = array(
+				$new_content_en = array(
 					'post_type'    => $this->post_type,
 					'post_name'    => $post_name_en,
 					'post_title'   => $post_title_en,
@@ -220,19 +220,56 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				);
 
 				// Associa versione italiana e versione inglese;
-			}
-			// Aggiorna campi in inglese.
-			// ...
+				$post_id_en = wp_insert_post( $new_content_en );
 
+				// Assign the EN language to the page.
+				dli_set_post_language( $post_id_en, 'en' );
+
+				// Associate it and en translations.
+				$related_posts = array(
+				'it' => $post_id,
+				'en' => $post_id_en,
+				);
+				dli_save_post_translations( $related_posts );
+				// @TODO: ATT!! Modifica per aggiornare in inglese:
+				$this->update_custom_fields( $post_id_en, $item );
+			} else {
+				// Aggiorna versione esistente.
+				$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
+				if ( $update_content ) {
+					// Aggiorna i campi del post.
+					$pars = array(
+						'ID'           => $post_id_en,
+						'post_content' => $new_content_en['post_content'],
+					);
+					wp_update_post( $pars );
+					// @TODO: ATT!! Modifica per aggiornare in inglese:
+					$this->update_title( $post_id_en, $item );
+					// @TODO: ATT!! Modifica per aggiornare in inglese:
+					$this->update_custom_fields( $post_id_en, $item );
+				}
+			}
+
+			// Completare traduzione del contenuto
+			// Refactoring dell'aggiornamento dei campi 
+			// per per rendere possibile la traduzione
+			// dei campi qui sotto:
+
+			// @@TODO: Campi da gestire nell'update:
+			// - Titolo (funzione a parte, già c'è)
+			// - Area tematica
+			// - Stato legale (Mapping qui sotto):
+
+			//$thematic_areas = explode( separator: '###', $thematic_area_list_str );
+			//$termitem = term_exists( $term, THEMATIC_AREA_TAXONOMY );
+			// pll_get_term_translations( $term_id ) -->dli_get_term_translations
+			// Mapping Stato:
 			// Abbandonato= abandoned
 			// Ceduto = transferred
 			// Concesso = granted
 			// Licenza = Licence
 			// Pending = pending
 			// Terminato = ende
-
-			echo 'ciao';
-
 		}
 		return;
 	}
@@ -321,10 +358,9 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
 			foreach ( $thematic_areas as $term ) {
-				// $area_slug = dli_generate_slug( trim( $t ) );
 				// Controllo esistenza tassonomia
 				// Creo tassonomia
-				$lang     = dli_current_language();
+				$lang     = 'it';
 				$termitem = term_exists( $term, THEMATIC_AREA_TAXONOMY );
 				if ( $termitem ) {
 					$term_id = $termitem['term_id'];

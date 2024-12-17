@@ -100,6 +100,18 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_term_translations' ) ) {
+	/**
+	 * Recupera le traduzioni di un termine nelle lingue del sito, se presenti.
+	 *
+	 * @param [type] $related_terms
+	 * @return void
+	 */
+	function dli_get_term_translations( $term_id ): array {
+		return pll_get_term_translations( $term_id );
+	}
+}
+
 function dli_get_translated_page_url_by_slug( $slug ) {
 	$page_url = '';
 	$args     = array(
