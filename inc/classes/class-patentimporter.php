@@ -169,14 +169,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		);
 		$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
 
-		// Verifico l'esistenza dell'oggetto su Worpress.
+		// Verifico l'esistenza dell'oggetto su WordPress.
 		$post_id = $this->get_wp_content_id( $item );
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_content );
 			$updated = false;
 			$this->update_custom_fields( $post_id, $item );
-			// La lingua impostata per l'oggetto importato è quella settata come lingua di default.
-			$lang = dli_current_language();
+			// La lingua impostata per l'oggetto importato è l'italiano.
+			$lang = 'it';
 			dli_set_post_language( $post_id, $lang );
 		} else {
 			if ( $update_content ) {
@@ -193,7 +193,48 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				$ignored = true;
 			}
 		}
+		$this->_translate_content( $post_id, $item, $conf );
 		return $post_id;
+	}
+
+	private function _translate_content( $post_id, $item, $conf ): void {
+		$traslate_content = $item->displayValue_en ? true : false;
+		$new_content_en   = null;
+		// Si crea la versione inglese solo se c'è il titolo in inglese.
+		if ( $traslate_content ) {
+			$post_name_en    = dli_generate_slug( $item->displayValue_en );
+			$post_content_en = $item->abstract_en ?  $item->abstract_en : '.';
+			$post_title_en   = $item->displayValue_en;
+			$post_id_en      = null;
+			$contents        = dli_get_post_translations( $post_id );
+
+			if ( ! isset( $contents['en'] ) ) {
+				// Crea nuova versione in inglese.
+				$new_content_en  = array(
+					'post_type'    => $this->post_type,
+					'post_name'    => $post_name_en,
+					'post_title'   => $post_title_en,
+					'post_content' => $post_content_en,
+					'post_status'  => 'draft',
+					'post_parent'  => 0,
+				);
+
+				// Associa versione italiana e versione inglese;
+			}
+			// Aggiorna campi in inglese.
+			// ...
+
+			// Abbandonato= abandoned
+			// Ceduto = transferred
+			// Concesso = granted
+			// Licenza = Licence
+			// Pending = pending
+			// Terminato = ende
+
+			echo 'ciao';
+
+		}
+		return;
 	}
 
 	private function update_title( $post_id, $item ){
