@@ -100,11 +100,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$results = array();
 
 		// Loop di importazione.
-		$counter   = 0;
-		$errors    = 0;
-		$processed = 0;
-		$updated   = 0;
-		$ignored   = 0;
+		$counter         = 0;
+		$errors          = 0;
+		$simulated_items = 0;
+		$added_items     = 0;
+		$updated_items   = 0;
+		$ignored_items   = 0;
 
 		foreach ( $data as $item ){
 			$counter++;
@@ -117,32 +118,30 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					$results,
 					MSG_IMPORT_DRY_RUN . $item_code . ' - ' . $item_title,
 				);
-				$processed++;
+				$simulated_items++;
 			} else {
 				// Importazione effettiva.
 				try{
 					$updated    = false;
 					$ignored    = false;
-					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored );
-					if ( $updated ) {
-						array_push(
-							$results,
-							MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title,
-						);
-						$updated++;
-					} else if ( $ignored ){
-						array_push(
-							$results,
-							MSG_IGNORED_ITEM . $item_code . ' - ' . $item_title,
-						);
-						$ignored++;
-					} else {
-						array_push(
-							$results,
-							MSG_IMPORTED_ITEM . $item_code . ' - ' . $item_title,
-						);
-						$processed++;
-					}
+					// Creazione del contenuto.
+					$item_code = $this->create_wp_content( 
+						$item,
+						$conf,
+						$updated,
+						$ignored
+					);
+					// Gestione del risultato.
+					$this->_process_result(
+						$results,
+						$item_code,
+						$item_title,
+						$updated,
+						$ignored,
+						$added_items,
+						$updated_items,
+						$ignored_items,
+					);
 				} catch ( Exception $e ) {
 					array_push(
 						$results,
@@ -154,6 +153,27 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 		$this->log_string( "*** FINE importazione da IRIS (brevetti) ***");
 		return $results;
+	}
+	private function _process_result( &$results, $itemCode, $itemTitle, $updated, $ignored,  &$added_items, &$updated_items, &$ignored_items ) {
+		if ( $updated ) {
+			array_push(
+				$results,
+				MSG_UPDATED_ITEM . $itemCode . ' - ' . $itemTitle
+			);
+			$updated_items++;
+		} else if ( $ignored ) {
+			array_push(
+						$results,
+						MSG_IGNORED_ITEM . $itemCode . ' - ' . $itemTitle
+			);
+			$ignored_items++;
+		} else {
+			array_push(
+				$results,
+				MSG_IMPORTED_ITEM . $itemCode . ' - ' . $itemTitle
+			);
+			$added_items++;
+		}
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {
@@ -168,7 +188,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			'post_parent'  => 0,
 		);
 		$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
-
 		// Verifico l'esistenza dell'oggetto su WordPress.
 		$post_id = $this->get_wp_content_id( $item );
 		if ( ! $post_id ) {
@@ -193,13 +212,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				$ignored = true;
 			}
 		}
-		$this->_translate_content( $post_id, $item, $conf );
+		// $this->_translate_content( $post_id, $item, $conf );
 		return $post_id;
 	}
 
 	private function _translate_content( $post_id, $item, $conf ): void {
 		$traslate_content = $item->displayValue_en ? true : false;
 		$new_content_en   = null;
+
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $traslate_content ) {
 			$post_name_en    = dli_generate_slug( $item->displayValue_en );
@@ -231,6 +251,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				'en' => $post_id_en,
 				);
 				dli_save_post_translations( $related_posts );
+
 				// @TODO: ATT!! Modifica per aggiornare in inglese:
 				$this->update_custom_fields( $post_id_en, $item );
 			} else {
