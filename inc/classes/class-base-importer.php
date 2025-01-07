@@ -63,7 +63,7 @@ class DLI_BaseImporter {
 	 * @param mixed $ignored
 	 * @return int
 	 */
-	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {}
+	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {}
 
 	/**
 	 * Modifica dei post su WordPress.
@@ -72,7 +72,7 @@ class DLI_BaseImporter {
 	 * @param [type] $item
 	 * @return void
 	 */
-	private function update_custom_fields( $post_id, $item ){ }
+	private function update_custom_fields( $post_id, $item, $lang='it' ){ }
 
 	/**
 	 * Modifica del titolo del post.

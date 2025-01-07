@@ -176,7 +176,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 	}
 
-	private function create_wp_content( $item, $conf, &$updated, &$ignored ): int {
+	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {
 		$post_name    = dli_generate_slug( $item->displayValue );
 		$post_content = $item->abstract_en ?? $item->abstract ?? '.';
 		$new_content  = array(
@@ -195,7 +195,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			$updated = false;
 			$this->update_custom_fields( $post_id, $item );
 			// La lingua impostata per l'oggetto importato è l'italiano.
-			$lang = 'it';
 			dli_set_post_language( $post_id, $lang );
 		} else {
 			if ( $update_content ) {
@@ -305,7 +304,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		wp_update_post($updated_post, true);
 	}
 
-	private function update_custom_fields( $post_id, $item ){
+	private function update_custom_fields( $post_id, $item, $lang='it' ){
 		// Codice Brevetto (codice_brevetto).
 		$item_code = $item->pid;
 		dli_update_field( 'codice_brevetto', $item_code, $post_id );
@@ -381,7 +380,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			foreach ( $thematic_areas as $term ) {
 				// Controllo esistenza tassonomia
 				// Creo tassonomia
-				$lang     = 'it';
 				$termitem = term_exists( $term, THEMATIC_AREA_TAXONOMY );
 				if ( $termitem ) {
 					$term_id = $termitem['term_id'];
