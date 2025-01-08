@@ -212,7 +212,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $post_id;
 	}
 
-	private function update_custom_fields( $post_id, $item ){
+	private function update_custom_fields( $post_id, $item, $lang='it' ){
 		// Assegno valori ai campi dell'evento.
 		$plain_text     = strip_tags( $item['description'] );
 		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE -3 );

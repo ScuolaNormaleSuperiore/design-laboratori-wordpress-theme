@@ -78,10 +78,10 @@ class DLI_BaseImporter {
 	 * Modifica del titolo del post.
 	 *
 	 * @param [type] $post_id
-	 * @param [type] $item
+	 * @param [type] $title
 	 * @return void
 	 */
-	private function update_title( $post_id, $item ){ }
+	private function update_title( $post_id, $title ){ }
 
 	/**
 	 * Register hooks for jobs and REST endpoints.

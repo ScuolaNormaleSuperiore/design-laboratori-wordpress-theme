@@ -125,23 +125,40 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					$updated    = false;
 					$ignored    = false;
 					// Creazione del contenuto.
-					$item_code = $this->create_wp_content( 
+					$item_code = $this->create_wp_content(
 						$item,
 						$conf,
 						$updated,
 						$ignored
 					);
 					// Gestione del risultato.
-					$this->_process_result(
-						$results,
-						$item_code,
-						$item_title,
-						$updated,
-						$ignored,
-						$added_items,
-						$updated_items,
-						$ignored_items,
-					);
+					if ( $item_code !=0 ){
+						$this->_process_result(
+							$results,
+							$item_code,
+							$item->displayValue,
+							$updated,
+							$ignored,
+							$added_items,
+							$updated_items,
+							$ignored_items,
+						);
+					}
+					// Creazione del contenuto corrispondente in inglese.
+					$item_code_en = $this->_translate_content( $item_code, $item, $conf, 'en' );
+					// Gestione del risultato.
+					if ( $item_code_en !=0 ){
+						$this->_process_result(
+							$results,
+							$item_code_en,
+							$item->displayValue_en,
+							$updated,
+							$ignored,
+							$added_items,
+							$updated_items,
+							$ignored_items,
+						);
+					}
 				} catch ( Exception $e ) {
 					array_push(
 						$results,
@@ -193,6 +210,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_content );
 			$updated = false;
+			// Aggiorna campi personalizzati.
 			$this->update_custom_fields( $post_id, $item );
 			// La lingua impostata per l'oggetto importato è l'italiano.
 			dli_set_post_language( $post_id, $lang );
@@ -204,30 +222,31 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					'post_content' => $new_content['post_content'],
 				);
 				wp_update_post( $pars );
-				$this->update_title( $post_id, $item );
+				// Aggiorna titolo.
+				$this->update_title( $post_id, $item->displayValue );
+				// Aggiorna campi personalizzati.
 				$this->update_custom_fields( $post_id, $item );
 				$updated = true;
 			} else {
 				$ignored = true;
 			}
 		}
-		// $this->_translate_content( $post_id, $item, $conf );
 		return $post_id;
 	}
 
-	private function _translate_content( $post_id, $item, $conf ): void {
+	private function _translate_content( $post_id, $item, $conf, $lang='en' ): int {
 		$traslate_content = $item->displayValue_en ? true : false;
 		$new_content_en   = null;
+		$post_id_en      = 0;
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $traslate_content ) {
 			$post_name_en    = dli_generate_slug( $item->displayValue_en );
 			$post_content_en = $item->abstract_en ?  $item->abstract_en : '.';
 			$post_title_en   = $item->displayValue_en;
-			$post_id_en      = null;
 			$contents        = dli_get_post_translations( $post_id );
 
-			if ( ! isset( $contents['en'] ) ) {
+			if ( ! isset( $contents[$lang] ) ) {
 				// Crea nuova versione in inglese.
 				$new_content_en = array(
 					'post_type'    => $this->post_type,
@@ -242,7 +261,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				$post_id_en = wp_insert_post( $new_content_en );
 
 				// Assign the EN language to the page.
-				dli_set_post_language( $post_id_en, 'en' );
+				dli_set_post_language( $post_id_en, $lang );
 
 				// Associate it and en translations.
 				$related_posts = array(
@@ -250,9 +269,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				'en' => $post_id_en,
 				);
 				dli_save_post_translations( $related_posts );
-
-				// @TODO: ATT!! Modifica per aggiornare in inglese:
-				$this->update_custom_fields( $post_id_en, $item );
+				// Aggiorna campi personalizzati.
+				$this->update_custom_fields( $post_id_en, $item, 'en' );
 			} else {
 				// Aggiorna versione esistente.
 				$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
@@ -263,59 +281,52 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						'post_content' => $new_content_en['post_content'],
 					);
 					wp_update_post( $pars );
-					// @TODO: ATT!! Modifica per aggiornare in inglese:
-					$this->update_title( $post_id_en, $item );
-					// @TODO: ATT!! Modifica per aggiornare in inglese:
-					$this->update_custom_fields( $post_id_en, $item );
+					// Aggiorna titolo.
+					$this->update_title( $post_id_en, $post_title_en );
+					// Aggiorna campi personalizzati.
+					$this->update_custom_fields( $post_id_en, $item, 'en' );
 				}
 			}
-
-			// Completare traduzione del contenuto
-			// Refactoring dell'aggiornamento dei campi 
-			// per per rendere possibile la traduzione
-			// dei campi qui sotto:
-
-			// @@TODO: Campi da gestire nell'update:
-			// - Titolo (funzione a parte, già c'è)
-			// - Area tematica
-			// - Stato legale (Mapping qui sotto):
-
-			//$thematic_areas = explode( separator: '###', $thematic_area_list_str );
-			//$termitem = term_exists( $term, THEMATIC_AREA_TAXONOMY );
-			// pll_get_term_translations( $term_id ) -->dli_get_term_translations
-			// Mapping Stato:
-			// Abbandonato= abandoned
-			// Ceduto = transferred
-			// Concesso = granted
-			// Licenza = Licence
-			// Pending = pending
-			// Terminato = ende
 		}
-		return;
+		return $post_id_en;
 	}
 
-	private function update_title( $post_id, $item ){
+	private function update_title( $post_id, $title ){
 		// Dati da aggiornare
 		$updated_post = array(
-			'ID'         =>  $post_id,
-			'post_title' => $item->displayValue,
+			'ID'         => $post_id,
+			'post_title' => $title,
 		);
 		// Aggiorna il post.
 		wp_update_post($updated_post, true);
 	}
 
-	private function update_custom_fields( $post_id, $item, $lang='it' ){
+	private function update_custom_fields( $post_id, $item, $lang= 'it' ) {
+
+		// Aggiornamento campi generici.
+		$this->_update_common_fields( $post_id, $item );
+
+		// Aggiornamento campi differenti per lingua.
+		if ( $lang === 'it' ) {
+			$this->_update_fields_it( $post_id, $item );
+		} else {
+			// $this->_update_fields_en( $post_id, $item );
+		}
+
+	}
+
+	private function _update_common_fields( $post_id, $item ){
 		// Codice Brevetto (codice_brevetto).
 		$item_code = $item->pid;
 		dli_update_field( 'codice_brevetto', $item_code, $post_id );
-		// Stato Legale (stato_legale).
-		dli_update_field( 'stato_legale', $item->legal_status, $post_id );
+
 		// Numero Deposito (numero_deposito).
 		dli_update_field( 'numero_deposito', $item->applicationNumber, $post_id );
 		if ( $item->id_family ) {
 			// Id famiglia (id_famiglia).
 			dli_update_field( 'id_famiglia', $item->id_family, $post_id );
 		}
+
 		// Famiglia.
 		if ( $item->family ) {
 			try {
@@ -334,6 +345,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			$deposit_year = DateTime::createFromFormat('d-m-Y', $dp_date_str )->format('Y');
 			dli_update_field( 'anno_deposito', $deposit_year, $post_id );
 		}
+
 		// isPriority
 		if ( $item->isPriority ) {
 			dli_update_field( 'prioritario', true, $post_id );
@@ -372,7 +384,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 		$tit_str = implode( ', ', $tit );
 		dli_update_field( 'titolari', $tit_str, $post_id );
+	}
 
+	private function _update_fields_it( $post_id, $item ){
+		$lang='it';
+		// Stato Legale (stato_legale).
+		dli_update_field( 'stato_legale', $item->legal_status, $post_id );
 		// Aree tematiche (area_tematica)
 		$thematic_area_list_str = $item->thematic_area_list;
 		if ( $thematic_area_list_str ) {
@@ -392,6 +409,10 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				wp_set_post_terms( $post_id, array( $term_id ), THEMATIC_AREA_TAXONOMY, true );
 			}
 		}
+	}
+
+	private function _update_fields_en( $post_id, $item ){
+		$lang='en';
 	}
 
 	private function get_wp_content_id( $item ){
