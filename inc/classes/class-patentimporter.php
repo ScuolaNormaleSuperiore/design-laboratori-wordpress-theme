@@ -290,7 +290,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					// Aggiorna i campi del post.
 					$pars = array(
 						'ID'           => $post_id_en,
-						'post_content' => $new_content_en['post_content'],
+						'post_content' => $post_content_en,
 					);
 					wp_update_post( $pars );
 					// Aggiorna titolo.
