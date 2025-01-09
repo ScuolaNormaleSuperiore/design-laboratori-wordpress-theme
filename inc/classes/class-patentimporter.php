@@ -285,6 +285,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				$this->update_custom_fields( $post_id_en, $item, 'en' );
 			} else {
 				// Aggiorna versione esistente.
+				$post_id_en     = $contents[$lang];
 				$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
 				if ( $update_content ) {
 					// Aggiorna i campi del post.
@@ -402,13 +403,13 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$lang='it';
 		// Stato Legale (stato_legale).
 		dli_update_field( 'stato_legale', $item->legal_status, $post_id );
-		// Aree tematiche (area_tematica)
+		// Aree tematiche (area_tematica).
 		$thematic_area_list_str = $item->thematic_area_list;
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
 			foreach ( $thematic_areas as $term ) {
-				// Controllo esistenza tassonomia
-				// Creo tassonomia
+				// Controllo esistenza tassonomia.
+				// Creo tassonomia.
 				$term_item = term_exists( $term, THEMATIC_AREA_TAXONOMY );
 				if ( $term_item ) {
 					$term_id = $term_item['term_id'];
@@ -418,7 +419,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				}
 				dli_set_term_language( $term_id, $lang );
 				// Associo la tassonomia al contenuto.
-				wp_set_post_terms( $post_id, array( $term_id ), THEMATIC_AREA_TAXONOMY, true );
+				wp_set_post_terms( $post_id, array( $term_id ), THEMATIC_AREA_TAXONOMY, false );
 			}
 		}
 	}
@@ -436,17 +437,16 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
 			foreach ( $thematic_areas as $term ) {
-				// Controllo esistenza tassonomia
-				// Creo tassonomia
+				// Controllo esistenza tassonomia.
+				// Creo tassonomia.
 				$term_item  = term_exists( $term, THEMATIC_AREA_TAXONOMY );
 				$term_id    = isset( $term_item['term_id'] ) ? $term_item['term_id'] : 0;
 				$trans      = $term_id ? dli_get_term_translations( $term_id ) : array();
 				$term_id_en = isset( $trans[$lang] ) ? $trans[$lang] : 0;
 				if ( $term_id_en ) {
 					// Associo la tassonomia al contenuto.
-					wp_set_post_terms( $post_id, array( $term_id_en ), THEMATIC_AREA_TAXONOMY, true );
+					wp_set_post_terms( $post_id, array( $term_id_en ), THEMATIC_AREA_TAXONOMY, false );
 				}
-				echo 'ciao';
 			}
 		}
 	}
