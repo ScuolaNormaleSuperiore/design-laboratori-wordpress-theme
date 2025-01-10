@@ -191,11 +191,22 @@ function dli_scripts() {
 	// Importazione dei file JAVASCRIPT.
 	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js' );
 	wp_enqueue_script( 'dli-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js' );
-	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js', array(), false, true);
+	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Importazione libreria CookieConsent.
+	wp_enqueue_style( 'dli-cookieconsent', get_template_directory_uri() . '/assets/cookiesconsent/cookieconsent.css' );
+	wp_enqueue_script( 'dli-cookieconsent-umd', get_template_directory_uri() . '/assets/cookiesconsent/cookieconsent.umd.js' );
+	wp_enqueue_script(
+		'dli-cookieconsent-config',
+		get_template_directory_uri() . '/dli-cookieconsent-config.js',
+		array(),
+		false,
+		array( 'in_footer' => true )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'dli_scripts' );
 
