@@ -21,6 +21,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corretta visualizzazione sezione "Seguici su".
 ## Modificato
 - Modificata visualizzazione della data di un evento, negli eventi di un solo giorno.
+- Brevetti: gestita importazione in italiano e inglese.
 
 
 
