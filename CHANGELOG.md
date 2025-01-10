@@ -22,8 +22,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Modificata visualizzazione della data di un evento, negli eventi di un solo giorno.
 - Brevetti: gestita importazione in italiano e inglese.
-- Nuova gestione dei cookies.
-
+- Nuova gestione dei cookies: sostituito CookiesYes con CookieConsent.
+- Aggiornato Dockerfile per sito demo.
 
 ## [1.4.0] - 2024-12-10
 ### Aggiunto

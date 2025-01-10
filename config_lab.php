@@ -236,11 +236,6 @@ define(
 			'slug'     => 'polylang',
 			'required' => true,
 		),
-		// array(
-		// 	'name'     => 'CookieYes - GDPR Cookie Consent',
-		// 	'slug'     => 'cookie-law-info',
-		// 	'required' => true,
-		// ),
 		array(
 			'name'     => 'WP Mail SMTP',
 			'slug'     => 'wp-mail-smtp',

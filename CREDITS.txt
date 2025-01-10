@@ -9,6 +9,7 @@
 - [CMB2](https://github.com/CMB2/CMB2)
 - [dompdf](https://github.com/dompdf/dompdf)
 - [TGM-Plugin-Activation](http://tgmpluginactivation.com/)
+- [CookieConsent v3](https://cookieconsent.orestbida.com/)
 
 
 ** Plugin usati dal tema ***
@@ -16,7 +17,6 @@
 - [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
 - [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
 - [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
-- [CookieYes](https://it.wordpress.org/plugins/cookie-law-info/)
 - [Polylang](https://it.wordpress.org/plugins/polylang/)
 - [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
 - [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
