@@ -17,7 +17,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.4.2] - 2024-01-15
 ## Modificato
-- Nuova gestione dei cookies: sostituito CookiesYes con CookieConsent.
+- Nuova gestione dei cookies.
 
 
 

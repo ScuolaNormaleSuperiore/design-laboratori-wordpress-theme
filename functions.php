@@ -197,17 +197,8 @@ function dli_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	// Importazione libreria CookieConsent.
-	wp_enqueue_style( 'dli-cookieconsent', get_template_directory_uri() . '/assets/cookiesconsent/cookieconsent.css' );
-	wp_enqueue_script( 'dli-cookieconsent-umd', get_template_directory_uri() . '/assets/cookiesconsent/cookieconsent.umd.js' );
-	wp_enqueue_script(
-		'dli-cookieconsent-config',
-		get_template_directory_uri() . '/dli-cookieconsent-config.js',
-		array(),
-		false,
-		array( 'in_footer' => true )
-	);
 }
+
 add_action( 'wp_enqueue_scripts', 'dli_scripts' );
 
 function add_menu_link_class( $atts, $item, $args ) {

@@ -9,7 +9,6 @@
 - [CMB2](https://github.com/CMB2/CMB2)
 - [dompdf](https://github.com/dompdf/dompdf)
 - [TGM-Plugin-Activation](http://tgmpluginactivation.com/)
-- [CookieConsent v3](https://cookieconsent.orestbida.com/)
 
 
 ** Plugin usati dal tema ***
