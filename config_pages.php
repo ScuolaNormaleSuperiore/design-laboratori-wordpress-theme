@@ -355,7 +355,7 @@ define(
 			'content_en'         => 'Our cookies Policy...',
 			'content_status'     => 'publish',
 			'content_author'     => 1,
-			'content_template'   => '',
+			'content_template'   => 'page-templates/cookies.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
 		),

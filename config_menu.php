@@ -175,7 +175,7 @@ define(
 			),
 			array(
 				'slug'         => '',
-				'title'        => 'Riuso',
+				'title'        => 'Crediti',
 				'content_type' => '',
 				'post_type'    => '',
 				'status'       => 'publish',
@@ -430,7 +430,7 @@ define(
 			),
 			array(
 				'slug'         => '',
-				'title'        => 'Reuse',
+				'title'        => 'Credits',
 				'content_type' => '',
 				'post_type'    => '',
 				'status'       => 'publish',
