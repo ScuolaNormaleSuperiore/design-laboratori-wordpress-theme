@@ -15,6 +15,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.4.2] - 2024-01-15
+## Modificato
+- Nuova gestione dei cookies: sostituito CookiesYes con CookieConsent.
+
+
 
 ## [1.4.1] - 2024-12-12
 ## Corretto
@@ -22,7 +27,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Modificata visualizzazione della data di un evento, negli eventi di un solo giorno.
 - Brevetti: gestita importazione in italiano e inglese.
-- Nuova gestione dei cookies: sostituito CookiesYes con CookieConsent.
 - Aggiornato Dockerfile per sito demo.
 
 ## [1.4.0] - 2024-12-10
