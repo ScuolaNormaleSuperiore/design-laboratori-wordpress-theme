@@ -111,15 +111,6 @@ define(
 		'location' => 'menu-footer',
 		'items' => array(
 			array(
-				'slug'         => SLUG_MEDIA_POLICY_IT,
-				'title'        => 'Media policy',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-				'link'         => '',
-			),
-			array(
 				'slug'         => SLUG_PRIVACY_IT,
 				'title'        => 'Privacy policy',
 				'content_type' => 'page',
@@ -129,13 +120,13 @@ define(
 				'link'         => '',
 			),
 			array(
-				'slug'         => SLUG_COOKIES_POLICY_IT,
+				'slug'         => '',
 				'title'        => 'Cookies policy',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
+				'content_type' => '',
+				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => '',
+				'link'         => SLUG_PRIVACY_IT . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_IT,
@@ -366,15 +357,6 @@ define(
 		'location' => 'menu-footer',
 		'items' => array(
 			array(
-				'slug'         => SLUG_MEDIA_POLICY_EN,
-				'title'        => 'Media policy',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
-				'status'       => 'publish',
-				'classes'      => 'footer-link',
-				'link'         => '',
-			),
-			array(
 				'slug'         => SLUG_PRIVACY_EN,
 				'title'        => 'Privacy policy',
 				'content_type' => 'page',
@@ -384,13 +366,13 @@ define(
 				'link'         => '',
 			),
 			array(
-				'slug'         => SLUG_COOKIES_POLICY_EN,
+				'slug'         => '',
 				'title'        => 'Cookies policy',
-				'content_type' => 'page',
-				'post_type'    => 'post_type',
+				'content_type' => '',
+				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => '',
+				'link'         => SLUG_PRIVACY_EN . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_EN,

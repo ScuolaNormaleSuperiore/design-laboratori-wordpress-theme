@@ -1,5 +1,5 @@
 <?php
-	$cookie_pol_url = dli_get_translated_page_url_by_slug( SLUG_COOKIES_POLICY_IT);
+	$cookie_pol_url = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
 	$video          = $args['video'];
 	$video_text     = $args['video_text'];
 	$video_title    = $args['video_title'];
