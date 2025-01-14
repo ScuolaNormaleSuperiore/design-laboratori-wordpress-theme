@@ -28,7 +28,6 @@ html {
 #pagination_links .page-numbers li{
 	display:inline;
 	margin-right: 5px;
-
 }
 
 #pagination_links .page-numbers {
@@ -76,20 +75,15 @@ html {
 	text-decoration: none !important;
 }
 
-.menutree {
-
-}
+.menutree {}
 
 .menutree a {
 	text-decoration: none;
 }
 
-.menutree ul {
-}
+.menutree ul {}
 
-.menutree ul li {
-
-}
+.menutree ul li {}
 
 .box_change_map_lang {
 	width: 100%;
@@ -112,6 +106,18 @@ html {
 
 
 /** Accessibilità*/
+
+.it-footer a {
+	text-decoration: none;
+}
+
+.it-footer-main .link-list-wrapper ul li a:not(.disabled) {
+	text-decoration: none;
+}
+
+.it-footer-main .link-list-wrapper ul li a:hover {
+	text-decoration: underline !important;
+}
 
 .it-footer-small-prints a:hover:not(.disabled) {
 	color:#fff;
