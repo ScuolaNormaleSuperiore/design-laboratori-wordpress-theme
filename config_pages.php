@@ -529,3 +529,7 @@ define(
 		),
 	)
 );
+
+// Contenuto statico delle pagine della privacy.
+define( 'DLI_PRIVACY_TEXT_IT', file_get_contents( DLI_THEMA_PATH . '/assets/html/privacy_it.html' ) );
+define( 'DLI_PRIVACY_TEXT_EN', file_get_contents(  DLI_THEMA_PATH . '/assets/html/privacy_en.html' ) );
