@@ -31,31 +31,30 @@ if ( ( 'yes' === $form_inviato ) && ( $cookies_presenti  === true ) ){
 <script>
 	function checkLocalStorage() {
 		const keyExists = localStorage.getItem('bs-ck3') !== null;
-		const nodenyCookiesButton = document.getElementById('dli_no_accepted_cookies_msg');
+		const noDenyCookiesMsg = document.getElementById('dli_no_accepted_cookies_msg');
 		const denyCookiesButton = document.getElementById('dli_deny_cookies_button');
 		if (keyExists) {
-				// La chiave esiste: mostra "accepted", nascondi "no accepted"
-				nodenyCookiesButton.style.display = "none";
+				// La chiave esiste: mostra "denyCookiesButton", nascondi "noDenyCookiesMsg".
+				noDenyCookiesMsg.style.display = "none";
 				denyCookiesButton.style.display = "block";
 		} else {
-				// La chiave non esiste: mostra "no accepted", nascondi "accepted"
-				nodenyCookiesButton.style.display = "block";
+				// La chiave non esiste: mostra "noDenyCookiesMsg", nascondi "denyCookiesButton".
+				noDenyCookiesMsg.style.display = "block";
 				denyCookiesButton.style.display = "none";
 		}
 	}
-
-	// Verifica al caricamento della pagina
+	// Verifica al caricamento della pagina se ci sono cookies accettati.
 	window.addEventListener('DOMContentLoaded', checkLocalStorage);
 
+	// Rimuove i cookies accettati.
 	function removeThirdPartiesCookies(event){
-		console.log("Eccomi in removeThirdPartiesCookies");
-		if (localStorage.getItem('bs-ck3')) {
+		const keyExists = localStorage.getItem('bs-ck3') !== null;
+		const noDenyCookiesMsg = document.getElementById('dli_no_accepted_cookies_msg');
+		const denyCookiesButton = document.getElementById('dli_deny_cookies_button');
+		if (keyExists) {
 				localStorage.removeItem('bs-ck3');
-				console.log("Chiave 'bs-ck3' rimossa.");
-				nodenyCookiesButton.style.display = "none";
-				denyCookiesButton.style.display = "block";
-		} else {
-				console.log("Chiave 'bs-ck3' non trovata.");
+				noDenyCookiesMsg.style.display = "block";
+				denyCookiesButton.style.display = "none";
 		}
 	}
 </script>

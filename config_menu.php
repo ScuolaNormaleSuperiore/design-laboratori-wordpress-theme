@@ -126,7 +126,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => SLUG_PRIVACY_IT . '#cookies',
+				'link'         => esc_url( site_url() ) . '/'. SLUG_PRIVACY_IT . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_IT,
@@ -372,7 +372,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => SLUG_PRIVACY_EN . '#cookies',
+				'link'         => esc_url( site_url() ) . '/en/'. SLUG_PRIVACY_EN . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_EN,
