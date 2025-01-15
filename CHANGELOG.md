@@ -19,7 +19,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Nuova gestione dei cookies.
 - Aggiornato template per pagina dei cookies e pagina delle note legali.
-
+- Aggiunta gestione delle categorie nell'import da Indico.
 
 
 ## [1.4.1] - 2024-12-12

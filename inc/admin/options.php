@@ -1883,6 +1883,21 @@ function dli_register_main_options_metabox() {
 
 		$indico_options->add_field(
 			array(
+				'id'               => $prefix . 'indico_default_lang',
+				'name'             => __( "Lingua default", 'design_laboratori_italia' ),
+				'desc'             => __( "Lingua in cui devono essere importati gli eventi." , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => 'Italiano',
+				'show_option_none' => false,
+				'options'          => array(
+					'it' => __( 'Italiano', 'design_laboratori_italia' ),
+					'en' => __( 'Inglese', 'design_laboratori_italia' ),
+				),
+			)
+		);
+
+		$indico_options->add_field(
+			array(
 				'id'               => $prefix . 'indico_schedule',
 				'name'             => __( "Schedulazione", 'design_laboratori_italia' ),
 				'desc'             => __( "Indica se l'import deve essere schedulato. L'import, in alternativa, può essere eseguito 'manualmente' invocando da browser l'endpoint protetto da autenticazione http://miosito/wp-json/custom/v1/indico-import." , 'design_laboratori_italia' ),

@@ -47,6 +47,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				'action'      => dli_get_option( 'indico_item_existent_action', 'indico' ),
 				'schedule'    => dli_get_option( 'indico_schedule', 'indico' ),
 				'debug'       => dli_get_option( 'indico_debug_enabled', 'indico' ),
+				'lang'        => dli_get_option( 'indico_default_lang', 'indico' ),
 				'start_date'  => $start_date,
 			);
 
@@ -131,7 +132,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				try {
 					$updated    = false;
 					$ignored    = false;
-					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored );
+					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored, $conf['lang'] );
 					if ( $updated ) {
 						array_push(
 							$data,
@@ -191,10 +192,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			$this->update_custom_fields( $post_id, $item );
 			// Scarico e aggiungo l'immagine.
 			$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
-			// La lingua impostata per l'oggetto importato è quella settata come lingua di default.
-			$lang = dli_current_language();
+			// La lingua del contenuto è modificabile nelle configurazioni dell'import.
 			dli_set_post_language( $post_id, $lang );
-
 		} else {
 			if ( $update_existent ) {
 				// Aggiorna i campi del post.
@@ -203,7 +202,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 					'post_content' => $new_page['post_content'],
 				);
 				wp_update_post( $pars );
-				$this->update_custom_fields( $post_id, $item );
+				$this->update_custom_fields( $post_id, $item, $conf['lang'] );
 				$updated = true;
 			} else {
 				$ignored = true;
@@ -220,7 +219,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			$truncated_text .= '...';
 		}
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
-
+		// Aggiorna data inizio e fine dell'evento.
 		$start_date = $item['startDate']['date'];
 		$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Ymd');
 		dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
@@ -229,15 +228,33 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$end_date   = $item['endDate']['date'];
 		$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Ymd');
 		dli_update_field( 'data_fine', $start_date, $post_id ); // data_inizio d/m/Y.
+		// Aggiorna url dell'evento.
 		if ( $item['url'] ) {
 			dli_update_field( 'sitoweb', $item['url'], $post_id );
 		}
+		// Aggiorna indirizzo dell'evento.
 		$address = array();
 		if ( $item['roomFullname'] ) array_push( $address, $item['roomFullname'] );
 		if ( $item['location'] ) array_push( $address, $item['location'] );
 		if ( $item['address'] ) array_push( $address, $item['address'] );
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
+
+		// Aggiorna categoria dell'evento.
+		$category = $item['category'];
+		// Controllo esistenza tassonomia.
+		// Creo tassonomia.
+		$term_item = term_exists( $category, WP_DEFAULT_CATEGORY );
+		if ( $term_item ) {
+			$term_id = $term_item['term_id'];
+		} else {
+			$new_term = wp_insert_term( $category, WP_DEFAULT_CATEGORY );
+			$term_id  = $new_term['term_id'];
+		}
+		dli_set_term_language( $term_id, $lang );
+		// Associo la tassonomia al contenuto.
+		wp_set_post_terms( $post_id, array( $term_id ), WP_DEFAULT_CATEGORY, false );
+
 	}
 
 
