@@ -21,7 +21,7 @@ ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.6.1.zip
 ARG PLG_ACF=advanced-custom-fields.6.3.11.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_COOKIES=cookie-law-info.3.2.8.zip
-ARG PLG_POLYLANG=polylang.3.6.5.zip
+ARG PLG_POLYLANG=polylang.3.6.6.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.4.3.0.zip
 
