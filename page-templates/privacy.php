@@ -30,6 +30,8 @@ if ( ( 'yes' === $form_inviato ) && ( $cookies_presenti  === true ) ){
 
 <script>
 	function checkLocalStorage() {
+		const cookies = document.cookie;
+		debugger;
 		const keyExists = localStorage.getItem('bs-ck3') !== null;
 		const noDenyCookiesMsg = document.getElementById('dli_no_accepted_cookies_msg');
 		const denyCookiesButton = document.getElementById('dli_deny_cookies_button');

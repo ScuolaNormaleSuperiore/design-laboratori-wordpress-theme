@@ -293,18 +293,17 @@ function create_the_en_menus() {
  */
 function create_the_pages() {
 	// Creazione delle pagine statiche.
-	$static_pages = DLI_STATIC_PAGE_CATS;
-
-	foreach ( $static_pages as $page ) {
+	foreach ( DLI_STATIC_PAGE_CATS as $page ) {
 		$new_content_template = $page['content_template'];
 
 		// Create the IT page.
 		// Store the above data in an array.
+		$content_it = ( $page['content_file_it'] !== '' ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_it'] ) :  $page['content_it'];
 		$new_page = array(
 			'post_type'    => $page['content_type'],
 			'post_name'    => $page['content_slug_it'],
 			'post_title'   => $page['content_title_it'],
-			'post_content' => $page['content_it'],
+			'post_content' => $content_it,
 			'post_status'  => $page['content_status'],
 			'post_author'  => intval( $page['content_author'] ),
 			'post_parent'  => 0,
@@ -325,11 +324,12 @@ function create_the_pages() {
 
 		// Create the EN page.
 		// Store the above data in an array.
+		$content_en = ( $page['content_file_en'] !== '' ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_en'] ) :  $page['content_en'];
 		$new_page = array(
 			'post_type'    => $page['content_type'],
 			'post_name'    => $page['content_slug_en'],
 			'post_title'   => $page['content_title_en'],
-			'post_content' => $page['content_en'],
+			'post_content' => $content_en,
 			'post_status'  => $page['content_status'],
 			'post_author'  => intval( $page['content_author'] ),
 			'post_parent'  => 0,

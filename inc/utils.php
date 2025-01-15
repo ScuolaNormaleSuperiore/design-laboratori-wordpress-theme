@@ -997,7 +997,7 @@ if( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
 	 */
 	function dli_get_sluglist_by_category( $categories ) {
 		$pt_slugs = dli_get_slugs_by_category( $categories );
-		$sluglist    = array();
+		$sluglist = array();
 		foreach ( $pt_slugs as $category_items ) {
 			foreach ( $category_items as $item ) {
 				array_push( $sluglist, $item );
@@ -1035,7 +1035,7 @@ if( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 	/**
 	 *  Return the anchestor id of given page
 	 * 
-	 * @param array $page
+	 * @param arobject ay $page
 	 * @return id.
 	 */
 	function dli_get_page_anchestor_id( $page ) {

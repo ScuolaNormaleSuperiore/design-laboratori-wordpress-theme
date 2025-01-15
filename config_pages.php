@@ -22,6 +22,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
 			'content_slug_en'    => SLUG_PRESENTAZIONE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Presentazione',
 			'content_title_en'   => 'Presentation',
 			'content_it'         => 'La nostra storia...',
@@ -36,13 +38,15 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PRIVACY_IT,
 			'content_slug_en'    => SLUG_PRIVACY_EN,
+			'content_file_it'    => '/assets/html/privacy_it.html', // To load the initial content of a page from a file.
+			'content_file_en'    => '/assets/html/privacy_en.html',
 			'content_title_it'   => 'Privacy policy',
 			'content_title_en'   => 'Privacy policy',
-			'content_it'         => 'La nostra Privacy Policy...',
-			'content_en'         => 'Our Privacy Policy...',
+			'content_it'         => '',
+			'content_en'         => '',
 			'content_status'     => 'publish',
 			'content_author'     => 1,
-			'content_template'   => '',
+			'content_template'   => 'page-templates/privacy.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
 			'content_category'   => DLI_STATIC_PAGE_CAT,
@@ -50,6 +54,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_CONTATTI_IT,
 			'content_slug_en'    => SLUG_CONTATTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Contatti',
 			'content_title_en'   => 'Contacts',
 			'content_it'         => 'I nostri contatti...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -64,6 +70,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NEWSLETTER_IT,
 			'content_slug_en'    => SLUG_NEWSLETTER_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Newsletter',
 			'content_title_en'   => 'Newsletter',
 			'content_it'         => 'Registrati alla newsletter...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -78,6 +86,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
 			'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Dichiarazione',
 			'content_title_en'   => 'Accessibility',
 			'content_it'         => 'La di chiarazione di accessibilità...',
@@ -92,6 +102,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
 			'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Note legali',
 			'content_title_en'   => 'Legal notes',
 			'content_it'         => 'Le note legali...',
@@ -106,6 +118,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_MAPPA_SITO_IT,
 			'content_slug_en'    => SLUG_MAPPA_SITO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Mappa del sito',
 			'content_title_en'   => 'Site map',
 			'content_it'         => 'La mappa del sito...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -120,6 +134,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_LABORATORIO_IT,
 			'content_slug_en'    => SLUG_LABORATORIO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Il Laboratorio',
 			'content_title_en'   => 'The Lab',
 			'content_it'         => 'Descrizione del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -134,6 +150,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PERSONE_IT,
 			'content_slug_en'    => SLUG_PERSONE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Persone',
 			'content_title_en'   => 'People',
 			'content_it'         => 'Descrizione dello staff del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -148,6 +166,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PROGETTI_IT,
 			'content_slug_en'    => SLUG_PROGETTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Progetti',
 			'content_title_en'   => 'Projects',
 			'content_it'         => 'Descrizione dei progetti del laboratorio...',
@@ -162,6 +182,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
 			'content_slug_en'    => SLUG_ARCHIVIO_PROGETTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Archivio progetti',
 			'content_title_en'   => 'Projects archive',
 			'content_it'         => 'Archivio dei progetti del laboratorio...',
@@ -176,6 +198,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_RICERCA_IT,
 			'content_slug_en'    => SLUG_RICERCA_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Attività di ricerca',
 			'content_title_en'   => 'Research activities',
 			'content_it'         => 'Descrizione delle attività di ricerca...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -190,6 +214,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
 			'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Pubblicazioni',
 			'content_title_en'   => 'Publications',
 			'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -204,6 +230,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_BREVETTI_IT,
 			'content_slug_en'    => SLUG_BREVETTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Brevetti',
 			'content_title_en'   => 'Patents',
 			'content_it'         => 'I nostri brevetti ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -218,6 +246,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NOTIZIE_IT,
 			'content_slug_en'    => SLUG_NOTIZIE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Le notizie',
 			'content_title_en'   => 'News',
 			'content_it'         => 'Le notizie del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -232,6 +262,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_EVENTI_IT,
 			'content_slug_en'    => SLUG_EVENTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Gli eventi',
 			'content_title_en'   => 'Events',
 			'content_it'         => 'Gli eventi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -246,6 +278,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_LUOGHI_IT,
 			'content_slug_en'    => SLUG_LUOGHI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'I luoghi',
 			'content_title_en'   => 'Places',
 			'content_it'         => 'I luoghi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -260,6 +294,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_RICERCA_SITO_IT,
 			'content_slug_en'    => SLUG_RICERCA_SITO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Ricerca',
 			'content_title_en'   => 'Search',
 			'content_it'         => 'Ricerca cose nel sito ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -274,6 +310,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_BLOG_IT,
 			'content_slug_en'    => SLUG_BLOG_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Blog',
 			'content_title_en'   => 'Blog',
 			'content_it'         => 'Il blog ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -295,6 +333,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PRESENTAZIONE_IT,
 			'content_slug_en'    => SLUG_PRESENTAZIONE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Presentazione',
 			'content_title_en'   => 'Presentation',
 			'content_it'         => 'La nostra storia...',
@@ -308,6 +348,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PRIVACY_IT,
 			'content_slug_en'    => SLUG_PRIVACY_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Privacy policy',
 			'content_title_en'   => 'Privacy policy',
 			'content_it'         => 'La nostra Privacy Policy...',
@@ -321,6 +363,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_CONTATTI_IT,
 			'content_slug_en'    => SLUG_CONTATTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Contatti',
 			'content_title_en'   => 'Contacts',
 			'content_it'         => 'I nostri contatti...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -334,6 +378,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NEWSLETTER_IT,
 			'content_slug_en'    => SLUG_NEWSLETTER_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Newsletter',
 			'content_title_en'   => 'Newsletter',
 			'content_it'         => 'Registrati alla newsletter...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -348,6 +394,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
 			'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Dichiarazione',
 			'content_title_en'   => 'Accessibility',
 			'content_it'         => 'La di chiarazione di accessibilità...',
@@ -361,6 +409,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
 			'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Note legali',
 			'content_title_en'   => 'Legal notes',
 			'content_it'         => 'Le note legali...',
@@ -374,6 +424,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_MAPPA_SITO_IT,
 			'content_slug_en'    => SLUG_MAPPA_SITO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Mappa del sito',
 			'content_title_en'   => 'Site map',
 			'content_it'         => 'La mappa del sito...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -387,6 +439,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_LABORATORIO_IT,
 			'content_slug_en'    => SLUG_LABORATORIO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Il Laboratorio',
 			'content_title_en'   => 'The Lab',
 			'content_it'         => 'Descrizione del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -400,6 +454,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PERSONE_IT,
 			'content_slug_en'    => SLUG_PERSONE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Persone',
 			'content_title_en'   => 'People',
 			'content_it'         => 'Descrizione dello staff del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -413,6 +469,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PROGETTI_IT,
 			'content_slug_en'    => SLUG_PROGETTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Progetti',
 			'content_title_en'   => 'Projects',
 			'content_it'         => 'Descrizione dei progetti del laboratorio...',
@@ -426,6 +484,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
 			'content_slug_en'    => SLUG_ARCHIVIO_PROGETTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Archivio progetti',
 			'content_title_en'   => 'Projects archive',
 			'content_it'         => 'Archivio dei progetti del laboratorio...',
@@ -439,6 +499,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_RICERCA_IT,
 			'content_slug_en'    => SLUG_RICERCA_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Attività di ricerca',
 			'content_title_en'   => 'Research activities',
 			'content_it'         => 'Descrizione delle attività di ricerca...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -452,6 +514,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
 			'content_slug_en'    => SLUG_PUBBLICAZIONI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Pubblicazioni',
 			'content_title_en'   => 'Publications',
 			'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -465,6 +529,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NOTIZIE_IT,
 			'content_slug_en'    => SLUG_NOTIZIE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Le notizie',
 			'content_title_en'   => 'News',
 			'content_it'         => 'Le notizie del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -478,6 +544,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_EVENTI_IT,
 			'content_slug_en'    => SLUG_EVENTI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Gli eventi',
 			'content_title_en'   => 'Events',
 			'content_it'         => 'Gli eventi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -491,6 +559,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_LUOGHI_IT,
 			'content_slug_en'    => SLUG_LUOGHI_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'I luoghi',
 			'content_title_en'   => 'Places',
 			'content_it'         => 'I luoghi del laboratorio ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -504,6 +574,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_RICERCA_SITO_IT,
 			'content_slug_en'    => SLUG_RICERCA_SITO_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Ricerca',
 			'content_title_en'   => 'Search',
 			'content_it'         => 'Ricerca cose nel sito ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -517,6 +589,8 @@ define(
 		array(
 			'content_slug_it'    => SLUG_BLOG_IT,
 			'content_slug_en'    => SLUG_BLOG_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
 			'content_title_it'   => 'Blog',
 			'content_title_en'   => 'Blog',
 			'content_it'         => 'Il blog ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
@@ -529,7 +603,3 @@ define(
 		),
 	)
 );
-
-// Contenuto statico delle pagine della privacy.
-define( 'DLI_PRIVACY_TEXT_IT', file_get_contents( DLI_THEMA_PATH . '/assets/html/privacy_it.html' ) );
-define( 'DLI_PRIVACY_TEXT_EN', file_get_contents(  DLI_THEMA_PATH . '/assets/html/privacy_en.html' ) );
