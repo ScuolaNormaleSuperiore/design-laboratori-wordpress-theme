@@ -240,20 +240,22 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
 
-		// Aggiorna categoria dell'evento.
-		$category = $item['category'];
-		// Controllo esistenza tassonomia.
-		// Creo tassonomia.
-		$term_item = term_exists( $category, WP_DEFAULT_CATEGORY );
-		if ( $term_item ) {
-			$term_id = $term_item['term_id'];
-		} else {
-			$new_term = wp_insert_term( $category, WP_DEFAULT_CATEGORY );
-			$term_id  = $new_term['term_id'];
+		// Aggiorna categoria dell'evento (sottosezione dell'evento su Indico).
+		if ( isset( $item['category'] ) ) {
+			$category = $item['category'];
+			// Controllo esistenza tassonomia.
+			// Creo tassonomia.
+			$term_item = term_exists( $category, WP_DEFAULT_CATEGORY );
+			if ( $term_item ) {
+				$term_id = $term_item['term_id'];
+			} else {
+				$new_term = wp_insert_term( $category, WP_DEFAULT_CATEGORY );
+				$term_id  = $new_term['term_id'];
+			}
+			dli_set_term_language( $term_id, $lang );
+			// Associo la tassonomia al contenuto.
+			wp_set_post_terms( $post_id, array( $term_id ), WP_DEFAULT_CATEGORY, false );
 		}
-		dli_set_term_language( $term_id, $lang );
-		// Associo la tassonomia al contenuto.
-		wp_set_post_terms( $post_id, array( $term_id ), WP_DEFAULT_CATEGORY, false );
 
 	}
 
