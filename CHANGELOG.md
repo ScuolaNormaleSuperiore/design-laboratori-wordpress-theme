@@ -18,6 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.4.2] - 2024-01-15
 ## Modificato
 - Nuova gestione dei cookies.
+- Aggiornato template per pagina dei cookies e pagina delle note legali.
 
 
 
