@@ -18,20 +18,14 @@ $cookies          = $_COOKIE;
 $cookie_name      = 'cc_cookies';
 $cookies_presenti = false;
 $form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $postdata['form_inviato'] : 'no' );
-if ( ( 'yes' === $form_inviato ) && ( $cookies_presenti  === true ) ){
-	if ( isset( $postdata['contatti_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $postdata['contatti_nonce_field'] ), 'sf_contatti_nonce' ) ) {
-		// Rimuovi cookie.
-	}
-}
-
 ?>
 
 <main id="main-container" role="main">
 
 <script>
+	// Verifica al caricamento della pagina se ci sono cookies accettati.
 	function checkLocalStorage() {
 		const cookies = document.cookie;
-		debugger;
 		const keyExists = localStorage.getItem('bs-ck3') !== null;
 		const noDenyCookiesMsg = document.getElementById('dli_no_accepted_cookies_msg');
 		const denyCookiesButton = document.getElementById('dli_deny_cookies_button');
@@ -45,8 +39,17 @@ if ( ( 'yes' === $form_inviato ) && ( $cookies_presenti  === true ) ){
 				denyCookiesButton.style.display = "none";
 		}
 	}
-	// Verifica al caricamento della pagina se ci sono cookies accettati.
 	window.addEventListener('DOMContentLoaded', checkLocalStorage);
+
+	function deleteYouTubeCookies() {
+		const domain = 'youtube.com';
+		debugger;
+		// Cancella tutti i cookies di YouTube
+		document.cookie.split(';').forEach(function(cookie) {
+			const cookieName = cookie.split('=')[0].trim();
+			document.cookie = cookieName + '=; path=/; domain=' + domain + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		});
+	}
 
 	// Rimuove i cookies accettati.
 	function removeThirdPartiesCookies(event){
@@ -57,6 +60,7 @@ if ( ( 'yes' === $form_inviato ) && ( $cookies_presenti  === true ) ){
 				localStorage.removeItem('bs-ck3');
 				noDenyCookiesMsg.style.display = "block";
 				denyCookiesButton.style.display = "none";
+				deleteYouTubeCookies();
 		}
 	}
 </script>
