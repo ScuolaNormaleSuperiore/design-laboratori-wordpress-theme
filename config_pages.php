@@ -39,7 +39,7 @@ define(
 			'content_slug_it'    => SLUG_PRIVACY_IT,
 			'content_slug_en'    => SLUG_PRIVACY_EN,
 			'content_file_it'    => '/assets/html/privacy_it.html', // To load the initial content of a page from a file.
-			'content_file_en'    => '/assets/html/privacy_en.html',
+			'content_file_en'    => '/assets/html/privacy_en.html', // To load the initial content of a page from a file.
 			'content_title_it'   => 'Privacy policy',
 			'content_title_en'   => 'Privacy policy',
 			'content_it'         => '',
@@ -102,12 +102,12 @@ define(
 		array(
 			'content_slug_it'    => SLUG_NOTE_LEGALI_IT,
 			'content_slug_en'    => SLUG_NOTE_LEGALI_EN,
-			'content_file_it'    => '',
-			'content_file_en'    => '',
+			'content_file_it'    => '/assets/html/legal_notes_it.html', // To load the initial content of a page from a file.
+			'content_file_en'    => '/assets/html/legal_notes_en.html', // To load the initial content of a page from a file.
 			'content_title_it'   => 'Note legali',
 			'content_title_en'   => 'Legal notes',
-			'content_it'         => 'Le note legali...',
-			'content_en'         => 'The legal notes...',
+			'content_it'         => '',
+			'content_en'         => '',
 			'content_status'     => 'publish',
 			'content_author'     => 1,
 			'content_template'   => '',
