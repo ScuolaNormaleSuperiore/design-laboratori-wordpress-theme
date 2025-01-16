@@ -3,9 +3,10 @@
  *
  * @package Design_Laboratori_Italia
  */
+global $post;
 get_header();
 
-// estraggo i parametri per il tipo luoho
+// estraggo i parametri per il tipo luogo
 $tipi_luogo_params = array();
 foreach ( $_GET as $parameter ) {
 	array_push( $tipi_luogo_params, $parameter );

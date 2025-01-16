@@ -22,10 +22,8 @@ class People_Manager {
 	public function setup() {
 		// Register the taxonomies used by this post type.
 		add_action( 'init', array( $this, 'add_taxonomies' ) );
-
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
@@ -70,7 +68,6 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_post_type() {
-
 		$labels = array(
 			'name'                  => _x( 'Persone', 'Post Type General Name', 'design_laboratori_italia' ),
 			'singular_name'         => _x( 'Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
@@ -83,24 +80,21 @@ class People_Manager {
 			'remove_featured_image' => __( 'Rimuovi Immagine' . 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine della Persona' . 'design_laboratori_italia' ),
 		);
-
 		$args   = array(
 			'label'           => __( 'Persona', 'design_laboratori_italia' ),
 			'labels'          => $labels,
 			'supports'        => array( 'title', 'editor', 'thumbnail' ),
+			'hierarchical'    => true,
 			'public'          => true,
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-businessperson',
 			'has_archive'     => true,
 			'show_in_rest'    => true,
-			'hierarchical'    => true,
 			'rewrite'         => array('slug' => 'persone'),
-			'taxonomies'        => array( WP_DEFAULT_TAGS ),
+			'taxonomies'      => array( WP_DEFAULT_TAGS ),
 		);
-
 		register_post_type( PEOPLE_POST_TYPE, $args );
-
 		// Add the custom fields.
 		$this->add_fields();
 	}

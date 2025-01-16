@@ -25,7 +25,7 @@ $params = array(
 	'per_page' => $per_page,
 	'paged'    => $paged,
 );
-$the_query   = DLI_ContentsManager::dli_get_archived_projects_data_query( $params );
+$the_query   = DLI_ContentsManager::get_archived_projects_data_query( $params );
 $num_results = $the_query->found_posts;
 ?>
 

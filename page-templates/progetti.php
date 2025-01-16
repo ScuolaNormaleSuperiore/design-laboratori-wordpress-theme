@@ -3,6 +3,7 @@
 *
 * @package Design_Laboratori_Italia
 */
+
 global $post;
 get_header();
 
@@ -31,11 +32,11 @@ $params = array(
 	'paged'     => $paged,
 	'tag_level' => $selected_level,
 );
-$the_query   = DLI_ContentsManager::dli_get_projects_data_query( $params );
+$the_query   = DLI_ContentsManager::get_projects_data_query( $params );
 $num_results = $the_query->found_posts;
 
 // Get the tag used into published projects.
-$tags = DLI_ContentsManager::dli_get_tags_by_post_type( PROGETTO_POST_TYPE );
+$tags = DLI_ContentsManager::get_tags_by_post_type( PROGETTO_POST_TYPE );
 
 // Etichette per la gestione dei tag.
 $label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_progetti', 'progetti' );

@@ -1,12 +1,13 @@
 <?php
-define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
-
 /* Template Name: Le pubblicazioni
  *
  * @package Design_Laboratori_Italia
  */
+
+global $post;
 get_header();
 
+define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
 $anni_pubblicazioni      = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ORDER BY meta_value DESC " );
 $anno_filter_array       = null;
 $tipi_pubbl_filter_array = null;

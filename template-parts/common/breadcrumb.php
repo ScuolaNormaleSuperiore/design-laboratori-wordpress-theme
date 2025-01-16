@@ -3,7 +3,7 @@
 	if ( is_home() ) {
 		$steps = array();
 	} else {
-		$steps = dli_build_content_path( $post );
+		$steps = DLI_ContentsManager::build_content_path( $post );
 	}
 	$index = 0;
 ?>
@@ -36,13 +36,3 @@
 		</div>
 	</div>
 </section>
-
-
-<!--
-
-					<li class="breadcrumb-item">
-						<a href="sf-index.html">Home</a><span class="separator">&gt;</span>
-					</li>
-					<li class="breadcrumb-item"><a href="sf-elenco-persone.html">Persone</a><span class="separator">&gt;</span></li>
-					<li class="breadcrumb-item active" aria-current="Elenco persone">Mario Rossi</li>
-					-->

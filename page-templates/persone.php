@@ -1,11 +1,8 @@
 <?php
-/**
- * Template Name: Persone
- *
- * Persone template file
- *
- * @package Design_Laboratori_Italia
- */
+/* Template Name: Le persone
+*
+* @package Design_Laboratori_Italia
+*/
 
 global $post;
 get_header();
@@ -22,13 +19,13 @@ $params = array(
 	'per_page'  => -1,
 	'tag_level' => $selected_level,
 );
-$the_query                = DLI_ContentsManager::dli_get_people_query( $params );
+$the_query                = DLI_ContentsManager::get_people_query( $params );
 $num_results              = $the_query->found_posts;
 $filter_mode              = dli_get_option('pagination_mode', 'persone' );
 $select_structure_enabled = $filter_mode === 'disabled' ? false :  true;
 $filter_level_enabled     = dli_get_option('level_filter_enabled', 'persone' ) !== 'true' ? false : true ;
 // Get the tag used into published people.
-$tags = DLI_ContentsManager::dli_get_tags_by_post_type( PEOPLE_POST_TYPE );
+$tags = DLI_ContentsManager::get_tags_by_post_type( PEOPLE_POST_TYPE );
 // Etichette per la gestione dei tag.
 $label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_persone', 'persone' );
 $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_persone', 'persone' );
@@ -45,8 +42,9 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pers
 </script>
 
 <!-- START CONTENT -->
-<form action="<?php $_SERVER['PHP_SELF']; ?>" id="personeform" method="GET">
-	<main id="main-container" role="main">
+
+<main id="main-container" role="main">
+	<form action="<?php $_SERVER['PHP_SELF']; ?>" id="personeform" method="GET">
 
 		<!-- BREADCRUMB -->
 		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
@@ -348,8 +346,9 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pers
 				</div><!-- /container -->
 			</section><!-- /section -->
 		</div><!-- /container -->
-	</main>
-</form>
+	</form>
+</main>
+
 <!-- END CONTENT -->
 <?php
 get_footer();

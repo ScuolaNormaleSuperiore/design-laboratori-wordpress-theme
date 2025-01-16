@@ -29,7 +29,7 @@ $params = array(
 	'per_page'            => $per_page,
 	'paged'               => $paged,
 );
-$the_query      = DLI_ContentsManager::dli_get_event_data_query( $params );
+$the_query      = DLI_ContentsManager::get_event_data_query( $params );
 $num_results    = $the_query->found_posts;
 $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 ?>

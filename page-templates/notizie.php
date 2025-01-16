@@ -29,7 +29,7 @@ $params = array(
 		'selected_categories' => $selected_categories,
 		'paged'               => $paged,
 );
-$the_query      = DLI_ContentsManager::dli_get_news_data_query( $params );
+$the_query      = DLI_ContentsManager::get_news_data_query( $params );
 $num_results    = $the_query->found_posts;
 $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 ?>

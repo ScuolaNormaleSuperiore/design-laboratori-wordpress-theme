@@ -8,21 +8,21 @@
 
 
 class DLI_OG_Wrapper {
-	public string $id    = '';
-	public string $title = '';
-	public string $shared_title  = '';
-	public string $type  = '';
+	public string $id           = '';
+	public string $title        = '';
+	public string $shared_title = '';
+	public string $type         = '';
 	public string $description  = '';
-	public string $url  = '';
-	public string $locale  = '';
-	public string $site_title  = '';
-	public string $site_tagline  = '';
-	public string $image  = '';
-	public string $img_width  = '';
-	public string $img_height  = '';
-	public string $img_type  = '';
-	public string $site_url  = '';
-	public string $domain  = '';
+	public string $url          = '';
+	public string $locale       = '';
+	public string $site_title   = '';
+	public string $site_tagline = '';
+	public string $image        = '';
+	public string $img_width    = '';
+	public string $img_height   = '';
+	public string $img_type     = '';
+	public string $site_url     = '';
+	public string $domain       = '';
 }
 
 /**
@@ -91,6 +91,80 @@ class DLI_ContentsManager
 		return $results;
 	}
 
+	public static function build_content_path( $post ) {
+		$steps = array(
+			array(
+				'label' => 'Home',
+				'url'   => dli_homepage_url(),
+				'class' => 'breadcrumb-item',
+			),
+		);
+		if ( $post ){
+			switch ( $post->post_type ) {
+				case 'page':
+					$post_parent = $post->post_parent;
+					$post_parents = array();
+					while ( $post_parent !== 0 ) {
+						$post_tmp       = get_post( $post_parent );
+						$post_parents[] = array(
+							'label' => $post_tmp->post_title,
+							'url'   => get_permalink( $post_tmp->ID ),
+							'class' => 'breadcrumb-item',
+						);
+						$post_parent    = $post_tmp->post_parent;
+					}
+
+					//reverse array
+					$post_parents = count( $post_parents ) > 1 ? array_reverse( $post_parents ) : $post_parents;
+					
+					foreach ( $post_parents as $parent ) {
+						array_push(
+							$steps,
+							$parent,
+						);
+					}
+
+					array_push(
+						$steps,
+						array(
+							'label' => $post->post_title,
+							'url'   => $post->post_url,
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+				case 'post':
+					array_push( 
+						$steps, 
+						array(
+							'label' => 'Blog',
+							'url'   => get_site_url() . '/blog',
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+				default:
+					$ct   = dli_get_page_by_post_type( $post->post_type );
+					array_push( 
+						$steps, 
+						array(
+							'label' => get_the_title( $ct->ID ),
+							'url'   => get_permalink( $ct->ID ),
+							'class' => 'breadcrumb-item',
+						),
+						array(
+							'label' => $post->post_title,
+							'url'   => $post->post_url,
+							'class' => 'breadcrumb-item active',
+						),
+					);
+					break;
+			}
+		}
+		return $steps;
+	}
+
+
 	public static function get_patent_data_query( $params ) {
 		$args = array(
 			'paged'          => $params['paged'],
@@ -118,7 +192,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_event_data_query( $params ) {
+	public static function get_event_data_query( $params ) {
 		$args = array(
 				'paged'          => $params['paged'],
 				'post_type'      => EVENT_POST_TYPE,
@@ -131,7 +205,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_news_data_query( $params){
+	public static function get_news_data_query( $params){
 		$args = array(
 			'paged'          => $params['paged'],
 			'post_type'      => NEWS_POST_TYPE,
@@ -143,7 +217,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_projects_data_query( $params ){
+	public static function get_projects_data_query( $params ){
 		$args = array(
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
@@ -182,7 +256,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_archived_projects_data_query( $params ){
+	public static function get_archived_projects_data_query( $params ){
 		$args = 	array(
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
@@ -199,10 +273,10 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_research_area_data_query( $params ){
+	public static function get_research_area_data_query( $params ){
 		$args = array(
 			'paged'          => $params['paged'],
-			'post_type'      => $params['post_type'],
+			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
 			'orderby'        => 'title',
 			'order'          => 'ASC',
@@ -210,7 +284,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function dli_get_tags_by_post_type( $post_type, $taxonomy=WP_DEFAULT_TAGS ){
+	public static function get_tags_by_post_type( $post_type, $taxonomy=WP_DEFAULT_TAGS ){
 		global $wpdb;
 		$query = $wpdb->prepare("
 				SELECT t.term_id, t.slug, t.name, COUNT(tr.object_id) as count
@@ -229,10 +303,10 @@ class DLI_ContentsManager
 	}
 
 	// PROGETTI
-	public static function dli_get_people_query( $params ){
+	public static function get_people_query( $params ){
 		$args = array(
 			'paged'          => $params['paged'],
-			'post_type'      => $params['post_type'],
+			'post_type'      => PEOPLE_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.

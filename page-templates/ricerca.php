@@ -3,6 +3,7 @@
  *
  * @package Design_Laboratori_Italia
  */
+
 global $post;
 get_header();
 
@@ -22,10 +23,10 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 
 // Recupero dati da visualizzare.
 $params = array(
-	'per_page' => $per_page,
-	'paged'    => $paged,
+	'per_page'  => $per_page,
+	'paged'     => $paged,
 );
-$the_query   = DLI_ContentsManager::dli_get_research_area_data_query( $params );
+$the_query   = DLI_ContentsManager::get_research_area_data_query( $params );
 $num_results = $the_query->found_posts;
 ?>
 

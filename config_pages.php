@@ -170,7 +170,7 @@ define(
 			'content_file_en'    => '',
 			'content_title_it'   => 'Progetti',
 			'content_title_en'   => 'Projects',
-			'content_it'         => 'Descrizione dei progetti del laboratorio...',
+			'content_it'         => 'Descrizione dei progetti del laboratorio...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
 			'content_en'         => 'Description of the Lab projects...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 			'content_status'     => 'publish',
 			'content_author'     => 1,
