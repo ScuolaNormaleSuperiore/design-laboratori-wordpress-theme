@@ -20,6 +20,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Tolta radice del sito: il-laboratorio.
 - Aggiornato Dockerfile per sito demo.
 - Corretta procedura di attivazione di un nuovo sito.
+### Aggiunto
+- Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
+
+
 
 ## [1.4.2] - 2024-01-15
 ## Modificato
