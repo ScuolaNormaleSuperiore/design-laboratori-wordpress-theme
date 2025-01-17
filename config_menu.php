@@ -3,7 +3,7 @@
 define (
 	'DLI_LAB_MENU_IT',
 	array(
-		'name'     => 'Il laboratorio',
+		'name'     => 'Menu principale',
 		'lang'     => 'it',
 		'location' => 'menu-lab',
 		'items' => array(
@@ -106,7 +106,7 @@ define(
 define(
 	'DLI_FOOTER_MENU_IT',
 	array(
-		'name'     => 'Footer it',
+		'name'     => 'Menu footer',
 		'lang'     => 'it',
 		'location' => 'menu-footer',
 		'items' => array(
@@ -229,7 +229,7 @@ define(
 define(
 	'DLI_LAB_MENU_EN',
 	array(
-		'name'     => 'The Lab',
+		'name'     => 'Main menu',
 		'lang'     => 'en',
 		'location' => 'menu-lab',
 		'items' => array(
@@ -352,7 +352,7 @@ define(
 define(
 	'DLI_FOOTER_MENU_EN',
 	array(
-		'name'     => 'Footer en',
+		'name'     => 'Menu footer en',
 		'lang'     => 'en',
 		'location' => 'menu-footer',
 		'items' => array(
