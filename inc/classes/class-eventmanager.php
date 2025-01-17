@@ -54,7 +54,7 @@ class Event_Manager {
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-calendar',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
 		);

@@ -85,7 +85,7 @@ class Publication_Manager {
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-book',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'rewrite'         => array( 'slug' => 'pubblicazioni' ),
 			'taxonomies'      => array( WP_DEFAULT_TAGS ),

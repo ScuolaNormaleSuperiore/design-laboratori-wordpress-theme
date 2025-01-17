@@ -89,7 +89,7 @@ class People_Manager {
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-businessperson',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'rewrite'         => array('slug' => 'persone'),
 			'taxonomies'      => array( WP_DEFAULT_TAGS ),
