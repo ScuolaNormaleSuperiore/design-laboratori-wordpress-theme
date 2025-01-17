@@ -166,7 +166,7 @@ define(
 			),
 			array(
 				'slug'         => '',
-				'title'        => 'Crediti',
+				'title'        => 'Riuso',
 				'content_type' => '',
 				'post_type'    => '',
 				'status'       => 'publish',
@@ -412,7 +412,7 @@ define(
 			),
 			array(
 				'slug'         => '',
-				'title'        => 'Credits',
+				'title'        => 'Riuso',
 				'content_type' => '',
 				'post_type'    => '',
 				'status'       => 'publish',

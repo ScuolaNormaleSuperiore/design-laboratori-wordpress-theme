@@ -19,4 +19,5 @@ Passi da seguire per l'aggiornamento:
 6) Associare alla posizione: "***Menu principale di link a sinistra English***" il menu: "***Main menu***".
 7) Associare alla posizione: "***Menu a piè di pagina di link - footer Italiano***" il menu: "***Menu footer***".
 8) Associare alla posizione: "***Menu a piè di pagina di link - footer English***"  il menu:  "***Menu footer en***".
-9) Cancellare se si vuole i menu: "Il laboratorio", "The lab", "Footer it", "Footer en".
+9) Riportare manualmente le modifiche effettuate sui vecchi menu nei nuovi menu.
+10) Cancellare se si vuole i menu: "Il laboratorio", "The lab", "Footer it", "Footer en".
