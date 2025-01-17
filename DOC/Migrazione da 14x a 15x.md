@@ -5,7 +5,7 @@ E' stato tolto quindi il livello "il-laboratorio" e le sezioni del tipo: *Home->
 
 Il menu "**Il laboratorio**" (The Lab) è stato chiamato "**Menu principale**" (Main menu).
 
-Il menu "**Footer it**" (Footer en) è stato chiamato "**enu footer**" (Menu footer en).
+Il menu "**Footer it**" (Footer en) è stato chiamato "**Menu footer**" (Menu footer en).
 
 Le modifiche hanno ripercussioni sui menu, il breadcrumb e la mappa del sito.
 
