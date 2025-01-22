@@ -16,6 +16,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.5.0] - 2024-01-21
+## Corretto
+- Corretto import degli eventi da Indico: aggiunta immagine in modifica
 ## Modificato
 - Tolta radice del sito: il-laboratorio.
 - Aggiornato Dockerfile per sito demo.
