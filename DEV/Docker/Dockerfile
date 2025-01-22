@@ -20,7 +20,6 @@ ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.6.1.zip
 ARG PLG_ACF=advanced-custom-fields.6.3.11.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_COOKIES=cookie-law-info.3.2.8.zip
 ARG PLG_POLYLANG=polylang.3.6.6.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.4.3.0.zip
@@ -94,8 +93,6 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_ARIA_LABEL}  && \
 	curl -o /tmp/${PLG_LOCO_TRANSLATE} ${BASE_PLUGIN_URL}/${PLG_LOCO_TRANSLATE} && \
 	unzip /tmp/${PLG_LOCO_TRANSLATE}  && \
-	curl -o /tmp/${PLG_COOKIES} ${BASE_PLUGIN_URL}/${PLG_COOKIES} && \
-	unzip /tmp/${PLG_COOKIES}  && \
 	curl -o /tmp/${PLG_REG_THUMBNAILS} ${BASE_PLUGIN_URL}/${PLG_REG_THUMBNAILS} && \
 	unzip /tmp/${PLG_REG_THUMBNAILS}  && \
 	curl -o /tmp/${PLG_POLYLANG} ${BASE_PLUGIN_URL}/${PLG_POLYLANG} && \
