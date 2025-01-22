@@ -15,6 +15,16 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.5.0] - 2024-01-21
+## Modificato
+- Tolta radice del sito: il-laboratorio.
+- Aggiornato Dockerfile per sito demo.
+- Corretta procedura di attivazione di un nuovo sito.
+- Aggiornati i file delle traduzioni.
+### Aggiunto
+- Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
+
+
 ## [1.4.2] - 2024-01-15
 ## Modificato
 - Nuova gestione dei cookies.

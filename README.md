@@ -145,6 +145,9 @@ Altre guide su questo argomento:
 * [Tool per codifica colori](https://rgb.to/).
 * [Google Fonts](https://fonts.google.com).
 
+## Migrazione da 1.4.x a 1.5.x
+Per aggiornare un Sito Federato da una versione 1.4.x a una versione 1.5.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo%20Aggiornare%20Bootstrap%20Italia.md).
+
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 

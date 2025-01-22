@@ -100,7 +100,7 @@ class Place_Manager {
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-pressthis',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'hierarchical'    => true,
 			'rewrite'         => array('slug' => 'luoghi'),

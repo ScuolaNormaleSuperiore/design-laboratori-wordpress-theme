@@ -44,7 +44,7 @@ class PeopleType_Manager {
 			'show_in_menu'    =>	'edit.php?post_type=persona',
 			'menu_position'   => 6,
 			'menu_icon'       => 'dashicons-nametag',
-			'has_archive'     => true,
+			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'rewrite'         => array( 'slug' => 'tipologia-persone' ),
 		);
