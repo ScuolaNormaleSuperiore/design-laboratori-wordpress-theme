@@ -203,6 +203,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				);
 				wp_update_post( $pars );
 				$this->update_custom_fields( $post_id, $item, $conf['lang'] );
+				// Scarico e aggiungo l'immagine.
+				$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
 				$updated = true;
 			} else {
 				$ignored = true;
