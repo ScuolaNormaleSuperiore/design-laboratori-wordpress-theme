@@ -15,7 +15,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.5.0] - 2024-01-21
+## [1.5.1] - 2024-01-25
+## Corretto
+
+
+
+## [1.5.0] - 2024-01-22
 ## Corretto
 - Corretto import degli eventi da Indico: aggiunta immagine in modifica
 ## Modificato
@@ -25,7 +30,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornati i file delle traduzioni.
 ### Aggiunto
 - Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
-
 
 ## [1.4.2] - 2024-01-15
 ## Modificato
