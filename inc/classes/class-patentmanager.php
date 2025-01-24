@@ -41,8 +41,8 @@ class Patent_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
-		// Aggiungo la tassonomia tipo-pubblicazione.
-		$publ_types_labels = array(
+		// Aggiungo la tassonomia area-tematica.
+		$types_labels = array(
 			'name'              => _x( 'Area tematica', 'taxonomy general name', 'design_laboratori_italia' ),
 			'singular_name'     => _x( 'Area tematica', 'taxonomy singular name', 'design_laboratori_italia' ),
 			'search_items'      => __( 'Cerca area tematica', 'design_laboratori_italia' ),
@@ -53,16 +53,16 @@ class Patent_Manager {
 			'new_item_name'     => __( 'Nuova area tematica', 'design_laboratori_italia' ),
 			'menu_name'         => __( 'Area Tematica', 'design_laboratori_italia' ),
 		);
-		$taxnomy_args = array(
+		$taxonomy_args = array(
 			'hierarchical'      => true,
-			'labels'            => $publ_types_labels,
+			'labels'            => $types_labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
 			'show_in_rest'      => true,
 		);
-		register_taxonomy( THEMATIC_AREA_TAXONOMY, array( PATENT_POST_TYPE ), $taxnomy_args );
+		register_taxonomy( THEMATIC_AREA_TAXONOMY, array( PATENT_POST_TYPE ), $taxonomy_args );
 	}
 
 	/**

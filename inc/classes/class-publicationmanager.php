@@ -35,7 +35,7 @@ class Publication_Manager {
 	public function add_taxonomies() {
 		// Aggiungo la tassonomia tipo-pubblicazione.
 
-		$publ_types_labels = array(
+		$types_labels = array(
 			'name'              => _x( 'Tipo pubblicazione', 'taxonomy general name', 'design_laboratori_italia' ),
 			'singular_name'     => _x( 'Tipo pubblicazione', 'taxonomy singular name', 'design_laboratori_italia' ),
 			'search_items'      => __( 'Cerca tipo pubblicazione', 'design_laboratori_italia' ),
@@ -49,7 +49,7 @@ class Publication_Manager {
 
 		$publ_types_args = array(
 			'hierarchical'      => true,
-			'labels'            => $publ_types_labels,
+			'labels'            => $types_labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,

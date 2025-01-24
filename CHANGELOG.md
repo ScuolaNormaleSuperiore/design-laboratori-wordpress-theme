@@ -15,8 +15,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.5.1] - 2024-01-25
+
+## [1.5.1] - 2024-01-30
+## Aggiunto
+- Aggiunto contenuto Spin-Off.
+## Modificato
+- Aggiunti wrapper per la ricerca nei contenuti: brevetto, spinoff.
+- Aggiornati i file delle traduzioni.
 ## Corretto
+- Corretti bug nell'attivazione di un nuovo sito.
 
 
 

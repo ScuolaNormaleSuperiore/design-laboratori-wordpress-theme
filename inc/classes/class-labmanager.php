@@ -29,6 +29,10 @@ if ( ! class_exists( 'Patent_Manager' ) ) {
 	include_once 'class-patentmanager.php';
 }
 
+if ( ! class_exists( 'SpinOff_Manager' ) ) {
+	include_once 'class-spinoffmanager.php';
+}
+
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
@@ -177,6 +181,10 @@ class DLI_LabManager {
 		// Setup the Patent Importer.
 		$ipm = new DLI_IrisPatentImporter();
 		$ipm->setup();
+
+		// Setup del post type Spin-Off.
+		$som = new SpinOff_Manager();
+		$som->setup();
 
 	}
 

@@ -160,7 +160,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/persone.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -176,7 +176,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/progetti.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -192,7 +192,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/archive-progetti.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -208,7 +208,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/ricerca.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_CUSTOM_PAGE_CAT,
 		),
 		array(
@@ -218,13 +218,13 @@ define(
 			'content_file_en'    => '',
 			'content_title_it'   => 'Pubblicazioni',
 			'content_title_en'   => 'Publications',
-			'content_it'         => 'Le nostre pubblicazioni ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_it'         => 'Le nostre pubblicazioni...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
 			'content_en'         => 'Our publications...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 			'content_status'     => 'publish',
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/pubblicazioni.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -234,13 +234,29 @@ define(
 			'content_file_en'    => '',
 			'content_title_it'   => 'Brevetti',
 			'content_title_en'   => 'Patents',
-			'content_it'         => 'I nostri brevetti ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
-			'content_en'         => 'Le nostre pubblicazioni...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_it'         => 'I nostri brevetti...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Our patents...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 			'content_status'     => 'publish',
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/brevetti.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
+		),
+		array(
+			'content_slug_it'    => SLUG_SPINOFF_IT,
+			'content_slug_en'    => SLUG_SPINOFF_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
+			'content_title_it'   => 'Spin-off',
+			'content_title_en'   => 'Spin-off',
+			'content_it'         => 'Le nostre spin-off ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Our spin-off...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/brevetti.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -256,7 +272,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/notizie.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -272,7 +288,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/eventi.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -288,7 +304,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/luoghi.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 		array(
@@ -320,7 +336,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/blog.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
 	)
@@ -464,7 +480,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/persone.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_PROGETTI_IT,
@@ -479,7 +495,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/progetti.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_ARCHIVIO_PROGETTI_IT,
@@ -494,7 +510,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/archive-progetti.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_RICERCA_IT,
@@ -509,7 +525,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/ricerca.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_PUBBLICAZIONI_IT,
@@ -524,7 +540,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/pubblicazioni.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_NOTIZIE_IT,
@@ -539,7 +555,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/notizie.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_EVENTI_IT,
@@ -554,7 +570,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/eventi.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_LUOGHI_IT,
@@ -569,7 +585,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/luoghi.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 		array(
 			'content_slug_it'    => SLUG_RICERCA_SITO_IT,
@@ -599,7 +615,7 @@ define(
 			'content_author'     => 1,
 			'content_template'   => 'page-templates/blog.php',
 			'content_type'       => 'page',
-			'content_parent'     => array( SLUG_LABORATORIO_IT, SLUG_LABORATORIO_EN ),
+			'content_parent'     => null,
 		),
 	)
 );

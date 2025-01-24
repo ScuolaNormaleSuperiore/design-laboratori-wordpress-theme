@@ -39,42 +39,52 @@ define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
 // CUSTOM CONTENT TYPES.
+define( 'BANNER_POST_TYPE', 'banner' );
 define( 'EVENT_POST_TYPE', 'evento' );
 define( 'NEWS_POST_TYPE', 'notizia' );
+define( 'PATENT_POST_TYPE', 'brevetto' );
 define( 'PEOPLE_POST_TYPE', 'persona' );
 define( 'PEOPLE_TYPE_POST_TYPE', 'tipologia-persona' );
 define( 'PLACE_POST_TYPE', 'luogo' );
 define( 'PROGETTO_POST_TYPE', 'progetto' );
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
-define( 'PATENT_POST_TYPE', 'brevetto' );
+define( 'SPINOFF_POST_TYPE', 'spinoff' );
 define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
+
+// DEFAULT WP CONTENT TYPES.
 define( 'WP_DEFAULT_POST', 'post' );
 define( 'WP_DEFAULT_PAGE', 'page' );
-define( 'BANNER_POST_TYPE', 'banner' );
 
 // CUSTOM TAXONOMIES.
-define( 'STRUCTURE_TAXONOMY', 'struttura' );
+define( 'HOLDER_TAXONOMY', 'titolare-brevetto' );
 define( 'PLACE_TYPE_TAXONOMY', 'tipologia-luogo' );
 define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
+define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'THEMATIC_AREA_TAXONOMY', 'area-tematica' );
-define( 'HOLDER_TAXONOMY', 'titolare-brevetto' );
+define( 'BUSINESS_SECTOR_TAXONOMY', 'settore-attivita' );
+
+// DEFAULT WP TAXONOMIES.
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 define( 'WP_DEFAULT_TAGS', 'post_tag' );
 
 // The slug is the name of the post, that is the name that appears in the url.
 // Archive pages of the site.
+define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
+define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
+define( 'SLUG_BLOG_IT', 'il-blog' );
+define( 'SLUG_BLOG_EN', 'the-blog' );
+define( 'SLUG_BREVETTI_IT', 'brevetti' );
+define( 'SLUG_BREVETTI_EN', 'patents' );
+define( 'SLUG_EVENTI_IT', 'eventi' );
+define( 'SLUG_EVENTI_EN', 'events' );
 define( 'SLUG_LABORATORIO_IT', 'il-laboratorio' );
 define( 'SLUG_LABORATORIO_EN', 'the-lab' );
 define( 'SLUG_LUOGHI_IT', 'luoghi' );
 define( 'SLUG_LUOGHI_EN', 'places' );
-define( 'SLUG_EVENTI_IT', 'eventi' );
-define( 'SLUG_EVENTI_EN', 'events' );
 define( 'SLUG_NOTIZIE_IT', 'notizie' );
 define( 'SLUG_NOTIZIE_EN', 'news' );
 define( 'SLUG_PUBBLICAZIONI_IT', 'pubblicazioni' );
 define( 'SLUG_PUBBLICAZIONI_EN', 'publications' );
-define( 'SLUG_BREVETTI_IT', 'brevetti' );
-define( 'SLUG_BREVETTI_EN', 'patents' );
 define( 'SLUG_RICERCA_IT', 'ricerca' );
 define( 'SLUG_RICERCA_EN', 'research' );
 define( 'SLUG_PROGETTI_IT', 'progetti' );
@@ -83,11 +93,8 @@ define( 'SLUG_PERSONE_IT', 'persone' );
 define( 'SLUG_PERSONE_EN', 'people' );
 define( 'SLUG_RICERCA_SITO_IT', 'ricerca-sito' );
 define( 'SLUG_RICERCA_SITO_EN', 'search-site' );
-define( 'SLUG_BLOG_IT', 'il-blog' );
-define( 'SLUG_BLOG_EN', 'the-blog' );
-define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
-define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
-
+define( 'SLUG_SPINOFF_IT', 'spinoff' );
+define( 'SLUG_SPINOFF_EN', 'spinoff-en' );
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
@@ -145,6 +152,10 @@ define(
 			'it' => SLUG_RICERCA_IT,
 			'en' => SLUG_RICERCA_EN,
 		),
+		SPINOFF_POST_TYPE => array(
+			'it' => SLUG_SPINOFF_IT,
+			'en' => SLUG_SPINOFF_EN,
+		),
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
@@ -167,7 +178,8 @@ define(
 		PLACE_POST_TYPE,
 		WP_DEFAULT_PAGE,
 		WP_DEFAULT_POST,
-		BANNER_POST_TYPE
+		BANNER_POST_TYPE,
+		SPINOFF_POST_TYPE
 	)
 );
 
@@ -244,4 +256,3 @@ define(
 		),
 	)
 );
-

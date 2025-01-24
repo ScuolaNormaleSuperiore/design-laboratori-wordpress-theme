@@ -52,6 +52,15 @@ define (
 				'classes'      => 'footer-link',
 				'link'         => '',
 			),
+			array(
+				'slug'         => SLUG_SPINOFF_IT,
+				'title'        => 'Spin-off',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
 		),
 	)
 );
@@ -272,6 +281,15 @@ define(
 			array(
 				'slug'         => SLUG_BREVETTI_EN,
 				'title'        => 'Patents',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
+				'slug'         => SLUG_SPINOFF_EN,
+				'title'        => 'Spin-off',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',
