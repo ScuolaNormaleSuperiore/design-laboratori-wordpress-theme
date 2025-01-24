@@ -111,7 +111,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 							</a>
 							<div class="menu-wrapper">
 								<div class="link-list-wrapper">
-									<h3><?php echo __( 'IL BREVETTO', 'design_laboratori_italia' ); ?></h3>
+									<h3><?php echo __( 'La Spin-off', 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 										</div>
@@ -214,7 +214,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				if ( $description ) {
 				?>
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Spin-off', 'design_laboratori_italia' ); ?></h3>
 						<p>
 							<?php echo $description; ?>
 						</p>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Definition of the Patent Manager used to setup Patent post types.
+ * Definition of the Spin-off Manager used to setup Spinoff post types.
  *
  * @package Design_Laboratori_Italia
  */
