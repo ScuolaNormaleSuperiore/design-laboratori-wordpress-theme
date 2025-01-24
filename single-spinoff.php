@@ -18,14 +18,12 @@ $stato            = dli_get_field( 'stato' );
 $year             = dli_get_field( 'anno_costituzione' );
 $video            = dli_get_field( 'video' );
 $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
-
 ?>
 
 <main id="main-container" role="main">
 
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 
 	<!-- INIZIO BANNER HERO -->
 	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
