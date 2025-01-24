@@ -56,7 +56,6 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 						<span class="it-Categoria"></span>
 						<h2><?php echo get_the_title(); ?></h2>
 						<p class="d-none d-lg-block">
-						<?php echo esc_html( $summary ); ?>
 						</p>
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
@@ -247,7 +246,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<!-- Settore di attività -->
 					<article id="settoreattivita" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Settore di attività', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $settore_attivita ) ; ?></p>
+						<p><?php echo esc_attr( $settore_attivita['title'] ) ; ?></p>
 					</article>
 					<?php
 				}
