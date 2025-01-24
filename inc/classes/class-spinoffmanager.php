@@ -28,7 +28,7 @@ class SpinOff_Manager {
 	 */
 	public function setup() {
 		// Register the taxonomies used by this post type.
-		// add_action( 'init', array( $this, 'add_taxonomies' ) );
+		add_action( 'init', array( $this, 'add_taxonomies' ) );
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
 
@@ -53,7 +53,7 @@ class SpinOff_Manager {
 			'update_item'       => __( 'Aggiorna settore attività', 'design_laboratori_italia' ),
 			'add_new_item'      => __( 'Aggiungi un settore attività', 'design_laboratori_italia' ),
 			'new_item_name'     => __( 'Nuovo area settore attività', 'design_laboratori_italia' ),
-			'menu_name'         => __( 'settore attività', 'design_laboratori_italia' ),
+			'menu_name'         => __( 'Settore attività', 'design_laboratori_italia' ),
 		);
 		$taxonomy_args = array(
 			'hierarchical'      => true,

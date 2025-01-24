@@ -254,7 +254,7 @@ define(
 			'content_en'         => 'Our spin-off...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
 			'content_status'     => 'publish',
 			'content_author'     => 1,
-			'content_template'   => 'page-templates/brevetti.php',
+			'content_template'   => 'page-templates/spinoff.php',
 			'content_type'       => 'page',
 			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
