@@ -13,7 +13,7 @@ Passi da seguire per l'aggiornamento:
 
 1) Effettuare un backup del sistema (soprattutto del database).
 2) Sostituire la versione vecchia del tema design-laboratori-wordpress-theme con quella nuova.
-3) Modificare tutte le pagine che hanno come Genitore "Il laboratorio" o "The Lab" e impostare "Pagina principale (nessun genitore)". Le pagine da modificare sono: Archivio progetti (Projects archive), Attività di ricerca (Research activities), Blog (blog), Brevetti (Patents), Gli eventi (Events), I luoghi (Places), Le notizie (News). Si può usare la "modifica rapida" delle pagine per fare prima.
+3) Modificare tutte le pagine che hanno come Genitore "**Il laboratorio**" o "**The Lab**" e impostare "**Pagina principale (nessun genitore)**". Le pagine da modificare sono: Archivio progetti (Projects archive), Attività di ricerca (Research activities), Blog (blog), Brevetti (Patents), Gli eventi (Events), I luoghi (Places), Le notizie (News). Si può usare la "modifica rapida" delle pagine per fare prima.
 4) Lanciare la procedura che crea pagine e menu se non esistono: **WP->Aspetto->Ricaricarica i dati->Ricarica i dati di attivazione (menu, pagine, tassonomie, etc).**
 5) Eseguire in alternativa il passo ***6)*** (se si sono fatte delle modifiche ai menu rispetto alla versione originale) o il passo ***7)*** (Se non si sono fatte tante modifiche ai menu rispetto alla versione originale).
 
