@@ -4,13 +4,34 @@
         "title": "Campi Spin-off",
         "fields": [
             {
+                "key": "field_67936f245aeb3",
+                "label": "Descrizione breve",
+                "name": "descrizione_breve",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
                 "key": "field_679359dd9e1b7",
                 "label": "Ragione sociale",
                 "name": "ragione_sociale",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -31,7 +52,7 @@
                 "aria-label": "",
                 "type": "number",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -54,7 +75,7 @@
                 "aria-label": "",
                 "type": "select",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",

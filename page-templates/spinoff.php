@@ -8,28 +8,28 @@ global $post;
 get_header();
 define( 'DLI_SPINOFF_CELLS_PER_ROW', 2 );
 
-$selected_year   = '';
-$selected_areas  = array();
-$search_string   = '';
-$all_areas       = dli_get_all_categories_by_ct( THEMATIC_AREA_TAXONOMY, PATENT_POST_TYPE );
-$all_area_ids    = $all_areas ? array_map( function( $item ) { return $item['id']; }, $all_areas ) : [];
-$all_years       = DLI_ContentsManager::dli_get_all_patent_years();
-$per_page        = strval( DLI_PER_PAGE );
-$per_page_values = DLI_PER_PAGE_VALUES;
+$selected_year    = '';
+$selected_sectors = array();
+$search_string    = '';
+$all_sectors      = dli_get_all_categories_by_ct( BUSINESS_SECTOR_TAXONOMY, SPINOFF_POST_TYPE );
+$all_sector_ids   = $all_sectors ? array_map( function( $item ) { return $item['id']; }, $all_sectors ) : [];
+$all_years        = DLI_ContentsManager::dli_get_all_spinoff_years();
+$per_page         = strval( DLI_PER_PAGE );
+$per_page_values  = DLI_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
-if ( isset( $_GET['thematic_area'] ) && is_array(  $_GET['thematic_area'] )  ) {
-	foreach ($_GET['thematic_area'] as $ar ) {
-		array_push( $selected_areas, sanitize_text_field( $ar ) );
+if ( isset( $_GET['business_sector'] ) && is_array(  $_GET['business_sector'] )  ) {
+	foreach ($_GET['business_sector'] as $ar ) {
+		array_push( $selected_sectors, sanitize_text_field( $ar ) );
 	}
 }
 if ( isset( $_GET['search_string'] ) ) {
 	$search_string = sanitize_text_field( $_GET['search_string'] );
 }
-if ( isset( $_GET['deposit_year'] ) && is_numeric( $_GET['deposit_year'] ) ) {
-	$selected_year = sanitize_text_field( $_GET['deposit_year'] );
+if ( isset( $_GET['foundation_year'] ) && is_numeric( $_GET['foundation_year'] ) ) {
+	$selected_year = sanitize_text_field( $_GET['foundation_year'] );
 }
 if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 	$paged = 1;
@@ -38,13 +38,13 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 }
 
 $params = array(
-	'search_string' => $search_string,
-	'thematic_area' => $selected_areas ? $selected_areas : $all_area_ids,
-	'deposit_year'  => $selected_year ? array( $selected_year ) : $all_years,
-	'per_page'      => $per_page,
-	'paged'         => $paged,
+	'search_string'   => $search_string,
+	'business_sector' => $selected_sectors ? $selected_sectors : $all_sector_ids,
+	'foundation_year' => $selected_year ? array( $selected_year ) : $all_years,
+	'per_page'        => $per_page,
+	'paged'           => $paged,
 );
-$the_query     = DLI_ContentsManager::get_patent_data_query( $params );
+$the_query     = DLI_ContentsManager::get_spinoff_data_query( $params );
 $num_results   = $the_query->found_posts;
 
 ?>
@@ -68,18 +68,18 @@ $num_results   = $the_query->found_posts;
 						
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
-							<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Anno di deposito', 'design_laboratori_italia' ); ?></h3>
+							<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?></h3>
 							<div class="select-wrapper">
-								<label for="deposit_year" class="visually-hidden"><?php echo __( 'Anno di deposito', 'design_laboratori_italia' ); ?></label>
-								<select id="deposit_year" name="deposit_year">
+								<label for="foundation_year" class="visually-hidden"><?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?></label>
+								<select id="foundation_year" name="foundation_year">
 									<option selected="" value=""><?php echo __( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
 									<?php
-										foreach ( $all_years as $deposit_year ) {
-											$selected = ( $deposit_year === $selected_year );
+										foreach ( $all_years as $foundation_year ) {
+											$selected = ( $foundation_year === $selected_year );
 									?>
-									<option value="<?php echo $deposit_year; ?>"
+									<option value="<?php echo $foundation_year; ?>"
 										<?php if ( $selected ) { echo 'selected'; } ?>
-									><?php echo $deposit_year; ?></option>
+									><?php echo $foundation_year; ?></option>
 									<?php
 										}
 									?>
@@ -87,21 +87,21 @@ $num_results   = $the_query->found_posts;
 							</div>
 						</div>
 
-						<!-- FILTRO PER AREA TEMATICA - Se esiste -->
+						<!-- FILTRO PER SETTORE DI ATTIVITA' -->
 						<div class="row pt-5">
 							<h3 class="h6 text-uppercase border-bottom">
-								<?php echo __( 'Area tematica', 'design_laboratori_italia' ); ?>
+								<?php echo __( 'Settore di attività', 'design_laboratori_italia' ); ?>
 							</h3>
 							<div>
 								<?php
-								foreach ( $all_areas as $thematic_area ) {
+								foreach ( $all_sectors as $business_sector ) {
 								?>
 								<div class="form-check">
-								<input type="checkbox" name="thematic_area[]" id="<?php echo $thematic_area['slug']; ?>"
-										value="<?php echo $thematic_area['id']; ?>"
-										<?php if ( in_array( $thematic_area['id'], $selected_areas ) ) { echo "checked='checked'"; } ?>
+								<input type="checkbox" name="business_sector[]" id="<?php echo $business_sector['slug']; ?>"
+										value="<?php echo $business_sector['id']; ?>"
+										<?php if ( in_array( $business_sector['id'], $selected_sectors ) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $thematic_area['slug']; ?>"><?php echo $thematic_area['name']; ?></label>
+									<label for="<?php echo $business_sector['slug']; ?>"><?php echo $business_sector['name']; ?></label>
 								</div>
 								<?php
 								}
@@ -156,12 +156,11 @@ $num_results   = $the_query->found_posts;
 							<!-- row -->
 							<?php
 								}
-								$post_id        = get_the_ID();
-								$summary        = dli_get_field( 'sommario_elenco' );
-								$stato          = dli_get_field( 'stato_legale' );
-								$titolari       = dli_get_field( 'titolari' );
-								$area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
-								$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
+								$post_id          = get_the_ID();
+								$stato            = dli_get_field( 'stato' );
+								$year             = dli_get_field( 'anno_costituzione' );
+								$settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
+								$image_metadata   = dli_get_image_metadata( $post, 'item-card-list' );
 							?>
 							<div class="col-12 col-lg-6"> 
 								<!--start card-->
@@ -184,19 +183,22 @@ $num_results   = $the_query->found_posts;
 									?>
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5"><?php the_title(); ?></h3>
-											<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
+											<p class="card-text font-serif">
+												<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											</p>
 											<p class="card-text font-serif titolari">
-												<em><?php echo esc_attr( $titolari ); ?></em>
+													<?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?>:
+													<em><?php echo esc_attr( $year ); ?></em>
 											</p>
 											<p class="card-text font-serif area">
 												<?php
-												if ($area_tematica && array_key_exists('title', $area_tematica ) ) {
+												if ($settore_attivita && array_key_exists('title', $settore_attivita ) ) {
 												?>
-												<strong><?php echo esc_attr( $area_tematica['title'] ); ?></strong> - 
+												<strong><?php echo esc_attr( $settore_attivita['title'] ); ?></strong> - 
 												<?php
 												}
 												?>
-												<?php echo esc_attr( $stato ); ?>
+												<?php echo __( $stato, 'design_laboratori_italia' ); ?>
 											</p>
 											<div class="pt-5">
 												<a class="read-more" href="<?php echo get_permalink(); ?>">

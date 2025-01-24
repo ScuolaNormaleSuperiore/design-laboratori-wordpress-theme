@@ -91,6 +91,22 @@ class DLI_ContentsManager
 		return $results;
 	}
 
+	public static function dli_get_all_spinoff_years() {
+		global $wpdb;
+		$results = $wpdb->get_col(
+			$wpdb->prepare( "
+			SELECT DISTINCT pm.meta_value AS anno_costituzione
+			FROM {$wpdb->postmeta} pm
+			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+			WHERE p.post_type = '%s'
+			AND p.post_status = 'publish'
+			AND pm.meta_key = '%s'
+			AND pm.meta_value != ''
+			ORDER BY pm.meta_value DESC
+		", SPINOFF_POST_TYPE, 'anno_costituzione' ) );
+		return $results;
+	}
+
 	public static function build_content_path( $post ) {
 		$steps = array(
 			array(
@@ -186,6 +202,33 @@ class DLI_ContentsManager
 					'field'    => 'term_id',
 					'operator' => 'IN',
 					'terms'    => $params['thematic_area'],
+				)
+			)
+		);
+		return new WP_Query( $args );
+	}
+
+	public static function get_spinoff_data_query( $params ) {
+		$args = array(
+			'paged'          => $params['paged'],
+			'post_type'      => SPINOFF_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			's'              => $params['search_string'],
+			'meta_query'     =>  array(
+				array(
+						'key'     => 'anno_costituzione',
+						'value'   => $params['foundation_year'],
+						'compare' => 'IN',
+				),
+			),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => BUSINESS_SECTOR_TAXONOMY,
+					'field'    => 'term_id',
+					'operator' => 'IN',
+					'terms'    => $params['business_sector'],
 				)
 			)
 		);

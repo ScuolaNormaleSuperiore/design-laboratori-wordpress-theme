@@ -133,7 +133,9 @@ $eventi = new WP_Query(
 										if ( $descrizione ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link active" href="#sezione-descrizione">
+													<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
+												</a>
 											</li>
 											<?php
 										}

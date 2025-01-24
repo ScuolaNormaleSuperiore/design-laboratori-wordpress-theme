@@ -31,7 +31,6 @@ class SpinOff_Manager {
 		add_action( 'init', array( $this, 'add_taxonomies' ) );
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
@@ -140,13 +139,34 @@ class SpinOff_Manager {
 		'title' => 'Campi Spin-off',
 		'fields' => array(
 			array(
+				'key' => 'field_67936f245aeb3',
+				'label' => 'Descrizione breve',
+				'name' => 'descrizione_breve',
+				'aria-label' => '',
+				'type' => 'textarea',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'maxlength' => '',
+				'allow_in_bindings' => 0,
+				'rows' => '',
+				'placeholder' => '',
+				'new_lines' => '',
+			),
+			array(
 				'key' => 'field_679359dd9e1b7',
 				'label' => 'Ragione sociale',
 				'name' => 'ragione_sociale',
 				'aria-label' => '',
 				'type' => 'text',
 				'instructions' => '',
-				'required' => 0,
+				'required' => 1,
 				'conditional_logic' => 0,
 				'wrapper' => array(
 					'width' => '',
@@ -167,7 +187,7 @@ class SpinOff_Manager {
 				'aria-label' => '',
 				'type' => 'number',
 				'instructions' => '',
-				'required' => 0,
+				'required' => 1,
 				'conditional_logic' => 0,
 				'wrapper' => array(
 					'width' => '',
@@ -190,7 +210,7 @@ class SpinOff_Manager {
 				'aria-label' => '',
 				'type' => 'select',
 				'instructions' => '',
-				'required' => 0,
+				'required' => 1,
 				'conditional_logic' => 0,
 				'wrapper' => array(
 					'width' => '',
@@ -308,7 +328,6 @@ class SpinOff_Manager {
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
-
 
 	}
 
