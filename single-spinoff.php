@@ -93,10 +93,14 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								aria-label="Toggle navigation"
 								data-bs-toggle="navbarcollapsible"
 								data-bs-target="#navbarNav"
-							> <span class="it-list"></span></button>
+							>
+								<span class="it-list"></span>
+						</button>
+
 						<div class="progress custom-navbar-progressbar">
 							<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
+
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
@@ -201,6 +205,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								</div>
 							</div>
 						</div>
+
 					</nav>
 				</div>
 			</div>

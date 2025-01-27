@@ -96,6 +96,7 @@ $eventi = new WP_Query(
 	<!-- DETTAGLIO PROGETTO -->
 	<div class="container p-5" id="scheda_progetto">
 		<div class="row">
+
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">
 					<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
@@ -108,11 +109,13 @@ $eventi = new WP_Query(
 							data-bs-toggle="navbarcollapsible"
 							data-bs-target="#navbarNav"
 						>
-						<span class="it-list"></span>
+							<span class="it-list"></span>
 						</button>
+
 						<div class="progress custom-navbar-progressbar">
 							<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
+
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
@@ -186,6 +189,7 @@ $eventi = new WP_Query(
 								</div>
 							</div> <!-- menu_laterale -->
 						</div>
+
 					</nav>
 				</div>
 			</div> <!-- row -->
@@ -194,7 +198,9 @@ $eventi = new WP_Query(
 				<?php
 				if ( $descrizione ) {
 					?>
-				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4" id="sezione-descrizione">
+					<?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?>
+				</h3>
 				<div class="row pb-3">
 					<p>
 						<?php
@@ -207,7 +213,9 @@ $eventi = new WP_Query(
 				if ( $responsabili ) {
 					?>
 					<!-- RESPONSABILE -->
-					<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="it-page-section h4 pt-3" id="p2">
+						<?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?>
+					</h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-persone',
@@ -221,7 +229,9 @@ $eventi = new WP_Query(
 				if ( $partecipanti ) {
 					?>
 					<!-- PARTECIPANTI -->
-					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="it-page-section h4 pt-3" id="p3">
+						<?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?>
+					</h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-persone',
@@ -235,7 +245,9 @@ $eventi = new WP_Query(
 				if ( $indirizzidiricerca ) {
 					?>
 				<!-- INDIRIZZI DI RICERCA -->
-				<h3 class="it-page-section h4 pt-3" id="p4"><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="p4">
+					<?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
+				</h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-indirizzidiricerca',
@@ -249,7 +261,9 @@ $eventi = new WP_Query(
 				if ( $pubblicazioni ) {
 					?>
 				<!-- PUBBLICAZIONI -->
-				<h3 class="it-page-section pt-3 h4" id="p5"><?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section pt-3 h4" id="p5">
+					<?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?>
+				</h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-pubblicazioni',
@@ -263,7 +277,9 @@ $eventi = new WP_Query(
 				if ( count( $allegati ) > 0 ) {
 					?>
 				<!-- ALLEGATI -->
-				<h3 class="it-page-section h4 pt-3" id="p6"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="p6">
+					<?php echo __( 'Allegati', 'design_laboratori_italia' ); ?>
+				</h3>
 					<?php
 					get_template_part(
 						'template-parts/common/sezione-allegati',
@@ -277,7 +293,9 @@ $eventi = new WP_Query(
 				if ( $eventi->posts ) {
 					?>
 				<!-- EVENTI -->
-				<h3 class="it-page-section h4 pt-3" id="p7"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="p7">
+					<?php echo __( 'Eventi', 'design_laboratori_italia' ); ?>
+				</h3>
 					<?php
 						if ( $eventi->posts ) {
 							get_template_part(
