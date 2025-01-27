@@ -67,7 +67,7 @@ description:
       - assets/screenshots/kto2.png
     shortDescription: >-
         Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l’obiettivo di creare un modello di sito per le strutture di ricerca.
-developmentStatus: development 
+developmentStatus: stable 
 intendedAudience:
   countries:
     - it
