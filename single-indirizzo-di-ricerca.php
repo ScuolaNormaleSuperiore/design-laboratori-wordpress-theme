@@ -152,7 +152,6 @@ $eventi = new WP_Query(
 				</div>
 			</div> <!-- row -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
-
 				<?php
 				if ( $description ) {
 				?>
@@ -204,7 +203,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $cont_pres ) {
 				?>
-				<h3 class="it-page-section pt-3 h4" id="sezione-label-contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-label-contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 				<?php
 						get_template_part(
 							'template-parts/common/sezione-contatti',
@@ -221,7 +220,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $eventi->posts ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="sezione-label-eventi"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-eventi"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-eventi',
