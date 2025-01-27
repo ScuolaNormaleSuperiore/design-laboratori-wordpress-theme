@@ -40,7 +40,7 @@ description:
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
       Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le 
-      scuole italiane e sviluppato dalla Scuola Normale Superiore con l’obiettivo di creare un modello 
+      scuole italiane e sviluppato dalla Scuola Normale Superiore con l'obiettivo di creare un modello 
       di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre 
       una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.  
       Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: 
@@ -66,7 +66,7 @@ description:
       - assets/screenshots/kto1.png
       - assets/screenshots/kto2.png
     shortDescription: >-
-        Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l’obiettivo di creare un modello di sito per le strutture di ricerca.
+        Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l'obiettivo di creare un modello di sito per le strutture di ricerca.
 developmentStatus: stable 
 intendedAudience:
   countries:
