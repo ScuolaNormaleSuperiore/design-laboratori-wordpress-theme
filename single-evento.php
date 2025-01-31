@@ -36,7 +36,7 @@ $luogo              = dli_get_field( 'luogo' );
 $label_contatti     = dli_get_field( 'label_contatti' );
 $telefono           = dli_get_field( 'telefono' );
 $email              = dli_get_field( 'email' );
-$sitoweb            = dli_get_field( 'sitoweb' );
+$sito_web           = dli_get_field( 'sitoweb' );
 $video              = dli_get_field( 'video' );
 $allegato           = dli_get_field( 'allegato' );
 $short_descr        = dli_get_field( 'descrizione_breve' );
@@ -180,7 +180,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 										</li>
 										<?php
 											}
-											if ( 1 == 1 ) {
+											if ( $telefono || $email || $sito_web ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#contatti">
@@ -373,10 +373,10 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 							</li>
 							<?php
 								}
-								if ( $sitoweb ) {
+								if ( $sito_web ) {
 							?>
 							<li>
-								<a class="list-item" target="_blank" href="<?php echo $sitoweb; ?>">
+								<a class="list-item" target="_blank" href="<?php echo $sito_web; ?>">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Link">
 										<title>Link</title>

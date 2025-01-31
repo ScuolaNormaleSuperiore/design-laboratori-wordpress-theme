@@ -130,6 +130,7 @@ class SpinOff_Manager {
 	 */
 	function add_fields() {
 
+
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
@@ -158,27 +159,6 @@ class SpinOff_Manager {
 				'rows' => '',
 				'placeholder' => '',
 				'new_lines' => '',
-			),
-			array(
-				'key' => 'field_679359dd9e1b7',
-				'label' => 'Ragione sociale',
-				'name' => 'ragione_sociale',
-				'aria-label' => '',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'maxlength' => '',
-				'allow_in_bindings' => 0,
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
 			),
 			array(
 				'key' => 'field_67935a0de738c',
@@ -231,27 +211,9 @@ class SpinOff_Manager {
 				'placeholder' => '',
 			),
 			array(
-				'key' => 'field_67935a9c5b6a4',
-				'label' => 'Sito web',
-				'name' => 'sito_web',
-				'aria-label' => '',
-				'type' => 'url',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'allow_in_bindings' => 0,
-				'placeholder' => '',
-			),
-			array(
-				'key' => 'field_67935aaf5b6a5',
-				'label' => 'Contatti',
-				'name' => 'contatti',
+				'key' => 'field_679cd99d9a82a',
+				'label' => 'Telefono',
+				'name' => 'telefono',
 				'aria-label' => '',
 				'type' => 'text',
 				'instructions' => '',
@@ -268,6 +230,45 @@ class SpinOff_Manager {
 				'placeholder' => '',
 				'prepend' => '',
 				'append' => '',
+			),
+			array(
+				'key' => 'field_67935aaf5b6a5',
+				'label' => 'Email',
+				'name' => 'email',
+				'aria-label' => '',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'maxlength' => '',
+				'allow_in_bindings' => 0,
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+			),
+			array(
+				'key' => 'field_67935a9c5b6a4',
+				'label' => 'Sito web',
+				'name' => 'sito_web',
+				'aria-label' => '',
+				'type' => 'url',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'allow_in_bindings' => 0,
+				'placeholder' => '',
 			),
 			array(
 				'key' => 'field_67935ab55b6a6',
@@ -328,6 +329,8 @@ class SpinOff_Manager {
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
+
+
 
 	}
 

@@ -25,27 +25,6 @@
                 "new_lines": ""
             },
             {
-                "key": "field_679359dd9e1b7",
-                "label": "Ragione sociale",
-                "name": "ragione_sociale",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
                 "key": "field_67935a0de738c",
                 "label": "Anno di costituzione",
                 "name": "anno_costituzione",
@@ -96,27 +75,9 @@
                 "placeholder": ""
             },
             {
-                "key": "field_67935a9c5b6a4",
-                "label": "Sito web",
-                "name": "sito_web",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "allow_in_bindings": 0,
-                "placeholder": ""
-            },
-            {
-                "key": "field_67935aaf5b6a5",
-                "label": "Contatti",
-                "name": "contatti",
+                "key": "field_679cd99d9a82a",
+                "label": "Telefono",
+                "name": "telefono",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -133,6 +94,45 @@
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
+            },
+            {
+                "key": "field_67935aaf5b6a5",
+                "label": "Email",
+                "name": "email",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_67935a9c5b6a4",
+                "label": "Sito web",
+                "name": "sito_web",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
             },
             {
                 "key": "field_67935ab55b6a6",

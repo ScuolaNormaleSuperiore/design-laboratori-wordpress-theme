@@ -10,9 +10,9 @@ global $post;
 get_header();
 $image_metadata   = dli_get_image_metadata( $post, 'full' );
 $description      = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
-$rag_soc          = dli_get_field( 'ragione_sociale' );
+$telefono         = dli_get_field( 'telefono' );
+$email            = dli_get_field( 'email' );
 $sito_web         = dli_get_field( 'sito_web' );
-$contatti         = dli_get_field( 'contatti' );
 $note             = dli_get_field( 'note' );
 $stato            = dli_get_field( 'stato' );
 $year             = dli_get_field( 'anno_costituzione' );
@@ -128,15 +128,6 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 											</li>
 											<?php
 											}
-										if ( $rag_soc ) {
-											?>
-											<li class="nav-item">
-												<a class="nav-link" href="#ragsoc">
-													<span><?php echo __( 'Ragione sociale', 'design_laboratori_italia' ); ?></span>
-												</a>
-											</li>
-											<?php
-										}
 										if ( $year ) {
 											?>
 											<li class="nav-item">
@@ -164,16 +155,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 										</li>
 										<?php
 										}
-										if ( $sito_web ) {
-											?>
-											<li class="nav-item">
-												<a class="nav-link" href="#sitoweb">
-													<span><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span>
-												</a>
-											</li>
-											<?php
-											}
-											if ( $contatti ) {
+										if ( $telefono || $sito_web || $email ) {
 												?>
 												<li class="nav-item">
 													<a class="nav-link" href="#contatti">
@@ -226,15 +208,6 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				}
 				?>
 				<?php
-				if ( $rag_soc ) {
-				?>
-				<!-- Ragione sociale -->
-				<article id="ragsoc" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Ragione sociale', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_attr( $rag_soc ) ; ?></p>
-				</article>
-				<?php
-				}
 				if ( $year ) {
 					?>
 					<!-- Anno di costituzione -->
@@ -262,21 +235,64 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				</article>
 				<?php
 				}
-				if ( $sito_web ) {
-				?>
-				<!-- AREA TEMATICA -->
-				<article id="sitoweb" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_url( $sito_web ); ?></p>
-				</article>
-				<?php
-				}
-				if ( $contatti ) {
+				if ( $contatti || $sito_web ) {
 					?>
-					<!-- contatti -->
+					<!-- CONTATTI -->
 					<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $contatti ) ; ?></p>
+
+						<div class="it-list-wrapper">
+						<ul class="it-list">
+							<?php
+								if ( $telefono ) {
+							?>
+							<li>
+								<div class="list-item">
+									<div class="it-rounded-icon">
+										<svg class="icon" role="img" aria-labelledby="Telephone">
+											<title>Telephone</title>
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
+										</svg>
+									</div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+								</div>
+							</li>
+							<?php
+								}
+								if ( $email ) {
+							?>
+							<li>
+								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
+								<div class="it-rounded-icon">
+									<svg class="icon" role="img" aria-labelledby="Mail">
+										<title>Mail</title>
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+									</svg>
+								</div>
+								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+								</a>
+							</li>
+							<?php
+								}
+								if ( $sito_web ) {
+							?>
+							<li>
+								<a class="list-item" target="_blank" href="<?php echo $sito_web; ?>">
+								<div class="it-rounded-icon">
+									<svg class="icon" role="img" aria-labelledby="Link">
+										<title>Link</title>
+										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+									</svg>
+								</div>
+								<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
+								</a>
+							</li>
+							<?php
+								}
+							?>
+						</ul>
+					</div>
+
 					</article>
 					<?php
 					}
