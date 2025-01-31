@@ -22,7 +22,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - ## Corretto
 - Corretti bug nell'attivazione di un nuovo sito.
 ## Modificato
-- Aggiunti wrapper per la ricerca nei contenuti: brevetto, spinoff.
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.1.
 - Aggiornato Dockerfile per sito demo.
