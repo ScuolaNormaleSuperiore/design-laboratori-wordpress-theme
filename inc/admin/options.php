@@ -62,9 +62,29 @@ function dli_register_main_options_metabox() {
 
 	$header_options->add_field(
 		array(
+			'id'         => $prefix . 'nome_laboratorio' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Nome Laboratorio EN', 'design_laboratori_italia' ),
+			'desc'       => __( 'Il Nome del Laboratorio in inglese, se diverso da quello italiano' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(),
+		)
+	);
+
+	$header_options->add_field(
+		array(
 			'id'         => $prefix . 'tagline_laboratorio',
 			'name'       => __( 'Tagline', 'design_laboratori_italia' ) . '&nbsp;',
 			'desc'       => __( 'La tagline del Laboratorio' , 'design_laboratori_italia' ),
+			'type'       => 'text',
+			'attributes' => array(),
+		)
+	);
+
+	$header_options->add_field(
+		array(
+			'id'         => $prefix . 'tagline_laboratorio'  . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Tagline EN', 'design_laboratori_italia' ),
+			'desc'       => __( 'La tagline del Laboratorio in inglese, se diversa da quella italiana' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'attributes' => array(),
 		)
@@ -848,7 +868,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'etichetta'. DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Etichetta ENG', 'design_laboratori_italia' ),
-			'desc'       => __( 'Titolo della sezione in Inglese' , 'design_laboratori_italia' ),
+			'desc'       => __( 'Titolo della sezione in inglese' , 'design_laboratori_italia' ),
 			'type'       => 'text',
 		)
 	);
@@ -878,7 +898,7 @@ function dli_register_main_options_metabox() {
 			'id'    => $prefix . 'descrizione_laboratorio'. DLI_ENG_SUFFIX_LANGUAGE,
 			'title' => __( 'Descrizione ENG', 'design_laboratori_italia' ),
 			'name'  => __( 'Descrizione ENG', 'design_laboratori_italia' ),
-			'desc'  => __( 'Descrizione del laboratorio in Inglese' , 'design_laboratori_italia' ),
+			'desc'  => __( 'Descrizione del laboratorio in inglese' , 'design_laboratori_italia' ),
 			'type' => 'wysiwyg',
 			'options' => array(
 				'textarea_rows' => 1,

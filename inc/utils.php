@@ -28,6 +28,21 @@ if(!function_exists("dli_get_option")) {
 	}
 }
 
+if( ! function_exists( 'dli_get_option_by_lang' ) ) {
+	function dli_get_option_by_lang( $key = '', $type = 'dli_options', $default = false ) {
+		$lang      = dli_current_language();
+		$text_def  = dli_get_option( $key, $type, $default );
+		// $label     = $key . '_' . $lang;
+		$label     = $key . DLI_ENG_SUFFIX_LANGUAGE;
+		$text_lang = dli_get_option( $label, $type, $default );
+		if ( ( $lang != 'it' ) && ( ! empty( $text_lang ) ) ) {
+			return $text_lang;
+		} else{
+			return $text_def;
+		}
+	}
+}
+
 /**
  * Wrapper function for persona avatar
  * @param object $foto

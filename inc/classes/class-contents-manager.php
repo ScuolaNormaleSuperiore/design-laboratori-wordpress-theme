@@ -39,8 +39,8 @@ class DLI_ContentsManager
 
 		if ( $item_id && in_array( $item_type, DLI_POST_TYPES_TO_TRANSLATE ) ) {
 			// Get data to fill OG structure.
-			$site_title   = dli_get_option( 'nome_laboratorio' );
-			$site_tagline = dli_get_option( 'tagline_laboratorio' );	
+			$site_title   = dli_get_option_by_lang( 'nome_laboratorio' );
+			$site_tagline = dli_get_option_by_lang( 'tagline_laboratorio' );	
 			$item_title   = is_home() ? $site_title : $post->post_title;
 			$item_desc    = is_home() ? $site_tagline: clean_and_truncate_text( $post->post_content, 256 );
 			$item_url     = get_permalink();

@@ -11,9 +11,9 @@
 ?>
 
 <?php
-  $tagline       = dli_get_option( 'tagline_laboratorio' );
+	$tagline       = dli_get_option_by_lang( 'tagline_laboratorio' );
+	$site_name     = dli_get_option_by_lang( 'nome_laboratorio' );
 	$label_footer  = dli_get_option( 'label_contact_footer');
-	$site_name     = dli_get_option( 'nome_laboratorio' );
 	$label_contact = $label_footer ? $label_footer : $site_name;
 ?>
 

@@ -2,8 +2,8 @@
 global $post;
 
 $localestr = pll_current_language( 'locale' );
-$nome_lab  = dli_get_option( 'nome_laboratorio' );
-$tagline   = dli_get_option( 'tagline_laboratorio' );
+$nome_lab  = dli_get_option_by_lang( 'nome_laboratorio' );
+$tagline   = dli_get_option_by_lang( 'tagline_laboratorio' );
 $wrapper   = dli_get_post_wrapper( $post );
 
 $copyright     = $nome_lab;
