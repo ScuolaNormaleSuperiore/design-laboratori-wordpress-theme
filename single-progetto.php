@@ -58,9 +58,15 @@ $eventi = new WP_Query(
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
+		<?php
+			if ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) {
+		?>
 		<div class="img-wrapper">
 			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
+		<?php
+			}
+		?>
 		</div>
 		</div>
 		<div class="container">
@@ -68,25 +74,32 @@ $eventi = new WP_Query(
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block"><?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
-						<div class="it-btn-container">
+						<p class="d-none d-lg-block">
+							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							<?php
+								if ( $websiteurl ) {
+							?>
 							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl ) ; ?>">
 								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 							</a>
+							<?php
+								}
+							?>
+						</p>
+						<div>
+							<!-- tag -->
+							<?php
+							foreach( $levels as $level ){
+							?>
+								<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
+									<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
+										<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
+									</a>
+								</div>
+							<?php
+							}
+							?>
 						</div>
-						<!-- tag -->
-						 <?php
-						 foreach( $levels as $level ){
-						?>
-							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-								<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
-									<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
-								</a>
-							</div>
-						 <?php
-						 }
-						 ?>
-						<figcaption class="figure-caption mt-3 text-light"><?php echo esc_attr( $image_metadata['image_alt'] );?></figcaption>
 					</div>
 				</div>
 			</div>

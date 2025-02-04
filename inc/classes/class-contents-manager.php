@@ -285,21 +285,15 @@ class DLI_ContentsManager
 	}
 
 	public static function get_tags_by_post_type( $post_type, $taxonomy=WP_DEFAULT_TAGS ){
-		global $wpdb;
-		$query = $wpdb->prepare("
-				SELECT t.term_id, t.slug, t.name, COUNT(tr.object_id) as count
-				FROM {$wpdb->terms} t
-				INNER JOIN {$wpdb->term_taxonomy} tt ON t.term_id = tt.term_id
-				INNER JOIN {$wpdb->term_relationships} tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				INNER JOIN {$wpdb->posts} p ON tr.object_id = p.ID
-				WHERE tt.taxonomy = %s
-					AND p.post_type = '%s'
-					AND p.post_status = 'publish'
-				GROUP BY t.term_id
-				HAVING count > 0
-				ORDER BY t.term_id ASC
-		", $taxonomy, $post_type);
-		return $wpdb->get_results($query);
+		$tags = get_tags(
+			array(
+			'taxonomy'    => $taxonomy,
+			'orderby'     => 'name',
+			'hide_empty'  => true,
+			'object_type' => array( $post_type ),
+			)
+		);
+		return $tags ? $tags : array();
 	}
 
 	// PROGETTI
