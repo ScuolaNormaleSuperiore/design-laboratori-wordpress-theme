@@ -1112,3 +1112,32 @@ if( ! function_exists( 'dli_decode_unicode_string' ) ) {
 		}, $string );
 	}
 }
+
+if( ! function_exists( 'dli_translate()' ) ) {
+	/**
+	 * Ritorna la traduzione personalizzata se esiste, altrimenti quella di default prodotta da gettext.
+	 *
+	 * @param string $text
+	 * @param string $domain
+	 * @return void
+	 */
+	function dli_translate( $text, $domain='design_laboratori_italia' ) {
+		global $wpdb;
+		$table       = 'sf_custom_translations';
+		$lang        = dli_current_language();
+		$translation = $wpdb->get_var( $wpdb->prepare(
+			"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",
+			$text,
+			$domain,
+			$lang
+		));
+		// Se esiste una traduzione personalizzata, restituiscila.
+		if ( ! empty( $translation ) ) {
+				return $translation;
+		} else {
+			// Altrimenti, restituisci la traduzione standard fatta con gettext.
+			return __( $text, $domain );
+		}
+	}
+
+}

@@ -153,14 +153,14 @@ $eventi = new WP_Query(
 										if ( $responsabili ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-responsabile"><span><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 											</li>
 											<?php
 										}
 										if ( $partecipanti ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
 											</li>
 											<?php
 										}
@@ -218,7 +218,7 @@ $eventi = new WP_Query(
 				if ( $responsabili ) {
 					?>
 					<!-- RESPONSABILE -->
-					<h3 class="it-page-section h4 pt-3" id="p2"><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="it-page-section h4 pt-3" id="p2"><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-persone',
@@ -232,7 +232,7 @@ $eventi = new WP_Query(
 				if ( $partecipanti ) {
 					?>
 					<!-- PARTECIPANTI -->
-					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
 					<?php
 						get_template_part(
 							'template-parts/common/sezione-persone',
