@@ -16,17 +16,26 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [1.5.2] - 2024-02-06
+### Aggiunto
+- Gestione di etichette personalizzate nella tabella sf_
+## Corretto
+- Corretta gestione dei tag dei prpogetti.
+## Modificato
+- Aggiornato sito demo.
+- Modificata procedura di attivazione di un nuovo sito.
+
+
+
 ## [1.5.1] - 2024-01-31
 ## Aggiunto
 - Aggiunto contenuto Spin-Off.
-- ## Corretto
+## Corretto
 - Corretti bug nell'attivazione di un nuovo sito.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.1.
 - Aggiornato Dockerfile per sito demo.
-
-
 
 ## [1.5.0] - 2024-01-22
 ## Corretto
@@ -34,7 +43,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Tolta radice del sito: il-laboratorio.
 - Aggiornato Dockerfile per sito demo.
-- Corretta procedura di attivazione di un nuovo sito.
+- Modificata procedura di attivazione di un nuovo sito.
 - Aggiornati i file delle traduzioni.
 ### Aggiunto
 - Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
