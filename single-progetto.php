@@ -58,9 +58,15 @@ $eventi = new WP_Query(
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
+		<?php
+			if ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) {
+		?>
 		<div class="img-wrapper">
 			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
+		<?php
+			}
+		?>
 		</div>
 		</div>
 		<div class="container">
@@ -68,25 +74,32 @@ $eventi = new WP_Query(
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block"><?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
-						<div class="it-btn-container">
+						<p class="d-none d-lg-block">
+							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							<?php
+								if ( $websiteurl ) {
+							?>
 							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl ) ; ?>">
 								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 							</a>
+							<?php
+								}
+							?>
+						</p>
+						<div>
+							<!-- tag -->
+							<?php
+							foreach( $levels as $level ){
+							?>
+								<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
+									<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
+										<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
+									</a>
+								</div>
+							<?php
+							}
+							?>
 						</div>
-						<!-- tag -->
-						 <?php
-						 foreach( $levels as $level ){
-						?>
-							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-								<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
-									<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
-								</a>
-							</div>
-						 <?php
-						 }
-						 ?>
-						<figcaption class="figure-caption mt-3 text-light"><?php echo esc_attr( $image_metadata['image_alt'] );?></figcaption>
 					</div>
 				</div>
 			</div>
@@ -145,14 +158,14 @@ $eventi = new WP_Query(
 										if ( $responsabili ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-responsabile"><span><?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-responsabile"><span><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 											</li>
 											<?php
 										}
 										if ( $partecipanti ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-partecipanti"><span><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></span></a>
 											</li>
 											<?php
 										}
@@ -213,7 +226,7 @@ $eventi = new WP_Query(
 				if ( $responsabili ) {
 					?>
 					<!-- RESPONSABILE -->
-					<h3 class="it-page-section h4 pt-3" id="p2">
+					<h3 class="it-page-section h4 pt-3" id="p2"><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
 						<?php echo __( 'Responsabile', 'design_laboratori_italia' ); ?>
 					</h3>
 					<?php
@@ -229,7 +242,7 @@ $eventi = new WP_Query(
 				if ( $partecipanti ) {
 					?>
 					<!-- PARTECIPANTI -->
-					<h3 class="it-page-section h4 pt-3" id="p3">
+					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
 						<?php echo __( 'Partecipanti', 'design_laboratori_italia' ); ?>
 					</h3>
 					<?php

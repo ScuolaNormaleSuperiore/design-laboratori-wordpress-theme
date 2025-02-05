@@ -80,10 +80,10 @@ require get_template_directory() . '/inc/activation.php';
 require get_template_directory() . '/inc/actions.php';
 
 
-/**
- * TCPDF
- */
-require get_template_directory() . '/inc/dompdf.php';
+// /**
+//  * TCPDF
+//  */
+// require get_template_directory() . '/inc/dompdf.php';
 
 
 /**

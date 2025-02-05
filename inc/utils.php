@@ -28,6 +28,21 @@ if(!function_exists("dli_get_option")) {
 	}
 }
 
+if( ! function_exists( 'dli_get_option_by_lang' ) ) {
+	function dli_get_option_by_lang( $key = '', $type = 'dli_options', $default = false ) {
+		$lang      = dli_current_language();
+		$text_def  = dli_get_option( $key, $type, $default );
+		// $label     = $key . '_' . $lang;
+		$label     = $key . DLI_ENG_SUFFIX_LANGUAGE;
+		$text_lang = dli_get_option( $label, $type, $default );
+		if ( ( $lang != 'it' ) && ( ! empty( $text_lang ) ) ) {
+			return $text_lang;
+		} else{
+			return $text_def;
+		}
+	}
+}
+
 /**
  * Wrapper function for persona avatar
  * @param object $foto
@@ -1096,4 +1111,33 @@ if( ! function_exists( 'dli_decode_unicode_string' ) ) {
 			return mb_convert_encoding( pack('H*', $match[1] ), 'UTF-8', 'UTF-16BE' );
 		}, $string );
 	}
+}
+
+if( ! function_exists( 'dli_translate()' ) ) {
+	/**
+	 * Ritorna la traduzione personalizzata se esiste, altrimenti quella di default prodotta da gettext.
+	 *
+	 * @param string $text
+	 * @param string $domain
+	 * @return void
+	 */
+	function dli_translate( $text, $domain='design_laboratori_italia' ) {
+		global $wpdb;
+		$table       = 'sf_custom_translations';
+		$lang        = dli_current_language();
+		$translation = $wpdb->get_var( $wpdb->prepare(
+			"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",
+			$text,
+			$domain,
+			$lang
+		));
+		// Se esiste una traduzione personalizzata, restituiscila.
+		if ( ! empty( $translation ) ) {
+				return $translation;
+		} else {
+			// Altrimenti, restituisci la traduzione standard fatta con gettext.
+			return __( $text, $domain );
+		}
+	}
+
 }

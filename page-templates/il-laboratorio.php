@@ -1,7 +1,6 @@
 <?php
 /* Template Name: Il Laboratorio
  *
- * la scuola template file
  *
  * @package Design_Laboratori_Italia
  */

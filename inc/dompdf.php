@@ -45,7 +45,7 @@ function dsi_pdf_generator(){
         <p class="h1">
             <span><?php echo dli_get_option("tipologia_scuola"); ?></span>
             <br>
-            <span><strong><?php echo dli_get_option("nome_laboratorio"); ?></strong></span>
+            <span><strong><?php echo dli_get_option_by_lang( 'nome_laboratorio' ); ?></strong></span>
             <br>
             <span class="d-none d-lg-block"><?php echo dli_get_option("luogo_laboratorio"); ?></span>
 
@@ -73,7 +73,7 @@ function dsi_pdf_generator(){
             if($numerazione_circolare)
                 echo "n. ".$numerazione_circolare." ";
             _e("pubblicata sul sito ");
-            echo dli_get_option("nome_laboratorio");
+            echo dli_get_option_by_lang( 'nome_laboratorio' );
             echo "<br>";
             echo get_permalink($post);
             ?>
