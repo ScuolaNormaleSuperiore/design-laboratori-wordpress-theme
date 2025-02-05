@@ -199,7 +199,7 @@ html {
 }
 
 .dli_card_progetti .card-tag {
-	flex: 1 1 100%; /* Occupa l'intera larghezza disponibile */
+	/* flex: 1 1 100%;  Occupa l'intera larghezza disponibile */
 }
 
 .dli_card_progetti a {

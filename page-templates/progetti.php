@@ -141,18 +141,6 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 								}
 								?>
 									<div class="card-body">
-										<div class="head-tags">
-											<?php
-											foreach ( $levels as $level ) {
-											?>
-											<a class="card-tag text-decoration-none" href="#"
-												onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
-												<?php echo esc_attr(  $level->name ); ?>
-											</a>
-											<?php
-											}
-											?>
-										</div>
 										<h3 class="card-title h5 "><?php echo get_the_title(); ?></h3>
 										<p class="card-text font-serif">
 											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
@@ -160,6 +148,18 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 										<span class="card-signature"><?php echo $nomi_resp;?></span>
 
 										<div class="it-card-footer">
+											<div class="head-tags">
+												<?php
+												foreach ( $levels as $level ) {
+												?>
+												<a class="card-tag text-decoration-none" href="#"
+													onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
+													<?php echo esc_attr(  $level->name ); ?>
+												</a>
+												<?php
+												}
+												?>
+											</div>
 											<a class="read-more" href="<?php echo get_permalink(); ?>">
 												<span class="text customSpacing"><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
 												<svg class="icon" role="img" aria-labelledby="Arrow right">
