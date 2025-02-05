@@ -124,7 +124,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 						<!--start card-->
 						<div class="col-12 col-lg-4">
 							<div class="card-space pb-5">
-								<div class="card card-bg card-big no-after">
+								<div class="card card-bg card-big no-after dli_card_progetti">
 								<?php
 								if ( $image_metadata['image_url'] ) {
 								?>
@@ -145,7 +145,6 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 											<?php
 											foreach ( $levels as $level ) {
 											?>
-											<!-- <a class="card-tag" href="#"> -->
 											<a class="card-tag text-decoration-none" href="#"
 												onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
 												<?php echo esc_attr(  $level->name ); ?>
@@ -173,7 +172,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 									</div>
 								</div>
 							</div>
-						</div>  
+						</div>
 						<!--end card-->
 				<?php
 					if ( ( ( $pindex % PROG_CELLS_PER_ROW ) === PROG_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {

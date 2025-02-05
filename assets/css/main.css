@@ -189,3 +189,19 @@ html {
 .container-banner-home .it-hero-wrapper .it-hero-text-wrapper {
 	 background: rgba(0, 64, 89, 0.4) !important;
 }
+
+
+/* card progetti */
+.dli_card_progetti .head-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px; /* Spazio tra i bottoni */
+}
+
+.dli_card_progetti .card-tag {
+	flex: 1 1 100%; /* Occupa l'intera larghezza disponibile */
+}
+
+.dli_card_progetti a {
+	text-align: center;
+}
