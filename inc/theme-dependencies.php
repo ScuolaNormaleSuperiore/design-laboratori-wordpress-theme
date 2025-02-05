@@ -17,7 +17,7 @@
  */
 require_once get_template_directory() . '/inc/vendor/TGM-Plugin-Activation/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'dsi_register_required_plugins' );
+add_action( 'tgmpa_register', 'dli_register_required_plugins' );
 
 /**
  * Register the required plugins for this theme.
@@ -36,7 +36,7 @@ add_action( 'tgmpa_register', 'dsi_register_required_plugins' );
  *
  * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
  */
-function dsi_register_required_plugins() {
+function dli_register_required_plugins() {
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.

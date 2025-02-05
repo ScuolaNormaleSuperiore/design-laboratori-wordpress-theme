@@ -23,12 +23,12 @@ class ResearchActivities_Manager {
 	 */
 	public function setup() {
 		// Register the post type.
-		add_action( 'init', array( $this, 'dsi_register_indirizzo_di_ricerca_post_type' ) );
+		add_action( 'init', array( $this, 'dli_register_indirizzo_di_ricerca_post_type' ) );
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
-		function dsi_register_indirizzo_di_ricerca_post_type() {
+		function dli_register_indirizzo_di_ricerca_post_type() {
 				$labels = array(
 						'name'          => _x( 'Indirizzi di ricerca', 'Post Type General Name', 'design_laboratori_italia' ),
 						'singular_name' => _x( 'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' ),
