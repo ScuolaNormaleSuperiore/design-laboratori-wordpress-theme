@@ -24,7 +24,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Aggiornato sito demo.
 - Modificata procedura di attivazione di un nuovo sito.
-
+- Aggiornata la versione di Bootstrap Italia alla versione 2.13.3.
 
 
 ## [1.5.1] - 2024-01-31
