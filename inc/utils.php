@@ -1123,7 +1123,7 @@ if( ! function_exists( 'dli_translate()' ) ) {
 	 */
 	function dli_translate( $text, $domain='design_laboratori_italia' ) {
 		global $wpdb;
-		$table       = 'sf_custom_translations';
+		$table       = $wpdb->prefix . 'dli_custom_translations';
 		$lang        = dli_current_language();
 		$translation = $wpdb->get_var( $wpdb->prepare(
 			"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",

@@ -36,6 +36,9 @@ function dli_create_pages_on_theme_activation() {
 	// Create all the menus of the site.
 	create_the_menus();
 
+	// Create the custom tables.
+	create_the_tables();
+
 	global $wp_rewrite;
 	$wp_rewrite->init(); // important...
 	$wp_rewrite->set_tag_base( 'argomento' );
@@ -385,4 +388,26 @@ function dli_reload_theme_option_page() {
 
 	echo '<a href="themes.php?page=reload-data-theme-options&action=reload" class="button button-primary">Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)</a>';
 	echo '</div>';
+}
+
+
+function create_the_tables() {
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'dli_custom_translations';
+	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'") != $table_name ) {
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		
+		$charset_collate = $wpdb->get_charset_collate();
+		
+		$sql = "CREATE TABLE $table_name (
+				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				label TEXT NOT NULL,
+				domain VARCHAR(100) NOT NULL,
+				lang VARCHAR(2) NOT NULL,
+				translation TEXT NOT NULL,
+				PRIMARY KEY (id),
+				KEY idx_text_domain (domain)
+		) ENGINE=InnoDB $charset_collate;";
+		dbDelta($sql);
+	}
 }
