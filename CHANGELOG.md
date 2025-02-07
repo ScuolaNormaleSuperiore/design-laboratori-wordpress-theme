@@ -16,16 +16,21 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [1.5.2] - 2024-02-06
-### Aggiunto
-- Gestione di etichette personalizzate nella tabella sf_
+## [1.5.3] - 2024-02-10
 ## Corretto
-- Corretta gestione dei tag dei prpogetti.
+
+
+
+## [1.5.2] - 2024-02-07
+### Aggiunto
+- Gestione di etichette personalizzate nella tabella wp_dli_custom_translations.
+- Aggiunto testo pagina accessibilità.
+## Corretto
+- Corretta gestione dei tag dei progetti.
 ## Modificato
 - Aggiornato sito demo.
 - Modificata procedura di attivazione di un nuovo sito.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.3.
-
 
 ## [1.5.1] - 2024-01-31
 ## Aggiunto
