@@ -86,12 +86,12 @@ define(
 		array(
 			'content_slug_it'    => SLUG_ACCESSIBILITA_IT,
 			'content_slug_en'    => SLUG_ACCESSIBILITA_EN,
-			'content_file_it'    => '',
-			'content_file_en'    => '',
+			'content_file_it'    => '/assets/html/dichiarazione_it.html', // To load the initial content of a page from a file.
+			'content_file_en'    => '/assets/html/dichiarazione_en.html', // To load the initial content of a page from a file.
 			'content_title_it'   => 'Dichiarazione',
 			'content_title_en'   => 'Accessibility',
-			'content_it'         => 'La di chiarazione di accessibilità...',
-			'content_en'         => 'The accessibility declaration...',
+			'content_it'         => '',
+			'content_en'         => '',
 			'content_status'     => 'publish',
 			'content_author'     => 1,
 			'content_template'   => '',
