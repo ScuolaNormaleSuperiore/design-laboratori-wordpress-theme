@@ -76,7 +76,7 @@ class Sponsor_Manager {
 	public function custom_layout( $post ) {
 		if ( SPONSOR_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione della Sponsor', 'design_laboratori_italia' );
+			_e( 'Descrizione dello Sponsor', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}
