@@ -161,20 +161,33 @@ $num_results   = $the_query->found_posts;
 								$year             = dli_get_field( 'anno_costituzione' );
 								$settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
 								$image_metadata   = dli_get_image_metadata( $post, 'item-card-list' );
+								$logo             = dli_get_field( 'logo' );
 							?>
 							<div class="col-12 col-lg-6"> 
 								<!--start card-->
 								<div class="card-wrapper shadow">
 									<div class="card card-img no-after">
 									<?php
-									if ( $image_metadata['image_url'] ) {
+									if ( ( $image_metadata['image_url'] ) || ( $logo ) ) {
 									?>
 										<div class="img-responsive-wrapper">
 											<div class="img-responsive img-responsive-panoramic">
 												<figure class="img-wrapper">
-													<img src="<?php echo $image_metadata['image_url']; ?>" 
-													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+													<?php
+													if ( $logo ){
+													?>
+														<img src="<?php echo esc_url( $logo['url'] ); ?>" 
+															title="<?php echo esc_attr( $logo['title'] ); ?>" 
+															alt="<?php echo esc_attr( $logo['title'] ); ?>">
+													<?php
+													} else {
+													?>
+														<img src="<?php echo $logo; ?>" 
+															title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+															alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+													<?php
+													}
+													?>
 												</figure>
 											</div>
 										</div>

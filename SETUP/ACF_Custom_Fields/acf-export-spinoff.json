@@ -75,6 +75,50 @@
                 "placeholder": ""
             },
             {
+                "key": "field_67a9de5539f8f",
+                "label": "Logo",
+                "name": "logo",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_67935a9c5b6a4",
+                "label": "Sito web",
+                "name": "sito_web",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
                 "key": "field_679cd99d9a82a",
                 "label": "Telefono",
                 "name": "telefono",
@@ -115,24 +159,6 @@
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
-            },
-            {
-                "key": "field_67935a9c5b6a4",
-                "label": "Sito web",
-                "name": "sito_web",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "allow_in_bindings": 0,
-                "placeholder": ""
             },
             {
                 "key": "field_67935ab55b6a6",

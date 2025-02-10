@@ -31,11 +31,17 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
+					<?php
+					if ( $image_metadata['image_url'] ) {
+					?>
 					<img src="<?php echo $image_metadata['image_url']; ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
 					>
+					<?php
+					}
+					?>
 					<?php
 							if( $image_metadata['image_caption'] ) {
 						?>
