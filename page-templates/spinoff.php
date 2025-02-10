@@ -182,7 +182,7 @@ $num_results   = $the_query->found_posts;
 													<?php
 													} else {
 													?>
-														<img src="<?php echo $logo; ?>" 
+														<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" 
 															title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 															alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 													<?php

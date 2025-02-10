@@ -74,11 +74,13 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 							<?php
 								if ( ! empty( $area_tematica ) ) {
 							?>
-							<span class="chip-label text-light">
-								<a href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] );?>" class="text-white text-decoration-white">
-									<?php echo esc_attr( $area_tematica['title'] ); ?>
+								<a class="text-white text-decoration-none"
+									href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] );?>"
+								>
+									<span class="chip-label text-light"></span>
+										<?php echo esc_attr( $area_tematica['title'] ); ?>
+									</span>
 								</a>
-							</span>
 							<?php
 								}
 							?>

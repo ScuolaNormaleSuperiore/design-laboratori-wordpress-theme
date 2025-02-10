@@ -66,15 +66,18 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 							<?php
 								if ( ! empty( $settore_attivita ) ) {
 							?>
-							<span class="chip-label text-light">
-								<a href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] );?>" class="text-white text-decoration-white">
+							<a class="text-white text-decoration-none"
+								href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] );?>" 
+							>
+								<span class="chip-label text-light">
 									<?php echo esc_attr( $settore_attivita['title'] ); ?>
-								</a>
-							</span>
+								</span>
+							</a>
 							<?php
 								}
 							?>
 						</div>
+						
 					</div>
 				</div>
 			</div>
