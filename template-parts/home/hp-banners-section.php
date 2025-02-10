@@ -22,7 +22,7 @@ if ( 'true' === $section_enabled ) {
 		$post_id        = $post->ID;
 		$section        = dli_get_field( 'sezione', $post_id );
 		$button_label   = __( dli_get_field( 'label_pulsante', $post_id ), 'design_laboratori_italia' );
-		$button_link    = dli_get_field( 'link_pulsante', $post_id );
+		$button_link    = dli_get_field(  'link_pulsante', $post_id );
 		$is_external    = dli_get_field( 'apri_in_nuova_finestra', $post_id ) ? true : false;
 	?>
 

@@ -821,6 +821,21 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	$home_options->add_field(
+		array(
+			'id' => $prefix . 'home_sponsor_list_is_visible',
+			'name' => __( "Visualizza l'elenco degli sponsor", 'design_laboratori_italia' ),
+			'desc' => __( "Indicare se l'elenco degli sponsor deve essere visualizzato in  HP", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+
 	/**
 	* 4 - Registers options page "Laboratorio".
 	*/

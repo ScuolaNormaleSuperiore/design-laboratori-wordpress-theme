@@ -49,6 +49,7 @@ define( 'PLACE_POST_TYPE', 'luogo' );
 define( 'PROGETTO_POST_TYPE', 'progetto' );
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'SPINOFF_POST_TYPE', 'spinoff' );
+define( 'SPONSOR_POST_TYPE', 'sponsor' );
 define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
 
 // DEFAULT WP CONTENT TYPES.
@@ -95,6 +96,8 @@ define( 'SLUG_RICERCA_SITO_IT', 'ricerca-sito' );
 define( 'SLUG_RICERCA_SITO_EN', 'search-site' );
 define( 'SLUG_SPINOFF_IT', 'spinoff' );
 define( 'SLUG_SPINOFF_EN', 'spinoff-en' );
+define( 'SLUG_SPONSOR_IT', 'sponsor' );
+define( 'SLUG_SPONSOR_EN', 'sponsor-en' );
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
@@ -156,6 +159,10 @@ define(
 			'it' => SLUG_SPINOFF_IT,
 			'en' => SLUG_SPINOFF_EN,
 		),
+		SPONSOR_POST_TYPE => array(
+			'it' => SLUG_SPONSOR_IT,
+			'en' => SLUG_SPONSOR_EN,
+		),
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
@@ -179,7 +186,8 @@ define(
 		WP_DEFAULT_PAGE,
 		WP_DEFAULT_POST,
 		BANNER_POST_TYPE,
-		SPINOFF_POST_TYPE
+		SPINOFF_POST_TYPE,
+		SPONSOR_POST_TYPE
 	)
 );
 

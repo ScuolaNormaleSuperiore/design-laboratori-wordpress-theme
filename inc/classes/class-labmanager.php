@@ -33,6 +33,10 @@ if ( ! class_exists( 'SpinOff_Manager' ) ) {
 	include_once 'class-spinoffmanager.php';
 }
 
+if ( ! class_exists( 'Sponsor_Manager' ) ) {
+	include_once 'class-sponsormanager.php';
+}
+
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
@@ -185,6 +189,10 @@ class DLI_LabManager {
 		// Setup del post type Spin-Off.
 		$som = new SpinOff_Manager();
 		$som->setup();
+
+		// Setup del post type Sponsor.
+		$spm = new Sponsor_Manager();
+		$spm->setup();
 
 	}
 
