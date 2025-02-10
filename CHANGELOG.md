@@ -17,7 +17,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.5.3] - 2024-02-10
+### Aggiunto
+- Aggiunto contenuto Sponsor.
 ## Corretto
+- Corretta visualizzazione titolo su dispositivi mobili.
 
 
 
