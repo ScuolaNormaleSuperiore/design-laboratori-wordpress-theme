@@ -140,7 +140,16 @@ $eventi = new WP_Query(
 							</a>
 							<div id="menu_laterale" class="menu-wrapper">
 								<div class="link-list-wrapper">
-									<h3><?php echo __( 'Dettagli del progetto', 'design_laboratori_italia' ); ?></h3>
+									<?php
+										$show_label = dli_get_configuration_field_by_lang( 'label_project_details_is_visible', 'progetti' );
+										if ( $show_label != 'false' ){
+									?>
+									<h3>
+										<?php echo __( 'Dettagli del progetto', 'design_laboratori_italia' ); ?>
+									</h3>
+									<?php
+										}
+									?>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
