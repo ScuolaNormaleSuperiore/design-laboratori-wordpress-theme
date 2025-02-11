@@ -24,7 +24,7 @@ if ( 'true' === $section_enabled ) {
 
 				<?php
 					foreach ( $query->posts as $post ){
-						$image_metadata = dli_get_image_metadata( $post, 'item-carousel', '/assets/img/yourimage.png' );
+						$image_metadata = dli_get_image_metadata( $post, 'full', '/assets/img/yourimage.png' );
 						$post_id        = $post->ID;
 						$external_link  = dli_get_field( 'link_esterno', $post_id );
 					?>
