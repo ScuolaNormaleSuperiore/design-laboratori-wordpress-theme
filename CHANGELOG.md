@@ -18,8 +18,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.5.6] - 2024-02-12
+### Aggiunto
 ## Modificato
-
+## Corretto
+- Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
 
 
 
