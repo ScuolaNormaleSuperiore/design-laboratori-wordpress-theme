@@ -16,14 +16,19 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [1.5.4] - 2024-02-11
+## Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.13.4.
+
+
+
+
 ## [1.5.3] - 2024-02-10
 ### Aggiunto
 - Aggiunto contenuto Sponsor.
 - Introdotto logo nelle Spin-off.
-## Modificato
 ## Corretto
 - Corretta visualizzazione titolo su dispositivi mobili.
-
 
 ## [1.5.2] - 2024-02-07
 ### Aggiunto

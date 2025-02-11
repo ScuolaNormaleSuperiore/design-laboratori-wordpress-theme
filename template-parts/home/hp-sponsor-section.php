@@ -49,7 +49,6 @@ if ( 'true' === $section_enabled ) {
 				</div>
 			</div>
 		</div>
-
 	</section>
 
 
