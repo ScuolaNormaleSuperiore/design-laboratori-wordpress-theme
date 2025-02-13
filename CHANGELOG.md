@@ -27,7 +27,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [1.5.5] - 2024-02-11
+## [1.5.5] - 2024-02-12
 ## Modificato
 - Corretto bug visualizzazione sezione Sponsor.
 
