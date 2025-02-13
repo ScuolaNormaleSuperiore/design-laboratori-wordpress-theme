@@ -1,8 +1,6 @@
 <?php
 global $post;
-
 $testo_notizie = dli_get_option("testo_notizie", "notizie");
-
 ?>
     <section class="section bg-greendark bg-greendarkgradient py-5 position-relative d-flex align-items-center overflow-hidden" style="min-height: 240px;" >
         <div class="green-square-forms">

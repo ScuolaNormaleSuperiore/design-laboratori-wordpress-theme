@@ -1069,6 +1069,23 @@ function dli_register_main_options_metabox() {
 			)
 		);
 
+		$notizie_options->add_field(
+			array(
+				'id'              => $prefix . 'numero_pagine_collegate',
+				'name'            => __( 'Numero pagine collegate', 'design_laboratori_italia' ),
+				'desc'            => __( 'Numero massimo di pagine (notizie ed eventi) associabili a una pagina' , 'design_laboratori_italia' ),
+				'type'            => 'text_small',
+				'default'         => 5,
+				'attributes'      => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				),
+				'sanitization_cb' => 'absint',
+				// 'escape_cb'       => 'absint',
+			)
+		);
+
+
 	/**
 	* 7- Registers options page "Eventi".
 	*/
