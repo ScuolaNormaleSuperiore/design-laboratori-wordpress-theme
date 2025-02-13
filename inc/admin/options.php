@@ -1081,7 +1081,7 @@ function dli_register_main_options_metabox() {
 					'pattern' => '\d*',
 				),
 				'sanitization_cb' => 'absint',
-				// 'escape_cb'       => 'absint',
+				// 'escape_cb'       => 'absint', // Commentato per far funzionare default. Da togliere?
 			)
 		);
 
