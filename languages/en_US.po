@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2025-02-13 11:17+0000\n"
+"PO-Revision-Date: 2025-02-27 11:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -149,6 +149,14 @@ msgstr "Add a structure"
 msgid "Aggiungi una Tipologia luogo"
 msgstr "Add a place type"
 
+#: inc/utils.php:658
+msgid "ago"
+msgstr "aug"
+
+#: inc/utils.php:637
+msgid "agosto"
+msgstr "august"
+
 #: single-evento.php:95
 msgid "al"
 msgstr "to"
@@ -187,6 +195,14 @@ msgstr "Deposit year"
 #: page-templates/contatti.php:302
 msgid "Annulla"
 msgstr "Cancel"
+
+#: inc/utils.php:654
+msgid "apr"
+msgstr "apr"
+
+#: inc/utils.php:633
+msgid "aprile"
+msgstr "april"
 
 #. Name of the template
 #: archive.php:2
@@ -624,6 +640,14 @@ msgstr "Event details"
 msgid "Dettagli della persona"
 msgstr "Person details"
 
+#: inc/utils.php:662
+msgid "dic"
+msgstr "dec"
+
+#: inc/utils.php:641
+msgid "dicembre"
+msgstr "december"
+
 #: inc/admin/options.php:379
 msgid "Dimensione hero"
 msgstr "Hero dimension"
@@ -814,6 +838,14 @@ msgstr "Single event"
 msgid "Famiglia brevettuale"
 msgstr "Patent family"
 
+#: inc/utils.php:652
+msgid "feb"
+msgstr "feb"
+
+#: inc/utils.php:631
+msgid "febbraio"
+msgstr "february"
+
 #: page-templates/brevetti.php:136 page-templates/spinoff.php:136
 msgid "Filtra"
 msgstr "Filter"
@@ -837,6 +869,14 @@ msgstr "Finalize import"
 #: single-evento.php:265 single-evento.php:300
 msgid "Fine evento"
 msgstr "End of event"
+
+#: inc/utils.php:651
+msgid "gen"
+msgstr "jan"
+
+#: inc/utils.php:630
+msgid "gennaio"
+msgstr "january"
 
 #: page-templates/privacy.php:211
 msgid "Gestione cookies"
@@ -880,6 +920,14 @@ msgstr ""
 #: inc/admin/options.php:2355
 msgid "Gestore delle newsletter"
 msgstr "Gestore delle newsletter"
+
+#: inc/utils.php:656
+msgid "giu"
+msgstr "jun"
+
+#: inc/utils.php:635
+msgid "giugno"
+msgstr "june"
 
 #: inc/admin/options.php:1094
 msgid "Gli eventi"
@@ -1605,6 +1653,14 @@ msgstr "Sponsor Identification Logo"
 msgid "Logo per mobile"
 msgstr "Mobile logo"
 
+#: inc/utils.php:657
+msgid "lug"
+msgstr "jul"
+
+#: inc/utils.php:636
+msgid "luglio"
+msgstr "july"
+
 #: inc/utils.php:216 inc/admin/options.php:1754 inc/admin/options.php:1760
 msgid "Luoghi"
 msgstr "Places"
@@ -1614,10 +1670,26 @@ msgstr "Places"
 msgid "Luogo"
 msgstr "Location"
 
+#: inc/utils.php:655
+msgid "mag"
+msgstr "may"
+
+#: inc/utils.php:634
+msgid "maggio"
+msgstr "may"
+
 #. Name of the template
 #: page-templates/mappasito.php:2 template-parts/hero/mappasito.php:9
 msgid "Mappa del sito"
 msgstr "Site Map"
+
+#: inc/utils.php:653
+msgid "mar"
+msgstr "mar"
+
+#: inc/utils.php:632
+msgid "marzo"
+msgstr "march"
 
 #: inc/admin/options.php:312
 msgid "Massimo 140 caratteri"
@@ -1842,6 +1914,14 @@ msgstr "News"
 msgid "Notizie"
 msgstr "News"
 
+#: inc/utils.php:661
+msgid "nov"
+msgstr "nov"
+
+#: inc/utils.php:640
+msgid "novembre"
+msgstr "november"
+
 #: inc/admin/options.php:1012
 msgid "Novità"
 msgstr "News"
@@ -1916,6 +1996,14 @@ msgstr ""
 #: inc/admin/options.php:14
 msgid "Opzioni di base"
 msgstr "Basic options"
+
+#: inc/utils.php:660
+msgid "ott"
+msgstr "oct"
+
+#: inc/utils.php:639
+msgid "ottobre"
+msgstr "october"
 
 #: template-parts/common/paginazione.php:45
 #: template-parts/common/paginazione.php:58
@@ -2493,6 +2581,14 @@ msgid ""
 msgstr ""
 "Select the website style (choose default to use the standard one of "
 "Designers Italia)"
+
+#: inc/utils.php:659
+msgid "set"
+msgstr "sept"
+
+#: inc/utils.php:638
+msgid "settembre"
+msgstr "september"
 
 #: inc/classes/class-spinoffmanager.php:55
 msgid "Settore attività"

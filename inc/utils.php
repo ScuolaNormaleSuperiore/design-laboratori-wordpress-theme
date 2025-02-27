@@ -627,18 +627,18 @@ if( ! function_exists( 'dli_get_monthname' ) ) {
 	function dli_get_monthname( $month ) {
 		$index = intval( $month ) - 1;
 		$months = array(
-			'gennaio',
-			'febbraio',
-			'marzo',
-			'aprile',
-			'maggio',
-			'giugno',
-			'luglio',
-			'agosto',
-			'settembre',
-			'ottobre',
-			'novembre',
-			'dicembre'
+			__( 'gennaio', 'design_laboratori_italia' ),
+			__( 'febbraio', 'design_laboratori_italia' ),
+			__( 'marzo', 'design_laboratori_italia' ),
+			__( 'aprile', 'design_laboratori_italia' ),
+			__( 'maggio', 'design_laboratori_italia' ),
+			__( 'giugno', 'design_laboratori_italia' ),
+			__( 'luglio', 'design_laboratori_italia' ),
+			__( 'agosto', 'design_laboratori_italia' ),
+			__( 'settembre', 'design_laboratori_italia' ),
+			__( 'ottobre', 'design_laboratori_italia' ),
+			__( 'novembre', 'design_laboratori_italia' ),
+			__( 'dicembre', 'design_laboratori_italia' ),
 		);
 		return $months[ $index ];
 	}
@@ -648,18 +648,18 @@ if( ! function_exists( 'dli_get_monthname_short' ) ) {
 	function dli_get_monthname_short( $month ) {
 		$index = intval( $month ) - 1;
 		$months = array(
-			'gen',
-			'feb',
-			'mar',
-			'apr',
-			'mag',
-			'giu',
-			'lug',
-			'ago',
-			'set',
-			'ott',
-			'nov',
-			'dic'
+			__( 'gen', 'design_laboratori_italia'),
+			__( 'feb', 'design_laboratori_italia'),
+			__( 'mar', 'design_laboratori_italia'),
+			__( 'apr', 'design_laboratori_italia'),
+			__( 'mag', 'design_laboratori_italia'),
+			__( 'giu', 'design_laboratori_italia'),
+			__( 'lug', 'design_laboratori_italia'),
+			__( 'ago', 'design_laboratori_italia'),
+			__( 'set', 'design_laboratori_italia'),
+			__( 'ott', 'design_laboratori_italia'),
+			__( 'nov', 'design_laboratori_italia'),
+			__( 'dic', 'design_laboratori_italia'),
 		);
 		return $months[ $index ];
 	}

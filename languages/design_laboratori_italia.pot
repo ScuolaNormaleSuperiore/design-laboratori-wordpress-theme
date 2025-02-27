@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-13 11:15+0000\n"
+"POT-Creation-Date: 2025-02-27 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -138,6 +138,14 @@ msgstr ""
 msgid "Aggiungi una Tipologia luogo"
 msgstr ""
 
+#: inc/utils.php:658
+msgid "ago"
+msgstr ""
+
+#: inc/utils.php:637
+msgid "agosto"
+msgstr ""
+
 #: single-evento.php:95
 msgid "al"
 msgstr ""
@@ -175,6 +183,14 @@ msgstr ""
 
 #: page-templates/contatti.php:302
 msgid "Annulla"
+msgstr ""
+
+#: inc/utils.php:654
+msgid "apr"
+msgstr ""
+
+#: inc/utils.php:633
+msgid "aprile"
 msgstr ""
 
 #. Name of the template
@@ -602,6 +618,14 @@ msgstr ""
 msgid "Dettagli della persona"
 msgstr ""
 
+#: inc/utils.php:662
+msgid "dic"
+msgstr ""
+
+#: inc/utils.php:641
+msgid "dicembre"
+msgstr ""
+
 #: inc/admin/options.php:379
 msgid "Dimensione hero"
 msgstr ""
@@ -786,6 +810,14 @@ msgstr ""
 msgid "Famiglia brevettuale"
 msgstr ""
 
+#: inc/utils.php:652
+msgid "feb"
+msgstr ""
+
+#: inc/utils.php:631
+msgid "febbraio"
+msgstr ""
+
 #: page-templates/brevetti.php:136 page-templates/spinoff.php:136
 msgid "Filtra"
 msgstr ""
@@ -808,6 +840,14 @@ msgstr ""
 
 #: single-evento.php:265 single-evento.php:300
 msgid "Fine evento"
+msgstr ""
+
+#: inc/utils.php:651
+msgid "gen"
+msgstr ""
+
+#: inc/utils.php:630
+msgid "gennaio"
 msgstr ""
 
 #: page-templates/privacy.php:211
@@ -846,6 +886,14 @@ msgstr ""
 
 #: inc/admin/options.php:2355
 msgid "Gestore delle newsletter"
+msgstr ""
+
+#: inc/utils.php:656
+msgid "giu"
+msgstr ""
+
+#: inc/utils.php:635
+msgid "giugno"
 msgstr ""
 
 #: inc/admin/options.php:1094
@@ -1501,6 +1549,14 @@ msgstr ""
 msgid "Logo per mobile"
 msgstr ""
 
+#: inc/utils.php:657
+msgid "lug"
+msgstr ""
+
+#: inc/utils.php:636
+msgid "luglio"
+msgstr ""
+
 #: inc/utils.php:216 inc/admin/options.php:1754 inc/admin/options.php:1760
 msgid "Luoghi"
 msgstr ""
@@ -1510,9 +1566,25 @@ msgstr ""
 msgid "Luogo"
 msgstr ""
 
+#: inc/utils.php:655
+msgid "mag"
+msgstr ""
+
+#: inc/utils.php:634
+msgid "maggio"
+msgstr ""
+
 #. Name of the template
 #: page-templates/mappasito.php:2 template-parts/hero/mappasito.php:9
 msgid "Mappa del sito"
+msgstr ""
+
+#: inc/utils.php:653
+msgid "mar"
+msgstr ""
+
+#: inc/utils.php:632
+msgid "marzo"
 msgstr ""
 
 #: inc/admin/options.php:312
@@ -1737,6 +1809,14 @@ msgstr ""
 msgid "Notizie"
 msgstr ""
 
+#: inc/utils.php:661
+msgid "nov"
+msgstr ""
+
+#: inc/utils.php:640
+msgid "novembre"
+msgstr ""
+
 #: inc/admin/options.php:1012
 msgid "Novità"
 msgstr ""
@@ -1804,6 +1884,14 @@ msgstr ""
 
 #: inc/admin/options.php:14
 msgid "Opzioni di base"
+msgstr ""
+
+#: inc/utils.php:660
+msgid "ott"
+msgstr ""
+
+#: inc/utils.php:639
+msgid "ottobre"
 msgstr ""
 
 #: template-parts/common/paginazione.php:45
@@ -2364,6 +2452,14 @@ msgstr ""
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
 "Designers Italia)"
+msgstr ""
+
+#: inc/utils.php:659
+msgid "set"
+msgstr ""
+
+#: inc/utils.php:638
+msgid "settembre"
 msgstr ""
 
 #: inc/classes/class-spinoffmanager.php:55

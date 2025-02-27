@@ -23,8 +23,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 ## Corretto
 - Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
-
-
+- Corretto import degli eventi da Indico.
+- Corretta visualizzazione dei mesi in inglese negli eventi.
 
 
 ## [1.5.5] - 2024-02-12
