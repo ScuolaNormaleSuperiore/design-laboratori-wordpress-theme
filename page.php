@@ -49,6 +49,7 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 						'child_of'    => $top_parent,
 						'offset'      => 0,
 						'parent'      => $top_parent,
+						'sort_order'  => 'ASC',
 						'sort_column' => 'menu_order',
 						)
 					);
