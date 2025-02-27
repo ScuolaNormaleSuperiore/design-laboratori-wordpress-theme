@@ -226,10 +226,12 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Ymd');
 		dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
 		$orario_inizio = $item['startDate']['time'];
-		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario_inizio g:i a.
+		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
 		$end_date   = $item['endDate']['date'];
 		$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Ymd');
-		dli_update_field( 'data_fine', $start_date, $post_id ); // data_inizio d/m/Y.
+		dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
+		$orario_fine = $item['endDate']['time'];
+		dli_update_field( 'orario_fine', $orario_fine, $post_id ); // orario fine.
 		// Aggiorna url dell'evento.
 		if ( $item['url'] ) {
 			dli_update_field( 'sitoweb', $item['url'], $post_id );
