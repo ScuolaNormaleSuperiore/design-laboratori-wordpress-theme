@@ -66,11 +66,14 @@ if( ! function_exists( 'dli_get_persona_avatar' ) ){
  * @return string|null
  */
 function dli_get_template_page_url($TEMPLATE_NAME){
-	$pages = get_pages(array(
-		'meta_key' => '_wp_page_template',
-		'meta_value' => $TEMPLATE_NAME,
-				'hierarchical' => 0
-	));
+	$pages = get_pages(
+		array(
+		'meta_key'     => '_wp_page_template',
+		'meta_value'   => $TEMPLATE_NAME,
+		'hierarchical' => 0,
+		'sort_column'  => 'menu_order',
+		)
+	);
 		if($pages){
 			foreach ($pages as $page){
 				if($page->ID)

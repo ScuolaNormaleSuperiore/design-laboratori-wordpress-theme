@@ -46,9 +46,10 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 					//Retrieve till second level pages
 					$pages = get_pages(
 						array(
-						'child_of'     => $top_parent,
-						'offset'       => 0,
-						'parent'       => $top_parent,
+						'child_of'    => $top_parent,
+						'offset'      => 0,
+						'parent'      => $top_parent,
+						'sort_column' => 'menu_order',
 						)
 					);
 					if($pages) {
@@ -86,11 +87,14 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 											</a>
 											<?php
 											//Show subpages of current branch page till second level.
-											$subspg = get_pages( array(
-												'child_of' => $pg->ID,
-												'offset'   => 0,
-												'parent'   => $pg->ID,
-											));
+											$subspg = get_pages(
+												array(
+												'child_of'    => $pg->ID,
+												'offset'      => 0,
+												'parent'      => $pg->ID,
+												'sort_column' => 'menu_order',
+												)
+											);
 											if ( $post->post_parent !== 0 && ($post->ID === $pg->ID || in_array( $post, $subspg ) ) ) {
 												?>
 												<ul class="link-sublist">

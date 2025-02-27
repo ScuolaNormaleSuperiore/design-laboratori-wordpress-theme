@@ -97,9 +97,10 @@ $form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $p
 					//Retrieve till second level pages
 					$pages = get_pages(
 						array(
-						'child_of'     => $top_parent,
-						'offset'       => 0,
-						'parent'       => $top_parent,
+						'child_of'    => $top_parent,
+						'offset'      => 0,
+						'parent'      => $top_parent,
+						'sort_column' => 'menu_order',
 						)
 					);
 					if($pages) {
@@ -137,10 +138,12 @@ $form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $p
 											</a>
 											<?php
 											//Show subpages of current branch page till second level.
-											$subspg = get_pages( array(
-												'child_of' => $pg->ID,
-												'offset'   => 0,
-												'parent'   => $pg->ID,
+											$subspg = get_pages(
+												array(
+												'child_of'    => $pg->ID,
+												'offset'      => 0,
+												'parent'      => $pg->ID,
+												'sort_column' => 'menu_order',
 											));
 											if ( $post->post_parent !== 0 && ($post->ID === $pg->ID || in_array( $post, $subspg ) ) ) {
 												?>
