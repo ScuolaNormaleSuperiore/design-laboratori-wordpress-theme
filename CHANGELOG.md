@@ -16,17 +16,19 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+
+
+## [1.5.7] - 2024-02-28
+## Corretto
+- Corretta visualizzazione dei mesi in inglese negli eventi.
+- Corretto l'ordinamento del menu contestuale di pagine e post.
+
 ## [1.5.6] - 2024-02-20
 ### Aggiunto
 - Aggiunto parametro di configurazione per scegliere il numero di elementi collegabili a una pagina.
 ## Modificato
 ## Corretto
 - Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
-- Corretto import degli eventi da Indico.
-- Corretta visualizzazione dei mesi in inglese negli eventi.
-- Corretto l'ordinamento del menu contestuale di pagine e post.
-
-
 
 ## [1.5.5] - 2024-02-12
 ## Modificato
