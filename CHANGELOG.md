@@ -16,6 +16,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [1.5.8] - 2024-03-10
+### Aggiunto
+## Modificato
+## Corretto
+
 
 
 ## [1.5.7] - 2024-02-28
@@ -26,7 +31,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.5.6] - 2024-02-20
 ### Aggiunto
 - Aggiunto parametro di configurazione per scegliere il numero di elementi collegabili a una pagina.
-## Modificato
 ## Corretto
 - Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
 
