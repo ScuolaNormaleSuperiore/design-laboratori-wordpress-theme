@@ -16,9 +16,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [1.5.8] - 2024-03-10
+## [1.5.8] - 2024-03-20
 ### Aggiunto
 ## Modificato
+- Aggiornato Dockerfile per sito demo.
 ## Corretto
 
 
