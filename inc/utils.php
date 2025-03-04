@@ -369,7 +369,7 @@ if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
 
 if( ! function_exists( 'dli_from_progetto_to_carousel_item' ) ) {
 	function dli_from_progetto_to_carousel_item( $item ) {
-		$result         =  DLI_POST_WRAPPER;
+		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
 		$page           = dli_get_page_by_post_type( $post_type );
