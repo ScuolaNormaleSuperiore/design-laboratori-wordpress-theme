@@ -85,9 +85,9 @@ it:
   riuso:
     codiceIPA: sns_pi
   conforme:
-    gdpr: false
+    gdpr: true
     lineeGuidaDesign: true
-    misureMinimeSicurezza: false
+    misureMinimeSicurezza: true
   piattaforme:
     anpr: false
     cie: false
