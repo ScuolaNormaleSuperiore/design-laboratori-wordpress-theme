@@ -758,6 +758,7 @@ if( ! function_exists( 'dli_get_all_contenttypes_with_results' ) ) {
 						'paged'          => get_query_var( 'paged', 1 ),
 						'post_type'      => $ct,
 						'posts_per_page' => DLI_POSTS_PER_PAGE,
+						'post_status'    => 'publish',
 					)
 				);
 				$num_results = $the_query->found_posts;
