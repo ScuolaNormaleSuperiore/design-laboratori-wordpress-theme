@@ -7,23 +7,23 @@ if ( ! function_exists( 'dli_main_search_query' ) ) {
 				array(
 					'paged'          => get_query_var( 'paged', 1 ),
 					'post_type'      => $selected_contents,
+					'post_status'    => 'publish',
 					'posts_per_page' => $pagesize,
 					's'              => $searchstring,
 				)
 			);
-		}
-		else {
-			$the_query = new WP_Query(
-				array(
-					'paged'          => get_query_var( 'paged', 1 ),
-					'posts_per_page' => $pagesize,
-					's'              => $searchstring,
-				)
-			);
-		}
-
-			return $the_query;
-		}
+			}	else {
+				$the_query = new WP_Query(
+					array(
+						'paged'          => get_query_var( 'paged', 1 ),
+						'post_status'    => 'publish',
+						'posts_per_page' => $pagesize,
+						's'              => $searchstring,
+					)
+				);
+			}
+		return $the_query;
+	}
 }
 
 if ( ! function_exists( 'dli_format_search_result' ) ) {
