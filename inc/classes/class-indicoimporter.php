@@ -107,7 +107,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$discarded = 0;
 		$errors    = 0;
 		$processed = 0;
-		$updated   = 0;
+		$modified  = 0;
 		$ignored   = 0;
 		foreach ( $resp_data['results'] as $item ) {
 			$counter++;
@@ -138,7 +138,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 							$data,
 							MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title,
 						);
-						$updated++;
+						$modified++;
 					} else if ( $ignored ){
 						array_push(
 							$data,
@@ -164,7 +164,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		// Import footer.
 		$msg = sprintf(
 			__( "*** Totali: %d - Scartati: %d - Processati: %d - Aggiornati: %d - Ignorati: %d - Errori: %d ***" ), 
-			$total, $discarded, $processed, $updated, $ignored, $errors
+			$total, $discarded, $processed, $modified, $ignored, $errors
 		);
 		array_push( $data, $msg );
 		return $data;
