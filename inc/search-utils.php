@@ -28,29 +28,23 @@ if ( ! function_exists( 'dli_main_search_query' ) ) {
 
 if ( ! function_exists( 'dli_format_search_result' ) ) {
 	function dli_format_search_result( $post ) {
-
-
-		// Creare un wrapper per ogni tipo di contenuto.
-		$descr1 = dli_get_field( $post->ID, 'descrizione_breve' );
-		$descr2 = get_the_content( $post->ID );
-		$text   = $descr1 ? $descr1 : $descr2;
-		$post_title = get_the_title( $post->ID );
-
-		$image_metadata = dli_get_image_metadata( $post, 'item-thumb' );
-		$image_alt      = ( PEOPLE_POST_TYPE === $post->post_type ) ? $post_title : $image_metadata['image_alt'];
-		$image_title      = ( PEOPLE_POST_TYPE === $post->post_type ) ? $post_title : $image_metadata['image_title'];
+		$wrapper        = dli_get_post_wrapper( $post );
+		// Utilizzo l'immagine nel formato item-thumb
+		$image_metadata = dli_get_image_metadata( $post, 'item-thumb', '/assets/img/placeholder.png' );
+		$image_alt      = ( PEOPLE_POST_TYPE === $post->post_type ) ? $wrapper['title'] : $image_metadata['image_alt'];
+		$image_title    = ( PEOPLE_POST_TYPE === $post->post_type ) ? $wrapper['title'] : $image_metadata['image_title'];
 
 		return array(
 			'id'            => $post->ID,
-			'title'         => $post_title,
-			'description'   => $text,
+			'title'         => $wrapper['title'],
+			'description'   => $wrapper['description'],
 			'image'         => $image_metadata['image_url'],
-			'link'          => get_the_permalink( $post->ID ),
-			'date'          => null,
-			'type'          => $post->post_type,
-			'category'      => null,
-			'link_category' => null,
-			'title'         => $post_title,
+			'link'          => $wrapper['link'],
+			'date'          => $wrapper['date'],
+			'type'          => $wrapper['type'],
+			'category'      => $wrapper['category'],
+			'link_category' => $wrapper['category_link'],
+			'title'         => $wrapper['title'],
 			'image_alt'     => $image_alt,
 			'image_title'   => $image_title,
 		);

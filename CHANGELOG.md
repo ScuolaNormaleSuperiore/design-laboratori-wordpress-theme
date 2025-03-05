@@ -16,13 +16,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [1.5.8] - 2024-03-20
+## [1.5.8] - 2024-03-05
 ### Aggiunto
+- Il link alla scheda di dettaglio di eventi e notizie può puntare a un sito web o a un allegato.
 ## Modificato
 - Aggiornato Dockerfile per sito demo.
 ## Corretto
-
-
+- Corretto funzionamento import eventi da Indico.
+- Corretto il formato dei risultati della ricerca.
 
 ## [1.5.7] - 2024-02-28
 ## Corretto

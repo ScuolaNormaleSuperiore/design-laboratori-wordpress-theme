@@ -161,9 +161,12 @@ if ( '' !== $searchstring ) {
 										<?php
 										 }
 										?>
-										<span class="text" style="text-transform: uppercase;"><?php echo esc_attr( $result['type'] ); ?></span>
-										<a href="<?php echo esc_url( $result['link'] ); ?>">
-											<h3 class="card-title h5 "><?php echo esc_attr( $result['title'] ); ?></h3>
+										<span class="text" style="text-transform: uppercase;">
+											<a class="text-decoration-none" href="<?php echo esc_url( $result['link_category'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
+										</span>
+										<span>&nbsp;-&nbsp;</span>
+										<a class="text-decoration-none" href="<?php echo esc_url( $result['link'] ); ?>">
+											<h3 class="card-title h5"><?php echo esc_attr( $result['title'] ); ?></h3>
 										</a>
 										<p class="card-text"><?php echo esc_attr( wp_trim_words( $result['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 									</div>

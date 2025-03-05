@@ -187,17 +187,17 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 					$item = dli_from_news_to_carousel_item ( $result );
 					break;
 				case PROGETTO_POST_TYPE:
-						$item = dli_from_progetto_to_carousel_item ( $result );
-						break;
+					$item = dli_from_progetto_to_carousel_item ( $result );
+					break;
 				case PUBLICATION_POST_TYPE:
-						$item = dli_from_publication_to_carousel_item ( $result );
-						break;
+					$item = dli_from_publication_to_carousel_item ( $result );
+					break;
 				case PATENT_POST_TYPE:
-							$item = dli_from_patent_to_carousel_item ( $result );
-							break;
+					$item = dli_from_patent_to_carousel_item ( $result );
+					break;
 				case PATENT_POST_TYPE:
-						$item = dli_from_patent_to_carousel_item ( $result );
-						break;
+					$item = dli_from_patent_to_carousel_item ( $result );
+					break;
 				case WP_DEFAULT_PAGE:
 					$item = dli_from_page_to_carousel_item ( $result );
 					break;
@@ -227,6 +227,33 @@ if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_manage_item_link' ) ) {
+	function dli_manage_item_link( $item ) {
+		// Gestione del link al dettaglio dell'oggetto.
+		$item_link = '';
+		$link_type = dli_get_field( 'link_dettaglio', $item );
+		switch ( $link_type ) {
+			case DLI_ITEM_LINK['WEBSITE']:
+				$website   = dli_get_field( 'sitoweb', $item );
+				if ( $website ) {
+					$item_link = $website;
+				}
+				break;
+			case DLI_ITEM_LINK['ATTACHMENT']:
+				$allegato  = dli_get_field( 'allegato', $item );
+				if ( $allegato ) {
+					$item_link = $allegato['url'];
+				}
+				break;
+			default:
+				$item_link = get_the_permalink( $item );
+				break;
+		}
+		return $item_link;
+	}
+}
+
+
 if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 	function dli_from_event_to_carousel_item( $item ) {
 		$result         =  DLI_POST_WRAPPER;
@@ -234,7 +261,8 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$post_title     = get_the_title( $item );
-		
+		$item_link      = dli_manage_item_link( $item );
+
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
 			'type'          => $post_type,
@@ -243,9 +271,9 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			'date'          => dli_get_field( 'data_inizio', $item ),
 			'orario_inizio' => dli_get_field( 'orario_inizio', $item ),
 			'title'         => $post_title,
-			'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
+			'description'   => wp_trim_words( dli_get_field( 'descrizione_breve', $item ), DLI_ACF_SHORT_DESC_LENGTH ),
 			'full_content'  => get_the_content( $item ),
-			'link'          => get_the_permalink( $item ),
+			'link'          => $item_link,
 			'image_url'     => $image_metadata['image_url'],
 			'image_alt'     => $image_metadata['image_alt'],
 			'image_title'   => $image_metadata['image_title'],
@@ -261,6 +289,7 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 			$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
 			$page           = dli_get_page_by_post_type( $post_type );
 			$post_title     = get_the_title( $item );
+			$item_link      = dli_manage_item_link( $item );
 
 			// @TODO: Popolare $result e non ridefinirlo.
 			$result      = array(
@@ -271,7 +300,7 @@ if( ! function_exists( 'dli_from_event_to_carousel_item' ) ) {
 				'title'         => $post_title,
 				'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 				'full_content'  => get_the_content( $item ),
-				'link'          => get_the_permalink( $item ),
+				'link'          => $item_link,
 				'image_url'     => $image_metadata['image_url'],
 				'image_alt'     => $image_metadata['image_alt'],
 				'orario_inizio' => null,

@@ -265,3 +265,14 @@ define(
 		),
 	)
 );
+
+
+// Stati link oggetto (eventi e news): Valori della select in ACF nel campo: link_dettaglio .
+define(
+	'DLI_ITEM_LINK',
+	array(
+		'DETAIL_PAGE' => 'scheda',
+		'WEBSITE'     => 'sitoweb',
+		'ATTACHMENT'  => 'allegato',
+	),
+);

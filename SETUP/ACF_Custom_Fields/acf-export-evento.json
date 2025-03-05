@@ -320,6 +320,34 @@
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
+            },
+            {
+                "key": "field_67c80cb3fbdec",
+                "label": "Link dettaglio",
+                "name": "link_dettaglio",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "scheda": "Scheda dettaglio",
+                    "sitoweb": "Sito web",
+                    "allegato": "Link ad allegato"
+                },
+                "default_value": "scheda",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": ""
             }
         ],
         "location": [
