@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-27 11:24+0000\n"
+"POT-Creation-Date: 2025-03-06 15:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -138,11 +138,11 @@ msgstr ""
 msgid "Aggiungi una Tipologia luogo"
 msgstr ""
 
-#: inc/utils.php:658
+#: inc/utils.php:689
 msgid "ago"
 msgstr ""
 
-#: inc/utils.php:637
+#: inc/utils.php:668
 msgid "agosto"
 msgstr ""
 
@@ -185,11 +185,11 @@ msgstr ""
 msgid "Annulla"
 msgstr ""
 
-#: inc/utils.php:654
+#: inc/utils.php:685
 msgid "apr"
 msgstr ""
 
-#: inc/utils.php:633
+#: inc/utils.php:664
 msgid "aprile"
 msgstr ""
 
@@ -224,7 +224,7 @@ msgstr ""
 msgid "Argomenti"
 msgstr ""
 
-#: inc/utils.php:1028
+#: inc/utils.php:1058
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -255,7 +255,7 @@ msgid "Attiva la paginazione"
 msgstr ""
 
 #. Name of the template
-#: single-persona.php:188 single-persona.php:290 inc/utils.php:214
+#: single-persona.php:188 single-persona.php:290 inc/utils.php:217
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr ""
@@ -312,7 +312,7 @@ msgid "Bozza"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:222 page-templates/brevetti.php:2 inc/admin/options.php:1395
+#: inc/utils.php:225 page-templates/brevetti.php:2 inc/admin/options.php:1395
 msgid "Brevetti"
 msgstr ""
 
@@ -618,11 +618,11 @@ msgstr ""
 msgid "Dettagli della persona"
 msgstr ""
 
-#: inc/utils.php:662
+#: inc/utils.php:693
 msgid "dic"
 msgstr ""
 
-#: inc/utils.php:641
+#: inc/utils.php:672
 msgid "dicembre"
 msgstr ""
 
@@ -787,7 +787,7 @@ msgstr ""
 
 #. Name of the template
 #: single-indirizzo-di-ricerca.php:142 single-indirizzo-di-ricerca.php:223
-#: single-progetto.php:205 single-progetto.php:317 inc/utils.php:215
+#: single-progetto.php:205 single-progetto.php:317 inc/utils.php:218
 #: page-templates/eventi.php:2 inc/admin/options.php:1100
 #: template-parts/home/hp-list-event.php:43
 msgid "Eventi"
@@ -810,11 +810,11 @@ msgstr ""
 msgid "Famiglia brevettuale"
 msgstr ""
 
-#: inc/utils.php:652
+#: inc/utils.php:683
 msgid "feb"
 msgstr ""
 
-#: inc/utils.php:631
+#: inc/utils.php:662
 msgid "febbraio"
 msgstr ""
 
@@ -842,15 +842,15 @@ msgstr ""
 msgid "Fine evento"
 msgstr ""
 
-#: inc/utils.php:651
+#: inc/utils.php:682
 msgid "gen"
 msgstr ""
 
-#: inc/utils.php:630
+#: inc/utils.php:661
 msgid "gennaio"
 msgstr ""
 
-#: page-templates/privacy.php:211
+#: page-templates/privacy.php:214
 msgid "Gestione cookies"
 msgstr ""
 
@@ -888,11 +888,11 @@ msgstr ""
 msgid "Gestore delle newsletter"
 msgstr ""
 
-#: inc/utils.php:656
+#: inc/utils.php:687
 msgid "giu"
 msgstr ""
 
-#: inc/utils.php:635
+#: inc/utils.php:666
 msgid "giugno"
 msgstr ""
 
@@ -904,7 +904,7 @@ msgstr ""
 msgid "Grande"
 msgstr ""
 
-#: page-templates/privacy.php:220
+#: page-templates/privacy.php:223
 msgid "Hai installato i seguenti cookies di terze parti:"
 msgstr ""
 
@@ -1549,15 +1549,15 @@ msgstr ""
 msgid "Logo per mobile"
 msgstr ""
 
-#: inc/utils.php:657
+#: inc/utils.php:688
 msgid "lug"
 msgstr ""
 
-#: inc/utils.php:636
+#: inc/utils.php:667
 msgid "luglio"
 msgstr ""
 
-#: inc/utils.php:216 inc/admin/options.php:1754 inc/admin/options.php:1760
+#: inc/utils.php:219 inc/admin/options.php:1754 inc/admin/options.php:1760
 msgid "Luoghi"
 msgstr ""
 
@@ -1566,11 +1566,11 @@ msgstr ""
 msgid "Luogo"
 msgstr ""
 
-#: inc/utils.php:655
+#: inc/utils.php:686
 msgid "mag"
 msgstr ""
 
-#: inc/utils.php:634
+#: inc/utils.php:665
 msgid "maggio"
 msgstr ""
 
@@ -1579,11 +1579,11 @@ msgstr ""
 msgid "Mappa del sito"
 msgstr ""
 
-#: inc/utils.php:653
+#: inc/utils.php:684
 msgid "mar"
 msgstr ""
 
-#: inc/utils.php:632
+#: inc/utils.php:663
 msgid "marzo"
 msgstr ""
 
@@ -1747,7 +1747,7 @@ msgstr ""
 msgid "Nome Laboratorio EN"
 msgstr ""
 
-#: page-templates/privacy.php:216
+#: page-templates/privacy.php:219
 msgid "Non hai installato cookie di terze parti"
 msgstr ""
 
@@ -1804,16 +1804,16 @@ msgid "Notizia"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:217 page-templates/notizie.php:2
+#: inc/utils.php:220 page-templates/notizie.php:2
 #: template-parts/home/hp-list-news.php:29
 msgid "Notizie"
 msgstr ""
 
-#: inc/utils.php:661
+#: inc/utils.php:692
 msgid "nov"
 msgstr ""
 
-#: inc/utils.php:640
+#: inc/utils.php:671
 msgid "novembre"
 msgstr ""
 
@@ -1886,11 +1886,11 @@ msgstr ""
 msgid "Opzioni di base"
 msgstr ""
 
-#: inc/utils.php:660
+#: inc/utils.php:691
 msgid "ott"
 msgstr ""
 
-#: inc/utils.php:639
+#: inc/utils.php:670
 msgid "ottobre"
 msgstr ""
 
@@ -1903,7 +1903,7 @@ msgstr ""
 msgid "Pagina non trovata"
 msgstr ""
 
-#: page.php:71 page-templates/privacy.php:122
+#: page.php:73 page-templates/privacy.php:123
 msgid "Pagine collegate"
 msgstr ""
 
@@ -1920,7 +1920,7 @@ msgid "Persona"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:218 page-templates/persone.php:2 inc/admin/options.php:1164
+#: inc/utils.php:221 page-templates/persone.php:2 inc/admin/options.php:1164
 #: inc/admin/options.php:1170
 msgid "Persone"
 msgstr ""
@@ -1933,7 +1933,7 @@ msgstr ""
 msgid "Posizione"
 msgstr ""
 
-#: inc/utils.php:219
+#: inc/utils.php:222
 msgid "Post"
 msgstr ""
 
@@ -2271,7 +2271,7 @@ msgid "Privacy"
 msgstr ""
 
 #: single-indirizzo-di-ricerca.php:128 single-indirizzo-di-ricerca.php:189
-#: single-persona.php:167 single-persona.php:243 inc/utils.php:220
+#: single-persona.php:167 single-persona.php:243 inc/utils.php:223
 #: inc/admin/options.php:1534
 msgid "Progetti"
 msgstr ""
@@ -2289,7 +2289,7 @@ msgid "Pubblicazione"
 msgstr ""
 
 #: single-persona.php:198 single-persona.php:327 single-progetto.php:191
-#: single-progetto.php:285 inc/utils.php:221 inc/admin/options.php:1326
+#: single-progetto.php:285 inc/utils.php:224 inc/admin/options.php:1326
 #: template-parts/home/hp-list-publication.php:29
 msgid "Pubblicazioni"
 msgstr ""
@@ -2302,7 +2302,7 @@ msgstr ""
 msgid "REST API"
 msgstr ""
 
-#: page-templates/privacy.php:226
+#: page-templates/privacy.php:229
 msgid "Revoca"
 msgstr ""
 
@@ -2454,11 +2454,11 @@ msgid ""
 "Designers Italia)"
 msgstr ""
 
-#: inc/utils.php:659
+#: inc/utils.php:690
 msgid "set"
 msgstr ""
 
-#: inc/utils.php:638
+#: inc/utils.php:669
 msgid "settembre"
 msgstr ""
 
@@ -2614,7 +2614,7 @@ msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr ""
 
 #: single-brevetto.php:183 single-brevetto.php:275
-msgid "Status"
+msgid "Stato legale"
 msgstr ""
 
 #: inc/admin/options.php:2325
@@ -2769,8 +2769,8 @@ msgstr ""
 msgid "Token API"
 msgstr ""
 
-#: page.php:62 page.php:63 page.php:66 page-templates/privacy.php:113
-#: page-templates/privacy.php:114 page-templates/privacy.php:117
+#: page.php:64 page.php:65 page.php:68 page-templates/privacy.php:114
+#: page-templates/privacy.php:115 page-templates/privacy.php:118
 msgid "Torna indietro"
 msgstr ""
 
@@ -2998,7 +2998,7 @@ msgstr ""
 msgid "Web Analytics Italia"
 msgstr ""
 
-#: page-templates/privacy.php:223
+#: page-templates/privacy.php:226
 msgid "Youtube per la visualizzazione di video"
 msgstr ""
 

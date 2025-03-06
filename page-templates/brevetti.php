@@ -158,7 +158,7 @@ $num_results   = $the_query->found_posts;
 								}
 								$post_id        = get_the_ID();
 								$summary        = dli_get_field( 'sommario_elenco' );
-								$stato          = dli_get_field( 'stato_legale' );
+								$stato          = dli_get_field( 'stato_legale_custom' );
 								$titolari       = dli_get_field( 'titolari' );
 								$area_tematica  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
 								$image_metadata = dli_get_image_metadata( $post, 'item-card-list' );

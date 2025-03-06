@@ -12,7 +12,7 @@ $image_metadata = dli_get_image_metadata( $post, 'full' );
 $abstract       = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 $summary        = dli_get_field( 'sommario_elenco' );
 $note           = dli_get_field( 'note' );
-$stato          = dli_get_field( 'stato_legale' );
+$stato          = dli_get_field( 'stato_legale_custom' );
 $titolari       = dli_get_field( 'titolari' );
 $inventori      = dli_get_field( 'inventori' );
 $inventori_ref  = dli_get_field( 'inventori_referenti' );
@@ -180,7 +180,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#status">
-												<span><?php echo __( 'Status', 'design_laboratori_italia' ); ?></span>
+												<span><?php echo __( 'Stato legale', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
 										<?php
@@ -272,7 +272,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				?>
 					<!-- Status -->
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Status', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="h4"><?php echo __( 'Stato legale', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_attr( $stato ) ; ?></p>
 				</article>
 				<?php
