@@ -121,14 +121,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 		foreach ( $data as $item ){
 			$counter++;
-			$item_code  = $item->pid;
+			$item_pid   = $item->pid;
 			$item_title = $item->displayValue;
 
 			if ( $conf['import_type'] === 'dryrun' ){
 				// Importazione dry run.
 				array_push(
 					$results,
-					MSG_IMPORT_DRY_RUN . $item_code . ' - ' . $item_title,
+					MSG_IMPORT_DRY_RUN . $item_pid . ' - ' . $item_title,
 				);
 				$simulated_items++;
 			} else {
@@ -147,7 +147,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					if ( $item_code !=0 ){
 						$this->_process_result(
 							$results,
-							$item_code,
+							$item_pid . ' - ' . $item_code,
 							$item->displayValue,
 							$updated,
 							$ignored,
@@ -162,7 +162,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					if ( $item_code_en !=0 ){
 						$this->_process_result(
 							$results,
-							$item_code_en,
+							$item_pid . ' - ' . $item_code_en,
 							$item->displayValue_en,
 							$updated,
 							$ignored,
@@ -207,7 +207,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {
 		$post_name    = dli_generate_slug( $item->displayValue );
-		$post_content = $item->abstract_en ?? $item->abstract ?? '.';
+		$post_content = $item->abstract ?? '.';
+
 		$new_content  = array(
 			'post_type'    => $this->post_type,
 			'post_name'    => $post_name,
@@ -218,8 +219,10 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		);
 		$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
 		// Verifico l'esistenza dell'oggetto su WordPress.
-		$post_id = $this->get_wp_content_id( $item );
-		if ( ! $post_id ) {
+		$pid  = $this->get_wp_content_id( $item );
+		$contents = dli_get_post_translations( $pid );
+
+		if ( ! isset( $contents[$lang] ) ) {
 			$post_id = wp_insert_post( $new_content );
 			$updated = false;
 			// Aggiorna campi personalizzati.
@@ -227,13 +230,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			// La lingua impostata per l'oggetto importato è l'italiano.
 			dli_set_post_language( $post_id, $lang );
 		} else {
+			$post_id = $contents[$lang];
 			if ( $update_content ) {
 				// Aggiorna i campi del post.
 				$pars = array(
 					'ID'           => $post_id,
 					'post_content' => $new_content['post_content'],
 				);
-				wp_update_post( $pars );
+				wp_update_post( $pars, true );
 				// Aggiorna titolo.
 				$this->update_title( $post_id, $item->displayValue );
 				// Aggiorna campi personalizzati.
@@ -249,12 +253,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	private function _translate_content( $post_id, $item, $conf, $lang='en' ): int {
 		$traslate_content = $item->displayValue_en ? true : false;
 		$new_content_en   = null;
-		$post_id_en      = 0;
+		$post_id_en       = 0;
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $traslate_content ) {
 			$post_name_en    = dli_generate_slug( $item->displayValue_en );
-			$post_content_en = $item->abstract_en ?  $item->abstract_en : '.';
+			$post_content_en = $item->abstract_en ?? '.';
 			$post_title_en   = $item->displayValue_en;
 			$contents        = dli_get_post_translations( $post_id );
 
@@ -293,7 +297,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						'ID'           => $post_id_en,
 						'post_content' => $post_content_en,
 					);
-					wp_update_post( $pars );
+					wp_update_post( $pars, true );
 					// Aggiorna titolo.
 					$this->update_title( $post_id_en, $post_title_en );
 					// Aggiorna campi personalizzati.
@@ -311,7 +315,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			'post_title' => $title,
 		);
 		// Aggiorna il post.
-		wp_update_post($updated_post, true);
+		wp_update_post( $updated_post, true );
 	}
 
 	private function update_custom_fields( $post_id, $item, $lang= 'it' ) {
@@ -464,7 +468,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			'posts_per_page' => 1,
 			'post_status'    => 'any',
 		);
-		$query = new WP_Query($args);
+		$query = new WP_Query( $args );
 		return $query->found_posts ? $query->posts[0]->ID : 0;
 	}
 

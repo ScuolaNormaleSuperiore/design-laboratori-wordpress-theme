@@ -15,6 +15,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.5.9] - 2024-03-06
+### Aggiunto
+- Aggiunto campo libero per lo stato nei brevetti.
+## Corretto
+- Corretto import dei brevetti.
 
 ## [1.5.8] - 2024-03-05
 ### Aggiunto
