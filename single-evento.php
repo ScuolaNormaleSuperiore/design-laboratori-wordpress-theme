@@ -184,7 +184,16 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 										</li>
 										<?php
 											}
-											if ( $telefono || $email || $sito_web ) {
+											if ( $sito_web ) {
+												?>
+												<li class="nav-item">
+													<a class="nav-link" href="#website">
+														<span><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span>
+													</a>
+												</li>
+												<?php
+											}
+											if ( $telefono || $email ) {
 										?>
 										<li class="nav-item">
 											<a class="nav-link" href="#contatti">
@@ -329,7 +338,36 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 				}
 				?>
 
+				<!-- SITO WEB -->
+				<?php
+				if ( $sito_web ) {
+				?>
+					<article id="website" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="it-page-section h4 pt-3" id="luogo-title"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></h3>
+						<div class="link-list-wrapper">
+							<ul class="link-list">
+								<li>
+									<a class="list-item active icon-left large" target="_blank" href="<?php echo $sito_web; ?>">
+										<span class="list-item-title-icon-wrapper">
+											<svg class="icon icon-primary" role="img" aria-labelledby="Link">
+												<title>Link</title>
+												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
+											</svg>
+											<span class="list-item-title"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span>
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</article>
+				<?php
+				}
+				?>
+
 				<!-- CONTATTI -->
+				<?php
+				if ( $telefono || $email ) {
+				?>
 				<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="it-page-section h4 pt-3 pb-3" id="contatti-title">
 						<?php
@@ -366,28 +404,13 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 							?>
 							<li>
 								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
-								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Mail">
-										<title>Mail</title>
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
-									</svg>
-								</div>
-								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
-								</a>
-							</li>
-							<?php
-								}
-								if ( $sito_web ) {
-							?>
-							<li>
-								<a class="list-item" target="_blank" href="<?php echo $sito_web; ?>">
-								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Link">
-										<title>Link</title>
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-									</svg>
-								</div>
-								<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
+									<div class="it-rounded-icon">
+										<svg class="icon" role="img" aria-labelledby="Mail">
+											<title>Mail</title>
+											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
+										</svg>
+									</div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
 								</a>
 							</li>
 							<?php
@@ -399,7 +422,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 
 				<!-- ALLEGATI -->
 				<?php
-				if ( $allegato ){
+				} if ( $allegato ){
 				?>
 					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 pt-3 pb-3" id="allegati-title"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
@@ -418,7 +441,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 										</div>
 									</div>
 									<!--end card-->
-								</div>  
+								</div>
 							</div>
 					</article>
 				<?php
