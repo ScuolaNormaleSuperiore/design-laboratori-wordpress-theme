@@ -30,29 +30,17 @@ ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
 ##############################################################################
 
 
-# Update packages 
-RUN apt-get update && apt-get install
 # Install useful packages
-RUN apt-get install -y \
-	vim \
-	git \
-	bash-completion \
-	libxml2-dev \
-	unzip \
-	wget 
-
-# Install gd extension
-RUN apt-get install -y \
-		libfreetype-dev \
-		libjpeg62-turbo-dev \
-		libpng-dev \
-	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-install -j$(nproc) gd
-
-# Install and enable useful modules
-RUN docker-php-ext-install mysqli && \
-	docker-php-ext-install soap && \
-	a2enmod rewrite
+RUN apt-get update \
+	&& apt-get install -y vim git bash-completion libxml2-dev unzip wget \
+	# Install gd extension
+	&& apt-get install -y libfreetype-dev libjpeg62-turbo-dev libpng-dev \
+ 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd \
+	# Install and enable useful modules
+	&& docker-php-ext-install mysqli \
+	&& docker-php-ext-install soap \
+	&& a2enmod rewrite
 
 # Copy the file of the database files.
 COPY configure/createUserAndDatabase.sql /tmp/createUserAndDatabase.sql
@@ -105,11 +93,11 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	cp /tmp/.htaccess /var/www/html/.htaccess && \
 	unzip /tmp/uploads.zip -d /var/www/html/wp-content/uploads/ && \
 	wget ${ADMINER} -O /var/www/html/adminer.php && \
-	chown -R www-data:www-data /var/www/html/*
-
-
-# Remove the temp file.
-RUN rm -rf /tmp/*
+	chown -R www-data:www-data /var/www/html/* \
+	# Remove the temp file.
+	&& rm -rf /tmp/* \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
 
 #Copy utility files
 COPY src/phpinfo.php /var/www/html/phpinfo.php
