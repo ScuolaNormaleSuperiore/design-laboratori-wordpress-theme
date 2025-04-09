@@ -1,6 +1,6 @@
 {
   "name": "design-laboratori-wordpress-theme",
-  "version": "1.5.9",
+  "version": "1.6.0",
   "description": "Tema Wordpress dei Laboratori Italiani",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "^2.13.4"
+    "bootstrap-italia": "^2.14.0"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.1",

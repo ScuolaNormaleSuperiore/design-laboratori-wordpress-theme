@@ -15,13 +15,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.5.9] - 2024-03-07
+## [1.6.0] - 2025-04-09
+## Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.14.0.
+
+## [1.5.9] - 2025-03-07
 ### Aggiunto
 - Aggiunto campo libero per lo stato nei brevetti.
 ## Corretto
 - Corretto import dei brevetti.
 
-## [1.5.8] - 2024-03-05
+## [1.5.8] - 2025-03-05
 ### Aggiunto
 - Il link alla scheda di dettaglio di eventi e notizie può puntare a un sito web o a un allegato.
 ## Modificato
@@ -30,33 +34,33 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corretto funzionamento import eventi da Indico.
 - Corretto il formato dei risultati della ricerca.
 
-## [1.5.7] - 2024-02-28
+## [1.5.7] - 2025-02-28
 ## Corretto
 - Corretta visualizzazione dei mesi in inglese negli eventi.
 - Corretto l'ordinamento del menu contestuale di pagine e post.
 
-## [1.5.6] - 2024-02-20
+## [1.5.6] - 2025-02-20
 ### Aggiunto
 - Aggiunto parametro di configurazione per scegliere il numero di elementi collegabili a una pagina.
 ## Corretto
 - Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
 
-## [1.5.5] - 2024-02-12
+## [1.5.5] - 2025-02-12
 ## Modificato
 - Corretto bug visualizzazione sezione Sponsor.
 
-## [1.5.4] - 2024-02-11
+## [1.5.4] - 2025-02-11
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.4.
 
-## [1.5.3] - 2024-02-10
+## [1.5.3] - 2025-02-10
 ### Aggiunto
 - Aggiunto contenuto Sponsor.
 - Introdotto logo nelle Spin-off.
 ## Corretto
 - Corretta visualizzazione titolo su dispositivi mobili.
 
-## [1.5.2] - 2024-02-07
+## [1.5.2] - 2025-02-07
 ### Aggiunto
 - Gestione di etichette personalizzate nella tabella wp_dli_custom_translations.
 - Aggiunto testo pagina accessibilità.
@@ -67,7 +71,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Modificata procedura di attivazione di un nuovo sito.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.3.
 
-## [1.5.1] - 2024-01-31
+## [1.5.1] - 2025-01-31
 ## Aggiunto
 - Aggiunto contenuto Spin-Off.
 ## Corretto
@@ -77,7 +81,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.1.
 - Aggiornato Dockerfile per sito demo.
 
-## [1.5.0] - 2024-01-22
+## [1.5.0] - 2025-01-22
 ## Corretto
 - Corretto import degli eventi da Indico: aggiunta immagine in modifica
 ## Modificato
@@ -88,7 +92,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Aggiunto
 - Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
 
-## [1.4.2] - 2024-01-15
+## [1.4.2] - 2025-01-15
 ## Modificato
 - Nuova gestione dei cookies.
 - Aggiornato template per pagina dei cookies e pagina delle note legali.
