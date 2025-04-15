@@ -173,7 +173,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {
 		$post_name    = dli_generate_slug( $item['title'] );
 		$post_content = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
-		$new_page = array(
+		$new_page     = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,
 			'post_title'   => $item['title'],
@@ -203,8 +203,11 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				);
 				wp_update_post( $pars );
 				$this->update_custom_fields( $post_id, $item, $conf['lang'] );
-				// Scarico e aggiungo l'immagine.
-				$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
+				// Se l'evento non ha ancora un'immagine provo a scaricarla (per aggiornare immagini esistenti va cancellata quella presente).
+				if ( ! has_post_thumbnail( $post_id ) ) {
+					// Scarico e aggiungo l'immagine.
+					$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
+				}
 				$updated = true;
 			} else {
 				$ignored = true;
