@@ -15,6 +15,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.6.1] - 2025-04-15
+## Modificato
+- Corretto bug nell'import delle immagini di Indico.
+
 ## [1.6.0] - 2025-04-09
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.14.0.
