@@ -106,9 +106,15 @@ class Newsletter_Manager {
 				$page_url         = dli_get_newsletter_link($current_language);
 				$redirect_url = $page_url . '?after_confirm=yes';
 				$data = array(
-					'attributes' => array(
-						'FNAME'    => $this->data->get_user_name(),
-						'LNAME'    => $this->data->get_user_surname(),
+					'attributes'  => array(
+						'FNAME'     => $this->data->get_user_name(),
+						'LNAME'     => $this->data->get_user_surname(),
+						'FIRSTNAME' => $this->data->get_user_name(),
+						'LASTNAME'  => $this->data->get_user_surname(),
+						'NOME'      => $this->data->get_user_name(),
+						'COGNOME'   => $this->data->get_user_surname(),
+						'NAME'      => $this->data->get_user_name(),
+						'SURNAME'   => $this->data->get_user_surname(),
 					),
 					'email'          => $this->data->get_user_mail(),
 					'includeListIds' => $list_ids,
