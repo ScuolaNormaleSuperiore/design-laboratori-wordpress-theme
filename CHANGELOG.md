@@ -16,8 +16,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.6.1] - 2025-04-15
+### Aggiunto
+- Aggiunto limite di 1MB per le immagini e di 2MB per i PDF.
 ## Modificato
 - Corretto bug nell'import delle immagini di Indico.
+- Tolte da functions.php e portate nel Theme Manager le funzioni per la gestione delle immagini.
+
 
 ## [1.6.0] - 2025-04-09
 ## Modificato

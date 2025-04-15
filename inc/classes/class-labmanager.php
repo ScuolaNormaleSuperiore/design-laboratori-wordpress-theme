@@ -112,11 +112,17 @@ class DLI_LabManager {
 		// Setup internationalisation.
 		add_action( 'init', array( $this, 'configure_languages' ) );
 
+		// Setup image sizes.
+		add_action( 'after_setup_theme', array( $this, 'setup_image_sizes' ) );
+
 		// Setup permalink structure.
 		add_action( 'init', array( $this, 'configure_permalink' ) );
 
 		// Setup REST API.
 		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
+
+		// Setup upload limits.
+		add_filter( 'wp_handle_upload_prefilter', array( $this, 'setup_upload_limits' ) );
 
 		// Imposta configurazioni di sicurezza.
 		$this->enable_security_configurations();
@@ -205,12 +211,24 @@ class DLI_LabManager {
 	 * 
 	 * @return void
 	 */
-	function configure_languages() {
-		// load_theme_textdomain( 'design_laboratori_italia', false, DLI_THEMA_PATH . '/languages' );
+	public function configure_languages() {
 		load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
 	}
 
-	function configure_permalink() {
+	public function setup_image_sizes() {
+		// Image size.
+		if ( function_exists( 'add_image_size' ) ) {
+			add_image_size( 'item-thumb', 280, 280 , true );
+			add_image_size( 'item-gallery', 730, 485 , true );
+			add_image_size( 'item-hero-event', 418, 130 , true );
+			add_image_size( 'item-card-list', 416, 232 , true );
+			add_image_size( 'item-carousel', 592, 334 , true );
+			add_image_size( 'banner', 600, 250 , false );
+			add_image_size( 'page-body', 860, 238 , true );
+		}
+	}
+	
+	public function configure_permalink() {
 		update_option('permalink_structure', '/%postname%/');
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
@@ -221,7 +239,7 @@ class DLI_LabManager {
 	 *
 	 * @return object.
 	 */
-	function setup_rest_api(){
+	public function setup_rest_api(){
 		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ) {
 			return new WP_Error(
 				'rest_disabled',
@@ -231,6 +249,22 @@ class DLI_LabManager {
 		}
 	}
 
+	public function setup_upload_limits( $file ){
+		$image_max_size = 1024 * 1024;     // 1MB per immagini.
+		$pdf_max_size   = 2 * 1024 * 1024; // 2MB per PDF.
+		$type           = $file['type'];
+		$size           = $file['size'];
+		// Limiti per immagini.
+		$image_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+		if ( in_array( $type, $image_types ) && $size > $image_max_size ) {
+			$file['error'] = __( 'L\'immagine è troppo grande. Massimo consentito: 1MB.', 'design_laboratori_italia' );
+		}
+		// Limite per PDF.
+		if ( $type === 'application/pdf' && $size > $pdf_max_size ) {
+			$file['error'] = __( 'Il file PDF è troppo grande. Massimo consentito: 2MB.', 'design_laboratori_italia' );
+		}
+		return $file;
+	}
 
 	private function enable_security_configurations() {
 		// Hook per nascondere sovrascrivere il messaggio di errore in fase di login.

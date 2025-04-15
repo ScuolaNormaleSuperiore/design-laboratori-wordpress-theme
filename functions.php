@@ -109,14 +109,6 @@ if ( ! function_exists( 'dli_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function dli_setup() {
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Design Laboratori Italia, use a find and replace
-		 * to change 'design_laboratori_italia' to the name of your theme in all the template files.
-		 */
-		// load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
-		// load_theme_textdomain( 'easy-appointments', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -135,17 +127,6 @@ if ( ! function_exists( 'dli_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-
-		// Image size.
-		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'item-thumb', 280, 280 , true );
-			add_image_size( 'item-gallery', 730, 485 , true );
-			add_image_size( 'item-hero-event', 418, 130 , true );
-			add_image_size( 'item-card-list', 416, 232 , true );
-			add_image_size( 'item-carousel', 592, 334 , true );
-			add_image_size( 'banner', 600, 250 , false );
-			add_image_size( 'page-body', 860, 238 , true );
-		}
 
 		/**
 		 * This theme uses wp_nav_menu().
