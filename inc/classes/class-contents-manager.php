@@ -359,4 +359,16 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
+	public static function get_hp_sections() {
+		return DLI_HP_SECTIONS;
+	}
+
+	public static function get_hp_section_list() {
+		$result = [];
+		foreach (DLI_HP_SECTIONS as $key => $item) {
+				$result[$key] = $item['name'];
+		}
+		return $result;
+	}
+
 }

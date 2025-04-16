@@ -9,6 +9,9 @@
 
 get_header();
 $carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled', 'homepage' );
+
+$all_sections = DLI_ContentsManager::get_hp_sections();
+$opt_sections = dli_get_option( 'site_sections', 'homepage_sections' );
 ?>
 <main id="main-container" class="main-container redbrown" role="main">
 

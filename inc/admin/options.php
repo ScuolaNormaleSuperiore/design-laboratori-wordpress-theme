@@ -369,19 +369,13 @@ function dli_register_main_options_metabox() {
 	$section_options->add_group_field(
 		$section_group_id,
 		array(
-			'id'               => 'section',
+			'id'               => 'section_id',
 			'name'             => __( "Sezione", 'design_laboratori_italia' ),
 			'desc'             => __( "Scegli la sezione." , 'design_laboratori_italia' ),
 			'type'             => 'select',
 			'default'          => 'never',
 			'show_option_none' => false,
-			'options'          => array(
-				'main_hero_section'      => __( 'Main hero', 'design_laboratori_italia' ),
-				'clusters_section'     => __( 'Clusters', 'design_laboratori_italia' ),
-				'news_section'      => __( 'News', 'design_laboratori_italia' ),
-				'search_section' => __( 'Search', 'design_laboratori_italia' ),
-				'in_evidence'     => __( 'In evidence', 'design_laboratori_italia' ),
-			),
+			'options'          => DLI_ContentsManager::get_hp_section_list(),
 		)
 	);
 	$section_options->add_group_field(

@@ -276,3 +276,70 @@ define(
 		'ATTACHMENT'  => 'allegato',
 	),
 );
+
+// Sezioni attivabili nella della Home Page.
+define(
+	'DLI_HP_SECTIONS',
+	array(
+			'main_hero' =>
+				array(
+					'id'       => 'main_hero',
+					'name'     => __( 'Hero principale', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/main-hero',
+				),
+			'site_description' =>
+				array(
+					'id'       => 'site_description',
+					'name'     => __( 'Descrizione del sito', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/site-presentation',
+				),
+			'main_carousel' =>
+				array(
+					'id'       => 'main_carousel',
+					'name'     => __( 'Carousel principale', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/carousel',
+				),
+			'featured_contents' =>
+				array(
+					'id'       => 'featured_contents',
+					'name'     => __( 'Contenuti in evidenza', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/featured-contents',
+				),
+			'events_section' =>
+				array(
+					'id'       => 'events_section',
+					'name'     => __( 'Eventi', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-list-event',
+				),
+			'news_section' =>
+				array(
+					'id'       => 'news_section',
+					'name'     => __( 'Notizie', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-list-news',
+				),
+			'publications_section' =>
+				array(
+					'id'       => 'publications_section',
+					'name'     => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-list-publication',
+				),
+			'articles_section' =>
+				array(
+					'id'       => 'articles_section',
+					'name'     => __( 'Articoli', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-list-article',
+				),
+			'banners_section' =>
+				array(
+					'id'       => 'banners_section',
+					'name'     => __( 'Banner', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-banners-section',
+				),
+			'sponsors_section' =>
+				array(
+					'id'       => 'sponsors_section',
+					'name'     => __( 'Sponsor', 'design_laboratori_italia' ),
+					'template' => 'template-parts/home/hp-sponsor-section',
+				),
+	)
+);
