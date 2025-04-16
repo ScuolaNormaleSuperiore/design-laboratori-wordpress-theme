@@ -324,31 +324,129 @@ function dli_register_main_options_metabox() {
 			'type' => 'text_url',
 	) );
 
+	/**
+	 * 2 - Registers options page "Home Page Sections".
+	*/
+	$args = array(
+		'id'           => 'dli_home_sections',
+		'title'        => esc_html__( 'Sezioni HP', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'homepage_sections',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Sezioni HP', 'design_laboratori_italia' ),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$section_options = new_cmb2_box( $args );
+	$section_options->add_field(
+		array(
+			'id'   => 'sectionoptions_info',
+			'name' => __( 'Sezioni Home Page', 'design_laboratori_italia' ),
+			'desc' => __( 'Configura le sezioni della Home Page.' , 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+	$section_group_id = $section_options->add_field(
+		array(
+			'id'          => 'site_sections',
+			'type'        => 'group',
+			'desc'        => __( 'Elenco delle sezioni della Home Page:' , 'design_laboratori_italia' )   . '.',
+			'repeatable'  => true,
+			'options'     => array(
+					'group_title'    => __( 'Sezione', 'design_laboratori_italia' ) . ' {#}',
+					'add_button'     => __( 'Aggiungi la sezione', 'design_laboratori_italia' ),
+					'remove_button'  => __( 'Rimuovi la sezione', 'design_laboratori_italia' ),
+					'sortable'       => true,
+					'closed'         => true,
+					'remove_confirm' => esc_html__( 'Sei sicuro di voler rimuovere la sezione?', 'design_laboratori_italia' ),
+			),
+		)
+	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'               => 'section',
+			'name'             => __( "Sezione", 'design_laboratori_italia' ),
+			'desc'             => __( "Scegli la sezione." , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'never',
+			'show_option_none' => false,
+			'options'          => array(
+				'main_hero_section'      => __( 'Main hero', 'design_laboratori_italia' ),
+				'clusters_section'     => __( 'Clusters', 'design_laboratori_italia' ),
+				'news_section'      => __( 'News', 'design_laboratori_italia' ),
+				'search_section' => __( 'Search', 'design_laboratori_italia' ),
+				'in_evidence'     => __( 'In evidence', 'design_laboratori_italia' ),
+			),
+		)
+	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id' => 'section_enabled',
+			'name' => __( 'Abilita la sezione', 'design_laboratori_italia' ),
+			'desc' => __( 'Se sì, la sezione è mostrata nella Home Page.', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'true',
+			'options' => array(
+					'true'  => __( 'Sì', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id' => 'show_title',
+			'name' => __( 'Mostra il titolo della sezione', 'design_laboratori_italia' ),
+			'desc' => __( 'Se sì, viene mostrato il titolo della sezione.', 'design_laboratori_italia' ),
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true'  => __( 'Yes', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
 
-		/**
-		 * 2 - Registers options page "Home".
-		 */
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'         => 'title',
+			'name'       => __( 'Titolo', 'design_laboratori_italia' ),
+			'desc'       => __( "Il titolo della sezione." , 'design_laboratori_italia' ),
+			'type'       => 'text',
+		)
+	);
+	
+	/**
+	 * 3 - Registers options page "Home".
+	*/
 
-		$args = array(
-				'id'           => 'dli_options_home',
-				'title'        => esc_html__( 'Home Page', 'design_laboratori_italia' ),
-				'object_types' => array( 'options-page' ),
-				'option_key'   => 'homepage',
-				'capability'   => DLI_EDIT_CONFIG_PERMISSION,
-				'parent_slug'  => 'dli_options',
-				'tab_group'    => 'dli_options',
-				'tab_title'    => __( 'Home', 'design_laboratori_italia' ),	);
+	$args = array(
+			'id'           => 'dli_options_home',
+			'title'        => esc_html__( 'Home Page', 'design_laboratori_italia' ),
+			'object_types' => array( 'options-page' ),
+			'option_key'   => 'homepage',
+			'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+			'parent_slug'  => 'dli_options',
+			'tab_group'    => 'dli_options',
+			'tab_title'    => __( 'Home', 'design_laboratori_italia' ),	);
 
-		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-				$args['display_cb'] = 'dli_options_display_with_tabs';
-		}
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
 
 		$home_options = new_cmb2_box( $args );
 
-		/**
-		* 3 - Registers options page "Home".
-		*/
+	/**
+	* 4 - Registers options page "Home".
+	*/
 	// *** SEZIONE MAIN HERO (HOMEPAGE) ***
 	$home_options->add_field(
 		array(
@@ -837,7 +935,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 4 - Registers options page "Laboratorio".
+	* 5 - Registers options page "Laboratorio".
 	*/
 	$args = array(
 		'id'           => 'dli_options_il_laboratorio',
@@ -929,7 +1027,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 5 - Registers options page "Blog".
+	* 6 - Registers options page "Blog".
 	*/
 	$args = array(
 		'id'           => 'dli_options_blog',
@@ -999,7 +1097,7 @@ function dli_register_main_options_metabox() {
 		);
 
 	/**
-	* 6 - Registers options page "Novità".
+	* 7 - Registers options page "Novità".
 	*/
 	$args = array(
 		'id'           => 'dli_options_notizie',
@@ -1087,7 +1185,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 7- Registers options page "Eventi".
+	* 8 - Registers options page "Eventi".
 	*/
 	$args = array(
 		'id'           => 'dli_options_eventi',
@@ -1157,7 +1255,7 @@ function dli_register_main_options_metabox() {
 		);
 	
 	/**
-	* 8 - Registers options page "Persone".
+	* 9 - Registers options page "Persone".
 	*/
 	$args = array(
 		'id'           => 'dli_options_persone',
@@ -1312,7 +1410,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 9 - Registers options page "Pubblicazioni".
+	* 10 - Registers options page "Pubblicazioni".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -1381,7 +1479,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 10 - Registers options page "Brevetti".
+	* 11 - Registers options page "Brevetti".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -1450,7 +1548,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 11 - Registers options page "Spin-off".
+	* 12 - Registers options page "Spin-off".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -1520,7 +1618,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 12 - Registers options page "Progetti".
+	* 13 - Registers options page "Progetti".
 	*/
 	// Intestazione della sezione.
 	$args = array(
@@ -1675,7 +1773,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 13 - Registers options page "Attività di ricerca".
+	* 14 - Registers options page "Attività di ricerca".
 	*/
 	$args = array(
 		'id'           => 'dli_options_ricerca',
@@ -1747,7 +1845,7 @@ function dli_register_main_options_metabox() {
 
 
 	/**
-	* 14 - Registers options page "Attività di ricerca".
+	* 15 - Registers options page "Attività di ricerca".
 	*/
 		$args = array(
 				'id'           => 'dli_options_luoghi',
@@ -1821,7 +1919,7 @@ function dli_register_main_options_metabox() {
 		));
 
 	/**
-	* 15 - Registers options page "Social media".
+	* 16 - Registers options page "Social media".
 	*/
 		$args = array(
 				'id'           => 'dli_options_socials',
@@ -1919,7 +2017,7 @@ function dli_register_main_options_metabox() {
 	// BEGIN SECTION FOR ADMINISTRATORS
 	if ( current_user_can( DLI_ADMIN_EDIT_CONFIG_PERMISSION ) ) {
 		/**
-		* 16 - Registers options page "Integrazione con Indico".
+		* 17 - Registers options page "Integrazione con Indico".
 		*/
 		$args = array(
 			'id'           => 'dli_options_indico',
@@ -2125,7 +2223,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		/**
-		* 17 - Registers options page "Integrazione con IRIS".
+		* 18 - Registers options page "Integrazione con IRIS".
 		*/
 		$args = array(
 			'id'           => 'dli_options_iris',
@@ -2277,7 +2375,7 @@ function dli_register_main_options_metabox() {
 
 
 		/**
-		* 18 - Registers options page "Altro".
+		* 19 - Registers options page "Altro".
 		*/
 
 		$args = array(
