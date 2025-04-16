@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-06 15:08+0000\n"
+"POT-Creation-Date: 2025-04-16 10:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -150,7 +150,7 @@ msgstr ""
 msgid "al"
 msgstr ""
 
-#: single-evento.php:200 single-evento.php:405 single-progetto.php:198
+#: single-evento.php:209 single-evento.php:428 single-progetto.php:198
 #: single-progetto.php:301
 msgid "Allegati"
 msgstr ""
@@ -443,10 +443,6 @@ msgstr ""
 msgid "Conferma"
 msgstr ""
 
-#: page-templates/newsletter.php:102
-msgid "Conferma dell'iscrizione alla newsletter avvenuta con successo"
-msgstr ""
-
 #: inc/admin/options.php:10
 msgid "Configurazione"
 msgstr ""
@@ -456,7 +452,7 @@ msgid "Configurazione Laboratorio"
 msgstr ""
 
 #. Name of the template
-#: footer.php:45 single-evento.php:191 single-evento.php:342
+#: footer.php:45 single-evento.php:200 single-evento.php:380
 #: single-indirizzo-di-ricerca.php:135 single-indirizzo-di-ricerca.php:206
 #: single-persona.php:218 single-persona.php:448 single-spinoff.php:171
 #: single-spinoff.php:251 page-templates/contatti.php:2
@@ -493,7 +489,7 @@ msgstr ""
 msgid "Data deposito"
 msgstr ""
 
-#: single-evento.php:174 single-evento.php:236
+#: single-evento.php:174 single-evento.php:245
 msgid "Date e orari"
 msgstr ""
 
@@ -838,7 +834,7 @@ msgstr ""
 msgid "Finalizza import"
 msgstr ""
 
-#: single-evento.php:265 single-evento.php:300
+#: single-evento.php:274 single-evento.php:309
 msgid "Fine evento"
 msgstr ""
 
@@ -988,6 +984,10 @@ msgstr ""
 
 #: page-templates/contatti.php:55 page-templates/newsletter.php:51
 msgid "Il codice di controllo non è valido."
+msgstr ""
+
+#: inc/classes/class-labmanager.php:264
+msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr ""
 
 #. Name of the template
@@ -1221,7 +1221,7 @@ msgstr ""
 msgid "Inglese"
 msgstr ""
 
-#: single-evento.php:258
+#: single-evento.php:267
 msgid "Inizio evento"
 msgstr ""
 
@@ -1365,8 +1365,8 @@ msgstr ""
 msgid "Iscrivimi..."
 msgstr ""
 
-#: page-templates/newsletter.php:118
-msgid "Iscrizione avvenuta correttamente"
+#: page-templates/newsletter.php:102
+msgid "Iscrizione alla newsletter avvenuta con successo"
 msgstr ""
 
 #: inc/admin/options.php:2042
@@ -1377,12 +1377,16 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:228
+#: inc/classes/class-labmanager.php:246
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
 
 #: inc/admin/options.php:130
 msgid "L'email del Laboratorio"
+msgstr ""
+
+#: inc/classes/class-labmanager.php:260
+msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
 #: inc/admin/options.php:118
@@ -1561,7 +1565,7 @@ msgstr ""
 msgid "Luoghi"
 msgstr ""
 
-#: single-evento.php:181 single-evento.php:323
+#: single-evento.php:181 single-evento.php:332
 #: inc/classes/class-placemanager.php:96
 msgid "Luogo"
 msgstr ""
@@ -1591,23 +1595,23 @@ msgstr ""
 msgid "Massimo 140 caratteri"
 msgstr ""
 
-#: functions.php:160
+#: functions.php:141
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
-#: functions.php:158
+#: functions.php:139
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:159
+#: functions.php:140
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:156
+#: functions.php:137
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:157
+#: functions.php:138
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -2319,6 +2323,12 @@ msgstr ""
 msgid "Ricevuta"
 msgstr ""
 
+#: page-templates/newsletter.php:118
+msgid ""
+"Richiesta di iscrizione ricevuta correttamente, verifica la tua email per "
+"completare la procedura"
+msgstr ""
+
 #: template-parts/common/sezione-video.php:32
 msgid "Ricorda per tutti i video"
 msgstr ""
@@ -2571,8 +2581,9 @@ msgstr ""
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr ""
 
-#: single-evento.php:390 single-persona.php:490 single-progetto.php:83
-#: single-spinoff.php:296 template-parts/common/sezione-contatti.php:63
+#: single-evento.php:191 single-evento.php:346 single-evento.php:356
+#: single-persona.php:490 single-progetto.php:83 single-spinoff.php:296
+#: template-parts/common/sezione-contatti.php:63
 msgid "Sito web"
 msgstr ""
 
@@ -2929,8 +2940,8 @@ msgstr ""
 msgid "Vedi tutti"
 msgstr ""
 
-#: single-brevetto.php:210 single-brevetto.php:335 single-evento.php:209
-#: single-evento.php:433 single-spinoff.php:189 single-spinoff.php:320
+#: single-brevetto.php:210 single-brevetto.php:335 single-evento.php:218
+#: single-evento.php:456 single-spinoff.php:189 single-spinoff.php:320
 msgid "Video"
 msgstr ""
 

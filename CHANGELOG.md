@@ -15,13 +15,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.6.2] - 2025-04-16
+## Modificato
+- Aggiornati i file delle traduzioni.
+- Aggiornato Dockerfile per sito demo.
+
 ## [1.6.1] - 2025-04-15
 ### Aggiunto
 - Aggiunto limite di 1MB per le immagini e di 2MB per i PDF.
 ## Modificato
 - Corretto bug nell'import delle immagini di Indico.
 - Tolte da functions.php e portate nel Theme Manager le funzioni per la gestione delle immagini.
-
 
 ## [1.6.0] - 2025-04-09
 ## Modificato

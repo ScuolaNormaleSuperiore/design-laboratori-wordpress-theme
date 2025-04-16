@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2025-03-06 15:09+0000\n"
+"PO-Revision-Date: 2025-04-16 10:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -161,7 +161,7 @@ msgstr "august"
 msgid "al"
 msgstr "to"
 
-#: single-evento.php:200 single-evento.php:405 single-progetto.php:198
+#: single-evento.php:209 single-evento.php:428 single-progetto.php:198
 #: single-progetto.php:301
 msgid "Allegati"
 msgstr "Attachments"
@@ -457,10 +457,6 @@ msgstr "Share on WhatsApp"
 msgid "Conferma"
 msgstr "Confirmation"
 
-#: page-templates/newsletter.php:102
-msgid "Conferma dell'iscrizione alla newsletter avvenuta con successo"
-msgstr "Confirmation of successful subscription to the newsletter"
-
 #: inc/admin/options.php:10
 msgid "Configurazione"
 msgstr "Configuration"
@@ -470,7 +466,7 @@ msgid "Configurazione Laboratorio"
 msgstr "Lab configuration"
 
 #. Name of the template
-#: footer.php:45 single-evento.php:191 single-evento.php:342
+#: footer.php:45 single-evento.php:200 single-evento.php:380
 #: single-indirizzo-di-ricerca.php:135 single-indirizzo-di-ricerca.php:206
 #: single-persona.php:218 single-persona.php:448 single-spinoff.php:171
 #: single-spinoff.php:251 page-templates/contatti.php:2
@@ -507,7 +503,7 @@ msgstr "Danger"
 msgid "Data deposito"
 msgstr "Deposit date"
 
-#: single-evento.php:174 single-evento.php:236
+#: single-evento.php:174 single-evento.php:245
 msgid "Date e orari"
 msgstr "Dates and times"
 
@@ -866,7 +862,7 @@ msgstr "Filter by content type"
 msgid "Finalizza import"
 msgstr "Finalize import"
 
-#: single-evento.php:265 single-evento.php:300
+#: single-evento.php:274 single-evento.php:309
 msgid "Fine evento"
 msgstr "End of event"
 
@@ -1024,6 +1020,10 @@ msgstr "Carousel after presentation"
 #: page-templates/contatti.php:55 page-templates/newsletter.php:51
 msgid "Il codice di controllo non è valido."
 msgstr "The check code is invalid."
+
+#: inc/classes/class-labmanager.php:264
+msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
+msgstr "PDF file is too large. Maximum allowed: 2MB."
 
 #. Name of the template
 #: page-templates/il-laboratorio.php:2 inc/admin/options.php:844
@@ -1292,7 +1292,7 @@ msgstr "Info"
 msgid "Inglese"
 msgstr "English"
 
-#: single-evento.php:258
+#: single-evento.php:267
 msgid "Inizio evento"
 msgstr "Event start"
 
@@ -1465,9 +1465,9 @@ msgstr "Sign me up for the Newsletter"
 msgid "Iscrivimi..."
 msgstr "Sign me up..."
 
-#: page-templates/newsletter.php:118
-msgid "Iscrizione avvenuta correttamente"
-msgstr "Registration successful"
+#: page-templates/newsletter.php:102
+msgid "Iscrizione alla newsletter avvenuta con successo"
+msgstr "Newsletter subscription successful"
 
 #: inc/admin/options.php:2042
 msgid "Italiano"
@@ -1477,13 +1477,17 @@ msgstr "Italian"
 msgid "Keywords"
 msgstr "Keywords"
 
-#: inc/classes/class-labmanager.php:228
+#: inc/classes/class-labmanager.php:246
 msgid "L'API REST di WordPress è disabilitata."
 msgstr "WordPress REST API is disabled."
 
 #: inc/admin/options.php:130
 msgid "L'email del Laboratorio"
 msgstr "Lab email"
+
+#: inc/classes/class-labmanager.php:260
+msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
+msgstr "Image is too large. Maximum allowed: 1MB."
 
 #: inc/admin/options.php:118
 msgid "L'indirizzo del Laboratorio"
@@ -1665,7 +1669,7 @@ msgstr "july"
 msgid "Luoghi"
 msgstr "Places"
 
-#: single-evento.php:181 single-evento.php:323
+#: single-evento.php:181 single-evento.php:332
 #: inc/classes/class-placemanager.php:96
 msgid "Luogo"
 msgstr "Location"
@@ -1695,23 +1699,23 @@ msgstr "march"
 msgid "Massimo 140 caratteri"
 msgstr "Maximum 140 characters"
 
-#: functions.php:160
+#: functions.php:141
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
-#: functions.php:158
+#: functions.php:139
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:159
+#: functions.php:140
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:156
+#: functions.php:137
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:157
+#: functions.php:138
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -2432,6 +2436,14 @@ msgstr "Free search"
 msgid "Ricevuta"
 msgstr "Received"
 
+#: page-templates/newsletter.php:118
+msgid ""
+"Richiesta di iscrizione ricevuta correttamente, verifica la tua email per "
+"completare la procedura"
+msgstr ""
+"Registration request received correctly, please verify your email to "
+"complete the process"
+
 #: template-parts/common/sezione-video.php:32
 msgid "Ricorda per tutti i video"
 msgstr "Remember for all videos"
@@ -2699,8 +2711,9 @@ msgstr "Yes"
 msgid "Si è verificato un errore durante l'esecuzione dell'import"
 msgstr "An error occurred while performing the import"
 
-#: single-evento.php:390 single-persona.php:490 single-progetto.php:83
-#: single-spinoff.php:296 template-parts/common/sezione-contatti.php:63
+#: single-evento.php:191 single-evento.php:346 single-evento.php:356
+#: single-persona.php:490 single-progetto.php:83 single-spinoff.php:296
+#: template-parts/common/sezione-contatti.php:63
 msgid "Sito web"
 msgstr "Website"
 
@@ -3062,8 +3075,8 @@ msgstr "Incorrect Nonce value."
 msgid "Vedi tutti"
 msgstr "View all"
 
-#: single-brevetto.php:210 single-brevetto.php:335 single-evento.php:209
-#: single-evento.php:433 single-spinoff.php:189 single-spinoff.php:320
+#: single-brevetto.php:210 single-brevetto.php:335 single-evento.php:218
+#: single-evento.php:456 single-spinoff.php:189 single-spinoff.php:320
 msgid "Video"
 msgstr "Video"
 
