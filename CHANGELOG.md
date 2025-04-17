@@ -15,10 +15,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
-## [1.6.2] - 2025-04-16
+## [1.6.2] - 2025-04-17
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornato Dockerfile per sito demo.
+## Corretto
+- Corretto bug nella visualizzazione del carousel in Home Page.
 
 ## [1.6.1] - 2025-04-15
 ### Aggiunto
