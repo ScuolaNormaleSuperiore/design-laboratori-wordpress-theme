@@ -365,10 +365,22 @@ class DLI_ContentsManager
 
 	public static function get_hp_section_list() {
 		$result = [];
-		foreach (DLI_HP_SECTIONS as $key => $item) {
+		foreach ( DLI_HP_SECTIONS as $key => $item ) {
 				$result[$key] = $item['name'];
 		}
 		return $result;
+	}
+
+	public static function get_hp_section_options( $only_active= false ) {
+		$sections = dli_get_option( 'site_sections', 'homepage_sections' );
+		$results  = array();
+		foreach ( $sections as $section ) {
+			if ( $only_active || $section['section_enabled']==='true' ) {
+				array_push( $results, $section );
+			}
+			echo $section[0];
+		}
+		return $results;
 	}
 
 }

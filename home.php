@@ -8,57 +8,34 @@
  */
 
 get_header();
-$carousel_after_pres = dli_get_option( 'home_carousel_after_presentation_enabled', 'homepage' );
 
-$all_sections = DLI_ContentsManager::get_hp_sections();
-$opt_sections = dli_get_option( 'site_sections', 'homepage_sections' );
+$all_sections    = DLI_ContentsManager::get_hp_sections();
+$active_sections = DLI_ContentsManager::get_hp_section_options( true );
 ?>
 <main id="main-container" class="main-container redbrown" role="main">
 
-<!-- Section MAIN HERO  -->
-<?php get_template_part( 'template-parts/home/main-hero' ); ?>
-
-<!-- Section CAROUSEL -->
 <?php
- if ( 'false' === $carousel_after_pres ){
+foreach ( $active_sections as $section ) {
+	$sec_id   = $section['id'];
+	$sec_data = ( $sec_id && array_key_exists( $sec_id, $all_sections ) ) ? $all_sections[$sec_id] : null;
+	if ( $sec_data ){
+		get_template_part(
+			$sec_data['template'],
+			null,
+			array(
+				'id'         => $section['id'],
+				'show_title' => $section['show_title'],
+				'enabled'    => $section['enabled'],
+				'name'       => $sec_data['name'],
+				'template'   => $sec_data['template'],
+			)
+		);
 ?>
-<?php get_template_part( 'template-parts/home/carousel' ); ?>
-<?php
+
+<?
 	}
+}
 ?>
-
-<!-- PRESENTAZIONE -->
-<?php
-	$description_enabled = dli_get_option( 'site_description_is_visible', 'homepage' );
-	if ( 'false' !== $description_enabled ) {
-		get_template_part( 'template-parts/home/site-presentation' );
-	}
-?>
-
-<!-- Section CAROUSEL -->
-<?php
- if ( 'false' !== $carousel_after_pres ){
-?>
-<?php get_template_part( 'template-parts/home/carousel' ); ?>
-<?php
-	}
-?>
-
-<!-- Section Featured Contents (Contenuti in evidenza) -->
-<?php get_template_part( 'template-parts/home/featured-contents' ); ?>
-
-<!-- Section Content List (elenco contenuti) -->
-<?php get_template_part( 'template-parts/home/hp-list-event' ); ?>
-<?php get_template_part( 'template-parts/home/hp-list-news' ); ?>
-<?php get_template_part( 'template-parts/home/hp-list-publication' ); ?>
-<?php get_template_part( 'template-parts/home/hp-list-article' ); ?>
-
-<!-- Section banners -->
-<?php get_template_part( 'template-parts/home/hp-banners-section' ); ?>
-
-<!-- Section sponsor -->
-<?php get_template_part( 'template-parts/home/hp-sponsor-section' ); ?>
-
 </main>
 <?php
 get_footer();

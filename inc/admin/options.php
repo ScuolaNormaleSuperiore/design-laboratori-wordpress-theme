@@ -369,7 +369,7 @@ function dli_register_main_options_metabox() {
 	$section_options->add_group_field(
 		$section_group_id,
 		array(
-			'id'               => 'section_id',
+			'id'               => 'id',
 			'name'             => __( "Sezione", 'design_laboratori_italia' ),
 			'desc'             => __( "Scegli la sezione." , 'design_laboratori_italia' ),
 			'type'             => 'select',
@@ -381,7 +381,7 @@ function dli_register_main_options_metabox() {
 	$section_options->add_group_field(
 		$section_group_id,
 		array(
-			'id' => 'section_enabled',
+			'id' => 'enabled',
 			'name' => __( 'Abilita la sezione', 'design_laboratori_italia' ),
 			'desc' => __( 'Se sì, la sezione è mostrata nella Home Page.', 'design_laboratori_italia' ),
 			'type' => 'radio_inline',
@@ -404,16 +404,6 @@ function dli_register_main_options_metabox() {
 					'true'  => __( 'Yes', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
-		)
-	);
-
-	$section_options->add_group_field(
-		$section_group_id,
-		array(
-			'id'         => 'title',
-			'name'       => __( 'Titolo', 'design_laboratori_italia' ),
-			'desc'       => __( "Il titolo della sezione." , 'design_laboratori_italia' ),
-			'type'       => 'text',
 		)
 	);
 	
