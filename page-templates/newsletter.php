@@ -99,7 +99,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 			<!-- CONFERMA  -->
 			<div class="container my-12 p-2" style="min-height: 150px;">
 				<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-				<?php echo esc_html ( __( 'Conferma dell\'iscrizione alla newsletter avvenuta con successo', 'design_laboratori_italia' ) . '&nbsp;.' ); ?>
+				<?php echo esc_html ( __( 'Iscrizione alla newsletter avvenuta con successo', 'design_laboratori_italia' ) . '.' ); ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 						<svg class="icon" role="img" aria-labelledby="Close" aria-label="Close">
 							<title>Chiudi avviso</title>
@@ -115,7 +115,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 			<!-- SOTTOSCRIZIONE INVIATA -->
 			<div class="container my-12 p-2">
 				<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-				<?php echo esc_html ( __( 'Iscrizione avvenuta correttamente', 'design_laboratori_italia' ) . '&nbsp;.' ); ?>
+				<?php echo esc_html ( __( 'Richiesta di iscrizione ricevuta correttamente, verifica la tua email per completare la procedura', 'design_laboratori_italia' ) . '.' ); ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 						<svg class="icon" role="img" aria-labelledby="Close" aria-label="Close">
 							<title>Chiudi avviso</title>
@@ -150,7 +150,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 
 	<!-- SEZIONE FORM -->
 	<?php
-	if ( 'no' === $after_confirm ) {
+	if ( ( 'no' === $after_confirm ) & ( true !== $sent_successfully) ) {
 		$current_language = dli_current_language( 'slug' );
 		$page_url         = dli_get_newsletter_link( $current_language );
 		?>

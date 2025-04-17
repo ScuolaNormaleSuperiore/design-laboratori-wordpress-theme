@@ -5,7 +5,7 @@
 		$items = dli_get_carousel_items();
 ?>
 	<section class="section pt-5 pb-5">
-		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide " data-bs-carousel-splide>
+		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide" data-bs-carousel-splide>
 			<div class="splide__track">
 				<!-- SLIDES -->
 				<ul class="splide__list">
@@ -18,15 +18,17 @@
 					<!-- Single slide -->
 					<li class="splide__slide">
 						<div class="it-single-slide-wrapper">
-							<a href="<?php echo esc_attr( $item['link'] ); ?>">
-								<div class="img-responsive-wrapper">
-									<div class="img-responsive">
-										<div class="img-wrapper">
-											<img src="<?php echo esc_url( $item['image_url'] ); ?>" title="<?php echo esc_attr( $item['image_title'] ); ?>" alt="<?php echo esc_attr( $item['image_alt'] ); ?>" />
-										</div>
+							<div class="img-responsive-wrapper">
+								<div class="img-responsive">
+									<div class="img-wrapper">
+										<a href="<?php echo esc_attr( $item['link'] ); ?>">
+											<img src="<?php echo esc_url( $item['image_url'] ); ?>" 
+												title="<?php echo esc_attr( $item['image_title'] ); ?>"
+												alt="<?php echo esc_attr( $item['image_alt'] ); ?>" />
+										</a>
 									</div>
 								</div>
-							</a>
+							</div>
 							<div class="it-text-slider-wrapper-outside">
 								<div class="card-wrapper">
 									<div class="card">
