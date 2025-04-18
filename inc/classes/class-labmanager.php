@@ -110,7 +110,7 @@ class DLI_LabManager {
 	public function plugin_setup() {
 
 		// Setup internationalisation.
-		add_action( 'init', array( $this, 'configure_languages' ) );
+		add_action( 'after_setup_theme', array( $this, 'configure_languages' ), 0 );
 
 		// Setup image sizes.
 		add_action( 'after_setup_theme', array( $this, 'setup_image_sizes' ) );
