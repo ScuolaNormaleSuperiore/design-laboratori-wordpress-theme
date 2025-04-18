@@ -244,7 +244,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				</article>
 				<?php
 				}
-				if ( $contatti || $sito_web ) {
+				if ( $telefono || $sito_web || $email ) {
 					?>
 					<!-- CONTATTI -->
 					<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">

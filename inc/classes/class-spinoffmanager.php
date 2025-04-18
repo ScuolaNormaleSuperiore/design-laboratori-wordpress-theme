@@ -83,7 +83,7 @@ class SpinOff_Manager {
 			'add_new_item'          => _x( 'Aggiungi una Spin-off', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'edit_item'             => _x( 'Modifica la Spin-off', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza la Spin-off', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'featured_image'        => __( "Logo Identificativo della Spin-off", 'design_laboratori_italia' ),
+			// 'featured_image'        => __( "Logo Identificativo della Spin-off", 'design_laboratori_italia' ),
 			'set_featured_image'    => __( 'Seleziona Immagine Spin-off' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Spin-off' , 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Spin-off' , 'design_laboratori_italia' ),
