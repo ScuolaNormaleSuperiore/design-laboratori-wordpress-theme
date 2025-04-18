@@ -5,15 +5,18 @@
  * @package Design_Laboratori_Italia
  */
 
-
- define(
-	'DLI_SPINOFF_STATUS',
-	array(
-		'In attività' => __( 'Cerca area tematica', 'design_laboratori_italia' ),
-		'Cessata'     => __( 'Cessata', 'design_laboratori_italia' ),
-	)
-);
-
+if ( function_exists( 'dli_define_spinoff_constants' ) ) {
+function dli_define_spinoff_constants() {
+	define(
+		'DLI_SPINOFF_STATUS',
+		array(
+			'In attività' => __( 'Cerca area tematica', 'design_laboratori_italia' ),
+			'Cessata'     => __( 'Cessata', 'design_laboratori_italia' ),
+		)
+	);
+ }
+add_action( 'after_setup_theme', 'dli_define_spinoff_constants' );
+}
 
 class SpinOff_Manager {
 	/**
