@@ -1,6 +1,7 @@
 <?php
-$section_enabled = dli_get_option( 'home_publication_list_is_visible', 'homepage' );
-$order_field = 'post_date';
+$section_enabled = $args['enabled'] ?? false;
+$show_title      = $args['show_title'] ?? false;
+$order_field     = 'post_date';
 
 if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(
@@ -25,9 +26,15 @@ if ( 'true' === $section_enabled ) {
 	<section id="blocco-pubblicazioni" class="section pt-3 " >
 		<div class="section-content">
 			<div class="container">
-				<h2 class="h3 pb-2 ">
-					<?php echo __('Pubblicazioni', 'design_laboratori_italia' ); ?>
-				</h2>
+				<?php
+				if ( 'true' === $show_title ){
+				?>
+					<h2 class="h3 pb-2 ">
+						<?php echo __('Pubblicazioni', 'design_laboratori_italia' ); ?>
+					</h2>
+				<?php
+				}
+				?>
 				<div class="row">
 
 				<?php

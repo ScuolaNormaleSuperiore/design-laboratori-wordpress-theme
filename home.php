@@ -26,8 +26,6 @@ foreach ( $active_sections as $section ) {
 				'id'         => $section['id'],
 				'show_title' => $section['show_title'],
 				'enabled'    => $section['enabled'],
-				'name'       => $sec_data['name'],
-				'template'   => $sec_data['template'],
 			)
 		);
 ?>

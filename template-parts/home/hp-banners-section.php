@@ -1,5 +1,6 @@
 <?php
-$section_enabled = dli_get_option( 'home_banner_section_is_visible', 'homepage' );
+$section_enabled = $args['enabled'] ?? false;
+$show_title      = $args['show_title'] ?? false;
 
 if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(

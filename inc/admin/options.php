@@ -399,7 +399,7 @@ function dli_register_main_options_metabox() {
 			'name' => __( 'Mostra il titolo della sezione', 'design_laboratori_italia' ),
 			'desc' => __( 'Se sì, viene mostrato il titolo della sezione.', 'design_laboratori_italia' ),
 			'type' => 'radio_inline',
-			'default' => 'false',
+			'default' => 'true',
 			'options' => array(
 					'true'  => __( 'Yes', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),

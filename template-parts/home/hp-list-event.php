@@ -1,5 +1,6 @@
 <?php
-$section_enabled = dli_get_option( 'home_event_list_is_visible', 'homepage' );
+$section_enabled = $args['enabled'] ?? false;
+$show_title      = $args['show_title'] ?? false;
 $order_field     = 'data_inizio';
 
 if ( 'true' === $section_enabled ) {
@@ -39,9 +40,15 @@ if ( 'true' === $section_enabled ) {
 	<section id="blocco-eventi-slide" class="section pt-5" >
 		<div class="section-content">
 			<div class="container">
-				<h2 class="h3 pb-2 ">
-					<?php echo __('Eventi', 'design_laboratori_italia' ); ?>
-				</h2>
+				<?php
+				if ( 'true' === $show_title ){
+				?>
+					<h2 class="h3 pb-2 ">
+						<?php echo __('Eventi', 'design_laboratori_italia' ); ?>
+					</h2>
+				<?php
+				}
+				?>
 				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide>
 					<div class="splide__track">
 						<ul class="splide__list">

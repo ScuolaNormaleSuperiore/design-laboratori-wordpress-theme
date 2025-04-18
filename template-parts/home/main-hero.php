@@ -1,9 +1,9 @@
 
 <?php
+$section_enabled = $args['enabled'] ?? false;
+$show_title      = $args['show_title'] ?? false;
 
-$main_hero_enabled = dli_get_option( 'home_main_hero_enabled', 'homepage' );
-
-if ( 'true' === $main_hero_enabled ) {
+if ( 'true' === $section_enabled ) {
 	$hero_size_big = dli_get_option( 'home_main_hero_size', 'homepage' ) !== 'small' ? true : false;
 	$hero_class    = $hero_size_big ? '' : 'it-hero-small-size';
 	$image_url     = dli_get_option( 'home_main_hero_image', 'homepage' );
