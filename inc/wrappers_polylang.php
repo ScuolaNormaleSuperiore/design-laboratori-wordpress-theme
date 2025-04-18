@@ -18,7 +18,7 @@ if ( ! function_exists( 'dli_current_language' ) ) {
 	 * Recupera la lingua di default del sito.
 	 *
 	 * @param string $type
-	 * @return void
+	 * @return string
 	 */
 	function dli_current_language( $type = 'slug' ) {
 		$cl = pll_current_language( $type );
@@ -31,7 +31,7 @@ if ( ! function_exists( 'dli_languages_list' ) ) {
 	 * Recupera l'elenco delle lingue supportate dal sito.
 	 *
 	 * @param [type] $args
-	 * @return void
+	 * @return array()
 	 */
 	function dli_languages_list( $args ) {
 		return pll_languages_list( $args );

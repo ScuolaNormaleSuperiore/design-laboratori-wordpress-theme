@@ -277,69 +277,84 @@ define(
 	),
 );
 
-// Sezioni attivabili nella della Home Page.
-define(
-	'DLI_HP_SECTIONS',
-	array(
-			'main_hero' =>
-				array(
-					'id'       => 'main_hero',
-					'name'     => __( 'Hero principale', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/main-hero',
-				),
-			'site_description' =>
-				array(
-					'id'       => 'site_description',
-					'name'     => __( 'Descrizione del sito', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/site-presentation',
-				),
-			'main_carousel' =>
-				array(
-					'id'       => 'main_carousel',
-					'name'     => __( 'Carousel principale', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/carousel',
-				),
-			'featured_contents' =>
-				array(
-					'id'       => 'featured_contents',
-					'name'     => __( 'Contenuti in evidenza', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/featured-contents',
-				),
-			'events_section' =>
-				array(
-					'id'       => 'events_section',
-					'name'     => __( 'Eventi', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-list-event',
-				),
-			'news_section' =>
-				array(
-					'id'       => 'news_section',
-					'name'     => __( 'Notizie', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-list-news',
-				),
-			'publications_section' =>
-				array(
-					'id'       => 'publications_section',
-					'name'     => __( 'Pubblicazioni', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-list-publication',
-				),
-			'articles_section' =>
-				array(
-					'id'       => 'articles_section',
-					'name'     => __( 'Articoli', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-list-article',
-				),
-			'banners_section' =>
-				array(
-					'id'       => 'banners_section',
-					'name'     => __( 'Banner', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-banners-section',
-				),
-			'sponsors_section' =>
-				array(
-					'id'       => 'sponsors_section',
-					'name'     => __( 'Sponsor', 'design_laboratori_italia' ),
-					'template' => 'template-parts/home/hp-sponsor-section',
-				),
-	)
-);
+// if ( function_exists( 'dli_define_sections_constants' ) ) {
+// 	function dli_define_sections_constants() {
+		// Sezioni attivabili nella della Home Page.
+		define(
+			'DLI_HP_SECTIONS',
+			array(
+					'main_hero' =>
+						array(
+							'id'       => 'main_hero',
+							//'name'     => __( 'Hero principale', 'design_laboratori_italia' ),
+							'name'     => 'Hero principale',
+							'template' => 'template-parts/home/main-hero',
+						),
+					'site_description' =>
+						array(
+							'id'       => 'site_description',
+							//'name'     => __( 'Descrizione del sito', 'design_laboratori_italia' ),
+							'name'     => 'Descrizione del sito',
+							'template' => 'template-parts/home/site-presentation',
+						),
+					'main_carousel' =>
+						array(
+							'id'       => 'main_carousel',
+							//'name'     => __( 'Carousel principale', 'design_laboratori_italia' ),
+							'name'     => 'Carousel principale',
+							'template' => 'template-parts/home/carousel',
+						),
+					'featured_contents' =>
+						array(
+							'id'       => 'featured_contents',
+							//'name'     => __( 'Contenuti in evidenza', 'design_laboratori_italia' ),
+							'name'     => 'Contenuti in evidenza',
+							'template' => 'template-parts/home/featured-contents',
+						),
+					'events_section' =>
+						array(
+							'id'       => 'events_section',
+							//'name'     => __( 'Eventi', 'design_laboratori_italia' ),
+							'name'     => 'Eventi',
+							'template' => 'template-parts/home/hp-list-event',
+						),
+					'news_section' =>
+						array(
+							'id'       => 'news_section',
+							//'name'     => __( 'Notizie', 'design_laboratori_italia' ),
+							'name'     => 'Notizie',
+							'template' => 'template-parts/home/hp-list-news',
+						),
+					'publications_section' =>
+						array(
+							'id'       => 'publications_section',
+							//'name'     => __( 'Pubblicazioni', 'design_laboratori_italia' ),
+							'name'     => 'Pubblicazioni',
+							'template' => 'template-parts/home/hp-list-publication',
+						),
+					'articles_section' =>
+						array(
+							'id'       => 'articles_section',
+							//'name'     => __( 'Articoli', 'design_laboratori_italia' ),
+							'name'     => 'Articoli',
+							'template' => 'template-parts/home/hp-list-article',
+						),
+					'banners_section' =>
+						array(
+							'id'       => 'banners_section',
+							//'name'     => __( 'Banner', 'design_laboratori_italia' ),
+							'name'     => 'Banner',
+							'template' => 'template-parts/home/hp-banners-section',
+						),
+					'sponsors_section' =>
+						array(
+							'id'       => 'sponsors_section',
+							//'name'     => __( 'Sponsor', 'design_laboratori_italia' ),
+							'name'     => 'Sponsor',
+							'template' => 'template-parts/home/hp-sponsor-section',
+						),
+			)
+		);
+// 	}
+// 	add_action( 'after_setup_theme', 'dli_define_sections_constants' );
+// }

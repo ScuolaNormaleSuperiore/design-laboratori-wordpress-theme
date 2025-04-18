@@ -376,7 +376,7 @@ class DLI_ContentsManager
 		$results  = array();
 		if ( $sections )  {
 			foreach ( $sections as $section ) {
-				if ( $only_active || $section['section_enabled']==='true' ) {
+				if ( ( $only_active === 'false' ) || $section['enabled']==='true' ) {
 					array_push( $results, $section );
 				}
 			}
