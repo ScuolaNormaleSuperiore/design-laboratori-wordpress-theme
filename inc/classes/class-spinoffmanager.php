@@ -133,7 +133,6 @@ class SpinOff_Manager {
 	 */
 	function add_fields() {
 
-
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
@@ -358,7 +357,6 @@ class SpinOff_Manager {
 		'description' => '',
 		'show_in_rest' => 0,
 	) );
-
 
 
 	}

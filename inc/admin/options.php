@@ -419,7 +419,7 @@ function dli_register_main_options_metabox() {
 			'capability'   => DLI_EDIT_CONFIG_PERMISSION,
 			'parent_slug'  => 'dli_options',
 			'tab_group'    => 'dli_options',
-			'tab_title'    => __( 'Home', 'design_laboratori_italia' ),	);
+			'tab_title'    => __( 'Layout HP', 'design_laboratori_italia' ),	);
 
 	// 'tab_group' property is supported in > 2.4.0.
 	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
@@ -438,20 +438,6 @@ function dli_register_main_options_metabox() {
 			'name' => __( 'Sezione hero principale', 'design_laboratori_italia' ),
 			'desc' => __( 'Gestione sezione Hero principale (opzionale) mostrato in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ),
 			'type' => 'title',
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id'      => $prefix . 'home_main_hero_enabled',
-			'name'    => __( 'Hero principale attivo', 'design_laboratori_italia' ),
-			'desc'    => __( 'Attiva l\'hero principale in Home Page', 'design_laboratori_italia' ),
-			'type'    => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true'  => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
 		)
 	);
 
@@ -550,62 +536,10 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_istruzioni_x',
-			'name' => __( 'Sezione Descrizione del sito', 'design_laboratori_italia' ),
-			'desc' => __( 'Gestione della descrizione del sito in Home Page' , 'design_laboratori_italia' ),
-			'type' => 'title',
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id'      => $prefix . 'site_description_is_visible',
-			'name'    => __( 'Visualizza la descrizione del sito', 'design_laboratori_italia' ),
-			'desc'    => __( 'Indicare se la descrizione del sito in Home Page deve essere visualizzata', 'design_laboratori_italia' ) . '.',
-			'type'    => 'radio_inline',
-			'default' => 'true',
-			'options' => array(
-					'true'  => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-
-	$home_options->add_field(
-		array(
 			'id'   => $prefix . 'home_istruzioni_1',
 			'name' => __( 'Sezione Carousel', 'design_laboratori_italia' ),
 			'desc' => __( 'Gestione del carousel in Home Page' , 'design_laboratori_italia' ),
 			'type' => 'title',
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id'      => $prefix . 'home_carousel_is_visible',
-			'name'    => __( 'Visualizza carousel', 'design_laboratori_italia' ),
-			'desc'    => __( 'Indicare se il carousel in Home Page deve essere visualizzato', 'design_laboratori_italia' ) . '.',
-			'type'    => 'radio_inline',
-			'default' => 'true',
-			'options' => array(
-					'true'  => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_carousel_after_presentation_enabled',
-			'name' => __( 'Mostra carousel dopo presentazione', 'design_laboratori_italia' ) . '.',
-			'desc' => __( 'Il carousel dopo la presentazione', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
 		)
 	);
 
@@ -648,20 +582,6 @@ function dli_register_main_options_metabox() {
 				'name'        => __( 'Sezione contenuti in evidenza', 'design_laboratori_italia' ),
 				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page' , 'design_laboratori_italia' ) . '.',
 				'type' => 'title',
-			)
-		);
-
-		$home_options->add_field(
-			array(
-				'id' => $prefix . 'home_featuredcontents_is_visible',
-				'name' => __( 'Visualizza contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Indicare se la sezione dei contenuti in evidenza deve essere visualizzata', 'design_laboratori_italia' ) . '.',
-				'type' => 'radio_inline',
-				'default' => 'true',
-				'options' => array(
-						'true' => __( 'Si', 'design_laboratori_italia' ),
-						'false' => __( 'No', 'design_laboratori_italia' ),
-				),
 			)
 		);
 
@@ -822,100 +742,6 @@ function dli_register_main_options_metabox() {
 				),
 			)
 		);
-
-	// *** SEZIONE ELENCO CONTENUTI (HOMEPAGE) ***
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_content_list',
-			'name'        => __( 'Sezione elenco contenuti', 'design_laboratori_italia' ),
-			'desc' => __( 'Gestione della sezione delle righe di contenuti in Home Page. Per visualizzare un contenuto in questa sezione spuntare il campo "Promuovi in home"' , 'design_laboratori_italia' ) . '.',
-			'type' => 'title',
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_event_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco degli eventi', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco degli eventi deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_news_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco delle notizie', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle notizie deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_publication_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco delle pubblicazioni', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco delle pubblicazioni deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_article_list_is_visible',
-			'name' => __( 'Visualizza l\'elenco degli articoli', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se l\'elenco degli articoli deve essere visualizzato in  HP', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_banner_section_is_visible',
-			'name' => __( 'Visualizza la sezione dei banner', 'design_laboratori_italia' ),
-			'desc' => __( 'Indicare se la sezione dei banner deve essere visualizzata in  HP', 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
-
-	$home_options->add_field(
-		array(
-			'id' => $prefix . 'home_sponsor_list_is_visible',
-			'name' => __( "Visualizza l'elenco degli sponsor", 'design_laboratori_italia' ),
-			'desc' => __( "Indicare se l'elenco degli sponsor deve essere visualizzato in  HP", 'design_laboratori_italia' ) . '.',
-			'type' => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
-					'true' => __( 'Si', 'design_laboratori_italia' ),
-					'false' => __( 'No', 'design_laboratori_italia' ),
-			),
-		)
-	);
 
 
 	/**
