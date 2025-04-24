@@ -11,7 +11,7 @@
  * @license   GPL-2.0+
  * @link      https://cmb2.io
  */
-class CMB2_hookup extends CMB2_Hookup_Base {
+class CMB2_Hookup extends CMB2_Hookup_Base {
 
 	/**
 	 * Only allow JS registration once
@@ -97,8 +97,11 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 					return $this->term_hooks();
 				case 'options-page':
 					return $this->options_page_hooks();
+
 			}
 		}
+
+		do_action( 'cmb2_init_hooks', $this );
 
 		return $this;
 	}
@@ -155,7 +158,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 		if ( $this->cmb->has_columns ) {
 			add_filter( 'manage_edit-comments_columns', array( $this, 'register_column_headers' ) );
 			add_action( 'manage_comments_custom_column', array( $this, 'column_display' ), 10, 3 );
-			add_filter( "manage_edit-comments_sortable_columns", array( $this, 'columns_sortable' ) );
+			add_filter( 'manage_edit-comments_sortable_columns', array( $this, 'columns_sortable' ) );
 			add_action( 'pre_get_posts', array( $this, 'columns_sortable_orderby' ) );
 		}
 
@@ -176,7 +179,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 		if ( $this->cmb->has_columns ) {
 			add_filter( 'manage_users_columns', array( $this, 'register_column_headers' ) );
 			add_filter( 'manage_users_custom_column', array( $this, 'return_column_display' ), 10, 3 );
-			add_filter( "manage_users_sortable_columns", array( $this, 'columns_sortable' ) );
+			add_filter( 'manage_users_sortable_columns', array( $this, 'columns_sortable' ) );
 			add_action( 'pre_get_posts', array( $this, 'columns_sortable_orderby' ) );
 		}
 
@@ -268,10 +271,8 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 		 * @param array $dependencies The registered style dependencies for the cmb2 stylesheet.
 		 */
 		$dependencies = apply_filters( 'cmb2_style_dependencies', array() );
-		// wp_register_style( 'cmb2-styles', CMB2_Utils::url( "css/cmb2{$front}{$rtl}{$min}.css" ), $dependencies );
-		// wp_register_style( 'cmb2-display-styles', CMB2_Utils::url( "css/cmb2-display{$rtl}{$min}.css" ), $dependencies );
-		wp_register_style( 'cmb2-styles',   get_stylesheet_directory_uri() . "/inc/vendor/CMB2/css/cmb2{$front}{$rtl}{$min}.css", $dependencies );
-		wp_register_style( 'cmb2-display-styles', get_stylesheet_directory_uri() . "/inc/vendor/CMB2/css/cmb2-display{$rtl}{$min}.css", $dependencies );
+		wp_register_style( 'cmb2-styles', CMB2_Utils::url( "css/cmb2{$front}{$rtl}{$min}.css" ), $dependencies );
+		wp_register_style( 'cmb2-display-styles', CMB2_Utils::url( "css/cmb2-display{$rtl}{$min}.css" ), $dependencies );
 
 		self::$css_registration_done = true;
 	}
@@ -310,7 +311,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 	 * @param string $hook Current hook for the admin page.
 	 */
 	public function do_scripts( $hook ) {
-		$hooks = array(
+		$should_pre_enqueue = in_array( $hook, array(
 			'post.php',
 			'post-new.php',
 			'page-new.php',
@@ -321,10 +322,23 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 			'user-new.php',
 			'profile.php',
 			'user-edit.php',
-		);
+		), true );
+
+		/**
+		 * Filter to determine if CMB2 should be pre-enqueued on the current page.
+		 *
+		 * `show_form_for_type` will have us covered if we miss something here, but may be a
+		 * flash of unstyled content.
+		 *
+		 * @param bool   $should_pre_enqueue Whether CMB2 should be pre-enqueued on the current page.
+		 * @param string $hook               The current hook for the admin page.
+		 * @param object $cmb                The CMB2 object.
+		 */
+		$should_pre_enqueue = apply_filters( 'cmb2_should_pre_enqueue', $should_pre_enqueue, $hook, $this );
+
 		// only pre-enqueue our scripts/styles on the proper pages
 		// show_form_for_type will have us covered if we miss something here.
-		if ( in_array( $hook, $hooks, true ) ) {
+		if ( $should_pre_enqueue ) {
 			if ( $this->cmb->prop( 'cmb_styles' ) ) {
 				self::enqueue_cmb_css();
 			}
@@ -342,7 +356,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 	 * @param array $columns Array of columns available for the admin page.
 	 */
 	public function register_column_headers( $columns ) {
-		foreach ( $this->cmb->prop( 'fields' ) as $key => $field ) {
+		foreach ( $this->cmb->prop( 'fields' ) as $field ) {
 			if ( empty( $field['column'] ) ) {
 				continue;
 			}
@@ -395,7 +409,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 	 * @return array $columns An array of sortable columns with CMB2 columns.
 	 */
 	public function columns_sortable( $columns ) {
-		foreach ( $this->cmb->prop( 'fields' ) as $key => $field ) {
+		foreach ( $this->cmb->prop( 'fields' ) as $field ) {
 			if ( ! empty( $field['column'] ) && empty( $field['column']['disable_sortable'] ) ) {
 				$columns[ $field['id'] ] = $field['id'];
 			}
@@ -420,7 +434,7 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 
 		$orderby = $query->get( 'orderby' );
 
-		foreach ( $this->cmb->prop( 'fields' ) as $key => $field ) {
+		foreach ( $this->cmb->prop( 'fields' ) as $field ) {
 			if (
 				empty( $field['column'] )
 				|| ! empty( $field['column']['disable_sortable'] )
@@ -539,21 +553,52 @@ class CMB2_hookup extends CMB2_Hookup_Base {
 	 * @param bool $add_handle Whether to add the metabox handle and opening div for .inside.
 	 */
 	public function context_box_title_markup_open( $add_handle = true ) {
-		$title = $this->cmb->prop( 'title' );
+		$cmb_id = $this->cmb->cmb_id;
+		$title  = $this->cmb->prop( 'title' );
+		$screen = get_current_screen();
+		$page   = $screen->id;
+		$is_55  = CMB2_Utils::wp_at_least( '5.5' );
 
-		$page = get_current_screen()->id;
-		add_filter( "postbox_classes_{$page}_{$this->cmb->cmb_id}", array( $this, 'postbox_classes' ) );
+		add_filter( "postbox_classes_{$page}_{$cmb_id}", array( $this, 'postbox_classes' ) );
 
-		echo '<div id="' . $this->cmb->cmb_id . '" class="' . postbox_classes( $this->cmb->cmb_id, $page ) . '">' . "\n";
+		$hidden_class = '';
+
+		if ( $is_55 ) {
+
+			// get_hidden_meta_boxes() doesn't apply in the block editor.
+			$is_hidden = ! $screen->is_block_editor() && in_array( $cmb_id, get_hidden_meta_boxes( $screen ), true );
+
+			$hidden_class = $is_hidden
+				? ' hide-if-js'
+				: '';
+		}
+
+		$toggle_button = sprintf(
+			'<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">%s</span><span class="toggle-indicator" aria-hidden="true"></span></button>',
+			/* translators: %s: name of CMB2 box (panel) */
+			sprintf( __( 'Toggle panel: %s' ), $title )
+		);
+		$title_tag = '<h2 class="hndle"><span>' . esc_attr( $title ) . '</span></h2>' . "\n";
+
+		echo '<div id="' . $cmb_id . '" class="' . postbox_classes( $cmb_id, $page ) . $hidden_class . '">' . "\n";
 
 		if ( $add_handle ) {
 
-			echo '<button type="button" class="handlediv button-link" aria-expanded="true">';
-				echo '<span class="screen-reader-text">' . sprintf( __( 'Toggle panel: %s' ), $title ) . '</span>';
-				echo '<span class="toggle-indicator" aria-hidden="true"></span>';
-			echo '</button>';
+			if ( $is_55 ) {
+				echo '<div class="postbox-header">';
+				echo $title_tag;
 
-			echo '<h2 class="hndle"><span>' . esc_attr( $title ) . '</span></h2>' . "\n";
+				echo '<div class="handle-actions hide-if-no-js">';
+				echo $toggle_button;
+				echo '</div>';
+
+				echo '</div>' . "\n";
+
+			} else {
+				echo $toggle_button;
+				echo $title_tag;
+			}
+
 			echo '<div class="inside">' . "\n";
 		}
 	}
