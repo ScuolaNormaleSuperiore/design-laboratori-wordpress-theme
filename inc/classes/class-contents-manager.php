@@ -266,9 +266,18 @@ class DLI_ContentsManager
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
 			'orderby'        => 'title',
-			'order'          => 'ASC',
+			// 'order'          => 'ASC',
+			// 'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 			'meta_query' => array(
 				'relation'     => 'AND',
+        array(
+            'key'     => 'priorita',
+            'compare' => 'EXISTS', // Non esclude i post senza questo campo
+        ),
 				array(
 					'key'      => 'data_inizio',
 					'compare'  => '<=',
