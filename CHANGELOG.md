@@ -17,7 +17,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [1.6.3] - 2025-05-09
 ## Aggiunto
-- Aggiunto campo Priorità nei progetti.
+- Aggiunto campo Priorità nei progetti e negli indirizzi di ricerca.
 
 
 
