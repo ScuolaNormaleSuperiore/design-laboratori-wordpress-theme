@@ -111,7 +111,7 @@ $num_results = $luoghi->found_posts;
 									$desc      = dli_get_field( 'descrizione_breve' );
 									$indirizzo = dli_get_field( 'indirizzo' );
 									$terms     = get_the_terms( $ID, PLACE_TYPE_TAXONOMY );
-									$tipo      = $terms[0]->name;
+									$tipo      = $terms ? $terms[0]->name : '';
 									?>
 									<!--start card-->
 									<div class="card-wrapper ">
