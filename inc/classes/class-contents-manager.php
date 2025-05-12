@@ -265,19 +265,13 @@ class DLI_ContentsManager
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
-			'orderby'        => 'title',
-			// 'order'          => 'ASC',
-			// 'meta_key'       => 'priorita',
+			'meta_key'       => 'priorita',
 			'orderby'        => array(
 				'meta_value_num' => 'ASC',
 				'title'          => 'ASC',
 			),
 			'meta_query' => array(
 				'relation'     => 'AND',
-        array(
-            'key'     => 'priorita',
-            'compare' => 'EXISTS', // Non esclude i post senza questo campo
-        ),
 				array(
 					'key'      => 'data_inizio',
 					'compare'  => '<=',
@@ -309,10 +303,15 @@ class DLI_ContentsManager
 	}
 
 	public static function get_archived_projects_data_query( $params ){
-		$args = 	array(
+		$args = array(
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
+			'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 			'meta_query'     => array(
 				array(
 						'key' => 'archiviato',
@@ -330,8 +329,11 @@ class DLI_ContentsManager
 			'paged'          => $params['paged'],
 			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+			'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 		);
 		return new WP_Query( $args );
 	}
