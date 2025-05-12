@@ -181,7 +181,11 @@ $eventi = new WP_Query(
 										if ( $indirizzidiricerca ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-indirizzi-di-ricerca"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-indirizzi-di-ricerca">
+													<span>
+														<?php echo dli_translate( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
+													</span>
+												</a>
 											</li>
 											<?php
 										}
@@ -266,7 +270,7 @@ $eventi = new WP_Query(
 					?>
 				<!-- INDIRIZZI DI RICERCA -->
 				<h3 class="it-page-section h4 pt-3" id="p4">
-					<?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
+					<?php echo dli_translate( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
 				</h3>
 					<?php
 						get_template_part(
