@@ -749,7 +749,7 @@ if( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 
 if( ! function_exists( 'dli_get_all_contenttypes_with_results' ) ) {
 	function dli_get_all_contenttypes_with_results( ) {
-		$content_types = DLI_POST_TYPES_TO_TRANSLATE;
+		$content_types = DLI_POST_TYPES_TO_SEARCH;
 		$content_types_with_results = array();
 		foreach ( $content_types as $ct ) {
 			if ( PEOPLE_TYPE_POST_TYPE !== $ct ) {

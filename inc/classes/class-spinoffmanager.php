@@ -97,7 +97,7 @@ class SpinOff_Manager {
 			'public'          => true,
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
-			'menu_icon'       => 'dashicons-admin-tools',
+			'menu_icon'       => 'dashicons-code-standards',
 			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),

@@ -18,7 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [1.6.3] - 2025-05-09
 ## Aggiunto
 - Aggiunto campo Priorità nei progetti e negli indirizzi di ricerca.
-
+- Aggiunto contenuto Risorsa Tecnica.
 
 
 ## [1.6.2] - 2025-04-17

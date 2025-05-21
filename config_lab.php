@@ -51,6 +51,7 @@ define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'SPINOFF_POST_TYPE', 'spinoff' );
 define( 'SPONSOR_POST_TYPE', 'sponsor' );
 define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
+define( 'TECHNICAL_RESOURCE_POST_TYPE', 'risorsa-tecnica' );
 
 // DEFAULT WP CONTENT TYPES.
 define( 'WP_DEFAULT_POST', 'post' );
@@ -98,6 +99,8 @@ define( 'SLUG_SPINOFF_IT', 'spinoff' );
 define( 'SLUG_SPINOFF_EN', 'spinoff-en' );
 define( 'SLUG_SPONSOR_IT', 'sponsor' );
 define( 'SLUG_SPONSOR_EN', 'sponsor-en' );
+define( 'SLUG_TECHNICAL_RESOURCE_IT', 'risorse-tecniche' );
+define( 'SLUG_TECHNICAL_RESOURCE_EN', 'technical-resources' );
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
@@ -163,6 +166,10 @@ define(
 			'it' => SLUG_SPONSOR_IT,
 			'en' => SLUG_SPONSOR_EN,
 		),
+		TECHNICAL_RESOURCE_POST_TYPE => array(
+			'it' => SLUG_TECHNICAL_RESOURCE_IT,
+			'en' => SLUG_TECHNICAL_RESOURCE_EN,
+		),
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
@@ -187,7 +194,26 @@ define(
 		WP_DEFAULT_POST,
 		BANNER_POST_TYPE,
 		SPINOFF_POST_TYPE,
-		SPONSOR_POST_TYPE
+		SPONSOR_POST_TYPE,
+		TECHNICAL_RESOURCE_POST_TYPE,
+	)
+);
+
+define(
+	'DLI_POST_TYPES_TO_SEARCH',
+	array(
+		PEOPLE_POST_TYPE,
+		EVENT_POST_TYPE,
+		NEWS_POST_TYPE,
+		PROGETTO_POST_TYPE,
+		PUBLICATION_POST_TYPE,
+		PATENT_POST_TYPE,
+		RESEARCH_ACTIVITY_POST_TYPE,
+		PEOPLE_TYPE_POST_TYPE,
+		WP_DEFAULT_PAGE,
+		WP_DEFAULT_POST,
+		SPINOFF_POST_TYPE,
+		TECHNICAL_RESOURCE_POST_TYPE,
 	)
 );
 
