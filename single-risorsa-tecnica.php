@@ -8,16 +8,35 @@
  */
 global $post;
 get_header();
-$image_metadata   = dli_get_image_metadata( $post, 'full' );
-$description      = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
-$telefono         = dli_get_field( 'telefono' );
-$email            = dli_get_field( 'email' );
-$sito_web         = dli_get_field( 'sito_web' );
-$note             = dli_get_field( 'note' );
-$stato            = dli_get_field( 'stato' );
-$year             = dli_get_field( 'anno_costituzione' );
-$video            = dli_get_field( 'video' );
-$settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
+
+// Campi personalizzati.
+$code      = dli_get_field( 'codice_interno' );
+$cost      = dli_get_field( 'costo' );
+$position  = dli_get_field( 'posizione' );
+$location  = dli_get_field( 'localizzazione' );
+$brand     = dli_get_field( 'marca' );
+$model     = dli_get_field( 'modello' );
+$dimension = dli_get_field( 'dimensioni_e_peso' );
+$year      = dli_get_field( 'anno_acquisizione' );
+$status    = dli_get_field( 'stato' );
+// Allegati.
+$allegati = array();
+$att_fields = array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
+foreach ( $att_fields as $af ) {
+	$item = dli_get_field( $af );
+	if  ( is_array( $item ) && count( $item ) > 0 ) {
+		array_push( $allegati, $item );
+	}
+}
+// Tassonomie
+$tipo_risorsa = dli_get_post_main_category( $post, TECHNICAL_RESOURCE_POST_TYPE );
+// Immagini.
+$photo          = dli_get_field( 'foto' );
+$image_metadata = dli_get_image_metadata( $post, 'full' );
+// Contenuto.
+$description = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
+// Relazioni.
+$responsabili = dli_get_field( 'responsabile' );
 ?>
 
 <main id="main-container" role="main">
@@ -129,66 +148,111 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 									<ul class="link-list">
 										<?php
 										if ( $description ) {
-											?>
+										?>
 											<li class="nav-item">
 												<a class="nav-link active" href="#description">
 													<span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 												</a>
 											</li>
-											<?php
-											}
+										<?php
+										}
+										if ( $code ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#codiceinterno">
+													<span><?php echo __( 'Codice interno', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
 										if ( $year ) {
-											?>
+										?>
 											<li class="nav-item">
-												<a class="nav-link" href="#costituzione">
-													<span><?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?></span>
+												<a class="nav-link" href="#acquisizione">
+													<span><?php echo __( 'Anno acquisizione', 'design_laboratori_italia' ); ?></span>
 												</a>
 											</li>
-											<?php
-											}
-										if ( $settore_attivita  ) {
-											?>
+										<?php
+										}
+										if ( $tipo_risorsa  ) {
+										?>
 											<li class="nav-item">
-												<a class="nav-link" href="#settoreattivita">
-													<span><?php echo __( 'Settore di attività', 'design_laboratori_italia' ); ?></span>
+												<a class="nav-link" href="#tiporisorsa">
+													<span><?php echo __( 'Tipo risorsa', 'design_laboratori_italia' ); ?></span>
 												</a>
 											</li>
-											<?php
-											}
-										if ( $stato ) {
-										?>
-										<li class="nav-item">
-											<a class="nav-link" href="#status">
-												<span><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></span>
-											</a>
-										</li>
 										<?php
 										}
-										if ( $telefono || $sito_web || $email ) {
-												?>
-												<li class="nav-item">
-													<a class="nav-link" href="#contatti">
-														<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
-													</a>
-												</li>
-												<?php
-												}
-										if ( $note ) {
+										if ( $cost ) {
 										?>
-										<li class="nav-item">
-											<a class="nav-link" href="#altreinformazioni">
-												<span><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></span>
-											</a>
-										</li>
+											<li class="nav-item">
+												<a class="nav-link" href="#costo">
+													<span><?php echo __( 'Costo', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
 										<?php
 										}
-										if ( $video ) {
+										if ( $location ) {
 										?>
-										<li class="nav-item">
-											<a class="nav-link" href="#video">
-											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
-											</a>
-										</li>
+											<li class="nav-item">
+												<a class="nav-link" href="#localizzazione">
+													<span><?php echo __( 'Localizzazione', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $position ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#posizione">
+													<span><?php echo __( 'Posizione', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $status ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#status">
+													<span><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $brand || $model ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#marcamodello">
+													<span><?php echo __( 'Marca e modello', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $dimension ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#dimensioni">
+													<span><?php echo __( 'Dimensioni e peso', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( count( $allegati ) > 0 ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#allegati">
+													<span><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $responsabili ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#responsabili">
+													<span><?php echo __( 'Responsabili', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
 										<?php
 										}
 										?>
@@ -203,6 +267,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 
 			<!-- DESCRIZIONE -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
+
 				<?php
 				if ( $description ) {
 				?>
@@ -215,127 +280,152 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					</article>
 				<?php
 				}
+				if ( $code ) {
+				?>
+					<!-- Codice interno -->
+					<article id="codiceinterno" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Codice interno', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $code ) ; ?></p>
+					</article>
+				<?php
+				}
 				?>
 				<?php
 				if ( $year ) {
-					?>
-					<!-- Anno di costituzione -->
+				?>
+					<!-- Anno di acquisizione -->
 					<article id="costituzione" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="h4"><?php echo __( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
 						<p><?php echo esc_attr( $year ) ; ?></p>
 					</article>
-					<?php
+				<?php
 				}
-				if ( $settore_attivita ) {
-					?>
-					<!-- Settore di attività -->
-					<article id="settoreattivita" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo __( 'Settore di attività', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $settore_attivita['title'] ) ; ?></p>
+				if ( $tipo_risorsa ) {
+				?>
+					<!-- Tipo risorsa -->
+					<article id="tiporisorsa" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Tipo risorsa', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $tipo_risorsa['title'] ) ; ?></p>
 					</article>
-					<?php
+				<?php
 				}
-				if ( $stato ) {
+				if ( $cost ) {
+				?>
+					<!-- Costo -->
+					<article id="costo" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Costo', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $cost ) ; ?></p>
+					</article>
+				<?php
+				}
+				if ( $location ) {
+				?>
+					<!-- Localizzazione -->
+					<article id="localizzazione" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Localizzazione', 'design_laboratori_italia' ); ?></h3>
+						<p>
+							<a href="<?php echo esc_url( get_permalink( $location[0] ) ); ?>">
+								<?php echo esc_attr( $location[0]->post_title ); ?>
+							</a>
+						</p>
+					</article>
+				<?php
+				}
+				if ( $position ) {
+				?>
+					<!-- Posizione -->
+					<article id="posizione" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Posizione', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $position ) ; ?></p>
+					</article>
+				<?php
+				}
+				if ( $status ) {
 				?>
 					<!-- Stato -->
-				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_attr( $stato ) ; ?></p>
-				</article>
-				<?php
-				}
-				if ( $contatti || $sito_web ) {
-					?>
-					<!-- CONTATTI -->
-					<article id="contatti" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
-
-						<div class="it-list-wrapper">
-						<ul class="it-list">
-							<?php
-								if ( $telefono ) {
-							?>
-							<li>
-								<div class="list-item">
-									<div class="it-rounded-icon">
-										<svg class="icon" role="img" aria-labelledby="Telephone">
-											<title>Telephone</title>
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
-										</svg>
-									</div>
-									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
-								</div>
-							</li>
-							<?php
-								}
-								if ( $email ) {
-							?>
-							<li>
-								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
-								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Mail">
-										<title>Mail</title>
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
-									</svg>
-								</div>
-								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
-								</a>
-							</li>
-							<?php
-								}
-								if ( $sito_web ) {
-							?>
-							<li>
-								<a class="list-item" target="_blank" href="<?php echo $sito_web; ?>">
-								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Link">
-										<title>Link</title>
-										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link'; ?>"></use>
-									</svg>
-								</div>
-								<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
-								</a>
-							</li>
-							<?php
-								}
-							?>
-						</ul>
-					</div>
-
+					<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $status ) ; ?></p>
 					</article>
-					<?php
-					}
-				if ( $note ) {
-				?>
-				<!-- ALTRE INFORMAZIONI -->
-				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo $note; ?></p>
-				</article>
 				<?php
 				}
-				if ( $video ){
+				if ( $brand || $model ) {
+					$brand_model = join( ' - ' , array( $brand, $model ) );
 				?>
-					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
-
+					<!-- Marca e modello -->
+					<article id="marcamodello" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Marca e modello', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $brand_model ) ; ?></p>
+					</article>
+				<?php
+				}
+				if ( $dimension ) {
+				?>
+					<!-- Dimensioni -->
+					<article id="dimensioni" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Dimensioni e peso', 'design_laboratori_italia' ); ?></h3>
+						<p><?php echo esc_attr( $dimension ) ; ?></p>
+					</article>
+				<?php
+				}
+				if ( $allegati ) {
+				?>
+					<!-- Allegati -->
+					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+						<section id="ulteriori-info">
+							<div class="row pb-3">
+								<div class="card-wrapper card-teaser-wrapper">
+								<?php
+								if ( count( $allegati ) > 0 ) {
+									foreach ( $allegati as $allegato ) {
+								?>
+									<!--start card-->
+									<div class="card card-teaser rounded shadow ">
+										<div class="card-body">
+											<h3 class="card-title cardTitlecustomSpacing h5 ">
+												<svg class="icon" role="img" aria-labelledby="File PDF">
+													<title><?php echo __( 'File PDF', 'design_laboratori_italia' ); ?></title>
+													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf';?>"></use>
+												</svg>
+												<a href="<?php echo esc_url( $allegato['url'] ); ?>">
+													<?php echo esc_attr( $allegato['title'] ); ?>&nbsp;
+												</a>
+											</h3>
+										</div>
+									</div>
+									<!--end card-->
+								<?php
+									}
+								}
+								?>
+								</div> <!--end card wrapper-->
+							</div> <!--end row-->
+						</section>
+					</article>
+				<?php
+				}
+				if ( $responsabili ) {
+				?>
+					<!-- Responsabili -->
+					<article id="responsabili" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Responsabili', 'design_laboratori_italia' ); ?></h3>
 						<?php
-							$video_text = null;
 							get_template_part(
-								'template-parts/common/sezione-video',
+								'template-parts/common/sezione-persone',
 								null,
 								array(
-									'video'       => $video,
-									'video_text'  => $video_text,
-									'video_title' => get_the_title(),
+									'section_id' => 'responsabile',
+									'items'      => $responsabili,
 								)
 							);
 						?>
-
-				</article>
+					</article>
 				<?php
-					}
+				}
 				?>
+
+
 
 			</div>
 

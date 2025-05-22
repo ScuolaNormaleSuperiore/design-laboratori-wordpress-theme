@@ -20,7 +20,7 @@ while ( have_posts() ) {
 	$allegato3              = dli_get_field( 'allegato3' );
 	$telefono               = dli_get_field( 'telefono' );
 	$email                  = dli_get_field( 'email' );
-	$sitoweb                = dli_get_field( 'sito_web' );
+	$sito_web               = dli_get_field( 'sito_web' );
 	$terms                  = get_the_terms( $ID, 'struttura' );
 	$terms                  = $terms ? $terms : array();
 	$nome_struttura         = count( $terms ) ? $terms[0]->name : '';
@@ -211,7 +211,7 @@ $pubblicazioni = new WP_Query(
 												</li>
 												<?php
 												}
-												if ( ( $telefono != '' ) || ( $email != '' ) || ( $sitoweb != '' ) ) {
+												if ( ( $telefono != '' ) || ( $email != '' ) || ( $sito_web != '' ) ) {
 													?>
 												<li class="nav-item">
 													<a class="nav-link" href="#p6">
@@ -444,7 +444,7 @@ $pubblicazioni = new WP_Query(
 							<?php
 						}
 						?>
-						<?php if ( ( $telefono != "" ) || ( $email != "" ) || ( $sitoweb != "" ) ) { ?>
+						<?php if ( ( $telefono != "" ) || ( $email != "" ) || ( $sito_web != "" ) ) { ?>
 							<h3 class="it-page-section h4 pt-3" id="p6"><?php _e( 'Contatti', "design_laboratori_italia" ); ?></h3>
 							<div class="it-list-wrapper">
 								<ul class="it-list">
@@ -477,10 +477,10 @@ $pubblicazioni = new WP_Query(
 									</li>
 									<?php
 								}
-								if ( $sitoweb != '' ) {
+								if ( $sito_web != '' ) {
 									?>
 									<li>
-										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sitoweb ); ?>">
+										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sito_web ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Link">
 													<title>Website Link</title>
