@@ -149,7 +149,7 @@ if ( '' !== $searchstring ) {
 					<!-- begin row -->
 					<div class="row">
 					<?php
-						$result = dli_format_search_result( $post )
+						$result = dli_get_post_wrapper( $post, 'item-thumb' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-12">
@@ -157,9 +157,9 @@ if ( '' !== $searchstring ) {
 								<div class="card">
 									<div class="card-body mb-0">
 										<?php
-										 if ( $result['image'] ) {
+										 if ( $result['image_url'] ) {
 										?>
-										<img src="<?php echo esc_url( $result['image'] ); ?>"
+										<img src="<?php echo esc_url( $result['image_url'] ); ?>"
 											height="100"
 											width="100" 
 											class="img-thumbnail float-sm-start me-2 text-nowrap"
@@ -170,7 +170,7 @@ if ( '' !== $searchstring ) {
 										 }
 										?>
 										<span class="text" style="text-transform: uppercase;">
-											<a class="text-decoration-none" href="<?php echo esc_url( $result['link_category'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
+											<a class="text-decoration-none" href="<?php echo esc_url( $result['category_link'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
 										</span>
 										<span>&nbsp;-&nbsp;</span>
 										<a class="text-decoration-none" href="<?php echo esc_url( $result['link'] ); ?>">

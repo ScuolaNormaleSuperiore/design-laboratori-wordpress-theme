@@ -85,7 +85,8 @@ $archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POS
 							<?php
 								if ( ! empty( $tipo_risorsa ) ) {
 							?>
-							<a class="text-white text-decoration-none"
+							<a
+								class="text-white text-decoration-none"
 								href="<?php echo $archive_page . '?type_tech_resource[]=' . $tipo_risorsa['id'] ;?>" 
 							>
 								<span class="chip-label text-light">

@@ -23,6 +23,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunta possibilità di pubblicare Spin-off e Risorse Tecniche nel Carousel in HP.
 ## Corretto
 - Corretto funzionamento filtro dei tipi di contenuto nella ricerca del sito.
+## Modificato
+- Aggiornati i file delle traduzioni.
+- Rifattorizzata gestione wrapper contenuti in ricerca e carousel.
 
 
 ## [1.6.2] - 2025-04-17

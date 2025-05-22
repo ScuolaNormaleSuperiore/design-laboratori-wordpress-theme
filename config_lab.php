@@ -236,6 +236,7 @@ define(
 define(
 	'DLI_POST_WRAPPER',
 	array(
+		'id'            => '',
 		'type'          => '',
 		'category'      => '',
 		'category_link' => '',
