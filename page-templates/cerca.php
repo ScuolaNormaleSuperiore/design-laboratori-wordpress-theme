@@ -99,7 +99,9 @@ if ( '' !== $searchstring ) {
 					<?php
 						if( count( $allcontentypes ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html( __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ) ); ?></h3>
+						<h3 class="h6 text-uppercase border-bottom">
+							<?php echo esc_html( __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ) ); ?>
+						</h3>
 						<div>
 								<?php
 									foreach( $allcontentypes as $ct ) {
@@ -111,7 +113,9 @@ if ( '' !== $searchstring ) {
 											 echo "checked='checked'";
 										} ?>
 									>
-									<label for="<?php echo esc_attr( $ct ) ; ?>"><?php echo esc_html( __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ) ); ?></label>
+									<label for="<?php echo esc_attr( $ct ) ; ?>">
+										<?php echo esc_html( __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ) ); ?>
+									</label>
 								</div>
 								<?php
 									}
@@ -155,9 +159,13 @@ if ( '' !== $searchstring ) {
 										<?php
 										 if ( $result['image'] ) {
 										?>
-										<img src="<?php echo esc_url( $result['image'] ); ?>" height="100" width="100" 
+										<img src="<?php echo esc_url( $result['image'] ); ?>"
+											height="100"
+											width="100" 
 											class="img-thumbnail float-sm-start me-2 text-nowrap"
-											title="<?php echo esc_attr( $result['image_title'] ); ?>" alt="<?php echo esc_attr( $result['image_alt'] ); ?>" />
+											title="<?php echo esc_attr( $result['image_title'] ); ?>"
+											alt="<?php echo esc_attr( $result['image_alt'] ); ?>"
+										/>
 										<?php
 										 }
 										?>

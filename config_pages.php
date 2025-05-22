@@ -339,5 +339,21 @@ define(
 			'content_parent'     => null,
 			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
 		),
+		array(
+			'content_slug_it'    => SLUG_TECHNICAL_RESOURCE_IT,
+			'content_slug_en'    => SLUG_TECHNICAL_RESOURCE_EN,
+			'content_file_it'    => '',
+			'content_file_en'    => '',
+			'content_title_it'   => 'Risorse tecniche',
+			'content_title_en'   => 'Technical resources',
+			'content_it'         => 'Le nostre risorse tecniche ...' . DLI_TEXT_TEMPLATE_ACTIVE_IT,
+			'content_en'         => 'Our technical resources...' . DLI_TEXT_TEMPLATE_ACTIVE_EN,
+			'content_status'     => 'publish',
+			'content_author'     => 1,
+			'content_template'   => 'page-templates/risorse-tecniche.php',
+			'content_type'       => 'page',
+			'content_parent'     => null,
+			'content_category'   => DLI_ARCHIVE_PAGE_CAT,
+		),
 	)
 );

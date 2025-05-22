@@ -133,11 +133,10 @@ class SpinOff_Manager {
 	 */
 	function add_fields() {
 
-
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
-	
+
 		acf_add_local_field_group( array(
 		'key' => 'group_679359beb87e6',
 		'title' => 'Campi Spin-off',
@@ -212,6 +211,8 @@ class SpinOff_Manager {
 				'ui' => 0,
 				'ajax' => 0,
 				'placeholder' => '',
+				'create_options' => 0,
+				'save_options' => 0,
 			),
 			array(
 				'key' => 'field_67a9de5539f8f',
@@ -338,6 +339,48 @@ class SpinOff_Manager {
 				'allow_in_bindings' => 0,
 				'placeholder' => '',
 			),
+			array(
+				'key' => 'field_682edd2916e5a',
+				'label' => 'Promuovi in home',
+				'name' => 'promuovi_in_home',
+				'aria-label' => '',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 0,
+				'allow_in_bindings' => 0,
+				'ui' => 0,
+				'ui_on_text' => '',
+				'ui_off_text' => '',
+			),
+			array(
+				'key' => 'field_682edd3516e5b',
+				'label' => 'Promuovi in carousel',
+				'name' => 'promuovi_in_carousel',
+				'aria-label' => '',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 0,
+				'allow_in_bindings' => 0,
+				'ui' => 0,
+				'ui_on_text' => '',
+				'ui_off_text' => '',
+			),
 		),
 		'location' => array(
 			array(
@@ -357,11 +400,7 @@ class SpinOff_Manager {
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 0,
-	) );
-
-
-
+		) );
 	}
-
 
 }

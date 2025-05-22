@@ -198,6 +198,9 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 				case PATENT_POST_TYPE:
 					$item = dli_from_patent_to_carousel_item ( $result );
 					break;
+				case TECHNICAL_RESOURCE_POST_TYPE:
+					$item = dli_from_patent_to_techres_item ( $result );
+					break;
 				case WP_DEFAULT_PAGE:
 					$item = dli_from_page_to_carousel_item ( $result );
 					break;
@@ -366,6 +369,36 @@ if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {
 		return $result;
 	}
 }
+
+
+if( ! function_exists( 'dli_from_patent_to_techres_item' ) ) {
+	function dli_from_patent_to_techres_item( $item ) {
+		$result         =  DLI_POST_WRAPPER;
+		$post_type      = get_post_type( $item );
+		$image_metadata = dli_get_image_metadata( $item, 'item-carousel', '/assets/img/yourimage.png' );
+		$page           = dli_get_page_by_post_type( $post_type );
+		$post_title     = get_the_title( $item );
+		$link_pubbl     = dli_get_field( 'url', $item );
+		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
+		$summary        = dli_get_field( 'descrizione_breve', $item );
+		$result         = array(
+			'type'          => $post_type,
+			'category'      => $page->post_title,
+			'category_link' => get_permalink( $page->ID ),
+			'date'          => dli_get_field('anno_acquisizione', $item),
+			'orario_inizio' => '',
+			'title'         => $post_title,
+			'description'   => wp_trim_words( $summary, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => get_the_content( $item ),
+			'link'          => get_the_permalink( $item ),
+			'image_url'     => $image_metadata['image_url'],
+			'image_alt'     => $image_metadata['image_alt'],
+			'image_title'   => $image_metadata['image_title'],
+		);
+		return $result;
+	}
+}
+
 
 
 if( ! function_exists( 'dli_from_patent_to_carousel_item' ) ) {

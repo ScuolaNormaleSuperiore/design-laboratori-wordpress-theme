@@ -26,7 +26,6 @@ class Patent_Manager {
 		add_action( 'init', array( $this, 'add_post_type' ) );
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
-
 		// Add column to the list of items in the back-office.
 		add_action( 'manage_edit-brevetto_columns', array( $this, 'add_custom_admin_columns' ) );
 		add_action( 'manage_brevetto_posts_custom_column', array( $this, 'populate_custom_admin_columns' ), 10, 2 );
@@ -164,7 +163,7 @@ class Patent_Manager {
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
-	
+
 		acf_add_local_field_group( array(
 		'key' => 'group_66fbbba06e4fb',
 		'title' => 'Campi Brevetto',
@@ -301,6 +300,8 @@ class Patent_Manager {
 				'ui' => 0,
 				'ajax' => 0,
 				'placeholder' => '',
+				'create_options' => 0,
+				'save_options' => 0,
 			),
 			array(
 				'key' => 'field_66fbbba091e1a',
@@ -492,6 +493,27 @@ class Patent_Manager {
 				'append' => '',
 			),
 			array(
+				'key' => 'field_6722333ce1a5c',
+				'label' => 'Famiglia',
+				'name' => 'famiglia',
+				'aria-label' => '',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'maxlength' => '',
+				'allow_in_bindings' => 0,
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+			),
+			array(
 				'key' => 'field_6710d8a365f4a',
 				'label' => 'Promuovi in carousel',
 				'name' => 'promuovi_in_carousel',
@@ -533,27 +555,6 @@ class Patent_Manager {
 				'ui_on_text' => '',
 				'ui_off_text' => '',
 			),
-			array(
-				'key' => 'field_6722333ce1a5c',
-				'label' => 'Famiglia',
-				'name' => 'famiglia',
-				'aria-label' => '',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'maxlength' => '',
-				'allow_in_bindings' => 0,
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-			),
 		),
 		'location' => array(
 			array(
@@ -573,8 +574,7 @@ class Patent_Manager {
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 0,
-	) );
-
+		) );
 	}
 	
 }

@@ -64,6 +64,7 @@ define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'THEMATIC_AREA_TAXONOMY', 'area-tematica' );
 define( 'BUSINESS_SECTOR_TAXONOMY', 'settore-attivita' );
+define( 'RT_TYPE_TAXONOMY', 'tipo-risorsa-tecnica' );
 
 // DEFAULT WP TAXONOMIES.
 define( 'WP_DEFAULT_CATEGORY', 'category' );
@@ -227,6 +228,7 @@ define(
 		THEMATIC_AREA_TAXONOMY,
 		WP_DEFAULT_CATEGORY,
 		WP_DEFAULT_TAGS,
+		RT_TYPE_TAXONOMY,
 	)
 );
 

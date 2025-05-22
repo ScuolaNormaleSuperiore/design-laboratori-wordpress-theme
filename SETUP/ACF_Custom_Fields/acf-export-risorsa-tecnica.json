@@ -1,74 +1,40 @@
 [
     {
-        "key": "group_66fbbba06e4fb",
-        "title": "Campi Brevetto",
+        "key": "group_682edcc15188d",
+        "title": "Campi Risorsa Tecnica",
         "fields": [
             {
-                "key": "field_6707df1a481eb",
-                "label": "Sommario elenco**",
-                "name": "sommario_elenco",
+                "key": "field_682ed8f4bbd48",
+                "label": "Foto",
+                "name": "foto",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_682de92c811fe",
+                "label": "Descrizione breve",
+                "name": "descrizione_breve",
                 "aria-label": "",
                 "type": "textarea",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 1,
-                "rows": "",
-                "placeholder": "",
-                "new_lines": ""
-            },
-            {
-                "key": "field_670502099b7a3",
-                "label": "Altre informazioni**",
-                "name": "note",
-                "aria-label": "",
-                "type": "wysiwyg",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "allow_in_bindings": 1,
-                "tabs": "all",
-                "toolbar": "full",
-                "media_upload": 1,
-                "delay": 0
-            },
-            {
-                "key": "field_6735bc07070e9",
-                "label": "Video**",
-                "name": "video",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "allow_in_bindings": 0,
-                "placeholder": ""
-            },
-            {
-                "key": "field_66fbbef9af705",
-                "label": "Codice brevetto",
-                "name": "codice_brevetto",
-                "aria-label": "",
-                "type": "text",
                 "instructions": "",
                 "required": 1,
                 "conditional_logic": 0,
@@ -80,14 +46,14 @@
                 "default_value": "",
                 "maxlength": "",
                 "allow_in_bindings": 0,
+                "rows": "",
                 "placeholder": "",
-                "prepend": "",
-                "append": ""
+                "new_lines": ""
             },
             {
-                "key": "field_67c9b79bdf4b9",
-                "label": "Stato legale**",
-                "name": "stato_legale_custom",
+                "key": "field_682ecb5410ce5",
+                "label": "Codice interno",
+                "name": "codice_interno",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -106,44 +72,31 @@
                 "append": ""
             },
             {
-                "key": "field_66fbbf1fa1cfa",
-                "label": "Stato Iris",
-                "name": "stato_legale",
+                "key": "field_682de981811ff",
+                "label": "Costo",
+                "name": "costo",
                 "aria-label": "",
-                "type": "select",
+                "type": "text",
                 "instructions": "",
-                "required": 0,
+                "required": false,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
                     "id": ""
                 },
-                "choices": {
-                    "Abbandonato": "Abbandonato",
-                    "Ceduto": "Ceduto",
-                    "Concesso": "Concesso",
-                    "Licenza": "Licenza",
-                    "Pending": "Pending",
-                    "Terminato": "Terminato"
-                },
-                "default_value": "Pending",
-                "return_format": "value",
-                "multiple": 0,
-                "allow_null": 0,
-                "allow_in_bindings": 1,
-                "ui": 0,
-                "ajax": 0,
+                "default_value": "",
+                "maxlength": "",
                 "placeholder": "",
-                "create_options": 0,
-                "save_options": 0
+                "prepend": "",
+                "append": ""
             },
             {
-                "key": "field_66fbbba091e1a",
-                "label": "Data deposito",
-                "name": "data_deposito",
+                "key": "field_682de99c81200",
+                "label": "Posizione",
+                "name": "posizione",
                 "aria-label": "",
-                "type": "date_picker",
+                "type": "text",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -152,15 +105,89 @@
                     "class": "",
                     "id": ""
                 },
-                "display_format": "d\/m\/Y",
-                "return_format": "d\/m\/Y",
-                "first_day": 1,
-                "allow_in_bindings": 0
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
             },
             {
-                "key": "field_66fbbf55d8169",
-                "label": "Anno deposito",
-                "name": "anno_deposito",
+                "key": "field_682ecbda4b491",
+                "label": "Localizzazione",
+                "name": "localizzazione",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "luogo"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_682ecb6e4b48b",
+                "label": "Marca",
+                "name": "marca",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682ecb784b48c",
+                "label": "Modello",
+                "name": "modello",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682ecb894b48d",
+                "label": "Anno acquisizione",
+                "name": "anno_acquisizione",
                 "aria-label": "",
                 "type": "number",
                 "instructions": "",
@@ -181,9 +208,9 @@
                 "append": ""
             },
             {
-                "key": "field_66fbbc1beb100",
-                "label": "Numero deposito",
-                "name": "numero_deposito",
+                "key": "field_682ecbb14b48f",
+                "label": "Stato",
+                "name": "stato",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -202,9 +229,9 @@
                 "append": ""
             },
             {
-                "key": "field_6704ef0dffeca",
-                "label": "Inventori referenti",
-                "name": "inventori_referenti",
+                "key": "field_682ecb974b48e",
+                "label": "Dimensioni e peso",
+                "name": "dimensioni_e_peso",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -223,9 +250,9 @@
                 "append": ""
             },
             {
-                "key": "field_6704eefcffec9",
-                "label": "Inventori",
-                "name": "inventori",
+                "key": "field_682eccac56fd0",
+                "label": "Conformità",
+                "name": "conformita",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -244,11 +271,11 @@
                 "append": ""
             },
             {
-                "key": "field_6760052a7260e",
-                "label": "Altri inventori**",
-                "name": "altri_inventori",
+                "key": "field_682ecbc14b490",
+                "label": "Responsabili",
+                "name": "responsabile",
                 "aria-label": "",
-                "type": "text",
+                "type": "relationship",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -257,19 +284,28 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "maxlength": "",
+                "post_type": [
+                    "persona"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
                 "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
             },
             {
-                "key": "field_6704eeeaffec8",
-                "label": "Titolari",
-                "name": "titolari",
+                "key": "field_682de9f981202",
+                "label": "Scheda tecnica",
+                "name": "scheda_tecnica",
                 "aria-label": "",
-                "type": "text",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -278,19 +314,19 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_6707e403dbf67",
-                "label": "Prioritario",
-                "name": "prioritario",
+                "key": "field_682ecc5856fcf",
+                "label": "Manuale uso",
+                "name": "manuale_uso",
                 "aria-label": "",
-                "type": "true_false",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -299,19 +335,19 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "",
-                "default_value": 1,
-                "allow_in_bindings": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_6717ab01ef648",
-                "label": "Id famiglia",
-                "name": "id_famiglia",
+                "key": "field_682ece796b420",
+                "label": "Allegato 1",
+                "name": "allegato_1",
                 "aria-label": "",
-                "type": "text",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -320,38 +356,17 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_6722333ce1a5c",
-                "label": "Famiglia",
-                "name": "famiglia",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_6710d8a365f4a",
-                "label": "Promuovi in carousel",
-                "name": "promuovi_in_carousel",
+                "key": "field_682edc961fb0a",
+                "label": "Promuovi in home",
+                "name": "promuovi_in_home",
                 "aria-label": "",
                 "type": "true_false",
                 "instructions": "",
@@ -370,9 +385,9 @@
                 "ui_off_text": ""
             },
             {
-                "key": "field_6710d8e165f4b",
-                "label": "Promuovi in home",
-                "name": "promuovi_in_home",
+                "key": "field_682edcd60e3aa",
+                "label": "Promuovi in carousel",
+                "name": "promuovi_in_carousel",
                 "aria-label": "",
                 "type": "true_false",
                 "instructions": "",
@@ -396,7 +411,7 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "brevetto"
+                    "value": "post"
                 }
             ]
         ],
