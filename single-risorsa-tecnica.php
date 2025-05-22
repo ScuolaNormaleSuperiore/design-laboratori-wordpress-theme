@@ -29,7 +29,7 @@ foreach ( $att_fields as $af ) {
 	}
 }
 // Tassonomie
-$tipo_risorsa = dli_get_post_main_category( $post, TECHNICAL_RESOURCE_POST_TYPE );
+$tipo_risorsa = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
 // Immagini.
 $photo          = dli_get_field( 'foto' );
 $image_metadata = dli_get_image_metadata( $post, 'full' );
@@ -37,6 +37,7 @@ $image_metadata = dli_get_image_metadata( $post, 'full' );
 $description = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 // Relazioni.
 $responsabili = dli_get_field( 'responsabile' );
+$archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE ) );
 ?>
 
 <main id="main-container" role="main">
@@ -46,7 +47,6 @@ $responsabili = dli_get_field( 'responsabile' );
 
 	<!-- INIZIO BANNER HERO -->
 	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
-		<!-- - img-->
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
@@ -83,13 +83,13 @@ $responsabili = dli_get_field( 'responsabile' );
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 							<?php
-								if ( ! empty( $settore_attivita ) ) {
+								if ( ! empty( $tipo_risorsa ) ) {
 							?>
 							<a class="text-white text-decoration-none"
-								href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] );?>" 
+								href="<?php echo $archive_page . '?type_tech_resource[]=' . $tipo_risorsa['id'] ;?>" 
 							>
 								<span class="chip-label text-light">
-									<?php echo esc_attr( $settore_attivita['title'] ); ?>
+									<?php echo esc_attr( $tipo_risorsa['title'] ); ?>
 								</span>
 							</a>
 							<?php
@@ -105,8 +105,8 @@ $responsabili = dli_get_field( 'responsabile' );
 	<!-- FINE BANNER HERO -->
 
 
-		<!-- BODY SPINOFF -->
-		<div class="container py-lg-5">
+	<!-- BODY -->
+	<div class="container py-lg-5">
 		<div class="row">
 
 			<!-- Dettagli dell'spinoff -->
@@ -269,6 +269,21 @@ $responsabili = dli_get_field( 'responsabile' );
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 				<?php
+				if ( $photo ) {
+				?>
+					<!-- Foto -->
+					<div class="card-body text-center">
+						<figure class="img-wrapper">
+							<img
+								style="max-width: 300px; height: auto;"
+								src="<?php echo esc_url( $photo['url'] ); ?>" 
+								title="<?php echo esc_attr( $photo['title'] ); ?>"
+								alt="<?php echo esc_attr( $photo['title'] ); ?>"
+							>
+						</figure>
+					</div>
+				<?php
+				}
 				if ( $description ) {
 				?>
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
@@ -294,7 +309,7 @@ $responsabili = dli_get_field( 'responsabile' );
 				if ( $year ) {
 				?>
 					<!-- Anno di acquisizione -->
-					<article id="costituzione" class="it-page-section mb-4 anchor-offset clearfix">
+					<article id="acquisizione" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
 						<p><?php echo esc_attr( $year ) ; ?></p>
 					</article>
@@ -430,7 +445,7 @@ $responsabili = dli_get_field( 'responsabile' );
 			</div>
 
 		</div> <!-- END row -->
-	</div> <!-- END container -->
+	</div> <!-- END BODY container -->
 	
 </main>
 
