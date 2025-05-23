@@ -76,7 +76,7 @@ class TechnicalResource_Manager {
 		);
 
 		$args   = array(
-			'label'         => __( 'Risora Tecnica', 'design_laboratori_italia' ),
+			'label'         => __( 'Risorsa Tecnica', 'design_laboratori_italia' ),
 			'labels'        => $labels,
 			'supports'      => array( 'title', 'editor', 'thumbnail' ),
 			'hierarchical'  => false,
