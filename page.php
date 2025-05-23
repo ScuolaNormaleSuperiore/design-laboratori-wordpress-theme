@@ -161,7 +161,7 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 								'template-parts/common/sezione-related-items',
 								null,
 								array(
-									'related_items' => $related_items,
+									'items' => $related_items,
 								)
 							);
 						}

@@ -1,6 +1,6 @@
 <?php
 	define( 'DLI_RELATED_ITEMS_NUMBER', 3 );
-	$related_items = $args['related_items'];
+	$related_items = $args['items'];
 	$num_items     = dli_get_option("numero_pagine_collegate", "notizie");
 	$num_items     = 	$num_items ? 	$num_items : 5;
 	$related_items = array_slice( $related_items, 0, $num_items, true);

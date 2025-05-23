@@ -19,6 +19,8 @@ $model     = dli_get_field( 'modello' );
 $dimension = dli_get_field( 'dimensioni_e_peso' );
 $year      = dli_get_field( 'anno_acquisizione' );
 $status    = dli_get_field( 'stato' );
+// Progetti.
+$progetti = DLI_ContentsManager::get_related_items( $post, 'risorse_tecniche', array( PROGETTO_POST_TYPE ) );
 // Allegati.
 $allegati = array();
 $att_fields = array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
@@ -28,8 +30,9 @@ foreach ( $att_fields as $af ) {
 		array_push( $allegati, $item );
 	}
 }
-// Tassonomie
+// Tassonomie.
 $tipo_risorsa = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+$archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE ) );
 // Immagini.
 $photo          = dli_get_field( 'foto' );
 $image_metadata = dli_get_image_metadata( $post, 'full' );
@@ -37,7 +40,6 @@ $image_metadata = dli_get_image_metadata( $post, 'full' );
 $description = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 // Relazioni.
 $responsabili = dli_get_field( 'responsabile' );
-$archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE ) );
 ?>
 
 <main id="main-container" role="main">
@@ -64,7 +66,9 @@ $archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POS
 					<?php
 							if( $image_metadata['image_caption'] ) {
 						?>
-							<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<figcaption class="figure-caption">
+								<?php echo esc_attr( $image_metadata['image_caption'] ); ?>
+							</figcaption>
 						<?php
 							}
 					?>
@@ -87,7 +91,7 @@ $archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POS
 							?>
 							<a
 								class="text-white text-decoration-none"
-								href="<?php echo $archive_page . '?type_tech_resource[]=' . $tipo_risorsa['id'] ;?>" 
+								href="<?php echo $archive_page . '?type_technical_resource[]=' . $tipo_risorsa['id'] ;?>" 
 							>
 								<span class="chip-label text-light">
 									<?php echo esc_attr( $tipo_risorsa['title'] ); ?>
@@ -252,6 +256,15 @@ $archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POS
 											<li class="nav-item">
 												<a class="nav-link" href="#responsabili">
 													<span><?php echo __( 'Responsabili', 'design_laboratori_italia' ); ?></span>
+												</a>
+											</li>
+										<?php
+										}
+										if ( $progetti ) {
+										?>
+											<li class="nav-item">
+												<a class="nav-link" href="#progetti">
+													<span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span>
 												</a>
 											</li>
 										<?php
@@ -433,6 +446,24 @@ $archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POS
 								array(
 									'section_id' => 'responsabile',
 									'items'      => $responsabili,
+								)
+							);
+						?>
+					</article>
+				<?php
+				}
+				if ( $progetti ) {
+				?>
+					<!-- Progetti -->
+					<article id="progetti" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
+						<?php
+							get_template_part(
+								'template-parts/common/sezione-progetti',
+								null,
+								array(
+									'section_id' => 'progetti',
+									'items'      => $progetti,
 								)
 							);
 						?>

@@ -21,6 +21,7 @@ define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 
 // Pagination.
+define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
 define( 'PERSONE_PER_ROW', 2 );
 define( 'DLI_POSTS_PER_PAGE', 6 );
 define( 'DLI_POST_PER_PAGE_VALUES', array( '3', '6', '9' , '12', '24', '48', '96' ) );
@@ -264,6 +265,8 @@ define(
 		'image_url'     => '',
 		'image_alt'     => '',
 		'image_title'   => '',
+		// 'main_tax'      => '',
+		// 'main_tax_url'  => '',
 	)
 );
 

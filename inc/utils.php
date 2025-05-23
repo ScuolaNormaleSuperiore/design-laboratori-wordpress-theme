@@ -117,27 +117,6 @@ if(!function_exists("dli_multi_array_search")) {
 }
 
 
-if( ! function_exists( 'dli_get_projects_by_event_id' ) ) {
-	function dli_get_projects_by_event_id( $event_id ) {
-		$query = new WP_Query(
-			array(
-				'posts_per_page' => -1,
-				'post_type'      => 'progetto',
-				'orderby'        => 'post_date',
-				'order'          => 'DESC',
-				'meta_query'     => array(
-					array(
-						'key'     => 'elenco_indirizzi_di_ricerca_correlati',
-						'compare' => 'LIKE',
-						'value'   => '"' . $event_id . '"',
-					),
-				),
-			)
-		);
-		return $query->posts;
-	}
-}
-
 if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	function dli_get_post_wrapper( $result, $image_format='item-carousel' ) {
 		$item = array();
@@ -162,7 +141,7 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 					$item = dli_from_spinoff_to_wrapped_item ( $result, $image_format );
 					break;
 				case TECHNICAL_RESOURCE_POST_TYPE:
-					$item = dli_from_tech_resource_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_technical_resource_to_wrapped_item ( $result, $image_format );
 					break;
 				case WP_DEFAULT_PAGE:
 					$item = dli_from_page_to_wrapped_item ( $result, $image_format );
@@ -343,8 +322,8 @@ if( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_from_tech_resource_to_wrapped_item' ) ) {
-	function dli_from_tech_resource_to_wrapped_item( $item, $image_format ) {
+if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
+	function dli_from_technical_resource_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
 		$page           = dli_get_page_by_post_type( $post_type );

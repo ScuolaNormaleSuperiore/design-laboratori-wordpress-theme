@@ -244,7 +244,7 @@ $form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $p
 								'template-parts/common/sezione-related-items',
 								null,
 								array(
-									'related_items' => $related_items,
+									'items' => $related_items,
 								)
 							);
 						}

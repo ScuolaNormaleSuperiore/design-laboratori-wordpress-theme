@@ -29,8 +29,10 @@ $web_site_url = dli_get_field( 'url' );
 $current_lang = dli_current_language();
 $tag_page     = DLI_PAGE_PER_CT[PROGETTO_POST_TYPE][$current_lang];
 
-// Recupero la lista degli eventi e delle notizie correlate ad un progetto.
+// Recupero la lista degli eventi e delle notizie correlate.
 $eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
+// Recupero la lista risorse tecniche correlate.
+$risorse = dli_get_field( 'risorse_tecniche' );
 
 ?>
 
@@ -189,10 +191,17 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVEN
 										</li>
 											<?php
 										}
-										if ( $eventi->posts ) {
+										if ( $eventi ) {
 											?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></span></a>
+										</li>
+											<?php
+										}
+										if ( $risorse ) {
+											?>
+										<li class="nav-item">
+											<a class="nav-link link-100" href="#sezione-risorse-tecniche"><span><?php echo __( 'Risorse tecniche', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 											<?php
 										}
@@ -205,6 +214,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVEN
 					</nav>
 				</div>
 			</div> <!-- row -->
+
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 				<?php
@@ -300,16 +310,35 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVEN
 						)
 					);
 				}
-				if ( $eventi->posts ) {
+				if ( $eventi ) {
 				?>
 				<!-- EVENTI -->
 				<?php
-					if ( $eventi->posts ) {
+					if ( $eventi ) {
 						get_template_part(
 							'template-parts/common/sezione-related-items',
 							null,
 							array(
-								'related_items' => $eventi->posts,
+								'section_id' => 'eventi',
+								'items'      => $eventi,
+							)
+						);
+					}
+				}
+				if ( $risorse ) {
+				?>
+				<!-- RISORSE -->
+				<h3 class="it-page-section h4 pt-3" id="p2">
+					<?php echo dli_translate( 'Risorse tecniche', 'design_laboratori_italia' ); ?>
+				</h3>
+				<?php
+					if ( $risorse ) {
+						get_template_part(
+							'template-parts/common/sezione-related-technical-resources',
+							null,
+							array(
+								'section_id' => 'risorse-tecniche',
+								'items'      => $risorse,
 							)
 						);
 					}

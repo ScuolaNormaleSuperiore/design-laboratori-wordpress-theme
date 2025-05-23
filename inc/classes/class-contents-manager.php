@@ -107,7 +107,7 @@ class DLI_ContentsManager
 		return $results;
 	}
 
-	public static function dli_get_all_tech_res_years() {
+	public static function dli_get_all_technical_res_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
 			$wpdb->prepare( "
@@ -271,7 +271,7 @@ class DLI_ContentsManager
 					'taxonomy' => RT_TYPE_TAXONOMY,
 					'field'    => 'term_id',
 					'operator' => 'IN',
-					'terms'    => $params['type_tech_resource'],
+					'terms'    => $params['type_technical_resource'],
 				)
 			)
 		);
@@ -429,7 +429,7 @@ class DLI_ContentsManager
 			),
 			)
 		);
-		return $item;
+		return $item->posts;
 	}
 
 	
@@ -466,6 +466,25 @@ class DLI_ContentsManager
 			array_push( $items, $item );
 		}
 		return $items;
+	}
+
+		public static function get_projects_by_event_id( $event_id ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => 'progetto',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'elenco_indirizzi_di_ricerca_correlati',
+						'compare' => 'LIKE',
+						'value'   => '"' . $event_id . '"',
+					),
+				),
+			)
+		);
+		return $query->posts;
 	}
 
 }

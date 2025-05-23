@@ -13,15 +13,15 @@ $selected_types  = array();
 $search_string   = '';
 $all_types       = dli_get_all_categories_by_ct( RT_TYPE_TAXONOMY, TECHNICAL_RESOURCE_POST_TYPE );
 $all_type_ids    = $all_types ? array_map( function( $item ) { return $item['id']; }, $all_types ) : [];
-$all_years       = DLI_ContentsManager::dli_get_all_tech_res_years();
+$all_years       = DLI_ContentsManager::dli_get_all_technical_res_years();
 $per_page        = strval( DLI_PER_PAGE );
 $per_page_values = DLI_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
-if ( isset( $_GET['type_tech_resource'] ) && is_array(  $_GET['type_tech_resource'] )  ) {
-	foreach ($_GET['type_tech_resource'] as $ar ) {
+if ( isset( $_GET['type_technical_resource'] ) && is_array(  $_GET['type_technical_resource'] )  ) {
+	foreach ($_GET['type_technical_resource'] as $ar ) {
 		array_push( $selected_types, sanitize_text_field( $ar ) );
 	}
 }
@@ -39,7 +39,7 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 
 $params = array(
 	'search_string'      => $search_string,
-	'type_tech_resource' => $selected_types? $selected_types: $all_type_ids,
+	'type_technical_resource' => $selected_types? $selected_types: $all_type_ids,
 	'acquisition_year'   => $selected_year ? array( $selected_year ) : $all_years,
 	'per_page'           => $per_page,
 	'paged'              => $paged,
@@ -103,14 +103,14 @@ $num_results = $the_query->found_posts;
 							</h3>
 							<div>
 								<?php
-								foreach ( $all_types as $type_tech_resource ) {
+								foreach ( $all_types as $type_technical_resource ) {
 								?>
 								<div class="form-check">
-								<input type="checkbox" name="type_tech_resource[]" id="<?php echo $type_tech_resource['slug']; ?>"
-										value="<?php echo $type_tech_resource['id']; ?>"
-										<?php if ( in_array( $type_tech_resource['id'], $selected_types) ) { echo "checked='checked'"; } ?>
+								<input type="checkbox" name="type_technical_resource[]" id="<?php echo $type_technical_resource['slug']; ?>"
+										value="<?php echo $type_technical_resource['id']; ?>"
+										<?php if ( in_array( $type_technical_resource['id'], $selected_types) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $type_tech_resource['slug']; ?>"><?php echo $type_tech_resource['name']; ?></label>
+									<label for="<?php echo $type_technical_resource['slug']; ?>"><?php echo $type_technical_resource['name']; ?></label>
 								</div>
 								<?php
 								}
