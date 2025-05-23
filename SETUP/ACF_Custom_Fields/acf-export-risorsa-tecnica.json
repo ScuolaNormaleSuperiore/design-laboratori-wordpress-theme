@@ -136,7 +136,7 @@
                 ],
                 "return_format": "object",
                 "min": "",
-                "max": "",
+                "max": 1,
                 "allow_in_bindings": 0,
                 "elements": "",
                 "bidirectional": 0,
