@@ -316,6 +316,65 @@ class Project_Manager {
 				),
 			),
 			array(
+				'key' => 'field_63e650d5a74bc',
+				'label' => 'Pubblicazioni',
+				'name' => 'pubblicazioni',
+				'aria-label' => '',
+				'type' => 'relationship',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array(
+					0 => 'pubblicazione',
+				),
+				'taxonomy' => '',
+				'filters' => array(
+					0 => 'search',
+				),
+				'return_format' => 'object',
+				'min' => '',
+				'max' => '',
+				'elements' => '',
+				'bidirectional_target' => array(
+				),
+			),
+			array(
+				'key' => 'field_682ec7cfe1a69',
+				'label' => 'Risorse tecniche',
+				'name' => 'risorse_tecniche',
+				'aria-label' => '',
+				'type' => 'relationship',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array(
+					0 => 'risorsa-tecnica',
+				),
+				'post_status' => '',
+				'taxonomy' => '',
+				'filters' => array(
+					0 => 'search',
+				),
+				'return_format' => 'object',
+				'min' => '',
+				'max' => '',
+				'allow_in_bindings' => 0,
+				'elements' => '',
+				'bidirectional' => 0,
+				'bidirectional_target' => array(
+				),
+			),
+			array(
 				'key' => 'field_63c6cebf3e66e',
 				'label' => 'Allegato 1',
 				'name' => 'allegato1',
@@ -375,65 +434,6 @@ class Project_Manager {
 				'max_size' => '',
 				'mime_types' => '',
 			),
-			array(
-				'key' => 'field_63e650d5a74bc',
-				'label' => 'Pubblicazioni',
-				'name' => 'pubblicazioni',
-				'aria-label' => '',
-				'type' => 'relationship',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array(
-					0 => 'pubblicazione',
-				),
-				'taxonomy' => '',
-				'filters' => array(
-					0 => 'search',
-				),
-				'return_format' => 'object',
-				'min' => '',
-				'max' => '',
-				'elements' => '',
-				'bidirectional_target' => array(
-				),
-			),
-			array(
-				'key' => 'field_682ec7cfe1a69',
-				'label' => 'Risorse tecniche',
-				'name' => 'risorse_tecniche',
-				'aria-label' => '',
-				'type' => 'relationship',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array(
-					0 => 'risorsa-tecnica',
-				),
-				'post_status' => '',
-				'taxonomy' => '',
-				'filters' => array(
-					0 => 'search',
-				),
-				'return_format' => 'object',
-				'min' => '',
-				'max' => '',
-				'allow_in_bindings' => 0,
-				'elements' => '',
-				'bidirectional' => 0,
-				'bidirectional_target' => array(
-				),
-			),
 		),
 		'location' => array(
 			array(
@@ -453,7 +453,8 @@ class Project_Manager {
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 1,
-	) );
+		) );
+
 	}
 
 

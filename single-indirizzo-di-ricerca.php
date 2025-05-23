@@ -27,22 +27,9 @@ $contatti       = array(
 	'website' => $website,
 );
 
-// recupero la lista degli eventi correlati ad un indirizzo di ricerca.
-$eventi = new WP_Query(
-	array(
-	'posts_per_page' => -1,
-	'post_type'      => 'evento',
-	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
-	'order'          => 'DESC',
-	'meta_query'     => array(
-		array(
-			'key'     => 'indirizzo_di_ricerca',
-			'compare' => 'LIKE',
-			'value'   => '"' . $ID . '"',
-		),
-	),
-	)
-);
+// Recupero la lista degli eventi e delle notizie correlate ad un progetto.
+$eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
+
 ?>
 
 <main id="main-container" role="main">
@@ -139,7 +126,7 @@ $eventi = new WP_Query(
 										if ( $eventi->posts ) {
 										?>
 										<li class="nav-item">
-											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 										<?php
 										}
@@ -220,7 +207,7 @@ $eventi = new WP_Query(
 				<?php
 				if ( $eventi->posts ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="sezione-eventi"><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-eventi"><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-eventi',

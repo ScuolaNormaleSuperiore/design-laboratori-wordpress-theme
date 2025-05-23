@@ -2,7 +2,7 @@
 	$home_carousel_enabled = dli_get_option( 'home_carousel_is_visible', 'homepage' );
 
 	if ( 'true' === $home_carousel_enabled ) {
-		$items = dli_get_carousel_items();
+		$items = DLI_ContentsManager::get_carousel_items();
 ?>
 	<section class="section pt-5 pb-5">
 		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide" data-bs-carousel-splide>

@@ -20,7 +20,6 @@ class Event_Manager {
 	public function setup() {
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
@@ -89,7 +88,7 @@ class Event_Manager {
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
-	
+
 		acf_add_local_field_group( array(
 		'key' => 'group_63ca9a68be429',
 		'title' => 'Campi Evento',
@@ -282,6 +281,73 @@ class Event_Manager {
 				'placeholder' => '',
 			),
 			array(
+				'key' => 'field_63e6574c824bc',
+				'label' => 'Allegato',
+				'name' => 'allegato',
+				'aria-label' => '',
+				'type' => 'file',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'return_format' => 'array',
+				'library' => 'all',
+				'min_size' => '',
+				'max_size' => '',
+				'mime_types' => '',
+			),
+			array(
+				'key' => 'field_67c80cb3fbdec',
+				'label' => 'Link dettaglio',
+				'name' => 'link_dettaglio',
+				'aria-label' => '',
+				'type' => 'select',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'choices' => array(
+					'scheda' => 'Scheda dettaglio',
+					'sitoweb' => 'Sito web',
+					'allegato' => 'Link ad allegato',
+				),
+				'default_value' => 'scheda',
+				'return_format' => 'value',
+				'multiple' => 0,
+				'allow_null' => 0,
+				'allow_in_bindings' => 0,
+				'ui' => 0,
+				'ajax' => 0,
+				'placeholder' => '',
+				'create_options' => 0,
+				'save_options' => 0,
+			),
+			array(
+				'key' => 'field_63fcc059ead9c',
+				'label' => 'Video',
+				'name' => 'video',
+				'aria-label' => '',
+				'type' => 'url',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+			),
+			array(
 				'key' => 'field_63ca9c03b8fd1',
 				'label' => 'Progetto',
 				'name' => 'progetto',
@@ -338,43 +404,6 @@ class Event_Manager {
 				),
 			),
 			array(
-				'key' => 'field_63e6574c824bc',
-				'label' => 'Allegato',
-				'name' => 'allegato',
-				'aria-label' => '',
-				'type' => 'file',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'return_format' => 'array',
-				'library' => 'all',
-				'min_size' => '',
-				'max_size' => '',
-				'mime_types' => '',
-			),
-			array(
-				'key' => 'field_63fcc059ead9c',
-				'label' => 'Video',
-				'name' => 'video',
-				'aria-label' => '',
-				'type' => 'url',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-			),
-			array(
 				'key' => 'field_63ca9bdcb8fd0',
 				'label' => 'Promuovi in carousel',
 				'name' => 'promuovi_in_carousel',
@@ -414,34 +443,6 @@ class Event_Manager {
 				'ui_on_text' => '',
 				'ui_off_text' => '',
 			),
-			array(
-				'key' => 'field_67c80cb3fbdec',
-				'label' => 'Link dettaglio',
-				'name' => 'link_dettaglio',
-				'aria-label' => '',
-				'type' => 'select',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'choices' => array(
-					'scheda' => 'Scheda dettaglio',
-					'sitoweb' => 'Sito web',
-					'allegato' => 'Link ad allegato',
-				),
-				'default_value' => 'scheda',
-				'return_format' => 'value',
-				'multiple' => 0,
-				'allow_null' => 0,
-				'allow_in_bindings' => 0,
-				'ui' => 0,
-				'ajax' => 0,
-				'placeholder' => '',
-			),
 		),
 		'location' => array(
 			array(
@@ -461,7 +462,7 @@ class Event_Manager {
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 1,
-	) );
+		) );
 		
 	}
 

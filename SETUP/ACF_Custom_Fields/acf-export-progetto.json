@@ -241,6 +241,63 @@
                 "bidirectional_target": []
             },
             {
+                "key": "field_63e650d5a74bc",
+                "label": "Pubblicazioni",
+                "name": "pubblicazioni",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "pubblicazione"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "elements": "",
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_682ec7cfe1a69",
+                "label": "Risorse tecniche",
+                "name": "risorse_tecniche",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "risorsa-tecnica"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            },
+            {
                 "key": "field_63c6cebf3e66e",
                 "label": "Allegato 1",
                 "name": "allegato1",
@@ -299,63 +356,6 @@
                 "min_size": "",
                 "max_size": "",
                 "mime_types": ""
-            },
-            {
-                "key": "field_63e650d5a74bc",
-                "label": "Pubblicazioni",
-                "name": "pubblicazioni",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "pubblicazione"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": "",
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_682ec7cfe1a69",
-                "label": "Risorse tecniche",
-                "name": "risorse_tecniche",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "risorsa-tecnica"
-                ],
-                "post_status": "",
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "allow_in_bindings": 0,
-                "elements": "",
-                "bidirectional": 0,
-                "bidirectional_target": []
             }
         ],
         "location": [

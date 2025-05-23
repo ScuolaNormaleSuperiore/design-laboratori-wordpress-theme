@@ -23,7 +23,6 @@ class News_Manager {
 	public function setup() {
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
@@ -92,7 +91,7 @@ class News_Manager {
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
-	
+
 		acf_add_local_field_group( array(
 		'key' => 'group_63cab53e5eb0e',
 		'title' => 'Campi Notizia',
@@ -223,6 +222,70 @@ class News_Manager {
 				'ui' => 0,
 				'ajax' => 0,
 				'placeholder' => '',
+				'create_options' => 0,
+				'save_options' => 0,
+			),
+			array(
+				'key' => 'field_6830251b7ec24',
+				'label' => 'Progetto',
+				'name' => 'progetto',
+				'aria-label' => '',
+				'type' => 'relationship',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array(
+					0 => 'progetto',
+				),
+				'post_status' => '',
+				'taxonomy' => '',
+				'filters' => array(
+					0 => 'search',
+				),
+				'return_format' => 'object',
+				'min' => '',
+				'max' => '',
+				'allow_in_bindings' => 0,
+				'elements' => '',
+				'bidirectional' => 0,
+				'bidirectional_target' => array(
+				),
+			),
+			array(
+				'key' => 'field_68302595928c9',
+				'label' => 'Indirizzo di ricerca',
+				'name' => 'indirizzo_di_ricerca',
+				'aria-label' => '',
+				'type' => 'relationship',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array(
+					0 => 'indirizzo-di-ricerca',
+				),
+				'post_status' => '',
+				'taxonomy' => '',
+				'filters' => array(
+					0 => 'search',
+				),
+				'return_format' => 'object',
+				'min' => '',
+				'max' => '',
+				'allow_in_bindings' => 0,
+				'elements' => '',
+				'bidirectional' => 0,
+				'bidirectional_target' => array(
+				),
 			),
 		),
 		'location' => array(
@@ -243,7 +306,7 @@ class News_Manager {
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 1,
-	) );
+		) );
 
 	}
 

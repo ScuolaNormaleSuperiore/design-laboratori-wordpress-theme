@@ -21,6 +21,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto campo Priorità nei progetti e negli indirizzi di ricerca.
 - Aggiunto contenuto Risorsa Tecnica.
 - Aggiunta possibilità di pubblicare Spin-off e Risorse Tecniche nel Carousel in HP.
+- Possibilità di collegare le notizie a progetti e indirizzi di ricerca.
+- Collegamento tra Progetti e Risorse tecniche.
 ## Corretto
 - Corretto funzionamento filtro dei tipi di contenuto nella ricerca del sito.
 ## Modificato

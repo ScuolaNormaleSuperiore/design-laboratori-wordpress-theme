@@ -138,43 +138,6 @@ if( ! function_exists( 'dli_get_projects_by_event_id' ) ) {
 	}
 }
 
-if( ! function_exists( 'dli_get_carousel_items' ) ) {
-	function dli_get_carousel_items( ) {
-		$items   = array();
-		$results = array();
-		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
-		if ( $mode_auto === 'true' ) {
-			$query = new WP_Query(
-				array(
-					'posts_per_page' => -1,
-					'post_type'      => array( EVENT_POST_TYPE, NEWS_POST_TYPE, PUBLICATION_POST_TYPE, PATENT_POST_TYPE, PROGETTO_POST_TYPE, WP_DEFAULT_POST ),
-					'orderby'        => 'post_date',
-					'order'          => 'DESC',
-					'meta_query'     => array(
-						array(
-							'key'     => 'promuovi_in_carousel',
-							'compare' => '=',
-							'value'   => 1,
-						),
-					),
-				)
-			);
-			$results = $query->posts;
-		} else {
-			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
-			$result_ids = $result_ids ? $result_ids : array();
-			foreach ( $result_ids As $id) {
-				array_push( $results, get_post( $id  ) );
-			}
-		}
-		foreach ( $results as $result ) {
-			$item = dli_get_post_wrapper( $result );
-			array_push( $items, $item );
-		}
-		return $items;
-	}
-}
-
 if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	function dli_get_post_wrapper( $result, $image_format='item-carousel' ) {
 		$item = array();

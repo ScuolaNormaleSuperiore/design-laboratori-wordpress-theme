@@ -191,6 +191,73 @@
                 "placeholder": ""
             },
             {
+                "key": "field_63e6574c824bc",
+                "label": "Allegato",
+                "name": "allegato",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_67c80cb3fbdec",
+                "label": "Link dettaglio",
+                "name": "link_dettaglio",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "scheda": "Scheda dettaglio",
+                    "sitoweb": "Sito web",
+                    "allegato": "Link ad allegato"
+                },
+                "default_value": "scheda",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "create_options": 0,
+                "save_options": 0
+            },
+            {
+                "key": "field_63fcc059ead9c",
+                "label": "Video",
+                "name": "video",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            },
+            {
                 "key": "field_63ca9c03b8fd1",
                 "label": "Progetto",
                 "name": "progetto",
@@ -245,43 +312,6 @@
                 "bidirectional_target": []
             },
             {
-                "key": "field_63e6574c824bc",
-                "label": "Allegato",
-                "name": "allegato",
-                "aria-label": "",
-                "type": "file",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_size": "",
-                "max_size": "",
-                "mime_types": ""
-            },
-            {
-                "key": "field_63fcc059ead9c",
-                "label": "Video",
-                "name": "video",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": ""
-            },
-            {
                 "key": "field_63ca9bdcb8fd0",
                 "label": "Promuovi in carousel",
                 "name": "promuovi_in_carousel",
@@ -320,34 +350,6 @@
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
-            },
-            {
-                "key": "field_67c80cb3fbdec",
-                "label": "Link dettaglio",
-                "name": "link_dettaglio",
-                "aria-label": "",
-                "type": "select",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "choices": {
-                    "scheda": "Scheda dettaglio",
-                    "sitoweb": "Sito web",
-                    "allegato": "Link ad allegato"
-                },
-                "default_value": "scheda",
-                "return_format": "value",
-                "multiple": 0,
-                "allow_null": 0,
-                "allow_in_bindings": 0,
-                "ui": 0,
-                "ajax": 0,
-                "placeholder": ""
             }
         ],
         "location": [

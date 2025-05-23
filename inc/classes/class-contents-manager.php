@@ -413,4 +413,59 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
+	public static function get_related_items( $post, $field_name, $related_ct ) {
+		$item = new WP_Query(
+			array(
+			'posts_per_page' => -1,
+			'post_type'      => $related_ct,
+			'orderby'        => 'data_inizio',
+			'order'          => 'DESC',
+			'meta_query'     => array(
+				array(
+					'key'     => $field_name,
+					'compare' => 'LIKE',
+					'value'   => '"' . $post->ID . '"',
+				),
+			),
+			)
+		);
+		return $item;
+	}
+
+	
+	public static function get_carousel_items( ) {
+		$items   = array();
+		$results = array();
+		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
+		if ( $mode_auto === 'true' ) {
+			$query = new WP_Query(
+				array(
+					'posts_per_page' => -1,
+					'post_type'      => DLI_CAROUSEL_POST_TYPES,
+					'orderby'        => 'post_date',
+					'order'          => 'DESC',
+					'meta_query'     => array(
+						array(
+							'key'     => 'promuovi_in_carousel',
+							'compare' => '=',
+							'value'   => 1,
+						),
+					),
+				)
+			);
+			$results = $query->posts;
+		} else {
+			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
+			$result_ids = $result_ids ? $result_ids : array();
+			foreach ( $result_ids As $id) {
+				array_push( $results, get_post( $id  ) );
+			}
+		}
+		foreach ( $results as $result ) {
+			$item = dli_get_post_wrapper( $result );
+			array_push( $items, $item );
+		}
+		return $items;
+	}
+
 }
