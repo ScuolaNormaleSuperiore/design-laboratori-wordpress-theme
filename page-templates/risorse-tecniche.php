@@ -6,7 +6,6 @@
 
 global $post;
 get_header();
-define( 'DLI_SPINOFF_CELLS_PER_ROW', 10 );
 
 $selected_year   = '';
 $selected_types  = array();
@@ -14,7 +13,7 @@ $search_string   = '';
 $all_types       = dli_get_all_categories_by_ct( RT_TYPE_TAXONOMY, TECHNICAL_RESOURCE_POST_TYPE );
 $all_type_ids    = $all_types ? array_map( function( $item ) { return $item['id']; }, $all_types ) : [];
 $all_years       = DLI_ContentsManager::dli_get_all_technical_res_years();
-$per_page        = strval( DLI_PER_PAGE );
+$per_page        = strval( DLI_PER_PAGE_BIG );
 $per_page_values = DLI_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
@@ -38,11 +37,11 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 }
 
 $params = array(
-	'search_string'      => $search_string,
-	'type_technical_resource' => $selected_types? $selected_types: $all_type_ids,
-	'acquisition_year'   => $selected_year ? array( $selected_year ) : $all_years,
-	'per_page'           => $per_page,
-	'paged'              => $paged,
+	'search_string'           => $search_string,
+	'type_technical_resource' => $selected_types? $selected_types: null,
+	'acquisition_year'        => $selected_year ? array( $selected_year ) : null,
+	'per_page'               => $per_page,
+	'paged'                  => $paged,
 );
 $the_query   = DLI_ContentsManager::get_technical_resource_data_query( $params );
 $num_results = $the_query->found_posts;
@@ -54,16 +53,16 @@ $num_results = $the_query->found_posts;
 	<!-- BREADCRUMB -->
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
-	<!-- BANNER SPINOFF -->
-	<?php get_template_part( 'template-parts/hero/spinoff' ); ?>
+	<!-- BANNER -->
+	<?php get_template_part( 'template-parts/hero/risorse-tecniche' ); ?>
 	
 	<!-- ELENCO RISORSE TECNICHE -->
-	<section id="spinoff">
+	<section id="technical-resources">
 		<div class="container p-5">
 			<!-- inizio row principale -->
 			<div class="row">
 				<div class="col-12 col-lg-3 border-end pb-3">
-					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="spinoffform" method="GET">
+					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="techresorcesform" method="GET">
 						<!--COLONNA FILTRI -->
 						
 						<!-- FILTRO PER ANNO -->

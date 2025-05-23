@@ -259,22 +259,24 @@ class DLI_ContentsManager
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			's'              => $params['search_string'],
-			'meta_query'     =>  array(
-				array(
-						'key'     => 'anno_acquisizione',
-						'value'   => $params['acquisition_year'],
-						'compare' => 'IN',
-				),
-			),
-			'tax_query'      => array(
-				array(
-					'taxonomy' => RT_TYPE_TAXONOMY,
-					'field'    => 'term_id',
-					'operator' => 'IN',
-					'terms'    => $params['type_technical_resource'],
-				)
-			)
 		);
+		// Aggiungi la meta_query solo se 'acquisition_year' è presente e non vuoto
+		if ( ( ! empty( $params['acquisition_year'] ) ) && ( $params['acquisition_year'] !== null ) ) {
+			$args['meta_query'][] = array(
+				'key'     => 'anno_acquisizione',
+				'value'   => $params['acquisition_year'],
+				'compare' => 'IN',
+			);
+		}
+		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto
+		if ( ( ! empty( $params['type_technical_resource']) ) && ( $params['type_technical_resource'] !== null ) ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => RT_TYPE_TAXONOMY,
+				'field'    => 'term_id',
+				'operator' => 'IN',
+				'terms'    => $params['type_technical_resource'],
+			);
+		}
 		return new WP_Query( $args );
 	}
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-23 11:01+0000\n"
+"POT-Creation-Date: 2025-05-23 13:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -34,29 +34,29 @@ msgstr ""
 msgid "404"
 msgstr ""
 
-#: inc/admin/options.php:1951
+#: inc/admin/options.php:2021
 msgid "Abilita l'integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:2157
+#: inc/admin/options.php:2227
 msgid "Abilita l'integrazione con IRIS AP Brevetti"
 msgstr ""
 
-#: inc/admin/options.php:1853
+#: inc/admin/options.php:1923
 msgid ""
 "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
 "pagina"
 msgstr ""
 
-#: inc/admin/options.php:1965 inc/admin/options.php:2171
+#: inc/admin/options.php:2035 inc/admin/options.php:2241
 msgid "Abilita messaggi debug"
 msgstr ""
 
-#: inc/admin/options.php:1966 inc/admin/options.php:2172
+#: inc/admin/options.php:2036 inc/admin/options.php:2242
 msgid "Abilita messaggi debug nel file error.log"
 msgstr ""
 
-#: inc/admin/options.php:2481
+#: inc/admin/options.php:2551
 msgid "Abilita REST API"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgid ""
 "nella "
 msgstr ""
 
-#: inc/admin/options.php:2121 inc/admin/options.php:2265
+#: inc/admin/options.php:2191 inc/admin/options.php:2335
 msgid "Aggiorna"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Allegati"
 msgstr ""
 
-#: inc/admin/options.php:2303
+#: inc/admin/options.php:2373
 msgid "Altre Informazioni"
 msgstr ""
 
@@ -173,7 +173,7 @@ msgstr ""
 msgid "Altre informazioni"
 msgstr ""
 
-#: inc/admin/options.php:2285 inc/admin/options.php:2288
+#: inc/admin/options.php:2355 inc/admin/options.php:2358
 msgid "Altro"
 msgstr ""
 
@@ -185,8 +185,8 @@ msgstr ""
 msgid "Anno acquisizione"
 msgstr ""
 
-#: single-risorsa-tecnica.php:327 page-templates/risorse-tecniche.php:74
-#: page-templates/risorse-tecniche.php:76
+#: single-risorsa-tecnica.php:327 page-templates/risorse-tecniche.php:73
+#: page-templates/risorse-tecniche.php:75
 msgid "Anno di acquisizione"
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr ""
 msgid "Area di configurazione delle informazioni di base"
 msgstr ""
 
-#: inc/admin/options.php:2304
+#: inc/admin/options.php:2374
 msgid "Area di configurazione delle opzioni generali del tema"
 msgstr ""
 
@@ -256,15 +256,15 @@ msgstr ""
 msgid "Attiva l'hero principale in Home Page"
 msgstr ""
 
-#: inc/admin/options.php:2156
+#: inc/admin/options.php:2226
 msgid "Attiva l'importazione dei brevetti"
 msgstr ""
 
-#: inc/admin/options.php:1950
+#: inc/admin/options.php:2020
 msgid "Attiva l'integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:2342
+#: inc/admin/options.php:2412
 msgid "Attiva la newsletter"
 msgstr ""
 
@@ -286,11 +286,11 @@ msgstr ""
 msgid "Avvisi in Home"
 msgstr ""
 
-#: inc/admin/options.php:2260
+#: inc/admin/options.php:2330
 msgid "Azione da intraprendere se il brevetto esiste già"
 msgstr ""
 
-#: inc/admin/options.php:2116
+#: inc/admin/options.php:2186
 msgid "Azione da intraprendere se l'evento esiste già"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgstr ""
 msgid "Box 3 dei contenuti in evidenza"
 msgstr ""
 
-#: inc/admin/options.php:2107
+#: inc/admin/options.php:2177
 msgid "Bozza"
 msgstr ""
 
@@ -338,11 +338,11 @@ msgstr ""
 msgid "Brevetto"
 msgstr ""
 
-#: inc/admin/options.php:2259
+#: inc/admin/options.php:2329
 msgid "Brevetto esistente"
 msgstr ""
 
-#: inc/admin/options.php:2361
+#: inc/admin/options.php:2431
 msgid "Brevo"
 msgstr ""
 
@@ -351,7 +351,7 @@ msgid "Cancella"
 msgstr ""
 
 #: page-templates/blog.php:49 page-templates/eventi.php:57
-#: page-templates/notizie.php:56 inc/admin/options.php:2006
+#: page-templates/notizie.php:56 inc/admin/options.php:2076
 msgid "Categoria"
 msgstr ""
 
@@ -365,8 +365,8 @@ msgid "Cerca area tematica"
 msgstr ""
 
 #: page-templates/brevetti.php:122 page-templates/brevetti.php:126
-#: page-templates/risorse-tecniche.php:134
-#: page-templates/risorse-tecniche.php:138 page-templates/spinoff.php:122
+#: page-templates/risorse-tecniche.php:133
+#: page-templates/risorse-tecniche.php:137 page-templates/spinoff.php:122
 #: page-templates/spinoff.php:126
 msgid "Cerca contenuto"
 msgstr ""
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Credenziali non valide."
 msgstr ""
 
-#: inc/admin/options.php:2085
+#: inc/admin/options.php:2155
 msgid "Criterio di scelta degli eventi da importare"
 msgstr ""
 
@@ -593,6 +593,7 @@ msgstr ""
 #: inc/admin/options.php:1124 inc/admin/options.php:1348
 #: inc/admin/options.php:1417 inc/admin/options.php:1486
 #: inc/admin/options.php:1556 inc/admin/options.php:1710
+#: inc/admin/options.php:1857
 msgid "Descrizione Sezione"
 msgstr ""
 
@@ -600,6 +601,7 @@ msgstr ""
 #: inc/admin/options.php:1143 inc/admin/options.php:1367
 #: inc/admin/options.php:1436 inc/admin/options.php:1505
 #: inc/admin/options.php:1576 inc/admin/options.php:1730
+#: inc/admin/options.php:1876
 msgid "Descrizione Sezione ENG"
 msgstr ""
 
@@ -671,7 +673,7 @@ msgstr ""
 msgid "Domanda di priorità"
 msgstr ""
 
-#: inc/admin/options.php:2076 inc/admin/options.php:2251
+#: inc/admin/options.php:2146 inc/admin/options.php:2321
 msgid "Dry Run (test import)"
 msgstr ""
 
@@ -679,7 +681,7 @@ msgstr ""
 msgid "Dry-run - Importo oggetto: "
 msgstr ""
 
-#: inc/admin/options.php:2060 inc/admin/options.php:2235
+#: inc/admin/options.php:2130 inc/admin/options.php:2305
 msgid "Due volte al giorno"
 msgstr ""
 
@@ -776,12 +778,20 @@ msgstr ""
 msgid "es: \"Questi i luoghi del laboratorio\""
 msgstr ""
 
+#: inc/admin/options.php:1858
+msgid "es: \"Risorsa Tecnica del Laboratorio.\""
+msgstr ""
+
 #: inc/admin/options.php:1487
 msgid "es: \"Spin-off del Laboratorio.\""
 msgstr ""
 
 #: inc/admin/options.php:1506
 msgid "es: \"Spin-off of the Lab\""
+msgstr ""
+
+#: inc/admin/options.php:1877
+msgid "es: \"Technical Resource of the Lab\""
 msgstr ""
 
 #: inc/admin/options.php:986
@@ -837,7 +847,7 @@ msgstr ""
 msgid "Evento"
 msgstr ""
 
-#: inc/admin/options.php:2115
+#: inc/admin/options.php:2185
 msgid "Evento esistente"
 msgstr ""
 
@@ -862,7 +872,7 @@ msgstr ""
 msgid "File PDF"
 msgstr ""
 
-#: page-templates/brevetti.php:136 page-templates/risorse-tecniche.php:148
+#: page-templates/brevetti.php:136 page-templates/risorse-tecniche.php:147
 #: page-templates/spinoff.php:136
 msgid "Filtra"
 msgstr ""
@@ -879,7 +889,7 @@ msgstr ""
 msgid "Filtra per tipo di contenuto"
 msgstr ""
 
-#: inc/admin/options.php:2075 inc/admin/options.php:2250
+#: inc/admin/options.php:2145 inc/admin/options.php:2320
 msgid "Finalizza import"
 msgstr ""
 
@@ -918,7 +928,7 @@ msgid ""
 "home\""
 msgstr ""
 
-#: inc/admin/options.php:2311
+#: inc/admin/options.php:2381
 msgid "Gestione dello stile del sito"
 msgstr ""
 
@@ -929,7 +939,7 @@ msgid ""
 "home\""
 msgstr ""
 
-#: inc/admin/options.php:2355
+#: inc/admin/options.php:2425
 msgid "Gestore delle newsletter"
 msgstr ""
 
@@ -987,27 +997,27 @@ msgstr ""
 msgid "ICT SNS"
 msgstr ""
 
-#: inc/admin/options.php:2395
+#: inc/admin/options.php:2465
 msgid "ID del template"
 msgstr ""
 
-#: inc/admin/options.php:2396
+#: inc/admin/options.php:2466
 msgid "ID del template della pagina che gestisce la double OptIn"
 msgstr ""
 
-#: inc/admin/options.php:2007
+#: inc/admin/options.php:2077
 msgid "ID della categoria degli eventi da importare"
 msgstr ""
 
-#: inc/admin/options.php:2380
+#: inc/admin/options.php:2450
 msgid "ID della lista"
 msgstr ""
 
-#: inc/admin/options.php:2381
+#: inc/admin/options.php:2451
 msgid "ID della lista associata al sito"
 msgstr ""
 
-#: inc/admin/options.php:2122 inc/admin/options.php:2266
+#: inc/admin/options.php:2192 inc/admin/options.php:2336
 msgid "Ignora"
 msgstr ""
 
@@ -1108,16 +1118,16 @@ msgstr ""
 msgid "Importazione eseguita correttamente"
 msgstr ""
 
-#: inc/admin/options.php:1944
+#: inc/admin/options.php:2014
 msgid "Impostazioni per configurare l'integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:2150
+#: inc/admin/options.php:2220
 msgid ""
 "Impostazioni per configurare l'integrazione con IRIS Cineca (AP Brevetti)"
 msgstr ""
 
-#: inc/admin/options.php:2274
+#: inc/admin/options.php:2344
 msgid ""
 "Impostazioni per configurare l'integrazione con IRIS Cineca (Pubblicazioni)"
 msgstr ""
@@ -1128,20 +1138,20 @@ msgid ""
 "strutture e canali fisici di erogazione di un servizio"
 msgstr ""
 
-#: inc/admin/options.php:2070 inc/admin/options.php:2245
+#: inc/admin/options.php:2140 inc/admin/options.php:2315
 msgid ""
 "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova "
 "(dry-run)"
 msgstr ""
 
-#: inc/admin/options.php:2052
+#: inc/admin/options.php:2122
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
 "autenticazione http://miosito/wp-json/custom/v1/indico-import."
 msgstr ""
 
-#: inc/admin/options.php:2227
+#: inc/admin/options.php:2297
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
@@ -1232,7 +1242,7 @@ msgstr ""
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
-#: inc/admin/options.php:1926 inc/admin/options.php:1932
+#: inc/admin/options.php:1996 inc/admin/options.php:2002
 msgid "Indico"
 msgstr ""
 
@@ -1266,7 +1276,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: inc/admin/options.php:2043
+#: inc/admin/options.php:2113
 msgid "Inglese"
 msgstr ""
 
@@ -1280,7 +1290,7 @@ msgid ""
 "completo per facilitare la ricerca"
 msgstr ""
 
-#: inc/admin/options.php:2461
+#: inc/admin/options.php:2531
 msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
@@ -1318,7 +1328,7 @@ msgstr ""
 msgid "Inserisci messaggi che saranno visualizzati nella homepage"
 msgstr ""
 
-#: inc/admin/options.php:1846
+#: inc/admin/options.php:1916
 msgid "Inserisci qui i link ai tuoi socialmedia"
 msgstr ""
 
@@ -1391,6 +1401,13 @@ msgid ""
 "panoramica delle Pubblicazioni</a>"
 msgstr ""
 
+#: inc/admin/options.php:1843
+#, php-format
+msgid ""
+"Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
+"panoramica delle Risorse Tecniche</a>"
+msgstr ""
+
 #: inc/admin/options.php:1472
 #, php-format
 msgid ""
@@ -1402,7 +1419,7 @@ msgstr ""
 msgid "Inventori"
 msgstr ""
 
-#: inc/admin/options.php:2132 inc/admin/options.php:2138
+#: inc/admin/options.php:2202 inc/admin/options.php:2208
 msgid "Iris"
 msgstr ""
 
@@ -1418,11 +1435,11 @@ msgstr ""
 msgid "Iscrizione alla newsletter avvenuta con successo"
 msgstr ""
 
-#: inc/admin/options.php:2042
+#: inc/admin/options.php:2112
 msgid "Italiano"
 msgstr ""
 
-#: inc/admin/options.php:2023
+#: inc/admin/options.php:2093
 msgid "Keywords"
 msgstr ""
 
@@ -1442,11 +1459,11 @@ msgstr ""
 msgid "L'indirizzo del Laboratorio"
 msgstr ""
 
-#: inc/admin/options.php:1982
+#: inc/admin/options.php:2052
 msgid "L'url del sito Indico da cui importare i dati"
 msgstr ""
 
-#: inc/admin/options.php:2188
+#: inc/admin/options.php:2258
 msgid "L'url dell'endpoint da invocare per scaricare i brevetti."
 msgstr ""
 
@@ -1458,7 +1475,7 @@ msgstr ""
 msgid "La città dove risiede il Laboratorio"
 msgstr ""
 
-#: inc/admin/options.php:2214
+#: inc/admin/options.php:2284
 msgid "La password per autenticarsi sul web-service."
 msgstr ""
 
@@ -1499,7 +1516,7 @@ msgstr ""
 msgid "Le Novità"
 msgstr ""
 
-#: inc/admin/options.php:2024
+#: inc/admin/options.php:2094
 msgid ""
 "Le parole chiave degli eventi da importare, separate da virgola (operatore "
 "usato per la selezione: OR)"
@@ -1546,11 +1563,11 @@ msgstr ""
 msgid "Leggi di più"
 msgstr ""
 
-#: inc/admin/options.php:2036
+#: inc/admin/options.php:2106
 msgid "Lingua default"
 msgstr ""
 
-#: inc/admin/options.php:2037
+#: inc/admin/options.php:2107
 msgid "Lingua in cui devono essere importati gli eventi."
 msgstr ""
 
@@ -1562,7 +1579,7 @@ msgstr ""
 msgid "Link utili"
 msgstr ""
 
-#: inc/admin/options.php:2201
+#: inc/admin/options.php:2271
 msgid "Lo username per autenticarsi sul web-service."
 msgstr ""
 
@@ -1570,7 +1587,7 @@ msgstr ""
 msgid "Localizzazione"
 msgstr ""
 
-#: inc/admin/options.php:2410
+#: inc/admin/options.php:2480
 msgid "Login"
 msgstr ""
 
@@ -1728,7 +1745,7 @@ msgstr ""
 msgid "Mostra chip"
 msgstr ""
 
-#: inc/admin/options.php:1852
+#: inc/admin/options.php:1922
 msgid "Mostra le icone social"
 msgstr ""
 
@@ -1744,7 +1761,7 @@ msgstr ""
 msgid "Mostra tutti risultati"
 msgstr ""
 
-#: inc/admin/options.php:2431
+#: inc/admin/options.php:2501
 msgid "Multilingua"
 msgstr ""
 
@@ -1767,7 +1784,7 @@ msgstr ""
 
 #. Name of the template
 #: page-templates/newsletter.php:2 page-templates/newsletter.php:85
-#: inc/admin/options.php:2334 template-parts/common/newsletter.php:10
+#: inc/admin/options.php:2404 template-parts/common/newsletter.php:10
 msgid "Newsletter"
 msgstr ""
 
@@ -1780,11 +1797,11 @@ msgstr ""
 #: inc/admin/options.php:819 inc/admin/options.php:833
 #: inc/admin/options.php:1251 inc/admin/options.php:1309
 #: inc/admin/options.php:1672 inc/admin/options.php:1819
-#: inc/admin/options.php:1858 inc/admin/options.php:1956
-#: inc/admin/options.php:1971 inc/admin/options.php:2162
-#: inc/admin/options.php:2177 inc/admin/options.php:2347
-#: inc/admin/options.php:2423 inc/admin/options.php:2444
-#: inc/admin/options.php:2486
+#: inc/admin/options.php:1928 inc/admin/options.php:2026
+#: inc/admin/options.php:2041 inc/admin/options.php:2232
+#: inc/admin/options.php:2247 inc/admin/options.php:2417
+#: inc/admin/options.php:2493 inc/admin/options.php:2514
+#: inc/admin/options.php:2556
 msgid "No"
 msgstr ""
 
@@ -1820,7 +1837,7 @@ msgstr ""
 msgid "Non sei autenticato."
 msgstr ""
 
-#: page-templates/risorse-tecniche.php:217
+#: page-templates/risorse-tecniche.php:216
 msgid "Non è stata trovata alcuna risorsa tecnica"
 msgstr ""
 
@@ -1940,7 +1957,7 @@ msgid ""
 "e data di scadenza (opzionale)"
 msgstr ""
 
-#: inc/admin/options.php:2058 inc/admin/options.php:2233
+#: inc/admin/options.php:2128 inc/admin/options.php:2303
 msgid "Ogni ora"
 msgstr ""
 
@@ -1976,7 +1993,7 @@ msgstr ""
 msgid "Pagine collegate"
 msgstr ""
 
-#: inc/admin/options.php:2213
+#: inc/admin/options.php:2283
 msgid "Password"
 msgstr ""
 
@@ -2376,7 +2393,7 @@ msgstr ""
 msgid "Progetto"
 msgstr ""
 
-#: inc/admin/options.php:2106
+#: inc/admin/options.php:2176
 msgid "Pubblicato"
 msgstr ""
 
@@ -2390,7 +2407,7 @@ msgstr ""
 msgid "Pubblicazioni"
 msgstr ""
 
-#: inc/admin/options.php:2418
+#: inc/admin/options.php:2488
 msgid "Pulsante per il login visibile"
 msgstr ""
 
@@ -2398,7 +2415,7 @@ msgstr ""
 msgid "Responsabili"
 msgstr ""
 
-#: inc/admin/options.php:2473
+#: inc/admin/options.php:2543
 msgid "REST API"
 msgstr ""
 
@@ -2411,7 +2428,7 @@ msgstr ""
 msgid "Ricerca"
 msgstr ""
 
-#: page-templates/brevetti.php:116 page-templates/risorse-tecniche.php:128
+#: page-templates/brevetti.php:116 page-templates/risorse-tecniche.php:127
 #: page-templates/spinoff.php:116
 msgid "Ricerca libera"
 msgstr ""
@@ -2470,7 +2487,11 @@ msgstr ""
 msgid "Risorsa Tecnica"
 msgstr ""
 
-#: single-progetto.php:204
+#: inc/admin/options.php:1829
+msgid "Risorse Tecniche"
+msgstr ""
+
+#: single-progetto.php:204 inc/admin/options.php:1835
 msgid "Risorse tecniche"
 msgstr ""
 
@@ -2494,19 +2515,19 @@ msgid ""
 msgstr ""
 
 #: page-templates/brevetti.php:75 page-templates/pubblicazioni.php:147
-#: page-templates/risorse-tecniche.php:78 page-templates/spinoff.php:75
+#: page-templates/risorse-tecniche.php:77 page-templates/spinoff.php:75
 msgid "Scegli un'opzione"
 msgstr ""
 
-#: inc/admin/options.php:2084
+#: inc/admin/options.php:2154
 msgid "Scelta eventi"
 msgstr ""
 
-#: inc/admin/options.php:2051 inc/admin/options.php:2226
+#: inc/admin/options.php:2121 inc/admin/options.php:2296
 msgid "Schedulazione"
 msgstr ""
 
-#: inc/admin/options.php:2057 inc/admin/options.php:2232
+#: inc/admin/options.php:2127 inc/admin/options.php:2302
 msgid "Schedulazione disabilitata"
 msgstr ""
 
@@ -2515,7 +2536,7 @@ msgstr ""
 msgid "Seguici su"
 msgstr ""
 
-#: inc/admin/options.php:2439
+#: inc/admin/options.php:2509
 msgid "Selettore lingua visibile"
 msgstr ""
 
@@ -2560,7 +2581,7 @@ msgstr ""
 msgid "Selezione Automatica"
 msgstr ""
 
-#: inc/admin/options.php:2356
+#: inc/admin/options.php:2426
 msgid "Selezione del programma usato per gestire la newsletter del sito"
 msgstr ""
 
@@ -2568,7 +2589,7 @@ msgstr ""
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
-#: inc/admin/options.php:2320
+#: inc/admin/options.php:2390
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
 "Designers Italia)"
@@ -2634,15 +2655,15 @@ msgstr ""
 msgid "Sezione Indirizzi Ricerca"
 msgstr ""
 
-#: inc/admin/options.php:1943
+#: inc/admin/options.php:2013
 msgid "Sezione integrazione con Indico"
 msgstr ""
 
-#: inc/admin/options.php:2149
+#: inc/admin/options.php:2219
 msgid "Sezione integrazione con IRIS AP Brevetti"
 msgstr ""
 
-#: inc/admin/options.php:2273
+#: inc/admin/options.php:2343
 msgid "Sezione integrazione con IRIS Pubblicazioni"
 msgstr ""
 
@@ -2666,7 +2687,11 @@ msgstr ""
 msgid "Sezione Persone"
 msgstr ""
 
-#: inc/admin/options.php:1845
+#: inc/admin/options.php:1847
+msgid "Sezione Risorse Tecniche"
+msgstr ""
+
+#: inc/admin/options.php:1915
 msgid "Sezione socialmedia"
 msgstr ""
 
@@ -2679,11 +2704,11 @@ msgstr ""
 #: inc/admin/options.php:818 inc/admin/options.php:832
 #: inc/admin/options.php:1250 inc/admin/options.php:1308
 #: inc/admin/options.php:1671 inc/admin/options.php:1818
-#: inc/admin/options.php:1857 inc/admin/options.php:1955
-#: inc/admin/options.php:1970 inc/admin/options.php:2161
-#: inc/admin/options.php:2176 inc/admin/options.php:2346
-#: inc/admin/options.php:2422 inc/admin/options.php:2443
-#: inc/admin/options.php:2485
+#: inc/admin/options.php:1927 inc/admin/options.php:2025
+#: inc/admin/options.php:2040 inc/admin/options.php:2231
+#: inc/admin/options.php:2246 inc/admin/options.php:2416
+#: inc/admin/options.php:2492 inc/admin/options.php:2513
+#: inc/admin/options.php:2555
 msgid "Si"
 msgstr ""
 
@@ -2697,15 +2722,15 @@ msgstr ""
 msgid "Sito web"
 msgstr ""
 
-#: inc/admin/options.php:1828 inc/admin/options.php:1834
+#: inc/admin/options.php:1898 inc/admin/options.php:1904
 msgid "Socialmedia"
 msgstr ""
 
-#: inc/admin/options.php:2092
+#: inc/admin/options.php:2162
 msgid "Solo eventi di quest'anno"
 msgstr ""
 
-#: inc/admin/options.php:2091
+#: inc/admin/options.php:2161
 msgid "Solo eventi futuri"
 msgstr ""
 
@@ -2727,11 +2752,11 @@ msgstr ""
 msgid "Stato"
 msgstr ""
 
-#: inc/admin/options.php:2100
+#: inc/admin/options.php:2170
 msgid "Stato dell'oggetto importato"
 msgstr ""
 
-#: inc/admin/options.php:2101
+#: inc/admin/options.php:2171
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr ""
 
@@ -2739,15 +2764,15 @@ msgstr ""
 msgid "Stato legale"
 msgstr ""
 
-#: inc/admin/options.php:2325
+#: inc/admin/options.php:2395
 msgid "Stile Bootstrap Italia standard"
 msgstr ""
 
-#: inc/admin/options.php:2319
+#: inc/admin/options.php:2389
 msgid "Stile del sito"
 msgstr ""
 
-#: inc/admin/options.php:2326
+#: inc/admin/options.php:2396
 msgid "Stile personalizzato"
 msgstr ""
 
@@ -2852,11 +2877,11 @@ msgstr ""
 msgid "Testo hero ENG"
 msgstr ""
 
-#: page-templates/risorse-tecniche.php:102
+#: page-templates/risorse-tecniche.php:101
 msgid "Tipo di risorsa"
 msgstr ""
 
-#: inc/admin/options.php:2069 inc/admin/options.php:2244
+#: inc/admin/options.php:2139 inc/admin/options.php:2314
 msgid "Tipo import"
 msgstr ""
 
@@ -2906,7 +2931,7 @@ msgstr ""
 msgid "Titolo hero ENG"
 msgstr ""
 
-#: inc/admin/options.php:1994 inc/admin/options.php:2369
+#: inc/admin/options.php:2064 inc/admin/options.php:2439
 msgid "Token API"
 msgstr ""
 
@@ -2944,7 +2969,7 @@ msgstr ""
 msgid "Tutti gli articoli"
 msgstr ""
 
-#: inc/admin/options.php:2090 template-parts/home/hp-list-event.php:106
+#: inc/admin/options.php:2160 template-parts/home/hp-list-event.php:106
 msgid "Tutti gli eventi"
 msgstr ""
 
@@ -2962,11 +2987,11 @@ msgstr ""
 msgid "Ulteriori informazioni"
 msgstr ""
 
-#: inc/admin/options.php:2059 inc/admin/options.php:2234
+#: inc/admin/options.php:2129 inc/admin/options.php:2304
 msgid "Una volta al giorno"
 msgstr ""
 
-#: inc/admin/options.php:2061 inc/admin/options.php:2236
+#: inc/admin/options.php:2131 inc/admin/options.php:2306
 msgid "Una volta alla settimana"
 msgstr ""
 
@@ -2974,7 +2999,7 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
-#: inc/admin/options.php:2187
+#: inc/admin/options.php:2257
 msgid "Url endpoint brevetti"
 msgstr ""
 
@@ -2982,7 +3007,7 @@ msgstr ""
 msgid "Url ente padre"
 msgstr ""
 
-#: inc/admin/options.php:1981
+#: inc/admin/options.php:2051
 msgid "Url Indico"
 msgstr ""
 
@@ -3014,7 +3039,7 @@ msgstr ""
 msgid "Usa come Immagine Sponsor"
 msgstr ""
 
-#: inc/admin/options.php:2200
+#: inc/admin/options.php:2270
 msgid "Username"
 msgstr ""
 
@@ -3136,7 +3161,7 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: inc/admin/options.php:2452
+#: inc/admin/options.php:2522
 msgid "Web Analytics Italia"
 msgstr ""
 

@@ -1,8 +1,8 @@
 <?php
-	$testo_sezione = dli_get_configuration_field_by_lang( 'testo_spinoff', 'spinoff' );
+	$testo_sezione = dli_get_configuration_field_by_lang( 'testo_risorse_tecniche', 'risorse-tecniche' );
 ?>
 
-<section id="banner-spinoff" aria-describedby="Testo introduttivo sezione spinoff" class="bg-banner-progetti">
+<section id="banner-risorse-tecniche" aria-describedby="Testo introduttivo sezione risorse tecniche" class="bg-banner-progetti">
 	<div class="section-muted p-3 primary-bg-c1">
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
