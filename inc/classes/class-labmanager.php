@@ -37,6 +37,10 @@ if ( ! class_exists( 'Sponsor_Manager' ) ) {
 	include_once 'class-sponsormanager.php';
 }
 
+if ( ! class_exists( 'TechnicalResource_Manager' ) ) {
+	include_once 'class-technicalresourcemanager.php';
+}
+
 if ( ! class_exists( 'ResearchActivities_Manager' ) ) {
 	include_once 'class-researchactivitiesmanager.php';
 }
@@ -199,6 +203,10 @@ class DLI_LabManager {
 		// Setup del post type Sponsor.
 		$spm = new Sponsor_Manager();
 		$spm->setup();
+
+		// Setup del post type Technical Resource.
+		$trm = new TechnicalResource_Manager();
+		$trm->setup();
 
 	}
 

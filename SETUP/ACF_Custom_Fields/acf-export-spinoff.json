@@ -72,7 +72,9 @@
                 "allow_in_bindings": 0,
                 "ui": 0,
                 "ajax": 0,
-                "placeholder": ""
+                "placeholder": "",
+                "create_options": 0,
+                "save_options": 0
             },
             {
                 "key": "field_67a9de5539f8f",
@@ -198,6 +200,48 @@
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "placeholder": ""
+            },
+            {
+                "key": "field_682edd2916e5a",
+                "label": "Promuovi in home",
+                "name": "promuovi_in_home",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_682edd3516e5b",
+                "label": "Promuovi in carousel",
+                "name": "promuovi_in_carousel",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             }
         ],
         "location": [

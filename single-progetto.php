@@ -9,42 +9,30 @@
 global $post;
 get_header();
 
-$ID                 = get_the_ID();
-$image_metadata     = dli_get_image_metadata( $post, 'item-gallery' );
-$descrizione        = apply_filters( 'the_content', $post->post_content );
-$responsabili       = dli_get_field( 'responsabile_del_progetto' );
-$partecipanti       = dli_get_field( 'persone' );
-$indirizzidiricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
-$pubblicazioni      = dli_get_field( 'pubblicazioni' );
-$levels             = wp_get_post_terms( $ID, 'post_tag' );
-$fields_allegati    = array( 'allegato1', 'allegato2', 'allegato3' );
-$allegati           = array();
+$ID                   = get_the_ID();
+$image_metadata       = dli_get_image_metadata( $post, 'item-gallery' );
+$descrizione          = apply_filters( 'the_content', $post->post_content );
+$responsabili         = dli_get_field( 'responsabile_del_progetto' );
+$partecipanti         = dli_get_field( 'persone' );
+$indirizzi_di_ricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
+$pubblicazioni        = dli_get_field( 'pubblicazioni' );
+$levels               = wp_get_post_terms( $ID, 'post_tag' );
+$fields_allegati      = array( 'allegato1', 'allegato2', 'allegato3' );
+$allegati             = array();
 foreach ( $fields_allegati as $field ) {
 	$item = dli_get_field( $field );
 	if ( $item ) {
 		array_push( $allegati, $item );
 	}
 }
-$websiteurl   = dli_get_field( 'url' );
+$web_site_url = dli_get_field( 'url' );
 $current_lang = dli_current_language();
 $tag_page     = DLI_PAGE_PER_CT[PROGETTO_POST_TYPE][$current_lang];
 
-// recupero la lista degli eventi correlati ad un progetto.
-$eventi = new WP_Query(
-	array(
-	'posts_per_page' => -1,
-	'post_type'      => 'evento',
-	'orderby'        => 'data_inizio', //I’m afraid the ordering post by subfield is not possible, https://support.advancedcustomfields.com/forums/topic/wp_query-and-sub-fields/
-	'order'          => 'DESC',
-	'meta_query'     => array(
-		array(
-			'key'     => 'progetto',
-			'compare' => 'LIKE',
-			'value'   => '"' . $ID . '"',
-		),
-	),
-	)
-);
+// Recupero la lista degli eventi e delle notizie correlate.
+$eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
+// Recupero la lista risorse tecniche correlate.
+$risorse = dli_get_field( 'risorse_tecniche' );
 
 ?>
 
@@ -77,9 +65,9 @@ $eventi = new WP_Query(
 						<p class="d-none d-lg-block">
 							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 							<?php
-								if ( $websiteurl ) {
+								if ( $web_site_url ) {
 							?>
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $websiteurl ) ; ?>">
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $web_site_url ) ; ?>">
 								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
 							</a>
 							<?php
@@ -178,10 +166,14 @@ $eventi = new WP_Query(
 											</li>
 											<?php
 										}
-										if ( $indirizzidiricerca ) {
+										if ( $indirizzi_di_ricerca ) {
 											?>
 											<li class="nav-item">
-												<a class="nav-link" href="#sezione-indirizzi-di-ricerca"><span><?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?></span></a>
+												<a class="nav-link" href="#sezione-indirizzi-di-ricerca">
+													<span>
+														<?php echo dli_translate( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
+													</span>
+												</a>
 											</li>
 											<?php
 										}
@@ -199,10 +191,17 @@ $eventi = new WP_Query(
 										</li>
 											<?php
 										}
-										if ( $eventi->posts ) {
+										if ( $eventi ) {
 											?>
 										<li class="nav-item">
-											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></span></a>
+										</li>
+											<?php
+										}
+										if ( $risorse ) {
+											?>
+										<li class="nav-item">
+											<a class="nav-link link-100" href="#sezione-risorse-tecniche"><span><?php echo __( 'Risorse tecniche', 'design_laboratori_italia' ); ?></span></a>
 										</li>
 											<?php
 										}
@@ -215,11 +214,12 @@ $eventi = new WP_Query(
 					</nav>
 				</div>
 			</div> <!-- row -->
+
 			<div class="col-12 col-lg-9 it-page-sections-container">
 
 				<?php
 				if ( $descrizione ) {
-					?>
+				?>
 				<h3 class="it-page-section h4" id="sezione-descrizione">
 					<?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?>
 				</h3>
@@ -233,7 +233,7 @@ $eventi = new WP_Query(
 					<?php
 				}
 				if ( $responsabili ) {
-					?>
+				?>
 					<!-- RESPONSABILE -->
 					<h3 class="it-page-section h4 pt-3" id="p2">
 						<?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?>
@@ -249,7 +249,7 @@ $eventi = new WP_Query(
 						);
 				}
 				if ( $partecipanti ) {
-					?>
+				?>
 					<!-- PARTECIPANTI -->
 					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
 					<?php
@@ -262,11 +262,11 @@ $eventi = new WP_Query(
 							)
 						);
 				}
-				if ( $indirizzidiricerca ) {
-					?>
+				if ( $indirizzi_di_ricerca ) {
+				?>
 				<!-- INDIRIZZI DI RICERCA -->
 				<h3 class="it-page-section h4 pt-3" id="p4">
-					<?php echo __( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
+					<?php echo dli_translate( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
 				</h3>
 					<?php
 						get_template_part(
@@ -274,12 +274,12 @@ $eventi = new WP_Query(
 							null,
 							array(
 								'section_id' => 'indirizzi-di-ricerca',
-								'items'      => $indirizzidiricerca,
+								'items'      => $indirizzi_di_ricerca,
 							)
 						);
 				}
 				if ( $pubblicazioni ) {
-					?>
+				?>
 				<!-- PUBBLICAZIONI -->
 				<h3 class="it-page-section pt-3 h4" id="p5">
 					<?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?>
@@ -295,7 +295,7 @@ $eventi = new WP_Query(
 						);
 				}
 				if ( count( $allegati ) > 0 ) {
-					?>
+				?>
 				<!-- ALLEGATI -->
 				<h3 class="it-page-section h4 pt-3" id="p6">
 					<?php echo __( 'Allegati', 'design_laboratori_italia' ); ?>
@@ -310,24 +310,40 @@ $eventi = new WP_Query(
 						)
 					);
 				}
-				if ( $eventi->posts ) {
-					?>
+				if ( $eventi ) {
+				?>
 				<!-- EVENTI -->
-				<h3 class="it-page-section h4 pt-3" id="p7">
-					<?php echo __( 'Eventi', 'design_laboratori_italia' ); ?>
-				</h3>
-					<?php
-						if ( $eventi->posts ) {
-							get_template_part(
-								'template-parts/common/sezione-related-items',
-								null,
-								array(
-									'related_items' => $eventi->posts,
-								)
-							);
-						}
+				<?php
+					if ( $eventi ) {
+						get_template_part(
+							'template-parts/common/sezione-related-items',
+							null,
+							array(
+								'section_id' => 'eventi',
+								'items'      => $eventi,
+							)
+						);
+					}
 				}
-					?>
+				if ( $risorse ) {
+				?>
+				<!-- RISORSE -->
+				<h3 class="it-page-section h4 pt-3" id="p2">
+					<?php echo dli_translate( 'Risorse tecniche', 'design_laboratori_italia' ); ?>
+				</h3>
+				<?php
+					if ( $risorse ) {
+						get_template_part(
+							'template-parts/common/sezione-related-technical-resources',
+							null,
+							array(
+								'section_id' => 'risorse-tecniche',
+								'items'      => $risorse,
+							)
+						);
+					}
+				}
+				?>
 			</div>
 		</div>
 	</div> <!-- scheda_progetto -->

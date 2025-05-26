@@ -107,6 +107,22 @@ class DLI_ContentsManager
 		return $results;
 	}
 
+	public static function dli_get_all_technical_res_years() {
+		global $wpdb;
+		$results = $wpdb->get_col(
+			$wpdb->prepare( "
+			SELECT DISTINCT pm.meta_value AS anno_acquisizione
+			FROM {$wpdb->postmeta} pm
+			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+			WHERE p.post_type = '%s'
+			AND p.post_status = 'publish'
+			AND pm.meta_key = '%s'
+			AND pm.meta_value != ''
+			ORDER BY pm.meta_value DESC
+		", TECHNICAL_RESOURCE_POST_TYPE, 'anno_acquisizione' ) );
+		return $results;
+	}
+
 	public static function build_content_path( $post ) {
 		$steps = array(
 			array(
@@ -235,6 +251,35 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
+	public static function get_technical_resource_data_query( $params ) {
+		$args = array(
+			'paged'          => $params['paged'],
+			'post_type'      => TECHNICAL_RESOURCE_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			's'              => $params['search_string'],
+		);
+		// Aggiungi la meta_query solo se 'acquisition_year' è presente e non vuoto
+		if ( ( ! empty( $params['acquisition_year'] ) ) && ( $params['acquisition_year'] !== null ) ) {
+			$args['meta_query'][] = array(
+				'key'     => 'anno_acquisizione',
+				'value'   => $params['acquisition_year'],
+				'compare' => 'IN',
+			);
+		}
+		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto
+		if ( ( ! empty( $params['type_technical_resource']) ) && ( $params['type_technical_resource'] !== null ) ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => RT_TYPE_TAXONOMY,
+				'field'    => 'term_id',
+				'operator' => 'IN',
+				'terms'    => $params['type_technical_resource'],
+			);
+		}
+		return new WP_Query( $args );
+	}
+
 	public static function get_event_data_query( $params ) {
 		$args = array(
 				'paged'          => $params['paged'],
@@ -265,8 +310,11 @@ class DLI_ContentsManager
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+			'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 			'meta_query' => array(
 				'relation'     => 'AND',
 				array(
@@ -300,10 +348,15 @@ class DLI_ContentsManager
 	}
 
 	public static function get_archived_projects_data_query( $params ){
-		$args = 	array(
+		$args = array(
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
+			'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 			'meta_query'     => array(
 				array(
 						'key' => 'archiviato',
@@ -321,8 +374,11 @@ class DLI_ContentsManager
 			'paged'          => $params['paged'],
 			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+			'meta_key'       => 'priorita',
+			'orderby'        => array(
+				'meta_value_num' => 'ASC',
+				'title'          => 'ASC',
+			),
 		);
 		return new WP_Query( $args );
 	}
@@ -357,6 +413,97 @@ class DLI_ContentsManager
 			);
 		}
 		return new WP_Query( $args );
+	}
+
+	public static function get_related_items( $post, $field_name, $related_ct ) {
+		$item = new WP_Query(
+			array(
+			'posts_per_page' => -1,
+			'post_type'      => $related_ct,
+			'orderby'        => 'data_inizio',
+			'order'          => 'DESC',
+			'meta_query'     => array(
+				array(
+					'key'     => $field_name,
+					'compare' => 'LIKE',
+					'value'   => '"' . $post->ID . '"',
+				),
+			),
+			)
+		);
+		return $item->posts;
+	}
+
+	
+	public static function get_carousel_items( ) {
+		$items   = array();
+		$results = array();
+		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
+		if ( $mode_auto === 'true' ) {
+			$query = new WP_Query(
+				array(
+					'posts_per_page' => -1,
+					'post_type'      => DLI_CAROUSEL_POST_TYPES,
+					'orderby'        => 'post_date',
+					'order'          => 'DESC',
+					'meta_query'     => array(
+						array(
+							'key'     => 'promuovi_in_carousel',
+							'compare' => '=',
+							'value'   => 1,
+						),
+					),
+				)
+			);
+			$results = $query->posts;
+		} else {
+			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
+			$result_ids = $result_ids ? $result_ids : array();
+			foreach ( $result_ids As $id) {
+				array_push( $results, get_post( $id  ) );
+			}
+		}
+		foreach ( $results as $result ) {
+			$item = dli_get_post_wrapper( $result );
+			array_push( $items, $item );
+		}
+		return $items;
+	}
+
+		public static function get_projects_by_event_id( $event_id ) {
+		$query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => 'progetto',
+				'orderby'        => 'post_date',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'elenco_indirizzi_di_ricerca_correlati',
+						'compare' => 'LIKE',
+						'value'   => '"' . $event_id . '"',
+					),
+				),
+			)
+		);
+		return $query->posts;
+	}
+
+	// SITE SEARCH
+	public static function main_search_query( $selected_contents, $search_string, $page_size ) {
+		$params = array(
+			'paged'          => get_query_var( 'paged', 1 ),
+			'post_status'    => 'publish',
+			'posts_per_page' => $page_size,
+			's'              => $search_string,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		);
+		if( count( $selected_contents ) > 0 ) {
+			$params['post_type'] = $selected_contents;
+		}
+		$the_query = new WP_Query( $params );
+		return $the_query;
 	}
 
 	public static function get_hp_sections() {

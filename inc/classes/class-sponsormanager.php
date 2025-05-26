@@ -55,7 +55,7 @@ class Sponsor_Manager {
 			'public'          => true,
 			'show_in_menu'    => true,
 			'menu_position'   => 6,
-			'menu_icon'       => 'dashicons-admin-tools',
+			'menu_icon'       => 'dashicons-megaphone',
 			'has_archive'     => false,
 			'show_in_rest'    => true,
 			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),

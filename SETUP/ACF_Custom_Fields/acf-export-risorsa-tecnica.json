@@ -1,10 +1,36 @@
 [
     {
-        "key": "group_63ca9a68be429",
-        "title": "Campi Evento",
+        "key": "group_682edcc15188d",
+        "title": "Campi Risorsa Tecnica",
         "fields": [
             {
-                "key": "field_63cab1657e109",
+                "key": "field_682ed8f4bbd48",
+                "label": "Foto",
+                "name": "foto",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_682de92c811fe",
                 "label": "Descrizione breve",
                 "name": "descrizione_breve",
                 "aria-label": "",
@@ -18,89 +44,41 @@
                     "id": ""
                 },
                 "default_value": "",
-                "maxlength": 255,
+                "maxlength": "",
+                "allow_in_bindings": 0,
                 "rows": "",
                 "placeholder": "",
                 "new_lines": ""
             },
             {
-                "key": "field_63ca9a6ae7e55",
-                "label": "Data inizio",
-                "name": "data_inizio",
-                "aria-label": "",
-                "type": "date_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y",
-                "return_format": "d\/m\/Y",
-                "first_day": 1
-            },
-            {
-                "key": "field_63f3233053149",
-                "label": "Ora inizio",
-                "name": "orario_inizio",
-                "aria-label": "",
-                "type": "time_picker",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "H:i",
-                "return_format": "H:i"
-            },
-            {
-                "key": "field_63ca9adab8fce",
-                "label": "Data fine",
-                "name": "data_fine",
-                "aria-label": "",
-                "type": "date_picker",
-                "instructions": "",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "d\/m\/Y",
-                "return_format": "d\/m\/Y",
-                "first_day": 1
-            },
-            {
-                "key": "field_665d964dad6d1",
-                "label": "Orario fine",
-                "name": "orario_fine",
-                "aria-label": "",
-                "type": "time_picker",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "display_format": "H:i",
-                "return_format": "H:i"
-            },
-            {
-                "key": "field_63ca9b49b8fcf",
-                "label": "Luogo",
-                "name": "luogo",
+                "key": "field_682ecb5410ce5",
+                "label": "Codice interno",
+                "name": "codice_interno",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
-                "required": 1,
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682de981811ff",
+                "label": "Costo",
+                "name": "costo",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": false,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -114,9 +92,9 @@
                 "append": ""
             },
             {
-                "key": "field_63e6569c824b8",
-                "label": "Label Contatti",
-                "name": "label_contatti",
+                "key": "field_682de99c81200",
+                "label": "Posizione",
+                "name": "posizione",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -129,14 +107,45 @@
                 },
                 "default_value": "",
                 "maxlength": "",
+                "allow_in_bindings": 0,
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_63cab17d7e10a",
-                "label": "Telefono",
-                "name": "telefono",
+                "key": "field_682ecbda4b491",
+                "label": "Localizzazione",
+                "name": "localizzazione",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "luogo"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": 1,
+                "allow_in_bindings": 0,
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_682ecb6e4b48b",
+                "label": "Marca",
+                "name": "marca",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -149,14 +158,15 @@
                 },
                 "default_value": "",
                 "maxlength": "",
+                "allow_in_bindings": 0,
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_63e656c0824b9",
-                "label": "Email",
-                "name": "email",
+                "key": "field_682ecb784b48c",
+                "label": "Modello",
+                "name": "modello",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -169,16 +179,17 @@
                 },
                 "default_value": "",
                 "maxlength": "",
+                "allow_in_bindings": 0,
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_63e656dc824ba",
-                "label": "Sito web",
-                "name": "sitoweb",
+                "key": "field_682ecb894b48d",
+                "label": "Anno acquisizione",
+                "name": "anno_acquisizione",
                 "aria-label": "",
-                "type": "url",
+                "type": "number",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -188,12 +199,111 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
             },
             {
-                "key": "field_63e6574c824bc",
-                "label": "Allegato",
-                "name": "allegato",
+                "key": "field_682ecbb14b48f",
+                "label": "Stato",
+                "name": "stato",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682ecb974b48e",
+                "label": "Dimensioni e peso",
+                "name": "dimensioni_e_peso",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682eccac56fd0",
+                "label": "Conformità",
+                "name": "conformita",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_682ecbc14b490",
+                "label": "Responsabili",
+                "name": "responsabile",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "persona"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": [
+                    "search"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": "",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_682de9f981202",
+                "label": "Scheda tecnica",
+                "name": "scheda_tecnica",
                 "aria-label": "",
                 "type": "file",
                 "instructions": "",
@@ -208,14 +318,15 @@
                 "library": "all",
                 "min_size": "",
                 "max_size": "",
-                "mime_types": ""
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_67c80cb3fbdec",
-                "label": "Link dettaglio",
-                "name": "link_dettaglio",
+                "key": "field_682ecc5856fcf",
+                "label": "Manuale uso",
+                "name": "manuale_uso",
                 "aria-label": "",
-                "type": "select",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -224,28 +335,19 @@
                     "class": "",
                     "id": ""
                 },
-                "choices": {
-                    "scheda": "Scheda dettaglio",
-                    "sitoweb": "Sito web",
-                    "allegato": "Link ad allegato"
-                },
-                "default_value": "scheda",
-                "return_format": "value",
-                "multiple": 0,
-                "allow_null": 0,
-                "allow_in_bindings": 0,
-                "ui": 0,
-                "ajax": 0,
-                "placeholder": "",
-                "create_options": 0,
-                "save_options": 0
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_63fcc059ead9c",
-                "label": "Video",
-                "name": "video",
+                "key": "field_682ece796b420",
+                "label": "Allegato 1",
+                "name": "allegato_1",
                 "aria-label": "",
-                "type": "url",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -254,15 +356,19 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "placeholder": ""
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_63ca9c03b8fd1",
-                "label": "Progetto",
-                "name": "progetto",
+                "key": "field_682eef148801d",
+                "label": "Allegato 2",
+                "name": "allegato_2",
                 "aria-label": "",
-                "type": "relationship",
+                "type": "file",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -271,68 +377,15 @@
                     "class": "",
                     "id": ""
                 },
-                "post_type": [
-                    "progetto"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": "",
-                "bidirectional_target": []
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0
             },
             {
-                "key": "field_63ca9c28b8fd2",
-                "label": "Indirizzo di ricerca",
-                "name": "indirizzo_di_ricerca",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "indirizzo-di-ricerca"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search"
-                ],
-                "return_format": "object",
-                "min": "",
-                "max": "",
-                "elements": "",
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_63ca9bdcb8fd0",
-                "label": "Promuovi in carousel",
-                "name": "promuovi_in_carousel",
-                "aria-label": "",
-                "type": "true_false",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_63e664defb611",
+                "key": "field_682edc961fb0a",
                 "label": "Promuovi in home",
                 "name": "promuovi_in_home",
                 "aria-label": "",
@@ -347,6 +400,28 @@
                 },
                 "message": "",
                 "default_value": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_682edcd60e3aa",
+                "label": "Promuovi in carousel",
+                "name": "promuovi_in_carousel",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "allow_in_bindings": 0,
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
@@ -357,7 +432,7 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "evento"
+                    "value": "risorsa-tecnica"
                 }
             ]
         ],
@@ -369,6 +444,6 @@
         "hide_on_screen": "",
         "active": true,
         "description": "",
-        "show_in_rest": 1
+        "show_in_rest": 0
     }
 ]

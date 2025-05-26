@@ -15,6 +15,22 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+
+## [1.6.3] - 2025-05-23
+## Aggiunto
+- Aggiunto campo Priorità nei progetti e negli indirizzi di ricerca.
+- Aggiunto contenuto Risorsa Tecnica.
+- Aggiunta possibilità di pubblicare Spin-off e Risorse Tecniche nel Carousel in HP.
+- Possibilità di collegare le notizie a progetti e indirizzi di ricerca.
+- Collegamento tra Progetti e Risorse tecniche.
+- Aggiunta possibilità di non mostrare l'icona/foto di una persona nell'elenco delle persone.
+## Corretto
+- Corretto funzionamento filtro dei tipi di contenuto nella ricerca del sito.
+## Modificato
+- Aggiornati i file delle traduzioni.
+- Rifattorizzata gestione wrapper contenuti in ricerca e carousel.
+
+
 ## [1.6.2] - 2025-04-17
 ## Modificato
 - Aggiornati i file delle traduzioni.

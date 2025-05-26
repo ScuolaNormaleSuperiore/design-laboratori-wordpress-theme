@@ -36,11 +36,16 @@ $the_query = null;
 if ( '' !== $searchstring ) {
 	// Verifica del NONCE.
 	if ( isset( $_GET['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_GET['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
-		$the_query = dli_main_search_query(
-			$selected_contents,
-			$searchstring,
-			SITESEARCH_CELLS_PER_PAGE
-		);
+			$the_query = DLI_ContentsManager::main_search_query(
+				$selected_contents,
+				$searchstring,
+				SITESEARCH_CELLS_PER_PAGE
+			);
+		// $the_query = dli_main_search_query(
+		// 	$selected_contents,
+		// 	$searchstring,
+		// 	SITESEARCH_CELLS_PER_PAGE
+		// );
 		$num_results = $the_query->found_posts;
 	}
 } else {
@@ -99,7 +104,9 @@ if ( '' !== $searchstring ) {
 					<?php
 						if( count( $allcontentypes ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html( __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ) ); ?></h3>
+						<h3 class="h6 text-uppercase border-bottom">
+							<?php echo esc_html( __( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ) ); ?>
+						</h3>
 						<div>
 								<?php
 									foreach( $allcontentypes as $ct ) {
@@ -111,7 +118,9 @@ if ( '' !== $searchstring ) {
 											 echo "checked='checked'";
 										} ?>
 									>
-									<label for="<?php echo esc_attr( $ct ) ; ?>"><?php echo esc_html( __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ) ); ?></label>
+									<label for="<?php echo esc_attr( $ct ) ; ?>">
+										<?php echo esc_html( __( ucfirst( str_replace("-", " ", $ct ) ), 'design_laboratori_italia' ) ); ?>
+									</label>
 								</div>
 								<?php
 									}
@@ -145,7 +154,7 @@ if ( '' !== $searchstring ) {
 					<!-- begin row -->
 					<div class="row">
 					<?php
-						$result = dli_format_search_result( $post )
+						$result = dli_get_post_wrapper( $post, 'item-thumb' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-12">
@@ -153,16 +162,20 @@ if ( '' !== $searchstring ) {
 								<div class="card">
 									<div class="card-body mb-0">
 										<?php
-										 if ( $result['image'] ) {
+										 if ( $result['image_url'] ) {
 										?>
-										<img src="<?php echo esc_url( $result['image'] ); ?>" height="100" width="100" 
+										<img src="<?php echo esc_url( $result['image_url'] ); ?>"
+											height="100"
+											width="100" 
 											class="img-thumbnail float-sm-start me-2 text-nowrap"
-											title="<?php echo esc_attr( $result['image_title'] ); ?>" alt="<?php echo esc_attr( $result['image_alt'] ); ?>" />
+											title="<?php echo esc_attr( $result['image_title'] ); ?>"
+											alt="<?php echo esc_attr( $result['image_alt'] ); ?>"
+										/>
 										<?php
 										 }
 										?>
 										<span class="text" style="text-transform: uppercase;">
-											<a class="text-decoration-none" href="<?php echo esc_url( $result['link_category'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
+											<a class="text-decoration-none" href="<?php echo esc_url( $result['category_link'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
 										</span>
 										<span>&nbsp;-&nbsp;</span>
 										<a class="text-decoration-none" href="<?php echo esc_url( $result['link'] ); ?>">

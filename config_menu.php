@@ -211,6 +211,15 @@ define(
 				'classes'      => 'footer-link',
 				'link'         => '',
 			),
+			array(
+				'slug'         => SLUG_TECHNICAL_RESOURCE_IT,
+				'title'        => 'Risorse tecniche',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
 		),
 	)
 );
@@ -460,6 +469,15 @@ define(
 			array(
 				'slug'         => SLUG_ARCHIVIO_PROGETTI_EN,
 				'title'        => 'Projects archive',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
+				'slug'         => SLUG_TECHNICAL_RESOURCE_EN,
+				'title'        => 'Technical resources',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',

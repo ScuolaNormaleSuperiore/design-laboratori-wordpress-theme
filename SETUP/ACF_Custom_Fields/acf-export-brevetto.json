@@ -134,7 +134,9 @@
                 "allow_in_bindings": 1,
                 "ui": 0,
                 "ajax": 0,
-                "placeholder": ""
+                "placeholder": "",
+                "create_options": 0,
+                "save_options": 0
             },
             {
                 "key": "field_66fbbba091e1a",
@@ -326,6 +328,27 @@
                 "append": ""
             },
             {
+                "key": "field_6722333ce1a5c",
+                "label": "Famiglia",
+                "name": "famiglia",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
                 "key": "field_6710d8a365f4a",
                 "label": "Promuovi in carousel",
                 "name": "promuovi_in_carousel",
@@ -366,27 +389,6 @@
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
-            },
-            {
-                "key": "field_6722333ce1a5c",
-                "label": "Famiglia",
-                "name": "famiglia",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
             }
         ],
         "location": [

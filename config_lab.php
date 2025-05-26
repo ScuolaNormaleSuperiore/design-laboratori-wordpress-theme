@@ -21,11 +21,13 @@ define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 
 // Pagination.
+define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
 define( 'PERSONE_PER_ROW', 2 );
 define( 'DLI_POSTS_PER_PAGE', 6 );
 define( 'DLI_POST_PER_PAGE_VALUES', array( '3', '6', '9' , '12', '24', '48', '96' ) );
 define( 'DLI_POST_PER_PAGE_VALUES_COMBINED', array_combine( DLI_POST_PER_PAGE_VALUES, DLI_POST_PER_PAGE_VALUES ) );
 define( 'DLI_PER_PAGE', 4 );
+define( 'DLI_PER_PAGE_BIG', 10 );
 define( 'DLI_PER_PAGE_VALUES', array( '4', '10', '20', '30', '40', '50' ) );
 
 // Define roles and permissions.
@@ -51,6 +53,7 @@ define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'SPINOFF_POST_TYPE', 'spinoff' );
 define( 'SPONSOR_POST_TYPE', 'sponsor' );
 define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
+define( 'TECHNICAL_RESOURCE_POST_TYPE', 'risorsa-tecnica' );
 
 // DEFAULT WP CONTENT TYPES.
 define( 'WP_DEFAULT_POST', 'post' );
@@ -63,6 +66,7 @@ define( 'PUBLICATION_TYPE_TAXONOMY', 'tipo-pubblicazione' );
 define( 'STRUCTURE_TAXONOMY', 'struttura' );
 define( 'THEMATIC_AREA_TAXONOMY', 'area-tematica' );
 define( 'BUSINESS_SECTOR_TAXONOMY', 'settore-attivita' );
+define( 'RT_TYPE_TAXONOMY', 'tipo-risorsa-tecnica' );
 
 // DEFAULT WP TAXONOMIES.
 define( 'WP_DEFAULT_CATEGORY', 'category' );
@@ -98,6 +102,8 @@ define( 'SLUG_SPINOFF_IT', 'spinoff' );
 define( 'SLUG_SPINOFF_EN', 'spinoff-en' );
 define( 'SLUG_SPONSOR_IT', 'sponsor' );
 define( 'SLUG_SPONSOR_EN', 'sponsor-en' );
+define( 'SLUG_TECHNICAL_RESOURCE_IT', 'risorse-tecniche' );
+define( 'SLUG_TECHNICAL_RESOURCE_EN', 'technical-resources' );
 
 // Default static pages of the site.
 define( 'SLUG_ACCESSIBILITA_IT', 'accessibilita' );
@@ -163,6 +169,10 @@ define(
 			'it' => SLUG_SPONSOR_IT,
 			'en' => SLUG_SPONSOR_EN,
 		),
+		TECHNICAL_RESOURCE_POST_TYPE => array(
+			'it' => SLUG_TECHNICAL_RESOURCE_IT,
+			'en' => SLUG_TECHNICAL_RESOURCE_EN,
+		),
 		WP_DEFAULT_POST => array(
 			'it' => SLUG_BLOG_IT,
 			'en' => SLUG_BLOG_EN,
@@ -187,9 +197,44 @@ define(
 		WP_DEFAULT_POST,
 		BANNER_POST_TYPE,
 		SPINOFF_POST_TYPE,
-		SPONSOR_POST_TYPE
+		SPONSOR_POST_TYPE,
+		TECHNICAL_RESOURCE_POST_TYPE,
 	)
 );
+
+define(
+	'DLI_POST_TYPES_TO_SEARCH',
+	array(
+		PEOPLE_POST_TYPE,
+		EVENT_POST_TYPE,
+		NEWS_POST_TYPE,
+		PROGETTO_POST_TYPE,
+		PUBLICATION_POST_TYPE,
+		PATENT_POST_TYPE,
+		RESEARCH_ACTIVITY_POST_TYPE,
+		PEOPLE_TYPE_POST_TYPE,
+		WP_DEFAULT_PAGE,
+		WP_DEFAULT_POST,
+		SPINOFF_POST_TYPE,
+		TECHNICAL_RESOURCE_POST_TYPE,
+	)
+);
+
+define(
+	'DLI_CAROUSEL_POST_TYPES',
+	array(
+		EVENT_POST_TYPE,
+		NEWS_POST_TYPE,
+		PUBLICATION_POST_TYPE,
+		PATENT_POST_TYPE,
+		PROGETTO_POST_TYPE,
+		WP_DEFAULT_POST,
+		SPINOFF_POST_TYPE,
+		PATENT_POST_TYPE,
+		TECHNICAL_RESOURCE_POST_TYPE,
+	)
+);
+
 
 // Taxonomies.
 define(
@@ -201,6 +246,7 @@ define(
 		THEMATIC_AREA_TAXONOMY,
 		WP_DEFAULT_CATEGORY,
 		WP_DEFAULT_TAGS,
+		RT_TYPE_TAXONOMY,
 	)
 );
 
@@ -208,6 +254,7 @@ define(
 define(
 	'DLI_POST_WRAPPER',
 	array(
+		'id'            => '',
 		'type'          => '',
 		'category'      => '',
 		'category_link' => '',
@@ -219,6 +266,8 @@ define(
 		'image_url'     => '',
 		'image_alt'     => '',
 		'image_title'   => '',
+		// 'main_tax'      => '',
+		// 'main_tax_url'  => '',
 	)
 );
 

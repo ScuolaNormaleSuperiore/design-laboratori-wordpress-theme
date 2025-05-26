@@ -1133,6 +1133,21 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
+			'id' => $prefix . 'hide_person_icon',
+			'name' => __( "Nascondi icona", 'design_laboratori_italia' ),
+			'desc' => __( "Nascondi l'icona della persona nell'elenco delle persone", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+
+	$persone_options->add_field(
+		array(
 			'id'               => $prefix . 'pagination_mode',
 			'name'             => __( 'Modalità scelta struttura', 'design_laboratori_italia' ),
 			'desc'             => __( 'Scegli se filtrare le strutture con dei chip o una select oppure non mostrare alcun filtro' , 'design_laboratori_italia' ),
@@ -1727,6 +1742,76 @@ function dli_register_main_options_metabox() {
 						'false' => __( 'No', 'design_laboratori_italia' ),
 				),
 		));
+
+	/**
+	* 15 - Registers options page "Technical-Resources".
+	*/
+	// Intestazione della sezione.
+	$args = array(
+		'id'           => 'dli_options_technical_resources',
+		'title'        => esc_html__( 'Risorse Tecniche', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'risorse-tecniche',
+		'parent_slug'  => 'dli_options',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Risorse tecniche', 'design_laboratori_italia' ),
+	);
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+	$spinoff_options = new_cmb2_box( $args );
+	$spinoff_landing_url = dli_get_template_page_url( 'page-templates/risorse-tecniche.php' );
+	$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Risorse Tecniche</a>', 'design_laboratori_italia' ), $spinoff_landing_url	);
+	$spinoff_options->add_field(
+		array(
+		'id'   => $prefix . 'risorse_tecniche_istruzioni',
+		'name' => __( 'Sezione Risorse Tecniche', 'design_laboratori_italia' ),
+		'desc' => $descr,
+		'type' => 'title',
+		)
+	);
+	
+	// Campi descrizione della sezione.
+	$spinoff_options->add_field(
+		array(
+			'id'      => $prefix . 'testo_risorse_tecniche',
+			'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+			'desc'    => __( 'es: "Risorsa Tecnica del Laboratorio."' , 'design_laboratori_italia' ),
+			'type'    => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br', 
+				),
+			),
+		)
+	);
+
+	$spinoff_options->add_field(
+		array(
+			'id'         => $prefix . 'testo_risorse_tecniche'. DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'es: "Technical Resource of the Lab"' , 'design_laboratori_italia' ),
+			'type'       => 'wysiwyg',
+			'options'    => array(
+				'textarea_rows' => 1,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br', 
+				),
+			),
+		)
+	);
+
 
 	/**
 	* 16 - Registers options page "Social media".
