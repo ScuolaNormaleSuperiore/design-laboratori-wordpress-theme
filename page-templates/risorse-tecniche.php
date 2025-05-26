@@ -157,44 +157,41 @@ $num_results = $the_query->found_posts;
 				if ( $num_results > 0 ) {
 				?>
 					<!-- inizio contenitore spinoff -->
-					<div class="container col-12 col-lg-9">
+					<div class="col-12 col-lg-8">
 						<?php
 						while ( $the_query->have_posts() ) {
 							$the_query->the_post();
+							$result = dli_get_post_wrapper( $post, 'item-thumb' );
 						?>
 						<!-- row -->
 						<div class="row">
 							
-							<?php
-								$result = dli_get_post_wrapper( $post, 'item-thumb' );
-							?>
-								<!-- start card-->
-								<div class="col-12 col-lg-12">
-									<div class="card-wrapper ">
-										<div class="card">
-											<div class="card-body mb-0">
-												<?php
-												if ( $result['image_url'] ) {
-												?>
-												<img src="<?php echo esc_url( $result['image_url'] ); ?>"
-													height="100"
-													width="100" 
-													class="img-thumbnail float-sm-start me-2 text-nowrap"
+								<!--start card-->
+								<div class="card-wrapper mb-4">
+									<div class="card card-teaser rounded shadow">
+										<div class="card-body">
+											<?php
+											if ( $result['image_url'] ) {
+											?>
+												<img
+													src="<?php echo esc_url( $result['image_url'] ); ?>"
+													height="150"
+													width="150"
+													class="img-fluid  float-start me-2 text-nowrap"
 													title="<?php echo esc_attr( $result['image_title'] ); ?>"
-													alt="<?php echo esc_attr( $result['image_alt'] ); ?>"
-												/>
+													alt="<?php echo esc_attr( $result['image_alt'] ); ?>">
 												<?php
 												}
 												?>
-												<span class="text" style="text-transform: uppercase;">
-													<a class="text-decoration-none" href="<?php echo esc_url( $result['category_link'] ); ?>"><?php echo esc_attr( $result['type'] ); ?></a>
-												</span>
-												<span>&nbsp;-&nbsp;</span>
-												<a class="text-decoration-none" href="<?php echo esc_url( $result['link'] ); ?>">
-													<h3 class="card-title h5"><?php echo esc_attr( $result['title'] ); ?></h3>
-												</a>
-												<p class="card-text"><?php echo esc_attr( wp_trim_words( $result['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
-											</div>
+
+											<h3 class="card-title cardTitlecustomSpacing h5">
+												<a href="<?php echo esc_url( $result['link'] ); ?>">
+													<?php echo esc_attr( $result['title'] ); ?>
+											</a>
+											</h3>
+											<p class="card-text">
+												<?php echo esc_attr( wp_trim_words( $result['description'] , DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+											</p>
 										</div>
 									</div>
 								</div>

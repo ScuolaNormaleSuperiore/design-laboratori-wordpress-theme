@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2025-05-23 13:08+0000\n"
+"PO-Revision-Date: 2025-05-26 09:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -170,8 +170,8 @@ msgid "al"
 msgstr "to"
 
 #: single-evento.php:209 single-evento.php:428 single-progetto.php:190
-#: single-progetto.php:301 single-risorsa-tecnica.php:249
-#: single-risorsa-tecnica.php:404
+#: single-progetto.php:301 single-risorsa-tecnica.php:220
+#: single-risorsa-tecnica.php:359
 msgid "Allegati"
 msgstr "Attachments"
 
@@ -192,11 +192,11 @@ msgstr "Other"
 msgid "Anno"
 msgstr "Year"
 
-#: single-risorsa-tecnica.php:177
+#: single-risorsa-tecnica.php:148
 msgid "Anno acquisizione"
 msgstr "Acquisition year"
 
-#: single-risorsa-tecnica.php:327 page-templates/risorse-tecniche.php:73
+#: single-risorsa-tecnica.php:282 page-templates/risorse-tecniche.php:73
 #: page-templates/risorse-tecniche.php:75
 msgid "Anno di acquisizione"
 msgstr "Acquisition year"
@@ -424,7 +424,7 @@ msgstr "City"
 msgid "Codice"
 msgstr "Code"
 
-#: single-risorsa-tecnica.php:168 single-risorsa-tecnica.php:316
+#: single-risorsa-tecnica.php:139 single-risorsa-tecnica.php:271
 msgid "Codice interno"
 msgstr "Internal code"
 
@@ -511,7 +511,7 @@ msgstr "Contents of the box"
 msgid "Copia del messaggio non inviata."
 msgstr "Copy of message not sent."
 
-#: single-risorsa-tecnica.php:195 single-risorsa-tecnica.php:345
+#: single-risorsa-tecnica.php:166 single-risorsa-tecnica.php:300
 msgid "Costo"
 msgstr "cost"
 
@@ -542,7 +542,7 @@ msgstr "Dates and times"
 #: single-evento.php:171 single-indirizzo-di-ricerca.php:104
 #: single-indirizzo-di-ricerca.php:148 single-luogo.php:112
 #: single-progetto.php:150 single-progetto.php:224
-#: single-risorsa-tecnica.php:159 single-spinoff.php:135
+#: single-risorsa-tecnica.php:130 single-spinoff.php:135
 #: inc/admin/options.php:894 inc/admin/options.php:895
 msgid "Descrizione"
 msgstr "Description"
@@ -605,6 +605,10 @@ msgstr "Description of the place"
 msgid "Descrizione notizia"
 msgstr "Description of the news"
 
+#: single-risorsa-tecnica.php:259
+msgid "Descrizione Risorsa Tecnica"
+msgstr "Technical Resource Description"
+
 #: inc/admin/options.php:966 inc/admin/options.php:1037
 #: inc/admin/options.php:1124 inc/admin/options.php:1348
 #: inc/admin/options.php:1417 inc/admin/options.php:1486
@@ -637,7 +641,7 @@ msgstr "Description of people section"
 msgid "Descrizione Sezione Persone ENG"
 msgstr "Description of people section in English"
 
-#: single-risorsa-tecnica.php:304 single-spinoff.php:210
+#: single-spinoff.php:210
 msgid "Descrizione Spin-off"
 msgstr "Spin-off Description"
 
@@ -687,7 +691,7 @@ msgstr "december"
 msgid "Dimensione hero"
 msgstr "Hero dimension"
 
-#: single-risorsa-tecnica.php:240 single-risorsa-tecnica.php:395
+#: single-risorsa-tecnica.php:211 single-risorsa-tecnica.php:350
 msgid "Dimensioni e peso"
 msgstr "Dimensions and weight"
 
@@ -896,7 +900,7 @@ msgstr "feb"
 msgid "febbraio"
 msgstr "february"
 
-#: single-risorsa-tecnica.php:417
+#: single-risorsa-tecnica.php:372
 msgid "File PDF"
 msgstr "PDF file"
 
@@ -1318,8 +1322,8 @@ msgid "Indico"
 msgstr "Indico"
 
 #: single-brevetto.php:120 single-brevetto.php:123 single-evento.php:153
-#: single-evento.php:157 single-risorsa-tecnica.php:141
-#: single-risorsa-tecnica.php:144 single-spinoff.php:117 single-spinoff.php:120
+#: single-evento.php:157 single-risorsa-tecnica.php:99
+#: single-risorsa-tecnica.php:102 single-spinoff.php:117 single-spinoff.php:120
 msgid "Indietro"
 msgstr "Back"
 
@@ -1585,7 +1589,7 @@ msgstr "The password to authenticate on the web service."
 msgid "La PEC del Laboratorio"
 msgstr "Lab PEC"
 
-#: single-risorsa-tecnica.php:148 single-spinoff.php:124
+#: single-spinoff.php:124
 msgid "La Spin-off"
 msgstr "The Spin-off"
 
@@ -1688,7 +1692,7 @@ msgstr "Useful links"
 msgid "Lo username per autenticarsi sul web-service."
 msgstr "The username to authenticate on the web service."
 
-#: single-risorsa-tecnica.php:204 single-risorsa-tecnica.php:354
+#: single-risorsa-tecnica.php:175 single-risorsa-tecnica.php:309
 msgid "Localizzazione"
 msgstr "Location"
 
@@ -1763,7 +1767,7 @@ msgstr "Site Map"
 msgid "mar"
 msgstr "mar"
 
-#: single-risorsa-tecnica.php:231 single-risorsa-tecnica.php:386
+#: single-risorsa-tecnica.php:202 single-risorsa-tecnica.php:341
 msgid "Marca e modello"
 msgstr "Brand and model"
 
@@ -1944,7 +1948,7 @@ msgstr "Don't show filter"
 msgid "Non sei autenticato."
 msgstr "You are not authenticated."
 
-#: page-templates/risorse-tecniche.php:216
+#: page-templates/risorse-tecniche.php:213
 msgid "Non è stata trovata alcuna risorsa tecnica"
 msgstr "No technical resources found"
 
@@ -2128,8 +2132,8 @@ msgstr "People"
 msgid "Piccolo"
 msgstr "Small"
 
-#: single-luogo.php:121 single-luogo.php:158 single-risorsa-tecnica.php:213
-#: single-risorsa-tecnica.php:367
+#: single-luogo.php:121 single-luogo.php:158 single-risorsa-tecnica.php:184
+#: single-risorsa-tecnica.php:322
 msgid "Posizione"
 msgstr "Location"
 
@@ -2497,8 +2501,8 @@ msgid "Privacy"
 msgstr "Privacy"
 
 #: single-indirizzo-di-ricerca.php:118 single-indirizzo-di-ricerca.php:179
-#: single-persona.php:167 single-persona.php:243 single-risorsa-tecnica.php:267
-#: single-risorsa-tecnica.php:459 inc/utils.php:172 inc/admin/options.php:1534
+#: single-persona.php:167 single-persona.php:243 single-risorsa-tecnica.php:238
+#: single-risorsa-tecnica.php:414 inc/utils.php:172 inc/admin/options.php:1534
 msgid "Progetti"
 msgstr "Projects"
 
@@ -2524,7 +2528,7 @@ msgstr "Publications"
 msgid "Pulsante per il login visibile"
 msgstr "Button for login visible"
 
-#: single-risorsa-tecnica.php:258 single-risorsa-tecnica.php:441
+#: single-risorsa-tecnica.php:229 single-risorsa-tecnica.php:396
 msgid "Responsabili"
 msgstr "Responsible"
 
@@ -2600,6 +2604,7 @@ msgstr "Delete Sponsor Image"
 msgid "Riscrivi qui il codice di conferma"
 msgstr "Retype the confirmation code here"
 
+#: single-risorsa-tecnica.php:119
 #: inc/classes/class-technicalresourcemanager.php:79
 msgid "Risorsa Tecnica"
 msgstr "Technical Resource"
@@ -2879,7 +2884,7 @@ msgstr "Spinoff"
 msgid "Sponsor"
 msgstr "Sponsor"
 
-#: single-risorsa-tecnica.php:222 single-risorsa-tecnica.php:376
+#: single-risorsa-tecnica.php:193 single-risorsa-tecnica.php:331
 #: single-spinoff.php:162 single-spinoff.php:242
 msgid "Stato"
 msgstr "Status"
@@ -3021,7 +3026,7 @@ msgstr "Import type"
 msgid "Tipo Pubblicazione"
 msgstr "Publication type"
 
-#: single-risorsa-tecnica.php:186 single-risorsa-tecnica.php:336
+#: single-risorsa-tecnica.php:157 single-risorsa-tecnica.php:291
 #: inc/classes/class-technicalresourcemanager.php:47
 msgid "Tipo risorsa"
 msgstr "Resource type"

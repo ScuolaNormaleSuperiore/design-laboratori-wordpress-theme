@@ -48,60 +48,17 @@ $responsabili = dli_get_field( 'responsabile' );
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- INIZIO BANNER HERO -->
-	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
-		<div class="img-responsive-wrapper">
-			<div class="img-responsive">
-				<div class="img-wrapper">
-					<?php
-					if ( $image_metadata['image_url'] ) {
-					?>
-					<img src="<?php echo $image_metadata['image_url']; ?>"
-						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
-						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
-						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
-					>
-					<?php
-					}
-					?>
-					<?php
-							if( $image_metadata['image_caption'] ) {
-						?>
-							<figcaption class="figure-caption">
-								<?php echo esc_attr( $image_metadata['image_caption'] ); ?>
-							</figcaption>
-						<?php
-							}
-					?>
-				</div>
-			</div>
-		</div>
-		<!-- - texts-->
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
-						<span class="it-Categoria"></span>
-						<h2><?php echo get_the_title(); ?></h2>
-						<p class="d-none d-lg-block">
-						</p>
-						<!-- categorie -->
-						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-							<?php
-								if ( ! empty( $tipo_risorsa ) ) {
-							?>
-							<a
-								class="text-white text-decoration-none"
-								href="<?php echo $archive_page . '?type_technical_resource[]=' . $tipo_risorsa['id'] ;?>" 
-							>
-								<span class="chip-label text-light">
-									<?php echo esc_attr( $tipo_risorsa['title'] ); ?>
-								</span>
-							</a>
-							<?php
-								}
-							?>
+	<section id="banner-progetto" aria-describedby="Banner progetto">
+		<div class="p-0 primary-bg-c1">
+			<div class="container">
+				<div class="row pt-0 pb-0">
+					<div class="col-12 col-lg-7">
+						<div class="section-title">
+							<h2 class="mb-3 mt-3">
+								<?php echo get_the_title(); ?>
+							</h2>
+							<p>&nbsp;</p>
 						</div>
-						
 					</div>
 				</div>
 			</div>
@@ -111,10 +68,10 @@ $responsabili = dli_get_field( 'responsabile' );
 
 
 	<!-- BODY -->
-	<div class="container py-lg-5">
+	<div class="container p5">
 		<div class="row">
 
-			<!-- Dettagli dell'spinoff -->
+			<!-- Dettagli della risorsa -->
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">
 					<nav class="navbar it-navscroll-wrapper navbar-expand-lg it-bottom-navscroll it-right-side" data-bs-navscroll>
@@ -129,10 +86,11 @@ $responsabili = dli_get_field( 'responsabile' );
 							>
 								<span class="it-list"></span>
 						</button>
-
 						<div class="progress custom-navbar-progressbar">
-							<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0"
+								aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
+
 
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
@@ -144,8 +102,21 @@ $responsabili = dli_get_field( 'responsabile' );
 								<span><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></span>
 							</a>
 							<div class="menu-wrapper">
+								<div class="card-body text-center">
+									<figure class="img-wrapper">
+										<img
+											style="max-width: 300px; height: auto;"
+											src="<?php echo esc_url( $photo['url'] ); ?>" 
+											title="<?php echo esc_attr( $photo['title'] ); ?>"
+											alt="<?php echo esc_attr( $photo['title'] ); ?>"
+										>
+										<figcaption class="figure-caption pt-2">
+											<?php echo get_the_title(); ?>
+										</figcaption>
+									</figure>
+								</div>
 								<div class="link-list-wrapper">
-									<h3><?php echo __( 'La Spin-off', 'design_laboratori_italia' ); ?></h3>
+									<h3><?php echo __( 'Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 										</div>
@@ -281,27 +252,11 @@ $responsabili = dli_get_field( 'responsabile' );
 
 			<!-- DESCRIZIONE -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
-
 				<?php
-				if ( $photo ) {
-				?>
-					<!-- Foto -->
-					<div class="card-body text-center">
-						<figure class="img-wrapper">
-							<img
-								style="max-width: 300px; height: auto;"
-								src="<?php echo esc_url( $photo['url'] ); ?>" 
-								title="<?php echo esc_attr( $photo['title'] ); ?>"
-								alt="<?php echo esc_attr( $photo['title'] ); ?>"
-							>
-						</figure>
-					</div>
-				<?php
-				}
 				if ( $description ) {
 				?>
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Spin-off', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
 						<p>
 							<?php echo $description; ?>
 						</p>
