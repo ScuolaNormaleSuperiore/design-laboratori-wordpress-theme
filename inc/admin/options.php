@@ -1225,6 +1225,21 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
+			'id' => $prefix . 'hide_person_icon',
+			'name' => __( "Nascondi icona", 'design_laboratori_italia' ),
+			'desc' => __( "Nascondi l'icona della persona nell'elenco delle persone", 'design_laboratori_italia' ) . '.',
+			'type' => 'radio_inline',
+			'default' => 'false',
+			'options' => array(
+					'true' => __( 'Si', 'design_laboratori_italia' ),
+					'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+
+	$persone_options->add_field(
+		array(
 			'id'               => $prefix . 'pagination_mode',
 			'name'             => __( 'Modalità scelta struttura', 'design_laboratori_italia' ),
 			'desc'             => __( 'Scegli se filtrare le strutture con dei chip o una select oppure non mostrare alcun filtro' , 'design_laboratori_italia' ),
@@ -1303,7 +1318,7 @@ function dli_register_main_options_metabox() {
 			'name' => __( "Visualizza etchetta Dettagli", 'design_laboratori_italia' ),
 			'desc' => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
 			'type' => 'radio_inline',
-			'default' => 'true',
+			'default' => 'false',
 			'options' => array(
 					'true' => __( 'Si', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),

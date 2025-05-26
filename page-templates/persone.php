@@ -29,6 +29,7 @@ $tags = DLI_ContentsManager::get_tags_by_post_type( PEOPLE_POST_TYPE );
 // Etichette per la gestione dei tag.
 $label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_persone', 'persone' );
 $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_persone', 'persone' );
+$hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 ?>
 <script>
 	function redirectToPage(baseUrl, parname, selectedValue ) {
@@ -271,12 +272,18 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pers
 													?>
 													<div class="col-lg-4">
 														<div class="avatar-wrapper avatar-extra-text">
+															<?php
+															if ( $hide_icon !== 'true' ) {
+															?>
 															<div class="avatar size-xl">
 																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" 
 																	alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 																	title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 																	aria-hidden="true">
 															</div>
+															<?php
+															}
+															?>
 															<div class="extra-text">
 																<?php
 																	if ( ! $disattiva_pagina_dettaglio ) {
