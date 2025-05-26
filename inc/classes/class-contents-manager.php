@@ -489,7 +489,7 @@ class DLI_ContentsManager
 		return $query->posts;
 	}
 
-	// SITE SEA$RCH
+	// SITE SEARCH
 	public static function main_search_query( $selected_contents, $search_string, $page_size ) {
 		$params = array(
 			'paged'          => get_query_var( 'paged', 1 ),
