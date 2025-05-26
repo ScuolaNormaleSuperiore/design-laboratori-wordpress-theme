@@ -63,11 +63,6 @@ require get_template_directory() . '/inc/admin/options.php';
  */
 require get_template_directory() . '/inc/utils.php';
 
-/**
- * Search Utils functions.
- */
-require get_template_directory() . '/inc/search-utils.php';
-
 
 /**
  * Activation Hooks.

@@ -36,11 +36,16 @@ $the_query = null;
 if ( '' !== $searchstring ) {
 	// Verifica del NONCE.
 	if ( isset( $_GET['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_GET['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
-		$the_query = dli_main_search_query(
-			$selected_contents,
-			$searchstring,
-			SITESEARCH_CELLS_PER_PAGE
-		);
+			$the_query = DLI_ContentsManager::main_search_query(
+				$selected_contents,
+				$searchstring,
+				SITESEARCH_CELLS_PER_PAGE
+			);
+		// $the_query = dli_main_search_query(
+		// 	$selected_contents,
+		// 	$searchstring,
+		// 	SITESEARCH_CELLS_PER_PAGE
+		// );
 		$num_results = $the_query->found_posts;
 	}
 } else {
