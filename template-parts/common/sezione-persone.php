@@ -2,6 +2,7 @@
 	$items     = $args['items'];
 	$section_id  = $args['section_id'];
 	$num_results = is_array( $items ) ? count( $items ) : 0;
+	$hide_icon   = dli_get_option( 'hide_person_icon', 'persone' );
 ?>
 <section id="<?php echo 'sezione-' . $section_id; ?>">
 <?php
@@ -39,12 +40,18 @@
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">
 
+					<?php
+					if ( $hide_icon !== 'true' ) {
+					?>
 						<div class="avatar size-xl">
 							<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" 
-							alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
-							title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
-							aria-hidden="true">
+								alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+								title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
+								aria-hidden="true">
 						</div>
+						<?php
+						}
+						?>
 
 						<div class="extra-text">
 							<?php
