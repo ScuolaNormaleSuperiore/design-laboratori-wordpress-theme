@@ -21,7 +21,6 @@ if ( 'true' === $section_enabled ) {
 		<div class="container my-12">
 			<div class="it-grid-list-wrapper it-image-label-grid">
 				<div class="grid-row">
-
 				<?php
 					foreach ( $query->posts as $post ){
 						$image_metadata = dli_get_image_metadata( $post, 'full', '/assets/img/yourimage.png' );
@@ -45,7 +44,6 @@ if ( 'true' === $section_enabled ) {
 					<?php
 						}
 					?>
-
 				</div>
 			</div>
 		</div>
