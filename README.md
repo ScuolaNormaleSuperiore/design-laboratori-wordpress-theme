@@ -97,12 +97,12 @@ Per configurarlo i parametri sono:
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
-* [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
-* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
-* [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
-* [Polylang](https://it.wordpress.org/plugins/polylang/)
-* [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
-* [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
+* [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field)
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields)
+* [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support)
+* [Polylang](https://it.wordpress.org/plugins/polylang)
+* [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp)
+* [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha)
 
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
