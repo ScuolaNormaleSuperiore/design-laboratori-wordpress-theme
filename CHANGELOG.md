@@ -17,8 +17,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [1.6.5] - 2025-07-02
+## Corretto
+- Corretto layout del dettaglio di una Risorsa Tecnica.
+## Modificato
+- Estesa visualizzazione senza foto delle persone anche a progetti e attività di ricerca (hide_person_icon).
+- Parametrizzata gestione della sezione Sponsor.
 ### Aggiunto
-- Aggiunti contenuti: area impatto e impatto.
+- Aggiunto contenuto: impatto.
 
 
 
