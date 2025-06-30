@@ -1904,9 +1904,51 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	/**
+	* 16 - Registers options page "Sponsors".
+	*/
+		$args = array(
+				'id'           => 'dli_options_sponsors',
+				'title'        => esc_html__( 'sponsors', 'design_laboratori_italia' ),
+				'object_types' => array( 'options-page' ),
+				'option_key'   => 'sponsors',
+				'capability'    => DLI_EDIT_CONFIG_PERMISSION,
+				'parent_slug'  => 'dli_options',
+				'tab_group'    => 'dli_options',
+				'tab_title'    => __( 'Sponsors', 'design_laboratori_italia' ),	);
+
+		// 'tab_group' property is supported in > 2.4.0.
+		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+				$args['display_cb'] = 'dli_options_display_with_tabs';
+		}
+
+		$sponsor_options = new_cmb2_box( $args );
+
+		$sponsor_options->add_field( array(
+				'id' => $prefix . 'sponsor_istruzioni',
+				'name'        => __( 'Sezione sponsor', 'design_laboratori_italia' ),
+				'desc' => __( 'Imposta qui i parametri degli sponsor' , 'design_laboratori_italia' ) . '.',
+				'type' => 'title',
+		) );
+
+		$sponsor_options->add_field(
+			array(
+				'id'               => $prefix . 'num_row_sponsor',
+				'name'             => __( 'Numero di elementi', 'design_laboratori_italia' ),
+				'desc'             => __( 'Numero di sponsor da mostrare per riga nella sezione in Home Page' , 'design_laboratori_italia' ),
+				'type'             => 'select',
+				'default'          => '6',
+				'show_option_none' => false,
+				'options'          => array(
+					'4' => 4,
+					'6' => 6,
+				),
+			)
+		);
+
 
 	/**
-	* 16 - Registers options page "Social media".
+	* 17 - Registers options page "Social media".
 	*/
 		$args = array(
 				'id'           => 'dli_options_socials',
@@ -2004,7 +2046,7 @@ function dli_register_main_options_metabox() {
 	// BEGIN SECTION FOR ADMINISTRATORS
 	if ( current_user_can( DLI_ADMIN_EDIT_CONFIG_PERMISSION ) ) {
 		/**
-		* 17 - Registers options page "Integrazione con Indico".
+		* 18 - Registers options page "Integrazione con Indico".
 		*/
 		$args = array(
 			'id'           => 'dli_options_indico',
@@ -2210,7 +2252,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		/**
-		* 18 - Registers options page "Integrazione con IRIS".
+		* 19 - Registers options page "Integrazione con IRIS".
 		*/
 		$args = array(
 			'id'           => 'dli_options_iris',
@@ -2362,7 +2404,7 @@ function dli_register_main_options_metabox() {
 
 
 		/**
-		* 19 - Registers options page "Altro".
+		* 20 - Registers options page "Altro".
 		*/
 
 		$args = array(
