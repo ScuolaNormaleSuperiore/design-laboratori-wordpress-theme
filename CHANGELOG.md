@@ -15,6 +15,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.6.6] - 2025-07-22
+## Modificato
+- Minor changes
 
 ## [1.6.5] - 2025-07-02
 ## Corretto

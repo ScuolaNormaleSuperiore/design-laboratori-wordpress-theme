@@ -18,6 +18,8 @@
                     "id": ""
                 },
                 "choices": {
+                    "Cav.": "Cav.",
+                    "Comm.": "Comm.",
                     "Dott.": "Dott.",
                     "Dott.ssa": "Dott.ssa",
                     "Dr.": "Dr.",
@@ -25,6 +27,7 @@
                     "Prof.ssa": "Prof.ssa",
                     "Ing.": "Ing.",
                     "Avv.": "Avv.",
+                    "Rag.": "Rag.",
                     "Sig.": "Sig.",
                     "Sig.ra": "Sig.ra"
                 },
@@ -32,9 +35,12 @@
                 "return_format": "value",
                 "multiple": 0,
                 "allow_null": 1,
+                "allow_in_bindings": 1,
                 "ui": 0,
                 "ajax": 0,
-                "placeholder": ""
+                "placeholder": "",
+                "create_options": 0,
+                "save_options": 0
             },
             {
                 "key": "field_63c958b563559",
@@ -216,7 +222,8 @@
                 "return_format": "object",
                 "min": "",
                 "max": "",
-                "elements": ""
+                "elements": "",
+                "bidirectional_target": []
             },
             {
                 "key": "field_6448ec7982550",
