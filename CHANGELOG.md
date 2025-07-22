@@ -14,8 +14,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
+## [REL-1.6.7] - 2025-07-22
+## Corretto
+- Corretta visualizzazione eventi e news in HP (ora presenti se promuovi_in_home settato).
+- Corretta visualizzazione archivio eventi e news.
 
-## [1.6.6] - 2025-07-22
+## [REL-1.6.6] - 2025-07-22
 ## Modificato
 - Minor changes
 

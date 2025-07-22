@@ -53,7 +53,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 					<?php
 						if( count( $all_categories ) > 0 ) {
 					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Categoria', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="h6 text-uppercase border-bottom">
+							<?php echo __( 'Categoria', 'design_laboratori_italia' ); ?>
+						</h3>
 						<div>
 							<form action="." id="notizieform" method="GET">
 								<?php
@@ -94,8 +96,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 					<div class="row pt-5">
 					<?php
 					}
-					$post_id  = get_the_ID();
-					$termitem = dli_get_post_main_category( $post, 'category' );
+					$post_id   = get_the_ID();
+					$termitem  = dli_get_post_main_category( $post, 'category' );
+					$item_link = dli_manage_item_link( $post );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">
@@ -116,12 +119,14 @@ $all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
 										<p class="card-text">
 											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
 										</p>
-										<a class="read-more" href="<?php echo get_permalink(); ?>">
-										<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon" role="img" aria-labelledby="Arrow right">
-											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
-										</svg>
+										<a class="read-more" href="<?php echo esc_url ( $item_link  ); ?>">
+											<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+											<svg class="icon" role="img" aria-labelledby="Arrow right">
+												<title>
+													<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>
+												</title>
+												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
+											</svg>
 										</a>
 									</div>
 								</div>

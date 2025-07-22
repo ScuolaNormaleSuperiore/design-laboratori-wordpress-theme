@@ -1,12 +1,12 @@
 <?php
 $section_enabled = dli_get_option( 'home_news_list_is_visible', 'homepage' );
-$order_field = 'post_date';
 
 if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(
 		array(
 			'post_type'      => array( NEWS_POST_TYPE ),
-			'orderby'        => $order_field,
+			'status'         => 'publish',
+			'orderby'        => 'post_date',
 			'order'          => 'DESC',
 			'posts_per_page' => 3,
 			'meta_query'     => array(
