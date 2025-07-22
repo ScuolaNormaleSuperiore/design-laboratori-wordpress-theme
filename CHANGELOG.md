@@ -15,6 +15,24 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+## [1.6.6] - 2025-07-22
+## Modificato
+- Minor changes
+
+## [1.6.5] - 2025-07-02
+## Corretto
+- Corretto layout del dettaglio di una Risorsa Tecnica.
+## Modificato
+- Estesa visualizzazione senza foto delle persone anche a progetti e attività di ricerca (hide_person_icon).
+- Parametrizzata gestione della sezione degli Sponsor in Home Page.
+### Aggiunto
+- Aggiunto contenuto: impatto.
+
+
+
+## [1.6.4] - 2025-06-30
+## Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.16.0.
 
 ## [1.6.3] - 2025-05-23
 ## Aggiunto
@@ -29,7 +47,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Rifattorizzata gestione wrapper contenuti in ricerca e carousel.
-
 
 ## [1.6.2] - 2025-04-17
 ## Modificato

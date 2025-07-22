@@ -68,7 +68,7 @@ $responsabili = dli_get_field( 'responsabile' );
 
 
 	<!-- BODY -->
-	<div class="container p5">
+	<div class="container p-5">
 		<div class="row">
 
 			<!-- Dettagli della risorsa -->
@@ -105,7 +105,7 @@ $responsabili = dli_get_field( 'responsabile' );
 								<div class="card-body text-center">
 									<figure class="img-wrapper">
 										<img
-											style="max-width: 300px; height: auto;"
+											style="max-width: 200px; height: auto;"
 											src="<?php echo esc_url( $photo['url'] ); ?>" 
 											title="<?php echo esc_attr( $photo['title'] ); ?>"
 											alt="<?php echo esc_attr( $photo['title'] ); ?>"

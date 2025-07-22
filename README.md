@@ -62,6 +62,10 @@ Alcuni siti in produzione realizzati con questo tema:
 * <a href="https://istitutociampi.sns.it" target="_blank">Istituto di Studi Avanzati "Carlo Azeglio Ciampi"</a>
 * <a href="https://kto.sns.it" target="_blank">POCKET - Knowledge Transfer Office</a>
 * <a href="https://edevpro3.sns.it" target="_blank">EDEV PRO 3</a>
+* <a href="https://laboratoriobiologia.sns.it" target="_blank">Bio@SNS (Laboratorio di Biologia)</a>
+* <a href="https://pnrr.sns.it" target="_blank">Il PNRR alla Normale</a>
+* <a href="https://froid.sns.it" target="_blank">FROID (Corso di dottorato in Filologia Romanza e Italiana Digitale)</a>
+* <a href="https://crmdegiorgi.sns.it" target="_blank">Centro di ricerca Matematica Ennio De Giorgi (Centro di ricerca Matematica Ennio De Giorgi)</a>
 
 ## Demo
 ### Docker
@@ -93,12 +97,12 @@ Per configurarlo i parametri sono:
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
-* [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field/)
-* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
-* [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support/)
-* [Polylang](https://it.wordpress.org/plugins/polylang/)
-* [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/)
-* [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha/)
+* [ACF OpenStreetMap Field](https://wordpress.org/plugins/acf-openstreetmap-field)
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields)
+* [Better Aria Label Support](https://wordpress.org/plugins/better-aria-label-support)
+* [Polylang](https://it.wordpress.org/plugins/polylang)
+* [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp)
+* [Really Simple CAPTCHA](https://it.wordpress.org/plugins/really-simple-captcha)
 
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 

@@ -3,7 +3,7 @@
  $mode            = isset( $args['mode'] ) ? $args['mode'] : 'show_paged';
  $per_page        = isset( $args['per_page'] ) && $args['per_page'] ? $args['per_page'] : strval( DLI_POSTS_PER_PAGE );
  $per_page_values = isset( $args['per_page_values'] ) && $args['per_page_values'] ? $args['per_page_values'] : DLI_POST_PER_PAGE_VALUES;
- $num_results     = $the_query ? $the_query->found_posts : array();
+ $num_results     = $the_query ? $the_query->found_posts : 0;
  $pagination_on   = ( ( $mode === 'show_paged' ) && ( $num_results > intval ( $per_page) ) ) ? true : false;
 ?>
 
