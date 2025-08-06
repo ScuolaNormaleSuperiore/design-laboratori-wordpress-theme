@@ -30,7 +30,7 @@ foreach ( $active_sections as $section ) {
 		);
 ?>
 
-<?
+<?php
 	}
 }
 ?>
