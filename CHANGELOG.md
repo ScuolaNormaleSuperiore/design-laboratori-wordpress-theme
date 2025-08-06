@@ -16,13 +16,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [REL-1.6.7] - 2025-08-06
-## Corretto
-- Corretta visualizzazione eventi e news in HP (ora presenti se promuovi_in_home settato).
-- Corretta visualizzazione archivio eventi e news.
+## [REL-1.7.0] - 2025-08-06
+## Aggiunto
+- Aggiunto ordinamento delle sezioni della Home Page.
 ## Modificato
 - Aggiornato Dockerfile per sito demo.
 
+
+
+## [REL-1.6.7] - 2025-08-01
+## Corretto
+- Corretta visualizzazione eventi e news in HP (ora presenti se promuovi_in_home settato).
+- Corretta visualizzazione archivio eventi e news.
 
 
 ## [REL-1.6.6] - 2025-07-22

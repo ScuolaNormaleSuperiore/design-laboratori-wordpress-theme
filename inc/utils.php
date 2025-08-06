@@ -337,7 +337,7 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
-		$img_title   = ( $img && $img['title'] ) ? $$img['title'] : $post_title;
+		$img_title   = ( $img && $img['title'] ) ? $img['title'] : $post_title;
 		$img_alt     = ( $img && $img['alt'] ) ? $img['alt'] : $post_title;
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
@@ -374,7 +374,7 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
-		$img_title   = ( $img && $img['title'] ) ? $$img['title'] : $post_title;
+		$img_title   = ( $img && $img['title'] ) ? $img['title'] : $post_title;
 		$img_alt     = ( $img && $img['alt'] ) ? $img['alt'] : $post_title;
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
