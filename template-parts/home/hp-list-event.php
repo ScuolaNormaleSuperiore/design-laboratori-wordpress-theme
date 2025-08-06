@@ -6,7 +6,7 @@ if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(
 		array(
 			'post_type'      => array( EVENT_POST_TYPE ),
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'meta_key'       => 'data_inizio',
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',

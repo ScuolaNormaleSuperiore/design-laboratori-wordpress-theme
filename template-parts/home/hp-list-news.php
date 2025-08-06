@@ -5,7 +5,7 @@ if ( 'true' === $section_enabled ) {
 	$query = new WP_Query(
 		array(
 			'post_type'      => array( NEWS_POST_TYPE ),
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'orderby'        => 'post_date',
 			'order'          => 'DESC',
 			'posts_per_page' => 3,

@@ -21,7 +21,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto ordinamento delle sezioni della Home Page.
 ## Modificato
 - Aggiornato Dockerfile per sito demo.
-
+## Corretto
+- Corretta visualizzazione archivio progetti.
 
 
 ## [REL-1.6.7] - 2025-08-01

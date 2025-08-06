@@ -199,7 +199,7 @@ class DLI_ContentsManager
 
 	public static function get_patent_data_query( $params ) {
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => PATENT_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -227,7 +227,7 @@ class DLI_ContentsManager
 
 	public static function get_spinoff_data_query( $params ) {
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => SPINOFF_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -255,7 +255,7 @@ class DLI_ContentsManager
 
 	public static function get_technical_resource_data_query( $params ) {
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => TECHNICAL_RESOURCE_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -285,7 +285,7 @@ class DLI_ContentsManager
 
 	public static function get_event_data_query( $params ) {
 		$args = array(
-				'status'         => 'publish',
+				'post_status'    => 'publish',
 				'paged'          => $params['paged'],
 				'post_type'      => EVENT_POST_TYPE,
 				'posts_per_page' => $params['per_page'],
@@ -299,7 +299,7 @@ class DLI_ContentsManager
 
 	public static function get_news_data_query( $params){
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => NEWS_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -312,7 +312,7 @@ class DLI_ContentsManager
 
 	public static function get_projects_data_query( $params ){
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -328,11 +328,11 @@ class DLI_ContentsManager
 					'compare'  => '<=',
 					'value'    => $params['today'],
 				),
-				array(
-					'key'      => 'data_fine',
-					'compare'  => '>=',
-					'value'    => $params['today'],
-				),
+				// array(
+				// 	'key'      => 'data_fine',
+				// 	'compare'  => '>=',
+				// 	'value'    => $params['today'],
+				// ),
 				array(
 					'key'     => 'archiviato',
 					'compare' => '=',
@@ -355,7 +355,7 @@ class DLI_ContentsManager
 
 	public static function get_archived_projects_data_query( $params ){
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => PROGETTO_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
@@ -378,7 +378,7 @@ class DLI_ContentsManager
 
 	public static function get_research_area_data_query( $params ){
 		$args = array(
-			'status'         => 'publish',
+			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
 			'post_type'      => RESEARCH_ACTIVITY_POST_TYPE,
 			'posts_per_page' => $params['per_page'],
