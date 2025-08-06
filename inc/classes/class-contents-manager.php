@@ -234,22 +234,28 @@ class DLI_ContentsManager
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			's'              => $params['search_string'],
-			'meta_query'     =>  array(
+		);
+		// Filter by foundation year.
+		if ( $params['foundation_year'] ) {
+			$args['meta_query'] = array(
 				array(
 						'key'     => 'anno_costituzione',
 						'value'   => $params['foundation_year'],
 						'compare' => 'IN',
 				),
-			),
-			'tax_query'      => array(
+			);
+		}
+		// Filter by business sector.
+		if ( $params['business_sector'] ) {
+			$args['tax_query'] = array(
 				array(
 					'taxonomy' => BUSINESS_SECTOR_TAXONOMY,
 					'field'    => 'term_id',
 					'operator' => 'IN',
 					'terms'    => $params['business_sector'],
 				)
-			)
-		);
+				);
+		}
 		return new WP_Query( $args );
 	}
 

@@ -18,7 +18,6 @@ $stato            = dli_get_field( 'stato' );
 $year             = dli_get_field( 'anno_costituzione' );
 $video            = dli_get_field( 'video' );
 $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
-$contatti         = ( $telefono || $email || $sito_web ) ? true :  false;
 ?>
 
 <main id="main-container" role="main">
