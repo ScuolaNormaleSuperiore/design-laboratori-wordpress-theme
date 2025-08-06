@@ -154,7 +154,7 @@ if ( '' !== $searchstring ) {
 					<!-- begin row -->
 					<div class="row">
 					<?php
-						$result = dli_get_post_wrapper( $post, 'item-thumb' );
+						$result = dli_get_post_wrapper( $post, 'medium' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-12">

@@ -19,7 +19,7 @@ if ( 'true' === $section_enabled ) {
 
 	<?php
 	foreach ( $query->posts as $post ){
-		$image_metadata = dli_get_image_metadata( $post, 'item-carousel', '/assets/img/yourimage.png' );
+		$image_metadata = dli_get_image_metadata( $post, 'full', '/assets/img/yourimage.png' );
 		$post_id        = $post->ID;
 		$section        = dli_get_field( 'sezione', $post_id );
 		$button_label   = __( dli_get_field( 'label_pulsante', $post_id ), 'design_laboratori_italia' );

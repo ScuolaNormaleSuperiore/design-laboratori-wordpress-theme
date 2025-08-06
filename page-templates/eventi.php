@@ -101,7 +101,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 					$orario_inizio  = dli_get_field( 'orario_inizio', $post_id );
 					$evento         = get_post( $post_id );
-					$image_metadata = dli_get_image_metadata( $evento, 'item-hero-event' );
+					$image_metadata = dli_get_image_metadata( $evento, 'item-card-list' );
 					$item_link      = dli_manage_item_link( $post );
 					?>
 

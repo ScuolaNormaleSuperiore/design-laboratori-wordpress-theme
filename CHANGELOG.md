@@ -24,6 +24,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Corretto
 - Corretta visualizzazione archivio progetti.
 - Corretto filtro per stato dei contenuti.
+- Corretta visualizzazione immagine banner nei CT, se non specificato l'immagine usata è quella nel formato full.
+- Corretta visualizzazione banner HP.
 
 
 ## [REL-1.6.7] - 2025-08-01

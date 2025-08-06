@@ -9,7 +9,7 @@ if ( $item ) {
 	$date           = dli_get_field( 'data_inizio', $id );
 	$orario_inizio  = dli_get_field( 'orario_inizio', $id );
 	$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
-	$image_metadata = dli_get_image_metadata( $item, 'item-thumb', '/assets/img/img-avatar-250x250.png' );
+	$image_metadata = dli_get_image_metadata( $item, 'medium', '/assets/img/img-avatar-250x250.png' );
 ?>
 
 	<!--start card-->

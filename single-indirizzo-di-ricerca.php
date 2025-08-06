@@ -10,7 +10,7 @@
 global $post;
 get_header();
 $ID             = get_the_ID();
-$image_metadata = dli_get_image_metadata( $post, 'item-gallery' );
+$image_metadata = dli_get_image_metadata( $post );
 $description    = trim( get_the_content() );
 $responsabili   = dli_get_field( 'responsabile_attivita_di_ricerca' );
 $website        = dli_get_field( 'sitioweb' ) ? dli_get_field( 'sitioweb' ) : '';

@@ -207,7 +207,7 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 	function dli_from_event_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$post_title     = get_the_title( $item );
@@ -236,7 +236,7 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 		function dli_from_news_to_wrapped_item( $item, $image_format ) {
 			$result         = DLI_POST_WRAPPER;
 			$post_type      = get_post_type( $item );
-			$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+			$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 			$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 			$page           = dli_get_page_by_post_type( $post_type );
 			$post_title     = get_the_title( $item );
@@ -265,7 +265,7 @@ if( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 	function dli_from_publication_to_wrapped_item( $item, $image_format ) {
 		$result    = DLI_POST_WRAPPER;
 		$post_type = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page        = dli_get_page_by_post_type( $post_type );
 		$post_title  = get_the_title( $item );
@@ -295,7 +295,7 @@ if( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 	function dli_from_patent_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$post_title     = get_the_title( $item );
@@ -333,7 +333,7 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$summary        = dli_get_field( 'descrizione_breve', $item );
 		// Image field from custom fields.
 		$img_field   = 'foto';
-		$placeholder = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
@@ -370,7 +370,7 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$link_pubbl  = $link_pubbl ? $link_pubbl : '';
 		// Image field from custom fields.
 		$img_field   = 'logo';
-		$placeholder = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
@@ -400,7 +400,7 @@ if( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 	function dli_from_progetto_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$post_title     = get_the_title( $item );
@@ -427,7 +427,7 @@ if( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 if( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 	function dli_from_post_to_wrapped_item( $item, $image_format ) {
 		$post_type = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page   = dli_get_page_by_post_type( $post_type );
 		$result = array();
@@ -457,7 +457,7 @@ if( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 if( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 	function dli_from_page_to_wrapped_item( $item, $image_format ) {
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'item-thumb' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$post_title     = get_the_title( $item );
 		$categories     = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
@@ -492,7 +492,7 @@ if( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 }
 
 if( ! function_exists( 'dli_get_image_metadata' ) ) {
-	function dli_get_image_metadata( $item, $image_size = "item-carousel", $partial_default_img_url = null ) {
+	function dli_get_image_metadata( $item, $image_size = "full", $partial_default_img_url = null ) {
 		$result        = DLI_POST_WRAPPER;
 		$image_url     = get_the_post_thumbnail_url( $item, $image_size );
 		$image_caption = '';

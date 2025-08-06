@@ -161,7 +161,7 @@ $num_results = $the_query->found_posts;
 						<?php
 						while ( $the_query->have_posts() ) {
 							$the_query->the_post();
-							$result = dli_get_post_wrapper( $post, 'item-thumb' );
+							$result = dli_get_post_wrapper( $post, 'medium' );
 						?>
 						<!-- row -->
 						<div class="row">

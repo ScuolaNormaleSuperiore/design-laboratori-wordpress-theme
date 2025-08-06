@@ -478,7 +478,7 @@ class DLI_ContentsManager
 			}
 		}
 		foreach ( $results as $result ) {
-			$item = dli_get_post_wrapper( $result );
+			$item = dli_get_post_wrapper( $result, 'item-carousel' );
 			array_push( $items, $item );
 		}
 		return $items;

@@ -150,7 +150,12 @@ Altre guide su questo argomento:
 * [Google Fonts](https://fonts.google.com).
 
 ## Migrazione da 1.4.x a 1.5.x
-Per aggiornare un Sito Federato da una versione 1.4.x a una versione 1.5.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo%20Aggiornare%20Bootstrap%20Italia.md).
+La versione 1.5.x del tema ha introdotto una modifica nella struttura delle pagine del sito riducendo il numero di livelli presenti.
+Per aggiornare un Sito Federato da una versione 1.4.x a una versione 1.5.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Migrazione%20da%2014x%20a%2015x.md).
+
+## Migrazione da 1.6.x a 1.7.x
+La versione 1.7 del tema ha introdotto alcune modifiche nella gestione delle immagini, dei progetti, delle attività di ricerca e della home page.
+Per aggiornare un Sito Federato da una versione 1.6.x a una versione 1.7.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Migrazione%20da%2016x%20a%2017x.md).
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.

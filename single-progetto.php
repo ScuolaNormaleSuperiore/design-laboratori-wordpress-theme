@@ -10,7 +10,7 @@ global $post;
 get_header();
 
 $ID                   = get_the_ID();
-$image_metadata       = dli_get_image_metadata( $post, 'item-gallery' );
+$image_metadata       = dli_get_image_metadata( $post );
 $descrizione          = apply_filters( 'the_content', $post->post_content );
 $responsabili         = dli_get_field( 'responsabile_del_progetto' );
 $partecipanti         = dli_get_field( 'persone' );

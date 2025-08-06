@@ -15,7 +15,7 @@
 			<div class="row pb-3 pt-3">
 			<?php
 				}
-				$risorsa      = dli_get_post_wrapper( $item, 'item-thumb' );
+				$risorsa      = dli_get_post_wrapper( $item, 'medium' );
 				$tipo_risorsa = dli_get_post_main_category( $item, RT_TYPE_TAXONOMY );
 			?>
 
