@@ -1,34 +1,39 @@
 <?php
 $section_enabled = $args['enabled'] ?? false;
 $show_title      = $args['show_title'] ?? false;
-$order_field     = 'data_inizio';
 
 if ( 'true' === $section_enabled ) {
 
 	$query = new WP_Query(
 		array(
 			'post_type'      => array( EVENT_POST_TYPE ),
-			'orderby'        => $order_field ,
-			'order'          => 'DESC',
+			'post_status'    => 'publish',
+			'meta_key'       => 'data_inizio',
+			'orderby'        => 'meta_value',
+			'order'          => 'ASC',
 			'posts_per_page' => 6,
+			// 'meta_query' => array(
+			// 	'relation' => 'OR',
+			// 	array(
+			// 			'key' => 'data_inizio',
+			// 			'value' => date('Y-m-d'),
+			// 			'compare' => '>=',
+			// 			'type' => 'DATE'
+			// 	),
+			// 	array(
+			// 			'key' => 'data_fine',
+			// 			'value' => date('Y-m-d'),
+			// 			'compare' => '>=',
+			// 			'type' => 'DATE'
+			// 	)
+			// ),
 			'meta_query' => array(
-				'relation' => 'OR',
 				array(
-						'key' => 'data_inizio',
-						'value' => date('Y-m-d'),
-						'compare' => '>=',
-						'type' => 'DATE'
+					'key'     => 'promuovi_in_home',
+					'compare' => '=',
+					'value'   => 1,
 				),
-				array(
-						'key' => 'data_fine',
-						'value' => date('Y-m-d'),
-						'compare' => '>=',
-						'type' => 'DATE'
-				)
 			),
-			'orderby' => 'meta_value',
-			'meta_key' => $order_field,
-			'order' => 'ASC'
 		)
 	);
 
@@ -105,6 +110,7 @@ if ( 'true' === $section_enabled ) {
 						</ul>
 					</div>
 				</div>
+
 				<div class="text-center pt-5">
 					<?php
 						$page_url = dli_get_translated_page_url_by_slug( SLUG_EVENTI_IT );
