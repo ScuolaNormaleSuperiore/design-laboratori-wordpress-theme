@@ -44,3 +44,7 @@ Seguire questa procedura:
 
 ## Introduzione della priorità per progetti e attività di ricerca.
 Dopo l'aggiornamento del tema potrebbe essere necessario salvare tutti i progetti e le attività di ricerca già esistenti sul sito perché non prevedono il campo priorità.
+Si può utilizzare il plugin [](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/SETUP/PluginPerAggiornamenti/dli-aggiorna-priorita-plugin.zip) seguendo questa procedure:
+1. Scompattare il file dli-aggiorna-priorita-plugin.zip nella cartella plugins.
+2. Da WP->Plugin attivare il plugin: il plugin si attiva, esegue la procedura e si disattiva.
+3. Eliminare dli-aggiorna-priorita-plugin dalla cartella plugins.
