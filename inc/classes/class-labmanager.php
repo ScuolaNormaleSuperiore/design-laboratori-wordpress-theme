@@ -228,11 +228,6 @@ class DLI_LabManager {
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'item-card-list', 416, 232 , false );
 			add_image_size( 'item-carousel', 592, 334 , false );
-			// add_image_size( 'medium', 280, 280 , false );
-			// add_image_size( 'item-gallery', 730, 485 , false );
-			// add_image_size( 'item-hero-event', 418, 130 , false );
-			// add_image_size( 'banner', 600, 250 , false );
-			// add_image_size( 'page-body', 860, 238 , false );
 		}
 	}
 	
