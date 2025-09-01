@@ -18,22 +18,6 @@ define( 'MSG_ERROR_IMPORTING_ITEM', "Errore importando l'oggetto:" );
 define( 'MSG_HEADER_DRY_RUN', '*** Importazione in modalità DRY-RUN (nessun oggetto creato realmente) ***' );
 define( 'MSG_HEADER_REAL_IMPORT', '*** Importazione effettiva, oggetti creati realmente ***' );
 
-// if ( function_exists( 'dli_define_sponsor_constants' ) ) {
-// 	function dli_define_sponsor_constants() {
-// 		define( 'MSG_MODULE_DISABLED', __( 'Import disabilitato', 'design_laboratori_italia' ) );
-// 		define( 'MSG_MODULE_NOT_CONFIGURED',  __( 'Import non configurato correttamente', 'design_laboratori_italia' ) );
-// 		define( 'MSG_IMPORT_ERROR', __( "Si è verificato un errore durante l'esecuzione dell'import", 'design_laboratori_italia' ) );
-// 		define( 'MSG_IMPORT_SUCCESSFUL', __( 'Importazione eseguita correttamente', 'design_laboratori_italia' ) );
-// 		define( 'MSG_IMPORT_DRY_RUN', __( 'Dry-run - Importo oggetto: ', 'design_laboratori_italia' ) );
-// 		define( 'MSG_IMPORTED_ITEM', __( 'Importato oggetto: ', 'design_laboratori_italia' ) );
-// 		define( 'MSG_UPDATED_ITEM', __( 'Aggiornato oggetto: ', 'design_laboratori_italia' ) );
-// 		define( 'MSG_IGNORED_ITEM', __( 'Ignorato oggetto: ', 'design_laboratori_italia' ) );
-// 		define( 'MSG_ERROR_IMPORTING_ITEM', __( "Errore importando l'oggetto: ", 'design_laboratori_italia' ) );
-// 		define( 'MSG_HEADER_DRY_RUN', __( '*** Importazione in modalità DRY-RUN (nessun oggetto creato realmente) ***', 'design_laboratori_italia' ) );
-// 		define( 'MSG_HEADER_REAL_IMPORT', __( '*** Importazione effettiva, oggetti creati realmente ***', 'design_laboratori_italia' ) );
-// 	}
-// 	add_action( 'after_setup_theme', 'dli_define_sponsor_constants', 1 );
-// }
 
 class DLI_BaseImporter {
 
