@@ -328,7 +328,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 				if ( $risorse ) {
 				?>
 				<!-- RISORSE -->
-				<h3 class="it-page-section h4 pt-3" id="p2">
+				<h3 class="it-page-section h4 pt-3" id="p7">
 					<?php echo dli_translate( 'Risorse tecniche', 'design_laboratori_italia' ); ?>
 				</h3>
 				<?php

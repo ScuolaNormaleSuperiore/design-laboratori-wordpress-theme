@@ -22,6 +22,9 @@ if ( $newsletter_enabled === 'true' ) {
 							</svg>
 						</div>
 				</div>
+                    <label for="user_mail" class="sr-only">
+                        <?php echo __( 'Inserisci il tuo indirizzo email per ricevere aggiornamenti', 'design_laboratori_italia' ); ?>
+                    </label>
 					<input type="text" title="<?php echo __( 'Inserisci il tuo indirizzo email per ricevere aggiornamenti', 'design_laboratori_italia' ); ?>" class="form-control bg-transparent text-white border-white"
 						id="user_mail" name="user_mail"
 						placeholder="<?php echo __( 'Indirizzo e-mail', 'design_laboratori_italia' ); ?>">

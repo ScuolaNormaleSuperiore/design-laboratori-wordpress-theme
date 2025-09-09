@@ -343,7 +343,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 				if ( $sito_web ) {
 				?>
 					<article id="website" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 pt-3" id="luogo-title"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></h3>
+						<h3 class="it-page-section h4 pt-3" id="website-title"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></h3>
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<li>
@@ -453,7 +453,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 				if ( $video ){
 				?>
 					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
+						<h3 id="video-title" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
 
 						<?php
 							$video_text = null;
