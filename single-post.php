@@ -101,9 +101,9 @@ $current_url    = get_permalink();
 					if ( $tags ){
 					?>
 					<div class="mt-4 mb-4">
-						<h6 class="mb-0">
+						<h3 class="mb-0 h6">
 							<small><?php echo __( 'Argomenti', 'design_laboratori_italia' ); ?></small>
-						</h6>
+						</h3>
 						<?php
 						foreach( $tags as $tag ) {
 						?>
@@ -122,7 +122,7 @@ $current_url    = get_permalink();
 				<!-- CORPO DELLA NEWS -->
 				<div class="col-12 col-lg-9 it-page-sections-container">
 					<div class="row p-4 pt-0">
-						<article id="news">
+						<article id="news-body">
 							<?php echo the_content(); ?>
 						</article>
 					</div>

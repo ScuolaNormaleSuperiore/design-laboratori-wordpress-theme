@@ -210,7 +210,6 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 				<?php
 				if ( $eventi ) {
 				?>
-				<h3 class="it-page-section h4 pt-3" id="sezione-eventi"><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></h3>
 				<?php
 					get_template_part(
 						'template-parts/common/sezione-related-items',
