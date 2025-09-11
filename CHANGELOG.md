@@ -16,6 +16,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [REL-1.7.1] - 2025-09-11
+## Corretto
+- Bug-fixing: Modifiche per migliorare accessibilità
+
+
+
 ## [REL-1.7.0] - 2025-08-07
 ## Aggiunto
 - Aggiunto ordinamento delle sezioni della Home Page.
