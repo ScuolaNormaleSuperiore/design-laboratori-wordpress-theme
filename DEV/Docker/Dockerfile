@@ -14,7 +14,7 @@ FROM php:8.3-apache
 ################# CONFIGURATIONS (define ARG after FROM) #####################
 ARG WP_ARCHIVE=wordpress-6.8.3.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
-ARG ADMINER=https://github.com/vrana/adminer/releases/download/v5.3.0/adminer-5.3.0.php
+ARG ADMINER=https://github.com/vrana/adminer/releases/download/v5.4.1/adminer-5.4.1.php
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.6.1.zip
