@@ -12,17 +12,17 @@
 FROM php:8.3-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.8.2.tar.gz
+ARG WP_ARCHIVE=wordpress-6.8.3.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v5.3.0/adminer-5.3.0.php
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.6.1.zip
-ARG PLG_ACF=advanced-custom-fields.6.4.3.zip
+ARG PLG_ACF=advanced-custom-fields.6.6.2.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_POLYLANG=polylang.3.7.3.zip
+ARG PLG_POLYLANG=polylang.3.7.5.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
-ARG PLG_SMTP=wp-mail-smtp.4.5.0.zip
+ARG PLG_SMTP=wp-mail-smtp.4.7.0.zip
 
 # Plugion facoltativi o di sviluppo
 ARG PLG_LOCO_TRANSLATE=loco-translate.2.8.0.zip
