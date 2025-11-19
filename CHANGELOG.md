@@ -15,10 +15,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+
 ## [REL-1.7.2] - 2025-11-19
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.0.
 - Aggiornato Dockerfile per demo.
+
 
 
 ## [REL-1.7.1] - 2025-09-11
