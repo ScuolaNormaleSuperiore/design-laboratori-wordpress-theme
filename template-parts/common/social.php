@@ -89,6 +89,18 @@
 			</li>
 		<?php
 		}
+		if ( $mastodon = dli_get_option( 'mastodon', 'socials' ) ) {
+		?>
+			<li>
+				<a href="<?php echo $mastodon; ?>" aria-label="Mastodon" target="_blank">
+					<svg class="icon" role="img" aria-labelledby="Mastodon" aria-label="Mastodon">
+						<title>Mastodon</title>
+						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mastodon'; ?>"></use>
+					</svg>
+				</a>
+			</li>
+		<?php
+		}
 		if ( $iris = dli_get_option( 'iris', 'socials' ) ) {
 		?>
 			<li>

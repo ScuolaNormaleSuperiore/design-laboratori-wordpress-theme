@@ -1940,6 +1940,12 @@ function dli_register_main_options_metabox() {
 	) );
 
 	$social_options->add_field( array(
+		'id' => $prefix . 'mastodon',
+		'name' => 'Mastodon',
+		'type' => 'text_url',
+	) );
+
+	$social_options->add_field( array(
 		'id' => $prefix . 'iris',
 		'name' => 'Iris',
 		'type' => 'text_url',
