@@ -56,7 +56,7 @@ La procedura per aggiornare la versione usata di Bootstrap Italia è nel documen
 
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
-* [Sito Federato DEV](https://sitofederato-dev.sns.it)
+* [Sito Federato DEV](https://sitofederato.sns.it)
   
 Alcuni siti in produzione realizzati con questo tema:
 * <a href="https://istitutociampi.sns.it" target="_blank">Istituto di Studi Avanzati "Carlo Azeglio Ciampi"</a>
