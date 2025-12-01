@@ -1759,7 +1759,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1642,	276,	'_stato',	'field_67935a3ce738d'),
 (1643,	276,	'logo',	''),
 (1644,	276,	'_logo',	'field_67a9de5539f8f'),
-(1645,	276,	'sito_web',	'https://www.sitofederato-dev.sns.it'),
+(1645,	276,	'sito_web',	'https://www.sitofederato.sns.it'),
 (1646,	276,	'_sito_web',	'field_67935a9c5b6a4'),
 (1647,	276,	'telefono',	'+39 33445566'),
 (1648,	276,	'_telefono',	'field_679cd99d9a82a'),
