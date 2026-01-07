@@ -20,8 +20,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 Aggiunto link social per Mastodon.
 
 
-
-
 ## [REL-1.7.2] - 2025-11-19
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.0.
