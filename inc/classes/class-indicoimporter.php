@@ -79,10 +79,18 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$api_url    = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
 		$parameters = array( 'sslverify' => false, ); 
 		$response   = wp_remote_get( $api_url, $parameters );
-		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
+		// Verifica di eventuali errori.
+		if ( is_wp_error( $response ) ) {
 			$msg = 'Errore invocando la Indico REST API: ' . $response->get_error_message();
 			throw new Exception( $msg );
 		}
+		$code = wp_remote_retrieve_response_code( $response );
+		if ( $code !== 200 ) {
+			$body = wp_remote_retrieve_body( $response );
+			$msg  = 'Errore invocando la Indico REST API. HTTP ' . $code . '. Risposta: ' . $body;
+			throw new Exception( $msg );
+		}
+		// Recupero i dati da Indico.
 		$resp_body = wp_remote_retrieve_body( $response );
 		$resp_data = json_decode( $resp_body, true );
 		// Controlla se la decodifica è riuscita
