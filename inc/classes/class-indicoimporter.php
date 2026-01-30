@@ -25,6 +25,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	}
 
 	public function import() {
+		$this->log_string( '*** RUNNING IMPORT: ' . $this->job_name . ' ***' );
 		// Gestione parametri.
 		// WP_REST_Request $request.
 		// $param1 = $request->get_param('param1') .
@@ -75,8 +76,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$base_url    = $conf['base_url'];
 		$start_date  = $conf['start_date'];
 		// Creazione del client e invocazione del servizio.
-		$api_url = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
-		$response = wp_remote_get( $api_url );
+		$api_url    = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
+		$parameters = array( 'sslverify' => false, ); 
+		$response   = wp_remote_get( $api_url, $parameters );
 		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
 			$msg = 'Errore invocando la Indico REST API: ' . $response->get_error_message();
 			throw new Exception( $msg );
