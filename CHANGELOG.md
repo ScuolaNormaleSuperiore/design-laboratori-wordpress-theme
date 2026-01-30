@@ -15,6 +15,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
 
 
+
+## [REL-1.7.4] - 2026-02-10
+## Corretto
+- Bug-fixing: Corretto import Indico
+
+
+
 ## [REL-1.7.3] - 2025-11-19
 ## Modificato
 Aggiunto link social per Mastodon.
