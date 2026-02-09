@@ -176,14 +176,19 @@ class DLI_ContentsManager
 					);
 					break;
 				default:
-					$ct   = dli_get_page_by_post_type( $post->post_type );
-					array_push( 
-						$steps, 
-						array(
-							'label' => get_the_title( $ct->ID ),
-							'url'   => get_permalink( $ct->ID ),
-							'class' => 'breadcrumb-item',
-						),
+					$ct = dli_get_page_by_post_type( $post->post_type );
+					if ( $ct ) {
+						array_push(
+							$steps,
+							array(
+								'label' => get_the_title( $ct->ID ),
+								'url'   => get_permalink( $ct->ID ),
+								'class' => 'breadcrumb-item',
+							),
+						);
+					}
+					array_push(
+						$steps,
 						array(
 							'label' => $post->post_title,
 							'url'   => $post->post_url,

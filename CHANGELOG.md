@@ -19,7 +19,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [REL-1.7.4] - 2026-02-10
 ## Corretto
 - Bug-fixing: Corretto import Indico
-
+- Bug-fixing: Varie correzioni suggerite dalla AI.
+- 
 
 
 ## [REL-1.7.3] - 2025-11-19

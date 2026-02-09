@@ -16,7 +16,7 @@ $date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $news_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
 $image_metadata = dli_get_image_metadata( $post );
 $pg             = dli_get_page_by_post_type( $post->post_type );
-$pg_link        = get_permalink( $pg->ID );
+$pg_link        = $pg ? get_permalink( $pg->ID ) : '';
 $tags           = get_the_tags( $post->ID );
 $current_url    = get_permalink();
 ?>

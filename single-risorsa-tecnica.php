@@ -31,8 +31,9 @@ foreach ( $att_fields as $af ) {
 	}
 }
 // Tassonomie.
-$tipo_risorsa = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
-$archive_page = get_permalink( dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE ) );
+$tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+$archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
+$archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
 // Immagini.
 $photo          = dli_get_field( 'foto' );
 $image_metadata = dli_get_image_metadata( $post, 'full' );

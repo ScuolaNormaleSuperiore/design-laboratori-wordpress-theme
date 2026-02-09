@@ -80,11 +80,16 @@ While developing this project, I want to learn everything needed to become an ex
 
 Some rules to follow:
 
-Use tabs, not spaces, and place comments in English at the beginning of each file and before every function.
+  * Use tabs, not spaces, and place comments in English at the beginning of each file and before every function.
+  * Comments must end with a period ".".
+  * Use WordPress naming conventions for classes, files, variables, constants, and functions.
+  * Align the assignments as required by WP reules, e.g.:
+```
+$tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+$archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
+$archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
+```
 
-Comments must end with a period ".".
-
-Use WordPress naming conventions for classes, files, variables, constants, and functions.
 
 Pay particular attention to the following aspects when writing code:
 - Absence of bugs.

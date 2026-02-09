@@ -25,6 +25,8 @@ nbproject
 Thumbs.db
 .vscode
 
+# Custom directives
 node_modules
 assets/css/compiled
- assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
+assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
+BUGS.txt
