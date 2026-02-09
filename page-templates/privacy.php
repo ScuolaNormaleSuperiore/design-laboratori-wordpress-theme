@@ -91,8 +91,15 @@ $form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $p
 					//get top parent page id
 					$top_parent = dli_get_page_anchestor_id( $post );
 					$slugs      = array_reverse ( dli_get_page_slug_anchestors( $post ) );
-					if ( count ( $slugs ) > 0 && ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
-						$top_parent = get_page_by_path( $slugs[0] . '/' . $slugs[1] )->ID;
+					if (
+						count( $slugs ) > 0
+						&& isset( $slugs[1] )
+						&& ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN )
+					) {
+						$parent_page = get_page_by_path( $slugs[0] . '/' . $slugs[1] );
+						if ( $parent_page ) {
+							$top_parent = $parent_page->ID;
+						}
 					}
 					//Retrieve till second level pages
 					$pages = get_pages(
