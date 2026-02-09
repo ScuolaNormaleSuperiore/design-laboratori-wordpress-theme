@@ -210,14 +210,16 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
+		$page_title     = $page ? $page->post_title : '';
+		$page_link      = $page ? get_permalink( $page->ID ) : '';
 		$post_title     = get_the_title( $item );
 		$item_link      = dli_manage_item_link( $item );
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => dli_get_field( 'data_inizio', $item ),
 			'orario_inizio' => dli_get_field( 'orario_inizio', $item ),
 			'title'         => $post_title,
@@ -239,14 +241,16 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 			$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 			$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 			$page           = dli_get_page_by_post_type( $post_type );
+			$page_title     = $page ? $page->post_title : '';
+			$page_link      = $page ? get_permalink( $page->ID ) : '';
 			$post_title     = get_the_title( $item );
 			$item_link      = dli_manage_item_link( $item );
 			// @TODO: Popolare $result e non ridefinirlo.
 			$result = array(
 				'id'            => $item->ID,
 				'type'          => $post_type,
-				'category'      => $page->post_title,
-				'category_link' => get_permalink( $page->ID ),
+				'category'      => $page_title,
+				'category_link' => $page_link,
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
@@ -268,6 +272,8 @@ if( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page        = dli_get_page_by_post_type( $post_type );
+		$page_title  = $page ? $page->post_title : '';
+		$page_link   = $page ? get_permalink( $page->ID ) : '';
 		$post_title  = get_the_title( $item );
 		$link_pubbl  = dli_get_field('url', $item);
 		$link_pubbl  = $link_pubbl ? $link_pubbl : '';
@@ -275,8 +281,8 @@ if( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => dli_get_field('anno', $item),
 			'orario_inizio' => null,
 			'title'         => $post_title,
@@ -298,6 +304,8 @@ if( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
+		$page_title     = $page ? $page->post_title : '';
+		$page_link      = $page ? get_permalink( $page->ID ) : '';
 		$post_title     = get_the_title( $item );
 		$link_pubbl     = dli_get_field( 'url', $item );
 		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
@@ -306,8 +314,8 @@ if( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => dli_get_field('data_deposito', $item),
 			'orario_inizio' => null,
 			'title'         => $post_title,
@@ -327,6 +335,8 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
 		$page           = dli_get_page_by_post_type( $post_type );
+		$page_title     = $page ? $page->post_title : '';
+		$page_link      = $page ? get_permalink( $page->ID ) : '';
 		$post_title     = get_the_title( $item );
 		$link_pubbl     = dli_get_field( 'url', $item );
 		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
@@ -343,8 +353,8 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => dli_get_field('anno_acquisizione', $item),
 			'orario_inizio' => '',
 			'title'         => $post_title,
@@ -365,6 +375,8 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$result    = DLI_POST_WRAPPER;
 		$post_type = get_post_type( $item );
 		$page        = dli_get_page_by_post_type( $post_type );
+		$page_title  = $page ? $page->post_title : '';
+		$page_link   = $page ? get_permalink( $page->ID ) : '';
 		$post_title  = get_the_title( $item );
 		$link_pubbl  = get_field('url', $item);
 		$link_pubbl  = $link_pubbl ? $link_pubbl : '';
@@ -380,8 +392,8 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => get_field('anno', $item),
 			'orario_inizio' => null,
 			'title'         => $post_title,
@@ -403,13 +415,15 @@ if( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
+		$page_title     = $page ? $page->post_title : '';
+		$page_link      = $page ? get_permalink( $page->ID ) : '';
 		$post_title     = get_the_title( $item );
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result      = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => $page->post_title,
-			'category_link' => get_permalink( $page->ID ),
+			'category'      => $page_title,
+			'category_link' => $page_link,
 			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
@@ -430,6 +444,8 @@ if( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page   = dli_get_page_by_post_type( $post_type );
+		$page_title = $page ? $page->post_title : '';
+		$page_link  = $page ? get_permalink( $page->ID ) : '';
 		$result = array();
 		if ( $page ){
 			$post_title  = get_the_title( $item );
@@ -437,8 +453,8 @@ if( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 			$result = array(
 				'id'            => $item->ID,
 				'type'          => $post_type,
-				'category'      => $page->post_title,
-				'category_link' => get_permalink( $page->ID ),
+				'category'      => $page_title,
+				'category_link' => $page_link,
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 				'orario_inizio' => null,
 				'title'         => $post_title,
@@ -529,9 +545,9 @@ if( ! function_exists( 'dli_get_post_main_category' ) ) {
 		$terms = get_the_terms( $post, $taxonomy );
 		if ( ! is_array( $terms ) || count( $terms ) ==0 ) {
 			$pg        = dli_get_page_by_post_type( $post->post_type );
-			$pg_link   = get_permalink( $pg->ID );
+			$pg_link   = $pg ? get_permalink( $pg->ID ) : '';
 			return array(
-				'title' => $pg->post_title,
+				'title' => $pg ? $pg->post_title : '',
 				'url'   => $pg_link,
 				'id'    => null,
 			);
@@ -552,11 +568,11 @@ if( ! function_exists( 'dli_get_post_categories' ) ) {
 
 		if ( ! is_array( $terms ) || count( $terms ) ==0 ) {
 			$pg        = dli_get_page_by_post_type( $post->post_type );
-			$pg_link   = get_permalink( $pg->ID );
+			$pg_link   = $pg ? get_permalink( $pg->ID ) : '';
 			array_push(
 				$categories,
 				array(
-					'title' => $pg->post_title,
+					'title' => $pg ? $pg->post_title : '',
 					'url'   => $pg_link,
 					'id'    => null,
 				)
@@ -630,7 +646,7 @@ if( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 						'post_type'      => $post_type,
 						'numberposts'    => -1,
 						'fields'         => 'ids',
-						'content_status' => $content_status,
+						'post_status'    => $content_status,
 				 )
 				),
 			)
@@ -795,7 +811,7 @@ if( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 						array(
 							'taxonomy' => PLACE_TYPE_TAXONOMY,
 							'field'    => 'slug',
-							'terms'    => "'" . $tipo_luogo->slug . "'",
+							'terms'    => $tipo_luogo->slug,
 						),
 					),
 				)
@@ -878,6 +894,9 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 					foreach( $menu_items as $child ) {
 						$object_id        = $child->object_id;
 						$object           = get_post( $object_id );
+						if ( ! $object ) {
+							continue;
+						}
 						$child_el         = dli_get_tree_item();
 						$child_el['name'] = $object->post_title;
 						$child_el['slug'] = $object->post_name;
