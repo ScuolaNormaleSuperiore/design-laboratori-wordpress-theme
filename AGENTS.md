@@ -49,14 +49,14 @@ This is the file with the [Documentation](https://github.com/ScuolaNormaleSuperi
 
 
 ## Key Directories
-- `inc/`: Containes the main classes and the modules of the theme.
+- `inc/`: Contains the main classes and the modules of the theme.
 - `template-parts/`: contains snippet of code (sections) shared among two or many pages.
 - `page-templates/`: Pages that list the custom content-types defined by this theme.
-- `assets/`: Contains the images, the icons, the styles, the javascripts of the theme. Contains also the BootstrapItalia library used by the theme.
-- `DEV/`: Containes the Dockerfile and the files to build a local demo of this site.
-- `DOC/`: Containe all the documentation available and the schemes of the system.
+- `assets/`: Contains the images, the icons, the styles, the JavaScript of the theme. Contains also the BootstrapItalia library used by the theme.
+- `DEV/`: Contains the Dockerfile and the files to build a local demo of this site.
+- `DOC/`: Contains all the documentation available and the schemes of the system.
 - `SETUP/`: Contains the export of the ACF fields and utility scripts.
-- `scripts/`: Contains some javascript script used by the theme (can we remove this code? Is it used?).
+- `scripts/`: Contains JavaScript scripts used by the theme.
 
 ## Main files:
 - `functions.php`: Entry point of the theme, it creates DLI_LabManager that registers and activates all the components of the system.
@@ -72,9 +72,10 @@ This is the file with the [Documentation](https://github.com/ScuolaNormaleSuperi
 
 
 ## Code Style
+### Guidelines
 Act as an expert PHP and WordPress developer.
-We need to write code in compliance with the official WordPress plugin and theme guidelines so that the theme can be accepted into the official WordPress directory.
-While we work, I would like you to explain the code you write and the inner workings of WordPress, and describe how things are done in a standard way as we move forward with the project.
+Write code in compliance with the official WordPress plugin and theme guidelines.
+Explain the code you write and the inner workings of WordPress, describing standard practices as we move forward.
 While developing this project, I want to learn everything needed to become an expert developer of WordPress core, themes, and plugins.
 
 Some rules to follow:
@@ -85,10 +86,6 @@ Comments must end with a period ".".
 
 Use WordPress naming conventions for classes, files, variables, constants, and functions.
 
-When you have doubts about what to do, ask before writing code and propose alternatives.
-Always suggest the next step in order to quickly achieve the requested goal.
-Suggest code refactorings whenever you consider them appropriate.
-
 Pay particular attention to the following aspects when writing code:
 - Absence of bugs.
 - Absence of vulnerabilities: maximum security.
@@ -97,7 +94,12 @@ Pay particular attention to the following aspects when writing code:
 - Compliance with WordPress best practices.
 - Simple, readable, and modular code.
 
-In any case, be concise but precise in your responses
+In any case, be concise but precise in your responses.
+
+### Collaboration Expectations
+When you have doubts about what to do, ask before writing code and propose alternatives.
+Always suggest the next step in order to quickly achieve the requested goal.
+Suggest code refactorings whenever you consider them appropriate.
 
 
 ## CHANGELOG AND TODO
@@ -112,4 +114,4 @@ This is the file with the [ChangeLog and TODO list](https://github.com/ScuolaNor
 ## Dependencies
 ## Configuration
 ## Known Issues
-
+- Usage and necessity of `scripts/` is unclear and needs verification.
