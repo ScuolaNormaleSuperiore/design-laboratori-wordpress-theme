@@ -692,6 +692,45 @@ if( ! function_exists( 'dli_get_monthname' ) ) {
 	}
 }
 
+/**
+ * Safely create a DateTime instance from a given format.
+ *
+ * @param string $format The input format.
+ * @param string $date_string The date string.
+ * @return DateTime|false The DateTime object on success, false otherwise.
+ */
+if( ! function_exists( 'dli_get_datetime_from_format' ) ) {
+	function dli_get_datetime_from_format( $format, $date_string ) {
+		if ( empty( $format ) || empty( $date_string ) ) {
+			return false;
+		}
+		$date   = DateTime::createFromFormat( $format, $date_string );
+		$errors = DateTime::getLastErrors();
+		if ( false === $date ) {
+			return false;
+		}
+		if ( is_array( $errors ) && ( $errors['warning_count'] > 0 || $errors['error_count'] > 0 ) ) {
+			return false;
+		}
+		return $date;
+	}
+}
+
+/**
+ * Safely format a date string using input and output formats.
+ *
+ * @param string $input_format The input format.
+ * @param string $date_string The date string.
+ * @param string $output_format The output format.
+ * @return string The formatted date or empty string on failure.
+ */
+if( ! function_exists( 'dli_format_date_from_format' ) ) {
+	function dli_format_date_from_format( $input_format, $date_string, $output_format ) {
+		$date = dli_get_datetime_from_format( $input_format, $date_string );
+		return $date ? $date->format( $output_format ) : '';
+	}
+}
+
 if( ! function_exists( 'dli_get_monthname_short' ) ) {
 	function dli_get_monthname_short( $month ) {
 		$index = intval( $month ) - 1;

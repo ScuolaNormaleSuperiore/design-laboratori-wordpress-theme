@@ -62,7 +62,9 @@ if ( 'true' === $section_enabled ) {
 							foreach ( $query->posts as $post ){
 								$postitem      = dli_get_post_wrapper( $post );
 								$date          = $postitem['date'];
-								$item_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+								$item_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+								$item_day      = $item_date ? intval( $item_date->format( 'd' ) ) : '';
+								$item_month    = $item_date ? dli_get_monthname( $item_date->format( 'm' ) ) : '';
 								$orario_inizio = $postitem['orario_inizio']
 						?>
 							<!-- SINGOLO EVENTO -->
@@ -78,10 +80,12 @@ if ( 'true' === $section_enabled ) {
 														title="<?php echo esc_attr( $postitem['image_title'] ); ?>"
 													>
 													</figure>
+													<?php if ( $item_date ) { ?>
 													<div class="card-calendar d-flex flex-column justify-content-center">
-														<span class="card-date"><?php echo intval( $item_date->format( 'd' ) ); ?></span>
-														<span class="card-day"><?php echo __( dli_get_monthname( $item_date->format( 'm' ), 'design_laboratori_italia' ) ); ?></span>
+														<span class="card-date"><?php echo $item_day; ?></span>
+														<span class="card-day"><?php echo __( $item_month, 'design_laboratori_italia' ); ?></span>
 													</div>
+													<?php } ?>
 												</div>
 											</div>
 											<div class="card-body p-4">

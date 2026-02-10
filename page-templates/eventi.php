@@ -98,7 +98,10 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 					$post_id        = get_the_ID();
 					$termitem       = dli_get_post_main_category( $post, 'category' );
 					$date           = dli_get_field( 'data_inizio', $post_id );
-					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$event_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+					$event_day      = $event_date ? intval( $event_date->format( 'd' ) ) : '';
+					$event_month    = $event_date ? dli_get_monthname( $event_date->format( 'm' ) ) : '';
+					$event_year     = $event_date ? intval( $event_date->format( 'Y' ) ) : '';
 					$orario_inizio  = dli_get_field( 'orario_inizio', $post_id );
 					$evento         = get_post( $post_id );
 					$image_metadata = dli_get_image_metadata( $evento, 'item-card-list' );
@@ -116,12 +119,14 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
 													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>">
 											</figure>
+											<?php if ( $event_date ) { ?>
 											<div class="card-calendar d-flex flex-column justify-content-center">
-												<span class="card-date"><?php echo intval( $event_date->format( 'd' ) ); ?></span>
+												<span class="card-date"><?php echo $event_day; ?></span>
 												<span class="card-day">
-													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
+													<?php echo __( $event_month, 'design_laboratori_italia' ); ?> <?php echo $event_year; ?>
 												</span>
 											</div>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="card-body p-4">

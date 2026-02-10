@@ -24,7 +24,10 @@
 					$title          = get_the_title( $id );
 					$date           = get_field( 'data_inizio', $id );
 					$orario_inizio  = get_field( 'orario_inizio', $id );
-					$event_date     = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+					$event_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+					$event_day      = $event_date ? intval( $event_date->format( 'd' ) ) : '';
+					$event_month    = $event_date ? dli_get_monthname( $event_date->format( 'm' ) ) : '';
+					$event_year     = $event_date ? intval( $event_date->format( 'Y' ) ) : '';
 					$image_metadata = dli_get_image_metadata( $item, 'medium', '/assets/img/img-avatar-250x250.png' );
 
 					?>
@@ -39,14 +42,16 @@
 												title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 												alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											</figure>
+											<?php if ( $event_date ) { ?>
 											<div class="card-calendar d-flex flex-column justify-content-center">
 												<span class="card-date">
-													<?php echo $event_date->format( 'd' ); ?>
+													<?php echo $event_day; ?>
 												</span>
 												<span class="card-day">
-													<?php echo __( dli_get_monthname( $event_date->format( 'm' ), 'design_laboratori_italia' ) ); ?> <?php echo intval( $event_date->format( 'Y' ) ); ?>
+													<?php echo __( $event_month, 'design_laboratori_italia' ); ?> <?php echo $event_year; ?>
 												</span>
 											</div>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="card-body p-4">

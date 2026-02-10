@@ -13,7 +13,9 @@ $categories     = dli_get_post_categories( $post, 'category' );
 $current_lang   = dli_current_language();
 $cat_page       = DLI_PAGE_PER_CT[WP_DEFAULT_POST][$current_lang];
 $date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
-$post_date      = DateTime::createFromFormat( DLI_ACF_DATE_FORMAT, $date );
+$post_date      = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+$post_day       = $post_date ? intval( $post_date->format( 'd' ) ) : '';
+$post_month     = $post_date ? dli_get_monthname( $post_date->format( 'm' ) ) : '';
 $image_metadata = dli_get_image_metadata( $post );
 $pg             = dli_get_page_by_post_type( $post->post_type );
 $pg_link        = $pg ? get_permalink( $pg->ID ) : '';
@@ -44,11 +46,13 @@ $current_url    = get_permalink();
 			<div class="row">
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
+						<?php if ( $post_date ) { ?>
 						<span class="it-Categoria">
-							<?php echo intval( $post_date->format( 'd' ) ) ; ?>
+							<?php echo $post_day; ?>
 							&nbsp;
-							<?php echo __( dli_get_monthname( $post_date->format( 'm' ), 'design_laboratori_italia' ) ); ?>
+							<?php echo __( $post_month, 'design_laboratori_italia' ); ?>
 						</span>
+						<?php } ?>
 						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
 							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>

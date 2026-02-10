@@ -237,13 +237,17 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
 		// Aggiorna data inizio e fine dell'evento.
 		$start_date = $item['startDate']['date'];
-		$start_date = DateTime::createFromFormat('Y-m-d', $start_date  )->format('Ymd');
-		dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
+		$start_date = dli_format_date_from_format( 'Y-m-d', $start_date, 'Ymd' );
+		if ( $start_date ) {
+			dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
+		}
 		$orario_inizio = $item['startDate']['time'];
 		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
 		$end_date   = $item['endDate']['date'];
-		$end_date   = DateTime::createFromFormat('Y-m-d', $end_date  )->format('Ymd');
-		dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
+		$end_date   = dli_format_date_from_format( 'Y-m-d', $end_date, 'Ymd' );
+		if ( $end_date ) {
+			dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
+		}
 		$orario_fine = $item['endDate']['time'];
 		dli_update_field( 'orario_fine', $orario_fine, $post_id ); // orario fine.
 		// Aggiorna url dell'evento.
@@ -284,15 +288,16 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$date_string = date( 'Y-m-d') ;
 		switch ( $criteria ) {
 			case 'all':
-					$date_string = DateTime::createFromFormat('d-m-Y', '01-01-1970')->format('Y-m-d');
+					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-1970', 'Y-m-d' );
 					break;
 			case 'this-year':
 					$this_year    = date( 'Y' );
-					$date_string = DateTime::createFromFormat('d-m-Y', '01-01-'. $this_year )->format('Y-m-d');
+					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-' . $this_year, 'Y-m-d' );
 					break;
 			case 'future':
 				$date_string = date( 'Y-m-d' );
-			}
+		}
+		$date_string = $date_string ? $date_string : date( 'Y-m-d' );
 		return $date_string;
 	}
 
