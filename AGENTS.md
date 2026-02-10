@@ -105,6 +105,7 @@ In any case, be concise but precise in your responses.
 When you have doubts about what to do, ask before writing code and propose alternatives.
 Always suggest the next step in order to quickly achieve the requested goal.
 Suggest code refactorings whenever you consider them appropriate.
+When modifying the codebase, also review and update documentation and tracking files as needed: AGENTS.md, BUGS.txt, REFACTORS.txt, and CLAUDE.md.
 
 
 ## CHANGELOG AND TODO

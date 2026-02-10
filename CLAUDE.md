@@ -43,4 +43,5 @@ The project aims to highlight and enhance the activities and research staff of t
 - When in doubt, ask before writing code and propose alternatives.
 - Always suggest the next step to quickly achieve the goal.
 - Suggest refactorings when appropriate.
+- When modifying the codebase, also review and update AGENTS.md, BUGS.txt, REFACTORS.txt, and CLAUDE.md as needed.
 - Be concise but precise.

@@ -933,7 +933,16 @@ if( ! function_exists( 'dli_get_site_tree' ) ) {
 					foreach( $menu_items as $child ) {
 						$object_id        = $child->object_id;
 						$object           = get_post( $object_id );
-						if ( ! $object ) {
+						if ( 'custom' === $child->type ) {
+							$child_el             = dli_get_tree_item();
+							$child_el['name']     = $child->title;
+							$child_el['slug']     = sanitize_title( $child->title );
+							$child_el['link']     = $child->url;
+							$child_el['external'] = 'true';
+							$pt[$hp['slug']]['children'][$menu->slug]['children'][$child->title] = $child_el;
+							continue;
+						}
+						if ( ! $object || 'publish' !== $object->post_status ) {
 							continue;
 						}
 						$child_el         = dli_get_tree_item();

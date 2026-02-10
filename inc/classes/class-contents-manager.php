@@ -138,6 +138,9 @@ class DLI_ContentsManager
 					$post_parents = array();
 					while ( $post_parent !== 0 ) {
 						$post_tmp       = get_post( $post_parent );
+						if ( ! $post_tmp ) {
+							break;
+						}
 						$post_parents[] = array(
 							'label' => $post_tmp->post_title,
 							'url'   => get_permalink( $post_tmp->ID ),
@@ -160,7 +163,7 @@ class DLI_ContentsManager
 						$steps,
 						array(
 							'label' => $post->post_title,
-							'url'   => $post->post_url,
+							'url'   => get_permalink( $post->ID ),
 							'class' => 'breadcrumb-item active',
 						),
 					);
@@ -191,7 +194,7 @@ class DLI_ContentsManager
 						$steps,
 						array(
 							'label' => $post->post_title,
-							'url'   => $post->post_url,
+							'url'   => get_permalink( $post->ID ),
 							'class' => 'breadcrumb-item active',
 						),
 					);
