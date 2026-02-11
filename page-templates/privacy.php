@@ -17,7 +17,6 @@ $current_lang   = dli_current_language();
 $cookies          = $_COOKIE;
 $cookie_name      = 'cc_cookies';
 $cookies_presenti = false;
-$form_inviato     = sanitize_text_field( isset( $postdata['form_inviato'] ) ? $postdata['form_inviato'] : 'no' );
 ?>
 
 <main id="main-container" role="main">

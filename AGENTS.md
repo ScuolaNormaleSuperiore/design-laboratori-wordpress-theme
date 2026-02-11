@@ -89,6 +89,11 @@ $tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
 $archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
 $archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
 ```
+  * Align consecutive assignments with a single tab/space block so the `=` signs line up, e.g.:
+```
+$items   = array();
+$options = get_option( 'polylang' );
+```
 
 
 Pay particular attention to the following aspects when writing code:
