@@ -13,7 +13,11 @@ while ( have_posts() ) {
 	$title                  = get_the_title( $ID );
 	$image_url              = dli_get_persona_avatar( $post, $ID );
 	$bio                    = get_the_content();
-	$categoria_appartenenza = dli_get_field( 'categoria_appartenenza' )[0]->nome;
+	$categoria_appartenenza = '';
+	$categoria_items        = dli_get_field( 'categoria_appartenenza' );
+	if ( is_array( $categoria_items ) && ! empty( $categoria_items ) && isset( $categoria_items[0]->nome ) ) {
+		$categoria_appartenenza = $categoria_items[0]->nome;
+	}
 	$allegato_cv            = dli_get_field( 'allegato_cv' );
 	$allegato1              = dli_get_field( 'allegato1' );
 	$allegato2              = dli_get_field( 'allegato2' );

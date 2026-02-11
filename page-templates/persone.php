@@ -115,7 +115,7 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 								<div class="col-lg-4">
 									<!-- FILTRO STRUTTURE con combo -->
 									<?php
-										if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled & ( $filter_mode === 'combobox' ) ) {
+										if ( ( count( $strutture ) >= 1 ) && ( $num_results ) && $select_structure_enabled && ( $filter_mode === 'combobox' ) ) {
 									?>
 									<div class="select-wrapper">
 										<label for="selectPeopleStructure"><?php _e( 'Seleziona la struttura', "design_laboratori_italia" ); ?></label>
