@@ -10,20 +10,20 @@ global $post;
 get_header();
 
 // Campi personalizzati.
-$code		    = dli_get_field( 'codice_interno' );
-$cost		    = dli_get_field( 'costo' );
-$position	  = dli_get_field( 'posizione' );
-$location	  = dli_get_field( 'localizzazione' );
-$brand      = dli_get_field( 'marca' );
-$model      = dli_get_field( 'modello' );
-$dimension	= dli_get_field( 'dimensioni_e_peso' );
-$year	  	  = dli_get_field( 'anno_acquisizione' );
-$status     = dli_get_field( 'stato' );
+$code      = dli_get_field( 'codice_interno' );
+$cost      = dli_get_field( 'costo' );
+$position  = dli_get_field( 'posizione' );
+$location  = dli_get_field( 'localizzazione' );
+$brand     = dli_get_field( 'marca' );
+$model     = dli_get_field( 'modello' );
+$dimension = dli_get_field( 'dimensioni_e_peso' );
+$year      = dli_get_field( 'anno_acquisizione' );
+$status    = dli_get_field( 'stato' );
 // Progetti.
 $progetti = DLI_ContentsManager::get_related_items( $post, 'risorse_tecniche', array( PROGETTO_POST_TYPE ) );
 // Allegati.
-$allegati	= array();
-$att_fields	= array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
+$allegati   = array();
+$att_fields = array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
 foreach ( $att_fields as $af ) {
 	$item = dli_get_field( $af );
 	if  ( is_array( $item ) && count( $item ) > 0 ) {
@@ -35,21 +35,21 @@ $tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
 $archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
 $archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
 // Immagini.
-$photo			= dli_get_field( 'foto' );
-$image_metadata	= dli_get_image_metadata( $post, 'full' );
+$photo          = dli_get_field( 'foto' );
+$image_metadata = dli_get_image_metadata( $post, 'full' );
 // Contenuto.
-$description	= ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
+$description = ( $post->post_content === '.' ) ? '' : apply_filters( 'the_content', $post->post_content );
 // Relazioni.
-$responsabili	= dli_get_field( 'responsabile' );
-$location_post	= null;
+$responsabili  = dli_get_field( 'responsabile' );
+$location_post = null;
 if ( is_array( $location ) && ! empty( $location ) ) {
 	$location_post = is_object( $location[0] ) ? $location[0] : get_post( $location[0] );
 } elseif ( $location ) {
 	$location_post = is_object( $location ) ? $location : get_post( $location );
 }
-$photo_url		= ( is_array( $photo ) && ! empty( $photo['url'] ) ) ? $photo['url'] : $image_metadata['image_url'];
-$photo_title	= ( is_array( $photo ) && ! empty( $photo['title'] ) ) ? $photo['title'] : get_the_title();
-$has_photo		= ! empty( $photo_url );
+$photo_url   = ( is_array( $photo ) && ! empty( $photo['url'] ) ) ? $photo['url'] : $image_metadata['image_url'];
+$photo_title = ( is_array( $photo ) && ! empty( $photo['title'] ) ) ? $photo['title'] : get_the_title();
+$has_photo   = ! empty( $photo_url );
 ?>
 
 <main id="main-container" role="main">
