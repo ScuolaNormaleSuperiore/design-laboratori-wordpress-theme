@@ -30,10 +30,12 @@ if ( isset( $_GET['search_string'] ) ) {
 if ( isset( $_GET['acquisition_year'] ) && is_numeric( $_GET['acquisition_year'] ) ) {
 	$selected_year = sanitize_text_field( $_GET['acquisition_year'] );
 }
-if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+$paged = absint( get_query_var( 'paged' ) );
+if ( 0 === $paged ) {
+	$paged = absint( get_query_var( 'page' ) );
+}
+if ( 0 === $paged ) {
 	$paged = 1;
-} else {
-	$paged = get_query_var( 'paged', 1 );
 }
 
 $params = array(

@@ -17,10 +17,12 @@ $today           = date( 'Ymd' );
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
-if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
+$paged = absint( get_query_var( 'paged' ) );
+if ( 0 === $paged ) {
+	$paged = absint( get_query_var( 'page' ) );
+}
+if ( 0 === $paged ) {
 	$paged = 1;
-} else {
-	$paged = get_query_var( 'paged', 1 );
 }
 // Gestione del parametro: TAG livello.
 $selected_level = isset( $_GET['level'] ) ? sanitize_text_field( $_GET['level'] ) : '';
