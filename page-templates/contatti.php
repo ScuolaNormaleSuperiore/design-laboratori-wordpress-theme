@@ -61,12 +61,12 @@ if ( 'yes' === $forminviato ) {
 		// 2 - Validazione dei campi.
 		// 2a - Controllo campi obbligatori
 		if ( '' === $nomecognome || '' === $indirizzoemail || '' === $testomessaggio ) {
-			$form_valid     = $form_valid && true;
+			$form_valid     = false;
 			$testorisultato = $testorisultato . '<BR/>' . __( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
 		}
 		// 2b - Controllo validità email.
 		if ( ! ( filter_var( $indirizzoemail, FILTER_VALIDATE_EMAIL ) ) ) {
-			$form_valid     = $form_valid && true;
+			$form_valid     = false;
 			$testorisultato = $testorisultato . '<BR/>' . __( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
 		}
 
