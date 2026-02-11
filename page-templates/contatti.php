@@ -52,7 +52,7 @@ if ( 'yes' === $forminviato ) {
 		if ( $captcha_enabled ) {
 			$captcha_valid = $captcha_obj->check( $captcha_prefix, $captcha_field );
 			if ( ! $captcha_valid ) {
-				$testorisultato = $testorisultato . '<BR/>' . __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+				$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}
 		} else {
 			$captcha_valid = true;
@@ -62,12 +62,12 @@ if ( 'yes' === $forminviato ) {
 		// 2a - Controllo campi obbligatori
 		if ( '' === $nomecognome || '' === $indirizzoemail || '' === $testomessaggio ) {
 			$form_valid     = false;
-			$testorisultato = $testorisultato . '<BR/>' . __( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
+			$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
 		}
 		// 2b - Controllo validità email.
 		if ( ! ( filter_var( $indirizzoemail, FILTER_VALIDATE_EMAIL ) ) ) {
 			$form_valid     = false;
-			$testorisultato = $testorisultato . '<BR/>' . __( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
+			$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
 		}
 
 		// 3 - Calcolo validità.
@@ -79,7 +79,7 @@ if ( 'yes' === $forminviato ) {
 			// 4a - Invio email al laboratorio.
 			$sent = wp_mail( $to, $subject, strip_tags( $testomessaggio ), $headers );
 			if ( ! $sent ) {
-				$testorisultato = $testorisultato . '<BR/>' . __( 'Messaggio non inviato', 'design_laboratori_italia' ) . '&nbsp;.';
+				$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Messaggio non inviato', 'design_laboratori_italia' ) . '&nbsp;.';
 			}
 			if ( 'on' === $ricevuta ) {
 				// 4b - Invio Email di copia.
@@ -87,7 +87,7 @@ if ( 'yes' === $forminviato ) {
 				$subject        .= '(' . $testo_ricevuta . ')';
 				$sent           = $sent && wp_mail( $indirizzoemail, $subject, strip_tags( $testomessaggio ), $headers );
 				if ( ! $sent ) {
-					$testorisultato = $testorisultato . '<BR/>' . __( 'Copia del messaggio non inviata.', 'design_laboratori_italia' );
+					$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Copia del messaggio non inviata.', 'design_laboratori_italia' );
 				}
 			}
 		}
@@ -104,7 +104,7 @@ if ( 'yes' === $forminviato ) {
 		// Il NONCE non è valido.
 		$mostraerrore = true;
 		$nonce_error  = true;
-		$testorisultato = $testorisultato . '<BR/>' . __( 'Valore di Nonce errato.', 'design_laboratori_italia' );
+		$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Valore di Nonce errato.', 'design_laboratori_italia' );
 	}
 
 }
@@ -154,7 +154,7 @@ if ( 'yes' === $forminviato ) {
 			<!-- ALERT KO -->
 			<div class="container my-12 p-2">
 			<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
-				<?php echo esc_html( __( $testorisultato, 'design_laboratori_italia' ) ); ?>
+				<?php echo wp_kses_post( $testorisultato ); ?>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi avviso">
 					<svg class="icon" role="img" aria-labelledby="Close">
 						<title>Chiudi avviso</title>
