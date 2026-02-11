@@ -233,13 +233,29 @@ if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
 }
 
 if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
+	/**
+	 * Return all menu locations for the requested language.
+	 *
+	 * @param string $lang
+	 * @return array
+	 */
 	function dli_get_all_menus_by_lang( $lang ) {
-		$options        = get_option( 'polylang' );
-		$menu_locations = $options['nav_menus']['design-laboratori-wordpress-theme'];
-
 		$items = array();
+		$options = get_option( 'polylang' );
+		if ( ! is_array( $options ) || empty( $options['nav_menus'] ) || empty( $options['nav_menus']['design-laboratori-wordpress-theme'] ) ) {
+			return $items;
+		}
+
+		$menu_locations = $options['nav_menus']['design-laboratori-wordpress-theme'];
+		if ( ! is_array( $menu_locations ) ) {
+			return $items;
+		}
+
 		$ids   = array();
 		foreach ( $menu_locations as $name => $menulangs ) {
+			if ( ! is_array( $menulangs ) ) {
+				continue;
+			}
 			foreach ( $menulangs as $ml_lang => $ml_id ) {
 				if ( ! in_array( $ml_id, $ids ) ) {
 					if ( isset( $items[ $ml_lang ] ) ) {
@@ -253,6 +269,6 @@ if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
 				}
 			}
 		}
-		return $items[ $lang ];
+		return isset( $items[ $lang ] ) ? $items[ $lang ] : array();
 	}
 }
