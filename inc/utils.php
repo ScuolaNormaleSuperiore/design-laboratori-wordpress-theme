@@ -1141,14 +1141,85 @@ if ( ! function_exists( 'dli_generate_slug' ) ) {
 
 
 if ( ! function_exists( 'dli_set_post_featured_image_from_url' ) ) {
+	/**
+	 * Check whether a URL is safe to fetch from the server.
+	 *
+	 * @param string $url
+	 * @return bool
+	 */
+	function dli_is_public_url( $url ) {
+		$url = esc_url_raw( $url );
+		if ( empty( $url ) ) {
+			return false;
+		}
+		if ( ! wp_http_validate_url( $url ) ) {
+			return false;
+		}
+
+		$parts = wp_parse_url( $url );
+		if ( empty( $parts['scheme'] ) || ! in_array( $parts['scheme'], array( 'http', 'https' ), true ) ) {
+			return false;
+		}
+		if ( empty( $parts['host'] ) ) {
+			return false;
+		}
+		if ( 'localhost' === $parts['host'] ) {
+			return false;
+		}
+
+		$ip = $parts['host'];
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+			$resolved_ip = gethostbyname( $parts['host'] );
+			if ( $resolved_ip === $parts['host'] ) {
+				return false;
+			}
+			$ip = $resolved_ip;
+		}
+
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+			return false;
+		}
+
+		if ( false === filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	function dli_set_post_featured_image_from_url( $post_id, $image_url ) {
 		// Controlla che il post ID e l'URL dell'immagine siano validi.
-		if ( !$post_id || !$image_url ) {
+		if ( ! $post_id || ! $image_url ) {
+			return false;
+		}
+		if ( ! dli_is_public_url( $image_url ) ) {
 			return false;
 		}
 		// Scarica l'immagine dall'URL.
-		$image_data = file_get_contents( $image_url );
-		if ( !$image_data ) {
+		$response = wp_safe_remote_get(
+			$image_url,
+			array(
+				'timeout'             => 10,
+				'redirection'         => 3,
+				'limit_response_size' => 5 * MB_IN_BYTES,
+				'headers'             => array(
+					'Accept' => 'image/*',
+				),
+			)
+		);
+		if ( is_wp_error( $response ) ) {
+			return false;
+		}
+		$status_code = wp_remote_retrieve_response_code( $response );
+		if ( 200 !== $status_code ) {
+			return false;
+		}
+		$content_type = wp_remote_retrieve_header( $response, 'content-type' );
+		if ( empty( $content_type ) || 0 !== strpos( $content_type, 'image/' ) ) {
+			return false;
+		}
+		$image_data = wp_remote_retrieve_body( $response );
+		if ( empty( $image_data ) ) {
 			return false;
 		}
 		// Ottieni il nome del file dall'URL.

@@ -121,7 +121,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$ignored   = 0;
 		foreach ( $resp_data['results'] as $item ) {
 			$counter++;
-			$item_title = $item['title'];
+			$item_title = $this->sanitize_item_title( $item['title'] );
 			$msg         = '';
 			$source_array = $this->trim_array( $conf['keywords'] ? explode(',', $conf['keywords']) : array() );
 			$dest_array   = $this->trim_array( $item['keywords'] ? $item['keywords'] : array() );
@@ -181,12 +181,13 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {
-		$post_name    = dli_generate_slug( $item['title'] );
+		$item_title   = $this->sanitize_item_title( $item['title'] );
+		$post_name    = dli_generate_slug( $item_title );
 		$post_content = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
 		$new_page     = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,
-			'post_title'   => $item['title'],
+			'post_title'   => $item_title,
 			'post_content' => $post_content,
 			'post_status'  => $conf['post_status'],
 			'post_parent'  => 0,
@@ -226,11 +227,40 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $post_id;
 	}
 
+	/**
+	 * Sanitize the Indico event title to avoid leading/trailing spaces and control chars.
+	 *
+	 * @param string $title
+	 * @return string
+	 */
+	private function sanitize_item_title( $title ) {
+		$title = wp_strip_all_tags( (string) $title );
+		$title = trim( $title );
+		$title = preg_replace( '/[\x00-\x1F\x7F]+/u', '', $title );
+		$title = preg_replace( '/\s+/u', ' ', $title );
+		return $title;
+	}
+
+	/**
+	 * Sanitize free text fields imported from Indico.
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function sanitize_item_text( $text ) {
+		$text = wp_strip_all_tags( (string) $text );
+		$text = trim( $text );
+		$text = preg_replace( '/[\x00-\x1F\x7F]+/u', '', $text );
+		$text = preg_replace( '/\s+/u', ' ', $text );
+		return $text;
+	}
+
 	private function update_custom_fields( $post_id, $item, $lang='it' ){
 		// Assegno valori ai campi dell'evento.
 		dli_update_field( 'link_dettaglio', DLI_ITEM_LINK['DETAIL_PAGE'], $post_id );
 		$plain_text     = strip_tags( $item['description'] );
-		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE -3 );
+		$plain_text     = $this->sanitize_item_text( $plain_text );
+		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE - 3 );
 		if  ( strlen( $plain_text ) > DLI_SHORT_DESCRIPTION_SIZE ) {
 			$truncated_text .= '...';
 		}
@@ -243,8 +273,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 		$orario_inizio = $item['startDate']['time'];
 		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
-		$end_date   = $item['endDate']['date'];
-		$end_date   = dli_format_date_from_format( 'Y-m-d', $end_date, 'Ymd' );
+		$end_date = $item['endDate']['date'];
+		$end_date = dli_format_date_from_format( 'Y-m-d', $end_date, 'Ymd' );
 		if ( $end_date ) {
 			dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
 		}
@@ -256,8 +286,12 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 		// Aggiorna indirizzo dell'evento.
 		$address = array();
-		if ( $item['roomFullname'] ) array_push( $address, $item['roomFullname'] );
-		if ( $item['location'] ) array_push( $address, $item['location'] );
+		if ( $item['roomFullname'] ) {
+			array_push( $address, $this->sanitize_item_text( $item['roomFullname'] ) );
+		}
+		if ( $item['location'] ) {
+			array_push( $address, $this->sanitize_item_text( $item['location'] ) );
+		}
 		if ( $item['address'] ) array_push( $address, $item['address'] );
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
