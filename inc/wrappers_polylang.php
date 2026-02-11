@@ -240,7 +240,7 @@ if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
 	 * @return array
 	 */
 	function dli_get_all_menus_by_lang( $lang ) {
-		$items = array();
+		$items   = array();
 		$options = get_option( 'polylang' );
 		if ( ! is_array( $options ) || empty( $options['nav_menus'] ) || empty( $options['nav_menus']['design-laboratori-wordpress-theme'] ) ) {
 			return $items;
@@ -251,7 +251,7 @@ if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
 			return $items;
 		}
 
-		$ids   = array();
+		$ids = array();
 		foreach ( $menu_locations as $name => $menulangs ) {
 			if ( ! is_array( $menulangs ) ) {
 				continue;
