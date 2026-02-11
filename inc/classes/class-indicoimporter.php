@@ -140,16 +140,16 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			} else {
 				// Importazione effettiva.
 				try {
-					$updated    = false;
-					$ignored    = false;
-					$item_code = $this->create_wp_content( $item, $conf, $updated, $ignored, $conf['lang'] );
+					$updated      = false;
+					$item_ignored = false;
+					$item_code    = $this->create_wp_content( $item, $conf, $updated, $item_ignored, $conf['lang'] );
 					if ( $updated ) {
 						array_push(
 							$data,
 							MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title,
 						);
 						$modified++;
-					} else if ( $ignored ){
+					} else if ( $item_ignored ){
 						array_push(
 							$data,
 							MSG_IGNORED_ITEM . $item_code . ' - ' . $item_title,

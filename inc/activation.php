@@ -103,30 +103,64 @@ function build_taxonomies( $taxonomy, $terms ) {
 
 	foreach ( $terms as $term ) {
 
-		$termitem = get_term_by( 'slug', $term['it'], $taxonomy );
+		// Use a stable slug to avoid missing existing terms.
+		$term_slug_it = sanitize_title( $term['it'] );
+		$termitem = get_term_by( 'slug', $term_slug_it, $taxonomy );
 		if ( $termitem ) {
 			$term_it = $termitem->term_id;
 		} else {
-			$termobject = wp_insert_term( $term['it'], $taxonomy );
-			$term_it    = $termobject['term_id'];
+			$termobject = wp_insert_term(
+				$term['it'],
+				$taxonomy,
+				array(
+					'slug' => $term_slug_it,
+				)
+			);
+			// If the term already exists, wp_insert_term returns WP_Error with term_exists.
+			if ( is_wp_error( $termobject ) ) {
+				$term_it = isset( $termobject->error_data['term_exists'] ) ? intval( $termobject->error_data['term_exists'] ) : 0;
+			} else {
+				$term_it = $termobject['term_id'];
+			}
 		}
-		dli_set_term_language( $term_it, 'it' );
+		// Set language only when a valid term ID is available.
+		if ( $term_it ) {
+			dli_set_term_language( $term_it, 'it' );
+		}
 
-		$termitem = get_term_by( 'slug', $term['en'], $taxonomy );
+		// Use a stable slug to avoid missing existing terms.
+		$term_slug_en = sanitize_title( $term['en'] );
+		$termitem = get_term_by( 'slug', $term_slug_en, $taxonomy );
 		if ( $termitem ) {
 			$term_en = $termitem->term_id;
 		} else {
-			$termobject = wp_insert_term( $term['en'], $taxonomy );
-			$term_en    = $termobject['term_id'];
+			$termobject = wp_insert_term(
+				$term['en'],
+				$taxonomy,
+				array(
+					'slug' => $term_slug_en,
+				)
+			);
+			// If the term already exists, wp_insert_term returns WP_Error with term_exists.
+			if ( is_wp_error( $termobject ) ) {
+				$term_en = isset( $termobject->error_data['term_exists'] ) ? intval( $termobject->error_data['term_exists'] ) : 0;
+			} else {
+				$term_en = $termobject['term_id'];
+			}
 		}
-		dli_set_term_language( $term_en, 'en' );
+		// Set language only when a valid term ID is available.
+		if ( $term_en ) {
+			dli_set_term_language( $term_en, 'en' );
+		}
 
 		// Associate it and en translations.
-		$related_taxonomies = array(
-			'it' => $term_it,
-			'en' => $term_en,
-		);
-		dli_save_term_translations( $related_taxonomies );
+		if ( $term_it && $term_en ) {
+			$related_taxonomies = array(
+				'it' => $term_it,
+				'en' => $term_en,
+			);
+			dli_save_term_translations( $related_taxonomies );
+		}
 	}
 
 }
