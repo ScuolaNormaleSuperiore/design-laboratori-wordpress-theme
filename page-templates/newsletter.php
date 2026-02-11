@@ -150,7 +150,7 @@ if ( ( count( $form_errors ) === 0 ) && ( true === $form_submission ) ) {
 
 	<!-- SEZIONE FORM -->
 	<?php
-	if ( ( 'no' === $after_confirm ) & ( true !== $sent_successfully) ) {
+if ( ( 'no' === $after_confirm ) && ( true !== $sent_successfully ) ) {
 		$current_language = dli_current_language( 'slug' );
 		$page_url         = dli_get_newsletter_link( $current_language );
 		?>
