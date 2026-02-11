@@ -91,8 +91,16 @@ class Newsletter_Manager {
 		return $this->errors;
 	}
 
+	/**
+	 * Subscribes a user to the newsletter.
+	 *
+	 * @return array
+	 */
 	public function subscribe_user() {
-		$result = array();
+		$result = array(
+			'code'    => 0,
+			'message' => '',
+		);
 		try {
 			if ( dli_get_option( 'newsletter_enabled', 'setup' ) === 'true' ) {
 
@@ -103,8 +111,8 @@ class Newsletter_Manager {
 				$template_id   = dli_get_option( 'newsletter_template_id', 'setup' );
 				array_push( $list_ids, $newsletter_id );
 				$current_language = dli_current_language( 'slug' );
-				$page_url         = dli_get_newsletter_link($current_language);
-				$redirect_url = $page_url . '?after_confirm=yes';
+				$page_url         = dli_get_newsletter_link( $current_language );
+				$redirect_url     = $page_url . '?after_confirm=yes';
 				$data = array(
 					'attributes'  => array(
 						'FNAME'     => $this->data->get_user_name(),
@@ -136,10 +144,17 @@ class Newsletter_Manager {
 						'headers' => $header,
 					)
 				);
-			}
 
-			$result['code']    = $response['response']['code'];
-			$result['message'] = $response['response']['message'];
+				if ( is_wp_error( $response ) ) {
+					throw new Exception( $response->get_error_message() );
+				}
+
+				$result['code']    = wp_remote_retrieve_response_code( $response );
+				$result['message'] = wp_remote_retrieve_response_message( $response );
+			} else {
+				$result['code']    = 400;
+				$result['message'] = __( 'Newsletter is disabled.', 'design_laboratori_italia' );
+			}
 
 		} catch ( Exception $e ) {
 
