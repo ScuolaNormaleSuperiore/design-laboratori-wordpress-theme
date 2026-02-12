@@ -172,6 +172,47 @@ For updates affecting many files:
 3. Apply changes consistently
 4. Report completion with summary
 
+## Git Workflow
+
+### Branch Naming
+
+Use the prefix `feature/` followed by a camelCase descriptive name:
+
+```
+feature/addSpinoff
+feature/manageSections
+feature/fixContactForm
+```
+
+The main branch is `main`. Never commit directly to `main` — always work on a feature branch.
+
+### Commit Messages
+
+- Write commit messages **in English**
+- Use a short descriptive prefix when applicable: `Bug-fix:`, `Refactor:`, `Feature:`, `Docs:`
+- Keep the first line under 72 characters
+- Be descriptive — avoid generic messages like "fix" or "update"
+
+Examples:
+```
+Feature: Add spinoff content type and archive page
+Bug-fix: Fix XSS vulnerability in contact form submission
+Refactor: Centralize event date rendering logic
+Docs: Update ARCHITECTURE.md with new directory structure
+```
+
+### Before Committing
+
+- Run `composer lint` to check code style
+- Do not commit files containing secrets, API keys, or `.env` files
+- Do not commit unrelated changes in the same commit
+
+### Pull Requests
+
+- Create a PR from your feature branch to `main`
+- Write a clear PR title and description summarizing the changes
+- Reference related issues from `ISSUES_TODO.md` when applicable
+
 ## Code Review Mindset
 
 When reviewing or modifying code:
