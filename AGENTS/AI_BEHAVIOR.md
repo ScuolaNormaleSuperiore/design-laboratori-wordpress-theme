@@ -6,13 +6,9 @@ This file defines how AI assistants should work, interact, and maintain this pro
 
 ## Required Reading Workflow
 
-Before starting any task, AI assistants must read files in this specific order:
+Before starting any task, read `AGENTS_README.md` first and follow the required reading order defined there.
 
-1. **PROJECT.md** - Understand what we're building and why
-2. **ARCHITECTURE.md** - Understand how the system is structured
-3. **CODING_STANDARDS.md** - Understand how to write code properly
-4. **AI_BEHAVIOR.md** - Understand how to work (this file)
-5. **ISSUES_TODO.md** - Understand what needs to be done
+`AGENTS_README.md` is the single source of truth for AGENTS file names and session startup prompts.
 
 After reading these files, proceed with the task at hand.
 
@@ -46,6 +42,12 @@ After reading these files, proceed with the task at hand.
 - Understand the full context before proposing solutions
 - Consider edge cases and potential issues
 - Think about long-term maintainability
+
+**Work by clear objectives**
+- Define one concrete objective for each action or task
+- Complete the current objective end-to-end before starting a new one
+- Avoid handling multiple unrelated objectives at the same time
+- If the work starts to drift from the original objective, explicitly warn the user and propose refocusing
 
 **Propose refactorings when appropriate**
 - If you notice code that could be improved, mention it

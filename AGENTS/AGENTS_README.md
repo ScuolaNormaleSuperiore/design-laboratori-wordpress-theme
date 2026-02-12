@@ -20,7 +20,7 @@ This folder contains all documentation and configuration files for AI assistants
 
 **CODING_STANDARDS.md**
 - **Purpose:** Code writing rules and style guidelines
-- **Contains:** Code style rules, WordPress standards, naming conventions, formatting rules
+- **Contains:** Code style rules, code standards, naming conventions, formatting rules
 - **Update when:** Adopting new coding standards, adding framework-specific rules
 - **Reusable:** Yes - generic programming standards with framework-specific sections
 
@@ -64,12 +64,13 @@ This folder contains all documentation and configuration files for AI assistants
 ```
 CLAUDE.md / CHATGPT.md (entry point)
     ↓
+    ├─→ AGENTS_README.md (index and usage guide)
     ├─→ PROJECT.md (what we're building)
     ├─→ ARCHITECTURE.md (how it's structured)
     ├─→ CODING_STANDARDS.md (how to write code)
     ├─→ AI_BEHAVIOR.md (how to work)
-    └─→ ISSUES_TODO.md (what needs doing)
-    └─→ ISSUES_RESOLVED.md (issue already solved)
+    ├─→ ISSUES_TODO.md (what needs doing)
+    └─→ ISSUES_RESOLVED.md (issues already solved)
 ```
 
 ## 🎯 Quick Start for AI Assistants
@@ -77,7 +78,7 @@ CLAUDE.md / CHATGPT.md (entry point)
 1. **Claude Code users:** Start with `CLAUDE.md`
 2. **ChatGPT users:** Start with `CHATGPT.md`
 3. Follow the reading order specified in your config file
-4. Always check `ISSUES_TODO.md` before starting work
+4. Always check `ISSUES_TODO.md` and `ISSUES_RESOLVED.md` before starting work
 5. Update relevant files when making code changes
 
 ## 🚀 Starting a Work Session
@@ -88,6 +89,7 @@ At the beginning of each work session, start with this prompt:
 
 ```
 Read AGENTS/CLAUDE.md and all the files it references in the specified order. 
+Ensure AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md are included.
 Then check AGENTS/ISSUES_TODO.md for current priority tasks.
 ```
 
@@ -102,6 +104,7 @@ At the beginning of each work session, start with this prompt:
 
 ```
 Read AGENTS/CHATGPT.md and all the files it references in the specified order.
+Ensure AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md are included.
 Then check AGENTS/ISSUES_TODO.md for current priority tasks.
 ```
 
@@ -113,7 +116,7 @@ Add this to your ChatGPT Custom Instructions (under Settings → Personalization
 When working on projects with an AGENTS folder:
 1. Always start by reading AGENTS/CHATGPT.md (or AGENTS/CLAUDE.md if specified)
 2. Read all referenced files in the order specified
-3. Check AGENTS/ISSUES_TODO.md for priority tasks
+3. Check AGENTS/ISSUES_TODO.md and AGENTS/ISSUES_RESOLVED.md
 4. Follow all guidelines in AGENTS/AI_BEHAVIOR.md
 5. Update documentation files when making code changes
 ```
@@ -124,7 +127,7 @@ If you're continuing work in the same session and the AI seems to have forgotten
 
 **For both Claude and ChatGPT:**
 ```
-Refresh context: read AGENTS/[CLAUDE or CHATGPT].md and AGENTS/ISSUES_TODO.md
+Refresh context: read AGENTS/[CLAUDE or CHATGPT].md, AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md
 ```
 
 ## ✏️ When to Update Each File
@@ -155,7 +158,7 @@ To adapt this documentation system for a new project:
 1. Keep as-is:
    - `CODING_STANDARDS.md` (adjust framework-specific sections)
    - `AI_BEHAVIOR.md` (completely reusable)
-   - `README.md` (this file)
+   - `AGENTS_README.md` (this file)
    - File templates in `ISSUES_TODO.md` and `ISSUES_RESOLVED.md`
 
 2. Replace content:

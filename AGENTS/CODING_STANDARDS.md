@@ -2,7 +2,7 @@
 
 ## General Guidelines
 
-Act as an expert PHP and WordPress developer.
+For this project act as an expert PHP and WordPress developer.
 
 Write code in compliance with the official WordPress plugin and theme guidelines.
 
