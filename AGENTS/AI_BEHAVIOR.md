@@ -4,14 +4,6 @@
 
 This file defines how AI assistants should work, interact, and maintain this project. These guidelines apply to all AI assistants (Claude, ChatGPT, etc.) working on the codebase.
 
-## Required Reading Workflow
-
-Before starting any task, read `AGENTS_README.md` first and follow the required reading order defined there.
-
-`AGENTS_README.md` is the single source of truth for AGENTS file names and session startup prompts.
-
-After reading these files, proceed with the task at hand.
-
 ## General Behavior Guidelines
 
 ### Communication Style
@@ -226,8 +218,3 @@ When explaining code or WordPress internals:
 - Leave code better than you found it
 - Help maintain project organization
 
----
-
-## Notes for Other Projects
-
-This file is completely reusable across projects. The guidelines here are generic and apply to any software development project with AI assistance. No changes needed when adapting to other projects.

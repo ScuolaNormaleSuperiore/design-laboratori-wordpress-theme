@@ -41,15 +41,5 @@ When working on the Design Laboratori WordPress project:
 
 ## Canonical References
 
-- Workflow and behavior: `AGENTS/AI_BEHAVIOR.md`
-- Coding rules and security standards: `AGENTS/CODING_STANDARDS.md`
-- Architecture and commands: `AGENTS/ARCHITECTURE.md`
-- Open issues: `AGENTS/ISSUES_TODO.md`
-- Resolved issues: `AGENTS/ISSUES_RESOLVED.md`
+See `AGENTS/AGENTS_README.md` for the full file index and descriptions.
 
-## For Other Projects
-
-When adapting this file:
-- Keep only ChatGPT-specific instructions here.
-- Keep shared rules in common AGENTS files.
-- Update project-specific paths and reminders.

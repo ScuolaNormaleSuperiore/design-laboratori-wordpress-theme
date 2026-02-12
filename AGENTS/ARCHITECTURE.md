@@ -102,15 +102,3 @@ Detailed setup instructions are available in the main documentation (see PROJECT
 
 For a complete list of issues and bugs, see `ISSUES_TODO.md`.
 
----
-
-## Notes for Adapting to Other Projects
-
-When using this documentation structure for other projects, replace the sections above with:
-
-- **Architecture Notes:** High-level description of the system architecture
-- **Key Directories:** List of main directories with their purposes
-- **Main Files:** Important files with brief descriptions
-- **Technology Stack:** List of technologies, frameworks, and libraries used
-- **Setup and Configuration:** Basic setup information or links to detailed guides
-- **Commands:** Available CLI commands for development tasks

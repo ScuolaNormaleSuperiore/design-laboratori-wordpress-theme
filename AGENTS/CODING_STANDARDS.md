@@ -254,19 +254,3 @@ composer lint
 composer lint:fix
 ```
 
-## Response Style
-
-**Be concise but precise** in your responses and explanations.
-
-When providing code examples, always include brief explanations of what the code does and why certain approaches are used.
-
----
-
-## Notes for Other Projects
-
-This file contains WordPress-specific coding standards. When adapting for other projects:
-
-- Keep the general guidelines section
-- Replace WordPress-specific sections with framework/language-specific standards
-- Maintain the emphasis on security, accessibility, and code quality
-- Update the code examples to match the target technology stack

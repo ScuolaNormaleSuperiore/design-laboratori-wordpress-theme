@@ -68,14 +68,3 @@ See the `LICENSE` file in the project root for licensing information.
 The project is published in the "Catalogo del Riuso della PA" (Public Administration Reuse Catalog).
 See `publiccode.yml` for the catalog entry details.
 
----
-
-## Notes for Adapting to Other Projects
-
-When using this documentation structure for other projects, replace the sections above with:
-
-- **Project Overview:** Brief description of what the project does and its goals
-- **Main System Features:** Bullet list of key features and capabilities
-- **Documentation:** Links to main documentation resources
-- **Testing and Demo:** Instructions for testing and demo environments
-- **License:** Reference to license file or license type

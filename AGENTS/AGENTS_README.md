@@ -132,43 +132,27 @@ Refresh context: read AGENTS/[CLAUDE or CHATGPT].md, AGENTS/AGENTS_README.md, AG
 
 ## ✏️ When to Update Each File
 
-**After adding a feature:**
-- Update `PROJECT.md` (features list)
-- Update `ISSUES_RESOLVED.md` (if it was tracked)
-
-**After changing architecture:**
-- Update `ARCHITECTURE.md` (structure changes)
-- Update `ISSUES_RESOLVED.md` (if it was tracked)
-
-**After fixing a bug:**
-- Update `ISSUES_RESOLVED.md` (move from TODO)
-- Update `ARCHITECTURE.md` if structure changed
-
-**After adding coding rules:**
-- Update `CODING_STANDARDS.md` (new rules)
-
-**After changing AI workflow:**
-- Update `AI_BEHAVIOR.md` (new procedures)
-- Update `CLAUDE.md` / `CHATGPT.md` if needed
+See `AI_BEHAVIOR.md` § "Documentation Update Rules" for the complete list of which files to update after each type of change.
 
 ## 🔁 Using These Files in Other Projects
 
 To adapt this documentation system for a new project:
 
-1. Keep as-is:
-   - `CODING_STANDARDS.md` (adjust framework-specific sections)
-   - `AI_BEHAVIOR.md` (completely reusable)
-   - `AGENTS_README.md` (this file)
-   - File templates in `ISSUES_TODO.md` and `ISSUES_RESOLVED.md`
+1. **Keep as-is:**
+   - `AI_BEHAVIOR.md` — completely reusable, no changes needed
+   - `AGENTS_README.md` — this file, reusable as-is
 
-2. Replace content:
-   - `PROJECT.md` (new project description)
-   - `ARCHITECTURE.md` (new architecture)
-   - `CLAUDE.md` / `CHATGPT.md` (verify file paths)
+2. **Adjust framework-specific sections:**
+   - `CODING_STANDARDS.md` — keep general guidelines; replace WordPress-specific sections with framework/language-specific standards; maintain emphasis on security, accessibility, and code quality; update code examples to match the target stack
+   - `CLAUDE.md` / `CHATGPT.md` — keep only AI-specific instructions; update project-specific paths and tool notes
 
-3. Clear and restart:
-   - `ISSUES_TODO.md` (clear old issues, keep structure)
-   - `ISSUES_RESOLVED.md` (start fresh)
+3. **Replace content:**
+   - `PROJECT.md` — replace with: project overview, main features, documentation links, testing/demo instructions, license reference
+   - `ARCHITECTURE.md` — replace with: architecture notes, key directories, main files, technology stack, setup info, CLI commands
+
+4. **Clear and restart:**
+   - `ISSUES_TODO.md` — clear old issues, keep category structure
+   - `ISSUES_RESOLVED.md` — start fresh, keep archive format template
 
 ## 📝 Maintenance Guidelines
 
