@@ -50,7 +50,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 			if ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) {
 		?>
 		<div class="img-wrapper">
-			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+			<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
 		<?php
 			}
@@ -61,9 +61,9 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 			<div class="row">
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
-						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
-							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 							<?php
 								if ( $web_site_url ) {
 							?>
@@ -80,8 +80,8 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 							foreach( $levels as $level ){
 							?>
 								<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-									<a href="<?php echo site_url(); ?>/<?php echo $tag_page?>?level=<?php echo esc_attr(  $level->slug ); ?>">
-										<span class="chip-label text-light"><?php echo esc_attr(  $level->name ); ?></span>
+									<a href="<?php echo esc_url( site_url() . '/' . $tag_page . '?level=' . $level->slug ); ?>">
+										<span class="chip-label text-light"><?php echo esc_html( $level->name ); ?></span>
 									</a>
 								</div>
 							<?php
@@ -226,7 +226,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 				<div class="row pb-3">
 					<p>
 						<?php
-							echo $descrizione;
+							echo wp_kses_post( $descrizione );
 						?>
 					</p>
 				</div>

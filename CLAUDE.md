@@ -44,4 +44,5 @@ The project aims to highlight and enhance the activities and research staff of t
 - Always suggest the next step to quickly achieve the goal.
 - Suggest refactorings when appropriate.
 - When modifying the codebase, also review and update AGENTS.md, BUGS.txt, REFACTORS.txt, and CLAUDE.md as needed.
+- When given a global modification rule, apply changes in batch without requesting per-file confirmation and provide the final list of edited files.
 - Be concise but precise.

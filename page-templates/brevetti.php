@@ -79,9 +79,9 @@ $num_results   = $the_query->found_posts;
 										foreach ( $all_years as $deposit_year ) {
 											$selected = ( $deposit_year === $selected_year );
 									?>
-									<option value="<?php echo $deposit_year; ?>"
+									<option value="<?php echo esc_attr( $deposit_year ); ?>"
 										<?php if ( $selected ) { echo 'selected'; } ?>
-									><?php echo $deposit_year; ?></option>
+									><?php echo esc_html( $deposit_year ); ?></option>
 									<?php
 										}
 									?>
@@ -99,11 +99,11 @@ $num_results   = $the_query->found_posts;
 								foreach ( $all_areas as $thematic_area ) {
 								?>
 								<div class="form-check">
-								<input type="checkbox" name="thematic_area[]" id="<?php echo $thematic_area['slug']; ?>"
-										value="<?php echo $thematic_area['id']; ?>"
+								<input type="checkbox" name="thematic_area[]" id="<?php echo esc_attr( $thematic_area['slug'] ); ?>"
+										value="<?php echo esc_attr( $thematic_area['id'] ); ?>"
 										<?php if ( in_array( $thematic_area['id'], $selected_areas ) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $thematic_area['slug']; ?>"><?php echo $thematic_area['name']; ?></label>
+									<label for="<?php echo esc_attr( $thematic_area['slug'] ); ?>"><?php echo esc_html( $thematic_area['name'] ); ?></label>
 								</div>
 								<?php
 								}
@@ -175,7 +175,7 @@ $num_results   = $the_query->found_posts;
 										<div class="img-responsive-wrapper">
 											<div class="img-responsive img-responsive-panoramic">
 												<figure class="img-wrapper">
-													<img src="<?php echo $image_metadata['image_url']; ?>" 
+													<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" 
 													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 												</figure>
@@ -185,23 +185,23 @@ $num_results   = $the_query->found_posts;
 									}
 									?>
 										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5"><?php the_title(); ?></h3>
-											<p class="card-text font-serif"><?php echo esc_html( $summary ); ?></p>
+											<h3 class="card-title cardTitlecustomSpacing h5"><?php echo esc_html( get_the_title() ); ?></h3>
+											<p class="card-text font-serif"><?php echo wp_kses_post( $summary ); ?></p>
 											<p class="card-text font-serif titolari">
-												<em><?php echo esc_attr( $titolari ); ?></em>
+												<em><?php echo esc_html( $titolari ); ?></em>
 											</p>
 											<p class="card-text font-serif area">
 												<?php
 												if ($area_tematica && array_key_exists('title', $area_tematica ) ) {
 												?>
-												<strong><?php echo esc_attr( $area_tematica['title'] ); ?></strong> - 
+												<strong><?php echo esc_html( $area_tematica['title'] ); ?></strong> - 
 												<?php
 												}
 												?>
-												<?php echo esc_attr( $stato ); ?>
+												<?php echo esc_html( $stato ); ?>
 											</p>
 											<div class="pt-5">
-												<a class="read-more" href="<?php echo get_permalink(); ?>">
+												<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
 													<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 													<svg class="icon">
 														<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>

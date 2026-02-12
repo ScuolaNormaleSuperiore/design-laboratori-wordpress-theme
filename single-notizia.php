@@ -34,7 +34,7 @@ $current_url    = get_permalink();
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
-					<img src="<?php echo $image_metadata['image_url']; ?>"
+					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
 					>
@@ -48,14 +48,14 @@ $current_url    = get_permalink();
 					<div class="it-hero-text-wrapper bg-dark">
 						<?php if ( $news_date ) { ?>
 						<span class="it-Categoria">
-							<?php echo $news_day; ?>
+							<?php echo esc_html( $news_day ); ?>
 							&nbsp;
-							<?php echo __( $news_month, 'design_laboratori_italia' ); ?>
+							<?php echo esc_html( __( $news_month, 'design_laboratori_italia' ) ); ?>
 						</span>
 						<?php } ?>
-						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
-							<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 						</p>
 						<!-- categorie -->
 							<?php
@@ -63,8 +63,8 @@ $current_url    = get_permalink();
 									$cat_url = add_query_arg( 'cat', array( $category['id'] ), get_site_url() . '/' . $cat_page );
 							?>
 							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-								<a class="text-decoration-none" href="<?php echo $cat_url ?>">
-									<span class="chip-label"><?php echo esc_attr( $category['title'] ); ?></span>
+								<a class="text-decoration-none" href="<?php echo esc_url( $cat_url ); ?>">
+									<span class="chip-label"><?php echo esc_html( $category['title'] ); ?></span>
 								</a>
 							</div>
 							<?php
@@ -73,7 +73,7 @@ $current_url    = get_permalink();
 						<?php
 							if( $image_metadata['image_caption'] ) {
 							?>
-								<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 							<?php
 							}
 						?>
@@ -112,7 +112,7 @@ $current_url    = get_permalink();
 						foreach( $tags as $tag ) {
 						?>
 							<div class="chip chip-simple chip-primary">
-								<span class="chip-label"><?php echo esc_attr( $tag->name ); ?></span>
+								<span class="chip-label"><?php echo esc_html( $tag->name ); ?></span>
 							</div>
 						<?php
 						}

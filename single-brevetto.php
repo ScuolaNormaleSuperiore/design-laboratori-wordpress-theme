@@ -44,7 +44,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
-					<img src="<?php echo $image_metadata['image_url']; ?>"
+					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
@@ -52,7 +52,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 					<?php
 							if( $image_metadata['image_caption'] ) {
 						?>
-							<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 						<?php
 							}
 					?>
@@ -65,9 +65,9 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<span class="it-Categoria"></span>
-						<h2><?php echo get_the_title(); ?></h2>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
-						<?php echo esc_html( $summary ); ?>
+						<?php echo wp_kses_post( $summary ); ?>
 						</p>
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
@@ -75,10 +75,10 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 								if ( ! empty( $area_tematica ) ) {
 							?>
 								<a class="text-white text-decoration-none"
-									href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] );?>"
+									href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] ); ?>"
 								>
 									<span class="chip-label text-light"></span>
-										<?php echo esc_attr( $area_tematica['title'] ); ?>
+										<?php echo esc_html( $area_tematica['title'] ); ?>
 									</span>
 								</a>
 							<?php
@@ -229,7 +229,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 					<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<?php echo $abstract; ?>
+							<?php echo wp_kses_post( $abstract ); ?>
 						</p>
 					
 					</article>
@@ -242,7 +242,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				?>
 					<article id="titolari" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Titolari', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $titolari ) ; ?></p>
+						<p><?php echo esc_html( $titolari ); ?></p>
 					</article>
 				<?php
 				}
@@ -251,7 +251,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				<!-- inventori -->
 				<article id="inventori" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Inventori', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_attr( $inventori ) ; ?></p>
+					<p><?php echo esc_html( $inventori ); ?></p>
 				</article>
 				<?php
 				}
@@ -261,9 +261,9 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				<article id="domanda" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Domanda di priorità', 'design_laboratori_italia' ); ?></h3>
 					<p>
-					<?php echo __( 'Numero deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_attr( $num_deposito ) ; ?>
+					<?php echo __( 'Numero deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $num_deposito ); ?>
 						<br/>
-					<?php echo __( 'Data deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_attr( $data_deposito ) ; ?>
+					<?php echo __( 'Data deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $data_deposito ); ?>
 					</p>
 				</article>
 				<?php
@@ -273,7 +273,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 					<!-- Status -->
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Stato legale', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_attr( $stato ) ; ?></p>
+					<p><?php echo esc_html( $stato ); ?></p>
 				</article>
 				<?php
 				}
@@ -295,13 +295,13 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 								foreach( $famiglie as $fam ){
 							?>
 							<tr>
-								<th scope="row"><?php echo $fam->numero_deposito; ?></th>
-								<td><?php echo $fam->data_deposito; ?></td>
+								<th scope="row"><?php echo esc_html( $fam->numero_deposito ); ?></th>
+								<td><?php echo esc_html( $fam->data_deposito ); ?></td>
 								<td><?php
 									$decoded_string = dli_decode_unicode_string( $fam->titolo ) ;
-									echo $decoded_string;
+									echo esc_html( $decoded_string );
 								?></td>
-								<td><?php echo $fam->nazione_deposito; ?></td>
+								<td><?php echo esc_html( $fam->nazione_deposito ); ?></td>
 							</tr>
 							<?php
 								}
@@ -316,7 +316,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				<!-- AREA TEMATICA -->
 				<article id="areatematica" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Area tematica', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo $area_tematica['title']; ?></p>
+						<p><?php echo esc_html( $area_tematica['title'] ); ?></p>
 				</article>
 				<?php
 				}
@@ -325,7 +325,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				<!-- ALTRE INFORMAZIONI -->
 				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo $note; ?></p>
+					<p><?php echo wp_kses_post( $note ); ?></p>
 				</article>
 				<?php
 				}

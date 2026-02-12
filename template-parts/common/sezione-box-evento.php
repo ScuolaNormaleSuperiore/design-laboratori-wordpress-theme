@@ -20,37 +20,37 @@ if ( $item ) {
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive img-responsive-panoramic">
 				<figure class="img-wrapper">
-					<img src="<?php echo $image_metadata['image_url']; ?>"
+					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 				</figure>
 				<?php if ( $event_date ) { ?>
 				<div class="card-calendar d-flex flex-column justify-content-center">
 					<span class="card-date">
-						<?php echo $event_day; ?>
+						<?php echo esc_html( $event_day ); ?>
 					</span>
 					<span class="card-day">
-						<?php echo __( $event_month, 'design_laboratori_italia' ); ?> <?php echo $event_year; ?>
+						<?php echo esc_html( __( $event_month, 'design_laboratori_italia' ) ); ?> <?php echo esc_html( $event_year ); ?>
 					</span>
 				</div>
 				<?php } ?>
 			</div>
 		</div>
 		<div class="card-body p-4">
-			<h3 class="card-title h4"><?php echo esc_attr( $title ); ?></h3>
-			<p class="card-text"><?php echo esc_attr( $desc ); ?></p>
+			<h3 class="card-title h4"><?php echo esc_html( $title ); ?></h3>
+			<p class="card-text"><?php echo wp_kses_post( $desc ); ?></p>
 			<?php if ( $orario_inizio && false ) {
 			?>
 				<p class="card-text">
-					<?php echo $orario_inizio; ?>
+					<?php echo esc_html( $orario_inizio ); ?>
 				</p>
 			<?php
 			}
 			?>
 			<p class="pt-1">
 				<a class="read-more" href="<?php echo esc_url( $link ); ?>">
-					<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ) ?></span>
-					<span class="visually-hidden"><?php echo $desc; ?></span>
+					<span class="text customSpacing"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+					<span class="visually-hidden"><?php echo wp_kses_post( $desc ); ?></span>
 					<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 						<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>

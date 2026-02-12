@@ -84,7 +84,7 @@ $num_results = $luoghi->found_posts;
 									}
 									?>
 										<input id="<?php echo esc_attr( $tipo_luogo->slug ); ?>" name="<?php echo esc_attr( $tipo_luogo->slug ); ?>" value="<?php echo esc_attr( $tipo_luogo->slug ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
-										<label for="<?php echo esc_attr( $tipo_luogo->slug ); ?>"><?php echo esc_attr( $tipo_luogo->name ); ?></label>
+										<label for="<?php echo esc_attr( $tipo_luogo->slug ); ?>"><?php echo esc_html( $tipo_luogo->name ); ?></label>
 									</div>
 									<?php
 								}
@@ -122,12 +122,12 @@ $num_results = $luoghi->found_posts;
 												<title>Map Marker</title>
 												<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker'; ?>"></use>
 											</svg>
-											<a href="<?php the_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
+											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $title ); ?></a>
 										</h3>
 										<div class="card-text">
-											<p><?php echo esc_attr( $desc ); ?><br>
-											<?php echo esc_attr( $indirizzo ); ?><br>
-											<?php echo esc_attr( $tipo ); ?><br>
+											<p><?php echo wp_kses_post( $desc ); ?><br>
+											<?php echo esc_html( $indirizzo ); ?><br>
+											<?php echo esc_html( $tipo ); ?><br>
 											</p>
 										</div>
 									</div>

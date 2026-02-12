@@ -53,7 +53,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
-					<img src="<?php echo $image_metadata['image_url']; ?>"
+					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
@@ -61,7 +61,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 					<?php
 							if( $image_metadata['image_caption'] ) {
 						?>
-							<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 						<?php
 							}
 					?>
@@ -79,9 +79,9 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								?>
 								<p class="card-date">
 									<?php 
-										echo $start_date; 
+										echo esc_html( $start_date ); 
 										if ( $orario_inizio ) {
-											echo ', ' . $orario_inizio;
+											echo ', ' . esc_html( $orario_inizio );
 										}
 									?>
 								</p>
@@ -91,11 +91,11 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								<p class="card-date">
 									<?php
 										echo __( 'dal', 'design_laboratori_italia' );
-										echo ' ' . $start_date;
+										echo ' ' . esc_html( $start_date );
 										echo ' ' . __( 'al', 'design_laboratori_italia' );
-										echo ' ' . $end_date;
+										echo ' ' . esc_html( $end_date );
 										if ( $orario_inizio ) {
-											echo ', ' . $orario_inizio;
+											echo ', ' . esc_html( $orario_inizio );
 										}
 									?>
 									</p>
@@ -104,10 +104,10 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								?>
 						</span>
 						<!-- Titolo -->
-						<h2><?php echo get_the_title(); ?></h2>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<!-- Testo -->
 						<p class="d-none d-lg-block">
-							<?php echo wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ); ?>
+							<?php echo wp_kses_post( wp_trim_words( $short_descr, DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 						</p>
 						<!-- Categorie -->
 						<?php
@@ -116,10 +116,10 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 							?>
 							<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 								<a class="text-decoration-none"
-									href="<?php echo $cat_url ?>"
+									href="<?php echo esc_url( $cat_url ); ?>"
 								>
 									<span class="chip-label">
-										<?php echo esc_attr( $category['title'] ); ?>
+										<?php echo esc_html( $category['title'] ); ?>
 									</span>
 								</a>
 							</div>
@@ -248,10 +248,10 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 						<div class="point-list">
 							<div class="point-list-aside point-list-warning">
 								<div class="point-date text-monospace">
-									<?php echo $start_day; ?>
+									<?php echo esc_html( $start_day ); ?>
 								</div>
 								<div class="point-month text-monospace">
-									<?php echo $start_month_name; ?>
+									<?php echo esc_html( $start_month_name ); ?>
 								</div>
 							</div>
 							<div class="point-list-content">
@@ -264,7 +264,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 											<?php
 											if ( $orario_inizio ) {
 											?>
-											<?php echo __( 'Inizio evento', 'design_laboratori_italia' ); ?> <?php echo $orario_inizio; ?>
+											<?php echo __( 'Inizio evento', 'design_laboratori_italia' ); ?> <?php echo esc_html( $orario_inizio ); ?>
 											<?php
 											}
 											if ( $orario_inizio && $orario_fine && $same_date ) {
@@ -272,7 +272,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 											}
 											if ( $orario_fine && $same_date ) {
 												echo __( 'Fine evento', 'design_laboratori_italia' );
-												echo $orario_fine;
+												echo esc_html( $orario_fine );
 											}
 											?>
 										</h5>
@@ -290,10 +290,10 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 						<div class="point-list">
 							<div class="point-list-aside point-list-warning">
 								<div class="point-date text-monospace">
-									<?php echo $end_day; ?>
+									<?php echo esc_html( $end_day ); ?>
 								</div>
 								<div class="point-month text-monospace">
-									<?php echo $end_month_name; ?>
+									<?php echo esc_html( $end_month_name ); ?>
 								</div>
 							</div>
 							<div class="point-list-content">
@@ -306,7 +306,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 											<?php
 											if ( $orario_fine ) {
 											?>
-											<?php echo __( 'Fine evento', 'design_laboratori_italia' ); ?> <?php echo $orario_fine; ?>
+											<?php echo __( 'Fine evento', 'design_laboratori_italia' ); ?> <?php echo esc_html( $orario_fine ); ?>
 											<?php
 											}
 											?>
@@ -331,7 +331,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 					<article id="luogo" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 pt-3" id="luogo-title"><?php echo __( 'Luogo', 'design_laboratori_italia' ); ?></h3>
 						<div class="row pb-3 pt-3">
-						<p><?php echo esc_attr( $luogo ); ?></p>
+						<p><?php echo esc_html( $luogo ); ?></p>
 						</div>
 					</article>
 				<?php
@@ -347,7 +347,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<li>
-									<a class="list-item active icon-left large" target="_blank" href="<?php echo $sito_web; ?>">
+									<a class="list-item active icon-left large" target="_blank" href="<?php echo esc_url( $sito_web ); ?>">
 										<span class="list-item-title-icon-wrapper">
 											<svg class="icon icon-primary" role="img" aria-labelledby="Link">
 												<title>Link</title>
@@ -373,7 +373,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 						<?php
 						if ( $label_contatti ) {
 						?>
-						<span><?php echo esc_attr( $label_contatti ) ?></span>
+						<span><?php echo esc_html( $label_contatti ); ?></span>
 						<?php
 						} else {
 						?>
@@ -395,7 +395,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 										</svg>
 									</div>
-									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_html( $telefono ); ?></span></div>
 								</div>
 							</li>
 							<?php
@@ -403,14 +403,14 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 								if ( $email ) {
 							?>
 							<li>
-								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
+								<a target="_blank" href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 									<div class="it-rounded-icon">
 										<svg class="icon" role="img" aria-labelledby="Mail">
 											<title>Mail</title>
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 										</svg>
 									</div>
-									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_html( $email ); ?></span></div>
 								</a>
 							</li>
 							<?php
@@ -436,7 +436,7 @@ $short_descr        = dli_get_field( 'descrizione_breve' );
 													<title>File PDF</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf'; ?>"></use>
 												</svg>
-												<a target="_blank" href="<?php echo esc_attr( $allegato['url'] ); ?>"><?php echo esc_attr( $allegato['title'] ); ?></a>
+												<a target="_blank" href="<?php echo esc_url( $allegato['url'] ); ?>"><?php echo esc_html( $allegato['title'] ); ?></a>
 											</h3>
 										</div>
 									</div>
