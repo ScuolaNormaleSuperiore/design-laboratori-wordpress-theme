@@ -47,14 +47,19 @@ When working with issues:
 **Creating Issues:**
 - Add new issues to [ISSUES_TODO.md](./ISSUES_TODO.md) when you discover bugs, vulnerabilities, or improvement opportunities
 - Use the issue template from AI_BEHAVIOR.md
+- Assign appropriate category: Security, Bug, Refactoring, Performance, Accessibility, Feature, or Documentation
 - Assign appropriate priority (Critical/High/Medium/Low)
-- Update statistics at the top of the file
+- Update both priority and category statistics at the top of the file
 
 **Resolving Issues:**
 - Move completed issues from [ISSUES_TODO.md](./ISSUES_TODO.md) to [ISSUES_RESOLVED.md](./ISSUES_RESOLVED.md)
+- Place in the appropriate category section
 - Add resolution date and description
 - Reference related commits or pull requests
 - Update statistics in both files
+
+**Issue Organization:**
+Issues are organized by category type, then sorted by priority within each category (Critical → High → Medium → Low).
 
 ### Communication Style
 

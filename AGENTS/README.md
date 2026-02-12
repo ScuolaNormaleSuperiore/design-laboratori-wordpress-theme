@@ -35,6 +35,7 @@ This folder contains all documentation and configuration files for AI assistants
 **ISSUES_TODO.md**
 - **Purpose:** Track all open issues, bugs, and improvements
 - **Contains:** Categorized list of pending tasks with priorities
+- **Organization:** Issues are organized by category (Security, Bug, Refactoring, Performance, Accessibility, Feature, Documentation), then sorted by priority within each category (Critical → High → Medium → Low)
 - **Update when:** Finding bugs, planning features, identifying improvements, resolving issues
 - **Reusable:** Template structure yes, content no (project-specific)
 

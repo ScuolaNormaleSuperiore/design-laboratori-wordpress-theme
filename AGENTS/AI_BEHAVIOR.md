@@ -86,12 +86,33 @@ Use this template when adding issues:
 - **Notes:** Additional information, workarounds, references
 ```
 
+### Issue Categories
+
+Use one of these 7 categories:
+
+1. **Security** - Vulnerabilities, authentication issues, data exposure
+2. **Bug** - Malfunctions, errors, crashes
+3. **Refactoring** - Code improvements, reorganization, technical debt
+4. **Performance** - Slow operations, optimization opportunities
+5. **Accessibility** - WCAG compliance, screen reader support, keyboard navigation
+6. **Feature** - New functionality requests
+7. **Documentation** - Missing or incorrect documentation
+
 ### Priority Levels
 
 - **Critical:** Blocks functionality, security vulnerability, data loss risk
 - **High:** Important feature not working, significant user impact
 - **Medium:** Minor bugs, important improvements
 - **Low:** Aesthetic improvements, nice-to-have features
+
+### Issue Organization
+
+Issues in `ISSUES_TODO.md` are organized **by category**, then sorted **by priority** within each category (Critical → High → Medium → Low).
+
+This structure makes it easy to:
+- Find all issues of a specific type
+- See the most urgent issues within each category
+- Navigate the file logically
 
 ### Resolving Issues
 
