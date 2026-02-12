@@ -69,6 +69,7 @@ CLAUDE.md / CHATGPT.md (entry point)
     ├─→ CODING_STANDARDS.md (how to write code)
     ├─→ AI_BEHAVIOR.md (how to work)
     └─→ ISSUES_TODO.md (what needs doing)
+    └─→ ISSUES_RESOLVED.md (issue already solved)
 ```
 
 ## 🎯 Quick Start for AI Assistants
