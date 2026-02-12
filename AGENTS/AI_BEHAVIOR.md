@@ -74,6 +74,11 @@ Create new issues in `ISSUES_TODO.md` when you:
 - Identify missing or outdated documentation
 - Think of improvements or new features
 
+Use `WISH_LIST.md` instead of `ISSUES_TODO.md` when:
+- The idea is exploratory and not approved for implementation yet
+- Requirements, scope, or ownership are still unclear
+- The item is a strategic opportunity rather than an actionable task
+
 ### Issue Template
 
 Use this template when adding issues:
@@ -268,5 +273,4 @@ When explaining code or WordPress internals:
 - Update shared documentation promptly
 - Leave code better than you found it
 - Help maintain project organization
-
 

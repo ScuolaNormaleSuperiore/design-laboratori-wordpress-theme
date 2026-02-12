@@ -45,6 +45,12 @@ This folder contains all documentation and configuration files for AI assistants
 - **Update when:** Closing issues, documenting solutions
 - **Reusable:** Template structure yes, content no (project-specific)
 
+**WISH_LIST.md**
+- **Purpose:** Collect desirable feature ideas not yet approved as actionable issues
+- **Contains:** Prioritized wishlist items with value, impact, and technical notes
+- **Update when:** New product ideas emerge or wishlist priorities/status change
+- **Reusable:** Template structure yes, content no (project-specific)
+
 ### AI-Specific Configuration Files
 
 **AI_RULES_CLAUDE.md**
@@ -71,7 +77,7 @@ AI_RULES_CLAUDE.md / AI_RULES_CHATGPT.md (entry point)
     ├─→ AI_BEHAVIOR.md (how to work)
     └─→ ISSUES_TODO.md (what needs doing)
 
-ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issues.
+ISSUES_RESOLVED.md and WISH_LIST.md are not required at startup. Read them on demand when resolving issues or planning future features.
 ```
 
 ## 🎯 Quick Start for AI Assistants
