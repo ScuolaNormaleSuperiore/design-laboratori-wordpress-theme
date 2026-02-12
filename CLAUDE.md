@@ -1,2 +1,5 @@
 # CLAUDE.md
-Read AGENTS/CLAUDE.md and follow all instructions and referenced files there.
+Read AGENTS/AI_RULES_CLAUDE.md and follow all instructions and referenced files there.
+
+
+

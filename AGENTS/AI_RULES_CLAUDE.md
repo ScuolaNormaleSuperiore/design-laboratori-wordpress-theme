@@ -1,4 +1,4 @@
-# CLAUDE.md - Claude Code Configuration
+# AI_RULES_CLAUDE.md - Claude Code Configuration
 
 ## Purpose
 
@@ -24,4 +24,5 @@ Shared project workflow, issue handling, and documentation rules are defined in 
 ## Canonical References
 
 See `AGENTS/AGENTS_README.md` for the full file index and descriptions.
+
 

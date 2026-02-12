@@ -1,4 +1,4 @@
-# CHATGPT.md - ChatGPT/Codex Configuration
+# AI_RULES_CHATGPT.md - ChatGPT/Codex Configuration
 
 ## Purpose
 
@@ -29,4 +29,5 @@ Shared project workflow, issue handling, and documentation rules are defined in 
 ## Canonical References
 
 See `AGENTS/AGENTS_README.md` for the full file index and descriptions.
+
 

@@ -47,13 +47,13 @@ This folder contains all documentation and configuration files for AI assistants
 
 ### AI-Specific Configuration Files
 
-**CLAUDE.md**
+**AI_RULES_CLAUDE.md**
 - **Purpose:** Configuration and instructions for Claude Code
 - **Contains:** Required reading list, Claude-specific settings, workflow reminders
 - **Update when:** Changing documentation structure, adding new files, modifying workflows
 - **Reusable:** Partially - update file references for each project
 
-**CHATGPT.md**
+**AI_RULES_CHATGPT.md**
 - **Purpose:** Configuration and instructions for ChatGPT/Codex
 - **Contains:** Required reading list, ChatGPT-specific settings, workflow reminders
 - **Update when:** Changing documentation structure, adding new files, modifying workflows
@@ -62,7 +62,7 @@ This folder contains all documentation and configuration files for AI assistants
 ## 🔄 File Interdependencies
 
 ```
-CLAUDE.md / CHATGPT.md (entry point)
+AI_RULES_CLAUDE.md / AI_RULES_CHATGPT.md (entry point)
     ↓
     ├─→ AGENTS_README.md (index and usage guide)
     ├─→ PROJECT.md (what we're building)
@@ -76,8 +76,8 @@ ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issu
 
 ## 🎯 Quick Start for AI Assistants
 
-1. **Claude Code:** Reads `CLAUDE.md` in the project root automatically, which redirects to `AGENTS/CLAUDE.md`
-2. **ChatGPT Codex:** Reads `AGENTS.md` in the project root automatically, which redirects to `AGENTS/CHATGPT.md`
+1. **Claude Code:** Reads `AI_RULES_CLAUDE.md` in the project root automatically, which redirects to `AGENTS/AI_RULES_CLAUDE.md`
+2. **ChatGPT Codex:** Reads `AGENTS.md` in the project root automatically, which redirects to `AGENTS/AI_RULES_CHATGPT.md`
 3. Follow the reading order specified in your config file
 4. Always check `ISSUES_TODO.md` before starting work
 5. Update relevant files when making code changes
@@ -88,8 +88,8 @@ ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issu
 
 Both AI assistants read their entry point automatically at session start:
 
-- **Claude Code** → `CLAUDE.md` (project root) → `AGENTS/CLAUDE.md`
-- **ChatGPT Codex** → `AGENTS.md` (project root) → `AGENTS/CHATGPT.md`
+- **Claude Code** → `AI_RULES_CLAUDE.md` (project root) → `AGENTS/AI_RULES_CLAUDE.md`
+- **ChatGPT Codex** → `AGENTS.md` (project root) → `AGENTS/AI_RULES_CHATGPT.md`
 
 No manual prompt is needed to start. The entry point files redirect to the full configuration in the `AGENTS/` folder.
 
@@ -99,7 +99,7 @@ If using ChatGPT web without Codex, add this to your Custom Instructions (Settin
 
 ```
 When working on projects with an AGENTS folder:
-1. Always start by reading AGENTS/CHATGPT.md
+1. Always start by reading AGENTS/AI_RULES_CHATGPT.md
 2. Read all referenced files in the order specified
 3. Check AGENTS/ISSUES_TODO.md for current priorities
 4. Follow all guidelines in AGENTS/AI_BEHAVIOR.md
@@ -129,7 +129,7 @@ To adapt this documentation system for a new project:
 
 2. **Adjust framework-specific sections:**
    - `CODING_STANDARDS.md` — keep general guidelines; replace WordPress-specific sections with framework/language-specific standards; maintain emphasis on security, accessibility, and code quality; update code examples to match the target stack
-   - `CLAUDE.md` / `CHATGPT.md` — keep only AI-specific instructions; update project-specific paths and tool notes
+   - `AI_RULES_CLAUDE.md` / `AI_RULES_CHATGPT.md` — keep only AI-specific instructions; update project-specific paths and tool notes
 
 3. **Replace content:**
    - `PROJECT.md` — replace with: project overview, main features, documentation links, testing/demo instructions, license reference
@@ -146,3 +146,5 @@ To adapt this documentation system for a new project:
 - Use consistent formatting across all files
 - Link between files when referencing related content
 - Review and update at least monthly or after major changes
+
+

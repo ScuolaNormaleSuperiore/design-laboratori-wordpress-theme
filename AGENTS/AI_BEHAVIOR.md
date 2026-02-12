@@ -139,7 +139,7 @@ When you resolve an issue:
 
 **After changing file structure:**
 - Update `ARCHITECTURE.md` - Update directory descriptions
-- Update `CLAUDE.md` / `CHATGPT.md` - If paths changed
+- Update `AI_RULES_CLAUDE.md` / `AI_RULES_CHATGPT.md` - If paths changed
 
 **After updating dependencies:**
 - Update `ARCHITECTURE.md` - Technology stack section
@@ -258,4 +258,5 @@ When explaining code or WordPress internals:
 - Update shared documentation promptly
 - Leave code better than you found it
 - Help maintain project organization
+
 
