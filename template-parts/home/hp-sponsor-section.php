@@ -39,13 +39,13 @@ if ( 'true' === $section_enabled ) {
 						}
 					?>
 						<div class="it-grid-item-wrapper">
-							<a href="<?php echo esc_attr( $external_link ); ?>" target="_blank">
+							<a href="<?php echo esc_url( $external_link ); ?>" target="_blank">
 								<figure class="figure img-full w-100">
 									<img
-										src="<?php echo $image_metadata['image_url'] ?>"
-										title="<?php echo $image_metadata['image_title'] ?>"
+										src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
+										title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
 										class="figure-img img-fluid rounded"
-										alt="<?php echo $image_metadata['image_title'] ?>"
+										alt="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
 									>
 								</figure>
 							</a>

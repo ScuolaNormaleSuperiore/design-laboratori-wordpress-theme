@@ -34,7 +34,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<?php
 					if ( $image_metadata['image_url'] ) {
 					?>
-					<img src="<?php echo $image_metadata['image_url']; ?>"
+					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
@@ -45,7 +45,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<?php
 							if( $image_metadata['image_caption'] ) {
 						?>
-							<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+							<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 						<?php
 							}
 					?>
@@ -58,7 +58,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
 						<span class="it-Categoria"></span>
-						<h2><?php echo get_the_title(); ?></h2>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
 						</p>
 						<!-- categorie -->
@@ -67,10 +67,10 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								if ( ! empty( $settore_attivita ) ) {
 							?>
 							<a class="text-white text-decoration-none"
-								href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] );?>" 
+								href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] ); ?>" 
 							>
 								<span class="chip-label text-light">
-									<?php echo esc_attr( $settore_attivita['title'] ); ?>
+									<?php echo esc_html( $settore_attivita['title'] ); ?>
 								</span>
 							</a>
 							<?php
@@ -209,7 +209,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Spin-off', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<?php echo $description; ?>
+							<?php echo wp_kses_post( $description ); ?>
 						</p>
 					
 					</article>
@@ -222,7 +222,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<!-- Anno di costituzione -->
 					<article id="costituzione" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $year ) ; ?></p>
+						<p><?php echo esc_html( $year ); ?></p>
 					</article>
 					<?php
 				}
@@ -231,7 +231,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<!-- Settore di attività -->
 					<article id="settoreattivita" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Settore di attività', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $settore_attivita['title'] ) ; ?></p>
+						<p><?php echo esc_html( $settore_attivita['title'] ); ?></p>
 					</article>
 					<?php
 				}
@@ -240,7 +240,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<!-- Stato -->
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_attr( $stato ) ; ?></p>
+					<p><?php echo esc_html( $stato ); ?></p>
 				</article>
 				<?php
 				}
@@ -263,7 +263,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone'; ?>"></use>
 										</svg>
 									</div>
-									<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+									<div class="it-right-zone"><span class="text"><?php echo esc_html( $telefono ); ?></span></div>
 								</div>
 							</li>
 							<?php
@@ -271,14 +271,14 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								if ( $email ) {
 							?>
 							<li>
-								<a target="_blank" href="mailto:<?php echo $email; ?>" class="list-item">
+								<a target="_blank" href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Mail">
 										<title>Mail</title>
 										<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>"></use>
 									</svg>
 								</div>
-								<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+								<div class="it-right-zone"><span class="text"><?php echo esc_html( $email ); ?></span></div>
 								</a>
 							</li>
 							<?php
@@ -286,7 +286,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								if ( $sito_web ) {
 							?>
 							<li>
-								<a class="list-item" target="_blank" href="<?php echo $sito_web; ?>">
+								<a class="list-item" target="_blank" href="<?php echo esc_url( $sito_web ); ?>">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Link">
 										<title>Link</title>
@@ -310,7 +310,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				<!-- ALTRE INFORMAZIONI -->
 				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo $note; ?></p>
+					<p><?php echo wp_kses_post( $note ); ?></p>
 				</article>
 				<?php
 				}

@@ -22,7 +22,7 @@ if ( 'true' === $section_enabled ) {
 		$image_metadata = dli_get_image_metadata( $post, 'full', '/assets/img/yourimage.png' );
 		$post_id        = $post->ID;
 		$section        = dli_get_field( 'sezione', $post_id );
-		$button_label   = __( dli_get_field( 'label_pulsante', $post_id ), 'design_laboratori_italia' );
+		$button_label   = dli_get_field( 'label_pulsante', $post_id );
 		$button_link    = dli_get_field(  'link_pulsante', $post_id );
 		$is_external    = dli_get_field( 'apri_in_nuova_finestra', $post_id ) ? true : false;
 	?>
@@ -34,9 +34,9 @@ if ( 'true' === $section_enabled ) {
 				<div class="img-responsive">
 					<div class="img-wrapper">
 						<img
-							src="<?php echo $image_metadata['image_url'] ?>"
-							title="<?php echo $image_metadata['image_title'] ?>"
-							alt="<?php echo $image_metadata['image_alt'] ?>"
+							src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
+							title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+							alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
 						>
 					</div>
 				</div>
@@ -46,9 +46,9 @@ if ( 'true' === $section_enabled ) {
 				<div class="row">
 					<div class="col-12">
 						<div class="it-hero-text-wrapper">
-							<span class="it-Categoria"><?php echo esc_attr( $section ) ?></span>
-							<h2><?php echo esc_attr( $post->post_title ) ?></h2>
-							<p class="d-none d-lg-block"><?php echo esc_attr( $post->post_content ) ?> </p>
+							<span class="it-Categoria"><?php echo esc_html( $section ); ?></span>
+							<h2><?php echo esc_html( $post->post_title ); ?></h2>
+							<p class="d-none d-lg-block"><?php echo wp_kses_post( $post->post_content ); ?> </p>
 							<?php
 								if ( $button_link ){
 							?>
@@ -61,8 +61,8 @@ if ( 'true' === $section_enabled ) {
 										<?php
 										}
 										?>
-										href="<?php echo esc_attr( $button_link ); ?>">
-										<?php echo esc_attr( $button_label ); ?>
+										href="<?php echo esc_url( $button_link ); ?>">
+										<?php echo esc_html( $button_label ); ?>
 									</a>
 								</div>
 							<?php

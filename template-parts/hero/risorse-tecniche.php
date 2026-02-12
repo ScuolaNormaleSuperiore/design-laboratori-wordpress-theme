@@ -7,10 +7,10 @@
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
 				<h2 class="p-0  ">
-					<?php echo get_the_title(); ?>
+					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal">
-					<?php echo $testo_sezione; ?>
+					<?php echo wp_kses_post( $testo_sezione ); ?>
 				</p>
 			</div>
 		</div>

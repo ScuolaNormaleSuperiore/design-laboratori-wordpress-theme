@@ -107,10 +107,7 @@ Pay particular attention to the following aspects when writing code:
 In any case, be concise but precise in your responses.
 
 ### Collaboration Expectations
-When you have doubts about what to do, ask before writing code and propose alternatives.
-Always suggest the next step in order to quickly achieve the requested goal.
-Suggest code refactorings whenever you consider them appropriate.
-When modifying the codebase, also review and update documentation and tracking files as needed: AGENTS.md, BUGS.txt, REFACTORS.txt, and CLAUDE.md.
+Collaboration rules and workflow expectations live in `CLAUDE.md` to avoid duplication.
 
 
 ## CHANGELOG AND TODO

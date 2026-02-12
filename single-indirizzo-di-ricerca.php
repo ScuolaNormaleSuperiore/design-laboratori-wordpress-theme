@@ -27,7 +27,6 @@ $contatti       = array(
 );
 
 // Recupero la lista dei progetti correlati.
-# $progetti = DLI_ContentsManager::get_projects_by_event_id( get_the_ID() );
 $progetti = DLI_ContentsManager::get_related_items( $post, 'elenco_indirizzi_di_ricerca_correlati', array( PROGETTO_POST_TYPE) );
 
 // Recupero la lista degli eventi e delle notizie correlate ad un progetto.
@@ -45,7 +44,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
 		<div class="img-wrapper">
-			<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+			<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
 		</div>
 		</div>
@@ -53,8 +52,8 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 			<div class="row">
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
-						<h2><?php echo esc_attr( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block"><?php echo dli_get_field( 'descrizione_breve' ); ?></p>
+						<h2><?php echo esc_html( get_the_title() ); ?></h2>
+						<p class="d-none d-lg-block"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
 					</div>
 				</div>
 			</div>
@@ -86,7 +85,9 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
 									<title>Chevron Left</title>
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>"></use>
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" 
+										xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>">
+									</use>
 								</svg>
 								<span>Indietro</span>
 							</a>
@@ -148,7 +149,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
 					<p>
-						<?php echo the_content(); ?>
+						<?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?>
 					</p>
 				</div>
 				<?php

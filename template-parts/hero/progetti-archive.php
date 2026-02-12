@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
 				<h2 class="p-0  ">
-					<?php echo get_the_title(); ?>
+					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal"><?php echo __( 'Elenco dei progetti archiviati', 'design_laboratori_italia' ); ?></p>
 			</div>

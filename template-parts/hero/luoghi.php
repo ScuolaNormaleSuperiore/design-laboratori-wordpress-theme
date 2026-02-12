@@ -6,9 +6,9 @@ $testo_sezione_luoghi = dli_get_configuration_field_by_lang( 'testo_sezione_luog
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
 				<h2 class="p-0  ">
-					<?php echo get_the_title(); ?>
+					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
-				<p class="font-weight-normal"><?php echo $testo_sezione_luoghi; ?></p>
+				<p class="font-weight-normal"><?php echo wp_kses_post( $testo_sezione_luoghi ); ?></p>
 			</div>
 		</div>
 	</div>

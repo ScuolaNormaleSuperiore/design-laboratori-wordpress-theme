@@ -39,8 +39,8 @@ while ( have_posts() ) {
 				<div class="row">
 					<div class="col-sm-5 align-middle">
 						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
-							<h2 class="p-0  "><?php echo esc_attr($title)?>&nbsp;</h2>
-							<p class="font-weight-normal"><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
+							<h2 class="p-0  "><?php echo esc_html( $title ); ?>&nbsp;</h2>
+							<p class="font-weight-normal"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
 						</div>
 					</div>
 					<div class="col-sm-7">
@@ -48,14 +48,14 @@ while ( have_posts() ) {
 						if ( $image_metadata['image_url'] ) {
 						?>
 						<figure class="figure">
-							<img src="<?php echo $image_metadata['image_url']; ?>" class="d-block mx-lg-auto img-fluid figure-img" 
+							<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" class="d-block mx-lg-auto img-fluid figure-img" 
 								alt="<?php echo esc_attr( $image_metadata['image_alt'] )?>"
 								title="<?php echo esc_attr( $image_metadata['image_title'] )?>"
 								loading="lazy">
 							<?php
 								if( $image_metadata['image_caption'] ) {
 								?>
-								<figcaption class="figure-caption"><?php echo esc_attr( $image_metadata['image_caption'] ); ?></figcaption>
+								<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 								<?php
 								}
 								?>
@@ -148,7 +148,7 @@ while ( have_posts() ) {
 				?>
 				<div class="row pb-3">
 					<h3 class="it-page-section h4 visually-hidden" id="p1"><?php _e( 'Descrizione luogo', "design_laboratori_italia" ); ?></h3>
-					<p><?php echo $descrizione; ?></p>
+					<p><?php echo wp_kses_post( $descrizione ); ?></p>
 				</div>
 				<?php
 				}
@@ -163,7 +163,7 @@ while ( have_posts() ) {
 							?>
 								<div class="img-responsive-wrapper">
 									<?php
-									echo $posizione;
+									echo wp_kses_post( $posizione );
 									?>
 								</div>
 							<?php
@@ -238,7 +238,7 @@ while ( have_posts() ) {
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $mail ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $mail ); ?></span></div>
 										</a>
 									</li>
 									<?php
@@ -256,7 +256,7 @@ while ( have_posts() ) {
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $pec ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $pec ); ?></span></div>
 										</a>
 									</li>
 									<?php
@@ -271,7 +271,7 @@ while ( have_posts() ) {
 								?>
 							<div class="row pb-3">
 								<h3 class="it-page-section h4" id="p3"><?php _e( 'Come raggiungerci', "design_laboratori_italia" ); ?></h3>
-								<p><?php echo esc_html( $come_raggiungerci ); ?></p>
+								<p><?php echo wp_kses_post( $come_raggiungerci ); ?></p>
 							</div>
 								<?php
 							}
@@ -287,4 +287,3 @@ while ( have_posts() ) {
 
 <?php
 get_footer();
-

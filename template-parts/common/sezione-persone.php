@@ -4,7 +4,7 @@
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 	$hide_icon   = dli_get_option( 'hide_person_icon', 'persone' );
 ?>
-<section id="<?php echo 'sezione-' . $section_id; ?>">
+<section id="<?php echo esc_attr( 'sezione-' . $section_id ); ?>">
 <?php
 	// The main loop of the page.
 	$pindex = 0;
@@ -44,7 +44,7 @@
 					if ( $hide_icon !== 'true' ) {
 					?>
 						<div class="avatar size-xl">
-							<img src="<?php echo dli_get_persona_avatar( $item, $id ); ?>" 
+							<img src="<?php echo esc_url( dli_get_persona_avatar( $item, $id ) ); ?>" 
 								alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 								title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 								aria-hidden="true">
@@ -59,27 +59,27 @@
 									if ( ! $abilita_link_diretto_pagina_persona ) {
 										?>
 										<h4>
-											<a href="<?php echo $link_persona; ?>">
-												<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+											<a href="<?php echo esc_url( $link_persona ); ?>">
+												<?php echo esc_html( $nome ) . ' ' . esc_html( $cognome ); ?>
 											</a>
 										</h4>
 										<?php
 									} else {
 										?>
 											<h4>
-												<a href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
-													<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+												<a href="<?php echo esc_url( $sitoweb ); ?>" target="_blank">
+													<?php echo esc_html( $nome ) . ' ' . esc_html( $cognome ); ?>
 												</a>
 											</h4>
 										<?php
 									}
 								} else {
 									?>
-									<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
+									<h4><?php echo esc_html( $nome ) . " " . esc_html( $cognome ); ?></h4>
 								<?php
 								}
 							?>
-							<span><?php echo esc_attr( $cat_label ); ?></span>
+							<span><?php echo esc_html( $cat_label ); ?></span>
 						</div>
 
 					</div>

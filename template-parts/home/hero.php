@@ -14,16 +14,16 @@ if($img_identita == ""){
 <section class="section bg-white section-hero">
 	<div class="container">
 		<div class="row variable-gutters">
-			<div class="col-md-<?php echo $colid; ?>">
+			<div class="col-md-<?php echo esc_attr( $colid ); ?>">
 				<div class="hero-title">
-					<small><?php the_title(); ?></small>
-					<h1><?php echo dli_get_option("tipologia_scuola"); ?> <?php echo dli_get_option_by_lang( 'nome_laboratorio' ); ?><br /><span class="text-redbrown"><?php echo dli_get_option("luogo_laboratorio"); ?></span></h1>
+					<small><?php echo esc_html( get_the_title() ); ?></small>
+					<h1><?php echo esc_html( dli_get_option( 'tipologia_scuola' ) ); ?> <?php echo esc_html( dli_get_option_by_lang( 'nome_laboratorio' ) ); ?><br /><span class="text-redbrown"><?php echo esc_html( dli_get_option( 'luogo_laboratorio' ) ); ?></span></h1>
 				</div><!-- /hero-title -->
 			</div><!-- /col-md-<?php echo $colid; ?> -->
 		</div><!-- /row -->
 	</div><!-- /container -->
 	<?php if($showimage){ ?>
-		<div class="hero-img" style="background: url('<?php echo $img_identita; ?>')  no-repeat center top; background-size: cover; "></div>
+		<div class="hero-img" style="background: url('<?php echo esc_url( $img_identita ); ?>')  no-repeat center top; background-size: cover; "></div>
 	<?php } ?>
 </section><!-- /section -->
 <?php

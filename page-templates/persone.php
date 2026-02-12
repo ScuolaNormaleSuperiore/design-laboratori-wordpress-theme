@@ -83,7 +83,7 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 												<a class="hover-text-white" 
 													href="#"
 													onclick="addParameterAndReloadPage('struttura', '<?php echo esc_attr( $struttura->slug ); ?>'); return false;"
-													title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_attr( $struttura->name ); ?></a>
+													title ="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $struttura->name ); ?>"><?php echo esc_html( $struttura->name ); ?></a>
 											</span>
 										</div>
 									<?php
@@ -127,7 +127,7 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 											foreach ( $strutture as $struttura ) {
 											?>
 											<option value="<?php echo $struttura->slug; ?>" <?php if ( $selected_structure === $struttura->slug ) echo "selected" ?> >
-												<?php echo esc_attr( $struttura->name ); ?>
+												<?php echo esc_html( $struttura->name ); ?>
 											</option>
 											<?php
 												}
@@ -145,16 +145,16 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 									?>
 
 									<div class="select-wrapper">
-										<label for="selectPeopleLevel"><?php echo esc_attr( $label_select_level ); ?></label>
+										<label for="selectPeopleLevel"><?php echo esc_html( $label_select_level ); ?></label>
 										<select id="selectPeopleLevel" onchange="reloadWithSelectedItem('selectPeopleLevel', 'level')">
 											<option value=" " <?php if ( $selected_level === '' ) echo "selected" ?> >
-												<?php echo esc_attr( $label_all_levels ); ?>
+												<?php echo esc_html( $label_all_levels ); ?>
 											</option>
 											<?php
 											foreach( $tags as $tag ){
 											?>
 												<option value="<?php echo esc_attr( $tag->slug ); ?>" <?php if ( $selected_level === $tag->slug ) echo "selected" ?> >
-													<?php echo esc_attr( $tag->name ); ?>
+													<?php echo esc_html( $tag->name ); ?>
 												</option>
 											<?php
 											}
@@ -250,7 +250,7 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 										?>
 										<div class="row  mb-4">
 											<div class="col-lg-3">
-												<h3 class="text-lg-right mb-3 h4"><?php _e( $nome_categoria, "design_laboratori_italia" ); ?></h3>
+												<h3 class="text-lg-right mb-3 h4"><?php echo esc_html( $nome_categoria ); ?></h3>
 											</div><!-- /col-lg-3 -->
 											<div class="col-lg-9">
 												<div class="row ">
@@ -276,7 +276,7 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 															if ( $hide_icon !== 'true' ) {
 															?>
 															<div class="avatar size-xl">
-																<img src="<?php echo dli_get_persona_avatar( $post, $ID ); ?>" 
+																<img src="<?php echo esc_url( dli_get_persona_avatar( $post, $ID ) ); ?>" 
 																	alt="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 																	title="<?php echo esc_attr( dli_get_persona_display_name( $nome, $cognome, $title ) ); ?>"
 																	aria-hidden="true">
@@ -290,8 +290,8 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 																		if ( ! $abilita_link_diretto_pagina_persona ) {
 																			?>
 																			<h4>
-																				<a class="text-decoration-none" href="<?php echo $link_persona; ?>">
-																					<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+																				<a class="text-decoration-none" href="<?php echo esc_url( $link_persona ); ?>">
+																					<?php echo esc_html( $nome ) . ' ' . esc_html( $cognome ); ?>
 																				</a>
 																			</h4>
 																			<?php
@@ -299,8 +299,8 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 																		else {
 																			?>
 																				<h4>
-																					<a class="text-decoration-none" href="<?php echo esc_attr( $sitoweb ); ?>" target="_blank">
-																						<?php echo esc_attr( $nome ) . ' ' . esc_attr( $cognome ); ?>
+																					<a class="text-decoration-none" href="<?php echo esc_url( $sitoweb ); ?>" target="_blank">
+																						<?php echo esc_html( $nome ) . ' ' . esc_html( $cognome ); ?>
 																					</a>
 																				</h4>
 																			<?php
@@ -308,17 +308,17 @@ $hide_icon          = dli_get_option( 'hide_person_icon', 'persone' );
 																	}
 																	else {
 																		?>
-																		<h4><?php echo esc_attr( $nome ) . " " . esc_attr( $cognome ); ?></h4>
+																		<h4><?php echo esc_html( $nome ) . " " . esc_html( $cognome ); ?></h4>
 																	<?php }
 																	$terms = get_the_terms( $ID, 'struttura' );
 																	if ( $terms ) {
 																		$nome_struttura = $terms[0]->name;
 																	?>
-																		<p><?php echo esc_attr( $nome_struttura ); ?>&nbsp;</p>
+																		<p><?php echo esc_html( $nome_struttura ); ?>&nbsp;</p>
 																	<?php
 																		if ( count($levels) ) {
 																	?>
-																		<p><?php echo esc_attr($levels[0]->name); ?></p>
+																		<p><?php echo esc_html( $levels[0]->name ); ?></p>
 																	<?php
 																		}
 																	}

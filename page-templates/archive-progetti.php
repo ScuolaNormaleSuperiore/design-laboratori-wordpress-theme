@@ -69,7 +69,7 @@ $num_results = $the_query->found_posts;
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-												<img src="<?php echo $image_metadata['image_url']; ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
+												<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 												alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											</figure>
 										</div>
@@ -78,11 +78,11 @@ $num_results = $the_query->found_posts;
 								}
 								?>
 									<div class="card-body">
-										<h3 class="card-title h5 "><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title h5 "><?php echo esc_html( get_the_title() ); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
-										<a class="read-more" href="<?php echo get_permalink(); ?>">
+										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
 										<span class="text customSpacing"><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
 										<svg class="icon" role="img" aria-labelledby="Arrow right">
 											<title><?php echo __( 'Vai al progetto', 'design_laboratori_italia' ); ?></title>
@@ -139,5 +139,4 @@ $num_results = $the_query->found_posts;
 
 <?php
 get_footer();
-
 

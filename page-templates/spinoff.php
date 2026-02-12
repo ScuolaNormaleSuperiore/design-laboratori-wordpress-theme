@@ -79,9 +79,9 @@ $num_results   = $the_query->found_posts;
 										foreach ( $all_years as $foundation_year ) {
 											$selected = ( $foundation_year === $selected_year );
 									?>
-									<option value="<?php echo $foundation_year; ?>"
+									<option value="<?php echo esc_attr( $foundation_year ); ?>"
 										<?php if ( $selected ) { echo 'selected'; } ?>
-									><?php echo $foundation_year; ?></option>
+									><?php echo esc_html( $foundation_year ); ?></option>
 									<?php
 										}
 									?>
@@ -99,11 +99,11 @@ $num_results   = $the_query->found_posts;
 								foreach ( $all_sectors as $business_sector ) {
 								?>
 								<div class="form-check">
-								<input type="checkbox" name="business_sector[]" id="<?php echo $business_sector['slug']; ?>"
-										value="<?php echo $business_sector['id']; ?>"
+								<input type="checkbox" name="business_sector[]" id="<?php echo esc_attr( $business_sector['slug'] ); ?>"
+										value="<?php echo esc_attr( $business_sector['id'] ); ?>"
 										<?php if ( in_array( $business_sector['id'], $selected_sectors ) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $business_sector['slug']; ?>"><?php echo $business_sector['name']; ?></label>
+									<label for="<?php echo esc_attr( $business_sector['slug'] ); ?>"><?php echo esc_html( $business_sector['name'] ); ?></label>
 								</div>
 								<?php
 								}
@@ -197,26 +197,26 @@ $num_results   = $the_query->found_posts;
 									}
 									?>
 										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5"><?php the_title(); ?></h3>
+											<h3 class="card-title cardTitlecustomSpacing h5"><?php echo esc_html( get_the_title() ); ?></h3>
 											<p class="card-text font-serif">
-												<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+												<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 											</p>
 											<p class="card-text font-serif titolari">
 													<?php echo __( 'Anno di costituzione', 'design_laboratori_italia' ); ?>:
-													<em><?php echo esc_attr( $year ); ?></em>
+													<em><?php echo esc_html( $year ); ?></em>
 											</p>
 											<p class="card-text font-serif area">
 												<?php
 												if ($settore_attivita && array_key_exists('title', $settore_attivita ) ) {
 												?>
-												<strong><?php echo esc_attr( $settore_attivita['title'] ); ?></strong> - 
+												<strong><?php echo esc_html( $settore_attivita['title'] ); ?></strong> - 
 												<?php
 												}
 												?>
-												<?php echo __( $stato, 'design_laboratori_italia' ); ?>
+												<?php echo esc_html( $stato ); ?>
 											</p>
 											<div class="pt-5">
-												<a class="read-more" href="<?php echo get_permalink(); ?>">
+												<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
 													<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 													<svg class="icon">
 														<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>

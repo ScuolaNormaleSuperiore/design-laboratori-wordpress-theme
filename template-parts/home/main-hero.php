@@ -16,14 +16,14 @@ if ( 'true' === $section_enabled ) {
 	$button_label  = dli_get_configuration_field_by_lang( 'home_main_hero_button_label', 'homepage' );
 
 ?>
-	<section class="it-hero-wrapper it-dark it-overlay <?php echo $hero_class; ?>">
+	<section class="it-hero-wrapper it-dark it-overlay <?php echo esc_attr( $hero_class ); ?>">
 	<?php
 	if ( $image_url && '' !== $image_url ) {
 		?>
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
-					<img src="<?php echo $image_url; ?>" title="<?php echo $image_title; ?>" alt="<?php echo $image_alt; ?>">
+					<img src="<?php echo esc_url( $image_url ); ?>" title="<?php echo esc_attr( $image_title ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 				</div>
 			</div>
 		</div>
@@ -34,13 +34,13 @@ if ( 'true' === $section_enabled ) {
 			<div class="row">
 				<div class="col-12">
 					<div class="it-hero-text-wrapper bg-dark">
-						<h2><?php echo esc_attr( $hero_title) ; ?></h2>
-						<p class="d-none d-lg-block"><?php echo esc_html( $hero_text) ; ?></p>
+						<h2><?php echo esc_html( $hero_title ); ?></h2>
+						<p class="d-none d-lg-block"><?php echo wp_kses_post( $hero_text ); ?></p>
 						<?php
 					if ( $hero_url && '' !== $hero_url ) {
 						?>
 						<div class="it-btn-container">
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $hero_url) ; ?>"><?php echo esc_attr( $button_label) ; ?></a>
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $hero_url ); ?>"><?php echo esc_html( $button_label ); ?></a>
 						</div>
 							<?php
 					}
