@@ -10,12 +10,12 @@ if ( $item ) {
 		<div class="category-top">
 			<a class="category"
 				href="<?php echo esc_url( $postitem['category_link'] ); ?>">
-				<?php echo esc_attr( $postitem['category'] ); ?>
+				<?php echo esc_html( $postitem['category'] ); ?>
 			</a>
-			<span class="data"><?php echo $postitem['date'] ?></span>
+			<span class="data"><?php echo esc_html( $postitem['date'] ); ?></span>
 		</div>
 			<h3 class="card-title h4">
-				<?php echo esc_attr( $postitem['title'] ); ?>
+				<?php echo esc_html( $postitem['title'] ); ?>
 			</h3>
 			<p class="card-text">
 				<?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?>

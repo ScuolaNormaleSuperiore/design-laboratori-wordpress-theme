@@ -24,7 +24,7 @@
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
-						onclick="loadYouTubeVideo('<?php echo esc_url( $video ); ?>')">
+						onclick="loadYouTubeVideo('<?php echo esc_js( esc_url_raw( $video ) ); ?>')">
 						<?php echo __( 'Accetta', 'design_laboratori_italia' ); ?>
 					</button>
 					<div class="form-check">
@@ -36,8 +36,8 @@
 		</div>
 		<div>
 			<video controls data-bs-video id="vid1"
-				title="<?php echo $video_title; ?> Video'"
-				aria-label="<?php echo $video_title; ?> Video'"
+				title="<?php echo esc_attr( $video_title . ' Video' ); ?>"
+				aria-label="<?php echo esc_attr( $video_title . ' Video' ); ?>"
 				class="video-js"
 				width="500"
 				height="281">

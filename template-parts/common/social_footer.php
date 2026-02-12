@@ -10,7 +10,7 @@
 		if ( $facebook = dli_get_option( 'facebook', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $facebook; ?>" title="Facebook" aria-label="Facebook" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $facebook ); ?>" title="Facebook" aria-label="Facebook" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Facebook">
 					<title>Facebook</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-facebook'; ?>"></use>
@@ -22,7 +22,7 @@
 		if ( $youtube = dli_get_option( 'youtube', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $youtube; ?>" title="Youtube" aria-label="Youtube" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $youtube ); ?>" title="Youtube" aria-label="Youtube" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Youtube">
 					<title>Youtube</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-youtube'; ?>"></use>
@@ -34,7 +34,7 @@
 		if ( $instagram = dli_get_option( 'instagram', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $instagram; ?>" title="Instagram" aria-label="Instagram" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $instagram ); ?>" title="Instagram" aria-label="Instagram" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Instagram">
 					<title>Instagram</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-instagram'; ?>"></use>
@@ -46,7 +46,7 @@
 		if ( $twitter = dli_get_option( 'twitter', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $twitter; ?>" title="Twitter" aria-label="Twitter" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $twitter ); ?>" title="Twitter" aria-label="Twitter" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Twitter">
 					<title>Twitter</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-twitter'; ?>"></use>
@@ -58,7 +58,7 @@
 		if ( $linkedin = dli_get_option( 'linkedin', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $linkedin; ?>" title="Linkedin" aria-label="Linkedin" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $linkedin ); ?>" title="Linkedin" aria-label="Linkedin" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Linkedin">
 					<title>Linkedin</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-linkedin'; ?>"></use>
@@ -70,7 +70,7 @@
 		if ( $github = dli_get_option( 'github', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $github; ?>" title="GitHub" aria-label="GitHub" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $github ); ?>" title="GitHub" aria-label="GitHub" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="GitHub">
 					<title>GitHub</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-github'; ?>"></use>
@@ -82,7 +82,7 @@
 		if ( $pinterest = dli_get_option( 'pinterest', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $pinterest; ?>" title="Pinterest" aria-label="Pinterest" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $pinterest ); ?>" title="Pinterest" aria-label="Pinterest" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Pinterest">
 					<title>Pinterest</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-pinterest'; ?>"></use>
@@ -94,7 +94,7 @@
 		if ( $iris = dli_get_option( 'iris', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $iris; ?>" title="Iris" aria-label="Iris" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $iris ); ?>" title="Iris" aria-label="Iris" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Iris">
 					<title>Iris</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-pa'; ?>"></use>
@@ -106,7 +106,7 @@
 		if ( $alumni = dli_get_option( 'alumni', 'socials' ) ) {
 		?>
 		<li class="list-inline-item">
-			<a class="p-2 text-white" href="<?php echo $alumni; ?>" title="Alumni" aria-label="Alumni" target="_blank">
+			<a class="p-2 text-white" href="<?php echo esc_url( $alumni ); ?>" title="Alumni" aria-label="Alumni" target="_blank">
 				<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="Alumni">
 					<title>Alumni</title>
 					<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-open-source'; ?>"></use>

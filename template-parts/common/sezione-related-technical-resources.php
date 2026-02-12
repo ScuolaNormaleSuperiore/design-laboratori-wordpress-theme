@@ -3,7 +3,7 @@
 	$section_id  = $args['section_id'];
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 ?>
-<section id="<?php echo 'sezione-' . $section_id; ?>">
+<section id="<?php echo esc_attr( 'sezione-' . $section_id ); ?>">
 <?php
 	// The main loop of the page.
 	$pindex = 0;
@@ -32,11 +32,11 @@
 						</div>
 
 						<div class="extra-text">
-							<a href="<?php echo esc_attr( $risorsa['link'] ); ?>" >
-								<?php echo esc_attr( $risorsa['title'] ); ?>
+							<a href="<?php echo esc_url( $risorsa['link'] ); ?>" >
+								<?php echo esc_html( $risorsa['title'] ); ?>
 							</a>
 							<span>
-								<?php echo esc_attr( $tipo_risorsa['title'] ); ?>
+								<?php echo esc_html( $tipo_risorsa['title'] ); ?>
 							</span>
 						</div>
 

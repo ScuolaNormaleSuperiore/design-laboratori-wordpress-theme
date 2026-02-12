@@ -6,7 +6,7 @@
 	$email       = $items['email'];
 	$website     = $items['website'];
 ?>
-<section id="<?php echo 'sezione-' . $section_id; ?>">
+<section id="<?php echo esc_attr( 'sezione-' . $section_id ); ?>">
 	<?php
 	if ( $phone || $email || $website ) {
 	?>
