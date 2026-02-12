@@ -75,46 +75,30 @@ CLAUDE.md / CHATGPT.md (entry point)
 
 ## 🎯 Quick Start for AI Assistants
 
-1. **Claude Code users:** Start with `CLAUDE.md`
-2. **ChatGPT users:** Start with `CHATGPT.md`
+1. **Claude Code:** Reads `CLAUDE.md` in the project root automatically, which redirects to `AGENTS/CLAUDE.md`
+2. **ChatGPT Codex:** Reads `AGENTS.md` in the project root automatically, which redirects to `AGENTS/CHATGPT.md`
 3. Follow the reading order specified in your config file
 4. Always check `ISSUES_TODO.md` and `ISSUES_RESOLVED.md` before starting work
 5. Update relevant files when making code changes
 
 ## 🚀 Starting a Work Session
 
-### For Claude Code Users
+### Automatic Bootstrap
 
-At the beginning of each work session, start with this prompt:
+Both AI assistants read their entry point automatically at session start:
 
-```
-Read AGENTS/CLAUDE.md and all the files it references in the specified order. 
-Ensure AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md are included.
-Then check AGENTS/ISSUES_TODO.md for current priority tasks.
-```
+- **Claude Code** → `CLAUDE.md` (project root) → `AGENTS/CLAUDE.md`
+- **ChatGPT Codex** → `AGENTS.md` (project root) → `AGENTS/CHATGPT.md`
 
-Or if using `.clinerules` file in project root, add:
-```
-Read AGENTS/CLAUDE.md and follow all instructions and referenced files
-```
+No manual prompt is needed to start. The entry point files redirect to the full configuration in the `AGENTS/` folder.
 
-### For ChatGPT Users
+### For ChatGPT Web Interface (non-Codex)
 
-At the beginning of each work session, start with this prompt:
-
-```
-Read AGENTS/CHATGPT.md and all the files it references in the specified order.
-Ensure AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md are included.
-Then check AGENTS/ISSUES_TODO.md for current priority tasks.
-```
-
-**Alternative: Use Custom Instructions**
-
-Add this to your ChatGPT Custom Instructions (under Settings → Personalization → Custom Instructions):
+If using ChatGPT web without Codex, add this to your Custom Instructions (Settings → Personalization → Custom Instructions):
 
 ```
 When working on projects with an AGENTS folder:
-1. Always start by reading AGENTS/CHATGPT.md (or AGENTS/CLAUDE.md if specified)
+1. Always start by reading AGENTS/CHATGPT.md
 2. Read all referenced files in the order specified
 3. Check AGENTS/ISSUES_TODO.md and AGENTS/ISSUES_RESOLVED.md
 4. Follow all guidelines in AGENTS/AI_BEHAVIOR.md
