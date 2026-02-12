@@ -9,7 +9,7 @@
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
     "minify:js": "node scripts/minify-js.js",
-		"create_layout": "sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
+		"create_layout": "npx sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
 		"update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\css\\ /Y",
 		"update_layout_linux": "npm run create_layout && cp -f ./assets/css/compiled/bootstrap-italia-custom.min.* ./assets/css/"
   },
@@ -24,11 +24,12 @@
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "^2.17.0"
+    "bootstrap-italia": "^2.17.3"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.1",
     "replace-in-file": "^6.3.5",
+    "sass": "^1.81.0",
     "uglify-js": "^3.17.4"
   }
 }
