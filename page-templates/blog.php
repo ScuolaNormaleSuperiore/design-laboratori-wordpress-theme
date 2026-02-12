@@ -53,11 +53,11 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 									foreach( $all_categories as $category ) {
 								?>
 								<div class="form-check">
-									<input type="checkbox" name="cat[]" id="<?php echo $category['slug']; ?>" 
-										value="<?php echo $category['id']; ?>" onChange="this.form.submit()"
+									<input type="checkbox" name="cat[]" id="<?php echo esc_attr( $category['slug'] ); ?>" 
+										value="<?php echo esc_attr( $category['id'] ); ?>" onChange="this.form.submit()"
 										<?php if ( in_array( $category['id'], $selected_categories ) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $category['slug']; ?>"><?php echo $category['name']; ?></label>
+									<label for="<?php echo esc_attr( $category['slug'] ); ?>"><?php echo esc_html( $category['name'] ); ?></label>
 								</div>
 								<?php
 									}
@@ -99,17 +99,17 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 											<?php
 											if ( $termitem['title'] ) {
 											?>
-											<a class="category" href="#"><?php echo $termitem['title']; ?></a>
+											<a class="category" href="#"><?php echo esc_html( $termitem['title'] ); ?></a>
 											<?php
 											}
 											?>
 											<span class="data"><?php echo get_the_date( 'd/m/Y' ); ?></span>
 										</div>
-										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title h4"><?php echo esc_html( get_the_title() ); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( get_the_content(), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_kses_post( wp_trim_words( get_the_content(), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
-										<a class="read-more" href="<?php echo get_permalink(); ?>">
+										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
 										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 										<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>

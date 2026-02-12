@@ -65,7 +65,7 @@ $has_photo   = ! empty( $photo_url );
 					<div class="col-12 col-lg-7">
 						<div class="section-title">
 							<h2 class="mb-3 mt-3">
-								<?php echo get_the_title(); ?>
+								<?php echo esc_html( get_the_title() ); ?>
 							</h2>
 							<p>&nbsp;</p>
 						</div>
@@ -122,7 +122,7 @@ $has_photo   = ! empty( $photo_url );
 												alt="<?php echo esc_attr( $photo_title ); ?>"
 											>
 											<figcaption class="figure-caption pt-2">
-												<?php echo get_the_title(); ?>
+												<?php echo esc_html( get_the_title() ); ?>
 											</figcaption>
 										</figure>
 									<?php } ?>
@@ -270,7 +270,7 @@ $has_photo   = ! empty( $photo_url );
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<?php echo $description; ?>
+							<?php echo wp_kses_post( $description ); ?>
 						</p>
 					
 					</article>

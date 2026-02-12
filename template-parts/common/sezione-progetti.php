@@ -4,7 +4,7 @@
 	$num_results = is_array( $items ) ? count( $items ) : 0;
 	define( 'PROGETTI_PER_ROW', 3 );
 ?>
-<section id="<?php echo 'sezione-' . $section_id; ?>">
+<section id="<?php echo esc_attr( 'sezione-' . $section_id ); ?>">
 
 <div class="row pb-3">
 	<div class="card-wrapper card-teaser-wrapper">
@@ -27,10 +27,10 @@
 						<title>Folder</title>
 						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder'; ?>"></use>
 					</svg>
-					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_attr( $title ); ?></a>
+					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $title ); ?></a>
 				</h3>
 				<div class="card-text">
-					<p><?php echo wp_trim_words( dli_get_field( 'descrizione_breve', $id ), DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+					<p><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve', $id ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 				</div>
 			</div>
 		</div>

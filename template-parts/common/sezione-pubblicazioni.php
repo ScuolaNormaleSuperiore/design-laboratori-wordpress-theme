@@ -5,7 +5,7 @@
 	define( 'PUBBLICAZIONI_PER_ROW', 2 );
 ?>
 
-<section id="<?php echo 'sezione-' . $section_id; ?>">
+<section id="<?php echo esc_attr( 'sezione-' . $section_id ); ?>">
 <?php
 	// The mani loop of the page.
 	$pindex = 0;
@@ -30,12 +30,12 @@
 										<h3 class="card-title cardTitlecustomSpacing h5 ">
 											<svg class="icon" aria-label="Note">
 												<title>Note</title>
-												<use href="<?php echo $src_icon; ?>"></use>
+												<use href="<?php echo esc_url( $src_icon ); ?>"></use>
 											</svg>
-											<a href="<?php echo $link; ?>"><?php echo $nome; ?></a>
+											<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $nome ); ?></a>
 										</h3>
 										<div class="card-text">
-											<p><?php echo $content; ?></p>
+											<p><?php echo wp_kses_post( apply_filters( 'the_content', $content ) ); ?></p>
 										</div>
 									</div>
 								</div>

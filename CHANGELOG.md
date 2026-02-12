@@ -20,7 +20,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Corretto
 - Bug-fixing: Corretto import Indico
 - Bug-fixing: Varie correzioni suggerite dalla AI.
-- 
+- Security: Varie correzioni suggerite dalla AI.
+- AGENTS.md, CLAUDE.md: Aggiunti file per dare indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
 
 
 ## [REL-1.7.3] - 2025-11-19

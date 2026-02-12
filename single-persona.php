@@ -96,10 +96,10 @@ $pubblicazioni = new WP_Query(
 							</div><!-- /col-lg-3 -->
 							<div class="col-12 col-lg-9">
 								<div class="section-title">
-									<h2 class="mb-3 mt-3"><?php echo esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $title ) ); ?></h2>
+									<h2 class="mb-3 mt-3"><?php echo esc_html( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $title ) ); ?></h2>
 									<p>
 										<?php
-										echo $categoria_appartenenza;
+										echo esc_html( $categoria_appartenenza );
 										if ( $nome_struttura ) {
 											echo ', ' . esc_attr( $nome_struttura );
 										}
@@ -263,10 +263,10 @@ $pubblicazioni = new WP_Query(
 													<title>Folder</title>
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 												</svg>
-												<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $title ); ?></a>
+												<a href="<?php echo get_permalink(); ?>"><?php echo esc_html( $title ); ?></a>
 											</h3>
 											<div class="card-text">
-												<p><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
+												<p><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
 											</div>
 										</div>
 									</div>
@@ -310,10 +310,10 @@ $pubblicazioni = new WP_Query(
 															<title>Folder</title>
 															<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder';?>"></use>
 														</svg>
-														<a href="<?php echo get_permalink(); ?>"><?php echo esc_attr( $indirizzo_ricerca_title ); ?></a>
+														<a href="<?php echo get_permalink(); ?>"><?php echo esc_html( $indirizzo_ricerca_title ); ?></a>
 													</h3>
 													<div class="card-text">
-														<p><?php echo esc_attr( dli_get_field( 'descrizione_breve' ) ); ?></p>
+														<p><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
 													</div>
 												</div>
 											</div>
@@ -351,15 +351,15 @@ $pubblicazioni = new WP_Query(
 												<?php
 												if($url) {
 													?>
-												<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+												<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $title ); ?></a>
 												<?php }
 												else {
-													echo esc_attr( $title );
+													echo esc_html( $title );
 												}
 												?>
 											</h3>
 											<div class="card-text">
-												<p><?php echo esc_attr( the_content() ); ?></p>
+												<p><?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?></p>
 											</div>
 										</div>
 									</div><!--end card-->
@@ -461,7 +461,7 @@ $pubblicazioni = new WP_Query(
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone';?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $telefono ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $telefono ); ?></span></div>
 										</div>
 									</li>
 									<?php
@@ -476,7 +476,7 @@ $pubblicazioni = new WP_Query(
 													<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail';?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_attr( $email ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $email ); ?></span></div>
 										</a>
 									</li>
 									<?php
@@ -484,7 +484,7 @@ $pubblicazioni = new WP_Query(
 								if ( $sito_web != '' ) {
 									?>
 									<li>
-										<a class="list-item" target="_blank" href="<?php echo esc_attr( $sito_web ); ?>">
+										<a class="list-item" target="_blank" href="<?php echo esc_url( $sito_web ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Link">
 													<title>Website Link</title>

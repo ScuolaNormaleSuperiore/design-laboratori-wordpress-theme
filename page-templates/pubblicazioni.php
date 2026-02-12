@@ -149,7 +149,7 @@ $num_results = $pubblicazioni->found_posts;
 									<option <?php if (!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
 									<?php
 									foreach ( $anni_pubblicazioni as $anno ) { ?>
-										<option <?php if ($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo $anno->meta_value; ?>"><?php echo $anno->meta_value; ?></option>
+										<option <?php if ($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo esc_attr( $anno->meta_value ); ?>"><?php echo esc_html( $anno->meta_value ); ?></option>
 										<?php
 									}
 									?>
@@ -180,7 +180,7 @@ $num_results = $pubblicazioni->found_posts;
 									}
 									?>
 								<input id="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" value="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
-								<label for="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_attr( $tipo_pubblicazione->name ); ?></label>
+								<label for="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_html( $tipo_pubblicazione->name ); ?></label>
 								</div>
 									<?php
 								}
@@ -218,7 +218,7 @@ $num_results = $pubblicazioni->found_posts;
 														<title>Note</title>
 														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
 													</svg>
-													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_attr( $title ); ?></a>
+													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $title ); ?></a>
 												</h3>
 												<?php
 											}
@@ -229,10 +229,10 @@ $num_results = $pubblicazioni->found_posts;
 														<title>Note</title>
 														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
 													</svg>
-													<?php echo esc_attr( $title ); ?>
+													<?php echo esc_html( $title ); ?>
 												</h3>
 											<?php } ?>
-											<p class="card-text"><?php echo esc_attr( the_content() ); ?></p>
+											<p class="card-text"><?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?></p>
 										</div>
 									</div>
 								</div>

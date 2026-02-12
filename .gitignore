@@ -31,3 +31,5 @@ assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 BUGS.txt
 REFACTORS.txt
+ISSUES.md
+AGENTS/*

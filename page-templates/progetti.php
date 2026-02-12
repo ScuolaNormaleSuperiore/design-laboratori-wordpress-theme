@@ -78,7 +78,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 								href="#"
            			onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $tag->slug ); ?>'); return false;"
 								title="<?php _e( 'Filtra per', "design_laboratori_italia" ); ?>: <?php echo esc_attr( $tag->name ); ?>"
-								data-focus-mouse="false"><?php echo esc_attr( $tag->name ); ?></a>
+								data-focus-mouse="false"><?php echo esc_html( $tag->name ); ?></a>
 						</span>
 					</div>
 					<?php
@@ -89,8 +89,8 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 							<a class="hover-text-white"
 								href="#"
 								onclick="addParameterAndReloadPage('level', ''); return false;"
-								title="<?php echo $label_all_levels; ?>">
-								<?php echo $label_all_levels; ?>
+								title="<?php echo esc_attr( $label_all_levels ); ?>">
+								<?php echo esc_html( $label_all_levels ); ?>
 							</a>
 						</span>
 					</div>
@@ -133,7 +133,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-												<img src="<?php echo $image_metadata['image_url']; ?>" 
+												<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" 
 												title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 												alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											</figure>
@@ -143,11 +143,11 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 								}
 								?>
 									<div class="card-body">
-										<h3 class="card-title h5 "><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title h5 "><?php echo esc_html( get_the_title() ); ?></h3>
 										<p class="card-text font-serif">
-											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
-										<span class="card-signature"><?php echo $nomi_resp;?></span>
+										<span class="card-signature"><?php echo esc_html( $nomi_resp ); ?></span>
 
 										<div class="it-card-footer">
 											<div class="head-tags">
@@ -156,7 +156,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 												?>
 												<a class="card-tag text-decoration-none" href="#"
 													onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $level->slug ); ?>'); return false;">
-													<?php echo esc_attr(  $level->name ); ?>
+													<?php echo esc_html( $level->name ); ?>
 												</a>
 												<?php
 												}

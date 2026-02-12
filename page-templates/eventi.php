@@ -63,11 +63,11 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 									foreach( $all_categories as $category ) {
 								?>
 								<div class="form-check">
-									<input type="checkbox" name="cat[]" id="<?php echo $category['slug']; ?>" 
-										value="<?php echo $category['id']; ?>" onChange="this.form.submit()"
+									<input type="checkbox" name="cat[]" id="<?php echo esc_attr( $category['slug'] ); ?>" 
+										value="<?php echo esc_attr( $category['id'] ); ?>" onChange="this.form.submit()"
 										<?php if ( in_array( $category['id'], $selected_categories ) ) { echo "checked='checked'"; } ?>
 									>
-									<label for="<?php echo $category['slug']; ?>"><?php echo $category['name']; ?></label>
+									<label for="<?php echo esc_attr( $category['slug'] ); ?>"><?php echo esc_html( $category['name'] ); ?></label>
 								</div>
 								<?php
 									}
@@ -117,34 +117,34 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 									<div class="img-responsive-wrapper">
 										<div class="img-responsive img-responsive-panoramic">
 											<figure class="img-wrapper">
-												<img src="<?php echo $image_metadata['image_url']; ?>"
+												<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>"
 													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>">
 											</figure>
 											<?php if ( $event_date ) { ?>
 											<div class="card-calendar d-flex flex-column justify-content-center">
-												<span class="card-date"><?php echo $event_day; ?></span>
+												<span class="card-date"><?php echo esc_html( $event_day ); ?></span>
 												<span class="card-day">
-													<?php echo __( $event_month, 'design_laboratori_italia' ); ?> <?php echo $event_year; ?>
+													<?php echo esc_html( __( $event_month, 'design_laboratori_italia' ) ); ?> <?php echo esc_html( $event_year ); ?>
 												</span>
 											</div>
 											<?php } ?>
 										</div>
 									</div>
 									<div class="card-body p-4">
-										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title h4"><?php echo esc_html( get_the_title() ); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
 										<?php if( $orario_inizio ) {
 											?>
 											<p class="card-text">
-												<?php echo $orario_inizio; ?>
+												<?php echo esc_html( $orario_inizio ); ?>
 											</p>
 											<?php
 										}
 										?>
-										<a class="read-more" href="<?php echo $item_link; ?>">
+										<a class="read-more" href="<?php echo esc_url( $item_link ); ?>">
 											<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 											<svg class="icon" role="img" aria-labelledby="Arrow right">
 												<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
