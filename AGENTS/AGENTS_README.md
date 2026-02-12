@@ -69,8 +69,9 @@ CLAUDE.md / CHATGPT.md (entry point)
     ├─→ ARCHITECTURE.md (how it's structured)
     ├─→ CODING_STANDARDS.md (how to write code)
     ├─→ AI_BEHAVIOR.md (how to work)
-    ├─→ ISSUES_TODO.md (what needs doing)
-    └─→ ISSUES_RESOLVED.md (issues already solved)
+    └─→ ISSUES_TODO.md (what needs doing)
+
+ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issues.
 ```
 
 ## 🎯 Quick Start for AI Assistants
@@ -78,7 +79,7 @@ CLAUDE.md / CHATGPT.md (entry point)
 1. **Claude Code:** Reads `CLAUDE.md` in the project root automatically, which redirects to `AGENTS/CLAUDE.md`
 2. **ChatGPT Codex:** Reads `AGENTS.md` in the project root automatically, which redirects to `AGENTS/CHATGPT.md`
 3. Follow the reading order specified in your config file
-4. Always check `ISSUES_TODO.md` and `ISSUES_RESOLVED.md` before starting work
+4. Always check `ISSUES_TODO.md` before starting work
 5. Update relevant files when making code changes
 
 ## 🚀 Starting a Work Session
@@ -100,7 +101,7 @@ If using ChatGPT web without Codex, add this to your Custom Instructions (Settin
 When working on projects with an AGENTS folder:
 1. Always start by reading AGENTS/CHATGPT.md
 2. Read all referenced files in the order specified
-3. Check AGENTS/ISSUES_TODO.md and AGENTS/ISSUES_RESOLVED.md
+3. Check AGENTS/ISSUES_TODO.md for current priorities
 4. Follow all guidelines in AGENTS/AI_BEHAVIOR.md
 5. Update documentation files when making code changes
 ```
@@ -111,7 +112,7 @@ If you're continuing work in the same session and the AI seems to have forgotten
 
 **For both Claude and ChatGPT:**
 ```
-Refresh context: read AGENTS/[CLAUDE or CHATGPT].md, AGENTS/AGENTS_README.md, AGENTS/ISSUES_TODO.md, and AGENTS/ISSUES_RESOLVED.md
+Refresh context: read AGENTS/[CLAUDE or CHATGPT].md, AGENTS/AGENTS_README.md, and AGENTS/ISSUES_TODO.md
 ```
 
 ## ✏️ When to Update Each File
