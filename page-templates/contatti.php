@@ -26,7 +26,7 @@ include_once( DLI_THEMA_PATH . '/template-parts/common/captcha.php' );
 $postdata = $_POST;
 
 $nomecognome    = sanitize_text_field( isset( $postdata['nomecognome'] ) ? $postdata['nomecognome'] : '' );
-$indirizzoemail = sanitize_text_field( isset( $postdata['indirizzoemail'] ) ? $postdata['indirizzoemail'] : '' );
+$indirizzoemail = sanitize_email( isset( $postdata['indirizzoemail'] ) ? $postdata['indirizzoemail'] : '' );
 $numerotelefono = sanitize_text_field( isset( $postdata['numerotelefono'] ) ? $postdata['numerotelefono'] : '' );
 $ricevuta       = sanitize_text_field( isset( $postdata['ricevuta'] ) ? $postdata['ricevuta'] : '' );
 $forminviato    = sanitize_text_field( isset( $postdata['forminviato'] ) ? $postdata['forminviato'] : 'no' );
@@ -46,7 +46,8 @@ if ( 'yes' === $forminviato ) {
 		$name       = $nomecognome;
 		$to         = $email_sito;
 		$subject    = '[FormContatti] Email dal sito: ' . dli_get_option( 'nome_laboratorio' );
-		$headers    = 'From: ' . $indirizzoemail . '\r\n' . 'Reply-To: ' . $indirizzoemail . '\r\n';
+		$email_header_value = str_replace( array( "\r", "\n" ), '', $indirizzoemail );
+		$headers            = 'From: ' . $email_header_value . '\r\n' . 'Reply-To: ' . $email_header_value . '\r\n';
 
 		// 1 - Controllo del captcha.
 		if ( $captcha_enabled ) {
@@ -65,7 +66,7 @@ if ( 'yes' === $forminviato ) {
 			$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
 		}
 		// 2b - Controllo validità email.
-		if ( ! ( filter_var( $indirizzoemail, FILTER_VALIDATE_EMAIL ) ) ) {
+		if ( ! is_email( $indirizzoemail ) ) {
 			$form_valid     = false;
 			$testorisultato = $testorisultato . ( '' === $testorisultato ? '' : '<br />' ) . esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
 		}
