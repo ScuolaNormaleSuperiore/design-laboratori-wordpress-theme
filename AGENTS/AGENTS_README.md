@@ -76,7 +76,7 @@ ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issu
 
 ## 🎯 Quick Start for AI Assistants
 
-1. **Claude Code:** Reads `AI_RULES_CLAUDE.md` in the project root automatically, which redirects to `AGENTS/AI_RULES_CLAUDE.md`
+1. **Claude Code:** Reads `CLAUDE.md` in the project root automatically, which redirects to `AGENTS/AI_RULES_CLAUDE.md`
 2. **ChatGPT Codex:** Reads `AGENTS.md` in the project root automatically, which redirects to `AGENTS/AI_RULES_CHATGPT.md`
 3. Follow the reading order specified in your config file
 4. Always check `ISSUES_TODO.md` before starting work
@@ -88,7 +88,7 @@ ISSUES_RESOLVED.md is not read at startup. Read it on demand when resolving issu
 
 Both AI assistants read their entry point automatically at session start:
 
-- **Claude Code** → `AI_RULES_CLAUDE.md` (project root) → `AGENTS/AI_RULES_CLAUDE.md`
+- **Claude Code** → `CLAUDE.md` (project root) → `AGENTS/AI_RULES_CLAUDE.md`
 - **ChatGPT Codex** → `AGENTS.md` (project root) → `AGENTS/AI_RULES_CHATGPT.md`
 
 No manual prompt is needed to start. The entry point files redirect to the full configuration in the `AGENTS/` folder.
@@ -112,7 +112,7 @@ If you're continuing work in the same session and the AI seems to have forgotten
 
 **For both Claude and ChatGPT:**
 ```
-Refresh context: read AGENTS/[CLAUDE or CHATGPT].md, AGENTS/AGENTS_README.md, and AGENTS/ISSUES_TODO.md
+Refresh context: read AGENTS/AI_RULES_CLAUDE.md, AGENTS/AI_RULES_CHATGPT.md, AGENTS/AGENTS_README.md, and AGENTS/ISSUES_TODO.md
 ```
 
 ## ✏️ When to Update Each File
@@ -146,5 +146,6 @@ To adapt this documentation system for a new project:
 - Use consistent formatting across all files
 - Link between files when referencing related content
 - Review and update at least monthly or after major changes
+
 
 
