@@ -9,7 +9,7 @@
 					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal">
-					<?php echo wp_kses_post( $testo_sezione ); ?>
+					<?php echo wp_kses_post( wpautop( $testo_sezione ) ); ?>
 				</p>
 			</div>
 		</div>
