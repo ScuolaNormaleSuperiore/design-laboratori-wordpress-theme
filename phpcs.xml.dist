@@ -34,6 +34,10 @@
 	<!-- Check all files in this directory and the directories below it. -->
 	<file>.</file>
 
+	<!-- Exclude third-party dependency directories. -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
 
 	<!--
 	#############################################################################

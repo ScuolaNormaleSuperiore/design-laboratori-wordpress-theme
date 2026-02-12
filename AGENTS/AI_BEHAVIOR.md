@@ -28,6 +28,16 @@ This file defines how AI assistants should work, interact, and maintain this pro
 - If a task is outside your capabilities, explain clearly
 - Suggest alternative approaches or resources when you can't help directly
 
+### Excluded Directories
+
+When scanning, reviewing, or analyzing the codebase, **always skip** these directories:
+
+- `vendor/` — third-party PHP dependencies (managed by Composer)
+- `node_modules/` — third-party JS dependencies (managed by npm)
+- `assets/bootstrap-italia/` — external UI framework, not project code
+
+These directories contain external code that is not maintained by this project. Never report issues, suggest refactorings, or apply fixes to files inside them.
+
 ### Problem-Solving Approach
 
 **Analyze before acting**

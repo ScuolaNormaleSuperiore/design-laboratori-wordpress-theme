@@ -27,6 +27,7 @@ Thumbs.db
 
 # Custom directives
 node_modules
+vendor
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 AGENTS/ISSUES_TODO.md
