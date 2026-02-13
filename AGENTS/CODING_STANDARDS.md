@@ -1,256 +1,102 @@
 # CODING_STANDARDS.md
 
-## General Guidelines
+## Purpose
 
-For this project act as an expert PHP and WordPress developer.
+Coding rules for this project.
+Write code according to official WordPress standards and project-specific conventions.
 
-Write code in compliance with the official WordPress plugin and theme guidelines.
+## Learning Support Requirement
 
-Explain the code you write and the inner workings of WordPress, describing standard practices as we move forward.
+When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.
+Keep explanations practical and tied to the current code.
 
-While developing this project, I want to learn everything needed to become an expert developer of WordPress core, themes, and plugins.
+## Quality Priorities
 
-## Code Quality Priorities
+- Correctness and robustness.
+- Security first (sanitize input, escape output, capability checks, nonces).
+- Accessibility (WCAG-oriented decisions).
+- Readability and maintainability.
+- Compliance with WordPress Coding Standards.
 
-Pay particular attention to the following aspects when writing code:
+## Core PHP/WordPress Rules
 
-- **Absence of bugs:** Write defensive code and handle edge cases
-- **Absence of vulnerabilities:** Maximum security, sanitize all inputs, escape all outputs
-- **Responsive pages:** Mobile-first design approach
-- **Page accessibility:** This point is very important - follow WCAG guidelines
-- **Compliance with WordPress best practices:** Follow WordPress Coding Standards
-- **Simple, readable, and modular code:** Write code that is easy to understand and maintain
+### Formatting and documentation
 
-## WordPress Coding Standards
+- Use tabs for indentation.
+- Comments and docblocks must be in English.
+- Add a file header docblock.
+- Add function docblocks with params/return.
 
-### Formatting Rules
+### Naming conventions
 
-**Use tabs, not spaces**
-Indentation must use tabs, not spaces.
+- Classes: `Class_Name_With_Underscores`
+- Functions: `function_name_with_underscores`
+- Variables: `$variable_name_with_underscores`
+- Constants: `CONSTANT_NAME_UPPERCASE`
+- Files: `file-name-with-hyphens.php`
 
-**Comments in English**
-- Place comments in English at the beginning of each file and before every function
-- Comments must end with a period "."
+### Code structure
 
-**File Headers**
-Each file should have a descriptive header comment:
-```php
-/**
- * Brief description of the file.
- *
- * Longer description if needed.
- *
- * @package ThemePackageName
- */
-```
+- Prefer small, focused functions.
+- Use early returns to reduce nesting.
+- Keep nesting shallow.
+- Extract complex conditions into clearly named variables.
+- Align consecutive assignments when it improves readability.
 
-**Function Documentation**
-Every function must have a docblock:
-```php
-/**
- * Brief description of what the function does.
- *
- * Longer description if needed.
- *
- * @param string $param1 Description of parameter.
- * @param int    $param2 Description of parameter.
- * @return mixed Description of return value.
- */
-function my_function( $param1, $param2 ) {
-	// Function body.
-}
-```
+### Security
 
-### Naming Conventions
+- Sanitize all external input (`sanitize_text_field`, `sanitize_email`, `esc_url_raw`, etc.).
+- Escape all output by context (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`).
+- Use nonces for state-changing actions.
+- Check capabilities (`current_user_can`) before privileged operations.
 
-Use WordPress naming conventions:
+### WordPress-specific implementation
 
-**Classes:** `Class_Name_With_Underscores`
-```php
-class DLI_Lab_Manager {
-	// Class body.
-}
-```
+- Prefer WordPress APIs over raw PHP alternatives.
+- Prefix custom functions/classes (project prefix: `dli_`).
+- Use `$wpdb->prepare()` for dynamic SQL.
+- Enqueue scripts/styles with WordPress enqueue APIs.
 
-**Files:** `file-name-with-hyphens.php`
+## Frontend Standards (HTML, CSS, JS)
 
-**Variables:** `$variable_name_with_underscores`
-```php
-$post_id = get_the_ID();
-$user_name = get_user_name();
-```
+Official references:
+- HTML: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/html/
+- CSS: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/
+- JavaScript: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/
 
-**Constants:** `CONSTANT_NAME_UPPERCASE`
-```php
-define( 'THEME_VERSION', '1.0.0' );
-```
+### HTML
 
-**Functions:** `function_name_with_underscores()`
-```php
-function dli_get_post_main_category( $post, $taxonomy ) {
-	// Function body.
-}
-```
+- Prefer Bootstrap Italia components/patterns before custom structures.
+- Keep semantic, valid, well-formed HTML.
+- Use lowercase tags/attributes and quote all attribute values.
+- Keep mixed PHP/HTML indentation coherent.
 
-### Assignment Alignment
+### CSS
 
-**Align consecutive assignments** using spaces (not tabs) so the `=` signs line up:
+- Prefer Bootstrap Italia components, patterns, and utility classes before custom CSS.
+- Use tabs for indentation.
+- One selector/property per line; keep declarations explicit and readable.
+- Follow WordPress CSS formatting conventions.
+- Prefer shorthand and consistent value style (`0` without units where valid, unitless `line-height` where appropriate).
 
-```php
-$items   = array();
-$options = get_option( 'polylang' );
-```
+### JavaScript
 
-**Align related assignments** in longer blocks:
-```php
-$tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
-$archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
-$archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
-```
+- Write Vanilla JavaScript only, unless the user explicitly requests and approves another library/framework.
+- Use tabs, semicolons, and braces consistently.
+- Prefer `const`/`let` over `var`.
+- Use single quotes and descriptive camelCase names.
+- Keep lines readable.
 
-### Security Best Practices
+## Internationalization (i18n)
 
-**Always escape output:**
-```php
-// For HTML content
-echo esc_html( $variable );
+- All user-facing strings must be translatable.
+- Use the proper escaping i18n helpers (`esc_html__`, `esc_html_e`, etc.).
+- Use translator comments for formatted strings.
 
-// For attributes
-echo '<div class="' . esc_attr( $class ) . '">';
+## Testing and Checks
 
-// For URLs
-echo '<a href="' . esc_url( $url ) . '">';
-
-// For translation with HTML
-echo wp_kses_post( $content );
-```
-
-**Always sanitize input:**
-```php
-// Text input
-$text = sanitize_text_field( $_POST['text'] );
-
-// Email
-$email = sanitize_email( $_POST['email'] );
-
-// URL
-$url = esc_url_raw( $_POST['url'] );
-```
-
-**Use nonces for forms:**
-```php
-// Creating nonce
-wp_nonce_field( 'my_action_name', 'my_nonce_field' );
-
-// Verifying nonce
-if ( ! wp_verify_nonce( $_POST['my_nonce_field'], 'my_action_name' ) ) {
-	wp_die( 'Security check failed' );
-}
-```
-
-**Check user capabilities:**
-```php
-if ( ! current_user_can( 'edit_posts' ) ) {
-	wp_die( 'You do not have permission to perform this action.' );
-}
-```
-
-### Code Organization
-
-**Keep functions focused:** Each function should do one thing well.
-
-**Use early returns:** Reduce nesting by returning early when conditions aren't met.
-
-```php
-function my_function( $post_id ) {
-	if ( ! $post_id ) {
-		return false;
-	}
-	
-	if ( ! current_user_can( 'edit_post', $post_id ) ) {
-		return false;
-	}
-	
-	// Main logic here.
-}
-```
-
-**Avoid deep nesting:** Keep nesting to 3-4 levels maximum.
-
-**Extract complex conditions:** Use descriptive variable names for complex conditions.
-
-```php
-$is_valid_post = $post && $post->post_status === 'publish';
-$user_can_edit = current_user_can( 'edit_post', $post->ID );
-
-if ( $is_valid_post && $user_can_edit ) {
-	// Do something.
-}
-```
-
-### WordPress-Specific Rules
-
-**Use WordPress functions when available:**
-```php
-// Good
-wp_remote_get( $url );
-
-// Avoid
-file_get_contents( $url );
-```
-
-**Prefix all custom functions and classes:**
-Use a consistent prefix (e.g., `dli_` for this theme) to avoid conflicts.
-
-**Use WordPress coding standards for SQL:**
-```php
-global $wpdb;
-$results = $wpdb->get_results( 
-	$wpdb->prepare(
-		"SELECT * FROM {$wpdb->posts} WHERE post_type = %s",
-		'page'
-	)
-);
-```
-
-**Enqueue scripts and styles properly:**
-```php
-function my_theme_enqueue_scripts() {
-	wp_enqueue_style( 'my-style', get_template_directory_uri() . '/style.css', array(), '1.0.0' );
-	wp_enqueue_script( 'my-script', get_template_directory_uri() . '/script.js', array( 'jquery' ), '1.0.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
-```
-
-### Internationalization (i18n)
-
-**Make all strings translatable:**
-```php
-__( 'Text to translate', 'text-domain' );
-_e( 'Text to translate and echo', 'text-domain' );
-esc_html__( 'Text to translate and escape', 'text-domain' );
-esc_html_e( 'Text to translate, escape and echo', 'text-domain' );
-```
-
-**Use sprintf for dynamic strings:**
-```php
-/* translators: %s: post title */
-$message = sprintf( __( 'Post "%s" was updated', 'text-domain' ), $post_title );
-```
-
-### Testing
-
-**Write testable code:** Keep functions small and focused.
-
-**Add PHPUnit tests** for complex logic and utility functions.
-
-**Run code style checks** before committing:
-```bash
-composer lint
-```
-
-**Auto-fix style issues** when possible:
-```bash
-composer lint:fix
-```
-
+- Write testable code (small units, clear dependencies).
+- Add tests for non-trivial logic when practical.
+- Run:
+  - `composer lint`
+  - `composer lint:fix` (when needed)

@@ -2,91 +2,55 @@
 
 ## Purpose
 
-This file defines how AI assistants should work, interact, and maintain this project. These guidelines apply to all AI assistants (Claude, ChatGPT, etc.) working on the codebase.
+Operational rules for AI assistants working on this codebase.
 
-## General Behavior Guidelines
+## Communication and Collaboration
 
-### Communication Style
+- Be concise, precise, and action-oriented.
+- Ask clarifying questions only when ambiguity blocks correct implementation.
+- Explain tradeoffs when multiple technical options are valid.
+- Be transparent about uncertainty or limitations.
+- After meaningful progress, summarize what changed and what remains.
+- Protect quality: do not compromise security, accessibility, or maintainability.
 
-**Be concise but precise**
-- Provide clear, direct answers
-- Avoid unnecessary verbosity
-- Include relevant details without overwhelming the user
+## Problem-Solving and Review Mindset
 
-**Ask when in doubt**
-- If requirements are ambiguous, ask for clarification before writing code
-- Propose alternatives when multiple approaches are possible
-- Don't make assumptions about user preferences
+- Analyze context before editing.
+- Work one objective at a time, end-to-end.
+- Flag drift from the user objective and propose refocus.
+- Look for: security issues, accessibility gaps, performance bottlenecks, duplication, weak error handling, unclear naming, documentation gaps.
+- If you spot improvements not implemented now, add them to `ISSUES_TODO.md`.
 
-**Suggest next steps**
-- After completing a task, suggest what to do next
-- Help the user maintain momentum toward their goals
-- Point out related tasks or improvements when appropriate
+## Excluded Directories
 
-**Be honest about limitations**
-- If you're uncertain about something, say so
-- If a task is outside your capabilities, explain clearly
-- Suggest alternative approaches or resources when you can't help directly
-
-### Excluded Directories
-
-When scanning, reviewing, or analyzing the codebase, **always skip** these directories:
-
-- `vendor/` — third-party PHP dependencies (managed by Composer)
-- `node_modules/` — third-party JS dependencies (managed by npm)
-- `assets/bootstrap-italia/` — external UI framework, not project code
-
-These directories contain external code that is not maintained by this project. Never report issues, suggest refactorings, or apply fixes to files inside them.
-
-### Problem-Solving Approach
-
-**Analyze before acting**
-- Understand the full context before proposing solutions
-- Consider edge cases and potential issues
-- Think about long-term maintainability
-
-**Work by clear objectives**
-- Define one concrete objective for each action or task
-- Complete the current objective end-to-end before starting a new one
-- Avoid handling multiple unrelated objectives at the same time
-- If the work starts to drift from the original objective, explicitly warn the user and propose refocusing
-
-**Propose refactorings when appropriate**
-- If you notice code that could be improved, mention it
-- Explain the benefits of the refactoring
-- Add it to ISSUES_TODO.md if not implementing immediately
-
-**Learn and adapt**
-- Pay attention to user preferences and feedback
-- Adjust your approach based on what works well
-- Remember project-specific patterns and conventions
+Always ignore these folders for review/refactoring/fixes:
+- `vendor/`
+- `node_modules/`
+- `assets/bootstrap-italia/`
 
 ## Issue Management
 
-### When to Create Issues
+### When to add an issue
 
-Create new issues in `ISSUES_TODO.md` when you:
-- Discover a bug while working on code
-- Identify a security vulnerability
-- Notice code that needs refactoring
-- Find accessibility problems
-- Spot performance bottlenecks
-- Identify missing or outdated documentation
-- Think of improvements or new features
+Create or update issues in `ISSUES_TODO.md` when you find:
+- Security vulnerabilities
+- Bugs
+- Refactoring opportunities
+- Code style violations against `CODING_STANDARDS.md`
+- Performance problems
+- Accessibility problems
+- Documentation gaps
+- New features or improvement ideas
 
-Use `WISH_LIST.md` instead of `ISSUES_TODO.md` when:
-- The idea is exploratory and not approved for implementation yet
-- Requirements, scope, or ownership are still unclear
-- The item is a strategic opportunity rather than an actionable task
+Feature ideas that are not implementation-ready still go to `ISSUES_TODO.md` under category `Feature` with status like `Idea` or `Under Evaluation`.
 
-### Issue Template
-
-Use this template when adding issues:
+### Issue template
 
 ```markdown
 ### [PRIORITY] Short descriptive title
 - **Status:** Open
 - **Date:** YYYY-MM-DD
+- **Category:** Security | Bug | Refactoring | CodeStyle | Performance | Accessibility | Feature | Documentation
 - **Description:** Detailed description of the problem
 - **Steps to reproduce:** (if applicable)
   1. ...
@@ -95,182 +59,45 @@ Use this template when adding issues:
 - **Notes:** Additional information, workarounds, references
 ```
 
-### Issue Categories
+### Priority levels
 
-Use one of these 7 categories:
+- `Critical`: security/data-loss/major service breakage.
+- `High`: major user impact.
+- `Medium`: relevant but non-blocking.
+- `Low`: minor impact or polish.
 
-1. **Security** - Vulnerabilities, authentication issues, data exposure
-2. **Bug** - Malfunctions, errors, crashes
-3. **Refactoring** - Code improvements, reorganization, technical debt
-4. **Performance** - Slow operations, optimization opportunities
-5. **Accessibility** - WCAG compliance, screen reader support, keyboard navigation
-6. **Feature** - New functionality requests
-7. **Documentation** - Missing or incorrect documentation
+### Resolution flow
 
-### Priority Levels
-
-- **Critical:** Blocks functionality, security vulnerability, data loss risk
-- **High:** Important feature not working, significant user impact
-- **Medium:** Minor bugs, important improvements
-- **Low:** Aesthetic improvements, nice-to-have features
-
-### Issue Organization
-
-Issues in `ISSUES_TODO.md` are organized **by category**, then sorted **by priority** within each category (Critical → High → Medium → Low).
-
-This structure makes it easy to:
-- Find all issues of a specific type
-- See the most urgent issues within each category
-- Navigate the file logically
-
-### Resolving Issues
-
-When you resolve an issue:
-1. Move the issue from `ISSUES_TODO.md` to `ISSUES_RESOLVED.md`
-2. Add resolution date and description of how it was fixed
-3. Update statistics in both files
-4. Reference related commits or pull requests
+When an issue is resolved:
+1. Move it from `ISSUES_TODO.md` to `ISSUES_RESOLVED.md`.
+2. Add resolution date and fix summary.
+3. Keep issue statistics aligned.
+4. Reference related commit/PR when available.
 
 ## Documentation Update Rules
 
-### When Making Code Changes
+After code changes, update related docs:
+- Feature work: `PROJECT.md`, `ARCHITECTURE.md`, and `ISSUES_RESOLVED.md` (if tracked).
+- Bug fixes: `ISSUES_RESOLVED.md`; update `ARCHITECTURE.md` and `CODING_STANDARDS.md` when relevant.
+- Refactors: `ARCHITECTURE.md`, `ISSUES_RESOLVED.md`, and coding rules if new conventions were introduced.
+- Path/structure changes: update architecture and agent startup references.
 
-**Always update relevant documentation files** after making code changes:
+Before closing a task, verify:
+- Code follows `CODING_STANDARDS.md`.
+- Relevant AGENTS docs were updated.
+- Issue tracking is consistent.
 
-**After adding a new feature:**
-- Update `PROJECT.md` - Add to features list
-- Update `ISSUES_RESOLVED.md` - If it was tracked as an issue
-- Update `ARCHITECTURE.md` - If it affects system structure
+## Batch and Mass Updates
 
-**After fixing a bug:**
-- Update `ISSUES_RESOLVED.md` - Move from TODO with solution details
-- Update `ARCHITECTURE.md` - If the fix changed how components interact
-- Update `CODING_STANDARDS.md` - If the bug revealed a pattern to avoid
+- For a global rule update, apply changes consistently across all affected files and report the edited file list.
+- For mass updates touching many files, list impact first and request confirmation before applying.
 
-**After refactoring code:**
-- Update `ARCHITECTURE.md` - If structure changed
-- Update `ISSUES_RESOLVED.md` - Document what was refactored and why
-- Update `CODING_STANDARDS.md` - If new patterns should be followed
+## Git Workflow Usage
 
-**After changing file structure:**
-- Update `ARCHITECTURE.md` - Update directory descriptions
-- Update `AI_RULES_CLAUDE.md` / `AI_RULES_CHATGPT.md` - If paths changed
+Git branch/commit/PR conventions are defined in `AGENTS/GIT_WORKFLOW.md`.
+Read and apply that file only when the user asks for VCS actions.
 
-**After updating dependencies:**
-- Update `ARCHITECTURE.md` - Technology stack section
-- Update `ISSUES_RESOLVED.md` - Document the update
+## Learning and Explanations
 
-### Documentation Update Checklist
-
-Before considering a task complete, verify:
-- [ ] Code follows `CODING_STANDARDS.md`
-- [ ] All relevant documentation files are updated
-- [ ] Issues are properly tracked in `ISSUES_TODO.md` or `ISSUES_RESOLVED.md`
-- [ ] Statistics in issue files are current
-- [ ] No broken references to files or sections
-
-## Batch Operations
-
-### Global Modifications
-
-When given a global modification rule (e.g., "update all functions to use new pattern"):
-- Apply changes in batch without requesting per-file confirmation
-- Make consistent changes across all affected files
-- Provide the final list of edited files
-- Summarize what was changed and why
-
-### Mass Updates
-
-For updates affecting many files:
-1. List all files that will be affected
-2. Ask for confirmation before proceeding
-3. Apply changes consistently
-4. Report completion with summary
-
-## Git Workflow
-
-### Branch Naming
-
-Use the prefix `feature/` followed by a camelCase descriptive name:
-
-```
-feature/addSpinoff
-feature/manageSections
-feature/fixContactForm
-```
-
-The main branch is `main`. Never commit directly to `main` — always work on a feature branch.
-
-### Commit Messages
-
-- Write commit messages **in English**
-- Use a short descriptive prefix when applicable: `Bug-fix:`, `Refactor:`, `Feature:`, `Docs:`
-- Keep the first line under 72 characters
-- Be descriptive — avoid generic messages like "fix" or "update"
-
-Examples:
-```
-Feature: Add spinoff content type and archive page
-Bug-fix: Fix XSS vulnerability in contact form submission
-Refactor: Centralize event date rendering logic
-Docs: Update ARCHITECTURE.md with new directory structure
-```
-
-### Before Committing
-
-- Run `composer lint` to check code style
-- Do not commit files containing secrets, API keys, or `.env` files
-- Do not commit unrelated changes in the same commit
-
-### Pull Requests
-
-- Create a PR from your feature branch to `main`
-- Write a clear PR title and description summarizing the changes
-- Reference related issues from `ISSUES_TODO.md` when applicable
-
-## Code Review Mindset
-
-When reviewing or modifying code:
-
-**Look for:**
-- Security vulnerabilities (XSS, SQL injection, CSRF)
-- Accessibility issues
-- Performance bottlenecks
-- Code duplication
-- Missing error handling
-- Unclear variable names
-- Missing or incorrect documentation
-
-**Suggest improvements for:**
-- Complex functions that could be simplified
-- Repeated patterns that could be abstracted
-- Hard-coded values that should be configurable
-- Missing validation or sanitization
-- Opportunities for better user experience
-
-## Learning and Explanation
-
-When explaining code or WordPress internals:
-- Describe standard practices and why they exist
-- Explain the "why" behind recommendations
-- Reference official documentation when relevant
-- Help the user become a better developer
-- Share WordPress best practices and conventions
-
-## Collaboration Expectations
-
-**Respect the user's time**
-- Don't ask unnecessary questions
-- Combine related questions into one message when possible
-- Provide actionable suggestions, not vague advice
-
-**Maintain project quality**
-- Don't compromise on security or accessibility
-- Follow established patterns and conventions
-- Write code you'd be proud to maintain
-
-**Be a team player**
-- Update shared documentation promptly
-- Leave code better than you found it
-- Help maintain project organization
-
+When useful for the user's growth, explain the relevant theory and WordPress best practices behind your implementation choices.
+Do this especially when the user shows gaps or asks for deeper understanding.

@@ -2,103 +2,52 @@
 
 ## Architecture Notes
 
-Design Laboratori Italia is a WordPress theme, but once installed it functions as a fully featured website.
-
-In addition to the theme, a set of custom content types is installed, with fields defined using ACF (Advanced Custom Fields).
-
-The Home Page includes configurable sections that can be enabled or disabled.
-
-In the back office there is a section to configure content types, site sections, import procedures, and advanced features.
-
-Each content type has a custom view for both the item list and the item detail pages.
-
-The site includes a global search feature and a procedure to initialize the menus, the content-types and the taxonomies.
+Design Laboratori Italia is a WordPress theme that behaves as a complete site once installed.
+It provides custom post types (with ACF fields), configurable homepage sections, content import procedures, and custom templates for list/detail views.
+Core runtime features include menu/taxonomy/page initialization and global search.
 
 ## Key Directories
 
-**`inc/`**
-Contains the main classes and the modules of the theme.
-
-**`template-parts/`**
-Contains snippet of code (sections) shared among two or many pages.
-
-**`page-templates/`**
-Pages that list the custom content-types defined by this theme.
-
-**`assets/`**
-Contains the images, the icons, the styles, the JavaScript of the theme. Contains also the BootstrapItalia library used by the theme.
-
-**`DEV/`**
-Contains the Dockerfile and the files to build a local demo of this site.
-
-**`DOC/`**
-Contains all the documentation available and the schemes of the system.
-
-**`SETUP/`**
-Contains the export of the ACF fields and utility scripts.
-
-**`scripts/`**
-Contains JavaScript scripts used by the theme.
-
-**`AGENTS/`**
-Contains AI assistant documentation and configuration files.
+- `inc/`: core classes and main modules.
+- `template-parts/`: reusable template partials.
+- `page-templates/`: archive/list templates for custom content types.
+- `assets/`: styles, scripts, icons, images, Bootstrap Italia assets.
+- `DEV/`: local demo/dev environment (Docker-related files).
+- `DOC/`: project documentation and schemes.
+- `SETUP/`: ACF exports and setup utilities.
+- `scripts/`: project JavaScript scripts.
+- `AGENTS/`: AI collaboration documentation.
 
 ## Main Files
 
-**`functions.php`**
-Entry point of the theme, it creates `DLI_LabManager` that registers and activates all the components of the system.
-
-**`config_lab.php`**
-Constants used by the modules of the theme.
-
-**`config_menu.php`**
-Contains all the menus defined by default by the theme.
-
-**`config_pages.php`**
-Contains all the pages defined by default by the theme.
-
-**`single-*`**
-These are the pages with the details of each content-type.
-
-**`page.php`**
-This is the template of the Page content-type.
-
-**`phpcs.xml.dist`**
-The rules used by PHPCS (PHP Code Sniffer).
-
-**`package.json`**
-The JSON file that contains the needed libraries and the development tools needed by a developer.
-
-**`LICENSE`**
-The license file of this product.
-
-**`publiccode.yml`**
-The file with the description of the project used to publish this project on the "Catalogo del Riuso della PA".
+- `functions.php`: theme bootstrap; instantiates `DLI_LabManager` and wires components.
+- `config_lab.php`: theme constants.
+- `config_menu.php`: default menu definitions.
+- `config_pages.php`: default page definitions.
+- `single-*.php`: detail templates for content types.
+- `page.php`: standard page template.
+- `phpcs.xml.dist`: PHP CodeSniffer rules.
+- `package.json`: frontend/development tooling dependencies.
+- `publiccode.yml`: public administration reuse catalog metadata.
 
 ## Technology Stack
 
-- **Platform:** WordPress
-- **Language:** PHP
-- **Custom Fields:** Advanced Custom Fields (ACF)
-- **Frontend Framework:** Bootstrap Italia
-- **Build Tools:** See `package.json` for details
-- **Code Quality:** PHPCS for PHP code style checking
-
-## Setup and Configuration
-
-Detailed setup instructions are available in the main documentation (see PROJECT.md for links).
+- Platform: WordPress
+- Language: PHP
+- Custom fields: ACF
+- Frontend framework: Bootstrap Italia
+- Build/tooling: see `package.json`
+- Code quality: PHPCS
 
 ## Commands
 
-- `composer lint` — Check code style
-- `composer lint:fix` — Auto-fix code style
-- `composer test:unit` — Run unit tests
-- `composer test:integration` — Run integration tests
-- `composer test:all` — Run all tests
+- `composer lint`
+- `composer lint:fix`
+- `composer test:unit`
+- `composer test:integration`
+- `composer test:all`
 
-## Known Issues
+## References
 
-**Usage and necessity of `scripts/` is unclear and needs verification.**
-
-For a complete list of issues and bugs, see `ISSUES_TODO.md`.
-
+- Setup and usage details: see `PROJECT.md`.
+- Open technical issues: see `ISSUES_TODO.md`.
