@@ -20,7 +20,7 @@ $locations    = get_nav_menu_locations();
 $current_lang = dli_current_language();
 ?>
 <!doctype html>
-<html lang="<?php echo $current_lang; ?>">
+<html lang="<?php echo esc_attr( $current_lang ); ?>">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@ $current_lang = dli_current_language();
 	<!-- SEO - OG Internal Management -->
 	<?php get_template_part( 'template-parts/header/seo_tags' ); ?>
 	<!-- FAVICON -->
-	<link rel="icon" href="<?php echo get_template_directory_uri() . '/assets/img/favicon.ico'; ?> " />
+	<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() . '/assets/img/favicon.ico' ); ?>" />
 </head>
 <body <?php body_class(); ?>>
 
@@ -58,8 +58,8 @@ $current_lang = dli_current_language();
 				<!-- SLIM HEADER -->
 				<div class="it-header-slim-wrapper-content">
 					<a class="d-none d-lg-block navbar-brand" 
-						href="<?php echo dli_get_option( 'url_ente_appartenenza' ); ?>" 
-						target="_blank"><?php echo dli_get_option( 'nome_ente_appartenza' ); ?></a>
+						href="<?php echo esc_url( dli_get_option( 'url_ente_appartenenza' ) ); ?>" 
+						target="_blank"><?php echo esc_html( dli_get_option( 'nome_ente_appartenza' ) ); ?></a>
 					<div class="nav-mobile">
 						<!-- TOP MENU -->
 						<?php
@@ -83,11 +83,11 @@ $current_lang = dli_current_language();
 						?>
 						<div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-							<span class="visually-hidden"><?php echo __( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
-							<span><?php echo $current_language; ?></span>
+							<span class="visually-hidden"><?php echo esc_html__( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
+							<span><?php echo esc_html( $current_language ); ?></span>
 							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
 								<title>Expand</title>
-								<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand'; ?>"></use>
+								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 							</svg>
 							</a>
 							<div class="dropdown-menu">
@@ -100,9 +100,9 @@ $current_lang = dli_current_language();
 										foreach ( $selectors as $selector ) {
 									?>
 										<li>
-											<a class="dropdown-item list-item" href="<?php echo $selector['url'] ?>">
+											<a class="dropdown-item list-item" href="<?php echo esc_url( $selector['url'] ); ?>">
 												<span>
-													<?php echo $selector['slug'] ?>
+													<?php echo esc_html( $selector['slug'] ); ?>
 												</span>
 											</a>
 										</li>
@@ -122,7 +122,7 @@ $current_lang = dli_current_language();
 						?>
 						<div class="it-access-top-wrapper">
 							&nbsp;&nbsp;
-							<a class="btn btn-primary btn-sm" href="<?php echo get_site_url();?>/admin"><?php echo __( 'Accedi', 'design_laboratori_italia' ); ?></a>
+							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></a>
 						</div>
 						<?php
 							}
@@ -142,15 +142,15 @@ $current_lang = dli_current_language();
 				<!-- TITLE ROW -->
 				<div class="it-header-center-content-wrapper">
 					<div class="it-brand-wrapper">
-						<a href="<?php echo dli_homepage_url(); ?>">
+						<a href="<?php echo esc_url( dli_homepage_url() ); ?>">
 							<!-- header logo -->
 							<?php get_template_part( 'template-parts/common/logo' ); ?>
 							<div class="it-brand-text ms-4">
 							<div class="it-brand-title"><h1 class="h3">
-								<?php echo dli_get_option_by_lang( 'nome_laboratorio' ); ?></h1>
+								<?php echo esc_html( dli_get_option_by_lang( 'nome_laboratorio' ) ); ?></h1>
 							</div>
 							<div class="it-brand-tagline d-none d-md-block">
-								<?php echo dli_get_option_by_lang( 'tagline_laboratorio' ); ?>
+								<?php echo esc_html( dli_get_option_by_lang( 'tagline_laboratorio' ) ); ?>
 							</div>
 							</div>
 						</a>
@@ -160,14 +160,14 @@ $current_lang = dli_current_language();
 							<?php get_template_part( 'template-parts/common/social' ); ?>
 						</div>
 						<div class="it-search-wrapper">
-							<span class="d-none d-md-block"><?php echo __( 'Cerca', 'design_laboratori_italia' ); ?></span>
+							<span class="d-none d-md-block"><?php echo esc_html__( 'Cerca', 'design_laboratori_italia' ); ?></span>
 							<?php
 								$search_link = dli_get_search_link( $current_language );
 							?>
-							<a class="search-link rounded-icon" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
-								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
-									<title><?php echo __( 'Cerca nel sito', 'design_laboratori_italia' ); ?></title>
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search'; ?>"></use>
+							<a class="search-link rounded-icon" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
+								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
+									<title><?php echo esc_html__( 'Cerca nel sito', 'design_laboratori_italia' ); ?></title>
+									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
 								</svg>
 							</a>
 						</div>
@@ -188,7 +188,7 @@ $current_lang = dli_current_language();
 					aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
 					<svg class="icon bg-override" role="img" aria-labelledby="Burger">
 						<title>Mostra/Nascondi la navigazione</title>
-						<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger'; ?>"></use>
+							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger' ); ?>"></use>
 					</svg>
 				</button>
 				<div class="navbar-collapsable" id="nav1" style="display: none;">
@@ -198,7 +198,7 @@ $current_lang = dli_current_language();
 						<span class="visually-hidden">Nascondi la navigazione</span>
 						<svg class="icon" role="img" aria-labelledby="Close big" aria-label="Nascondi la navigazione">
 							<title>Nascondi la navigazione</title>
-							<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big'; ?>"></use>
+							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big' ); ?>"></use>
 						</svg>
 					</button>
 					</div>
