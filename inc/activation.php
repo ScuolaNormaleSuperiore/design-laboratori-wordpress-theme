@@ -419,14 +419,29 @@ add_action( 'admin_menu', 'dli_add_update_theme_page' );
  * @return void
  */
 function dli_reload_theme_option_page() {
-	if( isset( $_GET["action"] ) && $_GET["action"] == "reload" ){
-			dli_create_pages_on_theme_activation();
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Non hai i permessi per accedere a questa pagina.', 'design_laboratori_italia' ) );
 	}
 
-	echo "<div class='wrap'>";
-	echo '<h1>Ricarica i dati di attivazione del tema</h1>';
+	$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : '';
+	$nonce  = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 
-	echo '<a href="themes.php?page=reload-data-theme-options&action=reload" class="button button-primary">Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)</a>';
+	if ( 'reload' === $action ) {
+		if ( ! $nonce || ! wp_verify_nonce( $nonce, 'dli_reload_theme_data' ) ) {
+			wp_die( esc_html__( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' ) );
+		}
+		dli_create_pages_on_theme_activation();
+	}
+
+	$reload_url = wp_nonce_url(
+		admin_url( 'themes.php?page=reload-data-theme-options&action=reload' ),
+		'dli_reload_theme_data'
+	);
+
+	echo '<div class="wrap">';
+	echo '<h1>' . esc_html__( 'Ricarica i dati di attivazione del tema', 'design_laboratori_italia' ) . '</h1>';
+
+	echo '<a href="' . esc_url( $reload_url ) . '" class="button button-primary">' . esc_html__( 'Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)', 'design_laboratori_italia' ) . '</a>';
 	echo '</div>';
 }
 
