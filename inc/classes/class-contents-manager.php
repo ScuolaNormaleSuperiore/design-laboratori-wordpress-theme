@@ -36,15 +36,16 @@ class DLI_ContentsManager
 		$og_data    = new DLI_OG_Wrapper();
 		$item_id   = $post && $post->ID ? $post->ID : '';
 		$item_type = $item_id && $post->post_type ? $post->post_type : '';
+		$is_homepage = is_home() || is_front_page();
 
 		if ( $item_id && in_array( $item_type, DLI_POST_TYPES_TO_TRANSLATE ) ) {
 			// Get data to fill OG structure.
 			$site_title   = dli_get_option_by_lang( 'nome_laboratorio' );
-			$site_tagline = dli_get_option_by_lang( 'tagline_laboratorio' );	
-			$item_title   = is_home() ? $site_title : $post->post_title;
-			$item_desc    = is_home() ? $site_tagline: clean_and_truncate_text( $post->post_content, 256 );
-			$item_url     = get_permalink();
-			$img_id       = is_home() ? null : get_post_thumbnail_id( $item_id );
+			$site_tagline = dli_get_option_by_lang( 'tagline_laboratorio' );
+			$item_title   = $is_homepage ? $site_title : $post->post_title;
+			$item_desc    = $is_homepage ? $site_tagline : clean_and_truncate_text( $post->post_content, 256 );
+			$item_url     = $is_homepage ? dli_homepage_url() : get_permalink( $item_id );
+			$img_id       = $is_homepage ? null : get_post_thumbnail_id( $item_id );
 			$img_array    = wp_get_attachment_image_src( $img_id, 'large' );
 			$file_path    = $img_id ? get_attached_file( $img_id ) : '';
 			$file_info    = $img_id ? wp_check_filetype( $file_path ) : '';
@@ -53,7 +54,7 @@ class DLI_ContentsManager
 			$site_url     = site_url();
 			$parsed_url   = parse_url( $site_url );
 			$domain       = $parsed_url['host'];
-			$shared_title = is_home() ? $site_title : $site_title . ' - ' . $post->post_title;
+			$shared_title = $is_homepage ? $site_title : $site_title . ' - ' . $post->post_title;
 
 			// Fill OG data:
 			$og_data->id           = $item_id;
