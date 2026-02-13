@@ -26,15 +26,13 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 			$custom_data = 'data-element="accessibility-link"';
 		}
 		if ($item->url) {
-			$output .= '<a class="text-underline-hover" href="' . $item->url . '" '.$custom_data.'>';
+			$output .= '<a class="text-underline-hover" href="' . esc_url( $item->url ) . '" '.$custom_data.'>';
 		} else {
 			$output .= '<a class="text-underline-hover" href="#" '.$custom_data.'>';
 		}
  
-		$output .= $item->title;
-        
+		$output .= esc_html( $item->title );
+         
         $output .= '</a>';
-
-		$output .= "</li>";
 	}
 }
