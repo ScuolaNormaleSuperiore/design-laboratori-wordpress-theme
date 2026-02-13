@@ -1,15 +1,27 @@
 # AI_RULES_CHATGPT.md - ChatGPT/Codex Configuration
 
+
 ## Purpose
 
-This file contains ChatGPT/Codex-specific instructions only.
-Shared project workflow, issue handling, and documentation rules are defined in `AGENTS_README.md` and `AI_BEHAVIOR.md`.
+This file contains **ChatGPT/Codex** specific instructions only.
+After reading this file, read the files with detailed collaboration rules listed in the following section.
+
 
 ## Session Start
 
-1. Read `AGENTS/AGENTS_README.md` first.
-2. Follow the required reading order defined there.
+1. Read this file first (it is specific for ChatGPT).
+2. In the AGENTS folder, read the files common to all AI agents:
+	``` AI_RULES_CHATGPT.md (entry point)
+			↓
+			├─→ AGENTS_README.md (index and usage guide)
+			├─→ PROJECT.md (what we're building)
+			├─→ ARCHITECTURE.md (how it's structured)
+			├─→ CODING_STANDARDS.md (how to write code)
+			├─→ AI_BEHAVIOR.md (how to work)
+			└─→ ISSUES_TODO.md (what needs doing)
+	```
 3. Apply the behavior and workflow rules from `AGENTS/AI_BEHAVIOR.md`.
+   
 
 ## ChatGPT-Specific Settings
 
@@ -25,6 +37,7 @@ Shared project workflow, issue handling, and documentation rules are defined in 
 - Keep multi-turn context by referencing previous decisions.
 - Break large tasks into clear sub-steps, but complete one objective at a time.
 - Summarize milestones after meaningful progress.
+
 
 ## Canonical References
 
