@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",
+    "lint": "npm run lint:php",
+    "lint:php": "phpcs --standard=phpcs.xml.dist .",
+    "lint:php:fix": "phpcbf --standard=phpcs.xml.dist .",
     "version": "node scripts/config-sync && git add style.css && git add README.md",
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",

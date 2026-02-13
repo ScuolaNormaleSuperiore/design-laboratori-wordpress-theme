@@ -30,12 +30,11 @@ After reading this file, read the files with detailed collaboration rules listed
 - Create files directly when requested.
 - Follow WordPress naming conventions and directory structure.
 - Use shell tooling for code checks where appropriate.
-- Run `composer lint` before finalizing code changes when possible.
+- Run `npm run lint:php` before finalizing code changes when possible.
 - Use available MCP servers when relevant and within boundaries.
 
 
 ## Canonical References
 
 See `AGENTS/AGENTS_README.md` for the full file index and descriptions.
-
 
