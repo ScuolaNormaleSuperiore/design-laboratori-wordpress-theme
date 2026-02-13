@@ -8,9 +8,30 @@ get_header();
 
 // estraggo i parametri per il tipo luogo
 $tipi_luogo_params = array();
-foreach ( $_GET as $parameter ) {
-	array_push( $tipi_luogo_params, $parameter );
+// Accetta solo slug validi della tassonomia per evitare filtri con parametri non pertinenti (es. paged).
+$allowed_place_types = get_terms(
+	array(
+		'taxonomy'   => PLACE_TYPE_TAXONOMY,
+		'hide_empty' => false,
+		'fields'     => 'slugs',
+	)
+);
+$allowed_place_types = ( is_wp_error( $allowed_place_types ) || ! is_array( $allowed_place_types ) ) ? array() : $allowed_place_types;
+foreach ( $_GET as $parameter_key => $parameter_value ) {
+	if ( ! is_string( $parameter_value ) ) {
+		continue;
+	}
+	$sanitized_key   = sanitize_key( wp_unslash( $parameter_key ) );
+	$sanitized_value = sanitize_key( wp_unslash( $parameter_value ) );
+	if ( $sanitized_key !== $sanitized_value ) {
+		continue;
+	}
+	if ( ! in_array( $sanitized_key, $allowed_place_types, true ) ) {
+		continue;
+	}
+	$tipi_luogo_params[] = $sanitized_key;
 }
+$tipi_luogo_params = array_values( array_unique( $tipi_luogo_params ) );
 
 if ( count( $tipi_luogo_params ) > 0 ) {
 	$tipi_luogo_filter_array =

@@ -108,8 +108,14 @@ if(!function_exists("dli_multi_array_search")) {
 		function dli_multi_array_search($search_for, $search_in, $okey = false) {
 				foreach ($search_in as $key => $element) {
 						$key = $okey ? $okey : $key;
-						if (($element === $search_for) || (is_array($element) && $key = dli_multi_array_search($search_for, $element, $key))) {
+						if ( $element === $search_for ) {
 								return $key;
+						}
+						if ( is_array( $element ) ) {
+								$child_key = dli_multi_array_search( $search_for, $element, $key );
+								if ( false !== $child_key ) {
+										return $child_key;
+								}
 						}
 				}
 				return false;
@@ -346,7 +352,13 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
-		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
+		$img_url     = $placeholder;
+		if ( $img && isset( $img['ID'] ) ) {
+			$img_src = wp_get_attachment_image_src( $img['ID'], $image_format );
+			if ( is_array( $img_src ) && ! empty( $img_src[0] ) ) {
+				$img_url = $img_src[0];
+			}
+		}
 		$img_title   = ( $img && $img['title'] ) ? $img['title'] : $post_title;
 		$img_alt     = ( $img && $img['alt'] ) ? $img['alt'] : $post_title;
 		// @TODO: Popolare $result e non ridefinirlo.
@@ -385,7 +397,13 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
-		$img_url     = $img ? wp_get_attachment_image_src( $img['ID'], $image_format )[0] : $placeholder;
+		$img_url     = $placeholder;
+		if ( $img && isset( $img['ID'] ) ) {
+			$img_src = wp_get_attachment_image_src( $img['ID'], $image_format );
+			if ( is_array( $img_src ) && ! empty( $img_src[0] ) ) {
+				$img_url = $img_src[0];
+			}
+		}
 		$img_title   = ( $img && $img['title'] ) ? $img['title'] : $post_title;
 		$img_alt     = ( $img && $img['alt'] ) ? $img['alt'] : $post_title;
 		// @TODO: Popolare $result e non ridefinirlo.
@@ -876,16 +894,17 @@ if( ! function_exists( 'dli_get_default_logo' ) ) {
 if( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 	function dli_menu_tree_by_items( $menuitems ) {
 		$menu_tree = array();
-		foreach ( $menuitems As $item ) {
+		foreach ( $menuitems as $item ) {
 			if ( $item->menu_item_parent === '0' ) {
-				$menu_tree[$item->ID] = array(
+				$menu_tree[ $item->ID ] = array(
 					'element'  => $item,
 					'children' => array(),
 				);
-			} else {
-				if( array_key_exists( $item->menu_item_parent, $menu_tree ) && $menu_tree[$item->menu_item_parent] !== null ) {
-					array_push( $menu_tree[$item->menu_item_parent]['children'], $item );
-				}
+			}
+		}
+		foreach ( $menuitems as $item ) {
+			if ( $item->menu_item_parent !== '0' && isset( $menu_tree[ $item->menu_item_parent ] ) ) {
+				$menu_tree[ $item->menu_item_parent ]['children'][] = $item;
 			}
 		}
 		return $menu_tree;

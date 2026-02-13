@@ -77,8 +77,17 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$start_date  = $conf['start_date'];
 		// Creazione del client e invocazione del servizio.
 		$api_url    = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
-		$parameters = array( 'sslverify' => false, ); 
-		$response   = wp_remote_get( $api_url, $parameters );
+		$api_url    = esc_url_raw( $api_url );
+		if ( ! $api_url || ! wp_http_validate_url( $api_url ) ) {
+			throw new Exception( 'URL Indico non valido.' );
+		}
+		$parameters = array(
+			'sslverify'          => true,
+			'timeout'            => 20,
+			'redirection'        => 3,
+			'reject_unsafe_urls' => true,
+		);
+		$response   = wp_safe_remote_get( $api_url, $parameters );
 		// Verifica di eventuali errori.
 		if ( is_wp_error( $response ) ) {
 			$msg = 'Errore invocando la Indico REST API: ' . $response->get_error_message();
@@ -112,6 +121,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		array_push( $data, ( $import_type === 'dryrun' ) ? MSG_HEADER_DRY_RUN : MSG_HEADER_REAL_IMPORT );
 
 		// Loop di importazione.
+		if ( ! isset( $resp_data['results'] ) || ! is_array( $resp_data['results'] ) ) {
+			throw new Exception( 'Payload Indico non valido: chiave "results" mancante o non valida.' );
+		}
 		$total     = count( $resp_data['results'] );
 		$counter   = 0;
 		$discarded = 0;
@@ -353,28 +365,60 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 	}
 
-	private function _get_meta_content($url, $property) {
-		$html = file_get_contents($url);
-		if ($html === FALSE) {
-				die("Errore nel caricare la pagina");
+	private function _get_meta_content( $url, $property ) {
+		$url      = esc_url_raw( $url );
+		$property = sanitize_text_field( (string) $property );
+		if ( ! $url || ! wp_http_validate_url( $url ) ) {
+			throw new Exception( 'URL evento non valido per il recupero metatag.' );
 		}
+		if ( '' === $property ) {
+			throw new Exception( 'Proprietà metatag non valida.' );
+		}
+
+		$response = wp_safe_remote_get(
+			$url,
+			array(
+				'sslverify'          => true,
+				'timeout'            => 15,
+				'redirection'        => 3,
+				'reject_unsafe_urls' => true,
+			)
+		);
+		if ( is_wp_error( $response ) ) {
+			throw new Exception( 'Errore nel recupero della pagina evento: ' . $response->get_error_message() );
+		}
+		$code = wp_remote_retrieve_response_code( $response );
+		if ( 200 !== $code ) {
+			throw new Exception( 'Errore HTTP nel recupero pagina evento: ' . (string) $code );
+		}
+		$html = wp_remote_retrieve_body( $response );
+		if ( '' === trim( (string) $html ) ) {
+			throw new Exception( 'Contenuto HTML evento vuoto.' );
+		}
+
 		// Crea un nuovo DOMDocument.
 		$dom = new DOMDocument();
 		// Sopprimi gli errori dovuti a HTML non valido.
-		libxml_use_internal_errors(true);
+		$libxml_previous = libxml_use_internal_errors( true );
 		// Carica l'HTML
-		$dom->loadHTML($html);
+		$dom->loadHTML( $html );
 		// Ripristina la gestione degli errori.
 		libxml_clear_errors();
+		libxml_use_internal_errors( $libxml_previous );
 		// Crea un nuovo DOMXPath.
-		$xpath = new DOMXPath($dom);
+		$xpath = new DOMXPath( $dom );
 		// Cerca i tag <meta> con l'attributo property specificato.
-		$meta_tags = $xpath->query("//meta[@property='$property']");
+		$meta_tags = $xpath->query( '//meta[@property]' );
 		// Verifica se sono stati trovati tag <meta>.
-		if ($meta_tags->length > 0) {
+		if ( $meta_tags && $meta_tags->length > 0 ) {
+			foreach ( $meta_tags as $meta_tag ) {
+				if ( $property !== $meta_tag->getAttribute( 'property' ) ) {
+					continue;
+				}
 				// Ottieni il valore dell'attributo content.
-				$content = $meta_tags->item(0)->getAttribute('content');
+				$content = $meta_tag->getAttribute( 'content' );
 				return $content;
+			}
 		}
 		// Restituisce null se il tag <meta> non è trovato.
 		return null;
