@@ -211,7 +211,7 @@ $num_results = $the_query->found_posts;
 				} else {
 				?>
 				<div class="col-12 col-lg-8">
-					<div clas="row pt-2">
+					<div class="row pt-2">
 						<?php echo __( 'Non è stata trovata alcuna risorsa tecnica', 'design_laboratori_italia' ); ?>
 					</div>
 				</div>
@@ -245,3 +245,4 @@ $num_results = $the_query->found_posts;
 
 <?php
 get_footer();
+

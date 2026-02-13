@@ -101,7 +101,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 					}
 				} else {
 					?>
-				<div clas="row pt-2">
+				<div class="row pt-2">
 					<?php echo __( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
 				</div>
 				<?php
@@ -136,3 +136,4 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 
 <?php
 get_footer();
+

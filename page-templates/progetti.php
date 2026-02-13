@@ -187,7 +187,7 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 				}
 			} else {
 			?>
-		<div clas="row pt-2">
+		<div class="row pt-2">
 			<?php echo __( 'Non è stato trovato nessun progetto', 'design_laboratori_italia' ); ?>
 		</div>
 		<?php
@@ -221,3 +221,4 @@ $label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_prog
 
 <?php
 get_footer();
+
