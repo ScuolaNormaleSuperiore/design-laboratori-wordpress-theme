@@ -2,13 +2,14 @@
 
 ChatGPT/Codex-specific entry point.
 
-## Session Start (MANDATORY, blocking)
-1. Read `AGENTS/AI_BEHAVIOR.md`.
-2. Read `AGENTS/PROJECT.md`.
-3. Read `AGENTS/ARCHITECTURE.md`.
-4. Read `AGENTS/CODING_STANDARDS.md`.
-5. Read `AGENTS/ISSUES_TODO.md`.
-6. Report exactly: `Bootstrap completed` + the full list of files read.
+## Session Start
+1. Read `AGENTS/AGENTS_README.md`.
+2. Read `AGENTS/AI_BEHAVIOR.md`.
+3. Read `AGENTS/PROJECT.md`.
+4. Read `AGENTS/ARCHITECTURE.md`.
+5. Read `AGENTS/CODING_STANDARDS.md`.
+6. Read `AGENTS/ISSUES_TODO.md`.
+7. Report exactly: `Bootstrap completed` + the full list of files read.
 
 ## Codex Notes
 - Break large tasks into clear steps and report milestones after each.

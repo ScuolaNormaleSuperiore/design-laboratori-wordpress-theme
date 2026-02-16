@@ -3,11 +3,13 @@
 Claude Code-specific entry point.
 
 ## Session Start
-1. `CLAUDE.md` loads this file automatically — no manual read needed.
-2. Follow workflow rules in `AGENTS/AI_BEHAVIOR.md`.
-3. Read `AGENTS/PROJECT.md`, then `AGENTS/ARCHITECTURE.md`, then `AGENTS/CODING_STANDARDS.md`.
-4. Check `AGENTS/ISSUES_TODO.md` when working on bugs or improvements.
-5. Use `AGENTS/AGENTS_README.md` only as file-purpose index.
+1. Read `AGENTS/AGENTS_README.md`.
+2. Read `AGENTS/AI_BEHAVIOR.md`.
+3. Read `AGENTS/PROJECT.md`.
+4. Read `AGENTS/ARCHITECTURE.md`.
+5. Read `AGENTS/CODING_STANDARDS.md`.
+6. Read `AGENTS/ISSUES_TODO.md`.
+7. Report exactly: `Bootstrap completed` + the full list of files read.
 
 ## Claude Code Notes
 - Use plan mode for non-trivial tasks (new features, multi-file refactors, architectural decisions).
