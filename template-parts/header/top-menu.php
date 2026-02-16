@@ -1,6 +1,6 @@
 <?php
 	// $current_group = $args['current_group'];
-	$locations     = $args['locations'];
+	$locations     = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
 ?>
 
 <nav aria-label="Navigazione accessoria">
@@ -15,9 +15,16 @@
 	<div class="link-list-wrapper collapse" id="menu1a">
 	<?php
 		$menu_name = 'menu-header-right';
-		$menu_items = array();
-		if ( has_nav_menu( $menu_name ) ) {
-			$menu       = wp_get_nav_menu_object( $locations[ $menu_name ] );
+		$menu      = null;
+		$menuitems = array();
+		if ( has_nav_menu( $menu_name ) && array_key_exists( $menu_name, $locations ) ) {
+			$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+			if ( ! $menu || ! isset( $menu->term_id ) ) {
+				$menu = null;
+			}
+		}
+
+		if ( ! empty( $menu ) ) {
 			$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
 			$menuitems  = $menuitems  ? $menuitems : array();
 		?>

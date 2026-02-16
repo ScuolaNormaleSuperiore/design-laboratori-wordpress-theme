@@ -9,12 +9,15 @@ $dli_locale_str = pll_current_language( 'locale' );
 $dli_nome_lab   = dli_get_option_by_lang( 'nome_laboratorio' );
 $dli_tagline    = dli_get_option_by_lang( 'tagline_laboratorio' );
 $dli_wrapper    = dli_get_post_wrapper( get_post() );
+$dli_wrapper    = is_array( $dli_wrapper ) ? $dli_wrapper : array();
 
 $dli_copyright     = $dli_nome_lab;
 $dli_resource_type = 'document';
-$dli_page_title    = array_key_exists( 'title', $dli_wrapper ) ? $dli_wrapper['title'] : '';
-$dli_page_desc     = array_key_exists( 'description', $dli_wrapper ) ? $dli_wrapper['description'] : '';
+$dli_page_title    = array_key_exists( 'title', $dli_wrapper ) ? wp_strip_all_tags( (string) $dli_wrapper['title'] ) : '';
+$dli_page_desc     = array_key_exists( 'description', $dli_wrapper ) ? wp_strip_all_tags( (string) $dli_wrapper['description'] ) : '';
+$dli_tagline       = wp_strip_all_tags( (string) $dli_tagline );
 $dli_keywords      = preg_replace( '/[^a-zA-Z0-9\s]/', '', $dli_page_title . ' ' . $dli_tagline );
+$dli_keywords      = is_string( $dli_keywords ) ? $dli_keywords : '';
 
 ?>
 
