@@ -16,6 +16,11 @@ try {
 	$msg = 'Caught exception: ' . $e->getMessage() . '\n';
 	error_log( $msg );
 }
+
+$homepage_node = array();
+if ( isset( $pt[ DLI_HOMEPAGE_SLUG ] ) && is_array( $pt[ DLI_HOMEPAGE_SLUG ] ) ) {
+	$homepage_node = $pt[ DLI_HOMEPAGE_SLUG ];
+}
 ?>
 
 <main id="main-container" role="main">
@@ -31,12 +36,13 @@ try {
 		<div class="row variable-gutters d-flex justify-content-center">
 			<div class="col-lg-8 pt84">
 				<ul class="menutree">
-					<li><a class="mappasitolink" href="<?php echo $pt[DLI_HOMEPAGE_SLUG]['link']; ?>"><?php echo $pt[DLI_HOMEPAGE_SLUG]['name']; ?></a></li>
-                    <?php if(!empty($pt[DLI_HOMEPAGE_SLUG]['children'])) { ?>
+					<?php if ( ! empty( $homepage_node ) ) { ?>
+					<li><a class="mappasitolink" href="<?php echo $homepage_node['link']; ?>"><?php echo $homepage_node['name']; ?></a></li>
+                    <?php if ( ! empty( $homepage_node['children'] ) ) { ?>
                         <ul>
                             <?php
                             // I livello.
-                            foreach ( $pt[DLI_HOMEPAGE_SLUG]['children'] as $item ) {
+                            foreach ( $homepage_node['children'] as $item ) {
                                 if ( $item['external'] ) {
                                     echo '<li><a class="mappasitolink" target="_blank" href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
                                 } else {
@@ -70,6 +76,7 @@ try {
                             ?>
                         </ul>
                     <?php } ?>
+					<?php } ?>
 				</ul>
 
 				<div class="box_change_map_lang">
