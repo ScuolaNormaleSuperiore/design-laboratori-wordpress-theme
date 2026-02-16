@@ -1,6 +1,6 @@
 <?php
-	$items       = $args['items'];
-	$section_id  = $args['section_id'];
+	$items       = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $args['items'] : array();
+	$section_id  = isset( $args['section_id'] ) ? $args['section_id'] : '';
 	$num_results = count( $items );
 	define( 'ALLEGATI_PER_ROW', 3 );
 ?>
