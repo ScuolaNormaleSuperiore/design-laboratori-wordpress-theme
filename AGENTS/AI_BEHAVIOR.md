@@ -89,6 +89,27 @@ Before closing a task, verify:
 - Relevant AGENTS docs were updated.
 - Issue tracking is consistent.
 
+## Security Review Checklist (Minimum)
+
+For every bug-fix/feature/refactor touching runtime code, verify at least:
+- Input sanitization for external data (`$_GET`, `$_POST`, REST params, options payloads, remote data).
+- Context-aware output escaping in templates and admin views (`esc_html`, `esc_attr`, `esc_url`, `wp_kses*`).
+- Nonce verification and capability checks for state-changing/admin actions.
+- Safe query building (`$wpdb->prepare()`, validated query args for `WP_Query`/tax/meta filters).
+- Dependency and integration hygiene: no secrets hardcoded, remote calls validated, unsafe transport disabled.
+- Basic accessibility sanity on changed markup (valid structure, labels/aria, keyboard reachability where relevant).
+
+If any checklist item fails and is out of scope to fix immediately, add/update an issue in `ISSUES_TODO.md`.
+
+## Definition of Done
+
+Before marking work complete:
+- Run `npm run lint:php` when environment/dependencies are available.
+- Re-check changed templates/components for escaping and structural validity.
+- Update issue tracking (`ISSUES_TODO.md` / `ISSUES_RESOLVED.md`) when applicable.
+- Update AGENTS docs affected by the change (`PROJECT.md`, `ARCHITECTURE.md`, `CODING_STANDARDS.md`, `AI_BEHAVIOR.md`, `AGENTS_README.md` as needed).
+- Report a concise summary of what changed, what was verified, and any remaining risks.
+
 ## AGENTS Update Rules
 - If behavior/process changes: update `AI_BEHAVIOR.md`.
 - If architecture/runtime changes: update `ARCHITECTURE.md`.

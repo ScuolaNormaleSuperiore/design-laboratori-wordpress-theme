@@ -7,7 +7,7 @@ Use these rules only when the task includes branch/commit/PR work.
 - Base branch: `main`.
 - Never commit directly to `main`.
 - Branch name format: `<prefix>/<camelCaseName>`.
-- Prefixes: `feature/`, `bugfix/`, `refactor/`, `docs/`.
+- Prefixes: `features/`, `bugfix/`, `refactor/`, `docs/`.
 - Examples:
   - `features/addSpinoff`
   - `bugfix/fixContactForm`

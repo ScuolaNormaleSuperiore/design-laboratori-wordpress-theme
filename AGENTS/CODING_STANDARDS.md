@@ -23,7 +23,8 @@ Keep explanations practical and tied to the current code.
 ### Formatting and documentation
 
 - Use tabs for indentation.
-- Comments and docblocks must be in English.
+- New comments and docblocks must be in English.
+- Legacy comments/docblocks in other languages can remain temporarily; when touching nearby code, prefer incremental migration to English.
 - Add a file header docblock.
 - Add function docblocks with params/return.
 
@@ -81,7 +82,9 @@ Official references:
 
 ### JavaScript
 
-- Write Vanilla JavaScript only, unless the user explicitly requests and approves another library/framework.
+- For new features/refactors, prefer Vanilla JavaScript.
+- Existing jQuery-based areas are considered legacy and can be maintained when editing those files.
+- Do not introduce new jQuery usage in new modules unless explicitly approved by the user.
 - Use tabs, semicolons, and braces consistently.
 - Prefer `const`/`let` over `var`.
 - Use single quotes and descriptive camelCase names.
