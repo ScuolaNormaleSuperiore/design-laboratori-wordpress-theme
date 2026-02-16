@@ -14,5 +14,5 @@ ChatGPT/Codex-specific entry point.
 - Use local file analysis and shell checks to validate changes before reporting done.
 - Preserve decisions and context from earlier turns — do not re-derive what was already agreed.
 - When modifying files, show minimal targeted diffs rather than full rewrites when possible.
-- Run `composer lint` before finalizing code changes when dependencies are available.
+- Run `npm run lint:php` before finalizing code changes when dependencies are available.
 - When creating commits, follow `AGENTS/GIT_WORKFLOW.md`.

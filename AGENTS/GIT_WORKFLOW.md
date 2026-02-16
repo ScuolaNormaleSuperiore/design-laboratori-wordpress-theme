@@ -29,7 +29,7 @@ Examples:
 
 ## Pre-commit checks
 
-- Run `composer lint` when possible.
+- Run `npm run lint:php` when possible.
 - Do not commit secrets, API keys, or `.env` files.
 - Do not include unrelated changes in the same commit.
 

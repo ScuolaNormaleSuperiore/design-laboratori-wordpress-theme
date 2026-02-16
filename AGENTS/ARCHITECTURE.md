@@ -41,11 +41,10 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 
 ## Commands
 
+- `npm run lint`
 - `npm run lint:php`
 - `npm run lint:php:fix`
-- `composer test:unit`
-- `composer test:integration`
-- `composer test:all`
+- `npm run build`
 
 ## References
 
