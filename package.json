@@ -6,8 +6,10 @@
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",
     "lint": "npm run lint:php",
-    "lint:php": "phpcs --standard=phpcs.xml.dist .",
-    "lint:php:fix": "phpcbf --standard=phpcs.xml.dist .",
+    "lint:php": "composer lint:php -- .",
+    "lint:php:file": "composer lint:php --",
+    "lint:php:fix": "composer lint:php:fix -- .",
+    "lint:php:fix:file": "composer lint:php:fix --",
     "version": "node scripts/config-sync && git add style.css && git add README.md",
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
