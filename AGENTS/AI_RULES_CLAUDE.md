@@ -1,40 +1,18 @@
-# AI_RULES_CLAUDE.md - Claude Code Configuration
+# AI_RULES_CLAUDE.md
 
-
-## Purpose
-
-This file contains **Claude-Code** specific instructions only.
-After reading this file, read the files with detailed collaboration rules listed in the following section.
-
+Claude Code-specific entry point.
 
 ## Session Start
+1. `CLAUDE.md` loads this file automatically — no manual read needed.
+2. Follow workflow rules in `AGENTS/AI_BEHAVIOR.md`.
+3. Read `AGENTS/PROJECT.md`, then `AGENTS/ARCHITECTURE.md`, then `AGENTS/CODING_STANDARDS.md`.
+4. Check `AGENTS/ISSUES_TODO.md` when working on bugs or improvements.
+5. Use `AGENTS/AGENTS_README.md` only as file-purpose index.
 
-1. Read this file first (it is specific for Claude Code).
-2. In the AGENTS folder, read the files common to all AI agents:
-	``` AI_RULES_CLAUDE.md (entry point)
-			↓
-			├─→ AGENTS_README.md (index and usage guide)
-			├─→ PROJECT.md (what we're building)
-			├─→ ARCHITECTURE.md (how it's structured)
-			├─→ CODING_STANDARDS.md (how to write code)
-			├─→ AI_BEHAVIOR.md (how to work)
-			└─→ ISSUES_TODO.md (what needs doing)
-	```
-3. Apply the behavior and workflow rules from `AGENTS/AI_BEHAVIOR.md`.
-
-
-## Claude-Specific Settings
-
-### Tools and Preferences
-
-- Create files directly when requested.
-- Follow WordPress naming conventions and directory structure.
-- Use shell tooling for code checks where appropriate.
-- Run `npm run lint:php` before finalizing code changes when possible.
-- Use available MCP servers when relevant and within boundaries.
-
-
-## Canonical References
-
-See `AGENTS/AGENTS_README.md` for the full file index and descriptions.
-
+## Claude Code Notes
+- Use plan mode for non-trivial tasks (new features, multi-file refactors, architectural decisions).
+- Prefer atomic `Edit` operations over full file rewrites — smaller diffs are easier to review.
+- Use `Glob`/`Grep` for directed searches; use the Explore agent for broader codebase discovery.
+- Run `composer lint` before finalizing code changes when dependencies are available.
+- Keep naming and structure aligned with WordPress conventions.
+- When creating commits, follow `AGENTS/GIT_WORKFLOW.md`.

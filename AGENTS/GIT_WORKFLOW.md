@@ -6,11 +6,13 @@ Use these rules only when the task includes branch/commit/PR work.
 
 - Base branch: `main`.
 - Never commit directly to `main`.
-- Use branch name format: `feature/<camelCaseName>`.
+- Branch name format: `<prefix>/<camelCaseName>`.
+- Prefixes: `feature/`, `bugfix/`, `refactor/`, `docs/`.
 - Examples:
-  - `feature/addSpinoff`
-  - `feature/manageSections`
-  - `feature/fixContactForm`
+  - `features/addSpinoff`
+  - `bugfix/fixContactForm`
+  - `refactor/centralizeRendering`
+  - `docs/updateArchitecture`
 
 ## Commits
 
@@ -27,7 +29,7 @@ Examples:
 
 ## Pre-commit checks
 
-- Run `npm run lint:php` when possible.
+- Run `composer lint` when possible.
 - Do not commit secrets, API keys, or `.env` files.
 - Do not include unrelated changes in the same commit.
 
