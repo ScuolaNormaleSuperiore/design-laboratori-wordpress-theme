@@ -2,7 +2,9 @@
 
 ChatGPT/Codex-specific entry point.
 
-## Session Start
+## Session bootstrap
+Run this section only once at session start, unless the user explicitly asks to reload AGENTS context.
+
 1. Read `AGENTS/AGENTS_README.md`.
 2. Read `AGENTS/AI_BEHAVIOR.md`.
 3. Read `AGENTS/PROJECT.md`.
@@ -10,6 +12,12 @@ ChatGPT/Codex-specific entry point.
 5. Read `AGENTS/CODING_STANDARDS.md`.
 6. Read `AGENTS/ISSUES_TODO.md`.
 7. Report exactly: `Bootstrap completed` + the full list of files read.
+
+## Reload trigger
+Re-run the full "Session bootstrap" only when the user explicitly asks, using phrases like:
+- "reload agents"
+- "re-read AGENTS"
+- "refresh AGENTS context"
 
 ## Codex Notes
 - Break large tasks into clear steps and report milestones after each.
