@@ -8,6 +8,20 @@
 *.swp
 *.vi
 *~
+*.log
+
+# htaccess
+/.htaccess
+
+# Node
+node_modules
+
+# Composer
+/vendor/
+composer.lock
+
+# Tests
+.phpunit.result.cache
 
 # OS or Editor folders
 ._*
@@ -24,11 +38,11 @@
 nbproject
 Thumbs.db
 
+
 # Custom directives
 .vscode/*
 # !.vscode/settings.json
 node_modules
-vendor
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 AGENTS/ISSUES_TODO.md
