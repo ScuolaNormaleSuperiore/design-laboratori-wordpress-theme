@@ -1,5 +1,6 @@
 <?php
-/* Template Name: Archive.
+/*
+Template Name: Archive.
  *
  * @package Design_Laboratori_Italia
  */
@@ -8,14 +9,14 @@ global $post;
 get_header();
 define( 'ARCHIVE_CELLS_PER_ROW', 3 );
 
-if ( isset( $_GET['cat'] ) ){
+if ( isset( $_GET['cat'] ) ) {
 	$selected_categories = $_GET['cat'];
 } else {
 	$selected_categories = array();
 }
 
 
-$the_query = new WP_Query(
+$the_query      = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => WP_DEFAULT_POST,
@@ -44,21 +45,21 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 				// The mani loop of the page.
 				$pindex = 0;
 				if ( $num_results ) {
-				?>
+					?>
 				<!-- Inizio ELENCO NEWS -->
 				<div class="col-12 col-lg-12">
-				<?php
+					<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
 						if ( ( $pindex % ARCHIVE_CELLS_PER_ROW ) == 0 ) {
-					?>
+							?>
 					<!-- begin row -->
 					<div class="row pt-5">
-					<?php
-					}
-					$post_id  = get_the_ID();
-					$termitem = dli_get_post_main_category( $post, 'category' );
-					?>
+							<?php
+						}
+						$post_id  = get_the_ID();
+						$termitem = dli_get_post_main_category( $post, 'category' );
+						?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">
 							<div class="card-wrapper">
@@ -67,9 +68,9 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 										<div class="category-top">
 											<?php
 											if ( $termitem['title'] ) {
-											?>
+												?>
 											<a class="category" href="#"><?php echo $termitem['title']; ?></a>
-											<?php
+												<?php
 											}
 											?>
 											<span class="data"><?php echo get_the_date( 'd/m/Y' ); ?></span>
@@ -90,23 +91,23 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 							</div>
 						</div>
 						<!--end card-->
-					<?php
-					if ( ( ( $pindex % ARCHIVE_CELLS_PER_ROW ) === ARCHIVE_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
-					?>
+						<?php
+						if ( ( ( $pindex % ARCHIVE_CELLS_PER_ROW ) === ARCHIVE_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+							?>
 					</div>
 					<!-- end row -->
-					<?php
-					}
-					$pindex++;
+							<?php
+						}
+						++$pindex;
 					}
 				} else {
 					?>
 				<div class="row pt-2">
 					<?php echo __( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
 				</div>
-				<?php
-					}
-				 ?>
+					<?php
+				}
+				?>
 
 
 				</div> 
@@ -119,7 +120,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 		<!-- RESTORE ORIGINAL Post Data -->
 		<?php
 		wp_reset_postdata();
-	?>
+		?>
 
 	<!-- PAGINAZIONE -->
 	<?php
@@ -130,7 +131,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 				'query' => $the_query,
 			)
 		);
-	?>
+		?>
 
 </main>
 
