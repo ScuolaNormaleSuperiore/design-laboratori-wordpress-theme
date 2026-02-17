@@ -36,7 +36,7 @@ define( 'DLI_SUPER_EDITOR_ROLE_NAME', 'Super Editor' );
 define( 'DLI_EDIT_CONFIG_PERMISSION', 'dli_edit_site_configuration' );
 define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 
-// Define template active sting.
+// Active-template marker strings.
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
@@ -72,8 +72,7 @@ define( 'RT_TYPE_TAXONOMY', 'tipo-risorsa-tecnica' );
 define( 'WP_DEFAULT_CATEGORY', 'category' );
 define( 'WP_DEFAULT_TAGS', 'post_tag' );
 
-// The slug is the name of the post, that is the name that appears in the url.
-// Archive pages of the site.
+// Archive page slugs.
 define( 'SLUG_ARCHIVIO_PROGETTI_IT', 'archivio-progetti' );
 define( 'SLUG_ARCHIVIO_PROGETTI_EN', 'projects-archive' );
 define( 'SLUG_BLOG_IT', 'il-blog' );
@@ -121,7 +120,7 @@ define( 'SLUG_MAPPA_SITO_EN', 'site-map' );
 define( 'SLUG_NEWSLETTER_IT', 'newsletter' );
 define( 'SLUG_NEWSLETTER_EN', 'newsletter-en' );
 
-// ARCHIVE PAGE PER POST TYPE.
+// Archive page slug by post type.
 define(
 	'DLI_PAGE_PER_CT',
 	array(
@@ -250,7 +249,7 @@ define(
 	)
 );
 
-// Post Wrapper for Carousel and Featured Contents.
+// Post wrapper used by carousel and featured content sections.
 define(
 	'DLI_POST_WRAPPER',
 	array(
@@ -266,8 +265,6 @@ define(
 		'image_url'     => '',
 		'image_alt'     => '',
 		'image_title'   => '',
-		// 'main_tax'      => '',
-		// 'main_tax_url'  => '',
 	)
 );
 
@@ -316,7 +313,7 @@ define(
 );
 
 
-// Stati link oggetto (eventi e news): Valori della select in ACF nel campo: link_dettaglio .
+// Item link modes for events/news (ACF select field: link_dettaglio).
 define(
 	'DLI_ITEM_LINK',
 	array(
@@ -326,84 +323,69 @@ define(
 	),
 );
 
-// if ( function_exists( 'dli_define_sections_constants' ) ) {
-// 	function dli_define_sections_constants() {
-		// Sezioni attivabili nella della Home Page.
-		define(
-			'DLI_HP_SECTIONS',
-			array(
-					'main_hero' =>
-						array(
-							'id'       => 'main_hero',
-							//'name'     => __( 'Hero principale', 'design_laboratori_italia' ),
-							'name'     => 'Hero principale',
-							'template' => 'template-parts/home/main-hero',
-						),
-					'site_description' =>
-						array(
-							'id'       => 'site_description',
-							//'name'     => __( 'Descrizione del sito', 'design_laboratori_italia' ),
-							'name'     => 'Descrizione del sito',
-							'template' => 'template-parts/home/site-presentation',
-						),
-					'main_carousel' =>
-						array(
-							'id'       => 'main_carousel',
-							//'name'     => __( 'Carousel principale', 'design_laboratori_italia' ),
-							'name'     => 'Carousel principale',
-							'template' => 'template-parts/home/carousel',
-						),
-					'featured_contents' =>
-						array(
-							'id'       => 'featured_contents',
-							//'name'     => __( 'Contenuti in evidenza', 'design_laboratori_italia' ),
-							'name'     => 'Contenuti in evidenza',
-							'template' => 'template-parts/home/featured-contents',
-						),
-					'events_section' =>
-						array(
-							'id'       => 'events_section',
-							//'name'     => __( 'Eventi', 'design_laboratori_italia' ),
-							'name'     => 'Eventi',
-							'template' => 'template-parts/home/hp-list-event',
-						),
-					'news_section' =>
-						array(
-							'id'       => 'news_section',
-							//'name'     => __( 'Notizie', 'design_laboratori_italia' ),
-							'name'     => 'Notizie',
-							'template' => 'template-parts/home/hp-list-news',
-						),
-					'publications_section' =>
-						array(
-							'id'       => 'publications_section',
-							//'name'     => __( 'Pubblicazioni', 'design_laboratori_italia' ),
-							'name'     => 'Pubblicazioni',
-							'template' => 'template-parts/home/hp-list-publication',
-						),
-					'articles_section' =>
-						array(
-							'id'       => 'articles_section',
-							//'name'     => __( 'Articoli', 'design_laboratori_italia' ),
-							'name'     => 'Articoli',
-							'template' => 'template-parts/home/hp-list-article',
-						),
-					'banners_section' =>
-						array(
-							'id'       => 'banners_section',
-							//'name'     => __( 'Banner', 'design_laboratori_italia' ),
-							'name'     => 'Banner',
-							'template' => 'template-parts/home/hp-banners-section',
-						),
-					'sponsors_section' =>
-						array(
-							'id'       => 'sponsors_section',
-							//'name'     => __( 'Sponsor', 'design_laboratori_italia' ),
-							'name'     => 'Sponsor',
-							'template' => 'template-parts/home/hp-sponsor-section',
-						),
-			)
-		);
-// 	}
-// 	add_action( 'after_setup_theme', 'dli_define_sections_constants' );
-// }
+// Home page sections that can be enabled/ordered.
+define(
+	'DLI_HP_SECTIONS',
+	array(
+			'main_hero' =>
+				array(
+					'id'       => 'main_hero',
+					'name'     => 'Hero principale',
+					'template' => 'template-parts/home/main-hero',
+				),
+			'site_description' =>
+				array(
+					'id'       => 'site_description',
+					'name'     => 'Descrizione del sito',
+					'template' => 'template-parts/home/site-presentation',
+				),
+			'main_carousel' =>
+				array(
+					'id'       => 'main_carousel',
+					'name'     => 'Carousel principale',
+					'template' => 'template-parts/home/carousel',
+				),
+			'featured_contents' =>
+				array(
+					'id'       => 'featured_contents',
+					'name'     => 'Contenuti in evidenza',
+					'template' => 'template-parts/home/featured-contents',
+				),
+			'events_section' =>
+				array(
+					'id'       => 'events_section',
+					'name'     => 'Eventi',
+					'template' => 'template-parts/home/hp-list-event',
+				),
+			'news_section' =>
+				array(
+					'id'       => 'news_section',
+					'name'     => 'Notizie',
+					'template' => 'template-parts/home/hp-list-news',
+				),
+			'publications_section' =>
+				array(
+					'id'       => 'publications_section',
+					'name'     => 'Pubblicazioni',
+					'template' => 'template-parts/home/hp-list-publication',
+				),
+			'articles_section' =>
+				array(
+					'id'       => 'articles_section',
+					'name'     => 'Articoli',
+					'template' => 'template-parts/home/hp-list-article',
+				),
+			'banners_section' =>
+				array(
+					'id'       => 'banners_section',
+					'name'     => 'Banner',
+					'template' => 'template-parts/home/hp-banners-section',
+				),
+			'sponsors_section' =>
+				array(
+					'id'       => 'sponsors_section',
+					'name'     => 'Sponsor',
+					'template' => 'template-parts/home/hp-sponsor-section',
+				),
+	)
+);
