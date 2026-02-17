@@ -39,10 +39,12 @@ nbproject
 Thumbs.db
 
 
-# Custom directives
+# VSCode
 .vscode/*
-# !.vscode/settings.json
-node_modules
+!.vscode/settings.json
+!.vscode/launch.json
+
+# Custom directives
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 AGENTS/ISSUES_TODO.md
