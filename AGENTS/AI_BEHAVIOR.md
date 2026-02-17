@@ -19,6 +19,7 @@ Operational rules for AI assistants working on this codebase.
 - Ask clarifying questions only when ambiguity blocks implementation.
 - After meaningful progress, summarize what changed and what remains.
 - Keep quality gates active: security, accessibility, maintainability.
+- During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
 
 ## Learning Support
 

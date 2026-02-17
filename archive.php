@@ -1,31 +1,30 @@
 <?php
-/*
-Template Name: Archive.
+/**
+ * Template Name: Archive.
  *
  * @package Design_Laboratori_Italia
  */
 
-global $post;
 get_header();
-define( 'ARCHIVE_CELLS_PER_ROW', 3 );
+define( 'DLI_ARCHIVE_CELLS_PER_ROW', 3 );
 
-if ( isset( $_GET['cat'] ) ) {
-	$selected_categories = $_GET['cat'];
-} else {
-	$selected_categories = array();
+$dli_selected_categories = array();
+// Filter by category IDs from query string (?cat[]=1&cat[]=2).
+$dli_raw_categories = filter_input( INPUT_GET, 'cat', FILTER_DEFAULT, FILTER_FORCE_ARRAY );
+if ( is_array( $dli_raw_categories ) ) {
+	$dli_selected_categories = array_map( 'absint', wp_unslash( $dli_raw_categories ) );
 }
 
-
-$the_query      = new WP_Query(
+$dli_the_query = new WP_Query(
 	array(
 		'paged'          => get_query_var( 'paged', 1 ),
 		'post_type'      => WP_DEFAULT_POST,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
-		'category__in'   => $selected_categories,
+		'category__in'   => $dli_selected_categories,
 	)
 );
-$num_results    = $the_query->found_posts;
-$all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
+
+$dli_num_results = $dli_the_query->found_posts;
 ?>
 
 <main id="main-container" class="main-container bluelectric" role="main">
@@ -37,104 +36,101 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 	<?php get_template_part( 'template-parts/hero/archive' ); ?>
 
 	<!-- SEZIONE ARTICOLI -->
-	<section id="news" class="p-4">   
-		<div class="container my-4"> 
+	<section id="news" class="p-4">
+		<div class="container my-4">
 			<div class="row pt-0">
 
 				<?php
-				// The mani loop of the page.
-				$pindex = 0;
-				if ( $num_results ) {
+				// Main loop of the page.
+				$dli_pindex = 0;
+				if ( $dli_num_results ) {
 					?>
 				<!-- Inizio ELENCO NEWS -->
 				<div class="col-12 col-lg-12">
 					<?php
-					while ( $the_query->have_posts() ) {
-						$the_query->the_post();
-						if ( ( $pindex % ARCHIVE_CELLS_PER_ROW ) == 0 ) {
+					while ( $dli_the_query->have_posts() ) {
+						$dli_the_query->the_post();
+						if ( 0 === ( $dli_pindex % DLI_ARCHIVE_CELLS_PER_ROW ) ) {
 							?>
 					<!-- begin row -->
 					<div class="row pt-5">
 							<?php
 						}
-						$post_id  = get_the_ID();
-						$termitem = dli_get_post_main_category( $post, 'category' );
+
+						$dli_termitem = dli_get_post_main_category( get_post(), 'category' );
 						?>
-						<!-- start card-->
+						<!-- start card -->
 						<div class="col-12 col-lg-4">
 							<div class="card-wrapper">
 								<div class="card card-bg">
 									<div class="card-body">
 										<div class="category-top">
 											<?php
-											if ( $termitem['title'] ) {
+											if ( ! empty( $dli_termitem['title'] ) ) {
 												?>
-											<a class="category" href="#"><?php echo $termitem['title']; ?></a>
+											<a class="category" href="#"><?php echo esc_html( $dli_termitem['title'] ); ?></a>
 												<?php
 											}
 											?>
-											<span class="data"><?php echo get_the_date( 'd/m/Y' ); ?></span>
+											<span class="data"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></span>
 										</div>
-										<h3 class="card-title h4"><?php echo get_the_title(); ?></h3>
+										<h3 class="card-title h4"><?php echo esc_html( get_the_title() ); ?></h3>
 										<p class="card-text">
-											<?php echo wp_trim_words( get_the_content(), DLI_ACF_SHORT_DESC_LENGTH ); ?>
+											<?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_content() ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
-										<a class="read-more" href="<?php echo get_permalink(); ?>">
-										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon" role="img" aria-labelledby="Arrow right">
-											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
-										</svg>
+										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
+											<span class="text"><?php echo esc_html__( 'Leggi di piu', 'design_laboratori_italia' ); ?></span>
+											<svg class="icon" role="img" aria-labelledby="Arrow right">
+												<title><?php echo esc_html__( 'Leggi di piu', 'design_laboratori_italia' ); ?></title>
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
+											</svg>
 										</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!--end card-->
+						<!-- end card -->
 						<?php
-						if ( ( ( $pindex % ARCHIVE_CELLS_PER_ROW ) === ARCHIVE_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+						if ( ( ( $dli_pindex % DLI_ARCHIVE_CELLS_PER_ROW ) === ( DLI_ARCHIVE_CELLS_PER_ROW - 1 ) ) || ( $dli_the_query->current_post + 1 === $dli_the_query->post_count ) ) {
 							?>
 					</div>
 					<!-- end row -->
 							<?php
 						}
-						++$pindex;
+
+						++$dli_pindex;
 					}
+					?>
+				</div>
+				<!-- Fine elenco news -->
+					<?php
 				} else {
 					?>
 				<div class="row pt-2">
-					<?php echo __( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
+					<?php echo esc_html__( 'Non e stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
 				</div>
 					<?php
 				}
 				?>
 
-
-				</div> 
-				<!-- Fine elenco news-->
-
 			</div>
 		</div>
 	</section>
 
-		<!-- RESTORE ORIGINAL Post Data -->
-		<?php
-		wp_reset_postdata();
-		?>
+	<!-- RESTORE ORIGINAL Post Data -->
+	<?php wp_reset_postdata(); ?>
 
 	<!-- PAGINAZIONE -->
 	<?php
-		get_template_part(
-			'template-parts/common/paginazione',
-			null,
-			array(
-				'query' => $the_query,
-			)
-		);
-		?>
+	get_template_part(
+		'template-parts/common/paginazione',
+		null,
+		array(
+			'query' => $dli_the_query,
+		)
+	);
+	?>
 
 </main>
 
-<?php
-get_footer();
-
+<?php get_footer(); ?>
