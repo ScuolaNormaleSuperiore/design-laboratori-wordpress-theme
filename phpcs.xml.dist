@@ -36,6 +36,7 @@
 				<element value="DLI_"/>
 			</property>
 		</properties>
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound"/>
 	</rule>
 
 	<config name="minimum_supported_wp_version" value="6.0"/>
