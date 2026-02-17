@@ -153,7 +153,7 @@ class Newsletter_Manager {
 				$result['message'] = wp_remote_retrieve_response_message( $response );
 			} else {
 				$result['code']    = 400;
-				$result['message'] = __( 'Newsletter is disabled.', 'design_laboratori_italia' );
+				$result['message'] = __( 'La Newslettere è disabilitata', 'design_laboratori_italia' );
 			}
 
 		} catch ( Exception $e ) {

@@ -16,7 +16,7 @@
 		<div class="acceptoverlay acceptoverlay-primary fade show">
 			<div class="acceptoverlay-inner">
 				<div class="acceptoverlay-icon">
-					<svg class="icon icon-xl"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-video"></use></svg>
+					<svg class="icon icon-xl"><use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-video' ); ?>"></use></svg>
 				</div>
 					<p>
 					<?php echo __( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>

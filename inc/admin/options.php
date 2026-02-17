@@ -401,7 +401,7 @@ function dli_register_main_options_metabox() {
 			'type' => 'radio_inline',
 			'default' => 'true',
 			'options' => array(
-					'true'  => __( 'Yes', 'design_laboratori_italia' ),
+					'true'  => __( 'Sì', 'design_laboratori_italia' ),
 					'false' => __( 'No', 'design_laboratori_italia' ),
 			),
 		)
@@ -431,6 +431,23 @@ function dli_register_main_options_metabox() {
 	/**
 	* 4 - Registers options page "Home".
 	*/
+	// *** SEZIONE VIDEO (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_page_video',
+			'name' => __( 'Video in Home Page', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_page_video_url',
+			'name' => 'Home Page Video URL',
+			'desc' => __( 'URL del video da mostrare nella Home Page', 'design_laboratori_italia' ),
+			'type' => 'text_url',
+		)
+	);
+
 	// *** SEZIONE MAIN HERO (HOMEPAGE) ***
 	$home_options->add_field(
 		array(
@@ -440,7 +457,6 @@ function dli_register_main_options_metabox() {
 			'type' => 'title',
 		)
 	);
-
 	$home_options->add_field(
 		array(
 			'id'               => $prefix . 'home_main_hero_size',
@@ -2544,7 +2560,7 @@ function dli_register_main_options_metabox() {
 					'type'    => 'radio_inline',
 					'default' => 'true',
 					'options' => array(
-							'true'  => __( 'Yes', 'kk_writer_theme' ),
+							'true'  => __( 'Sì', 'kk_writer_theme' ),
 							'false' => __( 'No', 'kk_writer_theme' ),
 					),
 				)

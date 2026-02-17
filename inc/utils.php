@@ -797,6 +797,13 @@ if( ! function_exists( 'dli_get_newsletter_link' ) ) {
 	}
 }
 
+if( ! function_exists( 'dli_get_privacy_link' ) ) {
+	function dli_get_privacy_link( $current_language ) {
+		$result_page = ( 'it' === $current_language ) ? SLUG_PRIVACY_IT : SLUG_PRIVACY_EN;
+		return dli_homepage_url() . '/' . $result_page;
+	}
+}
+
 if( ! function_exists( 'dli_get_page_slug_by_post_type' ) ) {
 	function dli_get_page_slug_by_post_type( $post_type ) {
 		$lang = dli_current_language();

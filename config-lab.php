@@ -390,5 +390,11 @@ define(
 					'name'     => 'Sponsor',
 					'template' => 'template-parts/home/hp-sponsor-section',
 				),
+		'video_section'        =>
+			array(
+				'id'       => 'video_section',
+				'name'     => 'Video',
+				'template' => 'template-parts/home/hp-video-section',
+			),
 	)
 );

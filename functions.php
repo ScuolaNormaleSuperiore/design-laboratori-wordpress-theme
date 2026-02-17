@@ -16,12 +16,12 @@ require get_template_directory() . '/config-lab.php';
 /**
  * Define the static pages of the site.
  */
-require get_template_directory() . '/config_pages.php';
+require get_template_directory() . '/config-pages.php';
 
 /**
  * Define the menu of the site.
  */
-require get_template_directory() . '/config_menu.php';
+require get_template_directory() . '/config-menu.php';
 
 
 /**
@@ -83,14 +83,14 @@ if ( ! class_exists( 'DLI_ContentsManager' ) ) {
 }
 
 
-// @TODO: Spostare nel ThemeManager tutte le configurazioni fatte nel file functions.php.
+// @TODO: Move all functions.php setup into ThemeManager.
 
-////// SETUP THE POST TYPES  USED BY THE THEME. //////
+// Setup the post types used by the theme.
 if ( ! class_exists( 'DLI_LabManager' ) ) {
 	include_once 'inc/classes/class-labmanager.php';
-	global $lab_manager;
-	$lab_manager = new DLI_LabManager();
-	$lab_manager->plugin_setup();
+	global $dli_lab_manager;
+	$dli_lab_manager = new DLI_LabManager();
+	$dli_lab_manager->plugin_setup();
 }
 
 
@@ -136,7 +136,6 @@ if ( ! function_exists( 'dli_setup' ) ) :
 				'menu-footer'       => esc_html__( 'Menu a piè di pagina di link - footer', 'design_laboratori_italia' ),
 			)
 		);
-
 	}
 endif;
 add_action( 'after_setup_theme', 'dli_setup' );
@@ -145,50 +144,69 @@ add_action( 'after_setup_theme', 'dli_setup' );
  * Enqueue scripts and styles.
  */
 function dli_scripts() {
+	$theme_version = wp_get_theme()->get( 'Version' );
 
-	// Importazione dei file CSS.
-	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri() ); // File style.css vuoto.
-	wp_enqueue_style( 'dli-font', get_template_directory_uri() . '/assets/css/fonts.css' );
+	// Load CSS files.
+	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri(), array(), $theme_version ); // Empty style.css file.
+	wp_enqueue_style( 'dli-font', get_template_directory_uri() . '/assets/css/fonts.css', array(), $theme_version );
 
 	if ( 'custom' === dli_get_option( 'choose_style', 'setup' ) ) {
-		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia-custom.min.css' );
-		wp_enqueue_style( 'dli-custom-css', get_template_directory_uri() . '/assets/css/custom-colors.css' );
+		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia-custom.min.css', array(), $theme_version );
+		wp_enqueue_style( 'dli-custom-css', get_template_directory_uri() . '/assets/css/custom-colors.css', array(), $theme_version );
 	} else {
-		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css' );
+		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css', array(), $theme_version );
 	}
-	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css' );
+	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version );
 
-	// Importazione dei file JAVASCRIPT.
-	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js' );
-	wp_enqueue_script( 'dli-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js' );
-	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js', array(), false, true);
+	// Load JavaScript files.
+	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, false );
+	wp_enqueue_script( 'dli-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js', array(), $theme_version, false );
+	wp_enqueue_script( 'dli-boostrap-italia-js', get_template_directory_uri() . '/assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js', array(), $theme_version, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
 }
 
 add_action( 'wp_enqueue_scripts', 'dli_scripts' );
 
-function add_menu_link_class( $atts, $item, $args ) {
+/**
+ * Add CSS classes to menu links when provided by menu args.
+ *
+ * @param array    $atts Link attributes.
+ * @param \WP_Post $item Menu item.
+ * @param object   $args Menu arguments.
+ * @return array
+ */
+function dli_add_menu_link_class( $atts, $item, $args ) {
 	if ( property_exists( $args, 'link_class' ) ) {
 		$atts['class'] = $args->link_class;
 	}
 	return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
+add_filter( 'nav_menu_link_attributes', 'dli_add_menu_link_class', 1, 3 );
 
-function enable_svg_upload( $upload_mimes ) {
+/**
+ * Allow SVG upload MIME type.
+ *
+ * @param array $upload_mimes Allowed upload MIME types.
+ * @return array
+ */
+function dli_enable_svg_upload( $upload_mimes ) {
 	$upload_mimes['svg'] = 'image/svg+xml';
 	return $upload_mimes;
 }
-add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
+add_filter( 'upload_mimes', 'dli_enable_svg_upload', 10, 1 );
 
-function load_pagination_script(){
-	if (is_page_template() || is_singular()) {
-	?>
+/**
+ * Print pagination dropdown inline script in footer when needed.
+ *
+ * @return void
+ */
+function dli_load_pagination_script() {
+	if ( is_page_template() || is_singular() ) {
+		?>
 		<script>
 			if (document.querySelector('.dropdown-menu.dli-pagination-dropdown')) {
 
@@ -233,7 +251,7 @@ function load_pagination_script(){
 				}
 			}
 		</script>
-	<?php
+		<?php
 	}
 }
-add_action('wp_footer', 'load_pagination_script');
+add_action( 'wp_footer', 'dli_load_pagination_script' );
