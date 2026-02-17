@@ -21,13 +21,13 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 ## Main Files
 
 - `functions.php`: theme bootstrap and runtime wiring entrypoint.
-  - Loads configuration files: `config-lab.php`, `config_pages.php`, `config_menu.php`.
+  - Loads configuration files: `config-lab.php`, `config-pages.php`, `config-menu.php`.
   - Loads wrappers/utilities/modules: `inc/wrappers_polylang.php`, `inc/wrappers_acf.php`, `inc/utils.php`, `inc/actions.php`, `inc/activation.php`.
   - Loads dependencies/admin tooling: `inc/theme-dependencies.php`, `inc/cmb2.php`, `inc/admin/options.php`.
   - Loads and instantiates runtime managers: `inc/classes/class-contents-manager.php`, `inc/classes/class-labmanager.php` (`DLI_LabManager::plugin_setup()`).
 - `config-lab.php`: theme constants.
-- `config_menu.php`: default menu definitions.
-- `config_pages.php`: default page definitions.
+- `config-menu.php`: default menu definitions.
+- `config-pages.php`: default page definitions.
 - `single-*.php`: detail templates for content types.
 - `page.php`: standard page template.
 - `phpcs.xml.dist`: PHP CodeSniffer rules.

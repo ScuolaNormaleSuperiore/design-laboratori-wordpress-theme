@@ -23,7 +23,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Security: Varie correzioni suggerite dalla AI.
 - Aggiunta cartella AGENTS con i file che danno indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.3.
-
+- Traduzione etichette.
 
 
 ## [REL-1.7.3] - 2025-11-19

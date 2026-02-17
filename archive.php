@@ -107,7 +107,7 @@ $dli_num_results = $dli_the_query->found_posts;
 				} else {
 					?>
 				<div class="row pt-2">
-					<?php echo esc_html__( 'Non e stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
+					<?php echo esc_html__( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
 				</div>
 					<?php
 				}
