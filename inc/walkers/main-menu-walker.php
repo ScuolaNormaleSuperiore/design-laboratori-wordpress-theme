@@ -14,72 +14,112 @@
  *
  * @see Walker
  */
-
-
 class Main_Menu_Walker extends Walker_Nav_Menu {
+	/**
+	 * In-request cache for menu trees, keyed by menu term ID.
+	 *
+	 * @var array<int, array>
+	 */
+	protected $dli_menu_tree_cache = array();
 
-	function start_el( &$output, $item, $depth=0, $args=[], $id=0 ) {
-		// set active tab
-		// $group = $args->current_group;
+	/**
+	 * Get the menu tree for the current walker args, cached per request.
+	 *
+	 * @param object $args Walker arguments.
+	 * @return array
+	 */
+	protected function dli_get_menu_tree( $args ) {
+		if ( ! isset( $args->menu ) || ! isset( $args->menu->term_id ) ) {
+			return array();
+		}
+
+		$menu_id = intval( $args->menu->term_id );
+		if ( isset( $this->dli_menu_tree_cache[ $menu_id ] ) ) {
+			return $this->dli_menu_tree_cache[ $menu_id ];
+		}
+
+		$menu_items = wp_get_nav_menu_items( $menu_id, array( 'order' => 'DESC' ) );
+		$menu_tree  = $menu_items ? dli_menu_tree_by_items( $menu_items ) : array();
+
+		$this->dli_menu_tree_cache[ $menu_id ] = $menu_tree;
+		return $menu_tree;
+	}
+
+	/**
+	 * Start the element output.
+	 *
+	 * @param string $output Output HTML.
+	 * @param object $item   Menu item.
+	 * @param int    $depth  Depth level.
+	 * @param array  $args   Walker args.
+	 * @param int    $id     Item ID.
+	 * @return void
+	 */
+	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		// Set active tab.
 		$active_class = '';
-		if ( $item->url == get_permalink( ) ) {
+		if ( get_permalink() === $item->url ) {
 			$active_class = 'active';
 		}
 
-		// set data-element for crawler
+		// Set data-element for crawler.
 		$data_element = '';
-		if ( $item->title == 'Persone' ) $data_element .= 'people'; 
-		if ( $item->title == 'Progetti' ) $data_element .= 'projects'; 
-		if ( $item->title == 'Attività di ricerca' ) $data_element .= 'research'; 
-		if ( $item->title == 'Pubblicazioni' ) $data_element .= 'publications'; 
- 
-		if ( $item->url && $item->url != '#' ) {
-			if ( $args->walker->has_children && $depth === 0 && $item->menu_item_parent === '0' ) {
-				$output .= '<li class="nav-item dropdown">';
-				$output .= '<a class="nav-link ' .$active_class. ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
+		if ( 'Persone' === $item->title ) {
+			$data_element .= 'people';
+		}
+		if ( 'Progetti' === $item->title ) {
+			$data_element .= 'projects';
+		}
+		if ( 'Attività di ricerca' === $item->title ) {
+			$data_element .= 'research';
+		}
+		if ( 'Pubblicazioni' === $item->title ) {
+			$data_element .= 'publications';
+		}
+
+		if ( $item->url && '#' !== $item->url ) {
+			if ( true === $args->walker->has_children && 0 === $depth && '0' === $item->menu_item_parent ) {
+				$output   .= '<li class="nav-item dropdown">';
+				$output   .= '<a class="nav-link ' . $active_class . ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 				<span>';
-				$output .= esc_attr( $item->title );
-				$output .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
+				$output   .= esc_attr( $item->title );
+				$output   .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
 					<title>Expand</title>
 					<use href="';
-				$output .= get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand';
-				$output .= '"></use></svg></a>';
-				$output .= '<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
+				$output   .= get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand';
+				$output   .= '"></use></svg></a>';
+				$output   .= '<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<li><a class="dropdown-item list-item" href="';
-				$output .= esc_attr( $item->url );
-				$output .= '"><span>';
-				$output .= esc_attr( $item->title );
-				$output .= '</span></a></li>
+				$output   .= esc_attr( $item->url );
+				$output   .= '"><span>';
+				$output   .= esc_attr( $item->title );
+				$output   .= '</span></a></li>
 								<li><span class="divider"></span></li>';
-				//show sub pages
-				if ( $args->menu ) {
-					$menuitems  = $args->menu ? wp_get_nav_menu_items( $args->menu->term_id, array( 'order' => 'DESC' ) ) : array();
-					$menuitems  = $menuitems  ? dli_menu_tree_by_items( $menuitems ) : array();
-				}
-				foreach ( $menuitems[$item->ID]['children'] as $subitem ) {
+				$menu_tree = $this->dli_get_menu_tree( $args );
+				$children  = isset( $menu_tree[ $item->ID ]['children'] ) ? $menu_tree[ $item->ID ]['children'] : array();
+				foreach ( $children as $subitem ) {
 					$output .= '<li><a class="dropdown-item list-item" href="';
 					$output .= esc_attr( $subitem->url );
 					$output .= '"><span>';
 					$output .= esc_attr( $subitem->title );
 					$output .= '</span></a></li>';
-				} // foreach
+				} // End foreach.
 				$output .= '</ul></div></div>';
-			}
-			else if ( !$args->walker->has_children && $item->menu_item_parent === '0' ) {
+			} elseif ( false === $args->walker->has_children && '0' === $item->menu_item_parent ) {
 				$output .= "<li class='nav-item'>";
-				$output .= '<a class="nav-link '.$active_class.'" href="' . $item->url . '" data-element="'.$data_element.'">';
+				$output .= '<a class="nav-link ' . $active_class . '" href="' . $item->url . '" data-element="' . $data_element . '">';
 			}
 		}
- 
-		if ( !$args->walker->has_children && $item->menu_item_parent === '0' ) {
+
+		if ( false === $args->walker->has_children && '0' === $item->menu_item_parent ) {
 			$output .= '<span>' . $item->title . '</span>';
 		}
- 
-		if ( $item->url && $item->url != '#' ) {
-			if ( !$args->walker->has_children && $item->menu_item_parent === '0' ) {
-				$output .= "</a>";
+
+		if ( $item->url && '#' !== $item->url ) {
+			if ( false === $args->walker->has_children && '0' === $item->menu_item_parent ) {
+				$output .= '</a>';
 			}
 		}
 	}
