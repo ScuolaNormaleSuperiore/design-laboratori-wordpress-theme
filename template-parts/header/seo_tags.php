@@ -35,7 +35,7 @@
 	<meta property="og:site_name" content="<?php echo esc_attr( $site_title ); ?>" />
 
 	<?php
-		if ( $image ) {
+		if ( ! empty( $image ) ) {
 	?>
 	<meta property="og:image" content="<?php echo esc_url( $image ); ?>"/>
 	<?php if ( $img_width > 0 ) { ?>
@@ -50,7 +50,7 @@
 	?>
 
 	<!-- TWITTER CARD  -->
-	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:card" content="<?php echo ! empty( $image ) ? 'summary_large_image' : 'summary'; ?>" />
 	<meta name="twitter:title" content="<?php echo esc_attr( $title ); ?>">
 	<meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>">
 	<?php if ( ! empty( $image ) ) { ?>
