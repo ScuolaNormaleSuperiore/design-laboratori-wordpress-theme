@@ -32,6 +32,20 @@ Always ignore these folders for review/refactoring/fixes:
 - `vendor/`
 - `node_modules/`
 
+## Repository Scope Boundaries
+
+- Modify files only inside this theme repository: `wp-content/themes/design-laboratori-wordpress-theme/`.
+- Never modify files outside this repository (for example user/system files, editor extension files, or any path under `.vscode/` not owned by this repo).
+- Never modify external WordPress components such as:
+  - other themes under `wp-content/themes/`
+  - plugins under `wp-content/plugins/`
+  - WordPress core files under `wp-admin/`, `wp-includes/`, or root bootstrap files
+- Treat third-party/library directories as read-only unless the user explicitly asks for a direct library patch:
+  - `vendor/`
+  - `node_modules/`
+  - `assets/bootstrap-italia/`
+- Before staging/commit, verify with `git status --short` that all changed files are inside the allowed repository scope.
+
 ## Issue Management
 
 ### When to add an issue
