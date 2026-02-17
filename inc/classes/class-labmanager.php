@@ -119,8 +119,8 @@ class DLI_LabManager {
 		// Setup image sizes.
 		add_action( 'after_setup_theme', array( $this, 'setup_image_sizes' ) );
 
-		// Setup permalink structure.
-		add_action( 'init', array( $this, 'configure_permalink' ) );
+		// Setup permalink structure only on theme activation/switch.
+		add_action( 'after_switch_theme', array( $this, 'configure_permalink' ) );
 
 		// Setup REST API.
 		add_filter( 'rest_authentication_errors', array( $this, 'setup_rest_api' ) );
