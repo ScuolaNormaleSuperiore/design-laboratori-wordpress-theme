@@ -17,13 +17,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [REL-1.7.4] - 2026-02-15
+## Aggiunto
+- Aggiunta sezione Video attivabile in Home Page.
 ## Corretto
-- Bug-fixing: Corretto import Indico
+- Bug-fixing: Corretto import Indico.
+- Aggiunta cartella AGENTS con i file che danno indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
+## Corretto
 - Bug-fixing: Varie correzioni suggerite dalla AI.
 - Security: Varie correzioni suggerite dalla AI.
-- Aggiunta cartella AGENTS con i file che danno indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
+## Modificato
+- Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.3.
-- Traduzione etichette.
+
 
 
 ## [REL-1.7.3] - 2025-11-19
