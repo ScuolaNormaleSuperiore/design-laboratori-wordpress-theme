@@ -29,7 +29,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Security: Varie correzioni suggerite dalla AI.
 ## Modificato
 - Aggiornati i file delle traduzioni.
-- Aggiornata la versione di Bootstrap Italia alla versione 2.17.3.
+- Aggiornata la versione di Bootstrap Italia alla versione 2.17.4.
 - Iniziata la correzione dei file per aderire in modo più stretto alle WordPress coding Rules (modifiche di stile).
 - Correzione del layout delle seguenti sezioni in HP: banner, sponsor, newsletter e menu principale.
 
