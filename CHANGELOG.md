@@ -31,7 +31,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.3.
 - Iniziata la correzione dei file per aderire in modo più stretto alle WordPress coding Rules (modifiche di stile).
-
+- Correzione delle seguenti sezioni in HP: banner, sponsor e newsletter.
 
 
 ## [REL-1.7.3] - 2025-11-19

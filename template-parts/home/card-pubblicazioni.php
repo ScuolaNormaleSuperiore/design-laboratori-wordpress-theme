@@ -25,21 +25,21 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
-	<h2 class="h3 pb-2"><?php echo __( $box_label, 'design_laboratori_italia' ); ?></h2>
+	<h2 class="h3 pb-2"><?php echo esc_html( $box_label ); ?></h2>
 
 	<?php
-		foreach( $query->posts as $carditem ) {
+		foreach ( $query->posts as $carditem ) {
 			$postitem = dli_get_post_wrapper( $carditem );
-	?>
+		?>
 	<div class="card card-teaser rounded shadow">
 		<div class="card-body">
-			<h3 class="card-title h5"><?php echo esc_attr( $postitem['title'] ); ?></h3>
-			<p class="card-text"><?php echo esc_attr( $postitem['description'] ); ?></p>
+			<h3 class="card-title h5"><?php echo esc_html( $postitem['title'] ); ?></h3>
+			<p class="card-text"><?php echo esc_html( $postitem['description'] ); ?></p>
 		</div>
 	</div>
 	<?php
-			// Restore original post data. 
-			wp_reset_postdata();
 		}
+		// Restore original post data.
+		wp_reset_postdata();
 	?>
 </div>

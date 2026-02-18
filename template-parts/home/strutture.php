@@ -39,7 +39,7 @@ global $struttura;
 		<div class="row variable-gutters">
 			<div class="col-md-6">
 				<div class="big-quote big-quote-secondary">
-					<h3><?php echo $descrizione_strutture; ?></h3>
+					<h3><?php echo esc_html( $descrizione_strutture ); ?></h3>
 				</div><!-- /big-quote -->
 			</div><!-- /col-md-6 -->
 			<div class="col-md-5 offset-md-1 cards-wrapper-center">
@@ -55,7 +55,7 @@ global $struttura;
 		</div><!-- /row -->
         <div class="row variable-gutters my-5">
             <div class="col d-flex justify-content-center">
-                <a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo get_post_type_archive_link("struttura"); ?>"><?php _e("Tutta l’organizzazione", 'design_laboratori_italia'); ?></a>
+                <a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo esc_url( get_post_type_archive_link( 'struttura' ) ); ?>"><?php esc_html_e( "Tutta l’organizzazione", 'design_laboratori_italia' ); ?></a>
             </div><!-- /col-lg-4 -->
         </div><!-- /row -->
 	</div><!-- /container -->

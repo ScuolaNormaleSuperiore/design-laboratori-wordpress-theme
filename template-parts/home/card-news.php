@@ -25,7 +25,7 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
-	<h2 class="h3 pb-2"><?php echo __( $box_label, 'design_laboratori_italia' ); ?></h2>
+	<h2 class="h3 pb-2"><?php echo esc_html( $box_label ); ?></h2>
 	<div class="card-wrapper">
 		<div class="card card-bg">
 		<?php
@@ -37,12 +37,12 @@ $num_items = $query->post_count;
 				<div class="category-top">
 					<a class="category" 
 						href="<?php echo esc_url( $postitem['category_link'] ); ?>">
-						<?php echo esc_attr( $postitem['category'] ); ?>
+						<?php echo esc_html( $postitem['category'] ); ?>
 					</a>
-					<span class="data"><?php echo $postitem['date'] ?></span>
+					<span class="data"><?php echo esc_html( $postitem['date'] ); ?></span>
 				</div>
-				<h3 class="card-title h4"><?php echo esc_attr( $postitem['title'] ); ?></h3>
-				<p class="card-text"><?php echo wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ); ?></p>
+				<h3 class="card-title h4"><?php echo esc_html( $postitem['title'] ); ?></h3>
+				<p class="card-text"><?php echo esc_html( wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 				<a class="read-more" href="<?php echo esc_url( $postitem['link'] ); ?>">
 					<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 					<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">

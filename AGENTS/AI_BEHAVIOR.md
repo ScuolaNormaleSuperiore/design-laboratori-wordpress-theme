@@ -21,6 +21,21 @@ Operational rules for AI assistants working on this codebase.
 - Keep quality gates active: security, accessibility, maintainability.
 - During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
 
+## Trigger Commands
+
+When the user asks: `Fai un controllo completo sul file X` or `Fai un controllo completo sulla cartella X` (or equivalent wording), interpret it as a mandatory full review workflow including:
+- bug and security analysis;
+- style checks;
+- compliance checks against `AGENTS/CODING_STANDARDS.md`;
+- HTML correctness checks on touched templates/markup;
+- lint execution for the target scope and code fixes for lint-reported issues when safe.
+- While running this workflow, provide live progress updates that explicitly state which check is being executed (for example: bug check, security check, style check, HTML check, lint/check-fix step).
+
+Output format for this workflow:
+- findings first, ordered by severity, with file/line references;
+- then assumptions/open questions;
+- then an optional short change summary.
+
 ## Learning Support
 
 When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.

@@ -1,4 +1,3 @@
-
 <?php
 $section_enabled = $args['enabled'] ?? false;
 $show_title      = $args['show_title'] ?? false;
@@ -8,7 +7,7 @@ if ( 'true' === $section_enabled ) {
 	$hero_class    = $hero_size_big ? '' : 'it-hero-small-size';
 	$image_url     = dli_get_option( 'home_main_hero_image', 'homepage' );
 	$image_id      = attachment_url_to_postid( $image_url );
-	$image_alt     = get_post_meta( $image_id, '_wp_attachment_image_alt', TRUE );
+	$image_alt     = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 	$image_title   = get_the_title( $image_id );
 	$hero_title    = dli_get_configuration_field_by_lang( 'home_main_hero_title', 'homepage' );
 	$hero_text     = dli_get_configuration_field_by_lang( 'home_main_hero_text', 'homepage' );
@@ -50,6 +49,6 @@ if ( 'true' === $section_enabled ) {
 			</div>
 		</div>
 	</section>
-<?php 
+<?php
 }
 ?>

@@ -78,7 +78,7 @@ $dli_num_results = $dli_query->found_posts;
 		<div class="container p-5">
 			<div class="row">
 				<div class="col-12 col-lg-3 border-end pb-3">
-					<form action="<?php echo esc_url( get_permalink() ); ?>" id="techresorcesform" method="GET">
+					<form action="<?php echo esc_url( get_permalink() ); ?>" id="techresourcesform" method="GET">
 						<!-- FILTRO PER ANNO -->
 						<?php if ( is_array( $dli_all_years ) && count( $dli_all_years ) > 0 ) { ?>
 							<div class="row pt-3">

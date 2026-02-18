@@ -11,7 +11,7 @@ $query = new WP_Query(
 		'post_type'      => array( $box_post_type ),
 		'orderby'        => $order_field,
 		'order'          => 'DESC',
-		'posts_per_page' => -1,
+		'posts_per_page' => $box_items,
 		'meta_query'     => array(
 			array(
 				'key'     => 'promuovi_in_home',
@@ -25,7 +25,7 @@ $num_items = $query->post_count;
 ?>
 
 <div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
-	<h2 class="h3 pb-2"><?php echo __( $box_label, 'design_laboratori_italia' ); ?></h2>
+	<h2 class="h3 pb-2"><?php echo esc_html( $box_label ); ?></h2>
 	<div class="card-wrapper">
 		<div class="card card-img no-after card-bg">
 		<?php
@@ -49,26 +49,26 @@ $num_items = $query->post_count;
 					</figure>
 					<?php if ( $item_date ) { ?>
 					<div class="card-calendar d-flex flex-column justify-content-center">
-						<span class="card-date"><?php echo $item_day; ?></span>
-						<span class="card-day"><?php echo __( $item_month, 'design_laboratori_italia' ); ?>
-							&nbsp;<?php echo $item_year; ?>
+						<span class="card-date"><?php echo esc_html( $item_day ); ?></span>
+						<span class="card-day"><?php echo esc_html( $item_month ); ?>
+							&nbsp;<?php echo esc_html( $item_year ); ?>
 						</span>
 					</div>
 					<?php } ?>
 				</div>
 			</div>
 			<div class="card-body p-4">
-			<h3 class="card-title h4"><?php echo esc_attr( $postitem['title'] ); ?></h3>
+			<h3 class="card-title h4"><?php echo esc_html( $postitem['title'] ); ?></h3>
 			<p class="card-text"><?php echo esc_html( wp_trim_words( $postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 			<?php if( $orario_inizio ) {
 				?>
 				<p class="card-text">
-					<?php echo $orario_inizio; ?>
+					<?php echo esc_html( $orario_inizio ); ?>
 				</p>
 				<?php
 			}
 				?>
-			<a class="read-more" href="<?php echo $postitem['link']; ?>">
+			<a class="read-more" href="<?php echo esc_url( $postitem['link'] ); ?>">
 				<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 				<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 					<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
