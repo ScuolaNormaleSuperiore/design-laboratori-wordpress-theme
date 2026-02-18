@@ -12,21 +12,6 @@ if ( 'true' === $section_enabled ) {
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
 			'posts_per_page' => 6,
-			// 'meta_query' => array(
-			// 	'relation' => 'OR',
-			// 	array(
-			// 			'key' => 'data_inizio',
-			// 			'value' => date('Y-m-d'),
-			// 			'compare' => '>=',
-			// 			'type' => 'DATE'
-			// 	),
-			// 	array(
-			// 			'key' => 'data_fine',
-			// 			'value' => date('Y-m-d'),
-			// 			'compare' => '>=',
-			// 			'type' => 'DATE'
-			// 	)
-			// ),
 			'meta_query' => array(
 				array(
 					'key'     => 'promuovi_in_home',

@@ -29,5 +29,11 @@
   "cSpell.words": [
     "termitem"
   ],
-  "cSpell.enabled": false
+  "cSpell.enabled": false,
+  "terminal.integrated.env.windows": {
+    "TEMP": "${workspaceFolder}\\.codex-tmp",
+    "TMP": "${workspaceFolder}\\.codex-tmp",
+    "COMPOSER_HOME": "${workspaceFolder}\\.composer-home",
+    "COMPOSER_CACHE_DIR": "${workspaceFolder}\\.composer-cache"
+  }
 }

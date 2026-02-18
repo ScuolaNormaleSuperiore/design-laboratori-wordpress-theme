@@ -1,23 +1,66 @@
 <?php
-/* Template Name: Le pubblicazioni
+/**
+ * Template Name: Le pubblicazioni
  *
  * @package Design_Laboratori_Italia
  */
 
-global $post;
+global $post, $wpdb;
 get_header();
 
-define( 'PREFIX_CAT_FILTER', 'checkBoxCat' );
-$anni_pubblicazioni      = $wpdb->get_results( "SELECT DISTINCT meta_value FROM $wpdb->postmeta pm, $wpdb->posts p WHERE meta_key  = 'anno' and pm.post_id=p.ID  and p.post_type='pubblicazione' ORDER BY meta_value DESC " );
-$anno_filter_array       = null;
-$tipi_pubbl_filter_array = null;
-$anno_select             = null;
-$per_page                = strval( DLI_PER_PAGE );
-$per_page_values         = DLI_PER_PAGE_VALUES;
+$per_page        = (string) DLI_PER_PAGE;
+$per_page_values = (array) DLI_PER_PAGE_VALUES;
+$allowed_pages   = array_map( 'strval', $per_page_values );
+$anno_select     = '';
 
-if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
-	$per_page = sanitize_text_field( $_GET['per_page'] );
+if ( isset( $_GET['per_page'] ) ) {
+	$raw_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );
+	if ( in_array( $raw_per_page, $allowed_pages, true ) ) {
+		$per_page = $raw_per_page;
+	}
 }
+
+if ( isset( $_GET['annoSelect'] ) ) {
+	$anno_select = (string) absint( wp_unslash( $_GET['annoSelect'] ) );
+}
+
+$tipi_pubblicazione = get_terms(
+	array(
+		'taxonomy'   => PUBLICATION_TYPE_TAXONOMY,
+		'hide_empty' => false,
+	)
+);
+
+$tipi_pubblicazione_params = array();
+if ( isset( $_GET['tipologia'] ) ) {
+	$tipologia_raw = wp_unslash( $_GET['tipologia'] );
+	if ( is_array( $tipologia_raw ) ) {
+		$tipi_pubblicazione_params = array_map( 'sanitize_key', $tipologia_raw );
+	}
+}
+
+if ( is_array( $tipi_pubblicazione ) && ! is_wp_error( $tipi_pubblicazione ) ) {
+	$available_type_slugs      = wp_list_pluck( $tipi_pubblicazione, 'slug' );
+	$tipi_pubblicazione_params = array_values(
+		array_intersect( $tipi_pubblicazione_params, $available_type_slugs )
+	);
+}
+
+$anni_pubblicazioni = $wpdb->get_col(
+	$wpdb->prepare(
+		"SELECT DISTINCT pm.meta_value
+		FROM {$wpdb->postmeta} pm
+		INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+		WHERE pm.meta_key = %s
+		AND p.post_type = %s
+		AND p.post_status = %s
+		ORDER BY pm.meta_value+0 DESC",
+		'anno',
+		PUBLICATION_POST_TYPE,
+		'publish'
+	)
+);
+
 $paged = absint( get_query_var( 'paged' ) );
 if ( 0 === $paged ) {
 	$paged = absint( get_query_var( 'page' ) );
@@ -26,104 +69,41 @@ if ( 0 === $paged ) {
 	$paged = 1;
 }
 
-if ( isset( $_GET['annoSelect'] ) && $_GET['annoSelect'] != '' ) {
-	$anno_select = $_GET['annoSelect'];
-	$anno_filter_array = 
+$query_args = array(
+	'posts_per_page' => (int) $per_page,
+	'paged'          => $paged,
+	'post_type'      => PUBLICATION_POST_TYPE,
+	'meta_key'       => 'anno',
+	'orderby'        => 'meta_value_num',
+	'order'          => 'ASC',
+);
+
+if ( '' !== $anno_select ) {
+	$query_args['meta_query'] = array(
 		array(
 			'key'     => 'anno',
-			'compare' => 'LIKE',
+			'compare' => '=',
 			'value'   => $anno_select,
-		);
+			'type'    => 'NUMERIC',
+		),
+	);
 }
 
-// Estraggo i parametri per il tipo pubblicazione.
-$tipi_pubblicazione_params = array();
-foreach ( $_GET as $parameter ) {
-	if ( str_starts_with( $parameter, PREFIX_CAT_FILTER ) ) {
-		$tipo = str_replace( PREFIX_CAT_FILTER, '', $parameter );
-		array_push( $tipi_pubblicazione_params, $tipo );
-	}
-}
-if ( count( $tipi_pubblicazione_params ) > 0 ) {
-	$tipi_pubbl_filter_array =
+if ( ! empty( $tipi_pubblicazione_params ) ) {
+	$query_args['tax_query'] = array(
 		array(
-			'taxonomy' => 'tipo-pubblicazione',
+			'taxonomy' => PUBLICATION_TYPE_TAXONOMY,
 			'field'    => 'slug',
 			'operator' => 'IN',
 			'terms'    => $tipi_pubblicazione_params,
-		);
-}
-
-if ( ! isset( $anno_filter_array ) && ! isset( $tipi_pubbl_filter_array ) ) {
-	$pubblicazioni = new WP_Query(
-		array(
-			'posts_per_page' => $per_page,
-			'paged'          => $paged,
-			'post_type'      => 'pubblicazione',
-			'orderby'        => 'anno',
-			'order'          => 'ASC',
-			'meta_query'     => array(
-				$anno_filter_array,
-			),
-			'tax_query'   => array(
-				$tipi_pubbl_filter_array,
-			),
-		)
+		),
 	);
 }
 
-if ( isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
-	$pubblicazioni = new WP_Query(
-		array(
-			'posts_per_page' => $per_page,
-			'paged'          => $paged,
-			'post_type'      => 'pubblicazione',
-			'orderby'        => 'anno',
-			'order'          => 'ASC',
-			'meta_query'     => array(
-				$anno_filter_array,
-			),
-			'tax_query'   => array(
-				$tipi_pubbl_filter_array,
-			),
-		)
-	);
-}
-
-if ( isset( $anno_filter_array ) && !isset( $tipi_pubbl_filter_array ) ) {
-	$pubblicazioni = new WP_Query(
-		array(
-			'posts_per_page' => $per_page,
-			'paged'          => $paged,
-			'post_type'      => 'pubblicazione',
-			'orderby'        => 'anno',
-			'order'          => 'ASC',
-			'meta_query'     => array(
-				$anno_filter_array,
-			),
-		)
-	);
-}
-
-if ( !isset( $anno_filter_array ) && isset( $tipi_pubbl_filter_array ) ) {
-	$pubblicazioni = new WP_Query(
-		array(
-			'posts_per_page' => $per_page,
-			'paged'          => $paged,
-			'post_type'      => 'pubblicazione',
-			'orderby'        => 'anno',
-			'order'          => 'ASC',
-			'tax_query'   => array(
-				$tipi_pubbl_filter_array,
-			)
-		)
-	);
-}
-$num_results = $pubblicazioni->found_posts;
-
+$pubblicazioni = new WP_Query( $query_args );
+$num_results   = $pubblicazioni->found_posts;
 
 ?>
-
 
 <main id="main-container" role="main">
 
@@ -135,58 +115,43 @@ $num_results = $pubblicazioni->found_posts;
 
 	<!-- ELENCO PUBBLICAZIONI -->
 	<section id="pubblicazioni">
-		<div class="container p-5"> 
-			<div class="row"> <!-- SPAZIATURA ridotta in alto solo sulla prima riga riga pt-0 le card NON uniformate in altezza -->
+		<div class="container p-5">
+			<div class="row">
 				<div class="col-12 col-lg-3 border-end pb-3">
-					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="pubblicazioniform" method="GET">
+					<form action="<?php echo esc_url( get_permalink() ); ?>" id="pubblicazioniform" method="GET">
 						<!--COLONNA FILTRI -->
 						<!-- FILTRO PER ANNO -->
 						<div class="row pt-3">
-							<h3 class="h6 text-uppercase border-bottom"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></h3>
+							<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></h3>
 							<div class="select-wrapper">
-								<label for="annoSelect" class="visually-hidden"><?php _e( 'Anno', 'design_laboratori_italia' ); ?></label>
+								<label for="annoSelect" class="visually-hidden"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></label>
 								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
-									<option <?php if (!isset( $_GET['annoSelect'] ) || $_GET['annoSelect'] == '') echo " selected "; ?> value=""><?php _e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
-									<?php
-									foreach ( $anni_pubblicazioni as $anno ) { ?>
-										<option <?php if ($anno_select == $anno->meta_value ) echo " selected "; ?> value="<?php echo esc_attr( $anno->meta_value ); ?>"><?php echo esc_html( $anno->meta_value ); ?></option>
-										<?php
-									}
-									?>
+									<option value="" <?php selected( '', $anno_select ); ?>><?php esc_html_e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
+									<?php foreach ( $anni_pubblicazioni as $anno ) { ?>
+										<option value="<?php echo esc_attr( $anno ); ?>" <?php selected( $anno_select, (string) $anno ); ?>><?php echo esc_html( $anno ); ?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
 						<?php
-						// recupero i termini della tassonomia tipo pubblicazione.
-						$tipi_pubblicazione = get_terms(
-							[
-								'taxonomy'   => 'tipo-pubblicazione',
-								'hide_empty' => false,
-							]
-						);
-						// visualizzo i filtri sul tipo doi pubblicazione solo se ne esistono almeno 1.
-						if ( count( $tipi_pubblicazione ) >= 1 ) {
-						?>
-						<!-- FILTRO PER CATEGORIA - Se esiste -->
-						<div class="row pt-5">
-							<h3 class="h6 text-uppercase border-bottom"><?php _e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
-							<div>
-								<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
-								<div class="form-check">
-									<?php
-									$checked = false;
-									if  ( isset ( $_GET[ PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ) ] ) )  {
-										$checked = true;
-									}
-									?>
-								<input id="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" name="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" value="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" <?php if($checked) {echo " checked ";}; ?> onChange="this.form.submit()">
-								<label for="<?php echo PREFIX_CAT_FILTER . esc_attr( $tipo_pubblicazione->slug ); ?>"><?php echo esc_html( $tipo_pubblicazione->name ); ?></label>
+						if ( is_array( $tipi_pubblicazione ) && ! is_wp_error( $tipi_pubblicazione ) && count( $tipi_pubblicazione ) >= 1 ) {
+							?>
+							<!-- FILTRO PER CATEGORIA -->
+							<div class="row pt-5">
+								<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
+								<div>
+									<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
+										<div class="form-check">
+											<?php
+											$checked      = in_array( $tipo_pubblicazione->slug, $tipi_pubblicazione_params, true );
+											$filter_input = 'tipologia-' . sanitize_html_class( $tipo_pubblicazione->slug );
+											?>
+											<input id="<?php echo esc_attr( $filter_input ); ?>" name="tipologia[]" value="<?php echo esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" <?php checked( true, $checked ); ?> onChange="this.form.submit()">
+											<label for="<?php echo esc_attr( $filter_input ); ?>"><?php echo esc_html( $tipo_pubblicazione->name ); ?></label>
+										</div>
+									<?php } ?>
 								</div>
-									<?php
-								}
-								?>
 							</div>
-						</div>
 							<?php
 						}
 						?>
@@ -196,62 +161,77 @@ $num_results = $pubblicazioni->found_posts;
 				<!-- PUBBLICAZIONI -->
 				<?php
 				if ( $num_results ) {
-				?>
+					?>
 					<div class="col-12 col-lg-8 pt-3">
 						<div class="row">
 							<?php
 							while ( $pubblicazioni->have_posts() ) {
 								$pubblicazioni->the_post();
-								$ID       = get_the_ID();
-								$title    = get_the_title( $ID );
-								$url      = dli_get_field( 'url' );
+								$item_id        = get_the_ID();
+								$item_title     = get_the_title( $item_id );
+								$item_url       = dli_get_field( 'url' );
+								$image_metadata = dli_get_image_metadata( get_post( $item_id ) );
+								$img_url        = ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) ? $image_metadata['image_url'] : null;
+								$item_terms     = get_the_terms( $item_id, PUBLICATION_TYPE_TAXONOMY );
 								?>
 								<!--start card-->
-								<div class="card-wrapper pt-3">
+								<div class="card-wrapper mb-4">
 									<div class="card card-teaser rounded shadow">
-										<div class="card-body">
-											<?php
-											if ( $url ) {
-												?>
-												<h3 class="card-title cardTitlecustomSpacing h5">
-													<svg class="icon" role="img" aria-labelledby="Note">
-														<title>Note</title>
-														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-													</svg>
-													<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $title ); ?></a>
-												</h3>
-												<?php
-											}
-											else {
-												?>
-												<h3 class="card-title cardTitlecustomSpacing h5">
-													<svg class="icon" role="img" aria-labelledby="Note">
-														<title>Note</title>
-														<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note'; ?>"></use>
-													</svg>
-													<?php echo esc_html( $title ); ?>
-												</h3>
+										<div class="card-body d-flex gap-3 align-items-start">
+											<?php if ( $img_url ) { ?>
+												<img src="<?php echo esc_url( $img_url ); ?>" width="150" height="150"
+													class="img-fluid flex-shrink-0"
+													style="max-width:150px; height:auto;"
+													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
+													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 											<?php } ?>
-											<p class="card-text"><?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?></p>
+											<div class="flex-grow-1">
+												<!-- Item title -->
+												<h3 class="card-title cardTitlecustomSpacing h5 mb-2">
+													<?php if ( ! empty( $item_url ) ) { ?>
+														<a href="<?php echo esc_url( $item_url ); ?>">
+															<?php echo esc_html( $item_title ); ?>
+														</a>
+													<?php } else { ?>
+														<?php echo esc_html( $item_title ); ?>
+													<?php } ?>
+												</h3>
+												<!-- Item body -->
+												<p class="card-text mb-0">
+													<?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?>
+												</p>
+												<!-- Item category -->
+												<?php if ( is_array( $item_terms ) && ! is_wp_error( $item_terms ) ) { ?>
+													<div class="it-card-taxonomy">
+														<?php foreach ( $item_terms as $term ) { ?>
+															<span class="visually-hidden">
+																<?php esc_html_e( 'Related category:', 'design_laboratori_italia' ); ?>
+															</span><?php echo esc_html( $term->name ); ?>
+															&nbsp;
+														<?php } ?>
+													</div>
+												<?php } ?>
+											</div>
+
 										</div>
 									</div>
 								</div>
 								<!--end card-->
-							<?php } 
+								<?php
+							}
 							?>
 						</div>
 					</div>
 					<?php
-						wp_reset_postdata();
-				}
-				else {
+					wp_reset_postdata();
+				} else {
 					?>
 					<div class="col-12 col-lg-8">
 						<div class="row pt-2">
-						<?php echo __( 'Non è stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
+							<?php esc_html_e( 'Non e stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
 						</div>
-				</div>
-				<?php
+					</div>
+					<?php
 				}
 				?>
 			</div>
@@ -261,15 +241,15 @@ $num_results = $pubblicazioni->found_posts;
 
 	<!-- PAGINAZIONE -->
 	<?php
-		get_template_part(
-			'template-parts/common/paginazione',
-			null,
-			array(
-				'query'           => $pubblicazioni,
-				'per_page'        => $per_page,
-				'per_page_values' => $per_page_values,
-			)
-		);
+	get_template_part(
+		'template-parts/common/paginazione',
+		null,
+		array(
+			'query'           => $pubblicazioni,
+			'per_page'        => $per_page,
+			'per_page_values' => $per_page_values,
+		)
+	);
 	?>
 
 </main>
