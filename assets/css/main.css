@@ -116,7 +116,7 @@ html {
 }
 
 
-/** Accessibilità*/
+/** Accessibilità */
 
 .it-footer a {
 	text-decoration: none;
@@ -195,7 +195,7 @@ html {
 	color: white !important;
 }
 
-/* modifiche visibilità hero e banner */
+/* modifiche visibilità  hero e banner */
 
 .it-hero-wrapper .it-hero-text-wrapper span, .it-hero-wrapper .it-hero-text-wrapper h1, .it-hero-wrapper .it-hero-text-wrapper .h1, .it-hero-wrapper .it-hero-text-wrapper h2, .it-hero-wrapper .it-hero-text-wrapper .h2, .it-hero-wrapper .it-hero-text-wrapper h3, .it-hero-wrapper .it-hero-text-wrapper .h3, .it-hero-wrapper .it-hero-text-wrapper h4, .it-hero-wrapper .it-hero-text-wrapper .h4, .it-hero-wrapper .it-hero-text-wrapper h5, .it-hero-wrapper .it-hero-text-wrapper .h5, .it-hero-wrapper .it-hero-text-wrapper h6, .it-hero-wrapper .it-hero-text-wrapper .h6, .it-hero-wrapper .it-hero-text-wrapper p {
 	text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.8);
@@ -211,6 +211,24 @@ html {
 
 .container-banner-home .it-hero-wrapper .it-hero-text-wrapper {
 	 background: rgba(0, 64, 89, 0.4) !important;
+}
+
+/* override font: usa Titillium su testi descrittivi hero e carousel home */
+.it-hero-wrapper .it-hero-text-wrapper p,
+.it-carousel-wrapper .card-text,
+.it-carousel-wrapper .card-signature {
+	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif;
+}
+
+/* override utility Bootstrap Italia: evita Roboto come prima scelta su contenuti font-serif */
+.font-serif {
+	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif !important;
+}
+
+/* override globale descrizioni card: Bootstrap Italia usa Roboto su .card-text */
+.card .card-body .card-text,
+.card .card-body .card-text a {
+	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif !important;
 }
 
 
