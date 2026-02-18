@@ -124,41 +124,42 @@ if(!function_exists("dli_multi_array_search")) {
 
 
 if( ! function_exists( 'dli_get_post_wrapper' ) ) {
-	function dli_get_post_wrapper( $result, $image_format='item-carousel' ) {
+	function dli_get_post_wrapper( $result, $image_format = 'item-carousel' ) {
 		$item = array();
-		if ( $result ){
-			switch ( $result->post_type) {
+		if ( $result ) {
+			switch ( $result->post_type )
+			{
 				case EVENT_POST_TYPE:
-					$item = dli_from_event_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_event_to_wrapped_item( $result, $image_format );
 					break;
 				case NEWS_POST_TYPE:
-					$item = dli_from_news_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_news_to_wrapped_item( $result, $image_format );
 					break;
 				case PROGETTO_POST_TYPE:
-					$item = dli_from_progetto_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_progetto_to_wrapped_item( $result, $image_format );
 					break;
 				case PUBLICATION_POST_TYPE:
-					$item = dli_from_publication_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_publication_to_wrapped_item( $result, $image_format );
 					break;
 				case PATENT_POST_TYPE:
-					$item = dli_from_patent_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_patent_to_wrapped_item( $result, $image_format );
 					break;
 				case SPINOFF_POST_TYPE:
-					$item = dli_from_spinoff_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_spinoff_to_wrapped_item( $result, $image_format );
 					break;
 				case TECHNICAL_RESOURCE_POST_TYPE:
-					$item = dli_from_technical_resource_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_technical_resource_to_wrapped_item( $result, $image_format );
 					break;
 				case WP_DEFAULT_PAGE:
-					$item = dli_from_page_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_page_to_wrapped_item( $result, $image_format );
 					break;
 				case PEOPLE_POST_TYPE:
 				case RESEARCH_ACTIVITY_POST_TYPE:
 				case WP_DEFAULT_POST:
-					$item = dli_from_post_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_post_to_wrapped_item( $result, $image_format );
 					break;
 				default:
-					$item = dli_from_post_to_wrapped_item ( $result, $image_format );
+					$item = dli_from_post_to_wrapped_item( $result, $image_format );
 					break;
 			}
 		}

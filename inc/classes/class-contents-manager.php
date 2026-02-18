@@ -457,7 +457,6 @@ class DLI_ContentsManager
 		return $item->posts;
 	}
 
-	
 	public static function get_carousel_items( ) {
 		$items   = array();
 		$results = array();
