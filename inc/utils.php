@@ -167,6 +167,51 @@ if( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_post_order_date' ) ) {
+	/**
+	 * Return publish date in project display format.
+	 *
+	 * @param WP_Post $item The source post.
+	 * @return string
+	 */
+	function dli_get_post_order_date( $item ) {
+		return get_the_date( DLI_ACF_DATE_FORMAT, $item );
+	}
+}
+
+if ( ! function_exists( 'dli_get_event_order_date' ) ) {
+	/**
+	 * Return event start date in project display format.
+	 *
+	 * @param WP_Post $item The source event.
+	 * @return string
+	 */
+	function dli_get_event_order_date( $item ) {
+		$event_date = dli_get_field( 'data_inizio', $item );
+		$event_date = is_string( $event_date ) ? trim( $event_date ) : '';
+
+		if ( empty( $event_date ) ) {
+			return dli_get_post_order_date( $item );
+		}
+
+		if ( preg_match( '/^\d{2}\/\d{2}\/\d{4}$/', $event_date ) ) {
+			return $event_date;
+		}
+
+		if ( preg_match( '/^\d{8}$/', $event_date ) ) {
+			$formatted = dli_format_date_from_format( 'Ymd', $event_date, DLI_ACF_DATE_FORMAT );
+			return $formatted ? $formatted : dli_get_post_order_date( $item );
+		}
+
+		if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $event_date ) ) {
+			$formatted = dli_format_date_from_format( 'Y-m-d', $event_date, DLI_ACF_DATE_FORMAT );
+			return $formatted ? $formatted : dli_get_post_order_date( $item );
+		}
+
+		return dli_get_post_order_date( $item );
+	}
+}
+
 if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 	function dli_get_boxes_post_types( $item ) {
 		return array(
@@ -228,6 +273,7 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => dli_get_field( 'data_inizio', $item ),
+			'order_date'    => dli_get_event_order_date( $item ),
 			'orario_inizio' => dli_get_field( 'orario_inizio', $item ),
 			'title'         => $post_title,
 			'description'   => wp_trim_words( dli_get_field( 'descrizione_breve', $item ), DLI_ACF_SHORT_DESC_LENGTH ),
@@ -259,6 +305,7 @@ if( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 				'category'      => $page_title,
 				'category_link' => $page_link,
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+				'order_date'    => dli_get_post_order_date( $item ),
 				'title'         => $post_title,
 				'description'   => wp_trim_words( dli_get_field('descrizione_breve', $item), DLI_ACF_SHORT_DESC_LENGTH ),
 				'full_content'  => get_the_content( $item ),
@@ -291,6 +338,7 @@ if( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => dli_get_field('anno', $item),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -324,6 +372,7 @@ if( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => dli_get_field('data_deposito', $item),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $summary, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -369,6 +418,7 @@ if( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => dli_get_field('anno_acquisizione', $item),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => '',
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $summary, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -414,6 +464,7 @@ if( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => get_field('anno', $item),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -444,6 +495,7 @@ if( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 			'category'      => $page_title,
 			'category_link' => $page_link,
 			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -475,6 +527,7 @@ if( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 				'category'      => $page_title,
 				'category_link' => $page_link,
 				'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+				'order_date'    => dli_get_post_order_date( $item ),
 				'orario_inizio' => null,
 				'title'         => $post_title,
 				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
@@ -513,6 +566,7 @@ if( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 			'category'      => 'Home',
 			'category_link' => get_site_url(),
 			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
+			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
 			'description'   => wp_trim_words( $description, DLI_ACF_SHORT_DESC_LENGTH ),

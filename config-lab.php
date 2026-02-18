@@ -263,6 +263,7 @@ define(
 		'category'      => '',
 		'category_link' => '',
 		'date'          => '',
+		'order_date'    => '',
 		'title'         => '',
 		'description'   => '',
 		'full_content'  => '',

@@ -457,16 +457,17 @@ class DLI_ContentsManager
 		return $item->posts;
 	}
 
-	public static function get_carousel_items( ) {
-		$items   = array();
-		$results = array();
-		$mode_auto = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage');
+	public static function get_carousel_items() {
+		$items           = array();
+		$results         = array();
+		$mode_auto       = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage' );
+		$order_date_type = dli_get_option( 'home_carousel_order', 'homepage' ) === 'post_modified' ? 'post_modified' : 'post_date';
 		if ( $mode_auto === 'true' ) {
 			$query = new WP_Query(
 				array(
 					'posts_per_page' => -1,
 					'post_type'      => DLI_CAROUSEL_POST_TYPES,
-					'orderby'        => 'post_date',
+					'orderby'        => $order_date_type,
 					'order'          => 'DESC',
 					'meta_query'     => array(
 						array(
@@ -489,10 +490,32 @@ class DLI_ContentsManager
 			$item = dli_get_post_wrapper( $result, 'item-carousel' );
 			array_push( $items, $item );
 		}
+		// Change results order if needed.
+		if ( $order_date_type === 'event_date' ) {
+			self::sort_carousel_items_by_order_date_desc( $items );
+		}
 		return $items;
 	}
 
-		public static function get_projects_by_event_id( $event_id ) {
+	private static function sort_carousel_items_by_order_date_desc( &$items ) {
+		usort(
+			$items,
+			function ( $a, $b ) {
+				$a_ts = self::get_carousel_item_order_timestamp( $a );
+				$b_ts = self::get_carousel_item_order_timestamp( $b );
+				// Descending order: most recent date first.
+				return $b_ts <=> $a_ts;
+			}
+		);
+	}
+
+	private static function get_carousel_item_order_timestamp( $item ) {
+		$date = trim( (string) ( $item['order_date'] ?? '' ) );
+		$dt   = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+		return $dt ? (int) $dt->format( 'U' ) : PHP_INT_MIN;
+	}
+
+	public static function get_projects_by_event_id( $event_id ) {
 		$query = new WP_Query(
 			array(
 				'posts_per_page' => -1,
