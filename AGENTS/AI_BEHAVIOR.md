@@ -1,7 +1,6 @@
 # AI_BEHAVIOR.md
 
 ## Purpose
-
 Operational rules for AI assistants working on this codebase.
 
 ## Canonical Sources
@@ -21,8 +20,11 @@ Operational rules for AI assistants working on this codebase.
 - Keep quality gates active: security, accessibility, maintainability.
 - During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
 
-## Trigger Commands
+## Learning Support
+When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.
+Keep explanations practical and tied to the current code.
 
+## Trigger Commands
 When the user asks: `Fai un controllo completo sul file X` or `Fai un controllo completo sulla cartella X` (or equivalent wording), interpret it as a mandatory full review workflow including:
 - bug and security analysis;
 - style checks;
@@ -36,19 +38,12 @@ Output format for this workflow:
 - then assumptions/open questions;
 - then an optional short change summary.
 
-## Learning Support
-
-When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.
-Keep explanations practical and tied to the current code.
-
 ## Excluded Directories
-
 Always ignore these folders for review/refactoring/fixes:
 - `vendor/`
 - `node_modules/`
 
 ## Repository Scope Boundaries
-
 - Modify files only inside this theme repository: `wp-content/themes/design-laboratori-wordpress-theme/`.
 - Never modify files outside this repository (for example user/system files, editor extension files, or any path under `.vscode/` not owned by this repo).
 - Never modify external WordPress components such as:
@@ -64,7 +59,6 @@ Always ignore these folders for review/refactoring/fixes:
 ## Issue Management
 
 ### When to add an issue
-
 Create or update issues in `ISSUES_TODO.md` when you find:
 - Security vulnerabilities
 - Bugs
@@ -93,21 +87,18 @@ Feature ideas not implementation-ready still go to category `Feature` with statu
 ```
 
 ### Priority levels
-
 - `Critical`: security/data-loss/major service breakage.
 - `High`: major user impact.
 - `Medium`: relevant but non-blocking.
 - `Low`: minor impact or polish.
 
 ### Resolution flow
-
 When an issue is resolved:
 1. Move it from `ISSUES_TODO.md` to `ISSUES_RESOLVED.md`.
 2. Add `Resolution date` and `Fix summary`.
 3. Add commit/PR references when available.
 
 ## Documentation Update Rules
-
 After code changes, update related docs:
 - Feature work: `PROJECT.md`, `ARCHITECTURE.md`, and issue files if tracked.
 - Bug fixes: `ISSUES_RESOLVED.md`; update other docs only if behavior/rules changed.
@@ -120,7 +111,6 @@ Before closing a task, verify:
 - Issue tracking is consistent.
 
 ## Security Review Checklist (Minimum)
-
 For every bug-fix/feature/refactor touching runtime code, verify at least:
 - Input sanitization for external data (`$_GET`, `$_POST`, REST params, options payloads, remote data).
 - Context-aware output escaping in templates and admin views (`esc_html`, `esc_attr`, `esc_url`, `wp_kses*`).
@@ -132,7 +122,6 @@ For every bug-fix/feature/refactor touching runtime code, verify at least:
 If any checklist item fails and is out of scope to fix immediately, add/update an issue in `ISSUES_TODO.md`.
 
 ## Definition of Done
-
 Before marking work complete:
 - Run `npm run lint:php` when environment/dependencies are available.
 - Re-check changed templates/components for escaping and structural validity.
@@ -160,11 +149,9 @@ Before marking work complete:
   Update `AGENTS_README.md` file map.
 
 ## Batch and Mass Updates
-
 - For a global rule update, apply changes consistently across all affected files and report the edited file list.
 - For mass updates touching many files, list impact first and request confirmation before applying.
 
 ## Git Workflow Usage
-
 Git branch/commit/PR conventions are defined in `AGENTS/GIT_WORKFLOW.md`.
 Read and apply that file only when the user asks for VCS actions.
