@@ -1,0 +1,33 @@
+{
+  "phpcs.enable": true,
+  "phpcs.executablePath": "vendor/bin/phpcs.bat",
+  "phpcs.standard": "phpcs.xml.dist",
+  "intelephense.environment.includePaths": [
+    "${workspaceFolder}/../../.."
+  ],
+  "intelephense.stubs": [
+    "Core",
+    "standard",
+    "date",
+    "json",
+    "filter",
+    "hash",
+    "pcre",
+    "SPL",
+    "session",
+    "zlib",
+    "mbstring",
+    "openssl",
+    "tokenizer",
+    "xml",
+    "curl",
+    "intl",
+    "mysqli",
+    "PDO",
+    "wordpress"
+  ],
+  "cSpell.words": [
+    "termitem"
+  ],
+  "cSpell.enabled": false
+}
