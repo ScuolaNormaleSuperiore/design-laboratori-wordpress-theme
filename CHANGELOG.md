@@ -20,6 +20,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Aggiunto
 - Aggiunta sezione Video attivabile in Home Page.
 - Aggiunta nel Carousel possibilità di specificare la data di ordinamento: creazione, modifica, evento.
+- Pubblicazioni: Aggiunta possibilità di inserire una immagine e di ordinare l'elenco in vari modi.
 ## Corretto
 - Bug-fixing: Corretto import Indico.
 - Aggiunta cartella AGENTS con i file che danno indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
