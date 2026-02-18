@@ -27,9 +27,9 @@ if ( 'true' === $dli_section_enabled ) {
 		?>
 		<section id="sponsor" class="section" aria-labelledby="sponsor-title">
 			<div class="container my-12">
-				<?php if ( $dli_show_title  ) { ?>
+				<?php if ( $dli_show_title ) { ?>
 				<h2 id="sponsor-title" class="visually-hidden">
-					<?php echo __( 'Partner e collaborazioni', 'design_laboratori_italia' ); ?>
+					<?php echo esc_html__( 'Partner e collaborazioni', 'design_laboratori_italia' ); ?>
 				</h2>
 				<?php } ?>
 

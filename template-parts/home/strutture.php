@@ -1,18 +1,22 @@
 <?php
-$descrizione_strutture = dli_get_option("descrizione_strutture", "il_laboratorio");
-$link_strutture_evidenza = dli_get_option("link_strutture_evidenza", "il_laboratorio");
+/**
+ * Homepage strutture section.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
-global $struttura;
+$dli_descrizione_strutture   = dli_get_option( 'descrizione_strutture', 'il_laboratorio' );
+$dli_link_strutture_evidenza = dli_get_option( 'link_strutture_evidenza', 'il_laboratorio' );
 ?>
 <section class="section py-4 bg-redbrown big-quote-wrapper">
 	<div class="big-quote-bg quote">
 		<svg width="100%" height="100%" viewBox="0 0 1280 463" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
-              <g serif:id="Quote/Desktop">
-	              <rect  x="0" y="0" width="1280" height="463" style="fill:url(#_Linear1);"/>
-	              <path d="M1193.68,448.626l-1193.68,-215.78l0,-232.846l1280,0l0,463l-86.32,-14.374Z" style="fill:url(#_Linear2);"/>
-	              <path d="M915.875,0l364.125,3l0,460l-364.125,-463Z" style="fill:url(#_Linear3);"/>
-	              <rect x="0" y="0" width="1280" height="179.71" style="fill:url(#_Linear4);"/>
-              </g>
+				<g serif:id="Quote/Desktop">
+					<rect  x="0" y="0" width="1280" height="463" style="fill:url(#_Linear1);"/>
+					<path d="M1193.68,448.626l-1193.68,-215.78l0,-232.846l1280,0l0,463l-86.32,-14.374Z" style="fill:url(#_Linear2);"/>
+					<path d="M915.875,0l364.125,3l0,460l-364.125,-463Z" style="fill:url(#_Linear3);"/>
+					<rect x="0" y="0" width="1280" height="179.71" style="fill:url(#_Linear4);"/>
+				</g>
 			<defs>
 				<linearGradient x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-1280,-60.5791,60.5791,-1280,1280,261.79)">
 					<stop offset="0" style="stop-color:#d1344c;stop-opacity:1"/>
@@ -33,30 +37,30 @@ global $struttura;
 					<stop offset="1" style="stop-color:#d1344c;stop-opacity:1"/>
 				</linearGradient>
 			</defs>
-            </svg>
+			</svg>
 	</div>
 	<div class="container">
 		<div class="row variable-gutters">
 			<div class="col-md-6">
 				<div class="big-quote big-quote-secondary">
-					<h3><?php echo esc_html( $descrizione_strutture ); ?></h3>
+					<h3><?php echo esc_html( $dli_descrizione_strutture ); ?></h3>
 				</div><!-- /big-quote -->
 			</div><!-- /col-md-6 -->
 			<div class="col-md-5 offset-md-1 cards-wrapper-center">
 				<?php
-                if(isset($link_strutture_evidenza) && is_array($link_strutture_evidenza) && count($link_strutture_evidenza)>0) {
-                    foreach ($link_strutture_evidenza as $id_struttura) {
-                        $struttura = get_post($id_struttura);
-                        get_template_part("template-parts/struttura/card", "large");
-                    }
-                }
+				if ( isset( $dli_link_strutture_evidenza ) && is_array( $dli_link_strutture_evidenza ) && count( $dli_link_strutture_evidenza ) > 0 ) {
+					foreach ( $dli_link_strutture_evidenza as $dli_id_struttura ) {
+						$GLOBALS['struttura'] = get_post( $dli_id_struttura );
+						get_template_part( 'template-parts/struttura/card', 'large' );
+					}
+				}
 				?>
 			</div><!-- /col-md-5 -->
 		</div><!-- /row -->
-        <div class="row variable-gutters my-5">
-            <div class="col d-flex justify-content-center">
-                <a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo esc_url( get_post_type_archive_link( 'struttura' ) ); ?>"><?php esc_html_e( "Tutta l’organizzazione", 'design_laboratori_italia' ); ?></a>
-            </div><!-- /col-lg-4 -->
-        </div><!-- /row -->
+		<div class="row variable-gutters my-5">
+			<div class="col d-flex justify-content-center">
+				<a class="btn btn-white rounded mb-3 mb-lg-0" href="<?php echo esc_url( get_post_type_archive_link( 'struttura' ) ); ?>"><?php esc_html_e( 'Tutta l’organizzazione', 'design_laboratori_italia' ); ?></a>
+			</div><!-- /col-lg-4 -->
+		</div><!-- /row -->
 	</div><!-- /container -->
 </section><!-- /section -->

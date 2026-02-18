@@ -26,14 +26,14 @@ if ( 'true' === $dli_section_enabled ) {
 		<div class="container-banner-home">
 			<?php
 			foreach ( $dli_banners_query->posts as $dli_banner_post ) {
-			$dli_image_metadata = dli_get_image_metadata( $dli_banner_post, 'full', '/assets/img/yourimage.png' );
-			$dli_post_id        = $dli_banner_post->ID;
-			$dli_section        = dli_get_field( 'sezione', $dli_post_id );
-			$dli_button_label   = dli_get_field( 'label_pulsante', $dli_post_id );
-			$dli_button_link    = dli_get_field( 'link_pulsante', $dli_post_id );
-			$dli_is_external    = (bool) dli_get_field( 'apri_in_nuova_finestra', $dli_post_id );
-			$dli_heading_id     = 'hero-school-title-' . absint( $dli_post_id );
-		?>
+				$dli_image_metadata = dli_get_image_metadata( $dli_banner_post, 'full', '/assets/img/yourimage.png' );
+				$dli_post_id        = $dli_banner_post->ID;
+				$dli_section        = dli_get_field( 'sezione', $dli_post_id );
+				$dli_button_label   = dli_get_field( 'label_pulsante', $dli_post_id );
+				$dli_button_link    = dli_get_field( 'link_pulsante', $dli_post_id );
+				$dli_is_external    = (bool) dli_get_field( 'apri_in_nuova_finestra', $dli_post_id );
+				$dli_heading_id     = 'hero-school-title-' . absint( $dli_post_id );
+				?>
 			<section class="it-hero-wrapper it-hero-small-size it-primary it-overlay mt-5" aria-labelledby="<?php echo esc_attr( $dli_heading_id ); ?>">
 				<div class="img-responsive-wrapper">
 					<div class="img-responsive">
@@ -71,11 +71,11 @@ if ( 'true' === $dli_section_enabled ) {
 					</div>
 				</div>
 			</section>
-		<?php
+				<?php
 			}
-		?>
+			?>
 		</div>
 		<?php
-	
+
 	}
 }
