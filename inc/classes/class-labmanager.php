@@ -232,9 +232,12 @@ class DLI_LabManager {
 	}
 	
 	public function configure_permalink() {
-		update_option('permalink_structure', '/%postname%/');
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
+		$desired_structure = '/%postname%/';
+		$current_structure = get_option( 'permalink_structure' );
+		if ( $current_structure !== $desired_structure ) {
+			update_option( 'permalink_structure', $desired_structure );
+			flush_rewrite_rules();
+		}
 	}
 
 	/**
