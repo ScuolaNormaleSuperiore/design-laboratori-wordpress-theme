@@ -2,7 +2,7 @@
 	$locations = $args['locations'];
 ?>
 
-	<nav aria-label="Principale">
+	<nav aria-label="Principale" class="p-0">
 		<?php
 		$location = 'menu-lab';
 		if ( has_nav_menu( $location ) ) {

@@ -13,7 +13,7 @@
 
 		if ( has_nav_menu( $location ) && count( $menuitems  ) ) {
 		?>
-		<ul id="secondary-menu" class="navbar-nav navbar-secondary">
+		<ul id="secondary-menu" class="navbar-nav">
 			<?php
 				foreach ( $menuitems as $item ) {
 					$active_class = '';
