@@ -575,6 +575,22 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
+			'id'               => $prefix . 'home_carousel_order',
+			'name'             => __( 'Campo ordinamento', 'design_laboratori_italia' ),
+			'desc'             => __( 'Campo da usare per ordinare gli elementi del carousel' , 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'post_date',
+			'show_option_none' => false,
+			'options'          => array(
+				'post_date'      => __( 'Data pubblicazione', 'design_laboratori_italia' ),
+				'post_modified'  => __( 'Ultima modifica', 'design_laboratori_italia' ),
+				'event_date'     => __( 'Data evento', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
 			'name'    => __( 'Selezione articoli', 'design_laboratori_italia' ),
 			'desc'    => __( 'Seleziona gli articoli da mostrare nel carousel della Home Page, se disabilitata la selezione automatica', 'design_laboratori_italia' ),
 			'id'      => $prefix . 'articoli_presentazione',
