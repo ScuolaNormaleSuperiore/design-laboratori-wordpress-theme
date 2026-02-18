@@ -5,103 +5,118 @@
  * @package Design_Laboratori_Italia
  */
 
-global $post, $wpdb;
+global $post;
 get_header();
 
-$per_page        = (string) DLI_PER_PAGE;
-$per_page_values = (array) DLI_PER_PAGE_VALUES;
-$allowed_pages   = array_map( 'strval', $per_page_values );
-$anno_select     = '';
+$dli_per_page        = (string) DLI_PER_PAGE;
+$dli_per_page_values = (array) DLI_PER_PAGE_VALUES;
+$dli_allowed_pages   = array_map( 'strval', $dli_per_page_values );
+$dli_anno_select     = '';
+$testo_sezione       = dli_get_configuration_field_by_lang( 'ordine_pubblicazioni', 'pubblicazioni' );
 
-if ( isset( $_GET['per_page'] ) ) {
-	$raw_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );
-	if ( in_array( $raw_per_page, $allowed_pages, true ) ) {
-		$per_page = $raw_per_page;
+$dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+if ( is_string( $dli_raw_per_page ) ) {
+	$dli_raw_per_page = sanitize_text_field( wp_unslash( $dli_raw_per_page ) );
+	if ( in_array( $dli_raw_per_page, $dli_allowed_pages, true ) ) {
+		$dli_per_page = $dli_raw_per_page;
 	}
 }
 
-if ( isset( $_GET['annoSelect'] ) ) {
-	$anno_select = (string) absint( wp_unslash( $_GET['annoSelect'] ) );
+$dli_raw_anno_select = filter_input( INPUT_GET, 'annoSelect', FILTER_SANITIZE_NUMBER_INT );
+if ( is_scalar( $dli_raw_anno_select ) ) {
+	$dli_anno_value = absint( $dli_raw_anno_select );
+	if ( $dli_anno_value > 0 ) {
+		$dli_anno_select = (string) $dli_anno_value;
+	}
 }
 
-$tipi_pubblicazione = get_terms(
+$dli_tipi_pubblicazione = get_terms(
 	array(
 		'taxonomy'   => PUBLICATION_TYPE_TAXONOMY,
 		'hide_empty' => false,
 	)
 );
 
-$tipi_pubblicazione_params = array();
-if ( isset( $_GET['tipologia'] ) ) {
-	$tipologia_raw = wp_unslash( $_GET['tipologia'] );
-	if ( is_array( $tipologia_raw ) ) {
-		$tipi_pubblicazione_params = array_map( 'sanitize_key', $tipologia_raw );
-	}
+$dli_tipi_pubblicazione_params = array();
+$dli_tipologia_raw             = filter_input( INPUT_GET, 'tipologia', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+if ( is_array( $dli_tipologia_raw ) ) {
+	$dli_tipi_pubblicazione_params = array_map( 'sanitize_key', $dli_tipologia_raw );
 }
 
-if ( is_array( $tipi_pubblicazione ) && ! is_wp_error( $tipi_pubblicazione ) ) {
-	$available_type_slugs      = wp_list_pluck( $tipi_pubblicazione, 'slug' );
-	$tipi_pubblicazione_params = array_values(
-		array_intersect( $tipi_pubblicazione_params, $available_type_slugs )
+if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) ) {
+	$dli_available_type_slugs      = wp_list_pluck( $dli_tipi_pubblicazione, 'slug' );
+	$dli_tipi_pubblicazione_params = array_values(
+		array_intersect( $dli_tipi_pubblicazione_params, $dli_available_type_slugs )
 	);
 }
 
-$anni_pubblicazioni = $wpdb->get_col(
-	$wpdb->prepare(
-		"SELECT DISTINCT pm.meta_value
-		FROM {$wpdb->postmeta} pm
-		INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
-		WHERE pm.meta_key = %s
-		AND p.post_type = %s
-		AND p.post_status = %s
-		ORDER BY pm.meta_value+0 DESC",
-		'anno',
-		PUBLICATION_POST_TYPE,
-		'publish'
+$dli_anni_pubblicazioni = array();
+$dli_publication_ids    = get_posts(
+	array(
+		'post_type'      => PUBLICATION_POST_TYPE,
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'no_found_rows'  => true,
+		'meta_key'       => 'anno',
+		'orderby'        => 'meta_value_num',
+		'order'          => 'DESC',
 	)
 );
 
-$paged = absint( get_query_var( 'paged' ) );
-if ( 0 === $paged ) {
-	$paged = absint( get_query_var( 'page' ) );
-}
-if ( 0 === $paged ) {
-	$paged = 1;
+if ( is_array( $dli_publication_ids ) ) {
+	foreach ( $dli_publication_ids as $dli_publication_id ) {
+		$dli_anno = absint( get_post_meta( $dli_publication_id, 'anno', true ) );
+		if ( $dli_anno > 0 ) {
+			$dli_anni_pubblicazioni[ $dli_anno ] = (string) $dli_anno;
+		}
+	}
 }
 
-$query_args = array(
-	'posts_per_page' => (int) $per_page,
-	'paged'          => $paged,
+$dli_paged = absint( get_query_var( 'paged' ) );
+if ( 0 === $dli_paged ) {
+	$dli_paged = absint( get_query_var( 'page' ) );
+}
+if ( 0 === $dli_paged ) {
+	$dli_paged = 1;
+}
+
+$dli_query_args = array(
+	'posts_per_page' => (int) $dli_per_page,
+	'paged'          => $dli_paged,
 	'post_type'      => PUBLICATION_POST_TYPE,
-	'meta_key'       => 'anno',
-	'orderby'        => 'meta_value_num',
-	'order'          => 'ASC',
+	'orderby'        => 'date',
+	'order'          => 'DESC',
 );
 
-if ( '' !== $anno_select ) {
-	$query_args['meta_query'] = array(
+if ( '' !== $dli_anno_select ) {
+	$dli_query_args['meta_key'] = 'anno';
+	$dli_query_args['orderby']  = 'meta_value_num';
+	$dli_query_args['order']    = 'ASC';
+
+	$dli_query_args['meta_query'] = array(
 		array(
 			'key'     => 'anno',
 			'compare' => '=',
-			'value'   => $anno_select,
+			'value'   => $dli_anno_select,
 			'type'    => 'NUMERIC',
 		),
 	);
 }
 
-if ( ! empty( $tipi_pubblicazione_params ) ) {
-	$query_args['tax_query'] = array(
+if ( ! empty( $dli_tipi_pubblicazione_params ) ) {
+	$dli_query_args['tax_query'] = array(
 		array(
 			'taxonomy' => PUBLICATION_TYPE_TAXONOMY,
 			'field'    => 'slug',
 			'operator' => 'IN',
-			'terms'    => $tipi_pubblicazione_params,
+			'terms'    => $dli_tipi_pubblicazione_params,
 		),
 	);
 }
 
-$pubblicazioni = new WP_Query( $query_args );
-$num_results   = $pubblicazioni->found_posts;
+$dli_pubblicazioni_query = new WP_Query( $dli_query_args );
+$dli_num_results         = $dli_pubblicazioni_query->found_posts;
 
 ?>
 
@@ -126,28 +141,28 @@ $num_results   = $pubblicazioni->found_posts;
 							<div class="select-wrapper">
 								<label for="annoSelect" class="visually-hidden"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></label>
 								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
-									<option value="" <?php selected( '', $anno_select ); ?>><?php esc_html_e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
-									<?php foreach ( $anni_pubblicazioni as $anno ) { ?>
-										<option value="<?php echo esc_attr( $anno ); ?>" <?php selected( $anno_select, (string) $anno ); ?>><?php echo esc_html( $anno ); ?></option>
+									<option value="" <?php selected( '', $dli_anno_select ); ?>><?php esc_html_e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
+									<?php foreach ( $dli_anni_pubblicazioni as $dli_anno_option ) { ?>
+										<option value="<?php echo esc_attr( $dli_anno_option ); ?>" <?php selected( $dli_anno_select, (string) $dli_anno_option ); ?>><?php echo esc_html( $dli_anno_option ); ?></option>
 									<?php } ?>
 								</select>
 							</div>
 						</div>
 						<?php
-						if ( is_array( $tipi_pubblicazione ) && ! is_wp_error( $tipi_pubblicazione ) && count( $tipi_pubblicazione ) >= 1 ) {
+						if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) && count( $dli_tipi_pubblicazione ) >= 1 ) {
 							?>
 							<!-- FILTRO PER CATEGORIA -->
 							<div class="row pt-5">
 								<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
 								<div>
-									<?php foreach ( $tipi_pubblicazione as $tipo_pubblicazione ) { ?>
+									<?php foreach ( $dli_tipi_pubblicazione as $dli_tipo_pubblicazione ) { ?>
 										<div class="form-check">
 											<?php
-											$checked      = in_array( $tipo_pubblicazione->slug, $tipi_pubblicazione_params, true );
-											$filter_input = 'tipologia-' . sanitize_html_class( $tipo_pubblicazione->slug );
+											$dli_checked      = in_array( $dli_tipo_pubblicazione->slug, $dli_tipi_pubblicazione_params, true );
+											$dli_filter_input = 'tipologia-' . sanitize_html_class( $dli_tipo_pubblicazione->slug );
 											?>
-											<input id="<?php echo esc_attr( $filter_input ); ?>" name="tipologia[]" value="<?php echo esc_attr( $tipo_pubblicazione->slug ); ?>" type="checkbox" <?php checked( true, $checked ); ?> onChange="this.form.submit()">
-											<label for="<?php echo esc_attr( $filter_input ); ?>"><?php echo esc_html( $tipo_pubblicazione->name ); ?></label>
+											<input id="<?php echo esc_attr( $dli_filter_input ); ?>" name="tipologia[]" value="<?php echo esc_attr( $dli_tipo_pubblicazione->slug ); ?>" type="checkbox" <?php checked( true, $dli_checked ); ?> onChange="this.form.submit()">
+											<label for="<?php echo esc_attr( $dli_filter_input ); ?>"><?php echo esc_html( $dli_tipo_pubblicazione->name ); ?></label>
 										</div>
 									<?php } ?>
 								</div>
@@ -160,53 +175,53 @@ $num_results   = $pubblicazioni->found_posts;
 				</div>
 				<!-- PUBBLICAZIONI -->
 				<?php
-				if ( $num_results ) {
+				if ( $dli_num_results ) {
 					?>
 					<div class="col-12 col-lg-8 pt-3">
 						<div class="row">
 							<?php
-							while ( $pubblicazioni->have_posts() ) {
-								$pubblicazioni->the_post();
-								$item_id        = get_the_ID();
-								$item_title     = get_the_title( $item_id );
-								$item_url       = dli_get_field( 'url' );
-								$image_metadata = dli_get_image_metadata( get_post( $item_id ) );
-								$img_url        = ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) ? $image_metadata['image_url'] : null;
-								$item_terms     = get_the_terms( $item_id, PUBLICATION_TYPE_TAXONOMY );
+							while ( $dli_pubblicazioni_query->have_posts() ) {
+								$dli_pubblicazioni_query->the_post();
+								$dli_item_id        = get_the_ID();
+								$dli_item_title     = get_the_title( $dli_item_id );
+								$dli_item_url       = dli_get_field( 'url' );
+								$dli_image_metadata = dli_get_image_metadata( get_post( $dli_item_id ) );
+								$dli_img_url        = ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) ? $dli_image_metadata['image_url'] : null;
+								$dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
 								?>
 								<!--start card-->
 								<div class="card-wrapper mb-4">
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body d-flex gap-3 align-items-start">
-											<?php if ( $img_url ) { ?>
-												<img src="<?php echo esc_url( $img_url ); ?>" width="150" height="150"
+											<?php if ( $dli_img_url ) { ?>
+												<img src="<?php echo esc_url( $dli_img_url ); ?>" width="150" height="150"
 													class="img-fluid flex-shrink-0"
 													style="max-width:150px; height:auto;"
-													title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>"
-													alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
+													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
+													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
 											<?php } ?>
 											<div class="flex-grow-1">
 												<!-- Item title -->
 												<h3 class="card-title cardTitlecustomSpacing h5 mb-2">
-													<?php if ( ! empty( $item_url ) ) { ?>
-														<a href="<?php echo esc_url( $item_url ); ?>">
-															<?php echo esc_html( $item_title ); ?>
+													<?php if ( ! empty( $dli_item_url ) ) { ?>
+														<a href="<?php echo esc_url( $dli_item_url ); ?>">
+															<?php echo esc_html( $dli_item_title ); ?>
 														</a>
 													<?php } else { ?>
-														<?php echo esc_html( $item_title ); ?>
+														<?php echo esc_html( $dli_item_title ); ?>
 													<?php } ?>
 												</h3>
 												<!-- Item body -->
 												<p class="card-text mb-0">
-													<?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?>
+													<?php echo wp_kses_post( wpautop( get_the_content() ) ); ?>
 												</p>
 												<!-- Item category -->
-												<?php if ( is_array( $item_terms ) && ! is_wp_error( $item_terms ) ) { ?>
+												<?php if ( is_array( $dli_item_terms ) && ! is_wp_error( $dli_item_terms ) ) { ?>
 													<div class="it-card-taxonomy">
-														<?php foreach ( $item_terms as $term ) { ?>
+														<?php foreach ( $dli_item_terms as $dli_item_term ) { ?>
 															<span class="visually-hidden">
 																<?php esc_html_e( 'Related category:', 'design_laboratori_italia' ); ?>
-															</span><?php echo esc_html( $term->name ); ?>
+															</span><?php echo esc_html( $dli_item_term->name ); ?>
 															&nbsp;
 														<?php } ?>
 													</div>
@@ -227,7 +242,7 @@ $num_results   = $pubblicazioni->found_posts;
 				} else {
 					?>
 					<div class="col-12 col-lg-8">
-						<div class="row pt-2">
+						<div class="row p-2">
 							<?php esc_html_e( 'Non e stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
 						</div>
 					</div>
@@ -245,9 +260,9 @@ $num_results   = $pubblicazioni->found_posts;
 		'template-parts/common/paginazione',
 		null,
 		array(
-			'query'           => $pubblicazioni,
-			'per_page'        => $per_page,
-			'per_page_values' => $per_page_values,
+			'query'           => $dli_pubblicazioni_query,
+			'per_page'        => $dli_per_page,
+			'per_page_values' => $dli_per_page_values,
 		)
 	);
 	?>

@@ -1353,6 +1353,24 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	/** Ordinamento delle pubblicazioni */
+	$pubblicazioni_options->add_field(
+		array(
+			'id'               => $prefix . 'ordine_pubblicazioni',
+			'name'             => __( 'Campo ordinamento', 'design_laboratori_italia' ),
+			'desc'             => __( 'Campo da usare per ordinare le pubblicazioni', 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'post_date',
+			'show_option_none' => false,
+			'options'          => array(
+				'post_date'     => __( 'Data pubblicazione', 'design_laboratori_italia' ),
+				'post_modified' => __( 'Ultima modifica', 'design_laboratori_italia' ),
+				'event_date'    => __( 'Titolo', 'design_laboratori_italia' ),
+				'publish_year'  => __( 'Anno pubblicazione', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
 	/**
 	* 11 - Registers options page "Brevetti".
 	*/
@@ -2665,7 +2683,6 @@ add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
  */
 function dli_options_display_with_tabs( $cmb_options ) {
 	$tabs = dli_options_page_tabs( $cmb_options );
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin page query arg used only to set active tab.
 	$active_page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 	?>
 	<div class="wrap cmb2-options-page option-<?php echo esc_attr( $cmb_options->option_key ); ?>">
