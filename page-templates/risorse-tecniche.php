@@ -146,7 +146,6 @@ $dli_num_results = $dli_query->found_posts;
 						</div>
 					</form>
 				</div>
-
 				<!-- ELENCO RISORSE TECNICHE -->
 				<?php if ( $dli_num_results > 0 ) { ?>
 					<div class="col-12 col-lg-8">
@@ -158,19 +157,30 @@ $dli_num_results = $dli_query->found_posts;
 							<div class="row">
 								<div class="card-wrapper mb-4">
 									<div class="card card-teaser rounded shadow">
-										<div class="card-body">
-											<?php if ( ! empty( $dli_result['image_url'] ) ) { ?>
-												<img src="<?php echo esc_url( $dli_result['image_url'] ); ?>" height="150" width="150" class="img-fluid float-start me-2 text-nowrap" title="<?php echo esc_attr( $dli_result['image_title'] ); ?>" alt="<?php echo esc_attr( $dli_result['image_alt'] ); ?>">
-											<?php } ?>
-
-											<h3 class="card-title cardTitlecustomSpacing h5">
-												<a href="<?php echo esc_url( $dli_result['link'] ); ?>">
-													<?php echo esc_html( $dli_result['title'] ); ?>
-												</a>
-											</h3>
-											<p class="card-text">
-												<?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-											</p>
+										<div class="card-body d-flex gap-3 align-items-start">
+										<!-- Item image -->
+										<?php if ( ! empty( $dli_result['image_url'] ) ) { ?>
+											<img
+												src="<?php echo esc_url( $dli_result['image_url'] ); ?>"
+												width="150" height="150"
+												class="img-fluid flex-shrink-0"
+												style="max-width:150px; height:auto;"
+												title="<?php echo esc_attr( $dli_result['image_title'] ); ?>" 
+												alt="<?php echo esc_attr( $dli_result['image_alt'] ); ?>"
+											>
+										<?php } ?>
+											<div class="flex-grow-1">
+												<!-- Item title -->
+												<h3 class="card-title cardTitlecustomSpacing h5 mb-2">
+													<a href="<?php echo esc_url( $dli_result['link'] ); ?>">
+														<?php echo esc_html( $dli_result['title'] ); ?>
+													</a>
+												</h3>
+												<!-- Item body -->
+												<p class="card-text mb-0">
+													<?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+												</p>
+											</div>
 										</div>
 									</div>
 								</div>
