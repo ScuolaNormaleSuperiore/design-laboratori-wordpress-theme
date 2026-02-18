@@ -15,7 +15,6 @@ if ( 'true' === $dli_section_enabled ) {
 			'post_status'    => 'publish',
 			'posts_per_page' => 3,
 			'orderby'        => 'meta_value_num',
-			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'meta_key'       => 'priorita',
 			'order'          => 'ASC',
 		)

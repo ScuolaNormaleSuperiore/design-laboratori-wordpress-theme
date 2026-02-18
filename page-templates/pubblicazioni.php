@@ -58,7 +58,6 @@ $dli_publication_ids    = get_posts(
 		'posts_per_page' => -1,
 		'fields'         => 'ids',
 		'no_found_rows'  => true,
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 		'meta_key'       => 'anno',
 		'orderby'        => 'meta_value_num',
 		'order'          => 'DESC',
@@ -105,7 +104,6 @@ switch ( $dli_sort_mode ) {
 		break;
 
 	case 'publish_year':
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 		$dli_query_args['meta_key'] = 'anno';
 		$dli_query_args['orderby']  = 'meta_value_num';
 		$dli_query_args['order']    = 'DESC';
@@ -119,7 +117,6 @@ switch ( $dli_sort_mode ) {
 }
 
 if ( '' !== $dli_anno_select ) {
-	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 	$dli_query_args['meta_query'] = array(
 		array(
 			'key'     => 'anno',
@@ -131,7 +128,6 @@ if ( '' !== $dli_anno_select ) {
 }
 
 if ( ! empty( $dli_tipi_pubblicazione_params ) ) {
-	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 	$dli_query_args['tax_query'] = array(
 		array(
 			'taxonomy' => PUBLICATION_TYPE_TAXONOMY,
