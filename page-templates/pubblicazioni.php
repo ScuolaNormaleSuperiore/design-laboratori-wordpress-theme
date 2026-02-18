@@ -12,7 +12,7 @@ $dli_per_page        = (string) DLI_PER_PAGE;
 $dli_per_page_values = (array) DLI_PER_PAGE_VALUES;
 $dli_allowed_pages   = array_map( 'strval', $dli_per_page_values );
 $dli_anno_select     = '';
-$testo_sezione       = dli_get_configuration_field_by_lang( 'ordine_pubblicazioni', 'pubblicazioni' );
+$dli_testo_sezione   = dli_get_configuration_field_by_lang( 'ordine_pubblicazioni', 'pubblicazioni' );
 
 $dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 if ( is_string( $dli_raw_per_page ) ) {
@@ -58,6 +58,7 @@ $dli_publication_ids    = get_posts(
 		'posts_per_page' => -1,
 		'fields'         => 'ids',
 		'no_found_rows'  => true,
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 		'meta_key'       => 'anno',
 		'orderby'        => 'meta_value_num',
 		'order'          => 'DESC',
@@ -85,15 +86,40 @@ $dli_query_args = array(
 	'posts_per_page' => (int) $dli_per_page,
 	'paged'          => $dli_paged,
 	'post_type'      => PUBLICATION_POST_TYPE,
-	'orderby'        => 'date',
-	'order'          => 'DESC',
 );
 
-if ( '' !== $dli_anno_select ) {
-	$dli_query_args['meta_key'] = 'anno';
-	$dli_query_args['orderby']  = 'meta_value_num';
-	$dli_query_args['order']    = 'ASC';
+$dli_sort_mode = is_string( $dli_testo_sezione ) ? sanitize_key( $dli_testo_sezione ) : 'post_date';
+if ( ! in_array( $dli_sort_mode, array( 'post_date', 'post_modified', 'event_date', 'publish_year' ), true ) ) {
+	$dli_sort_mode = 'post_date';
+}
 
+switch ( $dli_sort_mode ) {
+	case 'post_modified':
+		$dli_query_args['orderby'] = 'modified';
+		$dli_query_args['order']   = 'DESC';
+		break;
+
+	case 'event_date':
+		$dli_query_args['orderby'] = 'title';
+		$dli_query_args['order']   = 'ASC';
+		break;
+
+	case 'publish_year':
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+		$dli_query_args['meta_key'] = 'anno';
+		$dli_query_args['orderby']  = 'meta_value_num';
+		$dli_query_args['order']    = 'DESC';
+		break;
+
+	case 'post_date':
+	default:
+		$dli_query_args['orderby'] = 'date';
+		$dli_query_args['order']   = 'DESC';
+		break;
+}
+
+if ( '' !== $dli_anno_select ) {
+	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 	$dli_query_args['meta_query'] = array(
 		array(
 			'key'     => 'anno',
@@ -105,6 +131,7 @@ if ( '' !== $dli_anno_select ) {
 }
 
 if ( ! empty( $dli_tipi_pubblicazione_params ) ) {
+	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 	$dli_query_args['tax_query'] = array(
 		array(
 			'taxonomy' => PUBLICATION_TYPE_TAXONOMY,
