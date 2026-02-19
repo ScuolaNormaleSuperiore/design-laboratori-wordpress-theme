@@ -32,6 +32,7 @@ Mandatory workflow:
 - bug and security analysis;
 - style checks;
 - compliance checks against `AGENTS/CODING_STANDARDS.md`;
+- execute a lint of the file/folder and fix the reported errors when possible (ina safe way);
 - HTML correctness checks on touched templates/markup;
 - lint execution for the target scope and code fixes for lint-reported issues when safe.
 
