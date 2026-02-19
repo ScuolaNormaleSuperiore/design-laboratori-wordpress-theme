@@ -101,5 +101,5 @@ Official references:
 - Write testable code (small units, clear dependencies).
 - Add tests for non-trivial logic when practical.
 - Run:
-  - `npm run lint:php`
-  - `npm run lint:php:fix` (when needed)
+  - `composer run lint:php`
+  - `composer run lint:php:fix` (when needed)

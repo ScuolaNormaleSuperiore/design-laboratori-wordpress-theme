@@ -23,6 +23,6 @@ Re-run the full "Session bootstrap" only when the user explicitly asks, using ph
 - Use plan mode for non-trivial tasks (new features, multi-file refactors, architectural decisions).
 - Prefer atomic `Edit` operations over full file rewrites — smaller diffs are easier to review.
 - Use `Glob`/`Grep` for directed searches; use the Explore agent for broader codebase discovery.
-- Run `npm run lint:php` before finalizing code changes when dependencies are available.
+- Run `composer run lint:php` before finalizing code changes when dependencies are available.
 - Keep naming and structure aligned with WordPress conventions.
 - When creating commits, follow `AGENTS/GIT_WORKFLOW.md`.
