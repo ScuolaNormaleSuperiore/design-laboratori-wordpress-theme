@@ -3,10 +3,12 @@
  * Wrapper function around cmb2_get_option
  *
  * @since  0.1.0
+ * @package Design_Laboratori_Italia
  * @param  string $key     Options array key
  * @param  mixed  $default Optional default value
  * @return mixed           Option value
  */
+
 if ( ! function_exists( 'dli_get_option' ) ) {
 	/**
 	 * Wrapper function around cmb2_get_option.
@@ -27,7 +29,7 @@ if ( ! function_exists( 'dli_get_option' ) ) {
 
 		$val = $default;
 
-		if ( 'all' == $key ) {
+		if ( 'all' === $key ) {
 			$val = $opts;
 		} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
 			$val = $opts[ $key ];
@@ -52,7 +54,7 @@ if ( ! function_exists( 'dli_get_option_by_lang' ) ) {
 		// $label     = $key . '_' . $lang;
 		$label     = $key . DLI_ENG_SUFFIX_LANGUAGE;
 		$text_lang = dli_get_option( $label, $type, $default );
-		if ( ( $lang != 'it' ) && ( ! empty( $text_lang ) ) ) {
+		if ( ( 'it' !== $lang ) && ( ! empty( $text_lang ) ) ) {
 			return $text_lang;
 		} else {
 			return $text_def;
@@ -61,42 +63,37 @@ if ( ! function_exists( 'dli_get_option_by_lang' ) ) {
 }
 
 /**
- * Wrapper function for persona avatar
- *
- * @param object $foto
- * @param object $foto
- * @return string url
+ * Wrapper function for persona avatar.
  */
 if ( ! function_exists( 'dli_get_persona_avatar' ) ) {
 	/**
 	 * Return persona avatar URL with featured image fallback to user avatar.
 	 *
 	 * @param int|WP_Post $persona Persona post.
-	 * @param int         $ID User ID.
+	 * @param int         $user_id User ID.
 	 * @param int         $size Avatar size.
 	 * @return string
 	 */
-	function dli_get_persona_avatar( $persona, $ID, $size = 250 ) {
+	function dli_get_persona_avatar( $persona, $user_id, $size = 250 ) {
 		$thumbnail = get_the_post_thumbnail_url( $persona, 'item-thumb' );
 		if ( ! $thumbnail ) {
-			$thumbnail = get_avatar_url( $ID, array( 'size' => $size ) );
+			$thumbnail = get_avatar_url( $user_id, array( 'size' => $size ) );
 		}
 		return $thumbnail;
 	}
 }
 
 /**
- * recupera la url del template in base al nome
+ * Retrieve the URL of a page by template file.
  *
- * @param $TEMPLATE_NAME
- *
+ * @param string $template_name Template file name.
  * @return string|null
  */
-function dli_get_template_page_url( $TEMPLATE_NAME ) {
+function dli_get_template_page_url( $template_name ) {
 	$pages = get_pages(
 		array(
 			'meta_key'     => '_wp_page_template',
-			'meta_value'   => $TEMPLATE_NAME,
+			'meta_value'   => $template_name,
 			'hierarchical' => 0,
 			'sort_column'  => 'menu_order',
 		)
@@ -104,7 +101,7 @@ function dli_get_template_page_url( $TEMPLATE_NAME ) {
 	if ( $pages ) {
 		foreach ( $pages as $page ) {
 			if ( $page->ID ) {
-					return get_page_link( $page->ID );
+				return get_page_link( $page->ID );
 			}
 		}
 	}
@@ -113,7 +110,7 @@ function dli_get_template_page_url( $TEMPLATE_NAME ) {
 
 
 /**
- * funzione per la gestione del nome persona
+ * Function for persona display name handling.
  */
 if ( ! function_exists( 'dli_get_persona_display_name' ) ) {
 	/**
@@ -125,7 +122,7 @@ if ( ! function_exists( 'dli_get_persona_display_name' ) ) {
 	 * @return string
 	 */
 	function dli_get_persona_display_name( $nome, $cognome, $title ) {
-		if ( ( $nome != '' ) && ( $cognome != '' ) ) {
+		if ( ( '' !== $nome ) && ( '' !== $cognome ) ) {
 			return $nome . ' ' . $cognome;
 		} else {
 			return $title;
@@ -153,18 +150,18 @@ if ( ! function_exists( 'dli_multi_array_search' ) ) {
 	 */
 	function dli_multi_array_search( $search_for, $search_in, $okey = false ) {
 		foreach ( $search_in as $key => $element ) {
-				$key = $okey ? $okey : $key;
+			$key = $okey ? $okey : $key;
 			if ( $element === $search_for ) {
 				return $key;
 			}
 			if ( is_array( $element ) ) {
-					$child_key = dli_multi_array_search( $search_for, $element, $key );
+				$child_key = dli_multi_array_search( $search_for, $element, $key );
 				if ( false !== $child_key ) {
 					return $child_key;
 				}
 			}
 		}
-			return false;
+		return false;
 	}
 }
 
@@ -330,7 +327,7 @@ if ( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 	function dli_from_event_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -369,7 +366,7 @@ if ( ! function_exists( 'dli_from_news_to_wrapped_item' ) ) {
 	function dli_from_news_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -408,7 +405,7 @@ if ( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 	function dli_from_publication_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -448,7 +445,7 @@ if ( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 	function dli_from_patent_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -498,7 +495,7 @@ if ( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 		$summary    = dli_get_field( 'descrizione_breve', $item );
 		// Image field from custom fields.
 		$img_field   = 'foto';
-		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $placeholder;
@@ -551,7 +548,7 @@ if ( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 		$link_pubbl = $link_pubbl ? $link_pubbl : '';
 		// Image field from custom fields.
 		$img_field   = 'logo';
-		$placeholder = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$placeholder = get_template_directory_uri() . $placeholder;
 		$img         = dli_get_field( $img_field, $item );
 		$img_url     = $placeholder;
@@ -595,7 +592,7 @@ if ( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 	function dli_from_progetto_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -632,7 +629,7 @@ if ( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 	 */
 	function dli_from_post_to_wrapped_item( $item, $image_format ) {
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$page           = dli_get_page_by_post_type( $post_type );
 		$page_title     = $page ? $page->post_title : '';
@@ -672,12 +669,12 @@ if ( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 	 */
 	function dli_from_page_to_wrapped_item( $item, $image_format ) {
 		$post_type      = get_post_type( $item );
-		$placeholder    = ( $image_format === 'medium' ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
+		$placeholder    = ( 'medium' === $image_format ) ? '/assets/img/placeholder.png' : '/assets/img/yourimage.png';
 		$image_metadata = dli_get_image_metadata( $item, $image_format, $placeholder );
 		$post_title     = get_the_title( $item );
 		$categories     = array( DLI_CUSTOM_PAGE_CAT, DLI_ARCHIVE_PAGE_CAT );
 		$pt_slugs       = dli_get_sluglist_by_category( $categories );
-		if ( in_array( $item->post_name, $pt_slugs ) ) {
+		if ( in_array( $item->post_name, $pt_slugs, true ) ) {
 			// PAGINA ELENCO POST TYPE (archivio) in DLI_PAGE_PER_CT.
 			$description = '';
 			$fullcontent = '';
@@ -726,7 +723,7 @@ if ( ! function_exists( 'dli_get_image_metadata' ) ) {
 		$post_title = get_the_title( $item );
 		$image_id   = get_post_thumbnail_id( $item->ID );
 
-		if ( $image_id === 0 ) {
+		if ( 0 === $image_id ) {
 			$image_title = $post_title;
 			$image_alt   = $post_title;
 		} else {
@@ -757,7 +754,7 @@ if ( ! function_exists( 'dli_get_post_main_category' ) ) {
 	 */
 	function dli_get_post_main_category( $post, $taxonomy ) {
 		$terms = get_the_terms( $post, $taxonomy );
-		if ( ! is_array( $terms ) || count( $terms ) == 0 ) {
+		if ( ! is_array( $terms ) || 0 === count( $terms ) ) {
 			$pg      = dli_get_page_by_post_type( $post->post_type );
 			$pg_link = $pg ? get_permalink( $pg->ID ) : '';
 			return array(
@@ -787,7 +784,7 @@ if ( ! function_exists( 'dli_get_post_categories' ) ) {
 		$categories = array();
 		$terms      = get_the_terms( $post, $taxonomy );
 
-		if ( ! is_array( $terms ) || count( $terms ) == 0 ) {
+		if ( ! is_array( $terms ) || 0 === count( $terms ) ) {
 			$pg      = dli_get_page_by_post_type( $post->post_type );
 			$pg_link = $pg ? get_permalink( $pg->ID ) : '';
 			array_push(
@@ -816,19 +813,19 @@ if ( ! function_exists( 'dli_get_post_categories' ) ) {
 }
 
 if ( ! function_exists( 'dli_get_all_categories' ) ) {
-	/**
-	 * Recupera tutti i termini di una tassonomia ($taxonomy).
-	 *
-	 * @param string  $taxonomy
-	 * @param boolean $exclude_uncategorized
-	 * @return array
-	 */
+		/**
+		 * Recupera tutti i termini di una tassonomia ($taxonomy).
+		 *
+		 * @param string $taxonomy Taxonomy slug.
+		 * @param bool   $exclude_uncategorized Whether to exclude uncategorized term.
+		 * @return array
+		 */
 	function dli_get_all_categories( $taxonomy, $exclude_uncategorized = true ) {
 		$terms      = get_terms( $taxonomy );
 		$categories = array();
 		if ( $terms ) {
 			foreach ( $terms as $term ) {
-				if ( ! $exclude_uncategorized || $term->name != 'Uncategorized' ) {
+				if ( ! $exclude_uncategorized || 'Uncategorized' !== $term->name ) {
 					array_push(
 						$categories,
 						array(
@@ -847,14 +844,14 @@ if ( ! function_exists( 'dli_get_all_categories' ) ) {
 }
 
 if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
-	/**
-	 * Ritorna tutti i termini di una tassonomia ($taxonomy) associati a dei contenuti di tipo $post_type.
-	 *
-	 * @param string  $taxonomy
-	 * @param string  $post_type
-	 * @param boolean $exclude_uncategorized
-	 * @return array
-	 */
+		/**
+		 * Ritorna tutti i termini di una tassonomia ($taxonomy) associati a dei contenuti di tipo $post_type.
+		 *
+		 * @param string $taxonomy Taxonomy slug.
+		 * @param string $post_type Post type slug.
+		 * @param string $content_status Post status.
+		 * @return array
+		 */
 	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $content_status = 'publish' ) {
 		$exclude_uncategorized = true;
 		$categories            = array();
@@ -874,7 +871,7 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 		);
 		if ( $terms ) {
 			foreach ( $terms as $term ) {
-				if ( ! $exclude_uncategorized || $term->name != 'Uncategorized' ) {
+				if ( ! $exclude_uncategorized || 'Uncategorized' !== $term->name ) {
 					array_push(
 						$categories,
 						array(
@@ -915,6 +912,9 @@ if ( ! function_exists( 'dli_get_monthname' ) ) {
 			__( 'novembre', 'design_laboratori_italia' ),
 			__( 'dicembre', 'design_laboratori_italia' ),
 		);
+		if ( $index < 0 || $index > 11 ) {
+			return '';
+		}
 		return $months[ $index ];
 	}
 }
@@ -996,6 +996,9 @@ if ( ! function_exists( 'dli_get_monthname_short' ) ) {
 			__( 'nov', 'design_laboratori_italia' ),
 			__( 'dic', 'design_laboratori_italia' ),
 		);
+		if ( $index < 0 || $index > 11 ) {
+			return '';
+		}
 		return $months[ $index ];
 	}
 }
@@ -1093,38 +1096,11 @@ if ( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 	 */
 	function dli_get_all_contenttypes() {
 		$arr = DLI_POST_TYPES_TO_TRANSLATE;
-		if ( ( $key = array_search( PEOPLE_TYPE_POST_TYPE, $arr ) ) !== false ) {
+		$key = array_search( PEOPLE_TYPE_POST_TYPE, $arr, true );
+		if ( false !== $key ) {
 			unset( $arr[ $key ] );
 		}
 		return $arr;
-	}
-}
-
-if ( ! function_exists( 'dli_get_all_contenttypes_with_results' ) ) {
-	/**
-	 * Return content types that currently have published results.
-	 *
-	 * @return array
-	 */
-	function dli_get_all_contenttypes_with_results() {
-		$content_types              = DLI_POST_TYPES_TO_SEARCH;
-		$content_types_with_results = array();
-		foreach ( $content_types as $ct ) {
-			if ( PEOPLE_TYPE_POST_TYPE !== $ct ) {
-				$the_query   = new WP_Query(
-					array(
-						'post_type'   => $ct,
-						'post_status' => 'publish',
-					)
-				);
-				$num_results = $the_query->found_posts;
-				if ( $num_results > 0 ) {
-					array_push( $content_types_with_results, $ct );
-				}
-			}
-			wp_reset_postdata();
-		}
-		return $content_types_with_results;
 	}
 }
 
@@ -1195,7 +1171,7 @@ if ( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 	function dli_menu_tree_by_items( $menuitems ) {
 		$menu_tree = array();
 		foreach ( $menuitems as $item ) {
-			if ( $item->menu_item_parent === '0' ) {
+			if ( '0' === $item->menu_item_parent ) {
 				$menu_tree[ $item->ID ] = array(
 					'element'  => $item,
 					'children' => array(),
@@ -1203,7 +1179,7 @@ if ( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 			}
 		}
 		foreach ( $menuitems as $item ) {
-			if ( $item->menu_item_parent !== '0' && isset( $menu_tree[ $item->menu_item_parent ] ) ) {
+			if ( '0' !== $item->menu_item_parent && isset( $menu_tree[ $item->menu_item_parent ] ) ) {
 				$menu_tree[ $item->menu_item_parent ]['children'][] = $item;
 			}
 		}
@@ -1316,7 +1292,7 @@ if ( ! function_exists( 'dli_get_sitemap_posts' ) ) {
 	/**
 	 * Return the list of the post of a certain type to show in the sitemap.
 	 *
-	 * @param array $post_type
+	 * @param array|string $post_type Post type slug or list.
 	 * @return array of slugs (strings)
 	 */
 	function dli_get_sitemap_posts( $post_type ) {
@@ -1343,7 +1319,7 @@ if ( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 	function dli_get_pt_archive_slugs() {
 		$slugs = array();
 		foreach ( DLI_PAGE_PER_CT as $pt => $items ) {
-			if ( $pt !== PEOPLE_TYPE_POST_TYPE ) {
+			if ( PEOPLE_TYPE_POST_TYPE !== $pt ) {
 				foreach ( $items as $lang => $slug ) {
 					$slugs[ $slug ] = $pt;
 				}
@@ -1359,7 +1335,8 @@ if ( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
 	 * Return the slugs of all the page that are archives of posts.
 	 * Ritorna un array di slug
 	 *
-	 * @return array.
+	 * @param array $categories Categories list.
+	 * @return array
 	 */
 	function dli_get_sluglist_by_category( $categories ) {
 		$pt_slugs = dli_get_slugs_by_category( $categories );
@@ -1378,13 +1355,13 @@ if ( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 	 * Return the slugs of the categories passed as parameter.
 	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
 	 *
-	 * @param array $categories
+	 * @param array $categories Categories to map.
 	 * @return array.
 	 */
 	function dli_get_slugs_by_category( $categories ) {
 		$slugmap = array();
 		foreach ( DLI_STATIC_PAGE_CATS as $item ) {
-			if ( in_array( $item['content_category'], $categories ) ) {
+			if ( in_array( $item['content_category'], $categories, true ) ) {
 				if ( ! isset( $slugmap[ $item['content_category'] ] ) ) {
 					$slugmap[ $item['content_category'] ] = array();
 				}
@@ -1399,10 +1376,10 @@ if ( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 
 if ( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 	/**
-	 *  Return the anchestor id of given page
+	 * Return the anchestor ID of given page.
 	 *
-	 * @param arobject ay $page
-	 * @return id.
+	 * @param WP_Post $page Page object.
+	 * @return int
 	 */
 	function dli_get_page_anchestor_id( $page ) {
 		if ( $page->post_parent ) {
@@ -1418,10 +1395,10 @@ if ( ! function_exists( 'dli_get_page_anchestor_id' ) ) {
 
 if ( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
 	/**
-	 *  Return the slug anchestors of given page
+	 * Return the slug anchestors of given page.
 	 *
-	 * @param array $page
-	 * @return array.
+	 * @param WP_Post $page Page object.
+	 * @return array
 	 */
 	function dli_get_page_slug_anchestors( $page ) {
 		$slugs = array();
@@ -1435,36 +1412,36 @@ if ( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
 	}
 }
 
-if ( ! function_exists( 'check_plugin_active' ) ) {
+if ( ! function_exists( 'dli_check_plugin_active' ) ) {
 	/**
 	 * Check whether a plugin is active.
 	 *
 	 * @param string $plugin Plugin main file path.
 	 * @return bool
 	 */
-	function check_plugin_active( $plugin ) {
-			return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
+	function dli_check_plugin_active( $plugin ) {
+		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true );
 	}
 }
 
-if ( ! function_exists( 'check_mandatory_plugins' ) ) {
+if ( ! function_exists( 'dli_check_mandatory_plugins' ) ) {
 	/**
 	 * Validate that all mandatory plugins are active.
 	 *
 	 * @return bool
 	 */
-	function check_mandatory_plugins() {
+	function dli_check_mandatory_plugins() {
 		$mandatory_plugins = MANDATORY_PLUGINS;
 		$text_plugins      = implode( "','", $mandatory_plugins );
 		$all_activated     = 1;
 		foreach ( $mandatory_plugins as $plugin ) {
-			if ( ! check_plugin_active( $plugin ) ) {
+			if ( ! dli_check_plugin_active( $plugin ) ) {
 				$all_activated = 0;
 			}
 		}
 		if ( ! $all_activated ) {
 			$msg = __( 'ATTENZIONE: I seguenti plugin devono essere installati e attivati obbligatoriamente: ', 'design_laboratori_italia' );
-			wp_die( $msg . $text_plugins );
+			wp_die( esc_html( $msg . $text_plugins ) );
 			return false;
 		}
 		return true;
@@ -1490,7 +1467,7 @@ if ( ! function_exists( 'dli_set_post_featured_image_from_url' ) ) {
 	/**
 	 * Check whether a URL is safe to fetch from the server.
 	 *
-	 * @param string $url
+	 * @param string $url URL to validate.
 	 * @return bool
 	 */
 	function dli_is_public_url( $url ) {
@@ -1605,7 +1582,7 @@ if ( ! function_exists( 'dli_set_post_featured_image_from_url' ) ) {
 	}
 }
 
-if ( ! function_exists( 'clean_and_truncate_text' ) ) {
+if ( ! function_exists( 'dli_clean_and_truncate_text' ) ) {
 	/**
 	 * Remove HTML and truncate plain text with optional hard split.
 	 *
@@ -1614,7 +1591,7 @@ if ( ! function_exists( 'clean_and_truncate_text' ) ) {
 	 * @param bool   $split Whether to split exactly at max length.
 	 * @return string
 	 */
-	function clean_and_truncate_text( $text, $size = 500, $split = false ) {
+	function dli_clean_and_truncate_text( $text, $size = 500, $split = false ) {
 		// Remove HTML tags.
 		$clean_text = wp_strip_all_tags( $text );
 		// Truncate tags.
@@ -1624,7 +1601,7 @@ if ( ! function_exists( 'clean_and_truncate_text' ) ) {
 			} else {
 				$truncated_text = mb_substr( $clean_text, 0, $size );
 				$last_space     = mb_strrpos( $truncated_text, ' ' );
-				if ( $last_space !== false ) {
+				if ( false !== $last_space ) {
 					$truncated_text = mb_substr( $truncated_text, 0, $last_space ) . '...';
 				}
 			}
@@ -1653,20 +1630,22 @@ if ( ! function_exists( 'dli_decode_unicode_string' ) ) {
 	}
 }
 
-if ( ! function_exists( 'dli_translate()' ) ) {
+if ( ! function_exists( 'dli_translate' ) ) {
 	/**
 	 * Ritorna la traduzione personalizzata se esiste, altrimenti quella di default prodotta da gettext.
 	 *
-	 * @param string $text
-	 * @param string $domain
-	 * @return void
+	 * @param string $text Source text.
+	 * @param string $domain Text domain.
+	 * @return string
 	 */
 	function dli_translate( $text, $domain = 'design_laboratori_italia' ) {
 		global $wpdb;
 		$table       = $wpdb->prefix . 'dli_custom_translations';
 		$lang        = dli_current_language();
 		$translation = $wpdb->get_var(
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is built from trusted wpdb prefix.
 			$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is built from trusted wpdb prefix.
 				"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",
 				$text,
 				$domain,
@@ -1675,9 +1654,10 @@ if ( ! function_exists( 'dli_translate()' ) ) {
 		);
 		// Se esiste una traduzione personalizzata, restituiscila.
 		if ( ! empty( $translation ) ) {
-				return $translation;
+			return $translation;
 		} else {
 			// Altrimenti, restituisci la traduzione standard fatta con gettext.
+			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText,WordPress.WP.I18n.NonSingularStringLiteralDomain -- Dynamic runtime labels are required here.
 			return __( $text, $domain );
 		}
 	}

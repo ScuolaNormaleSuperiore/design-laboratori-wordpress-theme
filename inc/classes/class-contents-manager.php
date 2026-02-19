@@ -43,7 +43,7 @@ class DLI_ContentsManager
 			$site_title   = dli_get_option_by_lang( 'nome_laboratorio' );
 			$site_tagline = dli_get_option_by_lang( 'tagline_laboratorio' );
 			$item_title   = $is_homepage ? $site_title : $post->post_title;
-			$item_desc    = $is_homepage ? $site_tagline : clean_and_truncate_text( $post->post_content, 256 );
+			$item_desc    = $is_homepage ? $site_tagline : dli_clean_and_truncate_text( $post->post_content, 256 );
 			$item_url     = $is_homepage ? dli_homepage_url() : get_permalink( $item_id );
 			$img_id       = $is_homepage ? null : get_post_thumbnail_id( $item_id );
 			$img_array    = wp_get_attachment_image_src( $img_id, 'large' );
@@ -532,6 +532,73 @@ class DLI_ContentsManager
 			)
 		);
 		return $query->posts;
+	}
+
+	public static function get_post_types_with_results( $post_types, $post_status = 'publish' ) {
+		global $wpdb;
+
+		if ( ! is_array( $post_types ) || empty( $post_types ) ) {
+			return array();
+		}
+
+		$post_types = array_values(
+			array_unique(
+				array_map( 'sanitize_key', $post_types )
+			)
+		);
+
+		if ( empty( $post_types ) ) {
+			return array();
+		}
+
+		$post_types_placeholders = implode( ', ', array_fill( 0, count( $post_types ), '%s' ) );
+		$prepare_args            = array_merge(
+			array(
+				sanitize_key( $post_status ),
+			),
+			$post_types
+		);
+		$sql                     = "SELECT post_type
+			FROM {$wpdb->posts}
+			WHERE post_status = %s
+				AND post_type IN (" . $post_types_placeholders . ')
+			GROUP BY post_type';
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Placeholders are generated from sanitized values.
+		$query = $wpdb->prepare( $sql, ...$prepare_args );
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query is prepared on the previous line.
+		$rows = $wpdb->get_col( $query );
+
+		if ( ! is_array( $rows ) || empty( $rows ) ) {
+			return array();
+		}
+
+		return array_values(
+			array_filter(
+				$post_types,
+				function ( $post_type ) use ( $rows ) {
+					return in_array( $post_type, $rows, true );
+				}
+			)
+		);
+	}
+
+	public static function get_all_contenttypes_with_results() {
+		$content_types = array_values(
+			array_filter(
+				DLI_POST_TYPES_TO_SEARCH,
+				function ( $content_type ) {
+					return PEOPLE_TYPE_POST_TYPE !== $content_type;
+				}
+			)
+		);
+
+		if ( empty( $content_types ) ) {
+			return array();
+		}
+
+		return self::get_post_types_with_results( $content_types, 'publish' );
 	}
 
 	// SITE SEARCH

@@ -9,7 +9,7 @@ get_header();
 define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 
 // BEGIN preparazione dei parametri di ricerca.
-$allcontentypes = dli_get_all_contenttypes_with_results();
+$allcontentypes = DLI_ContentsManager::get_all_contenttypes_with_results();
 $num_results = 0;
 
 if ( isset( $_GET['isreset'] ) && ( sanitize_text_field( $_GET['isreset'] ) === 'yes' ) ) {
@@ -41,11 +41,6 @@ if ( '' !== $searchstring ) {
 				$searchstring,
 				SITESEARCH_CELLS_PER_PAGE
 			);
-		// $the_query = dli_main_search_query(
-		// 	$selected_contents,
-		// 	$searchstring,
-		// 	SITESEARCH_CELLS_PER_PAGE
-		// );
 		$num_results = $the_query->found_posts;
 	}
 } else {
