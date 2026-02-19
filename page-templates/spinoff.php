@@ -65,7 +65,7 @@ $num_results   = $the_query->found_posts;
 			<!-- inizio row principale -->
 			<div class="row">
 				<div class="col-12 col-lg-3 border-end pb-3">
-					<form action="<?php $_SERVER['PHP_SELF']; ?>" id="spinoffform" method="GET">
+					<form action="<?php echo esc_url( get_permalink() ); ?>" id="spinoffform" method="GET">
 						<!--COLONNA FILTRI -->
 						
 						<!-- FILTRO PER ANNO -->

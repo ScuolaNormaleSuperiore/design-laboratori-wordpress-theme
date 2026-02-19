@@ -70,7 +70,7 @@ else {
 $num_results = $luoghi->found_posts;
 ?>
 
-<form action="<?php $_SERVER['PHP_SELF']; ?>" id="luoghiform" method="GET">
+<form action="<?php echo esc_url( get_permalink() ); ?>" id="luoghiform" method="GET">
 <!-- START CONTENT -->
 	<main id="main-container" role="main">
 		<!-- BREADCRUMB -->
