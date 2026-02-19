@@ -25,18 +25,49 @@ When useful, explain the theory behind choices (WordPress internals, security, a
 Keep explanations practical and tied to the current code.
 
 ## Trigger Commands
-When the user asks: `Fai un controllo completo sul file X` or `Fai un controllo completo sulla cartella X` (or equivalent wording), interpret it as a mandatory full review workflow including:
+Use the following trigger patterns and workflows.
+
+### Trigger A: Full code review (file/folder scope)
+Trigger phrases (or equivalent wording):
+- `Fai un controllo completo sul file X`
+- `Fai un controllo completo sulla cartella X`
+
+Mandatory workflow:
 - bug and security analysis;
 - style checks;
 - compliance checks against `AGENTS/CODING_STANDARDS.md`;
 - HTML correctness checks on touched templates/markup;
 - lint execution for the target scope and code fixes for lint-reported issues when safe.
-- While running this workflow, provide live progress updates that explicitly state which check is being executed (for example: bug check, security check, style check, HTML check, lint/check-fix step).
 
-Output format for this workflow:
+Execution notes:
+- Provide live progress updates and explicitly name the check being executed (for example: bug check, security check, style check, HTML check, lint/check-fix step).
+
+Expected output:
 - findings first, ordered by severity, with file/line references;
 - then assumptions/open questions;
 - then an optional short change summary.
+
+### Trigger B: URL quality audit (page-level runtime check)
+Trigger phrases (or equivalent wording):
+- `Verifica URL X`
+- `Controlla la pagina X`
+- Requests asking to audit an URL for HTML/JS errors, efficiency, responsiveness, accessibility, and loading performance.
+
+Mandatory workflow:
+- download/fetch the target URL HTML;
+- verify produced HTML correctness/coherence;
+- check for HTML and JavaScript errors (as far as the environment allows);
+- assess loading efficiency (blocking assets, caching/compression signals, oversized resources);
+- assess responsive behavior signals (viewport, layout patterns, obvious structural issues);
+- assess accessibility issues (semantic structure, ARIA consistency, missing labels/attributes, invalid relationships);
+- assess loading performance with concrete measurements when possible.
+
+Scope filter:
+- report only impactful and relevant issues (skip low-value noise unless requested).
+
+Expected output:
+- a numbered and concise list of detected issues, ordered by severity/impact, with evidence (file/line when mapped to theme templates, or runtime evidence from fetched HTML/headers);
+- after listing issues, explicitly ask whether to add them to `AGENTS/ISSUES_TODO.md`.
 
 ## Excluded Directories
 Always ignore these folders for review/refactoring/fixes:
