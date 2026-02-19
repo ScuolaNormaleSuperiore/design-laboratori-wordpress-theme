@@ -16,11 +16,11 @@ dli_check_mandatory_plugins();
 require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
 require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
 
-$locations    = get_nav_menu_locations();
-$current_lang = dli_current_language();
+$dli_locations    = get_nav_menu_locations();
+$dli_current_lang = dli_current_language();
 ?>
 <!doctype html>
-<html lang="<?php echo esc_attr( $current_lang ); ?>">
+<html lang="<?php echo esc_attr( $dli_current_lang ); ?>">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,28 +63,32 @@ $current_lang = dli_current_language();
 					<div class="nav-mobile">
 						<!-- TOP MENU -->
 						<?php
-							echo get_template_part(
-								'template-parts/header/top-menu',
-								false,
-								array(
-									// 'current_group' => $current_group,
-									'locations'     => $locations,
-								)
-							);
-						?>
+								get_template_part(
+									'template-parts/header/top-menu',
+									false,
+									array(
+										'locations' => $dli_locations,
+									)
+								);
+								?>
 					</div>
 					<div class="it-header-slim-right-zone">
 						<!-- Language selector -->
-						<?php	
-							$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
-							$current_language   = dli_current_language( 'slug' );
-							if ( 'true' === $selettore_visibile ) {
-							$languages_list = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
-						?>
+						<?php
+								$dli_selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
+								$dli_current_language   = dli_current_language( 'slug' );
+						if ( 'true' === $dli_selettore_visibile ) {
+							$dli_languages_list = dli_languages_list(
+								array(
+									'hide_empty' => 0,
+									'fields'     => 'slug',
+								)
+							);
+							?>
 						<div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-							<span class="visually-hidden"><?php echo esc_html__( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' );?></span>
-							<span><?php echo esc_html( $current_language ); ?></span>
+							<span class="visually-hidden"><?php echo esc_html__( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' ); ?></span>
+								<span><?php echo esc_html( $dli_current_language ); ?></span>
 							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
 								<title>Expand</title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
@@ -95,37 +99,37 @@ $current_lang = dli_current_language();
 								<div class="col-12">
 								<div class="link-list-wrapper">
 									<ul class="link-list">
-									<?php
-										$selectors = dli_get_page_selectors();
-										foreach ( $selectors as $selector ) {
-									?>
-										<li>
-											<a class="dropdown-item list-item" href="<?php echo esc_url( $selector['url'] ); ?>">
-												<span>
-													<?php echo esc_html( $selector['slug'] ); ?>
-												</span>
-											</a>
+							<?php
+									$dli_selectors = dli_get_page_selectors();
+							foreach ( $dli_selectors as $dli_selector ) {
+								?>
+											<li>
+												<a class="dropdown-item list-item" href="<?php echo esc_url( $dli_selector['url'] ); ?>">
+													<span>
+										<?php echo esc_html( $dli_selector['slug'] ); ?>
+													</span>
+												</a>
 										</li>
 									<?php
-										}
-									?>
+							}
+							?>
 									</ul>
 								</div>
 								</div>
 							</div>
 							</div>
 						</div>
-						<?php
-							}
-							$login_visible = dli_get_option( 'login_button_visible', 'setup' );
-							if ( $login_visible === 'true' ) {
-						?>
+							<?php
+						}
+								$dli_login_visible = dli_get_option( 'login_button_visible', 'setup' );
+						if ( 'true' === $dli_login_visible ) {
+							?>
 						<div class="it-access-top-wrapper">
 							&nbsp;&nbsp;
 							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></a>
 						</div>
-						<?php
-							}
+							<?php
+						}
 						?>
 					</div>
 				</div>
@@ -162,9 +166,9 @@ $current_lang = dli_current_language();
 						<div class="it-search-wrapper">
 							<span class="d-none d-md-block"><?php echo esc_html__( 'Cerca', 'design_laboratori_italia' ); ?></span>
 							<?php
-								$search_link = dli_get_search_link( $current_language );
+									$dli_search_link = dli_get_search_link( $dli_current_language );
 							?>
-							<a class="search-link rounded-icon" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $search_link ); ?>">
+								<a class="search-link rounded-icon" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $dli_search_link ); ?>">
 								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
 									<title><?php echo esc_html__( 'Cerca nel sito', 'design_laboratori_italia' ); ?></title>
 									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
@@ -205,26 +209,24 @@ $current_lang = dli_current_language();
 					<div class="menu-wrapper" id="menu-principale">
 						<!-- MAIN MENU -->
 						<?php
-							echo get_template_part(
-								'template-parts/header/main-menu',
-								false,
-								array(
-									// 'current_group' => $current_group,
-									'locations'     => $locations,
-								)
-							);
-						?>
+								get_template_part(
+									'template-parts/header/main-menu',
+									false,
+									array(
+										'locations' => $dli_locations,
+									)
+								);
+								?>
 						<!-- SECONDARY MENU -->
 						<?php
-							echo get_template_part(
-								'template-parts/header/secondary-menu',
-								false,
-								array(
-									// 'current_group' => $current_group,
-									'locations'     => $locations,
-								)
-							);
-						?>
+								get_template_part(
+									'template-parts/header/secondary-menu',
+									false,
+									array(
+										'locations' => $dli_locations,
+									)
+								);
+								?>
 					</div> <!-- menu-wrapper -->
 				</div>
 				</nav>
