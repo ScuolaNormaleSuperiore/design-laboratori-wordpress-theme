@@ -34,6 +34,8 @@ Examples:
 
 - Run `composer run lint:php` when possible.
 - Do not commit secrets, API keys, or `.env` files.
+- Before every commit, scan staged files for sensitive data (for example: API keys, tokens, passwords, private keys, auth headers, cookies, personal data).
+- If potential sensitive data is found, stop the commit flow, report exactly what was found and where (file/path), and ask the user for explicit confirmation before proceeding.
 - Do not include unrelated changes in the same commit.
 
 
