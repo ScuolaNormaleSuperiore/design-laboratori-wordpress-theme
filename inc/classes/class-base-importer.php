@@ -144,6 +144,11 @@ class DLI_BaseImporter {
 	 * @return void
 	 */
 	public function register_import_endpoint() {
+		// Respect global REST API toggle from setup options.
+		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ) {
+			return;
+		}
+		// Endpoint used by the import procedure.
 		register_rest_route(
 			'custom/v1',
 			$this->endpoint,
