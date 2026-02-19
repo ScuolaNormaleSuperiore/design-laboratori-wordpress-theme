@@ -13,10 +13,19 @@ $per_page_values = DLI_POST_PER_PAGE_VALUES;
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	$per_page = sanitize_text_field( $_GET['per_page'] );
 }
-if ( isset( $_GET['cat'] ) ){
-	$selected_categories = $_GET['cat'];
-} else {
-	$selected_categories = array();
+$selected_categories = array();
+if ( isset( $_GET['cat'] ) ) {
+	$raw_selected_categories = wp_unslash( $_GET['cat'] );
+	if ( ! is_array( $raw_selected_categories ) ) {
+		$raw_selected_categories = array( $raw_selected_categories );
+	}
+	$selected_categories = array_values(
+		array_unique(
+			array_filter(
+				array_map( 'absint', $raw_selected_categories )
+			)
+		)
+	);
 }
 $paged = absint( get_query_var( 'paged' ) );
 if ( 0 === $paged ) {
@@ -65,7 +74,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE );
 								<div class="form-check">
 									<input type="checkbox" name="cat[]" id="<?php echo esc_attr( $category['slug'] ); ?>" 
 										value="<?php echo esc_attr( $category['id'] ); ?>" onChange="this.form.submit()"
-										<?php if ( in_array( $category['id'], $selected_categories ) ) { echo "checked='checked'"; } ?>
+											<?php if ( in_array( absint( $category['id'] ), $selected_categories, true ) ) { echo "checked='checked'"; } ?>
 									>
 									<label for="<?php echo esc_attr( $category['slug'] ); ?>"><?php echo esc_html( $category['name'] ); ?></label>
 								</div>

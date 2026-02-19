@@ -6,12 +6,21 @@
 
 global $post;
 get_header();
-define( 'BLOG_CELLS_PER_ROW', 3 );
+$blog_cells_per_row = 3;
 
-if ( isset( $_GET['cat'] ) ){
-	$selected_categories = $_GET['cat'];
-} else {
-	$selected_categories = array();
+$selected_categories = array();
+if ( isset( $_GET['cat'] ) ) {
+	$raw_selected_categories = wp_unslash( $_GET['cat'] );
+	if ( ! is_array( $raw_selected_categories ) ) {
+		$raw_selected_categories = array( $raw_selected_categories );
+	}
+	$selected_categories = array_values(
+		array_unique(
+			array_filter(
+				array_map( 'absint', $raw_selected_categories )
+			)
+		)
+	);
 }
 
 
@@ -44,21 +53,21 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 				<div class="col-12 col-lg-3 border-end">
 					<div class="row pt-4">
 					<?php
-						if( count( $all_categories ) > 0 ) {
-					?>
-						<h3 class="h6 text-uppercase border-bottom"><?php echo __( 'Categoria', 'design_laboratori_italia' ); ?></h3>
-						<div>
-							<form action="." id="notizieform" method="GET">
-								<?php
-									foreach( $all_categories as $category ) {
-								?>
-								<div class="form-check">
-									<input type="checkbox" name="cat[]" id="<?php echo esc_attr( $category['slug'] ); ?>" 
-										value="<?php echo esc_attr( $category['id'] ); ?>" onChange="this.form.submit()"
-										<?php if ( in_array( $category['id'], $selected_categories ) ) { echo "checked='checked'"; } ?>
-									>
-									<label for="<?php echo esc_attr( $category['slug'] ); ?>"><?php echo esc_html( $category['name'] ); ?></label>
-								</div>
+							if ( count( $all_categories ) > 0 ) {
+						?>
+							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Categoria', 'design_laboratori_italia' ); ?></h3>
+							<div>
+								<form action="<?php echo esc_url( get_permalink() ); ?>" id="notizieform" method="GET">
+									<?php
+										foreach ( $all_categories as $category ) {
+									?>
+									<div class="form-check">
+										<input type="checkbox" name="cat[]" id="<?php echo esc_attr( $category['slug'] ); ?>" 
+											value="<?php echo esc_attr( $category['id'] ); ?>" onChange="this.form.submit()"
+											<?php checked( in_array( absint( $category['id'] ), $selected_categories, true ) ); ?>
+										>
+										<label for="<?php echo esc_attr( $category['slug'] ); ?>"><?php echo esc_html( $category['name'] ); ?></label>
+									</div>
 								<?php
 									}
 								?>
@@ -72,23 +81,22 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 				<!--COLONNA FILTRI -->
 
 				<?php
-				// The mani loop of the page.
-				$pindex = 0;
-				if ( $num_results ) {
+					// The main loop of the page.
+					$pindex = 0;
+					if ( $num_results ) {
 				?>
 				<!-- Inizio ELENCO NEWS -->
 				<div class="col-12 col-lg-8">
 				<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
-						if ( ( $pindex % BLOG_CELLS_PER_ROW ) == 0 ) {
-					?>
+							if ( 0 === ( $pindex % $blog_cells_per_row ) ) {
+						?>
 					<!-- begin row -->
 					<div class="row pt-5">
 					<?php
 					}
-					$post_id  = get_the_ID();
-					$termitem = dli_get_post_main_category( $post, 'category' );
+						$termitem = dli_get_post_main_category( $post, 'category' );
 					?>
 						<!-- start card-->
 						<div class="col-12 col-lg-4">
@@ -110,11 +118,11 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 											<?php echo wp_kses_post( wp_trim_words( get_the_content(), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 										</p>
 										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-										<span class="text"><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?>">
-											<title><?php echo __( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right'; ?>"></use>
-										</svg>
+											<span class="text"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
+											<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
+												<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
+											</svg>
 										</a>
 									</div>
 								</div>
@@ -122,8 +130,8 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 						</div>
 						<!--end card-->
 					<?php
-					if ( ( ( $pindex % BLOG_CELLS_PER_ROW ) === BLOG_CELLS_PER_ROW - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
-					?>
+						if ( ( ( $pindex % $blog_cells_per_row ) === $blog_cells_per_row - 1 ) || ( $the_query->current_post + 1 === $the_query->post_count ) ) {
+						?>
 					</div>
 					<!-- end row -->
 					<?php
@@ -134,7 +142,7 @@ $all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST );
 					?>
 					<div class="col-12 col-lg-8">
 						<div class="row pt-2">
-							<?php echo __( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
+								<?php echo esc_html__( 'Non è stato trovato nessun articolo', 'design_laboratori_italia' ); ?>
 						</div>
 					</div>
 					<?php
