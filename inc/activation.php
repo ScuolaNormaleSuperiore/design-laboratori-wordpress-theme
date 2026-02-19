@@ -12,32 +12,29 @@ add_action( 'after_switch_theme', 'dli_create_pages_on_theme_activation' );
 
 /**
  * Attivazione del tema: creazione di contenuti, pagine e tassonomie.
+ *
  * @return void
  */
 function dli_create_pages_on_theme_activation() {
-	// Verifico se è una prima installazione.
-	$dli_has_installed = get_option( 'dli_has_installed' );
-
 	// Se non è installato Polylang non si può attivare il tema.
 	if ( ! function_exists( 'pll_the_languages' ) ) {
-		$msg = 'The plugin Polylang  is missing, please install and activate it: https://wordpress.org/plugins/polylang/';
-		return false;
+		return;
 	}
 
 	// Crea le pagine di default se non esistono già.
-	create_the_pages();
+	dli_create_the_pages();
 
 	// Create the tipologia-persona entities.
-	create_the_tipologia_persona();
+	dli_create_the_tipologia_persona();
 
 	// Crea le tassonomie di default.
-	create_the_taxonomies();
+	dli_create_the_taxonomies();
 
 	// Create all the menus of the site.
-	create_the_menus();
+	dli_create_the_menus();
 
 	// Create the custom tables.
-	create_the_tables();
+	dli_create_the_tables();
 
 	global $wp_rewrite;
 	$wp_rewrite->init(); // important...
@@ -53,7 +50,7 @@ function dli_create_pages_on_theme_activation() {
  *
  * @return void
  */
-function create_the_tipologia_persona() {
+function dli_create_the_tipologia_persona() {
 	// Qui crea la tipologia direttore in italiano e in inglese.
 	// Ora e un tipo di contenuto PEOPLE_TYPE_POST_TYPE e non più una tassonomia.
 }
@@ -64,48 +61,81 @@ function create_the_tipologia_persona() {
  *
  * @return void
  */
-function create_the_taxonomies() {
+function dli_create_the_taxonomies() {
 	// Valori tassonomia tipologia-luogo.
 	$taxonomy = PLACE_TYPE_TAXONOMY;
-	$terms = array(
-		array( 'it' => 'Aula', 'en' => 'Classroom' ),
-		array( 'it' => 'Aula studio', 'en' => 'Study room' ),
-		array( 'it' => 'Biblioteca', 'en' => 'Library' ),
-		array( 'it' => 'Laboratorio', 'en' => 'Laboratory' ),
-		array( 'it' => 'Parcheggio', 'en' => 'Parking' ),
-		array( 'it' => 'Ufficio', 'en' => 'Office' ),
-		array( 'it' => 'Sede', 'en' => 'Headquarter' ),
+	$terms    = array(
+		array(
+			'it' => 'Aula',
+			'en' => 'Classroom',
+		),
+		array(
+			'it' => 'Aula studio',
+			'en' => 'Study room',
+		),
+		array(
+			'it' => 'Biblioteca',
+			'en' => 'Library',
+		),
+		array(
+			'it' => 'Laboratorio',
+			'en' => 'Laboratory',
+		),
+		array(
+			'it' => 'Parcheggio',
+			'en' => 'Parking',
+		),
+		array(
+			'it' => 'Ufficio',
+			'en' => 'Office',
+		),
+		array(
+			'it' => 'Sede',
+			'en' => 'Headquarter',
+		),
 	);
-	build_taxonomies( $taxonomy, $terms );
+	dli_build_taxonomies( $taxonomy, $terms );
 
 	// Valori tassonomia struttura.
 	$taxonomy = STRUCTURE_TAXONOMY;
-	$terms = array(
-		array( 'it' => 'Prima struttura', 'en' => 'First structure' ),
+	$terms    = array(
+		array(
+			'it' => 'Prima struttura',
+			'en' => 'First structure',
+		),
 	);
-	build_taxonomies( $taxonomy, $terms );
+	dli_build_taxonomies( $taxonomy, $terms );
 
 	// Valori tassonomia tipo-pubblicazione.
 	$taxonomy = PUBLICATION_TYPE_TAXONOMY;
-	$terms = array(
-		array( 'it' => 'Articolo in rivista', 'en' => 'Article in journal' ),
-		array( 'it' => 'Monografia', 'en' => 'Monograph' ),
+	$terms    = array(
+		array(
+			'it' => 'Articolo in rivista',
+			'en' => 'Article in journal',
+		),
+		array(
+			'it' => 'Monografia',
+			'en' => 'Monograph',
+		),
 	);
-	build_taxonomies( $taxonomy, $terms );
+	dli_build_taxonomies( $taxonomy, $terms );
 }
 
 /**
  * Build the taxonomies.
  *
+ * @param string $taxonomy Taxonomy slug.
+ * @param array  $terms    List of term label pairs by language.
+ *
  * @return void
  */
-function build_taxonomies( $taxonomy, $terms ) {
+function dli_build_taxonomies( $taxonomy, $terms ) {
 
 	foreach ( $terms as $term ) {
 
 		// Use a stable slug to avoid missing existing terms.
 		$term_slug_it = sanitize_title( $term['it'] );
-		$termitem = get_term_by( 'slug', $term_slug_it, $taxonomy );
+		$termitem     = get_term_by( 'slug', $term_slug_it, $taxonomy );
 		if ( $termitem ) {
 			$term_it = $termitem->term_id;
 		} else {
@@ -130,7 +160,7 @@ function build_taxonomies( $taxonomy, $terms ) {
 
 		// Use a stable slug to avoid missing existing terms.
 		$term_slug_en = sanitize_title( $term['en'] );
-		$termitem = get_term_by( 'slug', $term_slug_en, $taxonomy );
+		$termitem     = get_term_by( 'slug', $term_slug_en, $taxonomy );
 		if ( $termitem ) {
 			$term_en = $termitem->term_id;
 		} else {
@@ -162,7 +192,6 @@ function build_taxonomies( $taxonomy, $terms ) {
 			dli_save_term_translations( $related_taxonomies );
 		}
 	}
-
 }
 
 /**
@@ -170,10 +199,10 @@ function build_taxonomies( $taxonomy, $terms ) {
  *
  * @return void
  */
-function create_the_menus() {
+function dli_create_the_menus() {
 	// Creazione dei menu predefiniti.
-	create_the_it_menus();
-	create_the_en_menus();
+	dli_create_the_it_menus();
+	dli_create_the_en_menus();
 }
 
 
@@ -182,46 +211,47 @@ function create_the_menus() {
  *
  * @return void
  */
-function create_the_it_menus() {
+function dli_create_the_it_menus() {
 
 	/**
 	 *  1 - Creazione del menu LABORATORIO.
 	 */
 	$menu = DLI_LAB_MENU_IT;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 2 - Creazione del menu PRESENTAZIONE.
 	 */
 	$menu = DLI_PRESENTATION_MENU_IT;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 3 - Creazione del menu NOTIZIE.
 	 */
 	$menu = DLI_NEWS_MENU_IT;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 4 - Creazione del menu Footer.
 	 */
 	$menu = DLI_FOOTER_MENU_IT;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 5 - Creazione del menu Link utili.
 	 */
 	$menu = DLI_USEFUL_LINKS_MENU_IT;
-	build_the_menu( $menu );
-
+	dli_build_the_menu( $menu );
 }
 
 /**
  * Create the site menus.
  *
+ * @param array $custom_menu Menu configuration.
+ *
  * @return void
  */
-function build_the_menu( $custom_menu ) {
+function dli_build_the_menu( $custom_menu ) {
 	$menu_name     = $custom_menu['name'];
 	$menu_items    = $custom_menu['items'];
 	$menu_location = $custom_menu['location'];
@@ -230,16 +260,16 @@ function build_the_menu( $custom_menu ) {
 		$menu_location = $menu_location . '___' . $menu_lang;
 	}
 
-	// wp_delete_nav_menu( $menu_name );
-
 	$menu_object = wp_get_nav_menu_object( $menu_name );
 	if ( $menu_object ) {
 		$menu_id = $menu_object->term_id;
 		$menu    = get_term_by( 'id', $menu_id, 'nav_menu' );
 	} else {
-
-		$menu_id  = wp_create_nav_menu( $menu_name );
-		$menu     = get_term_by( 'id', $menu_id, 'nav_menu' );
+		$menu_id = wp_create_nav_menu( $menu_name );
+		if ( is_wp_error( $menu_id ) ) {
+			return;
+		}
+		$menu = get_term_by( 'id', $menu_id, 'nav_menu' );
 
 		foreach ( $menu_items as $menu_item ) {
 			$result = dli_get_content( $menu_item['slug'], $menu_item['content_type'] );
@@ -257,7 +287,6 @@ function build_the_menu( $custom_menu ) {
 							'menu-item-status'    => $menu_item['status'],
 							'menu-item-type'      => $menu_item['post_type'],
 							'menu-item-url'       => $menu_item['link'],
-							// 'menu-item-classes'   => $menu_item['footer-link'],
 						)
 					);
 				} else {
@@ -266,23 +295,27 @@ function build_the_menu( $custom_menu ) {
 						$menu->term_id,
 						0,
 						array(
-							'menu-item-title'     => $menu_item['title'],
-							'menu-item-status'    => $menu_item['status'],
-							'menu-item-url'       => $menu_item['link'],
-							// 'menu-item-classes'   => $menu_item['footer-link'],
+							'menu-item-title'  => $menu_item['title'],
+							'menu-item-status' => $menu_item['status'],
+							'menu-item-url'    => $menu_item['link'],
 						)
 					);
 				}
 			}
 		}
 
-		$locations_primary_arr                   = get_theme_mod( 'nav_menu_locations' );
+		$locations_primary_arr = get_theme_mod( 'nav_menu_locations' );
+		if ( ! is_array( $locations_primary_arr ) ) {
+			$locations_primary_arr = array();
+		}
 		$locations_primary_arr[ $menu_location ] = $menu->term_id;
 		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
 		update_option( 'menu_check', true );
-
 	}
 
+	if ( ! $menu || ! isset( $menu->term_id ) ) {
+		return;
+	}
 }
 
 /**
@@ -290,36 +323,36 @@ function build_the_menu( $custom_menu ) {
  *
  * @return void
  */
-function create_the_en_menus() {
+function dli_create_the_en_menus() {
 	/**
 	 *  1 - Creazione del menu LABORATORIO-en.
 	 */
 	$menu = DLI_LAB_MENU_EN;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 2 - Creazione del menu PRESENTAZIONE-en.
 	 */
 	$menu = DLI_PRESENTATION_MENU_EN;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 3 - Creazione del menu NOTIZIE.
 	 */
 	$menu = DLI_NEWS_MENU_EN;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 4 - Creazione del menu Footer.
 	 */
 	$menu = DLI_FOOTER_MENU_EN;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 
 	/**
 	 * 5 - Creazione del menu Link utili-en.
 	 */
 	$menu = DLI_USEFUL_LINKS_MENU_EN;
-	build_the_menu( $menu );
+	dli_build_the_menu( $menu );
 }
 
 
@@ -328,15 +361,18 @@ function create_the_en_menus() {
  *
  * @return void
  */
-function create_the_pages() {
+function dli_create_the_pages() {
 	// Creazione delle pagine statiche.
 	foreach ( DLI_STATIC_PAGE_CATS as $page ) {
 		$new_content_template = $page['content_template'];
 
 		// Create the IT page.
 		// Store the above data in an array.
-		$content_it = ( $page['content_file_it'] !== '' ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_it'] ) :  $page['content_it'];
-		$new_page = array(
+		$content_it = ( '' !== $page['content_file_it'] ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_it'] ) : $page['content_it'];
+		if ( false === $content_it ) {
+			$content_it = '';
+		}
+		$new_page       = array(
 			'post_type'    => $page['content_type'],
 			'post_name'    => $page['content_slug_it'],
 			'post_title'   => $page['content_title_it'],
@@ -356,16 +392,25 @@ function create_the_pages() {
 					$new_page['post_parent'] = $post_parent_id;
 				}
 			}
-			$new_page_it_id = wp_insert_post( $new_page );
-			update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
+			$new_page_it_id = wp_insert_post( $new_page, true );
+			if ( ! is_wp_error( $new_page_it_id ) && $new_page_it_id > 0 ) {
+				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
+			} else {
+				$new_page_it_id = 0;
+			}
 		}
 		// Assign the IT language to the page.
-		dli_set_post_language( $new_page_it_id, 'it' );
+		if ( $new_page_it_id > 0 ) {
+			dli_set_post_language( $new_page_it_id, 'it' );
+		}
 
 		// Create the EN page.
 		// Store the above data in an array.
-		$content_en = ( $page['content_file_en'] !== '' ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_en'] ) :  $page['content_en'];
-		$new_page = array(
+		$content_en = ( '' !== $page['content_file_en'] ) ? file_get_contents( DLI_THEMA_PATH . $page['content_file_en'] ) : $page['content_en'];
+		if ( false === $content_en ) {
+			$content_en = '';
+		}
+		$new_page       = array(
 			'post_type'    => $page['content_type'],
 			'post_name'    => $page['content_slug_en'],
 			'post_title'   => $page['content_title_en'],
@@ -385,19 +430,26 @@ function create_the_pages() {
 					$new_page['post_parent'] = $post_parent_id;
 				}
 			}
-			$new_page_en_id = wp_insert_post( $new_page );
-			update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
+			$new_page_en_id = wp_insert_post( $new_page, true );
+			if ( ! is_wp_error( $new_page_en_id ) && $new_page_en_id > 0 ) {
+				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
+			} else {
+				$new_page_en_id = 0;
+			}
 		}
 		// Assign the EN language to the page.
-		dli_set_post_language( $new_page_en_id, 'en' );
+		if ( $new_page_en_id > 0 ) {
+			dli_set_post_language( $new_page_en_id, 'en' );
+		}
 
 		// Associate it and en translations.
-		$related_posts = array(
-			'it' => $new_page_it_id,
-			'en' => $new_page_en_id,
-		);
-		dli_save_post_translations( $related_posts );
-
+		if ( $new_page_it_id > 0 && $new_page_en_id > 0 ) {
+			$related_posts = array(
+				'it' => $new_page_it_id,
+				'en' => $new_page_en_id,
+			);
+			dli_save_post_translations( $related_posts );
+		}
 	}
 }
 
@@ -408,7 +460,7 @@ function create_the_pages() {
  * @return void
  */
 function dli_add_update_theme_page() {
-		add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dli_reload_theme_option_page' );
+	add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dli_reload_theme_option_page' );
 }
 add_action( 'admin_menu', 'dli_add_update_theme_page' );
 
@@ -445,15 +497,25 @@ function dli_reload_theme_option_page() {
 	echo '</div>';
 }
 
-
-function create_the_tables() {
+/**
+ * Create custom translation table if missing.
+ *
+ * @return void
+ */
+function dli_create_the_tables() {
 	global $wpdb;
-	$table_name = $wpdb->prefix . 'dli_custom_translations';
-	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'") != $table_name ) {
+	$table_name     = $wpdb->prefix . 'dli_custom_translations';
+	$existing_table = $wpdb->get_var(
+		$wpdb->prepare(
+			'SHOW TABLES LIKE %s',
+			$table_name
+		)
+	);
+	if ( $existing_table !== $table_name ) {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		
+
 		$charset_collate = $wpdb->get_charset_collate();
-		
+
 		$sql = "CREATE TABLE $table_name (
 				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				label TEXT NOT NULL,
@@ -463,6 +525,6 @@ function create_the_tables() {
 				PRIMARY KEY (id),
 				KEY idx_text_domain (domain)
 		) ENGINE=InnoDB $charset_collate;";
-		dbDelta($sql);
+		dbDelta( $sql );
 	}
 }
