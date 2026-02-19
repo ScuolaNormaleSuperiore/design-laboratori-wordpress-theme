@@ -1643,9 +1643,7 @@ if ( ! function_exists( 'dli_translate' ) ) {
 		$table       = $wpdb->prefix . 'dli_custom_translations';
 		$lang        = dli_current_language();
 		$translation = $wpdb->get_var(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is built from trusted wpdb prefix.
 			$wpdb->prepare(
-					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is built from trusted wpdb prefix.
 				"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",
 				$text,
 				$domain,
@@ -1657,7 +1655,6 @@ if ( ! function_exists( 'dli_translate' ) ) {
 			return $translation;
 		} else {
 			// Altrimenti, restituisci la traduzione standard fatta con gettext.
-			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText,WordPress.WP.I18n.NonSingularStringLiteralDomain -- Dynamic runtime labels are required here.
 			return __( $text, $domain );
 		}
 	}

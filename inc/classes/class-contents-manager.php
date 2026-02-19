@@ -564,12 +564,8 @@ class DLI_ContentsManager
 				AND post_type IN (" . $post_types_placeholders . ')
 			GROUP BY post_type';
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Placeholders are generated from sanitized values.
 		$query = $wpdb->prepare( $sql, ...$prepare_args );
-
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query is prepared on the previous line.
 		$rows = $wpdb->get_col( $query );
-
 		if ( ! is_array( $rows ) || empty( $rows ) ) {
 			return array();
 		}

@@ -243,7 +243,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 													<div class="it-card-taxonomy">
 														<?php foreach ( $dli_item_terms as $dli_item_term ) { ?>
 															<span class="visually-hidden">
-																<?php esc_html_e( 'Related category:', 'design_laboratori_italia' ); ?>
+																<?php esc_html_e( 'Categorie collegate:', 'design_laboratori_italia' ); ?>
 															</span><?php echo esc_html( $dli_item_term->name ); ?>
 															&nbsp;
 														<?php } ?>
