@@ -2,6 +2,7 @@
 
 Use these rules only when the task includes branch/commit/PR work.
 
+
 ## Branches
 
 - Base branch: `main`.
@@ -13,6 +14,7 @@ Use these rules only when the task includes branch/commit/PR work.
   - `bugfix/fixContactForm`
   - `refactor/centralizeRendering`
   - `docs/updateArchitecture`
+
 
 ## Commits
 
@@ -27,11 +29,13 @@ Examples:
 - `Refactor: Centralize event date rendering logic`
 - `Docs: Update ARCHITECTURE.md after menu refactor`
 
+
 ## Pre-commit checks
 
 - Run `composer run lint:php` when possible.
 - Do not commit secrets, API keys, or `.env` files.
 - Do not include unrelated changes in the same commit.
+
 
 ## Pull Requests
 

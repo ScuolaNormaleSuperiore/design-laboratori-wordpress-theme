@@ -1,7 +1,9 @@
 # AI_BEHAVIOR.md
 
+
 ## Purpose
 Operational rules for AI assistants working on this codebase.
+
 
 ## Execution Rules
 - Be concise, precise, and action-oriented.
@@ -12,9 +14,11 @@ Operational rules for AI assistants working on this codebase.
 - For coding/security/style specifics, follow `AGENTS/CODING_STANDARDS.md`.
 - During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
 
+
 ## Learning Support
 When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.
 Keep explanations practical and tied to the current code.
+
 
 ## Trigger Commands
 Use the following trigger patterns and workflows.
@@ -80,10 +84,12 @@ Expected output:
 - recommended next issue to fix with short rationale;
 - after each completed fix, explicit note of updates applied to `ISSUES_TODO.md` and `ISSUES_RESOLVED.md`.
 
+
 ## Excluded Directories
 Always ignore these folders for review/refactoring/fixes:
 - `vendor/`
 - `node_modules/`
+
 
 ## Repository Scope Boundaries
 - Modify files only inside this theme repository: `wp-content/themes/design-laboratori-wordpress-theme/`.
@@ -98,10 +104,11 @@ Always ignore these folders for review/refactoring/fixes:
   - `assets/bootstrap-italia/`
 - Before staging/commit, verify with `git status --short` that all changed files are inside the allowed repository scope.
 
+
 ## Issue Management
 
 ### When to add an issue
-Create or update issues in `ISSUES_TODO.md` when you find:
+Create or update issues in `ISSUES_TODO.md` when you find something in one of these CATEGORIES:
 - Security vulnerabilities
 - Bugs
 - Refactoring opportunities
@@ -112,6 +119,14 @@ Create or update issues in `ISSUES_TODO.md` when you find:
 - New features or improvement ideas
 
 Feature ideas not implementation-ready still go to category `Feature` with status like `Idea` or `Under Evaluation`.
+
+### Priority levels
+The SEVERITIES of the issues are:
+
+- `Critical`: security/data-loss/major service breakage.
+- `High`: major user impact.
+- `Medium`: relevant but non-blocking.
+- `Low`: minor impact or polish.
 
 ### Issue template
 
@@ -128,17 +143,12 @@ Feature ideas not implementation-ready still go to category `Feature` with statu
 - **Notes:** Additional information, workarounds, references
 ```
 
-### Priority levels
-- `Critical`: security/data-loss/major service breakage.
-- `High`: major user impact.
-- `Medium`: relevant but non-blocking.
-- `Low`: minor impact or polish.
-
 ### Resolution flow
 When an issue is resolved:
 1. Move it from `ISSUES_TODO.md` to `ISSUES_RESOLVED.md`.
 2. Add `Resolution date` and `Fix summary`.
 3. Add commit/PR references when available.
+
 
 ## Documentation and AGENTS Update Matrix
 After code changes, update documentation with this matrix:
@@ -158,6 +168,7 @@ After code changes, update documentation with this matrix:
 For security/accessibility/code-quality checks, apply `AGENTS/CODING_STANDARDS.md` checklists.
 If a required check fails and cannot be fixed safely in scope, add/update an issue in `AGENTS/ISSUES_TODO.md`.
 
+
 ## Definition of Done
 Before marking work complete:
 - Run `composer run lint:php` when environment/dependencies are available.
@@ -166,9 +177,11 @@ Before marking work complete:
 - Update AGENTS docs affected by the change (`PROJECT.md`, `ARCHITECTURE.md`, `CODING_STANDARDS.md`, `AI_BEHAVIOR.md`, `AGENTS_README.md` as needed).
 - Report a concise summary of what changed, what was verified, and any remaining risks.
 
+
 ## Batch and Mass Updates
 - For a global rule update, apply changes consistently across all affected files and report the edited file list.
 - For mass updates touching many files, list impact first and request confirmation before applying.
+
 
 ## Git Workflow Usage
 Git branch/commit/PR conventions are defined in `AGENTS/GIT_WORKFLOW.md`.

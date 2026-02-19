@@ -1,5 +1,6 @@
 # PROJECT.md
 
+
 ## Project Overview
 
 Design laboratori e centri di ricerca is a WordPress theme developed by the Scuola Normale Superiore with the aim of creating a website model for research structures (centers and laboratories).
@@ -11,6 +12,7 @@ This website allows the publication of all information related to a research str
 The project aims to highlight and enhance the activities and research staff of the structures.
 
 It is possible to easily test the system locally by using the Dockerfile provided in the project source code or by using the demo site: https://sitofederato.sns.it.
+
 
 ## Main System Features
 
@@ -41,15 +43,18 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Import of events from Indico
 - Import of patents from IRIS
 
+
 ## Documentation
 
 Official documentation is available in the GitHub repository:
 https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/README.md
 
+
 ## Changelog and TODO List
 
 The project maintains a changelog and TODO list in the GitHub repository:
 https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md
+
 
 ## Testing and Demo
 
@@ -59,9 +64,11 @@ Use the Dockerfile provided in the `DEV/` directory to set up a local developmen
 **Live Demo:**
 https://sitofederato.sns.it
 
+
 ## License
 
 See the `LICENSE` file in the project root for licensing information.
+
 
 ## Public Code Catalog
 

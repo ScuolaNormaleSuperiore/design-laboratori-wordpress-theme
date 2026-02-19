@@ -1,10 +1,12 @@
 # ARCHITECTURE.md
 
+
 ## Architecture Notes
 
 Design Laboratori Italia is a WordPress theme that behaves as a complete site once installed.
 It provides custom post types (with ACF fields), configurable homepage sections, content import procedures, and custom templates for list/detail views.
 Core runtime features include menu/taxonomy/page initialization and global search.
+
 
 ## Key Directories
 
@@ -17,6 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports and setup utilities.
 - `scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
+
 
 ## Main Files
 
@@ -34,6 +37,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `package.json`: frontend/development tooling dependencies.
 - `publiccode.yml`: public administration reuse catalog metadata.
 
+
 ## Technology Stack
 
 - Platform: WordPress
@@ -43,12 +47,12 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - Build/tooling: see `package.json`
 - Code quality: PHPCS
 
+
 ## Commands
 
-- `npm run lint`
 - `composer run lint:php`
 - `composer run lint:php:fix`
-- `npm run build`
+
 
 ## References
 

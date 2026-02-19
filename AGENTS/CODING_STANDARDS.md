@@ -1,14 +1,11 @@
 # CODING_STANDARDS.md
 
+
 ## Purpose
 
 Coding rules for this project.
 Write code according to official WordPress standards and project-specific conventions.
 
-## Learning Support Requirement
-
-When useful, explain the theory behind choices (WordPress internals, security, architecture, standards), especially if the user shows knowledge gaps or asks for deeper understanding.
-Keep explanations practical and tied to the current code.
 
 ## Quality Priorities
 
@@ -17,6 +14,7 @@ Keep explanations practical and tied to the current code.
 - Accessibility (WCAG-oriented decisions).
 - Readability and maintainability.
 - Compliance with WordPress Coding Standards.
+
 
 ## Core PHP/WordPress Rules
 
@@ -58,6 +56,7 @@ Keep explanations practical and tied to the current code.
 - Use `$wpdb->prepare()` for dynamic SQL.
 - Enqueue scripts/styles with WordPress enqueue APIs.
 
+
 ## Frontend Standards (HTML, CSS, JS)
 
 Official references:
@@ -90,11 +89,13 @@ Official references:
 - Use single quotes and descriptive camelCase names.
 - Keep lines readable.
 
+
 ## Internationalization (i18n)
 
 - All user-facing strings must be translatable.
 - Use the proper escaping i18n helpers (`esc_html__`, `esc_html_e`, etc.).
 - Use translator comments for formatted strings.
+
 
 ## Testing and Checks
 
