@@ -69,37 +69,47 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	public function get_data_to_import( $conf ) {
-		$ws_url   = $conf['ws_url'];
+		$ws_url   = esc_url_raw( (string) $conf['ws_url'] );
 		$username = $conf['username'];
 		$password = $conf['password'];
 		$data = array();
+
+		$ws_url_parts = wp_parse_url( $ws_url );
+		if (
+			empty( $ws_url_parts['scheme'] ) ||
+			'https' !== strtolower( $ws_url_parts['scheme'] )
+		) {
+			throw new Exception( 'Invalid endpoint: HTTPS is required for patent import.' );
+		}
+
 		// Recupero JSON dati.
-		$auth = base64_encode("$username:$password");
+		$auth = base64_encode( "$username:$password" );
 		$args = array(
 			'headers' => array(
-				'Authorization' => "Basic $auth"
-			)
+				'Authorization' => "Basic $auth",
+			),
+			'redirection' => 0,
 		);
 		// Invocazione dell'endpoint.
-		$response = wp_remote_get($ws_url, $args);
+		$response = wp_remote_get( $ws_url, $args );
 		// Controllo della risposta
-		if ( is_wp_error($response ) ) {
+		if ( is_wp_error( $response ) ) {
 			// Errore invocando il web service.
-			throw new Exception( $response->get_error_message());
+			throw new Exception( $response->get_error_message() );
 		}
 		$status_code = wp_remote_retrieve_response_code( $response );
-		if ( $status_code != 200 ) {
+		if ( 200 != $status_code ) {
 			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
 			throw new Exception( $error_msg );
 		} else {
 			// Recupera dati dalla risposta.
-			$body = wp_remote_retrieve_body($response);
+			$body = wp_remote_retrieve_body( $response );
 			// Se la codifica della risposta non è UTF-8, converti in UTF-8.
-			if ( ! mb_check_encoding($body, 'UTF-8' ) ) {
+			if ( ! mb_check_encoding( $body, 'UTF-8' ) ) {
 				$body = mb_convert_encoding($body, 'UTF-8', 'auto' );
 			}
-			if ( $body ){
-				$data = json_decode($body);
+			if ( $body ) {
+				$data = json_decode( $body );
 			}
 		}
 		return $data;

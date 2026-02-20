@@ -85,6 +85,33 @@ Expected output:
 - recommended next issue to fix with short rationale;
 - after each completed fix, explicit note of updates applied to `ISSUES_TODO.md` and `ISSUES_RESOLVED.md`.
 
+### Trigger D: Tabular issue summary and start recommendations
+Trigger phrases (or equivalent wording):
+- "I want a tabular issue summary"
+- "I want a tabular issue report"
+- Requests asking for a table that summarizes issue counts by category and severity.
+
+Mandatory workflow:
+- re-read `AGENTS/ISSUES_TODO.md`;
+- consider only open issues unless the user asks to include resolved ones;
+- build a matrix with:
+  - rows = categories + final `Total` row,
+  - columns = severities (`Critical`, `High`, `Medium`, `Low`) + final `Total` column;
+- fill each cell with the issue count for that category/severity pair;
+- include row totals and column totals;
+- after the table, always add a standalone line with the overall total issue count;
+- always recommend 4-5 issues maximum to start with, ranked by:
+  - severity first (`Critical` highest priority),
+  - then category priority: `Security`, `Bug`, `Performance`,
+  - then practical impact/effort when tie-breaking.
+
+Expected output:
+- a concise markdown table with categories on rows and severities on columns, including `Total` row/column;
+- keep cell values as plain numbers (no HTML tags in the table output);
+- format in bold all `Total` values and the `Critical` cells for `Security`, `Bug`, and `Performance`;
+- a standalone line immediately after the table: `Total open issues: N`;
+- a numbered shortlist (max 5) of recommended starting issues with a short rationale for each.
+
 
 ## Excluded Directories
 Always ignore these folders for review/refactoring/fixes:
