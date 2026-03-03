@@ -12,7 +12,8 @@ $dli_etichetta_laboratorio     = dli_get_configuration_field_by_lang( 'etichetta
 
 if ( $dli_testo_sezione_laboratorio && ( 'true' === $dli_section_enabled ) ) {
 	?>
-<section id="presentazione" aria-describedby="Presentazione del laboratorio" class="section section-muted">
+	<section id="presentazione" aria-describedby="dli-presentazione-desc" class="section section-muted">
+		<p id="dli-presentazione-desc" class="visually-hidden"><?php esc_html_e( 'Presentazione del laboratorio', 'design_laboratori_italia' ); ?></p>
 	<div>
 		<div class="container my-12">
 			<h2 class="h3 pb-1"><?php echo esc_html( $dli_etichetta_laboratorio ); ?></h2>

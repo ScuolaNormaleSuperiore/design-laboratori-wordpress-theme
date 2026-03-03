@@ -8,11 +8,11 @@
 $dli_testo_sezione = dli_get_configuration_field_by_lang( 'testo_risorse_tecniche', 'risorse-tecniche' );
 ?>
 
-<section id="banner-risorse-tecniche" aria-describedby="Testo introduttivo sezione risorse tecniche" class="bg-banner-progetti">
+<section id="banner-risorse-tecniche" class="bg-banner-progetti" aria-labelledby="dli-hero-risorse-tecniche-title">
 	<div class="section-muted p-3 primary-bg-c1">
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
-				<h2 class="p-0  ">
+				<h2 id="dli-hero-risorse-tecniche-title" class="p-0  ">
 					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal">

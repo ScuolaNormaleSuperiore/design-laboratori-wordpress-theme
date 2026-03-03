@@ -11,7 +11,8 @@ if ( 'true' === $dli_featuredcontents_enabled ) {
 
 	?>
 <!-- BLOCCO CARD - CONTENUTI IN EVIDENZA (Featured contents) -->
-<section id="blocco-card" aria-describedby="Blocco news, eventi e pubblicazioni" class="section pt-5" >
+<section id="blocco-card" aria-describedby="dli-featured-contents-desc" class="section pt-5" >
+		<h2 id="dli-featured-contents-desc" class="visually-hidden"><?php esc_html_e( 'Blocco news, eventi e pubblicazioni', 'design_laboratori_italia' ); ?></h2>
 	<div class="section-content">
 		<div class="container">
 		<div class="row">

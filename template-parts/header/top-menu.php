@@ -10,7 +10,7 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 
 <nav aria-label="Navigazione accessoria">
 	<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menu1a" role="button"
-	aria-expanded="false" aria-controls="menu4">
+	aria-expanded="false" aria-controls="menu1a">
 	<span><?php echo esc_html__( 'News e contatti', 'design_laboratori_italia' ); ?></span>
 	<svg class="icon" aria-hidden="true" role="img" aria-labelledby="Expand" aria-label="Expand">
 		<title>Expand</title>
@@ -19,9 +19,9 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 	</a>
 	<div class="link-list-wrapper collapse" id="menu1a">
 	<?php
-		$dli_menu_name = 'menu-header-right';
-		$dli_menu          = null;
-		$dli_menuitems = array();
+			$dli_menu_name = 'menu-header-right';
+			$dli_menu      = null;
+			$dli_menuitems = array();
 	if ( has_nav_menu( $dli_menu_name ) && array_key_exists( $dli_menu_name, $dli_locations ) ) {
 		$dli_menu = wp_get_nav_menu_object( $dli_locations[ $dli_menu_name ] );
 		if ( ! $dli_menu || ! isset( $dli_menu->term_id ) ) {

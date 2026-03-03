@@ -8,11 +8,11 @@
 $dli_testo_sezione = dli_get_configuration_field_by_lang( 'testo_progetti', 'progetti' );
 
 ?>
-<section id="banner-progetti" aria-describedby="Testo introduttivo sezione progetti" class="bg-banner-progetti">
+<section id="banner-progetti" class="bg-banner-progetti" aria-labelledby="dli-hero-progetti-title">
 	<div class="section-muted p-3 primary-bg-c1">
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
-				<h2 class="p-0  ">
+				<h2 id="dli-hero-progetti-title" class="p-0  ">
 					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal"><?php echo wp_kses_post( wpautop( $dli_testo_sezione ) ); ?></p>

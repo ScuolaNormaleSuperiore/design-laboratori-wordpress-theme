@@ -8,11 +8,11 @@
 $dli_testo_sezione_persone = dli_get_configuration_field_by_lang( 'testo_sezione_persone', 'persone' );
 ?>
 
-<section id="banner-persone" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-persone">
+<section id="banner-persone" class="bg-banner-persone" aria-labelledby="dli-hero-persone-title">
 	<div class="section-muted p-3 primary-bg-c1">
 		<div class="container">
 			<div class="hero-title text-left ms-4 pb-3 pt-3">
-				<h2 class="p-0  ">
+				<h2 id="dli-hero-persone-title" class="p-0  ">
 					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal"><?php echo wp_kses_post( wpautop( $dli_testo_sezione_persone ) ); ?></p>
