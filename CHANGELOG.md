@@ -16,6 +16,18 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+
+
+## [REL-1.7.5] - 2026-03-10
+## Corretto
+- Continuazione dell'adeguamento dei file alle "WordPress coding rules".
+## Modificato
+- Aggiornati i file delle traduzioni.
+- Aggiornata la versione di Bootstrap Italia alla versione 2.17.5.
+
+
+
+
 ## [REL-1.7.4] - 2026-02-15
 ## Aggiunto
 - Aggiunta sezione Video attivabile in Home Page.
@@ -33,7 +45,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Iniziata la correzione dei file per aderire in modo più stretto alle WordPress coding Rules (modifiche di stile).
 - Correzione del layout delle seguenti sezioni in HP: banner, sponsor, newsletter e menu principale.
 - Aggiornato Dockerfile per sito demo.
-
 
 
 ## [REL-1.7.3] - 2025-11-19

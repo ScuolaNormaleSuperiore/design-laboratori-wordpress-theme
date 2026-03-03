@@ -29,7 +29,7 @@
 						<div class="it-brand-wrapper">
 							<a href="<?php echo esc_url( dli_homepage_url() ); ?>">
 								<!-- footer logo -->
-								<?php get_template_part( 'template-parts/common/logo_footer' ); ?>
+								<?php get_template_part( 'template-parts/common/logo-footer' ); ?>
 								<div class="it-brand-text ms-4">
 										<h2 class="no_toc h2"><?php echo esc_html( $dli_label_contact ); ?></h2>
 										<h3 class="no_toc h3 d-none d-md-block"><?php echo esc_html( $dli_tagline ); ?></h3>
