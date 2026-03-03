@@ -233,7 +233,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$contents = dli_get_post_translations( $pid );
 
 		if ( ! isset( $contents[$lang] ) ) {
-			$post_id = wp_insert_post( $new_content );
+			$post_id = wp_insert_post( $new_content, true );
+			if ( is_wp_error( $post_id ) || ! $post_id ) {
+				$this->log_string( 'wp_insert_post fallito: ' . ( is_wp_error( $post_id ) ? $post_id->get_error_message() : 'ID = 0' ) );
+				return 0;
+			}
 			$updated = false;
 			// Aggiorna campi personalizzati.
 			$this->update_custom_fields( $post_id, $item );
@@ -284,7 +288,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				);
 
 				// Associa versione italiana e versione inglese;
-				$post_id_en = wp_insert_post( $new_content_en );
+				$post_id_en = wp_insert_post( $new_content_en, true );
+				if ( is_wp_error( $post_id_en ) || ! $post_id_en ) {
+					$this->log_string( 'wp_insert_post (EN) fallito: ' . ( is_wp_error( $post_id_en ) ? $post_id_en->get_error_message() : 'ID = 0' ) );
+					return 0;
+				}
 
 				// Assign the EN language to the page.
 				dli_set_post_language( $post_id_en, $lang );
