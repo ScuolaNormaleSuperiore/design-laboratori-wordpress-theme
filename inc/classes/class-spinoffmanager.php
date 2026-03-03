@@ -5,7 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
-if ( function_exists( 'dli_define_spinoff_constants' ) ) {
+if ( ! function_exists( 'dli_define_spinoff_constants' ) ) {
 function dli_define_spinoff_constants() {
 	define(
 		'DLI_SPINOFF_STATUS',
