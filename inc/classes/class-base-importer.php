@@ -187,7 +187,33 @@ class DLI_BaseImporter {
 				array( 'status' => 401 ),
 			);
 		}
-		list( $username, $password ) = explode( ':', base64_decode( substr( $auth_header, 6 ) ) );
+		if ( 0 !== stripos( $auth_header, 'Basic ' ) ) {
+			return new WP_Error(
+				'rest_authentication_failed',
+				__( 'Credenziali non valide.', 'design_laboratori_italia' ),
+				array( 'status' => 401 )
+			);
+		}
+
+		$decoded_credentials = base64_decode( substr( $auth_header, 6 ), true );
+		if ( false === $decoded_credentials ) {
+			return new WP_Error(
+				'rest_authentication_failed',
+				__( 'Credenziali non valide.', 'design_laboratori_italia' ),
+				array( 'status' => 401 )
+			);
+		}
+
+		$credentials = explode( ':', $decoded_credentials, 2 );
+		if ( 2 !== count( $credentials ) ) {
+			return new WP_Error(
+				'rest_authentication_failed',
+				__( 'Credenziali non valide.', 'design_laboratori_italia' ),
+				array( 'status' => 401 )
+			);
+		}
+
+		list( $username, $password ) = $credentials;
 		$user                        = wp_authenticate( $username, $password );
 		if ( is_wp_error( $user ) ) {
 			return new WP_Error(

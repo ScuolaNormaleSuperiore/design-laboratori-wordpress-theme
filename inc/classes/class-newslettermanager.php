@@ -141,6 +141,8 @@ class Newsletter_Manager {
 					array(
 						'body'    => $json_data,
 						'headers' => $header,
+						'timeout' => 10,
+						'redirection' => 2,
 					)
 				);
 

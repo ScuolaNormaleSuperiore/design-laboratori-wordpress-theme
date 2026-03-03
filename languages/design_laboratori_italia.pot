@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-03 09:56+0000\n"
+"POT-Creation-Date: 2026-03-03 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -18,6 +18,7 @@ msgstr ""
 
 #: inc/admin/options.php:687 inc/admin/options.php:738
 #: inc/admin/options.php:789
+msgctxt "Presentation of the laboratory"
 msgid "2 Pubblicazioni"
 msgstr ""
 
@@ -55,11 +56,11 @@ msgstr ""
 msgid "Abilita REST API"
 msgstr ""
 
-#: single-brevetto.php:138
+#: single-brevetto.php:137
 msgid "Abstract"
 msgstr ""
 
-#: single-brevetto.php:230
+#: single-brevetto.php:229
 msgid "Abstract brevetto"
 msgstr ""
 
@@ -110,7 +111,7 @@ msgstr ""
 msgid "Aggiorna la Struttura"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:49
+#: inc/classes/class-placemanager.php:47
 msgid "Aggiorna la Tipologia luogo"
 msgstr ""
 
@@ -150,7 +151,7 @@ msgstr ""
 msgid "Aggiungi una Struttura"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:50
+#: inc/classes/class-placemanager.php:48
 msgid "Aggiungi una Tipologia luogo"
 msgstr ""
 
@@ -162,11 +163,11 @@ msgstr ""
 msgid "agosto"
 msgstr ""
 
-#: single-evento.php:95
+#: single-evento.php:94
 msgid "al"
 msgstr ""
 
-#: single-evento.php:209 single-evento.php:428 single-progetto.php:190
+#: single-evento.php:207 single-evento.php:426 single-progetto.php:190
 #: single-progetto.php:301 single-risorsa-tecnica.php:232
 #: single-risorsa-tecnica.php:371
 msgid "Allegati"
@@ -176,7 +177,7 @@ msgstr ""
 msgid "Altre Informazioni"
 msgstr ""
 
-#: single-brevetto.php:201 single-brevetto.php:329 single-spinoff.php:180
+#: single-brevetto.php:200 single-brevetto.php:328 single-spinoff.php:180
 #: single-spinoff.php:312
 msgid "Altre informazioni"
 msgstr ""
@@ -245,7 +246,7 @@ msgstr ""
 msgid "Area Tematica"
 msgstr ""
 
-#: single-brevetto.php:192 single-brevetto.php:320
+#: single-brevetto.php:191 single-brevetto.php:319
 #: page-templates/brevetti.php:95
 msgid "Area tematica"
 msgstr ""
@@ -281,7 +282,7 @@ msgid "Attiva la paginazione"
 msgstr ""
 
 #. Name of the template
-#: single-persona.php:193 single-persona.php:296 inc/utils.php:273
+#: single-persona.php:196 single-persona.php:299 inc/utils.php:273
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr ""
@@ -306,13 +307,17 @@ msgstr ""
 msgid "Banner"
 msgstr ""
 
-#: single-persona.php:162 single-persona.php:241
+#: single-persona.php:164 single-persona.php:244
 #: inc/classes/class-peoplemanager.php:114
 msgid "Biografia"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:116
 msgid "Biografia della persona"
+msgstr ""
+
+#: template-parts/home/featured-contents.php:15
+msgid "Blocco news, eventi e pubblicazioni"
 msgstr ""
 
 #. Name of the template
@@ -420,7 +425,7 @@ msgstr ""
 msgid "Cerca tipo risorsa"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:46
+#: inc/classes/class-placemanager.php:44
 msgid "Cerca Tipologia luogo"
 msgstr ""
 
@@ -463,7 +468,7 @@ msgid ""
 "mail per confermare l'iscrizione"
 msgstr ""
 
-#: page-templates/contatti.php:66 inc/classes/class-newslettermanager.php:81
+#: page-templates/contatti.php:66 inc/classes/class-newslettermanager.php:80
 msgid "Compilare tutti i campi obbligatori."
 msgstr ""
 
@@ -509,9 +514,9 @@ msgid "Configurazione Laboratorio"
 msgstr ""
 
 #. Name of the template
-#: footer.php:46 single-evento.php:200 single-evento.php:380
+#: footer.php:46 single-evento.php:198 single-evento.php:378
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:197
-#: single-persona.php:224 single-persona.php:456 single-spinoff.php:171
+#: single-persona.php:227 single-persona.php:459 single-spinoff.php:171
 #: single-spinoff.php:251 page-templates/contatti.php:2
 #: page-templates/contatti.php:125 page-templates/contatti.php:182
 msgid "Contatti"
@@ -530,7 +535,10 @@ msgstr ""
 msgid "Costo"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:187
+#: inc/classes/class-base-importer.php:193
+#: inc/classes/class-base-importer.php:202
+#: inc/classes/class-base-importer.php:211
+#: inc/classes/class-base-importer.php:221
 msgid "Credenziali non valide."
 msgstr ""
 
@@ -538,7 +546,7 @@ msgstr ""
 msgid "Criterio di scelta degli eventi da importare"
 msgstr ""
 
-#: single-evento.php:93
+#: single-evento.php:92
 msgid "dal"
 msgstr ""
 
@@ -546,7 +554,7 @@ msgstr ""
 msgid "Danger"
 msgstr ""
 
-#: single-brevetto.php:266 single-brevetto.php:288
+#: single-brevetto.php:265 single-brevetto.php:287
 msgid "Data deposito"
 msgstr ""
 
@@ -558,11 +566,11 @@ msgstr ""
 msgid "Data pubblicazione"
 msgstr ""
 
-#: single-evento.php:174 single-evento.php:245
+#: single-evento.php:173 single-evento.php:243
 msgid "Date e orari"
 msgstr ""
 
-#: single-evento.php:171 single-indirizzo-di-ricerca.php:105
+#: single-evento.php:170 single-indirizzo-di-ricerca.php:105
 #: single-indirizzo-di-ricerca.php:149 single-luogo.php:113
 #: single-progetto.php:150 single-progetto.php:224
 #: single-risorsa-tecnica.php:142 single-spinoff.php:135
@@ -580,10 +588,6 @@ msgstr ""
 
 #: inc/admin/options.php:872
 msgid "Descrizione del laboratorio in inglese"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:135
-msgid "Descrizione del luogo"
 msgstr ""
 
 #: inc/classes/class-projectmanager.php:62
@@ -686,11 +690,11 @@ msgstr ""
 msgid "Dettagli del progetto"
 msgstr ""
 
-#: single-evento.php:161
+#: single-evento.php:160
 msgid "Dettagli dell'evento"
 msgstr ""
 
-#: single-persona.php:150
+#: single-persona.php:152
 msgid "Dettagli della persona"
 msgstr ""
 
@@ -706,11 +710,17 @@ msgstr ""
 msgid "Dimensione hero"
 msgstr ""
 
+#: inc/classes/class-labmanager.php:306
+msgid ""
+"Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
+"PNG, GIF, WebP) 1 MB."
+msgstr ""
+
 #: single-risorsa-tecnica.php:223 single-risorsa-tecnica.php:362
 msgid "Dimensioni e peso"
 msgstr ""
 
-#: single-brevetto.php:165 single-brevetto.php:262
+#: single-brevetto.php:164 single-brevetto.php:261
 msgid "Domanda di priorità"
 msgstr ""
 
@@ -903,7 +913,7 @@ msgstr ""
 msgid "Evento singolo"
 msgstr ""
 
-#: single-brevetto.php:174 single-brevetto.php:283
+#: single-brevetto.php:173 single-brevetto.php:282
 msgid "Famiglia brevettuale"
 msgstr ""
 
@@ -940,7 +950,7 @@ msgstr ""
 msgid "Finalizza import"
 msgstr ""
 
-#: single-evento.php:274 single-evento.php:309
+#: single-evento.php:272 single-evento.php:307
 msgid "Fine evento"
 msgstr ""
 
@@ -1049,15 +1059,11 @@ msgstr ""
 msgid "Ignora"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:124
-msgid "il"
-msgstr ""
-
 #: inc/admin/options.php:892
 msgid "Il blog"
 msgstr ""
 
-#: single-brevetto.php:127
+#: single-brevetto.php:126
 msgid "IL BREVETTO"
 msgstr ""
 
@@ -1065,7 +1071,7 @@ msgstr ""
 msgid "Il codice di controllo non è valido."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:270
+#: inc/classes/class-labmanager.php:295
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr ""
 
@@ -1114,7 +1120,7 @@ msgstr ""
 msgid "Immagine in formato png o jpg"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:89
+#: inc/classes/class-placemanager.php:87
 msgid "Immagine principale del Luogo"
 msgstr ""
 
@@ -1138,12 +1144,6 @@ msgstr ""
 #: inc/admin/options.php:2436
 msgid ""
 "Impostazioni per configurare l'integrazione con IRIS Cineca (Pubblicazioni)"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:132
-msgid ""
-"in cui si svolge l'attività del laboratorio. I luoghi possono essere sede di "
-"strutture e canali fisici di erogazione di un servizio"
 msgstr ""
 
 #: inc/admin/options.php:2225 inc/admin/options.php:2406
@@ -1207,7 +1207,7 @@ msgid ""
 "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'"
 msgstr ""
 
-#: page-templates/contatti.php:71 inc/classes/class-newslettermanager.php:85
+#: page-templates/contatti.php:71 inc/classes/class-newslettermanager.php:84
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
@@ -1215,8 +1215,8 @@ msgstr ""
 msgid "Indico"
 msgstr ""
 
-#: single-brevetto.php:120 single-brevetto.php:123 single-evento.php:153
-#: single-evento.php:157 single-risorsa-tecnica.php:109
+#: single-brevetto.php:119 single-brevetto.php:122 single-evento.php:152
+#: single-evento.php:156 single-risorsa-tecnica.php:109
 #: single-risorsa-tecnica.php:112 single-spinoff.php:117 single-spinoff.php:120
 msgid "Indietro"
 msgstr ""
@@ -1245,7 +1245,7 @@ msgstr ""
 msgid "Inglese"
 msgstr ""
 
-#: single-evento.php:267
+#: single-evento.php:265
 msgid "Inizio evento"
 msgstr ""
 
@@ -1388,7 +1388,11 @@ msgid ""
 "panoramica delle Spin-off</a>"
 msgstr ""
 
-#: single-brevetto.php:156 single-brevetto.php:253
+#: inc/classes/class-labmanager.php:334
+msgid "Invalid username or password"
+msgstr ""
+
+#: single-brevetto.php:155 single-brevetto.php:252
 msgid "Inventori"
 msgstr ""
 
@@ -1416,7 +1420,7 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:252
+#: inc/classes/class-labmanager.php:271
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
 
@@ -1424,7 +1428,7 @@ msgstr ""
 msgid "L'email del Laboratorio"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:266
+#: inc/classes/class-labmanager.php:291
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
@@ -1448,7 +1452,7 @@ msgstr ""
 msgid "La città dove risiede il Laboratorio"
 msgstr ""
 
-#: inc/classes/class-newslettermanager.php:156
+#: inc/classes/class-newslettermanager.php:157
 msgid "La Newslettere è disabilitata"
 msgstr ""
 
@@ -1617,8 +1621,8 @@ msgstr ""
 msgid "Luoghi"
 msgstr ""
 
-#: single-evento.php:181 single-evento.php:332
-#: inc/classes/class-placemanager.php:96
+#: single-evento.php:180 single-evento.php:330
+#: inc/classes/class-placemanager.php:94
 msgid "Luogo"
 msgstr ""
 
@@ -1683,6 +1687,10 @@ msgstr ""
 msgid "Messaggio non inviato"
 msgstr ""
 
+#: inc/classes/class-base-importer.php:177
+msgid "Metodo non consentito. Usare POST."
+msgstr ""
+
 #: inc/admin/options.php:1590
 msgid "Modalità di paginazione"
 msgstr ""
@@ -1703,7 +1711,7 @@ msgstr ""
 msgid "Modifica la Struttura"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:48
+#: inc/classes/class-placemanager.php:46
 msgid "Modifica la Tipologia luogo"
 msgstr ""
 
@@ -1755,7 +1763,7 @@ msgstr ""
 msgid "Nascondi l'icona della persona nell'elenco delle persone"
 msgstr ""
 
-#: single-brevetto.php:290
+#: single-brevetto.php:289
 msgid "Nazione deposito"
 msgstr ""
 
@@ -1791,10 +1799,6 @@ msgstr ""
 msgid "Nome"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:130
-msgid "Nome del Luogo"
-msgstr ""
-
 #: page-templates/contatti.php:239
 msgid "Nome e cognome"
 msgstr ""
@@ -1827,7 +1831,7 @@ msgstr ""
 msgid "Non mostrare filtro"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:178
+#: inc/classes/class-base-importer.php:186
 msgid "Non sei autenticato."
 msgstr ""
 
@@ -1889,11 +1893,11 @@ msgstr ""
 msgid "Novità"
 msgstr ""
 
-#: single-brevetto.php:264
+#: single-brevetto.php:263
 msgid "Numero deposito"
 msgstr ""
 
-#: single-brevetto.php:287
+#: single-brevetto.php:286
 msgid "Numero di deposito"
 msgstr ""
 
@@ -1929,7 +1933,7 @@ msgstr ""
 msgid "Nuova Struttura"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:51
+#: inc/classes/class-placemanager.php:49
 msgid "Nuova Tipologia luogo"
 msgstr ""
 
@@ -1989,7 +1993,7 @@ msgstr ""
 msgid "Pagine collegate"
 msgstr ""
 
-#: template-parts/home/hp-sponsor-section.php:32
+#: template-parts/home/hp-sponsor-section.php:42
 msgid "Partner e collaborazioni"
 msgstr ""
 
@@ -2044,7 +2048,7 @@ msgctxt "Post Type General Name"
 msgid "Indirizzi di ricerca"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:83
+#: inc/classes/class-placemanager.php:81
 msgctxt "Post Type General Name"
 msgid "Luoghi"
 msgstr ""
@@ -2089,7 +2093,7 @@ msgctxt "Post Type General Name"
 msgid "Tipologia Persone"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:86
+#: inc/classes/class-placemanager.php:84
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi il Luogo"
 msgstr ""
@@ -2109,7 +2113,7 @@ msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Tipologia Persona"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:85
+#: inc/classes/class-placemanager.php:83
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Luogo"
 msgstr ""
@@ -2209,7 +2213,7 @@ msgctxt "Post Type Singular Name"
 msgid "Indirizzo di ricerca"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:84
+#: inc/classes/class-placemanager.php:82
 msgctxt "Post Type Singular Name"
 msgid "Luogo"
 msgstr ""
@@ -2229,7 +2233,7 @@ msgctxt "Post Type Singular Name"
 msgid "Modifica il Evento"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:87
+#: inc/classes/class-placemanager.php:85
 msgctxt "Post Type Singular Name"
 msgid "Modifica il Luogo"
 msgstr ""
@@ -2334,7 +2338,7 @@ msgctxt "Post Type Singular Name"
 msgid "Visualizza il Evento"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:88
+#: inc/classes/class-placemanager.php:86
 msgctxt "Post Type Singular Name"
 msgid "Visualizza il Luogo"
 msgstr ""
@@ -2378,6 +2382,10 @@ msgstr ""
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
+#: template-parts/home/site-presentation.php:16
+msgid "Presentazione del laboratorio"
+msgstr ""
+
 #. Name of the template
 #: page-templates/privacy.php:2
 msgid "Privacy"
@@ -2388,7 +2396,7 @@ msgid "Privacy Policy"
 msgstr ""
 
 #: single-indirizzo-di-ricerca.php:119 single-indirizzo-di-ricerca.php:180
-#: single-persona.php:171 single-persona.php:249 single-risorsa-tecnica.php:250
+#: single-persona.php:173 single-persona.php:252 single-risorsa-tecnica.php:250
 #: single-risorsa-tecnica.php:426 inc/utils.php:279 inc/admin/options.php:1528
 msgid "Progetti"
 msgstr ""
@@ -2405,7 +2413,7 @@ msgstr ""
 msgid "Pubblicazione"
 msgstr ""
 
-#: single-persona.php:204 single-persona.php:333 single-progetto.php:183
+#: single-persona.php:207 single-persona.php:336 single-progetto.php:183
 #: single-progetto.php:285 inc/utils.php:280 inc/admin/options.php:1300
 #: template-parts/home/hp-list-publication.php:39
 msgid "Pubblicazioni"
@@ -2472,7 +2480,7 @@ msgstr ""
 msgid "Rimuovi il messaggio"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:91
+#: inc/classes/class-placemanager.php:89
 msgid "Rimuovi Immagine"
 msgstr ""
 
@@ -2762,8 +2770,8 @@ msgstr ""
 msgid "Si"
 msgstr ""
 
-#: single-evento.php:191 single-evento.php:346 single-evento.php:356
-#: single-persona.php:498 single-progetto.php:71 single-spinoff.php:296
+#: single-evento.php:189 single-evento.php:344 single-evento.php:354
+#: single-persona.php:501 single-progetto.php:71 single-spinoff.php:296
 #: template-parts/common/sezione-contatti.php:69
 msgid "Sito web"
 msgstr ""
@@ -2814,7 +2822,7 @@ msgstr ""
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr ""
 
-#: single-brevetto.php:183 single-brevetto.php:275
+#: single-brevetto.php:182 single-brevetto.php:274
 msgid "Stato legale"
 msgstr ""
 
@@ -2876,7 +2884,7 @@ msgctxt "taxonomy general name"
 msgid "Tipo risorsa"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:44
+#: inc/classes/class-placemanager.php:42
 msgctxt "taxonomy general name"
 msgid "Tipologia luogo"
 msgstr ""
@@ -2906,7 +2914,7 @@ msgctxt "taxonomy singular name"
 msgid "Tipo risorsa"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:45
+#: inc/classes/class-placemanager.php:43
 msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
 msgstr ""
@@ -2963,7 +2971,7 @@ msgstr ""
 msgid "Tipologia"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:52
+#: inc/classes/class-placemanager.php:50
 msgid "Tipologia luogo"
 msgstr ""
 
@@ -2971,12 +2979,11 @@ msgstr ""
 msgid "Tipologia Persona"
 msgstr ""
 
-#: single-brevetto.php:147 single-brevetto.php:244
+#: single-brevetto.php:146 single-brevetto.php:243
 msgid "Titolari"
 msgstr ""
 
-#: single-brevetto.php:289 inc/admin/options.php:1370
-#: inc/classes/class-placemanager.php:126
+#: single-brevetto.php:288 inc/admin/options.php:1370
 msgid "Titolo"
 msgstr ""
 
@@ -3026,7 +3033,7 @@ msgstr ""
 msgid "Tutte le strutture"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:47
+#: inc/classes/class-placemanager.php:45
 msgid "Tutte le tipologie luogo"
 msgstr ""
 
@@ -3048,7 +3055,7 @@ msgstr ""
 msgid "Tutti i tipi"
 msgstr ""
 
-#: single-persona.php:215 single-persona.php:381
+#: single-persona.php:218 single-persona.php:384
 msgid "Ulteriori informazioni"
 msgstr ""
 
@@ -3092,7 +3099,7 @@ msgstr ""
 msgid "Usa come Immagine Brevetto"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:92
+#: inc/classes/class-placemanager.php:90
 msgid "Usa come Immagine del Luogo"
 msgstr ""
 
@@ -3116,7 +3123,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:193
+#: inc/classes/class-base-importer.php:227
 msgid "Utente non autorizzato"
 msgstr ""
 
@@ -3173,8 +3180,8 @@ msgstr ""
 msgid "Vedi tutti"
 msgstr ""
 
-#: single-brevetto.php:210 single-brevetto.php:337 single-evento.php:218
-#: single-evento.php:456 single-spinoff.php:189 single-spinoff.php:320
+#: single-brevetto.php:209 single-brevetto.php:336 single-evento.php:216
+#: single-evento.php:454 single-spinoff.php:189 single-spinoff.php:320
 #: template-parts/home/hp-video-section.php:40
 msgid "Video"
 msgstr ""
@@ -3213,8 +3220,4 @@ msgstr ""
 
 #: page-templates/privacy.php:232
 msgid "Youtube per la visualizzazione di video"
-msgstr ""
-
-#: inc/classes/class-placemanager.php:128
-msgid "è il"
 msgstr ""

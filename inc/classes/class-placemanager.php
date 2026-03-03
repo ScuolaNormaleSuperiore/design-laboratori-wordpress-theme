@@ -28,8 +28,6 @@ class Place_Manager {
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
 
-		// Customize the post type layout of the admin interface.
-		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
 	/**
@@ -110,31 +108,6 @@ class Place_Manager {
 
 		// Add the custom fields.
 		$this->add_fields();
-	}
-
-	/**
-	 * Customize the layout of the admin interface.
-	 *
-	 * @param Object $post - The custom post.
-	 * @return string
-	 */
-	public function custom_layout( $post ) {
-		if ( PLACE_POST_TYPE === $post->post_type ) {
-			echo '<span><i>';
-			_e( 'il', 'design_laboratori_italia' );
-			echo ' <b>';
-			_e( 'Titolo', 'design_laboratori_italia' );
-			echo '</b> ';
-			_e( 'è il', 'design_laboratori_italia' );
-			echo ' <b>';
-			_e( 'Nome del Luogo', 'design_laboratori_italia' );
-			echo '</b></i></span> ';
-			_e( "in cui si svolge l'attività del laboratorio. I luoghi possono essere sede di strutture e canali fisici di erogazione di un servizio", 'design_laboratori_italia' );
-			echo '<br><br>';
-			echo '<h1>';
-			_e( 'Descrizione del luogo', 'design_laboratori_italia' );
-			echo '</h1>';
-		}
 	}
 
 	/**
