@@ -28,14 +28,14 @@ class DLI_OG_Wrapper {
 /**
  * The Activation manager.
  */
-class DLI_ContentsManager
-{
+class DLI_ContentsManager {
+
 
 	public static function get_og_data() {
 		global $post;
-		$og_data    = new DLI_OG_Wrapper();
-		$item_id   = $post && $post->ID ? $post->ID : '';
-		$item_type = $item_id && $post->post_type ? $post->post_type : '';
+		$og_data     = new DLI_OG_Wrapper();
+		$item_id     = $post && $post->ID ? $post->ID : '';
+		$item_type   = $item_id && $post->post_type ? $post->post_type : '';
 		$is_homepage = is_home() || is_front_page();
 
 		if ( $item_id && in_array( $item_type, DLI_POST_TYPES_TO_TRANSLATE ) ) {
@@ -79,7 +79,8 @@ class DLI_ContentsManager
 	public static function dli_get_all_patent_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
-			$wpdb->prepare( "
+			$wpdb->prepare(
+				"
 			SELECT DISTINCT pm.meta_value AS anno_deposito
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
@@ -88,14 +89,19 @@ class DLI_ContentsManager
 			AND pm.meta_key = '%s'
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
-		", PATENT_POST_TYPE, 'anno_deposito' ) );
+		",
+				PATENT_POST_TYPE,
+				'anno_deposito'
+			)
+		);
 		return $results;
 	}
 
 	public static function dli_get_all_spinoff_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
-			$wpdb->prepare( "
+			$wpdb->prepare(
+				"
 			SELECT DISTINCT pm.meta_value AS anno_costituzione
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
@@ -104,14 +110,19 @@ class DLI_ContentsManager
 			AND pm.meta_key = '%s'
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
-		", SPINOFF_POST_TYPE, 'anno_costituzione' ) );
+		",
+				SPINOFF_POST_TYPE,
+				'anno_costituzione'
+			)
+		);
 		return $results;
 	}
 
 	public static function dli_get_all_technical_res_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
-			$wpdb->prepare( "
+			$wpdb->prepare(
+				"
 			SELECT DISTINCT pm.meta_value AS anno_acquisizione
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
@@ -120,7 +131,11 @@ class DLI_ContentsManager
 			AND pm.meta_key = '%s'
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
-		", TECHNICAL_RESOURCE_POST_TYPE, 'anno_acquisizione' ) );
+		",
+				TECHNICAL_RESOURCE_POST_TYPE,
+				'anno_acquisizione'
+			)
+		);
 		return $results;
 	}
 
@@ -132,13 +147,13 @@ class DLI_ContentsManager
 				'class' => 'breadcrumb-item',
 			),
 		);
-		if ( $post ){
+		if ( $post ) {
 			switch ( $post->post_type ) {
 				case 'page':
-					$post_parent = $post->post_parent;
+					$post_parent  = $post->post_parent;
 					$post_parents = array();
 					while ( $post_parent !== 0 ) {
-						$post_tmp       = get_post( $post_parent );
+						$post_tmp = get_post( $post_parent );
 						if ( ! $post_tmp ) {
 							break;
 						}
@@ -150,9 +165,9 @@ class DLI_ContentsManager
 						$post_parent    = $post_tmp->post_parent;
 					}
 
-					//reverse array
+					// reverse array
 					$post_parents = count( $post_parents ) > 1 ? array_reverse( $post_parents ) : $post_parents;
-					
+
 					foreach ( $post_parents as $parent ) {
 						array_push(
 							$steps,
@@ -170,8 +185,8 @@ class DLI_ContentsManager
 					);
 					break;
 				case 'post':
-					array_push( 
-						$steps, 
+					array_push(
+						$steps,
 						array(
 							'label' => 'Blog',
 							'url'   => get_site_url() . '/blog',
@@ -215,11 +230,11 @@ class DLI_ContentsManager
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			's'              => $params['search_string'],
-			'meta_query'     =>  array(
+			'meta_query'     => array(
 				array(
-						'key'     => 'anno_deposito',
-						'value'   => $params['deposit_year'],
-						'compare' => 'IN',
+					'key'     => 'anno_deposito',
+					'value'   => $params['deposit_year'],
+					'compare' => 'IN',
 				),
 			),
 			'tax_query'      => array(
@@ -228,8 +243,8 @@ class DLI_ContentsManager
 					'field'    => 'term_id',
 					'operator' => 'IN',
 					'terms'    => $params['thematic_area'],
-				)
-			)
+				),
+			),
 		);
 		return new WP_Query( $args );
 	}
@@ -248,9 +263,9 @@ class DLI_ContentsManager
 		if ( $params['foundation_year'] ) {
 			$args['meta_query'] = array(
 				array(
-						'key'     => 'anno_costituzione',
-						'value'   => $params['foundation_year'],
-						'compare' => 'IN',
+					'key'     => 'anno_costituzione',
+					'value'   => $params['foundation_year'],
+					'compare' => 'IN',
 				),
 			);
 		}
@@ -262,8 +277,8 @@ class DLI_ContentsManager
 					'field'    => 'term_id',
 					'operator' => 'IN',
 					'terms'    => $params['business_sector'],
-				)
-				);
+				),
+			);
 		}
 		return new WP_Query( $args );
 	}
@@ -287,7 +302,7 @@ class DLI_ContentsManager
 			);
 		}
 		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto
-		if ( ( ! empty( $params['type_technical_resource']) ) && ( $params['type_technical_resource'] !== null ) ) {
+		if ( ( ! empty( $params['type_technical_resource'] ) ) && ( $params['type_technical_resource'] !== null ) ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => RT_TYPE_TAXONOMY,
 				'field'    => 'term_id',
@@ -300,19 +315,19 @@ class DLI_ContentsManager
 
 	public static function get_event_data_query( $params ) {
 		$args = array(
-				'post_status'    => 'publish',
-				'paged'          => $params['paged'],
-				'post_type'      => EVENT_POST_TYPE,
-				'posts_per_page' => $params['per_page'],
-				'category__in'   => $params['selected_categories'],
-				'meta_key'       => 'data_inizio',
-				'orderby'        => 'meta_value_num',
-				'order'          => 'DESC',
+			'post_status'    => 'publish',
+			'paged'          => $params['paged'],
+			'post_type'      => EVENT_POST_TYPE,
+			'posts_per_page' => $params['per_page'],
+			'category__in'   => $params['selected_categories'],
+			'meta_key'       => 'data_inizio',
+			'orderby'        => 'meta_value_num',
+			'order'          => 'DESC',
 		);
 		return new WP_Query( $args );
 	}
 
-	public static function get_news_data_query( $params){
+	public static function get_news_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
@@ -325,7 +340,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function get_projects_data_query( $params ){
+	public static function get_projects_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
@@ -336,17 +351,17 @@ class DLI_ContentsManager
 				'meta_value_num' => 'ASC',
 				'title'          => 'ASC',
 			),
-			'meta_query' => array(
-				'relation'     => 'AND',
+			'meta_query'     => array(
+				'relation' => 'AND',
 				array(
-					'key'      => 'data_inizio',
-					'compare'  => '<=',
-					'value'    => $params['today'],
+					'key'     => 'data_inizio',
+					'compare' => '<=',
+					'value'   => $params['today'],
 				),
 				// array(
-				// 	'key'      => 'data_fine',
-				// 	'compare'  => '>=',
-				// 	'value'    => $params['today'],
+				// 'key'      => 'data_fine',
+				// 'compare'  => '>=',
+				// 'value'    => $params['today'],
 				// ),
 				array(
 					'key'     => 'archiviato',
@@ -368,7 +383,7 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function get_archived_projects_data_query( $params ){
+	public static function get_archived_projects_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
@@ -381,17 +396,17 @@ class DLI_ContentsManager
 			),
 			'meta_query'     => array(
 				array(
-						'key' => 'archiviato',
-						'value' => true,
-						'compare' => '=',
-						'type' => 'BOOLEAN',
+					'key'     => 'archiviato',
+					'value'   => true,
+					'compare' => '=',
+					'type'    => 'BOOLEAN',
 				),
 			),
 		);
 		return new WP_Query( $args );
 	}
 
-	public static function get_research_area_data_query( $params ){
+	public static function get_research_area_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
 			'paged'          => $params['paged'],
@@ -406,20 +421,20 @@ class DLI_ContentsManager
 		return new WP_Query( $args );
 	}
 
-	public static function get_tags_by_post_type( $post_type, $taxonomy=WP_DEFAULT_TAGS ){
+	public static function get_tags_by_post_type( $post_type, $taxonomy = WP_DEFAULT_TAGS ) {
 		$tags = get_tags(
 			array(
-			'taxonomy'    => $taxonomy,
-			'orderby'     => 'name',
-			'hide_empty'  => true,
-			'object_type' => array( $post_type ),
+				'taxonomy'    => $taxonomy,
+				'orderby'     => 'name',
+				'hide_empty'  => true,
+				'object_type' => array( $post_type ),
 			)
 		);
 		return $tags ? $tags : array();
 	}
 
 	// PROGETTI
-	public static function get_people_query( $params ){
+	public static function get_people_query( $params ) {
 		$args = array(
 			'paged'          => $params['paged'],
 			'post_type'      => PEOPLE_POST_TYPE,
@@ -441,17 +456,17 @@ class DLI_ContentsManager
 	public static function get_related_items( $post, $field_name, $related_ct ) {
 		$item = new WP_Query(
 			array(
-			'posts_per_page' => -1,
-			'post_type'      => $related_ct,
-			'orderby'        => 'data_inizio',
-			'order'          => 'DESC',
-			'meta_query'     => array(
-				array(
-					'key'     => $field_name,
-					'compare' => 'LIKE',
-					'value'   => '"' . $post->ID . '"',
+				'posts_per_page' => -1,
+				'post_type'      => $related_ct,
+				'orderby'        => 'data_inizio',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => $field_name,
+						'compare' => 'LIKE',
+						'value'   => '"' . $post->ID . '"',
+					),
 				),
-			),
 			)
 		);
 		return $item->posts;
@@ -463,7 +478,7 @@ class DLI_ContentsManager
 		$mode_auto       = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage' );
 		$order_date_type = dli_get_option( 'home_carousel_order', 'homepage' ) === 'post_modified' ? 'post_modified' : 'post_date';
 		if ( $mode_auto === 'true' ) {
-			$query = new WP_Query(
+			$query   = new WP_Query(
 				array(
 					'posts_per_page' => -1,
 					'post_type'      => DLI_CAROUSEL_POST_TYPES,
@@ -480,10 +495,10 @@ class DLI_ContentsManager
 			);
 			$results = $query->posts;
 		} else {
-			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage');
+			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage' );
 			$result_ids = $result_ids ? $result_ids : array();
-			foreach ( $result_ids As $id) {
-				array_push( $results, get_post( $id  ) );
+			foreach ( $result_ids as $id ) {
+				array_push( $results, get_post( $id ) );
 			}
 		}
 		foreach ( $results as $result ) {
@@ -565,7 +580,7 @@ class DLI_ContentsManager
 			GROUP BY post_type';
 
 		$query = $wpdb->prepare( $sql, ...$prepare_args );
-		$rows = $wpdb->get_col( $query );
+		$rows  = $wpdb->get_col( $query );
 		if ( ! is_array( $rows ) || empty( $rows ) ) {
 			return array();
 		}
@@ -607,7 +622,7 @@ class DLI_ContentsManager
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
-		if( count( $selected_contents ) > 0 ) {
+		if ( count( $selected_contents ) > 0 ) {
 			$params['post_type'] = $selected_contents;
 		}
 		$the_query = new WP_Query( $params );
@@ -619,24 +634,23 @@ class DLI_ContentsManager
 	}
 
 	public static function get_hp_section_list() {
-		$result = [];
+		$result = array();
 		foreach ( DLI_HP_SECTIONS as $key => $item ) {
-				$result[$key] = $item['name'];
+				$result[ $key ] = $item['name'];
 		}
 		return $result;
 	}
 
-	public static function get_hp_section_options( $only_active= false ) {
+	public static function get_hp_section_options( $only_active = false ) {
 		$sections = dli_get_option( 'site_sections', 'homepage_sections' );
 		$results  = array();
-		if ( $sections )  {
+		if ( $sections ) {
 			foreach ( $sections as $section ) {
-				if ( ( $only_active === 'false' ) || $section['enabled']==='true' ) {
+				if ( ( $only_active === 'false' ) || $section['enabled'] === 'true' ) {
 					array_push( $results, $section );
 				}
 			}
 		}
 		return $results;
 	}
-
 }

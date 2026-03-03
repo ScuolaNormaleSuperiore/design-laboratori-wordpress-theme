@@ -58,7 +58,6 @@ class Newsletter_Manager {
 	 * Constructor of the Manager.
 	 */
 	public function __construct() {
-
 	}
 
 	/**
@@ -77,7 +76,7 @@ class Newsletter_Manager {
 	 * @return array
 	 */
 	public function validate() {
-		if ( '' === $this->data->get_user_name() || '' ===  $this->data->get_user_surname() ) {
+		if ( '' === $this->data->get_user_name() || '' === $this->data->get_user_surname() ) {
 			array_push( $this->errors, __( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' ) );
 		}
 
@@ -113,8 +112,8 @@ class Newsletter_Manager {
 				$current_language = dli_current_language( 'slug' );
 				$page_url         = dli_get_newsletter_link( $current_language );
 				$redirect_url     = $page_url . '?after_confirm=yes';
-				$data = array(
-					'attributes'  => array(
+				$data             = array(
+					'attributes'     => array(
 						'FNAME'     => $this->data->get_user_name(),
 						'LNAME'     => $this->data->get_user_surname(),
 						'FIRSTNAME' => $this->data->get_user_name(),
@@ -129,8 +128,8 @@ class Newsletter_Manager {
 					'templateId'     => $template_id,
 					'redirectionUrl' => $redirect_url,
 				);
-				$json_data = json_encode( $data );
-				$header = array(
+				$json_data        = json_encode( $data );
+				$header           = array(
 					'Accept'       => 'application/json',
 					'api-key'      => $api_token,
 					'Content-Type' => 'application/json',
@@ -140,7 +139,7 @@ class Newsletter_Manager {
 				$response = wp_remote_post(
 					$url,
 					array(
-						'body' => $json_data,
+						'body'    => $json_data,
 						'headers' => $header,
 					)
 				);
@@ -155,7 +154,6 @@ class Newsletter_Manager {
 				$result['code']    = 400;
 				$result['message'] = __( 'La Newslettere è disabilitata', 'design_laboratori_italia' );
 			}
-
 		} catch ( Exception $e ) {
 
 			$result['code']    = '500';
@@ -165,5 +163,4 @@ class Newsletter_Manager {
 
 		return $result;
 	}
-
 }

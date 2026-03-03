@@ -41,24 +41,24 @@ class Sponsor_Manager {
 			'add_new_item'          => _x( 'Aggiungi uno Sponsor', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'edit_item'             => _x( 'Modifica lo Sponsor', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza lo Sponsor', 'Post Type Singular Name', 'design_laboratori_italia' ),
-			'featured_image'        => __( "Logo Identificativo dello Sponsor", 'design_laboratori_italia' ),
+			'featured_image'        => __( 'Logo Identificativo dello Sponsor', 'design_laboratori_italia' ),
 			'set_featured_image'    => __( 'Seleziona Immagine Sponsor' ),
-			'remove_featured_image' => __( 'Rimuovi Immagine Sponsor' , 'design_laboratori_italia' ),
-			'use_featured_image'    => __( 'Usa come Immagine Sponsor' , 'design_laboratori_italia' ),
+			'remove_featured_image' => __( 'Rimuovi Immagine Sponsor', 'design_laboratori_italia' ),
+			'use_featured_image'    => __( 'Usa come Immagine Sponsor', 'design_laboratori_italia' ),
 		);
 
-		$args   = array(
-			'label'           => __( 'Sponsor', 'design_laboratori_italia' ),
-			'labels'          => $labels,
-			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			'hierarchical'    => false,
-			'public'          => true,
-			'show_in_menu'    => true,
-			'menu_position'   => 6,
-			'menu_icon'       => 'dashicons-megaphone',
-			'has_archive'     => false,
-			'show_in_rest'    => true,
-			'taxonomies'      => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
+		$args = array(
+			'label'         => __( 'Sponsor', 'design_laboratori_italia' ),
+			'labels'        => $labels,
+			'supports'      => array( 'title', 'editor', 'thumbnail' ),
+			'hierarchical'  => false,
+			'public'        => true,
+			'show_in_menu'  => true,
+			'menu_position' => 6,
+			'menu_icon'     => 'dashicons-megaphone',
+			'has_archive'   => false,
+			'show_in_rest'  => true,
+			'taxonomies'    => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( SPONSOR_POST_TYPE, $args );
@@ -91,78 +91,76 @@ class Sponsor_Manager {
 	 */
 	function add_fields() {
 
-
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;
 		}
-	
-		acf_add_local_field_group( array(
-		'key' => 'group_67a9c1b364f8f',
-		'title' => 'Campi Sponsor',
-		'fields' => array(
-			array(
-				'key' => 'field_67a9c1b6e6ecb',
-				'label' => 'Priorità',
-				'name' => 'priorita',
-				'aria-label' => '',
-				'type' => 'number',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => 1,
-				'min' => '',
-				'max' => '',
-				'allow_in_bindings' => 0,
-				'placeholder' => '',
-				'step' => '',
-				'prepend' => '',
-				'append' => '',
-			),
-			array(
-				'key' => 'field_67a9c1dce6ecc',
-				'label' => 'Link esterno',
-				'name' => 'link_esterno',
-				'aria-label' => '',
-				'type' => 'url',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'allow_in_bindings' => 0,
-				'placeholder' => '',
-			),
-		),
-		'location' => array(
-			array(
-				array(
-					'param' => 'post_type',
-					'operator' => '==',
-					'value' => 'sponsor',
-				),
-			),
-		),
-		'menu_order' => 0,
-		'position' => 'normal',
-		'style' => 'default',
-		'label_placement' => 'top',
-		'instruction_placement' => 'label',
-		'hide_on_screen' => '',
-		'active' => true,
-		'description' => '',
-		'show_in_rest' => 0,
-	) );
 
-
+		acf_add_local_field_group(
+			array(
+				'key'                   => 'group_67a9c1b364f8f',
+				'title'                 => 'Campi Sponsor',
+				'fields'                => array(
+					array(
+						'key'               => 'field_67a9c1b6e6ecb',
+						'label'             => 'Priorità',
+						'name'              => 'priorita',
+						'aria-label'        => '',
+						'type'              => 'number',
+						'instructions'      => '',
+						'required'          => 1,
+						'conditional_logic' => 0,
+						'wrapper'           => array(
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						),
+						'default_value'     => 1,
+						'min'               => '',
+						'max'               => '',
+						'allow_in_bindings' => 0,
+						'placeholder'       => '',
+						'step'              => '',
+						'prepend'           => '',
+						'append'            => '',
+					),
+					array(
+						'key'               => 'field_67a9c1dce6ecc',
+						'label'             => 'Link esterno',
+						'name'              => 'link_esterno',
+						'aria-label'        => '',
+						'type'              => 'url',
+						'instructions'      => '',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => array(
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						),
+						'default_value'     => '',
+						'allow_in_bindings' => 0,
+						'placeholder'       => '',
+					),
+				),
+				'location'              => array(
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'sponsor',
+						),
+					),
+				),
+				'menu_order'            => 0,
+				'position'              => 'normal',
+				'style'                 => 'default',
+				'label_placement'       => 'top',
+				'instruction_placement' => 'label',
+				'hide_on_screen'        => '',
+				'active'                => true,
+				'description'           => '',
+				'show_in_rest'          => 0,
+			)
+		);
 	}
-
 }

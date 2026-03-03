@@ -12,12 +12,12 @@ class DLI_AuthorizationManager {
 	 */
 	public function __construct() {}
 
-	public function setup(){
+	public function setup() {
 		// Register the custom roles.
 		add_action( 'init', array( $this, 'add_super_editor' ) );
 	}
 
-	public function add_super_editor(){
+	public function add_super_editor() {
 		// Recupera il ruolo Editor.
 		$base_role = get_role( 'editor' );
 		// Controlla se il ruolo Editor esiste.
@@ -25,7 +25,7 @@ class DLI_AuthorizationManager {
 
 			// Aggiungi un nuovo ruolo basato sul ruolo Editor, se non esiste.
 			$new_role = get_role( DLI_SUPER_EDITOR_ROLE_SLUG );
-			if ( ! $new_role ){
+			if ( ! $new_role ) {
 				$new_role = add_role( DLI_SUPER_EDITOR_ROLE_SLUG, DLI_SUPER_EDITOR_ROLE_NAME, $base_role->capabilities );
 			}
 
@@ -37,10 +37,9 @@ class DLI_AuthorizationManager {
 
 			// Assegna il permesso di modificare le configurazioni del tema all'amministratore del sito.
 			$admin_role = get_role( 'administrator' );
-			if ( $admin_role ){
+			if ( $admin_role ) {
 				$admin_role->add_cap( DLI_EDIT_CONFIG_PERMISSION );
 			}
 		}
 	}
-
 }

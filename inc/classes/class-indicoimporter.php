@@ -35,9 +35,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$module_enabled = dli_get_option( 'indico_enabled', 'indico' );
 		if ( $module_enabled && $module_enabled === 'true' ) {
 			// Recupero parametri di configurazione.
-			$criteria  = dli_get_option( 'indico_import_criteria', 'indico' );
+			$criteria   = dli_get_option( 'indico_import_criteria', 'indico' );
 			$start_date = $this->_start_date_from_criteria( $criteria );
-			$conf = array(
+			$conf       = array(
 				'base_url'    => dli_get_option( 'indico_baseurl', 'indico' ),
 				'token'       => dli_get_option( 'indico_token_api', 'indico' ),
 				'category'    => dli_get_option( 'indico_category', 'indico' ),
@@ -72,12 +72,12 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	}
 
 	private function get_data_to_import( $conf ) {
-		$category    = $conf['category'];
-		$base_url    = $conf['base_url'];
-		$start_date  = $conf['start_date'];
+		$category   = $conf['category'];
+		$base_url   = $conf['base_url'];
+		$start_date = $conf['start_date'];
 		// Creazione del client e invocazione del servizio.
-		$api_url    = $base_url . INDICO_API_SUFFIX_CATEGORY . '/'. $category . '.json?from=' . $start_date . '&pretty=yes';
-		$api_url    = esc_url_raw( $api_url );
+		$api_url = $base_url . INDICO_API_SUFFIX_CATEGORY . '/' . $category . '.json?from=' . $start_date . '&pretty=yes';
+		$api_url = esc_url_raw( $api_url );
 		if ( ! $api_url || ! wp_http_validate_url( $api_url ) ) {
 			throw new Exception( 'URL Indico non valido.' );
 		}
@@ -103,7 +103,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$resp_body = wp_remote_retrieve_body( $response );
 		$resp_data = json_decode( $resp_body, true );
 		// Controlla se la decodifica è riuscita
-		if ( json_last_error() !== JSON_ERROR_NONE) {
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
 			$msg = 'Errore nella decodifica JSON: ' . json_last_error_msg();
 			throw new Exception( $msg );
 		}
@@ -132,23 +132,23 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$modified  = 0;
 		$ignored   = 0;
 		foreach ( $resp_data['results'] as $item ) {
-			$counter++;
-			$item_title = $this->sanitize_item_title( $item['title'] );
-			$msg         = '';
-			$source_array = $this->trim_array( $conf['keywords'] ? explode(',', $conf['keywords']) : array() );
+			++$counter;
+			$item_title   = $this->sanitize_item_title( $item['title'] );
+			$msg          = '';
+			$source_array = $this->trim_array( $conf['keywords'] ? explode( ',', $conf['keywords'] ) : array() );
 			$dest_array   = $this->trim_array( $item['keywords'] ? $item['keywords'] : array() );
 			if ( ( ! $source_array ) || ( ! $dest_array ) || ( count( array_intersect( $source_array, $dest_array ) ) === 0 ) ) {
-				$discarded++;
+				++$discarded;
 				continue;
 			}
 
-			if ( $import_type === 'dryrun' ){
+			if ( $import_type === 'dryrun' ) {
 				// Importazione dry run.
 				array_push(
 					$data,
 					MSG_IMPORT_DRY_RUN . $item_title,
 				);
-				$processed++;
+				++$processed;
 			} else {
 				// Importazione effettiva.
 				try {
@@ -160,43 +160,48 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 							$data,
 							MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title,
 						);
-						$modified++;
-					} else if ( $item_ignored ){
+						++$modified;
+					} elseif ( $item_ignored ) {
 						array_push(
 							$data,
 							MSG_IGNORED_ITEM . $item_code . ' - ' . $item_title,
 						);
-						$ignored++;
+						++$ignored;
 					} else {
 						array_push(
 							$data,
 							MSG_IMPORTED_ITEM . $item_code . ' - ' . $item_title,
 						);
-						$processed++;
+						++$processed;
 					}
 				} catch ( Exception $e ) {
 					array_push(
 						$data,
 						MSG_ERROR_IMPORTING_ITEM . $item_title . ' - ' . $e->getMessage(),
 					);
-					$errors++;
+					++$errors;
 				}
 			}
 		}
 		// Import footer.
 		$msg = sprintf(
-			__( "*** Totali: %d - Scartati: %d - Processati: %d - Aggiornati: %d - Ignorati: %d - Errori: %d ***" ), 
-			$total, $discarded, $processed, $modified, $ignored, $errors
+			__( '*** Totali: %1$d - Scartati: %2$d - Processati: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***' ),
+			$total,
+			$discarded,
+			$processed,
+			$modified,
+			$ignored,
+			$errors
 		);
 		array_push( $data, $msg );
 		return $data;
 	}
 
-	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {
-		$item_title   = $this->sanitize_item_title( $item['title'] );
-		$post_name    = dli_generate_slug( $item_title );
-		$post_content = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
-		$new_page     = array(
+	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
+		$item_title      = $this->sanitize_item_title( $item['title'] );
+		$post_name       = dli_generate_slug( $item_title );
+		$post_content    = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
+		$new_page        = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,
 			'post_title'   => $item_title,
@@ -221,8 +226,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
 			// La lingua del contenuto è modificabile nelle configurazioni dell'import.
 			dli_set_post_language( $post_id, $lang );
-		} else {
-			if ( $update_existent ) {
+		} elseif ( $update_existent ) {
 				// Aggiorna i campi del post.
 				$pars = array(
 					'ID'           => $post_id,
@@ -236,9 +240,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 					$this->_add_post_featured_image( $post_id, $item['url'], $conf['base_url'] );
 				}
 				$updated = true;
-			} else {
-				$ignored = true;
-			}
+		} else {
+			$ignored = true;
 		}
 		return $post_id;
 	}
@@ -271,13 +274,13 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $text;
 	}
 
-	private function update_custom_fields( $post_id, $item, $lang='it' ){
+	private function update_custom_fields( $post_id, $item, $lang = 'it' ) {
 		// Assegno valori ai campi dell'evento.
 		dli_update_field( 'link_dettaglio', DLI_ITEM_LINK['DETAIL_PAGE'], $post_id );
 		$plain_text     = strip_tags( $item['description'] );
 		$plain_text     = $this->sanitize_item_text( $plain_text );
 		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE - 3 );
-		if  ( strlen( $plain_text ) > DLI_SHORT_DESCRIPTION_SIZE ) {
+		if ( strlen( $plain_text ) > DLI_SHORT_DESCRIPTION_SIZE ) {
 			$truncated_text .= '...';
 		}
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
@@ -308,7 +311,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		if ( $item['location'] ) {
 			array_push( $address, $this->sanitize_item_text( $item['location'] ) );
 		}
-		if ( $item['address'] ) array_push( $address, $item['address'] );
+		if ( $item['address'] ) {
+			array_push( $address, $item['address'] );
+		}
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
 
@@ -328,22 +333,21 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			// Associo la tassonomia al contenuto.
 			wp_set_post_terms( $post_id, array( $term_id ), WP_DEFAULT_CATEGORY, false );
 		}
-
 	}
 
 
 
 	// *** Funzioni di utilità dedicate *** //
-	private function _start_date_from_criteria( $criteria ){
-		$date_string = date( 'Y-m-d') ;
+	private function _start_date_from_criteria( $criteria ) {
+		$date_string = date( 'Y-m-d' );
 		switch ( $criteria ) {
 			case 'all':
 					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-1970', 'Y-m-d' );
-					break;
+				break;
 			case 'this-year':
-					$this_year    = date( 'Y' );
+					$this_year   = date( 'Y' );
 					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-' . $this_year, 'Y-m-d' );
-					break;
+				break;
 			case 'future':
 				$date_string = date( 'Y-m-d' );
 		}
@@ -362,7 +366,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 					$img_url = $base_url . $content;
 				}
 				$this->log_string( $img_url );
-				dli_set_post_featured_image_from_url( $post_id,  $img_url );
+				dli_set_post_featured_image_from_url( $post_id, $img_url );
 			} catch ( Exception $e ) {
 				error_log( $e->getMessage() );
 			}
@@ -431,10 +435,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	private function _prepare_post_content( $post_content, $base_url ) {
 		$pattern = '/src="\/([^"]*)"/';
 		// Sostituisce il pattern con la base URL.
-		$replacement = 'src="' .$base_url . '/$1"';
+		$replacement = 'src="' . $base_url . '/$1"';
 		// Esegui la sostituzione.
 		$new_content = preg_replace( $pattern, $replacement, $post_content );
 		return $new_content;
 	}
-
 }

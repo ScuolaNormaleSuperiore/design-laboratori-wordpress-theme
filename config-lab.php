@@ -21,6 +21,11 @@ define( 'DLI_HOMEPAGE_SLUG', 'homepage' );
 define( 'DLI_HOMEPAGE_NAME', 'Home Page' );
 define( 'DLI_ENTE_SLUG', 'enteappartenenza' );
 
+// Max Attachment Size.
+define( 'DLI_MAX_PDF_FILE_SIZE_MB', 2 );
+define( 'DLI_MAX_IMG_FILE_SIZE_MB', 1 );
+define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SIZE_MB ) ? DLI_MAX_PDF_FILE_SIZE_MB : DLI_MAX_IMG_FILE_SIZE_MB );
+
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );

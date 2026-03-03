@@ -43,5 +43,4 @@ class Polylang_Manager {
 	public function add_tax_to_pll() {
 		return DLI_TAXONOMIES_TO_TRANSLATE;
 	}
-
 }

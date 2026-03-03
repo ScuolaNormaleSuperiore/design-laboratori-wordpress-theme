@@ -57,14 +57,14 @@ class DLI_BaseImporter {
 
 	/**
 	 *  Creazione/Modifica dell'post su WordPress.
-	 * 
+	 *
 	 * @param mixed $item
 	 * @param mixed $conf
 	 * @param mixed $updated
 	 * @param mixed $ignored
 	 * @return int
 	 */
-	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang='it' ): int {}
+	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {}
 
 	/**
 	 * Modifica dei post su WordPress.
@@ -73,7 +73,7 @@ class DLI_BaseImporter {
 	 * @param [type] $item
 	 * @return void
 	 */
-	private function update_custom_fields( $post_id, $item, $lang='it' ){ }
+	private function update_custom_fields( $post_id, $item, $lang = 'it' ) { }
 
 	/**
 	 * Modifica del titolo del post.
@@ -82,19 +82,19 @@ class DLI_BaseImporter {
 	 * @param [type] $title
 	 * @return void
 	 */
-	private function update_title( $post_id, $title ){ }
+	private function update_title( $post_id, $title ) { }
 
 	/**
 	 * Register hooks for jobs and REST endpoints.
 	 *
 	 * @return void
 	 */
-	public function setup(){
+	public function setup() {
 		// Register the import endpoint.
 		add_action( 'rest_api_init', array( $this, 'register_import_endpoint' ) );
 		add_action( $this->job_name, array( $this, 'execute_job' ) );
-		add_action('delete_theme', array( $this, 'remove_all_import_jobs' ) );
-		add_action('switch_theme', array( $this, 'remove_all_import_jobs' ) );
+		add_action( 'delete_theme', array( $this, 'remove_all_import_jobs' ) );
+		add_action( 'switch_theme', array( $this, 'remove_all_import_jobs' ) );
 	}
 
 	/**
@@ -104,10 +104,10 @@ class DLI_BaseImporter {
 	 */
 	public function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
-		$this->log_string('*** manage_import_job: ' . $this->importer_name . '  ***');
+		$this->log_string( '*** manage_import_job: ' . $this->importer_name . '  ***' );
 		$schedule       = $this->schedule_type;
 		$module_enabled = $this->module_enabled;
-		if ( ( $module_enabled ==='false' ) || ( $schedule === 'never' ) ){
+		if ( ( $module_enabled === 'false' ) || ( $schedule === 'never' ) ) {
 			$this->remove_all_import_jobs();
 		} else {
 			$next_scheduled = wp_get_scheduled_event( $this->job_name );
@@ -123,7 +123,7 @@ class DLI_BaseImporter {
 	}
 
 	public function remove_all_import_jobs() {
-		$this->log_string('*** CANCELLO schedulazione job: ' . $this->job_name . ' ***');
+		$this->log_string( '*** CANCELLO schedulazione job: ' . $this->job_name . ' ***' );
 		wp_clear_scheduled_hook( $this->job_name );
 	}
 
@@ -187,8 +187,8 @@ class DLI_BaseImporter {
 				array( 'status' => 401 ),
 			);
 		}
-		list( $username, $password ) = explode(':', base64_decode( substr( $auth_header, 6 ) ) );
-		$user = wp_authenticate( $username, $password );
+		list( $username, $password ) = explode( ':', base64_decode( substr( $auth_header, 6 ) ) );
+		$user                        = wp_authenticate( $username, $password );
 		if ( is_wp_error( $user ) ) {
 			return new WP_Error(
 				'rest_authentication_failed',
@@ -229,7 +229,7 @@ class DLI_BaseImporter {
 	 * @param [type] $text
 	 * @return void
 	 */
-	public function log_string( $text ){
+	public function log_string( $text ) {
 		if ( $this->debug_enabled ) {
 			error_log( $text );
 		}
@@ -244,5 +244,4 @@ class DLI_BaseImporter {
 	public function trim_array( $array ): array {
 		return array_map( 'trim', $array );
 	}
-
 }
