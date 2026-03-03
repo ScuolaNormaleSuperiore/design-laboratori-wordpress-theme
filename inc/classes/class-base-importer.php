@@ -153,7 +153,7 @@ class DLI_BaseImporter {
 			'custom/v1',
 			$this->endpoint,
 			array(
-				'methods'             => 'GET',
+				'methods'             => 'POST',
 				'callback'            => array( $this, 'import' ),
 				'permission_callback' => array( $this, 'dli_permission_callback' ),
 			)
