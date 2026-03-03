@@ -24,8 +24,8 @@ $dli_pagination_on   = ( ( 'show_paged' === $dli_mode ) && ( $dli_num_results > 
 		<div class="col-md-3 pt-2">
 			<?php
 			if ( $dli_the_query && $dli_pagination_on ) {
-				$dli_prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><title>Chevron Left</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
-				$dli_next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><title>Chevron Right</title><use href="' . get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg>';
+					$dli_prev_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Left"><title>Chevron Left</title><use href="' . esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ) . '"></use></svg>';
+					$dli_next_label = '<svg class="icon icon-primary" role="img" aria-labelledby="Chevron Right"><title>Chevron Right</title><use href="' . esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right' ) . '"></use></svg>';
 					echo wp_kses_post(
 						paginate_links(
 							array(

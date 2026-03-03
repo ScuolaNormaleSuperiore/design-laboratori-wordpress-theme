@@ -36,7 +36,7 @@ if ( $dli_num_results ) {
 										<title>File PDF</title>
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 									</svg>
-									<a href="<?php echo esc_url( $dli_post_url ); ?>" target="_blank"><?php echo esc_attr( $dli_post_title ); ?></a>
+										<a href="<?php echo esc_url( $dli_post_url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $dli_post_title ); ?></a>
 								</h3>
 							</div>
 						</div>

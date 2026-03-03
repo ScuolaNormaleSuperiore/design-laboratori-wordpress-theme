@@ -30,7 +30,7 @@ $dli_locations = $args['locations'];
 					?>
 				<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
-						<span><?php echo esc_attr( $dli_item['element']->title ); ?></span>
+							<span><?php echo esc_html( $dli_item['element']->title ); ?></span>
 						<svg class="icon icon-xs" role="img" aria-labelledby="Expand">
 							<title>Expand</title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
@@ -39,12 +39,12 @@ $dli_locations = $args['locations'];
 					<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
-								<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $dli_item['element']->url ); ?>"><span><?php echo esc_attr( $dli_item['element']->title ); ?></span></a></li>
+									<li><a class="dropdown-item list-item" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_html( $dli_item['element']->title ); ?></span></a></li>
 								<li><span class="divider"></span></li>
 							<?php
 							foreach ( $dli_item['children'] as $dli_subitem ) {
 								?>
-								<li><a class="dropdown-item list-item" href="<?php echo esc_attr( $dli_subitem->url ); ?>"><span><?php echo esc_attr( $dli_subitem->title ); ?></span></a></li>
+									<li><a class="dropdown-item list-item" href="<?php echo esc_url( $dli_subitem->url ); ?>"><span><?php echo esc_html( $dli_subitem->title ); ?></span></a></li>
 								<?php
 							} // foreach
 							?>
@@ -56,7 +56,7 @@ $dli_locations = $args['locations'];
 				} else {
 					?>
 				<li class="nav-item">
-						<a class="nav-link <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_attr( $dli_item['element']->title ); ?></span></a>
+							<a class="nav-link <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_html( $dli_item['element']->title ); ?></span></a>
 				</li>
 					<?php
 				} // else

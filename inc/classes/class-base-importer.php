@@ -171,6 +171,14 @@ class DLI_BaseImporter {
 	 * @return bool | WP_Error
 	 */
 	public function dli_permission_callback( WP_REST_Request $request ) {
+		if ( 'POST' !== $request->get_method() ) {
+			return new WP_Error(
+				'rest_method_not_allowed',
+				__( 'Metodo non consentito. Usare POST.', 'design_laboratori_italia' ),
+				array( 'status' => 405 )
+			);
+		}
+
 		$auth_header = $request->get_header( 'Authorization' );
 		if ( ! $auth_header ) {
 			return new WP_Error(

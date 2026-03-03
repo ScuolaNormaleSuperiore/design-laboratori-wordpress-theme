@@ -84,8 +84,8 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 								<?php
 								foreach ( $pages as $pg ) {
 									?>
-										<li>
-												<a class="list-item large medium right-icon <?php echo ( $post->ID === $pg->ID || $pg->ID === $post->post_parent ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $pg->ID ) ); ?>">
+											<li>
+													<a class="list-item large medium right-icon <?php echo esc_attr( ( $post->ID === $pg->ID || $pg->ID === $post->post_parent ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $pg->ID ) ); ?>">
 													<span class="list-item-title-icon-wrapper">
 														<span><?php echo esc_html( get_the_title( $pg ) ); ?></span>
 													</span>
@@ -107,8 +107,8 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 												<?php
 												foreach ( $subspg as $subpg ) {
 													?>
-															<li>
-																<a class="list-item <?php echo ( $post->ID === $subpg->ID ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $subpg->ID ) ); ?>">
+																<li>
+																	<a class="list-item <?php echo esc_attr( ( $post->ID === $subpg->ID ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $subpg->ID ) ); ?>">
 																	<span><?php echo esc_html( get_the_title( $subpg ) ); ?></span>
 																</a>
 															</li>
