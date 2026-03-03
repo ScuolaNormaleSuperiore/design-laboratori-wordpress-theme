@@ -11,18 +11,28 @@ $dli_show_title      = $args['show_title'] ?? false;
 if ( 'true' === $dli_section_enabled ) {
 	$dli_sponsor_query = new WP_Query(
 		array(
-			'post_type'      => array( SPONSOR_POST_TYPE ),
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => 'meta_value_num',
-			'meta_key'       => 'priorita',
-			'order'          => 'ASC',
+			'post_type'              => array( SPONSOR_POST_TYPE ),
+			'post_status'            => 'publish',
+			'posts_per_page'         => SPONSOR_MAX_ITEMS,
+			'orderby'                => 'meta_value_num',
+			'meta_key'               => 'priorita',
+			'order'                  => 'ASC',
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
 		)
 	);
 
 	$dli_num_items = $dli_sponsor_query->post_count;
 
 	if ( $dli_num_items > 0 ) {
+		// Pre-carica in un'unica query la postmeta di tutti gli attachment thumbnail,
+		// così dli_get_image_metadata() non genera una query per ogni sponsor.
+		$dli_post_ids  = wp_list_pluck( $dli_sponsor_query->posts, 'ID' );
+		$dli_thumb_ids = array_filter( array_map( 'get_post_thumbnail_id', $dli_post_ids ) );
+		if ( ! empty( $dli_thumb_ids ) ) {
+			update_meta_cache( 'post', $dli_thumb_ids );
+		}
+
 		$dli_items_per_row = dli_get_option( 'num_row_sponsor', 'sponsors' );
 		?>
 		<section id="sponsor" class="section" aria-labelledby="sponsor-title">

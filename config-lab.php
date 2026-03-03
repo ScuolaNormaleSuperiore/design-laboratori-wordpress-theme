@@ -57,6 +57,7 @@ define( 'PROGETTO_POST_TYPE', 'progetto' );
 define( 'PUBLICATION_POST_TYPE', 'pubblicazione' );
 define( 'SPINOFF_POST_TYPE', 'spinoff' );
 define( 'SPONSOR_POST_TYPE', 'sponsor' );
+define( 'SPONSOR_MAX_ITEMS', 30 );
 define( 'RESEARCH_ACTIVITY_POST_TYPE', 'indirizzo-di-ricerca' );
 define( 'TECHNICAL_RESOURCE_POST_TYPE', 'risorsa-tecnica' );
 
