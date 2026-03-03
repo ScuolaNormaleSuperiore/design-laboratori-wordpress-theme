@@ -50,7 +50,7 @@ $dli_link_strutture_evidenza = dli_get_option( 'link_strutture_evidenza', 'il_la
 				<?php
 				if ( isset( $dli_link_strutture_evidenza ) && is_array( $dli_link_strutture_evidenza ) && count( $dli_link_strutture_evidenza ) > 0 ) {
 					foreach ( $dli_link_strutture_evidenza as $dli_id_struttura ) {
-						$GLOBALS['struttura'] = get_post( $dli_id_struttura );
+							$GLOBALS['dli_struttura'] = get_post( $dli_id_struttura );
 						get_template_part( 'template-parts/struttura/card', 'large' );
 					}
 				}

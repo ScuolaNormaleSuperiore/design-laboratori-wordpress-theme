@@ -1,5 +1,11 @@
 <?php
-	$testo_sezione = dli_get_configuration_field_by_lang( 'testo_brevetti', 'brevetti' );
+/**
+ * Template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
+
+$dli_testo_sezione = dli_get_configuration_field_by_lang( 'testo_brevetti', 'brevetti' );
 ?>
 
 <section id="banner-progetti" aria-describedby="Testo introduttivo sezione brevetti" class="bg-banner-progetti">
@@ -10,7 +16,7 @@
 					<?php echo esc_html( get_the_title() ); ?>
 				</h2>
 				<p class="font-weight-normal">
-					<?php echo wp_kses_post( wpautop( $testo_sezione ) ); ?>
+					<?php echo wp_kses_post( wpautop( $dli_testo_sezione ) ); ?>
 				</p>
 			</div>
 		</div>

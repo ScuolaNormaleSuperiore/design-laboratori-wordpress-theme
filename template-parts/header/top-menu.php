@@ -1,6 +1,11 @@
 <?php
-	// $current_group = $args['current_group'];
-	$locations     = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
+/**
+ * Header top menu template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
+
+$dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
 ?>
 
 <nav aria-label="Navigazione accessoria">
@@ -14,35 +19,35 @@
 	</a>
 	<div class="link-list-wrapper collapse" id="menu1a">
 	<?php
-		$menu_name = 'menu-header-right';
-		$menu      = null;
-		$menuitems = array();
-		if ( has_nav_menu( $menu_name ) && array_key_exists( $menu_name, $locations ) ) {
-			$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-			if ( ! $menu || ! isset( $menu->term_id ) ) {
-				$menu = null;
-			}
+		$dli_menu_name = 'menu-header-right';
+		$dli_menu          = null;
+		$dli_menuitems = array();
+	if ( has_nav_menu( $dli_menu_name ) && array_key_exists( $dli_menu_name, $dli_locations ) ) {
+		$dli_menu = wp_get_nav_menu_object( $dli_locations[ $dli_menu_name ] );
+		if ( ! $dli_menu || ! isset( $dli_menu->term_id ) ) {
+			$dli_menu = null;
 		}
+	}
 
-		if ( ! empty( $menu ) ) {
-			$menuitems  = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-			$menuitems  = $menuitems  ? $menuitems : array();
+	if ( ! empty( $dli_menu ) ) {
+		$dli_menuitems = wp_get_nav_menu_items( $dli_menu->term_id, array( 'order' => 'DESC' ) );
+		$dli_menuitems = $dli_menuitems ? $dli_menuitems : array();
 		?>
 		<ul class="link-list">
 		<?php
-		foreach ( $menuitems as $item ) {
-			$active_class = '';
-			if ( get_permalink() === $item->url ) {
-				$active_class = 'active';
-			}
-		?>
-		<li><a class="list-item <?php echo esc_attr( $active_class ); ?>" href="<?php echo esc_url( $item->url ); ?>" aria-current="page"><?php echo esc_html( $item->title ); ?></a></li>
-			<?php
+		foreach ( $dli_menuitems as $dli_item ) {
+			$dli_active_class = '';
+			if ( get_permalink() === $dli_item->url ) {
+				$dli_active_class = 'active';
 			}
 			?>
+		<li><a class="list-item <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item->url ); ?>" aria-current="page"><?php echo esc_html( $dli_item->title ); ?></a></li>
+			<?php
+		}
+		?>
 		</ul>
 		<?php
-			}
-		?>
+	}
+	?>
 	</div> <!-- menu1a -->
 </nav>

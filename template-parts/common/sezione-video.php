@@ -1,8 +1,14 @@
 <?php
-	$cookie_pol_url = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
-	$video          = $args['video'];
-	$video_text     = $args['video_text'];
-	$video_title    = $args['video_title'];
+/**
+ * Template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
+
+$dli_cookie_pol_url  = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
+	$dli_video       = $args['video'];
+	$dli_video_text  = $args['video_text'];
+	$dli_video_title = $args['video_title'];
 ?>
 
 	<script>
@@ -19,48 +25,48 @@
 					<svg class="icon icon-xl"><use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-video' ); ?>"></use></svg>
 				</div>
 					<p>
-					<?php echo __( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>
-					<a target="_blank" href="<?php echo esc_url( $cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
+					<?php echo esc_html__( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>
+					<a target="_blank" href="<?php echo esc_url( $dli_cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
-						onclick="loadYouTubeVideo('<?php echo esc_js( esc_url_raw( $video ) ); ?>')">
-						<?php echo __( 'Accetta', 'design_laboratori_italia' ); ?>
+						onclick="loadYouTubeVideo('<?php echo esc_js( esc_url_raw( $dli_video ) ); ?>')">
+						<?php echo esc_html__( 'Accetta', 'design_laboratori_italia' ); ?>
 					</button>
 					<div class="form-check">
 						<input id="chk-remember" type="checkbox" data-bs-accept-remember>
-						<label for="chk-remember"><?php echo __( 'Ricorda per tutti i video', 'design_laboratori_italia' ); ?></label>
+						<label for="chk-remember"><?php echo esc_html__( 'Ricorda per tutti i video', 'design_laboratori_italia' ); ?></label>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div>
 			<video controls data-bs-video id="vid1"
-				title="<?php echo esc_attr( $video_title . ' Video' ); ?>"
-				aria-label="<?php echo esc_attr( $video_title . ' Video' ); ?>"
+				title="<?php echo esc_attr( $dli_video_title . ' Video' ); ?>"
+				aria-label="<?php echo esc_attr( $dli_video_title . ' Video' ); ?>"
 				class="video-js"
 				width="500"
 				height="281">
 			</video>
 			<?php
-				if ( $video_text ) {
-			?>
+			if ( $dli_video_text ) {
+				?>
 			<div class="vjs-transcription accordion">
 				<div class="accordion-item">
 					<h2 class="accordion-header " id="transcription-head9">
 						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transcription9" aria-expanded="true" aria-controls="transcription">
-						<?php echo __( 'Trascrizione', 'design_laboratori_italia' ); ?>
+					<?php echo esc_html__( 'Trascrizione', 'design_laboratori_italia' ); ?>
 						</button>
 					</h2>
 					<div id="transcription9" class="accordion-collapse collapse" role="region" aria-labelledby="transcription-head9">
 						<div class="accordion-body">
-							<?php echo esc_html( $video_text ); ?>
+						<?php echo esc_html( $dli_video_text ); ?>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php
-				}
+				<?php
+			}
 			?>
 		</div>
 	</div>

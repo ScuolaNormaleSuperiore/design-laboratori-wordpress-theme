@@ -17,13 +17,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-
 ## [REL-1.7.5] - 2026-03-10
+## Aggiunto
 ## Corretto
-- Continuazione dell'adeguamento dei file alle "WordPress coding rules".
+- Adeguamento massivo dei file alle "WordPress Coding Rules" - parte 2.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.5.
+## Sicurezza
 
 
 

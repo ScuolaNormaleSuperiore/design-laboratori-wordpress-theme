@@ -41,20 +41,20 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 					$top_parent = dli_get_page_anchestor_id( $post );
 					$slugs      = dli_get_page_slug_anchestors( $post );
 					$slugs      = is_array( $slugs ) ? array_reverse( $slugs ) : array();
-					if ( count( $slugs ) > 1 && ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
-						$top_parent_page = get_page_by_path( $slugs[0] . '/' . $slugs[1] );
-						if ( $top_parent_page instanceof WP_Post ) {
-							$top_parent = $top_parent_page->ID;
-						}
+				if ( count( $slugs ) > 1 && ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
+					$top_parent_page = get_page_by_path( $slugs[0] . '/' . $slugs[1] );
+					if ( $top_parent_page instanceof WP_Post ) {
+						$top_parent = $top_parent_page->ID;
 					}
+				}
 					// Retrieve second level pages.
 					$pages = get_pages(
 						array(
-						'child_of'    => $top_parent,
-						'offset'      => 0,
-						'parent'      => $top_parent,
-						'sort_order'  => 'ASC',
-						'sort_column' => 'menu_order',
+							'child_of'    => $top_parent,
+							'offset'      => 0,
+							'parent'      => $top_parent,
+							'sort_order'  => 'ASC',
+							'sort_column' => 'menu_order',
 						)
 					);
 					if ( $pages ) {
@@ -62,15 +62,16 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 
 				<!-- MENU LATERALE (INIZIO SIDEBAR) -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3">
-					<?php if ( $post->post_parent !== 0 ) {
-					?>
+						<?php
+						if ( $post->post_parent !== 0 ) {
+							?>
 						<a href="<?php echo esc_url( get_permalink( $post->post_parent ) ); ?>" class="btn btn-primary btn-xs btn-me mb-5" role="button">
 							<svg class="icon icon-sm icon-white me-2" role="img" aria-hidden="true" focusable="false">
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left' ); ?>"></use>
 							</svg>
 							<?php echo esc_html__( 'Torna indietro', 'design_laboratori_italia' ); ?>
 						</a>
-						<?php
+							<?php
 						}
 						?>
 						<h3><?php echo esc_html__( 'Pagine collegate', 'design_laboratori_italia' ); ?></h3>
@@ -81,78 +82,78 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<?php
-									foreach ( $pages as $pg ) {
-										?>
+								foreach ( $pages as $pg ) {
+									?>
 										<li>
 												<a class="list-item large medium right-icon <?php echo ( $post->ID === $pg->ID || $pg->ID === $post->post_parent ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $pg->ID ) ); ?>">
 													<span class="list-item-title-icon-wrapper">
 														<span><?php echo esc_html( get_the_title( $pg ) ); ?></span>
 													</span>
 												</a>
-											<?php
-											// Show subpages of current branch page till second level.
-											$subspg = get_pages(
-												array(
-												'child_of'    => $pg->ID,
-												'offset'      => 0,
-												'parent'      => $pg->ID,
+										<?php
+										// Show subpages of current branch page till second level.
+										$subspg     = get_pages(
+											array(
+												'child_of' => $pg->ID,
+												'offset'   => 0,
+												'parent'   => $pg->ID,
 												'sort_column' => 'menu_order',
-												)
-											);
-											$subspg_ids = wp_list_pluck( $subspg, 'ID' );
-											if ( $post->post_parent !== 0 && ( $post->ID === $pg->ID || in_array( $post->ID, $subspg_ids, true ) ) ) {
-												?>
+											)
+										);
+										$subspg_ids = wp_list_pluck( $subspg, 'ID' );
+										if ( $post->post_parent !== 0 && ( $post->ID === $pg->ID || in_array( $post->ID, $subspg_ids, true ) ) ) {
+											?>
 												<ul class="link-sublist">
-													<?php
-														foreach ( $subspg as $subpg ) {
-															?>
+												<?php
+												foreach ( $subspg as $subpg ) {
+													?>
 															<li>
 																<a class="list-item <?php echo ( $post->ID === $subpg->ID ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $subpg->ID ) ); ?>">
 																	<span><?php echo esc_html( get_the_title( $subpg ) ); ?></span>
 																</a>
 															</li>
 														<?php
-													}
-													?>
+												}
+												?>
 												</ul>
 											<?php
 										}
-									}
+								}
 								?>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<!-- FINE SIDEBAR -->
-				<?php
-				} else {
-				?>
+						<?php
+					} else {
+						?>
 				<!-- La pagina non ha genitori e figli -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3"></div>
-				<?php
-				}
-				?>
+						<?php
+					}
+					?>
 
 				<!-- CORPO ARTICOLO-->
 				<div class="col-lg-8 pt84">
 					<div class="mb-4">
 						<?php
-							if ( ! empty( $image_metadata['image_url'] ) ) {
+						if ( ! empty( $image_metadata['image_url'] ) ) {
 							?>
 								<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 									alt="<?php echo esc_attr( $image_metadata['image_alt'] ?? '' ); ?>" 
 									title="<?php echo esc_attr( $image_metadata['image_title'] ?? '' ); ?>" 
 									class="img-fluid">
-								<?php
-									if ( ! empty( $image_metadata['image_caption'] ) ) {
+							<?php
+							if ( ! empty( $image_metadata['image_caption'] ) ) {
 								?>
 									<figcaption class="figure-caption">
-										<?php echo esc_html( $image_metadata['image_caption'] ); ?>
+								<?php echo esc_html( $image_metadata['image_caption'] ); ?>
 									</figcaption>
 								<?php
-									}
+							}
 							?>
-						<?php
+							<?php
 						}
 						?>
 					</div>
@@ -160,15 +161,15 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 
 					<!-- NEWS ED EVENTI (related_items) -->
 					<?php
-						if ( $related_items ) {
-							get_template_part(
-								'template-parts/common/sezione-related-items',
-								null,
-								array(
-									'items' => $related_items,
-								)
-							);
-						}
+					if ( $related_items ) {
+						get_template_part(
+							'template-parts/common/sezione-related-items',
+							null,
+							array(
+								'items' => $related_items,
+							)
+						);
+					}
 					?>
 
 				</div><!-- /col-lg-8 -->

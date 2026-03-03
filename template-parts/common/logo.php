@@ -1,29 +1,36 @@
 <?php
-$show_logo_header = esc_attr( text: dli_get_option( 'logo_header_visible' ) );
+/**
+ * Template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
 
-if ( $show_logo_header !== 'false' ) {
-	$nome_laboratorio = esc_attr( dli_get_option_by_lang( 'nome_laboratorio' ) );
-	$file_name        = esc_url( dli_get_option( 'logo_laboratorio' ) );
+$dli_show_logo_header = esc_attr( dli_get_option( 'logo_header_visible' ) );
 
-	if ( $file_name ) {
-	?>
+if ( 'false' !== $dli_show_logo_header ) {
+	$dli_nome_laboratorio = esc_attr( dli_get_option_by_lang( 'nome_laboratorio' ) );
+	$dli_file_name        = esc_url( dli_get_option( 'logo_laboratorio' ) );
+
+	if ( $dli_file_name ) {
+		?>
 
 		<!-- Logo -->
-		<img src="<?php echo esc_url( $file_name ); ?>" 
-			alt="<?php echo esc_attr( $nome_laboratorio ); ?>" 
-			title="<?php echo esc_attr( $nome_laboratorio ); ?>" 
+		<img src="<?php echo esc_url( $dli_file_name ); ?>" 
+			alt="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" 
+			title="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" 
 			height="80"/>
 
-	<?php
-	} else { ?>
+		<?php
+	} else {
+		?>
 
 		<!-- Logo di default -->
 		<img src="<?php echo esc_url( dli_get_default_logo() ); ?>" 
-			alt="<?php echo esc_attr( $nome_laboratorio ); ?>" 
-			title="<?php echo esc_attr( $nome_laboratorio ); ?>" 
+			alt="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" 
+			title="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" 
 			height="80"/>
 
-<?php
+		<?php
 	}
 }
 ?>

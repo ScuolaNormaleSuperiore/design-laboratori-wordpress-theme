@@ -1,12 +1,12 @@
 <?php
 
-define (
+define(
 	'DLI_LAB_MENU_IT',
 	array(
 		'name'     => 'Menu principale',
 		'lang'     => 'it',
 		'location' => 'menu-lab',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PERSONE_IT,
 				'title'        => 'Persone',
@@ -71,7 +71,7 @@ define(
 		'name'     => 'Novità',
 		'lang'     => 'it',
 		'location' => 'menu-header-right',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_NOTIZIE_IT,
 				'title'        => 'Notizie',
@@ -118,7 +118,7 @@ define(
 		'name'     => 'Menu footer',
 		'lang'     => 'it',
 		'location' => 'menu-footer',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PRIVACY_IT,
 				'title'        => 'Privacy policy',
@@ -135,7 +135,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => esc_url( site_url() ) . '/'. SLUG_PRIVACY_IT . '#cookies',
+				'link'         => esc_url( site_url() ) . '/' . SLUG_PRIVACY_IT . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_IT,
@@ -192,7 +192,7 @@ define(
 		'name'     => 'Link utili',
 		'lang'     => 'it',
 		'location' => 'menu-links',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_ACCESSIBILITA_IT,
 				'title'        => 'Dichiarazione di accessibilità',
@@ -230,7 +230,7 @@ define(
 		'name'     => 'Presentazione',
 		'lang'     => 'it',
 		'location' => 'menu-right',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PRESENTAZIONE_IT,
 				'title'        => 'Presentazione',
@@ -250,7 +250,7 @@ define(
 		'name'     => 'Main menu',
 		'lang'     => 'en',
 		'location' => 'menu-lab',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PERSONE_EN,
 				'title'        => 'People',
@@ -315,7 +315,7 @@ define(
 		'name'     => 'Presentation',
 		'lang'     => 'en',
 		'location' => 'menu-right',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PRESENTAZIONE_EN,
 				'title'        => 'Presentation',
@@ -335,7 +335,7 @@ define(
 		'name'     => 'News',
 		'lang'     => 'en',
 		'location' => 'menu-header-right',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_NOTIZIE_EN,
 				'title'        => 'News',
@@ -382,7 +382,7 @@ define(
 		'name'     => 'Menu footer en',
 		'lang'     => 'en',
 		'location' => 'menu-footer',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_PRIVACY_EN,
 				'title'        => 'Privacy policy',
@@ -399,7 +399,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => esc_url( site_url() ) . '/en/'. SLUG_PRIVACY_EN . '#cookies',
+				'link'         => esc_url( site_url() ) . '/en/' . SLUG_PRIVACY_EN . '#cookies',
 			),
 			array(
 				'slug'         => SLUG_NOTE_LEGALI_EN,
@@ -456,7 +456,7 @@ define(
 		'name'     => 'Useful link',
 		'lang'     => 'en',
 		'location' => 'menu-links',
-		'items' => array(
+		'items'    => array(
 			array(
 				'slug'         => SLUG_ACCESSIBILITA_EN,
 				'title'        => 'Accessibility declaration',

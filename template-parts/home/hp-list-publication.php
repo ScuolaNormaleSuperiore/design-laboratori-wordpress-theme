@@ -10,7 +10,7 @@ $dli_show_title      = $args['show_title'] ?? false;
 $dli_order_field     = 'post_date';
 
 if ( 'true' === $dli_section_enabled ) {
-	$dli_query = new WP_Query(
+	$dli_query     = new WP_Query(
 		array(
 			'post_type'      => array( PUBLICATION_POST_TYPE ),
 			'orderby'        => $dli_order_field,

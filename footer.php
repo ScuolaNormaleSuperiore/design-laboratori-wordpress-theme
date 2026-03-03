@@ -121,7 +121,7 @@
 		</div>
 		<div class="col-lg-4 col-md-4 pb-2">
 			<div class="pb-2">
-				<?php get_template_part( 'template-parts/common/social_footer' ); ?>
+				<?php get_template_part( 'template-parts/common/social-footer' ); ?>
 				<?php get_template_part( 'template-parts/common/newsletter' ); ?>
 			</div>
 		</div>

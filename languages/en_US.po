@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-02-19 11:06+0000\n"
+"PO-Revision-Date: 2026-03-03 09:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2\n"
 "X-Domain: design_laboratori_italia"
 
-#: inc/admin/options.php:685 inc/admin/options.php:736
-#: inc/admin/options.php:787
+#: inc/admin/options.php:687 inc/admin/options.php:738
+#: inc/admin/options.php:789
 msgid "2 Pubblicazioni"
 msgstr "2 Publications"
 
@@ -24,11 +24,11 @@ msgstr "2 Publications"
 msgid "404"
 msgstr "404"
 
-#: inc/admin/options.php:2101
+#: inc/admin/options.php:2103
 msgid "Abilita l'integrazione con Indico"
 msgstr "Enable Indico integration"
 
-#: inc/admin/options.php:2313
+#: inc/admin/options.php:2315
 msgid "Abilita l'integrazione con IRIS AP Brevetti"
 msgstr "Enable integration with IRIS AP Brevetti"
 
@@ -36,7 +36,7 @@ msgstr "Enable integration with IRIS AP Brevetti"
 msgid "Abilita la sezione"
 msgstr "Enable the section"
 
-#: inc/admin/options.php:1973
+#: inc/admin/options.php:1975
 #| msgid ""
 #| "Abilita la visualizzazione dei socialmedia nell'header e nel footer della "
 #| "pagina."
@@ -45,15 +45,15 @@ msgid ""
 "pagina"
 msgstr "Enable social media in the page header and footer"
 
-#: inc/admin/options.php:2117 inc/admin/options.php:2329
+#: inc/admin/options.php:2119 inc/admin/options.php:2331
 msgid "Abilita messaggi debug"
 msgstr "Enable debug messages"
 
-#: inc/admin/options.php:2118 inc/admin/options.php:2330
+#: inc/admin/options.php:2120 inc/admin/options.php:2332
 msgid "Abilita messaggi debug nel file error.log"
 msgstr "Enable debug messages in error.log file"
 
-#: inc/admin/options.php:2643
+#: inc/admin/options.php:2645
 msgid "Abilita REST API"
 msgstr "Enable REST API"
 
@@ -77,7 +77,7 @@ msgstr "Login"
 msgid "Accept"
 msgstr "Accept"
 
-#: template-parts/common/sezione-video.php:28
+#: template-parts/common/sezione-video.php:34
 msgid "Accetta"
 msgstr "Accept"
 
@@ -96,7 +96,7 @@ msgstr ""
 "Accept YouTube cookies to watch the video. You can manage your preferences "
 "in <a target=\"_blank\" href=\"%s\" class=\"text-white\">%s</a>."
 
-#: template-parts/common/sezione-video.php:22
+#: template-parts/common/sezione-video.php:28
 msgid ""
 "Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze "
 "nella "
@@ -104,7 +104,7 @@ msgstr ""
 "Accept YouTube cookies to watch the video. You can manage your preferences "
 "in the"
 
-#: inc/admin/options.php:2274 inc/admin/options.php:2424
+#: inc/admin/options.php:2276 inc/admin/options.php:2426
 msgid "Aggiorna"
 msgstr "Update"
 
@@ -182,16 +182,16 @@ msgstr "to"
 msgid "Allegati"
 msgstr "Attachments"
 
-#: inc/admin/options.php:2464
+#: inc/admin/options.php:2466
 msgid "Altre Informazioni"
 msgstr "More Information"
 
-#: single-brevetto.php:201 single-brevetto.php:327 single-spinoff.php:180
+#: single-brevetto.php:201 single-brevetto.php:329 single-spinoff.php:180
 #: single-spinoff.php:312
 msgid "Altre informazioni"
 msgstr "More information"
 
-#: inc/admin/options.php:2445 inc/admin/options.php:2448
+#: inc/admin/options.php:2447 inc/admin/options.php:2450
 msgid "Altro"
 msgstr "Other"
 
@@ -217,7 +217,7 @@ msgstr "Year of foundation"
 msgid "Anno di deposito"
 msgstr "Deposit year"
 
-#: inc/admin/options.php:1369
+#: inc/admin/options.php:1371
 msgid "Anno pubblicazione"
 msgstr "Publication year"
 
@@ -247,7 +247,7 @@ msgstr "Project archive"
 msgid "Area di configurazione delle informazioni di base"
 msgstr "Configuration of basic information"
 
-#: inc/admin/options.php:2465
+#: inc/admin/options.php:2467
 #| msgid "Area di configurazione delle opzioni generali del tema."
 msgid "Area di configurazione delle opzioni generali del tema"
 msgstr "Configuration of theme general options"
@@ -256,7 +256,7 @@ msgstr "Configuration of theme general options"
 msgid "Area Tematica"
 msgstr "Thematic Area"
 
-#: single-brevetto.php:192 single-brevetto.php:318
+#: single-brevetto.php:192 single-brevetto.php:320
 #: page-templates/brevetti.php:95
 msgid "Area tematica"
 msgstr "Thematic Area"
@@ -271,28 +271,28 @@ msgid ""
 "obbligatoriamente: "
 msgstr "ATTENTION: The following plugins must be installed and activated:"
 
-#: inc/admin/options.php:1218
+#: inc/admin/options.php:1220
 msgid "Attiva il filtro per TAG"
 msgstr "Attiva il filtro per TAG"
 
-#: inc/admin/options.php:2312
+#: inc/admin/options.php:2314
 msgid "Attiva l'importazione dei brevetti"
 msgstr "Enable patent import"
 
-#: inc/admin/options.php:2100
+#: inc/admin/options.php:2102
 msgid "Attiva l'integrazione con Indico"
 msgstr "Enable Indico integration"
 
-#: inc/admin/options.php:2504
+#: inc/admin/options.php:2506
 msgid "Attiva la newsletter"
 msgstr "Enable newsletter"
 
-#: inc/admin/options.php:1595
+#: inc/admin/options.php:1597
 msgid "Attiva la paginazione"
 msgstr "Enable pagination"
 
 #. Name of the template
-#: single-persona.php:192 single-persona.php:294 inc/utils.php:273
+#: single-persona.php:193 single-persona.php:296 inc/utils.php:273
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr "Research activities"
@@ -305,11 +305,11 @@ msgstr "Alerts in Home Page"
 msgid "Avvisi in Home"
 msgstr "Alerts in Home"
 
-#: inc/admin/options.php:2419
+#: inc/admin/options.php:2421
 msgid "Azione da intraprendere se il brevetto esiste già"
 msgstr "Action to take if the patent already exists"
 
-#: inc/admin/options.php:2269
+#: inc/admin/options.php:2271
 msgid "Azione da intraprendere se l'evento esiste già"
 msgstr "Action to take if the event already exists"
 
@@ -317,7 +317,7 @@ msgstr "Action to take if the event already exists"
 msgid "Banner"
 msgstr "Banner"
 
-#: single-persona.php:162 single-persona.php:239
+#: single-persona.php:162 single-persona.php:241
 #: inc/classes/class-peoplemanager.php:114
 msgid "Biografia"
 msgstr "Biography"
@@ -327,29 +327,29 @@ msgid "Biografia della persona"
 msgstr "Biography of the person"
 
 #. Name of the template
-#: page-templates/blog.php:2 inc/admin/options.php:896
+#: page-templates/blog.php:2 inc/admin/options.php:898
 #: template-parts/home/hp-list-article.php:39
 msgid "Blog"
 msgstr "Blog"
 
-#: inc/admin/options.php:647
+#: inc/admin/options.php:649
 msgid "Box 1 dei contenuti in evidenza"
 msgstr "Box 1 of highlighted contents"
 
-#: inc/admin/options.php:698
+#: inc/admin/options.php:700
 msgid "Box 2 dei contenuti in evidenza"
 msgstr "Box 2 of highlighted contents"
 
-#: inc/admin/options.php:749
+#: inc/admin/options.php:751
 msgid "Box 3 dei contenuti in evidenza"
 msgstr "Box 3 of highlighted contents"
 
-#: inc/admin/options.php:2260
+#: inc/admin/options.php:2262
 msgid "Bozza"
 msgstr "Draft"
 
 #. Name of the template
-#: inc/utils.php:281 page-templates/brevetti.php:2 inc/admin/options.php:1386
+#: inc/utils.php:281 page-templates/brevetti.php:2 inc/admin/options.php:1388
 msgid "Brevetti"
 msgstr "Patents"
 
@@ -357,23 +357,23 @@ msgstr "Patents"
 msgid "Brevetto"
 msgstr "Patent"
 
-#: inc/admin/options.php:2418
+#: inc/admin/options.php:2420
 msgid "Brevetto esistente"
 msgstr "Existing patent"
 
-#: inc/admin/options.php:2523
+#: inc/admin/options.php:2525
 msgid "Brevo"
 msgstr "Brevo"
 
-#: inc/admin/options.php:600
+#: inc/admin/options.php:602
 msgid "Campo da usare per ordinare gli elementi del carousel"
 msgstr "Field to use to sort the carousel items"
 
-#: inc/admin/options.php:1361
+#: inc/admin/options.php:1363
 msgid "Campo da usare per ordinare le pubblicazioni"
 msgstr "Field to use for ordering publications"
 
-#: inc/admin/options.php:599 inc/admin/options.php:1360
+#: inc/admin/options.php:601 inc/admin/options.php:1362
 msgid "Campo ordinamento"
 msgstr "Sort field"
 
@@ -385,8 +385,8 @@ msgstr "Cancel"
 msgid "Captcha"
 msgstr "Captcha"
 
-#: page-templates/blog.php:49 page-templates/eventi.php:59
-#: page-templates/notizie.php:59 inc/admin/options.php:2159
+#: page-templates/blog.php:62 page-templates/eventi.php:78
+#: page-templates/notizie.php:78 inc/admin/options.php:2161
 msgid "Categoria"
 msgstr "Category"
 
@@ -439,8 +439,8 @@ msgstr "Search place type"
 msgid "Cessata"
 msgstr "Ceased"
 
-#: template-parts/header/alert.php:39 template-parts/header/alert.php:40
-#: template-parts/header/alert.php:41
+#: template-parts/header/alert.php:45 template-parts/header/alert.php:46
+#: template-parts/header/alert.php:47
 msgid "Chiudi avviso"
 msgstr "Close the warning"
 
@@ -464,7 +464,7 @@ msgstr "surname"
 msgid "Collegamento"
 msgstr "Link"
 
-#: single-luogo.php:130 single-luogo.php:273
+#: single-luogo.php:131 single-luogo.php:276
 msgid "Come raggiungerci"
 msgstr "How to reach us"
 
@@ -480,34 +480,30 @@ msgstr ""
 msgid "Compilare tutti i campi obbligatori."
 msgstr "Fill in all mandatory fields."
 
-#: template-parts/common/social_sharing.php:19
-#: template-parts/common/social_sharing.php:23
+#: template-parts/common/social-sharing.php:45
+#: template-parts/common/social-sharing.php:49
 msgid "Condividi"
 msgstr "share"
 
-#: template-parts/common/social_sharing.php:33
-#: template-parts/common/social_sharing.php:34
-#: template-parts/common/social_sharing.php:35
+#: template-parts/common/social-sharing.php:16
 msgid "Condividi su Facebook"
 msgstr "Share on Facebook"
 
-#: template-parts/common/social_sharing.php:58
-#: template-parts/common/social_sharing.php:59
-#: template-parts/common/social_sharing.php:60
+#: template-parts/common/social-sharing.php:28
 msgid "Condividi su Linkedin"
 msgstr "Share on Linkedin"
 
-#: template-parts/common/social_sharing.php:45
-#: template-parts/common/social_sharing.php:46
-#: template-parts/common/social_sharing.php:47
+#: template-parts/common/social-sharing.php:22
 msgid "Condividi su Twitter"
 msgstr "Share on Twitter"
 
-#: template-parts/common/social_sharing.php:70
-#: template-parts/common/social_sharing.php:71
-#: template-parts/common/social_sharing.php:72
+#: template-parts/common/social-sharing.php:34
 msgid "Condividi su WhatsApp"
 msgstr "Share on WhatsApp"
+
+#: template-parts/common/social-sharing.php:11
+msgid "Condivido con piacere questo post"
+msgstr "I am happy to share this post"
 
 #: page-templates/contatti.php:304
 msgid "Conferma"
@@ -528,14 +524,14 @@ msgstr "Lab configuration"
 #. Name of the template
 #: footer.php:46 single-evento.php:200 single-evento.php:380
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:197
-#: single-persona.php:222 single-persona.php:452 single-spinoff.php:171
+#: single-persona.php:224 single-persona.php:456 single-spinoff.php:171
 #: single-spinoff.php:251 page-templates/contatti.php:2
 #: page-templates/contatti.php:125 page-templates/contatti.php:182
 msgid "Contatti"
 msgstr "Contacts"
 
-#: inc/admin/options.php:666 inc/admin/options.php:717
-#: inc/admin/options.php:768
+#: inc/admin/options.php:668 inc/admin/options.php:719
+#: inc/admin/options.php:770
 msgid "Contenuto del box"
 msgstr "Contents of the box"
 
@@ -547,11 +543,11 @@ msgstr "Copy of message not sent."
 msgid "Costo"
 msgstr "cost"
 
-#: inc/classes/class-base-importer.php:182
+#: inc/classes/class-base-importer.php:187
 msgid "Credenziali non valide."
 msgstr "Invalid credentials."
 
-#: inc/admin/options.php:2238
+#: inc/admin/options.php:2240
 msgid "Criterio di scelta degli eventi da importare"
 msgstr "Criteria for selecting events to import"
 
@@ -567,11 +563,11 @@ msgstr "Danger"
 msgid "Data deposito"
 msgstr "Deposit date"
 
-#: inc/admin/options.php:607
+#: inc/admin/options.php:609
 msgid "Data evento"
 msgstr "Event date"
 
-#: inc/admin/options.php:605 inc/admin/options.php:1366
+#: inc/admin/options.php:607 inc/admin/options.php:1368
 msgid "Data pubblicazione"
 msgstr "Publication date"
 
@@ -580,10 +576,10 @@ msgid "Date e orari"
 msgstr "Dates and times"
 
 #: single-evento.php:171 single-indirizzo-di-ricerca.php:105
-#: single-indirizzo-di-ricerca.php:149 single-luogo.php:112
+#: single-indirizzo-di-ricerca.php:149 single-luogo.php:113
 #: single-progetto.php:150 single-progetto.php:224
 #: single-risorsa-tecnica.php:142 single-spinoff.php:135
-#: inc/admin/options.php:848 inc/admin/options.php:849
+#: inc/admin/options.php:850 inc/admin/options.php:851
 msgid "Descrizione"
 msgstr "Description"
 
@@ -591,11 +587,11 @@ msgstr "Description"
 msgid "Descrizione banner"
 msgstr "Banner description"
 
-#: inc/admin/options.php:850
+#: inc/admin/options.php:852
 msgid "Descrizione del laboratorio"
 msgstr "Lab description"
 
-#: inc/admin/options.php:870
+#: inc/admin/options.php:872
 #, fuzzy
 #| msgid "Descrizione del laboratorio in Inglese"
 msgid "Descrizione del laboratorio in inglese"
@@ -625,7 +621,7 @@ msgstr "Spin-off Description"
 msgid "Descrizione dello Sponsor"
 msgstr "Sponsor description"
 
-#: inc/admin/options.php:868 inc/admin/options.php:869
+#: inc/admin/options.php:870 inc/admin/options.php:871
 msgid "Descrizione ENG"
 msgstr "Description in English"
 
@@ -637,7 +633,7 @@ msgstr "Description of the event"
 msgid "Descrizione indirizzo di ricerca"
 msgstr "Description of the research activity"
 
-#: single-luogo.php:150
+#: single-luogo.php:151
 msgid "Descrizione luogo"
 msgstr "Description of the place"
 
@@ -649,35 +645,35 @@ msgstr "Description of the news"
 msgid "Descrizione Risorsa Tecnica"
 msgstr "Technical Resource Description"
 
-#: inc/admin/options.php:921 inc/admin/options.php:993
-#: inc/admin/options.php:1079 inc/admin/options.php:1321
-#: inc/admin/options.php:1409 inc/admin/options.php:1479
-#: inc/admin/options.php:1549 inc/admin/options.php:1704
-#: inc/admin/options.php:1859
+#: inc/admin/options.php:923 inc/admin/options.php:995
+#: inc/admin/options.php:1081 inc/admin/options.php:1323
+#: inc/admin/options.php:1411 inc/admin/options.php:1481
+#: inc/admin/options.php:1551 inc/admin/options.php:1706
+#: inc/admin/options.php:1861
 msgid "Descrizione Sezione"
 msgstr "Description of section"
 
-#: inc/admin/options.php:940 inc/admin/options.php:1012
-#: inc/admin/options.php:1098 inc/admin/options.php:1340
-#: inc/admin/options.php:1428 inc/admin/options.php:1498
-#: inc/admin/options.php:1569 inc/admin/options.php:1724
-#: inc/admin/options.php:1878
+#: inc/admin/options.php:942 inc/admin/options.php:1014
+#: inc/admin/options.php:1100 inc/admin/options.php:1342
+#: inc/admin/options.php:1430 inc/admin/options.php:1500
+#: inc/admin/options.php:1571 inc/admin/options.php:1726
+#: inc/admin/options.php:1880
 msgid "Descrizione Sezione ENG"
 msgstr "Description of section in English"
 
-#: inc/admin/options.php:1775
+#: inc/admin/options.php:1777
 msgid "Descrizione Sezione Luoghi"
 msgstr "Description of places section"
 
-#: inc/admin/options.php:1794
+#: inc/admin/options.php:1796
 msgid "Descrizione Sezione Luoghi ENG"
 msgstr "Description of places section in English"
 
-#: inc/admin/options.php:1149
+#: inc/admin/options.php:1151
 msgid "Descrizione Sezione Persone"
 msgstr "Description of people section"
 
-#: inc/admin/options.php:1168
+#: inc/admin/options.php:1170
 msgid "Descrizione Sezione Persone ENG"
 msgstr "Description of people section in English"
 
@@ -739,11 +735,11 @@ msgstr "Dimensions and weight"
 msgid "Domanda di priorità"
 msgstr "Priority question"
 
-#: inc/admin/options.php:2229 inc/admin/options.php:2410
+#: inc/admin/options.php:2231 inc/admin/options.php:2412
 msgid "Dry Run (test import)"
 msgstr "Dry Run (test import)"
 
-#: inc/admin/options.php:2213 inc/admin/options.php:2394
+#: inc/admin/options.php:2215 inc/admin/options.php:2396
 msgid "Due volte al giorno"
 msgstr "Twice daily"
 
@@ -752,11 +748,11 @@ msgstr "Twice daily"
 msgid "E-mail"
 msgstr "E-mail"
 
-#: template-parts/hero/progetti-archive.php:11
+#: template-parts/hero/progetti-archive.php:17
 msgid "Elenco dei progetti archiviati"
 msgstr "List of archived projects"
 
-#: template-parts/hero/mappasito.php:10
+#: template-parts/hero/mappasito.php:16
 msgid "Elenco delle pagine del sito"
 msgstr "List of site pages"
 
@@ -768,11 +764,11 @@ msgstr "List of Home Page sections:"
 msgid "Email"
 msgstr "Email"
 
-#: inc/admin/options.php:2663
+#: inc/admin/options.php:2665
 msgid "Enable internal SEO management"
 msgstr "Enable internal SEO management"
 
-#: inc/admin/options.php:2664
+#: inc/admin/options.php:2666
 msgid ""
 "Enable the internal management of SEO and OG tags or disable it to delegate "
 "this job to an external plugin."
@@ -788,107 +784,107 @@ msgstr "Membership institution"
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr "Error while subscribing to the newsletter."
 
-#: inc/admin/options.php:1410
+#: inc/admin/options.php:1412
 msgid "es: \"Brevetti dei membri del Laboratorio.\""
 msgstr "eg: \"Patents of Laboratory members.\""
 
-#: inc/admin/options.php:1099
+#: inc/admin/options.php:1101
 msgid "es: \"Events from the Lab\""
 msgstr "e.g.: \"Events from the Lab\""
 
-#: inc/admin/options.php:922
+#: inc/admin/options.php:924
 msgid "es: \"Gli articoli del laboratorio\""
 msgstr "e.g.: \"Gli articoli del laboratorio\""
 
-#: inc/admin/options.php:1080
+#: inc/admin/options.php:1082
 msgid "es: \"Gli eventi del laboratorio\""
 msgstr "e.g.: \"Gli eventi del laboratorio\""
 
-#: inc/admin/options.php:1705
+#: inc/admin/options.php:1707
 msgid "es: \"Gli indirizzi di ricerca del Laboratorio\""
 msgstr "e.g.: \"Gli indirizzi di ricerca del Laboratorio\""
 
-#: inc/admin/options.php:1550
+#: inc/admin/options.php:1552
 msgid "es: \"I progetti del Laboratorio\""
 msgstr "e.g.: \"I progetti del Laboratorio\""
 
-#: inc/admin/options.php:1795
+#: inc/admin/options.php:1797
 msgid "es: \"Lab places\""
 msgstr "e.g.: \"Lab places\""
 
-#: inc/admin/options.php:1570
+#: inc/admin/options.php:1572
 msgid "es: \"Lab projects\""
 msgstr "e.g.: \"Lab projects\""
 
-#: inc/admin/options.php:1725
+#: inc/admin/options.php:1727
 msgid "es: \"Lab research activities\""
 msgstr "e.g.: \"Lab research activities\""
 
-#: inc/admin/options.php:994
+#: inc/admin/options.php:996
 msgid "es: \"Le notizie del laboratorio\""
 msgstr "e.g.: \"Le notizie del laboratorio\""
 
-#: inc/admin/options.php:1150
+#: inc/admin/options.php:1152
 msgid "es: \"Le persone del laboratorio\""
 msgstr "e.g.: \"Le persone del laboratorio\""
 
-#: inc/admin/options.php:1013
+#: inc/admin/options.php:1015
 msgid "es: \"News from the Lab\""
 msgstr "e.g.: \"News from the Lab\""
 
-#: inc/admin/options.php:1169
+#: inc/admin/options.php:1171
 msgid "es: \"People from the Lab\""
 msgstr "e.g.: \"People from the Lab\""
 
-#: inc/admin/options.php:1322
+#: inc/admin/options.php:1324
 msgid "es: \"Pubblicazioni dei membri del Laboratorio.\""
 msgstr "e.g.: \"Pubblicazioni dei membri del Laboratorio.\""
 
-#: inc/admin/options.php:1341 inc/admin/options.php:1429
+#: inc/admin/options.php:1343 inc/admin/options.php:1431
 msgid "es: \"Publications by Lab members.\""
 msgstr "e.g.: \"Publications by Lab members.\""
 
-#: inc/admin/options.php:1776
+#: inc/admin/options.php:1778
 msgid "es: \"Questi i luoghi del laboratorio\""
 msgstr "e.g.: \"Questi i luoghi del laboratorio\""
 
-#: inc/admin/options.php:1860
+#: inc/admin/options.php:1862
 msgid "es: \"Risorsa Tecnica del Laboratorio.\""
 msgstr "es: \"Risorsa Tecnica del Laboratorio.\""
 
-#: inc/admin/options.php:1480
+#: inc/admin/options.php:1482
 msgid "es: \"Spin-off del Laboratorio.\""
 msgstr "ex: \"Laboratory spin-off.\""
 
-#: inc/admin/options.php:1499
+#: inc/admin/options.php:1501
 msgid "es: \"Spin-off of the Lab\""
 msgstr "ex: \"Spin-off of the Lab\""
 
-#: inc/admin/options.php:1879
+#: inc/admin/options.php:1881
 msgid "es: \"Technical Resource of the Lab\""
 msgstr "es: \"Technical Resource of the Lab\""
 
-#: inc/admin/options.php:941
+#: inc/admin/options.php:943
 msgid "es: \"The papers from the Lab\""
 msgstr "e.g.: \"The papers from the Lab\""
 
-#: inc/admin/options.php:830
+#: inc/admin/options.php:832
 msgid "Etichetta"
 msgstr "Label"
 
-#: inc/admin/options.php:1231 inc/admin/options.php:1615
+#: inc/admin/options.php:1233 inc/admin/options.php:1617
 msgid "Etichetta 'Seleziona TAG' "
 msgstr "'Select TAG' label"
 
-#: inc/admin/options.php:1242 inc/admin/options.php:1626
+#: inc/admin/options.php:1244 inc/admin/options.php:1628
 msgid "Etichetta 'Seleziona TAG' ENG "
 msgstr "'Select TAG' Label ENG"
 
-#: inc/admin/options.php:1253 inc/admin/options.php:1637
+#: inc/admin/options.php:1255 inc/admin/options.php:1639
 msgid "Etichetta 'Tutti i TAG' "
 msgstr "'All TAGS' tag"
 
-#: inc/admin/options.php:1264 inc/admin/options.php:1648
+#: inc/admin/options.php:1266 inc/admin/options.php:1650
 msgid "Etichetta 'Tutti i TAG' ENG "
 msgstr "'All TAGS' Tag ENG"
 
@@ -904,18 +900,18 @@ msgstr ""
 "Label to display in the footer contacts, if not specified the contents of "
 "the Laboratory Name field is used"
 
-#: inc/admin/options.php:839
+#: inc/admin/options.php:841
 msgid "Etichetta ENG"
 msgstr "Label in English"
 
 #. Name of the template
-#: inc/utils.php:274 page-templates/eventi.php:2 inc/admin/options.php:1054
+#: inc/utils.php:274 page-templates/eventi.php:2 inc/admin/options.php:1056
 #: template-parts/home/hp-list-event.php:43
 msgid "Eventi"
 msgstr "Events"
 
 #: single-indirizzo-di-ricerca.php:133 single-progetto.php:197
-#: template-parts/common/sezione-related-items.php:13
+#: template-parts/common/sezione-related-items.php:19
 msgid "Eventi e notizie"
 msgstr "Events & news"
 
@@ -923,12 +919,12 @@ msgstr "Events & news"
 msgid "Evento"
 msgstr "Event"
 
-#: inc/admin/options.php:2268
+#: inc/admin/options.php:2270
 msgid "Evento esistente"
 msgstr "Existing event"
 
-#: inc/admin/options.php:686 inc/admin/options.php:737
-#: inc/admin/options.php:788
+#: inc/admin/options.php:688 inc/admin/options.php:739
+#: inc/admin/options.php:790
 msgid "Evento singolo"
 msgstr "Single event"
 
@@ -953,11 +949,11 @@ msgstr "PDF file"
 msgid "Filtra"
 msgstr "Filter"
 
-#: page-templates/persone.php:86 page-templates/progetti.php:80
+#: page-templates/persone.php:78 page-templates/progetti.php:69
 msgid "Filtra per"
 msgstr "Filter by"
 
-#: inc/admin/options.php:1217
+#: inc/admin/options.php:1219
 msgid "Filtra per TAG"
 msgstr "Filter by TAG"
 
@@ -965,7 +961,7 @@ msgstr "Filter by TAG"
 msgid "Filtra per tipo di contenuto"
 msgstr "Filter by content type"
 
-#: inc/admin/options.php:2228 inc/admin/options.php:2409
+#: inc/admin/options.php:2230 inc/admin/options.php:2411
 msgid "Finalizza import"
 msgstr "Finalize import"
 
@@ -985,16 +981,16 @@ msgstr "january"
 msgid "Gestione cookies"
 msgstr "Cookies management"
 
-#: inc/admin/options.php:577
+#: inc/admin/options.php:579
 msgid "Gestione del carousel in Home Page"
 msgstr "Carousel management in Home Page"
 
-#: inc/admin/options.php:635
+#: inc/admin/options.php:637
 #| msgid "Gestione della sezione dei contenuti in evidenza in Home Page."
 msgid "Gestione della sezione dei contenuti in evidenza in Home Page"
 msgstr "Highlights management in Home Page"
 
-#: inc/admin/options.php:2473
+#: inc/admin/options.php:2475
 msgid "Gestione dello stile del sito"
 msgstr "Style website management"
 
@@ -1007,7 +1003,7 @@ msgstr ""
 "Main Hero section management (optional) shown on Home Page. To view content "
 "in this section, tick the \"Promote on home\" field"
 
-#: inc/admin/options.php:2517
+#: inc/admin/options.php:2519
 msgid "Gestore delle newsletter"
 msgstr "Gestore delle newsletter"
 
@@ -1019,7 +1015,7 @@ msgstr "jun"
 msgid "giugno"
 msgstr "june"
 
-#: inc/admin/options.php:1048
+#: inc/admin/options.php:1050
 msgid "Gli eventi"
 msgstr "The events"
 
@@ -1039,7 +1035,7 @@ msgstr "Home Page"
 msgid "https://ict.sns.it"
 msgstr "https://ict.sns.it"
 
-#: inc/admin/options.php:1380
+#: inc/admin/options.php:1382
 msgid "I brevetti"
 msgstr "The patents"
 
@@ -1049,7 +1045,7 @@ msgid "I Luoghi"
 msgstr "Places"
 
 #. Name of the template
-#: page-templates/progetti.php:2 inc/admin/options.php:1520
+#: page-templates/progetti.php:2 inc/admin/options.php:1522
 msgid "I progetti"
 msgstr "Projects"
 
@@ -1057,27 +1053,27 @@ msgstr "Projects"
 msgid "ICT SNS"
 msgstr "ICT SNS"
 
-#: inc/admin/options.php:2557
+#: inc/admin/options.php:2559
 msgid "ID del template"
 msgstr "Template ID"
 
-#: inc/admin/options.php:2558
+#: inc/admin/options.php:2560
 msgid "ID del template della pagina che gestisce la double OptIn"
 msgstr "Template ID of the page that manages the double OptIn"
 
-#: inc/admin/options.php:2160
+#: inc/admin/options.php:2162
 msgid "ID della categoria degli eventi da importare"
 msgstr "Category ID of the events to import"
 
-#: inc/admin/options.php:2542
+#: inc/admin/options.php:2544
 msgid "ID della lista"
 msgstr "List ID"
 
-#: inc/admin/options.php:2543
+#: inc/admin/options.php:2545
 msgid "ID della lista associata al sito"
 msgstr "ID of the list associated with the site"
 
-#: inc/admin/options.php:2275 inc/admin/options.php:2425
+#: inc/admin/options.php:2277 inc/admin/options.php:2427
 msgid "Ignora"
 msgstr "Ignore"
 
@@ -1085,7 +1081,7 @@ msgstr "Ignore"
 msgid "il"
 msgstr "the"
 
-#: inc/admin/options.php:890
+#: inc/admin/options.php:892
 msgid "Il blog"
 msgstr "The blog"
 
@@ -1102,7 +1098,7 @@ msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr "PDF file is too large. Maximum allowed: 2MB."
 
 #. Name of the template
-#: page-templates/il-laboratorio.php:2 inc/admin/options.php:798
+#: page-templates/il-laboratorio.php:2 inc/admin/options.php:800
 msgid "Il Laboratorio"
 msgstr "The Lab"
 
@@ -1143,11 +1139,11 @@ msgstr "The Lab telephone number"
 msgid "Immagine del Banner"
 msgstr "Banner image"
 
-#: inc/admin/options.php:560
+#: inc/admin/options.php:562
 msgid "Immagine di sfondo"
 msgstr "Background image"
 
-#: inc/admin/options.php:561
+#: inc/admin/options.php:563
 msgid "Immagine in formato png o jpg"
 msgstr "Image in png or jpg format"
 
@@ -1159,20 +1155,20 @@ msgstr "Place main image"
 msgid "Immagine principale della Persona"
 msgstr "Person main image"
 
-#: inc/admin/options.php:1919
+#: inc/admin/options.php:1921
 msgid "Imposta qui i parametri degli sponsor"
 msgstr "Set your sponsor parameters here"
 
-#: inc/admin/options.php:2092
+#: inc/admin/options.php:2094
 msgid "Impostazioni per configurare l'integrazione con Indico"
 msgstr "Settings to configure the integration with Indico"
 
-#: inc/admin/options.php:2304
+#: inc/admin/options.php:2306
 msgid ""
 "Impostazioni per configurare l'integrazione con IRIS Cineca (AP Brevetti)"
 msgstr "Settings to configure integration with IRIS Cineca (AP Brevetti)"
 
-#: inc/admin/options.php:2434
+#: inc/admin/options.php:2436
 msgid ""
 "Impostazioni per configurare l'integrazione con IRIS Cineca (Pubblicazioni)"
 msgstr "Settings to configure integration with IRIS Cineca (Publications)"
@@ -1185,7 +1181,7 @@ msgstr ""
 "in which the activity of the laboratory takes place. Places can be "
 "structures locations and physical channels of service delivery"
 
-#: inc/admin/options.php:2223 inc/admin/options.php:2404
+#: inc/admin/options.php:2225 inc/admin/options.php:2406
 msgid ""
 "Indica se l'import deve essere finalizzato o si deve eseguire solo una prova "
 "(dry-run)"
@@ -1193,7 +1189,7 @@ msgstr ""
 "Indicates whether the import should be finalized or just a test (dry-run) "
 "should be performed"
 
-#: inc/admin/options.php:2205
+#: inc/admin/options.php:2207
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
@@ -1204,7 +1200,7 @@ msgstr ""
 "protected endpoint http://mysite/wp-json/custom/v1/indico-import from the "
 "browser."
 
-#: inc/admin/options.php:2386
+#: inc/admin/options.php:2388
 msgid ""
 "Indica se l'import deve essere schedulato. L'import, in alternativa, può "
 "essere eseguito 'manualmente' invocando da browser l'endpoint protetto da "
@@ -1221,7 +1217,7 @@ msgstr ""
 msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr "In Admin->Configure set the articles to show in the carousel"
 
-#: inc/admin/options.php:1243 inc/admin/options.php:1627
+#: inc/admin/options.php:1245 inc/admin/options.php:1629
 msgid ""
 "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG' "
 "in inglese.  E' usata per filtrare i contenuti per tag"
@@ -1229,7 +1225,7 @@ msgstr ""
 "Indicate the customization, if necessary, of the 'Select TAG' label in "
 "English. It is used to filter the contents by tag"
 
-#: inc/admin/options.php:1232 inc/admin/options.php:1616
+#: inc/admin/options.php:1234 inc/admin/options.php:1618
 msgid ""
 "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG'."
 " E' usata per filtrare i contenuti per tag."
@@ -1237,7 +1233,7 @@ msgstr ""
 "Specify customization, if necessary, of the 'Select TAG' label. It is used "
 "to filter content by tag."
 
-#: inc/admin/options.php:1265 inc/admin/options.php:1649
+#: inc/admin/options.php:1267 inc/admin/options.php:1651
 msgid ""
 "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG' "
 "in inglese.  E' usata per filtrare i contenuti per tag"
@@ -1245,7 +1241,7 @@ msgstr ""
 "Indicate customization, if necessary, of the 'All Levels' label in English. "
 "It is used to filter content by tag"
 
-#: inc/admin/options.php:1254 inc/admin/options.php:1638
+#: inc/admin/options.php:1256 inc/admin/options.php:1640
 msgid ""
 "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG'. "
 "E' usata per filtrare i contenuti per tag."
@@ -1261,7 +1257,7 @@ msgstr "Indicate whether the logo should be displayed in the footer"
 msgid "Indicare se il logo nello header deve essere visualizzato"
 msgstr "Indicate whether the logo in the header should be displayed"
 
-#: inc/admin/options.php:1276 inc/admin/options.php:1660
+#: inc/admin/options.php:1278 inc/admin/options.php:1662
 msgid ""
 "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'"
 msgstr "Indicate whether the 'Details' label should appear on the detail page"
@@ -1270,7 +1266,7 @@ msgstr "Indicate whether the 'Details' label should appear on the detail page"
 msgid "Indicare un indirizzo email valido."
 msgstr "Please provide a valid email address."
 
-#: inc/admin/options.php:2073 inc/admin/options.php:2079
+#: inc/admin/options.php:2075 inc/admin/options.php:2081
 msgid "Indico"
 msgstr "Indico"
 
@@ -1280,7 +1276,7 @@ msgstr "Indico"
 msgid "Indietro"
 msgstr "Back"
 
-#: inc/admin/options.php:1675 inc/admin/options.php:1681
+#: inc/admin/options.php:1677 inc/admin/options.php:1683
 msgid "Indirizzi di ricerca"
 msgstr "Research activities"
 
@@ -1300,7 +1296,7 @@ msgstr "Research activity"
 msgid "Info"
 msgstr "Info"
 
-#: inc/admin/options.php:2196
+#: inc/admin/options.php:2198
 msgid "Inglese"
 msgstr "English"
 
@@ -1316,7 +1312,7 @@ msgstr ""
 "Enter in the title the full name of the person and, where appropriate, the "
 "full name to facilitate the search"
 
-#: inc/admin/options.php:2623
+#: inc/admin/options.php:2625
 msgid ""
 "Inserisci il codice Analytics. Puoi crearlo <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
@@ -1352,13 +1348,13 @@ msgstr "Enter your phone number"
 msgid "Inserisci messaggi che saranno visualizzati nella homepage"
 msgstr "Enter the messages that will display in homepage"
 
-#: inc/admin/options.php:1964
+#: inc/admin/options.php:1966
 #| msgid "Inserisci qui i link ai tuoi socialmedia."
 msgid "Inserisci qui i link ai tuoi socialmedia"
 msgstr "Insert here socialmedia links"
 
 #. %s: URL of blog page.
-#: inc/admin/options.php:908
+#: inc/admin/options.php:910
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> il blog</a>"
@@ -1366,7 +1362,7 @@ msgstr ""
 "Insert here the useful information to populate <a href=\"%s\"> the blog</a>"
 
 #. %s: URL of places archive page.
-#: inc/admin/options.php:1761
+#: inc/admin/options.php:1763
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina dei "
@@ -1376,7 +1372,7 @@ msgstr ""
 "page</a>"
 
 #. %s: URL of events overview page.
-#: inc/admin/options.php:1066
+#: inc/admin/options.php:1068
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1386,7 +1382,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of research areas overview page.
-#: inc/admin/options.php:1690
+#: inc/admin/options.php:1692
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1396,7 +1392,7 @@ msgstr ""
 "ativities overview page</a>"
 
 #. %s: URL of patents overview page.
-#: inc/admin/options.php:1395
+#: inc/admin/options.php:1397
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1406,7 +1402,7 @@ msgstr ""
 "page</a>"
 
 #. %s: URL of projects overview page.
-#: inc/admin/options.php:1535
+#: inc/admin/options.php:1537
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1416,7 +1412,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of "Il Laboratorio" page.
-#: inc/admin/options.php:816
+#: inc/admin/options.php:818
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1426,7 +1422,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of news overview page.
-#: inc/admin/options.php:979
+#: inc/admin/options.php:981
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1436,7 +1432,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of people overview page.
-#: inc/admin/options.php:1136
+#: inc/admin/options.php:1138
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1446,7 +1442,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of publications overview page.
-#: inc/admin/options.php:1307
+#: inc/admin/options.php:1309
 #, php-format
 #| msgid ""
 #| "Inserisci qui le informazioni utili a popolare <a href=\"%s\">la pagina "
@@ -1459,7 +1455,7 @@ msgstr ""
 "Publications overview page</a>"
 
 #. %s: URL of technical resources overview page.
-#: inc/admin/options.php:1845
+#: inc/admin/options.php:1847
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1469,7 +1465,7 @@ msgstr ""
 "overview page</a>"
 
 #. %s: URL of spin-off overview page.
-#: inc/admin/options.php:1465
+#: inc/admin/options.php:1467
 #, php-format
 msgid ""
 "Inserisci qui le informazioni utili a popolare <a href=\"%s\"> la pagina di "
@@ -1482,7 +1478,7 @@ msgstr ""
 msgid "Inventori"
 msgstr "Inventors"
 
-#: inc/admin/options.php:2285 inc/admin/options.php:2291
+#: inc/admin/options.php:2287 inc/admin/options.php:2293
 msgid "Iris"
 msgstr "Iris"
 
@@ -1500,11 +1496,11 @@ msgstr "Sign me up..."
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr "Newsletter subscription successful"
 
-#: inc/admin/options.php:2195
+#: inc/admin/options.php:2197
 msgid "Italiano"
 msgstr "Italian"
 
-#: inc/admin/options.php:2176
+#: inc/admin/options.php:2178
 msgid "Keywords"
 msgstr "Keywords"
 
@@ -1524,11 +1520,11 @@ msgstr "Image is too large. Maximum allowed: 1MB."
 msgid "L'indirizzo del Laboratorio"
 msgstr "Lab address"
 
-#: inc/admin/options.php:2135
+#: inc/admin/options.php:2137
 msgid "L'url del sito Indico da cui importare i dati"
 msgstr "The URL of the Indico site from which to import data"
 
-#: inc/admin/options.php:2347
+#: inc/admin/options.php:2349
 msgid "L'url dell'endpoint da invocare per scaricare i brevetti."
 msgstr "The endpoint url to invoke to download patents."
 
@@ -1544,7 +1540,7 @@ msgstr "Lab city"
 msgid "La Newslettere è disabilitata"
 msgstr "The Newsletter is disabled"
 
-#: inc/admin/options.php:2373
+#: inc/admin/options.php:2375
 msgid "La password per autenticarsi sul web-service."
 msgstr "The password to authenticate on the web service."
 
@@ -1569,16 +1565,16 @@ msgstr ""
 msgid "La Tipologia del Laboratorio"
 msgstr "The Lab type"
 
-#: inc/admin/options.php:536 inc/admin/options.php:657
-#: inc/admin/options.php:708 inc/admin/options.php:759
+#: inc/admin/options.php:538 inc/admin/options.php:659
+#: inc/admin/options.php:710 inc/admin/options.php:761
 msgid "Label bottone"
 msgstr "Button label"
 
-#: inc/admin/options.php:544
+#: inc/admin/options.php:546
 msgid "Label bottone ENG"
 msgstr "Button label in English"
 
-#: inc/admin/options.php:802
+#: inc/admin/options.php:804
 msgid "Laboratorio"
 msgstr "Lab"
 
@@ -1586,11 +1582,11 @@ msgstr "Lab"
 msgid "Layout HP"
 msgstr "HP Layout"
 
-#: inc/admin/options.php:961
+#: inc/admin/options.php:963
 msgid "Le Novità"
 msgstr "The News"
 
-#: inc/admin/options.php:2177
+#: inc/admin/options.php:2179
 msgid ""
 "Le parole chiave degli eventi da importare, separate da virgola (operatore "
 "usato per la selezione: OR)"
@@ -1599,11 +1595,11 @@ msgstr ""
 "selection: OR)"
 
 #. Name of the template
-#: page-templates/pubblicazioni.php:2 inc/admin/options.php:1292
+#: page-templates/pubblicazioni.php:2 inc/admin/options.php:1294
 msgid "Le pubblicazioni"
 msgstr "Publications"
 
-#: inc/admin/options.php:1450
+#: inc/admin/options.php:1452
 msgid "Le Spin-off"
 msgstr "The Spin-off"
 
@@ -1611,20 +1607,21 @@ msgstr "The Spin-off"
 msgid "Leggi di piu"
 msgstr "Read more"
 
-#: page-templates/blog.php:113 page-templates/blog.php:114
-#: page-templates/blog.php:115 page-templates/brevetti.php:205
-#: page-templates/brevetti.php:207 page-templates/eventi.php:148
-#: page-templates/eventi.php:150 page-templates/notizie.php:125
-#: page-templates/notizie.php:128 page-templates/spinoff.php:220
+#: page-templates/blog.php:125 page-templates/blog.php:126
+#: page-templates/blog.php:127 page-templates/brevetti.php:205
+#: page-templates/brevetti.php:207 page-templates/eventi.php:157
+#: page-templates/eventi.php:158 page-templates/eventi.php:159
+#: page-templates/notizie.php:133 page-templates/notizie.php:134
+#: page-templates/notizie.php:135 page-templates/spinoff.php:220
 #: page-templates/spinoff.php:222
-#: template-parts/common/sezione-box-evento.php:52
-#: template-parts/common/sezione-box-evento.php:54
-#: template-parts/common/sezione-box-evento.php:55
-#: template-parts/common/sezione-box-notizia.php:26
-#: template-parts/common/sezione-box-notizia.php:28
-#: template-parts/common/sezione-box-notizia.php:29
-#: template-parts/common/sezione-eventi.php:69
-#: template-parts/common/sezione-eventi.php:72
+#: template-parts/common/sezione-box-evento.php:59
+#: template-parts/common/sezione-box-evento.php:61
+#: template-parts/common/sezione-box-evento.php:62
+#: template-parts/common/sezione-box-notizia.php:32
+#: template-parts/common/sezione-box-notizia.php:34
+#: template-parts/common/sezione-box-notizia.php:35
+#: template-parts/common/sezione-eventi.php:76
+#: template-parts/common/sezione-eventi.php:79
 #: template-parts/home/card-eventi.php:79
 #: template-parts/home/card-eventi.php:80
 #: template-parts/home/card-eventi.php:81 template-parts/home/card-news.php:53
@@ -1643,11 +1640,11 @@ msgstr "Read more"
 msgid "Leggi di più"
 msgstr "Read more"
 
-#: inc/admin/options.php:2189
+#: inc/admin/options.php:2191
 msgid "Lingua default"
 msgstr "Default language"
 
-#: inc/admin/options.php:2190
+#: inc/admin/options.php:2192
 msgid "Lingua in cui devono essere importati gli eventi."
 msgstr "Language in which events should be imported."
 
@@ -1659,7 +1656,7 @@ msgstr "Link to an in-depth page also external to the site"
 msgid "Link utili"
 msgstr "Useful links"
 
-#: inc/admin/options.php:2360
+#: inc/admin/options.php:2362
 msgid "Lo username per autenticarsi sul web-service."
 msgstr "The username to authenticate on the web service."
 
@@ -1667,7 +1664,7 @@ msgstr "The username to authenticate on the web service."
 msgid "Localizzazione"
 msgstr "Location"
 
-#: inc/admin/options.php:2572
+#: inc/admin/options.php:2574
 msgid "Login"
 msgstr "Login"
 
@@ -1708,7 +1705,7 @@ msgstr "jul"
 msgid "luglio"
 msgstr "july"
 
-#: inc/utils.php:275 inc/admin/options.php:1745 inc/admin/options.php:1751
+#: inc/utils.php:275 inc/admin/options.php:1747 inc/admin/options.php:1753
 msgid "Luoghi"
 msgstr "Places"
 
@@ -1726,7 +1723,7 @@ msgid "maggio"
 msgstr "may"
 
 #. Name of the template
-#: page-templates/mappasito.php:2 template-parts/hero/mappasito.php:9
+#: page-templates/mappasito.php:2 template-parts/hero/mappasito.php:15
 msgid "Mappa del sito"
 msgstr "Site Map"
 
@@ -1741,10 +1738,6 @@ msgstr "Brand and model"
 #: inc/utils.php:904
 msgid "marzo"
 msgstr "march"
-
-#: inc/admin/options.php:327
-msgid "Massimo 140 caratteri"
-msgstr "Maximum 140 characters"
 
 #: functions.php:136
 msgid "Menu a piè di pagina di link - footer"
@@ -1783,11 +1776,11 @@ msgstr "Message sent successfully"
 msgid "Messaggio non inviato"
 msgstr "Message not sent"
 
-#: inc/admin/options.php:1588
+#: inc/admin/options.php:1590
 msgid "Modalità di paginazione"
 msgstr "Pagination mode"
 
-#: inc/admin/options.php:1201
+#: inc/admin/options.php:1203
 msgid "Modalità scelta struttura"
 msgstr "Structure selection mode"
 
@@ -1815,7 +1808,7 @@ msgstr "Change business sector"
 msgid "Modifica tipo risorsa"
 msgstr "Edit resource type"
 
-#: inc/admin/options.php:1207
+#: inc/admin/options.php:1209
 msgid "Mostra chip"
 msgstr "Show chips"
 
@@ -1823,23 +1816,23 @@ msgstr "Show chips"
 msgid "Mostra il titolo della sezione"
 msgstr "Show section title"
 
-#: inc/admin/options.php:1972
+#: inc/admin/options.php:1974
 msgid "Mostra le icone social"
 msgstr "Show social media icons"
 
-#: inc/admin/options.php:1208
+#: inc/admin/options.php:1210
 msgid "Mostra select"
 msgstr "Show select"
 
-#: inc/admin/options.php:1589
+#: inc/admin/options.php:1591
 msgid "Mostra tutti i risultati o attiva la paginazione"
 msgstr "Show all results or enable pagination"
 
-#: inc/admin/options.php:1594
+#: inc/admin/options.php:1596
 msgid "Mostra tutti risultati"
 msgstr "Show all results"
 
-#: inc/admin/options.php:2593
+#: inc/admin/options.php:2595
 msgid "Multilingua"
 msgstr "Multi-language"
 
@@ -1847,11 +1840,11 @@ msgstr "Multi-language"
 msgid "N/D"
 msgstr "N/A"
 
-#: inc/admin/options.php:1187
+#: inc/admin/options.php:1189
 msgid "Nascondi icona"
 msgstr "Hide icon"
 
-#: inc/admin/options.php:1188
+#: inc/admin/options.php:1190
 msgid "Nascondi l'icona della persona nell'elenco delle persone"
 msgstr "Hide person icon in people list"
 
@@ -1859,31 +1852,31 @@ msgstr "Hide person icon in people list"
 msgid "Nazione deposito"
 msgstr "Deposit country"
 
-#: template-parts/header/top-menu.php:9
+#: template-parts/header/top-menu.php:14
 msgid "News e contatti"
 msgstr "News e contacts"
 
-#: inc/admin/options.php:684 inc/admin/options.php:735
-#: inc/admin/options.php:786
+#: inc/admin/options.php:686 inc/admin/options.php:737
+#: inc/admin/options.php:788
 msgid "News singola"
 msgstr "Single news"
 
 #. Name of the template
 #: page-templates/newsletter.php:8 page-templates/newsletter.php:93
-#: inc/admin/options.php:2496 template-parts/common/newsletter.php:16
+#: inc/admin/options.php:2498 template-parts/common/newsletter.php:16
 msgid "Newsletter"
 msgstr "Newsletter"
 
 #: inc/admin/options.php:199 inc/admin/options.php:227
 #: inc/admin/options.php:410 inc/admin/options.php:424
-#: inc/admin/options.php:591 inc/admin/options.php:1193
-#: inc/admin/options.php:1223 inc/admin/options.php:1281
-#: inc/admin/options.php:1665 inc/admin/options.php:1819
-#: inc/admin/options.php:1978 inc/admin/options.php:2106
-#: inc/admin/options.php:2123 inc/admin/options.php:2318
-#: inc/admin/options.php:2335 inc/admin/options.php:2509
-#: inc/admin/options.php:2585 inc/admin/options.php:2606
-#: inc/admin/options.php:2648 inc/admin/options.php:2669
+#: inc/admin/options.php:593 inc/admin/options.php:1195
+#: inc/admin/options.php:1225 inc/admin/options.php:1283
+#: inc/admin/options.php:1667 inc/admin/options.php:1821
+#: inc/admin/options.php:1980 inc/admin/options.php:2108
+#: inc/admin/options.php:2125 inc/admin/options.php:2320
+#: inc/admin/options.php:2337 inc/admin/options.php:2511
+#: inc/admin/options.php:2587 inc/admin/options.php:2608
+#: inc/admin/options.php:2650 inc/admin/options.php:2671
 msgid "No"
 msgstr "No"
 
@@ -1919,7 +1912,7 @@ msgstr "No technical resources found"
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr "No publications available"
 
-#: inc/activation.php:423
+#: inc/activation.php:475
 msgid "Non hai i permessi per accedere a questa pagina."
 msgstr "You do not have permission to access this page."
 
@@ -1927,11 +1920,11 @@ msgstr "You do not have permission to access this page."
 msgid "Non hai installato cookie di terze parti"
 msgstr "You have not installed third-party cookies"
 
-#: inc/admin/options.php:1209
+#: inc/admin/options.php:1211
 msgid "Non mostrare filtro"
 msgstr "Don't show filter"
 
-#: inc/classes/class-base-importer.php:173
+#: inc/classes/class-base-importer.php:178
 msgid "Non sei autenticato."
 msgstr "You are not authenticated."
 
@@ -1943,11 +1936,11 @@ msgstr "No spinoff found"
 msgid "Non è stata trovata nessuna attività di ricerca"
 msgstr "No research activities available"
 
-#: page-templates/notizie.php:151
+#: page-templates/notizie.php:158
 msgid "Non è stata trovata nessuna notizia"
 msgstr "No news available"
 
-#: page-templates/persone.php:346
+#: page-templates/persone.php:287
 msgid "Non è stata trovata nessuna persona"
 msgstr "No people available"
 
@@ -1959,15 +1952,15 @@ msgstr "Places not available"
 msgid "Non è stato trovato alcun brevetto"
 msgstr "No patent found"
 
-#: page-templates/eventi.php:174
+#: page-templates/eventi.php:182
 msgid "Non è stato trovato alcun evento"
 msgstr "No events available"
 
-#: archive.php:110 page-templates/blog.php:137
+#: archive.php:110 page-templates/blog.php:149
 msgid "Non è stato trovato nessun articolo"
 msgstr "No posts available"
 
-#: page-templates/archive-progetti.php:109 page-templates/progetti.php:191
+#: page-templates/archive-progetti.php:109 page-templates/progetti.php:178
 msgid "Non è stato trovato nessun progetto"
 msgstr "No projects available"
 
@@ -1989,7 +1982,7 @@ msgstr "nov"
 msgid "novembre"
 msgstr "november"
 
-#: inc/admin/options.php:967
+#: inc/admin/options.php:969
 msgid "Novità"
 msgstr "News"
 
@@ -2001,28 +1994,28 @@ msgstr "Deposit number"
 msgid "Numero di deposito"
 msgstr "Deposit number"
 
-#: inc/admin/options.php:1927
+#: inc/admin/options.php:1929
 msgid "Numero di elementi"
 msgstr "Number of elements"
 
-#: inc/admin/options.php:1603
+#: inc/admin/options.php:1605
 msgid "Numero di elementi mostrati"
 msgstr "Number of items shown"
 
-#: inc/admin/options.php:1604
+#: inc/admin/options.php:1606
 msgid "Numero di elementi mostrati di default, se è attivata la paginazione"
 msgstr "Number of items shown by default, if pagination is enabled"
 
-#: inc/admin/options.php:1928
+#: inc/admin/options.php:1930
 msgid "Numero di sponsor da mostrare per riga nella sezione in Home Page"
 msgstr "Number of sponsors to display per row in the Home Page section"
 
-#: inc/admin/options.php:1032
+#: inc/admin/options.php:1034
 msgid "Numero massimo di pagine (notizie ed eventi) associabili a una pagina"
 msgstr ""
 "Maximum number of pages (news and events) that can be associated with a page"
 
-#: inc/admin/options.php:1031
+#: inc/admin/options.php:1033
 msgid "Numero pagine collegate"
 msgstr "Number of linked pages"
 
@@ -2051,14 +2044,18 @@ msgid "Nuovo tipo risorsa"
 msgstr "New resource type"
 
 #: inc/admin/options.php:295
+#, fuzzy
+#| msgid ""
+#| "Ogni messaggio è costruito attraverso descrizione breve (max 140 "
+#| "caratteri) e data di scadenza (opzionale)"
 msgid ""
-"Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) "
+"Ogni messaggio è costruito attraverso descrizione breve (max 512 caratteri) "
 "e data di scadenza (opzionale)"
 msgstr ""
 "Each message is built through short description (max 140 characters) and "
 "expiration date"
 
-#: inc/admin/options.php:2211 inc/admin/options.php:2392
+#: inc/admin/options.php:2213 inc/admin/options.php:2394
 msgid "Ogni ora"
 msgstr "Hourly"
 
@@ -2086,8 +2083,8 @@ msgstr "oct"
 msgid "ottobre"
 msgstr "october"
 
-#: template-parts/common/paginazione.php:45
-#: template-parts/common/paginazione.php:58
+#: template-parts/common/paginazione.php:53
+#: template-parts/common/paginazione.php:72
 msgid "pagina"
 msgstr "page"
 
@@ -2095,7 +2092,7 @@ msgstr "page"
 msgid "Pagina non trovata"
 msgstr "Page not found"
 
-#: page.php:73 page-templates/privacy.php:129
+#: page.php:77 page-templates/privacy.php:129
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
@@ -2103,7 +2100,7 @@ msgstr "Linked pages"
 msgid "Partner e collaborazioni"
 msgstr "Partners and collaborations."
 
-#: inc/admin/options.php:2372
+#: inc/admin/options.php:2374
 msgid "Password"
 msgstr "Password"
 
@@ -2116,8 +2113,8 @@ msgid "Persona"
 msgstr "Person"
 
 #. Name of the template
-#: inc/utils.php:277 page-templates/persone.php:2 inc/admin/options.php:1119
-#: inc/admin/options.php:1125
+#: inc/utils.php:277 page-templates/persone.php:2 inc/admin/options.php:1121
+#: inc/admin/options.php:1127
 msgid "Persone"
 msgstr "People"
 
@@ -2125,7 +2122,7 @@ msgstr "People"
 msgid "Piccolo"
 msgstr "Small"
 
-#: single-luogo.php:121 single-luogo.php:158 single-risorsa-tecnica.php:196
+#: single-luogo.php:122 single-luogo.php:159 single-risorsa-tecnica.php:196
 #: single-risorsa-tecnica.php:334
 msgid "Posizione"
 msgstr "Location"
@@ -2498,8 +2495,8 @@ msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
 #: single-indirizzo-di-ricerca.php:119 single-indirizzo-di-ricerca.php:180
-#: single-persona.php:171 single-persona.php:247 single-risorsa-tecnica.php:250
-#: single-risorsa-tecnica.php:426 inc/utils.php:279 inc/admin/options.php:1526
+#: single-persona.php:171 single-persona.php:249 single-risorsa-tecnica.php:250
+#: single-risorsa-tecnica.php:426 inc/utils.php:279 inc/admin/options.php:1528
 msgid "Progetti"
 msgstr "Projects"
 
@@ -2507,7 +2504,7 @@ msgstr "Projects"
 msgid "Progetto"
 msgstr "Project"
 
-#: inc/admin/options.php:2259
+#: inc/admin/options.php:2261
 msgid "Pubblicato"
 msgstr "Published"
 
@@ -2515,13 +2512,13 @@ msgstr "Published"
 msgid "Pubblicazione"
 msgstr "Publication"
 
-#: single-persona.php:202 single-persona.php:331 single-progetto.php:183
-#: single-progetto.php:285 inc/utils.php:280 inc/admin/options.php:1298
+#: single-persona.php:204 single-persona.php:333 single-progetto.php:183
+#: single-progetto.php:285 inc/utils.php:280 inc/admin/options.php:1300
 #: template-parts/home/hp-list-publication.php:39
 msgid "Pubblicazioni"
 msgstr "Publications"
 
-#: inc/admin/options.php:2580
+#: inc/admin/options.php:2582
 msgid "Pulsante per il login visibile"
 msgstr "Button for login visible"
 
@@ -2529,7 +2526,7 @@ msgstr "Button for login visible"
 msgid "Responsabili"
 msgstr "Responsible"
 
-#: inc/admin/options.php:2635
+#: inc/admin/options.php:2637
 msgid "REST API"
 msgstr "REST API"
 
@@ -2537,11 +2534,11 @@ msgstr "REST API"
 msgid "Revoca"
 msgstr "Revoke"
 
-#: inc/activation.php:444
+#: inc/activation.php:496
 msgid "Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)"
 msgstr "Reload activation data (menus, pages, taxonomies, etc.)"
 
-#: inc/activation.php:442
+#: inc/activation.php:494
 msgid "Ricarica i dati di attivazione del tema"
 msgstr "Reload theme activation data"
 
@@ -2577,11 +2574,11 @@ msgstr ""
 "Registration request received correctly, please verify your email to "
 "complete the process"
 
-#: inc/activation.php:431
+#: inc/activation.php:483
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr "Invalid request: missing or invalid nonce."
 
-#: template-parts/common/sezione-video.php:32
+#: template-parts/common/sezione-video.php:38
 #: template-parts/home/hp-video-section.php:73
 msgid "Ricorda per tutti i video"
 msgstr "Remember for all videos"
@@ -2631,11 +2628,11 @@ msgstr "Retype the confirmation code here"
 msgid "Risorsa Tecnica"
 msgstr "Technical Resource"
 
-#: inc/admin/options.php:1830
+#: inc/admin/options.php:1832
 msgid "Risorse Tecniche"
 msgstr "Technical Resources"
 
-#: single-progetto.php:204 inc/admin/options.php:1836
+#: single-progetto.php:204 inc/admin/options.php:1838
 msgid "Risorse tecniche"
 msgstr "Technical Resources"
 
@@ -2656,7 +2653,7 @@ msgstr "Choose the header format on the home page"
 msgid "Scegli la sezione."
 msgstr "Select the section."
 
-#: inc/admin/options.php:1202
+#: inc/admin/options.php:1204
 msgid ""
 "Scegli se filtrare le strutture con dei chip o una select oppure non "
 "mostrare alcun filtro"
@@ -2669,15 +2666,15 @@ msgstr ""
 msgid "Scegli un'opzione"
 msgstr "Select an option"
 
-#: inc/admin/options.php:2237
+#: inc/admin/options.php:2239
 msgid "Scelta eventi"
 msgstr "Event selection"
 
-#: inc/admin/options.php:2204 inc/admin/options.php:2385
+#: inc/admin/options.php:2206 inc/admin/options.php:2387
 msgid "Schedulazione"
 msgstr "Scheduling"
 
-#: inc/admin/options.php:2210 inc/admin/options.php:2391
+#: inc/admin/options.php:2212 inc/admin/options.php:2393
 msgid "Schedulazione disabilitata"
 msgstr "Scheduling disabled"
 
@@ -2689,8 +2686,9 @@ msgstr "If so, the section is shown on the Home Page."
 msgid "Se sì, viene mostrato il titolo della sezione."
 msgstr "If so, the section title is displayed."
 
-#: template-parts/common/social.php:5 template-parts/common/social_footer.php:7
-#: template-parts/common/social_footer.php:7
+#: template-parts/common/social-footer.php:60
+#: template-parts/common/social-footer.php:61
+#: template-parts/common/social.php:64
 msgid "Seguici su"
 msgstr "Follow us on"
 
@@ -2698,11 +2696,11 @@ msgstr "Follow us on"
 msgid "Sei sicuro di voler rimuovere la sezione?"
 msgstr "Are you sure you want to remove the section?"
 
-#: inc/admin/options.php:2601
+#: inc/admin/options.php:2603
 msgid "Selettore lingua visibile"
 msgstr "Language selector visible"
 
-#: inc/admin/options.php:1814
+#: inc/admin/options.php:1816
 msgid ""
 "Seleziona <b>No</b> per visualizzare la mappa in fondo alla pagina dopo "
 "l'elenco delle strutture."
@@ -2710,7 +2708,7 @@ msgstr ""
 "Select <b>No</b> to display the map at the bottom of the page after the list "
 "of facilities."
 
-#: inc/admin/options.php:586
+#: inc/admin/options.php:588
 #| msgid ""
 #| "Seleziona <b>Si</b> per mostrare automaticamente gli articoli per i quali "
 #| "è stato settato il flag \"Promuovi in carousel\". <b>No</b> per "
@@ -2724,7 +2722,7 @@ msgstr ""
 "carousel\" flag has been set. <b>No</b> to choose them manually in the "
 "following section"
 
-#: inc/admin/options.php:615
+#: inc/admin/options.php:617
 msgid ""
 "Seleziona gli articoli da mostrare nel carousel della Home Page, se "
 "disabilitata la selezione automatica"
@@ -2732,29 +2730,29 @@ msgstr ""
 "Select the articles to show in the carousel of the Home Page, if the "
 "automatic selection is disabled"
 
-#: page-templates/persone.php:121
+#: page-templates/persone.php:112
 msgid "Seleziona la struttura"
 msgstr "Select the structure"
 
-#: inc/admin/options.php:667 inc/admin/options.php:718
-#: inc/admin/options.php:769
+#: inc/admin/options.php:669 inc/admin/options.php:720
+#: inc/admin/options.php:771
 msgid "Seleziona un tipo di contenuto"
 msgstr "Select a content type"
 
-#: inc/admin/options.php:679 inc/admin/options.php:730
-#: inc/admin/options.php:781
+#: inc/admin/options.php:681 inc/admin/options.php:732
+#: inc/admin/options.php:783
 msgid "Seleziona uno di questi template"
 msgstr "Select one of these templates"
 
-#: inc/admin/options.php:614
+#: inc/admin/options.php:616
 msgid "Selezione articoli"
 msgstr "Selection of Articles"
 
-#: inc/admin/options.php:585
+#: inc/admin/options.php:587
 msgid "Selezione Automatica"
 msgstr "Automatic selection"
 
-#: inc/admin/options.php:2518
+#: inc/admin/options.php:2520
 msgid "Selezione del programma usato per gestire la newsletter del sito"
 msgstr "Selection of the program used to manage the site's newsletter"
 
@@ -2762,7 +2760,7 @@ msgstr "Selection of the program used to manage the site's newsletter"
 msgid "Selezione lingua: lingua selezionata"
 msgstr "Language selection: selected language"
 
-#: inc/admin/options.php:2482
+#: inc/admin/options.php:2484
 msgid ""
 "Selezione lo stile del sito (scegliere default per usare quello standard di "
 "Designers Italia)"
@@ -2770,7 +2768,7 @@ msgstr ""
 "Select the website style (choose default to use the standard one of "
 "Designers Italia)"
 
-#: inc/admin/options.php:2656
+#: inc/admin/options.php:2658
 msgid "SEO"
 msgstr "SEO"
 
@@ -2794,15 +2792,15 @@ msgstr "Business sector"
 msgid "Sezione"
 msgstr "Section"
 
-#: inc/admin/options.php:576
+#: inc/admin/options.php:578
 msgid "Sezione Carousel"
 msgstr "Carousel section"
 
-#: inc/admin/options.php:634
+#: inc/admin/options.php:636
 msgid "Sezione contenuti in evidenza"
 msgstr "Highlights section"
 
-#: inc/admin/options.php:1070
+#: inc/admin/options.php:1072
 msgid "Sezione Eventi"
 msgstr "Events section"
 
@@ -2810,67 +2808,67 @@ msgstr "Events section"
 msgid "Sezione hero principale"
 msgstr "Main hero section"
 
-#: inc/admin/options.php:1399
+#: inc/admin/options.php:1401
 msgid "Sezione I Brevetti"
 msgstr "Section The Patents"
 
-#: inc/admin/options.php:1540
+#: inc/admin/options.php:1542
 msgid "Sezione I Progetti"
 msgstr "Projects section"
 
-#: inc/admin/options.php:912
+#: inc/admin/options.php:914
 msgid "Sezione Il Blog"
 msgstr "Blog section"
 
-#: inc/admin/options.php:821
+#: inc/admin/options.php:823
 msgid "Sezione Il Laboratorio"
 msgstr "Lab section"
 
-#: inc/admin/options.php:1695
+#: inc/admin/options.php:1697
 msgid "Sezione Indirizzi Ricerca"
 msgstr "Research activities section"
 
-#: inc/admin/options.php:2091
+#: inc/admin/options.php:2093
 msgid "Sezione integrazione con Indico"
 msgstr "Indico integration section"
 
-#: inc/admin/options.php:2303
+#: inc/admin/options.php:2305
 msgid "Sezione integrazione con IRIS AP Brevetti"
 msgstr "Integration section with IRIS AP Patents"
 
-#: inc/admin/options.php:2433
+#: inc/admin/options.php:2435
 msgid "Sezione integrazione con IRIS Pubblicazioni"
 msgstr "Integration section with IRIS Publications"
 
-#: inc/admin/options.php:984
+#: inc/admin/options.php:986
 msgid "Sezione Le Novità"
 msgstr "News section"
 
-#: inc/admin/options.php:1311
+#: inc/admin/options.php:1313
 msgid "Sezione Le Pubblicazioni"
 msgstr "Publications section"
 
-#: inc/admin/options.php:1469
+#: inc/admin/options.php:1471
 msgid "Sezione Le Spin-off"
 msgstr "Section The Spin-off"
 
-#: inc/admin/options.php:1766
+#: inc/admin/options.php:1768
 msgid "Sezione Luoghi"
 msgstr "Places section"
 
-#: inc/admin/options.php:1140
+#: inc/admin/options.php:1142
 msgid "Sezione Persone"
 msgstr "People section"
 
-#: inc/admin/options.php:1849
+#: inc/admin/options.php:1851
 msgid "Sezione Risorse Tecniche"
 msgstr "Technical Resources section"
 
-#: inc/admin/options.php:1963
+#: inc/admin/options.php:1965
 msgid "Sezione socialmedia"
 msgstr "Socialmedia section"
 
-#: inc/admin/options.php:1918
+#: inc/admin/options.php:1920
 msgid "Sezione sponsor"
 msgstr "Sponsors section"
 
@@ -2883,36 +2881,36 @@ msgid "Sezioni HP"
 msgstr "HP Sections"
 
 #: inc/admin/options.php:198 inc/admin/options.php:226
-#: inc/admin/options.php:590 inc/admin/options.php:1192
-#: inc/admin/options.php:1222 inc/admin/options.php:1280
-#: inc/admin/options.php:1664 inc/admin/options.php:1818
-#: inc/admin/options.php:1977 inc/admin/options.php:2105
-#: inc/admin/options.php:2122 inc/admin/options.php:2317
-#: inc/admin/options.php:2334 inc/admin/options.php:2508
-#: inc/admin/options.php:2584 inc/admin/options.php:2605
-#: inc/admin/options.php:2647
+#: inc/admin/options.php:592 inc/admin/options.php:1194
+#: inc/admin/options.php:1224 inc/admin/options.php:1282
+#: inc/admin/options.php:1666 inc/admin/options.php:1820
+#: inc/admin/options.php:1979 inc/admin/options.php:2107
+#: inc/admin/options.php:2124 inc/admin/options.php:2319
+#: inc/admin/options.php:2336 inc/admin/options.php:2510
+#: inc/admin/options.php:2586 inc/admin/options.php:2607
+#: inc/admin/options.php:2649
 msgid "Si"
 msgstr "Yes"
 
 #: single-evento.php:191 single-evento.php:346 single-evento.php:356
-#: single-persona.php:494 single-progetto.php:71 single-spinoff.php:296
-#: template-parts/common/sezione-contatti.php:63
+#: single-persona.php:498 single-progetto.php:71 single-spinoff.php:296
+#: template-parts/common/sezione-contatti.php:69
 msgid "Sito web"
 msgstr "Website"
 
-#: inc/admin/options.php:1944 inc/admin/options.php:1950
+#: inc/admin/options.php:1946 inc/admin/options.php:1952
 msgid "Socialmedia"
 msgstr "Socialmedia"
 
-#: inc/admin/options.php:2245
+#: inc/admin/options.php:2247
 msgid "Solo eventi di quest'anno"
 msgstr "Only this year's events"
 
-#: inc/admin/options.php:2244
+#: inc/admin/options.php:2246
 msgid "Solo eventi futuri"
 msgstr "Future events only"
 
-#: inc/admin/options.php:1456 inc/classes/class-spinoffmanager.php:93
+#: inc/admin/options.php:1458 inc/classes/class-spinoffmanager.php:93
 msgid "Spin-off"
 msgstr "Spin-off"
 
@@ -2925,11 +2923,11 @@ msgstr "Spinoff"
 msgid "Sponsor"
 msgstr "Sponsor"
 
-#: inc/admin/options.php:1905
+#: inc/admin/options.php:1907
 msgid "Sponsors"
 msgstr "Sponsor"
 
-#: inc/admin/options.php:1899
+#: inc/admin/options.php:1901
 msgid "sponsors"
 msgstr "sponsor"
 
@@ -2938,11 +2936,11 @@ msgstr "sponsor"
 msgid "Stato"
 msgstr "Status"
 
-#: inc/admin/options.php:2253
+#: inc/admin/options.php:2255
 msgid "Stato dell'oggetto importato"
 msgstr "Status of the imported object"
 
-#: inc/admin/options.php:2254
+#: inc/admin/options.php:2256
 msgid "Stato di pubblicazione in cui un oggetto importato viene salvato"
 msgstr "Published state in which an imported object is saved"
 
@@ -2950,15 +2948,15 @@ msgstr "Published state in which an imported object is saved"
 msgid "Stato legale"
 msgstr "Legal status"
 
-#: inc/admin/options.php:2487
+#: inc/admin/options.php:2489
 msgid "Stile Bootstrap Italia standard"
 msgstr "Standard Italian Bootstrap style"
 
-#: inc/admin/options.php:2481
+#: inc/admin/options.php:2483
 msgid "Stile del sito"
 msgstr "Style of website"
 
-#: inc/admin/options.php:2488
+#: inc/admin/options.php:2490
 msgid "Stile personalizzato"
 msgstr "Personalized style"
 
@@ -2971,7 +2969,7 @@ msgid "Success"
 msgstr "Success"
 
 #: inc/admin/options.php:409 inc/admin/options.php:423
-#: inc/admin/options.php:2668
+#: inc/admin/options.php:2670
 msgid "Sì"
 msgstr "Yes"
 
@@ -3047,8 +3045,8 @@ msgstr "Place type"
 msgid "Telefono"
 msgstr "Phone"
 
-#: inc/admin/options.php:678 inc/admin/options.php:729
-#: inc/admin/options.php:780
+#: inc/admin/options.php:680 inc/admin/options.php:731
+#: inc/admin/options.php:782
 msgid "Template del box"
 msgstr "Box template"
 
@@ -3064,15 +3062,20 @@ msgstr "Message text"
 msgid "Testo hero"
 msgstr "Hero text"
 
-#: inc/admin/options.php:525
+#: inc/admin/options.php:526
 msgid "Testo hero ENG"
 msgstr "Hero text in English"
+
+#: inc/admin/options.php:327 inc/admin/options.php:515
+#: inc/admin/options.php:527
+msgid "Testo libero di massimo 512 caratteri"
+msgstr "Free text of up to 512 characters"
 
 #: page-templates/risorse-tecniche.php:103
 msgid "Tipo di risorsa"
 msgstr "Resource type"
 
-#: inc/admin/options.php:2222 inc/admin/options.php:2403
+#: inc/admin/options.php:2224 inc/admin/options.php:2405
 msgid "Tipo import"
 msgstr "Import type"
 
@@ -3102,16 +3105,16 @@ msgstr "People type"
 msgid "Titolari"
 msgstr "Owners"
 
-#: single-brevetto.php:289 inc/admin/options.php:1368
+#: single-brevetto.php:289 inc/admin/options.php:1370
 #: inc/classes/class-placemanager.php:126
 msgid "Titolo"
 msgstr "Title"
 
-#: inc/admin/options.php:831
+#: inc/admin/options.php:833
 msgid "Titolo della sezione"
 msgstr "Title of section"
 
-#: inc/admin/options.php:840
+#: inc/admin/options.php:842
 #, fuzzy
 #| msgid "Titolo della sezione in Inglese"
 msgid "Titolo della sezione in inglese"
@@ -3125,16 +3128,16 @@ msgstr "Hero title"
 msgid "Titolo hero ENG"
 msgstr "Hero title in English"
 
-#: inc/admin/options.php:2147 inc/admin/options.php:2531
+#: inc/admin/options.php:2149 inc/admin/options.php:2533
 msgid "Token API"
 msgstr "Token API"
 
-#: page.php:64 page.php:65 page.php:68 page-templates/privacy.php:120
-#: page-templates/privacy.php:121 page-templates/privacy.php:124
+#: page.php:72 page-templates/privacy.php:120 page-templates/privacy.php:121
+#: page-templates/privacy.php:124
 msgid "Torna indietro"
 msgstr "Go back"
 
-#: template-parts/common/sezione-video.php:52
+#: template-parts/common/sezione-video.php:58
 msgid "Trascrizione"
 msgstr "Transcription"
 
@@ -3150,8 +3153,8 @@ msgstr "All news"
 msgid "Tutte le pubblicazioni"
 msgstr "All publications"
 
-#: page-templates/persone.php:97 page-templates/persone.php:98
-#: page-templates/persone.php:124 inc/classes/class-peoplemanager.php:43
+#: page-templates/persone.php:89 page-templates/persone.php:90
+#: page-templates/persone.php:115 inc/classes/class-peoplemanager.php:43
 msgid "Tutte le strutture"
 msgstr "All structures"
 
@@ -3163,7 +3166,7 @@ msgstr "All Place types"
 msgid "Tutti gli articoli"
 msgstr "All articles"
 
-#: inc/admin/options.php:2243 template-parts/home/hp-list-event.php:114
+#: inc/admin/options.php:2245 template-parts/home/hp-list-event.php:114
 msgid "Tutti gli eventi"
 msgstr "All events"
 
@@ -3177,23 +3180,23 @@ msgstr "All sectors"
 msgid "Tutti i tipi"
 msgstr "All types"
 
-#: single-persona.php:213 single-persona.php:379
+#: single-persona.php:215 single-persona.php:381
 msgid "Ulteriori informazioni"
 msgstr "More info"
 
-#: inc/admin/options.php:606 inc/admin/options.php:1367
+#: inc/admin/options.php:608 inc/admin/options.php:1369
 msgid "Ultima modifica"
 msgstr "Last modified"
 
-#: inc/admin/options.php:2212 inc/admin/options.php:2393
+#: inc/admin/options.php:2214 inc/admin/options.php:2395
 msgid "Una volta al giorno"
 msgstr "Once a day"
 
-#: inc/admin/options.php:2214 inc/admin/options.php:2395
+#: inc/admin/options.php:2216 inc/admin/options.php:2397
 msgid "Una volta alla settimana"
 msgstr "Once a week"
 
-#: inc/admin/options.php:552
+#: inc/admin/options.php:554
 msgid "Url"
 msgstr "Url"
 
@@ -3201,7 +3204,7 @@ msgstr "Url"
 msgid "URL del video da mostrare nella Home Page"
 msgstr "URL of the video to be displayed on the Home Page"
 
-#: inc/admin/options.php:2346
+#: inc/admin/options.php:2348
 msgid "Url endpoint brevetti"
 msgstr "Patent endpoint url"
 
@@ -3210,7 +3213,7 @@ msgstr "Patent endpoint url"
 msgid "Url ente padre"
 msgstr "Member institution URL"
 
-#: inc/admin/options.php:2134
+#: inc/admin/options.php:2136
 msgid "Url Indico"
 msgstr "Indico URL"
 
@@ -3242,11 +3245,11 @@ msgstr "Use as Spin-off Image"
 msgid "Usa come Immagine Sponsor"
 msgstr "Use as Sponsor Image"
 
-#: inc/admin/options.php:2359
+#: inc/admin/options.php:2361
 msgid "Username"
 msgstr "Username"
 
-#: inc/classes/class-base-importer.php:188
+#: inc/classes/class-base-importer.php:193
 msgid "Utente non autorizzato"
 msgstr "Unauthorized user"
 
@@ -3271,7 +3274,7 @@ msgstr "Skip to contents"
 msgid "Vai al footer"
 msgstr "Skip to footer"
 
-#: template-parts/hero/home.php:41
+#: template-parts/hero/home.php:46
 msgid "Vai al laboratorio"
 msgstr "Go to the lab"
 
@@ -3280,8 +3283,8 @@ msgid "Vai al menu di navigazione"
 msgstr "Skip to main navigation"
 
 #: page-templates/archive-progetti.php:86
-#: page-templates/archive-progetti.php:88 page-templates/progetti.php:166
-#: page-templates/progetti.php:168
+#: page-templates/archive-progetti.php:88 page-templates/progetti.php:155
+#: page-templates/progetti.php:156 page-templates/progetti.php:157
 msgid "Vai al progetto"
 msgstr "Go to project"
 
@@ -3305,7 +3308,7 @@ msgstr "Incorrect Nonce value."
 msgid "Vedi tutti"
 msgstr "View all"
 
-#: single-brevetto.php:210 single-brevetto.php:335 single-evento.php:218
+#: single-brevetto.php:210 single-brevetto.php:337 single-evento.php:218
 #: single-evento.php:456 single-spinoff.php:189 single-spinoff.php:320
 #: template-parts/home/hp-video-section.php:40
 msgid "Video"
@@ -3315,7 +3318,7 @@ msgstr "Video"
 msgid "Video in Home Page"
 msgstr "Home Page Video"
 
-#: inc/admin/options.php:1275 inc/admin/options.php:1659
+#: inc/admin/options.php:1277 inc/admin/options.php:1661
 msgid "Visualizza etchetta Dettagli"
 msgstr "View label Details"
 
@@ -3327,7 +3330,7 @@ msgstr "Display the logo in the footer"
 msgid "Visualizza il logo nello header"
 msgstr "Display logo in header"
 
-#: inc/admin/options.php:1813
+#: inc/admin/options.php:1815
 msgid "Visualizza mappa"
 msgstr "Show map"
 
@@ -3339,7 +3342,7 @@ msgstr "Would you like to receive email notification"
 msgid "Warning"
 msgstr "Warning"
 
-#: inc/admin/options.php:2614
+#: inc/admin/options.php:2616
 msgid "Web Analytics Italia"
 msgstr "Web Analytics Italia"
 

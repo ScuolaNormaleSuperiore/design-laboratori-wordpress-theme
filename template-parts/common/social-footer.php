@@ -45,11 +45,6 @@ if ( 'true' === $dli_show_socials ) {
 			'icon'   => 'it-pinterest',
 		),
 		array(
-			'option' => 'mastodon',
-			'label'  => 'Mastodon',
-			'icon'   => 'it-mastodon',
-		),
-		array(
 			'option' => 'iris',
 			'label'  => 'Iris',
 			'icon'   => 'it-pa',
@@ -61,8 +56,12 @@ if ( 'true' === $dli_show_socials ) {
 		),
 	);
 	?>
-	<span><?php echo esc_html__( 'Seguici su', 'design_laboratori_italia' ); ?></span>
-	<ul>
+	<h4 class="customSpacing">
+		<a href="#" title="<?php echo esc_attr__( 'Seguici su', 'design_laboratori_italia' ); ?>">
+			<?php echo esc_html__( 'Seguici su', 'design_laboratori_italia' ); ?>
+		</a>
+	</h4>
+	<ul class="list-inline text-left social">
 		<?php
 		foreach ( $dli_socials as $dli_social ) {
 			$dli_social_url = dli_get_option( $dli_social['option'], 'socials' );
@@ -71,9 +70,9 @@ if ( 'true' === $dli_show_socials ) {
 				continue;
 			}
 			?>
-			<li>
-				<a href="<?php echo esc_url( $dli_social_url ); ?>" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>" target="_blank" rel="noopener noreferrer">
-					<svg class="icon" role="img" aria-labelledby="<?php echo esc_attr( $dli_social['label'] ); ?>" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>">
+			<li class="list-inline-item">
+				<a class="p-2 text-white" href="<?php echo esc_url( $dli_social_url ); ?>" title="<?php echo esc_attr( $dli_social['label'] ); ?>" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>" target="_blank" rel="noopener noreferrer">
+					<svg class="icon icon-sm icon-white align-top" role="img" aria-labelledby="<?php echo esc_attr( $dli_social['label'] ); ?>">
 						<title><?php echo esc_html( $dli_social['label'] ); ?></title>
 						<use href="<?php echo esc_url( $dli_sprite_base . $dli_social['icon'] ); ?>"></use>
 					</svg>

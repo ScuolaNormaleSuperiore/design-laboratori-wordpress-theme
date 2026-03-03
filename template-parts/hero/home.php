@@ -1,16 +1,21 @@
 <?php
+/**
+ * Template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
+
 global $post;
 
-$img_identita = dli_get_option("immagine", "il_laboratorio");
-//$id_scuola_principale = dli_get_option("scuola_principale", "homepage");
-$landing_url = dli_get_template_page_url("page-templates/il-laboratorio.php");
+$dli_img_identita = dli_get_option( 'immagine', 'il_laboratorio' );
+$dli_landing_url  = dli_get_template_page_url( 'page-templates/il-laboratorio.php' );
 
-$colid=6;
-$showimage = true;
-if($img_identita == ""){
-		// se non è stata caricata una immagine apro a schermo pieno
-		$colid = 12;
-		$showimage = false;
+$dli_colid     = 6;
+$dli_showimage = true;
+if ( '' === $dli_img_identita ) {
+		// If no image was uploaded, use full-width layout.
+		$dli_colid     = 12;
+		$dli_showimage = false;
 }
 ?><section class="section bg-redbrown section-hero-left">
 		<div class="decoration-01">
@@ -32,18 +37,18 @@ if($img_identita == ""){
 		</div>
 		<div class="container">
 				<div class="row variable-gutters">
-						<div class="col-md-<?php echo esc_attr( $colid ); ?>">
+						<div class="col-md-<?php echo esc_attr( $dli_colid ); ?>">
 								<div class="hero-title">
 										<div class="text-white font-weight-normal h4"><?php echo esc_html( dli_get_option( 'tipologia_scuola' ) ); ?> </div>
 										<h1><span class="d-line d-xl-block"><?php echo esc_html( dli_get_option_by_lang( 'nome_laboratorio' ) ); ?></span> </h1>
 										<h2 class="text-white font-weight-normal h3"><?php echo esc_html( dli_get_option( 'luogo_laboratorio' ) ); ?></h2>
-										<?php if($landing_url){ ?>
-												<a class="btn btn-sm btn-outline-white mt-4" href="<?php echo esc_url( $landing_url ); ?>" aria-label="Vai al laboratorio"><?php _e("Vai al laboratorio", 'design_laboratori_italia'); ?></a>
+										<?php if ( $dli_landing_url ) { ?>
+												<a class="btn btn-sm btn-outline-white mt-4" href="<?php echo esc_url( $dli_landing_url ); ?>" aria-label="Vai al laboratorio"><?php esc_html_e( 'Vai al laboratorio', 'design_laboratori_italia' ); ?></a>
 										<?php } ?>
 
 								</div><!-- /hero-title -->
 						</div><!-- /col-md-6 -->
 				</div><!-- /row -->
 		</div><!-- /container -->
-		<div class="hero-img d-none d-md-block" style="background-image: url('<?php echo esc_url( $img_identita ); ?>');"></div>
+		<div class="hero-img d-none d-md-block" style="background-image: url('<?php echo esc_url( $dli_img_identita ); ?>');"></div>
 </section><!-- /section -->

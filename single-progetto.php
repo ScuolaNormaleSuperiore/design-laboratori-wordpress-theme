@@ -27,7 +27,7 @@ foreach ( $fields_allegati as $field ) {
 }
 $web_site_url = dli_get_field( 'url' );
 $current_lang = dli_current_language();
-$tag_page     = DLI_PAGE_PER_CT[PROGETTO_POST_TYPE][$current_lang];
+$tag_page     = DLI_PAGE_PER_CT[ PROGETTO_POST_TYPE ][ $current_lang ];
 
 // Recupero la lista degli eventi e delle notizie correlate.
 $eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
@@ -47,13 +47,13 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 		<div class="img-responsive-wrapper">
 		<div class="img-responsive">
 		<?php
-			if ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) {
-		?>
+		if ( isset( $image_metadata['image_url'] ) && $image_metadata['image_url'] ) {
+			?>
 		<div class="img-wrapper">
 			<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>">
 		</div>
-		<?php
-			}
+			<?php
+		}
 		?>
 		</div>
 		</div>
@@ -65,26 +65,26 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 						<p class="d-none d-lg-block">
 							<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 							<?php
-								if ( $web_site_url ) {
-							?>
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $web_site_url ) ; ?>">
-								<?php _e( 'Sito web', "design_laboratori_italia" ); ?></a>
+							if ( $web_site_url ) {
+								?>
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $web_site_url ); ?>">
+								<?php _e( 'Sito web', 'design_laboratori_italia' ); ?></a>
 							</a>
-							<?php
-								}
+								<?php
+							}
 							?>
 						</p>
 						<div>
 							<!-- tag -->
 							<?php
-							foreach( $levels as $level ){
-							?>
+							foreach ( $levels as $level ) {
+								?>
 								<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 									<a href="<?php echo esc_url( site_url() . '/' . $tag_page . '?level=' . $level->slug ); ?>">
 										<span class="chip-label text-light"><?php echo esc_html( $level->name ); ?></span>
 									</a>
 								</div>
-							<?php
+								<?php
 							}
 							?>
 						</div>
@@ -122,7 +122,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
 									<title>Chevron Left</title>
-									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>"></use>
+									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>"></use>
 								</svg>
 								<span>Indietro</span>
 							</a>
@@ -130,13 +130,13 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 								<div class="link-list-wrapper">
 									<?php
 										$show_label = dli_get_configuration_field_by_lang( 'label_project_details_is_visible', 'progetti' );
-										if ( $show_label != 'false' ){
-									?>
+									if ( $show_label != 'false' ) {
+										?>
 									<h3>
 										<?php echo __( 'Dettagli del progetto', 'design_laboratori_italia' ); ?>
 									</h3>
-									<?php
-										}
+										<?php
+									}
 									?>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -219,7 +219,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 
 				<?php
 				if ( $descrizione ) {
-				?>
+					?>
 				<h3 class="it-page-section h4" id="sezione-descrizione">
 					<?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?>
 				</h3>
@@ -233,7 +233,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 					<?php
 				}
 				if ( $responsabili ) {
-				?>
+					?>
 					<!-- RESPONSABILE -->
 					<h3 class="it-page-section h4 pt-3" id="p2">
 						<?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?>
@@ -249,7 +249,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 						);
 				}
 				if ( $partecipanti ) {
-				?>
+					?>
 					<!-- PARTECIPANTI -->
 					<h3 class="it-page-section h4 pt-3" id="p3"><?php echo dli_translate( 'Partecipanti', 'design_laboratori_italia' ); ?></h3>
 					<?php
@@ -263,7 +263,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 						);
 				}
 				if ( $indirizzi_di_ricerca ) {
-				?>
+					?>
 				<!-- INDIRIZZI DI RICERCA -->
 				<h3 class="it-page-section h4 pt-3" id="p4">
 					<?php echo dli_translate( 'Indirizzi di ricerca', 'design_laboratori_italia' ); ?>
@@ -279,7 +279,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 						);
 				}
 				if ( $pubblicazioni ) {
-				?>
+					?>
 				<!-- PUBBLICAZIONI -->
 				<h3 class="it-page-section pt-3 h4" id="p5">
 					<?php echo __( 'Pubblicazioni', 'design_laboratori_italia' ); ?>
@@ -295,7 +295,7 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 						);
 				}
 				if ( count( $allegati ) > 0 ) {
-				?>
+					?>
 				<!-- ALLEGATI -->
 				<h3 class="it-page-section h4 pt-3" id="p6">
 					<?php echo __( 'Allegati', 'design_laboratori_italia' ); ?>
@@ -311,9 +311,9 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 					);
 				}
 				if ( $eventi ) {
-				?>
+					?>
 				<!-- EVENTI -->
-				<?php
+					<?php
 					if ( $eventi ) {
 						get_template_part(
 							'template-parts/common/sezione-related-items',
@@ -326,12 +326,12 @@ $risorse = dli_get_field( 'risorse_tecniche' );
 					}
 				}
 				if ( $risorse ) {
-				?>
+					?>
 				<!-- RISORSE -->
 				<h3 class="it-page-section h4 pt-3" id="p7">
 					<?php echo dli_translate( 'Risorse tecniche', 'design_laboratori_italia' ); ?>
 				</h3>
-				<?php
+					<?php
 					if ( $risorse ) {
 						get_template_part(
 							'template-parts/common/sezione-related-technical-resources',

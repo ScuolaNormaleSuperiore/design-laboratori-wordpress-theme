@@ -12,7 +12,7 @@ $dli_box_post_type = $args[3];
 $dli_box_items     = 1;
 $dli_order_field   = 'post_date';
 
-$dli_query = new WP_Query(
+$dli_query     = new WP_Query(
 	array(
 		'post_type'      => array( $dli_box_post_type ),
 		'orderby'        => $dli_order_field,

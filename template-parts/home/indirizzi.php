@@ -27,7 +27,7 @@ if ( $ct % 2 ) {
 			);
 			$dli_indirizzi = get_posts( $dli_args );
 			foreach ( $dli_indirizzi as $dli_servizio ) {
-				$GLOBALS['servizio'] = $dli_servizio;
+					$GLOBALS['dli_servizio'] = $dli_servizio;
 				?>
 			<div class="col-lg-4 mb-4">
 				<?php get_template_part( 'template-parts/servizio/card' ); ?>

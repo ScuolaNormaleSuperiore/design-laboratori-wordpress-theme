@@ -1,14 +1,20 @@
 <?php
-	$locations = $args['locations'];
+/**
+ * Template part.
+ *
+ * @package Design_Laboratori_WordPress_Theme
+ */
+
+$dli_locations = $args['locations'];
 ?>
 
 	<nav aria-label="Principale" class="p-0">
 		<?php
-		$location = 'menu-lab';
-		if ( has_nav_menu( $location ) ) {
+		$dli_location = 'menu-lab';
+		if ( has_nav_menu( $dli_location ) ) {
 			wp_nav_menu(
 				array(
-					'theme_location'  => $location,
+					'theme_location'  => $dli_location,
 					'depth'           => 1,
 					'menu_class'      => 'navbar-nav',
 					'items_wrap'      => '<ul class="%2$s" id="%1$s" data-element="main-navigation">%3$s</ul>',
@@ -18,6 +24,6 @@
 					'walker'          => new Main_Menu_Walker(),
 				)
 			);
-			}
-			?>
+		}
+		?>
 </nav>

@@ -33,21 +33,21 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 				<div class="img-wrapper">
 					<?php
 					if ( $image_metadata['image_url'] ) {
-					?>
+						?>
 					<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
 						alt="<?php echo esc_attr( $image_metadata['image_alt'] ); ?>" 
 						title="<?php echo esc_attr( $image_metadata['image_title'] ); ?>" 
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
 					>
-					<?php
+						<?php
 					}
 					?>
 					<?php
-							if( $image_metadata['image_caption'] ) {
+					if ( $image_metadata['image_caption'] ) {
 						?>
 							<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 						<?php
-							}
+					}
 					?>
 				</div>
 			</div>
@@ -64,17 +64,17 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 							<?php
-								if ( ! empty( $settore_attivita ) ) {
-							?>
+							if ( ! empty( $settore_attivita ) ) {
+								?>
 							<a class="text-white text-decoration-none"
 								href="<?php echo esc_url( site_url() . '/spinoff?business_sector[]=' . $settore_attivita['id'] ); ?>" 
 							>
 								<span class="chip-label text-light">
-									<?php echo esc_html( $settore_attivita['title'] ); ?>
+								<?php echo esc_html( $settore_attivita['title'] ); ?>
 								</span>
 							</a>
-							<?php
-								}
+								<?php
+							}
 							?>
 						</div>
 						
@@ -136,7 +136,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 												</a>
 											</li>
 											<?php
-											}
+										}
 										if ( $year ) {
 											?>
 											<li class="nav-item">
@@ -145,8 +145,8 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 												</a>
 											</li>
 											<?php
-											}
-										if ( $settore_attivita  ) {
+										}
+										if ( $settore_attivita ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#settoreattivita">
@@ -154,42 +154,42 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 												</a>
 											</li>
 											<?php
-											}
+										}
 										if ( $stato ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#status">
 												<span><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $telefono || $sito_web || $email ) {
-												?>
+											?>
 												<li class="nav-item">
 													<a class="nav-link" href="#contatti">
 														<span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span>
 													</a>
 												</li>
 												<?php
-												}
+										}
 										if ( $note ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#altreinformazioni">
 												<span><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $video ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#video">
 											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										?>
 									</ul>
@@ -205,7 +205,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 			<div class="col-12 col-lg-9 it-page-sections-container">
 				<?php
 				if ( $description ) {
-				?>
+					?>
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Descrizione Spin-off', 'design_laboratori_italia' ); ?></h3>
 						<p>
@@ -213,7 +213,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 						</p>
 					
 					</article>
-				<?php
+					<?php
 				}
 				?>
 				<?php
@@ -236,13 +236,13 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 					<?php
 				}
 				if ( $stato ) {
-				?>
+					?>
 					<!-- Stato -->
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Stato', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_html( $stato ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
 				if ( $telefono || $sito_web || $email ) {
 					?>
@@ -253,8 +253,8 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 						<div class="it-list-wrapper">
 						<ul class="it-list">
 							<?php
-								if ( $telefono ) {
-							?>
+							if ( $telefono ) {
+								?>
 							<li>
 								<div class="list-item">
 									<div class="it-rounded-icon">
@@ -266,10 +266,10 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 									<div class="it-right-zone"><span class="text"><?php echo esc_html( $telefono ); ?></span></div>
 								</div>
 							</li>
-							<?php
-								}
-								if ( $email ) {
-							?>
+								<?php
+							}
+							if ( $email ) {
+								?>
 							<li>
 								<a target="_blank" href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 								<div class="it-rounded-icon">
@@ -281,10 +281,10 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								<div class="it-right-zone"><span class="text"><?php echo esc_html( $email ); ?></span></div>
 								</a>
 							</li>
-							<?php
-								}
-								if ( $sito_web ) {
-							?>
+								<?php
+							}
+							if ( $sito_web ) {
+								?>
 							<li>
 								<a class="list-item" target="_blank" href="<?php echo esc_url( $sito_web ); ?>">
 								<div class="it-rounded-icon">
@@ -296,26 +296,26 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 								<div class="it-right-zone"><span class="text"><?php echo __( 'Sito web', 'design_laboratori_italia' ); ?></span></div>
 								</a>
 							</li>
-							<?php
-								}
+								<?php
+							}
 							?>
 						</ul>
 					</div>
 
 					</article>
 					<?php
-					}
+				}
 				if ( $note ) {
-				?>
+					?>
 				<!-- ALTRE INFORMAZIONI -->
 				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo wp_kses_post( $note ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
-				if ( $video ){
-				?>
+				if ( $video ) {
+					?>
 					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
 
@@ -333,8 +333,8 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 						?>
 
 				</article>
-				<?php
-					}
+					<?php
+				}
 				?>
 
 			</div>

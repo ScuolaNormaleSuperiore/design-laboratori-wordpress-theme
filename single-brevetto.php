@@ -17,7 +17,7 @@ $titolari       = dli_get_field( 'titolari' );
 $inventori      = dli_get_field( 'inventori' );
 $inventori_ref  = dli_get_field( 'inventori_referenti' );
 $inventori_oth  = dli_get_field( 'altri_inventori' );
-$parts          = array_filter( [$inventori_ref, $inventori, $inventori_oth] );
+$parts          = array_filter( array( $inventori_ref, $inventori, $inventori_oth ) );
 $inventori      = implode( ', ', $parts );
 $cod_brevetto   = dli_get_field( 'codice_brevetto' );
 $data_deposito  = dli_get_field( 'data_deposito' );
@@ -50,11 +50,11 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
 					>
 					<?php
-							if( $image_metadata['image_caption'] ) {
+					if ( $image_metadata['image_caption'] ) {
 						?>
 							<figcaption class="figure-caption"><?php echo esc_html( $image_metadata['image_caption'] ); ?></figcaption>
 						<?php
-							}
+					}
 					?>
 				</div>
 			</div>
@@ -72,17 +72,17 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						<!-- categorie -->
 						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
 							<?php
-								if ( ! empty( $area_tematica ) ) {
-							?>
+							if ( ! empty( $area_tematica ) ) {
+								?>
 								<a class="text-white text-decoration-none"
 									href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $area_tematica['id'] ); ?>"
 								>
 									<span class="chip-label text-light"></span>
-										<?php echo esc_html( $area_tematica['title'] ); ?>
+									<?php echo esc_html( $area_tematica['title'] ); ?>
 									</span>
 								</a>
-							<?php
-								}
+								<?php
+							}
 							?>
 						</div>
 					</div>
@@ -132,85 +132,85 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 									<ul class="link-list">
 										<?php
 										if ( $abstract ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link active" href="#abstract">
 												<span><?php echo __( 'Abstract', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $titolari ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#titolari">
 												<span><?php echo __( 'Titolari', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $inventori ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#inventori">
 												<span><?php echo __( 'Inventori', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $num_deposito || $data_deposito ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#domanda">
 												<span><?php echo __( 'Domanda di priorità', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $famiglie && ( ! empty( $famiglie ) ) ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#famiglia">
 												<span><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $stato ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#status">
 												<span><?php echo __( 'Stato legale', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
-										if ( $area_tematica  ) {
-										?>
+										if ( $area_tematica ) {
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#areatematica">
 												<span><?php echo __( 'Area tematica', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $note ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#altreinformazioni">
 												<span><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $video ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#video">
 											<span><?php echo __( 'Video', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
-										<?php
+											<?php
 										}
 										?>
 									</ul>
@@ -225,7 +225,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 			<div class="col-12 col-lg-9 it-page-sections-container">
 				<?php
 				if ( $abstract ) {
-				?>
+					?>
 					<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo __( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
 						<p>
@@ -233,30 +233,30 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						</p>
 					
 					</article>
-				<?php
+					<?php
 				}
 				?>
 				<!-- TTOLARI -->
 				<?php
 				if ( $titolari ) {
-				?>
+					?>
 					<article id="titolari" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo __( 'Titolari', 'design_laboratori_italia' ); ?></h3>
 						<p><?php echo esc_html( $titolari ); ?></p>
 					</article>
-				<?php
+					<?php
 				}
 				if ( $inventori ) {
-				?>
+					?>
 				<!-- inventori -->
 				<article id="inventori" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Inventori', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_html( $inventori ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
 				if ( $num_deposito || $data_deposito ) {
-				?>
+					?>
 				<!-- Deposito -->
 				<article id="domanda" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Domanda di priorità', 'design_laboratori_italia' ); ?></h3>
@@ -266,19 +266,19 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 					<?php echo __( 'Data deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $data_deposito ); ?>
 					</p>
 				</article>
-				<?php
+					<?php
 				}
 				if ( $stato ) {
-				?>
+					?>
 					<!-- Status -->
 				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Stato legale', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_html( $stato ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
-				if ( $famiglie && ( ! empty ( $famiglie ) ) ) {
-				?>
+				if ( $famiglie && ( ! empty( $famiglie ) ) ) {
+					?>
 				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
 					<table class="table table-striped">
@@ -292,45 +292,47 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						</thead>
 						<tbody>
 							<?php
-								foreach( $famiglie as $fam ){
-							?>
+							foreach ( $famiglie as $fam ) {
+								?>
 							<tr>
 								<th scope="row"><?php echo esc_html( $fam->numero_deposito ); ?></th>
 								<td><?php echo esc_html( $fam->data_deposito ); ?></td>
-								<td><?php
-									$decoded_string = dli_decode_unicode_string( $fam->titolo ) ;
-									echo esc_html( $decoded_string );
-								?></td>
+								<td>
+								<?php
+								$decoded_string = dli_decode_unicode_string( $fam->titolo );
+								echo esc_html( $decoded_string );
+								?>
+								</td>
 								<td><?php echo esc_html( $fam->nazione_deposito ); ?></td>
 							</tr>
-							<?php
-								}
+								<?php
+							}
 							?>
 						</tbody>
 					</table>
 				</article>
-				<?php
+					<?php
 				}
 				if ( $area_tematica ) {
-				?>
+					?>
 				<!-- AREA TEMATICA -->
 				<article id="areatematica" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Area tematica', 'design_laboratori_italia' ); ?></h3>
 						<p><?php echo esc_html( $area_tematica['title'] ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
 				if ( $note ) {
-				?>
+					?>
 				<!-- ALTRE INFORMAZIONI -->
 				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
 					<h3 class="h4"><?php echo __( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo wp_kses_post( $note ); ?></p>
 				</article>
-				<?php
+					<?php
 				}
-				if ( $video ){
-				?>
+				if ( $video ) {
+					?>
 					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo __( 'Video', 'design_laboratori_italia' ); ?></h3>
 
@@ -348,8 +350,8 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 						?>
 
 				</article>
-				<?php
-					}
+					<?php
+				}
 				?>
 
 			</div>

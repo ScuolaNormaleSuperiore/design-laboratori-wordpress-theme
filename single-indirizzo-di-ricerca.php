@@ -14,8 +14,8 @@ $image_metadata = dli_get_image_metadata( $post );
 $description    = trim( get_the_content() );
 $responsabili   = dli_get_field( 'responsabile_attivita_di_ricerca' );
 $website        = dli_get_field( 'sitioweb' ) ? dli_get_field( 'sitioweb' ) : '';
-$phone          = dli_get_field( 'telefono' )? dli_get_field( 'telefono' ) : '';
-$email          = dli_get_field( 'email' )? dli_get_field( 'email' ) : '';
+$phone          = dli_get_field( 'telefono' ) ? dli_get_field( 'telefono' ) : '';
+$email          = dli_get_field( 'email' ) ? dli_get_field( 'email' ) : '';
 $cont_pres      = $website || $phone || $email;
 $contatti       = array(
 	'email'   => $email,
@@ -27,7 +27,7 @@ $contatti       = array(
 );
 
 // Recupero la lista dei progetti correlati.
-$progetti = DLI_ContentsManager::get_related_items( $post, 'elenco_indirizzi_di_ricerca_correlati', array( PROGETTO_POST_TYPE) );
+$progetti = DLI_ContentsManager::get_related_items( $post, 'elenco_indirizzi_di_ricerca_correlati', array( PROGETTO_POST_TYPE ) );
 
 // Recupero la lista degli eventi e delle notizie correlate ad un progetto.
 $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
@@ -86,7 +86,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
 									<title>Chevron Left</title>
 									<use href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>" 
-										xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ?>">
+										xlink:href="<?php echo get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left'; ?>">
 									</use>
 								</svg>
 								<span>Indietro</span>
@@ -100,39 +100,39 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 									<ul class="link-list">
 										<?php
 										if ( $description ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link active" href="#sezione-descrizione"><span><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></span></a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $responsabili ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-responsabile"><span><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $progetti ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-progetti"><span><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $cont_pres ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#sezione-contatti"><span><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></span></a>
 										</li>
-										<?php
+											<?php
 										}
 										if ( $eventi ) {
-										?>
+											?>
 										<li class="nav-item">
 											<a class="nav-link link-100" href="#sezione-eventi"><span><?php echo __( 'Eventi e notizie', 'design_laboratori_italia' ); ?></span></a>
 										</li>
-										<?php
+											<?php
 										}
 										?>
 									</ul>
@@ -145,23 +145,23 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 			<div class="col-12 col-lg-9 it-page-sections-container">
 				<?php
 				if ( $description ) {
-				?>
+					?>
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo __( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="row pb-3">
 					<p>
 						<?php echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) ); ?>
 					</p>
 				</div>
-				<?php
+					<?php
 				}
 				?>
 
 				<!-- RESPONSABILE -->
 				<?php
 				if ( $responsabili ) {
-				?>
+					?>
 				<h3 class="it-page-section h4 pt-3" id="sezione-label-responsabile"><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 					get_template_part(
 						'template-parts/common/sezione-persone',
 						null,
@@ -176,9 +176,9 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 				<!-- PROGETTI -->
 				<?php
 				if ( $progetti ) {
-				?>
+					?>
 				<h3 class="it-page-section h4 pt-3" id="sezione-label-progetti"><?php echo __( 'Progetti', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 					get_template_part(
 						'template-parts/common/sezione-progetti',
 						null,
@@ -193,9 +193,9 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 				<!-- CONTATTI -->
 				<?php
 				if ( $cont_pres ) {
-				?>
+					?>
 				<h3 class="it-page-section h4 pt-3" id="sezione-label-contatti"><?php echo __( 'Contatti', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 						get_template_part(
 							'template-parts/common/sezione-contatti',
 							null,
@@ -204,14 +204,14 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 								'items'      => $contatti,
 							)
 						);
-					}
+				}
 				?>
 
 				<!-- EVENTI -->
 				<?php
 				if ( $eventi ) {
-				?>
-				<?php
+					?>
+					<?php
 					get_template_part(
 						'template-parts/common/sezione-related-items',
 						null,

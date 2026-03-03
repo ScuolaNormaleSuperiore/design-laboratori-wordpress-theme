@@ -292,7 +292,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'messages',
 			'type'       => 'group',
-			'desc'       => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 140 caratteri) e data di scadenza (opzionale)', 'design_laboratori_italia' ) . '.',
+			'desc'       => __( 'Ogni messaggio è costruito attraverso descrizione breve (max 512 caratteri) e data di scadenza (opzionale)', 'design_laboratori_italia' ) . '.',
 			'repeatable' => true,
 			'options'    => array(
 				'group_title'   => __( 'Messaggio', 'design_laboratori_italia' ) . '&nbsp{#}',
@@ -324,11 +324,11 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'testo_message',
 			'name'       => __( 'Testo', 'design_laboratori_italia' ),
-			'desc'       => __( 'Massimo 140 caratteri', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
 			'type'       => 'textarea_small',
 			'attributes' => array(
 				'rows'      => 3,
-				'maxlength' => '140',
+				'maxlength' => '512',
 			),
 		)
 	);
@@ -512,9 +512,10 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'home_main_hero_text',
 			'name'       => __( 'Testo hero', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
 			'attributes' => array(
-				'maxlength' => '140',
+				'maxlength' => '512',
 			),
 		)
 	);
@@ -523,9 +524,10 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'home_main_hero_text' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Testo hero ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
 			'attributes' => array(
-				'maxlength' => '140',
+				'maxlength' => '512',
 			),
 		)
 	);

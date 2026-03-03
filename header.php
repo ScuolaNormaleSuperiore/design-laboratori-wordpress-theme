@@ -30,7 +30,7 @@ $dli_current_lang = dli_current_language();
 	<!-- META TAGS -->
 	<?php get_template_part( 'template-parts/header/metatags' ); ?>
 	<!-- SEO - OG Internal Management -->
-	<?php get_template_part( 'template-parts/header/seo_tags' ); ?>
+	<?php get_template_part( 'template-parts/header/seo-tags' ); ?>
 	<!-- FAVICON -->
 	<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() . '/assets/img/favicon.ico' ); ?>" />
 </head>
