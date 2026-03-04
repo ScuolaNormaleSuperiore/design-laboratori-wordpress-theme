@@ -1,0 +1,19 @@
+Ecco come funziona adesso la gestione delle lingue:
+
+INDICO (evento)
+Crea un solo contenuto nella lingua scelta in configurazione (indico_default_lang: it o en).
+Non crea automaticamente la traduzione gemella.
+Riferimenti:
+[class-indicoimporter.php:51](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-indicoimporter.php:51)
+[class-indicoimporter.php:157](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-indicoimporter.php:157)
+[class-indicoimporter.php:228](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-indicoimporter.php:228)
+
+
+PATENT / IRIS (brevetto)
+Crea prima la versione italiana (it).
+Se nel payload esiste displayValue_en, crea/aggiorna anche la versione inglese (en) e collega le traduzioni.
+Riferimenti:
+[class-patentimporter.php:147](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-patentimporter.php:147)
+[class-patentimporter.php:215](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-patentimporter.php:215)
+[class-patentimporter.php:265](/mnt/c/Users/claudio/Local Sites/laboratorio1/app/public/wp-content/themes/design-laboratori-wordpress-theme/inc/classes/class-patentimporter.php:265)
+In breve: Indico = monolingua configurabile, Patent = bilingue (IT + EN se disponibile).

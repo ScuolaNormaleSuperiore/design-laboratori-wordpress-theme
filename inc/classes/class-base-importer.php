@@ -235,6 +235,92 @@ class DLI_BaseImporter {
 	}
 
 	/**
+	 * Decode external JSON payload with UTF-8 normalization and strict error handling.
+	 *
+	 * @param string $body Raw response body.
+	 * @param bool   $assoc Whether to return associative arrays.
+	 * @param string $source Source name used in exception messages.
+	 * @return mixed
+	 * @throws Exception When payload is empty or invalid.
+	 */
+	protected function decode_external_json_payload( string $body, bool $assoc = false, string $source = 'external' ) {
+		if ( '' === trim( $body ) ) {
+			throw new Exception( 'Risposta ' . $source . ' vuota.' );
+		}
+
+		$normalized_body = $this->normalize_json_body( $body );
+		try {
+			return json_decode( $normalized_body, $assoc, 512, JSON_THROW_ON_ERROR );
+		} catch ( JsonException $e ) {
+			throw new Exception( 'Errore decodifica JSON ' . $source . ': ' . $e->getMessage() );
+		}
+	}
+
+	/**
+	 * Normalize JSON body before decoding.
+	 *
+	 * @param string $body Raw response body.
+	 * @return string
+	 */
+	protected function normalize_json_body( string $body ): string {
+		// Strip UTF-8 BOM if present.
+		$body = preg_replace( '/^\xEF\xBB\xBF/', '', $body );
+
+		// Decode escaped UTF-16 surrogate pairs to real UTF-8 codepoints.
+		$normalized_body = preg_replace_callback(
+			'/\\\\u(d[89ab][0-9a-f]{2})\\\\u(d[cdef][0-9a-f]{2})/i',
+			array( $this, 'decode_surrogate_pair_callback' ),
+			$body
+		);
+
+		return is_string( $normalized_body ) ? $normalized_body : $body;
+	}
+
+	/**
+	 * Convert JSON UTF-16 surrogate pair into UTF-8.
+	 *
+	 * @param array $matches Regex matches.
+	 * @return string
+	 */
+	private function decode_surrogate_pair_callback( array $matches ): string {
+		$high      = hexdec( $matches[1] );
+		$low       = hexdec( $matches[2] );
+		$codepoint = ( ( $high - 0xD800 ) << 10 ) + ( $low - 0xDC00 ) + 0x10000;
+
+		return $this->utf8_from_codepoint( $codepoint );
+	}
+
+	/**
+	 * Encode a Unicode codepoint as UTF-8.
+	 *
+	 * @param int $codepoint Unicode codepoint.
+	 * @return string
+	 */
+	private function utf8_from_codepoint( int $codepoint ): string {
+		if ( function_exists( 'mb_chr' ) ) {
+			return (string) mb_chr( $codepoint, 'UTF-8' );
+		}
+
+		if ( $codepoint <= 0x7F ) {
+			return chr( $codepoint );
+		}
+		if ( $codepoint <= 0x7FF ) {
+			return chr( 0xC0 | ( $codepoint >> 6 ) ) .
+				chr( 0x80 | ( $codepoint & 0x3F ) );
+		}
+		if ( $codepoint <= 0xFFFF ) {
+			return chr( 0xE0 | ( $codepoint >> 12 ) ) .
+				chr( 0x80 | ( ( $codepoint >> 6 ) & 0x3F ) ) .
+				chr( 0x80 | ( $codepoint & 0x3F ) );
+		}
+
+		return chr( 0xF0 | ( $codepoint >> 18 ) ) .
+			chr( 0x80 | ( ( $codepoint >> 12 ) & 0x3F ) ) .
+			chr( 0x80 | ( ( $codepoint >> 6 ) & 0x3F ) ) .
+			chr( 0x80 | ( $codepoint & 0x3F ) );
+	}
+
+	/**
 	 * Stampa il report dell'importazione.
 	 *
 	 * @param [type] $code
@@ -272,5 +358,19 @@ class DLI_BaseImporter {
 	 */
 	public function trim_array( $array ): array {
 		return array_map( 'trim', $array );
+	}
+
+	/**
+	 * Sanitize imported titles removing invisible formatting chars and control chars.
+	 *
+	 * @param string $title Raw title.
+	 * @return string
+	 */
+	protected function sanitize_import_title( string $title ): string {
+		$title = wp_strip_all_tags( $title );
+		$title = preg_replace( '/\p{Cf}+/u', '', $title );
+		$title = preg_replace( '/[\x00-\x1F\x7F]+/u', '', $title );
+		$title = preg_replace( '/\s+/u', ' ', $title );
+		return trim( (string) $title );
 	}
 }

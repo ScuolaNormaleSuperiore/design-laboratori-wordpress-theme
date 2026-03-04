@@ -101,12 +101,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 		// Recupero i dati da Indico.
 		$resp_body = wp_remote_retrieve_body( $response );
-		$resp_data = json_decode( $resp_body, true );
-		// Controlla se la decodifica è riuscita
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			$msg = 'Errore nella decodifica JSON: ' . json_last_error_msg();
-			throw new Exception( $msg );
-		}
+		$resp_data = $this->decode_external_json_payload( (string) $resp_body, true, 'Indico' );
 		return $resp_data;
 	}
 
@@ -253,11 +248,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	 * @return string
 	 */
 	private function sanitize_item_title( $title ) {
-		$title = wp_strip_all_tags( (string) $title );
-		$title = trim( $title );
-		$title = preg_replace( '/[\x00-\x1F\x7F]+/u', '', $title );
-		$title = preg_replace( '/\s+/u', ' ', $title );
-		return $title;
+		return $this->sanitize_import_title( (string) $title );
 	}
 
 	/**

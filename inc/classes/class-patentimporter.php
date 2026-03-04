@@ -72,7 +72,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$ws_url   = esc_url_raw( (string) $conf['ws_url'] );
 		$username = $conf['username'];
 		$password = $conf['password'];
-		$data     = array();
 
 		$ws_url_parts = wp_parse_url( $ws_url );
 		if (
@@ -83,14 +82,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 
 		// Recupero JSON dati.
-			$auth = base64_encode( "$username:$password" );
-			$args = array(
-				'headers'     => array(
-					'Authorization' => "Basic $auth",
-				),
-				'timeout'     => 20,
-				'redirection' => 0,
-			);
+		$auth = base64_encode( "$username:$password" );
+		$args = array(
+			'headers'     => array(
+				'Authorization' => "Basic $auth",
+			),
+			'timeout'     => 20,
+			'redirection' => 0,
+		);
 		// Invocazione dell'endpoint.
 		$response = wp_remote_get( $ws_url, $args );
 		// Controllo della risposta
@@ -102,17 +101,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( 200 != $status_code ) {
 			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
 			throw new Exception( $error_msg );
-		} else {
-			// Recupera dati dalla risposta.
-			$body = wp_remote_retrieve_body( $response );
-			// Se la codifica della risposta non è UTF-8, converti in UTF-8.
-			if ( ! mb_check_encoding( $body, 'UTF-8' ) ) {
-				$body = mb_convert_encoding( $body, 'UTF-8', 'auto' );
-			}
-			if ( $body ) {
-				$data = json_decode( $body );
-			}
 		}
+		$body = wp_remote_retrieve_body( $response );
+		$data = $this->decode_external_json_payload( (string) $body, false, 'IRIS' );
+
+		if ( ! is_array( $data ) ) {
+			throw new Exception( 'Payload IRIS non valido: atteso array di brevetti.' );
+		}
+
 		return $data;
 	}
 
@@ -133,7 +129,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		foreach ( $data as $item ) {
 			++$counter;
 			$item_pid   = $item->pid;
-			$item_title = $item->displayValue;
+			$item_title = $this->sanitize_import_title( (string) $item->displayValue );
 
 			if ( $conf['import_type'] === 'dryrun' ) {
 				// Importazione dry run.
@@ -159,7 +155,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						$this->_process_result(
 							$results,
 							$item_pid . ' - ' . $item_code,
-							$item->displayValue,
+							$this->sanitize_import_title( (string) $item->displayValue ),
 							$updated,
 							$ignored,
 							$added_items,
@@ -174,7 +170,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						$this->_process_result(
 							$results,
 							$item_pid . ' - ' . $item_code_en,
-							$item->displayValue_en,
+							$this->sanitize_import_title( (string) $item->displayValue_en ),
 							$updated,
 							$ignored,
 							$added_items,
@@ -217,13 +213,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
-		$post_name    = dli_generate_slug( $item->displayValue );
+		$post_title   = $this->sanitize_import_title( (string) $item->displayValue );
+		$post_name    = dli_generate_slug( $post_title );
 		$post_content = $item->abstract ?? '.';
 
 		$new_content    = array(
 			'post_type'    => $this->post_type,
 			'post_name'    => $post_name,
-			'post_title'   => $item->displayValue,
+			'post_title'   => $post_title,
 			'post_content' => $post_content,
 			'post_status'  => 'draft',
 			'post_parent'  => 0,
@@ -252,11 +249,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					'ID'           => $post_id,
 					'post_content' => $new_content['post_content'],
 				);
-				wp_update_post( $pars, true );
-				// Aggiorna titolo.
-				$this->update_title( $post_id, $item->displayValue );
-				// Aggiorna campi personalizzati.
-				$this->update_custom_fields( $post_id, $item );
+					wp_update_post( $pars, true );
+					// Aggiorna titolo.
+					$this->update_title( $post_id, $post_title );
+					// Aggiorna campi personalizzati.
+					$this->update_custom_fields( $post_id, $item );
 				$updated = true;
 			} else {
 				$ignored = true;
@@ -272,9 +269,9 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $traslate_content ) {
-			$post_name_en    = dli_generate_slug( $item->displayValue_en );
+			$post_title_en   = $this->sanitize_import_title( (string) $item->displayValue_en );
+			$post_name_en    = dli_generate_slug( $post_title_en );
 			$post_content_en = $item->abstract_en ?? '.';
-			$post_title_en   = $item->displayValue_en;
 			$contents        = dli_get_post_translations( $post_id );
 
 			if ( ! isset( $contents[ $lang ] ) ) {
