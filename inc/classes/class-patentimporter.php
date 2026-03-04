@@ -83,13 +83,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 
 		// Recupero JSON dati.
-		$auth = base64_encode( "$username:$password" );
-		$args = array(
-			'headers'     => array(
-				'Authorization' => "Basic $auth",
-			),
-			'redirection' => 0,
-		);
+			$auth = base64_encode( "$username:$password" );
+			$args = array(
+				'headers'     => array(
+					'Authorization' => "Basic $auth",
+				),
+				'timeout'     => 20,
+				'redirection' => 0,
+			);
 		// Invocazione dell'endpoint.
 		$response = wp_remote_get( $ws_url, $args );
 		// Controllo della risposta
