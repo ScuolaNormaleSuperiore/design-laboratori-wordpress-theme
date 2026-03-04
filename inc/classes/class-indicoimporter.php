@@ -46,8 +46,6 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				'post_status' => dli_get_option( 'indico_imp_item_status', 'indico' ),
 				'criteria'    => dli_get_option( 'indico_import_criteria', 'indico' ),
 				'action'      => dli_get_option( 'indico_item_existent_action', 'indico' ),
-				'schedule'    => dli_get_option( 'indico_schedule', 'indico' ),
-				'debug'       => dli_get_option( 'indico_debug_enabled', 'indico' ),
 				'lang'        => dli_get_option( 'indico_default_lang', 'indico' ),
 				'start_date'  => $start_date,
 			);
@@ -128,7 +126,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$ignored   = 0;
 		foreach ( $resp_data['results'] as $item ) {
 			++$counter;
-			$item_title   = $this->sanitize_item_title( $item['title'] );
+			$item_title   = $this->sanitize_import_title( (string) $item['title'] );
 			$msg          = '';
 			$source_array = $this->trim_array( $conf['keywords'] ? explode( ',', $conf['keywords'] ) : array() );
 			$dest_array   = $this->trim_array( $item['keywords'] ? $item['keywords'] : array() );
@@ -193,7 +191,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
-		$item_title      = $this->sanitize_item_title( $item['title'] );
+		$item_title      = $this->sanitize_import_title( (string) $item['title'] );
 		$post_name       = dli_generate_slug( $item_title );
 		$post_content    = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
 		$new_page        = array(
@@ -239,16 +237,6 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			$ignored = true;
 		}
 		return $post_id;
-	}
-
-	/**
-	 * Sanitize the Indico event title to avoid leading/trailing spaces and control chars.
-	 *
-	 * @param string $title
-	 * @return string
-	 */
-	private function sanitize_item_title( $title ) {
-		return $this->sanitize_import_title( (string) $title );
 	}
 
 	/**

@@ -98,7 +98,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			throw new Exception( $response->get_error_message() );
 		}
 		$status_code = wp_remote_retrieve_response_code( $response );
-		if ( 200 != $status_code ) {
+		if ( 200 !== $status_code ) {
 			$error_msg = "Errore: codice di stato $status_code invocando il web service.";
 			throw new Exception( $error_msg );
 		}
@@ -200,6 +200,16 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				}
 			}
 		}
+		$msg = sprintf(
+			__( '*** Totali: %1$d - Simulati: %2$d - Aggiunti: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***' ),
+			$counter,
+			$simulated_items,
+			$added_items,
+			$updated_items,
+			$ignored_items,
+			$errors
+		);
+		array_push( $results, $msg );
 		$this->log_string( '*** FINE importazione da IRIS (brevetti) ***' );
 		return $results;
 	}
@@ -277,12 +287,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 	private function _translate_content( $post_id, $item, $conf, $lang = 'en' ): int {
 		$display_value_en = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
-		$traslate_content = ( '' !== $display_value_en );
+		$translate_content = ( '' !== $display_value_en );
 		$new_content_en   = null;
 		$post_id_en       = 0;
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
-		if ( $traslate_content ) {
+		if ( $translate_content ) {
 			$post_title_en   = $this->sanitize_import_title( $display_value_en );
 			$post_name_en    = dli_generate_slug( $post_title_en );
 			$post_content_en = $item->abstract_en ?? '.';
