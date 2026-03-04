@@ -406,4 +406,22 @@ class DLI_BaseImporter {
 
 		return (int) $new_term['term_id'];
 	}
+
+	/**
+	 * Convert an external date string between formats with defensive fallback.
+	 *
+	 * @param string $date_string   Raw date string.
+	 * @param string $input_format  Input format.
+	 * @param string $output_format Output format.
+	 * @return string
+	 */
+	protected function format_import_date( string $date_string, string $input_format, string $output_format ): string {
+		$date_string = trim( $date_string );
+		if ( '' === $date_string ) {
+			return '';
+		}
+
+		$formatted = dli_format_date_from_format( $input_format, $date_string, $output_format );
+		return $formatted ? (string) $formatted : '';
+	}
 }

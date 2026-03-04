@@ -278,7 +278,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
 		// Aggiorna data inizio e fine dell'evento.
 		$start_date = isset( $item['startDate']['date'] ) ? (string) $item['startDate']['date'] : '';
-		$start_date = dli_format_date_from_format( 'Y-m-d', $start_date, 'Ymd' );
+		$start_date = $this->format_import_date( $start_date, 'Y-m-d', 'Ymd' );
 		if ( $start_date ) {
 			dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
 		}
@@ -287,7 +287,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
 		}
 		$end_date = isset( $item['endDate']['date'] ) ? (string) $item['endDate']['date'] : '';
-		$end_date = dli_format_date_from_format( 'Y-m-d', $end_date, 'Ymd' );
+		$end_date = $this->format_import_date( $end_date, 'Y-m-d', 'Ymd' );
 		if ( $end_date ) {
 			dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
 		}
@@ -331,11 +331,11 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$date_string = date( 'Y-m-d' );
 		switch ( $criteria ) {
 			case 'all':
-					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-1970', 'Y-m-d' );
+					$date_string = $this->format_import_date( '01-01-1970', 'd-m-Y', 'Y-m-d' );
 				break;
 			case 'this-year':
 					$this_year   = date( 'Y' );
-					$date_string = dli_format_date_from_format( 'd-m-Y', '01-01-' . $this_year, 'Y-m-d' );
+					$date_string = $this->format_import_date( '01-01-' . $this_year, 'd-m-Y', 'Y-m-d' );
 				break;
 			case 'future':
 				$date_string = date( 'Y-m-d' );

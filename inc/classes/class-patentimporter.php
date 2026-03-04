@@ -385,12 +385,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $item->deposit_date ) {
 			// Data deposito (data_deposito).
 			$dp_date_str  = $item->deposit_date;
-			$deposit_date = dli_format_date_from_format( 'd-m-Y', $dp_date_str, 'Ymd' );
+			$deposit_date = $this->format_import_date( (string) $dp_date_str, 'd-m-Y', 'Ymd' );
 			if ( $deposit_date ) {
 				dli_update_field( 'data_deposito', $deposit_date, $post_id );
 			}
 			// Anno Deposito (anno_deposito).
-			$deposit_year = dli_format_date_from_format( 'd-m-Y', $dp_date_str, 'Y' );
+			$deposit_year = $this->format_import_date( (string) $dp_date_str, 'd-m-Y', 'Y' );
 			if ( $deposit_year ) {
 				dli_update_field( 'anno_deposito', $deposit_year, $post_id );
 			}
