@@ -270,7 +270,7 @@ class DLI_LabManager {
 	 *
 	 * @return object.
 	 */
-	public function setup_rest_api() {
+	public function setup_rest_api( $errors ) {
 		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) ) {
 			return new WP_Error(
 				'rest_disabled',
@@ -278,6 +278,7 @@ class DLI_LabManager {
 				array( 'status' => rest_authorization_required_code() )
 			);
 		}
+		return $errors;
 	}
 
 	/**
