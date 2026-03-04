@@ -1,5 +1,5 @@
 # ISSUES TODO
-Last update: 2026-03-04 (XSS hardening on translated labels and link attributes in single templates)
+Last update: 2026-03-04 (validated backlog; removed stale issues tied to deleted files and fixed obsolete paths)
 
 ---
 
@@ -51,66 +51,6 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 - **Description:** Two `__()` calls use string concatenation (`.`) instead of comma (`,`) for the text domain argument: `__( 'Rimuovi Immagine' . 'design_laboratori_italia' )`. This concatenates the domain into the translatable string, produces a mangled string (e.g., `"Rimuovi Immaginelaboratori_italia"`), and translation never works because the text domain is never passed to `__()`.
 - **Expected behavior:** Replace `.` with `,` in both calls.
 - **Files affected:** `inc/classes/class-peoplemanager.php` (lines 80-81)
-
----
-
-### [HIGH] JS: `setTimeout(e(), 500)` calls function immediately — debounce completely broken
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Bug
-- **Description:** In the resize handler for accessibility/hamburger menu, `setTimeout(e(), 500)` invokes `e()` immediately (parentheses call the function) and passes its return value (`undefined`) to `setTimeout`. The debounce is completely non-functional — every resize event fires the full DOM recalculation with no delay.
-- **Expected behavior:** Pass function reference without calling it: `setTimeout(e, 500)`.
-- **Files affected:** `assets/js/laboratori.js`
-
----
-
-### [HIGH] JS: `speed: number = 800` pollutes global scope in 6+ carousel initializations
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Bug
-- **Description:** Splide carousel options contain `speed: number = 800`. The expression `number = 800` is a runtime assignment to the undeclared global variable `window.number`. This appears in 6+ carousel instantiation blocks. The speed value happens to be `800` by accident (the assignment expression evaluates to `800`), but a global `number` variable is silently polluted on every carousel mount, potentially conflicting with other libraries.
-- **Expected behavior:** Replace all occurrences of `speed: number = 800` with `speed: 800`.
-- **Files affected:** `assets/js/laboratori.js` (multiple Splide initialization blocks)
-
----
-
-### [HIGH] JS: Skiplink event listener crashes when anchor element is absent
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Bug
-- **Description:** The skiplink block calls `document.querySelector(".skiplink")?.querySelector('[href="#menu-principale"]').addEventListener(...)`. Optional chaining `?.` applies only to the inner `querySelector` — if `.skiplink` exists but lacks the target anchor, `querySelector` returns `null` and `null.addEventListener()` throws an uncaught `TypeError`. This crashes the entire DOMContentLoaded handler, preventing all subsequent JS in that block from executing.
-- **Expected behavior:** Store the result and use optional chaining on the `addEventListener` call: `skipAnchor?.addEventListener(...)`.
-- **Files affected:** `assets/js/laboratori.js`
-
----
-
-### [HIGH] JS: DOM elements re-inserted on every scroll event without presence check
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Bug
-- **Description:** The sticky nav scroll handler moves real DOM nodes via `insertAdjacentElement` on every scroll event without checking whether the node is already in its target parent. This causes repeated re-flows. The handler has no throttle or debounce, so it fires on every pixel of scroll (60+ times per second). If either target node is `null`, the access causes a crash.
-- **Expected behavior:** Add a guard (`if (!target.contains(node))`), debounce the scroll handler, and null-check all queried elements.
-- **Files affected:** `assets/js/laboratori.js`
-
----
-
-### [MEDIUM] Empty `twitter:image` meta tag in homepage SEO output
-- **Status:** Open
-- **Date:** 2026-02-13
-- **Category:** Bug
-- **Description:** Homepage HTML emits `<meta name="twitter:image" content="">` when no OG image is available. Empty social image metadata can degrade preview quality and produce inconsistent behavior across platforms.
-- **Expected behavior:** Omit `twitter:image` when image URL is empty, or provide a valid fallback image URL.
-- **Files affected:** `template-parts/header/seo_tags.php`, `inc/classes/class-contents-manager.php`
-
----
-
-### [MEDIUM] `get_field('descrizione_breve')` called without post ID outside main loop in `sezione-eventi.php`
-- **Status:** Open
-- **Date:** 2026-02-12
-- **Category:** Bug
-- **Description:** At line 59, `get_field( 'descrizione_breve' )` is called without specifying the post ID. The template iterates events in a custom `foreach` (not a standard WP loop with `setup_postdata()`), so ACF falls back to the global `$post` (the page itself) instead of the current event. The same field is correctly fetched with `$id` at line 23 but the second call at line 59 omits it.
-- **Expected behavior:** Pass the event ID: `get_field( 'descrizione_breve', $id )`, or use the already-fetched `$desc` variable.
-- **Files affected:** `template-parts/common/sezione-eventi.php` (line 59)
 
 ---
 
@@ -234,13 +174,13 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 
 ---
 
-### [MEDIUM] `$og_data` properties accessed without null checks in `social_sharing.php`
+### [MEDIUM] `$og_data` properties accessed without null checks in `social-sharing.php`
 - **Status:** Open
 - **Date:** 2026-02-17
 - **Category:** Bug
-- **Description:** Unlike `seo_tags.php` which checks `isset()` before OG data properties, `social_sharing.php` accesses `$og_data->url` and `$og_data->shared_title` directly. If `get_og_data()` returns null or incomplete, this causes a fatal error. Share URLs also lack `esc_url()` wrapping.
-- **Expected behavior:** Add null/property checks, and wrap share URLs with `esc_url()`.
-- **Files affected:** `template-parts/common/social_sharing.php` (lines 5-8)
+- **Description:** Unlike `seo-tags.php` which checks `isset()` before OG data properties, `social-sharing.php` accesses `$dli_og_data->url` and `$dli_og_data->shared_title` directly. If `get_og_data()` returns null or incomplete, this can cause runtime errors.
+- **Expected behavior:** Add null/property checks before reading OG fields.
+- **Files affected:** `template-parts/common/social-sharing.php` (lines 8-12)
 
 ---
 
@@ -276,7 +216,6 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 - **Files affected:**
   - template-parts/home/hp-list-event.php
   - template-parts/home/card-eventi.php
-  - template-parts/common/sezione-eventi.php
   - template-parts/common/sezione-box-evento.php
   - page-templates/eventi.php
 - **Notes:** This removes duplication and improves maintainability
@@ -423,7 +362,7 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 - **Category:** Refactoring
 - **Description:** Direct array key access from option payloads (e.g., messages/selectors/meta wrappers) is widespread and brittle when keys are missing.
 - **Solution:** Add accessor helpers returning defaults (string/url/bool/list) and replace direct array dereferencing in templates.
-- **Files affected:** `template-parts/header/alert.php`, `header.php`, `template-parts/header/metatags.php`, `template-parts/header/seo_tags.php`, `inc/utils.php`
+- **Files affected:** `template-parts/header/alert.php`, `header.php`, `template-parts/header/metatags.php`, `template-parts/header/seo-tags.php`, `inc/utils.php`
 - **Notes:** Reduces warnings and clarifies expected data contracts.
 
 ---
@@ -505,16 +444,6 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 
 ---
 
-### [HIGH] Unthrottled scroll handlers cause layout thrashing in JS
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Performance
-- **Description:** Multiple scroll handlers in `laboratori.js` fire on every scroll event without any throttle/debounce. They read `scrollTop()`, `.offset().top`, call `window.matchMedia()`, and perform DOM mutations (`insertAdjacentElement`, `addClass/removeClass`). This forces synchronous layout reflows on every frame (60+ per second during scrolling).
-- **Expected behavior:** Wrap in `requestAnimationFrame` or throttle. Use `IntersectionObserver` instead where possible.
-- **Files affected:** `assets/js/laboratori.js`
-
----
-
 ### [HIGH] `dli_get_all_categories_by_ct()` loads all post IDs (`numberposts => -1`) before `get_terms()`
 - **Status:** Open
 - **Date:** 2026-02-17
@@ -562,16 +491,6 @@ Last update: 2026-03-04 (XSS hardening on translated labels and link attributes 
 - **Description:** Hooked to `after_setup_theme` (fires on every request), it reads and potentially writes the `default_comment_status` option on every page load. Should only need to run once.
 - **Expected behavior:** Run once at theme activation, or use `pre_option_default_comment_status` filter to override in memory without DB writes.
 - **Files affected:** `inc/actions.php` (lines 6-12)
-
----
-
-### [MEDIUM] Unthrottled `window.resize` handlers (2 handlers) and carousel initialization delays
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Performance
-- **Description:** Two separate resize handlers fire without debouncing, running jQuery DOM queries and CSS class mutations continuously during resize drags. Additionally, Splide carousels are initialized inside `setTimeout` with arbitrary 600-800ms delays, causing visible FOUC (Flash of Unstyled Content) before carousel layout takes effect.
-- **Expected behavior:** Debounce resize handlers (150-200ms). Use proper initialization triggers (`load` event or font/image readiness) instead of arbitrary timeouts.
-- **Files affected:** `assets/js/laboratori.js`
 
 ---
 
