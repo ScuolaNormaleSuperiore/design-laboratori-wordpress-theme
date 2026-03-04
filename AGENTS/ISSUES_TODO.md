@@ -1,5 +1,5 @@
 # ISSUES TODO
-Last update: 2026-03-04 (security fixes on sitemap escaping and target=_blank rel)
+Last update: 2026-03-04 (closed obsolete home template-part bug and homepage sponsor/banner performance issue)
 
 ---
 
@@ -22,16 +22,6 @@ Last update: 2026-03-04 (security fixes on sitemap escaping and target=_blank re
 ---
 
 ## 🐛 Bug
-
-### [HIGH] Missing template parts break homepage cards for Indirizzi and Strutture
-- **Status:** Open
-- **Date:** 2026-03-03
-- **Category:** Bug
-- **Description:** Homepage sections call `get_template_part( 'template-parts/servizio/card' )` and `get_template_part( 'template-parts/struttura/card', 'large' )`, but the referenced files are missing from the theme. WordPress fails silently, so the card blocks are not rendered.
-- **Expected behavior:** Restore missing partials or update references to existing template-part paths.
-- **Files affected:** `template-parts/home/indirizzi.php` (line 33), `template-parts/home/strutture.php` (line 54)
-
----
 
 ### [HIGH] Homepage site presentation outputs invalid nested paragraphs (`<p>` inside `<p>`)
 - **Status:** Open
@@ -531,16 +521,6 @@ Last update: 2026-03-04 (security fixes on sitemap escaping and target=_blank re
 - **Description:** The helper first executes `get_posts( fields => 'ids', numberposts => -1 )` for a full post type and then passes that large ID list to `get_terms( object_ids => ... )`. This pattern scales poorly on large datasets and runs on multiple archive templates, increasing DB and memory cost per request.
 - **Expected behavior:** Replace with taxonomy-driven queries (`get_terms` with `hide_empty => true` and proper taxonomy/post-type constraints) or cache normalized category lists with transients.
 - **Files affected:** `inc/utils.php` (lines 655-670), `page-templates/blog.php`, `page-templates/notizie.php`, `page-templates/eventi.php`, `page-templates/brevetti.php`, `page-templates/spinoff.php`, `page-templates/risorse-tecniche.php`
-
----
-
-### [HIGH] Homepage sponsor section uses unbounded query and N+1 uncached metadata calls per item
-- **Status:** Open
-- **Date:** 2026-03-03
-- **Category:** Performance
-- **Description:** `template-parts/home/hp-sponsor-section.php` runs a WP_Query with `posts_per_page => -1` (loading all sponsors into memory), then inside the foreach loop calls `dli_get_image_metadata()` and `dli_get_field('link_esterno', ...)` per sponsor. `dli_get_image_metadata()` triggers `get_the_post_thumbnail_url()`, `get_post_thumbnail_id()`, `get_the_title()`, `get_post_meta()` for alt text, and `wp_get_attachment_caption()` — approximately 4-5 postmeta queries per sponsor — all uncached across calls. For 10 sponsors, this generates 50+ uncached DB queries on every homepage load, on top of the full dataset load. Similarly, `hp-banners-section.php` issues 4 separate `dli_get_field()` calls per banner inside the loop, adding ~4 postmeta lookups per banner.
-- **Expected behavior:** Cap the sponsor query with a reasonable `posts_per_page` limit. Preload postmeta for all items with `update_post_meta_cache` or a single `update_postmeta_cache()` call. Alternatively, use transient caching for the rendered section.
-- **Files affected:** `template-parts/home/hp-sponsor-section.php` (lines 12-21, 39-42), `template-parts/home/hp-banners-section.php` (lines 29-34)
 
 ---
 
