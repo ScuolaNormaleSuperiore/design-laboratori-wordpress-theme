@@ -126,7 +126,20 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$updated_items   = 0;
 		$ignored_items   = 0;
 
+		if ( ! is_iterable( $data ) ) {
+			throw new Exception( 'Payload IRIS non iterabile: impossibile avviare il loop di importazione.' );
+		}
+
 		foreach ( $data as $item ) {
+			if ( ! is_object( $item ) || ! isset( $item->pid ) || ! isset( $item->displayValue ) ) {
+				array_push(
+					$results,
+					MSG_ERROR_IMPORTING_ITEM . 'Elemento IRIS non valido: campi minimi mancanti (pid/displayValue).'
+				);
+				++$errors;
+				continue;
+			}
+
 			++$counter;
 			$item_pid   = $item->pid;
 			$item_title = $this->sanitize_import_title( (string) $item->displayValue );
@@ -263,13 +276,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	private function _translate_content( $post_id, $item, $conf, $lang = 'en' ): int {
-		$traslate_content = $item->displayValue_en ? true : false;
+		$display_value_en = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
+		$traslate_content = ( '' !== $display_value_en );
 		$new_content_en   = null;
 		$post_id_en       = 0;
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $traslate_content ) {
-			$post_title_en   = $this->sanitize_import_title( (string) $item->displayValue_en );
+			$post_title_en   = $this->sanitize_import_title( $display_value_en );
 			$post_name_en    = dli_generate_slug( $post_title_en );
 			$post_content_en = $item->abstract_en ?? '.';
 			$contents        = dli_get_post_translations( $post_id );
@@ -429,19 +443,16 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$thematic_area_list_str = $item->thematic_area_list;
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
+			$term_ids       = array();
 			foreach ( $thematic_areas as $term ) {
-				// Controllo esistenza tassonomia.
-				// Creo tassonomia.
-				$term_item = term_exists( $term, THEMATIC_AREA_TAXONOMY );
-				if ( $term_item ) {
-					$term_id = $term_item['term_id'];
-				} else {
-					$new_term = wp_insert_term( $term, THEMATIC_AREA_TAXONOMY );
-					$term_id  = $new_term['term_id'];
-				}
+				$term_id = $this->get_or_create_term_id( (string) $term, THEMATIC_AREA_TAXONOMY );
 				dli_set_term_language( $term_id, $lang );
-				// Associo la tassonomia al contenuto.
-				wp_set_post_terms( $post_id, array( $term_id ), THEMATIC_AREA_TAXONOMY, false );
+				$term_ids[] = (int) $term_id;
+			}
+			$term_ids = array_values( array_unique( array_filter( $term_ids ) ) );
+			if ( ! empty( $term_ids ) ) {
+				// Associo tutte le tassonomie al contenuto in una sola chiamata.
+				wp_set_post_terms( $post_id, $term_ids, THEMATIC_AREA_TAXONOMY, false );
 			}
 		}
 	}
@@ -458,17 +469,19 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$thematic_area_list_str = $item->thematic_area_list;
 		if ( $thematic_area_list_str ) {
 			$thematic_areas = explode( '###', $thematic_area_list_str );
+			$term_ids_en    = array();
 			foreach ( $thematic_areas as $term ) {
-				// Controllo esistenza tassonomia.
-				// Creo tassonomia.
-				$term_item  = term_exists( $term, THEMATIC_AREA_TAXONOMY );
-				$term_id    = isset( $term_item['term_id'] ) ? $term_item['term_id'] : 0;
+				$term_id    = $this->get_or_create_term_id( (string) $term, THEMATIC_AREA_TAXONOMY );
 				$trans      = $term_id ? dli_get_term_translations( $term_id ) : array();
 				$term_id_en = isset( $trans[ $lang ] ) ? $trans[ $lang ] : 0;
 				if ( $term_id_en ) {
-					// Associo la tassonomia al contenuto.
-					wp_set_post_terms( $post_id, array( $term_id_en ), THEMATIC_AREA_TAXONOMY, false );
+					$term_ids_en[] = (int) $term_id_en;
 				}
+			}
+			$term_ids_en = array_values( array_unique( array_filter( $term_ids_en ) ) );
+			if ( ! empty( $term_ids_en ) ) {
+				// Associo tutte le tassonomie tradotte al contenuto in una sola chiamata.
+				wp_set_post_terms( $post_id, $term_ids_en, THEMATIC_AREA_TAXONOMY, false );
 			}
 		}
 	}

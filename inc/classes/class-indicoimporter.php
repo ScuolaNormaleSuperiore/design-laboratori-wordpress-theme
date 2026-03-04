@@ -268,7 +268,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) {
 		// Assegno valori ai campi dell'evento.
 		dli_update_field( 'link_dettaglio', DLI_ITEM_LINK['DETAIL_PAGE'], $post_id );
-		$plain_text     = strip_tags( $item['description'] );
+		$description    = isset( $item['description'] ) ? (string) $item['description'] : '';
+		$plain_text     = strip_tags( $description );
 		$plain_text     = $this->sanitize_item_text( $plain_text );
 		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE - 3 );
 		if ( strlen( $plain_text ) > DLI_SHORT_DESCRIPTION_SIZE ) {
@@ -276,34 +277,39 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 		dli_update_field( 'descrizione_breve', $truncated_text, $post_id );
 		// Aggiorna data inizio e fine dell'evento.
-		$start_date = $item['startDate']['date'];
+		$start_date = isset( $item['startDate']['date'] ) ? (string) $item['startDate']['date'] : '';
 		$start_date = dli_format_date_from_format( 'Y-m-d', $start_date, 'Ymd' );
 		if ( $start_date ) {
 			dli_update_field( 'data_inizio', $start_date, $post_id ); // data_inizio d/m/Y.
 		}
-		$orario_inizio = $item['startDate']['time'];
-		dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
-		$end_date = $item['endDate']['date'];
+		$orario_inizio = isset( $item['startDate']['time'] ) ? (string) $item['startDate']['time'] : '';
+		if ( '' !== $orario_inizio ) {
+			dli_update_field( 'orario_inizio', $orario_inizio, $post_id ); // orario inizio.
+		}
+		$end_date = isset( $item['endDate']['date'] ) ? (string) $item['endDate']['date'] : '';
 		$end_date = dli_format_date_from_format( 'Y-m-d', $end_date, 'Ymd' );
 		if ( $end_date ) {
 			dli_update_field( 'data_fine', $end_date, $post_id ); // data_fine d/m/Y.
 		}
-		$orario_fine = $item['endDate']['time'];
-		dli_update_field( 'orario_fine', $orario_fine, $post_id ); // orario fine.
+		$orario_fine = isset( $item['endDate']['time'] ) ? (string) $item['endDate']['time'] : '';
+		if ( '' !== $orario_fine ) {
+			dli_update_field( 'orario_fine', $orario_fine, $post_id ); // orario fine.
+		}
 		// Aggiorna url dell'evento.
-		if ( $item['url'] ) {
-			dli_update_field( 'sitoweb', $item['url'], $post_id );
+		$item_url = isset( $item['url'] ) ? esc_url_raw( (string) $item['url'] ) : '';
+		if ( $item_url ) {
+			dli_update_field( 'sitoweb', $item_url, $post_id );
 		}
 		// Aggiorna indirizzo dell'evento.
 		$address = array();
-		if ( $item['roomFullname'] ) {
-			array_push( $address, $this->sanitize_item_text( $item['roomFullname'] ) );
+		if ( ! empty( $item['roomFullname'] ) ) {
+			array_push( $address, $this->sanitize_item_text( (string) $item['roomFullname'] ) );
 		}
-		if ( $item['location'] ) {
-			array_push( $address, $this->sanitize_item_text( $item['location'] ) );
+		if ( ! empty( $item['location'] ) ) {
+			array_push( $address, $this->sanitize_item_text( (string) $item['location'] ) );
 		}
-		if ( $item['address'] ) {
-			array_push( $address, $item['address'] );
+		if ( ! empty( $item['address'] ) ) {
+			array_push( $address, $this->sanitize_item_text( (string) $item['address'] ) );
 		}
 		$full_location = implode( ' - ', $address );
 		dli_update_field( 'luogo', $full_location, $post_id );
@@ -311,15 +317,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		// Aggiorna categoria dell'evento (sottosezione dell'evento su Indico).
 		if ( isset( $item['category'] ) ) {
 			$category = $item['category'];
-			// Controllo esistenza tassonomia.
-			// Creo tassonomia.
-			$term_item = term_exists( $category, WP_DEFAULT_CATEGORY );
-			if ( $term_item ) {
-				$term_id = $term_item['term_id'];
-			} else {
-				$new_term = wp_insert_term( $category, WP_DEFAULT_CATEGORY );
-				$term_id  = $new_term['term_id'];
-			}
+			$term_id  = $this->get_or_create_term_id( (string) $category, WP_DEFAULT_CATEGORY );
 			dli_set_term_language( $term_id, $lang );
 			// Associo la tassonomia al contenuto.
 			wp_set_post_terms( $post_id, array( $term_id ), WP_DEFAULT_CATEGORY, false );

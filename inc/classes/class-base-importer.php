@@ -373,4 +373,37 @@ class DLI_BaseImporter {
 		$title = preg_replace( '/\s+/u', ' ', $title );
 		return trim( (string) $title );
 	}
+
+	/**
+	 * Resolve an existing term ID or create a new term safely.
+	 *
+	 * @param string $term_name Term label.
+	 * @param string $taxonomy  Taxonomy name.
+	 * @return int
+	 * @throws Exception If term cannot be resolved/created.
+	 */
+	protected function get_or_create_term_id( string $term_name, string $taxonomy ): int {
+		$term_name = trim( $term_name );
+		if ( '' === $term_name ) {
+			throw new Exception( 'Nome termine tassonomia non valido.' );
+		}
+
+		$term_item = term_exists( $term_name, $taxonomy );
+		if ( is_array( $term_item ) && isset( $term_item['term_id'] ) ) {
+			return (int) $term_item['term_id'];
+		}
+		if ( is_int( $term_item ) ) {
+			return $term_item;
+		}
+
+		$new_term = wp_insert_term( $term_name, $taxonomy );
+		if ( is_wp_error( $new_term ) ) {
+			throw new Exception( 'Errore creazione termine tassonomia: ' . $new_term->get_error_message() );
+		}
+		if ( ! is_array( $new_term ) || ! isset( $new_term['term_id'] ) ) {
+			throw new Exception( 'Creazione termine tassonomia fallita: term_id mancante.' );
+		}
+
+		return (int) $new_term['term_id'];
+	}
 }
