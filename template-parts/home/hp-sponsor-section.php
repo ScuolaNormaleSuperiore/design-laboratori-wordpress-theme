@@ -9,15 +9,17 @@ $dli_section_enabled = $args['enabled'] ?? false;
 $dli_show_title      = $args['show_title'] ?? false;
 
 if ( 'true' === $dli_section_enabled ) {
+	$dli_sponsor_limit = max( 1, absint( SPONSOR_MAX_ITEMS ) );
 	$dli_sponsor_query = new WP_Query(
 		array(
 			'post_type'              => array( SPONSOR_POST_TYPE ),
 			'post_status'            => 'publish',
-			'posts_per_page'         => SPONSOR_MAX_ITEMS,
+			'posts_per_page'         => $dli_sponsor_limit,
 			'orderby'                => 'meta_value_num',
 			'meta_key'               => 'priorita',
 			'order'                  => 'ASC',
 			'no_found_rows'          => true,
+			'update_post_meta_cache' => true,
 			'update_post_term_cache' => false,
 		)
 	);
@@ -25,12 +27,25 @@ if ( 'true' === $dli_section_enabled ) {
 	$dli_num_items = $dli_sponsor_query->post_count;
 
 	if ( $dli_num_items > 0 ) {
-		// Pre-carica in un'unica query la postmeta di tutti gli attachment thumbnail,
-		// così dli_get_image_metadata() non genera una query per ogni sponsor.
+		// Pre-carica metadati e post attachment thumbnail in batch:
+		// dli_get_image_metadata() usa title/caption/alt per ogni sponsor.
 		$dli_post_ids  = wp_list_pluck( $dli_sponsor_query->posts, 'ID' );
 		$dli_thumb_ids = array_filter( array_map( 'get_post_thumbnail_id', $dli_post_ids ) );
 		if ( ! empty( $dli_thumb_ids ) ) {
+			$dli_thumb_ids = array_map( 'absint', array_unique( $dli_thumb_ids ) );
 			update_meta_cache( 'post', $dli_thumb_ids );
+			get_posts(
+				array(
+					'post_type'              => 'attachment',
+					'post_status'            => 'inherit',
+					'post__in'               => $dli_thumb_ids,
+					'posts_per_page'         => count( $dli_thumb_ids ),
+					'orderby'                => 'post__in',
+					'no_found_rows'          => true,
+					'update_post_meta_cache' => true,
+					'update_post_term_cache' => false,
+				)
+			);
 		}
 
 		$dli_items_per_row = dli_get_option( 'num_row_sponsor', 'sponsors' );
@@ -49,7 +64,7 @@ if ( 'true' === $dli_section_enabled ) {
 						foreach ( $dli_sponsor_query->posts as $dli_sponsor_post ) {
 							$dli_image_metadata = dli_get_image_metadata( $dli_sponsor_post, 'full', '/assets/img/yourimage.png' );
 							$dli_post_id        = $dli_sponsor_post->ID;
-							$dli_external_link  = dli_get_field( 'link_esterno', $dli_post_id );
+							$dli_external_link  = get_post_meta( $dli_post_id, 'link_esterno', true );
 							?>
 							<div class="col-6 col-lg-2">
 								<div class="it-grid-item-wrapper">
