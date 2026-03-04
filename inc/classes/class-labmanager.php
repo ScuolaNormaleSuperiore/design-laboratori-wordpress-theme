@@ -138,6 +138,12 @@ class DLI_LabManager {
 			}
 		);
 
+		// Disabilita email notifiche aggiornamento plugin.
+		add_filter( 'auto_plugin_update_send_email', '__return_false' );
+
+		// Disabilita anche quelle per i temi.
+		add_filter( 'auto_theme_update_send_email', '__return_false' );
+
 		// Imposta configurazioni di sicurezza.
 		$this->enable_security_configurations();
 

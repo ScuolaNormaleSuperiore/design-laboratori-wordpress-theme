@@ -105,10 +105,13 @@ class DLI_BaseImporter {
 	public function manage_import_job() {
 		// SELECT * FROM wp_options WHERE option_name = 'cron'.
 		$this->log_string( '*** manage_import_job: ' . $this->importer_name . '  ***' );
-		$schedule       = $this->schedule_type;
-		$module_enabled = $this->module_enabled;
-		if ( ( $module_enabled === 'false' ) || ( $schedule === 'never' ) ) {
+		$schedule       = (string) $this->schedule_type;
+		$module_enabled = (bool) $this->module_enabled;
+		$schedules      = wp_get_schedules();
+		$valid_schedule = isset( $schedules[ $schedule ] );
+		if ( ! $module_enabled || ( 'never' === $schedule ) || ! $valid_schedule ) {
 			$this->remove_all_import_jobs();
+			return;
 		} else {
 			$next_scheduled = wp_get_scheduled_event( $this->job_name );
 			if ( ! $next_scheduled ) {
