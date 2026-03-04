@@ -1,20 +1,10 @@
 # ISSUES TODO
-Last update: 2026-03-04 (importer hardening, taxonomy validation, and date handling refactoring resolved)
+Last update: 2026-03-04 (security fixes on sitemap escaping and target=_blank rel)
 
 ---
 
 
 ## 🔒 Security
-
-### [HIGH] Unescaped page links and names in sitemap template — XSS via page title
-- **Status:** Open
-- **Date:** 2026-02-17
-- **Category:** Security
-- **Description:** `mappasito.php` outputs page links and names from `dli_get_site_tree()` using direct `echo` concatenation without escaping. Page titles containing `<script>` or special characters would render as raw HTML. URLs are similarly unescaped. The language switcher links also use `get_site_url()` output directly without `esc_url()`.
-- **Expected behavior:** Wrap all links with `esc_url()` and all names with `esc_html()`.
-- **Files affected:** `page-templates/mappasito.php` (lines 40, 47-49, 56-58, 64-68, 87-90)
-
----
 
 ### [HIGH] Widespread unescaped output across home card and section templates
 - **Status:** Open
@@ -30,17 +20,6 @@ Last update: 2026-03-04 (importer hardening, taxonomy validation, and date handl
   - `page.php` (lines 26, 63-66, 68, 73, 84, 106, 138)
 
 ---
-
-### [HIGH] External links with `target="_blank"` miss `rel="noopener noreferrer"` in multiple theme templates
-- **Status:** Open
-- **Date:** 2026-02-19
-- **Category:** Security
-- **Description:** Several external links open in a new tab using `target="_blank"` but omit `rel="noopener noreferrer"`. This leaves `window.opener` available to the opened page (reverse-tabnabbing risk) and weakens tab isolation.
-- **Expected behavior:** Add `rel="noopener noreferrer"` to all external links using `target="_blank"`.
-- **Files affected:** `header.php` (line 62), `template-parts/common/social.php`, `template-parts/common/social_footer.php`, `template-parts/common/sezione-video.php`, `template-parts/common/sezione-contatti.php`, `template-parts/common/sezione-allegati.php`
-
----
-
 
 ## 🐛 Bug
 

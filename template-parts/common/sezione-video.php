@@ -26,7 +26,7 @@ $dli_cookie_pol_url  = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
 				</div>
 					<p>
 					<?php echo esc_html__( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>
-					<a target="_blank" href="<?php echo esc_url( $dli_cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
+					<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"

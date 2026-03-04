@@ -57,9 +57,9 @@ $dli_current_lang = dli_current_language();
 				<div class="col-12">
 				<!-- SLIM HEADER -->
 				<div class="it-header-slim-wrapper-content">
-					<a class="d-none d-lg-block navbar-brand" 
-						href="<?php echo esc_url( dli_get_option( 'url_ente_appartenenza' ) ); ?>" 
-						target="_blank"><?php echo esc_html( dli_get_option( 'nome_ente_appartenza' ) ); ?></a>
+						<a class="d-none d-lg-block navbar-brand" 
+							href="<?php echo esc_url( dli_get_option( 'url_ente_appartenenza' ) ); ?>" 
+							target="_blank" rel="noopener noreferrer"><?php echo esc_html( dli_get_option( 'nome_ente_appartenza' ) ); ?></a>
 					<div class="nav-mobile">
 						<!-- TOP MENU -->
 						<?php
