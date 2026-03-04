@@ -94,7 +94,7 @@ $current_url    = get_permalink();
 						<?php
 							$link_msg = __( 'Tutti gli articoli', 'design_laboratori_italia' );
 						?>
-						<a href="<?php echo esc_url( $pg_link ); ?>" title="<?php echo $link_msg; ?>" alt="<?php echo $link_msg; ?>" ><?php echo $link_msg; ?></a>
+						<a href="<?php echo esc_url( $pg_link ); ?>" title="<?php echo esc_attr( $link_msg ); ?>" alt="<?php echo esc_attr( $link_msg ); ?>" ><?php echo esc_html( $link_msg ); ?></a>
 						<br /><br />
 					</div>
 

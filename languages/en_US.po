@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-03-03 15:25+0000\n"
+"PO-Revision-Date: 2026-03-04 10:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -547,10 +547,10 @@ msgstr "Copy of message not sent."
 msgid "Costo"
 msgstr "cost"
 
-#: inc/classes/class-base-importer.php:193
-#: inc/classes/class-base-importer.php:202
-#: inc/classes/class-base-importer.php:211
-#: inc/classes/class-base-importer.php:221
+#: inc/classes/class-base-importer.php:196
+#: inc/classes/class-base-importer.php:205
+#: inc/classes/class-base-importer.php:214
+#: inc/classes/class-base-importer.php:224
 msgid "Credenziali non valide."
 msgstr "Invalid credentials."
 
@@ -730,7 +730,7 @@ msgstr "december"
 msgid "Dimensione hero"
 msgstr "Hero dimension"
 
-#: inc/classes/class-labmanager.php:306
+#: inc/classes/class-labmanager.php:313
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
@@ -1100,7 +1100,7 @@ msgstr "THE PATENT"
 msgid "Il codice di controllo non è valido."
 msgstr "The check code is invalid."
 
-#: inc/classes/class-labmanager.php:295
+#: inc/classes/class-labmanager.php:302
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr "PDF file is too large. Maximum allowed: 2MB."
 
@@ -1278,10 +1278,6 @@ msgstr "Back"
 #: inc/admin/options.php:1677 inc/admin/options.php:1683
 msgid "Indirizzi di ricerca"
 msgstr "Research activities"
-
-#: template-parts/home/indirizzi.php:20
-msgid "Indirizzi di studio"
-msgstr "Fields of study"
 
 #: inc/admin/options.php:123
 msgid "Indirizzo"
@@ -1473,7 +1469,7 @@ msgstr ""
 "Enter information here to populate <a href=\"%s\">the Spin-off overview "
 "page</a>"
 
-#: inc/classes/class-labmanager.php:334
+#: inc/classes/class-labmanager.php:341
 msgid "Invalid username or password"
 msgstr "Invalid username or password"
 
@@ -1507,7 +1503,7 @@ msgstr "Italian"
 msgid "Keywords"
 msgstr "Keywords"
 
-#: inc/classes/class-labmanager.php:271
+#: inc/classes/class-labmanager.php:277
 msgid "L'API REST di WordPress è disabilitata."
 msgstr "WordPress REST API is disabled."
 
@@ -1515,7 +1511,7 @@ msgstr "WordPress REST API is disabled."
 msgid "L'email del Laboratorio"
 msgstr "Lab email"
 
-#: inc/classes/class-labmanager.php:291
+#: inc/classes/class-labmanager.php:298
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr "Image is too large. Maximum allowed: 1MB."
 
@@ -1779,7 +1775,7 @@ msgstr "Message sent successfully"
 msgid "Messaggio non inviato"
 msgstr "Message not sent"
 
-#: inc/classes/class-base-importer.php:177
+#: inc/classes/class-base-importer.php:180
 msgid "Metodo non consentito. Usare POST."
 msgstr "This method is not allowed. Use POST.d."
 
@@ -1927,7 +1923,7 @@ msgstr "You have not installed third-party cookies"
 msgid "Non mostrare filtro"
 msgstr "Don't show filter"
 
-#: inc/classes/class-base-importer.php:186
+#: inc/classes/class-base-importer.php:189
 msgid "Non sei autenticato."
 msgstr "You are not authenticated."
 
@@ -2099,7 +2095,7 @@ msgstr "Page not found"
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
-#: template-parts/home/hp-sponsor-section.php:42
+#: template-parts/home/hp-sponsor-section.php:57
 msgid "Partner e collaborazioni"
 msgstr "Partners and collaborations."
 
@@ -3147,10 +3143,6 @@ msgstr "Go back"
 msgid "Trascrizione"
 msgstr "Transcription"
 
-#: template-parts/home/strutture.php:62
-msgid "Tutta l’organizzazione"
-msgstr "Whole organization"
-
 #: single-notizia.php:95 template-parts/home/hp-list-news.php:101
 msgid "Tutte le notizie"
 msgstr "All news"
@@ -3255,7 +3247,7 @@ msgstr "Use as Sponsor Image"
 msgid "Username"
 msgstr "Username"
 
-#: inc/classes/class-base-importer.php:227
+#: inc/classes/class-base-importer.php:230
 msgid "Utente non autorizzato"
 msgstr "Unauthorized user"
 
@@ -3309,10 +3301,6 @@ msgstr "Go to Newsletter"
 #: page-templates/contatti.php:108 page-templates/newsletter.php:50
 msgid "Valore di Nonce errato."
 msgstr "Incorrect Nonce value."
-
-#: template-parts/home/indirizzi.php:39
-msgid "Vedi tutti"
-msgstr "View all"
 
 #: single-brevetto.php:209 single-brevetto.php:336 single-evento.php:216
 #: single-evento.php:454 single-spinoff.php:189 single-spinoff.php:320

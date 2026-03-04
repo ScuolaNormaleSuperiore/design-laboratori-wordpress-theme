@@ -19,13 +19,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [REL-1.7.5] - 2026-03-10
 ## Aggiunto
+- Disabilitato invio email di notifica all'aggiornamento di temi e plugin.
 ## Corretto
 - Adeguamento massivo dei file alle "WordPress Coding Rules" - parte 2.
+- Refactoring: tolti file inutilizzati.
+- Primo refactoring delle procedure di import.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.5.
 ## Sicurezza
-
+- Eseguito escaping massivo dell'output.
+- Risolti possibili problemi XSS segnalati dalla AI.
 
 
 
@@ -57,7 +61,7 @@ Aggiunto link social per Mastodon.
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.0.
 - Aggiornato Dockerfile per demo.
-
+ok
 
 ## [REL-1.7.1] - 2025-09-11
 ## Corretto

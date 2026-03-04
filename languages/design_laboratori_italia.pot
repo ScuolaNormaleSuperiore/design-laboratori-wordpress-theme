@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-03 15:21+0000\n"
+"POT-Creation-Date: 2026-03-04 10:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -18,7 +18,6 @@ msgstr ""
 
 #: inc/admin/options.php:687 inc/admin/options.php:738
 #: inc/admin/options.php:789
-msgctxt "Presentation of the laboratory"
 msgid "2 Pubblicazioni"
 msgstr ""
 
@@ -535,10 +534,10 @@ msgstr ""
 msgid "Costo"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:193
-#: inc/classes/class-base-importer.php:202
-#: inc/classes/class-base-importer.php:211
-#: inc/classes/class-base-importer.php:221
+#: inc/classes/class-base-importer.php:196
+#: inc/classes/class-base-importer.php:205
+#: inc/classes/class-base-importer.php:214
+#: inc/classes/class-base-importer.php:224
 msgid "Credenziali non valide."
 msgstr ""
 
@@ -710,7 +709,7 @@ msgstr ""
 msgid "Dimensione hero"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:306
+#: inc/classes/class-labmanager.php:313
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
@@ -1071,7 +1070,7 @@ msgstr ""
 msgid "Il codice di controllo non è valido."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:295
+#: inc/classes/class-labmanager.php:302
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr ""
 
@@ -1223,10 +1222,6 @@ msgstr ""
 
 #: inc/admin/options.php:1677 inc/admin/options.php:1683
 msgid "Indirizzi di ricerca"
-msgstr ""
-
-#: template-parts/home/indirizzi.php:20
-msgid "Indirizzi di studio"
 msgstr ""
 
 #: inc/admin/options.php:123
@@ -1388,7 +1383,7 @@ msgid ""
 "panoramica delle Spin-off</a>"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:334
+#: inc/classes/class-labmanager.php:341
 msgid "Invalid username or password"
 msgstr ""
 
@@ -1420,7 +1415,7 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:271
+#: inc/classes/class-labmanager.php:277
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
 
@@ -1428,7 +1423,7 @@ msgstr ""
 msgid "L'email del Laboratorio"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:291
+#: inc/classes/class-labmanager.php:298
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
@@ -1687,7 +1682,7 @@ msgstr ""
 msgid "Messaggio non inviato"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:177
+#: inc/classes/class-base-importer.php:180
 msgid "Metodo non consentito. Usare POST."
 msgstr ""
 
@@ -1831,7 +1826,7 @@ msgstr ""
 msgid "Non mostrare filtro"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:186
+#: inc/classes/class-base-importer.php:189
 msgid "Non sei autenticato."
 msgstr ""
 
@@ -1993,7 +1988,7 @@ msgstr ""
 msgid "Pagine collegate"
 msgstr ""
 
-#: template-parts/home/hp-sponsor-section.php:42
+#: template-parts/home/hp-sponsor-section.php:57
 msgid "Partner e collaborazioni"
 msgstr ""
 
@@ -3016,10 +3011,6 @@ msgstr ""
 msgid "Trascrizione"
 msgstr ""
 
-#: template-parts/home/strutture.php:62
-msgid "Tutta l’organizzazione"
-msgstr ""
-
 #: single-notizia.php:95 template-parts/home/hp-list-news.php:101
 msgid "Tutte le notizie"
 msgstr ""
@@ -3123,7 +3114,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: inc/classes/class-base-importer.php:227
+#: inc/classes/class-base-importer.php:230
 msgid "Utente non autorizzato"
 msgstr ""
 
@@ -3174,10 +3165,6 @@ msgstr ""
 
 #: page-templates/contatti.php:108 page-templates/newsletter.php:50
 msgid "Valore di Nonce errato."
-msgstr ""
-
-#: template-parts/home/indirizzi.php:39
-msgid "Vedi tutti"
 msgstr ""
 
 #: single-brevetto.php:209 single-brevetto.php:336 single-evento.php:216

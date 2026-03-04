@@ -109,7 +109,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 										if ( $responsabili ) {
 											?>
 										<li class="nav-item">
-											<a class="nav-link" href="#sezione-responsabile"><span><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></span></a>
+											<a class="nav-link" href="#sezione-responsabile"><span><?php echo esc_html( dli_translate( 'Responsabile', 'design_laboratori_italia' ) ); ?></span></a>
 										</li>
 											<?php
 										}
@@ -160,7 +160,7 @@ $eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricerca',
 				<?php
 				if ( $responsabili ) {
 					?>
-				<h3 class="it-page-section h4 pt-3" id="sezione-label-responsabile"><?php echo dli_translate( 'Responsabile', 'design_laboratori_italia' ); ?></h3>
+				<h3 class="it-page-section h4 pt-3" id="sezione-label-responsabile"><?php echo esc_html( dli_translate( 'Responsabile', 'design_laboratori_italia' ) ); ?></h3>
 					<?php
 					get_template_part(
 						'template-parts/common/sezione-persone',

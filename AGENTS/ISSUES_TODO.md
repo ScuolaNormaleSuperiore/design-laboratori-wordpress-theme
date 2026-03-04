@@ -1,5 +1,5 @@
 # ISSUES TODO
-Last update: 2026-03-04 (closed obsolete home template-part bug and homepage sponsor/banner performance issue)
+Last update: 2026-03-04 (XSS hardening on translated labels and link attributes in single templates)
 
 ---
 
@@ -11,6 +11,7 @@ Last update: 2026-03-04 (closed obsolete home template-part bug and homepage spo
 - **Date:** 2026-02-17
 - **Category:** Security
 - **Description:** Multiple home and section templates echo post titles, links, dates, descriptions, ACF option fields, and archive URLs without `esc_html()`/`esc_url()`. This creates XSS vectors if post titles or ACF fields contain HTML. Also includes `sezione-contatti.php` assembling `tel:`/`mailto:` hrefs with `esc_attr()` instead of `esc_url()`, and `sezione-allegati.php` with unescaped `$section_id` in `<section id=...>`.
+- **Progress (2026-03-04):** Escaping added for dynamic translated labels from `dli_translate()` and translated link attributes/text in `single-progetto.php`, `single-indirizzo-di-ricerca.php`, `single-post.php`, and `single-notizia.php`. Issue remains open for the broader template set.
 - **Files affected:**
   - `template-parts/common/sezione-contatti.php` (lines 19, 38)
   - `template-parts/common/sezione-allegati.php` (line 8)
