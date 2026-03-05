@@ -115,7 +115,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top">
 									<title><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></title>
-									<use href="bootstrap-italia/svg/sprites.svg#it-chevron-left" xlink:href="bootstrap-italia/svg/sprites.svg#it-chevron-left"></use>
+									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>"></use>
 								</svg>
 								<span><?php echo __( 'Indietro', 'design_laboratori_italia' ); ?></span>
 							</a>
