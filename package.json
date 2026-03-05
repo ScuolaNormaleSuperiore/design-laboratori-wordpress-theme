@@ -21,7 +21,10 @@
     "scan:demo": "node tests/e2e/status-report/scan.js https://laboratorio1.local",
     "scan:install-browser": "npx playwright install chromium",
     "compare": "node tests/e2e/status-report/compare.js",
-    "compare:last": "node tests/e2e/status-report/compare.js"
+    "compare:last": "node tests/e2e/status-report/compare.js",
+    "quality:scan": "node tests/e2e/quality-report/scan.js",
+    "quality:scan:gate": "node tests/e2e/quality-report/scan.js --gate",
+    "quality:compare": "node tests/e2e/quality-report/compare.js"
   },
   "repository": {
     "type": "git",

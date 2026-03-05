@@ -20,6 +20,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [REL-1.7.5] - 2026-03-10
 ## Aggiunto
 - Disabilitato invio email di notifica all'aggiornamento di temi e plugin.
+- Aggiunti script "npm run scan" e "npm run compare" per produrre report sul funzionamento delle pagine e per il confronto tra report.
+- Aggiunti script "quality:scan" e "quality:compare" per produrre report sulla qualità del codice e confrontare due report diversi.
 ## Corretto
 - Adeguamento massivo dei file alle "WordPress Coding Rules" - parte 2.
 - Refactoring: tolti file inutilizzati.

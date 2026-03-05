@@ -19,6 +19,8 @@ node_modules
 # Composer
 /vendor/
 composer.lock
+.composer-cache/
+.composer-home/
 
 # Tests
 .phpunit.result.cache
@@ -47,6 +49,10 @@ Thumbs.db
 # Site status scanner
 tests/e2e/status-report/reports/*
 !tests/e2e/status-report/reports/.gitkeep
+
+# Site quality scanner
+tests/e2e/quality-report/reports/*
+!tests/e2e/quality-report/reports/.gitkeep
 
 # Custom directives
 assets/css/compiled

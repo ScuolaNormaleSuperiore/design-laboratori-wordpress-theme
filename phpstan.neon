@@ -1,0 +1,31 @@
+parameters:
+  level: 1
+  parallel:
+    maximumNumberOfProcesses: 1
+  scanFiles:
+    - tests/phpstan/wordpress-lite-stubs.php
+  paths:
+    - inc
+    - page-templates
+    - template-parts
+    - archive.php
+    - page.php
+    - header.php
+    - footer.php
+    - functions.php
+  excludePaths:
+    - vendor/*
+    - inc/vendor/*
+    - node_modules/*
+    - tests/*
+    - assets/*
+    - languages/*
+    - DEV/*
+    - SETUP/*
+    - DOC/*
+    - AGENTS/*
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    - '#Call to undefined function [a-zA-Z0-9_\\\\]+#'
+    - '#Function [a-zA-Z0-9_\\\\]+ not found#'
+    - '#Constant [A-Z0-9_]+ not found#'
