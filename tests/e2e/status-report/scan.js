@@ -146,7 +146,8 @@ async function scanPage(browser, url, timeout) {
   const result = {
     url,
     status: null,
-    responseTimeMs: null,
+    ttfbMs: null,       // Time To First Byte — server-only, not affected by concurrency
+    responseTimeMs: null, // Total load time — includes all resources, affected by concurrency
     errors: [],
     timedOut: false,
   };
@@ -203,6 +204,13 @@ async function scanPage(browser, url, timeout) {
     result.responseTimeMs = Date.now() - t0;
 
     result.status = response ? response.status() : null;
+
+    // TTFB via Navigation Timing API — server-only, not affected by concurrency
+    const ttfb = await page.evaluate(() => {
+      const nav = performance.getEntriesByType('navigation')[0];
+      return nav ? Math.round(nav.responseStart) : null;
+    });
+    result.ttfbMs = ttfb;
 
     if (result.status && result.status !== 200) {
       result.errors.push({ type: 'HTTP', message: `HTTP ${result.status}` });

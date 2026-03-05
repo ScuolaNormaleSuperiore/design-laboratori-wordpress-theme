@@ -27,10 +27,11 @@ function computeSummary(results) {
   if (times.length > 0) {
     summary.avgResponseTimeMs = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
     summary.maxResponseTimeMs = Math.max(...times);
+    // Slow pages sorted by TTFB (more objective — not affected by concurrency)
     summary.slowPages = results
       .filter((r) => r.responseTimeMs > 3000)
-      .map((r) => ({ url: r.url, responseTimeMs: r.responseTimeMs }))
-      .sort((a, b) => b.responseTimeMs - a.responseTimeMs);
+      .map((r) => ({ url: r.url, ttfbMs: r.ttfbMs, responseTimeMs: r.responseTimeMs }))
+      .sort((a, b) => (b.ttfbMs ?? b.responseTimeMs) - (a.ttfbMs ?? a.responseTimeMs));
   }
 
   results.forEach((r) => {
@@ -76,6 +77,7 @@ function writeJson(results, summary, opts) {
     pages: results.map((r) => ({
       url: r.url,
       status: r.status,
+      ttfbMs: r.ttfbMs,
       responseTimeMs: r.responseTimeMs,
       timedOut: r.timedOut,
       errors: r.errors,
@@ -112,15 +114,22 @@ function renderPageRow(r, index) {
   const statusStr = r.timedOut ? 'TIMEOUT' : (r.status || '—');
   const detailId = `detail-${index}`;
 
-  const timeMs = r.responseTimeMs !== null ? r.responseTimeMs : null;
-  const timeStr = timeMs !== null ? timeMs + ' ms' : '—';
-  const timeStyle = timeMs === null
+  // Use TTFB to colour-code server responsiveness (not affected by concurrency).
+  // Show both TTFB and total load time so the reader can distinguish server vs asset slowness.
+  const ttfb = r.ttfbMs !== null ? r.ttfbMs : null;
+  const load = r.responseTimeMs !== null ? r.responseTimeMs : null;
+  const ttfbStyle = ttfb === null
     ? ''
-    : timeMs > 3000
+    : ttfb > 1500
       ? 'color:#c0392b;font-weight:bold'
-      : timeMs > 1500
+      : ttfb > 500
         ? 'color:#e67e22'
         : 'color:#27ae60';
+  const ttfbStr = ttfb !== null ? `<span style="${ttfbStyle}">${ttfb}</span>` : '—';
+  const loadStr = load !== null ? load : '—';
+  const timeCell = ttfb !== null
+    ? `<span title="TTFB (server)">${ttfbStr} ms</span> <span style="color:#aaa;font-size:0.8em">/ ${loadStr} ms</span>`
+    : (load !== null ? `${load} ms` : '—');
 
   let errHtml = '';
   if (hasErrors) {
@@ -144,7 +153,7 @@ function renderPageRow(r, index) {
       <td style="padding:8px 12px;font-size:1.1em;color:${hasErrors ? '#c0392b' : '#27ae60'}">${icon}</td>
       <td style="padding:8px 12px"><a href="${escHtml(r.url)}" target="_blank" rel="noopener">${escHtml(r.url)}</a></td>
       <td style="padding:8px 12px;text-align:center">${statusStr}</td>
-      <td style="padding:8px 12px;text-align:right;${timeStyle}">${timeStr}</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap">${timeCell}</td>
       <td style="padding:8px 12px;text-align:center">${r.errors.length === 0 ? '—' : r.errors.length}</td>
     </tr>${errHtml}`;
 }
@@ -229,7 +238,7 @@ ${errorPages.length > 0 ? `
       <th style="width:36px"></th>
       <th>URL</th>
       <th style="width:90px;text-align:center">Status</th>
-      <th style="width:120px;text-align:right">Tempo</th>
+      <th style="width:160px;text-align:right">TTFB / Load</th>
       <th style="width:80px;text-align:center">Errori</th>
     </tr>
   </thead>
@@ -245,7 +254,7 @@ ${okPages.length > 0 ? `
         <th style="width:36px"></th>
         <th>URL</th>
         <th style="width:90px;text-align:center">Status</th>
-        <th style="width:120px;text-align:right">Tempo</th>
+        <th style="width:160px;text-align:right">TTFB / Load</th>
         <th style="width:80px;text-align:center">Errori</th>
       </tr>
     </thead>
@@ -257,15 +266,19 @@ ${summary.slowPages.length > 0 ? (() => {
   const top10 = summary.slowPages.slice(0, 10);
   const aboveThreshold = summary.slowPages.filter((p) => p.responseTimeMs > 3000).length;
   return `
-<div class="section-title">Top 10 pagine più lente${aboveThreshold > 0 ? ` &mdash; <span style="color:#c0392b">${aboveThreshold} superano i 3s</span>` : ''}</div>
+<div class="section-title">Top 10 pagine più lente${aboveThreshold > 0 ? ` &mdash; <span style="color:#c0392b">${aboveThreshold} superano i 3s (load)</span>` : ''}</div>
+<p style="font-size:0.8em;color:#666;margin:-4px 0 8px">Ordinate per TTFB (tempo server, indipendente dalla concorrenza). <em>Load</em> include anche il caricamento delle risorse.</p>
 <table>
-  <thead><tr><th style="width:36px;text-align:center">#</th><th>URL</th><th style="width:160px;text-align:right">Tempo risposta</th></tr></thead>
+  <thead><tr><th style="width:36px;text-align:center">#</th><th>URL</th><th style="width:120px;text-align:right">TTFB</th><th style="width:120px;text-align:right">Load</th></tr></thead>
   <tbody>${top10.map((p, i) => {
-    const slow = p.responseTimeMs > 3000;
+    const slowLoad = p.responseTimeMs > 3000;
+    const slowTtfb = p.ttfbMs !== null && p.ttfbMs > 1500;
+    const ttfbDisplay = p.ttfbMs !== null ? p.ttfbMs + ' ms' : '—';
     return `<tr>
       <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">${i + 1}</td>
-      <td style="padding:8px 12px"><a href="${escHtml(p.url)}" target="_blank" rel="noopener">${escHtml(p.url)}</a>${slow ? ' <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span>' : ''}</td>
-      <td style="padding:8px 12px;text-align:right;${slow ? 'color:#c0392b;font-weight:bold' : 'color:#e67e22'}">${p.responseTimeMs} ms</td>
+      <td style="padding:8px 12px"><a href="${escHtml(p.url)}" target="_blank" rel="noopener">${escHtml(p.url)}</a>${slowLoad ? ' <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span>' : ''}</td>
+      <td style="padding:8px 12px;text-align:right;${slowTtfb ? 'color:#c0392b;font-weight:bold' : 'color:#27ae60'}">${ttfbDisplay}</td>
+      <td style="padding:8px 12px;text-align:right;${slowLoad ? 'color:#c0392b;font-weight:bold' : 'color:#e67e22'}">${p.responseTimeMs} ms</td>
     </tr>`;
   }).join('')}</tbody>
 </table>`;
