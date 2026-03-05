@@ -1,6 +1,0 @@
-node_modules/
-report.html
-report.json
-output/
-reports/*
-!reports/.gitkeep

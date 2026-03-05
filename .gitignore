@@ -44,6 +44,10 @@ Thumbs.db
 !.vscode/settings.json
 !.vscode/launch.json
 
+# Site status scanner
+tests/e2e/status-report/reports/*
+!tests/e2e/status-report/reports/.gitkeep
+
 # Custom directives
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
