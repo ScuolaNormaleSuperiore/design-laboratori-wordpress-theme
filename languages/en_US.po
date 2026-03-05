@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-03-04 10:54+0000\n"
+"PO-Revision-Date: 2026-03-05 10:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -265,7 +265,7 @@ msgstr "Thematic Area"
 msgid "Argomenti"
 msgstr "Subjects"
 
-#: inc/utils.php:1443
+#: inc/utils.php:1446
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -381,7 +381,7 @@ msgstr "Field to use for ordering publications"
 msgid "Campo ordinamento"
 msgstr "Sort field"
 
-#: page-templates/cerca.php:81
+#: page-templates/cerca.php:83
 msgid "Cancella"
 msgstr "Cancel"
 
@@ -398,7 +398,7 @@ msgstr "Category"
 msgid "Categorie collegate:"
 msgstr "Related categories:"
 
-#: header.php:167 page-templates/cerca.php:83
+#: header.php:167 page-templates/cerca.php:85
 msgid "Cerca"
 msgstr "Search"
 
@@ -414,8 +414,8 @@ msgstr "Search thematic area"
 msgid "Cerca contenuto"
 msgstr "Search content"
 
-#: header.php:171 header.php:172 header.php:173 page-templates/cerca.php:66
-#: page-templates/cerca.php:70
+#: header.php:171 header.php:172 header.php:173 page-templates/cerca.php:68
+#: page-templates/cerca.php:72
 msgid "Cerca nel sito"
 msgstr "Search this site"
 
@@ -968,7 +968,7 @@ msgstr "Filter by"
 msgid "Filtra per TAG"
 msgstr "Filter by TAG"
 
-#: page-templates/cerca.php:103
+#: page-templates/cerca.php:105
 msgid "Filtra per tipo di contenuto"
 msgstr "Filter by content type"
 
@@ -1315,7 +1315,7 @@ msgstr ""
 "Enter Web Analytics code. You can create it <a target=\"_blank\" "
 "href=\"https://webanalytics.italia.it/\">here</a>"
 
-#: page-templates/cerca.php:74
+#: page-templates/cerca.php:76
 msgid "Inserisci il testo da cercare"
 msgstr "Type the search text"
 
@@ -1619,8 +1619,6 @@ msgstr "Read more"
 #: template-parts/common/sezione-box-notizia.php:32
 #: template-parts/common/sezione-box-notizia.php:34
 #: template-parts/common/sezione-box-notizia.php:35
-#: template-parts/common/sezione-eventi.php:76
-#: template-parts/common/sezione-eventi.php:79
 #: template-parts/home/card-eventi.php:79
 #: template-parts/home/card-eventi.php:80
 #: template-parts/home/card-eventi.php:81 template-parts/home/card-news.php:53
@@ -1939,7 +1937,7 @@ msgstr "No research activities available"
 msgid "Non è stata trovata nessuna notizia"
 msgstr "No news available"
 
-#: page-templates/persone.php:287
+#: page-templates/persone.php:319
 msgid "Non è stata trovata nessuna persona"
 msgstr "No people available"
 
@@ -2082,8 +2080,8 @@ msgstr "oct"
 msgid "ottobre"
 msgstr "october"
 
-#: template-parts/common/paginazione.php:53
-#: template-parts/common/paginazione.php:72
+#: template-parts/common/paginazione.php:57
+#: template-parts/common/paginazione.php:76
 msgid "pagina"
 msgstr "page"
 
@@ -2091,7 +2089,7 @@ msgstr "page"
 msgid "Pagina non trovata"
 msgstr "Page not found"
 
-#: page.php:77 page-templates/privacy.php:129
+#: page.php:78 page-templates/privacy.php:129
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
@@ -2590,7 +2588,7 @@ msgstr "Remember for all videos"
 msgid "Rimuovi il messaggio"
 msgstr "Remove the message"
 
-#: inc/classes/class-placemanager.php:89
+#: inc/classes/class-peoplemanager.php:80 inc/classes/class-placemanager.php:89
 msgid "Rimuovi Immagine"
 msgstr "Remove image"
 
@@ -2644,7 +2642,7 @@ msgstr "Technical Resources"
 msgid "Risorse-Tecniche"
 msgstr "Techincal-Resources"
 
-#: page-templates/cerca.php:135
+#: page-templates/cerca.php:137
 msgid "Risultati"
 msgstr "Results"
 
@@ -2897,7 +2895,7 @@ msgstr "Yes"
 
 #: single-evento.php:189 single-evento.php:344 single-evento.php:354
 #: single-persona.php:501 single-progetto.php:71 single-spinoff.php:296
-#: template-parts/common/sezione-contatti.php:69
+#: template-parts/common/sezione-contatti.php:68
 msgid "Sito web"
 msgstr "Website"
 
@@ -3134,7 +3132,7 @@ msgstr "Hero title in English"
 msgid "Token API"
 msgstr "Token API"
 
-#: page.php:72 page-templates/privacy.php:120 page-templates/privacy.php:121
+#: page.php:73 page-templates/privacy.php:120 page-templates/privacy.php:121
 #: page-templates/privacy.php:124
 msgid "Torna indietro"
 msgstr "Go back"
@@ -3227,6 +3225,10 @@ msgstr "Use as Patent Image"
 msgid "Usa come Immagine del Luogo"
 msgstr "Use as Place image"
 
+#: inc/classes/class-peoplemanager.php:81
+msgid "Usa come Immagine della Persona"
+msgstr "Use as Person Image"
+
 #: inc/classes/class-eventmanager.php:44
 msgid "Usa come Immagine Evento"
 msgstr "Use as Event image"
@@ -3272,10 +3274,6 @@ msgstr "Skip to contents"
 msgid "Vai al footer"
 msgstr "Skip to footer"
 
-#: template-parts/hero/home.php:46
-msgid "Vai al laboratorio"
-msgstr "Go to the lab"
-
 #: template-parts/common/skiplink.php:12
 msgid "Vai al menu di navigazione"
 msgstr "Skip to main navigation"
@@ -3313,7 +3311,9 @@ msgid "Video in Home Page"
 msgstr "Home Page Video"
 
 #: inc/admin/options.php:1277 inc/admin/options.php:1661
-msgid "Visualizza etchetta Dettagli"
+#, fuzzy
+#| msgid "Visualizza etchetta Dettagli"
+msgid "Visualizza etichetta Dettagli"
 msgstr "View label Details"
 
 #: inc/admin/options.php:221

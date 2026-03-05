@@ -1274,7 +1274,7 @@ function dli_register_main_options_metabox() {
 	$persone_options->add_field(
 		array(
 			'id'      => $prefix . 'label_person_details_is_visible',
-			'name'    => __( 'Visualizza etchetta Dettagli', 'design_laboratori_italia' ),
+			'name'    => __( 'Visualizza etichetta Dettagli', 'design_laboratori_italia' ),
 			'desc'    => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
 			'type'    => 'radio_inline',
 			'default' => 'true',
@@ -1658,7 +1658,7 @@ function dli_register_main_options_metabox() {
 	$progetti_options->add_field(
 		array(
 			'id'      => $prefix . 'label_project_details_is_visible',
-			'name'    => __( 'Visualizza etchetta Dettagli', 'design_laboratori_italia' ),
+			'name'    => __( 'Visualizza etichetta Dettagli', 'design_laboratori_italia' ),
 			'desc'    => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
 			'type'    => 'radio_inline',
 			'default' => 'true',

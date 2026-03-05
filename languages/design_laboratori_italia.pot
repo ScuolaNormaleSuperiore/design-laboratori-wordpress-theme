@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-04 10:54+0000\n"
+"POT-Creation-Date: 2026-03-05 10:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Argomenti"
 msgstr ""
 
-#: inc/utils.php:1443
+#: inc/utils.php:1446
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -370,7 +370,7 @@ msgstr ""
 msgid "Campo ordinamento"
 msgstr ""
 
-#: page-templates/cerca.php:81
+#: page-templates/cerca.php:83
 msgid "Cancella"
 msgstr ""
 
@@ -387,7 +387,7 @@ msgstr ""
 msgid "Categorie collegate:"
 msgstr ""
 
-#: header.php:167 page-templates/cerca.php:83
+#: header.php:167 page-templates/cerca.php:85
 msgid "Cerca"
 msgstr ""
 
@@ -403,8 +403,8 @@ msgstr ""
 msgid "Cerca contenuto"
 msgstr ""
 
-#: header.php:171 header.php:172 header.php:173 page-templates/cerca.php:66
-#: page-templates/cerca.php:70
+#: header.php:171 header.php:172 header.php:173 page-templates/cerca.php:68
+#: page-templates/cerca.php:72
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -941,7 +941,7 @@ msgstr ""
 msgid "Filtra per TAG"
 msgstr ""
 
-#: page-templates/cerca.php:103
+#: page-templates/cerca.php:105
 msgid "Filtra per tipo di contenuto"
 msgstr ""
 
@@ -1256,7 +1256,7 @@ msgid ""
 "href=\"https://webanalytics.italia.it/\">da qui</a>"
 msgstr ""
 
-#: page-templates/cerca.php:74
+#: page-templates/cerca.php:76
 msgid "Inserisci il testo da cercare"
 msgstr ""
 
@@ -1528,8 +1528,6 @@ msgstr ""
 #: template-parts/common/sezione-box-notizia.php:32
 #: template-parts/common/sezione-box-notizia.php:34
 #: template-parts/common/sezione-box-notizia.php:35
-#: template-parts/common/sezione-eventi.php:76
-#: template-parts/common/sezione-eventi.php:79
 #: template-parts/home/card-eventi.php:79
 #: template-parts/home/card-eventi.php:80
 #: template-parts/home/card-eventi.php:81 template-parts/home/card-news.php:53
@@ -1842,7 +1840,7 @@ msgstr ""
 msgid "Non è stata trovata nessuna notizia"
 msgstr ""
 
-#: page-templates/persone.php:287
+#: page-templates/persone.php:319
 msgid "Non è stata trovata nessuna persona"
 msgstr ""
 
@@ -1975,8 +1973,8 @@ msgstr ""
 msgid "ottobre"
 msgstr ""
 
-#: template-parts/common/paginazione.php:53
-#: template-parts/common/paginazione.php:72
+#: template-parts/common/paginazione.php:57
+#: template-parts/common/paginazione.php:76
 msgid "pagina"
 msgstr ""
 
@@ -1984,7 +1982,7 @@ msgstr ""
 msgid "Pagina non trovata"
 msgstr ""
 
-#: page.php:77 page-templates/privacy.php:129
+#: page.php:78 page-templates/privacy.php:129
 msgid "Pagine collegate"
 msgstr ""
 
@@ -2475,7 +2473,7 @@ msgstr ""
 msgid "Rimuovi il messaggio"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:89
+#: inc/classes/class-peoplemanager.php:80 inc/classes/class-placemanager.php:89
 msgid "Rimuovi Immagine"
 msgstr ""
 
@@ -2529,7 +2527,7 @@ msgstr ""
 msgid "Risorse-Tecniche"
 msgstr ""
 
-#: page-templates/cerca.php:135
+#: page-templates/cerca.php:137
 msgid "Risultati"
 msgstr ""
 
@@ -2767,7 +2765,7 @@ msgstr ""
 
 #: single-evento.php:189 single-evento.php:344 single-evento.php:354
 #: single-persona.php:501 single-progetto.php:71 single-spinoff.php:296
-#: template-parts/common/sezione-contatti.php:69
+#: template-parts/common/sezione-contatti.php:68
 msgid "Sito web"
 msgstr ""
 
@@ -3002,7 +3000,7 @@ msgstr ""
 msgid "Token API"
 msgstr ""
 
-#: page.php:72 page-templates/privacy.php:120 page-templates/privacy.php:121
+#: page.php:73 page-templates/privacy.php:120 page-templates/privacy.php:121
 #: page-templates/privacy.php:124
 msgid "Torna indietro"
 msgstr ""
@@ -3094,6 +3092,10 @@ msgstr ""
 msgid "Usa come Immagine del Luogo"
 msgstr ""
 
+#: inc/classes/class-peoplemanager.php:81
+msgid "Usa come Immagine della Persona"
+msgstr ""
+
 #: inc/classes/class-eventmanager.php:44
 msgid "Usa come Immagine Evento"
 msgstr ""
@@ -3137,10 +3139,6 @@ msgstr ""
 msgid "Vai al footer"
 msgstr ""
 
-#: template-parts/hero/home.php:46
-msgid "Vai al laboratorio"
-msgstr ""
-
 #: template-parts/common/skiplink.php:12
 msgid "Vai al menu di navigazione"
 msgstr ""
@@ -3178,7 +3176,7 @@ msgid "Video in Home Page"
 msgstr ""
 
 #: inc/admin/options.php:1277 inc/admin/options.php:1661
-msgid "Visualizza etchetta Dettagli"
+msgid "Visualizza etichetta Dettagli"
 msgstr ""
 
 #: inc/admin/options.php:221
