@@ -10,6 +10,7 @@
 global $post;
 get_header();
 $image_metadata = dli_get_image_metadata( $post, 'full' );
+$image_metadata = is_array( $image_metadata ) ? $image_metadata : array();
 $related_items  = dli_get_field( 'pagine_collegate' );
 ?>
 

@@ -1405,7 +1405,10 @@ if ( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
 		if ( $page->post_parent ) {
 			$ancestors = get_post_ancestors( $page->ID );
 			foreach ( $ancestors as $ancestor ) {
-				array_push( $slugs, get_post( $ancestor )->post_name );
+				$ancestor_post = get_post( $ancestor );
+				if ( $ancestor_post instanceof WP_Post ) {
+					array_push( $slugs, $ancestor_post->post_name );
+				}
 			}
 		}
 		return $slugs;

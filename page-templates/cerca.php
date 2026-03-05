@@ -36,12 +36,14 @@ $the_query = null;
 if ( '' !== $searchstring ) {
 	// Verifica del NONCE.
 	if ( isset( $_GET['cercasito_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_GET['cercasito_nonce_field'] ), 'sf_cercasito_nonce' ) ) {
-			$the_query = DLI_ContentsManager::main_search_query(
-				$selected_contents,
-				$searchstring,
-				SITESEARCH_CELLS_PER_PAGE
-			);
-		$num_results = $the_query->found_posts;
+		$the_query = DLI_ContentsManager::main_search_query(
+			$selected_contents,
+			$searchstring,
+			SITESEARCH_CELLS_PER_PAGE
+		);
+		if ( $the_query instanceof WP_Query ) {
+			$num_results = $the_query->found_posts;
+		}
 	}
 } else {
 	$num_results = 0;
@@ -140,7 +142,7 @@ if ( '' !== $searchstring ) {
 				<?php
 				// The main loop of the page.
 				$pindex = 0;
-				if ( ( $num_results > 0 ) && ( $searchstring !== '' ) ) {
+				if ( ( $num_results > 0 ) && ( $searchstring !== '' ) && ( $the_query instanceof WP_Query ) ) {
 				?>
 				<?php
 					while ( $the_query->have_posts() ) {
@@ -205,13 +207,15 @@ if ( '' !== $searchstring ) {
 
 	<!-- PAGINAZIONE -->
 	<?php
-		get_template_part(
-			'template-parts/common/paginazione',
-			null,
-			array(
-				'query' => $the_query,
-			)
-		);
+		if ( $the_query instanceof WP_Query ) {
+			get_template_part(
+				'template-parts/common/paginazione',
+				null,
+				array(
+					'query' => $the_query,
+				)
+			);
+		}
 	?>
 
 </main>

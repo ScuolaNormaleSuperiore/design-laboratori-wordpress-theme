@@ -47,10 +47,11 @@ class DLI_ContentsManager {
 			$item_url     = $is_homepage ? dli_homepage_url() : get_permalink( $item_id );
 			$img_id       = $is_homepage ? null : get_post_thumbnail_id( $item_id );
 			$img_array    = wp_get_attachment_image_src( $img_id, 'large' );
+			$has_img_data = is_array( $img_array );
 			$file_path    = $img_id ? get_attached_file( $img_id ) : '';
 			$file_info    = $img_id ? wp_check_filetype( $file_path ) : '';
 			$img_type     = $img_id ? $file_info['type'] : '';
-			$item_image   = $img_id && count( $img_array ) ? $img_array[0] : '';
+			$item_image   = $img_id && $has_img_data && ! empty( $img_array[0] ) ? $img_array[0] : '';
 			$site_url     = site_url();
 			$parsed_url   = parse_url( $site_url );
 			$domain       = $parsed_url['host'];
@@ -67,8 +68,8 @@ class DLI_ContentsManager {
 			$og_data->site_title   = $site_title;
 			$og_data->site_tagline = $site_tagline;
 			$og_data->image        = $item_image;
-			$og_data->img_width    = $img_id && count( $img_array ) > 1 ? $img_array[1] : '0';
-			$og_data->img_height   = $img_id && count( $img_array ) > 2 ? $img_array[2] : '0';
+			$og_data->img_width    = $img_id && $has_img_data && isset( $img_array[1] ) ? (string) $img_array[1] : '0';
+			$og_data->img_height   = $img_id && $has_img_data && isset( $img_array[2] ) ? (string) $img_array[2] : '0';
 			$og_data->img_type     = $img_type;
 			$og_data->domain       = $domain;
 			$og_data->shared_title = $shared_title;

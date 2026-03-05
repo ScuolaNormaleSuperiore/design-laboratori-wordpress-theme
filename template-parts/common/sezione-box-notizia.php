@@ -5,7 +5,7 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_item = $args['item'];
+$dli_item = isset( $args['item'] ) ? $args['item'] : null;
 if ( $dli_item ) {
 	$dli_postitem = dli_get_post_wrapper( $dli_item );
 	?>

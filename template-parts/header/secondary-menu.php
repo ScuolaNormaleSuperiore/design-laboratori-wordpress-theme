@@ -5,7 +5,7 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_locations = $args['locations'];
+$dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
 ?>
 
 <nav aria-label="Secondaria">

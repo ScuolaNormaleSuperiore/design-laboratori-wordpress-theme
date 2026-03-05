@@ -5,10 +5,10 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_items           = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $args['items'] : array();
-	$dli_section_id  = isset( $args['section_id'] ) ? $args['section_id'] : '';
-	$dli_num_results = count( $dli_items );
-	define( 'ALLEGATI_PER_ROW', 3 );
+$dli_items       = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $args['items'] : array();
+$dli_section_id  = isset( $args['section_id'] ) ? sanitize_key( $args['section_id'] ) : '';
+$dli_num_results = count( $dli_items );
+define( 'ALLEGATI_PER_ROW', 3 );
 ?>
 
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
@@ -24,8 +24,8 @@ if ( $dli_num_results ) {
 				<div class="card-wrapper card-teaser-wrapper">
 			<?php
 		}
-						$dli_post_title = $dli_item['title'];
-						$dli_post_url   = $dli_item['url'];
+						$dli_post_title = isset( $dli_item['title'] ) ? sanitize_text_field( (string) $dli_item['title'] ) : '';
+						$dli_post_url   = isset( $dli_item['url'] ) ? esc_url_raw( $dli_item['url'] ) : '';
 		?>
 
 						<!-- begin card allegati -->

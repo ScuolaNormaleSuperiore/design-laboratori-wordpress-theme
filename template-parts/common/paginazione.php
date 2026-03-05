@@ -5,10 +5,14 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_the_query       = $args['query'];
+$dli_the_query       = ( isset( $args['query'] ) && ( $args['query'] instanceof WP_Query ) ) ? $args['query'] : null;
 $dli_mode            = isset( $args['mode'] ) ? $args['mode'] : 'show_paged';
-$dli_per_page        = isset( $args['per_page'] ) && $args['per_page'] ? $args['per_page'] : strval( DLI_POSTS_PER_PAGE );
+$dli_per_page        = isset( $args['per_page'] ) ? absint( $args['per_page'] ) : DLI_POSTS_PER_PAGE;
+$dli_per_page        = $dli_per_page > 0 ? $dli_per_page : DLI_POSTS_PER_PAGE;
 $dli_per_page_values = isset( $args['per_page_values'] ) && $args['per_page_values'] ? $args['per_page_values'] : DLI_POST_PER_PAGE_VALUES;
+$dli_per_page_values = array_map( 'absint', (array) $dli_per_page_values );
+$dli_per_page_values = array_filter( $dli_per_page_values );
+$dli_per_page_raw    = filter_input( INPUT_GET, 'per_page' );
 $dli_num_results     = $dli_the_query ? $dli_the_query->found_posts : 0;
 $dli_pagination_on   = ( ( 'show_paged' === $dli_mode ) && ( $dli_num_results > intval( $dli_per_page ) ) );
 ?>
@@ -43,9 +47,9 @@ $dli_pagination_on   = ( ( 'show_paged' === $dli_mode ) && ( $dli_num_results > 
 
 		<!-- Scelta numero elementi per pagina -->
 		<div class="col-md-3 dli-dropdown-container">
-			<?php
-			if ( $dli_pagination_on || isset( $_GET['per_page'] ) ) {
-				?>
+				<?php
+				if ( $dli_pagination_on || null !== $dli_per_page_raw ) {
+					?>
 				<div class="dropdown">
 					<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger"
 						data-bs-toggle="dropdown" aria-haspopup="true"
@@ -58,30 +62,30 @@ $dli_pagination_on   = ( ( 'show_paged' === $dli_mode ) && ( $dli_num_results > 
 					<div class="dropdown-menu dli-pagination-dropdown" aria-labelledby="pagerChanger">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
-								<?php
-								foreach ( $dli_per_page_values as $dli_pvalue ) {
-									$dli_is_active = ( $dli_pvalue === $dli_per_page );
-									?>
+									<?php
+									foreach ( $dli_per_page_values as $dli_pvalue ) {
+										$dli_is_active = ( $dli_pvalue === $dli_per_page );
+										?>
 								<li>
 									<a class="dropdown-item list-item 
-									<?php
-									if ( $dli_is_active ) {
-										echo 'active'; }
-									?>
+										<?php
+										if ( $dli_is_active ) {
+											echo 'active'; }
+										?>
 									"
 											href="#" data-perpage="<?php echo esc_attr( $dli_pvalue ); ?>"><span><?php echo esc_html( $dli_pvalue ); ?>/<?php echo esc_html__( 'pagina', 'design_laboratori_italia' ); ?></span>
 									</a>
 									</li>
-									<?php
-								}
-								?>
+										<?php
+									}
+									?>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<?php
-			}
-			?>
+					<?php
+				}
+				?>
 		</div>
 
 		<!-- Right empty column -->
