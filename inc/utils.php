@@ -1319,10 +1319,14 @@ if ( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 	function dli_get_pt_archive_slugs() {
 		$slugs = array();
 		foreach ( DLI_PAGE_PER_CT as $pt => $items ) {
-			if ( PEOPLE_TYPE_POST_TYPE !== $pt ) {
-				foreach ( $items as $lang => $slug ) {
-					$slugs[ $slug ] = $pt;
-				}
+			if ( PEOPLE_TYPE_POST_TYPE === $pt ) {
+				continue;
+			}
+			if ( PUBLICATION_POST_TYPE === $pt && ! DLI_PUBLICATION_HAS_DETAIL ) {
+				continue;
+			}
+			foreach ( $items as $lang => $slug ) {
+				$slugs[ $slug ] = $pt;
 			}
 		}
 		return $slugs;

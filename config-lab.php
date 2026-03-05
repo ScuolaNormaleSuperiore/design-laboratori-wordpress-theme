@@ -50,6 +50,10 @@ define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
+// Feature flags.
+// Set to true only if a single-pubblicazione.php template exists and detail pages are intentionally exposed.
+define( 'DLI_PUBLICATION_HAS_DETAIL', false );
+
 // CUSTOM CONTENT TYPES.
 define( 'BANNER_POST_TYPE', 'banner' );
 define( 'EVENT_POST_TYPE', 'evento' );
