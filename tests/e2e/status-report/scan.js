@@ -10,6 +10,7 @@
  *   --sitemap <path>      Path to sitemap page (default: /mappa-sito/)
  *   --timeout <ms>        Page timeout in ms (default: 15000)
  *   --concurrency <n>     Max parallel tabs (default: 3)
+ *   --delay <ms>          Wait between page requests in ms (default: 300, 0 = no delay)
  *   --out <path>          Output file path without extension (default: ./report)
  *
  * Example:
@@ -45,6 +46,7 @@ function parseArgs(argv) {
     sitemap: '/mappa-sito/',
     timeout: 15000,
     concurrency: 3,
+    delay: 300, // ms to wait before starting each page request; 0 = no delay
     out: null, // resolved in main after timestamp is built
     outExplicit: false,
   };
@@ -59,6 +61,8 @@ function parseArgs(argv) {
       opts.timeout = parseInt(args[++i], 10);
     } else if (arg === '--concurrency' && args[i + 1]) {
       opts.concurrency = parseInt(args[++i], 10);
+    } else if (arg === '--delay' && args[i + 1]) {
+      opts.delay = parseInt(args[++i], 10);
     } else if (arg === '--out' && args[i + 1]) {
       opts.out = args[++i];
       opts.outExplicit = true;
@@ -257,7 +261,7 @@ async function scanPage(browser, url, timeout) {
 // Concurrency pool
 // ---------------------------------------------------------------------------
 
-async function runWithConcurrency(tasks, concurrency) {
+async function runWithConcurrency(tasks, concurrency, delay) {
   const results = [];
   const queue = [...tasks];
   const active = new Set();
@@ -266,7 +270,10 @@ async function runWithConcurrency(tasks, concurrency) {
     function next() {
       while (active.size < concurrency && queue.length > 0) {
         const task = queue.shift();
-        const p = task().then((result) => {
+        const run = delay > 0
+          ? new Promise((res) => setTimeout(res, delay)).then(() => task())
+          : task();
+        const p = run.then((result) => {
           active.delete(p);
           results.push(result);
           printProgress(result);
@@ -316,6 +323,7 @@ async function main() {
   console.log(`Sitemap     : ${opts.sitemap}`);
   console.log(`Timeout     : ${opts.timeout}ms`);
   console.log(`Concurrency : ${opts.concurrency}`);
+  console.log(`Delay       : ${opts.delay > 0 ? opts.delay + 'ms' : 'none (--delay 0)'}`);
   console.log(`Output      : ${opts.out}.html / ${opts.out}.json`);
   console.log('='.repeat(60));
 
@@ -329,7 +337,7 @@ async function main() {
   // Step 2: scan all pages
   console.log(`Scanning ${urls.length} pages (concurrency: ${opts.concurrency})...\n`);
   const tasks = urls.map((url) => () => scanPage(browser, url, opts.timeout));
-  const results = await runWithConcurrency(tasks, opts.concurrency);
+  const results = await runWithConcurrency(tasks, opts.concurrency, opts.delay);
 
   await browser.close();
 
