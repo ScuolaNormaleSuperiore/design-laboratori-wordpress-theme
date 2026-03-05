@@ -112,6 +112,16 @@ function renderPageRow(r, index) {
   const statusStr = r.timedOut ? 'TIMEOUT' : (r.status || '—');
   const detailId = `detail-${index}`;
 
+  const timeMs = r.responseTimeMs !== null ? r.responseTimeMs : null;
+  const timeStr = timeMs !== null ? timeMs + ' ms' : '—';
+  const timeStyle = timeMs === null
+    ? ''
+    : timeMs > 3000
+      ? 'color:#c0392b;font-weight:bold'
+      : timeMs > 1500
+        ? 'color:#e67e22'
+        : 'color:#27ae60';
+
   let errHtml = '';
   if (hasErrors) {
     const errItems = r.errors
@@ -119,7 +129,7 @@ function renderPageRow(r, index) {
       .join('');
     errHtml = `
       <tr class="detail-row" id="${detailId}" style="display:none">
-        <td colspan="4" style="padding:8px 16px 12px 40px;background:#fafafa;border-bottom:1px solid #eee">
+        <td colspan="5" style="padding:8px 16px 12px 40px;background:#fafafa;border-bottom:1px solid #eee">
           <ul style="margin:0;padding:0 0 0 16px;line-height:1.8">${errItems}</ul>
         </td>
       </tr>`;
@@ -134,6 +144,7 @@ function renderPageRow(r, index) {
       <td style="padding:8px 12px;font-size:1.1em;color:${hasErrors ? '#c0392b' : '#27ae60'}">${icon}</td>
       <td style="padding:8px 12px"><a href="${escHtml(r.url)}" target="_blank" rel="noopener">${escHtml(r.url)}</a></td>
       <td style="padding:8px 12px;text-align:center">${statusStr}</td>
+      <td style="padding:8px 12px;text-align:right;${timeStyle}">${timeStr}</td>
       <td style="padding:8px 12px;text-align:center">${r.errors.length === 0 ? '—' : r.errors.length}</td>
     </tr>${errHtml}`;
 }
@@ -210,13 +221,6 @@ function writeHtml(results, summary, opts) {
   <div class="card"><div class="num" style="color:${summary.maxResponseTimeMs > 3000 ? '#c0392b' : '#16a085'}">${summary.maxResponseTimeMs !== null ? summary.maxResponseTimeMs + 'ms' : '—'}</div><div class="lbl">Tempo max</div></div>
 </div>
 
-${summary.slowPages.length > 0 ? `
-<div class="section-title">Pagine lente &mdash; tempo di risposta &gt; 3s (${summary.slowPages.length})</div>
-<table>
-  <thead><tr><th>URL</th><th style="width:140px;text-align:right">Tempo risposta</th></tr></thead>
-  <tbody>${summary.slowPages.map((p) => `<tr><td style="padding:8px 12px"><a href="${escHtml(p.url)}" target="_blank" rel="noopener">${escHtml(p.url)}</a></td><td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">${p.responseTimeMs} ms</td></tr>`).join('')}</tbody>
-</table>` : ''}
-
 ${errorPages.length > 0 ? `
 <div class="section-title">Pagine con errori (${errorPages.length})</div>
 <table>
@@ -225,6 +229,7 @@ ${errorPages.length > 0 ? `
       <th style="width:36px"></th>
       <th>URL</th>
       <th style="width:90px;text-align:center">Status</th>
+      <th style="width:120px;text-align:right">Tempo</th>
       <th style="width:80px;text-align:center">Errori</th>
     </tr>
   </thead>
@@ -240,12 +245,31 @@ ${okPages.length > 0 ? `
         <th style="width:36px"></th>
         <th>URL</th>
         <th style="width:90px;text-align:center">Status</th>
+        <th style="width:120px;text-align:right">Tempo</th>
         <th style="width:80px;text-align:center">Errori</th>
       </tr>
     </thead>
     <tbody>${okRows}</tbody>
   </table>
 </details>` : ''}
+
+${summary.slowPages.length > 0 ? (() => {
+  const top10 = summary.slowPages.slice(0, 10);
+  const aboveThreshold = summary.slowPages.filter((p) => p.responseTimeMs > 3000).length;
+  return `
+<div class="section-title">Top 10 pagine più lente${aboveThreshold > 0 ? ` &mdash; <span style="color:#c0392b">${aboveThreshold} superano i 3s</span>` : ''}</div>
+<table>
+  <thead><tr><th style="width:36px;text-align:center">#</th><th>URL</th><th style="width:160px;text-align:right">Tempo risposta</th></tr></thead>
+  <tbody>${top10.map((p, i) => {
+    const slow = p.responseTimeMs > 3000;
+    return `<tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">${i + 1}</td>
+      <td style="padding:8px 12px"><a href="${escHtml(p.url)}" target="_blank" rel="noopener">${escHtml(p.url)}</a>${slow ? ' <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span>' : ''}</td>
+      <td style="padding:8px 12px;text-align:right;${slow ? 'color:#c0392b;font-weight:bold' : 'color:#e67e22'}">${p.responseTimeMs} ms</td>
+    </tr>`;
+  }).join('')}</tbody>
+</table>`;
+})() : ''}
 
 <script>
 function toggle(id) {
