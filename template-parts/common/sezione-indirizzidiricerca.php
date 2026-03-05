@@ -40,11 +40,10 @@ if ( $dli_num_results ) {
 											</svg>
 											<a href="<?php echo esc_url( $dli_link ); ?>"><?php echo esc_html( $dli_nome ); ?></a>
 										</h3>
-										<div class="card-text">
-											<p><?php echo wp_kses_post( wp_trim_words( $dli_descrizione, DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-										<?php echo esc_html( $dli_pindex . ' - ' . INDIRIZZI_PER_ROW . ' - ' . $dli_num_results ); ?>
-										</p>
-										</div>
+											<div class="card-text">
+												<p><?php echo wp_kses_post( wp_trim_words( $dli_descrizione, DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+											</p>
+											</div>
 									</div>
 								</div>
 								<!--end card indirizzodiricerca-->

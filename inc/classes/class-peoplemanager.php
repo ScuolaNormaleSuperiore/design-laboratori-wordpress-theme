@@ -77,8 +77,8 @@ class People_Manager {
 			'view_item'             => _x( 'Visualizza la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Immagine principale della Persona', 'design_laboratori_italia' ),
 			'set_featured_image'    => __( 'Seleziona Immagine' ),
-			'remove_featured_image' => __( 'Rimuovi Immagine' . 'design_laboratori_italia' ),
-			'use_featured_image'    => __( 'Usa come Immagine della Persona' . 'design_laboratori_italia' ),
+			'remove_featured_image' => __( 'Rimuovi Immagine', 'design_laboratori_italia' ),
+			'use_featured_image'    => __( 'Usa come Immagine della Persona', 'design_laboratori_italia' ),
 		);
 		$args   = array(
 			'label'         => __( 'Persona', 'design_laboratori_italia' ),
