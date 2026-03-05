@@ -4,7 +4,8 @@ Scanner automatico pre-produzione per siti basati sul tema **Design Laboratori W
 
 Visita tutte le pagine del sito partendo dalla mappa del sito e produce un report
 dettagliato degli errori trovati: errori HTTP, errori PHP nel sorgente, errori
-JavaScript a runtime e risorse non caricate (immagini, CSS, font, script).
+JavaScript a runtime, risorse non caricate (immagini, CSS, font, script) e tempi
+di risposta per pagina.
 
 
 ## Indice
@@ -35,6 +36,15 @@ Lo scanner esegue questi controlli su ogni pagina del sito:
 | **CONTENT** | Pagine con body inferiore a 200 caratteri visibili, spia di un rendering vuoto o interrotto |
 | **TIMEOUT** | Pagine che non rispondono entro il timeout configurato |
 
+Per ogni pagina lo scanner registra anche due misure di tempo:
+
+| Metrica | Descrizione |
+|---|---|
+| **TTFB** | *Time To First Byte* — tempo tra l'invio della richiesta HTTP e il primo byte ricevuto dal server. Misura esclusivamente la latenza server-side (PHP + DB) ed è **indipendente dalla concorrenza** dello scanner. |
+| **Load** | Tempo totale dall'inizio della navigazione all'evento `load` del browser. Include il caricamento di tutte le risorse (CSS, JS, immagini) ed è influenzato dal numero di pagine visitate in parallelo (`--concurrency`). |
+
+Usare il **TTFB** per identificare colli di bottiglia server-side (query lente, PHP pesante). Se TTFB è basso ma Load è alto, il problema è nel numero o nel peso delle risorse della pagina.
+
 
 ---
 
@@ -59,14 +69,17 @@ in parallelo). Per ciascuna pagina:
 - ascolta gli eventi `console` e `pageerror` del browser per catturare gli errori JS
 - legge il sorgente HTML completo e cerca pattern di errore PHP
 - misura la lunghezza del testo visibile nel body
+- registra il **TTFB** (latenza server) tramite la Navigation Timing API del browser
+- registra il **tempo di caricamento totale** (dal goto all'evento `load`)
 
 Se una pagina va in timeout lo script la segnala come `TIMEOUT` e prosegue
 senza bloccarsi.
 
 **Fase 3 — Generazione report**
 
-Al termine della scansione produce il riepilogo numerico in console e scrive
-i due file di output (`report.html` e `report.json`).
+Al termine della scansione produce il riepilogo numerico in console (con tempi
+medi e massimi) e scrive i due file di output (`report.html` e `report.json`)
+nella cartella `tests/e2e/status-report/reports/` con suffisso data/ora automatico.
 
 
 ---
@@ -114,6 +127,10 @@ PHP errors  : 1
 JS errors   : 1
 Res. errors : 1
 Timeouts    : 0
+Avg time    : 620ms
+Max time    : 3840ms
+Slow pages  : 1 (> 3s)
+  3840ms  https://laboratorio1.local/ricerca/progetti/
 ============================================================
 Result      : FAIL
 ============================================================
@@ -129,11 +146,17 @@ con:
   - Indicatore globale **PASS** (zero errori) o **FAIL** (errori presenti)
   - Pagine OK / Pagine con errori / Totale pagine
   - Contatore per categoria: HTTP, PHP, JS, risorse 404, timeout
+  - Tempo medio e tempo massimo di risposta
 - **Tabella pagine con errori** — ogni riga è cliccabile e mostra il dettaglio
-  degli errori con badge colorato per categoria
-- **Sezione pagine senza errori** — collassata di default, espandibile
+  degli errori con badge colorato per categoria; include la colonna **TTFB / Load**
+- **Sezione pagine senza errori** — collassata di default, espandibile; include
+  anch'essa la colonna TTFB / Load
+- **Top 10 pagine più lente** — in fondo al report, ordinate per TTFB (latenza
+  server, indipendente dalla concorrenza), con badge `>3s` sulle righe che
+  superano la soglia e colonne separate TTFB e Load
 - Link cliccabili agli URL scansionati
-- Codice colore: verde (ok), rosso (HTTP/fatal), arancio (PHP), viola (JS), blu (risorse)
+- Codice colore tempi: verde ≤ 500 ms TTFB, arancio ≤ 1500 ms, rosso > 1500 ms
+- Codice colore errori: rosso (HTTP/fatal), arancio (PHP), viola (JS), blu (risorse)
 
 ### report.json
 
@@ -152,12 +175,19 @@ scansioni successive:
     "jsErrors": 1,
     "resourceErrors": 1,
     "contentErrors": 0,
-    "timeouts": 0
+    "timeouts": 0,
+    "avgResponseTimeMs": 620,
+    "maxResponseTimeMs": 3840,
+    "slowPages": [
+      { "url": "https://laboratorio1.local/ricerca/progetti/", "ttfbMs": 2100, "responseTimeMs": 3840 }
+    ]
   },
   "pages": [
     {
       "url": "https://laboratorio1.local/ricerca/progetti/",
       "status": 200,
+      "ttfbMs": 2100,
+      "responseTimeMs": 3840,
       "timedOut": false,
       "errors": [
         { "type": "PHP", "message": "Notice: Undefined variable $lab_id..." },
@@ -220,8 +250,15 @@ npm run scan -- https://mio-sito.example.com
 node tests/e2e/status-report/scan.js https://mio-sito.example.com
 ```
 
-Al termine troverai `report.html` e `report.json` in `tests/e2e/status-report/`.
-Apri `report.html` direttamente nel browser.
+Al termine troverai i file in `tests/e2e/status-report/reports/` con suffisso data/ora automatico, es.:
+
+```
+tests/e2e/status-report/reports/report_20260305_1430.html
+tests/e2e/status-report/reports/report_20260305_1430.json
+```
+
+Apri il file `.html` direttamente nel browser.
+I file nella cartella `reports/` non vengono committati su git.
 
 
 ---
@@ -284,5 +321,6 @@ vengono comunque catturati tramite `console.error` e `pageerror`.
 
 **File di output esclusi da git**
 
-`report.html`, `report.json` e la cartella `output/` sono nel `.gitignore`
-di questa cartella e non vengono committati.
+La cartella `reports/` è nel `.gitignore` di questa directory: i report
+generati non vengono committati. Solo il file `reports/.gitkeep` è tracciato
+per mantenere la cartella nel repository.
