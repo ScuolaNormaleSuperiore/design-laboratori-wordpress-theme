@@ -17,7 +17,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `DEV/`: local demo/dev environment (Docker-related files).
 - `DOC/`: project documentation and schemes.
 - `SETUP/`: ACF exports and setup utilities.
-- `scripts/`: project JavaScript scripts.
+- `DEV/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
 
 
