@@ -23,6 +23,18 @@ Keep explanations practical and tied to the current code.
 ## Trigger Commands
 Use the following trigger patterns and workflows.
 
+### Trigger summary
+
+| Trigger | Scope | Frasi di attivazione (EN / IT) |
+|---|---|---|
+| **A** | Singolo file o cartella — review approfondita con lint, fix e check HTML | "Run a full review on file/folder X" / "Fai una review completa del file/cartella X" |
+| **B** | Singola URL — audit runtime (HTML, JS, performance, accessibilità) | "Check URL X" / "Controlla l'URL X", "Audit page X" / "Verifica la pagina X" |
+| **C** | `ISSUES_TODO.md` — individua le issue aperte e suggerisce da dove partire | "Check if there are new issues" / "Ci sono issue da risolvere?", "Check if there are issues to fix" / "Da dove parto con le issue?" |
+| **D** | `ISSUES_TODO.md` — tabella numerica per categoria × severità | "I want a tabular issue summary" / "Fammi un riepilogo tabellare delle issue" |
+| **E** | Intera codebase — scansione completa, crea issue in `ISSUES_TODO.md`, report numerico finale | "Mi fai una code review del codice?" / "Mi fai una verifica completa sul codice della codebase?" |
+
+> **A vs E**: il Trigger A esamina in profondità un file o una cartella specifica e include lint ed eventuali fix; il Trigger E scansiona tutta la codebase in modalità read-only, non applica fix ma aggiunge le criticità trovate come issue in `ISSUES_TODO.md` e produce un report numerico aggregato.
+
 ### Trigger A: Full code review (file/folder scope)
 Trigger phrases (or equivalent wording):
 - "Run a full review on file X"
@@ -43,6 +55,30 @@ Expected output:
 - findings first, ordered by severity, with file/line references;
 - then assumptions/open questions;
 - then an optional short change summary.
+
+### Trigger E: Codebase-wide code review
+Trigger phrases (or equivalent wording):
+- "Mi fai una code review del codice?"
+- "Mi fai una verifica completa sul codice della codebase?"
+- Requests asking for a full review across the entire codebase (bugs, security, performance, accessibility, refactoring).
+
+Mandatory workflow:
+1. Read the codebase file by file, top-down (exclude `vendor/`, `node_modules/`, `assets/bootstrap-italia/`).
+2. For each file, check in order:
+   - **Bug**: logic errors, missing edge-case handling, visible frontend malfunctions.
+   - **Security**: unescaped output, SQL injection, CSRF, capability checks, open redirects.
+   - **Performance**: slow queries, unnecessary remote calls, missing caching, blocking assets.
+   - **Accessibility**: missing ARIA, unlabelled form fields, non-semantic markup, contrast issues.
+   - **Refactoring**: dead code, duplication, overly complex logic worth simplifying now.
+3. For every finding, check `AGENTS/ISSUES_TODO.md` first — skip if an equivalent issue already exists.
+4. Add only new, concrete findings to `ISSUES_TODO.md` using the standard issue template.
+   - Assign priority conservatively (do not escalate to Critical/High unless the impact is clear).
+5. After processing all files, output a **numeric summary report** grouped by category and severity.
+
+Expected output (at the end):
+- A concise table: rows = categories, columns = severities (Critical / High / Medium / Low / Total).
+- `Total open issues: N` (newly added in this session).
+- Do NOT list every finding in prose — the table is sufficient. For each Critical/High issue added, one line of rationale is acceptable.
 
 ### Trigger B: URL quality audit (page-level runtime check)
 Trigger phrases (or equivalent wording):

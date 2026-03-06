@@ -118,12 +118,12 @@ if ( 'yes' === $forminviato ) {
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- SEZIONE HEADER -->
-	<section id="banner-contatti" aria-describedby="Testo introduttivo sezione persone" class="bg-banner-contatti">
+	<section id="banner-contatti" aria-describedby="dli-contatti-intro-desc" class="bg-banner-contatti">
 		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
 				<div class="hero-title text-left ms-4 pb-3 pt-3">
 					<h2 class="p-0  "><?php echo esc_html( __( 'Contatti', 'design_laboratori_italia' ) ); ?></h2>
-					<p class="font-weight-normal">
+					<p id="dli-contatti-intro-desc" class="font-weight-normal">
 						<?php echo esc_html( __( 'Utilizza i dati di contatto o compila il form sottostante', 'design_laboratori_italia' ) ); ?>
 					</p>
 				</div>
@@ -282,17 +282,20 @@ if ( 'yes' === $forminviato ) {
 									<?php
 									if ( $captcha_enabled ) {
 									?>
-									<div class="row" style="margin-top: 20px;">
-										<div class="form-group col-md-6" style="text-align: center">
-											<img src="<?php echo esc_url( $captcha_obj_image_src ); ?>" alt="captcha"
-														width="<?php echo esc_attr( $captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $captcha_obj_image_height ); ?>" />
+										<div class="row" style="margin-top: 20px;">
+											<div class="form-group col-md-6" style="text-align: center">
+												<img src="<?php echo esc_url( $captcha_obj_image_src ); ?>" alt="captcha"
+															width="<?php echo esc_attr( $captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $captcha_obj_image_height ); ?>" />
+											</div>
+											<div class="form-group col-md-6">
+												<label class="active visually-hidden" for="captcha-field">
+													<?php echo esc_html__( 'Codice di conferma', 'design_laboratori_italia' ); ?>
+												</label>
+												<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $captcha_obj_image_width ); ?>" type="text" 
+														placeholder="<?php echo esc_html( __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ) ); ?>"	/>
+												<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $captcha_obj_prefix ); ?>" />
+											</div>
 										</div>
-										<div class="form-group col-md-6">
-											<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $captcha_obj_image_width ); ?>" type="text" 
-													placeholder="<?php echo esc_html( __( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ) ); ?>"	/>
-											<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $captcha_obj_prefix ); ?>" />
-										</div>
-									</div>
 									<?php
 									}
 									?>

@@ -278,12 +278,13 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 				}
 				if ( $famiglie && ( ! empty( $famiglie ) ) ) {
 					?>
-				<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
-					<table class="table table-striped">
-						<thead>
-							<tr> 
-								<th scope="col"><?php echo esc_html__( 'Numero di deposito', 'design_laboratori_italia' ); ?></th>
+					<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
+						<h3 class="h4"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
+						<table class="table table-striped">
+							<caption class="visually-hidden"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></caption>
+							<thead>
+								<tr> 
+									<th scope="col"><?php echo esc_html__( 'Numero di deposito', 'design_laboratori_italia' ); ?></th>
 								<th scope="col"><?php echo esc_html__( 'Data deposito', 'design_laboratori_italia' ); ?></th>
 								<th scope="col"><?php echo esc_html__( 'Titolo', 'design_laboratori_italia' ); ?></th>
 								<th scope="col"><?php echo esc_html__( 'Nazione deposito', 'design_laboratori_italia' ); ?></th>

@@ -271,7 +271,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 							if ( $email ) {
 								?>
 							<li>
-								<a target="_blank" href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
+								<a target="_blank" rel="noopener noreferrer" href="mailto:<?php echo esc_attr( $email ); ?>" class="list-item">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Mail">
 										<title>Mail</title>
@@ -286,7 +286,7 @@ $settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY 
 							if ( $sito_web ) {
 								?>
 							<li>
-								<a class="list-item" target="_blank" href="<?php echo esc_url( $sito_web ); ?>">
+								<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $sito_web ); ?>">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Link">
 										<title>Link</title>

@@ -35,15 +35,15 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 		?>
 		<ul class="link-list">
 		<?php
-		foreach ( $dli_menuitems as $dli_item ) {
-			$dli_active_class = '';
-			if ( get_permalink() === $dli_item->url ) {
-				$dli_active_class = 'active';
+			foreach ( $dli_menuitems as $dli_item ) {
+				$dli_active_class = '';
+				if ( get_permalink() === $dli_item->url ) {
+					$dli_active_class = 'active';
+				}
+				?>
+			<li><a class="list-item <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item->url ); ?>"<?php echo ( 'active' === $dli_active_class ) ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $dli_item->title ); ?></a></li>
+				<?php
 			}
-			?>
-		<li><a class="list-item <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item->url ); ?>" aria-current="page"><?php echo esc_html( $dli_item->title ); ?></a></li>
-			<?php
-		}
 		?>
 		</ul>
 		<?php

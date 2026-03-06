@@ -1,3 +1,6 @@
+# Claude Code local settings (personal, not shared)
+.claude/settings.local.json
+
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -53,6 +56,10 @@ tests/e2e/status-report/reports/*
 # Site quality scanner
 tests/e2e/quality-report/reports/*
 !tests/e2e/quality-report/reports/.gitkeep
+
+# UX scanner (accessibility + responsive)
+tests/e2e/ux-report/reports/*
+!tests/e2e/ux-report/reports/.gitkeep
 
 # Custom directives
 assets/css/compiled

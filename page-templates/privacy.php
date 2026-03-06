@@ -69,12 +69,12 @@ $cookies_presenti = false;
 	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 
 	<!-- BANNER PAGINA -->
-	<section id="banner-paginabase" aria-describedby="Testo introduttivo paginabase" class="bg-banner-paginabase">
+	<section id="banner-paginabase" aria-describedby="dli-privacy-intro-desc" class="bg-banner-paginabase">
 		<div class="section-muted p-3 primary-bg-c1">
 			<div class="container">
 				<div class="hero-title text-left ms-4 pb-3 pt-3">
 					<h2 class="p-0"><?php echo esc_html( get_the_title() ); ?></h2>
-					<p class="font-weight-normal">
+					<p id="dli-privacy-intro-desc" class="font-weight-normal">
 						<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 					</p>
 				</div>
