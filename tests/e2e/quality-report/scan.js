@@ -340,6 +340,7 @@ function checkPhpcs(timeout, scope) {
         errors: 0,
         warnings: 0,
         filesWithIssues: 0,
+        filesChecked: 0,
       },
       source: 'altro',
       details: [],
@@ -361,10 +362,13 @@ function checkPhpcs(timeout, scope) {
       errors: 0,
       warnings: 0,
       filesWithIssues: 0,
+      filesChecked: 0,
     },
     source: 'phpstan.neon (paths)',
     details: [],
   };
+
+  check.metrics.filesChecked = collectPhpFilesForScope(scope).length;
 
   const candidates = [baseUnix, baseWin];
 
@@ -429,6 +433,16 @@ function checkPhpcs(timeout, scope) {
   return check;
 }
 
+function readPhpStanLevel() {
+  const configFile = path.join(ROOT, PHPSTAN_CONFIG);
+  if (!fs.existsSync(configFile)) return null;
+  try {
+    const content = fs.readFileSync(configFile, 'utf8');
+    const m = content.match(/^\s*level\s*:\s*(\d+)/m);
+    return m ? parseInt(m[1], 10) : null;
+  } catch { return null; }
+}
+
 function checkPhpStan(timeout) {
   const check = {
     id: 'phpstan',
@@ -440,10 +454,13 @@ function checkPhpStan(timeout) {
     metrics: {
       errors: 0,
       filesWithErrors: 0,
+      level: null,
     },
     source: 'phpstan.neon (paths)',
     details: [],
   };
+
+  check.metrics.level = readPhpStanLevel();
 
   const candidates = [
     'vendor/bin/phpstan analyse --configuration=phpstan.neon --error-format=json --no-progress --memory-limit=512M',
@@ -509,6 +526,7 @@ function checkComposerAudit(timeout) {
       high: 0,
       medium: 0,
       low: 0,
+      abandoned: 0,
     },
     source: 'tutto il progetto',
     details: [],
@@ -551,6 +569,9 @@ function checkComposerAudit(timeout) {
   if (sev.critical > 0 || sev.high > 0) check.status = 'FAIL';
   else if (total > 0) check.status = 'WARN';
   else check.status = 'PASS';
+
+  check.metrics.abandoned = Object.keys(json.abandoned || {}).length;
+  if (check.metrics.abandoned > 0 && check.status === 'PASS') check.status = 'WARN';
 
   return check;
 }
@@ -643,6 +664,51 @@ function checkLargePhpFiles(scope) {
     check.details = offenders.slice(0, 20).map((o) => `${o.file} (${o.loc} LOC)`);
     if (offenders.length > 20) check.details.push(`... altri ${offenders.length - 20} file`);
   }
+
+  return check;
+}
+
+function checkTodoFixme(scope) {
+  const check = {
+    id: 'todo_fixme',
+    label: 'TODO / FIXME in PHP files',
+    severity: 'minor',
+    status: 'PASS',
+    command: 'internal file scan',
+    durationMs: 0,
+    metrics: { total: 0, todo: 0, fixme: 0, filesWithMarkers: 0 },
+    source: 'phpstan.neon (paths)',
+    details: [],
+  };
+
+  const t0 = Date.now();
+  const files = collectPhpFilesForScope(scope);
+  const TODO_RE = /\bTODO\b/g;
+  const FIXME_RE = /\bFIXME\b/g;
+  let totalTodo = 0;
+  let totalFixme = 0;
+  const offenders = [];
+
+  for (const file of files) {
+    const content = fs.readFileSync(file, 'utf8');
+    const todoCount = (content.match(TODO_RE) || []).length;
+    const fixmeCount = (content.match(FIXME_RE) || []).length;
+    if (todoCount > 0 || fixmeCount > 0) {
+      totalTodo += todoCount;
+      totalFixme += fixmeCount;
+      offenders.push({ file: path.relative(ROOT, file).replace(/\\/g, '/'), todo: todoCount, fixme: fixmeCount });
+    }
+  }
+
+  check.durationMs = Date.now() - t0;
+  check.metrics.todo = totalTodo;
+  check.metrics.fixme = totalFixme;
+  check.metrics.total = totalTodo + totalFixme;
+  check.metrics.filesWithMarkers = offenders.length;
+  // FIXME implies something broken/urgent; TODO alone is neutral
+  if (totalFixme > 0) check.status = 'WARN';
+  check.details = offenders.slice(0, 20).map((o) => `${o.file} (TODO: ${o.todo}, FIXME: ${o.fixme})`);
+  if (offenders.length > 20) check.details.push(`... altri ${offenders.length - 20} file`);
 
   return check;
 }
@@ -815,6 +881,7 @@ function main() {
     checkComposerAudit(opts.timeout),
     checkNpmAudit(opts.timeout),
     checkLargePhpFiles(scope),
+    checkTodoFixme(scope),
   ];
 
   const report = {

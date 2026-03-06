@@ -104,6 +104,7 @@ function compareChecks(newReport, oldReport) {
     return {
       id,
       label: (n && n.label) || (o && o.label) || id,
+      severity: (n && n.severity) || (o && o.severity) || null,
       statusOld,
       statusNew,
       change,
@@ -163,21 +164,42 @@ function writeHtml(result, outFile) {
       : result.summary.verdict === 'MIXED' ? '#e67e22'
         : '#6b7280';
 
+  const LOWER_IS_BETTER = new Set([
+    'errors', 'warnings', 'filesWithIssues', 'syntaxErrors',
+    'advisories', 'critical', 'high', 'medium', 'low', 'total',
+    'fixme', 'todo', 'filesWithMarkers', 'filesWithErrors',
+    'abandoned', 'filesOver1000',
+  ]);
+
+  const statusBadge = (s) => {
+    const c = s === 'PASS' ? '#27ae60' : s === 'WARN' ? '#e67e22' : s === 'FAIL' ? '#c0392b' : '#6b7280';
+    return `<span style="color:${c};font-weight:bold">${escHtml(s)}</span>`;
+  };
+
   const rows = result.deltas.map((d) => {
-    const statusColor = d.change === 'REGRESSION' ? '#c0392b'
+    const changeColor = d.change === 'REGRESSION' ? '#c0392b'
       : d.change === 'FIXED' ? '#27ae60'
         : d.change === 'CHANGED' ? '#e67e22'
           : '#6b7280';
 
+    const statusCell = `${statusBadge(d.statusOld)} → ${statusBadge(d.statusNew)}`;
+
     const metrics = d.metrics.length
-      ? `<ul>${d.metrics.map((m) => `<li><code>${escHtml(m.key)}</code>: ${m.old} -> ${m.new} (${m.delta > 0 ? '+' : ''}${m.delta})</li>`).join('')}</ul>`
+      ? `<ul>${d.metrics.map((m) => {
+          const isLower = LOWER_IS_BETTER.has(m.key);
+          const deltaColor = isLower
+            ? (m.delta > 0 ? '#c0392b' : m.delta < 0 ? '#27ae60' : '#6b7280')
+            : '#6b7280';
+          return `<li><code>${escHtml(m.key)}</code>: ${m.old} → ${m.new} <span style="color:${deltaColor};font-weight:bold">(${m.delta > 0 ? '+' : ''}${m.delta})</span></li>`;
+        }).join('')}</ul>`
       : '—';
 
     return `<tr>
-      <td><span style="color:${statusColor};font-weight:bold">${d.change}</span></td>
+      <td><span style="color:${changeColor};font-weight:bold">${d.change}</span></td>
       <td>${escHtml(d.id)}</td>
       <td>${escHtml(d.label)}</td>
-      <td>${escHtml(d.statusOld)} -> ${escHtml(d.statusNew)}</td>
+      <td>${escHtml(d.severity || '—')}</td>
+      <td>${statusCell}</td>
       <td>${metrics}</td>
     </tr>`;
   }).join('');
@@ -217,8 +239,22 @@ ul{margin:0;padding-left:18px}
     <div class="card"><div class="num" style="color:#c0392b">${result.summary.regressions}</div><div>Regressions</div></div>
     <div class="card"><div class="num" style="color:#e67e22">${result.summary.changed}</div><div>Changed</div></div>
     <div class="card"><div class="num">${result.summary.unchanged}</div><div>Unchanged</div></div>
-    <div class="card"><div class="num">${result.summary.failOld} -> ${result.summary.failNew}</div><div>FAIL checks</div></div>
-    <div class="card"><div class="num">${result.summary.warnOld} -> ${result.summary.warnNew}</div><div>WARN checks</div></div>
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span class="num" style="color:#7f8c8d">${result.summary.failOld}</span>
+        <span style="color:#aaa">→</span>
+        <span class="num" style="color:${result.summary.failNew > result.summary.failOld ? '#c0392b' : result.summary.failNew < result.summary.failOld ? '#27ae60' : '#7f8c8d'}">${result.summary.failNew}</span>
+      </div>
+      <div>FAIL checks</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span class="num" style="color:#7f8c8d">${result.summary.warnOld}</span>
+        <span style="color:#aaa">→</span>
+        <span class="num" style="color:${result.summary.warnNew > result.summary.warnOld ? '#e67e22' : result.summary.warnNew < result.summary.warnOld ? '#27ae60' : '#7f8c8d'}">${result.summary.warnNew}</span>
+      </div>
+      <div>WARN checks</div>
+    </div>
   </div>
 
   <table class="table">
@@ -227,6 +263,7 @@ ul{margin:0;padding-left:18px}
         <th>Delta</th>
         <th>ID</th>
         <th>Check</th>
+        <th>Severity</th>
         <th>Status</th>
         <th>Metric changes</th>
       </tr>
@@ -272,9 +309,11 @@ function main() {
   const deltas = compareChecks(newReport, oldReport);
   const summary = buildSummary(deltas, newReport, oldReport);
 
+  const tsNew = tsFromFilename(path.basename(fileNew)) || String(Date.now());
+  const tsOld = tsFromFilename(path.basename(fileOld)) || String(Date.now());
   const outFile = opts.out
     ? (opts.out.endsWith('.html') ? opts.out : `${opts.out}.html`)
-    : path.join(REPORTS_DIR, `quality_compare_${Date.now()}.html`);
+    : path.join(REPORTS_DIR, `quality_compare_${tsNew}_vs_${tsOld}.html`);
 
   const result = {
     newFile: path.basename(fileNew),

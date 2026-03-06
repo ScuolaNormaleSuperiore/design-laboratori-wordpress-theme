@@ -38,7 +38,7 @@ function parseArgs(argv) {
 // ---------------------------------------------------------------------------
 
 function tsFromFilename(filename) {
-  const m = path.basename(filename).match(/^report_(\d{8}_\d{4})\.json$/);
+  const m = path.basename(filename).match(/^status_report_(\d{8}_\d{4})\.json$/);
   return m ? m[1] : null;
 }
 
@@ -53,7 +53,7 @@ function findTwoMostRecentReports() {
     .sort((a, b) => tsFromFilename(b).localeCompare(tsFromFilename(a)));
 
   if (files.length < 2) {
-    console.error(`ERROR: Need at least 2 report_*.json files in reports/, found ${files.length}.`);
+    console.error(`ERROR: Need at least 2 status_report_*.json files in reports/, found ${files.length}.`);
     process.exit(1);
   }
 
