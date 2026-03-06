@@ -33,7 +33,7 @@ if ( is_scalar( $dli_raw_anno_select ) ) {
 $dli_tipi_pubblicazione = get_terms(
 	array(
 		'taxonomy'   => PUBLICATION_TYPE_TAXONOMY,
-		'hide_empty' => false,
+		'hide_empty' => true,
 	)
 );
 
@@ -85,6 +85,7 @@ $dli_query_args = array(
 	'posts_per_page' => (int) $dli_per_page,
 	'paged'          => $dli_paged,
 	'post_type'      => PUBLICATION_POST_TYPE,
+	'post_status'    => 'publish',
 );
 
 $dli_sort_mode = is_string( $dli_testo_sezione ) ? sanitize_key( $dli_testo_sezione ) : 'post_date';
