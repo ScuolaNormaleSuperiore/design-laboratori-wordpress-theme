@@ -1,0 +1,422 @@
+{
+  "generatedAt": "2026-03-06T12:00:00.000Z",
+  "summary": {
+    "total": 50,
+    "bySeverity": {
+      "Critical": 0,
+      "High": 6,
+      "Medium": 42,
+      "Low": 2
+    },
+    "byCategory": {
+      "Security":      { "Critical": 0, "High": 1, "Medium": 2, "Low": 0, "total": 3 },
+      "Bug":           { "Critical": 0, "High": 0, "Medium": 13, "Low": 0, "total": 13 },
+      "Refactoring":   { "Critical": 0, "High": 0, "Medium": 15, "Low": 0, "total": 15 },
+      "CodeStyle":     { "Critical": 0, "High": 0, "Medium": 1, "Low": 2, "total": 3 },
+      "Performance":   { "Critical": 0, "High": 4, "Medium": 7, "Low": 0, "total": 11 },
+      "Accessibility": { "Critical": 0, "High": 1, "Medium": 4, "Low": 0, "total": 5 }
+    }
+  },
+  "issues": [
+    {
+      "title": "SVG upload allowed without server-side sanitization — stored XSS vector",
+      "priority": "HIGH",
+      "category": "Security",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["functions.php"]
+    },
+    {
+      "title": "contatti.php reads $_POST without wp_unslash() — data corruption and inconsistency",
+      "priority": "MEDIUM",
+      "category": "Security",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["page-templates/contatti.php"]
+    },
+    {
+      "title": "dli_enable_svg_upload does not verify the uploaded file's actual MIME type — MIME-type spoofing risk",
+      "priority": "MEDIUM",
+      "category": "Security",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["functions.php"]
+    },
+    {
+      "title": "echo __() used instead of echo esc_html__() across multiple templates — unescaped output",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["single-spinoff.php", "single-progetto.php", "single-indirizzo-di-ricerca.php", "page-templates/ricerca.php", "page-templates/spinoff.php", "page-templates/privacy.php"]
+    },
+    {
+      "title": "get_template_directory_uri() echoed without esc_url() in page-templates/ricerca.php",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["page-templates/ricerca.php"]
+    },
+    {
+      "title": "current_time('timestamp') deprecated usage in class-base-importer.php",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["inc/classes/class-base-importer.php"]
+    },
+    {
+      "title": "Newsletter_Manager::validate() returns true on error and false on success — inverted boolean",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["inc/classes/class-newslettermanager.php"]
+    },
+    {
+      "title": "echo the_content() — double-echo anti-pattern in news/post detail",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["single-notizia.php", "single-post.php"]
+    },
+    {
+      "title": "Stray > character after <img> tag in hero sections — visible in output",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["single-spinoff.php"]
+    },
+    {
+      "title": "str_contains() on potentially null $posizione in single-luogo.php — TypeError in PHP 8+",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["single-luogo.php"]
+    },
+    {
+      "title": "sanitize_text_field() used for $per_page instead of absint() across archive templates",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["page-templates/pubblicazioni.php", "page-templates/brevetti.php", "page-templates/spinoff.php", "page-templates/risorse-tecniche.php", "page-templates/ricerca.php", "page-templates/archive-progetti.php"]
+    },
+    {
+      "title": "Banner_Manager::custom_layout() checks NEWS_POST_TYPE instead of BANNER_POST_TYPE",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/classes/class-bannermanager.php"]
+    },
+    {
+      "title": "Unsafe [0] dereference on potentially null option in featured-contents.php",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["template-parts/home/featured-contents.php"]
+    },
+    {
+      "title": "$og_data properties accessed without null checks in social-sharing.php",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["template-parts/common/social-sharing.php"]
+    },
+    {
+      "title": "$menu_items variable overwritten inside its own foreach loop in dli_get_site_tree()",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/utils.php"]
+    },
+    {
+      "title": "Trailing comma in every @font-face src declaration — invalid CSS",
+      "priority": "MEDIUM",
+      "category": "Bug",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["assets/css/fonts.css"]
+    },
+    {
+      "title": "Centralize event date rendering",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["template-parts/home/hp-list-event.php", "template-parts/home/card-eventi.php", "template-parts/common/sezione-box-evento.php", "page-templates/eventi.php"]
+    },
+    {
+      "title": "Consolidate ACF date parsing/formatting",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Normalize translated month name usage",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Add safe helper for archive page lookup",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Centralize breadcrumb building",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Consolidate item wrappers",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Unify link rendering logic",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Normalize image metadata fallback",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Reduce repeated WP_Query patterns",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Improve pagination handling",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": []
+    },
+    {
+      "title": "Move template define() constants to central config",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["page-templates/*.php", "template-parts/common/*.php", "config_lab.php"]
+    },
+    {
+      "title": "Centralize archive/filter query param parsing",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["page-templates/blog.php", "page-templates/eventi.php", "page-templates/notizie.php", "page-templates/brevetti.php", "page-templates/risorse-tecniche.php", "page-templates/spinoff.php", "page-templates/progetti.php", "page-templates/pubblicazioni.php"]
+    },
+    {
+      "title": "Extract shared card/list item rendering helpers",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["template-parts/home/*.php", "template-parts/common/sezione-*.php", "page-templates/*.php"]
+    },
+    {
+      "title": "Refactor header composition into focused partials/helpers",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["header.php", "template-parts/header/*.php"]
+    },
+    {
+      "title": "Introduce typed wrapper accessors for option arrays",
+      "priority": "MEDIUM",
+      "category": "Refactoring",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["template-parts/header/alert.php", "header.php", "template-parts/header/metatags.php", "template-parts/header/seo-tags.php", "inc/utils.php"]
+    },
+    {
+      "title": "<FORM> and </FORM> uppercase HTML tags in contatti.php — non-standard markup",
+      "priority": "LOW",
+      "category": "CodeStyle",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["page-templates/contatti.php"]
+    },
+    {
+      "title": "Standardize output escaping strategy with small utility layer",
+      "priority": "MEDIUM",
+      "category": "CodeStyle",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["header.php", "template-parts/**/*.php", "page-templates/**/*.php"]
+    },
+    {
+      "title": "esc_attr() used for HTML element content instead of esc_html() in footer.php",
+      "priority": "LOW",
+      "category": "CodeStyle",
+      "status": "Open",
+      "date": "2026-02-12",
+      "files": ["footer.php"]
+    },
+    {
+      "title": "dli_get_sitemap_posts() uses unbounded posts_per_page => -1 — memory risk on large sites",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["inc/utils.php"]
+    },
+    {
+      "title": "Publications archive performs full dataset scan and per-item meta lookup on each request",
+      "priority": "HIGH",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["page-templates/pubblicazioni.php"]
+    },
+    {
+      "title": "Static CSS/JS are served without compression and with revalidation-heavy cache headers",
+      "priority": "HIGH",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-19",
+      "files": ["functions.php"]
+    },
+    {
+      "title": "dli_get_all_place_types_with_results() runs N+1 uncached WP_Query calls",
+      "priority": "HIGH",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/utils.php", "page-templates/luoghi.php"]
+    },
+    {
+      "title": "dli_get_all_categories_by_ct() loads all post IDs (numberposts => -1) before get_terms()",
+      "priority": "HIGH",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/utils.php", "page-templates/blog.php", "page-templates/notizie.php", "page-templates/eventi.php", "page-templates/brevetti.php", "page-templates/spinoff.php", "page-templates/risorse-tecniche.php"]
+    },
+    {
+      "title": "get_related_items() uses LIKE on postmeta — full table scan on every call",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/classes/class-contents-manager.php"]
+    },
+    {
+      "title": "get_carousel_items() and card-eventi.php use unbounded posts_per_page => -1",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/classes/class-contents-manager.php", "template-parts/home/card-eventi.php"]
+    },
+    {
+      "title": "dli_translate() queries custom translations DB table on every call without caching",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/utils.php"]
+    },
+    {
+      "title": "DLI_AuthorizationManager::add_super_editor() calls add_cap() on every init request — unnecessary DB writes",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-03-06",
+      "files": ["inc/classes/class-authmanager.php"]
+    },
+    {
+      "title": "dli_disable_all_comments() calls update_option() on every page load via after_setup_theme",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["inc/actions.php"]
+    },
+    {
+      "title": "main.js enqueued in <head> without defer — render-blocking",
+      "priority": "MEDIUM",
+      "category": "Performance",
+      "status": "Open",
+      "date": "2026-02-17",
+      "files": ["functions.php"]
+    },
+    {
+      "title": "SVG aria-labelledby punta a ID inesistenti — pattern difuso in template e single-page",
+      "priority": "HIGH",
+      "category": "Accessibility",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["single-evento.php", "single-progetto.php", "single-persona.php", "single-luogo.php", "single-indirizzo-di-ricerca.php", "header.php", "template-parts/header/top-menu.php", "page-templates/contatti.php", "page-templates/newsletter.php", "template-parts/header/alert.php", "template-parts/common/social.php", "template-parts/common/social-footer.php"]
+    },
+    {
+      "title": "it-back-button usa <a href='#' role='button'> — link non navigabile da tastiera con Spazio",
+      "priority": "MEDIUM",
+      "category": "Accessibility",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["single-evento.php", "single-progetto.php", "single-persona.php", "single-luogo.php", "single-indirizzo-di-ricerca.php", "single-brevetto.php", "single-spinoff.php", "single-risorsa-tecnica.php"]
+    },
+    {
+      "title": "Link footer href='#' per sezioni Contatti e Link utili — link non funzionali",
+      "priority": "MEDIUM",
+      "category": "Accessibility",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["footer.php"]
+    },
+    {
+      "title": "Progress bar navscroll priva di aria-label descrittivo in 8 template single",
+      "priority": "MEDIUM",
+      "category": "Accessibility",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["single-evento.php", "single-brevetto.php", "single-persona.php", "single-luogo.php", "single-indirizzo-di-ricerca.php", "single-spinoff.php", "single-risorsa-tecnica.php", "single-progetto.php"]
+    },
+    {
+      "title": "SVG icona espandi in top-menu.php combina aria-hidden='true' e role='img' in modo contraddittorio",
+      "priority": "MEDIUM",
+      "category": "Accessibility",
+      "status": "Open",
+      "date": "2026-03-03",
+      "files": ["template-parts/header/top-menu.php"]
+    }
+  ]
+}

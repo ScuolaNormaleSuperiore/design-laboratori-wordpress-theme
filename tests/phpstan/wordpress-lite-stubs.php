@@ -4,6 +4,8 @@
  *
  * These declarations are intentionally minimal and are only used
  * by static analysis to reduce false positives in this theme.
+ *
+ * @package Design_Laboratori_WordPress_Theme
  */
 
 if ( ! class_exists( 'WP_Post' ) ) {

@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DLI UX Report</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;background:#f6f7f9;color:#1f2937}
+h1{margin:0 0 8px}
+.meta{color:#4b5563;font-size:14px;margin-bottom:18px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.card{background:#fff;border-radius:8px;padding:12px 16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card .num{font-size:24px;font-weight:700}
+.table{width:100%;border-collapse:collapse;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.table th,.table td{border-bottom:1px solid #e5e7eb;padding:8px 10px;vertical-align:top;text-align:left;font-size:13px}
+.table th{background:#111827;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+code{font-size:11px;background:#f3f4f6;padding:1px 3px;border-radius:3px}
+ul{margin:4px 0;padding-left:16px}
+</style>
+</head>
+<body>
+  <h1>DLI UX Report</h1>
+  <div class="meta">
+    Scanned: <strong>06/03/2026, 15:23:26</strong>
+    &nbsp;|&nbsp;
+    Base URL: <strong>https://laboratorio1.local</strong>
+    &nbsp;|&nbsp; Branch: <strong>dev</strong> @ <code>0b2c718b</code>
+    &nbsp;|&nbsp;
+    Verdict: <strong style="color:#e67e22">WARN</strong>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">95</div><div>Pages scanned</div></div>
+    <div class="card"><div class="num" style="color:#27ae60">0</div><div>Pages with Axe violations</div></div>
+    <div class="card"><div class="num" style="color:#e67e22">92</div><div>Pages with overflow</div></div>
+    <div class="card"><div class="num" style="color:#27ae60">0</div><div>Critical violations</div></div>
+    <div class="card"><div class="num" style="color:#27ae60">0</div><div>Serious violations</div></div>
+    <div class="card"><div class="num">0</div><div>Moderate violations</div></div>
+    <div class="card"><div class="num">0</div><div>Minor violations</div></div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>Verdict</th>
+        <th>Critical</th>
+        <th>Serious</th>
+        <th>Moderate</th>
+        <th>Minor</th>
+        <th>Responsive</th>
+        <th>Axe violations</th>
+      </tr>
+    </thead>
+    <tbody><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">mobile:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">mobile:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/accessibilita</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/archivio-progetti</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetti</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:430px, w:418px)</li><li><code>thead</code> (right:430px, w:418px)</li><li><code>tr</code> (right:430px, w:418px)</li><li><code>th</code> (right:430px, w:82px)</li><li><code>tbody</code> (right:430px, w:418px)</li><li><code>tr</code> (right:430px, w:418px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/anticorpo-intracellulare</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:383px, w:347px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:438px, w:426px)</li><li><code>thead</code> (right:438px, w:426px)</li><li><code>tr</code> (right:438px, w:426px)</li><li><code>th</code> (right:438px, w:82px)</li><li><code>tbody</code> (right:438px, w:426px)</li><li><code>tr</code> (right:438px, w:426px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:382px, w:346px)</li><li><code>table.table.table-striped</code> (right:474px, w:462px)</li><li><code>thead</code> (right:474px, w:462px)</li><li><code>tr</code> (right:474px, w:462px)</li><li><code>th</code> (right:392px, w:159px)</li><li><code>th</code> (right:474px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:376px, w:340px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:376px, w:340px)</li><li><code>table.table.table-striped</code> (right:463px, w:451px)</li><li><code>thead</code> (right:463px, w:451px)</li><li><code>tr</code> (right:463px, w:451px)</li><li><code>th</code> (right:463px, w:103px)</li><li><code>tbody</code> (right:463px, w:451px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:376px, w:340px)</li><li><code>table.table.table-striped</code> (right:418px, w:406px)</li><li><code>thead</code> (right:418px, w:406px)</li><li><code>tr</code> (right:418px, w:406px)</li><li><code>th</code> (right:418px, w:82px)</li><li><code>tbody</code> (right:418px, w:406px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:375px, w:339px)</li><li><code>table.table.table-striped</code> (right:427px, w:415px)</li><li><code>thead</code> (right:427px, w:415px)</li><li><code>tr</code> (right:427px, w:415px)</li><li><code>th</code> (right:427px, w:84px)</li><li><code>tbody</code> (right:427px, w:415px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:377px, w:341px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:455px, w:443px)</li><li><code>thead</code> (right:455px, w:443px)</li><li><code>tr</code> (right:455px, w:443px)</li><li><code>th</code> (right:455px, w:82px)</li><li><code>tbody</code> (right:455px, w:443px)</li><li><code>tr</code> (right:455px, w:443px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:464px, w:452px)</li><li><code>thead</code> (right:464px, w:452px)</li><li><code>tr</code> (right:464px, w:452px)</li><li><code>th</code> (right:464px, w:103px)</li><li><code>tbody</code> (right:464px, w:452px)</li><li><code>tr</code> (right:464px, w:452px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:428px, w:416px)</li><li><code>thead</code> (right:428px, w:416px)</li><li><code>tr</code> (right:428px, w:416px)</li><li><code>th</code> (right:428px, w:82px)</li><li><code>tbody</code> (right:428px, w:416px)</li><li><code>tr</code> (right:428px, w:416px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/intracellular-antibody</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:456px, w:444px)</li><li><code>thead</code> (right:456px, w:444px)</li><li><code>tr</code> (right:456px, w:444px)</li><li><code>th</code> (right:456px, w:82px)</li><li><code>tbody</code> (right:456px, w:444px)</li><li><code>tr</code> (right:456px, w:444px)</li><li><code>td</code> (right:456px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:455px, w:443px)</li><li><code>thead</code> (right:455px, w:443px)</li><li><code>tr</code> (right:455px, w:443px)</li><li><code>th</code> (right:455px, w:82px)</li><li><code>tbody</code> (right:455px, w:443px)</li><li><code>tr</code> (right:455px, w:443px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:376px, w:340px)</li><li><code>table.table.table-striped</code> (right:473px, w:461px)</li><li><code>thead</code> (right:473px, w:461px)</li><li><code>tr</code> (right:473px, w:461px)</li><li><code>th</code> (right:388px, w:155px)</li><li><code>th</code> (right:473px, w:85px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:386px, w:374px)</li><li><code>thead</code> (right:386px, w:374px)</li><li><code>tr</code> (right:386px, w:374px)</li><li><code>th</code> (right:386px, w:78px)</li><li><code>tbody</code> (right:386px, w:374px)</li><li><code>tr</code> (right:386px, w:374px)</li><li><code>td</code> (right:386px, w:78px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:380px, w:344px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:383px, w:347px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:471px, w:459px)</li><li><code>thead</code> (right:471px, w:459px)</li><li><code>tr</code> (right:471px, w:459px)</li><li><code>th</code> (right:389px, w:156px)</li><li><code>th</code> (right:471px, w:82px)</li><li><code>tbody</code> (right:471px, w:459px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:380px, w:344px)</li><li><code>table.table.table-striped</code> (right:466px, w:454px)</li><li><code>thead</code> (right:466px, w:454px)</li><li><code>tr</code> (right:466px, w:454px)</li><li><code>th</code> (right:384px, w:158px)</li><li><code>th</code> (right:466px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:449px, w:437px)</li><li><code>thead</code> (right:449px, w:437px)</li><li><code>tr</code> (right:449px, w:437px)</li><li><code>th</code> (right:449px, w:82px)</li><li><code>tbody</code> (right:449px, w:437px)</li><li><code>tr</code> (right:449px, w:437px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:384px, w:348px)</li><li><code>table.table.table-striped</code> (right:483px, w:471px)</li><li><code>thead</code> (right:483px, w:471px)</li><li><code>tr</code> (right:483px, w:471px)</li><li><code>th</code> (right:401px, w:175px)</li><li><code>th</code> (right:483px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/prova</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:436px, w:424px)</li><li><code>thead</code> (right:436px, w:424px)</li><li><code>tr</code> (right:436px, w:424px)</li><li><code>th</code> (right:436px, w:82px)</li><li><code>tbody</code> (right:436px, w:424px)</li><li><code>tr</code> (right:436px, w:424px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/quantum-processing-unit</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:425px, w:413px)</li><li><code>thead</code> (right:425px, w:413px)</li><li><code>tr</code> (right:425px, w:413px)</li><li><code>th</code> (right:425px, w:82px)</li><li><code>tbody</code> (right:425px, w:413px)</li><li><code>tr</code> (right:425px, w:413px)</li><li><code>td</code> (right:425px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/quantum-processing-unit-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:414px, w:402px)</li><li><code>thead</code> (right:414px, w:402px)</li><li><code>tr</code> (right:414px, w:402px)</li><li><code>th</code> (right:414px, w:82px)</li><li><code>tbody</code> (right:414px, w:402px)</li><li><code>tr</code> (right:414px, w:402px)</li><li><code>td</code> (right:414px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/soluzione-di-contrasto</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:405px, w:393px)</li><li><code>thead</code> (right:405px, w:393px)</li><li><code>tr</code> (right:405px, w:393px)</li><li><code>th</code> (right:405px, w:82px)</li><li><code>tbody</code> (right:405px, w:393px)</li><li><code>tr</code> (right:405px, w:393px)</li><li><code>td</code> (right:405px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:380px, w:344px)</li><li><code>table.table.table-striped</code> (right:482px, w:470px)</li><li><code>thead</code> (right:482px, w:470px)</li><li><code>tr</code> (right:482px, w:470px)</li><li><code>th</code> (right:400px, w:167px)</li><li><code>th</code> (right:482px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>a</code> (right:378px, w:342px)</li><li><code>table.table.table-striped</code> (right:466px, w:454px)</li><li><code>thead</code> (right:466px, w:454px)</li><li><code>tr</code> (right:466px, w:454px)</li><li><code>th</code> (right:385px, w:151px)</li><li><code>th</code> (right:466px, w:82px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/systems-for-quantum-computing</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li><li><code>table.table.table-striped</code> (right:462px, w:450px)</li><li><code>thead</code> (right:462px, w:450px)</li><li><code>tr</code> (right:462px, w:450px)</li><li><code>th</code> (right:380px, w:154px)</li><li><code>th</code> (right:462px, w:82px)</li><li><code>tbody</code> (right:462px, w:450px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/contatti</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>input#captcha-field</code> (right:674px, w:614px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">tablet:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>input#captcha-field</code> (right:1010px, w:614px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">desktop:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>input#captcha-field</code> (right:1413px, w:614px)</li></ul></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/en/site-map</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/estate-2024-racconto-di-un-viaggio</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/eventi</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/altro-evento</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/back-to-school</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/evento-alternativo</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/eventone</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li.breadcrumb-item.active</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/hello-world</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/il-blog</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li#splide01-slide02.splide__slide.is-next</code> (right:630px, w:279px)</li><li><code>div.it-single-slide-wrapper</code> (right:630px, w:279px)</li><li><code>div.card-wrapper.card-space</code> (right:630px, w:279px)</li><li><code>div.card.card-bg</code> (right:622px, w:263px)</li><li><code>div.card-body</code> (right:622px, w:263px)</li><li><code>div.category-top</code> (right:598px, w:215px)</li><li><code>a.category</code> (right:463px, w:80px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/lorem-ipsum</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/luoghi</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/luoghi/aula-magna</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:616px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:616px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:872px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:872px, w:256px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/luoghi/sede-principale</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:476px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:476px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:476px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:732px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:732px, w:256px)</li><li><code>img.leaflet-tile.leaflet-tile-loaded</code> (right:732px, w:256px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/mappa-sito</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/newsletter</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>input#captcha-field</code> (right:674px, w:614px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">tablet:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>input#captcha-field</code> (right:1010px, w:614px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/note-legali</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/novita</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/persone</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/persone/persona-con-link-esterno</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/persone/persona-con-scheda-completa</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/presentazione</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/privacy-policy</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/progetti</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/progetto/progetto-archiviato</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/progetto/progetto-di-test</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li#splide01-slide02.splide__slide.is-next</code> (right:630px, w:279px)</li><li><code>div.it-single-slide-wrapper</code> (right:630px, w:279px)</li><li><code>div.card-wrapper.card-space</code> (right:630px, w:279px)</li><li><code>div.card.card-img.no-after</code> (right:622px, w:263px)</li><li><code>div.img-responsive-wrapper</code> (right:622px, w:263px)</li><li><code>div.img-responsive.img-responsive-panoramic</code> (right:622px, w:263px)</li><li><code>figure.img-wrapper</code> (right:622px, w:263px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/pubblicazioni</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/ricerca</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/ricerca-sito</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/risorsa-tecnica/una-prova</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/risorse-tecniche</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/spinoff</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/spinoff/biloab</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/spinoff/google-labs</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/spinoff/prova</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/un-articolo</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/un-articolo-2</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>—</td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/una-prova</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/voce-primo-livello</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/voce-primo-livello/eelisa-european-university</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li#splide01-slide02.splide__slide.is-next</code> (right:738px, w:351px)</li><li><code>div.it-single-slide-wrapper</code> (right:738px, w:351px)</li><li><code>div.card-wrapper.card-space</code> (right:738px, w:351px)</li><li><code>div.card.card-img.no-after</code> (right:730px, w:335px)</li><li><code>div.img-responsive-wrapper</code> (right:730px, w:335px)</li><li><code>div.img-responsive.img-responsive-panoramic</code> (right:730px, w:335px)</li><li><code>figure.img-wrapper</code> (right:730px, w:335px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/voce-primo-livello/voce-secondo-livello</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li><li><code>li#splide01-slide02.splide__slide.is-next</code> (right:738px, w:351px)</li><li><code>div.it-single-slide-wrapper</code> (right:738px, w:351px)</li><li><code>div.card-wrapper.card-space</code> (right:738px, w:351px)</li><li><code>div.card.card-img.no-after</code> (right:730px, w:335px)</li><li><code>div.img-responsive-wrapper</code> (right:730px, w:335px)</li><li><code>div.img-responsive.img-responsive-panoramic</code> (right:730px, w:335px)</li><li><code>figure.img-wrapper</code> (right:730px, w:335px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr><tr>
+      <td style="word-break:break-all;font-size:12px">https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola</td>
+      <td style="color:#27ae60;font-weight:bold">PASS</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><div style="margin-bottom:2px"><span style="color:#c0392b;font-size:11px;font-weight:bold">mobile:OVF</span><ul style="margin:4px 0 0;padding-left:14px"><li><code>div.col-12.ms-4</code> (right:399px, w:375px)</li><li><code>nav.breadcrumb-container</code> (right:387px, w:351px)</li><li><code>ol.breadcrumb.pb-0</code> (right:387px, w:351px)</li></ul></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">tablet:OK</span></div><div style="margin-bottom:2px"><span style="color:#27ae60;font-size:11px;font-weight:bold">desktop:OK</span></div></td>
+      <td style="font-size:12px">—</td>
+    </tr></tbody>
+  </table>
+</body>
+</html>

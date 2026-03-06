@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DLI Site Status Report</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #f5f5f5; color: #222; }
+  h1 { font-size: 1.4em; margin: 0 0 4px; }
+  .meta { color: #666; font-size: 0.85em; margin-bottom: 24px; }
+  .summary { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .card { background: #fff; border-radius: 6px; padding: 16px 24px; min-width: 120px; box-shadow: 0 1px 4px rgba(0,0,0,.1); text-align: center; }
+  .card .num { font-size: 2em; font-weight: bold; line-height: 1; }
+  .card .lbl { font-size: 0.75em; color: #666; margin-top: 4px; text-transform: uppercase; letter-spacing: .04em; }
+  .verdict { font-size: 1.6em; font-weight: bold; color: #27ae60; border: 2px solid #27ae60; border-radius: 6px; padding: 12px 24px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 24px; }
+  th { background: #2c3e50; color: #fff; padding: 10px 12px; text-align: left; font-size: 0.8em; text-transform: uppercase; letter-spacing: .05em; }
+  tr.row-error:hover, tr.row-ok:hover { background: #f0f4f8; }
+  tr.row-error { border-left: 3px solid #c0392b; }
+  .section-title { font-size: 1em; font-weight: bold; color: #444; margin: 24px 0 8px; }
+  details summary { cursor: pointer; font-size: 0.9em; color: #666; padding: 6px 0; }
+  code { font-size: 0.82em; word-break: break-all; }
+</style>
+</head>
+<body>
+
+<h1>DLI Site Status Report</h1>
+<p class="meta">
+  Sito: <strong><a href="https://laboratorio1.local" target="_blank" rel="noopener">https://laboratorio1.local</a></strong>
+  &nbsp;&bull;&nbsp; Scansione: <strong>06/03/2026, 15:10:35</strong>
+  &nbsp;&bull;&nbsp; Pagine controllate: <strong>95</strong>
+</p>
+
+<!-- RIEPILOGO NUMERICO -->
+<div class="summary">
+  <div class="card verdict">PASS</div>
+  <div class="card"><div class="num" style="color:#27ae60">95</div><div class="lbl">Pagine OK</div></div>
+  <div class="card"><div class="num" style="color:#c0392b">0</div><div class="lbl">Con errori</div></div>
+  <div class="card"><div class="num">95</div><div class="lbl">Totale</div></div>
+  <div class="card"><div class="num" style="color:#c0392b">0</div><div class="lbl">HTTP errors</div></div>
+  <div class="card"><div class="num" style="color:#e67e22">0</div><div class="lbl">PHP errors</div></div>
+  <div class="card"><div class="num" style="color:#8e44ad">0</div><div class="lbl">JS errors</div></div>
+  <div class="card"><div class="num" style="color:#2980b9">0</div><div class="lbl">Risorse 404</div></div>
+  <div class="card"><div class="num" style="color:#7f8c8d">0</div><div class="lbl">Timeout</div></div>
+  <div class="card"><div class="num" style="color:#16a085">7260ms</div><div class="lbl">Tempo medio</div></div>
+  <div class="card"><div class="num" style="color:#c0392b">9842ms</div><div class="lbl">Tempo max</div></div>
+</div>
+
+
+
+
+<details>
+  <summary>Pagine senza errori (95) &mdash; clicca per espandere</summary>
+  <table style="margin-top:8px">
+    <thead>
+      <tr>
+        <th style="width:36px"></th>
+        <th>URL</th>
+        <th style="width:90px;text-align:center">Status</th>
+        <th style="width:160px;text-align:right">TTFB / Load</th>
+        <th style="width:80px;text-align:center">Errori</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local" target="_blank" rel="noopener">https://laboratorio1.local</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">2634</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 3011 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/" target="_blank" rel="noopener">https://laboratorio1.local/</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">3440</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 3783 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/accessibilita" target="_blank" rel="noopener">https://laboratorio1.local/accessibilita</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8138</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8364 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/archivio-progetti" target="_blank" rel="noopener">https://laboratorio1.local/archivio-progetti</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7038</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7323 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetti" target="_blank" rel="noopener">https://laboratorio1.local/brevetti</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6425</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6705 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8823</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 9163 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/anticorpo-intracellulare" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/anticorpo-intracellulare</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8660</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8988 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">9224</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 9560 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7095</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7325 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6433</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6636 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6805</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7033 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6663</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6857 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6363</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6601 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6772</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7088 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6693</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6897 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6456</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6675 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6691</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7175 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6907</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7130 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6703</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6929 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6302</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6562 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6535</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6731 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/intracellular-antibody" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/intracellular-antibody</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6287</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6492 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6538</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6837 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">4765</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 5025 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6337</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6574 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7027</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7339 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6861</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7144 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8234</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8523 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8152</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8418 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8041</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8257 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6327</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6623 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7180</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7938 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7845</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8606 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8223</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8707 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7302</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7829 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/prova" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/prova</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6973</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7190 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7044</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7269 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6413</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6659 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/quantum-processing-unit" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/quantum-processing-unit</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6732</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6984 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/quantum-processing-unit-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/quantum-processing-unit-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6969</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7241 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">5005</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 5322 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/soluzione-di-contrasto" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/soluzione-di-contrasto</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7518</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7832 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6821</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7202 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7283</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7806 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/systems-for-quantum-computing" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/systems-for-quantum-computing</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7607</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8056 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7117</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7481 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/contatti" target="_blank" rel="noopener">https://laboratorio1.local/contatti</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7182</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7473 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/en/site-map" target="_blank" rel="noopener">https://laboratorio1.local/en/site-map</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6958</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7181 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/estate-2024-racconto-di-un-viaggio" target="_blank" rel="noopener">https://laboratorio1.local/estate-2024-racconto-di-un-viaggio</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6548</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6814 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/eventi" target="_blank" rel="noopener">https://laboratorio1.local/eventi</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6949</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7260 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting" target="_blank" rel="noopener">https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7621</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7917 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/altro-evento" target="_blank" rel="noopener">https://laboratorio1.local/evento/altro-evento</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">9189</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 9700 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/back-to-school" target="_blank" rel="noopener">https://laboratorio1.local/evento/back-to-school</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7717</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8521 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/evento-alternativo" target="_blank" rel="noopener">https://laboratorio1.local/evento/evento-alternativo</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7746</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7997 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/eventone" target="_blank" rel="noopener">https://laboratorio1.local/evento/eventone</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6145</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6392 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino" target="_blank" rel="noopener">https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7024</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7303 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno" target="_blank" rel="noopener">https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6781</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7043 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici" target="_blank" rel="noopener">https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6783</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7151 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/hello-world" target="_blank" rel="noopener">https://laboratorio1.local/hello-world</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6794</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7063 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/il-blog" target="_blank" rel="noopener">https://laboratorio1.local/il-blog</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6701</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6923 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova" target="_blank" rel="noopener">https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6388</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6689 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/lorem-ipsum" target="_blank" rel="noopener">https://laboratorio1.local/lorem-ipsum</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6694</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7025 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/luoghi" target="_blank" rel="noopener">https://laboratorio1.local/luoghi</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6907</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7133 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/luoghi/aula-magna" target="_blank" rel="noopener">https://laboratorio1.local/luoghi/aula-magna</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6536</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6905 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/luoghi/sede-principale" target="_blank" rel="noopener">https://laboratorio1.local/luoghi/sede-principale</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6729</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7153 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/mappa-sito" target="_blank" rel="noopener">https://laboratorio1.local/mappa-sito</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">5402</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 5649 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/newsletter" target="_blank" rel="noopener">https://laboratorio1.local/newsletter</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6850</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7088 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/note-legali" target="_blank" rel="noopener">https://laboratorio1.local/note-legali</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7699</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8211 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/novita" target="_blank" rel="noopener">https://laboratorio1.local/novita</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7286</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7690 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/persone" target="_blank" rel="noopener">https://laboratorio1.local/persone</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7598</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8106 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/persone/persona-con-link-esterno" target="_blank" rel="noopener">https://laboratorio1.local/persone/persona-con-link-esterno</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">5419</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 5952 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/persone/persona-con-scheda-completa" target="_blank" rel="noopener">https://laboratorio1.local/persone/persona-con-scheda-completa</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7966</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8234 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/presentazione" target="_blank" rel="noopener">https://laboratorio1.local/presentazione</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6360</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6814 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/privacy-policy" target="_blank" rel="noopener">https://laboratorio1.local/privacy-policy</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8438</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8925 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/progetti" target="_blank" rel="noopener">https://laboratorio1.local/progetti</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">8427</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8671 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/progetto/progetto-di-test" target="_blank" rel="noopener">https://laboratorio1.local/progetto/progetto-di-test</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6320</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6625 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/progetto/progetto-archiviato" target="_blank" rel="noopener">https://laboratorio1.local/progetto/progetto-archiviato</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">9471</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 9842 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/pubblicazioni" target="_blank" rel="noopener">https://laboratorio1.local/pubblicazioni</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7498</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7824 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/ricerca" target="_blank" rel="noopener">https://laboratorio1.local/ricerca</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7026</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7427 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/ricerca-sito" target="_blank" rel="noopener">https://laboratorio1.local/ricerca-sito</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7763</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 8264 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini" target="_blank" rel="noopener">https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7617</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7857 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600" target="_blank" rel="noopener">https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">7006</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7302 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/risorsa-tecnica/una-prova" target="_blank" rel="noopener">https://laboratorio1.local/risorsa-tecnica/una-prova</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6974</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7266 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/risorse-tecniche" target="_blank" rel="noopener">https://laboratorio1.local/risorse-tecniche</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6839</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7069 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/spinoff" target="_blank" rel="noopener">https://laboratorio1.local/spinoff</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6503</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6789 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/spinoff/biloab" target="_blank" rel="noopener">https://laboratorio1.local/spinoff/biloab</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6694</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7090 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/spinoff/google-labs" target="_blank" rel="noopener">https://laboratorio1.local/spinoff/google-labs</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6531</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6773 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/spinoff/prova" target="_blank" rel="noopener">https://laboratorio1.local/spinoff/prova</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6382</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6633 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/un-articolo" target="_blank" rel="noopener">https://laboratorio1.local/un-articolo</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6401</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6992 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/un-articolo-2" target="_blank" rel="noopener">https://laboratorio1.local/un-articolo-2</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6722</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7010 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/una-prova" target="_blank" rel="noopener">https://laboratorio1.local/una-prova</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6945</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 7309 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/voce-primo-livello" target="_blank" rel="noopener">https://laboratorio1.local/voce-primo-livello</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6364</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6635 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/voce-primo-livello/eelisa-european-university" target="_blank" rel="noopener">https://laboratorio1.local/voce-primo-livello/eelisa-european-university</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6650</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6930 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/voce-primo-livello/voce-secondo-livello" target="_blank" rel="noopener">https://laboratorio1.local/voce-primo-livello/voce-secondo-livello</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6258</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6480 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr>
+    <tr class="row-ok" >
+      <td style="padding:8px 12px;font-size:1.1em;color:#27ae60">&#10003;</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola" target="_blank" rel="noopener">https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola</a></td>
+      <td style="padding:8px 12px;text-align:center">200</td>
+      <td style="padding:8px 12px;text-align:right;white-space:nowrap"><span title="TTFB (server)"><span style="color:#c0392b;font-weight:bold">6496</span> ms</span> <span style="color:#aaa;font-size:0.8em">/ 6697 ms</span></td>
+      <td style="padding:8px 12px;text-align:center">—</td>
+    </tr></tbody>
+  </table>
+</details>
+
+
+<div class="section-title">Top 10 pagine più lente &mdash; <span style="color:#c0392b">95 superano i 3s (load)</span></div>
+<p style="font-size:0.8em;color:#666;margin:-4px 0 8px">Ordinate per TTFB (tempo server, indipendente dalla concorrenza). <em>Load</em> include anche il caricamento delle risorse.</p>
+<table>
+  <thead><tr><th style="width:36px;text-align:center">#</th><th>URL</th><th style="width:120px;text-align:right">TTFB</th><th style="width:120px;text-align:right">Load</th></tr></thead>
+  <tbody><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">1</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/progetto/progetto-archiviato" target="_blank" rel="noopener">https://laboratorio1.local/progetto/progetto-archiviato</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9471 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9842 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">2</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9224 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9560 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">3</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/evento/altro-evento" target="_blank" rel="noopener">https://laboratorio1.local/evento/altro-evento</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9189 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9700 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">4</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8823 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">9163 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">5</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/anticorpo-intracellulare" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/anticorpo-intracellulare</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8660 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8988 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">6</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/privacy-policy" target="_blank" rel="noopener">https://laboratorio1.local/privacy-policy</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8438 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8925 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">7</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/progetti" target="_blank" rel="noopener">https://laboratorio1.local/progetti</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8427 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8671 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">8</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8234 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8523 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">9</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8223 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8707 ms</td>
+    </tr><tr>
+      <td style="padding:8px 12px;text-align:center;color:#888;font-size:0.85em">10</td>
+      <td style="padding:8px 12px"><a href="https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s" target="_blank" rel="noopener">https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s</a> <span style="background:#c0392b;color:#fff;padding:1px 5px;border-radius:3px;font-size:0.72em;font-weight:bold;vertical-align:middle">&gt;3s</span></td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8152 ms</td>
+      <td style="padding:8px 12px;text-align:right;color:#c0392b;font-weight:bold">8418 ms</td>
+    </tr></tbody>
+</table>
+
+<script>
+function toggle(id) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+}
+</script>
+</body>
+</html>

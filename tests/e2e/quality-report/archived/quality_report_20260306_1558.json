@@ -1,0 +1,137 @@
+{
+  "scannedAt": "2026-03-06T14:58:47.382Z",
+  "git": {
+    "branch": "dev",
+    "commit": "0b2c718b"
+  },
+  "summary": {
+    "totalChecks": 7,
+    "pass": 5,
+    "warn": 1,
+    "fail": 1,
+    "skip": 0,
+    "verdict": "WARN",
+    "criticalFailures": 0,
+    "majorFailures": 1
+  },
+  "checks": [
+    {
+      "id": "php_syntax",
+      "label": "PHP syntax (php -l)",
+      "severity": "critical",
+      "status": "PASS",
+      "command": "php -l <PHP files in phpstan.neon paths>",
+      "durationMs": 7646,
+      "metrics": {
+        "filesChecked": 115,
+        "syntaxErrors": 0
+      },
+      "source": "phpstan.neon (paths)",
+      "details": []
+    },
+    {
+      "id": "phpcs",
+      "label": "PHPCS (WordPress coding standard)",
+      "severity": "major",
+      "status": "FAIL",
+      "command": "vendor\\bin\\phpcs.bat --report=json --standard=phpcs.xml.dist --extensions=php \"inc\" \"page-templates\" \"template-parts\" \"archive.php\" \"page.php\" \"header.php\" \"footer.php\" \"functions.php\"",
+      "durationMs": 21675,
+      "metrics": {
+        "errors": 1289,
+        "warnings": 225,
+        "filesWithIssues": 66,
+        "filesChecked": 115
+      },
+      "source": "phpstan.neon (paths)",
+      "details": []
+    },
+    {
+      "id": "phpstan",
+      "label": "PHPStan static analysis",
+      "severity": "critical",
+      "status": "PASS",
+      "command": "vendor\\bin\\phpstan.bat analyse --configuration=phpstan.neon --error-format=json --no-progress --memory-limit=512M",
+      "durationMs": 13016,
+      "metrics": {
+        "errors": 0,
+        "filesWithErrors": 29,
+        "level": 1
+      },
+      "source": "phpstan.neon (paths)",
+      "details": []
+    },
+    {
+      "id": "composer_audit",
+      "label": "Composer security audit",
+      "severity": "critical",
+      "status": "PASS",
+      "command": "composer audit --format=json",
+      "durationMs": 1827,
+      "metrics": {
+        "advisories": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "abandoned": 0
+      },
+      "source": "tutto il progetto",
+      "details": []
+    },
+    {
+      "id": "npm_audit",
+      "label": "NPM security audit",
+      "severity": "critical",
+      "status": "PASS",
+      "command": "npm audit --json --omit=dev",
+      "durationMs": 990,
+      "metrics": {
+        "total": 0,
+        "critical": 0,
+        "high": 0,
+        "moderate": 0,
+        "low": 0,
+        "info": 0
+      },
+      "source": "tutto il progetto",
+      "details": []
+    },
+    {
+      "id": "php_large_files",
+      "label": "Large PHP files (>1000 LOC)",
+      "severity": "minor",
+      "status": "WARN",
+      "command": "internal file scan",
+      "durationMs": 20,
+      "metrics": {
+        "filesOver1000": 2,
+        "maxLoc": 2760
+      },
+      "source": "phpstan.neon (paths)",
+      "details": [
+        "inc/admin/options.php (2760 LOC)",
+        "inc/utils.php (1680 LOC)"
+      ]
+    },
+    {
+      "id": "todo_fixme",
+      "label": "TODO / FIXME in PHP files",
+      "severity": "minor",
+      "status": "PASS",
+      "command": "internal file scan",
+      "durationMs": 12,
+      "metrics": {
+        "total": 11,
+        "todo": 11,
+        "fixme": 0,
+        "filesWithMarkers": 3
+      },
+      "source": "phpstan.neon (paths)",
+      "details": [
+        "inc/utils.php (TODO: 9, FIXME: 0)",
+        "page-templates/newsletter.php (TODO: 1, FIXME: 0)",
+        "functions.php (TODO: 1, FIXME: 0)"
+      ]
+    }
+  ]
+}

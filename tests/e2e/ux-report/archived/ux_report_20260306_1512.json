@@ -1,0 +1,5285 @@
+{
+  "scannedAt": "2026-03-06T14:23:26.791Z",
+  "baseUrl": "https://laboratorio1.local",
+  "git": {
+    "branch": "dev",
+    "commit": "0b2c718b"
+  },
+  "summary": {
+    "pagesScanned": 95,
+    "pagesWithAxeViolations": 0,
+    "pagesWithOverflow": 92,
+    "axeCriticalTotal": 0,
+    "axeSeriousTotal": 0,
+    "axeModerateTotal": 0,
+    "axeMinorTotal": 0,
+    "axeTotal": 0,
+    "verdict": "WARN"
+  },
+  "pages": [
+    {
+      "url": "https://laboratorio1.local",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": false,
+          "elements": []
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 0,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": false,
+          "elements": []
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 0,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/accessibilita",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/archivio-progetti",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetti",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 430,
+              "width": 418
+            },
+            {
+              "selector": "thead",
+              "right": 430,
+              "width": 418
+            },
+            {
+              "selector": "tr",
+              "right": 430,
+              "width": 418
+            },
+            {
+              "selector": "th",
+              "right": 430,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 430,
+              "width": 418
+            },
+            {
+              "selector": "tr",
+              "right": 430,
+              "width": 418
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/anticorpo-intracellulare",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 383,
+              "width": 347
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 438,
+              "width": 426
+            },
+            {
+              "selector": "thead",
+              "right": 438,
+              "width": 426
+            },
+            {
+              "selector": "tr",
+              "right": 438,
+              "width": 426
+            },
+            {
+              "selector": "th",
+              "right": 438,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 438,
+              "width": 426
+            },
+            {
+              "selector": "tr",
+              "right": 438,
+              "width": 426
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 382,
+              "width": 346
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 474,
+              "width": 462
+            },
+            {
+              "selector": "thead",
+              "right": 474,
+              "width": 462
+            },
+            {
+              "selector": "tr",
+              "right": 474,
+              "width": 462
+            },
+            {
+              "selector": "th",
+              "right": 392,
+              "width": 159
+            },
+            {
+              "selector": "th",
+              "right": 474,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 376,
+              "width": 340
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 376,
+              "width": 340
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 463,
+              "width": 451
+            },
+            {
+              "selector": "thead",
+              "right": 463,
+              "width": 451
+            },
+            {
+              "selector": "tr",
+              "right": 463,
+              "width": 451
+            },
+            {
+              "selector": "th",
+              "right": 463,
+              "width": 103
+            },
+            {
+              "selector": "tbody",
+              "right": 463,
+              "width": 451
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 376,
+              "width": 340
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 418,
+              "width": 406
+            },
+            {
+              "selector": "thead",
+              "right": 418,
+              "width": 406
+            },
+            {
+              "selector": "tr",
+              "right": 418,
+              "width": 406
+            },
+            {
+              "selector": "th",
+              "right": 418,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 418,
+              "width": 406
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 375,
+              "width": 339
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 427,
+              "width": 415
+            },
+            {
+              "selector": "thead",
+              "right": 427,
+              "width": 415
+            },
+            {
+              "selector": "tr",
+              "right": 427,
+              "width": 415
+            },
+            {
+              "selector": "th",
+              "right": 427,
+              "width": 84
+            },
+            {
+              "selector": "tbody",
+              "right": 427,
+              "width": 415
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 377,
+              "width": 341
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "thead",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "tr",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "th",
+              "right": 455,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "tr",
+              "right": 455,
+              "width": 443
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 464,
+              "width": 452
+            },
+            {
+              "selector": "thead",
+              "right": 464,
+              "width": 452
+            },
+            {
+              "selector": "tr",
+              "right": 464,
+              "width": 452
+            },
+            {
+              "selector": "th",
+              "right": 464,
+              "width": 103
+            },
+            {
+              "selector": "tbody",
+              "right": 464,
+              "width": 452
+            },
+            {
+              "selector": "tr",
+              "right": 464,
+              "width": 452
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 428,
+              "width": 416
+            },
+            {
+              "selector": "thead",
+              "right": 428,
+              "width": 416
+            },
+            {
+              "selector": "tr",
+              "right": 428,
+              "width": 416
+            },
+            {
+              "selector": "th",
+              "right": 428,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 428,
+              "width": 416
+            },
+            {
+              "selector": "tr",
+              "right": 428,
+              "width": 416
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/intracellular-antibody",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 456,
+              "width": 444
+            },
+            {
+              "selector": "thead",
+              "right": 456,
+              "width": 444
+            },
+            {
+              "selector": "tr",
+              "right": 456,
+              "width": 444
+            },
+            {
+              "selector": "th",
+              "right": 456,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 456,
+              "width": 444
+            },
+            {
+              "selector": "tr",
+              "right": 456,
+              "width": 444
+            },
+            {
+              "selector": "td",
+              "right": 456,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "thead",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "tr",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "th",
+              "right": 455,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 455,
+              "width": 443
+            },
+            {
+              "selector": "tr",
+              "right": 455,
+              "width": 443
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 376,
+              "width": 340
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 473,
+              "width": 461
+            },
+            {
+              "selector": "thead",
+              "right": 473,
+              "width": 461
+            },
+            {
+              "selector": "tr",
+              "right": 473,
+              "width": 461
+            },
+            {
+              "selector": "th",
+              "right": 388,
+              "width": 155
+            },
+            {
+              "selector": "th",
+              "right": 473,
+              "width": 85
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 386,
+              "width": 374
+            },
+            {
+              "selector": "thead",
+              "right": 386,
+              "width": 374
+            },
+            {
+              "selector": "tr",
+              "right": 386,
+              "width": 374
+            },
+            {
+              "selector": "th",
+              "right": 386,
+              "width": 78
+            },
+            {
+              "selector": "tbody",
+              "right": 386,
+              "width": 374
+            },
+            {
+              "selector": "tr",
+              "right": 386,
+              "width": 374
+            },
+            {
+              "selector": "td",
+              "right": 386,
+              "width": 78
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 380,
+              "width": 344
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 383,
+              "width": 347
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 471,
+              "width": 459
+            },
+            {
+              "selector": "thead",
+              "right": 471,
+              "width": 459
+            },
+            {
+              "selector": "tr",
+              "right": 471,
+              "width": 459
+            },
+            {
+              "selector": "th",
+              "right": 389,
+              "width": 156
+            },
+            {
+              "selector": "th",
+              "right": 471,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 471,
+              "width": 459
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 380,
+              "width": 344
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "thead",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "tr",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "th",
+              "right": 384,
+              "width": 158
+            },
+            {
+              "selector": "th",
+              "right": 466,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 449,
+              "width": 437
+            },
+            {
+              "selector": "thead",
+              "right": 449,
+              "width": 437
+            },
+            {
+              "selector": "tr",
+              "right": 449,
+              "width": 437
+            },
+            {
+              "selector": "th",
+              "right": 449,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 449,
+              "width": 437
+            },
+            {
+              "selector": "tr",
+              "right": 449,
+              "width": 437
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 384,
+              "width": 348
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 483,
+              "width": 471
+            },
+            {
+              "selector": "thead",
+              "right": 483,
+              "width": 471
+            },
+            {
+              "selector": "tr",
+              "right": 483,
+              "width": 471
+            },
+            {
+              "selector": "th",
+              "right": 401,
+              "width": 175
+            },
+            {
+              "selector": "th",
+              "right": 483,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/prova",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 436,
+              "width": 424
+            },
+            {
+              "selector": "thead",
+              "right": 436,
+              "width": 424
+            },
+            {
+              "selector": "tr",
+              "right": 436,
+              "width": 424
+            },
+            {
+              "selector": "th",
+              "right": 436,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 436,
+              "width": 424
+            },
+            {
+              "selector": "tr",
+              "right": 436,
+              "width": 424
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-processing-unit",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 425,
+              "width": 413
+            },
+            {
+              "selector": "thead",
+              "right": 425,
+              "width": 413
+            },
+            {
+              "selector": "tr",
+              "right": 425,
+              "width": 413
+            },
+            {
+              "selector": "th",
+              "right": 425,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 425,
+              "width": 413
+            },
+            {
+              "selector": "tr",
+              "right": 425,
+              "width": 413
+            },
+            {
+              "selector": "td",
+              "right": 425,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-processing-unit-2",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 414,
+              "width": 402
+            },
+            {
+              "selector": "thead",
+              "right": 414,
+              "width": 402
+            },
+            {
+              "selector": "tr",
+              "right": 414,
+              "width": 402
+            },
+            {
+              "selector": "th",
+              "right": 414,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 414,
+              "width": 402
+            },
+            {
+              "selector": "tr",
+              "right": 414,
+              "width": 402
+            },
+            {
+              "selector": "td",
+              "right": 414,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 405,
+              "width": 393
+            },
+            {
+              "selector": "thead",
+              "right": 405,
+              "width": 393
+            },
+            {
+              "selector": "tr",
+              "right": 405,
+              "width": 393
+            },
+            {
+              "selector": "th",
+              "right": 405,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 405,
+              "width": 393
+            },
+            {
+              "selector": "tr",
+              "right": 405,
+              "width": 393
+            },
+            {
+              "selector": "td",
+              "right": 405,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 380,
+              "width": 344
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 482,
+              "width": 470
+            },
+            {
+              "selector": "thead",
+              "right": 482,
+              "width": 470
+            },
+            {
+              "selector": "tr",
+              "right": 482,
+              "width": 470
+            },
+            {
+              "selector": "th",
+              "right": 400,
+              "width": 167
+            },
+            {
+              "selector": "th",
+              "right": 482,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "a",
+              "right": 378,
+              "width": 342
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "thead",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "tr",
+              "right": 466,
+              "width": 454
+            },
+            {
+              "selector": "th",
+              "right": 385,
+              "width": 151
+            },
+            {
+              "selector": "th",
+              "right": 466,
+              "width": 82
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/systems-for-quantum-computing",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "table.table.table-striped",
+              "right": 462,
+              "width": 450
+            },
+            {
+              "selector": "thead",
+              "right": 462,
+              "width": 450
+            },
+            {
+              "selector": "tr",
+              "right": 462,
+              "width": 450
+            },
+            {
+              "selector": "th",
+              "right": 380,
+              "width": 154
+            },
+            {
+              "selector": "th",
+              "right": 462,
+              "width": 82
+            },
+            {
+              "selector": "tbody",
+              "right": 462,
+              "width": 450
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/contatti",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "input#captcha-field",
+              "right": 674,
+              "width": 614
+            }
+          ]
+        },
+        "768": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "input#captcha-field",
+              "right": 1010,
+              "width": 614
+            }
+          ]
+        },
+        "1280": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "input#captcha-field",
+              "right": 1413,
+              "width": 614
+            }
+          ]
+        }
+      },
+      "overflowCount": 3,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/en/site-map",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/estate-2024-racconto-di-un-viaggio",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/eventi",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/altro-evento",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/back-to-school",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/evento-alternativo",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/eventone",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li.breadcrumb-item.active",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/hello-world",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/il-blog",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li#splide01-slide02.splide__slide.is-next",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.it-single-slide-wrapper",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.card-wrapper.card-space",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.card.card-bg",
+              "right": 622,
+              "width": 263
+            },
+            {
+              "selector": "div.card-body",
+              "right": 622,
+              "width": 263
+            },
+            {
+              "selector": "div.category-top",
+              "right": 598,
+              "width": 215
+            },
+            {
+              "selector": "a.category",
+              "right": 463,
+              "width": 80
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/lorem-ipsum",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi/aula-magna",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 616,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 616,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 872,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 872,
+              "width": 256
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi/sede-principale",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 476,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 476,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 476,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 732,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 732,
+              "width": 256
+            },
+            {
+              "selector": "img.leaflet-tile.leaflet-tile-loaded",
+              "right": 732,
+              "width": 256
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/mappa-sito",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/newsletter",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "input#captcha-field",
+              "right": 674,
+              "width": 614
+            }
+          ]
+        },
+        "768": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "input#captcha-field",
+              "right": 1010,
+              "width": 614
+            }
+          ]
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 2,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/note-legali",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/novita",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/persone",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/persone/persona-con-link-esterno",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/persone/persona-con-scheda-completa",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/presentazione",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/privacy-policy",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/progetti",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/progetto/progetto-archiviato",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/progetto/progetto-di-test",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li#splide01-slide02.splide__slide.is-next",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.it-single-slide-wrapper",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.card-wrapper.card-space",
+              "right": 630,
+              "width": 279
+            },
+            {
+              "selector": "div.card.card-img.no-after",
+              "right": 622,
+              "width": 263
+            },
+            {
+              "selector": "div.img-responsive-wrapper",
+              "right": 622,
+              "width": 263
+            },
+            {
+              "selector": "div.img-responsive.img-responsive-panoramic",
+              "right": 622,
+              "width": 263
+            },
+            {
+              "selector": "figure.img-wrapper",
+              "right": 622,
+              "width": 263
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/pubblicazioni",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/ricerca",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/ricerca-sito",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/una-prova",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/risorse-tecniche",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/biloab",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/google-labs",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/prova",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/un-articolo",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/un-articolo-2",
+      "axe": null,
+      "responsive": null,
+      "overflowCount": 0,
+      "error": "page.goto: net::ERR_NETWORK_CHANGED at https://laboratorio1.local/un-articolo-2\nCall log:\n\u001b[2m  - navigating to \"https://laboratorio1.local/un-articolo-2\", waiting until \"load\"\u001b[22m\n"
+    },
+    {
+      "url": "https://laboratorio1.local/una-prova",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/eelisa-european-university",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li#splide01-slide02.splide__slide.is-next",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.it-single-slide-wrapper",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.card-wrapper.card-space",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.card.card-img.no-after",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "div.img-responsive-wrapper",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "div.img-responsive.img-responsive-panoramic",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "figure.img-wrapper",
+              "right": 730,
+              "width": 335
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "li#splide01-slide02.splide__slide.is-next",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.it-single-slide-wrapper",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.card-wrapper.card-space",
+              "right": 738,
+              "width": 351
+            },
+            {
+              "selector": "div.card.card-img.no-after",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "div.img-responsive-wrapper",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "div.img-responsive.img-responsive-panoramic",
+              "right": 730,
+              "width": 335
+            },
+            {
+              "selector": "figure.img-wrapper",
+              "right": 730,
+              "width": 335
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola",
+      "axe": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "total": 0,
+        "violations": [],
+        "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+      },
+      "responsive": {
+        "375": {
+          "overflow": true,
+          "elements": [
+            {
+              "selector": "div.col-12.ms-4",
+              "right": 399,
+              "width": 375
+            },
+            {
+              "selector": "nav.breadcrumb-container",
+              "right": 387,
+              "width": 351
+            },
+            {
+              "selector": "ol.breadcrumb.pb-0",
+              "right": 387,
+              "width": 351
+            }
+          ]
+        },
+        "768": {
+          "overflow": false,
+          "elements": []
+        },
+        "1280": {
+          "overflow": false,
+          "elements": []
+        }
+      },
+      "overflowCount": 1,
+      "error": null
+    }
+  ]
+}

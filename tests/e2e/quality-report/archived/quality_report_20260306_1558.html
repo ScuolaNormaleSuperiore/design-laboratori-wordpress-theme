@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DLI Static Quality Report</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;background:#f6f7f9;color:#1f2937}
+h1{margin:0 0 8px}
+.meta{color:#4b5563;font-size:14px;margin-bottom:18px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.card{background:#fff;border-radius:8px;padding:12px 16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card .num{font-size:24px;font-weight:700}
+.table{width:100%;border-collapse:collapse;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.table th,.table td{border-bottom:1px solid #e5e7eb;padding:10px;vertical-align:top;text-align:left;font-size:13px}
+.table th{background:#111827;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+code{font-size:12px}
+summary{cursor:pointer}
+</style>
+</head>
+<body>
+  <h1>DLI Static Quality Report</h1>
+  <div class="meta">
+    Scansione: <strong>06/03/2026, 15:58:47</strong>
+    &nbsp;|&nbsp; Branch: <strong>dev</strong>
+    &nbsp;|&nbsp; Commit: <strong>0b2c718b</strong>
+    &nbsp;|&nbsp; Verdict: <strong style="color:#e67e22">WARN</strong>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="num">7</div><div>Checks</div></div>
+    <div class="card"><div class="num" style="color:#27ae60">5</div><div>Pass</div></div>
+    <div class="card"><div class="num" style="color:#e67e22">1</div><div>Warn</div></div>
+    <div class="card"><div class="num" style="color:#c0392b">1</div><div>Fail</div></div>
+    <div class="card"><div class="num" style="color:#7f8c8d">0</div><div>Skip</div></div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>ID</th>
+        <th>Check</th>
+        <th>Severity</th>
+        <th>Metrics</th>
+        <th>Duration</th>
+        <th>Command / Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span style="color:#27ae60;font-weight:bold">PASS</span></td>
+        <td>php_syntax</td>
+        <td>PHP syntax (php -l)</td>
+        <td>critical</td>
+        <td><div><strong>filesChecked</strong>: 115</div><div><strong>syntaxErrors</strong>: 0</div></td>
+        <td>7646 ms</td>
+        <td><code>php -l &lt;PHP files in phpstan.neon paths&gt;</code><div><code>Sorgente: phpstan.neon (paths)</code></div></td>
+      </tr>
+      <tr>
+        <td><span style="color:#c0392b;font-weight:bold">FAIL</span></td>
+        <td>phpcs</td>
+        <td>PHPCS (WordPress coding standard)</td>
+        <td>major</td>
+        <td><div><strong>errors</strong>: 1289</div><div><strong>warnings</strong>: 225</div><div><strong>filesWithIssues</strong>: 66</div><div><strong>filesChecked</strong>: 115</div></td>
+        <td>21675 ms</td>
+        <td><code>vendor\bin\phpcs.bat --report=json --standard=phpcs.xml.dist --extensions=php &quot;inc&quot; &quot;page-templates&quot; &quot;template-parts&quot; &quot;archive.php&quot; &quot;page.php&quot; &quot;header.php&quot; &quot;footer.php&quot; &quot;functions.php&quot;</code><div><code>Sorgente: phpstan.neon (paths)</code></div></td>
+      </tr>
+      <tr>
+        <td><span style="color:#27ae60;font-weight:bold">PASS</span></td>
+        <td>phpstan</td>
+        <td>PHPStan static analysis</td>
+        <td>critical</td>
+        <td><div><strong>errors</strong>: 0</div><div><strong>filesWithErrors</strong>: 29</div><div><strong>level</strong>: 1</div></td>
+        <td>13016 ms</td>
+        <td><code>vendor\bin\phpstan.bat analyse --configuration=phpstan.neon --error-format=json --no-progress --memory-limit=512M</code><div><code>Sorgente: phpstan.neon (paths)</code></div></td>
+      </tr>
+      <tr>
+        <td><span style="color:#27ae60;font-weight:bold">PASS</span></td>
+        <td>composer_audit</td>
+        <td>Composer security audit</td>
+        <td>critical</td>
+        <td><div><strong>advisories</strong>: 0</div><div><strong>critical</strong>: 0</div><div><strong>high</strong>: 0</div><div><strong>medium</strong>: 0</div><div><strong>low</strong>: 0</div><div><strong>abandoned</strong>: 0</div></td>
+        <td>1827 ms</td>
+        <td><code>composer audit --format=json</code><div><code>Sorgente: tutto il progetto</code></div></td>
+      </tr>
+      <tr>
+        <td><span style="color:#27ae60;font-weight:bold">PASS</span></td>
+        <td>npm_audit</td>
+        <td>NPM security audit</td>
+        <td>critical</td>
+        <td><div><strong>total</strong>: 0</div><div><strong>critical</strong>: 0</div><div><strong>high</strong>: 0</div><div><strong>moderate</strong>: 0</div><div><strong>low</strong>: 0</div><div><strong>info</strong>: 0</div></td>
+        <td>990 ms</td>
+        <td><code>npm audit --json --omit=dev</code><div><code>Sorgente: tutto il progetto</code></div></td>
+      </tr>
+      <tr>
+        <td><span style="color:#e67e22;font-weight:bold">WARN</span></td>
+        <td>php_large_files</td>
+        <td>Large PHP files (&gt;1000 LOC)</td>
+        <td>minor</td>
+        <td><div><strong>filesOver1000</strong>: 2</div><div><strong>maxLoc</strong>: 2760</div></td>
+        <td>20 ms</td>
+        <td><code>internal file scan</code><div><code>Sorgente: phpstan.neon (paths)</code></div><details><summary>Dettagli</summary><ul><li><code>inc/admin/options.php (2760 LOC)</code></li><li><code>inc/utils.php (1680 LOC)</code></li></ul></details></td>
+      </tr>
+      <tr>
+        <td><span style="color:#27ae60;font-weight:bold">PASS</span></td>
+        <td>todo_fixme</td>
+        <td>TODO / FIXME in PHP files</td>
+        <td>minor</td>
+        <td><div><strong>total</strong>: 11</div><div><strong>todo</strong>: 11</div><div><strong>fixme</strong>: 0</div><div><strong>filesWithMarkers</strong>: 3</div></td>
+        <td>12 ms</td>
+        <td><code>internal file scan</code><div><code>Sorgente: phpstan.neon (paths)</code></div><details><summary>Dettagli</summary><ul><li><code>inc/utils.php (TODO: 9, FIXME: 0)</code></li><li><code>page-templates/newsletter.php (TODO: 1, FIXME: 0)</code></li><li><code>functions.php (TODO: 1, FIXME: 0)</code></li></ul></details></td>
+      </tr></tbody>
+  </table>
+</body>
+</html>

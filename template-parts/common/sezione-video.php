@@ -9,6 +9,7 @@ $dli_cookie_pol_url  = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
 	$dli_video       = $args['video'];
 	$dli_video_text  = $args['video_text'];
 	$dli_video_title = $args['video_title'];
+	$dli_video_track = isset( $args['video_track'] ) ? $args['video_track'] : '';
 ?>
 
 	<script>
@@ -47,6 +48,9 @@ $dli_cookie_pol_url  = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
 				class="video-js"
 				width="500"
 				height="281">
+				<?php if ( $dli_video_track ) : ?>
+				<track kind="captions" src="<?php echo esc_url( $dli_video_track ); ?>" srclang="it" label="Italiano" default>
+				<?php endif; ?>
 			</video>
 			<?php
 			if ( $dli_video_text ) {

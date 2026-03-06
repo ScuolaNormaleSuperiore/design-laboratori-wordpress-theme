@@ -32,6 +32,7 @@ Use the following trigger patterns and workflows.
 | **C** | `ISSUES_TODO.md` — individua le issue aperte e suggerisce da dove partire | "Check if there are new issues" / "Ci sono issue da risolvere?", "Check if there are issues to fix" / "Da dove parto con le issue?" |
 | **D** | `ISSUES_TODO.md` — tabella numerica per categoria × severità | "I want a tabular issue summary" / "Fammi un riepilogo tabellare delle issue" |
 | **E** | Intera codebase — scansione completa, crea issue in `ISSUES_TODO.md`, report numerico finale | "Mi fai una code review del codice?" / "Mi fai una verifica completa sul codice della codebase?" |
+| **F** | `ISSUES_TODO.md` — tabella a video + snapshot JSON in `tests/e2e/issues-report/reports/` | "Fammi uno snapshot delle issue" / "Genera il report JSON delle issue" |
 
 > **A vs E**: il Trigger A esamina in profondità un file o una cartella specifica e include lint ed eventuali fix; il Trigger E scansiona tutta la codebase in modalità read-only, non applica fix ma aggiunge le criticità trovate come issue in `ISSUES_TODO.md` e produce un report numerico aggregato.
 
@@ -79,6 +80,45 @@ Expected output (at the end):
 - A concise table: rows = categories, columns = severities (Critical / High / Medium / Low / Total).
 - `Total open issues: N` (newly added in this session).
 - Do NOT list every finding in prose — the table is sufficient. For each Critical/High issue added, one line of rationale is acceptable.
+
+### Trigger F: Issues snapshot (tabular report + JSON export)
+Trigger phrases (or equivalent wording):
+- "Fammi uno snapshot delle issue"
+- "Genera il report JSON delle issue"
+- Requests asking to export or snapshot the current issue backlog as a JSON file.
+
+Mandatory workflow:
+1. Re-read `AGENTS/ISSUES_TODO.md` in full.
+2. Parse all open issues (skip Feature issues with status `Idea` unless asked).
+3. Build the summary matrix: rows = categories, columns = severities (Critical / High / Medium / Low / Total).
+4. Display the table to the user (same format as Trigger D).
+5. Retrieve the current date and time by running the following Bash command and use its output to build the filename timestamp (`YYYYMMDD_HHMM`):
+   ```bash
+   date +"%Y%m%d_%H%M"
+   ```
+   Use the result for both the filename suffix and the `generatedAt` ISO field.
+6. Build a JSON object with this structure:
+   ```json
+   {
+     "generatedAt": "<ISO timestamp>",
+     "summary": {
+       "total": N,
+       "bySeverity": { "Critical": N, "High": N, "Medium": N, "Low": N },
+       "byCategory": {
+         "<Category>": { "Critical": N, "High": N, "Medium": N, "Low": N, "total": N }
+       }
+     },
+     "issues": [
+       { "title": "...", "priority": "HIGH|MEDIUM|LOW|CRITICAL", "category": "...", "status": "Open", "date": "YYYY-MM-DD", "files": ["..."] }
+     ]
+   }
+   ```
+7. Write the JSON to `tests/e2e/issues-report/reports/issues_report_<YYYYMMDD_HHMM>.json` using the Write tool (create the directory if it doesn't exist).
+8. Confirm the output file path to the user.
+
+Expected output:
+- The tabular summary (same as Trigger D).
+- Confirmation line: `JSON saved: tests/e2e/issues-report/reports/issues_report_<ts>.json`
 
 ### Trigger B: URL quality audit (page-level runtime check)
 Trigger phrases (or equivalent wording):
