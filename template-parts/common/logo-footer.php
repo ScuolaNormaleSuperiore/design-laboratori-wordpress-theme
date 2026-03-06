@@ -16,7 +16,7 @@ if ( true === $dli_show_logo_footer ) {
 	$dli_logo_src         = $dli_logo_laboratorio ? $dli_logo_laboratorio : dli_get_default_logo();
 	?>
 	<!-- Logo -->
-	<img width="82" class="<?php echo esc_attr( $dli_class_color ); ?>"
+	<img height="80" class="<?php echo esc_attr( $dli_class_color ); ?>"
 		src="<?php echo esc_url( $dli_logo_src ); ?>"
 		alt="<?php echo esc_attr( $dli_nome_laboratorio ); ?>"
 		title="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" />
