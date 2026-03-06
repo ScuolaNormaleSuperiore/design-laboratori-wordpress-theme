@@ -141,7 +141,7 @@ html {
 	gap: 4px;
 }
 
-.mappasitolink:hover {
+a.mappasitolink:hover {
 	text-decoration: underline !important;
 }
 

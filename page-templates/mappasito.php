@@ -39,11 +39,15 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 		$external = ! empty( $node['external'] );
 
 		echo '<li>';
-		echo '<a class="mappasitolink"';
-		if ( $external ) {
-			echo ' target="_blank" rel="noopener noreferrer"';
+		if ( '' !== $link ) {
+			echo '<a class="mappasitolink"';
+			if ( $external ) {
+				echo ' target="_blank" rel="noopener noreferrer"';
+			}
+			echo ' href="' . $link . '">' . $name . '</a>';
+		} else {
+			echo '<span class="mappasitolink">' . $name . '</span>';
 		}
-		echo ' href="' . $link . '">' . $name . '</a>';
 
 		if ( ! empty( $node['children'] ) && is_array( $node['children'] ) ) {
 			echo '<ul>';

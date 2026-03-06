@@ -1255,10 +1255,20 @@ if ( ! function_exists( 'dli_get_site_tree' ) ) {
 						if ( $post_tpye ) {
 							$results = dli_get_sitemap_posts( $post_tpye );
 							foreach ( $results as $r ) {
+								if ( PEOPLE_POST_TYPE === $post_tpye && dli_get_field( 'escludi_da_elenco', $r->ID ) ) {
+									continue;
+								}
+
 								$post_el         = dli_get_tree_item();
 								$post_el['name'] = $r->post_title;
 								$post_el['slug'] = $r->post_name;
-								$post_el['link'] = get_permalink( $r->ID );
+
+								if ( PEOPLE_POST_TYPE === $post_tpye && dli_get_field( 'disattiva_pagina_dettaglio', $r->ID ) ) {
+									$post_el['link'] = '';
+								} else {
+									$post_el['link'] = get_permalink( $r->ID );
+								}
+
 								$pt[ $hp['slug'] ]['children'][ $menu->slug ]['children'][ $object->post_title ]['children'][ $r->post_name ] = $post_el;
 							}
 						}
