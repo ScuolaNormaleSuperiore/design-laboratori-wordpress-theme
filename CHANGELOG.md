@@ -16,8 +16,16 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [REL-1.7.6] - 2026-03-20
+## Aggiunto
+## Corretto
+## Modificato
+## Sicurezza
 
-## [REL-1.7.5] - 2026-03-10
+
+
+
+## [REL-1.7.5] - 2026-03-09
 ## Aggiunto
 - Disabilitato invio email di notifica all'aggiornamento di temi e plugin.
 - Aggiunti script "npm run scan" e "npm run compare" per produrre report sul funzionamento delle pagine e per il confronto tra report.
@@ -33,7 +41,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Sicurezza
 - Eseguito escaping massivo dell'output.
 - Risolti possibili problemi XSS segnalati dalla AI.
-
 
 
 ## [REL-1.7.4] - 2026-02-15
