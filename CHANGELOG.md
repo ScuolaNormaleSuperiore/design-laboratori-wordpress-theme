@@ -29,7 +29,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Primo refactoring delle procedure di import.
 ## Modificato
 - Aggiornati i file delle traduzioni.
-- Aggiornata la versione di Bootstrap Italia alla versione 2.17.5.
+- Aggiornata la versione di Bootstrap Italia alla versione 2.18.0.
 ## Sicurezza
 - Eseguito escaping massivo dell'output.
 - Risolti possibili problemi XSS segnalati dalla AI.
