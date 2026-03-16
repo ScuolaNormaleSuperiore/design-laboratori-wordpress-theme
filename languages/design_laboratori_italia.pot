@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 10:28+0000\n"
+"POT-Creation-Date: 2026-03-16 08:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Accept"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:34
+#: template-parts/common/sezione-video.php:35
 msgid "Accetta"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgid ""
 "%2$s</a>."
 msgstr ""
 
-#: template-parts/common/sezione-video.php:28
+#: template-parts/common/sezione-video.php:29
 msgid ""
 "Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze "
 "nella "
@@ -176,7 +176,7 @@ msgstr ""
 msgid "Altre Informazioni"
 msgstr ""
 
-#: single-brevetto.php:200 single-brevetto.php:328 single-spinoff.php:180
+#: single-brevetto.php:200 single-brevetto.php:329 single-spinoff.php:180
 #: single-spinoff.php:312
 msgid "Altre informazioni"
 msgstr ""
@@ -185,7 +185,7 @@ msgstr ""
 msgid "Altro"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:163 page-templates/pubblicazioni.php:165
+#: page-templates/pubblicazioni.php:164 page-templates/pubblicazioni.php:166
 msgid "Anno"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Anno pubblicazione"
 msgstr ""
 
-#: page-templates/contatti.php:303
+#: page-templates/contatti.php:306
 msgid "Annulla"
 msgstr ""
 
@@ -245,7 +245,7 @@ msgstr ""
 msgid "Area Tematica"
 msgstr ""
 
-#: single-brevetto.php:191 single-brevetto.php:319
+#: single-brevetto.php:191 single-brevetto.php:320
 #: page-templates/brevetti.php:95
 msgid "Area tematica"
 msgstr ""
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Argomenti"
 msgstr ""
 
-#: inc/utils.php:1446
+#: inc/utils.php:1460
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -383,7 +383,7 @@ msgstr ""
 msgid "Categoria"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:246
+#: page-templates/pubblicazioni.php:247
 msgid "Categorie collegate:"
 msgstr ""
 
@@ -445,6 +445,10 @@ msgstr ""
 msgid "Codice"
 msgstr ""
 
+#: page-templates/contatti.php:292
+msgid "Codice di conferma"
+msgstr ""
+
 #: single-risorsa-tecnica.php:151 single-risorsa-tecnica.php:283
 msgid "Codice interno"
 msgstr ""
@@ -496,7 +500,7 @@ msgstr ""
 msgid "Condivido con piacere questo post"
 msgstr ""
 
-#: page-templates/contatti.php:304
+#: page-templates/contatti.php:307
 msgid "Conferma"
 msgstr ""
 
@@ -553,7 +557,7 @@ msgstr ""
 msgid "Danger"
 msgstr ""
 
-#: single-brevetto.php:265 single-brevetto.php:287
+#: single-brevetto.php:265 single-brevetto.php:288
 msgid "Data deposito"
 msgstr ""
 
@@ -912,7 +916,7 @@ msgstr ""
 msgid "Evento singolo"
 msgstr ""
 
-#: single-brevetto.php:173 single-brevetto.php:282
+#: single-brevetto.php:173 single-brevetto.php:282 single-brevetto.php:284
 msgid "Famiglia brevettuale"
 msgstr ""
 
@@ -1648,6 +1652,10 @@ msgstr ""
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
+#: template-parts/header/top-menu.php:14
+msgid "Menu contatti"
+msgstr ""
+
 #: functions.php:134
 msgid "Menu header di link in alto a destra"
 msgstr ""
@@ -1756,12 +1764,8 @@ msgstr ""
 msgid "Nascondi l'icona della persona nell'elenco delle persone"
 msgstr ""
 
-#: single-brevetto.php:289
+#: single-brevetto.php:290
 msgid "Nazione deposito"
-msgstr ""
-
-#: template-parts/header/top-menu.php:14
-msgid "News e contatti"
 msgstr ""
 
 #: inc/admin/options.php:686 inc/admin/options.php:737
@@ -1808,7 +1812,7 @@ msgstr ""
 msgid "Non e stata trovata alcuna risorsa tecnica"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:269
+#: page-templates/pubblicazioni.php:270
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr ""
 
@@ -1890,7 +1894,7 @@ msgstr ""
 msgid "Numero deposito"
 msgstr ""
 
-#: single-brevetto.php:286
+#: single-brevetto.php:287
 msgid "Numero di deposito"
 msgstr ""
 
@@ -2464,7 +2468,7 @@ msgstr ""
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr ""
 
-#: template-parts/common/sezione-video.php:38
+#: template-parts/common/sezione-video.php:39
 #: template-parts/home/hp-video-section.php:73
 msgid "Ricorda per tutti i video"
 msgstr ""
@@ -2505,7 +2509,7 @@ msgstr ""
 msgid "Rimuovi la sezione"
 msgstr ""
 
-#: page-templates/contatti.php:292 page-templates/newsletter.php:211
+#: page-templates/contatti.php:295 page-templates/newsletter.php:211
 msgid "Riscrivi qui il codice di conferma"
 msgstr ""
 
@@ -2545,7 +2549,7 @@ msgid ""
 "mostrare alcun filtro"
 msgstr ""
 
-#: page-templates/brevetti.php:77 page-templates/pubblicazioni.php:167
+#: page-templates/brevetti.php:77 page-templates/pubblicazioni.php:168
 #: page-templates/risorse-tecniche.php:89 page-templates/spinoff.php:77
 msgid "Scegli un'opzione"
 msgstr ""
@@ -2959,7 +2963,7 @@ msgstr ""
 msgid "Tipo risorsa"
 msgstr ""
 
-#: page-templates/luoghi.php:97 page-templates/pubblicazioni.php:179
+#: page-templates/luoghi.php:97 page-templates/pubblicazioni.php:180
 #: inc/admin/options.php:48
 msgid "Tipologia"
 msgstr ""
@@ -2976,7 +2980,7 @@ msgstr ""
 msgid "Titolari"
 msgstr ""
 
-#: single-brevetto.php:288 inc/admin/options.php:1370
+#: single-brevetto.php:289 inc/admin/options.php:1370
 msgid "Titolo"
 msgstr ""
 
@@ -3005,7 +3009,7 @@ msgstr ""
 msgid "Torna indietro"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:58
+#: template-parts/common/sezione-video.php:62
 msgid "Trascrizione"
 msgstr ""
 
@@ -3165,7 +3169,7 @@ msgstr ""
 msgid "Valore di Nonce errato."
 msgstr ""
 
-#: single-brevetto.php:209 single-brevetto.php:336 single-evento.php:216
+#: single-brevetto.php:209 single-brevetto.php:337 single-evento.php:216
 #: single-evento.php:454 single-spinoff.php:189 single-spinoff.php:320
 #: template-parts/home/hp-video-section.php:40
 msgid "Video"

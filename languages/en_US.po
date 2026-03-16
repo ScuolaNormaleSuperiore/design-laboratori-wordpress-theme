@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-03-05 10:29+0000\n"
+"PO-Revision-Date: 2026-03-16 08:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -77,7 +77,7 @@ msgstr "Login"
 msgid "Accept"
 msgstr "Accept"
 
-#: template-parts/common/sezione-video.php:34
+#: template-parts/common/sezione-video.php:35
 msgid "Accetta"
 msgstr "Accept"
 
@@ -96,7 +96,7 @@ msgstr ""
 "Accept YouTube cookies to watch the video. You can manage your preferences "
 "in <a target=\"_blank\" href=\"%s\" class=\"text-white\">%s</a>."
 
-#: template-parts/common/sezione-video.php:28
+#: template-parts/common/sezione-video.php:29
 msgid ""
 "Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze "
 "nella "
@@ -186,7 +186,7 @@ msgstr "Attachments"
 msgid "Altre Informazioni"
 msgstr "More Information"
 
-#: single-brevetto.php:200 single-brevetto.php:328 single-spinoff.php:180
+#: single-brevetto.php:200 single-brevetto.php:329 single-spinoff.php:180
 #: single-spinoff.php:312
 msgid "Altre informazioni"
 msgstr "More information"
@@ -195,7 +195,7 @@ msgstr "More information"
 msgid "Altro"
 msgstr "Other"
 
-#: page-templates/pubblicazioni.php:163 page-templates/pubblicazioni.php:165
+#: page-templates/pubblicazioni.php:164 page-templates/pubblicazioni.php:166
 msgid "Anno"
 msgstr "Year"
 
@@ -221,7 +221,7 @@ msgstr "Deposit year"
 msgid "Anno pubblicazione"
 msgstr "Publication year"
 
-#: page-templates/contatti.php:303
+#: page-templates/contatti.php:306
 msgid "Annulla"
 msgstr "Cancel"
 
@@ -256,7 +256,7 @@ msgstr "Configuration of theme general options"
 msgid "Area Tematica"
 msgstr "Thematic Area"
 
-#: single-brevetto.php:191 single-brevetto.php:319
+#: single-brevetto.php:191 single-brevetto.php:320
 #: page-templates/brevetti.php:95
 msgid "Area tematica"
 msgstr "Thematic Area"
@@ -265,7 +265,7 @@ msgstr "Thematic Area"
 msgid "Argomenti"
 msgstr "Subjects"
 
-#: inc/utils.php:1446
+#: inc/utils.php:1460
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
@@ -394,7 +394,7 @@ msgstr "Captcha"
 msgid "Categoria"
 msgstr "Category"
 
-#: page-templates/pubblicazioni.php:246
+#: page-templates/pubblicazioni.php:247
 msgid "Categorie collegate:"
 msgstr "Related categories:"
 
@@ -456,6 +456,10 @@ msgstr "City"
 msgid "Codice"
 msgstr "Code"
 
+#: page-templates/contatti.php:292
+msgid "Codice di conferma"
+msgstr "Confirmation code"
+
 #: single-risorsa-tecnica.php:151 single-risorsa-tecnica.php:283
 msgid "Codice interno"
 msgstr "Internal code"
@@ -509,7 +513,7 @@ msgstr "Share on WhatsApp"
 msgid "Condivido con piacere questo post"
 msgstr "I am happy to share this post"
 
-#: page-templates/contatti.php:304
+#: page-templates/contatti.php:307
 msgid "Conferma"
 msgstr "Confirmation"
 
@@ -566,7 +570,7 @@ msgstr "from"
 msgid "Danger"
 msgstr "Danger"
 
-#: single-brevetto.php:265 single-brevetto.php:287
+#: single-brevetto.php:265 single-brevetto.php:288
 msgid "Data deposito"
 msgstr "Deposit date"
 
@@ -939,7 +943,7 @@ msgstr "Existing event"
 msgid "Evento singolo"
 msgstr "Single event"
 
-#: single-brevetto.php:173 single-brevetto.php:282
+#: single-brevetto.php:173 single-brevetto.php:282 single-brevetto.php:284
 msgid "Famiglia brevettuale"
 msgstr "Patent family"
 
@@ -1740,6 +1744,10 @@ msgstr "march"
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
+#: template-parts/header/top-menu.php:14
+msgid "Menu contatti"
+msgstr "Contacts menu"
+
 #: functions.php:134
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
@@ -1849,13 +1857,9 @@ msgstr "Hide icon"
 msgid "Nascondi l'icona della persona nell'elenco delle persone"
 msgstr "Hide person icon in people list"
 
-#: single-brevetto.php:289
+#: single-brevetto.php:290
 msgid "Nazione deposito"
 msgstr "Deposit country"
-
-#: template-parts/header/top-menu.php:14
-msgid "News e contatti"
-msgstr "News e contacts"
 
 #: inc/admin/options.php:686 inc/admin/options.php:737
 #: inc/admin/options.php:788
@@ -1903,7 +1907,7 @@ msgstr "Laboratory Name EN"
 msgid "Non e stata trovata alcuna risorsa tecnica"
 msgstr "No technical resources found"
 
-#: page-templates/pubblicazioni.php:269
+#: page-templates/pubblicazioni.php:270
 #, fuzzy
 #| msgid "Non è stata trovata nessuna pubblicazione"
 msgid "Non e stata trovata nessuna pubblicazione"
@@ -1987,7 +1991,7 @@ msgstr "News"
 msgid "Numero deposito"
 msgstr "Deposit number"
 
-#: single-brevetto.php:286
+#: single-brevetto.php:287
 msgid "Numero di deposito"
 msgstr "Deposit number"
 
@@ -2579,7 +2583,7 @@ msgstr ""
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr "Invalid request: missing or invalid nonce."
 
-#: template-parts/common/sezione-video.php:38
+#: template-parts/common/sezione-video.php:39
 #: template-parts/home/hp-video-section.php:73
 msgid "Ricorda per tutti i video"
 msgstr "Remember for all videos"
@@ -2620,7 +2624,7 @@ msgstr "Delete Sponsor Image"
 msgid "Rimuovi la sezione"
 msgstr "Remove section"
 
-#: page-templates/contatti.php:292 page-templates/newsletter.php:211
+#: page-templates/contatti.php:295 page-templates/newsletter.php:211
 msgid "Riscrivi qui il codice di conferma"
 msgstr "Retype the confirmation code here"
 
@@ -2662,7 +2666,7 @@ msgstr ""
 "Choose whether to filter the structures with chips or a select or not to "
 "show any filter"
 
-#: page-templates/brevetti.php:77 page-templates/pubblicazioni.php:167
+#: page-templates/brevetti.php:77 page-templates/pubblicazioni.php:168
 #: page-templates/risorse-tecniche.php:89 page-templates/spinoff.php:77
 msgid "Scegli un'opzione"
 msgstr "Select an option"
@@ -3089,7 +3093,7 @@ msgstr "Publication type"
 msgid "Tipo risorsa"
 msgstr "Resource type"
 
-#: page-templates/luoghi.php:97 page-templates/pubblicazioni.php:179
+#: page-templates/luoghi.php:97 page-templates/pubblicazioni.php:180
 #: inc/admin/options.php:48
 msgid "Tipologia"
 msgstr "Type"
@@ -3106,7 +3110,7 @@ msgstr "People type"
 msgid "Titolari"
 msgstr "Owners"
 
-#: single-brevetto.php:288 inc/admin/options.php:1370
+#: single-brevetto.php:289 inc/admin/options.php:1370
 msgid "Titolo"
 msgstr "Title"
 
@@ -3137,7 +3141,7 @@ msgstr "Token API"
 msgid "Torna indietro"
 msgstr "Go back"
 
-#: template-parts/common/sezione-video.php:58
+#: template-parts/common/sezione-video.php:62
 msgid "Trascrizione"
 msgstr "Transcription"
 
@@ -3300,7 +3304,7 @@ msgstr "Go to Newsletter"
 msgid "Valore di Nonce errato."
 msgstr "Incorrect Nonce value."
 
-#: single-brevetto.php:209 single-brevetto.php:336 single-evento.php:216
+#: single-brevetto.php:209 single-brevetto.php:337 single-evento.php:216
 #: single-evento.php:454 single-spinoff.php:189 single-spinoff.php:320
 #: template-parts/home/hp-video-section.php:40
 msgid "Video"
