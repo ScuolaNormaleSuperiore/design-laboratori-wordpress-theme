@@ -70,6 +70,10 @@ tests/e2e/issues-report/reports/*
 !tests/e2e/issues-report/reports/.gitkeep
 
 # Custom directives
+AGENTS
+AGENTS/
+AGENTS.md
+CLAUDE.md
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 AGENTS/ISSUES_TODO.md
