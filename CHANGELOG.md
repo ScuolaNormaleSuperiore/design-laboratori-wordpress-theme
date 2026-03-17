@@ -19,8 +19,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [REL-1.7.6] - 2026-03-20
 ## Aggiunto
 ## Corretto
+- Corretta formattazione di gran parte dei template.
+- Corretti vari bug segnalati dalla AI.
 ## Modificato
 ## Sicurezza
+- Corrette possibili anomalie di sicurezza.
 
 
 

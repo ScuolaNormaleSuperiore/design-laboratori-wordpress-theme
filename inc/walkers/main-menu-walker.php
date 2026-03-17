@@ -82,7 +82,7 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 				$output   .= '<li class="nav-item dropdown">';
 				$output   .= '<a class="nav-link ' . $active_class . ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 				<span>';
-				$output   .= esc_attr( $item->title );
+				$output   .= esc_html( $item->title );
 				$output   .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
 					<title>Expand</title>
 					<use href="';
@@ -92,29 +92,29 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<li><a class="dropdown-item list-item" href="';
-				$output   .= esc_attr( $item->url );
+				$output   .= esc_url( $item->url );
 				$output   .= '"><span>';
-				$output   .= esc_attr( $item->title );
+				$output   .= esc_html( $item->title );
 				$output   .= '</span></a></li>
 								<li><span class="divider"></span></li>';
 				$menu_tree = $this->dli_get_menu_tree( $args );
 				$children  = isset( $menu_tree[ $item->ID ]['children'] ) ? $menu_tree[ $item->ID ]['children'] : array();
 				foreach ( $children as $subitem ) {
 					$output .= '<li><a class="dropdown-item list-item" href="';
-					$output .= esc_attr( $subitem->url );
+					$output .= esc_url( $subitem->url );
 					$output .= '"><span>';
-					$output .= esc_attr( $subitem->title );
+					$output .= esc_html( $subitem->title );
 					$output .= '</span></a></li>';
 				} // End foreach.
 				$output .= '</ul></div></div>';
 			} elseif ( false === $args->walker->has_children && '0' === $item->menu_item_parent ) {
 				$output .= "<li class='nav-item'>";
-				$output .= '<a class="nav-link ' . $active_class . '" href="' . $item->url . '" data-element="' . $data_element . '">';
+				$output .= '<a class="nav-link ' . $active_class . '" href="' . esc_url( $item->url ) . '" data-element="' . $data_element . '">';
 			}
 		}
 
 		if ( false === $args->walker->has_children && '0' === $item->menu_item_parent ) {
-			$output .= '<span>' . $item->title . '</span>';
+			$output .= '<span>' . esc_html( $item->title ) . '</span>';
 		}
 
 		if ( $item->url && '#' !== $item->url ) {
