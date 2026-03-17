@@ -2,5 +2,5 @@
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
-"$repo_root/DEV/SETUP/GitHooks/check-staged-secrets.sh"
-"$repo_root/DEV/SETUP/GitHooks/check-staged-l10n.sh"
+"$repo_root/DEV/GitHooks/check-staged-secrets.sh"
+"$repo_root/DEV/GitHooks/check-staged-l10n.sh"
