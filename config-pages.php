@@ -1,4 +1,9 @@
 <?php
+/**
+ * Theme page configuration.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 // Pagina che si edita da backend.
 define( 'DLI_STATIC_PAGE_CAT', 'static_page' );

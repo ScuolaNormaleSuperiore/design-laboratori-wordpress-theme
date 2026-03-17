@@ -9,9 +9,9 @@
 
 global $post;
 get_header();
-$image_metadata = dli_get_image_metadata( $post, 'full' );
-$image_metadata = is_array( $image_metadata ) ? $image_metadata : array();
-$related_items  = dli_get_field( 'pagine_collegate' );
+$dli_image_metadata = dli_get_image_metadata( $post, 'full' );
+$dli_image_metadata = is_array( $dli_image_metadata ) ? $dli_image_metadata : array();
+$dli_related_items  = dli_get_field( 'pagine_collegate' );
 ?>
 
 <main id="main-container" role="main">
@@ -39,32 +39,32 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 			<div class="row">
 				<?php
 					// Get top parent page ID.
-					$top_parent = dli_get_page_anchestor_id( $post );
-					$slugs      = dli_get_page_slug_anchestors( $post );
-					$slugs      = is_array( $slugs ) ? array_reverse( $slugs ) : array();
-				if ( count( $slugs ) > 1 && ( $slugs[0] === SLUG_LABORATORIO_IT || $slugs[0] === SLUG_LABORATORIO_EN ) ) {
-					$top_parent_page = get_page_by_path( $slugs[0] . '/' . $slugs[1] );
-					if ( $top_parent_page instanceof WP_Post ) {
-						$top_parent = $top_parent_page->ID;
+					$dli_top_parent = dli_get_page_anchestor_id( $post );
+					$dli_slugs      = dli_get_page_slug_anchestors( $post );
+					$dli_slugs      = is_array( $dli_slugs ) ? array_reverse( $dli_slugs ) : array();
+				if ( count( $dli_slugs ) > 1 && ( SLUG_LABORATORIO_IT === $dli_slugs[0] || SLUG_LABORATORIO_EN === $dli_slugs[0] ) ) {
+					$dli_top_parent_page = get_page_by_path( $dli_slugs[0] . '/' . $dli_slugs[1] );
+					if ( $dli_top_parent_page instanceof WP_Post ) {
+						$dli_top_parent = $dli_top_parent_page->ID;
 					}
 				}
 					// Retrieve second level pages.
-					$pages = get_pages(
+					$dli_pages = get_pages(
 						array(
-							'child_of'    => $top_parent,
+							'child_of'    => $dli_top_parent,
 							'offset'      => 0,
-							'parent'      => $top_parent,
+							'parent'      => $dli_top_parent,
 							'sort_order'  => 'ASC',
 							'sort_column' => 'menu_order',
 						)
 					);
-					if ( $pages ) {
+					if ( $dli_pages ) {
 						?>
 
 				<!-- MENU LATERALE (INIZIO SIDEBAR) -->
 				<div class="sidebar-wrapper border-end col-12 col-lg-3">
 						<?php
-						if ( $post->post_parent !== 0 ) {
+						if ( 0 !== $post->post_parent ) {
 							?>
 						<a href="<?php echo esc_url( get_permalink( $post->post_parent ) ); ?>" class="btn btn-primary btn-xs btn-me mb-5" role="button">
 							<svg class="icon icon-sm icon-white me-2" role="img" aria-hidden="true" focusable="false">
@@ -83,42 +83,42 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 								<?php
-								foreach ( $pages as $pg ) {
+								foreach ( $dli_pages as $dli_page ) {
 									?>
 											<li>
-													<a class="list-item large medium right-icon <?php echo esc_attr( ( $post->ID === $pg->ID || $pg->ID === $post->post_parent ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $pg->ID ) ); ?>">
+													<a class="list-item large medium right-icon <?php echo esc_attr( ( $post->ID === $dli_page->ID || $dli_page->ID === $post->post_parent ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $dli_page->ID ) ); ?>">
 													<span class="list-item-title-icon-wrapper">
-														<span><?php echo esc_html( get_the_title( $pg ) ); ?></span>
+														<span><?php echo esc_html( get_the_title( $dli_page ) ); ?></span>
 													</span>
 												</a>
-										<?php
-										// Show subpages of current branch page till second level.
-										$subspg     = get_pages(
-											array(
-												'child_of' => $pg->ID,
-												'offset'   => 0,
-												'parent'   => $pg->ID,
-												'sort_column' => 'menu_order',
-											)
-										);
-										$subspg_ids = wp_list_pluck( $subspg, 'ID' );
-										if ( $post->post_parent !== 0 && ( $post->ID === $pg->ID || in_array( $post->ID, $subspg_ids, true ) ) ) {
-											?>
-												<ul class="link-sublist">
-												<?php
-												foreach ( $subspg as $subpg ) {
-													?>
-																<li>
-																	<a class="list-item <?php echo esc_attr( ( $post->ID === $subpg->ID ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $subpg->ID ) ); ?>">
-																	<span><?php echo esc_html( get_the_title( $subpg ) ); ?></span>
+											<?php
+											// Show subpages of current branch page till second level.
+											$dli_subpages        = get_pages(
+												array(
+													'child_of' => $dli_page->ID,
+													'offset'   => 0,
+													'parent'   => $dli_page->ID,
+													'sort_column' => 'menu_order',
+												)
+											);
+												$dli_subpage_ids = wp_list_pluck( $dli_subpages, 'ID' );
+											if ( 0 !== $post->post_parent && ( $post->ID === $dli_page->ID || in_array( $post->ID, $dli_subpage_ids, true ) ) ) {
+												?>
+													<ul class="link-sublist">
+													<?php
+													foreach ( $dli_subpages as $dli_subpage ) {
+														?>
+															<li>
+																<a class="list-item <?php echo esc_attr( ( $post->ID === $dli_subpage->ID ) ? 'active' : '' ); ?>" href="<?php echo esc_url( get_permalink( $dli_subpage->ID ) ); ?>">
+																	<span><?php echo esc_html( get_the_title( $dli_subpage ) ); ?></span>
 																</a>
 															</li>
-														<?php
-												}
-												?>
-												</ul>
-											<?php
-										}
+															<?php
+													}
+													?>
+													</ul>
+													<?php
+											}
 								}
 								?>
 							</ul>
@@ -139,22 +139,24 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 				<div class="col-lg-8 pt84">
 					<div class="mb-4">
 						<?php
-						if ( ! empty( $image_metadata['image_url'] ) ) {
+						if ( ! empty( $dli_image_metadata['image_url'] ) ) {
 							?>
-								<img src="<?php echo esc_url( $image_metadata['image_url'] ); ?>"
-									alt="<?php echo esc_attr( $image_metadata['image_alt'] ?? '' ); ?>" 
-									title="<?php echo esc_attr( $image_metadata['image_title'] ?? '' ); ?>" 
-									class="img-fluid">
-							<?php
-							if ( ! empty( $image_metadata['image_caption'] ) ) {
-								?>
-									<figcaption class="figure-caption">
-								<?php echo esc_html( $image_metadata['image_caption'] ); ?>
-									</figcaption>
+								<figure class="mb-0">
+									<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+										alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ?? '' ); ?>" 
+										title="<?php echo esc_attr( $dli_image_metadata['image_title'] ?? '' ); ?>" 
+										class="img-fluid">
+									<?php
+									if ( ! empty( $dli_image_metadata['image_caption'] ) ) {
+										?>
+										<figcaption class="figure-caption">
+											<?php echo esc_html( $dli_image_metadata['image_caption'] ); ?>
+										</figcaption>
+										<?php
+									}
+									?>
+								</figure>
 								<?php
-							}
-							?>
-							<?php
 						}
 						?>
 					</div>
@@ -162,12 +164,12 @@ $related_items  = dli_get_field( 'pagine_collegate' );
 
 					<!-- NEWS ED EVENTI (related_items) -->
 					<?php
-					if ( $related_items ) {
+					if ( $dli_related_items ) {
 						get_template_part(
 							'template-parts/common/sezione-related-items',
 							null,
 							array(
-								'items' => $related_items,
+								'items' => $dli_related_items,
 							)
 						);
 					}

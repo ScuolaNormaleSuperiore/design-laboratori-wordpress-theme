@@ -6,50 +6,51 @@
  *
  * @package Design_Laboratori_Italia
  */
+
 global $post;
 get_header();
 
 // Campi personalizzati.
-$code      = dli_get_field( 'codice_interno' );
-$cost      = dli_get_field( 'costo' );
-$position  = dli_get_field( 'posizione' );
-$location  = dli_get_field( 'localizzazione' );
-$brand     = dli_get_field( 'marca' );
-$model     = dli_get_field( 'modello' );
-$dimension = dli_get_field( 'dimensioni_e_peso' );
-$year      = dli_get_field( 'anno_acquisizione' );
-$status    = dli_get_field( 'stato' );
+$dli_code      = dli_get_field( 'codice_interno' );
+$dli_cost      = dli_get_field( 'costo' );
+$dli_position  = dli_get_field( 'posizione' );
+$dli_location  = dli_get_field( 'localizzazione' );
+$dli_brand     = dli_get_field( 'marca' );
+$dli_model     = dli_get_field( 'modello' );
+$dli_dimension = dli_get_field( 'dimensioni_e_peso' );
+$dli_year      = dli_get_field( 'anno_acquisizione' );
+$dli_status    = dli_get_field( 'stato' );
 // Progetti.
-$progetti = DLI_ContentsManager::get_related_items( $post, 'risorse_tecniche', array( PROGETTO_POST_TYPE ) );
+$dli_progetti = DLI_ContentsManager::get_related_items( $post, 'risorse_tecniche', array( PROGETTO_POST_TYPE ) );
 // Allegati.
-$allegati   = array();
-$att_fields = array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
-foreach ( $att_fields as $af ) {
-	$item = dli_get_field( $af );
-	if ( is_array( $item ) && count( $item ) > 0 ) {
-		array_push( $allegati, $item );
+$dli_allegati   = array();
+$dli_att_fields = array( 'scheda_tecnica', 'manuale_uso', 'allegato_1', 'allegato_2' );
+foreach ( $dli_att_fields as $dli_attachment_field ) {
+	$dli_item = dli_get_field( $dli_attachment_field );
+	if ( is_array( $dli_item ) && count( $dli_item ) > 0 ) {
+		array_push( $dli_allegati, $dli_item );
 	}
 }
 // Tassonomie.
-$tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
-$archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
-$archive_page     = $archive_page_obj ? get_permalink( $archive_page_obj->ID ) : '';
+$dli_tipo_risorsa     = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+$dli_archive_page_obj = dli_get_page_by_post_type( TECHNICAL_RESOURCE_POST_TYPE );
+$dli_archive_page     = $dli_archive_page_obj ? get_permalink( $dli_archive_page_obj->ID ) : '';
 // Immagini.
-$photo          = dli_get_field( 'foto' );
-$image_metadata = dli_get_image_metadata( $post, 'full' );
+$dli_photo          = dli_get_field( 'foto' );
+$dli_image_metadata = dli_get_image_metadata( $post, 'full' );
 // Contenuto.
-$description = ( '.' === $post->post_content ) ? '' : wpautop( do_shortcode( $post->post_content ) );
+$dli_description = ( '.' === $post->post_content ) ? '' : wpautop( do_shortcode( $post->post_content ) );
 // Relazioni.
-$responsabili  = dli_get_field( 'responsabile' );
-$location_post = null;
-if ( is_array( $location ) && ! empty( $location ) ) {
-	$location_post = is_object( $location[0] ) ? $location[0] : get_post( $location[0] );
-} elseif ( $location ) {
-	$location_post = is_object( $location ) ? $location : get_post( $location );
+$dli_responsabili  = dli_get_field( 'responsabile' );
+$dli_location_post = null;
+if ( is_array( $dli_location ) && ! empty( $dli_location ) ) {
+	$dli_location_post = is_object( $dli_location[0] ) ? $dli_location[0] : get_post( $dli_location[0] );
+} elseif ( $dli_location ) {
+	$dli_location_post = is_object( $dli_location ) ? $dli_location : get_post( $dli_location );
 }
-$photo_url   = ( is_array( $photo ) && ! empty( $photo['url'] ) ) ? $photo['url'] : $image_metadata['image_url'];
-$photo_title = ( is_array( $photo ) && ! empty( $photo['title'] ) ) ? $photo['title'] : get_the_title();
-$has_photo   = ! empty( $photo_url );
+$dli_photo_url   = ( is_array( $dli_photo ) && ! empty( $dli_photo['url'] ) ) ? $dli_photo['url'] : $dli_image_metadata['image_url'];
+$dli_photo_title = ( is_array( $dli_photo ) && ! empty( $dli_photo['title'] ) ) ? $dli_photo['title'] : get_the_title();
+$dli_has_photo   = ! empty( $dli_photo_url );
 ?>
 
 <main id="main-container" role="main">
@@ -113,13 +114,13 @@ $has_photo   = ! empty( $photo_url );
 							</a>
 							<div class="menu-wrapper">
 								<div class="card-body text-center">
-									<?php if ( $has_photo ) { ?>
+									<?php if ( $dli_has_photo ) { ?>
 										<figure class="img-wrapper">
 											<img
 												style="max-width: 200px; height: auto;"
-												src="<?php echo esc_url( $photo_url ); ?>" 
-												title="<?php echo esc_attr( $photo_title ); ?>"
-												alt="<?php echo esc_attr( $photo_title ); ?>"
+												src="<?php echo esc_url( $dli_photo_url ); ?>" 
+												title="<?php echo esc_attr( $dli_photo_title ); ?>"
+												alt="<?php echo esc_attr( $dli_photo_title ); ?>"
 											>
 											<figcaption class="figure-caption pt-2">
 												<?php echo esc_html( get_the_title() ); ?>
@@ -135,7 +136,7 @@ $has_photo   = ! empty( $photo_url );
 									</div>
 									<ul class="link-list">
 										<?php
-										if ( $description ) {
+										if ( $dli_description ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link active" href="#description">
@@ -144,7 +145,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $code ) {
+										if ( $dli_code ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#codiceinterno">
@@ -153,7 +154,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $year ) {
+										if ( $dli_year ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#acquisizione">
@@ -162,7 +163,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $tipo_risorsa ) {
+										if ( $dli_tipo_risorsa ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#tiporisorsa">
@@ -171,7 +172,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $cost ) {
+										if ( $dli_cost ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#costo">
@@ -180,7 +181,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $location_post ) {
+										if ( $dli_location_post ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#localizzazione">
@@ -189,7 +190,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $position ) {
+										if ( $dli_position ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#posizione">
@@ -198,7 +199,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $status ) {
+										if ( $dli_status ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#status">
@@ -207,7 +208,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $brand || $model ) {
+										if ( $dli_brand || $dli_model ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#marcamodello">
@@ -216,7 +217,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $dimension ) {
+										if ( $dli_dimension ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#dimensioni">
@@ -225,7 +226,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( count( $allegati ) > 0 ) {
+										if ( count( $dli_allegati ) > 0 ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#allegati">
@@ -234,7 +235,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $responsabili ) {
+										if ( $dli_responsabili ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#responsabili">
@@ -243,7 +244,7 @@ $has_photo   = ! empty( $photo_url );
 											</li>
 											<?php
 										}
-										if ( $progetti ) {
+										if ( $dli_progetti ) {
 											?>
 											<li class="nav-item">
 												<a class="nav-link" href="#progetti">
@@ -265,106 +266,106 @@ $has_photo   = ! empty( $photo_url );
 			<!-- DESCRIZIONE -->
 			<div class="col-12 col-lg-9 it-page-sections-container">
 				<?php
-				if ( $description ) {
+				if ( $dli_description ) {
 					?>
 					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="it-page-section h4 visually-hidden"><?php echo esc_html__( 'Descrizione Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<?php echo wp_kses_post( $description ); ?>
+							<?php echo wp_kses_post( $dli_description ); ?>
 						</p>
 					
 					</article>
 					<?php
 				}
-				if ( $code ) {
+				if ( $dli_code ) {
 					?>
 					<!-- Codice interno -->
 					<article id="codiceinterno" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Codice interno', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $code ); ?></p>
+						<p><?php echo esc_attr( $dli_code ); ?></p>
 					</article>
 					<?php
 				}
 				?>
 				<?php
-				if ( $year ) {
+				if ( $dli_year ) {
 					?>
 					<!-- Anno di acquisizione -->
 					<article id="acquisizione" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $year ); ?></p>
+						<p><?php echo esc_attr( $dli_year ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $tipo_risorsa ) {
+				if ( $dli_tipo_risorsa ) {
 					?>
 					<!-- Tipo risorsa -->
 					<article id="tiporisorsa" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Tipo risorsa', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $tipo_risorsa['title'] ); ?></p>
+						<p><?php echo esc_attr( $dli_tipo_risorsa['title'] ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $cost ) {
+				if ( $dli_cost ) {
 					?>
 					<!-- Costo -->
 					<article id="costo" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Costo', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $cost ); ?></p>
+						<p><?php echo esc_attr( $dli_cost ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $location_post ) {
+				if ( $dli_location_post ) {
 					?>
 					<!-- Localizzazione -->
 					<article id="localizzazione" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Localizzazione', 'design_laboratori_italia' ); ?></h3>
 						<p>
-							<a href="<?php echo esc_url( get_permalink( $location_post->ID ) ); ?>">
-								<?php echo esc_html( $location_post->post_title ); ?>
+							<a href="<?php echo esc_url( get_permalink( $dli_location_post->ID ) ); ?>">
+								<?php echo esc_html( $dli_location_post->post_title ); ?>
 							</a>
 						</p>
 					</article>
 					<?php
 				}
-				if ( $position ) {
+				if ( $dli_position ) {
 					?>
 					<!-- Posizione -->
 					<article id="posizione" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Posizione', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $position ); ?></p>
+						<p><?php echo esc_attr( $dli_position ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $status ) {
+				if ( $dli_status ) {
 					?>
 					<!-- Stato -->
 					<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Stato', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $status ); ?></p>
+						<p><?php echo esc_attr( $dli_status ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $brand || $model ) {
-					$brand_model = join( ' - ', array( $brand, $model ) );
+				if ( $dli_brand || $dli_model ) {
+					$dli_brand_model = join( ' - ', array( $dli_brand, $dli_model ) );
 					?>
 					<!-- Marca e modello -->
 					<article id="marcamodello" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Marca e modello', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $brand_model ); ?></p>
+						<p><?php echo esc_attr( $dli_brand_model ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $dimension ) {
+				if ( $dli_dimension ) {
 					?>
 					<!-- Dimensioni -->
 					<article id="dimensioni" class="it-page-section mb-4 anchor-offset clearfix">
 						<h3 class="h4"><?php echo esc_html__( 'Dimensioni e peso', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dimension ); ?></p>
+						<p><?php echo esc_attr( $dli_dimension ); ?></p>
 					</article>
 					<?php
 				}
-				if ( $allegati ) {
+				if ( $dli_allegati ) {
 					?>
 					<!-- Allegati -->
 					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
@@ -373,8 +374,8 @@ $has_photo   = ! empty( $photo_url );
 							<div class="row pb-3">
 								<div class="card-wrapper card-teaser-wrapper">
 								<?php
-								if ( count( $allegati ) > 0 ) {
-									foreach ( $allegati as $allegato ) {
+								if ( count( $dli_allegati ) > 0 ) {
+									foreach ( $dli_allegati as $dli_allegato ) {
 										?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
@@ -384,8 +385,8 @@ $has_photo   = ! empty( $photo_url );
 													<title><?php echo esc_html__( 'File PDF', 'design_laboratori_italia' ); ?></title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
-												<a href="<?php echo esc_url( $allegato['url'] ); ?>">
-													<?php echo esc_attr( $allegato['title'] ); ?>&nbsp;
+												<a href="<?php echo esc_url( $dli_allegato['url'] ); ?>">
+													<?php echo esc_attr( $dli_allegato['title'] ); ?>&nbsp;
 												</a>
 											</h3>
 										</div>
@@ -401,7 +402,7 @@ $has_photo   = ! empty( $photo_url );
 					</article>
 					<?php
 				}
-				if ( $responsabili ) {
+				if ( $dli_responsabili ) {
 					?>
 					<!-- Responsabili -->
 					<article id="responsabili" class="it-page-section mb-4 anchor-offset clearfix">
@@ -412,14 +413,14 @@ $has_photo   = ! empty( $photo_url );
 								null,
 								array(
 									'section_id' => 'responsabile',
-									'items'      => $responsabili,
+									'items'      => $dli_responsabili,
 								)
 							);
 						?>
 					</article>
 					<?php
 				}
-				if ( $progetti ) {
+				if ( $dli_progetti ) {
 					?>
 					<!-- Progetti -->
 					<article id="progetti" class="it-page-section mb-4 anchor-offset clearfix">
@@ -430,7 +431,7 @@ $has_photo   = ! empty( $photo_url );
 								null,
 								array(
 									'section_id' => 'progetti',
-									'items'      => $progetti,
+									'items'      => $dli_progetti,
 								)
 							);
 						?>

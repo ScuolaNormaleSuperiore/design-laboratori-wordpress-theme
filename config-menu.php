@@ -1,4 +1,9 @@
 <?php
+/**
+ * Theme menu configuration.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 define(
 	'DLI_LAB_MENU_IT',
