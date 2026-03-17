@@ -74,7 +74,7 @@ class Banner_Manager {
 	 * @return string
 	 */
 	public function custom_layout( $post ) {
-		if ( NEWS_POST_TYPE === $post->post_type ) {
+		if ( BANNER_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
 			_e( 'Descrizione banner', 'design_laboratori_italia' );
 			echo '</h1>';

@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * DLI UX Report Scanner
+ * DLI HTML Validation Scanner
  *
- * Scans all site pages for accessibility violations (Axe/WCAG) and responsive
- * overflow issues. Pages are visited sequentially (no concurrency) because
- * Axe analysis is CPU-intensive.
+ * Scans all site pages and validates their rendered HTML against the
+ * Nu Html Checker (VNU). Requires Java 8+ and the vnu-jar npm package.
  *
  * Usage:
  *   node scan.js <baseUrl> [options]
@@ -14,12 +13,13 @@
  *   --sitemap <path>   Path to sitemap page (default: /mappa-sito/)
  *   --timeout <ms>     Page timeout in ms (default: 30000)
  *   --delay <ms>       Wait between pages in ms (default: 500; 0 = no delay)
- *   --out <path>       Output path without extension (default: ./reports/ux_report_<ts>)
+ *   --out <path>       Output path without extension (default: ./reports/html_report_<ts>)
  *   --gate             Exit with code 1 if verdict is FAIL
  *
  * Prerequisites:
- *   npm install --save-dev @axe-core/playwright
+ *   npm install --save-dev vnu-jar
  *   npx playwright install chromium
+ *   Java 8+ must be installed and available on PATH
  *
  * Example:
  *   node scan.js https://laboratorio1.local
@@ -30,19 +30,20 @@
 
 const path = require('path');
 const fs = require('fs');
+const { spawnSync } = require('child_process');
 const { chromium } = require('playwright');
 
 // ---------------------------------------------------------------------------
-// Axe — loaded lazily so the script fails gracefully if not installed
+// vnu-jar — loaded lazily so the script fails gracefully if not installed
 // ---------------------------------------------------------------------------
 
-function requireAxe() {
+function requireVnu() {
   try {
-    return require('@axe-core/playwright').AxeBuilder;
+    return require('vnu-jar');
   } catch {
     console.error(
-      'ERROR: @axe-core/playwright is not installed.\n' +
-      'Run: npm install --save-dev @axe-core/playwright'
+      'ERROR: vnu-jar is not installed.\n' +
+      'Run: npm install --save-dev vnu-jar'
     );
     process.exit(1);
   }
@@ -98,7 +99,7 @@ function parseArgs(argv) {
 }
 
 // ---------------------------------------------------------------------------
-// URL extraction from sitemap page (same logic as status-report)
+// URL extraction from sitemap page (same logic as status-report and ux-report)
 // ---------------------------------------------------------------------------
 
 async function extractUrls(page, baseUrl, sitemapPath, timeout) {
@@ -140,123 +141,92 @@ async function extractUrls(page, baseUrl, sitemapPath, timeout) {
 }
 
 // ---------------------------------------------------------------------------
-// Accessibility check via Axe
+// HTML validation via VNU
 // ---------------------------------------------------------------------------
 
-async function checkAxe(page, AxeBuilder) {
+function validateHtml(html, vnuJarPath) {
+  const proc = spawnSync(
+    'java',
+    ['-jar', vnuJarPath, '--format', 'json', '--stdout', '-'],
+    {
+      input: html,
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024,
+    }
+  );
+
+  if (proc.error) {
+    return { errorCount: 0, warningCount: 0, errors: [], warnings: [], error: `java: ${proc.error.message}` };
+  }
+
+  const output = (proc.stdout || '').trim();
+
+  // VNU outputs nothing (or empty messages array) when the page is clean
+  if (!output) {
+    return { errorCount: 0, warningCount: 0, errors: [], warnings: [], error: null };
+  }
+
+  let json;
   try {
-    const results = await new AxeBuilder({ page }).analyze();
-    const violations = results.violations || [];
-
-    const counts = { critical: 0, serious: 0, moderate: 0, minor: 0, total: 0 };
-    const details = [];
-
-    violations.forEach((v) => {
-      const impact = v.impact || 'minor';
-      if (impact in counts) counts[impact] += 1;
-      counts.total += 1;
-
-      details.push({
-        id: v.id,
-        impact,
-        description: v.description,
-        nodes: (v.nodes || []).length,
-        wcag: v.tags.filter((t) => t.startsWith('wcag') || t.startsWith('best-practice')),
-      });
-    });
-
-    return { ...counts, violations: details, error: null };
-  } catch (err) {
-    return { critical: 0, serious: 0, moderate: 0, minor: 0, total: 0, violations: [], error: err.message };
+    json = JSON.parse(output);
+  } catch (e) {
+    return { errorCount: 0, warningCount: 0, errors: [], warnings: [], error: `VNU parse error: ${e.message}` };
   }
+
+  const messages = json.messages || [];
+
+  const errors = messages
+    .filter((m) => m.type === 'error')
+    .map((m) => ({
+      message: m.message,
+      line: m.lastLine || null,
+      col: m.lastColumn || null,
+      extract: (m.extract || '').substring(0, 120),
+    }));
+
+  const warnings = messages
+    .filter((m) => m.type === 'info' && m.subType === 'warning')
+    .map((m) => ({
+      message: m.message,
+      line: m.lastLine || null,
+      col: m.lastColumn || null,
+      extract: (m.extract || '').substring(0, 120),
+    }));
+
+  return { errorCount: errors.length, warningCount: warnings.length, errors, warnings, error: null };
 }
 
 // ---------------------------------------------------------------------------
-// Responsive overflow check across viewports
+// Single page scan
 // ---------------------------------------------------------------------------
 
-const VIEWPORTS = [
-  { name: 'mobile', width: 375, height: 812 },
-  { name: 'tablet', width: 768, height: 1024 },
-  { name: 'desktop', width: 1280, height: 800 },
-];
-
-async function checkResponsive(page) {
-  const result = {};
-  let overflowCount = 0;
-
-  for (const vp of VIEWPORTS) {
-    await page.setViewportSize({ width: vp.width, height: vp.height });
-    const data = await page.evaluate((clientWidth) => {
-      const overflow = document.documentElement.scrollWidth > document.documentElement.clientWidth;
-      if (!overflow) return { overflow: false, elements: [] };
-
-      const offenders = Array.from(document.querySelectorAll('*'))
-        .filter((el) => {
-          try {
-            return el.getBoundingClientRect().right > clientWidth;
-          } catch { return false; }
-        })
-        .slice(0, 10) // cap at 10 elements per viewport
-        .map((el) => {
-          const rect = el.getBoundingClientRect();
-          const tag = el.tagName.toLowerCase();
-          const id = el.id ? `#${el.id}` : '';
-          const cls = el.className && typeof el.className === 'string'
-            ? '.' + el.className.trim().split(/\s+/).slice(0, 3).join('.')
-            : '';
-          return {
-            selector: `${tag}${id}${cls}`.substring(0, 80),
-            right: Math.round(rect.right),
-            width: Math.round(rect.width),
-          };
-        });
-
-      return { overflow: true, elements: offenders };
-    }, vp.width);
-
-    result[vp.width] = data;
-    if (data.overflow) overflowCount += 1;
-  }
-
-  return { viewports: result, overflowCount };
-}
-
-// ---------------------------------------------------------------------------
-// Single page scan — expandable: add new check functions here
-// ---------------------------------------------------------------------------
-
-async function scanPage(browser, url, timeout, AxeBuilder) {
+async function scanPage(browser, url, timeout, vnuJarPath) {
   const result = {
     url,
-    axe: null,
-    responsive: null,
-    overflowCount: 0,
-    error: null,
+    errorCount: 0,
+    warningCount: 0,
+    errors: [],
+    warnings: [],
+    vnuError: null,
+    pageError: null,
   };
 
   let page;
   try {
     page = await browser.newPage();
-    // Use desktop viewport as default for Axe analysis
-    await page.setViewportSize({ width: 1280, height: 800 });
-
     await page.goto(url, { waitUntil: 'load', timeout });
 
-    // --- Accessibility (Axe) ---
-    result.axe = await checkAxe(page, AxeBuilder);
+    const html = await page.content();
+    const validation = validateHtml(html, vnuJarPath);
 
-    // --- Responsive overflow ---
-    const responsive = await checkResponsive(page);
-    result.responsive = responsive.viewports;
-    result.overflowCount = responsive.overflowCount;
-
-    // Future checks can be added here as additional async functions:
-    // result.performance = await checkPerformance(page);
-    // result.seo = await checkSeo(page);
+    result.errorCount = validation.errorCount;
+    result.warningCount = validation.warningCount;
+    result.errors = validation.errors;
+    result.warnings = validation.warnings;
+    result.vnuError = validation.error;
 
   } catch (err) {
-    result.error = err.message.substring(0, 300);
+    result.pageError = err.message.substring(0, 300);
   } finally {
     if (page) await page.close().catch(() => {});
   }
@@ -271,31 +241,23 @@ async function scanPage(browser, url, timeout, AxeBuilder) {
 function computeSummary(results) {
   const summary = {
     pagesScanned: results.length,
-    pagesWithAxeViolations: 0,
-    pagesWithOverflow: 0,
-    axeCriticalTotal: 0,
-    axeSeriousTotal: 0,
-    axeModerateTotal: 0,
-    axeMinorTotal: 0,
-    axeTotal: 0,
+    pagesWithErrors: 0,
+    pagesWithWarnings: 0,
+    totalErrors: 0,
+    totalWarnings: 0,
     verdict: 'PASS',
   };
 
   results.forEach((r) => {
-    if (r.axe) {
-      if (r.axe.total > 0) summary.pagesWithAxeViolations += 1;
-      summary.axeCriticalTotal += r.axe.critical;
-      summary.axeSeriousTotal += r.axe.serious;
-      summary.axeModerateTotal += r.axe.moderate;
-      summary.axeMinorTotal += r.axe.minor;
-      summary.axeTotal += r.axe.total;
-    }
-    if (r.overflowCount > 0) summary.pagesWithOverflow += 1;
+    if (r.errorCount > 0) summary.pagesWithErrors += 1;
+    if (r.warningCount > 0) summary.pagesWithWarnings += 1;
+    summary.totalErrors += r.errorCount;
+    summary.totalWarnings += r.warningCount;
   });
 
-  if (summary.axeCriticalTotal > 0) {
+  if (summary.totalErrors > 0) {
     summary.verdict = 'FAIL';
-  } else if (summary.axeSeriousTotal > 0 || summary.pagesWithOverflow > 0) {
+  } else if (summary.totalWarnings > 0) {
     summary.verdict = 'WARN';
   }
 
@@ -344,39 +306,37 @@ function writeHtml(data, filePath) {
   const color = verdictColor(summary.verdict);
 
   const pageRows = pages.map((p) => {
-    const axe = p.axe || {};
-    const verdictPage = axe.critical > 0 ? 'FAIL' : axe.serious > 0 ? 'WARN' : 'PASS';
-    const vpColor = (v) => v === 'PASS' ? '#27ae60' : v === 'WARN' ? '#e67e22' : '#c0392b';
+    const verdictPage = p.pageError ? 'ERROR' : p.errorCount > 0 ? 'FAIL' : p.warningCount > 0 ? 'WARN' : 'PASS';
+    const vpColor = verdictColor(verdictPage === 'ERROR' ? 'FAIL' : verdictPage);
 
-    const overflowBadges = p.responsive
-      ? VIEWPORTS.map((vp) => {
-          const vpData = p.responsive[vp.width];
-          const ov = vpData && vpData.overflow;
-          const elements = (vpData && vpData.elements) || [];
-          const elemList = elements.length
-            ? `<ul style="margin:4px 0 0;padding-left:14px">${elements.map((e) =>
-                `<li><code>${escHtml(e.selector)}</code> (right:${e.right}px, w:${e.width}px)</li>`
-              ).join('')}</ul>`
-            : '';
-          return `<div style="margin-bottom:2px"><span style="color:${ov ? '#c0392b' : '#27ae60'};font-size:11px;font-weight:bold">${vp.name}:${ov ? 'OVF' : 'OK'}</span>${elemList}</div>`;
-        }).join('')
-      : '—';
-
-    const violationList = (axe.violations || []).length
-      ? `<ul>${(axe.violations || []).map((v) =>
-          `<li><code>${escHtml(v.id)}</code> [${escHtml(v.impact)}] — ${escHtml(v.description)} (${v.nodes} node${v.nodes !== 1 ? 's' : ''})</li>`
+    const errorList = p.errors.length
+      ? `<ul>${p.errors.map((e) =>
+          `<li><span style="color:#c0392b">Error</span> [L${e.line || '?'}:C${e.col || '?'}] ${escHtml(e.message)}` +
+          (e.extract ? `<br><code>${escHtml(e.extract)}</code>` : '') +
+          '</li>'
         ).join('')}</ul>`
-      : '—';
+      : '';
+
+    const warnList = p.warnings.length
+      ? `<ul>${p.warnings.map((w) =>
+          `<li><span style="color:#e67e22">Warning</span> [L${w.line || '?'}:C${w.col || '?'}] ${escHtml(w.message)}` +
+          (w.extract ? `<br><code>${escHtml(w.extract)}</code>` : '') +
+          '</li>'
+        ).join('')}</ul>`
+      : '';
+
+    const details = errorList || warnList
+      ? errorList + warnList
+      : p.pageError
+        ? `<span style="color:#6b7280">${escHtml(p.pageError)}</span>`
+        : '—';
 
     return `<tr>
       <td style="word-break:break-all;font-size:12px">${escHtml(p.url)}</td>
-      <td style="color:${vpColor(verdictPage)};font-weight:bold">${verdictPage}</td>
-      <td>${axe.critical || 0}</td>
-      <td>${axe.serious || 0}</td>
-      <td>${axe.moderate || 0}</td>
-      <td>${axe.minor || 0}</td>
-      <td>${overflowBadges}</td>
-      <td style="font-size:12px">${violationList}</td>
+      <td style="color:${vpColor};font-weight:bold">${verdictPage}</td>
+      <td>${p.errorCount}</td>
+      <td>${p.warningCount}</td>
+      <td style="font-size:12px">${details}</td>
     </tr>`;
   }).join('');
 
@@ -385,7 +345,7 @@ function writeHtml(data, filePath) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DLI UX Report</title>
+<title>DLI HTML Validation Report</title>
 <style>
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;background:#f6f7f9;color:#1f2937}
 h1{margin:0 0 8px}
@@ -401,7 +361,7 @@ ul{margin:4px 0;padding-left:16px}
 </style>
 </head>
 <body>
-  <h1>DLI UX Report</h1>
+  <h1>DLI HTML Validation Report</h1>
   <div class="meta">
     Scanned: <strong>${new Date(scannedAt).toLocaleString('it-IT')}</strong>
     &nbsp;|&nbsp;
@@ -413,12 +373,10 @@ ul{margin:4px 0;padding-left:16px}
 
   <div class="cards">
     <div class="card"><div class="num">${summary.pagesScanned}</div><div>Pages scanned</div></div>
-    <div class="card"><div class="num" style="color:${summary.pagesWithAxeViolations > 0 ? '#c0392b' : '#27ae60'}">${summary.pagesWithAxeViolations}</div><div>Pages with Axe violations</div></div>
-    <div class="card"><div class="num" style="color:${summary.pagesWithOverflow > 0 ? '#e67e22' : '#27ae60'}">${summary.pagesWithOverflow}</div><div>Pages with overflow</div></div>
-    <div class="card"><div class="num" style="color:${summary.axeCriticalTotal > 0 ? '#c0392b' : '#27ae60'}">${summary.axeCriticalTotal}</div><div>Critical violations</div></div>
-    <div class="card"><div class="num" style="color:${summary.axeSeriousTotal > 0 ? '#e67e22' : '#27ae60'}">${summary.axeSeriousTotal}</div><div>Serious violations</div></div>
-    <div class="card"><div class="num">${summary.axeModerateTotal}</div><div>Moderate violations</div></div>
-    <div class="card"><div class="num">${summary.axeMinorTotal}</div><div>Minor violations</div></div>
+    <div class="card"><div class="num" style="color:${summary.pagesWithErrors > 0 ? '#c0392b' : '#27ae60'}">${summary.pagesWithErrors}</div><div>Pages with errors</div></div>
+    <div class="card"><div class="num" style="color:${summary.pagesWithWarnings > 0 ? '#e67e22' : '#27ae60'}">${summary.pagesWithWarnings}</div><div>Pages with warnings</div></div>
+    <div class="card"><div class="num" style="color:${summary.totalErrors > 0 ? '#c0392b' : '#27ae60'}">${summary.totalErrors}</div><div>Total errors</div></div>
+    <div class="card"><div class="num" style="color:${summary.totalWarnings > 0 ? '#e67e22' : '#27ae60'}">${summary.totalWarnings}</div><div>Total warnings</div></div>
   </div>
 
   <table class="table">
@@ -426,12 +384,9 @@ ul{margin:4px 0;padding-left:16px}
       <tr>
         <th>URL</th>
         <th>Verdict</th>
-        <th>Critical</th>
-        <th>Serious</th>
-        <th>Moderate</th>
-        <th>Minor</th>
-        <th>Responsive</th>
-        <th>Axe violations</th>
+        <th>Errors</th>
+        <th>Warnings</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>${pageRows}</tbody>
@@ -448,14 +403,17 @@ ul{margin:4px 0;padding-left:16px}
 // ---------------------------------------------------------------------------
 
 function printProgress(result, index, total) {
-  const axe = result.axe || {};
-  const verdictPage = axe.critical > 0 ? 'FAIL' : axe.serious > 0 ? 'WARN' : result.error ? 'ERROR' : 'PASS';
+  const verdictPage = result.pageError ? 'ERROR' : result.errorCount > 0 ? 'FAIL' : result.warningCount > 0 ? 'WARN' : 'PASS';
   const icon = verdictPage === 'PASS' ? '✓' : verdictPage === 'WARN' ? '!' : '✗';
-  const overflow = result.overflowCount > 0 ? ` [overflow:${result.overflowCount}vp]` : '';
-  const axeInfo = axe.total > 0 ? ` [axe:${axe.total}]` : '';
-  console.log(`  ${icon}  [${index}/${total}] ${result.url}${axeInfo}${overflow}`);
-  if (result.error) {
-    console.log(`       [ERROR] ${result.error}`);
+  const counts = (result.errorCount > 0 || result.warningCount > 0)
+    ? ` [errors:${result.errorCount} warnings:${result.warningCount}]`
+    : '';
+  console.log(`  ${icon}  [${index}/${total}] ${result.url}${counts}`);
+  if (result.pageError) {
+    console.log(`       [PAGE] ${result.pageError}`);
+  }
+  if (result.vnuError) {
+    console.log(`       [VNU]  ${result.vnuError}`);
   }
 }
 
@@ -473,13 +431,13 @@ async function main() {
 
   if (!opts.outExplicit) {
     const ts = buildTimestamp(new Date());
-    opts.out = `./tests/e2e/ux-report/reports/ux_report_${ts}`;
+    opts.out = `./tests/e2e/html-report/reports/html_report_${ts}`;
   }
 
-  const AxeBuilder = requireAxe();
+  const vnuJarPath = requireVnu();
 
   console.log('='.repeat(60));
-  console.log('DLI UX Report Scanner');
+  console.log('DLI HTML Validation Scanner');
   console.log('='.repeat(60));
   console.log(`Base URL : ${opts.baseUrl}`);
   console.log(`Sitemap  : ${opts.sitemap}`);
@@ -487,23 +445,24 @@ async function main() {
   console.log(`Delay    : ${opts.delay > 0 ? opts.delay + 'ms' : 'none (--delay 0)'}`);
   console.log(`Output   : ${opts.out}.html / ${opts.out}.json`);
   console.log(`Gate     : ${opts.gate}`);
+  console.log(`VNU jar  : ${vnuJarPath}`);
   console.log('='.repeat(60));
 
-  const browser = await chromium.launch({ headless: true, args: ['--disable-web-security'] });
+  const browser = await chromium.launch({ headless: true });
 
-  // Step 1: extract URLs
+  // Step 1: extract URLs from sitemap
   const sitemapPage = await browser.newPage();
   const urls = await extractUrls(sitemapPage, opts.baseUrl, opts.sitemap, opts.timeout);
   await sitemapPage.close();
 
-  // Step 2: scan pages sequentially
+  // Step 2: scan pages sequentially (VNU is CPU-intensive)
   console.log(`Scanning ${urls.length} pages (sequential)...\n`);
   const results = [];
   for (let i = 0; i < urls.length; i++) {
     if (opts.delay > 0 && i > 0) {
       await new Promise((res) => setTimeout(res, opts.delay));
     }
-    const result = await scanPage(browser, urls[i], opts.timeout, AxeBuilder);
+    const result = await scanPage(browser, urls[i], opts.timeout, vnuJarPath);
     results.push(result);
     printProgress(result, i + 1, urls.length);
   }
@@ -527,12 +486,10 @@ async function main() {
 
   console.log('\n' + '='.repeat(60));
   console.log(`Pages scanned          : ${summary.pagesScanned}`);
-  console.log(`Pages with violations  : ${summary.pagesWithAxeViolations}`);
-  console.log(`Pages with overflow    : ${summary.pagesWithOverflow}`);
-  console.log(`Axe critical           : ${summary.axeCriticalTotal}`);
-  console.log(`Axe serious            : ${summary.axeSeriousTotal}`);
-  console.log(`Axe moderate           : ${summary.axeModerateTotal}`);
-  console.log(`Axe minor              : ${summary.axeMinorTotal}`);
+  console.log(`Pages with errors      : ${summary.pagesWithErrors}`);
+  console.log(`Pages with warnings    : ${summary.pagesWithWarnings}`);
+  console.log(`Total errors           : ${summary.totalErrors}`);
+  console.log(`Total warnings         : ${summary.totalWarnings}`);
   console.log(`Verdict                : ${summary.verdict}`);
   console.log('='.repeat(60));
   console.log(`JSON : ${opts.out}.json`);

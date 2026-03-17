@@ -46,7 +46,7 @@ function parseArgs(argv) {
     sitemap: '/mappa-sito/',
     timeout: 15000,
     concurrency: 3,
-    delay: 300, // ms to wait before starting each page request; 0 = no delay
+    delay: 1000, // ms to wait before starting each page request; 0 = no delay
     out: null, // resolved in main after timestamp is built
     outExplicit: false,
   };

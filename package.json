@@ -25,7 +25,10 @@
     "quality:compare": "node tests/e2e/quality-report/compare.js",
     "ux:scan": "node tests/e2e/ux-report/scan.js",
     "ux:scan:gate": "node tests/e2e/ux-report/scan.js --gate",
-    "ux:compare": "node tests/e2e/ux-report/compare.js"
+    "ux:compare": "node tests/e2e/ux-report/compare.js",
+    "html:scan": "node tests/e2e/html-report/scan.js",
+    "html:scan:gate": "node tests/e2e/html-report/scan.js --gate",
+    "html:compare": "node tests/e2e/html-report/compare.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +49,7 @@
     "playwright": "^1.50.0",
     "replace-in-file": "^6.3.5",
     "sass": "^1.81.0",
-    "uglify-js": "^3.17.4"
+    "uglify-js": "^3.17.4",
+    "vnu-jar": "^26.3.17"
   }
 }

@@ -65,6 +65,22 @@ Use the Dockerfile provided in the `DEV/` directory to set up a local developmen
 https://sitofederato.sns.it
 
 
+## Automated Quality Checks (tests/e2e/)
+
+Four automated scanning modules are available under `tests/e2e/`. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs.
+
+| Module | Command | What it checks |
+|---|---|---|
+| `status-report` | `npm run status:scan` | HTTP errors, PHP errors, JS errors, broken resources, timeouts |
+| `quality-report` | `npm run quality:scan` | PHP syntax, PHPCS, PHPStan, Composer audit, NPM audit |
+| `ux-report` | `npm run ux:scan` | Axe/WCAG accessibility violations, responsive overflow |
+| `html-report` | `npm run html:scan` | HTML validity via Nu Html Checker (VNU) |
+
+All scan commands accept `<baseUrl>` as the first argument. The `*:gate` variants exit with code 1 on failure, suitable for CI/CD pipelines. The `*:compare` variants compare the two most recent reports.
+
+**Prerequisites for `html-report`:** Java 8+ on PATH and `vnu-jar` dev dependency (`npm install`).
+
+
 ## License
 
 See the `LICENSE` file in the project root for licensing information.

@@ -19,6 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports and setup utilities.
 - `DEV/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
+- `tests/e2e/`: automated quality scanning modules (status, quality, ux, html).
 
 
 ## Main Files
@@ -52,6 +53,11 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 
 - `composer run lint:php`
 - `composer run lint:php:fix`
+- `npm run status:scan -- <baseUrl>` — runtime site scan (HTTP, PHP, JS errors)
+- `npm run quality:scan` — static code quality (PHP syntax, PHPCS, PHPStan, audits)
+- `npm run ux:scan -- <baseUrl>` — accessibility (Axe/WCAG) and responsive overflow
+- `npm run html:scan -- <baseUrl>` — HTML validity via VNU (requires Java 8+)
+- Each scan has a `*:gate` variant (exits 1 on failure) and a `*:compare` variant.
 
 
 ## References
