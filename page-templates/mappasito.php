@@ -1,58 +1,59 @@
 <?php
-/* Template Name: Mappa del sito
+/**
+ * Template Name: Mappa del sito
  *
  * @package Design_Laboratori_Italia
  */
+
 get_header();
 
-// Build the PAGE TREE.
-
-$lng_slug  = dli_current_language( 'slug' );
+// Build the page tree.
+$dli_language_slug = dli_current_language( 'slug' );
 
 try {
-	$pt = dli_get_site_tree();
-} catch ( Exception $e ) {
-	$pt  = array();
-	$msg = 'Caught exception: ' . $e->getMessage() . '\n';
-	error_log( $msg );
+	$dli_page_tree = dli_get_site_tree();
+} catch ( Exception $dli_exception ) {
+	$dli_page_tree = array();
 }
 
-$homepage_node = array();
-if ( isset( $pt[ DLI_HOMEPAGE_SLUG ] ) && is_array( $pt[ DLI_HOMEPAGE_SLUG ] ) ) {
-	$homepage_node = $pt[ DLI_HOMEPAGE_SLUG ];
+$dli_homepage_node = array();
+
+if ( isset( $dli_page_tree[ DLI_HOMEPAGE_SLUG ] ) && is_array( $dli_page_tree[ DLI_HOMEPAGE_SLUG ] ) ) {
+	$dli_homepage_node = $dli_page_tree[ DLI_HOMEPAGE_SLUG ];
 }
 
 if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 	/**
-	 * Render sitemap node recursively with escaped output.
+	 * Render sitemap nodes recursively.
 	 *
-	 * @param array $node Sitemap node.
+	 * @param array $dli_node Sitemap node.
 	 * @return void
 	 */
-	function dli_render_sitemap_node( $node ) {
-		if ( ! is_array( $node ) ) {
+	function dli_render_sitemap_node( $dli_node ) {
+		if ( ! is_array( $dli_node ) ) {
 			return;
 		}
 
-		$name     = isset( $node['name'] ) ? esc_html( (string) $node['name'] ) : '';
-		$link     = isset( $node['link'] ) ? esc_url( (string) $node['link'] ) : '';
-		$external = ! empty( $node['external'] );
+		$dli_name     = isset( $dli_node['name'] ) ? esc_html( (string) $dli_node['name'] ) : '';
+		$dli_link     = isset( $dli_node['link'] ) ? esc_url( (string) $dli_node['link'] ) : '';
+		$dli_external = ! empty( $dli_node['external'] );
 
 		echo '<li>';
-		if ( '' !== $link ) {
+
+		if ( '' !== $dli_link ) {
 			echo '<a class="mappasitolink"';
-			if ( $external ) {
+			if ( $dli_external ) {
 				echo ' target="_blank" rel="noopener noreferrer"';
 			}
-			echo ' href="' . $link . '">' . $name . '</a>';
+			echo ' href="' . esc_url( $dli_link ) . '">' . esc_html( $dli_name ) . '</a>';
 		} else {
-			echo '<span class="mappasitolink">' . $name . '</span>';
+			echo '<span class="mappasitolink">' . esc_html( $dli_name ) . '</span>';
 		}
 
-		if ( ! empty( $node['children'] ) && is_array( $node['children'] ) ) {
+		if ( ! empty( $dli_node['children'] ) && is_array( $dli_node['children'] ) ) {
 			echo '<ul>';
-			foreach ( $node['children'] as $child_node ) {
-				dli_render_sitemap_node( $child_node );
+			foreach ( $dli_node['children'] as $dli_child_node ) {
+				dli_render_sitemap_node( $dli_child_node );
 			}
 			echo '</ul>';
 		}
@@ -73,33 +74,39 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 	<!-- MAPPA DEL SITO -->
 	<div class="container my-4">
 		<div class="row variable-gutters d-flex justify-content-center">
-				<div class="col-lg-8 pt84">
-					<ul class="menutree">
-						<?php if ( ! empty( $homepage_node ) ) { ?>
-						<li><a class="mappasitolink" href="<?php echo esc_url( (string) $homepage_node['link'] ); ?>"><?php echo esc_html( (string) $homepage_node['name'] ); ?></a></li>
-						<?php if ( ! empty( $homepage_node['children'] ) && is_array( $homepage_node['children'] ) ) { ?>
+			<div class="col-lg-8 pt84">
+				<ul class="menutree">
+					<?php if ( ! empty( $dli_homepage_node ) ) : ?>
+						<li>
+							<a class="mappasitolink" href="<?php echo esc_url( (string) $dli_homepage_node['link'] ); ?>">
+								<?php echo esc_html( (string) $dli_homepage_node['name'] ); ?>
+							</a>
+						</li>
+						<?php if ( ! empty( $dli_homepage_node['children'] ) && is_array( $dli_homepage_node['children'] ) ) : ?>
 							<ul>
-								<?php
-								foreach ( $homepage_node['children'] as $item ) {
-									dli_render_sitemap_node( $item );
-								}
-								?>
+								<?php foreach ( $dli_homepage_node['children'] as $dli_item ) : ?>
+									<?php dli_render_sitemap_node( $dli_item ); ?>
+								<?php endforeach; ?>
 							</ul>
-						<?php } ?>
-						<?php } ?>
-					</ul>
+						<?php endif; ?>
+					<?php endif; ?>
+				</ul>
 
 				<div class="box_change_map_lang">
 					<?php
-						$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
-						if ( 'true' === $selettore_visibile ) {
-							if ( 'it' === $lng_slug ) {
-								echo '<a href="' . esc_url( trailingslashit( get_site_url() ) . 'en/' . SLUG_MAPPA_SITO_EN ) . '">Site Map in English</a>';
-							} else {
-								echo '<a href="' . esc_url( trailingslashit( get_site_url() ) . SLUG_MAPPA_SITO_IT ) . '">Mappa del sito in Italiano</a>';
-							}
-						}
-					?>
+					$dli_selector_visible = dli_get_option( 'selettore_lingua_visible', 'setup' );
+					if ( 'true' === $dli_selector_visible ) :
+						?>
+						<?php if ( 'it' === $dli_language_slug ) : ?>
+							<a href="<?php echo esc_url( trailingslashit( get_site_url() ) . 'en/' . SLUG_MAPPA_SITO_EN ); ?>">
+								<?php echo esc_html__( 'Site Map in English', 'design_laboratori_italia' ); ?>
+							</a>
+						<?php else : ?>
+							<a href="<?php echo esc_url( trailingslashit( get_site_url() ) . SLUG_MAPPA_SITO_IT ); ?>">
+								<?php echo esc_html__( 'Mappa del sito in Italiano', 'design_laboratori_italia' ); ?>
+							</a>
+						<?php endif; ?>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -107,5 +114,4 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 
 </main>
 
-<?php
-get_footer();
+<?php get_footer(); ?>

@@ -1,10 +1,11 @@
 <?php
-/* Template Name: Il Laboratorio
- *
+/**
+ * Template Name: Il Laboratorio
  *
  * @package Design_Laboratori_Italia
  */
-$redirect_url = 'Location: ' . get_site_url();
-header( $redirect_url, true );
-exit();
 
+$dli_redirect_url = get_site_url();
+
+wp_safe_redirect( $dli_redirect_url );
+exit;
