@@ -1,6 +1,3 @@
-# Claude Code local settings (personal, not shared)
-.claude
-
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -70,13 +67,15 @@ tests/e2e/issues-report/reports/*
 !tests/e2e/issues-report/reports/.gitkeep
 
 # Custom directives
-AGENTS
-AGENTS/
-AGENTS.md
-CLAUDE.md
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
+
+# AI tool temporary directories
+AGENTS
+AGENTS.md
+CLAUDE.md
 AGENTS/ISSUES_TODO.md
 AGENTS/ISSUES_RESOLVED.md
-# AI tool temporary directories
 .codex-tmp/
+.claude
+.tmp
