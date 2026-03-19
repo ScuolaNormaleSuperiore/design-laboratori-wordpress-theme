@@ -16,11 +16,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+
 ## [REL-1.7.7] - 2026-04-01
 ## Corretto
 - Correggere formattazione del codice in inc.
 ## Modificato
 ## Sicurezza
+
 
 
 
@@ -33,6 +35,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornato Dockerfile per sito demo.
 ## Sicurezza
 - Corrette possibili anomalie di sicurezza.
+
 
 ## [REL-1.7.5] - 2026-03-09
 ## Aggiunto
