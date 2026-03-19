@@ -233,7 +233,7 @@ while ( have_posts() ) {
 										<div class="visually-hidden">
 											Email
 										</div>
-										<a href="mailto:<?php echo esc_attr( $dli_mail ); ?>" class="list-item">
+										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_mail ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Mail">
 													<title>Mail</title>
@@ -251,7 +251,7 @@ while ( have_posts() ) {
 										<div class="visually-hidden">
 											PEC
 										</div>
-										<a href="mailto:<?php echo esc_attr( $dli_pec ); ?>" class="list-item">
+										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Mail">
 													<title>Mail</title>

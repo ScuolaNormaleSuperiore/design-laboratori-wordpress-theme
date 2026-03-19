@@ -61,12 +61,12 @@ if ( 'yes' === $dli_form_submitted ) {
 		}
 
 		if ( '' === $dli_full_name || '' === $dli_email_address || '' === $dli_message_text ) {
-			$dli_form_valid  = false;
+			$dli_form_valid   = false;
 			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' );
 		}
 
 		if ( ! is_email( $dli_email_address ) ) {
-			$dli_form_valid  = false;
+			$dli_form_valid   = false;
 			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
 		}
 
@@ -96,8 +96,8 @@ if ( 'yes' === $dli_form_submitted ) {
 			$dli_show_error = true;
 		}
 	} else {
-		$dli_show_error  = true;
-		$dli_nonce_error = true;
+		$dli_show_error   = true;
+		$dli_nonce_error  = true;
 		$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Valore di Nonce errato.', 'design_laboratori_italia' );
 	}
 }

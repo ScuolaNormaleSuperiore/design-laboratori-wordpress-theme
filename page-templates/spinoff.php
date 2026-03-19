@@ -11,11 +11,11 @@ get_header();
 
 define( 'DLI_SPINOFF_CELLS_PER_ROW', 2 );
 
-$dli_selected_year   = '';
+$dli_selected_year    = '';
 $dli_selected_sectors = array();
-$dli_search_string   = '';
-$dli_all_sectors     = dli_get_all_categories_by_ct( BUSINESS_SECTOR_TAXONOMY, SPINOFF_POST_TYPE );
-$dli_all_sector_ids  = $dli_all_sectors
+$dli_search_string    = '';
+$dli_all_sectors      = dli_get_all_categories_by_ct( BUSINESS_SECTOR_TAXONOMY, SPINOFF_POST_TYPE );
+$dli_all_sector_ids   = $dli_all_sectors
 	? array_map(
 		static function ( $dli_item ) {
 			return $dli_item['id'];
@@ -23,9 +23,9 @@ $dli_all_sector_ids  = $dli_all_sectors
 		$dli_all_sectors
 	)
 	: array();
-$dli_all_years       = DLI_ContentsManager::dli_get_all_spinoff_years();
-$dli_per_page        = strval( DLI_PER_PAGE );
-$dli_per_page_values = DLI_PER_PAGE_VALUES;
+$dli_all_years        = DLI_ContentsManager::dli_get_all_spinoff_years();
+$dli_per_page         = strval( DLI_PER_PAGE );
+$dli_per_page_values  = DLI_PER_PAGE_VALUES;
 
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.

@@ -19,6 +19,7 @@ $dli_partecipanti         = dli_get_field( 'persone' );
 $dli_indirizzi_di_ricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
 $dli_pubblicazioni        = dli_get_field( 'pubblicazioni' );
 $dli_levels               = wp_get_post_terms( $dli_id, 'post_tag' );
+$dli_levels               = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
 $dli_fields_allegati      = array( 'allegato1', 'allegato2', 'allegato3' );
 $dli_allegati             = array();
 foreach ( $dli_fields_allegati as $dli_field_allegato ) {

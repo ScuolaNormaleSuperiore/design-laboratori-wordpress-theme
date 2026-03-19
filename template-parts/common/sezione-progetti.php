@@ -5,10 +5,10 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_items           = $args['items'];
-	$dli_section_id  = $args['section_id'];
-	$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
-	define( 'PROGETTI_PER_ROW', 3 );
+$dli_items       = $args['items'];
+$dli_section_id  = $args['section_id'];
+$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
+define( 'PROGETTI_PER_ROW', 3 );
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 <div class="row pb-3">
@@ -18,10 +18,10 @@ $dli_items           = $args['items'];
 		$dli_pindex = 0;
 	if ( $dli_num_results ) {
 		foreach ( $dli_items as $dli_item ) {
-			$dli_id       = $dli_item->ID;
-			$dli_link     = get_the_permalink( $dli_id );
-			$dli_title    = get_the_title( $dli_id );
-			$dli_desc = dli_get_field( 'descrizione_breve', $dli_id );
+			$dli_id    = $dli_item->ID;
+			$dli_link  = get_the_permalink( $dli_id );
+			$dli_title = get_the_title( $dli_id );
+			$dli_desc  = dli_get_field( 'descrizione_breve', $dli_id );
 			?>
 
 		<!--begin card progetti-->

@@ -106,6 +106,7 @@ $dli_label_all_levels = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pr
 					$dli_image_metadata     = dli_get_image_metadata( $dli_project_post, 'item-card-list' );
 					$dli_responsabili       = dli_get_field( 'responsabile_del_progetto', $dli_post_id );
 					$dli_levels             = wp_get_post_terms( $dli_post_id, 'post_tag' );
+					$dli_levels             = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
 					$dli_responsabili_names = array();
 
 					if ( is_array( $dli_responsabili ) && count( $dli_responsabili ) > 0 ) {

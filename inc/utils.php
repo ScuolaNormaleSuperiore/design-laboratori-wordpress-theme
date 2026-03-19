@@ -1118,6 +1118,7 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 				'hide_empty' => false,
 			)
 		);
+		$tipi_luogo = ( is_wp_error( $tipi_luogo ) || ! is_array( $tipi_luogo ) ) ? array() : $tipi_luogo;
 
 		$place_types_with_results = array();
 

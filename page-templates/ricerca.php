@@ -65,9 +65,9 @@ $dli_num_results = $dli_query->found_posts;
 					<?php endif; ?>
 
 					<?php
-					$dli_research_id     = get_the_ID();
-					$dli_research_post   = get_post( $dli_research_id );
-					$dli_image_metadata  = dli_get_image_metadata( $dli_research_post, 'item-card-list' );
+					$dli_research_id    = get_the_ID();
+					$dli_research_post  = get_post( $dli_research_id );
+					$dli_image_metadata = dli_get_image_metadata( $dli_research_post, 'item-card-list' );
 					?>
 
 					<div class="col-12 col-lg-4">

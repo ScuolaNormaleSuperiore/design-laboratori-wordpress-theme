@@ -5,9 +5,9 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_items           = $args['items'];
-	$dli_section_id  = $args['section_id'];
-	$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
+$dli_items       = $args['items'];
+$dli_section_id  = $args['section_id'];
+$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 <?php
@@ -15,7 +15,7 @@ $dli_items           = $args['items'];
 	$dli_pindex = 0;
 if ( $dli_num_results ) {
 	foreach ( $dli_items as $dli_item ) {
-		if ( ( $dli_pindex % TECHNICAL_RESOURCES_PER_ROW ) == 0 ) {
+		if ( ( $dli_pindex % TECHNICAL_RESOURCES_PER_ROW ) === 0 ) {
 			?>
 			<!-- begin row  person-->
 			<div class="row pb-3 pt-3">

@@ -10,8 +10,8 @@
 if ( dli_get_option( 'seo_internal_management_enabled', 'setup' ) === 'true' ) {
 	$dli_og_data     = DLI_ContentsManager::get_og_data();
 	$dli_url         = isset( $dli_og_data->url ) ? esc_url_raw( (string) $dli_og_data->url ) : '';
-	$dli_locale          = isset( $dli_og_data->locale ) ? sanitize_text_field( (string) $dli_og_data->locale ) : '';
-	$dli_title           = isset( $dli_og_data->title ) ? wp_strip_all_tags( (string) $dli_og_data->title ) : '';
+	$dli_locale      = isset( $dli_og_data->locale ) ? sanitize_text_field( (string) $dli_og_data->locale ) : '';
+	$dli_title       = isset( $dli_og_data->title ) ? wp_strip_all_tags( (string) $dli_og_data->title ) : '';
 	$dli_description = isset( $dli_og_data->description ) ? wp_strip_all_tags( (string) $dli_og_data->description ) : '';
 	$dli_site_title  = isset( $dli_og_data->site_title ) ? wp_strip_all_tags( (string) $dli_og_data->site_title ) : '';
 	$dli_image       = isset( $dli_og_data->image ) ? esc_url_raw( (string) $dli_og_data->image ) : '';

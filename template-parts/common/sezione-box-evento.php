@@ -7,11 +7,11 @@
 
 $dli_item = $args['item'];
 if ( $dli_item ) {
-	$dli_id                 = $dli_item->ID;
+	$dli_id             = $dli_item->ID;
 	$dli_foto           = dli_get_field( 'foto', $dli_id );
-	$dli_link               = get_the_permalink( $dli_id );
+	$dli_link           = get_the_permalink( $dli_id );
 	$dli_desc           = dli_get_field( 'descrizione_breve', $dli_id );
-	$dli_title              = get_the_title( $dli_id );
+	$dli_title          = get_the_title( $dli_id );
 	$dli_date           = dli_get_field( 'data_inizio', $dli_id );
 	$dli_orario_inizio  = dli_get_field( 'orario_inizio', $dli_id );
 	$dli_event_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );

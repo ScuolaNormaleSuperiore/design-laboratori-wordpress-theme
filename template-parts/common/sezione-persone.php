@@ -5,10 +5,11 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_items           = $args['items'];
-	$dli_section_id  = $args['section_id'];
-	$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
-	$dli_hide_icon   = dli_get_option( 'hide_person_icon', 'persone' );
+$dli_args        = is_array( $args ) ? $args : array();
+$dli_items       = isset( $dli_args['items'] ) && is_array( $dli_args['items'] ) ? $dli_args['items'] : array();
+$dli_section_id  = $dli_args['section_id'] ?? '';
+$dli_num_results = count( $dli_items );
+$dli_hide_icon   = dli_get_option( 'hide_person_icon', 'persone' );
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 <?php
@@ -16,7 +17,7 @@ $dli_items           = $args['items'];
 	$dli_pindex = 0;
 if ( $dli_num_results ) {
 	foreach ( $dli_items as $dli_item ) {
-		if ( ( $dli_pindex % PERSONE_PER_ROW ) == 0 ) {
+		if ( ( $dli_pindex % PERSONE_PER_ROW ) === 0 ) {
 			?>
 			<!-- begin row  person-->
 			<div class="row pb-3 pt-3">

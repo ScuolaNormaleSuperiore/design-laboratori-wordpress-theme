@@ -57,6 +57,7 @@ $dli_hide_icon                = dli_get_option( 'hide_person_icon', 'persone' );
 							'hide_empty' => false,
 						)
 					);
+					$dli_strutture = ( is_wp_error( $dli_strutture ) || ! is_array( $dli_strutture ) ) ? array() : $dli_strutture;
 
 					if (
 						count( $dli_strutture ) >= 1 &&
@@ -265,6 +266,7 @@ $dli_hide_icon                = dli_get_option( 'hide_person_icon', 'persone' );
 												$dli_person_site_url         = dli_get_field( 'sito_web', $dli_person_id );
 												$dli_person_title            = get_the_title( $dli_person_id );
 												$dli_person_levels           = wp_get_post_terms( $dli_person_id, 'post_tag' );
+												$dli_person_levels           = ( is_wp_error( $dli_person_levels ) || ! is_array( $dli_person_levels ) ) ? array() : $dli_person_levels;
 												?>
 												<div class="col-lg-4">
 													<div class="avatar-wrapper avatar-extra-text">
@@ -297,7 +299,7 @@ $dli_hide_icon                = dli_get_option( 'hide_person_icon', 'persone' );
 
 															<?php
 															$dli_structure_terms = get_the_terms( $dli_person_id, 'struttura' );
-															if ( $dli_structure_terms ) :
+															if ( ! is_wp_error( $dli_structure_terms ) && ! empty( $dli_structure_terms ) ) :
 																$dli_structure_name = $dli_structure_terms[0]->name;
 																?>
 																<p><?php echo esc_html( $dli_structure_name ); ?>&nbsp;</p>

@@ -272,7 +272,7 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 							if ( $dli_email ) {
 								?>
 							<li>
-								<a target="_blank" rel="noopener noreferrer" href="mailto:<?php echo esc_attr( $dli_email ); ?>" class="list-item">
+								<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 								<div class="it-rounded-icon">
 									<svg class="icon" role="img" aria-labelledby="Mail">
 										<title>Mail</title>

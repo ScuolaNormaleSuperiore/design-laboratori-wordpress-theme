@@ -5,11 +5,12 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_cookie_pol_url  = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
-	$dli_video       = $args['video'];
-	$dli_video_text  = $args['video_text'];
-	$dli_video_title = $args['video_title'];
-	$dli_video_track = isset( $args['video_track'] ) ? $args['video_track'] : '';
+$dli_cookie_pol_url = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
+$dli_args           = is_array( $args ) ? $args : array();
+$dli_video          = $dli_args['video'] ?? '';
+$dli_video_text     = $dli_args['video_text'] ?? '';
+$dli_video_title    = $dli_args['video_title'] ?? '';
+$dli_video_track    = $dli_args['video_track'] ?? '';
 ?>
 
 	<script>
