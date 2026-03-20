@@ -1,0 +1,1255 @@
+{
+  "baseUrl": "https://laboratorio1.local",
+  "scannedAt": "2026-03-17T14:57:42.424Z",
+  "totalPages": 95,
+  "pagesWithErrors": 0,
+  "summary": {
+    "httpErrors": 0,
+    "phpErrors": 0,
+    "jsErrors": 0,
+    "resourceErrors": 0,
+    "contentErrors": 0,
+    "timeouts": 0,
+    "avgResponseTimeMs": 6586,
+    "maxResponseTimeMs": 11140,
+    "slowPages": [
+      {
+        "url": "https://laboratorio1.local/accessibilita",
+        "ttfbMs": 10910,
+        "responseTimeMs": 11140
+      },
+      {
+        "url": "https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting",
+        "ttfbMs": 9865,
+        "responseTimeMs": 10300
+      },
+      {
+        "url": "https://laboratorio1.local/privacy-policy",
+        "ttfbMs": 9763,
+        "responseTimeMs": 10382
+      },
+      {
+        "url": "https://laboratorio1.local/eventi",
+        "ttfbMs": 8804,
+        "responseTimeMs": 9158
+      },
+      {
+        "url": "https://laboratorio1.local/presentazione",
+        "ttfbMs": 8365,
+        "responseTimeMs": 8689
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione",
+        "ttfbMs": 7986,
+        "responseTimeMs": 8252
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa",
+        "ttfbMs": 7974,
+        "responseTimeMs": 8177
+      },
+      {
+        "url": "https://laboratorio1.local/contatti",
+        "ttfbMs": 7934,
+        "responseTimeMs": 8308
+      },
+      {
+        "url": "https://laboratorio1.local/brevetti",
+        "ttfbMs": 7915,
+        "responseTimeMs": 8148
+      },
+      {
+        "url": "https://laboratorio1.local/archivio-progetti",
+        "ttfbMs": 7812,
+        "responseTimeMs": 8092
+      },
+      {
+        "url": "https://laboratorio1.local/pubblicazioni",
+        "ttfbMs": 7704,
+        "responseTimeMs": 8164
+      },
+      {
+        "url": "https://laboratorio1.local/progetto/progetto-archiviato",
+        "ttfbMs": 7669,
+        "responseTimeMs": 7916
+      },
+      {
+        "url": "https://laboratorio1.local/una-prova",
+        "ttfbMs": 7416,
+        "responseTimeMs": 7823
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/prova",
+        "ttfbMs": 7224,
+        "responseTimeMs": 7435
+      },
+      {
+        "url": "https://laboratorio1.local/evento/back-to-school",
+        "ttfbMs": 7128,
+        "responseTimeMs": 7365
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits",
+        "ttfbMs": 7114,
+        "responseTimeMs": 7336
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie",
+        "ttfbMs": 7080,
+        "responseTimeMs": 7313
+      },
+      {
+        "url": "https://laboratorio1.local/persone",
+        "ttfbMs": 7053,
+        "responseTimeMs": 7288
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e",
+        "ttfbMs": 7049,
+        "responseTimeMs": 7296
+      },
+      {
+        "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola",
+        "ttfbMs": 7042,
+        "responseTimeMs": 7266
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/anticorpo-intracellulare",
+        "ttfbMs": 6997,
+        "responseTimeMs": 7265
+      },
+      {
+        "url": "https://laboratorio1.local/voce-primo-livello/eelisa-european-university",
+        "ttfbMs": 6929,
+        "responseTimeMs": 7285
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal",
+        "ttfbMs": 6918,
+        "responseTimeMs": 7116
+      },
+      {
+        "url": "https://laboratorio1.local/evento/eventone",
+        "ttfbMs": 6851,
+        "responseTimeMs": 7202
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale",
+        "ttfbMs": 6709,
+        "responseTimeMs": 6960
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi",
+        "ttfbMs": 6643,
+        "responseTimeMs": 7043
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic",
+        "ttfbMs": 6557,
+        "responseTimeMs": 7036
+      },
+      {
+        "url": "https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno",
+        "ttfbMs": 6551,
+        "responseTimeMs": 6824
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/quantum-processing-unit-2",
+        "ttfbMs": 6509,
+        "responseTimeMs": 6802
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2",
+        "ttfbMs": 6490,
+        "responseTimeMs": 6803
+      },
+      {
+        "url": "https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini",
+        "ttfbMs": 6450,
+        "responseTimeMs": 6675
+      },
+      {
+        "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello",
+        "ttfbMs": 6416,
+        "responseTimeMs": 6667
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile",
+        "ttfbMs": 6385,
+        "responseTimeMs": 6988
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato",
+        "ttfbMs": 6362,
+        "responseTimeMs": 6657
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto",
+        "ttfbMs": 6346,
+        "responseTimeMs": 6681
+      },
+      {
+        "url": "https://laboratorio1.local/luoghi",
+        "ttfbMs": 6340,
+        "responseTimeMs": 6590
+      },
+      {
+        "url": "https://laboratorio1.local/lorem-ipsum",
+        "ttfbMs": 6306,
+        "responseTimeMs": 6608
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici",
+        "ttfbMs": 6272,
+        "responseTimeMs": 6475
+      },
+      {
+        "url": "https://laboratorio1.local/progetti",
+        "ttfbMs": 6251,
+        "responseTimeMs": 6672
+      },
+      {
+        "url": "https://laboratorio1.local/mappa-sito",
+        "ttfbMs": 6241,
+        "responseTimeMs": 6511
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/systems-for-quantum-computing",
+        "ttfbMs": 6221,
+        "responseTimeMs": 6552
+      },
+      {
+        "url": "https://laboratorio1.local/estate-2024-racconto-di-un-viaggio",
+        "ttfbMs": 6215,
+        "responseTimeMs": 6543
+      },
+      {
+        "url": "https://laboratorio1.local/ricerca-sito",
+        "ttfbMs": 6196,
+        "responseTimeMs": 6431
+      },
+      {
+        "url": "https://laboratorio1.local/evento/altro-evento",
+        "ttfbMs": 6130,
+        "responseTimeMs": 6401
+      },
+      {
+        "url": "https://laboratorio1.local/spinoff/biloab",
+        "ttfbMs": 6107,
+        "responseTimeMs": 6364
+      },
+      {
+        "url": "https://laboratorio1.local/luoghi/aula-magna",
+        "ttfbMs": 6094,
+        "responseTimeMs": 6457
+      },
+      {
+        "url": "https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici",
+        "ttfbMs": 6070,
+        "responseTimeMs": 6523
+      },
+      {
+        "url": "https://laboratorio1.local/note-legali",
+        "ttfbMs": 6048,
+        "responseTimeMs": 6236
+      },
+      {
+        "url": "https://laboratorio1.local/luoghi/sede-principale",
+        "ttfbMs": 6027,
+        "responseTimeMs": 6363
+      },
+      {
+        "url": "https://laboratorio1.local/risorse-tecniche",
+        "ttfbMs": 5995,
+        "responseTimeMs": 6258
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+        "ttfbMs": 5989,
+        "responseTimeMs": 6219
+      },
+      {
+        "url": "https://laboratorio1.local/evento/evento-alternativo",
+        "ttfbMs": 5981,
+        "responseTimeMs": 6267
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2",
+        "ttfbMs": 5972,
+        "responseTimeMs": 6206
+      },
+      {
+        "url": "https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova",
+        "ttfbMs": 5969,
+        "responseTimeMs": 6368
+      },
+      {
+        "url": "https://laboratorio1.local/spinoff/google-labs",
+        "ttfbMs": 5924,
+        "responseTimeMs": 6197
+      },
+      {
+        "url": "https://laboratorio1.local/progetto/progetto-di-test",
+        "ttfbMs": 5893,
+        "responseTimeMs": 6251
+      },
+      {
+        "url": "https://laboratorio1.local/persone/persona-con-scheda-completa",
+        "ttfbMs": 5876,
+        "responseTimeMs": 6142
+      },
+      {
+        "url": "https://laboratorio1.local/newsletter",
+        "ttfbMs": 5875,
+        "responseTimeMs": 6221
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio",
+        "ttfbMs": 5865,
+        "responseTimeMs": 6076
+      },
+      {
+        "url": "https://laboratorio1.local/spinoff/prova",
+        "ttfbMs": 5864,
+        "responseTimeMs": 6152
+      },
+      {
+        "url": "https://laboratorio1.local/hello-world",
+        "ttfbMs": 5837,
+        "responseTimeMs": 6054
+      },
+      {
+        "url": "https://laboratorio1.local/spinoff",
+        "ttfbMs": 5833,
+        "responseTimeMs": 6162
+      },
+      {
+        "url": "https://laboratorio1.local/risorsa-tecnica/una-prova",
+        "ttfbMs": 5817,
+        "responseTimeMs": 6047
+      },
+      {
+        "url": "https://laboratorio1.local/en/site-map",
+        "ttfbMs": 5805,
+        "responseTimeMs": 6319
+      },
+      {
+        "url": "https://laboratorio1.local/un-articolo-2",
+        "ttfbMs": 5798,
+        "responseTimeMs": 6065
+      },
+      {
+        "url": "https://laboratorio1.local/il-blog",
+        "ttfbMs": 5759,
+        "responseTimeMs": 6018
+      },
+      {
+        "url": "https://laboratorio1.local/novita",
+        "ttfbMs": 5744,
+        "responseTimeMs": 5950
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2",
+        "ttfbMs": 5732,
+        "responseTimeMs": 5957
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2",
+        "ttfbMs": 5726,
+        "responseTimeMs": 5946
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2",
+        "ttfbMs": 5716,
+        "responseTimeMs": 5907
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato",
+        "ttfbMs": 5709,
+        "responseTimeMs": 5956
+      },
+      {
+        "url": "https://laboratorio1.local/un-articolo",
+        "ttfbMs": 5693,
+        "responseTimeMs": 5915
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico",
+        "ttfbMs": 5678,
+        "responseTimeMs": 6083
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione",
+        "ttfbMs": 5660,
+        "responseTimeMs": 5851
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche",
+        "ttfbMs": 5628,
+        "responseTimeMs": 5826
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/intracellular-antibody",
+        "ttfbMs": 5622,
+        "responseTimeMs": 5824
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s",
+        "ttfbMs": 5622,
+        "responseTimeMs": 5899
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale",
+        "ttfbMs": 5587,
+        "responseTimeMs": 5797
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie",
+        "ttfbMs": 5555,
+        "responseTimeMs": 5794
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi",
+        "ttfbMs": 5528,
+        "responseTimeMs": 5722
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+        "ttfbMs": 5473,
+        "responseTimeMs": 5675
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2",
+        "ttfbMs": 5466,
+        "responseTimeMs": 5666
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo",
+        "ttfbMs": 5459,
+        "responseTimeMs": 5683
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof",
+        "ttfbMs": 5427,
+        "responseTimeMs": 5675
+      },
+      {
+        "url": "https://laboratorio1.local/voce-primo-livello",
+        "ttfbMs": 5397,
+        "responseTimeMs": 5880
+      },
+      {
+        "url": "https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino",
+        "ttfbMs": 5161,
+        "responseTimeMs": 5443
+      },
+      {
+        "url": "https://laboratorio1.local/ricerca",
+        "ttfbMs": 5026,
+        "responseTimeMs": 5245
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/quantum-processing-unit",
+        "ttfbMs": 4873,
+        "responseTimeMs": 5104
+      },
+      {
+        "url": "https://laboratorio1.local/persone/persona-con-link-esterno",
+        "ttfbMs": 4811,
+        "responseTimeMs": 5080
+      },
+      {
+        "url": "https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600",
+        "ttfbMs": 4804,
+        "responseTimeMs": 5045
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r",
+        "ttfbMs": 4670,
+        "responseTimeMs": 4869
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e",
+        "ttfbMs": 4565,
+        "responseTimeMs": 4790
+      },
+      {
+        "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche",
+        "ttfbMs": 4551,
+        "responseTimeMs": 4776
+      },
+      {
+        "url": "https://laboratorio1.local",
+        "ttfbMs": 3909,
+        "responseTimeMs": 4398
+      },
+      {
+        "url": "https://laboratorio1.local/",
+        "ttfbMs": 3902,
+        "responseTimeMs": 4314
+      }
+    ]
+  },
+  "pages": [
+    {
+      "url": "https://laboratorio1.local/",
+      "status": 200,
+      "ttfbMs": 3902,
+      "responseTimeMs": 4314,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local",
+      "status": 200,
+      "ttfbMs": 3909,
+      "responseTimeMs": 4398,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/accessibilita",
+      "status": 200,
+      "ttfbMs": 10910,
+      "responseTimeMs": 11140,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/archivio-progetti",
+      "status": 200,
+      "ttfbMs": 7812,
+      "responseTimeMs": 8092,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetti",
+      "status": 200,
+      "ttfbMs": 7915,
+      "responseTimeMs": 8148,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/a-globally-driven-quantum-computing-architecture-based-on-superconducting-qubits",
+      "status": 200,
+      "ttfbMs": 7114,
+      "responseTimeMs": 7336,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/a-method-to-predict-lifespan-and-healthspan-2",
+      "status": 200,
+      "ttfbMs": 5466,
+      "responseTimeMs": 5666,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/anticorpo-intracellulare",
+      "status": 200,
+      "ttfbMs": 6997,
+      "responseTimeMs": 7265,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/biosensore-grafenico-per-lanalisi-di-esosomi-in-fluidi-biologici-suoi-procedimenti-di-preparazione-e",
+      "status": 200,
+      "ttfbMs": 4565,
+      "responseTimeMs": 4790,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/controllo-automatico-passivo-del-posizionamento-di-liquidi-in-chip-microfluidici",
+      "status": 200,
+      "ttfbMs": 6272,
+      "responseTimeMs": 6475,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/determinazione-dellorganizzazione-supramolecolare-di-molecole-incapsulate-tramite-analisi-del-tempo",
+      "status": 200,
+      "ttfbMs": 5459,
+      "responseTimeMs": 5683,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-di-stimolazione-luminosa-per-piastre-optogenetiche-a-pozzetti-opal",
+      "status": 200,
+      "ttfbMs": 6918,
+      "responseTimeMs": 7116,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche",
+      "status": 200,
+      "ttfbMs": 5628,
+      "responseTimeMs": 5826,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-in-tempo-reale-mediante-onde-acustiche-2",
+      "status": 200,
+      "ttfbMs": 5972,
+      "responseTimeMs": 6206,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/dispositivo-sensorizzato-per-lanalisi-di-un-fluido-mediante-onde-acustiche",
+      "status": 200,
+      "ttfbMs": 4551,
+      "responseTimeMs": 4776,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/effetto-del-ctx-cnf1-sullo-switch-dei-macrofagi-verso-un-fenotipo-pro-infiammatorio",
+      "status": 200,
+      "ttfbMs": 5865,
+      "responseTimeMs": 6076,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+      "status": 200,
+      "ttfbMs": 5473,
+      "responseTimeMs": 5675,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione",
+      "status": 200,
+      "ttfbMs": 5660,
+      "responseTimeMs": 5851,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-ricostruito-da-esso-ottenuto-e-relativo-metodo-di-riparazione-2",
+      "status": 200,
+      "ttfbMs": 5726,
+      "responseTimeMs": 5946,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione",
+      "status": 200,
+      "ttfbMs": 5989,
+      "responseTimeMs": 6219,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/impasto-acquoso-marmo-spugnoso-da-esso-ottenuto-e-relativo-metodo-di-preparazione-2",
+      "status": 200,
+      "ttfbMs": 5716,
+      "responseTimeMs": 5907,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/intracellular-antibody",
+      "status": 200,
+      "ttfbMs": 5622,
+      "responseTimeMs": 5824,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/laser-circolari-a-semiconduttore-con-reticoli-per-emissione-verticale",
+      "status": 200,
+      "ttfbMs": 5587,
+      "responseTimeMs": 5797,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/laser-thz-a-semiconduttore-incorporante-guida-donda-a-confinamento-plasmonico-controllato",
+      "status": 200,
+      "ttfbMs": 5709,
+      "responseTimeMs": 5956,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/method-for-analyzing-web-space-data-2",
+      "status": 200,
+      "ttfbMs": 5732,
+      "responseTimeMs": 5957,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-di-elaborazione-di-immagini-di-risonanza-magnetica-funzionale",
+      "status": 200,
+      "ttfbMs": 6709,
+      "responseTimeMs": 6960,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-e-dispositivo-per-misure-di-posizione-e-di-massa",
+      "status": 200,
+      "ttfbMs": 7974,
+      "responseTimeMs": 8177,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-la-conservazione-delle-opere-darte-mediante-il-calcolo-della-aspettativa-di-vita-basato-s",
+      "status": 200,
+      "ttfbMs": 5622,
+      "responseTimeMs": 5899,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-e-sistema-di-ispezione-di-un-prodotto-farmaceutico-contenuto-in-una-confezione",
+      "status": 200,
+      "ttfbMs": 7986,
+      "responseTimeMs": 8252,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-la-funzionalizzazione-di-una-superficie",
+      "status": 200,
+      "ttfbMs": 7080,
+      "responseTimeMs": 7313,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/metodo-per-tracciare-il-grado-di-ossidazione-di-polisaccaridi",
+      "status": 200,
+      "ttfbMs": 5528,
+      "responseTimeMs": 5722,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/nanoparticelle-lipidiche-multicomponenti-ad-alta-fusogenicita-cellulare-per-la-vaccinazione-a-dna-e",
+      "status": 200,
+      "ttfbMs": 7049,
+      "responseTimeMs": 7296,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/peptidi-e-loro-derivati-che-inibiscono-il-rilascio-extracellulare-della-proteina-tat-di-hiv-1-e-la-r",
+      "status": 200,
+      "ttfbMs": 4670,
+      "responseTimeMs": 4869,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/procedimento-in-silico-di-identificazione-del-design-di-un-sensore-plasmonico-nanostrutturato",
+      "status": 200,
+      "ttfbMs": 6362,
+      "responseTimeMs": 6657,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/processo-e-apparato-per-lavorazioni-conciarie",
+      "status": 200,
+      "ttfbMs": 5555,
+      "responseTimeMs": 5794,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/prova",
+      "status": 200,
+      "ttfbMs": 7224,
+      "responseTimeMs": 7435,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof",
+      "status": 200,
+      "ttfbMs": 5427,
+      "responseTimeMs": 5675,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-battery-and-charging-and-discharging-method-thereof-2",
+      "status": 200,
+      "ttfbMs": 6490,
+      "responseTimeMs": 6803,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-processing-unit",
+      "status": 200,
+      "ttfbMs": 4873,
+      "responseTimeMs": 5104,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/quantum-processing-unit-2",
+      "status": 200,
+      "ttfbMs": 6509,
+      "responseTimeMs": 6802,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/rivelatore-di-plasmoni-completamente-elettrico",
+      "status": 200,
+      "ttfbMs": 5678,
+      "responseTimeMs": 6083,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto",
+      "status": 200,
+      "ttfbMs": 6346,
+      "responseTimeMs": 6681,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/soluzione-di-contrasto-per-la-caratterizzazione-di-campioni-biologici-tramite-microscopia-elettronic",
+      "status": 200,
+      "ttfbMs": 6557,
+      "responseTimeMs": 7036,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/struttura-di-nanorisonatore-tridimensionale-dispersibile-per-applicazioni-biologiche-medicali-e-ambi",
+      "status": 200,
+      "ttfbMs": 6643,
+      "responseTimeMs": 7043,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/systems-for-quantum-computing",
+      "status": 200,
+      "ttfbMs": 6221,
+      "responseTimeMs": 6552,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/brevetto/vettore-per-il-rilascio-di-un-agente-attivo-fotoscindibile-per-irraggiamento-nel-visibile",
+      "status": 200,
+      "ttfbMs": 6385,
+      "responseTimeMs": 6988,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/contatti",
+      "status": 200,
+      "ttfbMs": 7934,
+      "responseTimeMs": 8308,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/en/site-map",
+      "status": 200,
+      "ttfbMs": 5805,
+      "responseTimeMs": 6319,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/estate-2024-racconto-di-un-viaggio",
+      "status": 200,
+      "ttfbMs": 6215,
+      "responseTimeMs": 6543,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/eventi",
+      "status": 200,
+      "ttfbMs": 8804,
+      "responseTimeMs": 9158,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/altro-evento",
+      "status": 200,
+      "ttfbMs": 6130,
+      "responseTimeMs": 6401,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/1st-sns-kcl-logic-and-philosophy-of-mathematics-meeting",
+      "status": 200,
+      "ttfbMs": 9865,
+      "responseTimeMs": 10300,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/back-to-school",
+      "status": 200,
+      "ttfbMs": 7128,
+      "responseTimeMs": 7365,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/evento-alternativo",
+      "status": 200,
+      "ttfbMs": 5981,
+      "responseTimeMs": 6267,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/eventone",
+      "status": 200,
+      "ttfbMs": 6851,
+      "responseTimeMs": 7202,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/normale-e-mascagni-luigi-traino",
+      "status": 200,
+      "ttfbMs": 5161,
+      "responseTimeMs": 5443,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/turbulence-on-the-banks-of-the-arno",
+      "status": 200,
+      "ttfbMs": 6551,
+      "responseTimeMs": 6824,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/evento/un-nuovo-modo-di-osservare-i-campi-magnetici-galattici",
+      "status": 200,
+      "ttfbMs": 6070,
+      "responseTimeMs": 6523,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/hello-world",
+      "status": 200,
+      "ttfbMs": 5837,
+      "responseTimeMs": 6054,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/il-blog",
+      "status": 200,
+      "ttfbMs": 5759,
+      "responseTimeMs": 6018,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/indirizzi-di-ricerca/attivita-di-ricerca-di-prova",
+      "status": 200,
+      "ttfbMs": 5969,
+      "responseTimeMs": 6368,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/lorem-ipsum",
+      "status": 200,
+      "ttfbMs": 6306,
+      "responseTimeMs": 6608,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi",
+      "status": 200,
+      "ttfbMs": 6340,
+      "responseTimeMs": 6590,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi/aula-magna",
+      "status": 200,
+      "ttfbMs": 6094,
+      "responseTimeMs": 6457,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/luoghi/sede-principale",
+      "status": 200,
+      "ttfbMs": 6027,
+      "responseTimeMs": 6363,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/mappa-sito",
+      "status": 200,
+      "ttfbMs": 6241,
+      "responseTimeMs": 6511,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/newsletter",
+      "status": 200,
+      "ttfbMs": 5875,
+      "responseTimeMs": 6221,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/note-legali",
+      "status": 200,
+      "ttfbMs": 6048,
+      "responseTimeMs": 6236,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/novita",
+      "status": 200,
+      "ttfbMs": 5744,
+      "responseTimeMs": 5950,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/persone",
+      "status": 200,
+      "ttfbMs": 7053,
+      "responseTimeMs": 7288,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/persone/persona-con-link-esterno",
+      "status": 200,
+      "ttfbMs": 4811,
+      "responseTimeMs": 5080,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/persone/persona-con-scheda-completa",
+      "status": 200,
+      "ttfbMs": 5876,
+      "responseTimeMs": 6142,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/presentazione",
+      "status": 200,
+      "ttfbMs": 8365,
+      "responseTimeMs": 8689,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/progetti",
+      "status": 200,
+      "ttfbMs": 6251,
+      "responseTimeMs": 6672,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/privacy-policy",
+      "status": 200,
+      "ttfbMs": 9763,
+      "responseTimeMs": 10382,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/progetto/progetto-archiviato",
+      "status": 200,
+      "ttfbMs": 7669,
+      "responseTimeMs": 7916,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/progetto/progetto-di-test",
+      "status": 200,
+      "ttfbMs": 5893,
+      "responseTimeMs": 6251,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/pubblicazioni",
+      "status": 200,
+      "ttfbMs": 7704,
+      "responseTimeMs": 8164,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/ricerca",
+      "status": 200,
+      "ttfbMs": 5026,
+      "responseTimeMs": 5245,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/ricerca-sito",
+      "status": 200,
+      "ttfbMs": 6196,
+      "responseTimeMs": 6431,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/bambu-lab-a1-mini",
+      "status": 200,
+      "ttfbMs": 6450,
+      "responseTimeMs": 6675,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/telescopio-ac-50-600",
+      "status": 200,
+      "ttfbMs": 4804,
+      "responseTimeMs": 5045,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/risorsa-tecnica/una-prova",
+      "status": 200,
+      "ttfbMs": 5817,
+      "responseTimeMs": 6047,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/risorse-tecniche",
+      "status": 200,
+      "ttfbMs": 5995,
+      "responseTimeMs": 6258,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff",
+      "status": 200,
+      "ttfbMs": 5833,
+      "responseTimeMs": 6162,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/biloab",
+      "status": 200,
+      "ttfbMs": 6107,
+      "responseTimeMs": 6364,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/google-labs",
+      "status": 200,
+      "ttfbMs": 5924,
+      "responseTimeMs": 6197,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/spinoff/prova",
+      "status": 200,
+      "ttfbMs": 5864,
+      "responseTimeMs": 6152,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/un-articolo",
+      "status": 200,
+      "ttfbMs": 5693,
+      "responseTimeMs": 5915,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/un-articolo-2",
+      "status": 200,
+      "ttfbMs": 5798,
+      "responseTimeMs": 6065,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/una-prova",
+      "status": 200,
+      "ttfbMs": 7416,
+      "responseTimeMs": 7823,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello",
+      "status": 200,
+      "ttfbMs": 5397,
+      "responseTimeMs": 5880,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/eelisa-european-university",
+      "status": 200,
+      "ttfbMs": 6929,
+      "responseTimeMs": 7285,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello",
+      "status": 200,
+      "ttfbMs": 6416,
+      "responseTimeMs": 6667,
+      "timedOut": false,
+      "errors": []
+    },
+    {
+      "url": "https://laboratorio1.local/voce-primo-livello/voce-secondo-livello/voce-singola",
+      "status": 200,
+      "ttfbMs": 7042,
+      "responseTimeMs": 7266,
+      "timedOut": false,
+      "errors": []
+    }
+  ]
+}

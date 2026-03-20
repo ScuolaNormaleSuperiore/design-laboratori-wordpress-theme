@@ -80,14 +80,15 @@ class Publication_Manager {
 			'label'         => __( 'Pubblicazione', 'design_laboratori_italia' ),
 			'labels'        => $labels,
 			'supports'      => array( 'title', 'editor', 'thumbnail' ),
-			'hierarchical'  => true,
+			'hierarchical'  => false,
+			'rewrite'       => false,
+			'query_var'     => false,
 			'public'        => true,
 			'show_in_menu'  => true,
 			'menu_position' => 6,
 			'menu_icon'     => 'dashicons-book',
 			'has_archive'   => false,
 			'show_in_rest'  => true,
-			'rewrite'       => array( 'slug' => 'pubblicazioni' ),
 			'taxonomies'    => array( WP_DEFAULT_TAGS ),
 		);
 

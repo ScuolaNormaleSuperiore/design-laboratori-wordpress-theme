@@ -20,6 +20,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [REL-1.7.7] - 2026-04-01
 ## Corretto
 - Correggere formattazione del codice in inc.
+- Corretto bug in elenco pubblicazioni.
 ## Modificato
 ## Sicurezza
 
