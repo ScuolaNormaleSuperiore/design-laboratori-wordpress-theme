@@ -77,19 +77,22 @@ class Publication_Manager {
 		);
 
 		$args = array(
-			'label'         => __( 'Pubblicazione', 'design_laboratori_italia' ),
-			'labels'        => $labels,
-			'supports'      => array( 'title', 'editor', 'thumbnail' ),
-			'hierarchical'  => false,
-			'rewrite'       => false,
-			'query_var'     => false,
-			'public'        => true,
-			'show_in_menu'  => true,
-			'menu_position' => 6,
-			'menu_icon'     => 'dashicons-book',
-			'has_archive'   => false,
-			'show_in_rest'  => true,
-			'taxonomies'    => array( WP_DEFAULT_TAGS ),
+			'label'           => __( 'Pubblicazione', 'design_laboratori_italia' ),
+			'labels'          => $labels,
+			'supports'        => array( 'title', 'editor', 'thumbnail' ),
+			'hierarchical'    => false,
+			'capability_type' => 'post',
+			'map_meta_cap'    => true,
+			'rewrite'         => false,
+			'query_var'       => false,
+			'show_ui'         => true,
+			'public'          => true,
+			'show_in_menu'    => true,
+			'menu_position'   => 6,
+			'menu_icon'       => 'dashicons-book',
+			'has_archive'     => false,
+			'show_in_rest'    => true,
+			'taxonomies'      => array( WP_DEFAULT_TAGS ),
 		);
 
 		register_post_type( PUBLICATION_POST_TYPE, $args );
