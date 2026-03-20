@@ -154,9 +154,9 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 
 	<!-- ELENCO PUBBLICAZIONI -->
 	<section id="pubblicazioni">
-		<div class="container p-5">
+		<div class="container py-5 px-3 px-md-5">
 			<div class="row">
-				<div class="col-12 col-lg-3 border-end pb-3">
+				<div class="col-12 col-lg-3 border-bottom border-lg-bottom-0 border-lg-end pb-3">
 					<form action="<?php echo esc_url( get_permalink() ); ?>" id="pubblicazioniform" method="GET">
 						<!--COLONNA FILTRI -->
 						<!-- FILTRO PER ANNO -->
@@ -214,19 +214,19 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 								$dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
 								?>
 								<!--start card-->
-								<div class="card-wrapper mb-4">
+								<div class="card-wrapper mb-4 col-12">
 									<div class="card card-teaser rounded shadow">
-										<div class="card-body d-flex gap-3 align-items-start">
+										<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-start">
 											<?php if ( $dli_img_url ) { ?>
 												<img src="<?php echo esc_url( $dli_img_url ); ?>" width="150" height="150"
-													class="img-fluid flex-shrink-0"
-													style="max-width:150px; height:auto;"
+													class="img-fluid flex-shrink-0 w-100 w-sm-auto mx-auto mx-sm-0"
+													style="width:100%; max-width:150px; height:auto;"
 													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
 													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
 											<?php } ?>
 											<div class="flex-grow-1">
 												<!-- Item title -->
-												<h3 class="card-title cardTitlecustomSpacing h5 mb-2">
+												<h3 class="card-title cardTitlecustomSpacing h5 mb-2 text-break" style="overflow-wrap:anywhere;">
 													<?php if ( ! empty( $dli_item_url ) ) { ?>
 														<a href="<?php echo esc_url( $dli_item_url ); ?>">
 															<?php echo esc_html( $dli_item_title ); ?>
@@ -236,7 +236,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 													<?php } ?>
 												</h3>
 												<!-- Item body -->
-												<p class="card-text mb-0">
+												<p class="card-text mb-0 text-break" style="overflow-wrap:anywhere;">
 													<?php echo wp_kses_post( wpautop( get_the_content() ) ); ?>
 												</p>
 												<!-- Item category -->
