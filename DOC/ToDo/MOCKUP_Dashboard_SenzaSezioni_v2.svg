@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">SitoFederato - Layout senza sezioni</title>
+  <desc id="desc">Dashboard con griglia unica di card, una per content-type, senza raggruppamento per sezioni.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f4f7fb; }
+      .panel { fill: #ffffff; stroke: #d4dce7; stroke-width: 2; rx: 14; }
+      .head { fill: #0b3a6f; }
+      .title { fill: #0f172a; font-family: Arial, sans-serif; font-size: 34px; font-weight: 700; }
+      .subtitle { fill: #334155; font-family: Arial, sans-serif; font-size: 18px; }
+      .htext { fill: #ffffff; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; }
+      .ctitle { fill: #0f172a; font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; }
+      .labelA { fill: #0f172a; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; }
+      .item { fill: #1f2937; font-family: Arial, sans-serif; font-size: 14px; }
+      .split { stroke: #d5ddea; stroke-width: 1; }
+      .chipA { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1; rx: 9; }
+      .chipB { fill: #fff3e0; stroke: #ef6c00; stroke-width: 1; rx: 9; }
+      .chipTxtA { fill: #2e7d32; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
+      .chipTxtB { fill: #ef6c00; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
+      .note { fill: #475569; font-family: Arial, sans-serif; font-size: 14px; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1200" />
+
+  <rect class="panel" x="50" y="35" width="1500" height="170" />
+  <circle cx="130" cy="120" r="42" fill="#0b3a6f" />
+  <text x="113" y="128" class="htext">SF</text>
+  <text x="205" y="105" class="title">SitoFederato - Dashboard operativa (senza sezioni)</text>
+  <text x="205" y="138" class="subtitle">Griglia unica: una card per content-type, con due blocchi interni sempre uguali</text>
+  <text x="205" y="166" class="subtitle">Blocchi: Gestione contenuti / Classificazioni</text>
+
+  <rect class="chipA" x="1240" y="82" width="145" height="32" />
+  <text class="chipTxtA" x="1263" y="102">Gestione contenuti</text>
+  <rect class="chipB" x="1395" y="82" width="125" height="32" />
+  <text class="chipTxtB" x="1421" y="102">Classificazioni</text>
+
+  <rect class="panel" x="50" y="235" width="360" height="220" />
+  <rect class="head" x="50" y="235" width="360" height="42" />
+  <text class="htext" x="70" y="262">Persone</text>
+  <text class="labelA" x="70" y="302">Gestione contenuti</text>
+  <text class="item" x="70" y="327">- Elenco persone</text>
+  <text class="item" x="70" y="349">- Aggiungi persona</text>
+  <text class="item" x="70" y="371">- Tipologie persone</text>
+  <line class="split" x1="230" y1="286" x2="230" y2="440" />
+  <text class="labelA" x="248" y="302">Classificazioni</text>
+  <text class="item" x="248" y="327">- Tag</text>
+  <text class="item" x="248" y="349">- Struttura</text>
+
+  <rect class="panel" x="430" y="235" width="360" height="220" />
+  <rect class="head" x="430" y="235" width="360" height="42" />
+  <text class="htext" x="450" y="262">Indirizzi di ricerca</text>
+  <text class="labelA" x="450" y="302">Gestione contenuti</text>
+  <text class="item" x="450" y="327">- Elenco indirizzi</text>
+  <text class="item" x="450" y="349">- Aggiungi indirizzo</text>
+  <line class="split" x1="610" y1="286" x2="610" y2="440" />
+  <text class="labelA" x="628" y="302">Classificazioni</text>
+  <text class="item" x="628" y="327">- Tag</text>
+
+  <rect class="panel" x="810" y="235" width="360" height="220" />
+  <rect class="head" x="810" y="235" width="360" height="42" />
+  <text class="htext" x="830" y="262">Progetti</text>
+  <text class="labelA" x="830" y="302">Gestione contenuti</text>
+  <text class="item" x="830" y="327">- Elenco progetti</text>
+  <text class="item" x="830" y="349">- Aggiungi progetto</text>
+  <line class="split" x1="990" y1="286" x2="990" y2="440" />
+  <text class="labelA" x="1008" y="302">Classificazioni</text>
+  <text class="item" x="1008" y="327">- Tag</text>
+
+  <rect class="panel" x="1190" y="235" width="360" height="220" />
+  <rect class="head" x="1190" y="235" width="360" height="42" />
+  <text class="htext" x="1210" y="262">Pubblicazioni</text>
+  <text class="labelA" x="1210" y="302">Gestione contenuti</text>
+  <text class="item" x="1210" y="327">- Elenco pubblicazioni</text>
+  <text class="item" x="1210" y="349">- Aggiungi pubblicazione</text>
+  <line class="split" x1="1370" y1="286" x2="1370" y2="440" />
+  <text class="labelA" x="1388" y="302">Classificazioni</text>
+  <text class="item" x="1388" y="327">- Tag</text>
+  <text class="item" x="1388" y="349">- Tipo pubblicazione</text>
+
+  <rect class="panel" x="50" y="475" width="360" height="220" />
+  <rect class="head" x="50" y="475" width="360" height="42" />
+  <text class="htext" x="70" y="502">Notizie</text>
+  <text class="labelA" x="70" y="542">Gestione contenuti</text>
+  <text class="item" x="70" y="567">- Elenco notizie</text>
+  <text class="item" x="70" y="589">- Aggiungi notizia</text>
+  <line class="split" x1="230" y1="526" x2="230" y2="680" />
+  <text class="labelA" x="248" y="542">Classificazioni</text>
+  <text class="item" x="248" y="567">- Categorie</text>
+  <text class="item" x="248" y="589">- Tag</text>
+
+  <rect class="panel" x="430" y="475" width="360" height="220" />
+  <rect class="head" x="430" y="475" width="360" height="42" />
+  <text class="htext" x="450" y="502">Eventi</text>
+  <text class="labelA" x="450" y="542">Gestione contenuti</text>
+  <text class="item" x="450" y="567">- Elenco eventi</text>
+  <text class="item" x="450" y="589">- Aggiungi evento</text>
+  <line class="split" x1="610" y1="526" x2="610" y2="680" />
+  <text class="labelA" x="628" y="542">Classificazioni</text>
+  <text class="item" x="628" y="567">- Categorie</text>
+  <text class="item" x="628" y="589">- Tag</text>
+
+  <rect class="panel" x="810" y="475" width="360" height="220" />
+  <rect class="head" x="810" y="475" width="360" height="42" />
+  <text class="htext" x="830" y="502">Brevetti</text>
+  <text class="labelA" x="830" y="542">Gestione contenuti</text>
+  <text class="item" x="830" y="567">- Elenco brevetti</text>
+  <text class="item" x="830" y="589">- Aggiungi brevetto</text>
+  <line class="split" x1="990" y1="526" x2="990" y2="680" />
+  <text class="labelA" x="1008" y="542">Classificazioni</text>
+  <text class="item" x="1008" y="567">- Categorie</text>
+  <text class="item" x="1008" y="589">- Tag</text>
+  <text class="item" x="1008" y="611">- Area tematica</text>
+
+  <rect class="panel" x="1190" y="475" width="360" height="220" />
+  <rect class="head" x="1190" y="475" width="360" height="42" />
+  <text class="htext" x="1210" y="502">Luoghi</text>
+  <text class="labelA" x="1210" y="542">Gestione contenuti</text>
+  <text class="item" x="1210" y="567">- Elenco luoghi</text>
+  <text class="item" x="1210" y="589">- Aggiungi luogo</text>
+  <line class="split" x1="1370" y1="526" x2="1370" y2="680" />
+  <text class="labelA" x="1388" y="542">Classificazioni</text>
+  <text class="item" x="1388" y="567">- Tipologia luogo</text>
+
+  <rect class="panel" x="50" y="715" width="360" height="220" />
+  <rect class="head" x="50" y="715" width="360" height="42" />
+  <text class="htext" x="70" y="742">Spin-off</text>
+  <text class="labelA" x="70" y="782">Gestione contenuti</text>
+  <text class="item" x="70" y="807">- Elenco spin-off</text>
+  <text class="item" x="70" y="829">- Aggiungi spin-off</text>
+  <line class="split" x1="230" y1="766" x2="230" y2="920" />
+  <text class="labelA" x="248" y="782">Classificazioni</text>
+  <text class="item" x="248" y="807">- Categorie</text>
+  <text class="item" x="248" y="829">- Tag</text>
+  <text class="item" x="248" y="851">- Settore attivita</text>
+
+  <rect class="panel" x="430" y="715" width="360" height="220" />
+  <rect class="head" x="430" y="715" width="360" height="42" />
+  <text class="htext" x="450" y="742">Sponsor</text>
+  <text class="labelA" x="450" y="782">Gestione contenuti</text>
+  <text class="item" x="450" y="807">- Elenco sponsor</text>
+  <text class="item" x="450" y="829">- Aggiungi sponsor</text>
+  <line class="split" x1="610" y1="766" x2="610" y2="920" />
+  <text class="labelA" x="628" y="782">Classificazioni</text>
+  <text class="item" x="628" y="807">- Categorie</text>
+  <text class="item" x="628" y="829">- Tag</text>
+
+  <rect class="panel" x="810" y="715" width="360" height="220" />
+  <rect class="head" x="810" y="715" width="360" height="42" />
+  <text class="htext" x="830" y="742">Risorse tecniche</text>
+  <text class="labelA" x="830" y="782">Gestione contenuti</text>
+  <text class="item" x="830" y="807">- Elenco risorse</text>
+  <text class="item" x="830" y="829">- Aggiungi risorsa</text>
+  <line class="split" x1="990" y1="766" x2="990" y2="920" />
+  <text class="labelA" x="1008" y="782">Classificazioni</text>
+  <text class="item" x="1008" y="807">- Categorie</text>
+  <text class="item" x="1008" y="829">- Tag</text>
+  <text class="item" x="1008" y="851">- Tipo risorsa</text>
+
+  <rect class="panel" x="1190" y="715" width="360" height="220" />
+  <rect class="head" x="1190" y="715" width="360" height="42" />
+  <text class="htext" x="1210" y="742">Configurazione</text>
+  <text class="labelA" x="1210" y="782">Gestione contenuti</text>
+  <text class="item" x="1210" y="807">- Configurazione</text>
+  <line class="split" x1="1370" y1="766" x2="1370" y2="920" />
+  <text class="labelA" x="1388" y="782">Classificazioni</text>
+  <text class="item" x="1388" y="807">- Nessuna</text>
+
+  <rect class="panel" x="50" y="955" width="1500" height="200" />
+  <text class="ctitle" x="72" y="995">Nota layout</text>
+  <text class="note" x="72" y="1025">Desktop: 4 colonne. Tablet: 2 colonne. Mobile: 1 colonna.</text>
+  <text class="note" x="72" y="1050">Ogni card mantiene sempre la stessa struttura, quindi la distinzione tra i link resta immediata.</text>
+  <text class="note" x="72" y="1075">Implementazione prevista con griglia e card Bootstrap Italia, con stili minimi dedicati.</text>
+</svg>

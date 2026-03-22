@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1372" viewBox="0 0 1200 1372">
+<rect width="1200" height="1372" fill="#f0f0f1"/>
+<rect x="0" y="0" width="1200" height="125" fill="white"/>
+<line x1="0" y1="125" x2="1200" y2="125" stroke="#dddddd" stroke-width="1"/>
+<rect x="20" y="16" width="88" height="88" rx="6" fill="#0066CC"/>
+<text x="64" y="54" text-anchor="middle" font-family="Titillium Web, sans-serif" font-size="9" font-weight="bold" fill="white">DESIGN</text>
+<text x="64" y="70" text-anchor="middle" font-family="Titillium Web, sans-serif" font-size="9" font-weight="bold" fill="white">LABORATORI</text>
+<text x="64" y="86" text-anchor="middle" font-family="Titillium Web, sans-serif" font-size="9" font-weight="bold" fill="white">ITALIA</text>
+<text x="124" y="44" font-family="Titillium Web, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a">SitoFederato &#8212; Pannello di gestione</text>
+<text x="124" y="66" font-family="Titillium Web, sans-serif" font-size="13" fill="#555555">Tema WordPress per laboratori e centri di ricerca &#183; Scuola Normale Superiore &#183; v1.7.7</text>
+<text x="124" y="86" font-family="Titillium Web, sans-serif" font-size="12" fill="#777777">Gestisci i contenuti del sito dalla dashboard.</text>
+<rect x="20" y="137" width="1160" height="30" rx="3" fill="#E3EBF6"/>
+<rect x="20" y="137" width="4" height="30" fill="#003D8F" rx="1"/>
+<text x="34" y="157" font-family="Titillium Web, sans-serif" font-size="13" font-weight="bold" fill="#003D8F">Persone e struttura</text>
+<rect x="22" y="180" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="20" y="177" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 25,177 H 279 Q 284,177 284,182 V 215 H 20 V 182 Q 20,177 25,177 Z" fill="#003D8F"/>
+<text x="32" y="201" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Persone</text>
+<text x="30" y="238" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="34" y="257" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco persone</text>
+<text x="34" y="272" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi persona</text>
+<text x="34" y="287" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tipologia persone</text>
+<line x1="30" y1="295" x2="274" y2="295" stroke="#eeeeee" stroke-width="1"/>
+<text x="30" y="308" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="34" y="327" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<text x="34" y="342" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Struttura</text>
+<rect x="300" y="180" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="298" y="177" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 303,177 H 557 Q 562,177 562,182 V 215 H 298 V 182 Q 298,177 303,177 Z" fill="#003D8F"/>
+<text x="310" y="201" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Tipologie persone</text>
+<text x="308" y="238" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="312" y="257" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco tipologie</text>
+<text x="312" y="272" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi tipologia</text>
+<rect x="20" y="382" width="1160" height="30" rx="3" fill="#E1F0EA"/>
+<rect x="20" y="382" width="4" height="30" fill="#005D2E" rx="1"/>
+<text x="34" y="402" font-family="Titillium Web, sans-serif" font-size="13" font-weight="bold" fill="#005D2E">Attività scientifica</text>
+<rect x="22" y="425" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="20" y="422" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 25,422 H 279 Q 284,422 284,427 V 460 H 20 V 427 Q 20,422 25,422 Z" fill="#005D2E"/>
+<text x="32" y="446" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Indirizzi di ricerca</text>
+<text x="30" y="483" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="34" y="502" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco indirizzi</text>
+<text x="34" y="517" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi indirizzo</text>
+<line x1="30" y1="525" x2="274" y2="525" stroke="#eeeeee" stroke-width="1"/>
+<text x="30" y="538" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="34" y="557" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<rect x="300" y="425" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="298" y="422" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 303,422 H 557 Q 562,422 562,427 V 460 H 298 V 427 Q 298,422 303,422 Z" fill="#005D2E"/>
+<text x="310" y="446" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Progetti</text>
+<text x="308" y="483" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="312" y="502" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco progetti</text>
+<text x="312" y="517" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi progetto</text>
+<line x1="308" y1="525" x2="552" y2="525" stroke="#eeeeee" stroke-width="1"/>
+<text x="308" y="538" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="312" y="557" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<rect x="578" y="425" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="576" y="422" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 581,422 H 835 Q 840,422 840,427 V 460 H 576 V 427 Q 576,422 581,422 Z" fill="#005D2E"/>
+<text x="588" y="446" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Pubblicazioni</text>
+<text x="586" y="483" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="590" y="502" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco pubblicazioni</text>
+<text x="590" y="517" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi pubblicazione</text>
+<line x1="586" y1="525" x2="830" y2="525" stroke="#eeeeee" stroke-width="1"/>
+<text x="586" y="538" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="590" y="557" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<text x="590" y="572" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tipo pubblicazione</text>
+<rect x="20" y="627" width="1160" height="30" rx="3" fill="#FDEEEC"/>
+<rect x="20" y="627" width="4" height="30" fill="#A93226" rx="1"/>
+<text x="34" y="647" font-family="Titillium Web, sans-serif" font-size="13" font-weight="bold" fill="#A93226">Comunicazione</text>
+<rect x="22" y="670" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="20" y="667" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 25,667 H 279 Q 284,667 284,672 V 705 H 20 V 672 Q 20,667 25,667 Z" fill="#A93226"/>
+<text x="32" y="691" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Notizie</text>
+<text x="30" y="728" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="34" y="747" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco notizie</text>
+<text x="34" y="762" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi notizia</text>
+<line x1="30" y1="770" x2="274" y2="770" stroke="#eeeeee" stroke-width="1"/>
+<text x="30" y="783" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="34" y="802" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="34" y="817" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<rect x="300" y="670" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="298" y="667" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 303,667 H 557 Q 562,667 562,672 V 705 H 298 V 672 Q 298,667 303,667 Z" fill="#A93226"/>
+<text x="310" y="691" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Eventi</text>
+<text x="308" y="728" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="312" y="747" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco eventi</text>
+<text x="312" y="762" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi evento</text>
+<line x1="308" y1="770" x2="552" y2="770" stroke="#eeeeee" stroke-width="1"/>
+<text x="308" y="783" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="312" y="802" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="312" y="817" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<rect x="578" y="670" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="576" y="667" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 581,667 H 835 Q 840,667 840,672 V 705 H 576 V 672 Q 576,667 581,667 Z" fill="#A93226"/>
+<text x="588" y="691" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Banner</text>
+<text x="586" y="728" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="590" y="747" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco banner</text>
+<text x="590" y="762" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi banner</text>
+<rect x="20" y="872" width="1160" height="30" rx="3" fill="#F0E8F8"/>
+<rect x="20" y="872" width="4" height="30" fill="#4A1777" rx="1"/>
+<text x="34" y="892" font-family="Titillium Web, sans-serif" font-size="13" font-weight="bold" fill="#4A1777">Ricerca</text>
+<rect x="22" y="915" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="20" y="912" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 25,912 H 279 Q 284,912 284,917 V 950 H 20 V 917 Q 20,912 25,912 Z" fill="#4A1777"/>
+<text x="32" y="936" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Brevetti</text>
+<text x="30" y="973" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="34" y="992" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco brevetti</text>
+<text x="34" y="1007" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi brevetto</text>
+<line x1="30" y1="1015" x2="274" y2="1015" stroke="#eeeeee" stroke-width="1"/>
+<text x="30" y="1028" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="34" y="1047" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="34" y="1062" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<text x="34" y="1077" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Area tematica</text>
+<rect x="300" y="915" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="298" y="912" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 303,912 H 557 Q 562,912 562,917 V 950 H 298 V 917 Q 298,912 303,912 Z" fill="#4A1777"/>
+<text x="310" y="936" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Risorse tecniche</text>
+<text x="308" y="973" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="312" y="992" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco risorse</text>
+<text x="312" y="1007" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi risorsa</text>
+<line x1="308" y1="1015" x2="552" y2="1015" stroke="#eeeeee" stroke-width="1"/>
+<text x="308" y="1028" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="312" y="1047" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="312" y="1062" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<text x="312" y="1077" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tipo risorsa</text>
+<rect x="578" y="915" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="576" y="912" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 581,912 H 835 Q 840,912 840,917 V 950 H 576 V 917 Q 576,912 581,912 Z" fill="#4A1777"/>
+<text x="588" y="936" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Spin-off</text>
+<text x="586" y="973" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="590" y="992" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco spin-off</text>
+<text x="590" y="1007" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi spin-off</text>
+<line x1="586" y1="1015" x2="830" y2="1015" stroke="#eeeeee" stroke-width="1"/>
+<text x="586" y="1028" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="590" y="1047" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="590" y="1062" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<text x="590" y="1077" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Settore attività</text>
+<rect x="856" y="915" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="854" y="912" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 859,912 H 1113 Q 1118,912 1118,917 V 950 H 854 V 917 Q 854,912 859,912 Z" fill="#4A1777"/>
+<text x="866" y="936" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Sponsor</text>
+<text x="864" y="973" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="868" y="992" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco sponsor</text>
+<text x="868" y="1007" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi sponsor</text>
+<line x1="864" y1="1015" x2="1108" y2="1015" stroke="#eeeeee" stroke-width="1"/>
+<text x="864" y="1028" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="868" y="1047" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Categorie</text>
+<text x="868" y="1062" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tag</text>
+<rect x="20" y="1117" width="1160" height="30" rx="3" fill="#ECEFF1"/>
+<rect x="20" y="1117" width="4" height="30" fill="#37474F" rx="1"/>
+<text x="34" y="1137" font-family="Titillium Web, sans-serif" font-size="13" font-weight="bold" fill="#37474F">Impostazioni</text>
+<rect x="22" y="1160" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="20" y="1157" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 25,1157 H 279 Q 284,1157 284,1162 V 1195 H 20 V 1162 Q 20,1157 25,1157 Z" fill="#37474F"/>
+<text x="32" y="1181" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Configurazione</text>
+<text x="30" y="1218" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="34" y="1237" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Configurazione</text>
+<rect x="300" y="1160" width="264" height="185" rx="5" fill="#00000018"/>
+<rect x="298" y="1157" width="264" height="185" rx="5" fill="white" stroke="#dddddd" stroke-width="1"/>
+<path d="M 303,1157 H 557 Q 562,1157 562,1162 V 1195 H 298 V 1162 Q 298,1157 303,1157 Z" fill="#37474F"/>
+<text x="310" y="1181" font-family="Titillium Web, sans-serif" font-size="12" font-weight="bold" fill="white">Luoghi</text>
+<text x="308" y="1218" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">CONTENUTI</text>
+<text x="312" y="1237" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Elenco luoghi</text>
+<text x="312" y="1252" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Aggiungi luogo</text>
+<line x1="308" y1="1260" x2="552" y2="1260" stroke="#eeeeee" stroke-width="1"/>
+<text x="308" y="1273" font-family="Titillium Web, sans-serif" font-size="9" fill="#888888" font-weight="bold" letter-spacing="0.8">TASSONOMIE</text>
+<text x="312" y="1292" font-family="Titillium Web, sans-serif" font-size="11" fill="#0066CC">&#8594; Tipologia luogo</text>
+</svg>

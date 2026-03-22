@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">SitoFederato - Layout con sezioni accordion</title>
+  <desc id="desc">Dashboard organizzata per sezioni con pannelli accordion e card per content-type.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f4f7fb; }
+      .panel { fill: #ffffff; stroke: #d4dce7; stroke-width: 2; rx: 14; }
+      .title { fill: #0f172a; font-family: Arial, sans-serif; font-size: 34px; font-weight: 700; }
+      .subtitle { fill: #334155; font-family: Arial, sans-serif; font-size: 18px; }
+      .htext { fill: #ffffff; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; }
+      .accHead { fill: #e8eef7; stroke: #c5d2e5; stroke-width: 1.5; rx: 10; }
+      .accOpen { fill: #dbeafe; stroke: #93c5fd; stroke-width: 1.5; rx: 10; }
+      .accTitle { fill: #0f172a; font-family: Arial, sans-serif; font-size: 21px; font-weight: 700; }
+      .accMeta { fill: #475569; font-family: Arial, sans-serif; font-size: 15px; }
+      .card { fill: #ffffff; stroke: #d6deea; stroke-width: 1.5; rx: 10; }
+      .cardTitle { fill: #0f172a; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; }
+      .labelA { fill: #0f172a; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; }
+      .item { fill: #1f2937; font-family: Arial, sans-serif; font-size: 14px; }
+      .split { stroke: #d4ddea; stroke-width: 1; }
+      .chipA { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1; rx: 9; }
+      .chipB { fill: #fff3e0; stroke: #ef6c00; stroke-width: 1; rx: 9; }
+      .chipTxtA { fill: #2e7d32; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
+      .chipTxtB { fill: #ef6c00; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
+      .note { fill: #475569; font-family: Arial, sans-serif; font-size: 14px; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1200" />
+
+  <rect class="panel" x="50" y="35" width="1500" height="170" />
+  <circle cx="130" cy="120" r="42" fill="#0b3a6f" />
+  <text x="113" y="128" class="htext">SF</text>
+  <text x="205" y="105" class="title">SitoFederato - Dashboard operativa (con sezioni)</text>
+  <text x="205" y="138" class="subtitle">Sezioni: Persone e struttura, Attivita scientifica, Comunicazione, Ricerca, Impostazioni</text>
+  <text x="205" y="166" class="subtitle">Comportamento accordion: sezioni espandibili/collassabili</text>
+
+  <rect class="chipA" x="1240" y="82" width="145" height="32" />
+  <text class="chipTxtA" x="1263" y="102">Gestione contenuti</text>
+  <rect class="chipB" x="1395" y="82" width="125" height="32" />
+  <text class="chipTxtB" x="1421" y="102">Classificazioni</text>
+
+  <rect class="panel" x="50" y="235" width="1500" height="900" />
+
+  <rect class="accOpen" x="80" y="270" width="1440" height="56" />
+  <text class="accTitle" x="105" y="305">[v] Persone e struttura</text>
+  <text class="accMeta" x="460" y="305">Tipi: Persone, Tipologie persone</text>
+
+  <rect class="card" x="105" y="340" width="680" height="125" />
+  <text class="cardTitle" x="128" y="370">Persone</text>
+  <text class="labelA" x="128" y="398">Gestione contenuti</text>
+  <text class="item" x="128" y="420">- Elenco persone, Aggiungi persona, Tipologie persone</text>
+  <line class="split" x1="445" y1="382" x2="445" y2="452" />
+  <text class="labelA" x="466" y="398">Classificazioni</text>
+  <text class="item" x="466" y="420">- Tag, Struttura</text>
+
+  <rect class="accOpen" x="80" y="485" width="1440" height="56" />
+  <text class="accTitle" x="105" y="520">[v] Attivita scientifica</text>
+  <text class="accMeta" x="460" y="520">Tipi: Indirizzi di ricerca, Progetti, Pubblicazioni</text>
+
+  <rect class="card" x="105" y="555" width="460" height="145" />
+  <text class="cardTitle" x="128" y="585">Indirizzi di ricerca</text>
+  <text class="labelA" x="128" y="613">Gestione contenuti</text>
+  <text class="item" x="128" y="635">- Elenco indirizzi, Aggiungi indirizzo</text>
+  <text class="labelA" x="128" y="659">Classificazioni</text>
+  <text class="item" x="128" y="681">- Tag</text>
+
+  <rect class="card" x="580" y="555" width="460" height="145" />
+  <text class="cardTitle" x="603" y="585">Progetti</text>
+  <text class="labelA" x="603" y="613">Gestione contenuti</text>
+  <text class="item" x="603" y="635">- Elenco progetti, Aggiungi progetto</text>
+  <text class="labelA" x="603" y="659">Classificazioni</text>
+  <text class="item" x="603" y="681">- Tag</text>
+
+  <rect class="card" x="1055" y="555" width="460" height="145" />
+  <text class="cardTitle" x="1078" y="585">Pubblicazioni</text>
+  <text class="labelA" x="1078" y="613">Gestione contenuti</text>
+  <text class="item" x="1078" y="635">- Elenco pubblicazioni, Aggiungi pubblicazione</text>
+  <text class="labelA" x="1078" y="659">Classificazioni</text>
+  <text class="item" x="1078" y="681">- Tag, Tipo pubblicazione</text>
+
+  <rect class="accHead" x="80" y="720" width="1440" height="52" />
+  <text class="accTitle" x="105" y="752">[&gt;] Comunicazione</text>
+  <text class="accMeta" x="460" y="752">Tipi: Notizie, Eventi, Banner</text>
+
+  <rect class="accHead" x="80" y="785" width="1440" height="52" />
+  <text class="accTitle" x="105" y="817">[&gt;] Ricerca</text>
+  <text class="accMeta" x="460" y="817">Tipi: Brevetti, Risorse tecniche, Spin-off, Sponsor</text>
+
+  <rect class="accHead" x="80" y="850" width="1440" height="52" />
+  <text class="accTitle" x="105" y="882">[&gt;] Impostazioni</text>
+  <text class="accMeta" x="460" y="882">Tipi: Configurazione, Luoghi</text>
+
+  <rect class="panel" x="80" y="920" width="1440" height="190" />
+  <text class="cardTitle" x="105" y="960">Nota layout</text>
+  <text class="note" x="105" y="990">Desktop: sezioni aperte con card in colonne. Mobile: accordion prevalente e card a colonna singola.</text>
+  <text class="note" x="105" y="1015">La distinzione tra link resta costante in ogni card: Gestione contenuti / Classificazioni.</text>
+  <text class="note" x="105" y="1040">Implementazione prevista con componenti Bootstrap Italia: accordion, card, list-group, grid.</text>
+</svg>
