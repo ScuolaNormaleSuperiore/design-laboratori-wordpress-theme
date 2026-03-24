@@ -54,7 +54,7 @@ class DLI_ContentsManager {
 			$item_image   = $img_id && $has_img_data && ! empty( $img_array[0] ) ? $img_array[0] : '';
 			$site_url     = site_url();
 			$parsed_url   = parse_url( $site_url );
-			$domain       = $parsed_url['host'];
+			$domain       = isset( $parsed_url['host'] ) ? $parsed_url['host'] : wp_parse_url( home_url(), PHP_URL_HOST );
 			$shared_title = $is_homepage ? $site_title : $site_title . ' - ' . $post->post_title;
 
 			// Fill OG data:
