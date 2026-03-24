@@ -17,7 +17,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [REL-1.7.8] - 2026-04-01
+## [REL-1.7.8] - 2026-03-24
 ## Aggiunto
 - Aggiunta site-map in formato XML.
 ## Corretto

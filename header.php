@@ -35,6 +35,7 @@ $dli_current_lang = dli_current_language();
 	<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() . '/assets/img/favicon.ico' ); ?>" />
 </head>
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 
 <?php
 	get_template_part( 'template-parts/common/svg' );
