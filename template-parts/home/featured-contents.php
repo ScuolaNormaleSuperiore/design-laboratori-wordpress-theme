@@ -21,7 +21,11 @@ if ( 'true' === $dli_featuredcontents_enabled ) {
 		$dli_boxes = array( 1, 2, 3 );
 		foreach ( $dli_boxes as $dli_index ) {
 			// Print BOX i.
-			$dli_fc       = dli_get_option( 'featured_contents_' . $dli_index, 'homepage' )[0];
+			$dli_option = dli_get_option( 'featured_contents_' . $dli_index, 'homepage' );
+			if ( ! is_array( $dli_option ) || empty( $dli_option[0] ) ) {
+				continue;
+			}
+			$dli_fc       = $dli_option[0];
 			$dli_label    = $dli_fc[ 'featured_contents_label_box_' . $dli_index ];
 			$dli_template = $dli_fc[ 'featured_contents_template_box_' . $dli_index ];
 			$dli_pt       = $dli_fc[ 'featured_contents_type_box_' . $dli_index ];
