@@ -91,7 +91,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			'redirection' => 0,
 		);
 		// Invocazione dell'endpoint.
-		$response = wp_remote_get( $ws_url, $args );
+		$response = wp_safe_remote_get( $ws_url, $args );
 		// Controllo della risposta
 		if ( is_wp_error( $response ) ) {
 			// Errore invocando il web service.
