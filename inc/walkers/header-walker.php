@@ -17,7 +17,9 @@
 
 class Header_Menu_Walker extends Walker_Nav_Menu {
 	function start_el(&$output, $item, $depth=0, $args=[], $id=0) {
-		$output .= "<li>";
+		$output      .= '<li>';
+		$item_url     = ! empty( $item->url ) ? esc_url( $item->url ) : '#';
+		$item_title   = isset( $item->title ) ? esc_html( $item->title ) : '';
 		$custom_data = '';
 
 		if ( stripos( $item->title, 'personale scolastico' ) !== false || stripos( $item->title, 'famiglie e studenti' ) !== false ) {
@@ -25,20 +27,12 @@ class Header_Menu_Walker extends Walker_Nav_Menu {
 		}
 
 		if($custom_data) {
-			if ($item->url) {
-				$output .= '<a class="list-item" href="' . $item->url . '" '.$custom_data.'>';
-			} else {
-				$output .= '<a class="list-item" href="#" '.$custom_data.'>';
-			}
+			$output .= '<a class="list-item" href="' . $item_url . '" ' . $custom_data . '>';
 		} else {
-			if ($item->url) {
-				$output .= '<a class="list-item" href="' . $item->url . '">';
-			} else {
-				$output .= '<a class="list-item" href="#">';
-			}
+			$output .= '<a class="list-item" href="' . $item_url . '">';
 		}
  
-		$output .= $item->title;
+		$output .= $item_title;
         
         $output .= '</a>';
 	}
