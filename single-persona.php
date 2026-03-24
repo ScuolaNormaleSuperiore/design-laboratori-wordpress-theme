@@ -418,7 +418,7 @@ $dli_pubblicazioni = new WP_Query(
 									</div><!--end card-->
 										<?php
 									}
-									if ( ( is_array( $allegato2 ) && count( $allegato2 ) > 0 ) ) {
+									if ( ( is_array( $dli_allegato2 ) && count( $dli_allegato2 ) > 0 ) ) {
 										?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
@@ -428,13 +428,13 @@ $dli_pubblicazioni = new WP_Query(
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
-												<a href="<?php echo esc_url( $allegato2['url'] ); ?>"><?php echo esc_attr( $allegato2['title'] ); ?></a>
+												<a href="<?php echo esc_url( $dli_allegato2['url'] ); ?>"><?php echo esc_attr( $dli_allegato2['title'] ); ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
 										<?php
 									}
-									if ( ( is_array( $allegato3 ) && count( $allegato3 ) > 0 ) ) {
+									if ( ( is_array( $dli_allegato3 ) && count( $dli_allegato3 ) > 0 ) ) {
 										?>
 									<!--start card-->
 									<div class="card card-teaser rounded shadow ">
@@ -444,7 +444,7 @@ $dli_pubblicazioni = new WP_Query(
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
-												<a href="<?php echo esc_url( $allegato3['url'] ); ?>"><?php echo esc_attr( $allegato3['title'] ); ?></a>
+												<a href="<?php echo esc_url( $dli_allegato3['url'] ); ?>"><?php echo esc_attr( $dli_allegato3['title'] ); ?></a>
 											</h3>
 										</div>
 									</div><!--end card-->
@@ -455,11 +455,11 @@ $dli_pubblicazioni = new WP_Query(
 							<?php
 						}
 						?>
-							<?php if ( ( '' !== $telefono ) || ( '' !== $email ) || ( '' !== $sito_web ) ) { ?>
+							<?php if ( ( '' !== $dli_telefono ) || ( '' !== $dli_email ) || ( '' !== $dli_sito_web ) ) { ?>
 							<h3 class="it-page-section h4 pt-3" id="p6"><?php esc_html_e( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 							<div class="it-list-wrapper">
 								<ul class="it-list">
-									<?php if ( '' !== $telefono ) { ?>
+									<?php if ( '' !== $dli_telefono ) { ?>
 									<li>
 										<div class="list-item">
 											<div class="it-rounded-icon">
@@ -468,30 +468,30 @@ $dli_pubblicazioni = new WP_Query(
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $telefono ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_telefono ); ?></span></div>
 										</div>
 									</li>
 										<?php
 									}
-									if ( '' !== $email ) {
+									if ( '' !== $dli_email ) {
 										?>
 									<li>
-											<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $email ) ); ?>" class="list-item">
+											<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Mail">
 													<title>Mail</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $email ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email ); ?></span></div>
 										</a>
 									</li>
 										<?php
 									}
-									if ( '' !== $sito_web ) {
+									if ( '' !== $dli_sito_web ) {
 										?>
 									<li>
-										<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $sito_web ); ?>">
+										<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_sito_web ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img" aria-labelledby="Link">
 													<title>Website Link</title>
