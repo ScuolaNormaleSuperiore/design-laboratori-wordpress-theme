@@ -6,9 +6,9 @@
  */
 
 $dli_og_data          = DLI_ContentsManager::get_og_data();
-$dli_page_url         = ! empty( $dli_og_data->url ) ? $dli_og_data->url : get_permalink();
+$dli_page_url         = ( isset( $dli_og_data->url ) && ! empty( $dli_og_data->url ) ) ? $dli_og_data->url : get_permalink();
 $dli_enc_page_url     = rawurlencode( $dli_page_url );
-$dli_shared_title     = __( 'Condivido con piacere questo post', 'design_laboratori_italia' ) . ' "' . $dli_og_data->shared_title . '"';
+$dli_shared_title     = __( 'Condivido con piacere questo post', 'design_laboratori_italia' ) . ' "' . ( isset( $dli_og_data->shared_title ) ? $dli_og_data->shared_title : get_the_title() ) . '"';
 $dli_enc_shared_title = rawurlencode( $dli_shared_title );
 $dli_sprite_base      = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#';
 $dli_share_items      = array(
