@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[ALM pre-commit] Running secret scan..." >&2
+echo "[DLI pre-commit] Running secret scan..." >&2
 
 if ! command -v git >/dev/null 2>&1; then
 	exit 0
@@ -47,7 +47,7 @@ found=0
 for pattern in "${patterns[@]}"; do
 	if printf '%s\n' "$added_lines" | grep -E -i -n "$pattern" >/tmp/alm_secret_scan_matches.$$ 2>/dev/null; then
 		if [ "$found" -eq 0 ]; then
-			echo "[ALM pre-commit] Potential secret detected in staged changes:" >&2
+			echo "[DLI pre-commit] Potential secret detected in staged changes:" >&2
 			found=1
 		fi
 		cat /tmp/alm_secret_scan_matches.$$ >&2

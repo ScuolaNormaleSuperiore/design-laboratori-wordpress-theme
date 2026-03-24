@@ -4,7 +4,7 @@
 # If the guard is missing it is injected automatically and the file is re-staged.
 set -euo pipefail
 
-echo "[ALM pre-commit] Running l10n guard check..." >&2
+echo "[DLI pre-commit] Running l10n guard check..." >&2
 
 if ! command -v git >/dev/null 2>&1; then
 	exit 0
@@ -23,7 +23,7 @@ fixed=0
 while IFS= read -r file; do
 	abs="$repo_root/$file"
 	if ! grep -q "defined.*ABSPATH" "$abs" 2>/dev/null; then
-		echo "[ALM pre-commit] ABSPATH guard missing — auto-fixing: $file" >&2
+		echo "[DLI pre-commit] ABSPATH guard missing — auto-fixing: $file" >&2
 		# Insert the guard on the line immediately after <?php.
 		awk 'NR==1 && /^<\?php$/ { print; print "defined( '"'"'ABSPATH'"'"' ) || exit;"; next } { print }' "$abs" > "$abs.tmp" && mv "$abs.tmp" "$abs"
 		git add "$abs"
@@ -32,7 +32,7 @@ while IFS= read -r file; do
 done <<< "$staged_l10n"
 
 if [ "$fixed" -eq 1 ]; then
-	echo "[ALM pre-commit] ABSPATH guard added and files re-staged." >&2
+	echo "[DLI pre-commit] ABSPATH guard added and files re-staged." >&2
 fi
 
 exit 0
