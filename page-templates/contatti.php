@@ -52,7 +52,7 @@ if ( 'yes' === $dli_form_submitted ) {
 		$dli_headers     = "From: {$dli_header_mail}\r\nReply-To: {$dli_header_mail}";
 
 		if ( $dli_captcha_enabled ) {
-			$dli_captcha_valid = $captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+			$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
 			if ( ! $dli_captcha_valid ) {
 				$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}
@@ -298,10 +298,10 @@ if ( 'yes' === $dli_form_submitted ) {
 										<div class="row" style="margin-top: 20px;">
 											<div class="form-group col-md-6" style="text-align: center">
 												<img
-													src="<?php echo esc_url( $captcha_obj_image_src ); ?>"
+													src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>"
 													alt="captcha"
-													width="<?php echo esc_attr( $captcha_obj_image_width ); ?>"
-													height="<?php echo esc_attr( $captcha_obj_image_height ); ?>"
+													width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>"
+													height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>"
 												>
 											</div>
 											<div class="form-group col-md-6">
@@ -311,7 +311,7 @@ if ( 'yes' === $dli_form_submitted ) {
 												<input
 													name="captcha-field"
 													id="captcha-field"
-													size="<?php echo esc_attr( $captcha_obj_image_width ); ?>"
+													size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>"
 													type="text"
 													placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"
 												>
@@ -320,7 +320,7 @@ if ( 'yes' === $dli_form_submitted ) {
 													id="captcha-prefix"
 													class="form-control"
 													type="hidden"
-													value="<?php echo esc_attr( $captcha_obj_prefix ); ?>"
+													value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>"
 												>
 											</div>
 										</div>

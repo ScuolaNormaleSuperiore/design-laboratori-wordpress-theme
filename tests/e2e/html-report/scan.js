@@ -114,7 +114,7 @@ async function extractUrls(page, baseUrl, sitemapPath, timeout) {
   }
 
   const urls = await page.evaluate((base) => {
-    const anchors = Array.from(document.querySelectorAll('a[href]'));
+    const anchors = Array.from(document.querySelectorAll('#dli-sitemap a[href]'));
     const found = new Set();
     anchors.forEach((a) => {
       const href = a.getAttribute('href');

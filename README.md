@@ -26,7 +26,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione degli avvisi in home page.
 - Gestione dei cookies.
 - Form di contatti.
-- Mappa del sito.
+- Mappa del sito in HTML e XML.
 - Gestione hero in home page.
 - Carousel in home page con contenuti selezionabili.
 - Gestione contenuti in evidenza in home page.

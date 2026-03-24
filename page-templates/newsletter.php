@@ -51,8 +51,8 @@ if (
 }
 
 // Verifica del captcha.
-if ( $dli_form_submission && $captcha_enabled ) {
-	$dli_captcha_valid = $captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+if ( $dli_form_submission && $dli_captcha_enabled ) {
+	$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
 	if ( ! $dli_captcha_valid ) {
 		$dli_form_errors[] = __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 	}
@@ -199,17 +199,17 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 
 										<!-- CAPTCHA -->
 										<?php
-										if ( $captcha_enabled ) {
+										if ( $dli_captcha_enabled ) {
 											?>
 											<div class="row" style="margin-top: 20px;">
 												<div class="form-group col-md-6" style="text-align: center">
-													<img src="<?php echo esc_url( $captcha_obj_image_src ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
-																width="<?php echo esc_attr( $captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $captcha_obj_image_height ); ?>" />
+													<img src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
+																width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>" />
 												</div>
 												<div class="form-group col-md-6">
-													<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $captcha_obj_image_width ); ?>" type="text" 
+													<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" type="text" 
 															placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"	/>
-													<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $captcha_obj_prefix ); ?>" />
+													<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>" />
 												</div>
 											</div>
 											<?php

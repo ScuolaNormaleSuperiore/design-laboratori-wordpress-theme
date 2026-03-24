@@ -1190,14 +1190,15 @@ if ( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 
 if ( ! function_exists( 'dli_get_site_tree' ) ) {
 	/**
-	 * Build the sitemap tree for the current language.
+	 * Build the sitemap tree for the given language (or the current one if omitted).
 	 *
+	 * @param string|null $lang Language slug ('it', 'en', …). Defaults to current language.
 	 * @return array
 	 */
-	function dli_get_site_tree() {
+	function dli_get_site_tree( $lang = null ) {
 		$pt                = array(); // Page Tree.
-		$lng_slug          = dli_current_language( 'slug' );
-		$lng               = ( 'it' === $lng_slug ) ? '' : $lng_slug;
+		$lng_slug          = $lang ? $lang : dli_current_language( 'slug' );
+		$lng               = ( 'it' === $lng_slug ) ? '' : '/' . $lng_slug;
 		$site_url          = get_site_url() . $lng;
 		$hp                = dli_get_tree_item();
 		$hp['name']        = DLI_HOMEPAGE_NAME;

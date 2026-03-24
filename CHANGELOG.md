@@ -19,8 +19,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [REL-1.7.8] - 2026-04-01
 ## Aggiunto
-- Aggiunta site-map in formato XML
+- Aggiunta site-map in formato XML.
 ## Corretto
+- Bug fixing nella gestione dei captcha.
 ## Modificato
 ## Sicurezza
 

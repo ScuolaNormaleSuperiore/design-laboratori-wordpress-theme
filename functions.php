@@ -63,6 +63,11 @@ require get_template_directory() . '/inc/admin/options.php';
  */
 require get_template_directory() . '/inc/utils.php';
 
+/**
+ * Sitemap — HTML helpers and XML endpoints.
+ */
+require get_template_directory() . '/inc/sitemap.php';
+
 
 /**
  * Activation Hooks.

@@ -21,46 +21,7 @@ $dli_homepage_node = array();
 if ( isset( $dli_page_tree[ DLI_HOMEPAGE_SLUG ] ) && is_array( $dli_page_tree[ DLI_HOMEPAGE_SLUG ] ) ) {
 	$dli_homepage_node = $dli_page_tree[ DLI_HOMEPAGE_SLUG ];
 }
-
-if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
-	/**
-	 * Render sitemap nodes recursively.
-	 *
-	 * @param array $dli_node Sitemap node.
-	 * @return void
-	 */
-	function dli_render_sitemap_node( $dli_node ) {
-		if ( ! is_array( $dli_node ) ) {
-			return;
-		}
-
-		$dli_name     = isset( $dli_node['name'] ) ? esc_html( (string) $dli_node['name'] ) : '';
-		$dli_link     = isset( $dli_node['link'] ) ? esc_url( (string) $dli_node['link'] ) : '';
-		$dli_external = ! empty( $dli_node['external'] );
-
-		echo '<li>';
-
-		if ( '' !== $dli_link ) {
-			echo '<a class="mappasitolink"';
-			if ( $dli_external ) {
-				echo ' target="_blank" rel="noopener noreferrer"';
-			}
-			echo ' href="' . esc_url( $dli_link ) . '">' . esc_html( $dli_name ) . '</a>';
-		} else {
-			echo '<span class="mappasitolink">' . esc_html( $dli_name ) . '</span>';
-		}
-
-		if ( ! empty( $dli_node['children'] ) && is_array( $dli_node['children'] ) ) {
-			echo '<ul>';
-			foreach ( $dli_node['children'] as $dli_child_node ) {
-				dli_render_sitemap_node( $dli_child_node );
-			}
-			echo '</ul>';
-		}
-
-		echo '</li>';
-	}
-}
+// dli_render_sitemap_node() is defined in inc/sitemap.php.
 ?>
 
 <main id="main-container" role="main">
@@ -72,7 +33,7 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 	<?php get_template_part( 'template-parts/hero/mappasito' ); ?>
 
 	<!-- MAPPA DEL SITO -->
-	<div class="container my-4">
+	<div id="dli-sitemap" class="container my-4">
 		<div class="row variable-gutters d-flex justify-content-center">
 			<div class="col-lg-8 pt84">
 				<ul class="menutree">
