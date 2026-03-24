@@ -22,6 +22,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunta site-map in formato XML.
 ## Corretto
 - Bug fixing nella gestione dei captcha.
+- Fix su variabili rinominate male in release precedente.
 ## Modificato
 ## Sicurezza
 
