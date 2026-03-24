@@ -17,15 +17,23 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [REL-1.7.7] - 2026-04-01
+## [REL-1.7.8] - 2026-04-01
+## Aggiunto
+- Aggiunta site-map in formato XML
 ## Corretto
-- Correggere formattazione del codice in inc.
-- Corretto bug in elenco pubblicazioni.
 ## Modificato
 ## Sicurezza
 
 
 
+
+
+## [REL-1.7.7] - 2026-03-20
+## Corretto
+- Correggere formattazione del codice in inc.
+- Corretto bug in elenco pubblicazioni.
+## Modificato
+## Sicurezza
 
 ## [REL-1.7.6] - 2026-03-19
 ## Corretto
@@ -36,7 +44,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornato Dockerfile per sito demo.
 ## Sicurezza
 - Corrette possibili anomalie di sicurezza.
-
 
 ## [REL-1.7.5] - 2026-03-09
 ## Aggiunto
@@ -54,7 +61,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Sicurezza
 - Eseguito escaping massivo dell'output.
 - Risolti possibili problemi XSS segnalati dalla AI.
-
 
 ## [REL-1.7.4] - 2026-02-15
 ## Aggiunto
@@ -74,11 +80,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Correzione del layout delle seguenti sezioni in HP: banner, sponsor, newsletter e menu principale.
 - Aggiornato Dockerfile per sito demo.
 
-
 ## [REL-1.7.3] - 2025-11-19
 ## Modificato
 Aggiunto link social per Mastodon.
-
 
 ## [REL-1.7.2] - 2025-11-19
 ## Modificato
