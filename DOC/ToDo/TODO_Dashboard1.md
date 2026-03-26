@@ -165,7 +165,7 @@ La pagina deve aprirsi con:
 3. **Descrizione breve**: una o due righe che descrivono il tema e rimandano alla documentazione
 4. **Separatore**, poi le sezioni con le card
 
-Componente Bootstrap Italia da usare: `it-hero-wrapper` o un semplice `callout` con logo e testo descrittivo.
+HTML semantico con `<header>`, logo e paragrafo descrittivo. Nessun componente Bootstrap Italia (non adatto al contesto admin WP).
 
 ---
 
@@ -176,13 +176,18 @@ inc/
   admin/
     class-dashboard.php      ← nuova classe DLI_Dashboard (registra menu, enqueue stili)
     dashboard-page.php       ← template HTML della pagina dashboard
+    css/
+      dashboard.css          ← CSS dedicato (~100-150 righe), caricato solo su questa pagina
 ```
 
 **Note tecniche:**
 - La voce di menu è registrata con `add_menu_page()` in `DLI_LabManager::plugin_setup()`
 - I link sono generati con `admin_url()` usando gli slug dei CPT e tassonomie già definiti in `config-lab.php`
-- Il layout usa i componenti e le classi di **Bootstrap Italia** già inclusi nel tema (nessun CSS aggiuntivo dedicato, salvo piccoli aggiustamenti per il contesto admin)
-- Il foglio di stile di Bootstrap Italia viene enqueued solo sulla pagina dashboard (hook `admin_enqueue_scripts` con controllo `$hook`)
+- **Bootstrap Italia non viene caricato nel pannello admin**: il suo CSS ha selettori troppo ampi e causerebbe conflitti con gli stili nativi di `wp-admin` (menu, form, bottoni, font)
+- Il layout delle card usa **CSS Grid/Flexbox** in un foglio di stile dedicato e leggero
+- I colori delle sezioni riprendono la palette di Bootstrap Italia (definiti come costanti CSS nel file `dashboard.css`)
+- Le icone usano **Dashicons**, già incluse in WordPress, senza dipendenze aggiuntive
+- Il CSS viene enqueued solo sulla pagina dashboard (hook `admin_enqueue_scripts` con controllo `$hook`)
 - Accessibilità: landmark HTML semantici (`<main>`, `<section>`, `<nav>`), attributi `aria-label`, icone con testo alternativo, contrasto conforme WCAG 2.1 AA
 
 ---
