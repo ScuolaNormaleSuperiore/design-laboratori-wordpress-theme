@@ -1,0 +1,29 @@
+# Normalize line endings to LF on commit (WordPress Coding Standards).
+* text=auto eol=lf
+
+# PHP, JS, CSS, SCSS, HTML: always LF
+*.php text eol=lf
+*.js  text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.htm  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+# Binary files: no line-ending conversion
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.svg   binary
+*.zip   binary
+*.pdf   binary

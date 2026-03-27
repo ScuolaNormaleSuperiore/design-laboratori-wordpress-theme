@@ -59,7 +59,7 @@ done
 if [ "$found" -eq 1 ]; then
 	echo >&2
 	echo "Commit blocked. Remove secrets or move safe examples outside staged changes." >&2
-	echo "If this is a false positive, adjust the pattern list in DEV/SETUP/check-staged-secrets.sh." >&2
+	echo "If this is a false positive, adjust the pattern list in .githooks/check-staged-secrets.sh." >&2
 	exit 1
 fi
 
