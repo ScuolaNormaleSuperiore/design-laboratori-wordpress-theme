@@ -70,12 +70,12 @@ Alcuni siti in produzione realizzati con questo tema:
 ## Demo
 ### Docker
 E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugins + contenuti d'esempio). 
-Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DEV/Docker/Dockerfile).
+Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/SETUP/Docker/Dockerfile).
 
 Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Demo Lab** è già configurato ed è popolato con dei contenuti di prova. Lo scopo di Demo Lab è quello di mostrare le funzionalità del sistema e poterle provare velocemente, non deve essere usato in ambienti di produzione.
 
 I comandi da eseguire per creare ed eseguire il container sono:
-- docker build -t demolab-img -f Dockerfile .
+- docker build -t demolab-img -f SETUP/Docker/Dockerfile SETUP/Docker
 - docker run -p 80:80 -p 3306:3306 --name=demolab -d demolab-img
  
 Per collegarsi alla shell del container, eseguire il comando:

@@ -1,7 +1,7 @@
 ##############################################################################
 ######			USEFUL DOCKER COMMANDS:
 ######
-######		- docker build -t demolab-img -f Dockerfile .
+######		- docker build -t demolab-img -f SETUP/Docker/Dockerfile SETUP/Docker
 ######		- docker run -p 80:80 -p 3306:3306 --name=demolab -d demolab-img
 ######		- docker exec -it demolab /bin/bash
 ######		- Per svuotare la cache: docker builder prune

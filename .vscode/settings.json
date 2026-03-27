@@ -5,6 +5,7 @@
   "intelephense.environment.includePaths": [
     "${workspaceFolder}/../../.."
   ],
+	"markdown.preview.mermaid": true,
   "intelephense.stubs": [
     "Core",
     "standard",
@@ -30,6 +31,8 @@
     "termitem"
   ],
   "cSpell.enabled": false,
+  "files.eol": "\n",
+  "search.followSymlinks": true,
   "terminal.integrated.env.windows": {
     "TEMP": "${workspaceFolder}\\.codex-tmp",
     "TMP": "${workspaceFolder}\\.codex-tmp",
