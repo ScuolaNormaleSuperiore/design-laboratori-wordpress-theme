@@ -10,21 +10,6 @@
 *~
 *.log
 
-# htaccess
-/.htaccess
-
-# Node
-node_modules
-
-# Composer
-/vendor/
-composer.lock
-.composer-cache/
-.composer-home/
-
-# Tests
-.phpunit.result.cache
-
 # OS or Editor folders
 ._*
 .cache
@@ -39,6 +24,10 @@ composer.lock
 *.sublime-workspace
 nbproject
 Thumbs.db
+
+# htaccess
+/.htaccess
+
 
 # Site status scanner
 tests/e2e/status-report/reports/*
@@ -63,6 +52,18 @@ tests/e2e/issues-report/reports/*
 # BUILD CSS
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
+
+# Node
+node_modules
+
+# Composer
+/vendor/
+composer.lock
+.composer-cache/
+.composer-home/
+
+# Tests
+.phpunit.result.cache
 
 # VSCode
 .vscode/*
