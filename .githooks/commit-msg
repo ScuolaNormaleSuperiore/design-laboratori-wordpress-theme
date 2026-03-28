@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[DLI pre-commit] Check commit text ..." >&2
+
+if rg -qi '^Co-Authored-By:\s*Claude .*<noreply@anthropic\.com>$' "$1"; then
+	echo "Commit blocked: remove Co-Authored-By: Claude trailer" >&2
+	exit 1
+fi
