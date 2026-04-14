@@ -15,8 +15,8 @@ if ( 'true' === $dli_section_enabled ) {
 			'post_type'      => array( EVENT_POST_TYPE ),
 			'post_status'    => 'publish',
 			'meta_key'       => 'data_inizio',
-			'orderby'        => 'meta_value',
-			'order'          => 'ASC',
+			'orderby'        => 'meta_value_num',
+			'order'          => 'DESC',
 			'posts_per_page' => 6,
 			'meta_query'     => array(
 				array(

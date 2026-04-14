@@ -1,10 +1,10 @@
-# This repository adheres to the publiccode.yml standard by including this 
+# This repository adheres to the publiccode.yml standard by including this
 # metadata file that makes public software easily discoverable.
 # More info at https://github.com/italia/publiccode.yml
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
-softwareVersion: REL-1.7.8
+softwareVersion: REL-1.7.9
 categories:
   - website-builder
 description:
@@ -40,15 +40,15 @@ description:
       - Importazione dei brevetti da IRIS.
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
-      Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le 
-      scuole italiane e sviluppato dalla Scuola Normale Superiore con l'obiettivo di creare un modello 
-      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre 
-      una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.  
-      Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: 
-      personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di 
-      ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
-      Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale 
-      di ricerca delle strutture. E' possibile provare in modo semplice il sistema in locale utilizzando il 
+      Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le
+      scuole italiane e sviluppato dalla Scuola Normale Superiore con l'obiettivo di creare un modello
+      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre
+      una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.
+      Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca:
+      personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di
+      ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività.
+      Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale
+      di ricerca delle strutture. E' possibile provare in modo semplice il sistema in locale utilizzando il
       Dockerfile predente nel sorgente del progetto.
     screenshots:
       - assets/screenshots/homepage.png
@@ -68,7 +68,7 @@ description:
       - assets/screenshots/kto2.png
     shortDescription: >-
         Design laboratori e centri di ricerca è un tema WordPress sviluppato da SNS con l'obiettivo di creare un modello di sito per le strutture di ricerca.
-developmentStatus: stable 
+developmentStatus: stable
 intendedAudience:
   countries:
     - it
