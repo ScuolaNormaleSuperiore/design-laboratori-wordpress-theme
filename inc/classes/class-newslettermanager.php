@@ -99,6 +99,7 @@ class Newsletter_Manager {
 		$result = array(
 			'code'    => 0,
 			'message' => '',
+			'body'    => '',
 		);
 		try {
 			if ( dli_get_option( 'newsletter_enabled', 'setup' ) === 'true' ) {
@@ -128,7 +129,7 @@ class Newsletter_Manager {
 					'templateId'     => $template_id,
 					'redirectionUrl' => $redirect_url,
 				);
-				$json_data        = json_encode( $data );
+				$json_data        = wp_json_encode( $data );
 				$header           = array(
 					'Accept'       => 'application/json',
 					'api-key'      => $api_token,
@@ -139,9 +140,9 @@ class Newsletter_Manager {
 				$response = wp_remote_post(
 					$url,
 					array(
-						'body'    => $json_data,
-						'headers' => $header,
-						'timeout' => 10,
+						'body'        => $json_data,
+						'headers'     => $header,
+						'timeout'     => 10,
 						'redirection' => 2,
 					)
 				);
@@ -152,6 +153,7 @@ class Newsletter_Manager {
 
 				$result['code']    = wp_remote_retrieve_response_code( $response );
 				$result['message'] = wp_remote_retrieve_response_message( $response );
+				$result['body']    = wp_remote_retrieve_body( $response );
 			} else {
 				$result['code']    = 400;
 				$result['message'] = __( 'La Newslettere è disabilitata', 'design_laboratori_italia' );
