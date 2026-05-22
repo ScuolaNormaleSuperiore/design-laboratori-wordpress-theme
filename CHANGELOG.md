@@ -16,13 +16,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [REL-1.7.9] - 2026-04-30
+## [REL-1.8.0] - 2026-05-30
 ## Aggiunto
 ## Corretto
+
+
+
+## [REL-1.7.9] - 2026-04-30
+## Corretto
 - Corretto ordine di visualizzazione degli eventi nella striscia in HP.
-
-
-
 
 ## [REL-1.7.8] - 2026-03-24
 ## Aggiunto
