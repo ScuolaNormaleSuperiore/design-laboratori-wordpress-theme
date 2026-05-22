@@ -19,13 +19,39 @@ if [ -z "$diff_output" ]; then
 	exit 0
 fi
 
+is_generated_asset() {
+	case "$1" in
+		assets/bootstrap-italia/*.map|\
+		assets/bootstrap-italia/**/*.map|\
+		assets/bootstrap-italia/*.min.css|\
+		assets/bootstrap-italia/**/*.min.css|\
+		assets/bootstrap-italia/*.min.js|\
+		assets/bootstrap-italia/**/*.min.js|\
+		assets/css/*.min.css.map|\
+		assets/css/*.min.js.map)
+			return 0
+			;;
+	esac
+
+	return 1
+}
+
 added_lines="$(printf '%s\n' "$diff_output" | awk '
-	/^\+\+\+ / { next }
+	/^\+\+\+ / {
+		file = $2
+		sub(/^b\//, "", file)
+		next
+	}
 	/^\+/ {
 		sub(/^\+/, "", $0)
-		print
+		print file "\t" $0
 	}
-')"
+' | while IFS="$(printf '\t')" read -r file line; do
+	if is_generated_asset "$file"; then
+		continue
+	fi
+	printf '%s\n' "$line"
+done)"
 
 if [ -z "$added_lines" ]; then
 	exit 0
@@ -45,14 +71,14 @@ patterns=(
 
 found=0
 for pattern in "${patterns[@]}"; do
-	if printf '%s\n' "$added_lines" | grep -E -i -n "$pattern" >/tmp/alm_secret_scan_matches.$$ 2>/dev/null; then
+	matches="$(grep -E -i -n "$pattern" <<< "$added_lines" 2>/dev/null || true)"
+	if [ -n "$matches" ]; then
 		if [ "$found" -eq 0 ]; then
 			echo "[DLI pre-commit] Potential secret detected in staged changes:" >&2
 			found=1
 		fi
-		cat /tmp/alm_secret_scan_matches.$$ >&2
+		printf '%s\n' "$matches" >&2
 	fi
-	rm -f /tmp/alm_secret_scan_matches.$$ >/dev/null 2>&1 || true
 
 done
 
