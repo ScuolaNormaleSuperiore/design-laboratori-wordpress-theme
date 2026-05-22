@@ -11,6 +11,7 @@
  * @var array $args {
  *     @type array     $people_by_category  Persone indicizzate per ID categoria.
  *     @type WP_Post[] $categories          Categorie (tipologia-persona) ordinate per priorità.
+ *     @type string    $selected_type       ID categoria selezionata ('' = nessuna).
  *     @type string    $hide_icon           'true' per nascondere l'avatar, 'false' per mostrarlo.
  * }
  */
@@ -18,10 +19,15 @@
 $dli_v_people_by_category = isset( $args['people_by_category'] ) ? $args['people_by_category'] : array();
 $dli_v_categories         = isset( $args['categories'] ) ? $args['categories'] : array();
 $dli_v_hide_icon          = isset( $args['hide_icon'] ) ? $args['hide_icon'] : 'false';
+$dli_v_selected_type      = isset( $args['selected_type'] ) ? (string) $args['selected_type'] : '';
 
 foreach ( $dli_v_categories as $dli_v_category ) :
 	$dli_v_category_id   = $dli_v_category->ID;
 	$dli_v_category_name = dli_get_field( 'nome', $dli_v_category_id );
+
+	if ( '' !== $dli_v_selected_type && (string) $dli_v_category_id !== $dli_v_selected_type ) {
+		continue;
+	}
 
 	if ( empty( $dli_v_people_by_category[ $dli_v_category_id ] ) ) {
 		continue;

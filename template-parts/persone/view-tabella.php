@@ -3,6 +3,7 @@
  * Vista tabellare della pagina Persone.
  *
  * Riceve i dati via $args (terzo parametro di get_template_part).
+ * Filtro, ordinamento e paginazione sono gestiti interamente lato client via JS.
  * Non va confusa con template-parts/common/sezione-persone.php, che è un widget
  * per pagine di dettaglio (progetti, indirizzi di ricerca, risorse tecniche).
  *
@@ -13,7 +14,6 @@
  * }
  */
 
-// --- Dati dalla struttura centralizzata ---
 $dli_tb_page_data          = isset( $args['page_data'] ) ? $args['page_data'] : array();
 $dli_tb_people_rows        = isset( $dli_tb_page_data['people_rows'] ) ? $dli_tb_page_data['people_rows'] : array();
 $dli_tb_categories         = isset( $dli_tb_page_data['categories'] ) ? $dli_tb_page_data['categories'] : array();
@@ -21,77 +21,185 @@ $dli_tb_structures         = isset( $dli_tb_page_data['structures'] ) ? $dli_tb_
 $dli_tb_tags               = isset( $dli_tb_page_data['tags'] ) ? $dli_tb_page_data['tags'] : array();
 $dli_tb_selected_structure = isset( $dli_tb_page_data['selected_structure'] ) ? $dli_tb_page_data['selected_structure'] : '';
 $dli_tb_selected_level     = isset( $dli_tb_page_data['selected_level'] ) ? $dli_tb_page_data['selected_level'] : '';
-$dli_tb_current_page       = isset( $dli_tb_page_data['current_page'] ) ? (int) $dli_tb_page_data['current_page'] : 1;
-$dli_tb_total_pages        = isset( $dli_tb_page_data['total_pages'] ) ? (int) $dli_tb_page_data['total_pages'] : 1;
 
-// --- Configurazione ---
 $dli_tb_hide_email           = ( 'true' === dli_get_option( 'hide_people_table_email', 'persone' ) );
 $dli_tb_hide_phone           = ( 'true' === dli_get_option( 'hide_people_table_phone', 'persone' ) );
 $dli_tb_hide_type            = ( 'true' === dli_get_option( 'hide_people_table_type', 'persone' ) );
 $dli_tb_hide_structure       = ( 'true' === dli_get_option( 'hide_people_table_structure', 'persone' ) );
-$dli_tb_filter_level_enabled = ( 'true' === dli_get_option( 'level_filter_enabled', 'persone' ) );
+$dli_tb_hide_tag             = ( 'true' === dli_get_option( 'hide_people_table_tag', 'persone' ) );
+$dli_tb_filter_level_enabled = ( 'true' !== dli_get_option( 'hide_filter_tag', 'persone' ) );
 $dli_tb_label_select_level   = dli_get_configuration_field_by_lang( 'seleziona_livello_persone', 'persone' );
 $dli_tb_label_all_levels     = dli_get_configuration_field_by_lang( 'tutti_i_livelli_persone', 'persone' );
 $dli_tb_pagination_enabled   = ( 'true' === dli_get_option( 'enable_people_table_pagination', 'persone' ) );
 
-// --- Mappa categorie ID => nome ---
+$dli_tb_hide_filter_structure = ( 'true' === dli_get_option( 'hide_filter_structure', 'persone' ) );
+$dli_tb_hide_filter_type      = ( 'true' === dli_get_option( 'hide_filter_type', 'persone' ) );
+
 $dli_tb_category_map = array();
 foreach ( $dli_tb_categories as $dli_tb_cat ) {
 	$dli_tb_category_map[ $dli_tb_cat->ID ] = dli_get_field( 'nome', $dli_tb_cat->ID );
 }
 
-$dli_tb_sprites_url    = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg';
-$dli_tb_has_structures = count( $dli_tb_structures ) >= 1;
-$dli_tb_has_tags       = $dli_tb_filter_level_enabled && count( $dli_tb_tags ) > 0;
+$dli_tb_sprites_url     = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg';
+$dli_tb_has_structures  = ! empty( $dli_tb_structures ) && ! $dli_tb_hide_filter_structure;
+$dli_tb_has_tags        = $dli_tb_filter_level_enabled && ! empty( $dli_tb_tags );
+$dli_tb_has_type_filter = ! empty( $dli_tb_categories ) && ! $dli_tb_hide_filter_type;
 
-if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
-	?>
-	<div class="row mb-5">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-4">
-			<?php if ( $dli_tb_has_structures ) : ?>
-				<div class="select-wrapper">
-					<label for="selectTableStructure"><?php echo esc_html__( 'Seleziona la struttura', 'design_laboratori_italia' ); ?></label>
-					<select id="selectTableStructure" onchange="reloadWithSelectedItem('selectTableStructure', 'struttura')">
-						<option value="" <?php selected( $dli_tb_selected_structure, '' ); ?>>
-							<?php echo esc_html__( 'Tutte le strutture', 'design_laboratori_italia' ); ?>
-						</option>
-						<?php foreach ( $dli_tb_structures as $dli_tb_struttura ) : ?>
-							<option value="<?php echo esc_attr( $dli_tb_struttura->slug ); ?>" <?php selected( $dli_tb_selected_structure, $dli_tb_struttura->slug ); ?>>
-								<?php echo esc_html( $dli_tb_struttura->name ); ?>
-							</option>
-						<?php endforeach; ?>
-					</select>
-				</div>
-			<?php endif; ?>
-		</div>
-		<div class="col-lg-4">
-			<?php if ( $dli_tb_has_tags ) : ?>
-				<div class="select-wrapper">
-					<label for="selectTableLevel"><?php echo esc_html( $dli_tb_label_select_level ); ?></label>
-					<select id="selectTableLevel" onchange="reloadWithSelectedItem('selectTableLevel', 'level')">
-						<option value="" <?php selected( $dli_tb_selected_level, '' ); ?>>
-							<?php echo esc_html( $dli_tb_label_all_levels ); ?>
-						</option>
-						<?php foreach ( $dli_tb_tags as $dli_tb_tag ) : ?>
-							<option value="<?php echo esc_attr( $dli_tb_tag->slug ); ?>" <?php selected( $dli_tb_selected_level, $dli_tb_tag->slug ); ?>>
-								<?php echo esc_html( $dli_tb_tag->name ); ?>
-							</option>
-						<?php endforeach; ?>
-					</select>
-				</div>
-			<?php endif; ?>
+// --- Build JSON rows for client-side rendering ---
+$dli_tb_json_rows = array();
+foreach ( $dli_tb_people_rows as $dli_tb_row ) {
+	$dli_tb_pid    = $dli_tb_row['person']->ID;
+	$dli_tb_cat_id = $dli_tb_row['category_id'];
+
+	$dli_tb_r_name    = (string) dli_get_field( 'nome', $dli_tb_pid );
+	$dli_tb_r_surname = (string) dli_get_field( 'cognome', $dli_tb_pid );
+
+	$dli_tb_r_disable = dli_get_field( 'disattiva_pagina_dettaglio', $dli_tb_pid );
+	$dli_tb_r_direct  = dli_get_field( 'abilita_link_diretto_pagina_persona', $dli_tb_pid );
+	$dli_tb_r_sito    = (string) dli_get_field( 'sito_web', $dli_tb_pid );
+
+	if ( $dli_tb_r_disable ) {
+		$dli_tb_r_link   = '';
+		$dli_tb_r_target = '';
+	} elseif ( $dli_tb_r_direct && '' !== $dli_tb_r_sito ) {
+		$dli_tb_r_link   = $dli_tb_r_sito;
+		$dli_tb_r_target = '_blank';
+	} else {
+		$dli_tb_r_link   = (string) get_the_permalink( $dli_tb_pid );
+		$dli_tb_r_target = '';
+	}
+
+	$dli_tb_r_type = isset( $dli_tb_category_map[ $dli_tb_cat_id ] )
+		? (string) $dli_tb_category_map[ $dli_tb_cat_id ]
+		: '';
+
+	$dli_tb_r_struct_terms = get_the_terms( $dli_tb_pid, STRUCTURE_TAXONOMY );
+	$dli_tb_r_struct_names = '';
+	$dli_tb_r_struct_slugs = array();
+	if ( ! is_wp_error( $dli_tb_r_struct_terms ) && ! empty( $dli_tb_r_struct_terms ) ) {
+		$dli_tb_r_struct_names = implode( ', ', wp_list_pluck( $dli_tb_r_struct_terms, 'name' ) );
+		$dli_tb_r_struct_slugs = wp_list_pluck( $dli_tb_r_struct_terms, 'slug' );
+	}
+
+	$dli_tb_r_tag_terms = wp_get_post_terms( $dli_tb_pid, WP_DEFAULT_TAGS );
+	$dli_tb_r_tag_names = '';
+	$dli_tb_r_tag_slugs = array();
+	if ( ! is_wp_error( $dli_tb_r_tag_terms ) && ! empty( $dli_tb_r_tag_terms ) ) {
+		$dli_tb_r_tag_names = implode( ', ', wp_list_pluck( $dli_tb_r_tag_terms, 'name' ) );
+		$dli_tb_r_tag_slugs = wp_list_pluck( $dli_tb_r_tag_terms, 'slug' );
+	}
+
+	$dli_tb_r_email      = (string) dli_get_field( 'email', $dli_tb_pid );
+	$dli_tb_r_phone      = (string) dli_get_field( 'telefono', $dli_tb_pid );
+	$dli_tb_r_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_r_phone );
+
+	$dli_tb_json_rows[] = array(
+		'name'           => $dli_tb_r_name,
+		'surname'        => $dli_tb_r_surname,
+		'sortKey'        => mb_strtolower( $dli_tb_r_surname . ' ' . $dli_tb_r_name ),
+		'link'           => $dli_tb_r_link,
+		'linkTarget'     => $dli_tb_r_target,
+		'type'           => $dli_tb_r_type,
+		'typeSort'       => mb_strtolower( $dli_tb_r_type ),
+		'typeId'         => (string) $dli_tb_cat_id,
+		'structure'      => $dli_tb_r_struct_names,
+		'structureSort'  => mb_strtolower( $dli_tb_r_struct_names ),
+		'structureSlugs' => $dli_tb_r_struct_slugs,
+		'tag'            => $dli_tb_r_tag_names,
+		'tagSort'        => mb_strtolower( $dli_tb_r_tag_names ),
+		'tagSlugs'       => $dli_tb_r_tag_slugs,
+		'email'          => $dli_tb_r_email,
+		'phone'          => $dli_tb_r_phone,
+		'phoneHref'      => $dli_tb_r_phone_href,
+	);
+}
+?>
+
+<div class="row mb-5 gy-4">
+	<div class="col-12 col-lg-4">
+		<div class="form-group">
+			<label for="dliPeopleSearch">
+				<?php echo esc_html__( 'Cerca testo', 'design_laboratori_italia' ); ?>
+			</label>
+			<input
+				type="search"
+				id="dliPeopleSearch"
+				class="form-control"
+				placeholder="<?php echo esc_attr__( 'Es. Rossi, Professore…', 'design_laboratori_italia' ); ?>"
+				aria-label="<?php echo esc_attr__( 'Cerca per nome, cognome, tipologia o struttura', 'design_laboratori_italia' ); ?>"
+			>
 		</div>
 	</div>
-<?php endif; ?>
+	<?php if ( $dli_tb_has_structures ) : ?>
+		<div class="col-12 col-lg-4">
+			<div class="select-wrapper<?php echo ( '' !== $dli_tb_selected_structure ) ? ' dli-filter-active' : ''; ?>">
+				<label for="selectTableStructure">
+					<?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?>
+				</label>
+				<select id="selectTableStructure">
+					<option value="">
+						<?php echo esc_html__( 'Tutte le strutture', 'design_laboratori_italia' ); ?>
+					</option>
+					<?php foreach ( $dli_tb_structures as $dli_tb_struttura ) : ?>
+						<option value="<?php echo esc_attr( $dli_tb_struttura->slug ); ?>" <?php selected( $dli_tb_selected_structure, $dli_tb_struttura->slug ); ?>>
+							<?php echo esc_html( $dli_tb_struttura->name ); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+	<?php endif; ?>
+	<?php if ( $dli_tb_has_type_filter ) : ?>
+		<div class="col-12 col-lg-4">
+			<div class="select-wrapper">
+				<label for="selectTableType">
+					<?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?>
+				</label>
+				<select id="selectTableType">
+					<option value="">
+						<?php echo esc_html__( 'Tutte le tipologie', 'design_laboratori_italia' ); ?>
+					</option>
+					<?php foreach ( $dli_tb_categories as $dli_tb_cat ) : ?>
+						<option value="<?php echo esc_attr( $dli_tb_cat->ID ); ?>">
+							<?php echo esc_html( $dli_tb_category_map[ $dli_tb_cat->ID ] ); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+	<?php endif; ?>
+	<?php if ( $dli_tb_has_tags ) : ?>
+		<div class="col-12 col-lg-4">
+			<div class="select-wrapper<?php echo ( '' !== $dli_tb_selected_level ) ? ' dli-filter-active' : ''; ?>">
+				<label for="selectTableLevel">
+					<?php echo esc_html( $dli_tb_label_select_level ); ?>
+				</label>
+				<select id="selectTableLevel">
+					<option value="">
+						<?php echo esc_html( $dli_tb_label_all_levels ); ?>
+					</option>
+					<?php foreach ( $dli_tb_tags as $dli_tb_tag ) : ?>
+						<option value="<?php echo esc_attr( $dli_tb_tag->slug ); ?>" <?php selected( $dli_tb_selected_level, $dli_tb_tag->slug ); ?>>
+							<?php echo esc_html( $dli_tb_tag->name ); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+	<?php endif; ?>
+</div>
 
-<div class="table-responsive">
+<p id="dliPeopleCount" class="mb-3 small text-secondary" aria-live="polite" aria-atomic="true"></p>
+
+<div class="row mb-4">
+	<div class="col-12">
+		<div class="table-responsive">
 	<table class="table table-striped table-hover" id="people-table">
 		<caption class="visually-hidden"><?php echo esc_html__( 'Elenco persone', 'design_laboratori_italia' ); ?></caption>
 		<thead>
 			<tr>
-				<th scope="col" aria-sort="ascending">
-					<button type="button" data-sort-col="surname">
+				<th scope="col" aria-sort="none">
+					<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="sortKey">
 						<?php echo esc_html__( 'Nome / Cognome', 'design_laboratori_italia' ); ?>
 						<svg class="icon icon-sm" aria-hidden="true">
 							<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
@@ -100,7 +208,7 @@ if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
 				</th>
 				<?php if ( ! $dli_tb_hide_type ) : ?>
 					<th scope="col" aria-sort="none">
-						<button type="button" data-sort-col="type">
+						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="typeSort">
 							<?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?>
 							<svg class="icon icon-sm" aria-hidden="true">
 								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
@@ -109,8 +217,8 @@ if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
 					</th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_structure ) : ?>
-					<th scope="col" aria-sort="none">
-						<button type="button" data-sort-col="structure">
+					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
+						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="structureSort">
 							<?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?>
 							<svg class="icon icon-sm" aria-hidden="true">
 								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
@@ -118,17 +226,19 @@ if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
 						</button>
 					</th>
 				<?php endif; ?>
-				<th scope="col" aria-sort="none">
-					<button type="button" data-sort-col="tag">
-						<?php echo esc_html__( 'TAG', 'design_laboratori_italia' ); ?>
-						<svg class="icon icon-sm" aria-hidden="true">
-							<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-						</svg>
-					</button>
-				</th>
+				<?php if ( ! $dli_tb_hide_tag ) : ?>
+					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
+						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="tagSort">
+							<?php echo esc_html__( 'TAG', 'design_laboratori_italia' ); ?>
+							<svg class="icon icon-sm" aria-hidden="true">
+								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
+							</svg>
+						</button>
+					</th>
+				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_email ) : ?>
-					<th scope="col" aria-sort="none">
-						<button type="button" data-sort-col="email">
+					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
+						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="email">
 							<?php echo esc_html__( 'Email', 'design_laboratori_italia' ); ?>
 							<svg class="icon icon-sm" aria-hidden="true">
 								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
@@ -137,8 +247,8 @@ if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
 					</th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_phone ) : ?>
-					<th scope="col" aria-sort="none">
-						<button type="button" data-sort-col="phone">
+					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
+						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="phoneHref">
 							<?php echo esc_html__( 'Telefono', 'design_laboratori_italia' ); ?>
 							<svg class="icon icon-sm" aria-hidden="true">
 								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
@@ -148,160 +258,306 @@ if ( $dli_tb_has_structures || $dli_tb_has_tags ) :
 				<?php endif; ?>
 			</tr>
 		</thead>
-		<tbody>
-			<?php foreach ( $dli_tb_people_rows as $dli_tb_row ) : ?>
-				<?php
-				$dli_tb_person      = $dli_tb_row['person'];
-				$dli_tb_person_id   = $dli_tb_person->ID;
-				$dli_tb_category_id = $dli_tb_row['category_id'];
-
-				$dli_tb_name      = dli_get_field( 'nome', $dli_tb_person_id );
-				$dli_tb_surname   = dli_get_field( 'cognome', $dli_tb_person_id );
-				$dli_tb_sort_name = strtolower( trim( $dli_tb_surname . ' ' . $dli_tb_name ) );
-
-				$dli_tb_disable_detail = dli_get_field( 'disattiva_pagina_dettaglio', $dli_tb_person_id );
-				$dli_tb_enable_direct  = dli_get_field( 'abilita_link_diretto_pagina_persona', $dli_tb_person_id );
-				$dli_tb_permalink      = get_the_permalink( $dli_tb_person_id );
-				$dli_tb_site_url       = dli_get_field( 'sito_web', $dli_tb_person_id );
-
-				$dli_tb_type_name = isset( $dli_tb_category_map[ $dli_tb_category_id ] ) ? (string) $dli_tb_category_map[ $dli_tb_category_id ] : '';
-
-				$dli_tb_structure_terms = get_the_terms( $dli_tb_person_id, STRUCTURE_TAXONOMY );
-				$dli_tb_structure_names = ( ! is_wp_error( $dli_tb_structure_terms ) && ! empty( $dli_tb_structure_terms ) )
-					? implode( ', ', wp_list_pluck( $dli_tb_structure_terms, 'name' ) )
-					: '';
-
-				$dli_tb_tag_terms = wp_get_post_terms( $dli_tb_person_id, WP_DEFAULT_TAGS );
-				$dli_tb_tag_names = ( ! is_wp_error( $dli_tb_tag_terms ) && ! empty( $dli_tb_tag_terms ) )
-					? implode( ', ', wp_list_pluck( $dli_tb_tag_terms, 'name' ) )
-					: '';
-
-				$dli_tb_email_raw  = (string) dli_get_field( 'email', $dli_tb_person_id );
-				$dli_tb_phone_raw  = (string) dli_get_field( 'telefono', $dli_tb_person_id );
-				$dli_tb_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_phone_raw );
-				?>
-				<tr>
-					<th scope="row" data-col="surname" data-sort="<?php echo esc_attr( $dli_tb_sort_name ); ?>">
-						<?php if ( ! $dli_tb_disable_detail ) : ?>
-							<?php if ( ! $dli_tb_enable_direct ) : ?>
-								<a class="text-decoration-none" href="<?php echo esc_url( $dli_tb_permalink ); ?>">
-									<?php echo esc_html( $dli_tb_name ) . ' ' . esc_html( $dli_tb_surname ); ?>
-								</a>
-							<?php else : ?>
-								<a class="text-decoration-none" href="<?php echo esc_url( $dli_tb_site_url ); ?>" target="_blank" rel="noopener noreferrer">
-									<?php echo esc_html( $dli_tb_name ) . ' ' . esc_html( $dli_tb_surname ); ?>
-								</a>
-							<?php endif; ?>
-						<?php else : ?>
-							<?php echo esc_html( $dli_tb_name ) . ' ' . esc_html( $dli_tb_surname ); ?>
-						<?php endif; ?>
-					</th>
-					<?php if ( ! $dli_tb_hide_type ) : ?>
-						<td data-col="type" data-sort="<?php echo esc_attr( strtolower( $dli_tb_type_name ) ); ?>">
-							<?php echo esc_html( $dli_tb_type_name ); ?>
-						</td>
-					<?php endif; ?>
-					<?php if ( ! $dli_tb_hide_structure ) : ?>
-						<td data-col="structure" data-sort="<?php echo esc_attr( strtolower( $dli_tb_structure_names ) ); ?>">
-							<?php echo esc_html( $dli_tb_structure_names ); ?>
-						</td>
-					<?php endif; ?>
-					<td data-col="tag" data-sort="<?php echo esc_attr( strtolower( $dli_tb_tag_names ) ); ?>">
-						<?php echo esc_html( $dli_tb_tag_names ); ?>
-					</td>
-					<?php if ( ! $dli_tb_hide_email ) : ?>
-						<td data-col="email" data-sort="<?php echo esc_attr( strtolower( $dli_tb_email_raw ) ); ?>">
-							<?php if ( '' !== $dli_tb_email_raw ) : ?>
-								<a href="mailto:<?php echo antispambot( $dli_tb_email_raw ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-									<?php echo antispambot( $dli_tb_email_raw ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								</a>
-							<?php endif; ?>
-						</td>
-					<?php endif; ?>
-					<?php if ( ! $dli_tb_hide_phone ) : ?>
-						<td data-col="phone" data-sort="<?php echo esc_attr( $dli_tb_phone_href ); ?>">
-							<?php if ( '' !== $dli_tb_phone_raw ) : ?>
-								<a href="tel:<?php echo esc_attr( $dli_tb_phone_href ); ?>">
-									<?php echo esc_html( $dli_tb_phone_raw ); ?>
-								</a>
-							<?php endif; ?>
-						</td>
-					<?php endif; ?>
-				</tr>
-			<?php endforeach; ?>
+		<tbody id="people-tbody">
 		</tbody>
 	</table>
+		</div>
+		<nav
+			id="people-pagination"
+			class="pagination-wrapper justify-content-center mt-4"
+			aria-label="<?php echo esc_attr__( 'Navigazione pagine persone', 'design_laboratori_italia' ); ?>"
+		></nav>
+	</div>
 </div>
 
-<?php if ( $dli_tb_pagination_enabled && $dli_tb_total_pages > 1 ) : ?>
-	<?php
-	$dli_tb_add_args = array();
-	if ( '' !== $dli_tb_selected_structure ) {
-		$dli_tb_add_args['struttura'] = $dli_tb_selected_structure;
-	}
-	if ( '' !== $dli_tb_selected_level ) {
-		$dli_tb_add_args['level'] = $dli_tb_selected_level;
-	}
-	$dli_tb_prev_label = '<svg class="icon icon-primary" role="img" aria-label="' . esc_attr__( 'Pagina precedente', 'design_laboratori_italia' ) . '"><use href="' . esc_url( $dli_tb_sprites_url . '#it-chevron-left' ) . '"></use></svg>';
-	$dli_tb_next_label = '<svg class="icon icon-primary" role="img" aria-label="' . esc_attr__( 'Pagina successiva', 'design_laboratori_italia' ) . '"><use href="' . esc_url( $dli_tb_sprites_url . '#it-chevron-right' ) . '"></use></svg>';
-	?>
-	<nav class="pagination-wrapper justify-content-center mt-4" aria-label="<?php echo esc_attr__( 'Navigazione pagine persone', 'design_laboratori_italia' ); ?>">
-		<?php
-		echo wp_kses_post(
-			paginate_links(
-				array(
-					'total'     => $dli_tb_total_pages,
-					'current'   => $dli_tb_current_page,
-					'prev_text' => $dli_tb_prev_label,
-					'next_text' => $dli_tb_next_label,
-					'type'      => 'list',
-					'add_args'  => $dli_tb_add_args,
-				)
-			)
-		);
-		?>
-	</nav>
-<?php endif; ?>
-
 <script>
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+var DLI_PEOPLE_TABLE = 
+<?php
+echo wp_json_encode(
+	array(
+		'rows'              => $dli_tb_json_rows,
+		'perPage'           => PEOPLE_TABLE_PER_PAGE,
+		'paginationEnabled' => $dli_tb_pagination_enabled,
+		'cols'              => array(
+			'type'      => ! $dli_tb_hide_type,
+			'structure' => ! $dli_tb_hide_structure,
+			'tag'       => ! $dli_tb_hide_tag,
+			'email'     => ! $dli_tb_hide_email,
+			'phone'     => ! $dli_tb_hide_phone,
+		),
+		'spritesUrl'        => $dli_tb_sprites_url,
+		'i18n'              => array(
+			'prevPage'       => __( 'Pagina precedente', 'design_laboratori_italia' ),
+			'nextPage'       => __( 'Pagina successiva', 'design_laboratori_italia' ),
+			'resultSingular' => __( 'persona trovata', 'design_laboratori_italia' ),
+			'resultPlural'   => __( 'persone trovate', 'design_laboratori_italia' ),
+			'noResults'      => __( 'Nessuna persona trovata', 'design_laboratori_italia' ),
+		),
+	)
+);
+?>
+;
+// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 ( function () {
-	var table = document.getElementById( 'people-table' );
-	if ( ! table ) return;
+	var cfg     = DLI_PEOPLE_TABLE;
+	var allRows = cfg.rows;
+	var tbody    = document.getElementById( 'people-tbody' );
+	var countEl  = document.getElementById( 'dliPeopleCount' );
+	var paginEl  = document.getElementById( 'people-pagination' );
+	var sortBtns     = document.querySelectorAll( '#people-table thead button[data-sort-col]' );
+	var selStruttura = document.getElementById( 'selectTableStructure' );
+	var selLevel     = document.getElementById( 'selectTableLevel' );
+	var selType      = document.getElementById( 'selectTableType' );
+	var inputSearch  = document.getElementById( 'dliPeopleSearch' );
 
-	var spritesUrl = '<?php echo esc_js( $dli_tb_sprites_url ); ?>';
-	var btns       = table.querySelectorAll( 'thead button[data-sort-col]' );
+	var state = {
+		search:    '',
+		struttura: selStruttura ? selStruttura.value : '',
+		level:     selLevel ? selLevel.value : '',
+		type:      selType ? selType.value : '',
+		sortCol:   'sortKey',
+		sortAsc:   true,
+		page:      1,
+	};
 
-	btns.forEach( function ( btn ) {
-		btn.addEventListener( 'click', function () {
-			var th          = btn.closest( 'th' );
-			var ascending   = 'ascending' !== th.getAttribute( 'aria-sort' );
-			var colName     = btn.getAttribute( 'data-sort-col' );
+	function escHtml( s ) {
+		return String( s )
+			.replace( /&/g, '&amp;' )
+			.replace( /</g, '&lt;' )
+			.replace( />/g, '&gt;' )
+			.replace( /"/g, '&quot;' )
+			.replace( /'/g, '&#39;' );
+	}
 
-			btns.forEach( function ( b ) {
-				b.closest( 'th' ).setAttribute( 'aria-sort', 'none' );
-				b.querySelector( 'use' ).setAttribute( 'href', spritesUrl + '#it-expand' );
+	function applyFilters() {
+		return allRows.filter( function ( row ) {
+			if ( state.struttura && row.structureSlugs.indexOf( state.struttura ) === -1 ) {
+				return false;
+			}
+			if ( state.level && row.tagSlugs.indexOf( state.level ) === -1 ) {
+				return false;
+			}
+			if ( state.type && row.typeId !== state.type ) {
+				return false;
+			}
+			if ( state.search ) {
+				var q = state.search.toLowerCase();
+				if (
+					row.sortKey.indexOf( q ) === -1 &&
+					row.typeSort.indexOf( q ) === -1 &&
+					row.structureSort.indexOf( q ) === -1
+				) {
+					return false;
+				}
+			}
+			return true;
+		} );
+	}
+
+	function applySort( rows ) {
+		return rows.slice().sort( function ( a, b ) {
+			var av  = String( a[ state.sortCol ] || '' );
+			var bv  = String( b[ state.sortCol ] || '' );
+			var cmp = av.localeCompare( bv, 'it', { sensitivity: 'base', numeric: true } );
+			return state.sortAsc ? cmp : -cmp;
+		} );
+	}
+
+	function renderTbody( pageRows ) {
+		var html = '';
+		if ( ! pageRows.length ) {
+			var colCount = 2
+				+ ( cfg.cols.type ? 1 : 0 )
+				+ ( cfg.cols.structure ? 1 : 0 )
+				+ ( cfg.cols.tag ? 1 : 0 )
+				+ ( cfg.cols.email ? 1 : 0 )
+				+ ( cfg.cols.phone ? 1 : 0 );
+			html = '<tr><td colspan="' + colCount + '" class="text-center py-4">'
+				+ escHtml( cfg.i18n.noResults ) + '</td></tr>';
+		} else {
+			pageRows.forEach( function ( row ) {
+				html += '<tr>';
+				var nameText = escHtml( row.name + ' ' + row.surname );
+				if ( row.link ) {
+					var rel    = '_blank' === row.linkTarget ? ' rel="noopener noreferrer"' : '';
+					var target = row.linkTarget ? ' target="' + escHtml( row.linkTarget ) + '"' : '';
+					html += '<td><a href="'
+						+ escHtml( row.link ) + '"' + target + rel + '>' + nameText + '</a></td>';
+				} else {
+					html += '<td>' + nameText + '</td>';
+				}
+				if ( cfg.cols.type )      { html += '<td>' + escHtml( row.type ) + '</td>'; }
+				if ( cfg.cols.structure ) { html += '<td class="d-none d-md-table-cell">' + escHtml( row.structure ) + '</td>'; }
+				if ( cfg.cols.tag )       { html += '<td class="d-none d-md-table-cell">' + escHtml( row.tag )       + '</td>'; }
+				if ( cfg.cols.email ) {
+					html += '<td class="d-none d-md-table-cell">';
+					if ( row.email ) {
+						html += '<a href="mailto:' + escHtml( row.email ) + '">' + escHtml( row.email ) + '</a>';
+					}
+					html += '</td>';
+				}
+				if ( cfg.cols.phone ) {
+					html += '<td class="d-none d-md-table-cell">';
+					if ( row.phone ) {
+						html += '<a href="tel:' + escHtml( row.phoneHref ) + '">' + escHtml( row.phone ) + '</a>';
+					}
+					html += '</td>';
+				}
+				html += '</tr>';
 			} );
+		}
+		tbody.innerHTML = html;
+	}
 
-			th.setAttribute( 'aria-sort', ascending ? 'ascending' : 'descending' );
-			btn.querySelector( 'use' ).setAttribute( 'href', spritesUrl + ( ascending ? '#it-arrow-up' : '#it-arrow-down' ) );
+	function updateSortHeaders() {
+		sortBtns.forEach( function ( btn ) {
+			var th    = btn.closest( 'th' );
+			var col   = btn.getAttribute( 'data-sort-col' );
+			var useEl = btn.querySelector( 'use' );
+			if ( col === state.sortCol ) {
+				th.setAttribute( 'aria-sort', state.sortAsc ? 'ascending' : 'descending' );
+				if ( useEl ) {
+					useEl.setAttribute( 'href', cfg.spritesUrl + ( state.sortAsc ? '#it-arrow-up' : '#it-arrow-down' ) );
+				}
+			} else {
+				th.setAttribute( 'aria-sort', 'none' );
+				if ( useEl ) { useEl.setAttribute( 'href', cfg.spritesUrl + '#it-expand' ); }
+			}
+		} );
+	}
 
-			var tbody = table.querySelector( 'tbody' );
-			var rows  = Array.from( tbody.querySelectorAll( 'tr' ) );
+	function updateFilterIndicators() {
+		var pairs = [
+			[ selStruttura, state.struttura ],
+			[ selType,      state.type      ],
+			[ selLevel,     state.level     ],
+		];
+		pairs.forEach( function ( pair ) {
+			var el = pair[ 0 ];
+			var active = '' !== pair[ 1 ];
+			if ( ! el ) { return; }
+			var wrapper = el.closest( '.select-wrapper' );
+			if ( wrapper ) {
+				if ( active ) {
+					wrapper.classList.add( 'dli-filter-active' );
+				} else {
+					wrapper.classList.remove( 'dli-filter-active' );
+				}
+			}
+		} );
+	}
 
-			rows.sort( function ( a, b ) {
-				var aEl  = a.querySelector( '[data-col="' + colName + '"]' );
-				var bEl  = b.querySelector( '[data-col="' + colName + '"]' );
-				var aVal = aEl ? ( aEl.getAttribute( 'data-sort' ) || aEl.textContent.trim() ) : '';
-				var bVal = bEl ? ( bEl.getAttribute( 'data-sort' ) || bEl.textContent.trim() ) : '';
-				return ascending
-					? aVal.localeCompare( bVal, 'it', { sensitivity: 'base', numeric: true } )
-					: bVal.localeCompare( aVal, 'it', { sensitivity: 'base', numeric: true } );
-			} );
+	function renderCount( total ) {
+		if ( ! countEl ) { return; }
+		countEl.textContent = total + ' '
+			+ ( 1 === total ? cfg.i18n.resultSingular : cfg.i18n.resultPlural );
+	}
 
-			rows.forEach( function ( r ) {
-				tbody.appendChild( r );
+	function renderPagination( totalPages ) {
+		if ( ! paginEl ) { return; }
+		if ( ! cfg.paginationEnabled || totalPages <= 1 ) {
+			paginEl.innerHTML = '';
+			return;
+		}
+		var html = '<ul class="pagination">';
+		if ( state.page > 1 ) {
+			html += '<li class="page-item"><button class="page-link" data-page="' + ( state.page - 1 ) + '"'
+				+ ' aria-label="' + escHtml( cfg.i18n.prevPage ) + '">'
+				+ '<svg class="icon icon-primary" aria-hidden="true"><use href="' + escHtml( cfg.spritesUrl ) + '#it-chevron-left"></use></svg>'
+				+ '</button></li>';
+		}
+		for ( var p = 1; p <= totalPages; p++ ) {
+			var isCurrent = ( p === state.page );
+			html += '<li class="page-item' + ( isCurrent ? ' active' : '' ) + '">'
+				+ '<button class="page-link" data-page="' + p + '"'
+				+ ( isCurrent ? ' aria-current="page"' : '' ) + '>'
+				+ p + '</button></li>';
+		}
+		if ( state.page < totalPages ) {
+			html += '<li class="page-item"><button class="page-link" data-page="' + ( state.page + 1 ) + '"'
+				+ ' aria-label="' + escHtml( cfg.i18n.nextPage ) + '">'
+				+ '<svg class="icon icon-primary" aria-hidden="true"><use href="' + escHtml( cfg.spritesUrl ) + '#it-chevron-right"></use></svg>'
+				+ '</button></li>';
+		}
+		html += '</ul>';
+		paginEl.innerHTML = html;
+		paginEl.querySelectorAll( 'button[data-page]' ).forEach( function ( btn ) {
+			btn.addEventListener( 'click', function () {
+				state.page = parseInt( btn.getAttribute( 'data-page' ), 10 );
+				render();
+				document.getElementById( 'people-table' ).scrollIntoView( { behavior: 'smooth', block: 'start' } );
 			} );
 		} );
+	}
+
+	function render() {
+		var filtered   = applyFilters();
+		var sorted     = applySort( filtered );
+		var total      = sorted.length;
+		var perPage    = cfg.paginationEnabled ? cfg.perPage : total;
+		var totalPages = cfg.paginationEnabled ? Math.max( 1, Math.ceil( total / perPage ) ) : 1;
+		if ( state.page > totalPages ) { state.page = Math.max( 1, totalPages ); }
+		var offset   = ( state.page - 1 ) * perPage;
+		var pageRows = cfg.paginationEnabled ? sorted.slice( offset, offset + perPage ) : sorted;
+		renderTbody( pageRows );
+		renderCount( total );
+		renderPagination( totalPages );
+		updateSortHeaders();
+		updateFilterIndicators();
+	}
+
+	sortBtns.forEach( function ( btn ) {
+		btn.addEventListener( 'click', function () {
+			var col = btn.getAttribute( 'data-sort-col' );
+			if ( state.sortCol === col ) {
+				state.sortAsc = ! state.sortAsc;
+			} else {
+				state.sortCol = col;
+				state.sortAsc = true;
+			}
+			state.page = 1;
+			render();
+		} );
 	} );
+
+	if ( selStruttura ) {
+		selStruttura.addEventListener( 'change', function () {
+			state.struttura = selStruttura.value;
+			state.page = 1;
+			render();
+		} );
+	}
+
+	if ( selLevel ) {
+		selLevel.addEventListener( 'change', function () {
+			state.level = selLevel.value;
+			state.page = 1;
+			render();
+		} );
+	}
+
+	if ( selType ) {
+		selType.addEventListener( 'change', function () {
+			state.type = selType.value;
+			state.page = 1;
+			render();
+		} );
+	}
+
+	if ( inputSearch ) {
+		inputSearch.addEventListener( 'input', function () {
+			state.search = inputSearch.value.trim();
+			state.page = 1;
+			render();
+		} );
+		inputSearch.addEventListener( 'keydown', function ( e ) {
+			if ( 'Enter' === e.key ) {
+				e.preventDefault();
+			}
+		} );
+	}
+
+	render();
 }() );
 </script>

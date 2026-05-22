@@ -1231,26 +1231,6 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
-			'id'               => $prefix . 'pagination_mode',
-			'name'             => __( 'Modalità scelta struttura', 'design_laboratori_italia' ),
-			'desc'             => __( 'Scegli se filtrare le strutture con dei chip o una select oppure non mostrare alcun filtro', 'design_laboratori_italia' ),
-			'type'             => 'select',
-			'default'          => 'chip',
-			'show_option_none' => false,
-			'options'          => array(
-				'chip'     => __( 'Mostra chip', 'design_laboratori_italia' ),
-				'combobox' => __( 'Mostra select', 'design_laboratori_italia' ),
-				'disabled' => __( 'Non mostrare filtro', 'design_laboratori_italia' ),
-			),
-			'attributes'       => array(
-				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip',
-			),
-		)
-	);
-
-	$persone_options->add_field(
-		array(
 			'id'         => $prefix . 'label_person_details_is_visible',
 			'name'       => __( 'Visualizza etichetta Dettagli', 'design_laboratori_italia' ),
 			'desc'       => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
@@ -1354,6 +1334,24 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
+			'id'         => $prefix . 'hide_people_table_tag',
+			'name'       => __( 'Nascondi TAG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi la colonna TAG nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
 			'id'         => $prefix . 'enable_people_table_pagination',
 			'name'       => __( 'Abilita paginazione', 'design_laboratori_italia' ),
 			'desc'       => __( 'Attiva la paginazione nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
@@ -1366,6 +1364,87 @@ function dli_register_main_options_metabox() {
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
 				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'people_structure_filter_title',
+			'name'       => __( 'Filtro struttura', 'design_laboratori_italia' ),
+			'desc'       => __( 'Opzioni del filtro per struttura, valide per entrambe le visualizzazioni', 'design_laboratori_italia' ),
+			'type'       => 'title',
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_filter_structure',
+			'name'       => __( 'Nascondi filtro struttura', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi il filtro per struttura in entrambe le visualizzazioni', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'               => $prefix . 'pagination_mode',
+			'name'             => __( 'Modalità scelta struttura', 'design_laboratori_italia' ),
+			'desc'             => __( 'Scegli se filtrare le strutture con dei chip o una select', 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'chip',
+			'show_option_none' => false,
+			'options'          => array(
+				'chip'   => __( 'Chip', 'design_laboratori_italia' ),
+				'select' => __( 'Select', 'design_laboratori_italia' ),
+			),
+			'attributes'       => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'people_type_filter_title',
+			'name'       => __( 'Filtro tipologia', 'design_laboratori_italia' ),
+			'desc'       => __( 'Opzioni del filtro per tipologia, valide per entrambe le visualizzazioni', 'design_laboratori_italia' ),
+			'type'       => 'title',
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_filter_type',
+			'name'       => __( 'Nascondi filtro tipologia', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi il filtro per tipologia in entrambe le visualizzazioni', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
 			),
 		)
 	);
@@ -1385,9 +1464,9 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
-			'id'         => $prefix . 'level_filter_enabled',
-			'name'       => __( 'Filtra per TAG', 'design_laboratori_italia' ),
-			'desc'       => __( 'Attiva il filtro per TAG', 'design_laboratori_italia' ),
+			'id'         => $prefix . 'hide_filter_tag',
+			'name'       => __( 'Nascondi filtro tag', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nasconde il filtro per TAG', 'design_laboratori_italia' ),
 			'type'       => 'radio_inline',
 			'default'    => 'false',
 			'options'    => array(

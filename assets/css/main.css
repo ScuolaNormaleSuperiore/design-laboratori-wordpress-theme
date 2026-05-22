@@ -246,3 +246,21 @@ a.mappasitolink:hover {
 .dli_card_progetti a {
 	text-align: center;
 }
+
+/* Tabella persone: bottoni ordinamento colonne */
+#people-table thead th button {
+	color: inherit !important;
+	font-weight: 600 !important;
+}
+
+/* Indicatore filtro attivo sulle select */
+.dli-filter-active label::after {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: var(--bs-primary, #0066cc);
+	margin-left: 6px;
+	vertical-align: middle;
+}
