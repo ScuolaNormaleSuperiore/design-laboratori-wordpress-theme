@@ -1185,6 +1185,15 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
+			'id'   => $prefix . 'people_list_section_title',
+			'name' => __( 'Elenco delle persone', 'design_laboratori_italia' ),
+			'desc' => __( "Opzioni per la visualizzazione dell'elenco delle persone", 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$persone_options->add_field(
+		array(
 			'id'               => $prefix . 'people_view_type',
 			'name'             => __( 'Tipo visualizzazione', 'design_laboratori_italia' ),
 			'desc'             => __( 'Scegli il tipo di visualizzazione da usare nella pagina Persone', 'design_laboratori_italia' ),
