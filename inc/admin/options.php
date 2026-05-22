@@ -1185,14 +1185,46 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
-			'id'      => $prefix . 'hide_person_icon',
-			'name'    => __( 'Nascondi icona', 'design_laboratori_italia' ),
-			'desc'    => __( "Nascondi l'icona della persona nell'elenco delle persone", 'design_laboratori_italia' ) . '.',
-			'type'    => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
+			'id'               => $prefix . 'people_view_type',
+			'name'             => __( 'Tipo visualizzazione', 'design_laboratori_italia' ),
+			'desc'             => __( 'Scegli il tipo di visualizzazione da usare nella pagina Persone', 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'default'          => 'chip',
+			'show_option_none' => false,
+			'options'          => array(
+				'chip'    => __( 'Chip', 'design_laboratori_italia' ),
+				'tabella' => __( 'Tabella', 'design_laboratori_italia' ),
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'people_chip_view_title',
+			'name'       => __( 'Visualizzazione a chip', 'design_laboratori_italia' ),
+			'desc'       => __( 'Opzioni usate quando la pagina Persone usa la visualizzazione a chip', 'design_laboratori_italia' ),
+			'type'       => 'title',
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_person_icon',
+			'name'       => __( 'Nascondi icona', 'design_laboratori_italia' ),
+			'desc'       => __( "Nascondi l'icona della persona nell'elenco delle persone", 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
 				'true'  => __( 'Si', 'design_laboratori_italia' ),
 				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip',
 			),
 		)
 	);
@@ -1210,19 +1242,143 @@ function dli_register_main_options_metabox() {
 				'combobox' => __( 'Mostra select', 'design_laboratori_italia' ),
 				'disabled' => __( 'Non mostrare filtro', 'design_laboratori_italia' ),
 			),
+			'attributes'       => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip',
+			),
 		)
 	);
 
 	$persone_options->add_field(
 		array(
-			'id'      => $prefix . 'level_filter_enabled',
-			'name'    => __( 'Filtra per TAG', 'design_laboratori_italia' ),
-			'desc'    => __( 'Attiva il filtro per TAG', 'design_laboratori_italia' ),
-			'type'    => 'radio_inline',
-			'default' => 'false',
-			'options' => array(
+			'id'         => $prefix . 'label_person_details_is_visible',
+			'name'       => __( 'Visualizza etichetta Dettagli', 'design_laboratori_italia' ),
+			'desc'       => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'true',
+			'options'    => array(
 				'true'  => __( 'Si', 'design_laboratori_italia' ),
 				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'people_table_view_title',
+			'name'       => __( 'Visualizzazione a tabella', 'design_laboratori_italia' ),
+			'desc'       => __( 'Opzioni usate quando la pagina Persone usa la visualizzazione a tabella', 'design_laboratori_italia' ),
+			'type'       => 'title',
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_people_table_email',
+			'name'       => __( 'Nascondi email', 'design_laboratori_italia' ),
+			'desc'       => __( "Nascondi l'email nella visualizzazione tabellare delle persone", 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_people_table_phone',
+			'name'       => __( 'Nascondi numero telefono', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi il numero di telefono nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_people_table_type',
+			'name'       => __( 'Nascondi tipologia', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi la tipologia nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'hide_people_table_structure',
+			'name'       => __( 'Nascondi struttura', 'design_laboratori_italia' ),
+			'desc'       => __( 'Nascondi la struttura nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'people_tag_filter_title',
+			'name'       => __( 'Filtro TAG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Opzioni usate sia dalla visualizzazione a chip sia dalla visualizzazione a tabella', 'design_laboratori_italia' ),
+			'type'       => 'title',
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'level_filter_enabled',
+			'name'       => __( 'Filtra per TAG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Attiva il filtro per TAG', 'design_laboratori_italia' ),
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
 			),
 		)
 	);
@@ -1234,7 +1390,10 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG'. E' usata per filtrare i contenuti per tag.", 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'default'    => 'Seleziona TAG',
-			'attributes' => array(),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
 		)
 	);
 
@@ -1245,7 +1404,10 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Seleziona TAG' in inglese.  E' usata per filtrare i contenuti per tag", 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'default'    => 'Select TAG',
-			'attributes' => array(),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
 		)
 	);
 
@@ -1256,7 +1418,10 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG'. E' usata per filtrare i contenuti per tag.", 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'default'    => 'Tutti i TAG',
-			'attributes' => array(),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
+			),
 		)
 	);
 
@@ -1267,20 +1432,9 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( "Indicare la personalizzazione, se necessaria, dell'etichetta 'Tutti i TAG' in inglese.  E' usata per filtrare i contenuti per tag", 'design_laboratori_italia' ),
 			'type'       => 'text',
 			'default'    => 'All TAGs',
-			'attributes' => array(),
-		)
-	);
-
-	$persone_options->add_field(
-		array(
-			'id'      => $prefix . 'label_person_details_is_visible',
-			'name'    => __( 'Visualizza etichetta Dettagli', 'design_laboratori_italia' ),
-			'desc'    => __( "Indicare se nella pagina di dettaglio deve comparire l'etichetta 'Dettagli'", 'design_laboratori_italia' ) . '.',
-			'type'    => 'radio_inline',
-			'default' => 'true',
-			'options' => array(
-				'true'  => __( 'Si', 'design_laboratori_italia' ),
-				'false' => __( 'No', 'design_laboratori_italia' ),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip,tabella',
 			),
 		)
 	);
