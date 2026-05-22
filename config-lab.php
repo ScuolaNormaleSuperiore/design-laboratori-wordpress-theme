@@ -33,6 +33,7 @@ define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 // Pagination.
 define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
 define( 'PERSONE_PER_ROW', 2 );
+define( 'PEOPLE_TABLE_PER_PAGE', 20 );
 define( 'DLI_POSTS_PER_PAGE', 6 );
 define( 'DLI_POST_PER_PAGE_VALUES', array( '3', '6', '9', '12', '24', '48', '96' ) );
 define( 'DLI_POST_PER_PAGE_VALUES_COMBINED', array_combine( DLI_POST_PER_PAGE_VALUES, DLI_POST_PER_PAGE_VALUES ) );

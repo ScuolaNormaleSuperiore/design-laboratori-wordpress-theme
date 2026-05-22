@@ -454,6 +454,174 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Restituisce tutti i dati necessari alla pagina Persone.
+	 *
+	 * @param array $args {
+	 *     Argomenti opzionali.
+	 *     @type string $selected_structure Slug struttura selezionata ('' = nessuna).
+	 *     @type string $selected_level     Slug tag selezionato ('' = nessuno).
+	 *     @type int    $posts_per_page     Persone per pagina (-1 = tutte).
+	 *     @type int    $paged              Pagina corrente.
+	 * }
+	 * @return array {
+	 *     @type array     $people_by_category  Persone indicizzate per ID categoria (usato dalla vista chip).
+	 *     @type array     $people_rows         Lista flat di righe {person: WP_Post, category_id: int}, una per coppia (persona, tipologia) (usato dalla vista tabella).
+	 *     @type WP_Post[] $categories          Categorie ordinate per priorità.
+	 *     @type WP_Term[] $structures          Strutture disponibili.
+	 *     @type WP_Term[] $tags                Tag disponibili.
+	 *     @type string    $selected_structure  Slug struttura filtrata.
+	 *     @type string    $selected_level      Slug tag filtrato.
+	 *     @type int       $result_count        Numero persone uniche renderizzabili.
+	 *     @type int       $current_page        Pagina corrente.
+	 *     @type int       $total_pages         Numero totale di pagine.
+	 * }
+	 */
+	public static function get_people_page_data( $args = array() ) {
+		$selected_structure = isset( $args['selected_structure'] ) ? (string) $args['selected_structure'] : '';
+		$selected_level     = isset( $args['selected_level'] ) ? (string) $args['selected_level'] : '';
+		$posts_per_page     = isset( $args['posts_per_page'] ) ? (int) $args['posts_per_page'] : -1;
+		$paged              = isset( $args['paged'] ) ? (int) $args['paged'] : 1;
+
+		$categories_query = new WP_Query(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => PEOPLE_TYPE_POST_TYPE,
+				'meta_key'       => 'priorita',
+				'orderby'        => 'meta_value_num',
+				'order'          => 'ASC',
+			)
+		);
+		$categories       = $categories_query->posts;
+
+		$people_args = array(
+			'posts_per_page' => $posts_per_page,
+			'paged'          => $paged,
+			'post_type'      => PEOPLE_POST_TYPE,
+			'meta_key'       => 'cognome',
+			'orderby'        => 'meta_value',
+			'order'          => 'ASC',
+		);
+
+		$tax_query = array();
+
+		if ( '' !== $selected_structure ) {
+			$tax_query[] = array(
+				'taxonomy' => STRUCTURE_TAXONOMY,
+				'field'    => 'slug',
+				'terms'    => $selected_structure,
+			);
+		}
+
+		if ( '' !== $selected_level ) {
+			$tax_query[] = array(
+				'taxonomy' => WP_DEFAULT_TAGS,
+				'field'    => 'slug',
+				'terms'    => $selected_level,
+			);
+		}
+
+		if ( ! empty( $tax_query ) ) {
+			$people_args['tax_query'] = $tax_query;
+		}
+
+		$people_query       = new WP_Query( $people_args );
+		$people_by_category = array();
+		$people_rows        = array();
+		$unique_person_ids  = array();
+
+		if ( $people_query->have_posts() ) {
+			while ( $people_query->have_posts() ) {
+				$people_query->the_post();
+				$person_id = get_the_ID();
+
+				if ( dli_get_field( 'escludi_da_elenco', $person_id ) ) {
+					continue;
+				}
+
+				$person_categories = dli_get_field( 'categoria_appartenenza', $person_id );
+				if ( empty( $person_categories ) ) {
+					continue;
+				}
+
+				$category_ids = self::extract_category_ids( $person_categories );
+				if ( empty( $category_ids ) ) {
+					continue;
+				}
+
+				$person_post = get_post( $person_id );
+				if ( ! ( $person_post instanceof WP_Post ) ) {
+					continue;
+				}
+
+				$unique_person_ids[] = $person_id;
+
+				foreach ( array_unique( $category_ids ) as $cat_id ) {
+					if ( ! isset( $people_by_category[ $cat_id ] ) ) {
+						$people_by_category[ $cat_id ] = array();
+					}
+					$people_by_category[ $cat_id ][] = $person_post;
+					$people_rows[]                   = array(
+						'person'      => $person_post,
+						'category_id' => $cat_id,
+					);
+				}
+			}
+		}
+
+		$total_pages = $posts_per_page > 0 ? (int) $people_query->max_num_pages : 1;
+		wp_reset_postdata();
+
+		$structures = get_terms(
+			array(
+				'taxonomy'   => STRUCTURE_TAXONOMY,
+				'hide_empty' => false,
+			)
+		);
+		$structures = ( is_wp_error( $structures ) || ! is_array( $structures ) ) ? array() : $structures;
+
+		$tags = self::get_tags_by_post_type( PEOPLE_POST_TYPE );
+
+		return array(
+			'people_by_category' => $people_by_category,
+			'people_rows'        => $people_rows,
+			'categories'         => $categories,
+			'structures'         => $structures,
+			'tags'               => $tags,
+			'selected_structure' => $selected_structure,
+			'selected_level'     => $selected_level,
+			'result_count'       => count( array_unique( $unique_person_ids ) ),
+			'current_page'       => $paged,
+			'total_pages'        => $total_pages,
+		);
+	}
+
+	/**
+	 * Estrae un array di ID categoria dal valore del campo ACF categoria_appartenenza.
+	 *
+	 * @param mixed $person_categories Valore del campo ACF (WP_Post|WP_Post[]|int|int[]).
+	 * @return int[] Array di ID categoria.
+	 */
+	private static function extract_category_ids( $person_categories ) {
+		$ids = array();
+		if ( is_array( $person_categories ) ) {
+			foreach ( $person_categories as $cat ) {
+				if ( $cat instanceof WP_Post && ! empty( $cat->ID ) ) {
+					$ids[] = (int) $cat->ID;
+				} elseif ( is_array( $cat ) && ! empty( $cat['ID'] ) ) {
+					$ids[] = (int) $cat['ID'];
+				} elseif ( is_numeric( $cat ) ) {
+					$ids[] = (int) $cat;
+				}
+			}
+		} elseif ( $person_categories instanceof WP_Post && ! empty( $person_categories->ID ) ) {
+			$ids[] = (int) $person_categories->ID;
+		} elseif ( is_numeric( $person_categories ) ) {
+			$ids[] = (int) $person_categories;
+		}
+		return $ids;
+	}
+
 	public static function get_related_items( $post, $field_name, $related_ct ) {
 		$item = new WP_Query(
 			array(

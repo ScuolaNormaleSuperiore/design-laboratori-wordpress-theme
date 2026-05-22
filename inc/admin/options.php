@@ -1354,6 +1354,24 @@ function dli_register_main_options_metabox() {
 
 	$persone_options->add_field(
 		array(
+			'id'         => $prefix . 'enable_people_table_pagination',
+			'name'       => __( 'Abilita paginazione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Attiva la paginazione nella visualizzazione tabellare delle persone', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'tabella',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
 			'id'         => $prefix . 'people_tag_filter_title',
 			'name'       => __( 'Filtro TAG', 'design_laboratori_italia' ),
 			'desc'       => __( 'Opzioni usate sia dalla visualizzazione a chip sia dalla visualizzazione a tabella', 'design_laboratori_italia' ),
@@ -2838,7 +2856,7 @@ add_action( 'cmb2_admin_init', 'dli_register_main_options_metabox' );
  * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
  */
 function dli_options_display_with_tabs( $cmb_options ) {
-	$tabs = dli_options_page_tabs( $cmb_options );
+	$tabs        = dli_options_page_tabs( $cmb_options );
 	$active_page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 	?>
 	<div class="wrap cmb2-options-page option-<?php echo esc_attr( $cmb_options->option_key ); ?>">
