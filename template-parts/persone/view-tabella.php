@@ -189,7 +189,30 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 	<?php endif; ?>
 </div>
 
-<p id="dliPeopleCount" class="mb-3 small text-secondary" aria-live="polite" aria-atomic="true"></p>
+<div class="row align-items-end mb-3">
+	<div class="col-lg-6">
+		<p id="dliPeopleCount" class="mb-0 small text-secondary" aria-live="polite" aria-atomic="true"></p>
+	</div>
+	<div class="col-lg-6">
+		<div class="d-flex align-items-center justify-content-lg-end gap-2">
+			<label for="dliPeopleSort" class="mb-0 flex-shrink-0"><?php echo esc_html__( 'Ordina per', 'design_laboratori_italia' ); ?></label>
+			<div class="select-wrapper mb-0" style="min-width: 220px;">
+				<select id="dliPeopleSort" data-focus-mouse="false">
+					<?php if ( $dli_tb_has_type_filter ) : ?>
+						<option value="typeSort"><?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?></option>
+					<?php endif; ?>
+					<option value="sortKey"><?php echo esc_html__( 'Nome / Cognome', 'design_laboratori_italia' ); ?></option>
+					<?php if ( $dli_tb_has_structures ) : ?>
+						<option value="structureSort"><?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?></option>
+					<?php endif; ?>
+					<?php if ( $dli_tb_has_tags ) : ?>
+						<option value="tagSort"><?php echo esc_html__( 'TAG', 'design_laboratori_italia' ); ?></option>
+					<?php endif; ?>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="row mb-4">
 	<div class="col-12">
@@ -198,63 +221,21 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		<caption class="visually-hidden"><?php echo esc_html__( 'Elenco persone', 'design_laboratori_italia' ); ?></caption>
 		<thead>
 			<tr>
-				<th scope="col" aria-sort="none">
-					<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="sortKey">
-						<?php echo esc_html__( 'Nome / Cognome', 'design_laboratori_italia' ); ?>
-						<svg class="icon icon-sm" aria-hidden="true">
-							<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-						</svg>
-					</button>
-				</th>
+				<th scope="col"><?php echo esc_html__( 'Nome / Cognome', 'design_laboratori_italia' ); ?></th>
 				<?php if ( ! $dli_tb_hide_type ) : ?>
-					<th scope="col" aria-sort="none">
-						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="typeSort">
-							<?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?>
-							<svg class="icon icon-sm" aria-hidden="true">
-								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-							</svg>
-						</button>
-					</th>
+					<th scope="col"><?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?></th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_structure ) : ?>
-					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
-						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="structureSort">
-							<?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?>
-							<svg class="icon icon-sm" aria-hidden="true">
-								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-							</svg>
-						</button>
-					</th>
+					<th scope="col" class="d-none d-md-table-cell"><?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?></th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_tag ) : ?>
-					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
-						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="tagSort">
-							<?php echo esc_html__( 'TAG', 'design_laboratori_italia' ); ?>
-							<svg class="icon icon-sm" aria-hidden="true">
-								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-							</svg>
-						</button>
-					</th>
+					<th scope="col" class="d-none d-md-table-cell"><?php echo esc_html__( 'TAG', 'design_laboratori_italia' ); ?></th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_email ) : ?>
-					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
-						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="email">
-							<?php echo esc_html__( 'Email', 'design_laboratori_italia' ); ?>
-							<svg class="icon icon-sm" aria-hidden="true">
-								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-							</svg>
-						</button>
-					</th>
+					<th scope="col" class="d-none d-md-table-cell"><?php echo esc_html__( 'Email', 'design_laboratori_italia' ); ?></th>
 				<?php endif; ?>
 				<?php if ( ! $dli_tb_hide_phone ) : ?>
-					<th scope="col" aria-sort="none" class="d-none d-md-table-cell">
-						<button type="button" class="btn btn-link p-0 text-decoration-none" data-sort-col="phoneHref">
-							<?php echo esc_html__( 'Telefono', 'design_laboratori_italia' ); ?>
-							<svg class="icon icon-sm" aria-hidden="true">
-								<use href="<?php echo esc_url( $dli_tb_sprites_url ); ?>#it-expand"></use>
-							</svg>
-						</button>
-					</th>
+					<th scope="col" class="d-none d-md-table-cell"><?php echo esc_html__( 'Telefono', 'design_laboratori_italia' ); ?></th>
 				<?php endif; ?>
 			</tr>
 		</thead>
@@ -305,7 +286,7 @@ echo wp_json_encode(
 	var tbody    = document.getElementById( 'people-tbody' );
 	var countEl  = document.getElementById( 'dliPeopleCount' );
 	var paginEl  = document.getElementById( 'people-pagination' );
-	var sortBtns     = document.querySelectorAll( '#people-table thead button[data-sort-col]' );
+	var selSort      = document.getElementById( 'dliPeopleSort' );
 	var selStruttura = document.getElementById( 'selectTableStructure' );
 	var selLevel     = document.getElementById( 'selectTableLevel' );
 	var selType      = document.getElementById( 'selectTableType' );
@@ -316,7 +297,7 @@ echo wp_json_encode(
 		struttura: selStruttura ? selStruttura.value : '',
 		level:     selLevel ? selLevel.value : '',
 		type:      selType ? selType.value : '',
-		sortCol:   'sortKey',
+		sortCol:   selSort ? selSort.value : 'sortKey',
 		sortAsc:   true,
 		page:      1,
 	};
@@ -410,23 +391,6 @@ echo wp_json_encode(
 		tbody.innerHTML = html;
 	}
 
-	function updateSortHeaders() {
-		sortBtns.forEach( function ( btn ) {
-			var th    = btn.closest( 'th' );
-			var col   = btn.getAttribute( 'data-sort-col' );
-			var useEl = btn.querySelector( 'use' );
-			if ( col === state.sortCol ) {
-				th.setAttribute( 'aria-sort', state.sortAsc ? 'ascending' : 'descending' );
-				if ( useEl ) {
-					useEl.setAttribute( 'href', cfg.spritesUrl + ( state.sortAsc ? '#it-arrow-up' : '#it-arrow-down' ) );
-				}
-			} else {
-				th.setAttribute( 'aria-sort', 'none' );
-				if ( useEl ) { useEl.setAttribute( 'href', cfg.spritesUrl + '#it-expand' ); }
-			}
-		} );
-	}
-
 	function updateFilterIndicators() {
 		var pairs = [
 			[ selStruttura, state.struttura ],
@@ -503,23 +467,16 @@ echo wp_json_encode(
 		renderTbody( pageRows );
 		renderCount( total );
 		renderPagination( totalPages );
-		updateSortHeaders();
 		updateFilterIndicators();
 	}
 
-	sortBtns.forEach( function ( btn ) {
-		btn.addEventListener( 'click', function () {
-			var col = btn.getAttribute( 'data-sort-col' );
-			if ( state.sortCol === col ) {
-				state.sortAsc = ! state.sortAsc;
-			} else {
-				state.sortCol = col;
-				state.sortAsc = true;
-			}
+	if ( selSort ) {
+		selSort.addEventListener( 'change', function () {
+			state.sortCol = selSort.value;
 			state.page = 1;
 			render();
 		} );
-	} );
+	}
 
 	if ( selStruttura ) {
 		selStruttura.addEventListener( 'change', function () {

@@ -54,8 +54,21 @@ class DLI_People_File_Importer {
 		}
 
 		// Look up existing persona by email.
-		$existing_id = self::find_by_email( $email );
-		$exists      = null !== $existing_id;
+		$matching_ids = self::find_by_email( $email );
+		$match_count  = count( $matching_ids );
+		$existing_id  = ( 1 === $match_count ) ? (int) $matching_ids[0] : null;
+		$exists       = ( 1 === $match_count );
+
+		if ( $match_count > 1 ) {
+			return self::make_result(
+				'error',
+				$row_num,
+				$display_name,
+				$email,
+				'ERRORE',
+				__( 'Email associata a più persone esistenti: aggiornamento interrotto per evitare ambiguità.', 'design_laboratori_italia' )
+			);
+		}
 
 		// Determine action from import_mode + existence.
 		$should_create = false;
@@ -108,7 +121,7 @@ class DLI_People_File_Importer {
 	 * Find an existing persona post by ACF email field.
 	 *
 	 * @param string $email Email address to search for.
-	 * @return int|null Post ID or null if not found.
+	 * @return int[] Matching post IDs.
 	 */
 	private static function find_by_email( $email ) {
 		$posts = get_posts(
@@ -118,11 +131,11 @@ class DLI_People_File_Importer {
 				'meta_key'      => 'email', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- intentional: email uniqueness lookup; numberposts=1 + no_found_rows limit impact.
 				'meta_value'    => $email,  // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'fields'        => 'ids',
-				'numberposts'   => 1,
+				'numberposts'   => -1,
 				'no_found_rows' => true,
 			)
 		);
-		return ! empty( $posts ) ? (int) $posts[0] : null;
+		return array_map( 'intval', $posts );
 	}
 
 	/**
@@ -136,10 +149,11 @@ class DLI_People_File_Importer {
 	 */
 	private static function do_create( array $data, $row_num, $display_name, $email ) {
 		$status  = in_array( $data['stato'], self::$allowed_stati, true ) ? $data['stato'] : 'publish';
+		$title   = self::build_post_title( $data );
 		$post_id = wp_insert_post(
 			array(
 				'post_type'    => PEOPLE_POST_TYPE,
-				'post_title'   => sanitize_text_field( $display_name ),
+				'post_title'   => $title,
 				'post_content' => wp_kses_post( $data['body'] ),
 				'post_status'  => $status,
 			),
@@ -169,11 +183,12 @@ class DLI_People_File_Importer {
 	 * @return array Result array.
 	 */
 	private static function do_update( $post_id, array $data, $row_num, $display_name, $email ) {
-		$update_args = array( 'ID' => $post_id );
+		$update_args = array(
+			'ID'           => $post_id,
+			'post_title'   => self::build_post_title( $data ),
+			'post_content' => wp_kses_post( $data['body'] ),
+		);
 
-		if ( '' !== $data['body'] ) {
-			$update_args['post_content'] = wp_kses_post( $data['body'] );
-		}
 		if ( in_array( $data['stato'], self::$allowed_stati, true ) ) {
 			$update_args['post_status'] = $data['stato'];
 		}
@@ -204,15 +219,11 @@ class DLI_People_File_Importer {
 		// Scalar text fields.
 		$scalar_fields = array( 'nome', 'cognome', 'email', 'titolo', 'telefono' );
 		foreach ( $scalar_fields as $field ) {
-			if ( '' !== $data[ $field ] ) {
-				dli_update_field( $field, sanitize_text_field( $data[ $field ] ), $post_id );
-			}
+			dli_update_field( $field, sanitize_text_field( $data[ $field ] ), $post_id );
 		}
 
 		// URL field.
-		if ( '' !== $data['sito_web'] ) {
-			dli_update_field( 'sito_web', esc_url_raw( $data['sito_web'] ), $post_id );
-		}
+		dli_update_field( 'sito_web', ( '' !== $data['sito_web'] ) ? esc_url_raw( $data['sito_web'] ) : '', $post_id );
 
 		// Boolean fields: '1' → 1, anything else (including empty) → 0.
 		$bool_fields = array( 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
@@ -221,9 +232,9 @@ class DLI_People_File_Importer {
 		}
 
 		// Relationship: tipologia_persona → ACF field categoria_appartenenza (supports | separator).
+		$tipologia_ids = array();
 		if ( '' !== $data['tipologia_persona'] ) {
-			$slugs         = array_filter( array_map( 'trim', explode( '|', $data['tipologia_persona'] ) ) );
-			$tipologia_ids = array();
+			$slugs = array_filter( array_map( 'trim', explode( '|', $data['tipologia_persona'] ) ) );
 			foreach ( $slugs as $slug ) {
 				$tipologia = get_posts(
 					array(
@@ -238,10 +249,9 @@ class DLI_People_File_Importer {
 					$tipologia_ids[] = (int) $tipologia[0];
 				}
 			}
-			if ( ! empty( $tipologia_ids ) ) {
-				dli_update_field( 'categoria_appartenenza', $tipologia_ids, $post_id );
-			}
 		}
+
+		dli_update_field( 'categoria_appartenenza', $tipologia_ids, $post_id );
 	}
 
 	/**
@@ -253,6 +263,7 @@ class DLI_People_File_Importer {
 	 */
 	private static function set_struttura( $post_id, $struttura_raw ) {
 		if ( '' === $struttura_raw ) {
+			wp_set_post_terms( $post_id, array(), STRUCTURE_TAXONOMY );
 			return;
 		}
 
@@ -266,9 +277,29 @@ class DLI_People_File_Importer {
 			}
 		}
 
-		if ( ! empty( $term_ids ) ) {
-			wp_set_post_terms( $post_id, $term_ids, STRUCTURE_TAXONOMY );
-		}
+		wp_set_post_terms( $post_id, $term_ids, STRUCTURE_TAXONOMY );
+	}
+
+	/**
+	 * Build the persona post title from imported fields.
+	 *
+	 * Format: nome + cognome, omitting empty parts.
+	 *
+	 * @param array $data CSV row data.
+	 * @return string
+	 */
+	private static function build_post_title( array $data ) {
+		$parts = array_filter(
+			array(
+				sanitize_text_field( $data['nome'] ),
+				sanitize_text_field( $data['cognome'] ),
+			),
+			static function ( $value ) {
+				return '' !== $value;
+			}
+		);
+
+		return implode( ' ', $parts );
 	}
 
 	/**
