@@ -529,7 +529,7 @@ class DLI_Tools_Admin {
 
 								<div class="dli-info-row">
 									<h3><?php esc_html_e( 'Valori multipli', 'design_laboratori_italia' ); ?></h3>
-									<p><code>struttura</code>: <?php esc_html_e( 'separare con', 'design_laboratori_italia' ); ?> <code>|</code>. <span class="dli-inline-note"><code>lprima-struttura|seconda-struttura</code></span></p>
+									<p><code>struttura</code>: <?php esc_html_e( 'separare con', 'design_laboratori_italia' ); ?> <code>|</code>. <span class="dli-inline-note"><code>prima-struttura|seconda-struttura</code></span></p>
 								</div>
 
 								<div class="dli-info-row">
