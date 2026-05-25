@@ -18,13 +18,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [REL-1.8.0] - 2026-05-30
 ## Aggiunto
-- aggiunta sezione per scegliere tipo di visualizzazione delle persone.
+- Aggiunto parametro di configurazione per scegliere tipo di visualizzazione delle persone.
 - Aggiunta visualizzazione tabellare delle persone alternativa a quella a chip.
+- Aggiunto import delle persone da CSV.
 ## Corretto
 - Corretto funzionamento dei filtri nella visualizzazione a chip delle persone.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.1.
+
 
 
 ## [REL-1.7.9] - 2026-04-30
