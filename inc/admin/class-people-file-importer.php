@@ -59,18 +59,21 @@ class DLI_People_File_Importer {
 
 		// Determine action from import_mode + existence.
 		$should_create = false;
-		$should_update = false;
 		$skip_reason   = '';
 
 		switch ( $import_mode ) {
 			case 'upsert':
-				$exists ? $should_update = true : $should_create = true;
+				if ( ! $exists ) {
+					$should_create = true;
+				}
 				break;
 			case 'solo_nuovi':
 				$exists ? $skip_reason = 'existing' : $should_create = true;
 				break;
 			case 'aggiorna_esistenti':
-				$exists ? $should_update = true : $skip_reason = 'not_found';
+				if ( ! $exists ) {
+					$skip_reason = 'not_found';
+				}
 				break;
 			case 'ignora_esistenti':
 				$exists ? $skip_reason = 'existing' : $should_create = true;
@@ -217,19 +220,26 @@ class DLI_People_File_Importer {
 			update_field( $field, ( '1' === $data[ $field ] ) ? 1 : 0, $post_id );
 		}
 
-		// Relationship: tipologia_persona → ACF field categoria_appartenenza.
+		// Relationship: tipologia_persona → ACF field categoria_appartenenza (supports | separator).
 		if ( '' !== $data['tipologia_persona'] ) {
-			$tipologia = get_posts(
-				array(
-					'post_type'     => PEOPLE_TYPE_POST_TYPE,
-					'name'          => sanitize_title( $data['tipologia_persona'] ),
-					'numberposts'   => 1,
-					'fields'        => 'ids',
-					'no_found_rows' => true,
-				)
-			);
-			if ( ! empty( $tipologia ) ) {
-				update_field( 'categoria_appartenenza', array( (int) $tipologia[0] ), $post_id );
+			$slugs         = array_filter( array_map( 'trim', explode( '|', $data['tipologia_persona'] ) ) );
+			$tipologia_ids = array();
+			foreach ( $slugs as $slug ) {
+				$tipologia = get_posts(
+					array(
+						'post_type'     => PEOPLE_TYPE_POST_TYPE,
+						'name'          => sanitize_title( $slug ),
+						'numberposts'   => 1,
+						'fields'        => 'ids',
+						'no_found_rows' => true,
+					)
+				);
+				if ( ! empty( $tipologia ) ) {
+					$tipologia_ids[] = (int) $tipologia[0];
+				}
+			}
+			if ( ! empty( $tipologia_ids ) ) {
+				update_field( 'categoria_appartenenza', $tipologia_ids, $post_id );
 			}
 		}
 	}

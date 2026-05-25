@@ -324,6 +324,12 @@ class DLI_Tools_Admin {
 		$tmp_path  = $_FILES['dli_csv_file']['tmp_name'];                   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$file_size = (int) $_FILES['dli_csv_file']['size'];
 
+		// Ensure the file was actually uploaded via HTTP POST, preventing arbitrary file reads.
+		if ( ! is_uploaded_file( $tmp_path ) ) {
+			$report['notice'] = __( 'File non valido.', 'design_laboratori_italia' );
+			return $report;
+		}
+
 		$report['filename'] = $filename;
 
 		if ( 'csv' !== strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) ) ) {
@@ -336,15 +342,17 @@ class DLI_Tools_Admin {
 			return $report;
 		}
 
-		$mime             = mime_content_type( $tmp_path );
-		$allowed_mimes    = array( 'text/csv', 'text/plain', 'application/csv', 'application/vnd.ms-excel' );
-		if ( ! in_array( $mime, $allowed_mimes, true ) ) {
-			$report['notice'] = sprintf(
-				/* translators: %s: detected MIME type */
-				__( 'Tipo file non valido (%s). È richiesto un file CSV.', 'design_laboratori_italia' ),
-				$mime
-			);
-			return $report;
+		if ( function_exists( 'mime_content_type' ) ) {
+			$mime          = mime_content_type( $tmp_path );
+			$allowed_mimes = array( 'text/csv', 'text/plain', 'application/csv', 'application/vnd.ms-excel' );
+			if ( $mime && ! in_array( $mime, $allowed_mimes, true ) ) {
+				$report['notice'] = sprintf(
+					/* translators: %s: detected MIME type */
+					__( 'Tipo file non valido (%s). È richiesto un file CSV.', 'design_laboratori_italia' ),
+					$mime
+				);
+				return $report;
+			}
 		}
 
 		$handle = fopen( $tmp_path, 'r' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
