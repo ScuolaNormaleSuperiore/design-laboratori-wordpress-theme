@@ -58,6 +58,9 @@ require get_template_directory() . '/inc/cmb2.php';
 // Import the code to create the admin section: Configurazione.
 require get_template_directory() . '/inc/admin/options.php';
 
+// Import the code to create the admin section: Strumenti DLI.
+require get_template_directory() . '/inc/admin/class-tools-admin.php';
+
 /**
  * Utils functions.
  */

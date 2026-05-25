@@ -1,0 +1,23 @@
+/**
+ * Strumenti DLI — admin area styles.
+ *
+ * Loaded only on Strumenti DLI admin pages.
+ */
+
+/* Esporta placeholder tab: visually present but non-interactive */
+.dli-tab-disabled {
+	color: #a7aaad;
+	cursor: default;
+	box-shadow: none;
+}
+
+.dli-tab-disabled:hover {
+	color: #a7aaad;
+	background-color: transparent;
+	border-bottom-color: #f0f0f1;
+}
+
+/* Content area below the tab nav */
+.dli-tools-tab-content {
+	margin-top: 20px;
+}
