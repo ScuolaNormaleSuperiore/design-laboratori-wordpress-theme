@@ -4,6 +4,8 @@
  * Loaded only on Strumenti DLI admin pages.
  */
 
+/* ── Tab nav ──────────────────────────────────────────────── */
+
 /* Esporta placeholder tab: visually present but non-interactive */
 .dli-tab-disabled {
 	color: #a7aaad;
@@ -17,7 +19,198 @@
 	border-bottom-color: #f0f0f1;
 }
 
-/* Content area below the tab nav */
+/* ── Content area ─────────────────────────────────────────── */
+
 .dli-tools-tab-content {
 	margin-top: 20px;
 }
+
+/* ── Import section ───────────────────────────────────────── */
+
+.dli-import-section-title {
+	font-size: 1.2em;
+	font-weight: 600;
+	margin: 0 0 0.6em;
+}
+
+/* Sub-navigation for import types (Persone | ...) */
+.dli-import-subnav {
+	margin-bottom: 1.2em;
+	padding-bottom: 0.6em;
+	border-bottom: 1px solid #c3c4c7;
+	font-size: 0.9em;
+}
+
+.dli-import-subnav a {
+	text-decoration: none;
+	color: #2271b1;
+}
+
+.dli-import-subnav a.current {
+	color: #1d2327;
+	font-weight: 600;
+}
+
+.dli-import-subnav .sep {
+	color: #a7aaad;
+	margin: 0 2px;
+}
+
+/* ── Card boxes ───────────────────────────────────────────── */
+
+.dli-tool-box {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	padding: 20px 24px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+
+.dli-tool-box > h2:first-child {
+	margin-top: 0;
+	font-size: 1.1em;
+}
+
+/* ── Come funziona ────────────────────────────────────────── */
+
+/* CSV header shown as inline code block */
+.dli-csv-header {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	padding: 3px 8px;
+	font-family: monospace;
+	font-size: 0.85em;
+	display: inline-block;
+	margin-left: 6px;
+	vertical-align: middle;
+	word-break: break-all;
+}
+
+/* Enum value pills */
+.dli-value-badge {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	padding: 1px 5px;
+	font-family: monospace;
+	font-size: 0.82em;
+	margin: 0 2px;
+	display: inline-block;
+}
+
+/* ── Esegui importazione form ─────────────────────────────── */
+
+.dli-form-table {
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 680px;
+}
+
+.dli-form-table th {
+	text-align: left;
+	padding: 10px 16px 10px 0;
+	font-weight: 600;
+	width: 200px;
+	vertical-align: top;
+}
+
+.dli-form-table td {
+	padding: 8px 0;
+	vertical-align: top;
+}
+
+.dli-form-note {
+	color: #646970;
+	font-size: 0.85em;
+	margin: 4px 0 0;
+}
+
+/* ── Report box ───────────────────────────────────────────── */
+
+.dli-report-title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 6px;
+}
+
+.dli-report-title h2 {
+	margin: 0;
+}
+
+.dli-report-mode {
+	font-size: 0.9em;
+	font-weight: 600;
+}
+
+.dli-report-mode.is-dryrun {
+	color: #d97706;
+}
+
+.dli-report-mode.is-commit {
+	color: #00a32a;
+}
+
+.dli-report-meta {
+	color: #646970;
+	font-size: 0.85em;
+	margin-bottom: 16px;
+}
+
+/* Summary counts table */
+.dli-report-summary {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.dli-report-summary th,
+.dli-report-summary td {
+	border: 1px solid #dcdcde;
+	padding: 8px 20px;
+	text-align: left;
+	min-width: 80px;
+}
+
+.dli-report-summary thead th {
+	color: #2271b1;
+	font-weight: 600;
+}
+
+.dli-report-summary .col-errors {
+	color: #d63638;
+}
+
+/* Log box */
+.dli-log-box {
+	margin-top: 20px;
+}
+
+.dli-log-box > h3:first-child {
+	margin-top: 0;
+}
+
+/* Per-row log table */
+.dli-log-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.dli-log-table th,
+.dli-log-table td {
+	border-bottom: 1px solid #f0f0f0;
+	padding: 7px 12px;
+	text-align: left;
+}
+
+.dli-log-table thead th {
+	color: #2271b1;
+	font-weight: 600;
+	border-bottom-color: #dcdcde;
+}
+
+.dli-log-cell-id,
+.dli-log-cell-name,
+.dli-log-cell-email { color: #2271b1; }
+
+.dli-log-status-ok      { color: #00a32a; font-weight: 600; }
+.dli-log-status-errore  { color: #d63638; font-weight: 600; }
+.dli-log-status-saltata { color: #646970; }
