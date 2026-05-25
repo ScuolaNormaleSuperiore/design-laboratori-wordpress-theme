@@ -125,8 +125,8 @@ class DLI_Tools_Admin {
 
 		$headers = array( 'nome', 'cognome', 'email', 'titolo', 'telefono', 'tipologia_persona', 'struttura', 'stato', 'sito_web', 'body', 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
 		$rows    = array(
-			array( 'Mario', 'Rossi', 'mario.rossi@example.com', 'Prof.', '050-123456', 'tipologia1', 'laboratorio-abc', 'publish', 'https://example.com', 'Breve biografia di Mario Rossi.', '0', '0' ),
-			array( 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'Dott.ssa', '', 'tipologia2', 'laboratorio-abc|laboratorio-xyz', 'draft', '', '', '1', '0' ),
+			array( 'Mario', 'Rossi', 'mario.rossi@example.com', 'Prof.', '050-123456', 'tipologia1', 'prima-struttura', 'publish', 'https://example.com', 'Breve biografia di Mario Rossi.', '0', '0' ),
+			array( 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'Dott.ssa', '', 'tipologia2', 'prima-struttura|seconda-struttura', 'draft', '', '', '1', '0' ),
 		);
 
 		header( 'Content-Type: text/csv; charset=utf-8' );
@@ -529,7 +529,7 @@ class DLI_Tools_Admin {
 
 								<div class="dli-info-row">
 									<h3><?php esc_html_e( 'Valori multipli', 'design_laboratori_italia' ); ?></h3>
-									<p><code>struttura</code>: <?php esc_html_e( 'separare con', 'design_laboratori_italia' ); ?> <code>|</code>. <span class="dli-inline-note"><code>laboratorio-abc|laboratorio-xyz</code></span></p>
+									<p><code>struttura</code>: <?php esc_html_e( 'separare con', 'design_laboratori_italia' ); ?> <code>|</code>. <span class="dli-inline-note"><code>lprima-struttura|seconda-struttura</code></span></p>
 								</div>
 
 								<div class="dli-info-row">
