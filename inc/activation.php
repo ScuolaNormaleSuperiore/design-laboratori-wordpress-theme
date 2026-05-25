@@ -453,49 +453,7 @@ function dli_create_the_pages() {
 	}
 }
 
-/**
- * Funzione per ricaricare i dati di default: pagine, post types, tassonomie, ecc.
- * WP->Aspetto->Ricarica dati.
- *
- * @return void
- */
-function dli_add_update_theme_page() {
-	add_theme_page( 'Ricarica i dati', 'Ricarica i dati', 'edit_theme_options', 'reload-data-theme-options', 'dli_reload_theme_option_page' );
-}
-add_action( 'admin_menu', 'dli_add_update_theme_page' );
-
-/**
- * Pagina contenente il pulsante per ricaricare i dati.
- * WP->Aspetto->Ricarica dati.
- *
- * @return void
- */
-function dli_reload_theme_option_page() {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
-		wp_die( esc_html__( 'Non hai i permessi per accedere a questa pagina.', 'design_laboratori_italia' ) );
-	}
-
-	$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : '';
-	$nonce  = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
-
-	if ( 'reload' === $action ) {
-		if ( ! $nonce || ! wp_verify_nonce( $nonce, 'dli_reload_theme_data' ) ) {
-			wp_die( esc_html__( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' ) );
-		}
-		dli_create_pages_on_theme_activation();
-	}
-
-	$reload_url = wp_nonce_url(
-		admin_url( 'themes.php?page=reload-data-theme-options&action=reload' ),
-		'dli_reload_theme_data'
-	);
-
-	echo '<div class="wrap">';
-	echo '<h1>' . esc_html__( 'Ricarica i dati di attivazione del tema', 'design_laboratori_italia' ) . '</h1>';
-
-	echo '<a href="' . esc_url( $reload_url ) . '" class="button button-primary">' . esc_html__( 'Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)', 'design_laboratori_italia' ) . '</a>';
-	echo '</div>';
-}
+// "Ricarica i dati" is now registered under Strumenti DLI → Utilità (inc/admin/class-tools-admin.php).
 
 /**
  * Create custom translation table if missing.

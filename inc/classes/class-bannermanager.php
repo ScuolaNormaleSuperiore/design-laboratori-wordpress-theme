@@ -55,7 +55,7 @@ class Banner_Manager {
 			'hierarchical'  => false,
 			'public'        => true,
 			'show_in_menu'  => true,
-			'menu_position' => 3,
+			'menu_position' => 4,
 			'menu_icon'     => 'dashicons-excerpt-view',
 			'has_archive'   => false,
 			'show_in_rest'  => false,
