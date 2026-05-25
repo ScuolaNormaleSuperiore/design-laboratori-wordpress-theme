@@ -1,4 +1,17 @@
 /**
+ * Admin menu separators
+ */
+#adminmenu .wp-menu-separator {
+    height: 12px;
+    margin: 4px 0;
+}
+#adminmenu .wp-menu-separator .separator {
+    height: 1px;
+    margin: 5px 12px;
+    background: #ffffff;
+}
+
+/**
 * admin bar
 */
 

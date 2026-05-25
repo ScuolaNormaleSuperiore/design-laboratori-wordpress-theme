@@ -26,8 +26,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.1.
-
-
+- Ordinate alfabeticamente le voci dei cotenuti personalizzati nel menu del backoffice.
+- Disabilitati i commenti per tutti i post type.
 
 ## [REL-1.7.9] - 2026-04-30
 ## Corretto

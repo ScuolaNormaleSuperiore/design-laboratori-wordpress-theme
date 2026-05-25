@@ -62,6 +62,9 @@ require get_template_directory() . '/inc/admin/options.php';
 require get_template_directory() . '/inc/admin/class-dli-people-file-importer.php';
 require get_template_directory() . '/inc/admin/class-dli-tools-admin.php';
 
+// Admin menu ordering and visibility.
+require get_template_directory() . '/inc/menu-order.php';
+
 /**
  * Utils functions.
  */

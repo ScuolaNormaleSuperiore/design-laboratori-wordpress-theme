@@ -4,10 +4,11 @@
  * disable all comments
  */
 function dli_disable_all_comments() {
-	// Turn off comments
-	if( '' != get_option( 'default_comment_status' ) ) {
+	if ( '' !== get_option( 'default_comment_status' ) ) {
 		update_option( 'default_comment_status', '' );
 	}
+	add_filter( 'comments_open', '__return_false', 20 );
+	add_filter( 'pings_open',    '__return_false', 20 );
 }
 add_action( 'after_setup_theme', 'dli_disable_all_comments' );
 
