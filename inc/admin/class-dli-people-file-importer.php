@@ -32,8 +32,8 @@ class DLI_People_File_Importer {
 	 *   - 'log_entry' array   row data for the UI report
 	 *
 	 * @param array  $data        Associative field data for the row.
-	 * @param string $import_mode upsert|solo_nuovi|aggiorna_esistenti|ignora_esistenti
-	 * @param string $exec_mode   dry_run|commit
+	 * @param string $import_mode upsert|solo_nuovi|aggiorna_esistenti|ignora_esistenti.
+	 * @param string $exec_mode   dry_run|commit.
 	 * @param int    $row_num     1-indexed CSV row number (including header).
 	 * @return array
 	 */
@@ -115,8 +115,8 @@ class DLI_People_File_Importer {
 			array(
 				'post_type'     => PEOPLE_POST_TYPE,
 				'post_status'   => 'any',
-				'meta_key'      => 'email',
-				'meta_value'    => $email,
+				'meta_key'      => 'email', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- intentional: email uniqueness lookup; numberposts=1 + no_found_rows limit impact.
+				'meta_value'    => $email,  // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'fields'        => 'ids',
 				'numberposts'   => 1,
 				'no_found_rows' => true,
@@ -151,7 +151,7 @@ class DLI_People_File_Importer {
 			return self::make_result( 'error', $row_num, $display_name, $email, 'ERRORE', $error_msg );
 		}
 
-		self::set_acf_fields( $post_id, $data );
+		self::set_custom_fields( $post_id, $data );
 		self::set_struttura( $post_id, $data['struttura'] );
 		self::set_language( $post_id );
 
@@ -183,7 +183,7 @@ class DLI_People_File_Importer {
 			return self::make_result( 'error', $row_num, $display_name, $email, 'ERRORE', $result->get_error_message() );
 		}
 
-		self::set_acf_fields( $post_id, $data );
+		self::set_custom_fields( $post_id, $data );
 		self::set_struttura( $post_id, $data['struttura'] );
 
 		return self::make_result( 'updated', $row_num, $display_name, $email, 'OK', __( 'Persona aggiornata.', 'design_laboratori_italia' ) );
@@ -196,7 +196,7 @@ class DLI_People_File_Importer {
 	 * @param array $data    CSV row data.
 	 * @return void
 	 */
-	private static function set_acf_fields( $post_id, array $data ) {
+	private static function set_custom_fields( $post_id, array $data ) {
 		if ( ! function_exists( 'update_field' ) ) {
 			return;
 		}
@@ -205,19 +205,19 @@ class DLI_People_File_Importer {
 		$scalar_fields = array( 'nome', 'cognome', 'email', 'titolo', 'telefono' );
 		foreach ( $scalar_fields as $field ) {
 			if ( '' !== $data[ $field ] ) {
-				update_field( $field, sanitize_text_field( $data[ $field ] ), $post_id );
+				dli_update_field( $field, sanitize_text_field( $data[ $field ] ), $post_id );
 			}
 		}
 
 		// URL field.
 		if ( '' !== $data['sito_web'] ) {
-			update_field( 'sito_web', esc_url_raw( $data['sito_web'] ), $post_id );
+			dli_update_field( 'sito_web', esc_url_raw( $data['sito_web'] ), $post_id );
 		}
 
 		// Boolean fields: '1' → 1, anything else (including empty) → 0.
 		$bool_fields = array( 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
 		foreach ( $bool_fields as $field ) {
-			update_field( $field, ( '1' === $data[ $field ] ) ? 1 : 0, $post_id );
+			dli_update_field( $field, ( '1' === $data[ $field ] ) ? 1 : 0, $post_id );
 		}
 
 		// Relationship: tipologia_persona → ACF field categoria_appartenenza (supports | separator).
@@ -239,7 +239,7 @@ class DLI_People_File_Importer {
 				}
 			}
 			if ( ! empty( $tipologia_ids ) ) {
-				update_field( 'categoria_appartenenza', $tipologia_ids, $post_id );
+				dli_update_field( 'categoria_appartenenza', $tipologia_ids, $post_id );
 			}
 		}
 	}
@@ -286,11 +286,11 @@ class DLI_People_File_Importer {
 	/**
 	 * Build a standardised result array.
 	 *
-	 * @param string $action       created|updated|skipped|error
+	 * @param string $action       created|updated|skipped|error.
 	 * @param int    $row_num      CSV row number.
 	 * @param string $display_name Nome Cognome.
 	 * @param string $email        Email address.
-	 * @param string $status       OK|ERRORE|SALTATA
+	 * @param string $status       OK|ERRORE|SALTATA.
 	 * @param string $message      Human-readable log message.
 	 * @return array
 	 */

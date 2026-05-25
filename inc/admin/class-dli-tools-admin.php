@@ -109,7 +109,7 @@ class DLI_Tools_Admin {
 	 */
 	public static function handle_early_actions() {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$page   = isset( $_GET['page'] )   ? sanitize_key( wp_unslash( $_GET['page'] ) )   : '';
+		$page   = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 		$action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
@@ -125,8 +125,8 @@ class DLI_Tools_Admin {
 
 		$headers = array( 'nome', 'cognome', 'email', 'titolo', 'telefono', 'tipologia_persona', 'struttura', 'stato', 'sito_web', 'body', 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
 		$rows    = array(
-			array( 'Mario', 'Rossi', 'mario.rossi@example.com', 'Prof.', '050-123456', 'professore-ordinario', 'laboratorio-abc', 'publish', 'https://example.com', 'Breve biografia di Mario Rossi.', '0', '0' ),
-			array( 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'Dott.ssa', '', 'ricercatrice', 'laboratorio-abc|laboratorio-xyz', 'draft', '', '', '1', '0' ),
+			array( 'Mario', 'Rossi', 'mario.rossi@example.com', 'Prof.', '050-123456', 'tipologia1', 'laboratorio-abc', 'publish', 'https://example.com', 'Breve biografia di Mario Rossi.', '0', '0' ),
+			array( 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'Dott.ssa', '', 'tipologia2', 'laboratorio-abc|laboratorio-xyz', 'draft', '', '', '1', '0' ),
 		);
 
 		header( 'Content-Type: text/csv; charset=utf-8' );
@@ -134,7 +134,7 @@ class DLI_Tools_Admin {
 		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
 
 		$output = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
-		fwrite( $output, "\xEF\xBB\xBF" ); // UTF-8 BOM for correct Excel rendering.
+		fwrite( $output, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- UTF-8 BOM for correct Excel rendering.
 		fputcsv( $output, $headers, ';' );
 		foreach ( $rows as $row ) {
 			fputcsv( $output, $row, ';' );
@@ -182,7 +182,7 @@ class DLI_Tools_Admin {
 						</span>
 					<?php else : ?>
 						<a class="nav-tab<?php echo ( $slug === $current_page ) ? ' nav-tab-active' : ''; ?>"
-						   href="<?php echo esc_url( admin_url( 'admin.php?page=' . $slug ) ); ?>">
+							href="<?php echo esc_url( admin_url( 'admin.php?page=' . $slug ) ); ?>">
 							<?php echo esc_html( $label ); ?>
 						</a>
 					<?php endif; ?>
@@ -204,7 +204,7 @@ class DLI_Tools_Admin {
 	public static function render_panoramica() {
 		self::require_capability();
 		self::render_shell(
-			function() {
+			function () {
 				?>
 				<p><?php esc_html_e( 'Questa sezione contiene gli strumenti di gestione dei contenuti del sito.', 'design_laboratori_italia' ); ?></p>
 				<p><?php esc_html_e( "Usa i tab per navigare tra le sezioni operative dell'area.", 'design_laboratori_italia' ); ?></p>
@@ -221,7 +221,7 @@ class DLI_Tools_Admin {
 	public static function render_importa() {
 		self::require_capability();
 		self::render_shell(
-			function() {
+			function () {
 				$import_type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : 'persone'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				echo '<h2 class="dli-import-section-title">' . esc_html__( 'Strumenti di importazione', 'design_laboratori_italia' ) . '</h2>';
@@ -246,13 +246,13 @@ class DLI_Tools_Admin {
 			'persone' => __( 'Persone', 'design_laboratori_italia' ),
 		);
 
-		echo '<div class="dli-import-subnav">';
+		echo '<nav class="dli-import-subnav" aria-label="' . esc_attr__( 'Tipi di importazione', 'design_laboratori_italia' ) . '">';
 		foreach ( $types as $slug => $label ) {
 			$url   = esc_url( admin_url( 'admin.php?page=' . self::IMPORT_SLUG . '&type=' . $slug ) );
 			$class = ( $slug === $current_type ) ? ' class="current"' : '';
-			echo '<a' . $class . ' href="' . $url . '">' . esc_html( $label ) . '</a> <span class="sep">|</span> '; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<a' . $class . ' href="' . $url . '">' . esc_html( $label ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '</div>';
+		echo '</nav>';
 	}
 
 	/**
@@ -272,6 +272,15 @@ class DLI_Tools_Admin {
 
 		if ( null !== $report ) {
 			self::render_report_persone( $report );
+			// Scroll to report after form submission so the result is immediately visible.
+			?>
+			<script>
+			( function () {
+				var el = document.getElementById( 'dli-report-section' );
+				if ( el ) { el.focus(); el.scrollIntoView( { behavior: 'smooth', block: 'start' } ); }
+			} )();
+			</script>
+			<?php
 		}
 	}
 
@@ -293,7 +302,7 @@ class DLI_Tools_Admin {
 		$allowed_exec_modes   = array( 'dry_run', 'commit' );
 
 		$import_mode = isset( $_POST['dli_import_mode'] ) ? sanitize_key( wp_unslash( $_POST['dli_import_mode'] ) ) : 'upsert';
-		$exec_mode   = isset( $_POST['dli_exec_mode'] )   ? sanitize_key( wp_unslash( $_POST['dli_exec_mode'] ) )   : 'dry_run';
+		$exec_mode   = isset( $_POST['dli_exec_mode'] ) ? sanitize_key( wp_unslash( $_POST['dli_exec_mode'] ) ) : 'dry_run';
 
 		if ( ! in_array( $import_mode, $allowed_import_modes, true ) ) {
 			$import_mode = 'upsert';
@@ -313,10 +322,12 @@ class DLI_Tools_Admin {
 			'errori_count' => 0,
 			'log'          => array(),
 			'notice'       => '',
+			'notice_type'  => 'info',
 		);
 
-		if ( empty( $_FILES['dli_csv_file']['tmp_name'] ) || UPLOAD_ERR_OK !== (int) $_FILES['dli_csv_file']['error'] ) {
-			$report['notice'] = __( 'Nessun file caricato o errore nel caricamento.', 'design_laboratori_italia' );
+		if ( ! isset( $_FILES['dli_csv_file']['tmp_name'], $_FILES['dli_csv_file']['error'], $_FILES['dli_csv_file']['size'], $_FILES['dli_csv_file']['name'] ) || empty( $_FILES['dli_csv_file']['tmp_name'] ) || UPLOAD_ERR_OK !== (int) $_FILES['dli_csv_file']['error'] ) {
+			$report['notice']      = __( 'Nessun file caricato o errore nel caricamento.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'warning';
 			return $report;
 		}
 
@@ -326,19 +337,22 @@ class DLI_Tools_Admin {
 
 		// Ensure the file was actually uploaded via HTTP POST, preventing arbitrary file reads.
 		if ( ! is_uploaded_file( $tmp_path ) ) {
-			$report['notice'] = __( 'File non valido.', 'design_laboratori_italia' );
+			$report['notice']      = __( 'File non valido.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'error';
 			return $report;
 		}
 
 		$report['filename'] = $filename;
 
 		if ( 'csv' !== strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) ) ) {
-			$report['notice'] = __( 'Formato non valido: è richiesto un file .csv.', 'design_laboratori_italia' );
+			$report['notice']      = __( 'Formato non valido: è richiesto un file .csv.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'error';
 			return $report;
 		}
 
 		if ( $file_size > 2 * 1024 * 1024 ) {
-			$report['notice'] = __( 'File troppo grande. Dimensione massima: 2 MB.', 'design_laboratori_italia' );
+			$report['notice']      = __( 'File troppo grande. Dimensione massima: 2 MB.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'error';
 			return $report;
 		}
 
@@ -351,13 +365,15 @@ class DLI_Tools_Admin {
 					__( 'Tipo file non valido (%s). È richiesto un file CSV.', 'design_laboratori_italia' ),
 					$mime
 				);
+				$report['notice_type'] = 'error';
 				return $report;
 			}
 		}
 
 		$handle = fopen( $tmp_path, 'r' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! $handle ) {
-			$report['notice'] = __( 'Impossibile leggere il file caricato.', 'design_laboratori_italia' );
+			$report['notice']      = __( 'Impossibile leggere il file caricato.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'error';
 			return $report;
 		}
 
@@ -370,7 +386,8 @@ class DLI_Tools_Admin {
 		$header_row = fgetcsv( $handle, 0, ';' );
 		if ( ! $header_row ) {
 			fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-			$report['notice'] = __( 'File vuoto o intestazione non leggibile.', 'design_laboratori_italia' );
+			$report['notice']      = __( 'File vuoto o intestazione non leggibile.', 'design_laboratori_italia' );
+			$report['notice_type'] = 'error';
 			return $report;
 		}
 
@@ -385,6 +402,7 @@ class DLI_Tools_Admin {
 					__( 'Intestazione non valida: colonna obbligatoria "%s" non trovata.', 'design_laboratori_italia' ),
 					$required
 				);
+				$report['notice_type'] = 'error';
 				return $report;
 			}
 		}
@@ -393,24 +411,15 @@ class DLI_Tools_Admin {
 		$col     = array_flip( $header_row );
 		$row_num = 1;
 
-		while ( ( $row = fgetcsv( $handle, 0, ';' ) ) !== false ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( true ) {
+			$row = fgetcsv( $handle, 0, ';' );
+			if ( false === $row ) {
+				break;
+			}
 			++$row_num;
 			++$report['elaborati'];
 
-			$data = array(
-				'nome'                       => trim( isset( $col['nome'] ) ? $row[ $col['nome'] ] : '' ),
-				'cognome'                    => trim( isset( $col['cognome'] ) ? $row[ $col['cognome'] ] : '' ),
-				'email'                      => trim( isset( $col['email'] ) ? $row[ $col['email'] ] : '' ),
-				'titolo'                     => trim( isset( $col['titolo'] ) ? $row[ $col['titolo'] ] : '' ),
-				'telefono'                   => trim( isset( $col['telefono'] ) ? $row[ $col['telefono'] ] : '' ),
-				'tipologia_persona'          => trim( isset( $col['tipologia_persona'] ) ? $row[ $col['tipologia_persona'] ] : '' ),
-				'struttura'                  => trim( isset( $col['struttura'] ) ? $row[ $col['struttura'] ] : '' ),
-				'stato'                      => trim( isset( $col['stato'] ) ? $row[ $col['stato'] ] : 'publish' ),
-				'sito_web'                   => trim( isset( $col['sito_web'] ) ? $row[ $col['sito_web'] ] : '' ),
-				'body'                       => trim( isset( $col['body'] ) ? $row[ $col['body'] ] : '' ),
-				'escludi_da_elenco'          => trim( isset( $col['escludi_da_elenco'] ) ? $row[ $col['escludi_da_elenco'] ] : '0' ),
-				'disattiva_pagina_dettaglio' => trim( isset( $col['disattiva_pagina_dettaglio'] ) ? $row[ $col['disattiva_pagina_dettaglio'] ] : '0' ),
-			);
+			$data = self::parse_csv_row( $row, $col );
 
 			$result          = DLI_People_File_Importer::process_row( $data, $import_mode, $exec_mode, $row_num );
 			$report['log'][] = $result['log_entry'];
@@ -437,6 +446,33 @@ class DLI_Tools_Admin {
 	}
 
 	/**
+	 * Build a field-keyed data array from one parsed CSV row.
+	 *
+	 * @param array $row Numeric-indexed values from fgetcsv().
+	 * @param array $col Column-name → index map built from the header row.
+	 * @return array
+	 */
+	private static function parse_csv_row( array $row, array $col ) {
+		$get = static function ( $key, $fallback = '' ) use ( $row, $col ) {
+			return trim( isset( $col[ $key ] ) ? $row[ $col[ $key ] ] : $fallback );
+		};
+		return array(
+			'nome'                       => $get( 'nome' ),
+			'cognome'                    => $get( 'cognome' ),
+			'email'                      => $get( 'email' ),
+			'titolo'                     => $get( 'titolo' ),
+			'telefono'                   => $get( 'telefono' ),
+			'tipologia_persona'          => $get( 'tipologia_persona' ),
+			'struttura'                  => $get( 'struttura' ),
+			'stato'                      => $get( 'stato', 'publish' ),
+			'sito_web'                   => $get( 'sito_web' ),
+			'body'                       => $get( 'body' ),
+			'escludi_da_elenco'          => $get( 'escludi_da_elenco', '0' ),
+			'disattiva_pagina_dettaglio' => $get( 'disattiva_pagina_dettaglio', '0' ),
+		);
+	}
+
+	/**
 	 * Render the "Come funziona" information box for the Persone import.
 	 *
 	 * @return void
@@ -448,53 +484,70 @@ class DLI_Tools_Admin {
 		);
 		$titolo_values = array( 'Cav.', 'Comm.', 'Dott.', 'Dott.ssa', 'Dr.', 'Prof.', 'Prof.ssa', 'Ing.', 'Avv.', 'Rag.', 'Sig.', 'Sig.ra' );
 		?>
-		<div class="dli-tool-box">
-			<h2><?php esc_html_e( 'Come funziona', 'design_laboratori_italia' ); ?></h2>
-			<p><?php esc_html_e( 'Importa persone da un file CSV con separatore punto e virgola (;). L\'intestazione deve corrispondere esattamente a quella richiesta.', 'design_laboratori_italia' ); ?></p>
+		<div class="postbox dli-tool-panel dli-tool-panel-intro">
+			<div class="inside">
+				<h2><?php esc_html_e( 'Come funziona', 'design_laboratori_italia' ); ?></h2>
+				<p class="dli-section-lead"><?php esc_html_e( 'Importa persone da un file CSV con separatore punto e virgola (;). L\'intestazione deve corrispondere esattamente a quella richiesta.', 'design_laboratori_italia' ); ?></p>
 
-			<p>
-				<strong><?php esc_html_e( 'Intestazione CSV richiesta:', 'design_laboratori_italia' ); ?></strong>
-				<code class="dli-csv-header">nome;cognome;email;titolo;telefono;tipologia_persona;struttura;stato;sito_web;body;escludi_da_elenco;disattiva_pagina_dettaglio</code>
-			</p>
+				<div class="dli-info-list">
+					<div class="dli-info-row">
+						<h3><?php esc_html_e( 'Intestazione CSV richiesta', 'design_laboratori_italia' ); ?></h3>
+						<code class="dli-csv-header">nome;cognome;email;titolo;telefono;tipologia_persona;struttura;stato;sito_web;body;escludi_da_elenco;disattiva_pagina_dettaglio</code>
+					</div>
 
-			<p>
-				<strong><?php esc_html_e( 'Colonne obbligatorie:', 'design_laboratori_italia' ); ?></strong>
-				<code>nome</code>, <code>cognome</code>, <code>email</code>.
-				<?php esc_html_e( 'Tutte le altre colonne sono facoltative.', 'design_laboratori_italia' ); ?>
-			</p>
+					<div class="dli-info-row">
+						<details class="dli-advanced-details">
+							<summary><?php esc_html_e( 'Dettagli campi e valori supportati', 'design_laboratori_italia' ); ?></summary>
+							<div class="dli-advanced-details-body">
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Colonne obbligatorie', 'design_laboratori_italia' ); ?></h3>
+									<p><code>nome</code>, <code>cognome</code>, <code>email</code>. <?php esc_html_e( 'Tutte le altre colonne sono facoltative.', 'design_laboratori_italia' ); ?></p>
+								</div>
 
-			<p>
-				<strong><?php esc_html_e( 'Valori consentiti per', 'design_laboratori_italia' ); ?> <code>titolo</code>:</strong>
-				<?php foreach ( $titolo_values as $v ) : ?>
-					<span class="dli-value-badge"><?php echo esc_html( $v ); ?></span>
-				<?php endforeach; ?>
-			</p>
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Valori consentiti per', 'design_laboratori_italia' ); ?> <code>titolo</code></h3>
+									<p>
+										<?php foreach ( $titolo_values as $v ) : ?>
+											<span class="dli-value-badge"><?php echo esc_html( $v ); ?></span>
+										<?php endforeach; ?>
+									</p>
+								</div>
 
-			<p>
-				<strong><?php esc_html_e( 'Valori consentiti per', 'design_laboratori_italia' ); ?> <code>stato</code>:</strong>
-				<span class="dli-value-badge">publish</span>
-				<span class="dli-value-badge">draft</span>
-				&mdash; <?php esc_html_e( 'predefinito:', 'design_laboratori_italia' ); ?> <code>publish</code>.
-			</p>
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Valori consentiti per', 'design_laboratori_italia' ); ?> <code>stato</code></h3>
+									<p>
+										<span class="dli-value-badge">publish</span>
+										<span class="dli-value-badge">draft</span>
+										<span class="dli-inline-note"><?php esc_html_e( 'Predefinito: publish.', 'design_laboratori_italia' ); ?></span>
+									</p>
+								</div>
 
-			<p>
-				<strong><?php esc_html_e( 'Campi booleani', 'design_laboratori_italia' ); ?> (<code>escludi_da_elenco</code>, <code>disattiva_pagina_dettaglio</code>):</strong>
-				<span class="dli-value-badge">1</span> = <?php esc_html_e( 'attivo', 'design_laboratori_italia' ); ?>,
-				<span class="dli-value-badge">0</span> <?php esc_html_e( 'o vuoto = disattivo (predefinito).', 'design_laboratori_italia' ); ?>
-			</p>
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Campi booleani', 'design_laboratori_italia' ); ?></h3>
+									<p><code>escludi_da_elenco</code>, <code>disattiva_pagina_dettaglio</code>: <span class="dli-value-badge">1</span> = <?php esc_html_e( 'attivo', 'design_laboratori_italia' ); ?>, <span class="dli-value-badge">0</span> <?php esc_html_e( 'o vuoto = disattivo (predefinito).', 'design_laboratori_italia' ); ?></p>
+								</div>
 
-			<p>
-				<strong><?php esc_html_e( 'Valori multipli', 'design_laboratori_italia' ); ?> (<code>struttura</code>):</strong>
-				<?php esc_html_e( 'Separare con', 'design_laboratori_italia' ); ?> <code>|</code>
-				&mdash; <?php esc_html_e( 'es.:', 'design_laboratori_italia' ); ?> <code>laboratorio-abc|laboratorio-xyz</code>.
-			</p>
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Valori multipli', 'design_laboratori_italia' ); ?></h3>
+									<p><code>struttura</code>: <?php esc_html_e( 'separare con', 'design_laboratori_italia' ); ?> <code>|</code>. <span class="dli-inline-note"><code>laboratorio-abc|laboratorio-xyz</code></span></p>
+								</div>
 
-			<p><?php esc_html_e( 'Per tipologia_persona e struttura: inserire lo slug della voce già esistente. Le voci non trovate vengono ignorate.', 'design_laboratori_italia' ); ?></p>
-			<p><?php esc_html_e( 'Il campo body accetta testo semplice o HTML base (corsivo, grassetto, paragrafi).', 'design_laboratori_italia' ); ?></p>
+								<div class="dli-info-row">
+									<h3><?php esc_html_e( 'Note operative', 'design_laboratori_italia' ); ?></h3>
+									<p><?php esc_html_e( 'Per tipologia_persona e struttura: inserire lo slug della voce già esistente. Le voci non trovate vengono ignorate.', 'design_laboratori_italia' ); ?></p>
+									<p><?php esc_html_e( 'Il campo body accetta testo semplice o HTML base (corsivo, grassetto, paragrafi).', 'design_laboratori_italia' ); ?></p>
+								</div>
+							</div>
+						</details>
+					</div>
+				</div>
 
-			<a href="<?php echo esc_url( $download_url ); ?>" class="button">
-				<?php esc_html_e( 'Scarica CSV di esempio', 'design_laboratori_italia' ); ?>
-			</a>
+				<p class="dli-section-actions">
+					<a href="<?php echo esc_url( $download_url ); ?>" class="button">
+						<?php esc_html_e( 'Scarica CSV di esempio', 'design_laboratori_italia' ); ?>
+					</a>
+				</p>
+			</div>
 		</div>
 		<?php
 	}
@@ -516,66 +569,73 @@ class DLI_Tools_Admin {
 			'dry_run' => __( 'dry_run (simulazione)', 'design_laboratori_italia' ),
 			'commit'  => __( 'commit (esecuzione reale)', 'design_laboratori_italia' ),
 		);
-		$exec_disabled = array();
 
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$sel_import = isset( $_POST['dli_import_mode'] ) ? sanitize_key( wp_unslash( $_POST['dli_import_mode'] ) ) : 'upsert';
-		$sel_exec   = isset( $_POST['dli_exec_mode'] )   ? sanitize_key( wp_unslash( $_POST['dli_exec_mode'] ) )   : 'dry_run';
+		$sel_exec   = isset( $_POST['dli_exec_mode'] ) ? sanitize_key( wp_unslash( $_POST['dli_exec_mode'] ) ) : 'dry_run';
 		// phpcs:enable WordPress.Security.NonceVerification.Missing
 		?>
-		<div class="dli-tool-box">
-			<h2><?php esc_html_e( 'Esegui importazione', 'design_laboratori_italia' ); ?></h2>
-			<form method="POST"
-				  action="<?php echo esc_url( admin_url( 'admin.php?page=' . self::IMPORT_SLUG ) ); ?>"
-				  enctype="multipart/form-data">
-				<?php wp_nonce_field( 'dli_import_persone', 'dli_import_persone_nonce' ); ?>
-				<table class="dli-form-table">
-					<tr>
-						<th scope="row">
-							<label for="dli-csv-file"><?php esc_html_e( 'File CSV', 'design_laboratori_italia' ); ?></label>
-						</th>
-						<td>
-							<input type="file" id="dli-csv-file" name="dli_csv_file" accept=".csv">
-							<p class="dli-form-note"><?php esc_html_e( 'Dimensione massima: 2 MB. Separatore: punto e virgola (;).', 'design_laboratori_italia' ); ?></p>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="dli-import-mode"><?php esc_html_e( 'Modalità importazione', 'design_laboratori_italia' ); ?></label>
-						</th>
-						<td>
-							<select id="dli-import-mode" name="dli_import_mode">
-								<?php foreach ( $import_modes as $value => $label ) : ?>
-									<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $sel_import, $value ); ?>>
-										<?php echo esc_html( $label ); ?>
-									</option>
-								<?php endforeach; ?>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="dli-exec-mode"><?php esc_html_e( 'Modalità di esecuzione', 'design_laboratori_italia' ); ?></label>
-						</th>
-						<td>
-							<select id="dli-exec-mode" name="dli_exec_mode">
-								<?php foreach ( $exec_modes as $value => $label ) : ?>
-									<option value="<?php echo esc_attr( $value ); ?>"
-										<?php selected( $sel_exec, $value ); ?>
-										<?php disabled( in_array( $value, $exec_disabled, true ), true ); ?>>
-										<?php echo esc_html( $label ); ?>
-									</option>
-								<?php endforeach; ?>
-							</select>
-						</td>
-					</tr>
-				</table>
-				<p>
-					<button type="submit" class="button button-primary">
-						<?php esc_html_e( 'Esegui import persone', 'design_laboratori_italia' ); ?>
-					</button>
-				</p>
-			</form>
+		<div class="postbox dli-tool-panel dli-tool-panel-form">
+			<div class="inside">
+				<h2><?php esc_html_e( 'Esegui importazione', 'design_laboratori_italia' ); ?></h2>
+				<form method="POST"
+						action="<?php echo esc_url( admin_url( 'admin.php?page=' . self::IMPORT_SLUG ) ); ?>"
+						enctype="multipart/form-data"
+						class="dli-import-form">
+					<?php wp_nonce_field( 'dli_import_persone', 'dli_import_persone_nonce' ); ?>
+					<table class="form-table dli-import-form-table" role="presentation">
+						<tbody>
+							<tr>
+								<th scope="row">
+									<label for="dli-csv-file"><?php esc_html_e( 'File CSV', 'design_laboratori_italia' ); ?></label>
+								</th>
+								<td>
+									<input type="file" id="dli-csv-file" name="dli_csv_file" accept=".csv"
+											required aria-describedby="dli-csv-file-note">
+									<p id="dli-csv-file-note" class="dli-form-note"><?php esc_html_e( 'Dimensione massima: 2 MB. Separatore: punto e virgola (;).', 'design_laboratori_italia' ); ?></p>
+								</td>
+							</tr>
+
+							<tr>
+								<th scope="row">
+									<label for="dli-import-mode"><?php esc_html_e( 'Modalità importazione', 'design_laboratori_italia' ); ?></label>
+								</th>
+								<td>
+									<select id="dli-import-mode" name="dli_import_mode">
+										<?php foreach ( $import_modes as $value => $label ) : ?>
+											<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $sel_import, $value ); ?>>
+												<?php echo esc_html( $label ); ?>
+											</option>
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<th scope="row">
+									<label for="dli-exec-mode"><?php esc_html_e( 'Modalità di esecuzione', 'design_laboratori_italia' ); ?></label>
+								</th>
+								<td>
+									<select id="dli-exec-mode" name="dli_exec_mode">
+										<?php foreach ( $exec_modes as $value => $label ) : ?>
+											<option value="<?php echo esc_attr( $value ); ?>"
+												<?php selected( $sel_exec, $value ); ?>>
+												<?php echo esc_html( $label ); ?>
+											</option>
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p class="dli-form-actions">
+						<button type="submit" class="button button-primary">
+							<?php esc_html_e( 'Esegui import persone', 'design_laboratori_italia' ); ?>
+						</button>
+					</p>
+				</form>
+			</div>
 		</div>
 		<?php
 	}
@@ -587,90 +647,96 @@ class DLI_Tools_Admin {
 	 * @return void
 	 */
 	private static function render_report_persone( array $report ) {
-		$is_dryrun  = ( 'dry_run' === $report['exec_mode'] );
-		$mode_label = $is_dryrun
+		$is_dryrun    = ( 'dry_run' === $report['exec_mode'] );
+		$mode_label   = $is_dryrun
 			? __( 'esecuzione simulata', 'design_laboratori_italia' )
 			: __( 'esecuzione reale', 'design_laboratori_italia' );
-		$mode_class = $is_dryrun ? 'is-dryrun' : 'is-commit';
+		$mode_class   = $is_dryrun ? 'is-dryrun' : 'is-commit';
+		$notice_class = 'notice-' . ( $report['notice_type'] ?? 'info' );
 		?>
-		<div class="dli-report-box">
-			<div class="dli-report-title">
-				<h2><?php esc_html_e( 'Report importazione', 'design_laboratori_italia' ); ?></h2>
-				<span class="dli-report-mode <?php echo esc_attr( $mode_class ); ?>">
-					<?php echo esc_html( $mode_label ); ?>
-				</span>
-			</div>
+		<div id="dli-report-section" class="postbox dli-tool-panel dli-tool-panel-report" tabindex="-1">
+			<div class="inside">
+				<div class="dli-report-title">
+					<h2><?php esc_html_e( 'Report importazione', 'design_laboratori_italia' ); ?></h2>
+					<span class="dli-report-mode <?php echo esc_attr( $mode_class ); ?>">
+						<?php echo esc_html( $mode_label ); ?>
+					</span>
+				</div>
 
-			<?php if ( $report['filename'] ) : ?>
-				<p class="dli-report-meta">
-					<?php
-					printf(
-						/* translators: 1: exec mode 2: import mode 3: filename */
-						esc_html__( 'Modalità esecuzione: %1$s | Modalità importazione: %2$s | File: %3$s', 'design_laboratori_italia' ),
-						esc_html( $report['exec_mode'] ),
-						esc_html( $report['import_mode'] ),
-						esc_html( $report['filename'] )
-					);
-					?>
-				</p>
-			<?php endif; ?>
+				<?php if ( $report['filename'] ) : ?>
+					<p class="dli-report-meta">
+						<?php
+						printf(
+							/* translators: 1: exec mode 2: import mode 3: filename */
+							esc_html__( 'Modalità esecuzione: %1$s | Modalità importazione: %2$s | File: %3$s', 'design_laboratori_italia' ),
+							esc_html( $report['exec_mode'] ),
+							esc_html( $report['import_mode'] ),
+							esc_html( $report['filename'] )
+						);
+						?>
+					</p>
+				<?php endif; ?>
 
-			<?php if ( $report['notice'] ) : ?>
-				<div class="notice notice-info inline"><p><?php echo esc_html( $report['notice'] ); ?></p></div>
-			<?php endif; ?>
+				<?php if ( $report['notice'] ) : ?>
+					<div class="notice <?php echo esc_attr( $notice_class ); ?> inline" role="alert">
+						<p><?php echo esc_html( $report['notice'] ); ?></p>
+					</div>
+				<?php endif; ?>
 
-			<?php if ( $report['filename'] ) : ?>
-				<table class="dli-report-summary">
-					<thead>
-						<tr>
-							<th><?php esc_html_e( 'Elaborati', 'design_laboratori_italia' ); ?></th>
-							<th><?php esc_html_e( 'Creato', 'design_laboratori_italia' ); ?></th>
-							<th><?php esc_html_e( 'Aggiornato', 'design_laboratori_italia' ); ?></th>
-							<th><?php esc_html_e( 'Saltati', 'design_laboratori_italia' ); ?></th>
-							<th class="col-errors"><?php esc_html_e( 'Errori', 'design_laboratori_italia' ); ?></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><?php echo esc_html( (string) $report['elaborati'] ); ?></td>
-							<td><?php echo esc_html( (string) $report['creati'] ); ?></td>
-							<td><?php echo esc_html( (string) $report['aggiornati'] ); ?></td>
-							<td><?php echo esc_html( (string) $report['saltati'] ); ?></td>
-							<td><?php echo esc_html( (string) $report['errori_count'] ); ?></td>
-						</tr>
-					</tbody>
-				</table>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $report['log'] ) ) : ?>
-				<div class="dli-tool-box dli-log-box">
-					<h3><?php esc_html_e( 'Log importazione', 'design_laboratori_italia' ); ?></h3>
-					<table class="dli-log-table">
+				<?php if ( $report['filename'] ) : ?>
+				<table class="widefat striped fixed dli-report-summary">
 						<thead>
 							<tr>
-								<th><?php esc_html_e( 'Riga', 'design_laboratori_italia' ); ?></th>
-								<th><?php esc_html_e( 'Nome e cognome', 'design_laboratori_italia' ); ?></th>
-								<th><?php esc_html_e( 'Email', 'design_laboratori_italia' ); ?></th>
-								<th><?php esc_html_e( 'Stato', 'design_laboratori_italia' ); ?></th>
-								<th><?php esc_html_e( 'Messaggio', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Elaborati', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Creati', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Aggiornati', 'design_laboratori_italia' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Saltati', 'design_laboratori_italia' ); ?></th>
+								<th scope="col" class="col-errors"><?php esc_html_e( 'Errori', 'design_laboratori_italia' ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ( $report['log'] as $entry ) : ?>
-								<tr>
-									<td class="dli-log-cell-id"><?php echo esc_html( (string) $entry['row'] ); ?></td>
-									<td class="dli-log-cell-name"><?php echo esc_html( $entry['name'] ?? '' ); ?></td>
-									<td class="dli-log-cell-email"><?php echo esc_html( $entry['email'] ?? '' ); ?></td>
-									<td class="dli-log-status-<?php echo esc_attr( strtolower( $entry['status'] ) ) ; ?>">
-										<?php echo esc_html( $entry['status'] ); ?>
-									</td>
-									<td><?php echo esc_html( $entry['message'] ); ?></td>
-								</tr>
-							<?php endforeach; ?>
+							<tr>
+								<td><?php echo esc_html( (string) $report['elaborati'] ); ?></td>
+								<td><?php echo esc_html( (string) $report['creati'] ); ?></td>
+								<td><?php echo esc_html( (string) $report['aggiornati'] ); ?></td>
+								<td><?php echo esc_html( (string) $report['saltati'] ); ?></td>
+								<td><?php echo esc_html( (string) $report['errori_count'] ); ?></td>
+							</tr>
 						</tbody>
 					</table>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $report['log'] ) ) : ?>
+					<div class="dli-log-box">
+						<h3><?php esc_html_e( 'Log importazione', 'design_laboratori_italia' ); ?></h3>
+					<table class="widefat striped fixed dli-log-table">
+							<caption class="screen-reader-text"><?php esc_html_e( 'Dettaglio righe elaborate', 'design_laboratori_italia' ); ?></caption>
+							<thead>
+								<tr>
+									<th scope="col"><?php esc_html_e( 'Riga', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php esc_html_e( 'Nome e cognome', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php esc_html_e( 'Email', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php esc_html_e( 'Stato', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php esc_html_e( 'Messaggio', 'design_laboratori_italia' ); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ( $report['log'] as $entry ) : ?>
+									<tr>
+										<td class="dli-log-cell-id"><?php echo esc_html( (string) $entry['row'] ); ?></td>
+										<td class="dli-log-cell-name"><?php echo esc_html( $entry['name'] ?? '' ); ?></td>
+										<td class="dli-log-cell-email"><?php echo esc_html( $entry['email'] ?? '' ); ?></td>
+										<td class="dli-log-status-<?php echo esc_attr( strtolower( $entry['status'] ) ); ?>">
+											<?php echo esc_html( $entry['status'] ); ?>
+										</td>
+										<td><?php echo esc_html( $entry['message'] ); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
 		<?php
 	}
@@ -683,7 +749,7 @@ class DLI_Tools_Admin {
 	public static function render_utils() {
 		self::require_capability();
 		self::render_shell(
-			function() {
+			function () {
 				self::render_reload_tool();
 			}
 		);
@@ -706,25 +772,33 @@ class DLI_Tools_Admin {
 		$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$nonce  = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		if ( 'reload' === $action ) {
-			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'dli_reload_theme_data' ) ) {
-				wp_die( esc_html__( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' ) );
-			}
-			dli_create_pages_on_theme_activation();
-			echo '<div class="notice notice-success inline"><p>' . esc_html__( 'Dati di attivazione ricaricati con successo.', 'design_laboratori_italia' ) . '</p></div>';
-		}
-
 		$reload_url = wp_nonce_url(
 			admin_url( 'admin.php?page=' . self::UTILS_SLUG . '&action=reload' ),
 			'dli_reload_theme_data'
 		);
-
 		?>
-		<h2><?php esc_html_e( 'Ricarica i dati di attivazione del tema', 'design_laboratori_italia' ); ?></h2>
-		<p><?php esc_html_e( 'Ricrea menu, pagine e tassonomie predefiniti del tema. Usa questa funzione se la struttura del sito risulta incompleta dopo l\'installazione o un aggiornamento.', 'design_laboratori_italia' ); ?></p>
-		<a href="<?php echo esc_url( $reload_url ); ?>" class="button button-primary">
-			<?php esc_html_e( 'Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)', 'design_laboratori_italia' ); ?>
-		</a>
+		<div class="postbox dli-tool-panel">
+			<div class="inside">
+				<h2><?php esc_html_e( 'Ricarica i dati di attivazione del tema', 'design_laboratori_italia' ); ?></h2>
+				<?php if ( 'reload' === $action ) : ?>
+					<?php
+					if ( ! $nonce || ! wp_verify_nonce( $nonce, 'dli_reload_theme_data' ) ) {
+						wp_die( esc_html__( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' ) );
+					}
+					dli_create_pages_on_theme_activation();
+					?>
+					<div class="notice notice-success inline">
+						<p><?php esc_html_e( 'Dati di attivazione ricaricati con successo.', 'design_laboratori_italia' ); ?></p>
+					</div>
+				<?php endif; ?>
+				<p class="dli-section-lead"><?php esc_html_e( 'Ricrea menu, pagine e tassonomie predefiniti del tema. Usa questa funzione se la struttura del sito risulta incompleta dopo l\'installazione o un aggiornamento.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-actions">
+					<a href="<?php echo esc_url( $reload_url ); ?>" class="button button-primary">
+						<?php esc_html_e( 'Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)', 'design_laboratori_italia' ); ?>
+					</a>
+				</p>
+			</div>
+		</div>
 		<?php
 	}
 }
