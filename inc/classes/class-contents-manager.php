@@ -664,10 +664,24 @@ class DLI_ContentsManager {
 			);
 			$results = $query->posts;
 		} else {
-			$result_ids = dli_get_option( 'articoli_presentazione', 'homepage' );
-			$result_ids = $result_ids ? $result_ids : array();
+			$result_ids       = dli_get_option( 'articoli_presentazione', 'homepage' );
+			$result_ids       = $result_ids ? $result_ids : array();
+			$is_multilanguage = 'true' === dli_get_option( 'selettore_lingua_visible', 'setup' );
+			$current_language = dli_current_language( 'slug' );
 			foreach ( $result_ids as $id ) {
-				array_push( $results, get_post( $id ) );
+				// On multilingual sites resolve the selected post to its current-language translation.
+				// If the translation does not exist, skip the item instead of showing the wrong language.
+				if ( $is_multilanguage ) {
+					$translations = dli_get_post_translations( $id );
+					if ( ! array_key_exists( $current_language, $translations ) ) {
+						continue;
+					}
+					$id = $translations[ $current_language ];
+				}
+				$post = get_post( $id );
+				if ( $post && 'publish' === $post->post_status ) {
+					array_push( $results, $post );
+				}
 			}
 		}
 		foreach ( $results as $result ) {

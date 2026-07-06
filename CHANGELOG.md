@@ -23,6 +23,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto import delle persone da CSV.
 ## Corretto
 - Corretto funzionamento dei filtri nella visualizzazione a chip delle persone.
+- Corretto bug in visualizzazione Carousel in Home Page in modlità manuale.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.1.
