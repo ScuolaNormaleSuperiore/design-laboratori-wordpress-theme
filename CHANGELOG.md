@@ -13,6 +13,19 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (creazione PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
+- Corretto il carousel della Home Page: l'ordinamento per data evento ora viene applicato correttamente.
+- Corretti i permessi della REST API importer: ora il controllo usa la capability `manage_options` invece del ruolo `administrator`.
+- Resa sicura l'iniezione del messaggio informativo sui limiti upload nel modal Media di WordPress.
+- Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
+- Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
+
+
+
+## [REL-1.8.1] - 2026-07-17
+## Corretto
+- Vari bug fixing.
+- Modificato funzionamento della ricerca del sito, cerca anche per stringa vuota.
+- Corretta gestione del multilingua nel Carousel in HP.
 
 
 

@@ -310,17 +310,22 @@ class DLI_LabManager {
 	 * @return void
 	 */
 	public function enqueue_upload_limits_script() {
-		$notice = "<b style='color: #00728D;'>" . esc_js( __( 'Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, PNG, GIF, WebP) 1 MB.', 'design_laboratori_italia' ) ) . '</b>';
+		$notice = sprintf(
+			'<b style="color: #00728D;">%s</b>',
+			__( 'Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, PNG, GIF, WebP) 1 MB.', 'design_laboratori_italia' )
+		);
 		wp_add_inline_script(
 			'media-views',
 			'(function(){
 				if ( typeof wp === "undefined" || ! wp.media || ! wp.media.view || ! wp.media.view.UploaderInline ) { return; }
 				var Parent = wp.media.view.UploaderInline;
+				var noticeHtml = ' . wp_json_encode( $notice ) . ';
 				wp.media.view.UploaderInline = Parent.extend({
 					ready: function() {
 						Parent.prototype.ready.apply( this, arguments );
 						if ( ! this.$el.find( ".dli-upload-notice" ).length ) {
-							this.$el.append( "<p class=\"description dli-upload-notice\" style=\"text-align:center;margin-top:8px;\">' . $notice . '</p>" );
+							this.$el.append( "<p class=\"description dli-upload-notice\" style=\"text-align:center;margin-top:8px;\"></p>" );
+							this.$el.find( ".dli-upload-notice" ).html( noticeHtml );
 						}
 					}
 				});

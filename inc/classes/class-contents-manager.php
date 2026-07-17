@@ -645,13 +645,15 @@ class DLI_ContentsManager {
 		$items           = array();
 		$results         = array();
 		$mode_auto       = dli_get_option( 'home_carousel_is_selezione_automatica', 'homepage' );
-		$order_date_type = dli_get_option( 'home_carousel_order', 'homepage' ) === 'post_modified' ? 'post_modified' : 'post_date';
+		$order_raw       = dli_get_option( 'home_carousel_order', 'homepage' );
+		$order_date_type = in_array( $order_raw, array( 'post_date', 'post_modified', 'event_date' ), true ) ? $order_raw : 'post_date';
+		$query_orderby   = 'event_date' === $order_date_type ? 'post_date' : $order_date_type;
 		if ( $mode_auto === 'true' ) {
 			$query   = new WP_Query(
 				array(
 					'posts_per_page' => -1,
 					'post_type'      => DLI_CAROUSEL_POST_TYPES,
-					'orderby'        => $order_date_type,
+					'orderby'        => $query_orderby,
 					'order'          => 'DESC',
 					'meta_query'     => array(
 						array(

@@ -216,21 +216,21 @@ class DLI_BaseImporter {
 			);
 		}
 
-		list( $username, $password ) = $credentials;
-		$user                        = wp_authenticate( $username, $password );
-		if ( is_wp_error( $user ) ) {
-			return new WP_Error(
-				'rest_authentication_failed',
-				__( 'Credenziali non valide.', 'design_laboratori_italia' ),
-				array( 'status' => 401 )
-			);
-		} elseif ( ! user_can( $user, 'administrator' ) ) {
-			return new WP_Error(
-				'rest_authentication_failed',
-				__( 'Utente non autorizzato', 'design_laboratori_italia' ),
-				array( 'status' => 401 )
-			);
-		}
+			list( $username, $password ) = $credentials;
+			$user                        = wp_authenticate( $username, $password );
+			if ( is_wp_error( $user ) ) {
+				return new WP_Error(
+					'rest_authentication_failed',
+					__( 'Credenziali non valide.', 'design_laboratori_italia' ),
+					array( 'status' => 401 )
+				);
+			} elseif ( ! user_can( $user, 'manage_options' ) ) {
+				return new WP_Error(
+					'rest_authentication_failed',
+					__( 'Utente non autorizzato', 'design_laboratori_italia' ),
+					array( 'status' => 401 )
+				);
+			}
 		return true;
 	}
 

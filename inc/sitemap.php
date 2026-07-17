@@ -181,6 +181,10 @@ function dli_sitemap_template_redirect() {
 		return;
 	}
 
+	if ( ! in_array( $sitemap, array( 'index', 'it', 'en' ), true ) ) {
+		return;
+	}
+
 	header( 'Content-Type: application/xml; charset=UTF-8' );
 	header( 'X-Robots-Tag: noindex, follow' );
 

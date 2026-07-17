@@ -16,22 +16,23 @@ if ( $dli_section_enabled && $dli_video_url ) {
 	$dli_current_language = dli_current_language( 'slug' );
 	$dli_page_link        = dli_get_privacy_link( $dli_current_language );
 
-	$dli_message_text = sprintf(
-		/* translators: 1: Privacy page URL, 2: Privacy page label. */
-		__(
-			'Accetta i cookie di Youtube per guardare il video. Puoi gestire le preferenze in <a target="_blank" href="%1$s" class="text-white">%2$s</a>.',
-			'design_laboratori_italia'
-		),
-		esc_url( $dli_page_link ),
-		esc_html( $dli_page_label )
-	);
-	$dli_allowed_html = array(
-		'a' => array(
-			'target' => true,
-			'href'   => true,
-			'class'  => true,
-		),
-	);
+		$dli_message_text = sprintf(
+			/* translators: 1: Privacy page URL, 2: Privacy page label. */
+			__(
+				'Accetta i cookie di Youtube per guardare il video. Puoi gestire le preferenze in <a target="_blank" rel="noopener noreferrer" href="%1$s" class="text-white">%2$s</a>.',
+				'design_laboratori_italia'
+			),
+			esc_url( $dli_page_link ),
+			esc_html( $dli_page_label )
+		);
+		$dli_allowed_html = array(
+			'a' => array(
+				'target' => true,
+				'rel'    => true,
+				'href'   => true,
+				'class'  => true,
+			),
+		);
 	?>
 
 	<div class="container-banner-home">
