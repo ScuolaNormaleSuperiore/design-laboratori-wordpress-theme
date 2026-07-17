@@ -797,17 +797,25 @@ class DLI_ContentsManager {
 
 	// SITE SEARCH
 	public static function main_search_query( $selected_contents, $search_string, $page_size ) {
+		$has_search_string = '' !== trim( $search_string );
 		$params = array(
 			'paged'          => get_query_var( 'paged', 1 ),
 			'post_status'    => 'publish',
 			'posts_per_page' => $page_size,
-			's'              => $search_string,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
+
+		if ( $has_search_string ) {
+			$params['s'] = $search_string;
+		}
+
 		if ( count( $selected_contents ) > 0 ) {
 			$params['post_type'] = $selected_contents;
+		} elseif ( ! $has_search_string ) {
+			$params['post_type'] = self::get_all_contenttypes_with_results();
 		}
+
 		$the_query = new WP_Query( $params );
 		return $the_query;
 	}

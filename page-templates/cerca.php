@@ -44,24 +44,22 @@ if ( 'yes' !== $dli_is_reset ) {
 	}
 }
 
-if ( '' !== $dli_search_string ) {
-	// Verify nonce before performing the search query.
-	if (
-		isset( $_GET['cercasito_nonce_field'] ) &&
-		wp_verify_nonce(
-			sanitize_text_field( wp_unslash( $_GET['cercasito_nonce_field'] ) ),
-			'sf_cercasito_nonce'
-		)
-	) {
-		$dli_query = DLI_ContentsManager::main_search_query(
-			$dli_selected_contents,
-			$dli_search_string,
-			SITESEARCH_CELLS_PER_PAGE
-		);
+// Verify nonce before performing the search query.
+if (
+	isset( $_GET['cercasito_nonce_field'] ) &&
+	wp_verify_nonce(
+		sanitize_text_field( wp_unslash( $_GET['cercasito_nonce_field'] ) ),
+		'sf_cercasito_nonce'
+	)
+) {
+	$dli_query = DLI_ContentsManager::main_search_query(
+		$dli_selected_contents,
+		$dli_search_string,
+		SITESEARCH_CELLS_PER_PAGE
+	);
 
-		if ( $dli_query instanceof WP_Query ) {
-			$dli_num_results = $dli_query->found_posts;
-		}
+	if ( $dli_query instanceof WP_Query ) {
+		$dli_num_results = $dli_query->found_posts;
 	}
 }
 // End preparing search params.
@@ -159,7 +157,7 @@ if ( '' !== $dli_search_string ) {
 						// The main loop of the page.
 						$dli_result_index = 0;
 						?>
-						<?php if ( ( $dli_num_results > 0 ) && ( '' !== $dli_search_string ) && ( $dli_query instanceof WP_Query ) ) : ?>
+						<?php if ( ( $dli_num_results > 0 ) && ( $dli_query instanceof WP_Query ) ) : ?>
 							<?php while ( $dli_query->have_posts() ) : ?>
 								<?php
 								$dli_query->the_post();
