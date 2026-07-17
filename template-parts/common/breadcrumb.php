@@ -23,7 +23,7 @@ if ( is_home() ) {
 					foreach ( $dli_steps as $dli_step ) {
 						?>
 					<li class="<?php echo esc_attr( $dli_step['class'] ); ?>">
-						<a href="<?php echo esc_url( $dli_step['url'] ); ?>"><?php echo esc_attr( $dli_step['label'] ); ?></a>
+						<a href="<?php echo esc_url( $dli_step['url'] ); ?>"><?php echo esc_html( $dli_step['label'] ); ?></a>
 						<?php
 						if ( $dli_index < count( $dli_steps ) - 1 ) {
 							?>

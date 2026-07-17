@@ -10,7 +10,7 @@ if ( ! function_exists( 'dli_define_spinoff_constants' ) ) {
 		define(
 			'DLI_SPINOFF_STATUS',
 			array(
-				'In attività' => __( 'Cerca area tematica', 'design_laboratori_italia' ),
+				'In attività' => __( 'In attività', 'design_laboratori_italia' ),
 				'Cessata'     => __( 'Cessata', 'design_laboratori_italia' ),
 			)
 		);

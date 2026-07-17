@@ -25,7 +25,7 @@ $dli_back_url = $dli_back_url ? $dli_back_url : home_url( '/' );
 						<?php
 						/* translators: %1$s is the fallback URL for the "go back" link. */
 						$dli_404_message = __(
-							'Oops! La pagina che cerchi non è stata trovata, <a href="%1$s" title="Torna alla pagina precedente" onclick="history.back(); return false;">torna indietro</a> o utilizza il menu per continuare la navigazione.',
+							'Oops! La pagina che cerchi non è stata trovata, <a href="%1$s" title="Torna alla pagina precedente">torna indietro</a> o utilizza il menu per continuare la navigazione.',
 							'design_laboratori_italia'
 						);
 						printf(

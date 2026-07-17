@@ -75,15 +75,9 @@ html {
 	text-decoration: none !important;
 }
 
-.menutree {}
-
 .menutree a {
 	text-decoration: none;
 }
-
-.menutree ul {}
-
-.menutree ul li {}
 
 .box_change_map_lang {
 	width: 100%;
@@ -167,10 +161,6 @@ a.mappasitolink:hover {
 	display: block !important;
 	min-width: 24px !important;
 	min-height: 24px !important;
-}
-
-.cardTitlecustomSpacing {
-
 }
 
 .cardTitlecustomSpacing a {

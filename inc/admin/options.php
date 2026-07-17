@@ -2882,7 +2882,7 @@ function dli_register_main_options_metabox() {
 				array(
 					'id'         => $prefix . 'analytics_code',
 					'name'       => 'Codice analytics',
-					'desc'       => __( 'Inserisci il codice Analytics. Puoi crearlo <a target="_blank" href="https://webanalytics.italia.it/">da qui</a>', 'design_laboratori_italia' ),
+					'desc'       => __( 'Inserisci il codice Analytics. Puoi crearlo <a target="_blank" rel="noopener noreferrer" href="https://webanalytics.italia.it/">da qui</a>', 'design_laboratori_italia' ),
 					'type'       => 'textarea_code',
 					'attributes' => array(
 						'rows'      => 10,

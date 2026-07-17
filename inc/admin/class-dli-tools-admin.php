@@ -92,11 +92,13 @@ class DLI_Tools_Admin {
 			return;
 		}
 
+		$dli_tools_css_path = get_template_directory() . '/assets/css/tools-admin.css';
+		$dli_tools_css_ver  = file_exists( $dli_tools_css_path ) ? (string) filemtime( $dli_tools_css_path ) : wp_get_theme()->get( 'Version' );
 		wp_enqueue_style(
 			'dli-tools-admin',
 			get_template_directory_uri() . '/assets/css/tools-admin.css',
 			array(),
-			(string) filemtime( get_template_directory() . '/assets/css/tools-admin.css' )
+			$dli_tools_css_ver
 		);
 	}
 

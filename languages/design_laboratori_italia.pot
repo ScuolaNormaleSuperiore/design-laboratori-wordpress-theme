@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 13:36+0000\n"
+"POT-Creation-Date: 2026-07-17 09:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Accedi"
 msgstr ""
 
-#: template-parts/home/hp-video-section.php:68
+#: template-parts/home/hp-video-section.php:69
 msgid "Accept"
 msgstr ""
 
@@ -49,8 +49,8 @@ msgstr ""
 #, php-format
 msgid ""
 "Accetta i cookie di Youtube per guardare il video. Puoi gestire le "
-"preferenze in <a target=\"_blank\" href=\"%1$s\" class=\"text-white\">"
-"%2$s</a>."
+"preferenze in <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"%1$s\" "
+"class=\"text-white\">%2$s</a>."
 msgstr ""
 
 #: template-parts/common/sezione-video.php:30
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Aggiorna area tematica"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:564
+#: inc/admin/class-dli-tools-admin.php:566
 msgid "aggiorna esistenti (salta se non esiste)"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Aggiorna tipo risorsa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:692
+#: inc/admin/class-dli-tools-admin.php:694
 msgid "Aggiornati"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Attività di ricerca"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:527
+#: inc/admin/class-dli-tools-admin.php:529
 msgid "attivo"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Brevetto"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:526
+#: inc/admin/class-dli-tools-admin.php:528
 msgid "Campi booleani"
 msgstr ""
 
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Campi obbligatori mancanti o email non valida."
 msgstr ""
 
-#: page-templates/cerca.php:103
+#: page-templates/cerca.php:101
 msgid "Cancella"
 msgstr ""
 
@@ -271,12 +271,11 @@ msgstr ""
 msgid "Categorie collegate:"
 msgstr ""
 
-#: header.php:168 page-templates/cerca.php:106
+#: header.php:168 page-templates/cerca.php:104
 msgid "Cerca"
 msgstr ""
 
 #: inc/classes/class-patentmanager.php:47
-#: inc/classes/class-spinoffmanager.php:13
 msgid "Cerca area tematica"
 msgstr ""
 
@@ -287,8 +286,8 @@ msgstr ""
 msgid "Cerca contenuto"
 msgstr ""
 
-#: header.php:172 header.php:173 header.php:174 page-templates/cerca.php:83
-#: page-templates/cerca.php:87
+#: header.php:172 header.php:173 header.php:174 page-templates/cerca.php:81
+#: page-templates/cerca.php:85
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -347,11 +346,11 @@ msgstr ""
 msgid "Cognome"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:503
+#: inc/admin/class-dli-tools-admin.php:505
 msgid "Colonne obbligatorie"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:489
+#: inc/admin/class-dli-tools-admin.php:491
 msgid "Come funziona"
 msgstr ""
 
@@ -359,7 +358,7 @@ msgstr ""
 msgid "Come raggiungerci"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:570
+#: inc/admin/class-dli-tools-admin.php:572
 msgid "commit (esecuzione reale)"
 msgstr ""
 
@@ -419,7 +418,7 @@ msgstr ""
 msgid "Costo"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:691
+#: inc/admin/class-dli-tools-admin.php:693
 msgid "Creati"
 msgstr ""
 
@@ -446,7 +445,7 @@ msgstr ""
 msgid "Date e orari"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:791
+#: inc/admin/class-dli-tools-admin.php:793
 msgid "Dati di attivazione ricaricati con successo."
 msgstr ""
 
@@ -517,7 +516,7 @@ msgid ""
 "Bootstrap Italia. Basato sul tema Design Scuole WordPress."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:500
+#: inc/admin/class-dli-tools-admin.php:502
 msgid "Dettagli campi e valori supportati"
 msgstr ""
 
@@ -537,7 +536,7 @@ msgstr ""
 msgid "Dettagli della persona"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:713
+#: inc/admin/class-dli-tools-admin.php:715
 msgid "Dettaglio righe elaborate"
 msgstr ""
 
@@ -549,13 +548,13 @@ msgstr ""
 msgid "dicembre"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:313
+#: inc/classes/class-labmanager.php:315
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:595
+#: inc/admin/class-dli-tools-admin.php:597
 msgid "Dimensione massima: 2 MB. Separatore: punto e virgola (;)."
 msgstr ""
 
@@ -567,7 +566,7 @@ msgstr ""
 msgid "Domanda di priorità"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:569
+#: inc/admin/class-dli-tools-admin.php:571
 msgid "dry_run (simulazione)"
 msgstr ""
 
@@ -576,7 +575,7 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:690
+#: inc/admin/class-dli-tools-admin.php:692
 msgid "Elaborati"
 msgstr ""
 
@@ -592,7 +591,7 @@ msgstr ""
 msgid "Elenco persone"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:718
+#: inc/admin/class-dli-tools-admin.php:720
 #: template-parts/persone/view-tabella.php:235
 msgid "Email"
 msgstr ""
@@ -615,7 +614,7 @@ msgstr ""
 msgid "Errore sconosciuto."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:694
+#: inc/admin/class-dli-tools-admin.php:696
 msgid "Errori"
 msgstr ""
 
@@ -623,23 +622,23 @@ msgstr ""
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:653
+#: inc/admin/class-dli-tools-admin.php:655
 msgid "esecuzione reale"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:652
+#: inc/admin/class-dli-tools-admin.php:654
 msgid "esecuzione simulata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:634
+#: inc/admin/class-dli-tools-admin.php:636
 msgid "Esegui import persone"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:580
+#: inc/admin/class-dli-tools-admin.php:582
 msgid "Esegui importazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:169
+#: inc/admin/class-dli-tools-admin.php:171
 msgid "Esporta"
 msgstr ""
 
@@ -670,11 +669,11 @@ msgstr ""
 msgid "febbraio"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:590
+#: inc/admin/class-dli-tools-admin.php:592
 msgid "File CSV"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:340
+#: inc/admin/class-dli-tools-admin.php:342
 msgid "File non valido."
 msgstr ""
 
@@ -682,11 +681,11 @@ msgstr ""
 msgid "File PDF"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:354
+#: inc/admin/class-dli-tools-admin.php:356
 msgid "File troppo grande. Dimensione massima: 2 MB."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:389
+#: inc/admin/class-dli-tools-admin.php:391
 msgid "File vuoto o intestazione non leggibile."
 msgstr ""
 
@@ -699,7 +698,7 @@ msgstr ""
 msgid "Filtra per"
 msgstr ""
 
-#: page-templates/cerca.php:125
+#: page-templates/cerca.php:123
 msgid "Filtra per tipo di contenuto"
 msgstr ""
 
@@ -707,7 +706,7 @@ msgstr ""
 msgid "Fine evento"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:348
+#: inc/admin/class-dli-tools-admin.php:350
 msgid "Formato non valido: è richiesto un file .csv."
 msgstr ""
 
@@ -753,7 +752,7 @@ msgstr ""
 msgid "ICT SNS"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:565
+#: inc/admin/class-dli-tools-admin.php:567
 msgid "ignora esistenti (non aggiorna)"
 msgstr ""
 
@@ -761,7 +760,7 @@ msgstr ""
 msgid "IL BREVETTO"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:538
+#: inc/admin/class-dli-tools-admin.php:540
 msgid ""
 "Il campo body accetta testo semplice o HTML base (corsivo, grassetto, "
 "paragrafi)."
@@ -793,11 +792,11 @@ msgid "Immagine principale della Persona"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:62
-#: inc/admin/class-dli-tools-admin.php:168
+#: inc/admin/class-dli-tools-admin.php:170
 msgid "Importa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:490
+#: inc/admin/class-dli-tools-admin.php:492
 msgid ""
 "Importa persone da un file CSV con separatore punto e virgola (;). "
 "L'intestazione deve corrispondere esattamente a quella richiesta."
@@ -807,8 +806,12 @@ msgstr ""
 msgid "Importa — Strumenti DLI"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:375
+#: inc/admin/class-dli-tools-admin.php:377
 msgid "Impossibile leggere il file caricato."
+msgstr ""
+
+#: inc/classes/class-spinoffmanager.php:13
+msgid "In attività"
 msgstr ""
 
 #: template-parts/home/carousel.php:21
@@ -840,7 +843,7 @@ msgid ""
 "completo per facilitare la ricerca"
 msgstr ""
 
-#: page-templates/cerca.php:95
+#: page-templates/cerca.php:93
 msgid "Inserisci il testo da cercare"
 msgstr ""
 
@@ -864,17 +867,17 @@ msgstr ""
 msgid "Inserisci il tuo numero di telefono"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:494
+#: inc/admin/class-dli-tools-admin.php:496
 msgid "Intestazione CSV richiesta"
 msgstr ""
 
 #. %s: missing column name
-#: inc/admin/class-dli-tools-admin.php:402
+#: inc/admin/class-dli-tools-admin.php:404
 #, php-format
 msgid "Intestazione non valida: colonna obbligatoria \"%s\" non trovata."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:341
+#: inc/classes/class-labmanager.php:346
 msgid "Invalid username or password"
 msgstr ""
 
@@ -958,7 +961,7 @@ msgstr ""
 msgid "Localizzazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:711
+#: inc/admin/class-dli-tools-admin.php:713
 msgid "Log importazione"
 msgstr ""
 
@@ -1024,7 +1027,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:145
+#: functions.php:148
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1032,23 +1035,23 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:143
+#: functions.php:146
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:144
+#: functions.php:147
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:141
+#: functions.php:144
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:142
+#: functions.php:145
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:720
+#: inc/admin/class-dli-tools-admin.php:722
 msgid "Messaggio"
 msgstr ""
 
@@ -1064,17 +1067,17 @@ msgstr ""
 msgid "Metodo non consentito. Usare POST."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:616
+#: inc/admin/class-dli-tools-admin.php:618
 msgid "Modalità di esecuzione"
 msgstr ""
 
 #. 1: exec mode 2: import mode 3: filename
-#: inc/admin/class-dli-tools-admin.php:671
+#: inc/admin/class-dli-tools-admin.php:673
 #, php-format
 msgid "Modalità esecuzione: %1$s | Modalità importazione: %2$s | File: %3$s"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:601
+#: inc/admin/class-dli-tools-admin.php:603
 msgid "Modalità importazione"
 msgstr ""
 
@@ -1114,7 +1117,7 @@ msgstr ""
 msgid "Nazione deposito"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:329
+#: inc/admin/class-dli-tools-admin.php:331
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr ""
 
@@ -1137,7 +1140,7 @@ msgstr ""
 msgid "Nome / Cognome"
 msgstr ""
 
-#: page-templates/contatti.php:237 inc/admin/class-dli-tools-admin.php:717
+#: page-templates/contatti.php:237 inc/admin/class-dli-tools-admin.php:719
 msgid "Nome e cognome"
 msgstr ""
 
@@ -1149,13 +1152,13 @@ msgstr ""
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:153
+#: inc/admin/class-dli-tools-admin.php:155
 msgid "Non hai i permessi per accedere a questa pagina."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:121
-#: inc/admin/class-dli-tools-admin.php:294
-#: inc/admin/class-dli-tools-admin.php:768
+#: inc/admin/class-dli-tools-admin.php:123
+#: inc/admin/class-dli-tools-admin.php:296
+#: inc/admin/class-dli-tools-admin.php:770
 msgid "Non hai i permessi per eseguire questa operazione."
 msgstr ""
 
@@ -1203,7 +1206,7 @@ msgstr ""
 msgid "Non è stato trovato nessun progetto"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:536
+#: inc/admin/class-dli-tools-admin.php:538
 msgid "Note operative"
 msgstr ""
 
@@ -1257,7 +1260,7 @@ msgstr ""
 msgid "Nuovo tipo risorsa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:527
+#: inc/admin/class-dli-tools-admin.php:529
 msgid "o vuoto = disattivo (predefinito)."
 msgstr ""
 
@@ -1266,8 +1269,8 @@ msgstr ""
 #, php-format
 msgid ""
 "Oops! La pagina che cerchi non è stata trovata, <a href=\"%1$s\" "
-"title=\"Torna alla pagina precedente\" onclick=\"history.back(); return "
-"false;\">torna indietro</a> o utilizza il menu per continuare la navigazione."
+"title=\"Torna alla pagina precedente\">torna indietro</a> o utilizza il menu "
+"per continuare la navigazione."
 msgstr ""
 
 #: template-parts/persone/view-tabella.php:198
@@ -1304,7 +1307,7 @@ msgid "Pagine collegate"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:53
-#: inc/admin/class-dli-tools-admin.php:167
+#: inc/admin/class-dli-tools-admin.php:169
 msgid "Panoramica"
 msgstr ""
 
@@ -1316,7 +1319,7 @@ msgstr ""
 msgid "Partner e collaborazioni"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:537
+#: inc/admin/class-dli-tools-admin.php:539
 msgid ""
 "Per tipologia_persona e struttura: inserire lo slug della voce già esistente."
 " Le voci non trovate vengono ignorate."
@@ -1340,7 +1343,7 @@ msgstr ""
 
 #. Name of the template
 #: inc/utils.php:277 page-templates/persone.php:2
-#: inc/admin/class-dli-tools-admin.php:246
+#: inc/admin/class-dli-tools-admin.php:248
 msgid "Persone"
 msgstr ""
 
@@ -1711,7 +1714,7 @@ msgstr ""
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:521
+#: inc/admin/class-dli-tools-admin.php:523
 msgid "Predefinito: publish."
 msgstr ""
 
@@ -1748,12 +1751,12 @@ msgstr ""
 msgid "Pubblicazioni"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:209
+#: inc/admin/class-dli-tools-admin.php:211
 msgid ""
 "Questa sezione contiene gli strumenti di gestione dei contenuti del sito."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:660
+#: inc/admin/class-dli-tools-admin.php:662
 msgid "Report importazione"
 msgstr ""
 
@@ -1765,11 +1768,11 @@ msgstr ""
 msgid "Revoca"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:797
+#: inc/admin/class-dli-tools-admin.php:799
 msgid "Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:782
+#: inc/admin/class-dli-tools-admin.php:784
 msgid "Ricarica i dati di attivazione del tema"
 msgstr ""
 
@@ -1797,24 +1800,24 @@ msgid ""
 "completare la procedura."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:298
-#: inc/admin/class-dli-tools-admin.php:786
+#: inc/admin/class-dli-tools-admin.php:300
+#: inc/admin/class-dli-tools-admin.php:788
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr ""
 
 #: template-parts/common/sezione-video.php:40
-#: template-parts/home/hp-video-section.php:73
+#: template-parts/home/hp-video-section.php:74
 msgid "Ricorda per tutti i video"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:794
+#: inc/admin/class-dli-tools-admin.php:796
 msgid ""
 "Ricrea menu, pagine e tassonomie predefiniti del tema. Usa questa funzione "
 "se la struttura del sito risulta incompleta dopo l'installazione o un "
 "aggiornamento."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:716
+#: inc/admin/class-dli-tools-admin.php:718
 msgid "Riga"
 msgstr ""
 
@@ -1864,7 +1867,7 @@ msgstr ""
 msgid "Risorse-Tecniche"
 msgstr ""
 
-#: page-templates/cerca.php:152
+#: page-templates/cerca.php:150
 msgid "Risultati"
 msgstr ""
 
@@ -1876,11 +1879,11 @@ msgstr ""
 msgid "Saltata: persona non trovata."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:693
+#: inc/admin/class-dli-tools-admin.php:695
 msgid "Saltati"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:547
+#: inc/admin/class-dli-tools-admin.php:549
 msgid "Scarica CSV di esempio"
 msgstr ""
 
@@ -1907,7 +1910,7 @@ msgstr ""
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:532
+#: inc/admin/class-dli-tools-admin.php:534
 msgid "separare con"
 msgstr ""
 
@@ -1927,7 +1930,7 @@ msgstr ""
 msgid "Settore di attività"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:177
+#: inc/admin/class-dli-tools-admin.php:179
 msgid "Sezioni Strumenti DLI"
 msgstr ""
 
@@ -1941,7 +1944,7 @@ msgstr ""
 msgid "Sito web"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:563
+#: inc/admin/class-dli-tools-admin.php:565
 msgid "solo nuovi (salta se esiste)"
 msgstr ""
 
@@ -1960,7 +1963,7 @@ msgstr ""
 
 #: single-risorsa-tecnica.php:206 single-risorsa-tecnica.php:344
 #: single-spinoff.php:163 single-spinoff.php:243
-#: inc/admin/class-dli-tools-admin.php:719
+#: inc/admin/class-dli-tools-admin.php:721
 msgid "Stato"
 msgstr ""
 
@@ -1968,13 +1971,13 @@ msgstr ""
 msgid "Stato legale"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:227
+#: inc/admin/class-dli-tools-admin.php:229
 msgid "Strumenti di importazione"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:40
 #: inc/admin/class-dli-tools-admin.php:41
-#: inc/admin/class-dli-tools-admin.php:175
+#: inc/admin/class-dli-tools-admin.php:177
 msgid "Strumenti DLI"
 msgstr ""
 
@@ -2059,7 +2062,7 @@ msgstr ""
 msgid "Testo del messaggio"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:249
+#: inc/admin/class-dli-tools-admin.php:251
 msgid "Tipi di importazione"
 msgstr ""
 
@@ -2068,7 +2071,7 @@ msgid "Tipo di risorsa"
 msgstr ""
 
 #. %s: detected MIME type
-#: inc/admin/class-dli-tools-admin.php:365
+#: inc/admin/class-dli-tools-admin.php:367
 #, php-format
 msgid "Tipo file non valido (%s). È richiesto un file CSV."
 msgstr ""
@@ -2113,7 +2116,7 @@ msgstr ""
 msgid "Trascrizione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:504
+#: inc/admin/class-dli-tools-admin.php:506
 msgid "Tutte le altre colonne sono facoltative."
 msgstr ""
 
@@ -2162,7 +2165,7 @@ msgstr ""
 msgid "Ulteriori informazioni"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:562
+#: inc/admin/class-dli-tools-admin.php:564
 msgid "upsert (crea o aggiorna)"
 msgstr ""
 
@@ -2198,7 +2201,7 @@ msgstr ""
 msgid "Usa come Immagine Sponsor"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:210
+#: inc/admin/class-dli-tools-admin.php:212
 msgid "Usa i tab per navigare tra le sezioni operative dell'area."
 msgstr ""
 
@@ -2207,7 +2210,7 @@ msgid "Utente non autorizzato"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:71
-#: inc/admin/class-dli-tools-admin.php:170
+#: inc/admin/class-dli-tools-admin.php:172
 msgid "Utilità"
 msgstr ""
 
@@ -2253,18 +2256,18 @@ msgstr ""
 msgid "Valore di Nonce errato."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:508
-#: inc/admin/class-dli-tools-admin.php:517
+#: inc/admin/class-dli-tools-admin.php:510
+#: inc/admin/class-dli-tools-admin.php:519
 msgid "Valori consentiti per"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:531
+#: inc/admin/class-dli-tools-admin.php:533
 msgid "Valori multipli"
 msgstr ""
 
 #: single-brevetto.php:210 single-brevetto.php:338 single-evento.php:214
 #: single-evento.php:452 single-spinoff.php:190 single-spinoff.php:321
-#: template-parts/home/hp-video-section.php:40
+#: template-parts/home/hp-video-section.php:41
 msgid "Video"
 msgstr ""
 

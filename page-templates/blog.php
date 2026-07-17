@@ -28,9 +28,17 @@ if ( ! empty( $dli_raw_selected_categories ) ) {
 	);
 }
 
+$dli_paged = absint( get_query_var( 'paged' ) );
+if ( 0 === $dli_paged ) {
+	$dli_paged = absint( get_query_var( 'page' ) );
+}
+if ( 0 === $dli_paged ) {
+	$dli_paged = 1;
+}
+
 $dli_the_query      = new WP_Query(
 	array(
-		'paged'          => get_query_var( 'paged', 1 ),
+		'paged'          => $dli_paged,
 		'post_type'      => WP_DEFAULT_POST,
 		'posts_per_page' => DLI_POSTS_PER_PAGE,
 		'category__in'   => $dli_selected_categories,

@@ -18,6 +18,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Resa sicura l'iniezione del messaggio informativo sui limiti upload nel modal Media di WordPress.
 - Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
 - Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
+- Uniformato l'ordinamento del Carousel in Home Page anche in selezione manuale per data pubblicazione, ultima modifica e data evento.
 
 
 
@@ -36,7 +37,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto import delle persone da CSV.
 ## Corretto
 - Corretto funzionamento dei filtri nella visualizzazione a chip delle persone.
-- Corretto bug in visualizzazione Carousel in Home Page in modlità manuale.
+- Corretto bug in visualizzazione Carousel in Home Page in modalità manuale.
 ## Modificato
 - Aggiornati i file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.1.

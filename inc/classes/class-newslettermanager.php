@@ -160,7 +160,7 @@ class Newsletter_Manager {
 			}
 		} catch ( Exception $e ) {
 
-			$result['code']    = '500';
+			$result['code']    = 500;
 			$result['message'] = $e->getMessage();
 
 		}

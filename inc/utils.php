@@ -1616,7 +1616,7 @@ if ( ! function_exists( 'dli_clean_and_truncate_text' ) ) {
 		// Truncate tags.
 		if ( strlen( $clean_text ) > $size ) {
 			if ( $split ) {
-				$truncated_text = substr( $clean_text, 0, $size ) . '...';
+				$truncated_text = mb_substr( $clean_text, 0, $size ) . '...';
 			} else {
 				$truncated_text = mb_substr( $clean_text, 0, $size );
 				$last_space     = mb_strrpos( $truncated_text, ' ' );

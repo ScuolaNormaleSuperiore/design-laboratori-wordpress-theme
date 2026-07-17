@@ -690,28 +690,34 @@ class DLI_ContentsManager {
 			$item = dli_get_post_wrapper( $result, 'item-carousel' );
 			array_push( $items, $item );
 		}
-		// Change results order if needed.
-		if ( $order_date_type === 'event_date' ) {
-			self::sort_carousel_items_by_order_date_desc( $items );
-		}
+		// Apply the selected ordering consistently in both automatic and manual modes.
+		self::sort_carousel_items_by_order_date_desc( $items, $order_date_type );
 		return $items;
 	}
 
-	private static function sort_carousel_items_by_order_date_desc( &$items ) {
+	private static function sort_carousel_items_by_order_date_desc( &$items, $order_date_type ) {
 		usort(
 			$items,
-			function ( $a, $b ) {
-				$a_ts = self::get_carousel_item_order_timestamp( $a );
-				$b_ts = self::get_carousel_item_order_timestamp( $b );
+			function ( $a, $b ) use ( $order_date_type ) {
+				$a_ts = self::get_carousel_item_order_timestamp( $a, $order_date_type );
+				$b_ts = self::get_carousel_item_order_timestamp( $b, $order_date_type );
 				// Descending order: most recent date first.
 				return $b_ts <=> $a_ts;
 			}
 		);
 	}
 
-	private static function get_carousel_item_order_timestamp( $item ) {
+	private static function get_carousel_item_order_timestamp( $item, $order_date_type ) {
+		if ( 'post_modified' === $order_date_type ) {
+			$post_id       = isset( $item['id'] ) ? absint( $item['id'] ) : 0;
+			$modified_date = $post_id ? get_post_modified_time( 'U', false, $post_id ) : false;
+
+			return false !== $modified_date ? (int) $modified_date : PHP_INT_MIN;
+		}
+
 		$date = trim( (string) ( $item['order_date'] ?? '' ) );
 		$dt   = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $date );
+
 		return $dt ? (int) $dt->format( 'U' ) : PHP_INT_MIN;
 	}
 
@@ -798,10 +804,20 @@ class DLI_ContentsManager {
 	}
 
 	// SITE SEARCH
-	public static function main_search_query( $selected_contents, $search_string, $page_size ) {
+	public static function main_search_query( $selected_contents, $search_string, $page_size, $paged = null ) {
 		$has_search_string = '' !== trim( $search_string );
+		if ( null === $paged ) {
+			// On a Page template the paginated segment is exposed as `page`, not `paged`.
+			$paged = absint( get_query_var( 'paged' ) );
+			if ( 0 === $paged ) {
+				$paged = absint( get_query_var( 'page' ) );
+			}
+			if ( 0 === $paged ) {
+				$paged = 1;
+			}
+		}
 		$params = array(
-			'paged'          => get_query_var( 'paged', 1 ),
+			'paged'          => $paged,
 			'post_status'    => 'publish',
 			'posts_per_page' => $page_size,
 			'orderby'        => 'title',
