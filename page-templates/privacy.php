@@ -137,17 +137,18 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 												</span>
 											</a>
 											<?php
-											$dli_subpages = get_pages(
-												array(
-													'child_of'    => $dli_page->ID,
-													'offset'      => 0,
-													'parent'      => $dli_page->ID,
-													'sort_column' => 'menu_order',
-												)
-											);
-											?>
-											<?php if ( 0 !== $post->post_parent && ( $post->ID === $dli_page->ID || in_array( $post, $dli_subpages, true ) ) ) : ?>
-												<ul class="link-sublist">
+												$dli_subpages = get_pages(
+													array(
+														'child_of'    => $dli_page->ID,
+														'offset'      => 0,
+														'parent'      => $dli_page->ID,
+														'sort_column' => 'menu_order',
+													)
+												);
+												$dli_subpage_ids = wp_list_pluck( $dli_subpages, 'ID' );
+												?>
+												<?php if ( 0 !== $post->post_parent && ( $post->ID === $dli_page->ID || in_array( $post->ID, $dli_subpage_ids, true ) ) ) : ?>
+													<ul class="link-sublist">
 													<?php foreach ( $dli_subpages as $dli_subpage ) : ?>
 														<li>
 															<a class="list-item <?php echo ( $post->ID === $dli_subpage->ID ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $dli_subpage->ID ) ); ?>">

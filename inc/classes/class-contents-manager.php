@@ -85,9 +85,9 @@ class DLI_ContentsManager {
 			SELECT DISTINCT pm.meta_value AS anno_deposito
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
-			WHERE p.post_type = '%s'
+				WHERE p.post_type = %s
 			AND p.post_status = 'publish'
-			AND pm.meta_key = '%s'
+				AND pm.meta_key = %s
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
 		",
@@ -106,9 +106,9 @@ class DLI_ContentsManager {
 			SELECT DISTINCT pm.meta_value AS anno_costituzione
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
-			WHERE p.post_type = '%s'
+				WHERE p.post_type = %s
 			AND p.post_status = 'publish'
-			AND pm.meta_key = '%s'
+				AND pm.meta_key = %s
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
 		",
@@ -127,9 +127,9 @@ class DLI_ContentsManager {
 			SELECT DISTINCT pm.meta_value AS anno_acquisizione
 			FROM {$wpdb->postmeta} pm
 			INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
-			WHERE p.post_type = '%s'
+				WHERE p.post_type = %s
 			AND p.post_status = 'publish'
-			AND pm.meta_key = '%s'
+				AND pm.meta_key = %s
 			AND pm.meta_value != ''
 			ORDER BY pm.meta_value DESC
 		",
@@ -830,7 +830,7 @@ class DLI_ContentsManager {
 
 		if ( count( $selected_contents ) > 0 ) {
 			$params['post_type'] = $selected_contents;
-		} elseif ( ! $has_search_string ) {
+		} else {
 			$params['post_type'] = self::get_all_contenttypes_with_results();
 		}
 

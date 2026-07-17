@@ -8,14 +8,13 @@ function dli_disable_all_comments() {
 		update_option( 'default_comment_status', '' );
 	}
 	add_filter( 'comments_open', '__return_false', 20 );
-	add_filter( 'pings_open',    '__return_false', 20 );
+	add_filter( 'pings_open', '__return_false', 20 );
 }
 add_action( 'after_setup_theme', 'dli_disable_all_comments' );
 
 /**
  * Add css admin style: TAB di Configurazione laterale.
  */
-
 function dli_admin_css_load() {
 	wp_enqueue_style( 'style-admin-css', get_stylesheet_directory_uri() . '/inc/admin-css/style-admin.css' );
 }
@@ -24,6 +23,7 @@ add_action( 'admin_enqueue_scripts', 'dli_admin_css_load' );
 
 /**
  * customize excerpt.
+ *
  * @param $length
  *
  * @return int
@@ -38,10 +38,10 @@ add_action(
 	'admin_menu',
 	function () {
 		global $submenu;
-		if ( isset( $submenu[ 'themes.php' ] ) ) {
-			foreach ( $submenu[ 'themes.php' ] as $index => $menu_item ) {
+		if ( isset( $submenu['themes.php'] ) ) {
+			foreach ( $submenu['themes.php'] as $index => $menu_item ) {
 				foreach ( $menu_item as $value ) {
-					if ( strpos( $value,'customize' ) !== false) {
+					if ( strpos( $value, 'customize' ) !== false ) {
 							unset( $submenu['themes.php'][ $index ] );
 					}
 				}
@@ -53,11 +53,11 @@ add_action(
 add_action( 'wp_before_admin_bar_render', 'dli_before_admin_bar_render' );
 function dli_before_admin_bar_render() {
 	global $wp_admin_bar;
-	$wp_admin_bar->remove_menu('customize');
+	$wp_admin_bar->remove_menu( 'customize' );
 }
 
 remove_all_filters( 'enable_edit_any_user_configuration' );
-add_filter( 'enable_edit_any_user_configuration', '__return_true');
+add_filter( 'enable_edit_any_user_configuration', '__return_true' );
 
 /**
  * Checks that both the editing user and the user being edited are
@@ -65,14 +65,14 @@ add_filter( 'enable_edit_any_user_configuration', '__return_true');
  */
 function dli_edit_permission_check() {
 	global $current_user, $profileuser;
-	$screen = get_current_screen();
+	$screen       = get_current_screen();
 	$current_user = wp_get_current_user();
-	if( ! is_super_admin( $current_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ) ) ) {
+	if ( ! is_super_admin( $current_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ) ) ) {
 		// editing a user profile
 		if ( is_super_admin( $profileuser->ID ) ) {
 			// trying to edit a superadmin while less than a superadmin
 			wp_die( __( 'You do not have permission to edit this user.' ) );
-		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $current_user->ID, get_current_blog_id() ) )) {
+		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $current_user->ID, get_current_blog_id() ) ) ) {
 			// editing user and edited user aren't members of the same blog.
 			wp_die( __( 'You do not have permission to edit this user.' ) );
 		}

@@ -236,8 +236,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
-		$post_title   = $this->sanitize_import_title( (string) $item->displayValue );
-		$post_name    = dli_generate_slug( $post_title );
+		$post_title       = $this->sanitize_import_title( (string) $item->displayValue );
+		$post_name        = dli_generate_slug( $post_title );
 			$post_content = wp_kses_post( $item->abstract ?? '.' );
 
 		$new_content    = array(
@@ -253,12 +253,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$pid      = $this->get_wp_content_id( $item );
 		$contents = dli_get_post_translations( $pid );
 
-			if ( ! isset( $contents[ $lang ] ) ) {
-				$post_id = wp_insert_post( $new_content, true );
-				if ( is_wp_error( $post_id ) || ! $post_id ) {
-					$error_message = is_wp_error( $post_id ) ? $post_id->get_error_message() : 'ID = 0';
-					throw new Exception( 'wp_insert_post fallito: ' . $error_message );
-				}
+		if ( ! isset( $contents[ $lang ] ) ) {
+			$post_id = wp_insert_post( $new_content, true );
+			if ( is_wp_error( $post_id ) || ! $post_id ) {
+				$error_message = is_wp_error( $post_id ) ? $post_id->get_error_message() : 'ID = 0';
+				throw new Exception( 'wp_insert_post fallito: ' . $error_message );
+			}
 			$updated = false;
 			// Aggiorna campi personalizzati.
 			$this->update_custom_fields( $post_id, $item );
@@ -286,17 +286,17 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	}
 
 	private function _translate_content( $post_id, $item, $conf, $lang = 'en' ): int {
-		$display_value_en = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
+		$display_value_en  = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
 		$translate_content = ( '' !== $display_value_en );
-		$new_content_en   = null;
-		$post_id_en       = 0;
+		$new_content_en    = null;
+		$post_id_en        = 0;
 
 		// Si crea la versione inglese solo se c'è il titolo in inglese.
 		if ( $translate_content ) {
-			$post_title_en   = $this->sanitize_import_title( $display_value_en );
-			$post_name_en    = dli_generate_slug( $post_title_en );
+			$post_title_en       = $this->sanitize_import_title( $display_value_en );
+			$post_name_en        = dli_generate_slug( $post_title_en );
 				$post_content_en = wp_kses_post( $item->abstract_en ?? '.' );
-			$contents        = dli_get_post_translations( $post_id );
+			$contents            = dli_get_post_translations( $post_id );
 
 			if ( ! isset( $contents[ $lang ] ) ) {
 				// Crea nuova versione in inglese.
@@ -311,10 +311,10 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 					// Associa versione italiana e versione inglese;
 					$post_id_en = wp_insert_post( $new_content_en, true );
-					if ( is_wp_error( $post_id_en ) || ! $post_id_en ) {
-						$error_message = is_wp_error( $post_id_en ) ? $post_id_en->get_error_message() : 'ID = 0';
-						throw new Exception( 'wp_insert_post (EN) fallito: ' . $error_message );
-					}
+				if ( is_wp_error( $post_id_en ) || ! $post_id_en ) {
+					$error_message = is_wp_error( $post_id_en ) ? $post_id_en->get_error_message() : 'ID = 0';
+					throw new Exception( 'wp_insert_post (EN) fallito: ' . $error_message );
+				}
 
 				// Assign the EN language to the page.
 				dli_set_post_language( $post_id_en, $lang );

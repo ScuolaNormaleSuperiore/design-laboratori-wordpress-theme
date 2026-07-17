@@ -20,6 +20,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
 - Uniformato l'ordinamento del Carousel in Home Page anche in selezione manuale per data pubblicazione, ultima modifica e data evento.
 - Sanitizzati i contenuti HTML importati da Indico e IRIS prima del salvataggio in `post_content`.
+- Corretta la ricerca sito: senza filtri espliciti cerca ora in tutti i content type disponibili, non solo nei `post`.
+- Corrette le query dei filtri "anno": rimossi gli apici manuali attorno ai placeholder `%s` in `$wpdb->prepare()`.
+- Resa sicura la gestione del menu footer quando `wp_get_nav_menu_items()` restituisce `false`.
+- Resi difensivi i wrapper Polylang: se il plugin non è attivo il tema degrada a monolingua invece di generare un fatal error.
+- Import Indico più robusto: un singolo evento malformato nel feed non interrompe più l'intera importazione.
+- Corretta la sidebar privacy: il riconoscimento delle pagine figlie ora confronta gli ID e non l'identità degli oggetti `WP_Post`.
 
 
 

@@ -27,7 +27,6 @@ class Place_Manager {
 
 		// Register the post type.
 		add_action( 'init', array( $this, 'add_post_type' ) );
-
 	}
 
 	/**

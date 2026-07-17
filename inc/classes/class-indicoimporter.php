@@ -126,10 +126,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$ignored   = 0;
 		foreach ( $resp_data['results'] as $item ) {
 			++$counter;
-			$item_title   = $this->sanitize_import_title( (string) $item['title'] );
-			$msg          = '';
-			$source_array = $this->trim_array( $conf['keywords'] ? explode( ',', $conf['keywords'] ) : array() );
-			$dest_array   = $this->trim_array( $item['keywords'] ? $item['keywords'] : array() );
+			// Normalize untrusted feed item before use: a missing title or a non-array
+			// `keywords` value must not raise a PHP warning / TypeError that would abort
+			// the whole import (TypeError is not an Exception, so it escapes the catch below).
+			$item_title    = $this->sanitize_import_title( isset( $item['title'] ) ? (string) $item['title'] : '' );
+			$msg           = '';
+			$item_keywords = ( isset( $item['keywords'] ) && is_array( $item['keywords'] ) ) ? $item['keywords'] : array();
+			$source_array  = $this->trim_array( $conf['keywords'] ? explode( ',', $conf['keywords'] ) : array() );
+			$dest_array    = $this->trim_array( $item_keywords );
 			if ( ( ! $source_array ) || ( ! $dest_array ) || ( count( array_intersect( $source_array, $dest_array ) ) === 0 ) ) {
 				++$discarded;
 				continue;
@@ -167,7 +171,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 						);
 						++$processed;
 					}
-				} catch ( Exception $e ) {
+				} catch ( Throwable $e ) {
 					array_push(
 						$data,
 						MSG_ERROR_IMPORTING_ITEM . $item_title . ' - ' . $e->getMessage(),
@@ -191,10 +195,10 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	}
 
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
-		$item_title      = $this->sanitize_import_title( (string) $item['title'] );
-		$post_name       = dli_generate_slug( $item_title );
-			$post_content    = wp_kses_post( $this->_prepare_post_content( $item['description'], $conf['base_url'] ) );
-		$new_page        = array(
+		$item_title       = $this->sanitize_import_title( (string) $item['title'] );
+		$post_name        = dli_generate_slug( $item_title );
+			$post_content = wp_kses_post( $this->_prepare_post_content( $item['description'], $conf['base_url'] ) );
+		$new_page         = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,
 			'post_title'   => $item_title,
@@ -202,7 +206,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			'post_status'  => $conf['post_status'],
 			'post_parent'  => 0,
 		);
-		$update_existent = ( $conf['action'] === 'update' ) ? true : false;
+		$update_existent  = ( $conf['action'] === 'update' ) ? true : false;
 		// Creazione degli eventi su WordPress.
 		// Verifico esistenza evento.
 		$page_check = dli_get_content( $post_name, EVENT_POST_TYPE );

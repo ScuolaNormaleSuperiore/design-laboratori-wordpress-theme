@@ -17,7 +17,9 @@
 
 
 class Menu_Right_Walker extends Walker_Nav_Menu {
-	function start_el(&$output, $item, $depth=0, $args=[], $id=0) {
+
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+
 		$output .= "<li class='nav-item'>";
 
 		$data_element = '';
@@ -27,7 +29,6 @@ class Menu_Right_Walker extends Walker_Nav_Menu {
 		} elseif ( false !== strpos( $item->url, '/argomenti' ) ) {
 			$data_element = "data-element='all-topics'";
 		}
-
 
 		$output .= '<a class="nav-link" href="' . esc_url( $item->url ) . '" ' . $data_element . '>';
 		if ( $item->menu_order == $args->menu->count ) {

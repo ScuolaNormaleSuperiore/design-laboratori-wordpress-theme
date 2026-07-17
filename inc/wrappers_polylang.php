@@ -1,28 +1,67 @@
 <?php
 /**
  * Wrapper functions for POLYLANG.
- * 
+ *
  * The plugin used to translate post types and taxonomies is Polylang.
- * In the code instead of using the Polylang funcyions (e.g. "pll_current_language" )
+ * In the code instead of using the Polylang functions (e.g. "pll_current_language" )
  * please use the corresponding wrapped functions (e.g. "dli_current_language" ).
- * 
+ *
+ * These wrappers are defensive: when Polylang is not active (deactivated, not yet
+ * loaded, or missing on a fresh install) the theme degrades gracefully to a
+ * single-language behaviour instead of triggering a fatal error on the undefined
+ * `pll_*` functions. Read helpers fall back to the default language / empty data;
+ * write helpers become no-ops.
+ *
  * This command verifies if the second language is enabled:
- * 
- * 	$selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
- * 
+ *
+ *  $selettore_visibile = dli_get_option( 'selettore_lingua_visible', 'setup' );
  */
 
 
+if ( ! function_exists( 'dli_polylang_active' ) ) {
+	/**
+	 * Check whether Polylang is available (active and loaded).
+	 *
+	 * Used by the wrappers below to decide between the real Polylang call and a
+	 * safe single-language fallback. Testing a core read function is enough: if it
+	 * exists the plugin is loaded.
+	 *
+	 * @return bool
+	 */
+	function dli_polylang_active() {
+		return function_exists( 'pll_current_language' );
+	}
+}
+
 if ( ! function_exists( 'dli_current_language' ) ) {
+	/**
+	 * Recupera la lingua corrente del sito.
+	 *
+	 * @param string $type
+	 * @return string
+	 */
+	function dli_current_language( $type = 'slug' ) {
+		if ( ! dli_polylang_active() ) {
+			return DLI_DEFAULT_LANGUAGE;
+		}
+		$cl = pll_current_language( $type );
+		return $cl ? $cl : DLI_DEFAULT_LANGUAGE;
+	}
+}
+
+if ( ! function_exists( 'dli_default_language' ) ) {
 	/**
 	 * Recupera la lingua di default del sito.
 	 *
 	 * @param string $type
 	 * @return string
 	 */
-	function dli_current_language( $type = 'slug' ) {
-		$cl = pll_current_language( $type );
-		return $cl ? $cl : DLI_DEFAULT_LANGUAGE;
+	function dli_default_language( $type = 'slug' ) {
+		if ( ! function_exists( 'pll_default_language' ) ) {
+			return DLI_DEFAULT_LANGUAGE;
+		}
+		$dl = pll_default_language( $type );
+		return $dl ? $dl : DLI_DEFAULT_LANGUAGE;
 	}
 }
 
@@ -30,10 +69,13 @@ if ( ! function_exists( 'dli_languages_list' ) ) {
 	/**
 	 * Recupera l'elenco delle lingue supportate dal sito.
 	 *
-	 * @param [type] $args
-	 * @return array()
+	 * @param array $args
+	 * @return array
 	 */
 	function dli_languages_list( $args ) {
+		if ( ! function_exists( 'pll_languages_list' ) ) {
+			return array( DLI_DEFAULT_LANGUAGE );
+		}
 		return pll_languages_list( $args );
 	}
 }
@@ -47,6 +89,9 @@ if ( ! function_exists( 'dli_set_term_language' ) ) {
 	 * @return void
 	 */
 	function dli_set_term_language( $term, $lang ) {
+		if ( ! function_exists( 'pll_set_term_language' ) ) {
+			return;
+		}
 		return pll_set_term_language( $term, $lang );
 	}
 }
@@ -59,6 +104,9 @@ if ( ! function_exists( 'dli_save_term_translations' ) ) {
 	 * @return void
 	 */
 	function dli_save_term_translations( $related_taxonomies ) {
+		if ( ! function_exists( 'pll_save_term_translations' ) ) {
+			return;
+		}
 		return pll_save_term_translations( $related_taxonomies );
 	}
 }
@@ -72,6 +120,9 @@ if ( ! function_exists( 'dli_set_post_language' ) ) {
 	 * @return void
 	 */
 	function dli_set_post_language( $post, $lang ) {
+		if ( ! function_exists( 'pll_set_post_language' ) ) {
+			return;
+		}
 		return pll_set_post_language( $post, $lang );
 	}
 }
@@ -84,6 +135,9 @@ if ( ! function_exists( 'dli_save_post_translations' ) ) {
 	 * @return void
 	 */
 	function dli_save_post_translations( $related_posts ) {
+		if ( ! function_exists( 'pll_save_post_translations' ) ) {
+			return;
+		}
 		return pll_save_post_translations( $related_posts );
 	}
 }
@@ -92,10 +146,13 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 	/**
 	 * Recupera le traduzioni di un post nelle lingue del sito, se presenti.
 	 *
-	 * @param [type] $related_posts
-	 * @return void
+	 * @param int $post_id
+	 * @return array
 	 */
 	function dli_get_post_translations( $post_id ): array {
+		if ( ! function_exists( 'pll_get_post_translations' ) ) {
+			return array();
+		}
 		return pll_get_post_translations( $post_id );
 	}
 }
@@ -104,10 +161,13 @@ if ( ! function_exists( 'dli_get_term_translations' ) ) {
 	/**
 	 * Recupera le traduzioni di un termine nelle lingue del sito, se presenti.
 	 *
-	 * @param [type] $related_terms
-	 * @return void
+	 * @param int $term_id
+	 * @return array
 	 */
 	function dli_get_term_translations( $term_id ): array {
+		if ( ! function_exists( 'pll_get_term_translations' ) ) {
+			return array();
+		}
 		return pll_get_term_translations( $term_id );
 	}
 }
@@ -115,13 +175,13 @@ if ( ! function_exists( 'dli_get_term_translations' ) ) {
 function dli_get_translated_page_url_by_slug( $slug ) {
 	$page_url = '';
 	$args     = array(
-		'name' => $slug,
-		'post_type' => 'page',
-		'post_status' => 'publish',
-		'posts_per_page' => 1
+		'name'           => $slug,
+		'post_type'      => 'page',
+		'post_status'    => 'publish',
+		'posts_per_page' => 1,
 	);
-	$query        = new WP_Query( $args );
-	if ( $query->have_posts() ){
+	$query    = new WP_Query( $args );
+	if ( $query->have_posts() ) {
 		$page         = $query->posts[0];
 		$translations = dli_get_post_translations( $page->ID );
 		$page_id      = array_key_exists( dli_current_language( 'slug' ), $translations ) ?
@@ -136,7 +196,7 @@ if ( ! function_exists( 'dli_homepage_url' ) ) {
 	function dli_homepage_url() {
 		$site_url         = get_site_url();
 		$current_language = dli_current_language( 'slug' );
-		$default_language = pll_default_language( 'slug' );
+		$default_language = dli_default_language( 'slug' );
 		if ( $current_language != $default_language ) {
 			return $site_url . '/' . $current_language;
 		} else {
@@ -149,11 +209,14 @@ if ( ! function_exists( 'dli_get_term' ) ) {
 	/**
 	 * Ritorna l'id del termine $term_id nella lingua $lang.
 	 *
-	 * @param int $term_id
+	 * @param int    $term_id
 	 * @param string $lang
 	 * @return int
 	 */
 	function dli_get_term( $term_id, $lang ) {
+		if ( ! function_exists( 'pll_get_term' ) ) {
+			return $term_id;
+		}
 		return pll_get_term( $term_id, $lang );
 	}
 }
@@ -168,19 +231,24 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 		global $post;
 		$selectors        = array();
 		$site_url         = get_site_url();
-		$languages_list   = dli_languages_list( array( 'hide_empty' => 0, 'fields' => 'slug' ) );
-		$default_language = pll_default_language( 'slug' );
+		$languages_list   = dli_languages_list(
+			array(
+				'hide_empty' => 0,
+				'fields'     => 'slug',
+			)
+		);
+		$default_language = dli_default_language( 'slug' );
 		$current_language = dli_current_language( 'slug' );
 
 		// La home page è la stessa per tutte le lingue.
 		if ( is_home() ) {
 
 			// Home Page.
-			foreach( $languages_list as $lang_slug ) {
+			foreach ( $languages_list as $lang_slug ) {
 				if ( $lang_slug != $default_language ) {
 					$url = $site_url . '/' . $lang_slug;
 				} else {
-					$url =  $site_url;
+					$url = $site_url;
 				}
 				array_push(
 					$selectors,
@@ -190,10 +258,8 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 					)
 				);
 			}
+		} elseif ( $post ) {
 
-		} else {
-
-			if ( $post ){
 				// Altre pagine del sito (non HP).
 				$traduzioni = dli_get_post_translations( $post->ID );
 				$selectors  = array(
@@ -202,8 +268,8 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 						'url'  => get_permalink( $post ),
 					),
 				);
-				foreach( $languages_list as $lang_slug ) {
-					if ( (  $lang_slug !== $current_language ) && array_key_exists(  $lang_slug , $traduzioni ) ){
+				foreach ( $languages_list as $lang_slug ) {
+					if ( ( $lang_slug !== $current_language ) && array_key_exists( $lang_slug, $traduzioni ) ) {
 						array_push(
 							$selectors,
 							array(
@@ -213,7 +279,6 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 						);
 					}
 				}
-			}
 		}
 		return $selectors;
 	}
@@ -224,7 +289,7 @@ if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
 		$field_name_new = ( dli_current_language() === DLI_IT_SLUG ) ? $field_name : $field_name . DLI_ENG_SUFFIX_LANGUAGE;
 		$field_value    = dli_get_option( $field_name_new, $field_type );
 		if ( ! $field_value ) {
-			$default_language = pll_default_language( 'slug' );
+			$default_language = dli_default_language( 'slug' );
 			$field_name_new   = ( DLI_IT_SLUG === $default_language ) ? $field_name : $field_name . DLI_ENG_SUFFIX_LANGUAGE;
 		}
 
@@ -259,10 +324,10 @@ if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
 			foreach ( $menulangs as $ml_lang => $ml_id ) {
 				if ( ! in_array( $ml_id, $ids ) ) {
 					if ( isset( $items[ $ml_lang ] ) ) {
-						array_push( $items[$ml_lang], array( $name => $ml_id ) );
+						array_push( $items[ $ml_lang ], array( $name => $ml_id ) );
 						array_push( $ids, $ml_id );
 					} else {
-						$items[$ml_lang] = array();
+						$items[ $ml_lang ] = array();
 						array_push( $items[ $ml_lang ], array( $name => $ml_id ) );
 						array_push( $ids, $ml_id );
 					}
