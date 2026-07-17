@@ -58,7 +58,7 @@ if ( $dli_item ) {
 				<a class="read-more" href="<?php echo esc_url( $dli_link ); ?>">
 					<span class="text customSpacing"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
 					<span class="visually-hidden"><?php echo wp_kses_post( $dli_desc ); ?></span>
-					<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
+					<svg class="icon" role="img" aria-label="<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 						<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
 					</svg>

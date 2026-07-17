@@ -31,7 +31,7 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 				<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 							<span><?php echo esc_html( $dli_item['element']->title ); ?></span>
-						<svg class="icon icon-xs" role="img" aria-labelledby="Expand">
+						<svg class="icon icon-xs" role="img">
 							<title>Expand</title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 						</svg>

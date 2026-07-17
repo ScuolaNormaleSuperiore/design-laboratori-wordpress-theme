@@ -31,7 +31,7 @@ if ( $dli_item ) {
 				<span class="text customSpacing">
 					<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>
 				</span>
-				<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
+				<svg class="icon" role="img" aria-label="<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 					<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
 				</svg>

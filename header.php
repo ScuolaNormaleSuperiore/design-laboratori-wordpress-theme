@@ -90,7 +90,7 @@ $dli_current_lang = dli_current_language();
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 							<span class="visually-hidden"><?php echo esc_html__( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' ); ?></span>
 								<span><?php echo esc_html( $dli_current_language ); ?></span>
-							<svg class="icon d-none d-lg-block" role="img" aria-labelledby="Expand">
+							<svg class="icon d-none d-lg-block" role="img">
 								<title>Expand</title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 							</svg>
@@ -170,7 +170,7 @@ $dli_current_lang = dli_current_language();
 									$dli_search_link = dli_get_search_link( $dli_current_language );
 							?>
 								<a class="search-link rounded-icon" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>" href="<?php echo esc_url( $dli_search_link ); ?>">
-								<svg class="icon" role="img" aria-labelledby="Search" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
+								<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>">
 									<title><?php echo esc_html__( 'Cerca nel sito', 'design_laboratori_italia' ); ?></title>
 									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
 								</svg>
@@ -191,7 +191,7 @@ $dli_current_lang = dli_current_language();
 				<nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
 				<button class="custom-navbar-toggler" type="button" aria-controls="nav1" aria-expanded="false"
 					aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
-					<svg class="icon bg-override" role="img" aria-labelledby="Burger">
+					<svg class="icon bg-override" role="img">
 						<title>Mostra/Nascondi la navigazione</title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger' ); ?>"></use>
 					</svg>
@@ -201,7 +201,7 @@ $dli_current_lang = dli_current_language();
 					<div class="close-div">
 					<button class="btn close-menu" type="button">
 						<span class="visually-hidden">Nascondi la navigazione</span>
-						<svg class="icon" role="img" aria-labelledby="Close big" aria-label="Nascondi la navigazione">
+						<svg class="icon" role="img" aria-label="Nascondi la navigazione">
 							<title>Nascondi la navigazione</title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big' ); ?>"></use>
 						</svg>

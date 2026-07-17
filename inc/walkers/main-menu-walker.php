@@ -83,7 +83,7 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 				$output   .= '<a class="nav-link ' . $active_class . ' dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 				<span>';
 				$output   .= esc_html( $item->title );
-				$output   .= '</span><svg class="icon icon-xs" role="img" aria-labelledby="Expand">
+				$output   .= '</span><svg class="icon icon-xs" role="img">
 					<title>Expand</title>
 					<use href="';
 				$output   .= get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand';

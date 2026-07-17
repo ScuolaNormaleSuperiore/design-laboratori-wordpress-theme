@@ -82,7 +82,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
-								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
+								<svg class="icon icon-sm icon-primary align-top" role="img">
 									<title>Chevron Left</title>
 									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" 
 										xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>">

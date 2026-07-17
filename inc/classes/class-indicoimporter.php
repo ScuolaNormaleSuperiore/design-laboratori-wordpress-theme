@@ -193,7 +193,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
 		$item_title      = $this->sanitize_import_title( (string) $item['title'] );
 		$post_name       = dli_generate_slug( $item_title );
-		$post_content    = $this->_prepare_post_content( $item['description'], $conf['base_url'] );
+			$post_content    = wp_kses_post( $this->_prepare_post_content( $item['description'], $conf['base_url'] ) );
 		$new_page        = array(
 			'post_type'    => EVENT_POST_TYPE,
 			'post_name'    => $post_name,

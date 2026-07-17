@@ -91,7 +91,7 @@ while ( have_posts() ) {
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
-								<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
+								<svg class="icon icon-sm icon-primary align-top" role="img">
 									<title>Chevron Left</title>
 									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>"></use>
 								</svg>
@@ -181,7 +181,7 @@ while ( have_posts() ) {
 												Indirizzo
 											</div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Map Marker">
+												<svg class="icon" role="img">
 													<title>Map Marker</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
 												</svg>
@@ -199,7 +199,7 @@ while ( have_posts() ) {
 												Orari
 											</div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Clock">
+												<svg class="icon" role="img">
 													<title>Clock</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>"></use>
 												</svg>
@@ -217,7 +217,7 @@ while ( have_posts() ) {
 										</div>
 										<div class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Telephone">
+												<svg class="icon" role="img">
 													<title>Telephone</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 											</svg>
@@ -235,7 +235,7 @@ while ( have_posts() ) {
 										</div>
 										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_mail ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Mail">
+												<svg class="icon" role="img">
 													<title>Mail</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
@@ -253,7 +253,7 @@ while ( have_posts() ) {
 										</div>
 										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Mail">
+												<svg class="icon" role="img">
 													<title>Mail</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>

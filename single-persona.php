@@ -136,7 +136,7 @@ $dli_pubblicazioni = new WP_Query(
 								<div class="navbar-collapsable" id="navbarNav">
 									<div class="overlay"></div>
 									<a class="it-back-button" href="#" role="button">
-										<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron Left">
+										<svg class="icon icon-sm icon-primary align-top" role="img">
 											<title>Chevron Left</title>
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>"></use>
 										</svg>
@@ -264,7 +264,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5">
-												<svg class="icon" role="img" aria-labelledby="Folder">
+												<svg class="icon" role="img">
 													<title>Folder</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
 												</svg>
@@ -311,7 +311,7 @@ $dli_pubblicazioni = new WP_Query(
 											<div class="card card-teaser rounded shadow">
 												<div class="card-body">
 													<h3 class="card-title cardTitlecustomSpacing h5 ">
-														<svg class="icon" role="img" aria-labelledby="Folder">
+														<svg class="icon" role="img">
 															<title>Folder</title>
 															<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
 														</svg>
@@ -349,7 +349,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img" aria-labelledby="Note">
+												<svg class="icon" role="img">
 													<title>Note</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note' ); ?>"></use>
 												</svg>
@@ -392,7 +392,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img" aria-labelledby="File PDF">
+												<svg class="icon" role="img">
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
@@ -408,7 +408,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img" aria-labelledby="File PDF">
+												<svg class="icon" role="img">
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
@@ -424,7 +424,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img" aria-labelledby="File PDF">
+												<svg class="icon" role="img">
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
@@ -440,7 +440,7 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="card card-teaser rounded shadow ">
 										<div class="card-body">
 											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img" aria-labelledby="File PDF">
+												<svg class="icon" role="img">
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>
@@ -463,7 +463,7 @@ $dli_pubblicazioni = new WP_Query(
 									<li>
 										<div class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Telephone">
+												<svg class="icon" role="img">
 													<title>Telephone</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 												</svg>
@@ -478,7 +478,7 @@ $dli_pubblicazioni = new WP_Query(
 									<li>
 											<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Mail">
+												<svg class="icon" role="img">
 													<title>Mail</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
@@ -493,7 +493,7 @@ $dli_pubblicazioni = new WP_Query(
 									<li>
 										<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_sito_web ); ?>">
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img" aria-labelledby="Link">
+												<svg class="icon" role="img">
 													<title>Website Link</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 												</svg>

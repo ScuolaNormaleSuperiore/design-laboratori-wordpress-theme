@@ -146,7 +146,7 @@ $dli_short_descr        = dli_get_field( 'descrizione_breve' );
 						<div class="navbar-collapsable" id="navbarNav">
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
-							<svg class="icon icon-sm icon-primary align-top" role="img" aria-labelledby="Chevron left">
+							<svg class="icon icon-sm icon-primary align-top" role="img">
 								<title><?php echo esc_html__( 'Indietro', 'design_laboratori_italia' ); ?></title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" 
 								xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>"></use>
@@ -345,7 +345,7 @@ $dli_short_descr        = dli_get_field( 'descrizione_breve' );
 								<li>
 									<a class="list-item active icon-left large" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_sito_web ); ?>">
 										<span class="list-item-title-icon-wrapper">
-											<svg class="icon icon-primary" role="img" aria-labelledby="Link">
+											<svg class="icon icon-primary" role="img">
 												<title>Link</title>
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 											</svg>
@@ -386,7 +386,7 @@ $dli_short_descr        = dli_get_field( 'descrizione_breve' );
 							<li>
 								<div class="list-item">
 									<div class="it-rounded-icon">
-										<svg class="icon" role="img" aria-labelledby="Telephone">
+										<svg class="icon" role="img">
 											<title>Telephone</title>
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 										</svg>
@@ -401,7 +401,7 @@ $dli_short_descr        = dli_get_field( 'descrizione_breve' );
 							<li>
 								<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 									<div class="it-rounded-icon">
-										<svg class="icon" role="img" aria-labelledby="Mail">
+										<svg class="icon" role="img">
 											<title>Mail</title>
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 										</svg>
@@ -428,7 +428,7 @@ $dli_short_descr        = dli_get_field( 'descrizione_breve' );
 									<div class="card card-teaser rounded shadow border">
 										<div class="card-body">
 											<h3 class="card-title h5 ">
-												<svg class="icon" role="img" aria-labelledby="File PDF">
+												<svg class="icon" role="img">
 													<title>File PDF</title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 												</svg>

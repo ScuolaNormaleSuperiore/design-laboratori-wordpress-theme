@@ -86,7 +86,7 @@ if ( 'true' === $dli_section_enabled ) {
 												</p>
 												<a class="read-more" href="<?php echo esc_url( $dli_postitem['link'] ); ?>">
 													<span class="text"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-													<svg class="icon" role="img" aria-labelledby="Arrow right" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
+													<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
 														<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
 														<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>">
 														</use>

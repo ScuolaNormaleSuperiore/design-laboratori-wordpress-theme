@@ -43,7 +43,7 @@ if ( is_array( $dli_messages ) && ! empty( $dli_messages ) ) {
 			?>
 
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo esc_attr__( 'Chiudi avviso', 'design_laboratori_italia' ); ?>">
-				<svg class="icon" role="img" aria-labelledby="Close" aria-label="<?php echo esc_attr__( 'Chiudi avviso', 'design_laboratori_italia' ); ?>">
+				<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Chiudi avviso', 'design_laboratori_italia' ); ?>">
 					<title><?php echo esc_html__( 'Chiudi avviso', 'design_laboratori_italia' ); ?></title>
 					<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
 				</svg>

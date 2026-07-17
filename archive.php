@@ -88,7 +88,7 @@ $dli_num_results = $dli_the_query->found_posts;
 										</p>
 										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
 											<span class="text"><?php echo esc_html__( 'Leggi di piu', 'design_laboratori_italia' ); ?></span>
-											<svg class="icon" role="img" aria-labelledby="Arrow right">
+											<svg class="icon" role="img">
 												<title><?php echo esc_html__( 'Leggi di piu', 'design_laboratori_italia' ); ?></title>
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
 											</svg>

@@ -32,7 +32,7 @@ if ( $dli_num_results ) {
 						<div class="card card-teaser rounded shadow ">
 							<div class="card-body">
 								<h3 class="card-title cardTitlecustomSpacing h5 ">
-									<svg class="icon" role="img" aria-labelledby="File PDF">
+									<svg class="icon" role="img">
 										<title>File PDF</title>
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
 									</svg>

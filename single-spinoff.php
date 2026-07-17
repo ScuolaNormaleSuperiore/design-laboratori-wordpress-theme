@@ -259,7 +259,7 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 							<li>
 								<div class="list-item">
 									<div class="it-rounded-icon">
-										<svg class="icon" role="img" aria-labelledby="Telephone">
+										<svg class="icon" role="img">
 											<title>Telephone</title>
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 										</svg>
@@ -274,7 +274,7 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 							<li>
 								<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Mail">
+									<svg class="icon" role="img">
 										<title>Mail</title>
 										<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 									</svg>
@@ -289,7 +289,7 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 							<li>
 								<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_sito_web ); ?>">
 								<div class="it-rounded-icon">
-									<svg class="icon" role="img" aria-labelledby="Link">
+									<svg class="icon" role="img">
 										<title>Link</title>
 										<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 									</svg>

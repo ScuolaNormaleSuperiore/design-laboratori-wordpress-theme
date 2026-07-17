@@ -73,7 +73,7 @@ if ( 'true' === $dli_show_socials ) {
 			?>
 			<li>
 				<a href="<?php echo esc_url( $dli_social_url ); ?>" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>" target="_blank" rel="noopener noreferrer">
-					<svg class="icon" role="img" aria-labelledby="<?php echo esc_attr( $dli_social['label'] ); ?>" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>">
+					<svg class="icon" role="img" aria-label="<?php echo esc_attr( $dli_social['label'] ); ?>">
 						<title><?php echo esc_html( $dli_social['label'] ); ?></title>
 						<use href="<?php echo esc_url( $dli_sprite_base . $dli_social['icon'] ); ?>"></use>
 					</svg>

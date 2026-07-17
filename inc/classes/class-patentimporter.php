@@ -238,7 +238,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
 		$post_title   = $this->sanitize_import_title( (string) $item->displayValue );
 		$post_name    = dli_generate_slug( $post_title );
-		$post_content = $item->abstract ?? '.';
+			$post_content = wp_kses_post( $item->abstract ?? '.' );
 
 		$new_content    = array(
 			'post_type'    => $this->post_type,
@@ -295,7 +295,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $translate_content ) {
 			$post_title_en   = $this->sanitize_import_title( $display_value_en );
 			$post_name_en    = dli_generate_slug( $post_title_en );
-			$post_content_en = $item->abstract_en ?? '.';
+				$post_content_en = wp_kses_post( $item->abstract_en ?? '.' );
 			$contents        = dli_get_post_translations( $post_id );
 
 			if ( ! isset( $contents[ $lang ] ) ) {

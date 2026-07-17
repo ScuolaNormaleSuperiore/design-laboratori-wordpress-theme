@@ -19,6 +19,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
 - Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
 - Uniformato l'ordinamento del Carousel in Home Page anche in selezione manuale per data pubblicazione, ultima modifica e data evento.
+- Sanitizzati i contenuti HTML importati da Indico e IRIS prima del salvataggio in `post_content`.
 
 
 

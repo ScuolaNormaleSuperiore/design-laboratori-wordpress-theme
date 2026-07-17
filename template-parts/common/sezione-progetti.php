@@ -28,7 +28,7 @@ define( 'PROGETTI_PER_ROW', 3 );
 		<div class="card card-teaser rounded shadow">
 			<div class="card-body">
 				<h3 class="card-title cardTitlecustomSpacing h5 ">
-					<svg class="icon" role="img" aria-labelledby="Folder">
+					<svg class="icon" role="img">
 						<title>Folder</title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
 					</svg>
