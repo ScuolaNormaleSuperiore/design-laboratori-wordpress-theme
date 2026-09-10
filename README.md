@@ -1,8 +1,8 @@
 # ![developers.italia](https://avatars1.githubusercontent.com/u/15377824?s=36&v=4 "developers.italia") Design Laboratori Italia
 
 
-**Design laboratori e centri di ricerca** è un tema wordpress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta istallato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
-Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
+**Design laboratori e centri di ricerca** è un tema wordpress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
+Il progetto si pone l'obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
 ## Stato del progetto
 Il progetto è in fase di produzione.
 
@@ -20,6 +20,8 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione delle pubblicazioni del laboratorio.
 - Gestione degli indirizzi di ricerca.
 - Gestione dei brevetti del laboratorio.
+- Gestione degli spin-off del laboratorio.
+- Gestione delle risorse tecniche del laboratorio.
 - Gestione del blog del laboratorio.
 - Pagine di archivio con paginazione.
 - Ricerca in tutti i contenuti del sito.
@@ -32,6 +34,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione contenuti in evidenza in home page.
 - Gestione sezioni eventi, news e pubblicazioni in home page.
 - Gestione banner in home page.
+- Gestione sponsor in home page.
 - Supporto delle lingue italiano ed inglese.
 - Integrazione con il software di gestione delle newsletter Brevo.
 - Importazione degli eventi da Indico.
@@ -50,9 +53,35 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 
 ## Documentazione
-Il *Manuale operatore* è in fase di realizzazione.
-Lo schema dei tipi di contenuto e delle tassonomie introdotte dal tema si trovano nel documento: [Schema-Contenuti-SitoFederato.pdf](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/Schema-Contenuti-SitoFederato.pdf).
-La procedura per aggiornare la versione usata di Bootstrap Italia è nel documento: [HowTo Aggiornare Bootstrap Italia.md](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/DOC/HowTo Aggiornare Bootstrap Italia.md).
+
+### Manuali operatore
+- [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
+- [Manuale operatore: persone](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore-persone.md)
+- [Pannello di configurazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md)
+
+### Manuali di gestione dei contenuti
+- [Attività di ricerca](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md)
+- [Banner](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Banner.md)
+- [Blog](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Blog.md)
+- [Brevetti](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Brevetti.md)
+- [Eventi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Eventi.md)
+- [Lingue](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Lingue.md)
+- [Luoghi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Luoghi.md)
+- [Notizie](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Notizie.md)
+- [Progetti](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Progetti.md)
+- [Pubblicazioni](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Pubblicazioni.md)
+- [Risorse tecniche](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Risorse-Tecniche.md)
+- [Spin-off](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Spin-off.md)
+
+### Schemi
+- [Schema dei contenuti e delle tassonomie](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Contenuti-SitoFederato.pdf)
+- [Schema di importazione degli eventi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Import-Eventi.drawio.pdf)
+- [Schema di integrazione con Brevo](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Integrazione-Brevo.pdf)
+
+### Guide tecniche
+- [Aggiornare la libreria Bootstrap Italia](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
+- [REST API del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/REST-API.md)
+- [Importazione dei brevetti da IRIS](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Import%20brevettiI%20da%20RIS.md)
 
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
@@ -107,7 +136,7 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
 ## Ruoli e permessi
-Installando il tema viene aggiunto un ruolo chiamato **Super Editor** che ha gli stessi permessi di un Editor, con i più il permesso di configurare il plugin (WP->Configurazione) e quello di modificare il menu del tema (WP->Aspetto).
+Installando il tema viene aggiunto un ruolo chiamato **Super Editor** che ha gli stessi permessi di un Editor, con in più il permesso di configurare il plugin (WP->Configurazione) e quello di modificare il menu del tema (WP->Aspetto).
 
 ## Installazione e configurazione del tema
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
@@ -133,14 +162,14 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 
 ## Personalizzazione dello stile (colori e font)
 In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
-* **Stile Bootstrap Iatalia standard**: Stile che prevede i colori e i font di default della libreria Bootstrap Italia.
-* **Stile personalizzato**: Stile che usa colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
+* **Stile Bootstrap Italia standard**: Stile che prevede i colori e i font di default della libreria Bootstrap Italia.
+* **Stile personalizzato**: Stile che usa colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
 
-Il file  [bootstrap-italia-custom.min.css](assets/scss/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria/) oppure seguendo i seguenti passi:
+Il file  [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria/) oppure seguendo i seguenti passi:
 
 1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
 2. Eseguire il comando ***npm install*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
-3. Modificare il file [boostrap-italia.scss](assets/scss/bootstrap-italia-custom.scss) indicando i valori che devono essere modificati e rigenerati.
+3. Modificare il file [bootstrap-italia-custom.scss](assets/scss/bootstrap-italia-custom.scss) indicando i valori che devono essere modificati e rigenerati.
 4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***. Questo comando produce un nuovo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
 
 Altre guide su questo argomento:
@@ -151,18 +180,17 @@ Altre guide su questo argomento:
 
 ## Migrazione da 1.4.x a 1.5.x
 La versione 1.5.x del tema ha introdotto una modifica nella struttura delle pagine del sito riducendo il numero di livelli presenti.
-Per aggiornare un Sito Federato da una versione 1.4.x a una versione 1.5.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Migrazione%20da%2014x%20a%2015x.md).
+Per aggiornare un Sito Federato da una versione 1.4.x a una versione 1.5.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Migrazione%20da%2014x%20a%2015x.md).
 
 ## Migrazione da 1.6.x a 1.7.x
 La versione 1.7 del tema ha introdotto alcune modifiche nella gestione delle immagini, dei progetti, delle attività di ricerca e della home page.
-Per aggiornare un Sito Federato da una versione 1.6.x a una versione 1.7.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Migrazione%20da%2016x%20a%2017x.md).
+Per aggiornare un Sito Federato da una versione 1.6.x a una versione 1.7.x è necessario seguire questa [procedura di migrazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Migrazione%20da%2016x%20a%2017x.md).
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 
 ## Sviluppi futuri
 Queste le sono le principali funzionalità previste per le prossime versioni del sistema:
-* Integrazione con il software Iris.
 * Autenticazione degli operatori tramite LDAP.
 * Autenticazione degli operatori tramite Shibboleth.
 
@@ -193,6 +221,10 @@ publiccode-parser publiccode.yml
 
 ## Lingue supportate
 Il tema è disponibile in ***italiano*** e in ***inglese***.
+
+## Licenza
+Il progetto è distribuito con licenza **GNU General Public License v3.0 or later** (`GPL-3.0-or-later`).
+Il testo integrale della licenza è nel file [LICENSE](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/LICENSE).
 
 ## Copyright
 1. Detentore copyright: *Scuola Normale Superiore*.

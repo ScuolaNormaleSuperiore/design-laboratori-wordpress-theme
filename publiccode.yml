@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
-softwareVersion: REL-1.8.1
+softwareVersion: 1.8.2
 categories:
   - website-builder
 description:
@@ -21,6 +21,8 @@ description:
       - Gestione delle pubblicazioni del laboratorio.
       - Gestione degli indirizzi di ricerca.
       - Gestione dei brevetti del laboratorio.
+      - Gestione degli spin-off del laboratorio.
+      - Gestione delle risorse tecniche del laboratorio.
       - Gestione del blog del laboratorio.
       - Pagine di archivio con paginazione.
       - Ricerca in tutti i contenuti del sito.
@@ -94,7 +96,7 @@ it:
     pagopa: false
     spid: false
 legal:
-  license: GPL-3.0-only
+  license: GPL-3.0-or-later
 localisation:
   availableLanguages:
     - it
@@ -112,7 +114,7 @@ maintenance:
 name: Design Laboratori Italia
 platforms:
   - web
-releaseDate: '2023-03-06'
+releaseDate: '2026-09-10'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
 logo: assets/img/logo_sito_federato.png

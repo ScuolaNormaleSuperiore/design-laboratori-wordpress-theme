@@ -1,6 +1,6 @@
 {
   "name": "design-laboratori-wordpress-theme",
-  "version": "REL-1.8.1",
+  "version": "1.8.2",
   "description": "Tema Wordpress dei Laboratori Italiani",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint:php:file": "composer lint:php --",
     "lint:php:fix": "composer lint:php:fix -- .",
     "lint:php:fix:file": "composer lint:php:fix --",
-    "version": "node SETUP/npm_scripts/config-sync && git add style.css && git add README.md",
+    "version": "node SETUP/npm_scripts/config-sync && git add style.css publiccode.yml VERSION.txt",
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node SETUP/npm_scripts/minify-css.js",
     "minify:js": "node SETUP/npm_scripts/minify-js.js",
@@ -35,13 +35,13 @@
     "url": "git+https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git"
   },
   "author": "Presidenza del Consiglio dei Ministri",
-  "license": "AGPL-3.0",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues"
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "^2.18.1"
+    "bootstrap-italia": "^2.18.3"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

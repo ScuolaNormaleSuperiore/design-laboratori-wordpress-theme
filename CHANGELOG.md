@@ -9,23 +9,34 @@ e questo progetto segue [Semantic Versioning](http://semver.org/).
 TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (Removed), Corretto (Fixed), Sicurezza (Security).
 
 
-## [Non rilasciato]
+## [TODO]
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
-- Refactoring codice wrapper Polylang (creazione PolylangManager).
+- Refactoring codice wrapper Polylang (completamento del PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
-- Corretto il carousel della Home Page: l'ordinamento per data evento ora viene applicato correttamente.
-- Corretti i permessi della REST API importer: ora il controllo usa la capability `manage_options` invece del ruolo `administrator`.
-- Resa sicura l'iniezione del messaggio informativo sui limiti upload nel modal Media di WordPress.
-- Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
-- Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
+
+
+
+## [1.8.2] - 2026-09-10
+## Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.18.3
+- Corretta la documentazione
 - Uniformato l'ordinamento del Carousel in Home Page anche in selezione manuale per data pubblicazione, ultima modifica e data evento.
-- Sanitizzati i contenuti HTML importati da Indico e IRIS prima del salvataggio in `post_content`.
+- Uniformata la versione del tema al formato numerico (`1.8.2`), rimosso il prefisso `REL-`.
+- Licenza dichiarata come GNU General Public License v3.0 or later (`GPL-3.0-or-later`) in modo coerente in `LICENSE`, `style.css`, `package.json` e `publiccode.yml`.
+## Corretto
+- Corretto il carousel della Home Page: l'ordinamento per data evento ora viene applicato correttamente.
 - Corretta la ricerca sito: senza filtri espliciti cerca ora in tutti i content type disponibili, non solo nei `post`.
-- Corrette le query dei filtri "anno": rimossi gli apici manuali attorno ai placeholder `%s` in `$wpdb->prepare()`.
 - Resa sicura la gestione del menu footer quando `wp_get_nav_menu_items()` restituisce `false`.
 - Resi difensivi i wrapper Polylang: se il plugin non è attivo il tema degrada a monolingua invece di generare un fatal error.
 - Import Indico più robusto: un singolo evento malformato nel feed non interrompe più l'intera importazione.
 - Corretta la sidebar privacy: il riconoscimento delle pagine figlie ora confronta gli ID e non l'identità degli oggetti `WP_Post`.
+## Sicurezza
+- Corretti i permessi della REST API importer: ora il controllo usa la capability `manage_options` invece del ruolo `administrator`.
+- Resa sicura l'iniezione del messaggio informativo sui limiti upload nel modal Media di WordPress.
+- Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
+- Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
+- Sanitizzati i contenuti HTML importati da Indico e IRIS prima del salvataggio in `post_content`.
+- Corrette le query dei filtri "anno": rimossi gli apici manuali attorno ai placeholder `%s` in `$wpdb->prepare()`.
 
 
 
@@ -34,8 +45,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Vari bug fixing.
 - Modificato funzionamento della ricerca del sito, cerca anche per stringa vuota.
 - Corretta gestione del multilingua nel Carousel in HP.
-
-
 
 ## [REL-1.8.0] - 2026-05-30
 ## Aggiunto
