@@ -118,8 +118,8 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 }
 ?>
 
-<div class="row mb-5 gy-4">
-	<div class="col-12 col-lg-4">
+<div class="row mb-5 gy-4 align-items-end">
+	<div class="col-12 col-md-6 col-lg">
 		<div class="form-group">
 			<label for="dliPeopleSearch">
 				<?php echo esc_html__( 'Cerca testo', 'design_laboratori_italia' ); ?>
@@ -135,7 +135,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		</div>
 	</div>
 	<?php if ( $dli_tb_has_structures ) : ?>
-		<div class="col-12 col-lg-4">
+		<div class="col-12 col-md-6 col-lg">
 			<div class="select-wrapper<?php echo ( '' !== $dli_tb_selected_structure ) ? ' dli-filter-active' : ''; ?>">
 				<label for="selectTableStructure">
 					<?php echo esc_html__( 'Struttura', 'design_laboratori_italia' ); ?>
@@ -154,7 +154,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		</div>
 	<?php endif; ?>
 	<?php if ( $dli_tb_has_type_filter ) : ?>
-		<div class="col-12 col-lg-4">
+		<div class="col-12 col-md-6 col-lg">
 			<div class="select-wrapper">
 				<label for="selectTableType">
 					<?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?>
@@ -173,7 +173,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		</div>
 	<?php endif; ?>
 	<?php if ( $dli_tb_has_tags ) : ?>
-		<div class="col-12 col-lg-4">
+		<div class="col-12 col-md-6 col-lg">
 			<div class="select-wrapper<?php echo ( '' !== $dli_tb_selected_level ) ? ' dli-filter-active' : ''; ?>">
 				<label for="selectTableLevel">
 					<?php echo esc_html( $dli_tb_label_select_level ); ?>
