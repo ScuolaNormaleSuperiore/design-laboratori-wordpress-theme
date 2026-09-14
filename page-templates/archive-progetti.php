@@ -42,9 +42,6 @@ $dli_num_results = $dli_query->found_posts;
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER PROGETTI -->
 	<?php get_template_part( 'template-parts/hero/progetti-archive' ); ?>
 
@@ -70,38 +67,30 @@ $dli_num_results = $dli_query->found_posts;
 					<?php $dli_image_metadata = dli_get_image_metadata( $post, 'item-card-list' ); ?>
 
 					<!-- start card -->
-					<div class="col-12 col-lg-4">
-						<div class="card-space pb-5">
-							<div class="card card-bg card-big no-after">
-								<?php if ( $dli_image_metadata['image_url'] ) : ?>
-									<div class="img-responsive-wrapper">
-										<div class="img-responsive img-responsive-panoramic">
-											<figure class="img-wrapper">
-												<img
-													src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
-												>
-											</figure>
-										</div>
+					<div class="col-12 col-lg-4 mb-3 mb-md-4">
+						<article class="it-card<?php echo ! empty( $dli_image_metadata['image_url'] ) ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
+							<h3 class="it-card-title h5">
+								<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+							</h3>
+							<?php if ( $dli_image_metadata['image_url'] ) : ?>
+								<div class="it-card-image-wrapper">
+									<div class="ratio ratio-16x9">
+										<figure class="figure img-full">
+											<img
+												src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+												title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
+												alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
+											>
+										</figure>
 									</div>
-								<?php endif; ?>
-
-								<div class="card-body">
-									<h3 class="card-title h5"><?php echo esc_html( get_the_title() ); ?></h3>
-									<p class="card-text">
-										<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-									</p>
-									<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-										<span class="text customSpacing"><?php echo esc_html__( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
-										<svg class="icon" role="img" aria-labelledby="arrow-right-title">
-											<title id="arrow-right-title"><?php echo esc_html__( 'Vai al progetto', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-										</svg>
-									</a>
 								</div>
+							<?php endif; ?>
+							<div class="it-card-body">
+								<p class="it-card-text">
+									<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+								</p>
 							</div>
-						</div>
+						</article>
 					</div>
 					<!-- end card -->
 

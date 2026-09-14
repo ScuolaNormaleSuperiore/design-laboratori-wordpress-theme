@@ -46,9 +46,6 @@ $dli_label_all_levels = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pr
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER PROGETTI -->
 	<?php get_template_part( 'template-parts/hero/progetti' ); ?>
 
@@ -57,32 +54,20 @@ $dli_label_all_levels = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pr
 
 			<!-- Filtro per TAG -->
 			<?php if ( count( $dli_tags ) > 0 ) : ?>
-				<div class="row text-center pb-5">
-					<div class="col-12 col-lg-12">
-						<div class="title-section">
-							<?php foreach ( $dli_tags as $dli_tag ) : ?>
-								<div class="chip chip-primary chip-lg chip-simple <?php echo ( $dli_selected_level === $dli_tag->slug ) ? 'chip-selected' : ''; ?>">
-									<span class="chip-label customSpacing">
-										<a class="hover-text-white"
-											href="#"
-											onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $dli_tag->slug ); ?>'); return false;"
-											title="<?php echo esc_attr__( 'Filtra per', 'design_laboratori_italia' ) . ': ' . esc_attr( $dli_tag->name ); ?>"
-											data-focus-mouse="false">
-											<?php echo esc_html( $dli_tag->name ); ?>
-										</a>
-									</span>
-								</div>
-							<?php endforeach; ?>
-							<div class="chip chip-primary chip-lg chip-simple <?php echo ( '' === $dli_selected_level ) ? 'chip-selected' : ''; ?>">
-								<span class="chip-label customSpacing">
-									<a class="hover-text-white"
-										href="#"
-										onclick="addParameterAndReloadPage('level', ''); return false;"
-										title="<?php echo esc_attr( $dli_label_all_levels ); ?>">
-										<?php echo esc_html( $dli_label_all_levels ); ?>
-									</a>
-								</span>
-							</div>
+				<div class="row mb-5 gy-3 align-items-end">
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="select-wrapper<?php echo ( '' !== $dli_selected_level ) ? ' dli-filter-active' : ''; ?>">
+							<label for="selectProjectsTag"><?php echo esc_html__( 'Tag', 'design_laboratori_italia' ); ?></label>
+							<select id="selectProjectsTag" onchange="reloadWithSelectedItem('selectProjectsTag', 'level')">
+								<option value="" <?php selected( $dli_selected_level, '' ); ?>>
+									<?php echo esc_html( $dli_label_all_levels ); ?>
+								</option>
+								<?php foreach ( $dli_tags as $dli_tag ) : ?>
+									<option value="<?php echo esc_attr( $dli_tag->slug ); ?>" <?php selected( $dli_selected_level, $dli_tag->slug ); ?>>
+										<?php echo esc_html( $dli_tag->name ); ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -121,48 +106,51 @@ $dli_label_all_levels = dli_get_configuration_field_by_lang( 'tutti_i_livelli_pr
 					?>
 
 					<!--start card-->
-					<div class="col-12 col-lg-4">
-						<div class="card-space pb-5">
-							<div class="card card-bg card-big no-after dli_card_progetti">
-								<?php if ( ! empty( $dli_image_metadata['image_url'] ) ) : ?>
-									<div class="img-responsive-wrapper">
-										<div class="img-responsive img-responsive-panoramic">
-											<figure class="img-wrapper">
-												<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ?? '' ); ?>"
-													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ?? '' ); ?>">
-											</figure>
-										</div>
-									</div>
-								<?php endif; ?>
-
-								<div class="card-body">
-									<h3 class="card-title h5"><?php echo esc_html( get_the_title() ); ?></h3>
-									<p class="card-text font-serif">
-										<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-									</p>
-									<span class="card-signature"><?php echo esc_html( $dli_nomi_resp ); ?></span>
-
-									<div class="it-card-footer">
-										<div class="head-tags">
-											<?php foreach ( $dli_levels as $dli_level ) : ?>
-												<a class="card-tag text-decoration-none" href="#"
-													onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $dli_level->slug ); ?>'); return false;">
-													<?php echo esc_html( $dli_level->name ); ?>
-												</a>
-											<?php endforeach; ?>
-										</div>
-										<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-											<span class="text customSpacing"><?php echo esc_html__( 'Vai al progetto', 'design_laboratori_italia' ); ?></span>
-											<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Vai al progetto', 'design_laboratori_italia' ); ?>">
-												<title><?php echo esc_html__( 'Vai al progetto', 'design_laboratori_italia' ); ?></title>
-												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-											</svg>
-										</a>
+					<div class="col-12 col-lg-4 mb-3 mb-md-4">
+						<article class="it-card<?php echo ! empty( $dli_image_metadata['image_url'] ) ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
+							<h3 class="it-card-title h5">
+								<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+							</h3>
+							<?php if ( ! empty( $dli_image_metadata['image_url'] ) ) : ?>
+								<div class="it-card-image-wrapper">
+									<div class="ratio ratio-16x9">
+										<figure class="figure img-full">
+											<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+												title="<?php echo esc_attr( $dli_image_metadata['image_title'] ?? '' ); ?>"
+												alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ?? '' ); ?>">
+										</figure>
 									</div>
 								</div>
+							<?php endif; ?>
+							<div class="it-card-body">
+								<p class="it-card-text">
+									<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
+								</p>
 							</div>
-						</div>
+							<footer class="it-card-footer flex-column align-items-start">
+								<?php if ( $dli_nomi_resp ) : ?>
+									<span class="it-card-signature"><?php echo esc_html( $dli_nomi_resp ); ?></span>
+								<?php endif; ?>
+								<?php if ( ! empty( $dli_levels ) ) : ?>
+									<div class="it-card-taxonomy">
+										<ul class="it-card-chips" aria-label="<?php echo esc_attr__( 'Argomenti correlati:', 'design_laboratori_italia' ); ?>">
+											<?php foreach ( $dli_levels as $dli_level ) : ?>
+												<li class="list-item">
+													<a class="chip chip-secondary"
+														href="#"
+														onclick="addParameterAndReloadPage('level', '<?php echo esc_attr( $dli_level->slug ); ?>'); return false;">
+														<span class="chip-label">
+															<span class="visually-hidden"><?php echo esc_html__( 'Argomento:', 'design_laboratori_italia' ); ?></span>
+															<?php echo esc_html( $dli_level->name ); ?>
+														</span>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									</div>
+								<?php endif; ?>
+							</footer>
+						</article>
 					</div>
 					<!--end card-->
 
