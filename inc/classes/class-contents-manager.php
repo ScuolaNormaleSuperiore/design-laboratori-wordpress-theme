@@ -461,6 +461,7 @@ class DLI_ContentsManager {
 	 *     Argomenti opzionali.
 	 *     @type string $selected_structure Slug struttura selezionata ('' = nessuna).
 	 *     @type string $selected_level     Slug tag selezionato ('' = nessuno).
+	 *     @type string $selected_cognome   Testo di ricerca sul cognome ('' = nessuno).
 	 *     @type int    $posts_per_page     Persone per pagina (-1 = tutte).
 	 *     @type int    $paged              Pagina corrente.
 	 * }
@@ -472,6 +473,7 @@ class DLI_ContentsManager {
 	 *     @type WP_Term[] $tags                Tag disponibili.
 	 *     @type string    $selected_structure  Slug struttura filtrata.
 	 *     @type string    $selected_level      Slug tag filtrato.
+	 *     @type string    $selected_cognome    Testo di ricerca sul cognome filtrato.
 	 *     @type int       $result_count        Numero persone uniche renderizzabili.
 	 *     @type int       $current_page        Pagina corrente.
 	 *     @type int       $total_pages         Numero totale di pagine.
@@ -480,6 +482,7 @@ class DLI_ContentsManager {
 	public static function get_people_page_data( $args = array() ) {
 		$selected_structure = isset( $args['selected_structure'] ) ? (string) $args['selected_structure'] : '';
 		$selected_level     = isset( $args['selected_level'] ) ? (string) $args['selected_level'] : '';
+		$selected_cognome   = isset( $args['selected_cognome'] ) ? (string) $args['selected_cognome'] : '';
 		$posts_per_page     = isset( $args['posts_per_page'] ) ? (int) $args['posts_per_page'] : -1;
 		$paged              = isset( $args['paged'] ) ? (int) $args['paged'] : 1;
 
@@ -523,6 +526,17 @@ class DLI_ContentsManager {
 
 		if ( ! empty( $tax_query ) ) {
 			$people_args['tax_query'] = $tax_query;
+		}
+
+		if ( '' !== $selected_cognome ) {
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Ricerca testuale sul cognome, nessuna alternativa indicizzata disponibile.
+			$people_args['meta_query'] = array(
+				array(
+					'key'     => 'cognome',
+					'value'   => $selected_cognome,
+					'compare' => 'LIKE',
+				),
+			);
 		}
 
 		$people_query       = new WP_Query( $people_args );
@@ -590,6 +604,7 @@ class DLI_ContentsManager {
 			'tags'               => $tags,
 			'selected_structure' => $selected_structure,
 			'selected_level'     => $selected_level,
+			'selected_cognome'   => $selected_cognome,
 			'result_count'       => count( array_unique( $unique_person_ids ) ),
 			'current_page'       => $paged,
 			'total_pages'        => $total_pages,

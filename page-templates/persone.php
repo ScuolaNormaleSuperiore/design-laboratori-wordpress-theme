@@ -11,10 +11,12 @@ get_header();
 $dli_selected_structure_raw = filter_input( INPUT_GET, 'struttura', FILTER_UNSAFE_RAW );
 $dli_selected_level_raw     = filter_input( INPUT_GET, 'level', FILTER_UNSAFE_RAW );
 $dli_selected_type_raw      = filter_input( INPUT_GET, 'tipologia', FILTER_UNSAFE_RAW );
+$dli_selected_cognome_raw   = filter_input( INPUT_GET, 'cognome', FILTER_UNSAFE_RAW );
 
 $dli_selected_structure = is_string( $dli_selected_structure_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_structure_raw ) ) : '';
 $dli_selected_level     = is_string( $dli_selected_level_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_level_raw ) ) : '';
 $dli_selected_type      = is_string( $dli_selected_type_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_type_raw ) ) : '';
+$dli_selected_cognome   = is_string( $dli_selected_cognome_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_cognome_raw ) ) : '';
 
 $dli_view_type = dli_get_option( 'people_view_type', 'persone' );
 
@@ -25,11 +27,13 @@ if ( 'tabella' === $dli_view_type ) {
 	$dli_page_data                       = DLI_ContentsManager::get_people_page_data( array() );
 	$dli_page_data['selected_structure'] = $dli_selected_structure;
 	$dli_page_data['selected_level']     = $dli_selected_level;
+	$dli_page_data['selected_cognome']   = $dli_selected_cognome;
 } else {
 	$dli_page_data = DLI_ContentsManager::get_people_page_data(
 		array(
 			'selected_structure' => $dli_selected_structure,
 			'selected_level'     => $dli_selected_level,
+			'selected_cognome'   => $dli_selected_cognome,
 		)
 	);
 }
@@ -47,7 +51,6 @@ $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 
 <main id="main-container" role="main">
 	<form action="<?php echo esc_url( get_permalink() ); ?>" id="personeform" method="GET">
 
-		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
 		<?php get_template_part( 'template-parts/hero/persone' ); ?>
 
 		<div class="container my-4">
@@ -65,6 +68,7 @@ $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 
 								'selected_structure'      => $dli_page_data['selected_structure'],
 								'selected_level'          => $dli_page_data['selected_level'],
 								'selected_type'           => $dli_selected_type,
+								'selected_cognome'        => $dli_page_data['selected_cognome'],
 								'filter_mode'             => $dli_filter_mode,
 								'filter_level_enabled'    => $dli_filter_level_enabled,
 								'filter_structure_hidden' => $dli_filter_structure_hidden,

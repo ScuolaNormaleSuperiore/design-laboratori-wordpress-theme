@@ -74,42 +74,45 @@ $dli_pubblicazioni = new WP_Query(
 	<!-- START CONTENT -->
 		<main id="main-container" role="main">
 
-			<!-- BREADCRUMB -->
-			<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-			<!-- BANNER PERSONE -->
-			<section id="banner-persone">
-				<div class="p-3 primary-bg-c1">
-					<div class="container">
-						<div class="row">
-							<div class="col-12 col-lg-3 d-flex align-items-center justify-content-center">
-								<div class="avatar size-xxl">
-								<?php
-								if ( $dli_image_url ) {
-									echo "<img src='" . esc_url( $dli_image_url ) . "' alt='" . esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $dli_title ) )
-									. "' title='" . esc_attr( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $dli_title ) );
-									if ( $dli_nome_struttura ) {
-										echo '- ' . esc_html( $dli_nome_struttura );
-									}
-									echo "' aria-hidden='true'/>";
-								}
-								?>
-								</div><!-- /avatar -->
-							</div><!-- /col-lg-3 -->
-							<div class="col-12 col-lg-9">
-								<div class="section-title">
-									<h2 class="mb-3 mt-3"><?php echo esc_html( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $dli_title ) ); ?></h2>
-									<p>
-										<?php
+			<!-- BANNER PERSONA: nessuna foto di copertina disponibile per una
+			     persona, quindi hero a sfondo pieno (default Ottanio) con breadcrumb
+			     integrato, come nelle pagine di elenco/archivio, invece del pattern
+			     foto+overlay usato per le altre schede. -->
+			<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-persona-title">
+				<div class="container">
+					<div class="row align-items-stretch">
+						<div class="col-12 col-lg-7">
+							<section class="pt-2">
+								<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+							</section>
+							<div class="it-hero-text-wrapper px-lg-2">
+								<div class="row align-items-center">
+									<?php if ( $dli_image_url ) : ?>
+									<div class="col-auto">
+										<div class="avatar size-xxl">
+											<img src="<?php echo esc_url( $dli_image_url ); ?>" alt="" aria-hidden="true" />
+										</div>
+									</div>
+									<?php endif; ?>
+									<div class="col">
+										<h2 class="text-white mb-1" id="dli-hero-persona-title"><?php echo esc_html( dli_get_persona_display_name( dli_get_field( 'nome' ), dli_get_field( 'cognome' ), $dli_title ) ); ?></h2>
+										<?php if ( $dli_categoria_appartenenza || $dli_nome_struttura ) : ?>
+										<p class="text-white mb-0">
+											<?php
 											echo esc_html( $dli_categoria_appartenenza );
-										if ( $dli_nome_struttura ) {
-											echo ', ' . esc_html( $dli_nome_struttura );
-										}
-										?>
-									</p>
-								</div><!-- /title-section -->
-							</div><!-- /col-12 col-lg-9 -->
-						</div><!-- /row -->
+											if ( $dli_nome_struttura ) {
+												echo ( $dli_categoria_appartenenza ? ', ' : '' ) . esc_html( $dli_nome_struttura );
+											}
+											?>
+										</p>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-5 d-none d-lg-block">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+						</div>
 					</div>
 				</div>
 			</section>
@@ -252,35 +255,30 @@ $dli_pubblicazioni = new WP_Query(
 						<h3 class="it-page-section h4" id="p2"><?php esc_html_e( 'Progetti', 'design_laboratori_italia' ); ?></h3>
 						<!-- PROGETTI -->
 						<section id="progetti">
-							<div class="row pb-3">
-								<div class="card-wrapper card-teaser-wrapper">
-								<?php
-								while ( $dli_progetti->have_posts() ) {
-									$dli_progetti->the_post();
-									$dli_project_id    = get_the_ID();
-									$dli_project_title = get_the_title( $dli_project_id );
-									?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5">
-												<svg class="icon" role="img">
-													<title>Folder</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_project_title ); ?></a>
-											</h3>
-											<div class="card-text">
-												<p><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
-											</div>
-										</div>
-									</div>
-									<!--end card-->
-									<?php
-								}
+							<div class="row g-3 pb-3">
+							<?php
+							while ( $dli_progetti->have_posts() ) {
+								$dli_progetti->the_post();
+								$dli_project_id    = get_the_ID();
+								$dli_project_title = get_the_title( $dli_project_id );
 								?>
-								</div> <!--end card wrapper-->
-							</div> <!--end row-->
+								<div class="col-md-6">
+									<article class="it-card rounded shadow h-100">
+										<h3 class="it-card-title cardTitlecustomSpacing h5">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
+											</svg>
+											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_project_title ); ?></a>
+										</h3>
+										<div class="it-card-body">
+											<p class="it-card-text"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
+										</div>
+									</article>
+								</div>
+							<?php
+							}
+							?>
+							</div>
 						</section>
 							<?php
 						}
@@ -299,35 +297,30 @@ $dli_pubblicazioni = new WP_Query(
 						<h3 class="it-page-section h4 pt-3" id="p3"><?php echo esc_html__( 'Attività di ricerca', 'design_laboratori_italia' ); ?></h3>
 						<!-- INDIRIZZI DI RICERCA -->
 						<section id="indirizzi-ricerca">
-							<div class="row pb-3">
-								<div class="card-wrapper card-teaser-wrapper">
-								<?php
-								while ( $dli_indirizzi_di_ricerca->have_posts() ) {
-									$dli_indirizzi_di_ricerca->the_post();
-									$dli_indirizzo_ricerca_id    = get_the_ID();
-									$dli_indirizzo_ricerca_title = get_the_title( $dli_indirizzo_ricerca_id );
-									?>
-											<!--start card-->
-											<div class="card card-teaser rounded shadow">
-												<div class="card-body">
-													<h3 class="card-title cardTitlecustomSpacing h5 ">
-														<svg class="icon" role="img">
-															<title>Folder</title>
-															<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
-														</svg>
-														<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_indirizzo_ricerca_title ); ?></a>
-													</h3>
-													<div class="card-text">
-														<p><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
-													</div>
-												</div>
-											</div>
-											<!--end card-->
-									<?php
-								}
+							<div class="row g-3 pb-3">
+							<?php
+							while ( $dli_indirizzi_di_ricerca->have_posts() ) {
+								$dli_indirizzi_di_ricerca->the_post();
+								$dli_indirizzo_ricerca_id    = get_the_ID();
+								$dli_indirizzo_ricerca_title = get_the_title( $dli_indirizzo_ricerca_id );
 								?>
-								</div> <!--end card wrapper-->
-							</div> <!--end row-->
+								<div class="col-md-6">
+									<article class="it-card rounded shadow h-100">
+										<h3 class="it-card-title cardTitlecustomSpacing h5">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-folder' ); ?>"></use>
+											</svg>
+											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_indirizzo_ricerca_title ); ?></a>
+										</h3>
+										<div class="it-card-body">
+											<p class="it-card-text"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
+										</div>
+									</article>
+								</div>
+							<?php
+							}
+							?>
+							</div>
 						</section>
 							<?php
 						}
@@ -335,44 +328,32 @@ $dli_pubblicazioni = new WP_Query(
 							?>
 						<h3 class="it-page-section h4 pt-3" id="p4"><?php esc_html_e( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
 						<!-- PUBBLICAZIONI -->
-						<section id="pubblicazioni">    
-							<div class="row pb-3">
-								<div class="card-wrapper card-teaser-wrapper">
-								<?php
-								while ( $dli_pubblicazioni->have_posts() ) {
-									$dli_pubblicazioni->the_post();
-									$dli_publication_id    = get_the_ID();
-									$dli_publication_title = get_the_title( $dli_publication_id );
-									$dli_url               = dli_get_field( 'url' );
-									?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title>Note</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note' ); ?>"></use>
-												</svg>
-												<?php
-												if ( $dli_url ) {
-													?>
-												<a href="<?php echo esc_url( $dli_url ); ?>"><?php echo esc_html( $dli_publication_title ); ?></a>
-													<?php
-												} else {
-													echo esc_html( $dli_publication_title );
-												}
-												?>
-											</h3>
-											<div class="card-text">
-													<p><?php echo wp_kses_post( wpautop( do_shortcode( get_the_content() ) ) ); ?></p>
-											</div>
-										</div>
-									</div><!--end card-->
-									<?php
-								}
+						<section id="pubblicazioni">
+							<ul class="list-unstyled mb-0">
+							<?php
+							while ( $dli_pubblicazioni->have_posts() ) {
+								$dli_pubblicazioni->the_post();
+								$dli_publication_id    = get_the_ID();
+								$dli_publication_title = get_the_title( $dli_publication_id );
+								$dli_url                = dli_get_field( 'url' );
 								?>
-								</div> <!--end card wrapper-->
-							</div> <!--end row-->
+								<li class="py-3 border-bottom">
+									<h4 class="h6 mb-1">
+										<svg class="icon icon-sm icon-primary align-top" aria-hidden="true" focusable="false">
+											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note' ); ?>"></use>
+										</svg>
+										<?php if ( $dli_url ) : ?>
+											<a href="<?php echo esc_url( $dli_url ); ?>"><?php echo esc_html( $dli_publication_title ); ?></a>
+										<?php else : ?>
+											<?php echo esc_html( $dli_publication_title ); ?>
+										<?php endif; ?>
+									</h4>
+									<div class="mb-0 text-secondary"><?php echo wp_kses_post( wpautop( do_shortcode( get_the_content() ) ) ); ?></div>
+								</li>
+							<?php
+							}
+							?>
+							</ul>
 						</section>
 							<?php
 						}
@@ -383,74 +364,43 @@ $dli_pubblicazioni = new WP_Query(
 							?>
 						<h3 class="it-page-section h4 pt-3" id="p5"><?php esc_html_e( 'Ulteriori informazioni', 'design_laboratori_italia' ); ?></h3>
 						<section id="ulteriori-info">
-							<div class="row pb-3">
-								<div class="card-wrapper card-teaser-wrapper">
-								<?php
-								if ( ( is_array( $dli_allegato_cv ) && count( $dli_allegato_cv ) > 0 ) ) {
-									?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title>File PDF</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( $dli_allegato_cv['url'] ); ?>"><?php echo esc_attr( $dli_allegato_cv['title'] ); ?>&nbsp;</a>
-											</h3>
+							<div class="it-list-wrapper">
+								<ul class="it-list">
+							<?php
+							$dli_allegati_utili = array( $dli_allegato_cv, $dli_allegato1, $dli_allegato2, $dli_allegato3 );
+							foreach ( $dli_allegati_utili as $dli_allegato ) {
+								if ( ! is_array( $dli_allegato ) || empty( $dli_allegato ) ) {
+									continue;
+								}
+								$dli_allegato_metadata = '';
+								if ( ! empty( $dli_allegato['mime_type'] ) ) {
+									$dli_mime_parts        = explode( '/', $dli_allegato['mime_type'] );
+									$dli_allegato_metadata = strtoupper( end( $dli_mime_parts ) );
+								}
+								if ( ! empty( $dli_allegato['filesize'] ) ) {
+									$dli_allegato_metadata .= ( $dli_allegato_metadata ? ', ' : '' ) . size_format( (int) $dli_allegato['filesize'] );
+								}
+								?>
+								<li>
+									<a class="list-item" href="<?php echo esc_url( $dli_allegato['url'] ); ?>">
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
+											</svg>
 										</div>
-									</div><!--end card-->
-									<?php } ?>
-									<?php
-									if ( ( is_array( $dli_allegato1 ) && count( $dli_allegato1 ) > 0 ) ) {
-										?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title>File PDF</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( $dli_allegato1['url'] ); ?>"><?php echo esc_attr( $dli_allegato1['title'] ); ?></a>
-											</h3>
+										<div class="it-right-zone">
+											<span class="text"><?php echo esc_html( $dli_allegato['title'] ); ?></span>
+											<?php if ( $dli_allegato_metadata ) : ?>
+												<span class="metadata"><?php echo esc_html( $dli_allegato_metadata ); ?></span>
+											<?php endif; ?>
 										</div>
-									</div><!--end card-->
-										<?php
-									}
-									if ( ( is_array( $dli_allegato2 ) && count( $dli_allegato2 ) > 0 ) ) {
-										?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title>File PDF</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( $dli_allegato2['url'] ); ?>"><?php echo esc_attr( $dli_allegato2['title'] ); ?></a>
-											</h3>
-										</div>
-									</div><!--end card-->
-										<?php
-									}
-									if ( ( is_array( $dli_allegato3 ) && count( $dli_allegato3 ) > 0 ) ) {
-										?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title>File PDF</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( $dli_allegato3['url'] ); ?>"><?php echo esc_attr( $dli_allegato3['title'] ); ?></a>
-											</h3>
-										</div>
-									</div><!--end card-->
-									<?php } ?>
-									</div> <!--end card wrapper-->
-							</div> <!--end row-->
+									</a>
+								</li>
+							<?php
+							}
+							?>
+								</ul>
+							</div>
 						</section>
 							<?php
 						}

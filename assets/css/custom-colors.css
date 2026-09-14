@@ -89,3 +89,15 @@
 .it-header-navbar-wrapper.theme-light-desk {
 	--bsi-header-nav-background: var(--bsi-color-background-inverse);
 }
+
+/* .chip-primary (es. chip di filtro "selezionata") calcola il proprio testo
+   da --bsi-color-text-primary e il proprio sfondo da
+   --bsi-color-background-primary-hover: in v3 di default sono tinte diverse
+   (testo Ottanio scuro su sfondo azzurro chiaro), ma qui sopra la famiglia
+   "primary" è appiattita su un unico Ottanio (stessa scelta già fatta nel
+   prototipo statico bs-playground, mai esercitata però su un componente
+   chip): senza questo override il testo risulterebbe Ottanio su sfondo
+   Ottanio, illeggibile. */
+.chip-primary {
+	--bsi-chip-text-color: var(--bsi-color-text-inverse);
+}

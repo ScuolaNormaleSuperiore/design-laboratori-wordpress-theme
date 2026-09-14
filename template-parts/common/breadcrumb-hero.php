@@ -27,7 +27,11 @@ $dli_index = 0;
 			$dli_is_active = false !== strpos( (string) $dli_step['class'], 'active' );
 			?>
 			<li class="<?php echo esc_attr( $dli_step['class'] ); ?>"<?php echo $dli_is_active ? ' aria-current="page"' : ''; ?>>
-				<a class="text-white" href="<?php echo esc_url( $dli_step['url'] ); ?>"><?php echo esc_html( $dli_step['label'] ); ?></a>
+				<?php if ( $dli_is_active ) : ?>
+					<span class="text-white"><?php echo esc_html( $dli_step['label'] ); ?></span>
+				<?php else : ?>
+					<a class="text-white" href="<?php echo esc_url( $dli_step['url'] ); ?>"><?php echo esc_html( $dli_step['label'] ); ?></a>
+				<?php endif; ?>
 				<?php if ( $dli_index < count( $dli_steps ) - 1 ) : ?>
 					<span class="separator text-white" aria-hidden="true">&gt;</span>
 				<?php endif; ?>
