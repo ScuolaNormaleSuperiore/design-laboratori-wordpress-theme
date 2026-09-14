@@ -75,3 +75,17 @@
 .it-hero-text-wrapper.bg-dark {
 	background-color: rgba(var(--bsi-dark-rgb), var(--bsi-bg-opacity, 1)) !important;
 }
+
+/* Bug Bootstrap Italia 3.0.0-beta.5 (non ancora segnalato upstream):
+   .it-header-navbar-wrapper.theme-light SOVRASCRIVE --bsi-header-nav-background
+   (usata da .it-header-navbar-wrapper stesso per il proprio background-color)
+   con --bsi-color-background-inverse (bianco). La variante
+   .theme-light-desk, usata da sola in header.php, sovrascrive invece SOLO lo
+   sfondo del .navbar annidato e il bordo — non tocca
+   --bsi-header-nav-background, che quindi resta quello della regola base
+   (--bsi-color-background-primary, l'Ottanio del brand): il wrapper header
+   principale prendeva perciò lo sfondo colorato invece di restare
+   bianco/vuoto come nella variante "light" completa. */
+.it-header-navbar-wrapper.theme-light-desk {
+	--bsi-header-nav-background: var(--bsi-color-background-inverse);
+}
