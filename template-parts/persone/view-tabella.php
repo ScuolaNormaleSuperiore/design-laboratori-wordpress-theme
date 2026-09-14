@@ -120,7 +120,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 
 <div class="row mb-5 gy-4 align-items-end">
 	<div class="col-12 col-md-6 col-lg">
-		<div class="form-group">
+		<div class="form-group mb-0">
 			<label for="dliPeopleSearch">
 				<?php echo esc_html__( 'Cerca testo', 'design_laboratori_italia' ); ?>
 			</label>
