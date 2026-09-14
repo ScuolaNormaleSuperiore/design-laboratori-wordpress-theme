@@ -56,8 +56,16 @@ Dopo aver introdotto `custom-colors.css`, il sito in demo continuava a mostrare 
 
 Perché i colori/font del brand SNS siano visibili, l'opzione **WP → Configurazione → "choose_style"** deve essere impostata su **"custom"** (in caso contrario viene caricato `assets/bootstrap-italia/css/bootstrap-italia.min.css`, la libreria "pulita" senza alcun override, e `custom-colors.css` non viene nemmeno caricato).
 
+## Famiglia Persone (elenco + scheda) — portata a v3
+
+Primo caso reale di applicazione dei pattern trasversali:
+
+- **Hero con breadcrumb integrato**: `template-parts/common/breadcrumb-hero.php` (bozza preesistente, mai agganciata: corretto un bug per cui lo step attivo del breadcrumb renderizzava un link invece di un testo statico) ora è usata sia dall'elenco (`template-parts/hero/persone.php`, hero a due colonne con immagine) sia dalla scheda (`single-persona.php`, stesso pattern "senza foto di copertina": sfondo Ottanio pieno invece del pattern foto+overlay). Aggiunto `assets/img/placeholder-sns.png` (stesso asset del prototipo) per la colonna immagine, non essendoci un campo immagine reale per queste pagine.
+- **Chip di filtro** (`template-parts/persone/filters.php`): convertita dal markup v2 (`div.chip-simple`/`chip-selected` con link annidato) al pattern v3 (`<a class="chip chip-primary">` è la chip stessa). Scoperto e corretto un bug di contrasto reale: col brand SNS la famiglia "primary" è appiattita su un solo Ottanio (stessa scelta del prototipo, mai esercitata però su un componente chip), quindi `.chip-primary` calcolava testo e sfondo nella stessa tinta — override mirato in `custom-colors.css`.
+- **Filtro "Cerca per cognome"**: aggiunto (presente nel prototipo, mancava nella vista a schede — la vista tabella lo aveva già lato client) con filtraggio server-side reale (`DLI_ContentsManager::get_people_page_data()`, nuovo parametro `selected_cognome`), stessa logica di ricarica GET già usata dagli altri filtri. Non portato il filtro "Ciclo" del prototipo: nessun campo/tassonomia corrispondente esiste per questo post type.
+- **Card correlate** (`single-persona.php`: Progetti, Indirizzi di ricerca): da markup Bootstrap generico v2 (`card`/`card-body`/`card-title`/`card-text`, wrapper `card-teaser-wrapper`, assente/non tematizzato in v3) a `it-card`/`it-card-body`/`it-card-title`/`it-card-text` su griglia `row`/`col-md-6`. Pubblicazioni portate a lista con citazione, Ulteriori informazioni (CV e allegati) a `it-list-wrapper`/`it-list` con metadata — stesso linguaggio visivo già usato per i Contatti, pattern del prototipo per contenuti "a elenco lungo" invece che a card.
+
 ## Prossimi passi
 
-- Porting del markup della famiglia **Persone** (elenco + scheda) ai pattern v3 già validati nel prototipo statico: hero con breadcrumb integrato, filtri/chip, tabella con ordinamento.
-- Introduzione dei pattern trasversali hero+breadcrumb (elenco/archivio vs. scheda di dettaglio) nei `template-parts` condivisi, cominciando da `template-parts/common/breadcrumb-hero.php`.
-- A seguire, replicare lo stesso porting sulle altre famiglie di pagina (attività, pubblicazioni, brevetti, impatti, risorse tecniche, luoghi, archivio news/eventi), seguendo l'ordine e i pattern già chiusi in `bs-playground`.
+- Replicare lo stesso porting (hero+breadcrumb, chip/filtri, card→it-card) sulle altre famiglie di pagina (progetti, attività, pubblicazioni, brevetti, impatti, risorse tecniche, luoghi, archivio news/eventi), seguendo l'ordine e i pattern già chiusi in `bs-playground`. `page-templates/progetti.php` ha lo stesso pattern chip v2 (`chip-simple`/`chip-selected`) di Persone: buon prossimo candidato.
+- Vista tabella di Persone (`template-parts/persone/view-tabella.php`) e vista chip (`template-parts/persone/view-chip.php`) non ancora verificate per classi v2-only residue: da controllare quando si passa a quella famiglia/vista specifica.
