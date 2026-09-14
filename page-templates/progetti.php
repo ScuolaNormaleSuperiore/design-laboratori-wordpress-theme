@@ -10,8 +10,9 @@ get_header();
 
 $dli_prog_cells_per_row = 3;
 $dli_pagination_mode    = dli_get_option( 'pagination_mode', 'progetti' );
-$dli_custom_per_page    = dli_get_option( 'pagination_number', 'progetti' );
-$dli_per_page           = ( 'show_all' === $dli_pagination_mode ) ? 999 : DLI_POSTS_PER_PAGE;
+$dli_custom_per_page    = absint( dli_get_option( 'pagination_number', 'progetti' ) );
+$dli_per_page           = ( 'show_all' === $dli_pagination_mode ) ? 999 : $dli_custom_per_page;
+$dli_per_page           = $dli_per_page > 0 ? $dli_per_page : DLI_POSTS_PER_PAGE;
 $dli_per_page_values    = DLI_POST_PER_PAGE_VALUES;
 $dli_today              = gmdate( 'Ymd' );
 
