@@ -11,37 +11,6 @@ html {
 }
 
 
-/* CUSTOM PAGINATION */
-
-#pagination_links {
-	text-align: center;
-	font-size: 18px;
-	line-height: 1.555;
-	margin-top: 10px;
-	margin-bottom: 20px;
-}
-
-#pagination_links .page-numbers ul{
-	list-style: none;
-}
-
-#pagination_links .page-numbers li{
-	display:inline;
-	margin-right: 5px;
-}
-
-#pagination_links .page-numbers {
-
-}
-
-#pagination_links .page-numbers .current {
-	color: #5d7083;
-	border: 1px solid #5d7083;
-	border-radius: 5px;
-	padding:  6.75px 13.5px 6.75px 13.5px ;
-	margin: 5px;
-}
-
 /* STILI PERSONALIZZATI */
 
 .bg-banner-persone {
