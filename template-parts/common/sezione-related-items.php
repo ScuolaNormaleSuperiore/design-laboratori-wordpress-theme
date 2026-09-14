@@ -13,12 +13,8 @@ define( 'DLI_RELATED_ITEMS_NUMBER', 3 );
 ?>
 
 <section id="sezione-eventi">
-	<div class="it-carousel-wrapper it-carousel-landscape-abstract-three-cols splide pt-4" data-bs-carousel-splide>
-		<div class="it-header-block">
-			<div class="it-header-block-title">
-			<h2 class="it-page-section h4 pb-2"><?php echo esc_html__( 'Eventi e notizie', 'design_laboratori_italia' ); ?></h2>
-			</div>
-		</div>
+	<h3 class="it-page-section h4 pt-3"><?php echo esc_html__( 'Eventi e notizie', 'design_laboratori_italia' ); ?></h3>
+	<div class="it-carousel-wrapper it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide>
 		<div class="splide__track ps-lg-3 pe-lg-3">
 			<ul class="splide__list it-carousel-all">
 				<?php
@@ -27,7 +23,7 @@ define( 'DLI_RELATED_ITEMS_NUMBER', 3 );
 
 					<li class="splide__slide">
 						<div class="it-single-slide-wrapper">
-							<div class="card-wrapper card-space">
+							<div class="card-wrapper h-100 pb-0">
 							<?php
 							if ( 'evento' === $dli_item->post_type ) {
 								get_template_part(

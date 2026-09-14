@@ -202,7 +202,7 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 
 					</nav>
 				</div>
-			</div> <!-- row -->
+			</div> <!-- col-12 col-lg-3 -->
 
 			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 
@@ -212,13 +212,7 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 				<h3 class="it-page-section h4" id="sezione-descrizione">
 					<?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?>
 				</h3>
-				<div class="row pb-3">
-					<p>
-						<?php
-							echo wp_kses_post( $dli_descrizione );
-						?>
-					</p>
-				</div>
+				<?php echo wp_kses_post( $dli_descrizione ); ?>
 					<?php
 				}
 				if ( $dli_responsabili ) {
@@ -338,7 +332,6 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 	</div> <!-- scheda_progetto -->
 
 </main>
-
 
 <?php
 get_footer();

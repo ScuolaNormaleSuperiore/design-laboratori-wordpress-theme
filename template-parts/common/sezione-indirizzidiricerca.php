@@ -12,7 +12,7 @@ $dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
 
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 	<?php if ( $dli_num_results ) : ?>
-		<div class="row g-3 pb-3">
+		<div class="row g-3">
 			<?php
 			foreach ( $dli_items as $dli_item ) :
 				$dli_id          = $dli_item->ID;
