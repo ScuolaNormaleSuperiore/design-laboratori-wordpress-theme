@@ -12,13 +12,23 @@ $dli_selected_structure_raw = filter_input( INPUT_GET, 'struttura', FILTER_UNSAF
 $dli_selected_level_raw     = filter_input( INPUT_GET, 'level', FILTER_UNSAFE_RAW );
 $dli_selected_type_raw      = filter_input( INPUT_GET, 'tipologia', FILTER_UNSAFE_RAW );
 $dli_selected_cognome_raw   = filter_input( INPUT_GET, 'cognome', FILTER_UNSAFE_RAW );
+$dli_vista_raw              = filter_input( INPUT_GET, 'vista', FILTER_UNSAFE_RAW );
 
 $dli_selected_structure = is_string( $dli_selected_structure_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_structure_raw ) ) : '';
 $dli_selected_level     = is_string( $dli_selected_level_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_level_raw ) ) : '';
 $dli_selected_type      = is_string( $dli_selected_type_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_type_raw ) ) : '';
 $dli_selected_cognome   = is_string( $dli_selected_cognome_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_cognome_raw ) ) : '';
+$dli_vista              = is_string( $dli_vista_raw ) ? sanitize_text_field( wp_unslash( $dli_vista_raw ) ) : '';
 
-$dli_view_type = dli_get_option( 'people_view_type', 'persone' );
+/*
+ * La vista (Schede/Tabella) è normalmente scelta in configurazione
+ * (people_view_type), ma l'utente può cambiarla al volo dal bottone Schede/
+ * Tabella in pagina (?vista=chip|tabella): l'URL, quando presente e valido,
+ * vince sul default di configurazione.
+ */
+$dli_view_type_default = dli_get_option( 'people_view_type', 'persone' );
+$dli_view_type_default = ( 'tabella' === $dli_view_type_default ) ? 'tabella' : 'chip';
+$dli_view_type          = in_array( $dli_vista, array( 'chip', 'tabella' ), true ) ? $dli_vista : $dli_view_type_default;
 
 if ( 'tabella' === $dli_view_type ) {
 	// Per la vista tabella tutti i record sono scaricati una volta sola;
@@ -38,7 +48,6 @@ if ( 'tabella' === $dli_view_type ) {
 	);
 }
 
-$dli_filter_mode          = dli_get_option( 'pagination_mode', 'persone' );
 $dli_filter_level_enabled = ( 'true' !== dli_get_option( 'hide_filter_tag', 'persone' ) );
 $dli_hide_icon            = dli_get_option( 'hide_person_icon', 'persone' );
 $dli_label_select_level   = dli_get_configuration_field_by_lang( 'seleziona_livello_persone', 'persone' );
@@ -46,6 +55,21 @@ $dli_label_all_levels     = dli_get_configuration_field_by_lang( 'tutti_i_livell
 
 $dli_filter_structure_hidden = ( 'true' === dli_get_option( 'hide_filter_structure', 'persone' ) );
 $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 'persone' ) );
+
+// URL dei bottoni Schede/Tabella: preservano i filtri attualmente attivi, cambiano solo "vista".
+$dli_view_query_args = array_filter(
+	array(
+		'struttura' => $dli_selected_structure,
+		'level'     => $dli_selected_level,
+		'tipologia' => $dli_selected_type,
+		'cognome'   => $dli_selected_cognome,
+	)
+);
+$dli_view_toggle = array(
+	'active'      => $dli_view_type,
+	'chip_url'    => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'chip' ) ), get_permalink() ),
+	'tabella_url' => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'tabella' ) ), get_permalink() ),
+);
 ?>
 
 <main id="main-container" role="main">
@@ -69,13 +93,13 @@ $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 
 								'selected_level'          => $dli_page_data['selected_level'],
 								'selected_type'           => $dli_selected_type,
 								'selected_cognome'        => $dli_page_data['selected_cognome'],
-								'filter_mode'             => $dli_filter_mode,
 								'filter_level_enabled'    => $dli_filter_level_enabled,
 								'filter_structure_hidden' => $dli_filter_structure_hidden,
 								'filter_type_hidden'      => $dli_filter_type_hidden,
 								'label_select_level'      => $dli_label_select_level,
 								'label_all_levels'        => $dli_label_all_levels,
 								'result_count'            => $dli_page_data['result_count'],
+								'view_toggle'             => $dli_view_toggle,
 							)
 						);
 						?>
@@ -88,7 +112,8 @@ $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 
 								'template-parts/persone/view-tabella',
 								null,
 								array(
-									'page_data' => $dli_page_data,
+									'page_data'   => $dli_page_data,
+									'view_toggle' => $dli_view_toggle,
 								)
 							);
 							?>

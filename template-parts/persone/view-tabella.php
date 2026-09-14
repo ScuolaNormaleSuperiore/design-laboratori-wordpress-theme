@@ -10,17 +10,20 @@
  * @package Design_Laboratori_Italia
  *
  * @var array $args {
- *     @type array $page_data Struttura dati prodotta da DLI_ContentsManager::get_people_page_data().
+ *     @type array  $page_data   Struttura dati prodotta da DLI_ContentsManager::get_people_page_data().
+ *     @type array  $view_toggle Dati per template-parts/persone/view-toggle (active/chip_url/tabella_url).
  * }
  */
 
 $dli_tb_page_data          = isset( $args['page_data'] ) ? $args['page_data'] : array();
+$dli_tb_view_toggle        = isset( $args['view_toggle'] ) ? $args['view_toggle'] : array();
 $dli_tb_people_rows        = isset( $dli_tb_page_data['people_rows'] ) ? $dli_tb_page_data['people_rows'] : array();
 $dli_tb_categories         = isset( $dli_tb_page_data['categories'] ) ? $dli_tb_page_data['categories'] : array();
 $dli_tb_structures         = isset( $dli_tb_page_data['structures'] ) ? $dli_tb_page_data['structures'] : array();
 $dli_tb_tags               = isset( $dli_tb_page_data['tags'] ) ? $dli_tb_page_data['tags'] : array();
 $dli_tb_selected_structure = isset( $dli_tb_page_data['selected_structure'] ) ? $dli_tb_page_data['selected_structure'] : '';
 $dli_tb_selected_level     = isset( $dli_tb_page_data['selected_level'] ) ? $dli_tb_page_data['selected_level'] : '';
+$dli_tb_selected_cognome   = isset( $dli_tb_page_data['selected_cognome'] ) ? $dli_tb_page_data['selected_cognome'] : '';
 
 $dli_tb_hide_email           = ( 'true' === dli_get_option( 'hide_people_table_email', 'persone' ) );
 $dli_tb_hide_phone           = ( 'true' === dli_get_option( 'hide_people_table_phone', 'persone' ) );
@@ -125,6 +128,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 				type="search"
 				id="dliPeopleSearch"
 				class="form-control"
+				value="<?php echo esc_attr( $dli_tb_selected_cognome ); ?>"
 				placeholder="<?php echo esc_attr__( 'Es. Rossi, Professore…', 'design_laboratori_italia' ); ?>"
 				aria-label="<?php echo esc_attr__( 'Cerca per nome, cognome, tipologia o struttura', 'design_laboratori_italia' ); ?>"
 			>
@@ -185,6 +189,11 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 					<?php endforeach; ?>
 				</select>
 			</div>
+		</div>
+	<?php endif; ?>
+	<?php if ( ! empty( $dli_tb_view_toggle ) ) : ?>
+		<div class="col-12 col-lg-auto d-flex justify-content-lg-end">
+			<?php get_template_part( 'template-parts/persone/view-toggle', null, $dli_tb_view_toggle ); ?>
 		</div>
 	<?php endif; ?>
 </div>
@@ -293,7 +302,7 @@ echo wp_json_encode(
 	var inputSearch  = document.getElementById( 'dliPeopleSearch' );
 
 	var state = {
-		search:    '',
+		search:    inputSearch ? inputSearch.value.trim() : '',
 		struttura: selStruttura ? selStruttura.value : '',
 		level:     selLevel ? selLevel.value : '',
 		type:      selType ? selType.value : '',
