@@ -203,6 +203,36 @@ a.mappasitolink:hover {
 	 background: rgba(0, 64, 89, 0.4) !important;
 }
 
+/* Breadcrumb sovrapposto all'hero, pattern "scheda di dettaglio con foto"
+   (v. sf-scheda-progetto.html del prototipo statico): va nel markup DOPO
+   .img-responsive-wrapper, posizionato qui in overlay assoluto sopra la
+   foto invece che come sezione separata sopra l'hero. */
+.it-hero-wrapper .it-hero-breadcrumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	padding-top: 0.5rem;
+}
+
+.it-hero-breadcrumb .breadcrumb {
+	--bsi-breadcrumb-link-color: var(--bsi-color-text-inverse);
+	--bsi-breadcrumb-divider-color: var(--bsi-color-text-inverse);
+	--bsi-breadcrumb-separator-color: var(--bsi-color-text-inverse);
+	/* --bsi-breadcrumb-item-active-color non ha un default proprio nel CSS
+	   compilato (esiste solo dentro il modificatore ufficiale .breadcrumb.dark,
+	   qui non usato perché imposta anche uno sfondo pieno sul breadcrumb):
+	   senza questo override .breadcrumb-item.active eredita il colore testo
+	   di base (quasi nero), illeggibile sull'hero scuro. */
+	--bsi-breadcrumb-item-active-color: var(--bsi-color-text-inverse);
+}
+
+.it-hero-breadcrumb .breadcrumb-item a:hover {
+	--bsi-breadcrumb-link-color: var(--bsi-color-text-inverse);
+	text-decoration: underline;
+}
+
 /* Font su testi descrittivi hero e carousel home: allineato al font-sans di
    Bootstrap Italia 3 (Titillium Web), non più l'hardcoded "Roboto" del
    vecchio $font-family-sans-serif v2 (assets/css/custom-colors.css non

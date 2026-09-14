@@ -18,8 +18,6 @@ $dli_responsabili         = dli_get_field( 'responsabile_del_progetto' );
 $dli_partecipanti         = dli_get_field( 'persone' );
 $dli_indirizzi_di_ricerca = dli_get_field( 'elenco_indirizzi_di_ricerca_correlati' );
 $dli_pubblicazioni        = dli_get_field( 'pubblicazioni' );
-$dli_levels               = wp_get_post_terms( $dli_id, 'post_tag' );
-$dli_levels               = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
 $dli_fields_allegati      = array( 'allegato1', 'allegato2', 'allegato3' );
 $dli_allegati             = array();
 foreach ( $dli_fields_allegati as $dli_field_allegato ) {
@@ -29,8 +27,6 @@ foreach ( $dli_fields_allegati as $dli_field_allegato ) {
 	}
 }
 $dli_web_site_url = dli_get_field( 'url' );
-$dli_current_lang = dli_current_language();
-$dli_tag_page     = DLI_PAGE_PER_CT[ PROGETTO_POST_TYPE ][ $dli_current_lang ];
 
 // Recupero la lista degli eventi e delle notizie correlate.
 $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'progetto', array( EVENT_POST_TYPE, NEWS_POST_TYPE ) );
@@ -41,56 +37,46 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-
-	<!-- BANNER PROGETTI -->
-	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
+	<!-- BANNER PROGETTO: foto di copertina con overlay + breadcrumb in overlay
+	     assoluto sopra la foto (va nel markup DOPO .img-responsive-wrapper per
+	     dipingere sopra senza z-index aggiuntivo, vedi assets/css/main.css
+	     ".it-hero-breadcrumb"). Niente box scuro locale sul testo: leggibilità
+	     già garantita dall'overlay a piena larghezza
+	     (.it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after) e
+	     dal text-shadow globale sui testi hero. Niente chip categorie
+	     nell'hero, pattern del prototipo statico (sf-scheda-progetto.html). -->
+	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
-		<div class="img-responsive">
-		<?php
-		if ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) {
-			?>
-		<div class="img-wrapper">
-			<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+			<div class="img-responsive">
+				<?php if ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) : ?>
+					<div class="img-wrapper">
+						<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
-			<?php
-		}
-		?>
-		</div>
+		<div class="container it-hero-breadcrumb">
+			<div class="row">
+				<div class="col-12">
+					<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+				</div>
+			</div>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
+					<div class="it-hero-text-wrapper">
 						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block">
 							<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-							<?php
-							if ( $dli_web_site_url ) {
-								?>
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $dli_web_site_url ); ?>">
-								<?php esc_html_e( 'Sito web', 'design_laboratori_italia' ); ?>
-							</a>
-								<?php
-							}
-							?>
 						</p>
-						<div>
-							<!-- tag -->
-							<?php
-							foreach ( $dli_levels as $dli_level ) {
-								?>
-								<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-									<a href="<?php echo esc_url( site_url() . '/' . $dli_tag_page . '?level=' . $dli_level->slug ); ?>">
-										<span class="chip-label text-light"><?php echo esc_html( $dli_level->name ); ?></span>
-									</a>
-								</div>
-								<?php
-							}
-							?>
-						</div>
+						<?php if ( $dli_web_site_url ) : ?>
+							<div class="it-btn-container">
+								<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $dli_web_site_url ); ?>">
+									<?php esc_html_e( 'Sito web', 'design_laboratori_italia' ); ?>
+								</a>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
@@ -218,7 +204,7 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 				</div>
 			</div> <!-- row -->
 
-			<div class="col-12 col-lg-9 it-page-sections-container">
+			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 
 				<?php
 				if ( $dli_descrizione ) {
