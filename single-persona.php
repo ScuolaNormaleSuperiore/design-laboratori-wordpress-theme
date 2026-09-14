@@ -240,7 +240,7 @@ $dli_pubblicazioni = new WP_Query(
 							</nav>
 						</div>
 					</div>
-					<div class="col-12 col-lg-9 it-page-sections-container">
+					<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 						<?php
 						if ( '' !== $dli_bio ) {
 							?>
