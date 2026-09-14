@@ -14,6 +14,7 @@
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node SETUP/npm_scripts/minify-css.js",
     "minify:js": "node SETUP/npm_scripts/minify-js.js",
+    "assets:sync": "node SETUP/npm_scripts/sync-bootstrap-italia.mjs",
     "create_layout": "npx sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
     "update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\css\\ /Y",
     "update_layout_linux": "npm run create_layout && cp -f ./assets/css/compiled/bootstrap-italia-custom.min.* ./assets/css/",
@@ -41,7 +42,7 @@
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "^2.18.3"
+    "bootstrap-italia": "3.0.0-beta.5"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

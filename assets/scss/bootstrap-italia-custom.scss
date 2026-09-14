@@ -1,3 +1,19 @@
+// ATTENZIONE (dalla 3.0.0-beta.5, settembre 2026): le variabili Sass sotto
+// (colore $primary-h/-s/-b e $font-family-*) NON HANNO PIÙ ALCUN EFFETTO.
+// Bootstrap Italia 3 tema i componenti tramite custom property CSS
+// (--bsi-*), non più tramite variabili Sass: queste non esistono nemmeno
+// più nel sorgente v3 (verificato: 0 occorrenze di $primary-h/-s/-b in
+// node_modules/bootstrap-italia/src/scss). "npm run create_layout" compila
+// ancora senza errori (solo warning di deprecazione upstream), ma produce
+// oggi un output identico byte-per-byte al CSS v3 di default: il colore e
+// il font restano quelli di libreria, non quelli dichiarati qui sotto.
+// L'override reale ora vive in assets/css/custom-colors.css (custom
+// property --bsi-color-*/--bsi-icon-*/--bsi-font-*), caricato da
+// functions.php quando l'opzione "choose_style" = 'custom'. Questo file e
+// gli script create_layout/update_layout_* restano per compatibilità e per
+// un eventuale rollback alla 2.18.3, ma non vanno più considerati la fonte
+// del brand del tema.
+//
 // Per l'override del colore $primary della palette in formato HSB:
 // Nota: per convertire il codice esadecimale di un colore formato HSB
 // è possibile utilizzare ad esempio il sito https://rgb.to/.

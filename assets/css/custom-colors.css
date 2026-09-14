@@ -1,11 +1,61 @@
-.it-footer-main {
-	background-color: #2f475e;
-}
+/*
+ * Override del colore di brand del tema (primario #17324d) su Bootstrap
+ * Italia 3. Il font resta invece quello di default di Bootstrap Italia 3
+ * (Titillium Web, lo standard del design system), non più il Roboto-in-
+ * testa del vecchio $font-family-sans-serif — scelta deliberata, non
+ * un'omissione: si adottano i font "del progetto nuovo" (v3) invece di
+ * preservare l'override v2.
+ *
+ * Sostituisce il vecchio meccanismo a variabili Sass
+ * (assets/scss/bootstrap-italia-custom.scss: $primary-h/-s/-b), che dalla
+ * 3.0.0-beta.5 NON HA PIÙ ALCUN EFFETTO: quelle variabili non esistono più
+ * nel sorgente SCSS di Bootstrap Italia 3, che tema i componenti tramite
+ * custom property CSS (--bsi-*), non più tramite Sass (verificato: 0
+ * occorrenze di $primary-h/-s/-b nel sorgente v3, output di "npm run
+ * create_layout" oggi identico byte-per-byte al CSS v3 di default). Stesso
+ * identico problema già risolto nel porting statico bs-playground
+ * (src/styles/adapters/bootstrap-italia.css) — qui si riusa la stessa
+ * struttura, con il colore originale di QUESTO tema (non il brand SNS, che
+ * è personalizzazione a un livello diverso, fuori dal tema generico).
+ *
+ * Caricato da functions.php SOLO quando l'opzione "choose_style" = 'custom'
+ * (WP -> Configurazione), dopo il CSS base di Bootstrap Italia.
+ */
 
-.it-footer-small-prints {
-	background-color: #17324d;
-}
+:root {
+	/* Famiglia "primary": v3 di default usa il blu istituzionale
+	   (#0066cc, --bsi-color-blue-40); qui il navy originale del tema
+	   (#17324d, HSB 210/70/30 nel vecchio custom.scss). */
+	--bsi-color-background-primary: #17324d;
+	--bsi-color-background-primary-hover: #17324d;
+	--bsi-color-background-primary-active: #17324d;
+	--bsi-color-link: #17324d;
+	--bsi-color-link-hover: #17324d;
+	--bsi-color-link-active: #17324d;
+	--bsi-color-border-primary: #17324d;
+	--bsi-color-text-primary: #17324d;
 
-.primary-bg-c1 {
-	background-color: #e6ecf2 !important;
+	/* Famiglia "icon-*": variabili SEPARATE da --bsi-color-*-primary, con
+	   valori letterali propri (non un var()) — governano il fill di .icon
+	   di default, .icon-primary e le icone header (social, ricerca,
+	   brand). Senza questo override restano sul blu di default anche col
+	   resto del brand già corretto (stesso bug già trovato e corretto in
+	   bs-playground). */
+	--bsi-icon-primary: #17324d;
+	--bsi-icon-primary-hover: #17324d;
+
+	/* Footer (.it-footer-main/.it-footer-small-prints): il tema usava due
+	   toni navy distinti via override manuale per-selettore
+	   (#2f475e/#17324d). Bootstrap Italia 3 consuma
+	   --bsi-color-background-primary-muted/-deep per quegli stessi
+	   elementi (verificato sul CSS v3 compilato): qui si mappano sugli
+	   stessi due valori originali, così il risultato visivo resta
+	   identico ma passa dal meccanismo v3 corretto invece di un override
+	   per-selettore hardcoded. */
+	--bsi-color-background-primary-muted: #2f475e;
+	--bsi-color-background-primary-deep: #17324d;
+
+	/* Nessun override di --bsi-font-sans/-serif/-mono: si mantiene il font
+	   di default di Bootstrap Italia 3 (Titillium Web), non il Roboto del
+	   vecchio $font-family-sans-serif v2. */
 }
