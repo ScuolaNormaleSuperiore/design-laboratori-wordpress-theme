@@ -62,8 +62,8 @@ html {
 }
 
 .chip-selected {
-	background: #30475f !important;
-	border-color: #30475f !important;
+	background: var(--bsi-color-background-primary) !important;
+	border-color: var(--bsi-color-background-primary) !important;
 	color: #ffffff;
 }
 
@@ -144,7 +144,7 @@ a.mappasitolink:hover {
 }
 
 #button-newsletter-iscriviti:hover {
-	background-color: #17324d !important;
+	background-color: var(--bsi-color-background-primary) !important;
 }
 
 .customSpacingDiv {
@@ -203,22 +203,30 @@ a.mappasitolink:hover {
 	 background: rgba(0, 64, 89, 0.4) !important;
 }
 
-/* override font: usa Titillium su testi descrittivi hero e carousel home */
+/* Font su testi descrittivi hero e carousel home: allineato al font-sans di
+   Bootstrap Italia 3 (Titillium Web), non più l'hardcoded "Roboto" del
+   vecchio $font-family-sans-serif v2 (assets/css/custom-colors.css non
+   sovrascrive --bsi-font-sans: resta il default v3). */
 .it-hero-wrapper .it-hero-text-wrapper p,
 .it-carousel-wrapper .card-text,
 .it-carousel-wrapper .card-signature {
-	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif;
+	font-family: var(--bsi-font-sans);
 }
 
-/* override utility Bootstrap Italia: evita Roboto come prima scelta su contenuti font-serif */
-.font-serif {
-	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif !important;
-}
+/* RIMOSSO l'override di .font-serif ("evita Roboto come prima scelta su
+   contenuti font-serif"): era un patch dell'epoca v2 (Roboto forzato in
+   testa al font-sans). Bootstrap Italia 3 già dichiara
+   .font-serif{font-family:var(--bsi-font-serif) !important} correttamente
+   (Lora, non sovrascritto): l'override qui sotto lo forzava a Titillium
+   Web con pari specificità/!important, rompendo lo stile serif previsto —
+   rimosso, non sovrascrivere più. */
 
-/* override globale descrizioni card: Bootstrap Italia usa Roboto su .card-text */
+/* Descrizioni card: allineato al font-sans di Bootstrap Italia 3 (già il
+   default su .card-text via body{font-family:var(--bsi-font-sans)}), non
+   più l'hardcoded "Roboto" del vecchio custom.scss v2. */
 .card .card-body .card-text,
 .card .card-body .card-text a {
-	font-family: "Titillium Web", "Roboto", "Lora", "Roboto Mono", Arial, Helvetica, sans-serif !important;
+	font-family: var(--bsi-font-sans);
 }
 
 
@@ -250,7 +258,10 @@ a.mappasitolink:hover {
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
-	background-color: var(--bs-primary, #0066cc);
+	/* Era --bs-primary (namespace Bootstrap 5 standard, non --bsi-* di
+	   Bootstrap Italia): la variabile non esiste in questo progetto, quindi
+	   cadeva sempre sul fallback hardcoded #0066cc invece del brand. */
+	background-color: var(--bsi-color-background-primary);
 	margin-left: 6px;
 	vertical-align: middle;
 }
