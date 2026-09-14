@@ -158,17 +158,33 @@ add_action( 'after_setup_theme', 'dli_setup' );
 function dli_scripts() {
 	$theme_version = wp_get_theme()->get( 'Version' );
 
+	/*
+	 * Cache-busting per file, non per il tema intero: $theme_version resta
+	 * invariato tra un aggiornamento e l'altro di bootstrap-italia-custom.
+	 * min.css/custom-colors.css/main.css (dichiarato in style.css, non
+	 * legato a queste modifiche), quindi il browser può continuare a
+	 * servire dalla cache la versione precedente anche dopo un refresh
+	 * normale, con lo stesso "?ver=" nell'URL. Per questi 3 file, versione
+	 * dedotta da filemtime() (data di modifica reale), come già fatto per
+	 * gli asset v3 sincronizzati.
+	 */
+	$dli_asset_version = function ( $relative_path ) use ( $theme_version ) {
+		$absolute_path = get_template_directory() . $relative_path;
+		$mtime         = file_exists( $absolute_path ) ? filemtime( $absolute_path ) : false;
+		return $mtime ? (string) $mtime : $theme_version;
+	};
+
 	// Load CSS files.
 	wp_enqueue_style( 'dli-wp-style', get_stylesheet_uri(), array(), $theme_version ); // Empty style.css file.
 	wp_enqueue_style( 'dli-font', get_template_directory_uri() . '/assets/css/fonts.css', array(), $theme_version );
 
 	if ( 'custom' === dli_get_option( 'choose_style', 'setup' ) ) {
-		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia-custom.min.css', array(), $theme_version );
-		wp_enqueue_style( 'dli-custom-css', get_template_directory_uri() . '/assets/css/custom-colors.css', array(), $theme_version );
+		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia-custom.min.css', array(), $dli_asset_version( '/assets/css/bootstrap-italia-custom.min.css' ) );
+		wp_enqueue_style( 'dli-custom-css', get_template_directory_uri() . '/assets/css/custom-colors.css', array(), $dli_asset_version( '/assets/css/custom-colors.css' ) );
 	} else {
-		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css', array(), $theme_version );
+		wp_enqueue_style( 'dli-boostrap-italia', get_template_directory_uri() . '/assets/bootstrap-italia/css/bootstrap-italia.min.css', array(), $dli_asset_version( '/assets/bootstrap-italia/css/bootstrap-italia.min.css' ) );
 	}
-	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version );
+	wp_enqueue_style( 'dli-main', get_template_directory_uri() . '/assets/css/main.css', array(), $dli_asset_version( '/assets/css/main.css' ) );
 
 	// Load JavaScript files.
 	wp_enqueue_script( 'dli-main-js', get_template_directory_uri() . '/assets/js/main.js', array(), $theme_version, false );
