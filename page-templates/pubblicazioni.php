@@ -200,7 +200,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 				<?php
 				if ( $dli_num_results ) {
 					?>
-					<div class="col-12 col-lg-8 pt-3">
+					<div class="col-12 col-lg-8 offset-lg-1 pt-3">
 						<div class="row">
 							<?php
 							while ( $dli_pubblicazioni_query->have_posts() ) {
@@ -272,7 +272,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 					wp_reset_postdata();
 				} else {
 					?>
-					<div class="col-12 col-lg-8">
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<div class="row p-2">
 							<?php esc_html_e( 'Non e stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
 						</div>
