@@ -86,63 +86,59 @@ $dli_num_results = $dli_query->found_posts;
 	<section id="spinoff">
 		<div class="container p-5">
 			<div class="row">
-				<div class="col-12 col-lg-3 border-end pb-3">
+				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
 					<form action="<?php echo esc_url( get_permalink() ); ?>" id="spinoffform" method="get">
-						<div class="row pt-3">
-							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Anno di costituzione', 'design_laboratori_italia' ); ?></h3>
-							<div class="select-wrapper">
-								<label for="foundation_year" class="visually-hidden"><?php echo esc_html__( 'Anno di costituzione', 'design_laboratori_italia' ); ?></label>
-								<select id="foundation_year" name="foundation_year">
-									<option selected="" value=""><?php echo esc_html__( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
-									<?php foreach ( $dli_all_years as $dli_foundation_year ) : ?>
-										<option value="<?php echo esc_attr( $dli_foundation_year ); ?>" <?php selected( $dli_foundation_year, $dli_selected_year ); ?>>
-											<?php echo esc_html( $dli_foundation_year ); ?>
-										</option>
+						<div class="sticky-top pt-3" style="top: 1rem;">
+							<div class="row">
+								<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Anno di costituzione', 'design_laboratori_italia' ); ?></h3>
+								<div class="select-wrapper">
+									<label for="foundation_year" class="visually-hidden"><?php echo esc_html__( 'Anno di costituzione', 'design_laboratori_italia' ); ?></label>
+									<select id="foundation_year" name="foundation_year">
+										<option selected="" value=""><?php echo esc_html__( 'Tutti gli anni', 'design_laboratori_italia' ); ?></option>
+										<?php foreach ( $dli_all_years as $dli_foundation_year ) : ?>
+											<option value="<?php echo esc_attr( $dli_foundation_year ); ?>" <?php selected( $dli_foundation_year, $dli_selected_year ); ?>>
+												<?php echo esc_html( $dli_foundation_year ); ?>
+											</option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+
+							<div class="row pt-5">
+								<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Settore di attività', 'design_laboratori_italia' ); ?></h3>
+								<div>
+									<?php foreach ( $dli_all_sectors as $dli_business_sector ) : ?>
+										<div class="form-check">
+											<input
+												type="checkbox"
+												name="business_sector[]"
+												id="<?php echo esc_attr( $dli_business_sector['slug'] ); ?>"
+												value="<?php echo esc_attr( $dli_business_sector['id'] ); ?>"
+												<?php checked( in_array( $dli_business_sector['id'], $dli_selected_sectors, true ) ); ?>
+											>
+											<label for="<?php echo esc_attr( $dli_business_sector['slug'] ); ?>"><?php echo esc_html( $dli_business_sector['name'] ); ?></label>
+										</div>
 									<?php endforeach; ?>
-								</select>
+								</div>
 							</div>
-						</div>
 
-						<div class="row pt-5">
-							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Settore di attività', 'design_laboratori_italia' ); ?></h3>
-							<div>
-								<?php foreach ( $dli_all_sectors as $dli_business_sector ) : ?>
-									<div class="form-check">
-										<input
-											type="checkbox"
-											name="business_sector[]"
-											id="<?php echo esc_attr( $dli_business_sector['slug'] ); ?>"
-											value="<?php echo esc_attr( $dli_business_sector['id'] ); ?>"
-											<?php checked( in_array( $dli_business_sector['id'], $dli_selected_sectors, true ) ); ?>
-										>
-										<label for="<?php echo esc_attr( $dli_business_sector['slug'] ); ?>"><?php echo esc_html( $dli_business_sector['name'] ); ?></label>
-									</div>
-								<?php endforeach; ?>
-							</div>
-						</div>
-
-						<div class="row mt-3 pt-4">
-							<h3 class="h6 text-uppercase border-bottom vjs-hidden"><?php echo esc_html__( 'Ricerca libera', 'design_laboratori_italia' ); ?></h3>
-							<div>
+							<div class="row pt-5">
+								<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Ricerca libera', 'design_laboratori_italia' ); ?></h3>
 								<div class="form-group">
+									<label for="search_string" class="visually-hidden"><?php echo esc_html__( 'Cerca contenuto', 'design_laboratori_italia' ); ?></label>
 									<div class="input-group">
 										<span class="input-group-text">
-											<svg class="icon icon-sm">
-												<title><?php echo esc_html__( 'Cerca contenuto', 'design_laboratori_italia' ); ?></title>
+											<svg class="icon icon-sm" aria-hidden="true" focusable="false">
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
 											</svg>
 										</span>
-										<label for="search_string"><?php echo esc_html__( 'Cerca contenuto', 'design_laboratori_italia' ); ?></label>
-										<input type="text" class="form-control" id="search_string" name="search_string" value="<?php echo esc_attr( $dli_search_string ); ?>">
+										<input type="text" class="form-control" id="search_string" name="search_string" placeholder="<?php echo esc_attr__( 'Cerca contenuto', 'design_laboratori_italia' ); ?>" value="<?php echo esc_attr( $dli_search_string ); ?>">
 									</div>
 								</div>
+								<button type="submit" class="btn btn-primary w-50 mx-auto d-block mt-3">
+									<?php echo esc_html__( 'Filtra', 'design_laboratori_italia' ); ?>
+								</button>
 							</div>
-						</div>
-
-						<div class="row text-center w-100">
-							<button type="submit" style="margin: auto;" class="w-50 btn btn-primary">
-								<?php echo esc_html__( 'Filtra', 'design_laboratori_italia' ); ?>
-							</button>
 						</div>
 					</form>
 				</div>
