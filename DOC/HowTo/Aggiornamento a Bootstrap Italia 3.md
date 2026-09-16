@@ -121,6 +121,20 @@ La card della griglia elenco era già stata convertita (insieme al fix delle eti
 - `page-templates/spinoff.php`: rimossa la chiamata separata al breadcrumb v2.
 - `single-spinoff.php`: pattern hero **"senza foto"** (come `single-persona.php`, non quello con overlay foto di Progetti/Brevetti: il campo immagine di questo post-type è un logo aziendale, non un fondale a piena larghezza — stessa identica scelta già fatta per Risorse tecniche). Rimossi `bg-dark`, uno span vuoto "it-Categoria" e la chip v2 nell'hero. Recuperato il campo `descrizione_breve` (mai letto: il paragrafo sotto il titolo nell'hero era vuoto). Corpo da `col-lg-9` a `col-lg-8 offset-lg-1`. Sezioni di contenuto: stesso fix `id`/`it-page-section` dall'`<article>` all'`<h3>` di Brevetti, corretto anche un `id` sbagliato sulla sezione Video ("p5", non corrispondeva all'anchor del menu). Telefono nei Contatti ora è un vero link `tel:`.
 
+**Bug trovato dopo la conversione, non intercettato dal processo seguito finora**: in `single-persona.php` la sezione Biografia era rimasta con `<div class="row pb-3"><?php the_content(); ?></div>` — un `.row` senza `.col-*` dentro fa sanguinare i margini negativi di Bootstrap (12px per lato), disallineando orizzontalmente quella sezione rispetto alle altre nello stesso corpo. Lo stesso pattern era già stato individuato e corretto in `single-progetto.php`/`single-indirizzo-di-ricerca.php`, ma non era stato riportato qui perché la Biografia era tra le primissime sezioni convertite in questa attività, prima di aver notato il problema. Verificato con un controllo su tutte le schede finora convertite che non ci siano altri casi residui.
+
+## Checklist di verifica per ogni scheda di dettaglio (corpo + hero)
+
+Da ripassare per ogni famiglia già convertita e per ognuna futura:
+
+- **Nessun `<div class="row">` senza `.col-*` dentro** attorno a contenuto semplice (paragrafi, `the_content()`, campi ACF): disallinea orizzontalmente quella sezione rispetto alle altre (margini negativi di Bootstrap non compensati). Se serve solo aggiungere spaziatura, usare una classe di utilità (`pt-3`/`mb-4`) su un `<div>` semplice, non `.row`.
+- **`id` e classe `it-page-section` sull'`<h3>`** di ogni sezione, non su un `<article>` di wrapper: richiesto dal componente navscroll di Bootstrap Italia 3 per calcolare la barra di avanzamento (verificato nel bundle JS compilato).
+- **Spaziatura verticale uniforme**: ogni sezione riceve la separazione dal `pt-3` sul proprio `<h3>` (assente solo sulla prima sezione), non da un `pb-3`/`mb-4` ridondante sulla sezione precedente.
+- **Nessuna doppia paragrafazione**: se il contenuto viene già da `wpautop()`/`the_content()`/`apply_filters('the_content', ...)` (contiene già i propri `<p>`), non avvolgerlo in un altro `<p>` letterale.
+- **Breadcrumb integrato nell'hero** (`template-parts/common/breadcrumb-hero.php`), mai la chiamata separata a `template-parts/common/breadcrumb`: overlay assoluto (`.container.it-hero-breadcrumb`, dopo `.img-responsive-wrapper`) se l'hero ha una foto di copertina reale, non-assoluto (dentro la colonna di testo) se l'hero è "senza foto" (sfondo pieno).
+- **Corpo `col-lg-8 offset-lg-1`**, non `col-lg-9`, quando affiancato a una sidebar `col-lg-3` con indice di navigazione.
+- **Nessun residuo v2 nell'hero**: `bg-dark` locale sul testo (la leggibilità viene già dall'overlay+text-shadow globali), span vuoti come `it-Categoria`, chip `chip-simple` per categoria/tag (il prototipo statico non le mostra mai nell'hero di scheda).
+
 ## Prossimi passi
 
 - Replicare lo stesso porting (hero+breadcrumb, chip/filtri, card→it-card) sulle altre famiglie di pagina (impatti, risorse tecniche, luoghi, archivio news/eventi), seguendo l'ordine e i pattern già chiusi in `bs-playground`. Il banner v2 "semplice" (`bg-banner-progetti`/`section-muted p-3 primary-bg-c1`, già sostituito per Persone/Progetti/Ricerca/Pubblicazioni/Brevetti/Spin-off) è duplicato anche in `template-parts/hero/luoghi.php`, `notizie.php`, `risorse-tecniche.php`, `eventi.php`, `archive.php`, `blog.php`, `mappasito.php` — stesso intervento da ripetere per ciascuno quando si arriva a quella famiglia.
