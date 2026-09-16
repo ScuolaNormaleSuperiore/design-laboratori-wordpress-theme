@@ -256,7 +256,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 											<?php endif; ?>
 										<?php if ( $dli_img_url ) : ?>
 											</div>
-											<div class="it-card-image-wrapper bg-light">
+											<div class="it-card-image-wrapper" style="background-color: var(--bsi-color-background-primary-light);">
 												<div class="ratio ratio-1x1">
 													<figure class="figure img-full">
 														<img src="<?php echo esc_url( $dli_img_url ); ?>"
