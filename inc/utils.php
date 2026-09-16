@@ -993,6 +993,61 @@ if ( ! function_exists( 'dli_get_event_raw_end_date' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_event_datetime_display' ) ) {
+	/**
+	 * Build the full "data inizio – data fine" display text for an event card,
+	 * following the convention documented in sf-archivio-eventi.html: the 4
+	 * underlying fields (data_inizio, orario_inizio, data_fine, orario_fine)
+	 * are all optional, so the text adapts to whichever are filled in:
+	 * - only start date: "15 gennaio 2026"
+	 * - start date + times: "15 gennaio 2026, ore 15:00–17:00"
+	 * - distinct start/end dates, no times: "Dal 12 al 20 dicembre 2025"
+	 * - distinct start/end dates, with times: "Dal 20 ottobre 2025, ore 9:00
+	 *   al 22 ottobre 2025, ore 18:00" (data e ora sempre insieme quando c'è
+	 *   un orario, per non lasciare ambiguo a quale estremo appartiene).
+	 *
+	 * @param int $post_id Event post ID.
+	 * @return string
+	 */
+	function dli_get_event_datetime_display( $post_id ) {
+		$start_raw = dli_get_field( 'data_inizio', $post_id );
+		$start     = $start_raw ? dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $start_raw ) : null;
+		if ( ! $start ) {
+			return '';
+		}
+		$orario_inizio = dli_get_field( 'orario_inizio', $post_id );
+		$end_raw       = dli_get_field( 'data_fine', $post_id );
+		$same_date     = ( '' === $end_raw || $end_raw === $start_raw );
+		$end           = ( ! $same_date ) ? dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $end_raw ) : null;
+		$orario_fine   = dli_get_field( 'orario_fine', $post_id );
+
+		$full = function ( $date ) {
+			return trim( $date->format( 'd' ) . ' ' . dli_get_monthname( $date->format( 'm' ) ) . ' ' . $date->format( 'Y' ) );
+		};
+
+		if ( $same_date || ! $end ) {
+			$display = $full( $start );
+			if ( $orario_inizio && $orario_fine ) {
+				$display .= ', ore ' . $orario_inizio . '–' . $orario_fine;
+			} elseif ( $orario_inizio ) {
+				$display .= ', ore ' . $orario_inizio;
+			}
+			return $display;
+		}
+
+		if ( ! $orario_inizio && ! $orario_fine ) {
+			if ( $start->format( 'Y-m' ) === $end->format( 'Y-m' ) ) {
+				return 'Dal ' . intval( $start->format( 'd' ) ) . ' al ' . $full( $end );
+			}
+			return 'Dal ' . $full( $start ) . ' al ' . $full( $end );
+		}
+
+		$start_display = $full( $start ) . ( $orario_inizio ? ', ore ' . $orario_inizio : '' );
+		$end_display   = $full( $end ) . ( $orario_fine ? ', ore ' . $orario_fine : '' );
+		return 'Dal ' . $start_display . ' al ' . $end_display;
+	}
+}
+
 if ( ! function_exists( 'dli_get_monthname_short' ) ) {
 	/**
 	 * Return localized short month name by numeric month.

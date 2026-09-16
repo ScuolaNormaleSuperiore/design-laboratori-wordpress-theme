@@ -8,9 +8,11 @@
 global $post;
 get_header();
 
-$dli_events_cells_per_row = 3;
-$dli_per_page             = DLI_POSTS_PER_PAGE;
-$dli_per_page_values      = DLI_POST_PER_PAGE_VALUES;
+// Permalink della pagina stessa, catturato prima che il loop sui risultati sotto sposti $post: usato per il link di filtro sulla categoria della card.
+$dli_page_permalink = get_permalink();
+
+$dli_per_page        = DLI_POSTS_PER_PAGE;
+$dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
 
 $dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
 if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
@@ -60,9 +62,6 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE 
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER EVENTI -->
 	<?php get_template_part( 'template-parts/hero/eventi' ); ?>
 
@@ -72,8 +71,8 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE 
 			<div class="row pt-0">
 
 				<!--COLONNA FILTRI -->
-				<div class="col-12 col-lg-3 border-end">
-					<div class="row pt-4">
+				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
+					<div class="sticky-top pt-4" style="top: 1rem;">
 						<?php if ( ! empty( $dli_all_categories ) && is_array( $dli_all_categories ) ) : ?>
 							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Categoria', 'design_laboratori_italia' ); ?></h3>
 							<div>
@@ -93,91 +92,70 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE 
 				</div>
 				<!--COLONNA FILTRI -->
 
-				<?php
-				// The main loop of the page.
-				$dli_pindex = 0;
-				if ( $dli_num_results ) :
-					?>
+				<?php if ( $dli_num_results ) : ?>
 					<!-- Inizio ELENCO EVENTI -->
-					<div class="col-12 col-lg-8">
-						<?php
-						while ( $dli_the_query->have_posts() ) :
-							$dli_the_query->the_post();
-							if ( 0 === ( $dli_pindex % $dli_events_cells_per_row ) ) :
-								?>
-								<!-- begin row -->
-								<div class="row pt-5">
-							<?php endif; ?>
-
+					<div class="col-12 col-lg-8 offset-lg-1 pt-3">
+						<div class="row">
 							<?php
-							$dli_post_id        = get_the_ID();
-							$dli_date           = dli_get_field( 'data_inizio', $dli_post_id );
-							$dli_event_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
-							$dli_event_day      = $dli_event_date ? intval( $dli_event_date->format( 'd' ) ) : '';
-							$dli_event_month    = $dli_event_date ? dli_get_monthname( $dli_event_date->format( 'm' ) ) : '';
-							$dli_event_year     = $dli_event_date ? intval( $dli_event_date->format( 'Y' ) ) : '';
-							$dli_orario_inizio  = dli_get_field( 'orario_inizio', $dli_post_id );
-							$dli_evento         = get_post( $dli_post_id );
-							$dli_image_metadata = dli_get_image_metadata( $dli_evento, 'item-card-list' );
-							$dli_item_link      = dli_manage_item_link( $post );
-							?>
-
-							<!-- start card-->
-							<div class="col-12 col-lg-4">
-								<div class="card-wrapper">
-									<div class="card card-img no-after card-bg">
-										<div class="img-responsive-wrapper">
-											<div class="img-responsive img-responsive-panoramic">
-												<figure class="img-wrapper">
-													<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-														alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ?? '' ); ?>"
-														title="<?php echo esc_attr( $dli_image_metadata['image_title'] ?? '' ); ?>">
-												</figure>
-												<?php if ( $dli_event_date ) : ?>
-													<div class="card-calendar d-flex flex-column justify-content-center">
-														<span class="card-date"><?php echo esc_html( $dli_event_day ); ?></span>
-														<span class="card-day">
-															<?php echo esc_html( $dli_event_month ); ?> <?php echo esc_html( $dli_event_year ); ?>
-														</span>
+							while ( $dli_the_query->have_posts() ) :
+								$dli_the_query->the_post();
+								$dli_post_id          = get_the_ID();
+								$dli_datetime_display = dli_get_event_datetime_display( $dli_post_id );
+								$dli_evento           = get_post( $dli_post_id );
+								$dli_image_metadata   = dli_get_image_metadata( $dli_evento, 'item-card-list' );
+								$dli_has_image        = ! empty( $dli_image_metadata['image_url'] );
+								$dli_item_link        = dli_manage_item_link( $post );
+								$dli_termitem         = dli_get_post_main_category( $post, 'category' );
+								?>
+								<div class="col-12 col-lg-6 mb-4">
+									<div class="card-wrapper h-100 pb-0">
+										<article class="it-card<?php echo $dli_has_image ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
+											<h3 class="it-card-title h5">
+												<a href="<?php echo esc_url( $dli_item_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+											</h3>
+											<?php if ( $dli_has_image ) : ?>
+												<div class="it-card-image-wrapper">
+													<div class="ratio ratio-16x9">
+														<figure class="figure img-full">
+															<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+																alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
+																title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>">
+														</figure>
 													</div>
-												<?php endif; ?>
-											</div>
-										</div>
-										<div class="card-body p-4">
-											<h3 class="card-title h4"><?php echo esc_html( get_the_title() ); ?></h3>
-											<p class="card-text">
-												<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-											</p>
-											<?php if ( $dli_orario_inizio ) : ?>
-												<p class="card-text">
-													<?php echo esc_html( $dli_orario_inizio ); ?>
-												</p>
+												</div>
 											<?php endif; ?>
-											<a class="read-more" href="<?php echo esc_url( $dli_item_link ); ?>">
-												<span class="text"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-												<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
-													<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-												</svg>
-											</a>
-										</div>
+											<div class="it-card-body">
+												<?php if ( $dli_datetime_display ) : ?>
+													<p class="it-card-subtitle"><?php echo esc_html( $dli_datetime_display ); ?></p>
+												<?php endif; ?>
+												<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve', $dli_post_id ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+											</div>
+											<?php if ( $dli_termitem && ! empty( $dli_termitem['title'] ) ) : ?>
+												<footer class="it-card-footer">
+													<div class="it-card-taxonomy">
+														<?php if ( $dli_termitem['id'] ) : ?>
+															<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'cat', array( $dli_termitem['id'] ), $dli_page_permalink ) ); ?>">
+																<span class="visually-hidden"><?php esc_html_e( 'Categoria correlata:', 'design_laboratori_italia' ); ?></span>
+																<?php echo esc_html( $dli_termitem['title'] ); ?>
+															</a>
+														<?php else : ?>
+															<span class="it-card-category">
+																<span class="visually-hidden"><?php esc_html_e( 'Categoria correlata:', 'design_laboratori_italia' ); ?></span>
+																<?php echo esc_html( $dli_termitem['title'] ); ?>
+															</span>
+														<?php endif; ?>
+													</div>
+												</footer>
+											<?php endif; ?>
+										</article>
 									</div>
 								</div>
-							</div>
-							<!--end card-->
-
-							<?php
-							if ( ( ( $dli_pindex % $dli_events_cells_per_row ) === $dli_events_cells_per_row - 1 ) || ( $dli_the_query->current_post + 1 === $dli_the_query->post_count ) ) :
-								?>
-								</div>
-								<!-- end row -->
-							<?php endif; ?>
-							<?php ++$dli_pindex; ?>
-						<?php endwhile; ?>
+							<?php endwhile; ?>
+						</div>
 					</div>
 					<!-- Fine elenco eventi-->
 				<?php else : ?>
-					<div class="col-12 col-lg-8">
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<div class="row pt-2">
 							<?php echo esc_html__( 'Non è stato trovato alcun evento', 'design_laboratori_italia' ); ?>
 						</div>
