@@ -146,9 +146,6 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER PUBBLICAZIONI -->
 	<?php get_template_part( 'template-parts/hero/pubblicazioni' ); ?>
 
@@ -156,45 +153,47 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 	<section id="pubblicazioni">
 		<div class="container py-5 px-3 px-md-5">
 			<div class="row">
-				<div class="col-12 col-lg-3 border-bottom border-lg-bottom-0 border-lg-end pb-3">
+				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
 					<form action="<?php echo esc_url( get_permalink() ); ?>" id="pubblicazioniform" method="GET">
-						<!--COLONNA FILTRI -->
-						<!-- FILTRO PER ANNO -->
-						<div class="row pt-3">
-							<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></h3>
-							<div class="select-wrapper">
-								<label for="annoSelect" class="visually-hidden"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></label>
-								<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
-									<option value="" <?php selected( '', $dli_anno_select ); ?>><?php esc_html_e( "Scegli un'opzione", 'design_laboratori_italia' ); ?></option>
-									<?php foreach ( $dli_anni_pubblicazioni as $dli_anno_option ) { ?>
-										<option value="<?php echo esc_attr( $dli_anno_option ); ?>" <?php selected( $dli_anno_select, (string) $dli_anno_option ); ?>><?php echo esc_html( $dli_anno_option ); ?></option>
-									<?php } ?>
-								</select>
-							</div>
-						</div>
-						<?php
-						if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) && count( $dli_tipi_pubblicazione ) >= 1 ) {
-							?>
-							<!-- FILTRO PER CATEGORIA -->
-							<div class="row pt-5">
-								<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
-								<div>
-									<?php foreach ( $dli_tipi_pubblicazione as $dli_tipo_pubblicazione ) { ?>
-										<div class="form-check">
-											<?php
-											$dli_checked      = in_array( $dli_tipo_pubblicazione->slug, $dli_tipi_pubblicazione_params, true );
-											$dli_filter_input = 'tipologia-' . sanitize_html_class( $dli_tipo_pubblicazione->slug );
-											?>
-											<input id="<?php echo esc_attr( $dli_filter_input ); ?>" name="tipologia[]" value="<?php echo esc_attr( $dli_tipo_pubblicazione->slug ); ?>" type="checkbox" <?php checked( true, $dli_checked ); ?> onChange="this.form.submit()">
-											<label for="<?php echo esc_attr( $dli_filter_input ); ?>"><?php echo esc_html( $dli_tipo_pubblicazione->name ); ?></label>
-										</div>
-									<?php } ?>
+						<div class="sticky-top pt-3" style="top: 1rem;">
+							<!--COLONNA FILTRI -->
+							<!-- FILTRO PER ANNO -->
+							<div class="row">
+								<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></h3>
+								<div class="select-wrapper">
+									<label for="annoSelect" class="visually-hidden"><?php esc_html_e( 'Anno', 'design_laboratori_italia' ); ?></label>
+									<select id="annoSelect" name="annoSelect" onChange="this.form.submit()">
+										<option value="" <?php selected( '', $dli_anno_select ); ?>><?php esc_html_e( 'Tutti gli anni', 'design_laboratori_italia' ); ?></option>
+										<?php foreach ( $dli_anni_pubblicazioni as $dli_anno_option ) { ?>
+											<option value="<?php echo esc_attr( $dli_anno_option ); ?>" <?php selected( $dli_anno_select, (string) $dli_anno_option ); ?>><?php echo esc_html( $dli_anno_option ); ?></option>
+										<?php } ?>
+									</select>
 								</div>
 							</div>
 							<?php
-						}
-						?>
-						<!--fine filtri -->
+							if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) && count( $dli_tipi_pubblicazione ) >= 1 ) {
+								?>
+								<!-- FILTRO PER CATEGORIA -->
+								<div class="row pt-5">
+									<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
+									<div>
+										<?php foreach ( $dli_tipi_pubblicazione as $dli_tipo_pubblicazione ) { ?>
+											<div class="form-check">
+												<?php
+												$dli_checked      = in_array( $dli_tipo_pubblicazione->slug, $dli_tipi_pubblicazione_params, true );
+												$dli_filter_input = 'tipologia-' . sanitize_html_class( $dli_tipo_pubblicazione->slug );
+												?>
+												<input id="<?php echo esc_attr( $dli_filter_input ); ?>" name="tipologia[]" value="<?php echo esc_attr( $dli_tipo_pubblicazione->slug ); ?>" type="checkbox" <?php checked( true, $dli_checked ); ?> onChange="this.form.submit()">
+												<label for="<?php echo esc_attr( $dli_filter_input ); ?>"><?php echo esc_html( $dli_tipo_pubblicazione->name ); ?></label>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
+								<?php
+							}
+							?>
+							<!--fine filtri -->
+						</div>
 					</form>
 				</div>
 				<!-- PUBBLICAZIONI -->
@@ -209,51 +208,59 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 								$dli_item_id        = get_the_ID();
 								$dli_item_title     = get_the_title( $dli_item_id );
 								$dli_item_url       = dli_get_field( 'url' );
+								$dli_item_anno      = dli_get_field( 'anno' );
 								$dli_image_metadata = dli_get_image_metadata( get_post( $dli_item_id ) );
 								$dli_img_url        = ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) ? $dli_image_metadata['image_url'] : null;
 								$dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
+								$dli_item_terms     = ( is_array( $dli_item_terms ) && ! is_wp_error( $dli_item_terms ) ) ? $dli_item_terms : array();
 								?>
 								<!--start card-->
-								<div class="card-wrapper mb-4 col-12">
-									<div class="card card-teaser rounded shadow">
-										<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-start">
-											<?php if ( $dli_img_url ) { ?>
-												<img src="<?php echo esc_url( $dli_img_url ); ?>" width="150" height="150"
-													class="img-fluid flex-shrink-0 w-100 w-sm-auto mx-auto mx-sm-0"
-													style="width:100%; max-width:150px; height:auto;"
-													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
-											<?php } ?>
-											<div class="flex-grow-1">
-												<!-- Item title -->
-												<h3 class="card-title cardTitlecustomSpacing h5 mb-2 text-break" style="overflow-wrap:anywhere;">
-													<?php if ( ! empty( $dli_item_url ) ) { ?>
-														<a href="<?php echo esc_url( $dli_item_url ); ?>">
-															<?php echo esc_html( $dli_item_title ); ?>
-														</a>
-													<?php } else { ?>
+								<div class="col-12 mb-4">
+									<article class="it-card<?php echo $dli_img_url ? ' it-card-inline it-card-image' : ''; ?> rounded shadow-sm border">
+										<?php if ( $dli_img_url ) : ?>
+											<div class="it-card-inline-content">
+										<?php endif; ?>
+											<h3 class="it-card-title h5 text-break" style="overflow-wrap: anywhere;">
+												<?php if ( ! empty( $dli_item_url ) ) : ?>
+													<a href="<?php echo esc_url( $dli_item_url ); ?>" target="_blank" rel="noopener noreferrer">
 														<?php echo esc_html( $dli_item_title ); ?>
-													<?php } ?>
-												</h3>
-												<!-- Item body -->
-												<p class="card-text mb-0 text-break" style="overflow-wrap:anywhere;">
+													</a>
+												<?php else : ?>
+													<?php echo esc_html( $dli_item_title ); ?>
+												<?php endif; ?>
+											</h3>
+											<div class="it-card-body">
+												<div class="it-card-text text-break" style="overflow-wrap: anywhere;">
 													<?php echo wp_kses_post( wpautop( get_the_content() ) ); ?>
-												</p>
-												<!-- Item category -->
-												<?php if ( is_array( $dli_item_terms ) && ! is_wp_error( $dli_item_terms ) ) { ?>
-													<div class="it-card-taxonomy">
-														<?php foreach ( $dli_item_terms as $dli_item_term ) { ?>
-															<span class="visually-hidden">
-																<?php esc_html_e( 'Categorie collegate:', 'design_laboratori_italia' ); ?>
-															</span><?php echo esc_html( $dli_item_term->name ); ?>
-															&nbsp;
-														<?php } ?>
-													</div>
-												<?php } ?>
+												</div>
 											</div>
-
-										</div>
-									</div>
+											<?php if ( ! empty( $dli_item_terms ) || $dli_item_anno ) : ?>
+												<footer class="it-card-footer">
+													<?php if ( ! empty( $dli_item_terms ) ) : ?>
+														<div class="it-card-taxonomy">
+															<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
+															<?php echo esc_html( implode( ', ', wp_list_pluck( $dli_item_terms, 'name' ) ) ); ?>
+														</div>
+													<?php endif; ?>
+													<?php if ( $dli_item_anno ) : ?>
+														<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_anno ); ?>"><?php echo esc_html( $dli_item_anno ); ?></time>
+													<?php endif; ?>
+												</footer>
+											<?php endif; ?>
+										<?php if ( $dli_img_url ) : ?>
+											</div>
+											<div class="it-card-image-wrapper bg-light">
+												<div class="ratio ratio-1x1">
+													<figure class="figure img-full">
+														<img src="<?php echo esc_url( $dli_img_url ); ?>"
+															style="object-fit: contain;"
+															title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
+															alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+													</figure>
+												</div>
+											</div>
+										<?php endif; ?>
+									</article>
 								</div>
 								<!--end card-->
 								<?php
