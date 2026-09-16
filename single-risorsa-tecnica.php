@@ -11,6 +11,7 @@ global $post;
 get_header();
 
 // Campi personalizzati.
+$dli_summary   = dli_get_field( 'descrizione_breve' );
 $dli_code      = dli_get_field( 'codice_interno' );
 $dli_cost      = dli_get_field( 'costo' );
 $dli_position  = dli_get_field( 'posizione' );
@@ -39,7 +40,8 @@ $dli_archive_page     = $dli_archive_page_obj ? get_permalink( $dli_archive_page
 $dli_photo          = dli_get_field( 'foto' );
 $dli_image_metadata = dli_get_image_metadata( $post, 'full' );
 // Contenuto.
-$dli_description = ( '.' === $post->post_content ) ? '' : wpautop( do_shortcode( $post->post_content ) );
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
+$dli_description = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
 // Relazioni.
 $dli_responsabili  = dli_get_field( 'responsabile' );
 $dli_location_post = null;
@@ -55,27 +57,31 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- INIZIO BANNER HERO -->
-		<section id="banner-progetto">
-		<div class="p-0 primary-bg-c1">
-			<div class="container">
-				<div class="row pt-0 pb-0">
-					<div class="col-12 col-lg-7">
-						<div class="section-title">
-							<h2 class="mb-3 mt-3">
-								<?php echo esc_html( get_the_title() ); ?>
-							</h2>
-							<p>&nbsp;</p>
-						</div>
+	<!-- BANNER RISORSA TECNICA: nessuna foto ampia di copertina, hero a sfondo pieno con
+	     breadcrumb integrato non-assoluto (stesso caso di single-spinoff.php). La foto
+	     reale della risorsa, quando esiste, non sta qui né in sidebar (troppo stretta per
+	     uno sviluppo prevalentemente verticale), ma in una figure a larghezza limitata in
+	     testa al corpo: vedi sf-scheda-risorse-tecniche.html. -->
+	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-risorsa-title">
+		<div class="container">
+			<div class="row align-items-stretch">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<h2 id="dli-hero-risorsa-title"><?php echo esc_html( get_the_title() ); ?></h2>
+						<?php if ( $dli_summary ) : ?>
+							<p class="fs-5"><?php echo esc_html( $dli_summary ); ?></p>
+						<?php endif; ?>
 					</div>
+				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- FINE BANNER HERO -->
 
 
 	<!-- BODY -->
@@ -113,23 +119,8 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 								<span><?php echo esc_html__( 'Indietro', 'design_laboratori_italia' ); ?></span>
 							</a>
 							<div class="menu-wrapper">
-								<div class="card-body text-center">
-									<?php if ( $dli_has_photo ) { ?>
-										<figure class="img-wrapper">
-											<img
-												style="max-width: 200px; height: auto;"
-												src="<?php echo esc_url( $dli_photo_url ); ?>" 
-												title="<?php echo esc_attr( $dli_photo_title ); ?>"
-												alt="<?php echo esc_attr( $dli_photo_title ); ?>"
-											>
-											<figcaption class="figure-caption pt-2">
-												<?php echo esc_html( get_the_title() ); ?>
-											</figcaption>
-										</figure>
-									<?php } ?>
-								</div>
 								<div class="link-list-wrapper">
-									<h3><?php echo esc_html__( 'Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
+									<h3><?php echo esc_html__( 'Dettagli della risorsa tecnica', 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 										</div>
@@ -264,189 +255,120 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 			</div>
 
 			<!-- DESCRIZIONE -->
-			<div class="col-12 col-lg-9 it-page-sections-container">
-				<?php
-				if ( $dli_description ) {
-					?>
-					<article id="description" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 visually-hidden"><?php echo esc_html__( 'Descrizione Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
-						<p>
-							<?php echo wp_kses_post( $dli_description ); ?>
-						</p>
-					
-					</article>
-					<?php
-				}
-				if ( $dli_code ) {
-					?>
-					<!-- Codice interno -->
-					<article id="codiceinterno" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Codice interno', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_code ); ?></p>
-					</article>
-					<?php
-				}
-				?>
-				<?php
-				if ( $dli_year ) {
-					?>
-					<!-- Anno di acquisizione -->
-					<article id="acquisizione" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_year ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_tipo_risorsa ) {
-					?>
-					<!-- Tipo risorsa -->
-					<article id="tiporisorsa" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Tipo risorsa', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_tipo_risorsa['title'] ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_cost ) {
-					?>
-					<!-- Costo -->
-					<article id="costo" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Costo', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_cost ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_location_post ) {
-					?>
-					<!-- Localizzazione -->
-					<article id="localizzazione" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Localizzazione', 'design_laboratori_italia' ); ?></h3>
-						<p>
-							<a href="<?php echo esc_url( get_permalink( $dli_location_post->ID ) ); ?>">
-								<?php echo esc_html( $dli_location_post->post_title ); ?>
-							</a>
-						</p>
-					</article>
-					<?php
-				}
-				if ( $dli_position ) {
-					?>
-					<!-- Posizione -->
-					<article id="posizione" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Posizione', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_position ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_status ) {
-					?>
-					<!-- Stato -->
-					<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Stato', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_status ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_brand || $dli_model ) {
-					$dli_brand_model = join( ' - ', array( $dli_brand, $dli_model ) );
-					?>
-					<!-- Marca e modello -->
-					<article id="marcamodello" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Marca e modello', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_brand_model ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_dimension ) {
-					?>
-					<!-- Dimensioni -->
-					<article id="dimensioni" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Dimensioni e peso', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_attr( $dli_dimension ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_allegati ) {
-					?>
-					<!-- Allegati -->
-					<article id="allegati" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Allegati', 'design_laboratori_italia' ); ?></h3>
-						<section id="ulteriori-info">
-							<div class="row pb-3">
-								<div class="card-wrapper card-teaser-wrapper">
-								<?php
-								if ( count( $dli_allegati ) > 0 ) {
-									foreach ( $dli_allegati as $dli_allegato ) {
-										?>
-									<!--start card-->
-									<div class="card card-teaser rounded shadow ">
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5 ">
-												<svg class="icon" role="img">
-													<title><?php echo esc_html__( 'File PDF', 'design_laboratori_italia' ); ?></title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-file-pdf' ); ?>"></use>
-												</svg>
-												<a href="<?php echo esc_url( $dli_allegato['url'] ); ?>">
-													<?php echo esc_attr( $dli_allegato['title'] ); ?>&nbsp;
-												</a>
-											</h3>
-										</div>
-									</div>
-									<!--end card-->
-										<?php
-									}
-								}
-								?>
-								</div> <!--end card wrapper-->
-							</div> <!--end row-->
-						</section>
-					</article>
-					<?php
-				}
-				if ( $dli_responsabili ) {
-					?>
-					<!-- Responsabili -->
-					<article id="responsabili" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Responsabili', 'design_laboratori_italia' ); ?></h3>
-						<?php
-							get_template_part(
-								'template-parts/common/sezione-persone',
-								null,
-								array(
-									'section_id' => 'responsabile',
-									'items'      => $dli_responsabili,
-								)
-							);
-						?>
-					</article>
-					<?php
-				}
-				if ( $dli_progetti ) {
-					?>
-					<!-- Progetti -->
-					<article id="progetti" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Progetti', 'design_laboratori_italia' ); ?></h3>
-						<?php
-							get_template_part(
-								'template-parts/common/sezione-progetti',
-								null,
-								array(
-									'section_id' => 'progetti',
-									'items'      => $dli_progetti,
-								)
-							);
-						?>
-					</article>
-					<?php
-				}
-				?>
+			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 
+				<?php if ( $dli_has_photo ) : ?>
+					<!-- Foto della risorsa: non in sidebar (troppo stretta per uno sviluppo
+					     prevalentemente verticale) né nell'hero (che resta a sfondo pieno).
+					     Figure a larghezza limitata in testa al corpo, aspect ratio naturale
+					     (nessun crop forzato). -->
+					<figure class="figure mb-4" style="max-width: 280px">
+						<img src="<?php echo esc_url( $dli_photo_url ); ?>" class="img-fluid rounded shadow-sm" title="<?php echo esc_attr( $dli_photo_title ); ?>" alt="<?php echo esc_attr( $dli_photo_title ); ?>">
+						<figcaption class="figure-caption mt-2"><?php echo esc_html( get_the_title() ); ?></figcaption>
+					</figure>
+				<?php endif; ?>
 
+				<?php if ( $dli_description ) : ?>
+					<h3 class="it-page-section h4 visually-hidden" id="description"><?php echo esc_html__( 'Descrizione Risorsa Tecnica', 'design_laboratori_italia' ); ?></h3>
+					<?php echo wp_kses_post( $dli_description ); ?>
+				<?php endif; ?>
+
+				<?php if ( $dli_code ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="codiceinterno"><?php echo esc_html__( 'Codice interno', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_code ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_year ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="acquisizione"><?php echo esc_html__( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_year ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_tipo_risorsa ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="tiporisorsa"><?php echo esc_html__( 'Tipo risorsa', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_tipo_risorsa['title'] ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_cost ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="costo"><?php echo esc_html__( 'Costo', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_cost ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_location_post ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="localizzazione"><?php echo esc_html__( 'Localizzazione', 'design_laboratori_italia' ); ?></h3>
+					<p>
+						<a href="<?php echo esc_url( get_permalink( $dli_location_post->ID ) ); ?>">
+							<?php echo esc_html( $dli_location_post->post_title ); ?>
+						</a>
+					</p>
+				<?php endif; ?>
+
+				<?php if ( $dli_position ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="posizione"><?php echo esc_html__( 'Posizione', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_position ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_status ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="status"><?php echo esc_html__( 'Stato', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_status ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_brand || $dli_model ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="marcamodello"><?php echo esc_html__( 'Marca e modello', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( join( ' - ', array_filter( array( $dli_brand, $dli_model ) ) ) ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_dimension ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="dimensioni"><?php echo esc_html__( 'Dimensioni e peso', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_dimension ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_allegati ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="allegati"><?php echo esc_html__( 'Allegati', 'design_laboratori_italia' ); ?></h3>
+					<?php
+					get_template_part(
+						'template-parts/common/sezione-allegati',
+						null,
+						array(
+							'section_id' => 'allegati',
+							'items'      => $dli_allegati,
+						)
+					);
+					?>
+				<?php endif; ?>
+
+				<?php if ( $dli_responsabili ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="responsabili"><?php echo esc_html__( 'Responsabili', 'design_laboratori_italia' ); ?></h3>
+					<?php
+					get_template_part(
+						'template-parts/common/sezione-persone',
+						null,
+						array(
+							'section_id' => 'responsabile',
+							'items'      => $dli_responsabili,
+						)
+					);
+					?>
+				<?php endif; ?>
+
+				<?php if ( $dli_progetti ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="progetti"><?php echo esc_html__( 'Progetti', 'design_laboratori_italia' ); ?></h3>
+					<?php
+					get_template_part(
+						'template-parts/common/sezione-progetti',
+						null,
+						array(
+							'section_id' => 'progetti',
+							'items'      => $dli_progetti,
+						)
+					);
+					?>
+				<?php endif; ?>
 
 			</div>
 
 		</div> <!-- END row -->
 	</div> <!-- END BODY container -->
-	
+
 </main>
 
 
