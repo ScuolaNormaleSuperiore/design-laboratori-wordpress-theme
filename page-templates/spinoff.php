@@ -157,7 +157,7 @@ $dli_num_results = $dli_query->found_posts;
 								$dli_card_image_title     = $dli_logo ? $dli_logo['title'] : $dli_image_metadata['image_title'];
 								$dli_card_image_alt       = $dli_logo ? $dli_logo['title'] : $dli_image_metadata['image_alt'];
 								?>
-								<div class="col-12 col-lg-6 mb-4">
+								<div class="col-12 mb-4">
 									<article class="it-card<?php echo $dli_card_image_url ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
 										<h3 class="it-card-title h5">
 											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
