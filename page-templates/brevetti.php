@@ -9,6 +9,9 @@ global $post;
 
 get_header();
 
+// Permalink della pagina stessa, catturato prima che il loop sui risultati sotto sposti $post: usato per i link di filtro sull'area tematica della card.
+$dli_page_permalink = get_permalink();
+
 $dli_selected_year   = '';
 $dli_selected_areas  = array();
 $dli_search_string   = '';
@@ -183,10 +186,17 @@ $dli_num_results = $dli_query->found_posts;
 												<footer class="it-card-footer">
 													<?php if ( $dli_thematic_area && array_key_exists( 'title', $dli_thematic_area ) ) : ?>
 														<div class="it-card-taxonomy">
-															<span class="it-card-category">
-																<span class="visually-hidden"><?php esc_html_e( 'Area tematica:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( $dli_thematic_area['title'] ); ?>
-															</span>
+															<?php if ( $dli_thematic_area['id'] ) : ?>
+																<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'thematic_area', array( $dli_thematic_area['id'] ), $dli_page_permalink ) ); ?>">
+																	<span class="visually-hidden"><?php esc_html_e( 'Area tematica:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_thematic_area['title'] ); ?>
+																</a>
+															<?php else : ?>
+																<span class="it-card-category">
+																	<span class="visually-hidden"><?php esc_html_e( 'Area tematica:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_thematic_area['title'] ); ?>
+																</span>
+															<?php endif; ?>
 														</div>
 													<?php endif; ?>
 													<?php if ( $dli_anno_deposito ) : ?>

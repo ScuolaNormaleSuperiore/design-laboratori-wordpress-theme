@@ -8,6 +8,9 @@
 global $post;
 get_header();
 
+// Permalink della pagina stessa, catturato prima che il loop sui risultati sotto sposti $post: usato per i link di filtro sulla tipologia della card.
+$dli_page_permalink = get_permalink();
+
 $dli_per_page        = (string) DLI_PER_PAGE;
 $dli_per_page_values = (array) DLI_PER_PAGE_VALUES;
 $dli_allowed_pages   = array_map( 'strval', $dli_per_page_values );
@@ -238,10 +241,12 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 												<footer class="it-card-footer">
 													<?php if ( ! empty( $dli_item_terms ) ) : ?>
 														<div class="it-card-taxonomy">
-															<span class="it-card-category">
-																<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( implode( ', ', wp_list_pluck( $dli_item_terms, 'name' ) ) ); ?>
-															</span>
+															<?php foreach ( $dli_item_terms as $dli_item_term ) : ?>
+																<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'tipologia', array( $dli_item_term->slug ), $dli_page_permalink ) ); ?>">
+																	<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_item_term->name ); ?>
+																</a>
+															<?php endforeach; ?>
 														</div>
 													<?php endif; ?>
 													<?php if ( $dli_item_anno ) : ?>
