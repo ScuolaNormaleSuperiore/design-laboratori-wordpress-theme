@@ -158,11 +158,40 @@ $dli_num_results = $dli_query->found_posts;
 								$dli_card_image_alt       = $dli_logo ? $dli_logo['title'] : $dli_image_metadata['image_alt'];
 								?>
 								<div class="col-12 mb-4">
-									<article class="it-card<?php echo $dli_card_image_url ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
-										<h3 class="it-card-title h5">
-											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
-										</h3>
+									<article class="it-card<?php echo $dli_card_image_url ? ' it-card-inline it-card-image' : ''; ?> rounded shadow-sm border">
 										<?php if ( $dli_card_image_url ) : ?>
+											<div class="it-card-inline-content">
+										<?php endif; ?>
+											<h3 class="it-card-title h5">
+												<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+											</h3>
+											<div class="it-card-body">
+												<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+											</div>
+											<?php if ( ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) || $dli_spinoff_year ) : ?>
+												<footer class="it-card-footer">
+													<?php if ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) : ?>
+														<div class="it-card-taxonomy">
+															<?php if ( $dli_business_sector_main['id'] ) : ?>
+																<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'business_sector', array( $dli_business_sector_main['id'] ), $dli_page_permalink ) ); ?>">
+																	<span class="visually-hidden"><?php esc_html_e( 'Settore:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_business_sector_main['title'] ); ?>
+																</a>
+															<?php else : ?>
+																<span class="it-card-category">
+																	<span class="visually-hidden"><?php esc_html_e( 'Settore:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_business_sector_main['title'] ); ?>
+																</span>
+															<?php endif; ?>
+														</div>
+													<?php endif; ?>
+													<?php if ( $dli_spinoff_year ) : ?>
+														<time class="it-card-date" datetime="<?php echo esc_attr( $dli_spinoff_year ); ?>"><?php echo esc_html( $dli_spinoff_year ); ?></time>
+													<?php endif; ?>
+												</footer>
+											<?php endif; ?>
+										<?php if ( $dli_card_image_url ) : ?>
+											</div>
 											<div class="it-card-image-wrapper">
 												<div class="ratio ratio-16x9">
 													<figure class="figure img-full">
@@ -172,31 +201,6 @@ $dli_num_results = $dli_query->found_posts;
 													</figure>
 												</div>
 											</div>
-										<?php endif; ?>
-										<div class="it-card-body">
-											<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
-										</div>
-										<?php if ( ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) || $dli_spinoff_year ) : ?>
-											<footer class="it-card-footer">
-												<?php if ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) : ?>
-													<div class="it-card-taxonomy">
-														<?php if ( $dli_business_sector_main['id'] ) : ?>
-															<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'business_sector', array( $dli_business_sector_main['id'] ), $dli_page_permalink ) ); ?>">
-																<span class="visually-hidden"><?php esc_html_e( 'Settore:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( $dli_business_sector_main['title'] ); ?>
-															</a>
-														<?php else : ?>
-															<span class="it-card-category">
-																<span class="visually-hidden"><?php esc_html_e( 'Settore:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( $dli_business_sector_main['title'] ); ?>
-															</span>
-														<?php endif; ?>
-													</div>
-												<?php endif; ?>
-												<?php if ( $dli_spinoff_year ) : ?>
-													<time class="it-card-date" datetime="<?php echo esc_attr( $dli_spinoff_year ); ?>"><?php echo esc_html( $dli_spinoff_year ); ?></time>
-												<?php endif; ?>
-											</footer>
 										<?php endif; ?>
 									</article>
 								</div>

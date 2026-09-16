@@ -149,8 +149,9 @@ $dli_num_results = $dli_query->found_posts;
 							<?php
 							while ( $dli_query->have_posts() ) {
 								$dli_query->the_post();
-								$dli_result       = dli_get_post_wrapper( $post, 'medium' );
-								$dli_tipo_risorsa = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+								$dli_result             = dli_get_post_wrapper( $post, 'medium' );
+								$dli_tipo_risorsa       = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+								$dli_anno_acquisizione  = dli_get_field( 'anno_acquisizione' );
 								?>
 								<div class="col-12 mb-4">
 									<article class="it-card it-card-inline it-card-inline-mini<?php echo $dli_result['image_url'] ? ' it-card-image' : ''; ?> rounded shadow-sm border">
@@ -163,21 +164,26 @@ $dli_num_results = $dli_query->found_posts;
 											<div class="it-card-body">
 												<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 											</div>
-											<?php if ( $dli_tipo_risorsa && array_key_exists( 'title', $dli_tipo_risorsa ) ) : ?>
+											<?php if ( ( $dli_tipo_risorsa && array_key_exists( 'title', $dli_tipo_risorsa ) ) || $dli_anno_acquisizione ) : ?>
 												<footer class="it-card-footer">
-													<div class="it-card-taxonomy">
-														<?php if ( $dli_tipo_risorsa['id'] ) : ?>
-															<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'type_technical_resource', array( $dli_tipo_risorsa['id'] ), $dli_page_permalink ) ); ?>">
-																<span class="visually-hidden"><?php esc_html_e( 'Tipo di risorsa:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( $dli_tipo_risorsa['title'] ); ?>
-															</a>
-														<?php else : ?>
-															<span class="it-card-category">
-																<span class="visually-hidden"><?php esc_html_e( 'Tipo di risorsa:', 'design_laboratori_italia' ); ?></span>
-																<?php echo esc_html( $dli_tipo_risorsa['title'] ); ?>
-															</span>
-														<?php endif; ?>
-													</div>
+													<?php if ( $dli_tipo_risorsa && array_key_exists( 'title', $dli_tipo_risorsa ) ) : ?>
+														<div class="it-card-taxonomy">
+															<?php if ( $dli_tipo_risorsa['id'] ) : ?>
+																<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'type_technical_resource', array( $dli_tipo_risorsa['id'] ), $dli_page_permalink ) ); ?>">
+																	<span class="visually-hidden"><?php esc_html_e( 'Tipo di risorsa:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_tipo_risorsa['title'] ); ?>
+																</a>
+															<?php else : ?>
+																<span class="it-card-category">
+																	<span class="visually-hidden"><?php esc_html_e( 'Tipo di risorsa:', 'design_laboratori_italia' ); ?></span>
+																	<?php echo esc_html( $dli_tipo_risorsa['title'] ); ?>
+																</span>
+															<?php endif; ?>
+														</div>
+													<?php endif; ?>
+													<?php if ( $dli_anno_acquisizione ) : ?>
+														<time class="it-card-date" datetime="<?php echo esc_attr( $dli_anno_acquisizione ); ?>"><?php echo esc_html( $dli_anno_acquisizione ); ?></time>
+													<?php endif; ?>
 												</footer>
 											<?php endif; ?>
 										</div>
