@@ -35,22 +35,27 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- BANNER INDIRIZZI DI RICERCA -->
-	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay it-primary">
+	<!-- BANNER INDIRIZZI DI RICERCA: foto di copertina con overlay + breadcrumb
+	     in overlay assoluto sopra la foto, stesso pattern di single-progetto.php. -->
+	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
-		<div class="img-responsive">
-		<div class="img-wrapper">
-			<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+			<div class="img-responsive">
+				<div class="img-wrapper">
+					<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>" title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>" alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+				</div>
+			</div>
 		</div>
-		</div>
+		<div class="container it-hero-breadcrumb">
+			<div class="row">
+				<div class="col-12">
+					<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+				</div>
+			</div>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
+					<div class="it-hero-text-wrapper">
 						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
 					</div>
@@ -60,7 +65,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 	</section>
 
 	<!-- DETTAGLIO INDIRIZZO DI RICERCA -->
-	<div class="container p-5" id="scheda_progetto">
+	<div class="container p-5" id="scheda_indirizzo_ricerca">
 		<div class="row">
 			<div class="col-12 col-lg-3">
 				<div data-bs-toggle="sticky" data-bs-stackable="true">
@@ -92,7 +97,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 							</a>
 							<div id="menu_laterale" class="menu-wrapper">
 								<div class="link-list-wrapper">
-									<h3><?php echo esc_html__( 'Dettagli del progetto', 'design_laboratori_italia' ); ?></h3>
+									<h3><?php echo esc_html__( "Dettagli dell'attività", 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
@@ -140,20 +145,16 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 						</div>
 					</nav>
 				</div>
-			</div> <!-- row -->
-			<div class="col-12 col-lg-9 it-page-sections-container">
+			</div> <!-- col-12 col-lg-3 -->
+			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 				<?php
 				if ( $dli_description ) {
 					?>
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
-				<div class="row pb-3">
-					<p>
-						<?php
-						// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
-						echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) );
-						?>
-					</p>
-				</div>
+				<?php
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
+				echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) );
+				?>
 					<?php
 				}
 				?>
@@ -226,10 +227,9 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 
 			</div>
 		</div>
-	</div> <!-- scheda_progetto -->
+	</div> <!-- scheda_indirizzo_ricerca -->
 
 </main>
-
 
 <?php
 get_footer();
