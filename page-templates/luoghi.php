@@ -77,22 +77,19 @@ $dli_num_results  = $dli_places_query->found_posts;
 $dli_place_types  = dli_get_all_place_types_with_results();
 ?>
 
-<form action="<?php echo esc_url( get_permalink() ); ?>" id="luoghiform" method="get">
-	<main id="main-container" role="main">
-		<!-- BREADCRUMB -->
-		<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+<main id="main-container" role="main">
 
-		<!-- BANNER LUOGHI -->
-		<?php get_template_part( 'template-parts/hero/luoghi' ); ?>
+	<!-- BANNER LUOGHI -->
+	<?php get_template_part( 'template-parts/hero/luoghi' ); ?>
 
-		<!-- ELENCO LUOGHI -->
-		<section id="luoghi" class="p-4">
-			<div class="container my-4">
-				<div class="row pt-0">
-					<div class="col-12 col-lg-3 border-end">
-						<!-- COLONNA FILTRI -->
-						<?php if ( count( $dli_place_types ) >= 1 ) : ?>
-							<div class="row pt-4">
+	<!-- ELENCO LUOGHI -->
+	<section id="luoghi" class="p-4">
+		<div class="container my-4">
+			<div class="row pt-0">
+				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
+					<form action="<?php echo esc_url( get_permalink() ); ?>" id="luoghiform" method="get">
+						<div class="sticky-top pt-4" style="top: 1rem;">
+							<?php if ( count( $dli_place_types ) >= 1 ) : ?>
 								<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Tipologia', 'design_laboratori_italia' ); ?></h3>
 								<div>
 									<?php foreach ( $dli_place_types as $dli_place_type ) : ?>
@@ -109,73 +106,69 @@ $dli_place_types  = dli_get_all_place_types_with_results();
 										</div>
 									<?php endforeach; ?>
 								</div>
-							</div>
-						<?php endif; ?>
-						<!-- fine filtri -->
-					</div>
-
-					<!-- LUOGHI -->
-					<?php if ( $dli_num_results ) : ?>
-						<div class="col-12 col-lg-8">
-							<div class="row">
-								<?php while ( $dli_places_query->have_posts() ) : ?>
-									<?php
-									$dli_places_query->the_post();
-									$dli_place_id    = get_the_ID();
-									$dli_place_title = get_the_title( $dli_place_id );
-									$dli_desc        = dli_get_field( 'descrizione_breve' );
-									$dli_address     = dli_get_field( 'indirizzo' );
-									$dli_terms       = get_the_terms( $dli_place_id, PLACE_TYPE_TAXONOMY );
-									$dli_place_type  = $dli_terms ? $dli_terms[0]->name : '';
-									?>
-									<div class="card-wrapper">
-										<div class="card card-teaser rounded shadow">
-											<div class="card-body">
-												<h3 class="card-title cardTitlecustomSpacing h5">
-													<svg class="icon" role="img" aria-labelledby="map-marker-title">
-														<title id="map-marker-title">Map Marker</title>
-														<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
-													</svg>
-													<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_place_title ); ?></a>
-												</h3>
-												<div class="card-text">
-													<p>
-														<?php echo wp_kses_post( $dli_desc ); ?><br>
-														<?php echo esc_html( $dli_address ); ?><br>
-														<?php echo esc_html( $dli_place_type ); ?><br>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php endwhile; ?>
-							</div>
+							<?php endif; ?>
 						</div>
-					<?php else : ?>
-						<div class="col-12 col-lg-8">
-							<div class="row pt-2">
-								<?php echo esc_html__( 'Non è stata trovato nessun luogo', 'design_laboratori_italia' ); ?>
-							</div>
-						</div>
-					<?php endif; ?>
+					</form>
 				</div>
+
+				<!-- LUOGHI -->
+				<?php if ( $dli_num_results ) : ?>
+					<div class="col-12 col-lg-8 offset-lg-1 pt-3">
+						<div class="row">
+							<?php while ( $dli_places_query->have_posts() ) : ?>
+								<?php
+								$dli_places_query->the_post();
+								$dli_place_id    = get_the_ID();
+								$dli_place_title = get_the_title( $dli_place_id );
+								$dli_desc        = dli_get_field( 'descrizione_breve' );
+								$dli_address     = dli_get_field( 'indirizzo' );
+								$dli_terms       = get_the_terms( $dli_place_id, PLACE_TYPE_TAXONOMY );
+								$dli_place_type  = ( $dli_terms && ! is_wp_error( $dli_terms ) ) ? $dli_terms[0]->name : '';
+								?>
+								<div class="col-12 mb-4">
+									<article class="it-card rounded shadow-sm border">
+										<h3 class="it-card-title h5">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
+											</svg>
+											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( $dli_place_title ); ?></a>
+										</h3>
+										<div class="it-card-body">
+											<p class="it-card-text">
+												<?php echo wp_kses_post( $dli_desc ); ?><br>
+												<?php echo esc_html( $dli_address ); ?><br>
+												<?php echo esc_html( $dli_place_type ); ?>
+											</p>
+										</div>
+									</article>
+								</div>
+							<?php endwhile; ?>
+						</div>
+					</div>
+				<?php else : ?>
+					<div class="col-12 col-lg-8 offset-lg-1">
+						<div class="row pt-2">
+							<?php echo esc_html__( 'Non è stato trovato nessun luogo', 'design_laboratori_italia' ); ?>
+						</div>
+					</div>
+				<?php endif; ?>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- RESTORE ORIGINAL POST DATA -->
-		<?php wp_reset_postdata(); ?>
+	<!-- RESTORE ORIGINAL POST DATA -->
+	<?php wp_reset_postdata(); ?>
 
-		<!-- PAGINAZIONE -->
-		<?php
-		get_template_part(
-			'template-parts/common/paginazione',
-			null,
-			array(
-				'query' => $dli_places_query,
-			)
-		);
-		?>
-	</main>
-</form>
+	<!-- PAGINAZIONE -->
+	<?php
+	get_template_part(
+		'template-parts/common/paginazione',
+		null,
+		array(
+			'query' => $dli_places_query,
+		)
+	);
+	?>
+</main>
 
 <?php get_footer(); ?>

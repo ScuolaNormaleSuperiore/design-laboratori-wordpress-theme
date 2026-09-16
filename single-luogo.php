@@ -13,7 +13,8 @@ while ( have_posts() ) {
 	$dli_id                = get_the_ID();
 	$dli_title             = get_the_title( $dli_id );
 	$dli_image_metadata    = dli_get_image_metadata( $post );
-	$dli_descrizione       = get_the_content();
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
+	$dli_descrizione       = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
 	$dli_posizione         = dli_get_field( 'posizione_gps' );
 	$dli_come_raggiungerci = dli_get_field( 'come_raggiungerci' );
 	$dli_indirizzo         = dli_get_field( 'indirizzo' );
@@ -28,41 +29,38 @@ while ( have_posts() ) {
 	<!-- START CONTENT -->
 	<main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- BANNER  -->
-	<section id="banner-luoghi" class="bg-banner-luoghi">
-		<div class="section-muted  primary-bg-c1">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-5 align-middle">
-						<div class="hero-title text-left ms-4 pb-3 pt-5 ">
-							<h2 class="p-0  "><?php echo esc_html( $dli_title ); ?>&nbsp;</h2>
-							<p class="font-weight-normal"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
-						</div>
+	<!-- BANNER LUOGO: hero a due colonne (testo + immagine in evidenza), stesso
+	     pattern di single-notizia.php: l'immagine di un luogo, quando esiste, resta
+	     al proprio formato naturale (nessun object-fit forzato) in una colonna
+	     dedicata invece di un crop forzato a piena pagina; il post type "luogo" non
+	     ha un campo immagine ACF dedicato, solo l'eventuale featured image. -->
+	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-luogo-title">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<h2 id="dli-hero-luogo-title"><?php echo esc_html( $dli_title ); ?></h2>
+						<?php if ( dli_get_field( 'descrizione_breve' ) ) : ?>
+							<p class="fs-5"><?php echo wp_kses_post( dli_get_field( 'descrizione_breve' ) ); ?></p>
+						<?php endif; ?>
 					</div>
-					<div class="col-sm-7">
-						<?php
-						if ( $dli_image_metadata['image_url'] ) {
-							?>
-						<figure class="figure">
-							<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>" class="d-block mx-lg-auto img-fluid figure-img" 
-								alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
-								title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-								loading="lazy">
-							<?php
-							if ( $dli_image_metadata['image_caption'] ) {
-								?>
-								<figcaption class="figure-caption"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
-								<?php
-							}
-							?>
+				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<?php if ( $dli_image_metadata['image_url'] ) : ?>
+						<figure class="figure mb-0">
+							<img class="figure-img img-fluid rounded mb-0"
+								src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+								alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+							<?php if ( $dli_image_metadata['image_caption'] ) : ?>
+								<figcaption class="figure-caption mt-2 text-light"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
+							<?php endif; ?>
 						</figure>
-							<?php
-						}
-						?>
-					</div>
+					<?php else : ?>
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -108,7 +106,7 @@ while ( have_posts() ) {
 									if ( '' !== $dli_descrizione ) {
 										?>
 										<li class="nav-item">
-											<a class="nav-link active" href="#p1">
+											<a class="nav-link active" href="#descrizione">
 												<span><?php esc_html_e( 'Descrizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
@@ -117,7 +115,7 @@ while ( have_posts() ) {
 									if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="#p2">
+											<a class="nav-link" href="#posizione">
 												<span><?php esc_html_e( 'Posizione', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
@@ -126,7 +124,7 @@ while ( have_posts() ) {
 									if ( '' !== $dli_come_raggiungerci ) {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="#p3">
+											<a class="nav-link" href="#come-raggiungerci">
 												<span><?php esc_html_e( 'Come raggiungerci', 'design_laboratori_italia' ); ?></span>
 											</a>
 										</li>
@@ -141,149 +139,102 @@ while ( have_posts() ) {
 				</div>
 			</div>
 			<!-- CORPO CENTRALE -->
-			<div class="col-12 col-lg-9 col-md-9 it-page-sections-container">
-				<!-- DESCRIZIONE -->
-				<?php
-				if ( '' !== $dli_descrizione ) {
-					?>
-				<div class="row pb-3">
-					<h3 class="it-page-section h4 visually-hidden" id="p1"><?php esc_html_e( 'Descrizione luogo', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo wp_kses_post( $dli_descrizione ); ?></p>
-				</div>
-					<?php
-				}
-				?>
-				<!-- DOVE -->
-				<div class="row mb-5">
-					<h3 id="p2" class="it-page-section h4"><?php esc_html_e( 'Posizione', 'design_laboratori_italia' ); ?></h3>  
-					<div class="card-wrapper">
-						<div class="card card-img no-after">
-							<?php
-							if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) {
-								?>
-								<div class="img-responsive-wrapper">
-									<?php
-									echo wp_kses_post( $dli_posizione );
-									?>
-								</div>
-								<?php
-							}
-							?>
-							<!-- START LISTA DATI INDIRIZZO -->
-							<div class="it-list-wrapper">
-								<ul class="it-list">
-									<?php
-									if ( '' !== $dli_indirizzo ) {
-										?>
+			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
+				<?php if ( '' !== $dli_descrizione ) : ?>
+					<h3 class="it-page-section h4 visually-hidden" id="descrizione"><?php esc_html_e( 'Descrizione luogo', 'design_laboratori_italia' ); ?></h3>
+					<?php echo wp_kses_post( $dli_descrizione ); ?>
+				<?php endif; ?>
+
+				<!-- POSIZIONE: mappa reale (campo ACF "posizione_gps", tipo OpenStreetMap/Leaflet,
+				     già pronta come markup/JS) + lista indirizzo/orari/contatti, stessa card
+				     unica del prototipo (sf-scheda-luogo.html). -->
+				<h3 class="it-page-section h4 pt-3" id="posizione"><?php esc_html_e( 'Posizione', 'design_laboratori_italia' ); ?></h3>
+				<div class="card-wrapper">
+					<div class="it-card rounded shadow overflow-hidden">
+						<?php if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) : ?>
+							<div class="img-responsive-wrapper">
+								<?php echo wp_kses_post( $dli_posizione ); ?>
+							</div>
+						<?php endif; ?>
+						<div class="it-list-wrapper">
+							<ul class="it-list">
+								<?php if ( '' !== $dli_indirizzo ) : ?>
 									<li>
 										<div class="list-item">
-											<div class="visually-hidden">
-												Indirizzo
-											</div>
+											<div class="visually-hidden"><?php esc_html_e( 'Indirizzo', 'design_laboratori_italia' ); ?></div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img">
-													<title>Map Marker</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
+												<svg class="icon" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_indirizzo ) . ', ' . esc_html( $dli_cap ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( '' !== $dli_cap ? $dli_indirizzo . ', ' . $dli_cap : $dli_indirizzo ); ?></span></div>
 										</div>
 									</li>
-										<?php
-									}
-									if ( '' !== $dli_orari ) {
-										?>
+								<?php endif; ?>
+								<?php if ( '' !== $dli_orari ) : ?>
 									<li>
 										<div class="list-item">
-											<div class="visually-hidden">
-												Orari
-											</div>
+											<div class="visually-hidden"><?php esc_html_e( 'Orari', 'design_laboratori_italia' ); ?></div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img">
-													<title>Clock</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>"></use>
+												<svg class="icon" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>"></use>
 												</svg>
 											</div>
 											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_orari ); ?></span></div>
 										</div>
 									</li>
-										<?php
-									}
-									if ( '' !== $dli_telefono ) {
-										?>
+								<?php endif; ?>
+								<?php if ( '' !== $dli_telefono ) : ?>
 									<li>
-										<div class="visually-hidden">
-											Telefono
-										</div>
-										<div class="list-item">
+										<a class="list-item" href="<?php echo esc_url( 'tel:' . preg_replace( '/\s+/', '', $dli_telefono ) ); ?>">
+											<div class="visually-hidden"><?php esc_html_e( 'Telefono', 'design_laboratori_italia' ); ?></div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img">
-													<title>Telephone</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
-											</svg>
-										</div>
-										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_telefono ); ?></span></div>
-										</div>
+												<svg class="icon" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
+												</svg>
+											</div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_telefono ); ?></span></div>
+										</a>
 									</li>
-										<?php
-									}
-									if ( '' !== $dli_mail ) {
-										?>
+								<?php endif; ?>
+								<?php if ( '' !== $dli_mail ) : ?>
 									<li>
-										<div class="visually-hidden">
-											Email
-										</div>
 										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_mail ) ); ?>" class="list-item">
+											<div class="visually-hidden"><?php esc_html_e( 'Email', 'design_laboratori_italia' ); ?></div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img">
-													<title>Mail</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
+												<svg class="icon" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
 											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_mail ); ?></span></div>
 										</a>
 									</li>
-										<?php
-									}
-									if ( '' !== $dli_pec ) {
-										?>
+								<?php endif; ?>
+								<?php if ( '' !== $dli_pec ) : ?>
 									<li>
-										<div class="visually-hidden">
-											PEC
-										</div>
 										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" class="list-item">
+											<div class="visually-hidden"><?php esc_html_e( 'PEC', 'design_laboratori_italia' ); ?></div>
 											<div class="it-rounded-icon">
-												<svg class="icon" role="img">
-													<title>Mail</title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
+												<svg class="icon" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
 											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_pec ); ?></span></div>
 										</a>
 									</li>
-										<?php
-									}
-									?>
-								</ul>
-							</div>
-							<!-- FINE LISTA DATI INDIRIZZO -->
-							<!-- COME RAGGIUNGERCI -->
-							<?php
-							if ( '' !== $dli_come_raggiungerci ) {
-								?>
-							<div class="row pb-3">
-								<h3 class="it-page-section h4" id="p3"><?php esc_html_e( 'Come raggiungerci', 'design_laboratori_italia' ); ?></h3>
-								<p><?php echo wp_kses_post( $dli_come_raggiungerci ); ?></p>
-							</div>
-								<?php
-							}
-							?>
-						</div> <!--end row-->
+								<?php endif; ?>
+							</ul>
+						</div>
 					</div>
 				</div>
+
+				<?php if ( '' !== $dli_come_raggiungerci ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="come-raggiungerci"><?php esc_html_e( 'Come raggiungerci', 'design_laboratori_italia' ); ?></h3>
+					<?php echo wp_kses_post( $dli_come_raggiungerci ); ?>
+				<?php endif; ?>
 			</div>
 		</div>
-	</div>   <!-- END container -->
+	</div> <!-- END container -->
 	</main>
 <!-- END CONTENT -->
 
