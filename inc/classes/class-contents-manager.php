@@ -818,6 +818,49 @@ class DLI_ContentsManager {
 		return self::get_post_types_with_results( $content_types, 'publish' );
 	}
 
+	/**
+	 * Content types that actually have at least one match for a given search
+	 * string, instead of just "having any published post at all" like
+	 * get_all_contenttypes_with_results(). Used to show only relevant filter
+	 * checkboxes for the current search, as documented in the prototype
+	 * (sf-site-search.html): a search producing few results should not offer
+	 * filters for content types with zero matches.
+	 *
+	 * @param string $search_string Search string (may be empty).
+	 * @return array
+	 */
+	public static function get_contenttypes_with_search_results( $search_string ) {
+		$content_types = array_values(
+			array_filter(
+				DLI_POST_TYPES_TO_SEARCH,
+				function ( $content_type ) {
+					return PEOPLE_TYPE_POST_TYPE !== $content_type;
+				}
+			)
+		);
+
+		if ( empty( $content_types ) ) {
+			return array();
+		}
+
+		$params = array(
+			'post_type'      => $content_types,
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'fields'         => 'all',
+			'no_found_rows'  => true,
+		);
+
+		if ( '' !== trim( $search_string ) ) {
+			$params['s'] = $search_string;
+		}
+
+		$query          = new WP_Query( $params );
+		$matched_types  = wp_list_pluck( $query->posts, 'post_type' );
+
+		return array_values( array_intersect( $content_types, array_unique( $matched_types ) ) );
+	}
+
 	// SITE SEARCH
 	public static function main_search_query( $selected_contents, $search_string, $page_size, $paged = null ) {
 		$has_search_string = '' !== trim( $search_string );

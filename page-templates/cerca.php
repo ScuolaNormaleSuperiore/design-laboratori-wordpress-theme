@@ -12,7 +12,7 @@ get_header();
 define( 'SITESEARCH_CELLS_PER_PAGE', 10 );
 
 // Begin preparing search params.
-$dli_all_content_types = DLI_ContentsManager::get_all_contenttypes_with_results();
+$dli_all_content_types = array();
 $dli_num_results       = 0;
 $dli_selected_contents = array();
 $dli_search_string     = '';
@@ -59,156 +59,158 @@ if (
 	);
 
 	if ( $dli_query instanceof WP_Query ) {
-		$dli_num_results = $dli_query->found_posts;
+		$dli_num_results       = $dli_query->found_posts;
+		$dli_all_content_types = DLI_ContentsManager::get_contenttypes_with_search_results( $dli_search_string );
 	}
 }
+$dli_has_searched = ( $dli_query instanceof WP_Query );
 // End preparing search params.
 ?>
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- SEZIONE BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<form action="." id="ricercasitoform" method="get">
+	<form id="ricercasitoform" action="<?php echo esc_url( get_permalink() ); ?>" method="get">
 		<?php wp_nonce_field( 'sf_cercasito_nonce', 'cercasito_nonce_field' ); ?>
 
-		<!-- SEZIONE BANNER -->
-		<section id="banner-cerca" class="bg-banner-cerca">
-			<div class="section-muted p-3 primary-bg-c1">
-				<div class="container">
-					<div class="hero-title text-left ms-4 pb-3 pt-3">
-						<h2 class="pt-0 pb-0"><?php echo esc_html__( 'Cerca nel sito', 'design_laboratori_italia' ); ?></h2>
-						<div class="row m-0">
-							<div class="form-group col-md-12 mb-4 text-left">
-								<label class="active visually-hidden" for="searchstring">
-									<?php echo esc_html__( 'Cerca nel sito', 'design_laboratori_italia' ); ?>
-								</label>
-								<input
-									type="text"
-									id="searchstring"
-									name="searchstring"
-									class="form-control"
-									value="<?php echo esc_attr( $dli_search_string ); ?>"
-									placeholder="<?php echo esc_attr__( 'Inserisci il testo da cercare', 'design_laboratori_italia' ); ?>"
-								>
-								<input type="hidden" name="isreset" id="isreset" value="">
+		<!-- BANNER RICERCA: hero con breadcrumb integrato e campo di ricerca, come nel
+		     prototipo (sf-site-search.html). -->
+		<section id="banner-cerca" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-cerca-title">
+			<div class="container">
+				<div class="row align-items-stretch">
+					<div class="col-12 col-lg-7">
+						<section class="pt-2">
+							<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+						</section>
+						<div class="it-hero-text-wrapper px-lg-2">
+							<h2 id="dli-hero-cerca-title"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></h2>
+							<p class="fs-5"><?php esc_html_e( 'Trova persone, progetti, notizie e altri contenuti del sito.', 'design_laboratori_italia' ); ?></p>
+							<div class="row m-0">
+								<div class="form-group col-md-8 col-lg-9 mb-2 text-start">
+									<label for="searchstring" class="text-white"><?php esc_html_e( 'Scrivi almeno 3 caratteri per cercare', 'design_laboratori_italia' ); ?></label>
+									<div class="input-group">
+										<span class="input-group-text">
+											<svg class="icon icon-sm" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
+											</svg>
+										</span>
+										<input
+											type="search"
+											class="form-control"
+											id="searchstring"
+											name="searchstring"
+											minlength="3"
+											placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
+											value="<?php echo esc_attr( $dli_search_string ); ?>"
+										>
+										<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></button>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col text-left ps-4 mb-2">
-								<button type="reset" value="reset" onclick="resetForm('ricercasitoform', 'isreset');" class="btn btn-outline-primary">
-									<?php echo esc_html__( 'Cancella', 'design_laboratori_italia' ); ?>
-								</button>
-								<button type="submit" value="submit" class="btn btn-primary">
-									<?php echo esc_html__( 'Cerca', 'design_laboratori_italia' ); ?>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- SEZIONE RICERCA NEL SITO -->
-		<section id="risultati" class="p-4">
-			<div class="container my-4">
-				<div class="row pt-0">
-
-					<!-- COLONNA FILTRI -->
-					<div class="col-12 col-lg-3 border-end">
-						<div class="row pt-4">
-							<?php if ( count( $dli_all_content_types ) > 0 ) : ?>
-								<h3 class="h6 text-uppercase border-bottom">
-									<?php echo esc_html__( 'Filtra per tipo di contenuto', 'design_laboratori_italia' ); ?>
-								</h3>
-								<div>
-									<?php foreach ( $dli_all_content_types as $dli_content_type ) : ?>
-										<div class="form-check">
-											<input
-												type="checkbox"
-												name="selected_contents[]"
-												id="<?php echo esc_attr( $dli_content_type ); ?>"
-												value="<?php echo esc_attr( $dli_content_type ); ?>"
-												<?php checked( in_array( $dli_content_type, $dli_selected_contents, true ) ); ?>
-											>
-											<label for="<?php echo esc_attr( $dli_content_type ); ?>">
-												<?php echo esc_html( ucfirst( str_replace( '-', ' ', $dli_content_type ) ) ); ?>
-											</label>
-										</div>
-									<?php endforeach; ?>
+							<?php if ( $dli_has_searched ) : ?>
+								<div class="row m-0">
+									<div class="form-group col text-start">
+										<a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-primary btn-sm">
+											<svg class="icon icon-sm" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
+											</svg>
+											<span><?php esc_html_e( 'Annulla ricerca', 'design_laboratori_italia' ); ?></span>
+										</a>
+									</div>
 								</div>
 							<?php endif; ?>
 						</div>
 					</div>
-
-					<!-- Inizio ELENCO RISULTATI -->
-					<div class="col-12 col-lg-8">
-						<div class="row ps-4">
-							<p>
-								<em>
-									<span><?php echo esc_html__( 'Risultati', 'design_laboratori_italia' ); ?>:</span>
-									<span><?php echo esc_html( strval( $dli_num_results ) ); ?></span>
-								</em>
-							</p>
-						</div>
-
-						<?php
-						// The main loop of the page.
-						$dli_result_index = 0;
-						?>
-						<?php if ( ( $dli_num_results > 0 ) && ( $dli_query instanceof WP_Query ) ) : ?>
-							<?php while ( $dli_query->have_posts() ) : ?>
-								<?php
-								$dli_query->the_post();
-								$dli_result = dli_get_post_wrapper( $post, 'medium' );
-								?>
-								<!-- begin row -->
-								<div class="row">
-									<!-- start card -->
-									<div class="col-12 col-lg-12">
-										<div class="card-wrapper">
-											<div class="card">
-												<div class="card-body mb-0">
-													<?php if ( $dli_result['image_url'] ) : ?>
-														<img
-															src="<?php echo esc_url( $dli_result['image_url'] ); ?>"
-															height="100"
-															width="100"
-															class="img-thumbnail float-sm-start me-2 text-nowrap"
-															title="<?php echo esc_attr( $dli_result['image_title'] ); ?>"
-															alt="<?php echo esc_attr( $dli_result['image_alt'] ); ?>"
-														>
-													<?php endif; ?>
-
-													<span class="text" style="text-transform: uppercase;">
-														<a class="text-decoration-none" href="<?php echo esc_url( $dli_result['category_link'] ); ?>">
-															<?php echo esc_html( $dli_result['type'] ); ?>
-														</a>
-													</span>
-													<span>&nbsp;-&nbsp;</span>
-													<a class="text-decoration-none" href="<?php echo esc_url( $dli_result['link'] ); ?>">
-														<h3 class="card-title h5"><?php echo esc_html( $dli_result['title'] ); ?></h3>
-													</a>
-													<p class="card-text">
-														<?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- end card -->
-								</div>
-								<!-- end row -->
-								<?php ++$dli_result_index; ?>
-							<?php endwhile; ?>
-						<?php endif; ?>
+					<div class="col-12 col-lg-5 d-none d-lg-block">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
 					</div>
-					<!-- FINE elenco RISULTATI -->
-
 				</div>
 			</div>
 		</section>
+
+		<!-- RISULTATI DI RICERCA: sezione mostrata solo dopo una ricerca effettiva
+		     (mai al primo accesso alla pagina), come nel prototipo — che invece la
+		     mostra sempre con un esempio statico, essendo una pagina statica senza
+		     un vero motore di ricerca dietro. I filtri "Filtra per" mostrano solo le
+		     tipologie di contenuto che hanno davvero almeno un risultato per la
+		     ricerca corrente (non l'elenco fisso di tutte le tipologie), come nel
+		     prototipo. -->
+		<?php if ( $dli_has_searched ) : ?>
+			<section id="risultati" class="p-4">
+				<div class="container my-4">
+					<div class="row">
+						<div class="col-12">
+
+							<?php if ( count( $dli_all_content_types ) > 0 ) : ?>
+								<fieldset class="mb-4">
+									<legend class="h6 text-uppercase mb-2"><?php esc_html_e( 'Filtra per', 'design_laboratori_italia' ); ?></legend>
+									<?php foreach ( $dli_all_content_types as $dli_content_type ) : ?>
+										<div class="form-check form-check-inline">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												name="selected_contents[]"
+												id="<?php echo esc_attr( $dli_content_type ); ?>"
+												value="<?php echo esc_attr( $dli_content_type ); ?>"
+												onchange="this.form.submit()"
+												<?php checked( in_array( $dli_content_type, $dli_selected_contents, true ) ); ?>
+											>
+											<label class="form-check-label" for="<?php echo esc_attr( $dli_content_type ); ?>">
+												<?php echo esc_html( ucfirst( str_replace( '-', ' ', $dli_content_type ) ) ); ?>
+											</label>
+										</div>
+									<?php endforeach; ?>
+								</fieldset>
+							<?php endif; ?>
+
+							<p class="fw-bold mb-3" role="status" aria-live="polite">
+								<?php
+								echo esc_html(
+									sprintf(
+										/* translators: 1: number of results, 2: search query */
+										_n( '%1$d risultato per «%2$s»', '%1$d risultati per «%2$s»', $dli_num_results, 'design_laboratori_italia' ),
+										$dli_num_results,
+										$dli_search_string
+									)
+								);
+								?>
+							</p>
+
+							<?php if ( $dli_num_results > 0 ) : ?>
+								<div role="list" aria-label="<?php echo esc_attr__( 'Risultati di ricerca', 'design_laboratori_italia' ); ?>">
+									<?php
+									while ( $dli_query->have_posts() ) :
+										$dli_query->the_post();
+										$dli_result     = dli_get_post_wrapper( $post, 'medium' );
+										$dli_type_label = ucfirst( str_replace( '-', ' ', $dli_result['type'] ) );
+										?>
+										<div role="listitem" class="border-bottom py-3">
+											<a class="d-flex justify-content-between align-items-center text-decoration-none" href="<?php echo esc_url( $dli_result['link'] ); ?>">
+												<span>
+													<span class="d-block h6 mb-1"><?php echo esc_html( $dli_result['title'] ); ?></span>
+													<span class="d-block text-secondary mb-1"><?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></span>
+													<span class="d-block text-uppercase fw-semibold small">
+														<span class="visually-hidden"><?php esc_html_e( 'Tipo di contenuto:', 'design_laboratori_italia' ); ?></span>
+														<?php echo esc_html( $dli_type_label ); ?>
+													</span>
+												</span>
+												<svg class="icon icon-primary flex-shrink-0 ms-3" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right' ); ?>"></use>
+												</svg>
+											</a>
+										</div>
+									<?php endwhile; ?>
+								</div>
+							<?php else : ?>
+								<p class="text-center text-secondary py-4" aria-live="polite">
+									<?php esc_html_e( 'Nessun risultato per i filtri selezionati.', 'design_laboratori_italia' ); ?>
+								</p>
+							<?php endif; ?>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		<?php endif; ?>
 	</form>
 
 	<!-- RESTORE ORIGINAL POST DATA -->
