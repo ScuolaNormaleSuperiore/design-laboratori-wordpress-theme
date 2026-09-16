@@ -35,66 +35,45 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-
-	<!-- INIZIO BANNER HERO -->
-	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
-		<!-- - img-->
+	<!-- BANNER BREVETTO: foto di copertina con overlay + breadcrumb in overlay
+	     assoluto sopra la foto, stesso pattern di single-progetto.php. Niente
+	     box scuro locale (bg-dark) né chip area tematica nell'hero: pattern
+	     del prototipo statico (sf-scheda-brevetto.html), leggibilità già
+	     garantita dall'overlay + text-shadow globali. -->
+	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
-				<figure class="img-wrapper">
-						<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-							alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>" 
-							title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>" 
-							class="d-block mx-lg-auto img-fluid figure-img" loading="lazy">
-						<?php
-						if ( $dli_image_metadata['image_caption'] ) {
-							?>
-							<figcaption class="figure-caption"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
-							<?php
-						}
-						?>
-				</figure>
+				<div class="img-wrapper">
+					<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+						alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
+						title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>">
+				</div>
 			</div>
 		</div>
-		<!-- - texts-->
+		<div class="container it-hero-breadcrumb">
+			<div class="row">
+				<div class="col-12">
+					<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
-						<span class="it-Categoria"></span>
+					<div class="it-hero-text-wrapper">
 						<h2><?php echo esc_html( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block">
-						<?php echo wp_kses_post( $dli_summary ); ?>
-						</p>
-						<!-- categorie -->
-						<div class="chip chip-primary chip-lg chip-simple border-light mt-3">
-							<?php
-							if ( ! empty( $dli_area_tematica ) ) {
-								?>
-									<a class="text-white text-decoration-none"
-										href="<?php echo esc_url( site_url() . '/brevetti?thematic_area[]=' . $dli_area_tematica['id'] ); ?>"
-									>
-										<span class="chip-label text-light">
-											<?php echo esc_html( $dli_area_tematica['title'] ); ?>
-										</span>
-									</a>
-								<?php
-							}
-							?>
-						</div>
+						<p class="d-none d-lg-block"><?php echo wp_kses_post( $dli_summary ); ?></p>
+						<?php if ( $dli_image_metadata['image_caption'] ) : ?>
+							<p class="figure-caption mt-3 text-light"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></p>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- FINE BANNER HERO -->
 
-
-		<!-- BODY EVENTO -->
-		<div class="container py-lg-5">
+	<!-- DETTAGLIO BREVETTO -->
+	<div class="container py-lg-5">
 		<div class="row">
 
 			<!-- Dettagli dell'evento -->
@@ -124,7 +103,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 							</a>
 							<div class="menu-wrapper">
 								<div class="link-list-wrapper">
-									<h3><?php echo esc_html__( 'IL BREVETTO', 'design_laboratori_italia' ); ?></h3>
+									<h3><?php echo esc_html__( 'Dettagli del brevetto', 'design_laboratori_italia' ); ?></h3>
 									<div class="progress">
 										<div class="progress-bar it-navscroll-progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 										</div>
@@ -222,146 +201,91 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 			</div>
 
 			<!-- DESCRIZIONE -->
-			<div class="col-12 col-lg-9 it-page-sections-container">
-				<?php
-				if ( $dli_abstract ) {
-					?>
-					<article id="abstract" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="it-page-section h4 visually-hidden"><?php echo esc_html__( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
-						<p>
-							<?php echo wp_kses_post( $dli_abstract ); ?>
-						</p>
-					
-					</article>
-					<?php
-				}
-				?>
-				<!-- TTOLARI -->
-				<?php
-				if ( $dli_titolari ) {
-					?>
-					<article id="titolari" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Titolari', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_html( $dli_titolari ); ?></p>
-					</article>
-					<?php
-				}
-				if ( $dli_inventori ) {
-					?>
-				<!-- inventori -->
-				<article id="inventori" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Inventori', 'design_laboratori_italia' ); ?></h3>
+			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
+				<?php if ( $dli_abstract ) : ?>
+					<h3 class="it-page-section h4 visually-hidden" id="abstract"><?php echo esc_html__( 'Abstract brevetto', 'design_laboratori_italia' ); ?></h3>
+					<?php echo wp_kses_post( $dli_abstract ); ?>
+				<?php endif; ?>
+
+				<?php if ( $dli_titolari ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="titolari"><?php echo esc_html__( 'Titolari', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_titolari ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_inventori ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="inventori"><?php echo esc_html__( 'Inventori', 'design_laboratori_italia' ); ?></h3>
 					<p><?php echo esc_html( $dli_inventori ); ?></p>
-				</article>
-					<?php
-				}
-				if ( $dli_num_deposito || $dli_data_deposito ) {
-					?>
-				<!-- Deposito -->
-				<article id="domanda" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Domanda di priorità', 'design_laboratori_italia' ); ?></h3>
+				<?php endif; ?>
+
+				<?php if ( $dli_num_deposito || $dli_data_deposito ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="domanda"><?php echo esc_html__( 'Domanda di priorità', 'design_laboratori_italia' ); ?></h3>
 					<p>
-					<?php echo esc_html__( 'Numero deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_num_deposito ); ?>
-						<br/>
-					<?php echo esc_html__( 'Data deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_data_deposito ); ?>
+						<?php echo esc_html__( 'Numero deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_num_deposito ); ?>
+						<br>
+						<?php echo esc_html__( 'Data deposito', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_data_deposito ); ?>
 					</p>
-				</article>
-					<?php
-				}
-				if ( $dli_stato ) {
-					?>
-					<!-- Status -->
-				<article id="status" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Stato legale', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo esc_html( $dli_stato ); ?></p>
-				</article>
-					<?php
-				}
-				if ( $dli_famiglie && ( ! empty( $dli_famiglie ) ) ) {
-					?>
-					<article id="famiglia" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 class="h4"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
+				<?php endif; ?>
+
+				<?php if ( $dli_famiglie && ! empty( $dli_famiglie ) ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="famiglia"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
+					<div class="table-responsive">
 						<table class="table table-striped">
 							<caption class="visually-hidden"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></caption>
 							<thead>
-								<tr> 
+								<tr>
 									<th scope="col"><?php echo esc_html__( 'Numero di deposito', 'design_laboratori_italia' ); ?></th>
-								<th scope="col"><?php echo esc_html__( 'Data deposito', 'design_laboratori_italia' ); ?></th>
-								<th scope="col"><?php echo esc_html__( 'Titolo', 'design_laboratori_italia' ); ?></th>
-								<th scope="col"><?php echo esc_html__( 'Nazione deposito', 'design_laboratori_italia' ); ?></th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							foreach ( $dli_famiglie as $dli_fam ) {
-								?>
-							<tr>
-								<th scope="row"><?php echo esc_html( $dli_fam->numero_deposito ); ?></th>
-								<td><?php echo esc_html( $dli_fam->data_deposito ); ?></td>
-								<td>
-								<?php
-								$dli_decoded_string = dli_decode_unicode_string( $dli_fam->titolo );
-								echo esc_html( $dli_decoded_string );
-								?>
-								</td>
-								<td><?php echo esc_html( $dli_fam->nazione_deposito ); ?></td>
-							</tr>
-								<?php
-							}
-							?>
-						</tbody>
-					</table>
-				</article>
-					<?php
-				}
-				if ( $dli_area_tematica ) {
-					?>
-				<!-- AREA TEMATICA -->
-				<article id="areatematica" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Area tematica', 'design_laboratori_italia' ); ?></h3>
-						<p><?php echo esc_html( $dli_area_tematica['title'] ); ?></p>
-				</article>
-					<?php
-				}
-				if ( $dli_note ) {
-					?>
-				<!-- ALTRE INFORMAZIONI -->
-				<article id="altreinformazioni" class="it-page-section mb-4 anchor-offset clearfix">
-					<h3 class="h4"><?php echo esc_html__( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
-					<p><?php echo wp_kses_post( $dli_note ); ?></p>
-				</article>
-					<?php
-				}
-				if ( $dli_video ) {
-					?>
-					<article id="video" class="it-page-section mb-4 anchor-offset clearfix">
-						<h3 id="p5" class="it-page-section h4 pt-3"><?php echo esc_html__( 'Video', 'design_laboratori_italia' ); ?></h3>
+									<th scope="col"><?php echo esc_html__( 'Data deposito', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php echo esc_html__( 'Titolo', 'design_laboratori_italia' ); ?></th>
+									<th scope="col"><?php echo esc_html__( 'Nazione deposito', 'design_laboratori_italia' ); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ( $dli_famiglie as $dli_fam ) : ?>
+									<tr>
+										<th scope="row"><?php echo esc_html( $dli_fam->numero_deposito ); ?></th>
+										<td><?php echo esc_html( $dli_fam->data_deposito ); ?></td>
+										<td><?php echo esc_html( dli_decode_unicode_string( $dli_fam->titolo ) ); ?></td>
+										<td><?php echo esc_html( $dli_fam->nazione_deposito ); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+				<?php endif; ?>
 
-						<?php
-							$dli_video_text = null;
-							get_template_part(
-								'template-parts/common/sezione-video',
-								null,
-								array(
-									'video'       => $dli_video,
-									'video_text'  => $dli_video_text,
-									'video_title' => get_the_title(),
-								)
-							);
-						?>
+				<?php if ( $dli_stato ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="status"><?php echo esc_html__( 'Stato legale', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_stato ); ?></p>
+				<?php endif; ?>
 
-				</article>
+				<?php if ( $dli_area_tematica ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="areatematica"><?php echo esc_html__( 'Area tematica', 'design_laboratori_italia' ); ?></h3>
+					<p><?php echo esc_html( $dli_area_tematica['title'] ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $dli_note ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="altreinformazioni"><?php echo esc_html__( 'Altre informazioni', 'design_laboratori_italia' ); ?></h3>
+					<?php echo wp_kses_post( $dli_note ); ?>
+				<?php endif; ?>
+
+				<?php if ( $dli_video ) : ?>
+					<h3 class="it-page-section h4 pt-3" id="video"><?php echo esc_html__( 'Video', 'design_laboratori_italia' ); ?></h3>
 					<?php
-				}
-				?>
-
+					get_template_part(
+						'template-parts/common/sezione-video',
+						null,
+						array(
+							'video'       => $dli_video,
+							'video_text'  => null,
+							'video_title' => get_the_title(),
+						)
+					);
+					?>
+				<?php endif; ?>
 			</div>
-
 		</div> <!-- END row -->
 	</div> <!-- END container -->
-	
 </main>
-
 
 <?php
 get_footer();
