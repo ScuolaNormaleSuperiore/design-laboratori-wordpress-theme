@@ -79,9 +79,6 @@ $dli_num_results = $dli_query->found_posts;
 
 <main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER SPINOFF -->
 	<?php get_template_part( 'template-parts/hero/spinoff' ); ?>
 
