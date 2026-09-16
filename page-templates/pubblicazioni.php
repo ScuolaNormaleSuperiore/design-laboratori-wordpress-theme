@@ -238,8 +238,10 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 												<footer class="it-card-footer">
 													<?php if ( ! empty( $dli_item_terms ) ) : ?>
 														<div class="it-card-taxonomy">
-															<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
-															<?php echo esc_html( implode( ', ', wp_list_pluck( $dli_item_terms, 'name' ) ) ); ?>
+															<span class="it-card-category">
+																<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
+																<?php echo esc_html( implode( ', ', wp_list_pluck( $dli_item_terms, 'name' ) ) ); ?>
+															</span>
 														</div>
 													<?php endif; ?>
 													<?php if ( $dli_item_anno ) : ?>

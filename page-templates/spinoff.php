@@ -9,8 +9,6 @@ global $post;
 
 get_header();
 
-define( 'DLI_SPINOFF_CELLS_PER_ROW', 2 );
-
 $dli_selected_year    = '';
 $dli_selected_sectors = array();
 $dli_search_string    = '';
@@ -149,97 +147,61 @@ $dli_num_results = $dli_query->found_posts;
 					</form>
 				</div>
 
-				<?php
-				// The main loop of the page.
-				$dli_spinoff_index = 0;
-				?>
 				<?php if ( $dli_num_results > 0 ) : ?>
-					<div class="col-12 col-lg-9 pt-3">
-						<?php while ( $dli_query->have_posts() ) : ?>
-							<?php
-							$dli_query->the_post();
-
-							if ( 0 === ( $dli_spinoff_index % DLI_SPINOFF_CELLS_PER_ROW ) ) :
+					<div class="col-12 col-lg-8 offset-lg-1 pt-3">
+						<div class="row">
+							<?php while ( $dli_query->have_posts() ) : ?>
+								<?php
+								$dli_query->the_post();
+								$dli_spinoff_year         = dli_get_field( 'anno_costituzione' );
+								$dli_business_sector_main = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
+								$dli_image_metadata       = dli_get_image_metadata( $post, 'item-card-list' );
+								$dli_logo                 = dli_get_field( 'logo' );
+								$dli_card_image_url       = $dli_logo ? $dli_logo['url'] : $dli_image_metadata['image_url'];
+								$dli_card_image_title     = $dli_logo ? $dli_logo['title'] : $dli_image_metadata['image_title'];
+								$dli_card_image_alt       = $dli_logo ? $dli_logo['title'] : $dli_image_metadata['image_alt'];
 								?>
-								<div class="row pb-5">
-							<?php endif; ?>
-
-							<?php
-							$dli_spinoff_status       = dli_get_field( 'stato' );
-							$dli_spinoff_year         = dli_get_field( 'anno_costituzione' );
-							$dli_business_sector_main = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
-							$dli_image_metadata       = dli_get_image_metadata( $post, 'item-card-list' );
-							$dli_logo                 = dli_get_field( 'logo' );
-							?>
-
-							<div class="col-12 col-lg-6">
-								<div class="card-wrapper shadow">
-									<div class="card card-img no-after">
-										<?php if ( $dli_image_metadata['image_url'] || $dli_logo ) : ?>
-											<div class="img-responsive-wrapper">
-												<div class="img-responsive img-responsive-panoramic">
-													<figure class="img-wrapper">
-														<?php if ( $dli_logo ) : ?>
-															<img
-																src="<?php echo esc_url( $dli_logo['url'] ); ?>"
-																title="<?php echo esc_attr( $dli_logo['title'] ); ?>"
-																alt="<?php echo esc_attr( $dli_logo['title'] ); ?>"
-															>
-														<?php else : ?>
-															<img
-																src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-																title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-																alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
-															>
-														<?php endif; ?>
+								<div class="col-12 col-lg-6 mb-4">
+									<article class="it-card<?php echo $dli_card_image_url ? ' it-card-image' : ''; ?> it-card-height-full rounded shadow-sm border">
+										<h3 class="it-card-title h5">
+											<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+										</h3>
+										<?php if ( $dli_card_image_url ) : ?>
+											<div class="it-card-image-wrapper">
+												<div class="ratio ratio-16x9">
+													<figure class="figure img-full">
+														<img src="<?php echo esc_url( $dli_card_image_url ); ?>"
+															title="<?php echo esc_attr( $dli_card_image_title ); ?>"
+															alt="<?php echo esc_attr( $dli_card_image_alt ); ?>">
 													</figure>
 												</div>
 											</div>
 										<?php endif; ?>
-
-										<div class="card-body">
-											<h3 class="card-title cardTitlecustomSpacing h5"><?php echo esc_html( get_the_title() ); ?></h3>
-											<p class="card-text font-serif">
-												<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-											</p>
-											<p class="card-text font-serif titolari">
-												<?php echo esc_html__( 'Anno di costituzione', 'design_laboratori_italia' ); ?>:
-												<em><?php echo esc_html( $dli_spinoff_year ); ?></em>
-											</p>
-											<p class="card-text font-serif area">
-												<?php if ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) : ?>
-													<strong><?php echo esc_html( $dli_business_sector_main['title'] ); ?></strong> -
-												<?php endif; ?>
-												<?php echo esc_html( $dli_spinoff_status ); ?>
-											</p>
-											<div class="pt-5">
-												<a class="read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-													<span class="text"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-													<svg class="icon">
-														<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-														<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-													</svg>
-												</a>
-											</div>
+										<div class="it-card-body">
+											<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 										</div>
-									</div>
+										<?php if ( ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) || $dli_spinoff_year ) : ?>
+											<footer class="it-card-footer">
+												<?php if ( $dli_business_sector_main && array_key_exists( 'title', $dli_business_sector_main ) ) : ?>
+													<div class="it-card-taxonomy">
+														<span class="it-card-category">
+															<span class="visually-hidden"><?php esc_html_e( 'Settore:', 'design_laboratori_italia' ); ?></span>
+															<?php echo esc_html( $dli_business_sector_main['title'] ); ?>
+														</span>
+													</div>
+												<?php endif; ?>
+												<?php if ( $dli_spinoff_year ) : ?>
+													<time class="it-card-date" datetime="<?php echo esc_attr( $dli_spinoff_year ); ?>"><?php echo esc_html( $dli_spinoff_year ); ?></time>
+												<?php endif; ?>
+											</footer>
+										<?php endif; ?>
+									</article>
 								</div>
-							</div>
-
-							<?php
-							if (
-								( DLI_SPINOFF_CELLS_PER_ROW - 1 ) === ( $dli_spinoff_index % DLI_SPINOFF_CELLS_PER_ROW ) ||
-								( $dli_query->current_post + 1 ) === $dli_query->post_count
-							) :
-								?>
-								</div>
-							<?php endif; ?>
-
-							<?php ++$dli_spinoff_index; ?>
-						<?php endwhile; ?>
+							<?php endwhile; ?>
+						</div>
 					</div>
 				<?php else : ?>
-					<div class="col-12 col-lg-8">
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<div class="row pt-2">
 							<?php echo esc_html__( 'Non è stata trovata alcuna spinoff', 'design_laboratori_italia' ); ?>
 						</div>

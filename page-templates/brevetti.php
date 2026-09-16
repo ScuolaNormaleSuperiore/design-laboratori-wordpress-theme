@@ -183,8 +183,10 @@ $dli_num_results = $dli_query->found_posts;
 												<footer class="it-card-footer">
 													<?php if ( $dli_thematic_area && array_key_exists( 'title', $dli_thematic_area ) ) : ?>
 														<div class="it-card-taxonomy">
-															<span class="visually-hidden"><?php esc_html_e( 'Area tematica:', 'design_laboratori_italia' ); ?></span>
-															<?php echo esc_html( $dli_thematic_area['title'] ); ?>
+															<span class="it-card-category">
+																<span class="visually-hidden"><?php esc_html_e( 'Area tematica:', 'design_laboratori_italia' ); ?></span>
+																<?php echo esc_html( $dli_thematic_area['title'] ); ?>
+															</span>
 														</div>
 													<?php endif; ?>
 													<?php if ( $dli_anno_deposito ) : ?>
