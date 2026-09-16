@@ -151,24 +151,20 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 			</div> <!-- col-12 col-lg-3 -->
 			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 				<?php if ( ! empty( $dli_levels ) ) : ?>
-					<!-- Argomenti correlati: stesso pattern taxonomy/chip della card
-						 nell'elenco (it-card-taxonomy/it-card-chips), qui fuori da una
-						 card ma i suoi stessi stili non richiedono quel contesto.
-						 Nessun filtro reale da azionare su questa scheda, quindi chip
-						 statiche (span), non link. -->
-					<div class="it-card-taxonomy mb-4">
-						<ul class="it-card-chips" aria-label="<?php echo esc_attr__( 'Argomenti correlati:', 'design_laboratori_italia' ); ?>">
-							<?php foreach ( $dli_levels as $dli_level ) : ?>
-								<li class="list-item">
-									<span class="chip chip-secondary">
-										<span class="chip-label">
-											<span class="visually-hidden"><?php echo esc_html__( 'Argomento:', 'design_laboratori_italia' ); ?></span>
-											<?php echo esc_html( $dli_level->name ); ?>
-										</span>
-									</span>
-								</li>
-							<?php endforeach; ?>
-						</ul>
+					<!-- Argomenti correlati: pattern generale "Gruppi di Chip" (chip come
+						 elementi semplici, non annidati in un ul/li) — it-card-taxonomy/
+						 it-card-chips usato nella card dell'elenco è invece scoped a
+						 .it-card (".it-card .it-card-chips{display:flex...}" nel CSS
+						 compilato): fuori da una card non ha alcun effetto e la lista
+						 ricade sullo stile puntato di default del browser. Chip statiche
+						 (span, non link): nessun filtro reale da azionare su questa
+						 scheda. -->
+					<div class="mb-4" role="group" aria-label="<?php echo esc_attr__( 'Argomenti correlati', 'design_laboratori_italia' ); ?>">
+						<?php foreach ( $dli_levels as $dli_level ) : ?>
+							<span class="chip chip-secondary">
+								<span class="chip-label"><?php echo esc_html( $dli_level->name ); ?></span>
+							</span>
+						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>
 				<?php
