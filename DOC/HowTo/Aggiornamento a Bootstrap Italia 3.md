@@ -177,6 +177,16 @@ Tutte le sezioni della home sono gestite dinamicamente da `home.php`, che itera 
 - Sito web in sidebar mostrato senza protocollo (es. "sns.it" invece di "https://sns.it"), come nel prototipo.
 - **Verificato (non un residuo v2)**: il toggle "Vuoi ricevere notifica" usa le classi `toggles`/`lever` — sospettate inizialmente come residuo Materialize/v2, ma confermate come componente reale e attualmente valido di Bootstrap Italia 3 (presente identico nel prototipo e nel CSS compilato `bootstrap-italia.min.css`). Nessuna conversione necessaria, solo avvolto in `form-check form-check-inline` per coerenza col prototipo.
 
+## Pagina Cerca (ricerca nel sito) — portata a v3
+
+`page-templates/cerca.php` (pagina singola). Da ora in avanti la verifica dei componenti dubbi passa sempre dal server MCP Filo (`design-system-italia`) come primo canale, non solo grep sul CSS compilato — vedi [[feedback_verify_components_with_mcp]].
+
+- Hero da banner v2 a piena larghezza (`bg-banner-cerca`/`section-muted`/`primary-bg-c1`) a hero a due colonne con breadcrumb integrato e il campo di ricerca incorporato nella colonna di testo (icona di ricerca nel campo), come nel prototipo (`sf-site-search.html`).
+- **Sezione risultati mostrata solo dopo una ricerca effettiva** (nonce verificato, `$dli_query instanceof WP_Query`), mai al primo accesso alla pagina — nota esplicita del prototipo per l'implementazione WordPress: il prototipo statico mostra sempre un esempio di 4 risultati per documentare il template (non avendo un motore di ricerca reale dietro), ma nel tema l'assenza iniziale di risultati è il comportamento corretto.
+- **Colonna filtri laterale rimossa**: "Filtra per" è ora una `fieldset` orizzontale (`form-check form-check-inline`) sopra l'elenco, come nel riferimento reale citato dal prototipo (padigitale2026.gov.it/cerca) — non più una sidebar permanente. Mostra solo le tipologie di contenuto che hanno davvero almeno un risultato per la ricerca corrente, non l'elenco fisso di tutte le tipologie disponibili sul sito: aggiunta `DLI_ContentsManager::get_contenttypes_with_search_results()` (analoga a `get_all_contenttypes_with_results()` già esistente, ma con lo stesso parametro `s` della ricerca corrente). Il filtro resta a submit server-side (auto-submit sulla checkbox, la query viene rieseguita), coerente con tutte le altre famiglie già portate, invece del toggle client-side del prototipo (necessario lì solo per l'assenza di un vero backend).
+- Ogni risultato passa da card "vanilla" (`card-wrapper`/`card`/`card-body`) a riga cliccabile con titolo, descrizione, etichetta di tipo ed icona freccia — stesso pattern del prototipo. Verificato via MCP Filo che non esiste un componente "List" ufficiale che copra esattamente questo layout (titolo+descrizione+etichetta+freccia su una riga interamente cliccabile): il markup del prototipo è una soluzione ad-hoc basata su un riferimento reale (verificato lì con Playwright), non un componente di libreria — replicato così com'è.
+- Bottone "Cancella" (reset dei campi form) sostituito da "Annulla ricerca" (link reale alla pagina senza parametri di query), mostrato solo dopo una ricerca — comportamento reale invece del solo esempio statico del prototipo.
+
 ## Checklist di verifica per ogni scheda di dettaglio (corpo + hero)
 
 Da ripassare per ogni famiglia già convertita e per ognuna futura:
