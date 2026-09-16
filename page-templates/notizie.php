@@ -8,9 +8,11 @@
 global $post;
 get_header();
 
-$dli_news_cells_per_row = 3;
-$dli_per_page           = DLI_POSTS_PER_PAGE;
-$dli_per_page_values    = DLI_POST_PER_PAGE_VALUES;
+// Permalink della pagina stessa, catturato prima che il loop sui risultati sotto sposti $post: usato per il link di filtro sulla categoria della card.
+$dli_page_permalink = get_permalink();
+
+$dli_per_page        = DLI_POSTS_PER_PAGE;
+$dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
 
 $dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
 if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
@@ -60,9 +62,6 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
 	<!-- BANNER NOTIZIE -->
 	<?php get_template_part( 'template-parts/hero/notizie' ); ?>
 
@@ -72,8 +71,8 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 			<div class="row pt-0">
 
 				<!--COLONNA FILTRI -->
-				<div class="col-12 col-lg-3 border-end">
-					<div class="row pt-4">
+				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
+					<div class="sticky-top pt-4" style="top: 1rem;">
 						<?php if ( ! empty( $dli_all_categories ) && is_array( $dli_all_categories ) ) : ?>
 							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Categoria', 'design_laboratori_italia' ); ?></h3>
 							<div>
@@ -93,67 +92,50 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 				</div>
 				<!--COLONNA FILTRI -->
 
-				<?php
-				// The main loop of the page.
-				$dli_pindex = 0;
-				if ( $dli_num_results ) :
-					?>
+				<?php if ( $dli_num_results ) : ?>
 					<!-- Inizio ELENCO NEWS -->
-					<div class="col-12 col-lg-8">
-						<?php
-						while ( $dli_the_query->have_posts() ) :
-							$dli_the_query->the_post();
-							if ( 0 === ( $dli_pindex % $dli_news_cells_per_row ) ) :
-								?>
-								<!-- begin row -->
-								<div class="row pt-5">
-							<?php endif; ?>
-
+					<div class="col-12 col-lg-8 offset-lg-1 pt-3">
+						<div class="row">
 							<?php
-							$dli_termitem  = dli_get_post_main_category( $post, 'category' );
-							$dli_item_link = dli_manage_item_link( $post );
-							?>
-
-							<!-- start card-->
-							<div class="col-12 col-lg-4">
-								<div class="card-wrapper">
-									<div class="card card-bg">
-										<div class="card-body">
-											<div class="category-top">
-												<?php if ( ! empty( $dli_termitem['title'] ) ) : ?>
-													<span class="category"><?php echo esc_html( $dli_termitem['title'] ); ?></span>
-												<?php endif; ?>
-												<span class="data"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></span>
-											</div>
-											<h3 class="card-title cardTitlecustomSpacing h4"><?php echo esc_html( get_the_title() ); ?></h3>
-											<p class="card-text">
-												<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-											</p>
-											<a class="read-more" href="<?php echo esc_url( $dli_item_link ); ?>">
-												<span class="text customSpacing"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-												<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
-													<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-												</svg>
-											</a>
+							while ( $dli_the_query->have_posts() ) :
+								$dli_the_query->the_post();
+								$dli_termitem  = dli_get_post_main_category( $post, 'category' );
+								$dli_item_link = dli_manage_item_link( $post );
+								?>
+								<div class="col-12 col-lg-6 mb-4">
+									<article class="it-card rounded shadow-sm border">
+										<h3 class="it-card-title h5">
+											<a href="<?php echo esc_url( $dli_item_link ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+										</h3>
+										<div class="it-card-body">
+											<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 										</div>
-									</div>
+										<footer class="it-card-footer">
+											<?php if ( ! empty( $dli_termitem['title'] ) ) : ?>
+												<div class="it-card-taxonomy">
+													<?php if ( $dli_termitem['id'] ) : ?>
+														<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'cat', array( $dli_termitem['id'] ), $dli_page_permalink ) ); ?>">
+															<span class="visually-hidden"><?php esc_html_e( 'Categoria correlata:', 'design_laboratori_italia' ); ?></span>
+															<?php echo esc_html( $dli_termitem['title'] ); ?>
+														</a>
+													<?php else : ?>
+														<span class="it-card-category">
+															<span class="visually-hidden"><?php esc_html_e( 'Categoria correlata:', 'design_laboratori_italia' ); ?></span>
+															<?php echo esc_html( $dli_termitem['title'] ); ?>
+														</span>
+													<?php endif; ?>
+												</div>
+											<?php endif; ?>
+											<time class="it-card-date" datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></time>
+										</footer>
+									</article>
 								</div>
-							</div>
-							<!--end card-->
-
-							<?php
-							if ( ( ( $dli_pindex % $dli_news_cells_per_row ) === $dli_news_cells_per_row - 1 ) || ( $dli_the_query->current_post + 1 === $dli_the_query->post_count ) ) :
-								?>
-								</div>
-								<!-- end row -->
-							<?php endif; ?>
-							<?php ++$dli_pindex; ?>
-						<?php endwhile; ?>
+							<?php endwhile; ?>
+						</div>
 					</div>
 					<!-- Fine elenco news-->
 				<?php else : ?>
-					<div class="col-12 col-lg-8">
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<div class="row pt-2">
 							<?php echo esc_html__( 'Non è stata trovata nessuna notizia', 'design_laboratori_italia' ); ?>
 						</div>
