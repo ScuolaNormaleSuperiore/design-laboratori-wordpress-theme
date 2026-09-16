@@ -166,6 +166,17 @@ Tutte le sezioni della home sono gestite dinamicamente da `home.php`, che itera 
 - **Bug corretto lungo il percorso** (stesso pattern già trovato in Risorse tecniche): `$dli_descrizione` usava `get_the_content()` invece di `apply_filters('the_content', ...)`, lasciando fuoriuscire i commenti dei blocchi Gutenberg nell'HTML.
 - **Nota per famiglie future**: il post type "luogo" non ha relazioni bidirezionali reali — altri post type (es. Risorse tecniche, campo `localizzazione`) puntano a un luogo, ma il luogo stesso non elenca da nessuna parte i contenuti collegati. Non è un bug da correggere qui, ma da tenere a mente se in futuro si vuole aggiungere una query inversa nella scheda del luogo.
 
+## Pagina Contatti — portata a v3
+
+`page-templates/contatti.php` (pagina singola, non famiglia elenco+scheda).
+
+- Hero da banner v2 a piena larghezza (`bg-banner-contatti`/`section-muted`/`primary-bg-c1`/`hero-title`) a hero a due colonne con breadcrumb integrato, come nel prototipo (`sf-contatti.html`).
+- Colonne del corpo allineate allo stesso schema delle schede di dettaglio con sidebar (`col-lg-3` + `col-lg-8 offset-lg-1`, invece di `col-lg-3 border-end` + `col-lg-9`): il solo gutter di bootstrap lasciava il form troppo a ridosso della lista contatti.
+- Il `<form>` avvolgeva l'intero blocco (sidebar contatti del laboratorio + colonna form) — ristretto alla sola colonna "Scrivici" (con relativo titolo di sezione, mancante prima), come nel prototipo. Verificato con un invio reale che nonce e validazione continuino a funzionare dopo lo spostamento — captcha "Really Simple CAPTCHA" risultato realmente attivo in questo ambiente demo (`$dli_captcha_enabled = false` hardcoded viene sovrascritto a `true` da `template-parts/common/captcha.php` se il plugin è attivo), quindi il rifiuto del test senza codice captcha valido è comportamento corretto, non un bug.
+- Rimossa la struttura annidata ridondante `row > col-lg-12 > div.p-5 > row` nella colonna del form.
+- Sito web in sidebar mostrato senza protocollo (es. "sns.it" invece di "https://sns.it"), come nel prototipo.
+- **Verificato (non un residuo v2)**: il toggle "Vuoi ricevere notifica" usa le classi `toggles`/`lever` — sospettate inizialmente come residuo Materialize/v2, ma confermate come componente reale e attualmente valido di Bootstrap Italia 3 (presente identico nel prototipo e nel CSS compilato `bootstrap-italia.min.css`). Nessuna conversione necessaria, solo avvolto in `form-check form-check-inline` per coerenza col prototipo.
+
 ## Checklist di verifica per ogni scheda di dettaglio (corpo + hero)
 
 Da ripassare per ogni famiglia già convertita e per ognuna futura:
