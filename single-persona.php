@@ -245,9 +245,7 @@ $dli_pubblicazioni = new WP_Query(
 						if ( '' !== $dli_bio ) {
 							?>
 						<h3 class="it-page-section h4" id="p1"><?php esc_html_e( 'Biografia', 'design_laboratori_italia' ); ?></h3>
-						<div class="row pb-3">
-							<?php the_content(); ?>
-						</div>
+						<?php the_content(); ?>
 							<?php
 						}
 						if ( $dli_progetti && $dli_progetti->have_posts() ) {
