@@ -185,7 +185,7 @@ $dli_datetime_display   = dli_get_event_datetime_display( $post->ID );
 			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 
 				<?php if ( $dli_description ) : ?>
-					<h3 class="it-page-section h4" id="descrizione"><?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
+					<h3 class="it-page-section h4 visually-hidden" id="descrizione"><?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
 					<?php echo wp_kses_post( $dli_description ); ?>
 				<?php endif; ?>
 
