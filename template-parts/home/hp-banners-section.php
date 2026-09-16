@@ -73,7 +73,7 @@ if ( 'true' === $dli_section_enabled ) {
 					<div class="row">
 						<div class="col-12">
 							<div class="it-hero-text-wrapper mw-100 w-100 pt-0 pb-5 px-3 pt-lg-5 pb-lg-5 px-lg-5">
-								<span class="it-Categoria"><?php echo esc_html( $dli_section ); ?></span>
+								<span class="it-category"><?php echo esc_html( $dli_section ); ?></span>
 								<h2 id="<?php echo esc_attr( $dli_heading_id ); ?>"><?php echo esc_html( $dli_banner_post->post_title ); ?></h2>
 								<p class="d-none d-lg-block"><?php echo wp_kses_post( $dli_banner_post->post_content ); ?></p>
 								<?php if ( ! empty( $dli_button_link ) ) { ?>

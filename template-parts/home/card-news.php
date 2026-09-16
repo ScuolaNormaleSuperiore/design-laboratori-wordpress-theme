@@ -30,37 +30,42 @@ $dli_query     = new WP_Query(
 $dli_num_items = $dli_query->post_count;
 ?>
 
-<div class="col-12 col-lg-4 col-md-12 flex-column pb-5">
+<div class="col-12 col-lg-4 col-md-12 d-flex flex-column pb-5">
 	<h2 class="h3 pb-2"><?php echo esc_html( $dli_box_label ); ?></h2>
-	<div class="card-wrapper">
-		<div class="card card-bg">
+	<div class="card-wrapper flex-grow-1">
 		<?php
 		if ( 0 !== $dli_num_items ) {
 			$dli_carditem = $dli_query->posts[0];
 			$dli_postitem = dli_get_post_wrapper( $dli_carditem );
 			?>
-			<div class="card-body">
-				<div class="category-top">
-					<a class="category" 
-						href="<?php echo esc_url( $dli_postitem['category_link'] ); ?>">
-						<?php echo esc_html( $dli_postitem['category'] ); ?>
-					</a>
-					<span class="data"><?php echo esc_html( $dli_postitem['date'] ); ?></span>
+			<article class="it-card it-card-image it-card-height-full card-bg rounded shadow-sm border">
+				<h3 class="it-card-title h4">
+					<a href="<?php echo esc_url( $dli_postitem['link'] ); ?>"><?php echo esc_html( $dli_postitem['title'] ); ?></a>
+				</h3>
+				<div class="it-card-image-wrapper">
+					<div class="ratio ratio-16x9">
+						<figure class="figure img-full">
+							<img src="<?php echo esc_url( $dli_postitem['image_url'] ); ?>"
+								alt="<?php echo esc_attr( $dli_postitem['image_alt'] ); ?>"
+								title="<?php echo esc_attr( $dli_postitem['image_title'] ); ?>"
+							>
+						</figure>
+					</div>
 				</div>
-				<h3 class="card-title h4"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
-				<p class="card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
-				<a class="read-more" href="<?php echo esc_url( $dli_postitem['link'] ); ?>">
-					<span class="text"><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></span>
-					<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
-						<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>">
-						</use>
-					</svg>
-				</a>
-			</div>
+				<div class="it-card-body p-4">
+					<?php if ( $dli_postitem['date'] ) : ?>
+						<p class="it-card-subtitle"><?php echo esc_html( $dli_postitem['date'] ); ?></p>
+					<?php endif; ?>
+					<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+				</div>
+				<?php if ( $dli_postitem['date'] ) : ?>
+					<footer class="it-card-footer">
+						<time class="it-card-date"><?php echo esc_html( $dli_postitem['date'] ); ?></time>
+					</footer>
+				<?php endif; ?>
+			</article>
 			<?php
 		}
 		?>
-		</div>
 	</div>
 </div>

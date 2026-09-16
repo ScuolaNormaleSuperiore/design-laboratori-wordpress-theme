@@ -37,15 +37,13 @@ $dli_num_items = $dli_query->post_count;
 	foreach ( $dli_query->posts as $dli_carditem ) {
 		$dli_postitem = dli_get_post_wrapper( $dli_carditem );
 		?>
-	<div class="card card-teaser rounded shadow">
-		<div class="card-body">
-			<h3 class="card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
-			<p class="card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
+	<article class="it-card rounded shadow-sm">
+		<h3 class="it-card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
+		<div class="it-card-body">
+			<p class="it-card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
 		</div>
-	</div>
+	</article>
 		<?php
 	}
-		// Restore original post data.
-		wp_reset_postdata();
 	?>
 </div>

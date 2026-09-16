@@ -5,9 +5,9 @@
  * @package Design_Laboratori_Italia
  */
 
-$dli_featuredcontents_enabled = dli_get_option( 'home_featuredcontents_is_visible', 'homepage' );
+$dli_section_enabled = $args['enabled'] ?? false;
 
-if ( 'true' === $dli_featuredcontents_enabled ) {
+if ( 'true' === $dli_section_enabled ) {
 
 	?>
 <!-- BLOCCO CARD - CONTENUTI IN EVIDENZA (Featured contents) -->

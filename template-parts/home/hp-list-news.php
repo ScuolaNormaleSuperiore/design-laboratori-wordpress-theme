@@ -48,44 +48,41 @@ if ( 'true' === $dli_section_enabled ) {
 					$dli_postitem = dli_get_post_wrapper( $dli_post );
 					?>
 					<!-- NEWS -->
-					<div class="col-12 col-lg-4"> 
+					<div class="col-12 col-lg-4">
 						<div class="card-wrapper">
-							<div class="card card-bg">
-								<div class="img-responsive-wrapper">
-									<div class="img-responsive">
-										<figure class="img-wrapper">
+							<article class="it-card it-card-image card-bg rounded">
+								<h3 class="it-card-title h4">
+									<a href="<?php echo esc_url( $dli_postitem['link'] ); ?>"><?php echo esc_html( $dli_postitem['title'] ); ?></a>
+								</h3>
+								<div class="it-card-image-wrapper">
+									<div class="ratio ratio-16x9">
+										<figure class="figure img-full">
 											<img src="<?php echo esc_url( $dli_postitem['image_url'] ); ?>"
-														alt="<?php echo esc_attr( $dli_postitem['image_alt'] ); ?>"
-														title="<?php echo esc_attr( $dli_postitem['image_title'] ); ?>"
+												alt="<?php echo esc_attr( $dli_postitem['image_alt'] ); ?>"
+												title="<?php echo esc_attr( $dli_postitem['image_title'] ); ?>"
 											>
 										</figure>
 									</div>
 								</div>
-								<div class="card-body">
-									<div class="category-top">
-										<a class="category" 
-											href="<?php echo esc_url( $dli_postitem['category_link'] ); ?>">
-										<?php echo esc_attr( $dli_postitem['category'] ); ?>
-										</a>
-										<span class="data"><?php echo esc_html( $dli_postitem['date'] ); ?></span>
-									</div>
-									<h3 class="card-title h4">
-									<?php echo esc_html( $dli_postitem['title'] ); ?>
-									</h3>
-									<p class="card-text">
-									<?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-									</p>
-									<a class="read-more" href="<?php echo esc_url( $dli_postitem['link'] ); ?>">
-										<span class="text">
-										<?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?>
-										</span>
-										<svg class="icon" aria-label="<?php echo esc_attr__( 'Leggi di più', 'design_laboratori_italia' ); ?>">
-											<title><?php echo esc_html__( 'Leggi di più', 'design_laboratori_italia' ); ?></title>
-											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
-										</svg>
-									</a>
+								<div class="it-card-body">
+									<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+									<?php if ( $dli_postitem['category'] || $dli_postitem['date'] ) : ?>
+										<footer class="it-card-footer">
+											<?php if ( $dli_postitem['category'] ) : ?>
+												<div class="it-card-taxonomy">
+													<a class="it-card-category it-card-link" href="<?php echo esc_url( $dli_postitem['category_link'] ); ?>">
+														<span class="visually-hidden"><?php esc_html_e( 'Categoria correlata:', 'design_laboratori_italia' ); ?></span>
+														<?php echo esc_html( $dli_postitem['category'] ); ?>
+													</a>
+												</div>
+											<?php endif; ?>
+											<?php if ( $dli_postitem['date'] ) : ?>
+												<time class="it-card-date"><?php echo esc_html( $dli_postitem['date'] ); ?></time>
+											<?php endif; ?>
+										</footer>
+									<?php endif; ?>
 								</div>
-							</div>
+							</article>
 						</div>
 					</div>
 					<!-- FINE NEWS -->

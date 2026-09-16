@@ -48,13 +48,13 @@ if ( 'true' === $dli_section_enabled ) {
 					$dli_postitem = dli_get_post_wrapper( $dli_post );
 					?>
 					<!-- PUBBLICAZIONE -->
-					<div class="col-12 col-lg-3"> 
-						<div class="card card-teaser">
-							<div class="card-body">
-								<h3 class="card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
-								<p class="card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
+					<div class="col-12 col-lg-3">
+						<article class="it-card rounded">
+							<h3 class="it-card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
+							<div class="it-card-body">
+								<p class="it-card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
 							</div>
-						</div>
+						</article>
 					</div>
 					<!-- FINE PUBBLICAZIONE -->
 					<?php
