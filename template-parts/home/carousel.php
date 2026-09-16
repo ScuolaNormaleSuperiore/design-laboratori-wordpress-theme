@@ -38,8 +38,8 @@ if ( 'true' === $dli_section_enabled ) {
 									</div>
 								</div>
 							</div>
-							<div class="it-text-slider-wrapper-outside">
-								<div class="card-wrapper">
+							<div class="it-text-slider-wrapper-outside h-100">
+								<div class="card-wrapper h-100 pb-0">
 									<article class="it-card it-card-height-full rounded shadow-sm border">
 										<h3 class="h5 it-card-title big-heading">
 											<a href="<?php echo esc_url( $dli_item['link'] ); ?>"><?php echo esc_html( $dli_item['title'] ); ?></a>
@@ -47,7 +47,14 @@ if ( 'true' === $dli_section_enabled ) {
 										<div class="it-card-body">
 											<p class="it-card-text"><?php echo esc_html( $dli_item['description'] ); ?></p>
 										</div>
-										<?php if ( $dli_item['category'] || $dli_item['date'] ) : ?>
+										<?php
+										$dli_item_date_display = $dli_item['date'];
+										$dli_item_end_date_raw = dli_get_event_raw_end_date( $dli_item['id'], $dli_item['type'], $dli_item['date'] );
+										if ( $dli_item_end_date_raw ) {
+											$dli_item_date_display .= ' – ' . $dli_item_end_date_raw;
+										}
+										?>
+										<?php if ( $dli_item['category'] || $dli_item_date_display ) : ?>
 											<footer class="it-card-footer">
 												<?php if ( $dli_item['category'] ) : ?>
 													<div class="it-card-taxonomy">
@@ -57,15 +64,8 @@ if ( 'true' === $dli_section_enabled ) {
 														</a>
 													</div>
 												<?php endif; ?>
-												<?php if ( $dli_item['date'] ) : ?>
-													<time class="it-card-date">
-														<?php
-														echo esc_html( $dli_item['date'] );
-														if ( ! empty( $dli_item['orario_inizio'] ) ) {
-															echo ' ' . esc_html( $dli_item['orario_inizio'] );
-														}
-														?>
-													</time>
+												<?php if ( $dli_item_date_display ) : ?>
+													<time class="it-card-date"><?php echo esc_html( $dli_item_date_display ); ?></time>
 												<?php endif; ?>
 											</footer>
 										<?php endif; ?>

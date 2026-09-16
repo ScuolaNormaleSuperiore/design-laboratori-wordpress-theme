@@ -973,6 +973,26 @@ if ( ! function_exists( 'dli_format_date_from_format' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_event_raw_end_date' ) ) {
+	/**
+	 * Return the raw "data_fine" ACF value for an event, when it is a real,
+	 * distinct end date (different from the start date). Both dates are
+	 * compared in their raw ACF storage format, before any display formatting.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $post_type Post type of the item.
+	 * @param string $start_date_raw Raw "data_inizio" ACF value of the item.
+	 * @return string Raw end date, or '' if not an event / same day / no end date.
+	 */
+	function dli_get_event_raw_end_date( $post_id, $post_type, $start_date_raw ) {
+		if ( EVENT_POST_TYPE !== $post_type || '' === $start_date_raw ) {
+			return '';
+		}
+		$end_date_raw = dli_get_field( 'data_fine', $post_id );
+		return ( $end_date_raw && $end_date_raw !== $start_date_raw ) ? $end_date_raw : '';
+	}
+}
+
 if ( ! function_exists( 'dli_get_monthname_short' ) ) {
 	/**
 	 * Return localized short month name by numeric month.

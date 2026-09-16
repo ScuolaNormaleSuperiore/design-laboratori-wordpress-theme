@@ -51,12 +51,18 @@ if ( 'true' === $dli_section_enabled ) {
 
 						<?php
 						foreach ( $dli_query->posts as $dli_post ) {
-							$dli_postitem   = dli_get_post_wrapper( $dli_post );
-							$dli_date       = $dli_postitem['date'];
-							$dli_item_date  = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
-							$dli_item_day   = $dli_item_date ? intval( $dli_item_date->format( 'd' ) ) : '';
-							$dli_item_month = $dli_item_date ? dli_get_monthname( $dli_item_date->format( 'm' ) ) : '';
-							$dli_item_year  = $dli_item_date ? intval( $dli_item_date->format( 'Y' ) ) : '';
+							$dli_postitem       = dli_get_post_wrapper( $dli_post );
+							$dli_date           = $dli_postitem['date'];
+							$dli_item_date      = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
+							$dli_item_day       = $dli_item_date ? intval( $dli_item_date->format( 'd' ) ) : '';
+							$dli_item_month     = $dli_item_date ? dli_get_monthname( $dli_item_date->format( 'm' ) ) : '';
+							$dli_item_year      = $dli_item_date ? intval( $dli_item_date->format( 'Y' ) ) : '';
+							$dli_end_date_raw   = dli_get_event_raw_end_date( $dli_postitem['id'], $dli_postitem['type'], $dli_date );
+							$dli_end_date       = $dli_end_date_raw ? dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_end_date_raw ) : null;
+							$dli_footer_date    = $dli_item_date ? trim( $dli_item_day . ' ' . $dli_item_month . ' ' . $dli_item_year ) : '';
+							if ( $dli_end_date ) {
+								$dli_footer_date .= ' – ' . trim( $dli_end_date->format( 'd' ) . ' ' . dli_get_monthname( $dli_end_date->format( 'm' ) ) . ' ' . $dli_end_date->format( 'Y' ) );
+							}
 							?>
 							<!-- SINGOLO EVENTO -->
 							<li class="splide__slide lined_slide">
@@ -84,10 +90,10 @@ if ( 'true' === $dli_section_enabled ) {
 												<?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 												</p>
 											</div>
-											<?php if ( $dli_item_date ) : ?>
+											<?php if ( $dli_footer_date ) : ?>
 												<footer class="it-card-footer">
 													<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_date->format( 'Y-m-d' ) ); ?>">
-														<?php echo esc_html( trim( $dli_item_day . ' ' . $dli_item_month . ' ' . $dli_item_year ) ); ?>
+														<?php echo esc_html( $dli_footer_date ); ?>
 													</time>
 												</footer>
 											<?php endif; ?>
