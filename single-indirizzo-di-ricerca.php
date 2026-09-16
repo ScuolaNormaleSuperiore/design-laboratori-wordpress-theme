@@ -25,6 +25,9 @@ $dli_contatti       = array(
 	'website' => $dli_website,
 );
 
+$dli_levels = wp_get_post_terms( $post->ID, 'post_tag' );
+$dli_levels = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
+
 // Recupero la lista dei progetti correlati.
 $dli_progetti = DLI_ContentsManager::get_related_items( $post, 'elenco_indirizzi_di_ricerca_correlati', array( PROGETTO_POST_TYPE ) );
 
@@ -147,6 +150,27 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 				</div>
 			</div> <!-- col-12 col-lg-3 -->
 			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
+				<?php if ( ! empty( $dli_levels ) ) : ?>
+					<!-- Argomenti correlati: stesso pattern taxonomy/chip della card
+						 nell'elenco (it-card-taxonomy/it-card-chips), qui fuori da una
+						 card ma i suoi stessi stili non richiedono quel contesto.
+						 Nessun filtro reale da azionare su questa scheda, quindi chip
+						 statiche (span), non link. -->
+					<div class="it-card-taxonomy mb-4">
+						<ul class="it-card-chips" aria-label="<?php echo esc_attr__( 'Argomenti correlati:', 'design_laboratori_italia' ); ?>">
+							<?php foreach ( $dli_levels as $dli_level ) : ?>
+								<li class="list-item">
+									<span class="chip chip-secondary">
+										<span class="chip-label">
+											<span class="visually-hidden"><?php echo esc_html__( 'Argomento:', 'design_laboratori_italia' ); ?></span>
+											<?php echo esc_html( $dli_level->name ); ?>
+										</span>
+									</span>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endif; ?>
 				<?php
 				if ( $dli_description ) {
 					?>
