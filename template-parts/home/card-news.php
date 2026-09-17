@@ -35,8 +35,9 @@ $dli_num_items = $dli_query->post_count;
 	<div class="card-wrapper flex-grow-1">
 		<?php
 		if ( 0 !== $dli_num_items ) {
-			$dli_carditem = $dli_query->posts[0];
-			$dli_postitem = dli_get_post_wrapper( $dli_carditem );
+			$dli_carditem  = $dli_query->posts[0];
+			$dli_postitem  = dli_get_post_wrapper( $dli_carditem );
+			$dli_news_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
 			?>
 			<article class="it-card it-card-image it-card-height-full card-bg rounded shadow-sm border">
 				<h3 class="it-card-title h4">
@@ -55,9 +56,9 @@ $dli_num_items = $dli_query->post_count;
 				<div class="it-card-body p-4">
 					<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 				</div>
-				<?php if ( $dli_postitem['date'] ) : ?>
+				<?php if ( $dli_news_date ) : ?>
 					<footer class="it-card-footer">
-						<time class="it-card-date"><?php echo esc_html( $dli_postitem['date'] ); ?></time>
+						<time class="it-card-date" datetime="<?php echo esc_attr( $dli_news_date->format( 'Y-m-d' ) ); ?>"><?php echo esc_html( trim( $dli_news_date->format( 'd' ) . ' ' . dli_get_monthname( $dli_news_date->format( 'm' ) ) . ' ' . $dli_news_date->format( 'Y' ) ) ); ?></time>
 					</footer>
 				<?php endif; ?>
 			</article>
