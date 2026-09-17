@@ -13,6 +13,47 @@ html {
 
 /* STILI PERSONALIZZATI */
 
+/* Sidebar "Pagine collegate" (page.php): bottone di espansione/compressione
+   delle sottovoci separato dal link di navigazione. In Bootstrap
+   data-bs-toggle="collapse" su un <a> con href reale blocca sempre la
+   navigazione (preventDefault incondizionato sui tag <a>), quindi la voce
+   non può essere insieme link e trigger dell'accordion sullo stesso
+   elemento. Qui il testo resta un <a class="list-item"> normale e solo la
+   freccina è un <button> a parte, con la stessa animazione di rotazione
+   della regola ufficiale .list-item[aria-expanded] (non applicabile qui
+   perché non è un .list-item). Stesso identico pattern già validato nel
+   prototipo statico bs-playground (sf-pagina-base-voce1.html, vedi il suo
+   css/main.css). */
+.btn-toggle-sublist {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	padding: var(--bsi-spacing-xs, 0.5rem);
+	background: none;
+	border: 0;
+}
+
+.btn-toggle-sublist .icon {
+	transition: transform 0.2s ease;
+}
+
+.btn-toggle-sublist[aria-expanded="true"] .icon {
+	transform: rotate(180deg);
+}
+
+/* Indentazione crescente per livello nella sidebar "Pagine collegate". La
+   regola ufficiale BI3 (.sidebar-linklist-wrapper ... ul.link-sublist li
+   a{padding-inline-start:var(--bsi-sidebar-link-sublist-indent)}) applica lo
+   stesso rientro fisso a qualunque <a> dentro un .link-sublist,
+   indipendentemente dalla profondità: una voce di terzo livello risultava
+   così allo stesso livello visivo delle voci di secondo livello. Qui si
+   aggiunge un rientro supplementare quando il link-sublist è annidato in un
+   altro link-sublist. */
+.sidebar-linklist-wrapper .link-list-wrapper .link-sublist .link-sublist li a {
+	padding-inline-start: calc(var(--bsi-sidebar-link-sublist-indent) * 2);
+}
+
 .bg-banner-persone {
 	background-color: #f5f5f5;
 }

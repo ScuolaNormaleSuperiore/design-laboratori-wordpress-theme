@@ -64,18 +64,28 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 		}
 	</script>
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- BANNER PAGINA -->
-	<section id="banner-paginabase" aria-describedby="dli-privacy-intro-desc" class="bg-banner-paginabase">
-		<div class="section-muted p-3 primary-bg-c1">
-			<div class="container">
-				<div class="hero-title text-left ms-4 pb-3 pt-3">
-					<h2 class="p-0"><?php echo esc_html( get_the_title() ); ?></h2>
-					<p id="dli-privacy-intro-desc" class="font-weight-normal">
-						<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-					</p>
+	<!-- BANNER PAGINA: hero a due colonne con breadcrumb integrato; l'eventuale
+	     immagine in evidenza della pagina resta nel corpo (vedi sotto), non qui
+	     — stesso criterio già usato per Risorse tecniche e per page.php. -->
+	<section id="banner-paginabase" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-paginabase-title">
+		<div class="container">
+			<div class="row align-items-stretch">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<h2 id="dli-hero-paginabase-title"><?php echo esc_html( get_the_title() ); ?></h2>
+						<?php
+						$dli_summary = dli_get_field( 'descrizione_breve' );
+						if ( $dli_summary ) :
+							?>
+							<p class="fs-5"><?php echo wp_kses_post( wp_trim_words( $dli_summary, DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
 				</div>
 			</div>
 		</div>
@@ -83,7 +93,7 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 
 	<!-- CONTENUTO PAGINA -->
 	<section id="paginabase" class="pb-3">
-		<div class="container container-border-top pt-5">
+		<div class="container pt-5">
 			<div class="row">
 				<?php
 				$dli_top_parent = dli_get_page_anchestor_id( $post );
@@ -110,83 +120,49 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 				);
 				?>
 
-				<?php if ( $dli_pages ) : ?>
-					<div class="sidebar-wrapper border-end col-12 col-lg-3">
-						<?php if ( 0 !== $post->post_parent ) : ?>
-							<a href="<?php echo esc_url( get_permalink( $post->post_parent ) ); ?>" class="btn btn-primary btn-xs btn-me mb-5" role="button">
-								<svg class="icon icon-sm icon-white me-2" role="img" aria-labelledby="go-back-title">
-									<title id="go-back-title"><?php echo esc_html__( 'Torna indietro', 'design_laboratori_italia' ); ?></title>
-									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left' ); ?>"></use>
-								</svg>
-								<?php echo esc_html__( 'Torna indietro', 'design_laboratori_italia' ); ?>
-							</a>
-						<?php endif; ?>
-
-						<h3><?php echo esc_html__( 'Pagine collegate', 'design_laboratori_italia' ); ?></h3>
-						<div class="progress">
-							<div class="progress-bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<div class="sidebar-linklist-wrapper">
-							<div class="link-list-wrapper">
-								<ul class="link-list">
-									<?php foreach ( $dli_pages as $dli_page ) : ?>
-										<li>
-											<a class="list-item large medium right-icon <?php echo ( $post->ID === $dli_page->ID || $dli_page->ID === $post->post_parent ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $dli_page->ID ) ); ?>">
-												<span class="list-item-title-icon-wrapper">
-													<span><?php echo esc_html( get_the_title( $dli_page ) ); ?></span>
-												</span>
-											</a>
-											<?php
-												$dli_subpages = get_pages(
-													array(
-														'child_of'    => $dli_page->ID,
-														'offset'      => 0,
-														'parent'      => $dli_page->ID,
-														'sort_column' => 'menu_order',
-													)
-												);
-												$dli_subpage_ids = wp_list_pluck( $dli_subpages, 'ID' );
-												?>
-												<?php if ( 0 !== $post->post_parent && ( $post->ID === $dli_page->ID || in_array( $post->ID, $dli_subpage_ids, true ) ) ) : ?>
-													<ul class="link-sublist">
-													<?php foreach ( $dli_subpages as $dli_subpage ) : ?>
-														<li>
-															<a class="list-item <?php echo ( $post->ID === $dli_subpage->ID ) ? 'active' : ''; ?>" href="<?php echo esc_url( get_permalink( $dli_subpage->ID ) ); ?>">
-																<span><?php echo esc_html( get_the_title( $dli_subpage ) ); ?></span>
-															</a>
-														</li>
-													<?php endforeach; ?>
-												</ul>
-											<?php endif; ?>
-										</li>
-									<?php endforeach; ?>
-								</ul>
+				<!-- MENU LATERALE (SIDEBAR "Pagine collegate"): stesso pattern di page.php
+				     (albero completo, sempre aperto, nessun bottone "Torna indietro"). -->
+				<div class="sidebar-wrapper col-12 col-lg-3 border-end pb-3 mb-4 mb-lg-0">
+					<?php if ( $dli_pages ) : ?>
+						<div class="sticky-top" style="top: 1rem;">
+							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Pagine collegate', 'design_laboratori_italia' ); ?></h3>
+							<div class="sidebar-linklist-wrapper">
+								<div class="link-list-wrapper">
+									<?php
+									get_template_part(
+										'template-parts/common/lista-pagine-collegate',
+										null,
+										array(
+											'pages'           => $dli_pages,
+											'current_post_id' => $post->ID,
+											'top_level'       => true,
+										)
+									);
+									?>
+								</div>
 							</div>
 						</div>
-					</div>
-				<?php else : ?>
-					<div class="sidebar-wrapper border-end col-12 col-lg-3"></div>
-				<?php endif; ?>
+					<?php endif; ?>
+				</div>
 
-				<div class="col-lg-8 pt84">
-					<div class="mb-4">
-						<?php if ( $dli_image_metadata['image_url'] ) : ?>
+				<div class="col-12 col-lg-8 offset-lg-1">
+					<?php if ( ! empty( $dli_image_metadata['image_url'] ) ) : ?>
+						<figure class="mb-4">
 							<img
 								src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
 								alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
 								title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-								class="img-fluid"
+								class="img-fluid rounded"
 							>
-							<?php if ( $dli_image_metadata['image_caption'] ) : ?>
-								<figcaption class="figure-caption">
+							<?php if ( ! empty( $dli_image_metadata['image_caption'] ) ) : ?>
+								<figcaption class="figure-caption mt-2">
 									<?php echo esc_html( $dli_image_metadata['image_caption'] ); ?>
 								</figcaption>
 							<?php endif; ?>
-						<?php endif; ?>
-					</div>
+						</figure>
+					<?php endif; ?>
 
-					<article class="article-wrapper">
-						<?php the_content(); ?>
+					<?php the_content(); ?>
 
 						<div>
 							<div class="text-image-cta d-flex mb-0">
@@ -212,8 +188,6 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 								</div>
 							</div>
 						</div>
-
-					</article>
 
 					<?php
 					if ( $dli_related_items ) {
