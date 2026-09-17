@@ -25,7 +25,7 @@ $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['webs
 					<div class="list-item">
 						<div class="it-rounded-icon">
 							<svg class="icon" role="img">
-								<title>Telephone</title>
+								<title><?php echo esc_html__( 'Telephone', 'design_laboratori_italia' ); ?></title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 							</svg>
 						</div>
@@ -43,7 +43,7 @@ $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['webs
 					<a href="<?php echo esc_url( 'mailto:' . $dli_email ); ?>" class="list-item" target="_blank" rel="noopener noreferrer">
 					<div class="it-rounded-icon">
 					<svg class="icon" role="img">
-						<title>Mail</title>
+						<title><?php echo esc_html__( 'Mail', 'design_laboratori_italia' ); ?></title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 					</svg>
 					</div>
@@ -60,7 +60,7 @@ $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['webs
 					<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_website ); ?>">
 					<div class="it-rounded-icon">
 					<svg class="icon" role="img">
-						<title>Link</title>
+						<title><?php echo esc_html__( 'Link', 'design_laboratori_italia' ); ?></title>
 						<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 					</svg>
 					</div>

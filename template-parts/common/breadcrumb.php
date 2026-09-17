@@ -17,7 +17,7 @@ if ( is_home() ) {
 	<div class="container">
 		<div class="row">
 			<div class="col-12 ms-4 ">
-				<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+				<nav class="breadcrumb-container" aria-label="<?php echo esc_attr__( 'Percorso di navigazione', 'design_laboratori_italia' ); ?>">
 				<ol class="breadcrumb pb-0">
 					<?php
 					foreach ( $dli_steps as $dli_step ) {

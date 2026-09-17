@@ -8,12 +8,12 @@
 $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
 ?>
 
-<nav aria-label="Navigazione accessoria">
+<nav aria-label="<?php echo esc_attr__( 'Navigazione accessoria', 'design_laboratori_italia' ); ?>">
 	<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menu1a" role="button"
 	aria-expanded="false" aria-controls="menu1a">
 	<span><?php echo esc_html__( 'Menu contatti', 'design_laboratori_italia' ); ?></span>
 	<svg class="icon" aria-hidden="true" role="img">
-		<title>Expand</title>
+		<title><?php echo esc_html__( 'Expand', 'design_laboratori_italia' ); ?></title>
 		<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 	</svg>
 	</a>

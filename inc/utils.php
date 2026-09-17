@@ -687,7 +687,7 @@ if ( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 		$result = array(
 			'id'            => $item->ID,
 			'type'          => $post_type,
-			'category'      => 'Home',
+			'category'      => __( 'Home', 'design_laboratori_italia' ),
 			'category_link' => get_site_url(),
 			'date'          => get_the_date( DLI_ACF_DATE_FORMAT, $item ),
 			'order_date'    => dli_get_post_order_date( $item ),

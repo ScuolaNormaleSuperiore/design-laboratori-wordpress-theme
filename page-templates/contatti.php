@@ -294,7 +294,7 @@ if ( 'yes' === $dli_form_submitted ) {
 									<div class="form-group col-md-6" style="text-align: center">
 										<img
 											src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>"
-											alt="captcha"
+											alt="<?php echo esc_attr__( 'captcha', 'design_laboratori_italia' ); ?>"
 											width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>"
 											height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>"
 										>

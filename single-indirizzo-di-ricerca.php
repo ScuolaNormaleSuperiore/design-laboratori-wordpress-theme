@@ -78,7 +78,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 							type="button"
 							aria-controls="navbarNav"
 							aria-expanded="false"
-							aria-label="Toggle navigation"
+							aria-label="<?php echo esc_attr__( 'Toggle navigation', 'design_laboratori_italia' ); ?>"
 							data-bs-toggle="navbarcollapsible"
 							data-bs-target="#navbarNav"
 						>
@@ -91,7 +91,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 							<div class="overlay"></div>
 							<a class="it-back-button" href="#" role="button">
 								<svg class="icon icon-sm icon-primary align-top" role="img">
-									<title>Chevron Left</title>
+									<title><?php echo esc_html__( 'Chevron Left', 'design_laboratori_italia' ); ?></title>
 									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" 
 										xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>">
 									</use>

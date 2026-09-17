@@ -84,7 +84,7 @@ $dli_current_lang = dli_current_language();
 							<span class="visually-hidden"><?php echo esc_html__( 'Selezione lingua: lingua selezionata', 'design_laboratori_italia' ); ?></span>
 								<span><?php echo esc_html( $dli_current_language ); ?></span>
 							<svg class="icon d-none d-lg-block" role="img">
-								<title>Expand</title>
+								<title><?php echo esc_html__( 'Expand', 'design_laboratori_italia' ); ?></title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 							</svg>
 							</a>
@@ -187,11 +187,11 @@ $dli_current_lang = dli_current_language();
 			<div class="row">
 			<div class="col-12">
 				<!--start nav-->
-				<nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
+				<nav class="navbar navbar-expand-lg has-megamenu" aria-label="<?php echo esc_attr__( 'Navigazione principale', 'design_laboratori_italia' ); ?>">
 				<button class="custom-navbar-toggler" type="button" aria-controls="nav1" aria-expanded="false"
-					aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
+					aria-label="<?php echo esc_attr__( 'Mostra/Nascondi la navigazione', 'design_laboratori_italia' ); ?>" data-bs-toggle="navbarcollapsible" data-bs-target="#nav1">
 					<svg class="icon bg-override" role="img">
-						<title>Mostra/Nascondi la navigazione</title>
+						<title><?php echo esc_html__( 'Mostra/Nascondi la navigazione', 'design_laboratori_italia' ); ?></title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-burger' ); ?>"></use>
 					</svg>
 				</button>
@@ -199,9 +199,9 @@ $dli_current_lang = dli_current_language();
 					<div class="overlay" style="display: none;"></div>
 					<div class="close-div">
 					<button class="btn close-menu" type="button">
-						<span class="visually-hidden">Nascondi la navigazione</span>
-						<svg class="icon" role="img" aria-label="Nascondi la navigazione">
-							<title>Nascondi la navigazione</title>
+						<span class="visually-hidden"><?php echo esc_html__( 'Nascondi la navigazione', 'design_laboratori_italia' ); ?></span>
+						<svg class="icon" role="img" aria-label="<?php echo esc_attr__( 'Nascondi la navigazione', 'design_laboratori_italia' ); ?>">
+							<title><?php echo esc_html__( 'Nascondi la navigazione', 'design_laboratori_italia' ); ?></title>
 							<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close-big' ); ?>"></use>
 						</svg>
 					</button>

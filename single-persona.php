@@ -128,7 +128,7 @@ $dli_pubblicazioni = new WP_Query(
 								type="button"
 								aria-controls="navbarNav"
 								aria-expanded="false"
-								aria-label="Toggle navigation"
+								aria-label="<?php echo esc_attr__( 'Toggle navigation', 'design_laboratori_italia' ); ?>"
 								data-bs-toggle="navbarcollapsible"
 								data-bs-target="#navbarNav">
 									<span class="it-list"></span>
@@ -140,10 +140,10 @@ $dli_pubblicazioni = new WP_Query(
 									<div class="overlay"></div>
 									<a class="it-back-button" href="#" role="button">
 										<svg class="icon icon-sm icon-primary align-top" role="img">
-											<title>Chevron Left</title>
+											<title><?php echo esc_html__( 'Chevron Left', 'design_laboratori_italia' ); ?></title>
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>" xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-left' ); ?>"></use>
 										</svg>
-										<span>Indietro</span>
+										<span><?php echo esc_html__( 'Indietro', 'design_laboratori_italia' ); ?></span>
 									</a>
 									<div class="menu-wrapper">
 										<div class="link-list-wrapper">
@@ -412,7 +412,7 @@ $dli_pubblicazioni = new WP_Query(
 										<div class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img">
-													<title>Telephone</title>
+													<title><?php echo esc_html__( 'Telephone', 'design_laboratori_italia' ); ?></title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
 												</svg>
 											</div>
@@ -427,7 +427,7 @@ $dli_pubblicazioni = new WP_Query(
 											<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img">
-													<title>Mail</title>
+													<title><?php echo esc_html__( 'Mail', 'design_laboratori_italia' ); ?></title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
@@ -442,7 +442,7 @@ $dli_pubblicazioni = new WP_Query(
 										<a class="list-item" target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_sito_web ); ?>">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img">
-													<title>Website Link</title>
+													<title><?php echo esc_html__( 'Website Link', 'design_laboratori_italia' ); ?></title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-link' ); ?>"></use>
 												</svg>
 											</div>

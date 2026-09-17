@@ -8,7 +8,7 @@
 $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] ) ) ? $args['locations'] : array();
 ?>
 
-<nav aria-label="Secondaria">
+<nav aria-label="<?php echo esc_attr__( 'Secondaria', 'design_laboratori_italia' ); ?>">
 	<?php
 	$dli_location = 'menu-right';
 
@@ -32,7 +32,7 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
 							<span><?php echo esc_html( $dli_item['element']->title ); ?></span>
 						<svg class="icon icon-xs" role="img">
-							<title>Expand</title>
+							<title><?php echo esc_html__( 'Expand', 'design_laboratori_italia' ); ?></title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 						</svg>
 					</a>

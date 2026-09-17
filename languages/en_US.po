@@ -2358,3 +2358,95 @@ msgstr "From %1$d<br>to %2$s"
 #, php-format
 msgid "Dal %1$s<br>al %2$s"
 msgstr "From %1$s<br>to %2$s"
+
+#. %s: destination page name.
+#: footer.php:48
+#, php-format
+msgid "Vai alla pagina: %s"
+msgstr "Go to page: %s"
+
+#: footer.php:146
+msgid "Sezione Link Utili"
+msgstr "Useful Links Section"
+
+#: header.php:87 template-parts/header/secondary-menu.php:11
+#: template-parts/header/top-menu.php:11
+msgid "Expand"
+msgstr "Expand"
+
+#: header.php:190
+msgid "Navigazione principale"
+msgstr "Main navigation"
+
+#: header.php:192
+msgid "Mostra/Nascondi la navigazione"
+msgstr "Show/hide navigation"
+
+#: header.php:202
+msgid "Nascondi la navigazione"
+msgstr "Hide navigation"
+
+#: template-parts/header/top-menu.php:11
+msgid "Navigazione accessoria"
+msgstr "Secondary navigation"
+
+#: template-parts/header/secondary-menu.php:11
+msgid "Secondaria"
+msgstr "Secondary"
+
+#: template-parts/header/main-menu.php:11
+msgid "Principale"
+msgstr "Main"
+
+#: template-parts/common/skiplink.php:10
+msgid "Skiplink"
+msgstr "Skip links"
+
+#: single-brevetto.php:88 single-indirizzo-di-ricerca.php single-luogo.php
+#: single-persona.php:88 single-progetto.php single-risorsa-tecnica.php
+#: single-spinoff.php
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+#: single-indirizzo-di-ricerca.php single-luogo.php single-persona.php:143
+#: single-progetto.php
+msgid "Chevron Left"
+msgstr "Chevron Left"
+
+#: single-persona.php:415 template-parts/common/sezione-contatti.php
+msgid "Telephone"
+msgstr "Telephone"
+
+#: single-persona.php:430 template-parts/common/sezione-contatti.php
+msgid "Mail"
+msgstr "Mail"
+
+#: single-persona.php:445
+msgid "Website Link"
+msgstr "Website Link"
+
+#: page-templates/newsletter.php:117
+msgid "Close"
+msgstr "Close"
+
+#: page-templates/contatti.php:297
+msgid "captcha"
+msgstr "captcha"
+
+#: template-parts/common/sezione-contatti.php:63
+msgid "Link"
+msgstr "Link"
+
+#: template-parts/common/sezione-video.php:31
+msgid "cookie policy"
+msgstr "cookie policy"
+
+#. %s: video title.
+#: template-parts/common/sezione-video.php:49
+#, php-format
+msgid "%s Video"
+msgstr "%s Video"
+
+#: inc/classes/class-contents-manager.php:146 inc/utils.php:690
+msgid "Home"
+msgstr "Home"

@@ -143,7 +143,7 @@ class DLI_ContentsManager {
 	public static function build_content_path( $post ) {
 		$steps = array(
 			array(
-				'label' => 'Home',
+				'label' => __( 'Home', 'design_laboratori_italia' ),
 				'url'   => dli_homepage_url(),
 				'class' => 'breadcrumb-item',
 			),
@@ -189,7 +189,7 @@ class DLI_ContentsManager {
 					array_push(
 						$steps,
 						array(
-							'label' => 'Blog',
+							'label' => __( 'Blog', 'design_laboratori_italia' ),
 							'url'   => get_site_url() . '/blog',
 							'class' => 'breadcrumb-item active',
 						),

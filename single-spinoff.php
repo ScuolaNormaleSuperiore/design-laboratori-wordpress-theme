@@ -63,7 +63,7 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 								type="button"
 								aria-controls="navbarNav"
 								aria-expanded="false"
-								aria-label="Toggle navigation"
+								aria-label="<?php echo esc_attr__( 'Toggle navigation', 'design_laboratori_italia' ); ?>"
 								data-bs-toggle="navbarcollapsible"
 								data-bs-target="#navbarNav"
 							>

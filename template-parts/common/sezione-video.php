@@ -28,7 +28,7 @@ $dli_video_track    = $dli_args['video_track'] ?? '';
 				</div>
 					<p>
 					<?php echo esc_html__( 'Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze nella ', 'design_laboratori_italia' ); ?>
-					<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_cookie_pol_url ); ?>" class="text-white">cookie policy</a>.
+					<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $dli_cookie_pol_url ); ?>" class="text-white"><?php echo esc_html__( 'cookie policy', 'design_laboratori_italia' ); ?></a>.
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
@@ -44,8 +44,14 @@ $dli_video_track    = $dli_args['video_track'] ?? '';
 		</div>
 		<div>
 			<video controls data-bs-video id="vid1"
-				title="<?php echo esc_attr( $dli_video_title . ' Video' ); ?>"
-				aria-label="<?php echo esc_attr( $dli_video_title . ' Video' ); ?>"
+				title="<?php
+					/* translators: %s: video title. */
+					echo esc_attr( sprintf( __( '%s Video', 'design_laboratori_italia' ), $dli_video_title ) );
+				?>"
+				aria-label="<?php
+					/* translators: %s: video title. */
+					echo esc_attr( sprintf( __( '%s Video', 'design_laboratori_italia' ), $dli_video_title ) );
+				?>"
 				class="video-js"
 				width="500"
 				height="281">

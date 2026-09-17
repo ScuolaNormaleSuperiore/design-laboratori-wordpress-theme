@@ -8,7 +8,7 @@
 $dli_locations = $args['locations'];
 ?>
 
-	<nav aria-label="Principale" class="p-0">
+	<nav aria-label="<?php echo esc_attr__( 'Principale', 'design_laboratori_italia' ); ?>" class="p-0">
 		<?php
 		$dli_location = 'menu-lab';
 		if ( has_nav_menu( $dli_location ) ) {

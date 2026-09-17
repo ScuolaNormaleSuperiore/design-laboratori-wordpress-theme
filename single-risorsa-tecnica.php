@@ -97,7 +97,7 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 								type="button"
 								aria-controls="navbarNav"
 								aria-expanded="false"
-								aria-label="Toggle navigation"
+								aria-label="<?php echo esc_attr__( 'Toggle navigation', 'design_laboratori_italia' ); ?>"
 								data-bs-toggle="navbarcollapsible"
 								data-bs-target="#navbarNav"
 							>
