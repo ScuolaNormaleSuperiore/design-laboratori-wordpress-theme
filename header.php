@@ -119,8 +119,14 @@ $dli_current_lang = dli_current_language();
 						if ( 'true' === $dli_login_visible ) {
 							?>
 						<div class="it-access-top-wrapper">
-							&nbsp;&nbsp;
-							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></a>
+						<a class="btn btn-primary btn-icon btn-full" href="<?php echo esc_url( admin_url() ); ?>">
+							<span class="rounded-icon">
+								<svg class="icon icon-primary" aria-hidden="true" focusable="false">
+									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-user' ); ?>"></use>
+								</svg>
+							</span>
+							<span class="d-none d-lg-block"><?php echo esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></span>
+						</a>
 						</div>
 							<?php
 						}
