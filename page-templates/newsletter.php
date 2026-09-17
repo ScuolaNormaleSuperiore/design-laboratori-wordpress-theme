@@ -82,20 +82,25 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 
 <main id="main-container" class="main-container bluelectric" role="main">
 
-	<!-- SEZIONE BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- SEZIONE HEADER -->
-		<section id="banner-newsletter" aria-labelledby="newsletter-title" class="bg-banner-newsletter">
-			<div class="section-muted p-3 primary-bg-c1">
-				<div class="container">
-					<div class="hero-title text-left ms-4 pb-3 pt-3">
-						<h2 id="newsletter-title" class="p-0"><?php echo esc_html__( 'Newsletter', 'design_laboratori_italia' ); ?></h2>
-						<p class="font-weight-normal">
+	<!-- BANNER NEWSLETTER -->
+	<section id="banner-newsletter" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-newsletter-title">
+		<div class="container">
+			<div class="row align-items-stretch">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<h2 id="dli-hero-newsletter-title"><?php echo esc_html__( 'Newsletter', 'design_laboratori_italia' ); ?></h2>
+						<p class="fs-5">
 							<?php echo esc_html__( 'Compila il form seguente per iscriverti alla newsletter, riceverai una e-mail per confermare l\'iscrizione', 'design_laboratori_italia' ); ?>
 						</p>
 					</div>
 				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -157,81 +162,72 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 		?>
 	</div>
 
-	<!-- SEZIONE FORM -->
+	<!-- SEZIONE FORM: colonna centrata, senza sidebar (a differenza della pagina
+	     Contatti non esiste un elenco di contatti da affiancare al form), stessa
+	     card "p-5 rounded shadow" del form di Contatti. -->
 	<?php
 	if ( 'no' === $dli_after_confirm && true !== $dli_sent_successfully ) {
 		$dli_current_language = dli_current_language( 'slug' );
 		$dli_page_url         = dli_get_newsletter_link( $dli_current_language );
 		?>
-			<div id="newsletter_form">
-				<form action="<?php echo esc_url( $dli_page_url ); ?>" id="formnewsletter" name="formnewsletter" method="post">
-				<?php wp_nonce_field( 'sf_newsletter_nonce', 'newsletter_nonce_field' ); ?>
-				<div class="container my-4 pt-4">
-					<div class="row">
-
-						<!-- FORM ISCRIZIONE NEWSLETTER -->
-						<div class="col-lg-9">
-							<div class="row ">
-								<div class="col-lg-12">  
-									<div class="p-5">
-										<div class="row">
-											<div class="form-group col-md-6">
-													<label class="active" for="user_name"><?php echo esc_html__( 'Nome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-													<input type="text" class="form-control" name="user_name" id="user_name"
-														value="<?php echo esc_attr( $dli_user_name ); ?>"
-														placeholder="<?php echo esc_attr__( 'Inserisci il tuo nome', 'design_laboratori_italia' ); ?>">
-												</div>
-												<div class="form-group col-md-6">
-													<label class="active" for="user_surname"><?php echo esc_html__( 'Cognome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-													<input type="text" class="form-control" name="user_surname" id="user_surname"
-														value="<?php echo esc_attr( $dli_user_surname ); ?>"
-														placeholder="<?php echo esc_attr__( 'Inserisci il tuo cognome', 'design_laboratori_italia' ); ?>">
-												</div>
-										</div>
-										<div class="row">
-											<div class="form-group col">
-													<label class="active" for="user_mail"><?php echo esc_html__( 'E-mail', 'design_laboratori_italia' ); ?>&nbsp;*</label>
-													<input type="email" class="form-control" id="user_mail" name="user_mail" 
-														value="<?php echo esc_attr( $dli_user_mail ); ?>"
-														placeholder="<?php echo esc_attr__( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
-											</div>
-										</div>
-
-										<!-- CAPTCHA -->
-										<?php
-										if ( $dli_captcha_enabled ) {
-											?>
-											<div class="row" style="margin-top: 20px;">
-												<div class="form-group col-md-6" style="text-align: center">
-													<img src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
-																width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>" />
-												</div>
-												<div class="form-group col-md-6">
-													<input name="captcha-field" id="captcha-field"  size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" type="text" 
-															placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"	/>
-													<input name="captcha-prefix" id="captcha-prefix"  class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>" />
-												</div>
-											</div>
-											<?php
-										}
-										?>
-
-										<!-- SUBMIT -->
-										<div class="row mt-4">
-											<div class="form-group col text-center">
-												<input type="hidden" name="form_sent" id="form_sent" value="yes" />
-													<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
-											</div>
-										</div>
-
+		<div id="newsletter_form">
+			<div class="container my-4 pt-4">
+				<div class="row">
+					<div class="col-12 col-lg-8 offset-lg-2">
+						<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Iscrizione', 'design_laboratori_italia' ); ?></h3>
+						<div class="p-5 rounded shadow">
+							<form action="<?php echo esc_url( $dli_page_url ); ?>" id="formnewsletter" name="formnewsletter" method="post">
+								<?php wp_nonce_field( 'sf_newsletter_nonce', 'newsletter_nonce_field' ); ?>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="active" for="user_name"><?php echo esc_html__( 'Nome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+										<input type="text" class="form-control" name="user_name" id="user_name"
+											value="<?php echo esc_attr( $dli_user_name ); ?>"
+											placeholder="<?php echo esc_attr__( 'Inserisci il tuo nome', 'design_laboratori_italia' ); ?>">
+									</div>
+									<div class="form-group col-md-6">
+										<label class="active" for="user_surname"><?php echo esc_html__( 'Cognome', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+										<input type="text" class="form-control" name="user_surname" id="user_surname"
+											value="<?php echo esc_attr( $dli_user_surname ); ?>"
+											placeholder="<?php echo esc_attr__( 'Inserisci il tuo cognome', 'design_laboratori_italia' ); ?>">
 									</div>
 								</div>
-							</div>
-						</div>
+								<div class="row">
+									<div class="form-group col">
+										<label class="active" for="user_mail"><?php echo esc_html__( 'E-mail', 'design_laboratori_italia' ); ?>&nbsp;*</label>
+										<input type="email" class="form-control" id="user_mail" name="user_mail"
+											value="<?php echo esc_attr( $dli_user_mail ); ?>"
+											placeholder="<?php echo esc_attr__( 'Inserisci il tuo indirizzo email', 'design_laboratori_italia' ); ?>">
+									</div>
+								</div>
 
+								<!-- CAPTCHA -->
+								<?php if ( $dli_captcha_enabled ) : ?>
+									<div class="row" style="margin-top: 20px;">
+										<div class="form-group col-md-6" style="text-align: center">
+											<img src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
+												width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>">
+										</div>
+										<div class="form-group col-md-6">
+											<input name="captcha-field" id="captcha-field" size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" type="text"
+												placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>">
+											<input name="captcha-prefix" id="captcha-prefix" class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>">
+										</div>
+									</div>
+								<?php endif; ?>
+
+								<!-- SUBMIT -->
+								<div class="row mt-4">
+									<div class="form-group col text-center">
+										<input type="hidden" name="form_sent" id="form_sent" value="yes">
+										<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-				</form>
+			</div>
 		</div>
 		<?php
 	}
