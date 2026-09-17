@@ -102,7 +102,9 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 											placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
 											value="<?php echo esc_attr( $dli_search_string ); ?>"
 										>
-										<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></button>
+										<div class="input-group-append">
+											<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></button>
+										</div>
 									</div>
 								</div>
 							</div>
