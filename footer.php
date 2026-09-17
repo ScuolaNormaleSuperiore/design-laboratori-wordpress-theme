@@ -23,7 +23,7 @@
 	<!-- TAGLINE -->
 	<div class="it-footer-main">
 		<div class="container">
-			<section>
+			<section class="pb-4">
 				<div class="row clearfix">
 					<div class="col-sm-12">
 						<div class="it-brand-wrapper">
