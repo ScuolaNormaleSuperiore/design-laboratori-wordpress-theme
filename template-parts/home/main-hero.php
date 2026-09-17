@@ -21,14 +21,14 @@ if ( 'true' === $dli_section_enabled ) {
 	$dli_button_label  = dli_get_configuration_field_by_lang( 'home_main_hero_button_label', 'homepage' );
 
 	?>
-	<section class="it-hero-wrapper it-dark it-overlay <?php echo esc_attr( $dli_hero_class ); ?>">
+	<section class="it-hero-wrapper it-dark it-overlay <?php echo esc_attr( $dli_hero_class ); ?>" aria-labelledby="dli-hero-main-title">
 	<?php
 	if ( $dli_image_url && '' !== $dli_image_url ) {
 		?>
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
 				<div class="img-wrapper">
-					<img src="<?php echo esc_url( $dli_image_url ); ?>" title="<?php echo esc_attr( $dli_image_title ); ?>" alt="<?php echo esc_attr( $dli_image_alt ); ?>">
+					<img src="<?php echo esc_url( $dli_image_url ); ?>" title="<?php echo esc_attr( $dli_image_title ); ?>" alt="<?php echo esc_attr( $dli_image_alt ); ?>" loading="eager" decoding="async">
 				</div>
 			</div>
 		</div>
@@ -38,14 +38,14 @@ if ( 'true' === $dli_section_enabled ) {
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
-						<h2><?php echo esc_html( $dli_hero_title ); ?></h2>
+					<div class="it-hero-text-wrapper">
+						<h2 id="dli-hero-main-title"><?php echo esc_html( $dli_hero_title ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_kses_post( $dli_hero_text ); ?></p>
 						<?php
 						if ( $dli_hero_url && '' !== $dli_hero_url ) {
 							?>
 						<div class="it-btn-container">
-							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $dli_hero_url ); ?>"><?php echo esc_html( $dli_button_label ); ?></a>
+							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $dli_hero_url ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: hero title */ __( 'Approfondisci: %s', 'design_laboratori_italia' ), $dli_hero_title ) ); ?>"><?php echo esc_html( $dli_button_label ); ?></a>
 						</div>
 							<?php
 						}
