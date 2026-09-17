@@ -53,9 +53,6 @@ $dli_num_items = $dli_query->post_count;
 					</div>
 				</div>
 				<div class="it-card-body p-4">
-					<?php if ( $dli_postitem['date'] ) : ?>
-						<p class="it-card-subtitle"><?php echo esc_html( $dli_postitem['date'] ); ?></p>
-					<?php endif; ?>
 					<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 				</div>
 				<?php if ( $dli_postitem['date'] ) : ?>

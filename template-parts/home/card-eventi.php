@@ -35,12 +35,10 @@ $dli_num_items = $dli_query->post_count;
 	<div class="card-wrapper flex-grow-1">
 		<?php
 		if ( 0 !== $dli_num_items ) {
-			$dli_carditem      = $dli_query->posts[0];
-			$dli_postitem      = dli_get_post_wrapper( $dli_carditem );
-			$dli_date          = $dli_postitem['date'];
-			$dli_item_date     = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
-			$dli_orario_inizio = $dli_postitem['orario_inizio'];
-			$dli_subtitle      = trim( $dli_date . ( $dli_orario_inizio ? ', ' . $dli_orario_inizio : '' ) );
+			$dli_carditem  = $dli_query->posts[0];
+			$dli_postitem  = dli_get_post_wrapper( $dli_carditem );
+			$dli_date      = $dli_postitem['date'];
+			$dli_item_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
 			?>
 			<article class="it-card it-card-image it-card-height-full card-bg rounded shadow-sm border">
 				<h3 class="it-card-title h4">
@@ -57,9 +55,6 @@ $dli_num_items = $dli_query->post_count;
 					</div>
 				</div>
 				<div class="it-card-body p-4">
-					<?php if ( $dli_subtitle ) : ?>
-						<p class="it-card-subtitle"><?php echo esc_html( $dli_subtitle ); ?></p>
-					<?php endif; ?>
 					<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 				</div>
 				<?php
