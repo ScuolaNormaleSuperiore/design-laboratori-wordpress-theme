@@ -12,17 +12,12 @@ $dli_etichetta_laboratorio     = dli_get_configuration_field_by_lang( 'etichetta
 
 if ( $dli_testo_sezione_laboratorio && ( 'true' === $dli_section_enabled ) ) {
 	?>
-	<section id="presentazione" aria-describedby="dli-presentazione-desc" class="section section-muted">
-		<p id="dli-presentazione-desc" class="visually-hidden"><?php esc_html_e( 'Presentazione del laboratorio', 'design_laboratori_italia' ); ?></p>
-	<div>
+	<section id="presentazione" class="section section-muted" aria-labelledby="dli-presentazione-title">
 		<div class="container my-12">
-			<h2 class="h3 pb-1"><?php echo esc_html( $dli_etichetta_laboratorio ); ?></h2>
-			<div>
-				<?php echo wp_kses_post( wpautop( $dli_testo_sezione_laboratorio, true ) ); ?>
-			</div>
+			<h2 id="dli-presentazione-title" class="h3 pb-1"><?php echo esc_html( $dli_etichetta_laboratorio ); ?></h2>
+			<?php echo wp_kses_post( wpautop( $dli_testo_sezione_laboratorio, true ) ); ?>
 		</div>
-	</div>
-</section>
+	</section>
 	<?php
 }
 ?>
