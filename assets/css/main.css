@@ -13,6 +13,19 @@ html {
 
 /* STILI PERSONALIZZATI */
 
+/* Voci lunghe troncate nel dropdown del menu principale (header.php, es. la
+   voce "Pagina base" con figli): BI3 applica .dropdown-item.list-item
+   {white-space:nowrap} (specificità 0,2,0), che tiene il titolo su una sola
+   riga anche quando è più lungo della larghezza del dropdown, facendolo
+   uscire dal riquadro. Una regola ufficiale corregge questo a "normal", ma
+   solo dentro un megamenu (.megamenu ... .list-item{white-space:normal}) —
+   il nostro dropdown (inc/walkers/main-menu-walker.php) non usa .megamenu,
+   quindi non la riceve. Corretto qui con una regola di specificità
+   maggiore (tre classi) sullo stesso contenitore. */
+.it-header-navbar-wrapper .dropdown-menu .list-item {
+	white-space: normal;
+}
+
 /* Sidebar "Pagine collegate" (page.php): bottone di espansione/compressione
    delle sottovoci separato dal link di navigazione. In Bootstrap
    data-bs-toggle="collapse" su un <a> con href reale blocca sempre la
