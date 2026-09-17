@@ -126,7 +126,7 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', EVENT_POST_TYPE 
 											<?php endif; ?>
 											<div class="it-card-body">
 												<?php if ( $dli_datetime_display ) : ?>
-													<p class="it-card-subtitle"><?php echo esc_html( $dli_datetime_display ); ?></p>
+													<p class="it-card-subtitle"><?php echo wp_kses_post( $dli_datetime_display ); ?></p>
 												<?php endif; ?>
 												<p class="it-card-text"><?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve', $dli_post_id ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
 											</div>

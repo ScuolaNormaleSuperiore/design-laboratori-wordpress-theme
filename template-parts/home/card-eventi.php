@@ -60,7 +60,7 @@ $dli_num_items = $dli_query->post_count;
 				<?php $dli_footer_date = dli_get_event_datetime_display( $dli_postitem['id'] ); ?>
 				<?php if ( $dli_item_date && $dli_footer_date ) : ?>
 					<footer class="it-card-footer">
-						<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_date->format( 'Y-m-d' ) ); ?>"><?php echo esc_html( $dli_footer_date ); ?></time>
+						<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_date->format( 'Y-m-d' ) ); ?>"><?php echo wp_kses_post( $dli_footer_date ); ?></time>
 					</footer>
 				<?php endif; ?>
 			</article>

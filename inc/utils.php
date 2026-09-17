@@ -1001,10 +1001,13 @@ if ( ! function_exists( 'dli_get_event_datetime_display' ) ) {
 	 * are all optional, so the text adapts to whichever are filled in:
 	 * - only start date: "15 gennaio 2026"
 	 * - start date + times: "15 gennaio 2026, ore 15:00–17:00"
-	 * - distinct start/end dates, no times: "Dal 12 al 20 dicembre 2025"
+	 * - distinct start/end dates, no times: "Dal 12<br>al 20 dicembre 2025"
 	 * - distinct start/end dates, with times: "Dal 20 ottobre 2025, ore 9:00
-	 *   al 22 ottobre 2025, ore 18:00" (data e ora sempre insieme quando c'è
-	 *   un orario, per non lasciare ambiguo a quale estremo appartiene).
+	 *   <br>al 22 ottobre 2025, ore 18:00" (data e ora sempre insieme quando
+	 *   c'è un orario, per non lasciare ambiguo a quale estremo appartiene).
+	 * Contiene un `<br>` tra "Dal ..." e "al ..." quando l'evento copre più
+	 * giorni: il chiamante deve stamparlo con `wp_kses_post()`, non
+	 * `esc_html()`, altrimenti il tag verrebbe mostrato come testo letterale.
 	 *
 	 * @param int $post_id Event post ID.
 	 * @return string
@@ -1037,14 +1040,14 @@ if ( ! function_exists( 'dli_get_event_datetime_display' ) ) {
 
 		if ( ! $orario_inizio && ! $orario_fine ) {
 			if ( $start->format( 'Y-m' ) === $end->format( 'Y-m' ) ) {
-				return 'Dal ' . intval( $start->format( 'd' ) ) . ' al ' . $full( $end );
+				return 'Dal ' . intval( $start->format( 'd' ) ) . '<br>al ' . $full( $end );
 			}
-			return 'Dal ' . $full( $start ) . ' al ' . $full( $end );
+			return 'Dal ' . $full( $start ) . '<br>al ' . $full( $end );
 		}
 
 		$start_display = $full( $start ) . ( $orario_inizio ? ', ore ' . $orario_inizio : '' );
 		$end_display   = $full( $end ) . ( $orario_fine ? ', ore ' . $orario_fine : '' );
-		return 'Dal ' . $start_display . ' al ' . $end_display;
+		return 'Dal ' . $start_display . '<br>al ' . $end_display;
 	}
 }
 

@@ -75,7 +75,7 @@ if ( 'true' === $dli_section_enabled ) {
 											<?php if ( $dli_item_date && $dli_footer_date ) : ?>
 												<footer class="it-card-footer">
 													<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_date->format( 'Y-m-d' ) ); ?>">
-														<?php echo esc_html( $dli_footer_date ); ?>
+														<?php echo wp_kses_post( $dli_footer_date ); ?>
 													</time>
 												</footer>
 											<?php endif; ?>

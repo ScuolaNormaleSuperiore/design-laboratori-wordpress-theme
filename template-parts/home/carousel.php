@@ -67,7 +67,7 @@ if ( 'true' === $dli_section_enabled ) {
 													</div>
 												<?php endif; ?>
 												<?php if ( $dli_item_date_display ) : ?>
-													<time class="it-card-date"><?php echo esc_html( $dli_item_date_display ); ?></time>
+													<time class="it-card-date"><?php echo wp_kses_post( $dli_item_date_display ); ?></time>
 												<?php endif; ?>
 											</footer>
 										<?php endif; ?>
