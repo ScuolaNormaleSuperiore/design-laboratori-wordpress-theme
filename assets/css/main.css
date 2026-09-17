@@ -202,6 +202,35 @@ a.mappasitolink:hover {
 	text-decoration: underline;
 }
 
+/* Icona disallineata nel form di ricerca dell'hero (page-templates/cerca.php):
+   BI3 applica margin-bottom:var(--bsi-spacing-m) (24px) a QUALSIASI span
+   dentro .it-hero-text-wrapper (pensato per span di testo tipo it-category),
+   ma la regola matcha anche lo <span class="input-group-text"> dell'icona di
+   ricerca. Con align-items:stretch (default) quel margin-bottom entra nel
+   margin-box centrato dal flex layout, portando l'altezza della riga
+   dell'input-group a 42+24=66px e stretchando input/bottone fino a quella
+   misura, con l'icona (che non si stretcha, resta 42px) spinta in alto —
+   stesso identico bug già risolto nel prototipo statico bs-playground
+   (sf-site-search.html, vedi il suo css/main.css). Azzerato qui il
+   margin-bottom sull'icona; align-items:center allinea poi icona, campo e
+   bottone sulle rispettive altezze naturali. */
+.it-hero-wrapper .input-group-text {
+	margin-bottom: 0 !important;
+}
+
+#ricercasitoform .input-group {
+	align-items: center;
+}
+
+/* BI3 azzera di default il bordo tra l'icona e il campo (.input-group-text ha
+   border-right:0, l'input successivo border-left:0) per un effetto "campo
+   unico": nel form di ricerca dell'hero il risultato è che l'icona sembra
+   priva di un proprio bordo, senza alcuna separazione visiva dal campo.
+   Ripristinato un bordo sottile tra i due. */
+#ricercasitoform .input-group-text {
+	border-right-width: 1px;
+}
+
 /* Font su testi descrittivi hero e carousel home: allineato al font-sans di
    Bootstrap Italia 3 (Titillium Web), non più l'hardcoded "Roboto" del
    vecchio $font-family-sans-serif v2 (assets/css/custom-colors.css non
