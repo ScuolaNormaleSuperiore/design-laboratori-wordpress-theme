@@ -33,36 +33,21 @@ if ( 'true' === $dli_section_enabled ) {
 		?>
 
 	<!-- INIZIO ELENCO EVENTI HP -->
-	<section id="blocco-eventi-slide" class="section pt-5" >
+	<section id="blocco-eventi-slide" class="section pt-5 pb-3">
 		<div class="section-content">
 			<div class="container">
-				<?php
-				if ( 'true' === $dli_show_title ) {
-					?>
-					<h2 class="h3 pb-2 ">
-						<?php echo esc_html__( 'Eventi', 'design_laboratori_italia' ); ?>
-					</h2>
-					<?php
-				}
-				?>
-				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide>
+				<?php if ( 'true' === $dli_show_title ) : ?>
+					<h2 id="blocco-eventi-slide-title" class="h3 pb-2"><?php echo esc_html__( 'Eventi', 'design_laboratori_italia' ); ?></h2>
+				<?php endif; ?>
+				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide role="region" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-eventi-slide-title"' : 'aria-label="' . esc_attr__( 'Eventi', 'design_laboratori_italia' ) . '"'; ?>>
 					<div class="splide__track">
 						<ul class="splide__list">
 
 						<?php
 						foreach ( $dli_query->posts as $dli_post ) {
-							$dli_postitem       = dli_get_post_wrapper( $dli_post );
-							$dli_date           = $dli_postitem['date'];
-							$dli_item_date      = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
-							$dli_item_day       = $dli_item_date ? intval( $dli_item_date->format( 'd' ) ) : '';
-							$dli_item_month     = $dli_item_date ? dli_get_monthname( $dli_item_date->format( 'm' ) ) : '';
-							$dli_item_year      = $dli_item_date ? intval( $dli_item_date->format( 'Y' ) ) : '';
-							$dli_end_date_raw   = dli_get_event_raw_end_date( $dli_postitem['id'], $dli_postitem['type'], $dli_date );
-							$dli_end_date       = $dli_end_date_raw ? dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_end_date_raw ) : null;
-							$dli_footer_date    = $dli_item_date ? trim( $dli_item_day . ' ' . $dli_item_month . ' ' . $dli_item_year ) : '';
-							if ( $dli_end_date ) {
-								$dli_footer_date .= ' – ' . trim( $dli_end_date->format( 'd' ) . ' ' . dli_get_monthname( $dli_end_date->format( 'm' ) ) . ' ' . $dli_end_date->format( 'Y' ) );
-							}
+							$dli_postitem  = dli_get_post_wrapper( $dli_post );
+							$dli_item_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
+							$dli_footer_date = dli_get_event_datetime_display( $dli_postitem['id'] );
 							?>
 							<!-- SINGOLO EVENTO -->
 							<li class="splide__slide lined_slide">
@@ -83,14 +68,11 @@ if ( 'true' === $dli_section_enabled ) {
 												</div>
 											</div>
 											<div class="it-card-body p-4">
-												<?php if ( $dli_item_date ) : ?>
-													<p class="it-card-subtitle"><?php echo esc_html( trim( $dli_item_day . ' ' . $dli_item_month ) ); ?></p>
-												<?php endif; ?>
 												<p class="it-card-text font-serif">
 												<?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
 												</p>
 											</div>
-											<?php if ( $dli_footer_date ) : ?>
+											<?php if ( $dli_item_date && $dli_footer_date ) : ?>
 												<footer class="it-card-footer">
 													<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_date->format( 'Y-m-d' ) ); ?>">
 														<?php echo esc_html( $dli_footer_date ); ?>

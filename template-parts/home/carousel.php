@@ -11,8 +11,9 @@ $dli_show_title      = $args['show_title'] ?? false;
 if ( 'true' === $dli_section_enabled ) {
 		$dli_items = DLI_ContentsManager::get_carousel_items();
 	?>
-	<section class="section pt-5 pb-5">
-		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide" data-bs-carousel-splide>
+	<section id="carousel-principale" class="section pt-5 pb-5">
+		<h2 id="carousel-principale-title" class="visually-hidden"><?php esc_html_e( 'Contenuti in primo piano', 'design_laboratori_italia' ); ?></h2>
+		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide" data-bs-carousel-splide role="region" aria-labelledby="carousel-principale-title">
 			<div class="splide__track">
 				<!-- SLIDES -->
 				<ul class="splide__list">
@@ -48,10 +49,11 @@ if ( 'true' === $dli_section_enabled ) {
 											<p class="it-card-text"><?php echo esc_html( $dli_item['description'] ); ?></p>
 										</div>
 										<?php
-										$dli_item_date_display = $dli_item['date'];
-										$dli_item_end_date_raw = dli_get_event_raw_end_date( $dli_item['id'], $dli_item['type'], $dli_item['date'] );
-										if ( $dli_item_end_date_raw ) {
-											$dli_item_date_display .= ' – ' . $dli_item_end_date_raw;
+										if ( EVENT_POST_TYPE === $dli_item['type'] ) {
+											$dli_item_date_display = dli_get_event_datetime_display( $dli_item['id'] );
+										} else {
+											$dli_item_parsed_date  = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_item['date'] );
+											$dli_item_date_display = $dli_item_parsed_date ? trim( $dli_item_parsed_date->format( 'd' ) . ' ' . dli_get_monthname( $dli_item_parsed_date->format( 'm' ) ) . ' ' . $dli_item_parsed_date->format( 'Y' ) ) : '';
 										}
 										?>
 										<?php if ( $dli_item['category'] || $dli_item_date_display ) : ?>

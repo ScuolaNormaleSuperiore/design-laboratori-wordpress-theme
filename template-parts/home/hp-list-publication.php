@@ -29,18 +29,12 @@ if ( 'true' === $dli_section_enabled ) {
 	if ( $dli_num_items > 0 ) {
 		?>
 	<!-- INIZIO ELENCO PUBBLICAZIONI HP -->
-	<section id="blocco-pubblicazioni" class="section pt-3 " >
+	<section id="blocco-pubblicazioni" class="section pt-3" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-pubblicazioni-title"' : 'aria-label="' . esc_attr__( 'Pubblicazioni', 'design_laboratori_italia' ) . '"'; ?>>
 		<div class="section-content">
 			<div class="container">
-				<?php
-				if ( 'true' === $dli_show_title ) {
-					?>
-					<h2 class="h3 pb-2 ">
-						<?php echo esc_html__( 'Pubblicazioni', 'design_laboratori_italia' ); ?>
-					</h2>
-					<?php
-				}
-				?>
+				<?php if ( 'true' === $dli_show_title ) : ?>
+					<h2 id="blocco-pubblicazioni-title" class="h3 pb-2"><?php echo esc_html__( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
+				<?php endif; ?>
 				<div class="row">
 
 				<?php

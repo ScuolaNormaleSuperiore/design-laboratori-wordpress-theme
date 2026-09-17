@@ -11,10 +11,10 @@ if ( 'true' === $dli_section_enabled ) {
 
 	?>
 <!-- BLOCCO CARD - CONTENUTI IN EVIDENZA (Featured contents) -->
-<section id="blocco-card" aria-describedby="dli-featured-contents-desc" class="section pt-5" >
-		<h2 id="dli-featured-contents-desc" class="visually-hidden"><?php esc_html_e( 'Blocco news, eventi e pubblicazioni', 'design_laboratori_italia' ); ?></h2>
+<section id="blocco-card" class="section pt-5" aria-labelledby="blocco-card-title">
 	<div class="section-content">
 		<div class="container">
+			<h2 id="blocco-card-title" class="visually-hidden"><?php esc_html_e( 'Contenuti in evidenza', 'design_laboratori_italia' ); ?></h2>
 		<div class="row">
 		<?php
 		// Mostra 3 box nella sezione Contenuti in evideza.

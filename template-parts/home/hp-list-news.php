@@ -30,22 +30,17 @@ if ( 'true' === $dli_section_enabled ) {
 	if ( $dli_num_items > 0 ) {
 		?>
 	<!-- INIZIO ELENCO NOTIZIE HP -->
-	<section id="blocco-news" class="section pt-3 pb-3" >
+	<section id="blocco-news" class="section pt-3 pb-3" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-news-title"' : 'aria-label="' . esc_attr__( 'Notizie', 'design_laboratori_italia' ) . '"'; ?>>
 		<div class="section-content">
 			<div class="container">
-				<?php
-				if ( 'true' === $dli_show_title ) {
-					?>
-					<h2 class="h3 pb-2 ">
-						<?php echo esc_html__( 'Notizie', 'design_laboratori_italia' ); ?>
-					</h2>
-					<?php
-				}
-				?>
+				<?php if ( 'true' === $dli_show_title ) : ?>
+					<h2 id="blocco-news-title" class="h3 pb-2"><?php echo esc_html__( 'Notizie', 'design_laboratori_italia' ); ?></h2>
+				<?php endif; ?>
 				<div class="row">
 				<?php
 				foreach ( $dli_query->posts as $dli_post ) {
-					$dli_postitem = dli_get_post_wrapper( $dli_post );
+					$dli_postitem  = dli_get_post_wrapper( $dli_post );
+					$dli_news_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
 					?>
 					<!-- NEWS -->
 					<div class="col-12 col-lg-4">
@@ -66,7 +61,7 @@ if ( 'true' === $dli_section_enabled ) {
 								</div>
 								<div class="it-card-body">
 									<p class="it-card-text"><?php echo esc_html( wp_trim_words( $dli_postitem['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
-									<?php if ( $dli_postitem['category'] || $dli_postitem['date'] ) : ?>
+									<?php if ( $dli_postitem['category'] || $dli_news_date ) : ?>
 										<footer class="it-card-footer">
 											<?php if ( $dli_postitem['category'] ) : ?>
 												<div class="it-card-taxonomy">
@@ -76,8 +71,8 @@ if ( 'true' === $dli_section_enabled ) {
 													</a>
 												</div>
 											<?php endif; ?>
-											<?php if ( $dli_postitem['date'] ) : ?>
-												<time class="it-card-date"><?php echo esc_html( $dli_postitem['date'] ); ?></time>
+											<?php if ( $dli_news_date ) : ?>
+												<time class="it-card-date" datetime="<?php echo esc_attr( $dli_news_date->format( 'Y-m-d' ) ); ?>"><?php echo esc_html( trim( $dli_news_date->format( 'd' ) . ' ' . dli_get_monthname( $dli_news_date->format( 'm' ) ) . ' ' . $dli_news_date->format( 'Y' ) ) ); ?></time>
 											<?php endif; ?>
 										</footer>
 									<?php endif; ?>

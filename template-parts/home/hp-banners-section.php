@@ -47,6 +47,7 @@ if ( 'true' === $dli_section_enabled ) {
 		?>
 		<div class="container-banner-home">
 			<?php
+			$dli_banner_index = 0;
 			foreach ( $dli_banners_query->posts as $dli_banner_post ) {
 				$dli_image_metadata = dli_get_image_metadata( $dli_banner_post, 'full', '/assets/img/yourimage.png' );
 				$dli_post_id        = $dli_banner_post->ID;
@@ -56,8 +57,10 @@ if ( 'true' === $dli_section_enabled ) {
 				$dli_button_link    = isset( $dli_banner_meta['link_pulsante'][0] ) ? maybe_unserialize( $dli_banner_meta['link_pulsante'][0] ) : '';
 				$dli_is_external    = ! empty( $dli_banner_meta['apri_in_nuova_finestra'][0] );
 				$dli_heading_id     = 'hero-school-title-' . absint( $dli_post_id );
+				$dli_banner_class   = 'it-hero-wrapper it-hero-small-size it-primary it-overlay' . ( $dli_banner_index > 0 ? ' mt-5' : '' );
+				++$dli_banner_index;
 				?>
-			<section class="it-hero-wrapper it-hero-small-size it-primary it-overlay mt-5" aria-labelledby="<?php echo esc_attr( $dli_heading_id ); ?>">
+			<section class="<?php echo esc_attr( $dli_banner_class ); ?>" aria-labelledby="<?php echo esc_attr( $dli_heading_id ); ?>">
 				<div class="img-responsive-wrapper">
 					<div class="img-responsive">
 						<div class="img-wrapper">
@@ -65,6 +68,8 @@ if ( 'true' === $dli_section_enabled ) {
 								src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
 								title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
 								alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
+								loading="lazy"
+								decoding="async"
 							>
 						</div>
 					</div>
@@ -81,6 +86,7 @@ if ( 'true' === $dli_section_enabled ) {
 										<a
 											class="btn btn-sm btn-secondary"
 											href="<?php echo esc_url( $dli_button_link ); ?>"
+											aria-label="<?php echo esc_attr( sprintf( /* translators: %s: banner title */ __( 'Scopri di più su: %s', 'design_laboratori_italia' ), $dli_banner_post->post_title ) ); ?>"
 											<?php if ( $dli_is_external ) { ?>
 												target="_blank" rel="noopener noreferrer"
 											<?php } ?>
