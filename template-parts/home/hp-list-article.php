@@ -44,7 +44,7 @@ if ( 'true' === $dli_section_enabled ) {
 					<!-- ARTICOLI -->
 					<div class="col-12 col-lg-4">
 						<div class="card-wrapper">
-							<article class="it-card it-card-image card-bg rounded">
+							<article class="it-card it-card-image card-bg rounded border">
 								<h3 class="it-card-title h4">
 									<a href="<?php echo esc_url( $dli_postitem['link'] ); ?>"><?php echo esc_html( $dli_postitem['title'] ); ?></a>
 								</h3>

@@ -43,7 +43,7 @@ if ( 'true' === $dli_section_enabled ) {
 					?>
 					<!-- PUBBLICAZIONE -->
 					<div class="col-12 col-lg-3">
-						<article class="it-card rounded">
+						<article class="it-card rounded border">
 							<h3 class="it-card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
 							<div class="it-card-body">
 								<p class="it-card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
