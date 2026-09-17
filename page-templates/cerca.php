@@ -17,6 +17,13 @@ $dli_num_results       = 0;
 $dli_selected_contents = array();
 $dli_search_string     = '';
 $dli_query             = null;
+$dli_per_page          = SITESEARCH_CELLS_PER_PAGE;
+$dli_per_page_values   = DLI_PER_PAGE_VALUES;
+
+$dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
+if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
+	$dli_per_page = absint( $dli_per_page_input );
+}
 
 if ( isset( $_GET['isreset'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only reset flag for the search form.
@@ -55,7 +62,7 @@ if (
 	$dli_query = DLI_ContentsManager::main_search_query(
 		$dli_selected_contents,
 		$dli_search_string,
-		SITESEARCH_CELLS_PER_PAGE
+		$dli_per_page
 	);
 
 	if ( $dli_query instanceof WP_Query ) {
@@ -225,7 +232,9 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $dli_query,
+				'query'           => $dli_query,
+				'per_page'        => $dli_per_page,
+				'per_page_values' => $dli_per_page_values,
 			)
 		);
 	}

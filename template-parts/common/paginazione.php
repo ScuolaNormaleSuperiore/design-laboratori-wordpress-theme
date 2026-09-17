@@ -32,9 +32,18 @@ $dli_current_page = $dli_current_page ? $dli_current_page : 1;
  * veniva passato a paginate_links() via 'add_args'. Chiusura locale (non una
  * funzione globale) perché questo template-part può in teoria essere
  * incluso più volte nella stessa richiesta.
+ *
+ * get_pagenum_link() va chiamato con $escape=false (URL con "&" grezzo, non
+ * con "&#038;"): passare la versione già escaped ad add_query_arg() rompe la
+ * query string ogni volta che ci sono già 2+ parametri extra nell'URL
+ * corrente (es. filtri + per_page), perché add_query_arg() cerca il primo
+ * "#" nella stringa per isolare un eventuale fragment — e lo trova dentro il
+ * "&#038;" già presente, tagliando via tutto ciò che segue. L'escape finale
+ * resta comunque applicato una sola volta più sotto, con esc_url() sul
+ * risultato di questa closure.
  */
 $dli_paginazione_page_url = static function ( $dli_page_number ) use ( $dli_per_page ) {
-	return add_query_arg( 'per_page', $dli_per_page, get_pagenum_link( $dli_page_number ) );
+	return add_query_arg( 'per_page', $dli_per_page, get_pagenum_link( $dli_page_number, false ) );
 };
 ?>
 

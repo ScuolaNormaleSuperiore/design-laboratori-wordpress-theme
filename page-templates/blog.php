@@ -36,11 +36,19 @@ if ( 0 === $dli_paged ) {
 	$dli_paged = 1;
 }
 
+$dli_per_page        = DLI_POSTS_PER_PAGE;
+$dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
+
+$dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
+if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
+	$dli_per_page = absint( $dli_per_page_input );
+}
+
 $dli_the_query      = new WP_Query(
 	array(
 		'paged'          => $dli_paged,
 		'post_type'      => WP_DEFAULT_POST,
-		'posts_per_page' => DLI_POSTS_PER_PAGE,
+		'posts_per_page' => $dli_per_page,
 		'category__in'   => $dli_selected_categories,
 	)
 );
@@ -180,7 +188,9 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', WP_DEFAULT_POST 
 			'template-parts/common/paginazione',
 			null,
 			array(
-				'query' => $dli_the_query,
+				'query'           => $dli_the_query,
+				'per_page'        => $dli_per_page,
+				'per_page_values' => $dli_per_page_values,
 			)
 		);
 		?>
