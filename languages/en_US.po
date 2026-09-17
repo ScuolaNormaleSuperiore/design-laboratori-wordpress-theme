@@ -2334,3 +2334,27 @@ msgstr "Would you like to receive email notification"
 #: page-templates/privacy.php:204
 msgid "Youtube per la visualizzazione di video"
 msgstr "Youtube for video viewing"
+
+#. 1: start time, 2: end time.
+#: inc/utils.php:1035
+#, php-format
+msgid ", ore %1$s–%2$s"
+msgstr ", at %1$s–%2$s"
+
+#. %s: start time.
+#: inc/utils.php:1038 inc/utils.php:1053 inc/utils.php:1055
+#, php-format
+msgid ", ore %s"
+msgstr ", at %s"
+
+#. 1: start day, 2: full end date.
+#: inc/utils.php:1046
+#, php-format
+msgid "Dal %1$d<br>al %2$s"
+msgstr "From %1$d<br>to %2$s"
+
+#. 1: full start date, 2: full end date.
+#: inc/utils.php:1049 inc/utils.php:1057
+#, php-format
+msgid "Dal %1$s<br>al %2$s"
+msgstr "From %1$s<br>to %2$s"

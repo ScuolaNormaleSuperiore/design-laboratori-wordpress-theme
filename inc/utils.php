@@ -1031,23 +1031,30 @@ if ( ! function_exists( 'dli_get_event_datetime_display' ) ) {
 		if ( $same_date || ! $end ) {
 			$display = $full( $start );
 			if ( $orario_inizio && $orario_fine ) {
-				$display .= ', ore ' . $orario_inizio . '–' . $orario_fine;
+				/* translators: 1: start time, 2: end time. */
+				$display .= sprintf( __( ', ore %1$s–%2$s', 'design_laboratori_italia' ), $orario_inizio, $orario_fine );
 			} elseif ( $orario_inizio ) {
-				$display .= ', ore ' . $orario_inizio;
+				/* translators: %s: start time. */
+				$display .= sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_inizio );
 			}
 			return $display;
 		}
 
 		if ( ! $orario_inizio && ! $orario_fine ) {
 			if ( $start->format( 'Y-m' ) === $end->format( 'Y-m' ) ) {
-				return 'Dal ' . intval( $start->format( 'd' ) ) . '<br>al ' . $full( $end );
+				/* translators: 1: start day, 2: full end date. */
+				return sprintf( __( 'Dal %1$d<br>al %2$s', 'design_laboratori_italia' ), intval( $start->format( 'd' ) ), $full( $end ) );
 			}
-			return 'Dal ' . $full( $start ) . '<br>al ' . $full( $end );
+			/* translators: 1: full start date, 2: full end date. */
+			return sprintf( __( 'Dal %1$s<br>al %2$s', 'design_laboratori_italia' ), $full( $start ), $full( $end ) );
 		}
 
-		$start_display = $full( $start ) . ( $orario_inizio ? ', ore ' . $orario_inizio : '' );
-		$end_display   = $full( $end ) . ( $orario_fine ? ', ore ' . $orario_fine : '' );
-		return 'Dal ' . $start_display . '<br>al ' . $end_display;
+		/* translators: %s: start time. */
+		$start_display = $full( $start ) . ( $orario_inizio ? sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_inizio ) : '' );
+		/* translators: %s: end time. */
+		$end_display   = $full( $end ) . ( $orario_fine ? sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_fine ) : '' );
+		/* translators: 1: start date/time, 2: end date/time. */
+		return sprintf( __( 'Dal %1$s<br>al %2$s', 'design_laboratori_italia' ), $start_display, $end_display );
 	}
 }
 
