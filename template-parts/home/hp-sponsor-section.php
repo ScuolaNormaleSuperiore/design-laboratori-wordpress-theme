@@ -49,6 +49,7 @@ if ( 'true' === $dli_section_enabled ) {
 		}
 
 		$dli_items_per_row = dli_get_option( 'num_row_sponsor', 'sponsors' );
+		$dli_col_lg_class  = ( '4' === $dli_items_per_row ) ? 'col-lg-3' : 'col-lg-2';
 		?>
 		<section id="sponsor" class="section" aria-labelledby="sponsor-title">
 			<div class="container my-12">
@@ -66,7 +67,7 @@ if ( 'true' === $dli_section_enabled ) {
 							$dli_post_id        = $dli_sponsor_post->ID;
 							$dli_external_link  = get_post_meta( $dli_post_id, 'link_esterno', true );
 							?>
-							<div class="col-6 col-lg-2">
+							<div class="col-6 <?php echo esc_attr( $dli_col_lg_class ); ?>">
 								<div class="it-grid-item-wrapper">
 									<?php if ( ! empty( $dli_external_link ) ) { ?>
 										<a href="<?php echo esc_url( $dli_external_link ); ?>" target="_blank" rel="noopener noreferrer">
@@ -75,8 +76,8 @@ if ( 'true' === $dli_section_enabled ) {
 												<img
 													src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
 													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-													class="figure-img img-fluid w-100 h-100 mb-0"
-													style="object-fit: contain;"
+													class="figure-img img-fluid mb-0"
+													style="max-height: 64px"
 													alt="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
 												>
 											</figure>

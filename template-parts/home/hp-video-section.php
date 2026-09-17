@@ -24,7 +24,7 @@ if ( $dli_section_enabled && $dli_video_url ) {
 		<div class="section-content">
 			<div class="container">
 				<?php if ( $dli_show_title ) : ?>
-					<h2 id="blocco-video-title" class="h3 pb-2 text-center"><?php esc_html_e( 'Video', 'design_laboratori_italia' ); ?></h2>
+					<h2 id="blocco-video-title" class="h3 pb-2"><?php esc_html_e( 'Video', 'design_laboratori_italia' ); ?></h2>
 				<?php endif; ?>
 				<div class="row justify-content-center">
 					<div class="col-12 col-lg-8">
