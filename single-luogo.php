@@ -149,82 +149,80 @@ while ( have_posts() ) {
 				     già pronta come markup/JS) + lista indirizzo/orari/contatti, stessa card
 				     unica del prototipo (sf-scheda-luogo.html). -->
 				<h3 class="it-page-section h4 pt-3" id="posizione"><?php esc_html_e( 'Posizione', 'design_laboratori_italia' ); ?></h3>
-				<div class="card-wrapper">
-					<div class="it-card rounded shadow overflow-hidden">
-						<?php if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) : ?>
-							<div class="img-responsive-wrapper">
-								<?php echo wp_kses_post( $dli_posizione ); ?>
-							</div>
-						<?php endif; ?>
-						<div class="it-list-wrapper">
-							<ul class="it-list">
-								<?php if ( '' !== $dli_indirizzo ) : ?>
-									<li>
-										<div class="list-item">
-											<div class="visually-hidden"><?php esc_html_e( 'Indirizzo', 'design_laboratori_italia' ); ?></div>
-											<div class="it-rounded-icon">
-												<svg class="icon" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
-												</svg>
-											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( '' !== $dli_cap ? $dli_indirizzo . ', ' . $dli_cap : $dli_indirizzo ); ?></span></div>
-										</div>
-									</li>
-								<?php endif; ?>
-								<?php if ( '' !== $dli_orari ) : ?>
-									<li>
-										<div class="list-item">
-											<div class="visually-hidden"><?php esc_html_e( 'Orari', 'design_laboratori_italia' ); ?></div>
-											<div class="it-rounded-icon">
-												<svg class="icon" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>"></use>
-												</svg>
-											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_orari ); ?></span></div>
-										</div>
-									</li>
-								<?php endif; ?>
-								<?php if ( '' !== $dli_telefono ) : ?>
-									<li>
-										<a class="list-item" href="<?php echo esc_url( 'tel:' . preg_replace( '/\s+/', '', $dli_telefono ) ); ?>">
-											<div class="visually-hidden"><?php esc_html_e( 'Telefono', 'design_laboratori_italia' ); ?></div>
-											<div class="it-rounded-icon">
-												<svg class="icon" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
-												</svg>
-											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_telefono ); ?></span></div>
-										</a>
-									</li>
-								<?php endif; ?>
-								<?php if ( '' !== $dli_mail ) : ?>
-									<li>
-										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_mail ) ); ?>" class="list-item">
-											<div class="visually-hidden"><?php esc_html_e( 'Email', 'design_laboratori_italia' ); ?></div>
-											<div class="it-rounded-icon">
-												<svg class="icon" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
-												</svg>
-											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_mail ); ?></span></div>
-										</a>
-									</li>
-								<?php endif; ?>
-								<?php if ( '' !== $dli_pec ) : ?>
-									<li>
-										<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" class="list-item">
-											<div class="visually-hidden"><?php esc_html_e( 'PEC', 'design_laboratori_italia' ); ?></div>
-											<div class="it-rounded-icon">
-												<svg class="icon" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
-												</svg>
-											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_pec ); ?></span></div>
-										</a>
-									</li>
-								<?php endif; ?>
-							</ul>
+				<div class="it-card rounded shadow overflow-hidden">
+					<?php if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) : ?>
+						<div class="img-responsive-wrapper">
+							<?php echo wp_kses_post( $dli_posizione ); ?>
 						</div>
+					<?php endif; ?>
+					<div class="it-list-wrapper">
+						<ul class="it-list">
+							<?php if ( '' !== $dli_indirizzo ) : ?>
+								<li>
+									<div class="list-item">
+										<div class="visually-hidden"><?php esc_html_e( 'Indirizzo', 'design_laboratori_italia' ); ?></div>
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-map-marker' ); ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( '' !== $dli_cap ? $dli_indirizzo . ', ' . $dli_cap : $dli_indirizzo ); ?></span></div>
+									</div>
+								</li>
+							<?php endif; ?>
+							<?php if ( '' !== $dli_orari ) : ?>
+								<li>
+									<div class="list-item">
+										<div class="visually-hidden"><?php esc_html_e( 'Orari', 'design_laboratori_italia' ); ?></div>
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-clock' ); ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_orari ); ?></span></div>
+									</div>
+								</li>
+							<?php endif; ?>
+							<?php if ( '' !== $dli_telefono ) : ?>
+								<li>
+									<a class="list-item" href="<?php echo esc_url( 'tel:' . preg_replace( '/\s+/', '', $dli_telefono ) ); ?>">
+										<div class="visually-hidden"><?php esc_html_e( 'Telefono', 'design_laboratori_italia' ); ?></div>
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-telephone' ); ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_telefono ); ?></span></div>
+									</a>
+								</li>
+							<?php endif; ?>
+							<?php if ( '' !== $dli_mail ) : ?>
+								<li>
+									<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_mail ) ); ?>" class="list-item">
+										<div class="visually-hidden"><?php esc_html_e( 'Email', 'design_laboratori_italia' ); ?></div>
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_mail ); ?></span></div>
+									</a>
+								</li>
+							<?php endif; ?>
+							<?php if ( '' !== $dli_pec ) : ?>
+								<li>
+									<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" class="list-item">
+										<div class="visually-hidden"><?php esc_html_e( 'PEC', 'design_laboratori_italia' ); ?></div>
+										<div class="it-rounded-icon">
+											<svg class="icon" aria-hidden="true" focusable="false">
+												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
+											</svg>
+										</div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_pec ); ?></span></div>
+									</a>
+								</li>
+							<?php endif; ?>
+						</ul>
 					</div>
 				</div>
 
