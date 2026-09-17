@@ -10,125 +10,91 @@
 global $post;
 get_header();
 
-$dli_categories     = dli_get_post_categories( $post, 'category' );
-$dli_current_lang   = dli_current_language();
-$dli_cat_page       = DLI_PAGE_PER_CT[ WP_DEFAULT_POST ][ $dli_current_lang ];
+$dli_main_category  = dli_get_post_main_category( $post, 'category' );
+$dli_summary        = get_the_excerpt();
 $dli_date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $dli_post_date      = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
 $dli_post_day       = $dli_post_date ? intval( $dli_post_date->format( 'd' ) ) : '';
 $dli_post_month     = $dli_post_date ? dli_get_monthname( $dli_post_date->format( 'm' ) ) : '';
 $dli_image_metadata = dli_get_image_metadata( $post );
-$dli_pg             = dli_get_page_by_post_type( $post->post_type );
-$dli_pg_link        = $dli_pg ? get_permalink( $dli_pg->ID ) : '';
+$dli_has_photo      = ! empty( $dli_image_metadata['image_url'] );
 $dli_tags           = get_the_tags( $post->ID );
 ?>
 
-<main id="main-container">
+<main id="main-container" role="main">
 
-	<!-- BREADCRUMB -->
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
-
-	<!-- BANNER BLOG-->
-	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size"> 
-		<!-- - img-->
-		<div class="img-responsive-wrapper">
-			<div class="img-responsive">
-				<figure class="img-wrapper">
-					<img src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
-						alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>"
-						title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-					>
-					<?php
-					if ( $dli_image_metadata['image_caption'] ) {
-						?>
-						<figcaption class="figure-caption"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
-						<?php
-					}
-					?>
-				</figure>
-			</div>
-		</div>
-		<!-- - texts-->
+	<!-- BANNER ARTICOLO: hero a due colonne, stesso identico pattern della scheda
+	     News (single-notizia.php) — foto reale in evidenza quando esiste, altrimenti
+	     il frammento decorativo placeholder-sns.png. -->
+	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-blog-title">
 		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="it-hero-text-wrapper bg-dark">
-						<?php if ( $dli_post_date ) { ?>
-						<span class="it-Categoria">
-							<?php echo esc_html( $dli_post_day ); ?>
-							&nbsp;
-							<?php echo esc_html( $dli_post_month ); ?>
-						</span>
-						<?php } ?>
-						<h2><?php echo esc_html( get_the_title() ); ?></h2>
-						<p class="d-none d-lg-block">
-							<?php echo wp_kses_post( wp_trim_words( dli_get_field( 'descrizione_breve' ), DLI_ACF_SHORT_DESC_LENGTH ) ); ?>
-						</p>
-						<!-- categorie -->
-							<?php
-							foreach ( $dli_categories as $dli_category ) {
-								$dli_cat_url = add_query_arg( 'cat', array( $dli_category['id'] ), get_site_url() . '/' . $dli_cat_page );
-								?>
-							<div class="chip chip-primary chip-lg chip-simple">
-								<a class="text-decoration-none" href="<?php echo esc_url( $dli_cat_url ); ?>">
-									<span class="chip-label"><?php echo esc_html( $dli_category['title'] ); ?></span>
-								</a>
-							</div>
-								<?php
-							}
-							?>
+			<div class="row align-items-center">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<?php if ( $dli_main_category && ! empty( $dli_main_category['title'] ) ) : ?>
+							<span class="it-category"><?php echo esc_html( $dli_main_category['title'] ); ?></span>
+						<?php endif; ?>
+						<h2 id="dli-hero-blog-title"><?php echo esc_html( get_the_title() ); ?></h2>
+						<?php if ( $dli_summary ) : ?>
+							<p class="fs-5"><?php echo wp_kses_post( wp_trim_words( $dli_summary, DLI_ACF_SHORT_DESC_LENGTH ) ); ?></p>
+						<?php endif; ?>
+						<?php if ( $dli_post_date ) : ?>
+							<time class="d-block text-white mt-3" datetime="<?php echo esc_attr( $dli_post_date->format( 'Y-m-d' ) ); ?>">
+								<?php echo esc_html( trim( $dli_post_day . ' ' . $dli_post_month . ' ' . $dli_post_date->format( 'Y' ) ) ); ?>
+							</time>
+						<?php endif; ?>
 					</div>
+				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<?php if ( $dli_has_photo ) : ?>
+						<figure class="figure mb-0">
+							<img class="figure-img img-fluid rounded mb-0"
+								src="<?php echo esc_url( $dli_image_metadata['image_url'] ); ?>"
+								alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
+							<?php if ( $dli_image_metadata['image_caption'] ) : ?>
+								<figcaption class="figure-caption mt-2 text-light"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
+							<?php endif; ?>
+						</figure>
+					<?php else : ?>
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- DETAGLIO BLOG -->
-	<section id="news" class="p-4">
+	<!-- CORPO ARTICOLO -->
+	<section id="news-section" class="p-4">
 		<div class="container my-4">
 			<div class="row pt-0">
-				<!-- SIDEBAR BLOG  -->
-				<div class="col-12 col-lg-2 border-end">
-					<!-- Tutte le notizie -->
-					<div>
-						<?php
-							$dli_link_msg = __( 'Tutti gli articoli', 'design_laboratori_italia' );
-						?>
-						<a href="<?php echo esc_url( $dli_pg_link ); ?>" title="<?php echo esc_attr( $dli_link_msg ); ?>"><?php echo esc_html( $dli_link_msg ); ?></a>
-						<br /><br />
-					</div>
+				<!-- SIDEBAR ARTICOLO -->
+				<div class="col-12 col-lg-3 border-end">
+					<div class="sticky-top" style="top: 1rem;">
+						<!-- Condividi -->
+						<?php get_template_part( 'template-parts/common/social-sharing' ); ?>
 
-					<!-- Condividi -->
-					<?php get_template_part( 'template-parts/common/social-sharing' ); ?>
-
-					<?php
-					if ( $dli_tags ) {
-						?>
-					<div class="mt-4 mb-4">
-						<h3 class="mb-0 h6">
-							<small><?php echo esc_html__( 'Argomenti', 'design_laboratori_italia' ); ?></small>
-						</h3>
-						<?php
-						foreach ( $dli_tags as $dli_tag ) {
-							?>
-							<div class="chip chip-simple chip-primary">
-								<span class="chip-label"><?php echo esc_html( $dli_tag->name ); ?></span>
+						<?php if ( $dli_tags ) : ?>
+							<div class="mt-4 mb-4">
+								<h3 class="mb-0 h6">
+									<small><?php echo esc_html__( 'Argomenti', 'design_laboratori_italia' ); ?></small>
+								</h3>
+								<?php foreach ( $dli_tags as $dli_tag ) : ?>
+									<a class="chip chip-primary text-decoration-none mt-2" href="<?php echo esc_url( get_tag_link( $dli_tag ) ); ?>">
+										<span class="chip-label"><?php echo esc_html( $dli_tag->name ); ?></span>
+									</a>
+								<?php endforeach; ?>
 							</div>
-							<?php
-						}
-						?>
+						<?php endif; ?>
 					</div>
-						<?php
-					}
-					?>
 				</div>
-				
-				<!-- CORPO DELLA NEWS -->
-				<div class="col-12 col-lg-9 it-page-sections-container">
-					<div class="row p-4 pt-0">
-						<article id="news-body">
-							<?php the_content(); ?>
-						</article>
+
+				<!-- CORPO DELL'ARTICOLO -->
+				<div class="col-12 col-lg-8 offset-lg-1">
+					<div class="p-4 pt-0">
+						<?php the_content(); ?>
 					</div>
 				</div>
 			</div>
