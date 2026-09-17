@@ -51,7 +51,7 @@ if ( 'true' === $dli_section_enabled ) {
 		$dli_items_per_row = dli_get_option( 'num_row_sponsor', 'sponsors' );
 		$dli_col_lg_class  = ( '4' === $dli_items_per_row ) ? 'col-lg-3' : 'col-lg-2';
 		?>
-		<section id="sponsor" class="section" aria-labelledby="sponsor-title">
+		<section id="sponsor" class="section pt-3 pb-3" aria-labelledby="sponsor-title">
 			<div class="container my-12">
 				<?php if ( $dli_show_title ) { ?>
 				<h2 id="sponsor-title" class="visually-hidden">
