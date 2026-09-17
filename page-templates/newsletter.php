@@ -162,9 +162,9 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 		?>
 	</div>
 
-	<!-- SEZIONE FORM: colonna centrata, senza sidebar (a differenza della pagina
-	     Contatti non esiste un elenco di contatti da affiancare al form), stessa
-	     card "p-5 rounded shadow" del form di Contatti. -->
+	<!-- SEZIONE FORM: stessa griglia col-lg-3 + col-lg-8 offset-lg-1 di Contatti
+	     (sidebar vuota, non esiste un elenco di contatti da affiancare al form di
+	     iscrizione), stessa card "p-5 rounded shadow" del form di Contatti. -->
 	<?php
 	if ( 'no' === $dli_after_confirm && true !== $dli_sent_successfully ) {
 		$dli_current_language = dli_current_language( 'slug' );
@@ -173,7 +173,8 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 		<div id="newsletter_form">
 			<div class="container my-4 pt-4">
 				<div class="row">
-					<div class="col-12 col-lg-8 offset-lg-2">
+					<div class="col-12 col-lg-3"></div>
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Iscrizione', 'design_laboratori_italia' ); ?></h3>
 						<div class="p-5 rounded shadow">
 							<form action="<?php echo esc_url( $dli_page_url ); ?>" id="formnewsletter" name="formnewsletter" method="post">
