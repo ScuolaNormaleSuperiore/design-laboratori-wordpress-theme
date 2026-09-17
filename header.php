@@ -43,15 +43,8 @@ $dli_current_lang = dli_current_language();
 	get_template_part( 'template-parts/common/skiplink' );
 ?>
 
-<!-- Right menu element-->
-<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right perfect-scrollbar">
-	<div class="menu-user-mobile menu-user-blue">
-	</div>
-</nav>
-<!-- End Right menu element-->
-
 <!-- HEADER -->
-<header class="it-header-wrapper" data-bs-target="#header-nav-wrapper" role="navigation">
+<header class="it-header-wrapper" data-bs-target="#header-nav-wrapper">
 	<div class="it-header-slim-wrapper">
 		<div class="container">
 			<div class="row">

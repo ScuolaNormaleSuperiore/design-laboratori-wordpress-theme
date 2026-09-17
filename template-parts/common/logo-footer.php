@@ -8,7 +8,6 @@
 $dli_show_logo_footer = wp_validate_boolean( dli_get_option( 'logo_footer_visible' ) );
 
 if ( true === $dli_show_logo_footer ) {
-	$dli_nome_laboratorio = esc_attr( dli_get_option_by_lang( 'nome_laboratorio' ) );
 	$dli_logo_header      = esc_url( dli_get_option( 'logo_laboratorio' ) );
 	$dli_logo_footer      = esc_url( dli_get_option( 'logo_laboratorio_footer' ) );
 	$dli_logo_laboratorio = $dli_logo_footer ? $dli_logo_footer : $dli_logo_header;
@@ -18,8 +17,7 @@ if ( true === $dli_show_logo_footer ) {
 	<!-- Logo -->
 	<img height="80" class="<?php echo esc_attr( $dli_class_color ); ?>"
 		src="<?php echo esc_url( $dli_logo_src ); ?>"
-		alt="<?php echo esc_attr( $dli_nome_laboratorio ); ?>"
-		title="<?php echo esc_attr( $dli_nome_laboratorio ); ?>" />
+		alt="" />
 	<?php
 }
 ?>
