@@ -38,9 +38,15 @@
 	--bsi-icon-primary-hover: #00728d;
 	--bsi-icon-secondary: #183f56;
 
-	/* Famiglia "secondary": Dark Blue SNS. */
+	/* Famiglia "secondary": Dark Blue SNS. Manca il riposo di
+	   --bsi-color-background-secondary (usato da .btn-secondary a riposo,
+	   non solo su :hover): senza questa riga i bottoni .btn-secondary
+	   restano sullo slate di default di Bootstrap Italia (#5c6f82), mai
+	   presente nella guida SNS, e diventano Dark Blue solo al passaggio del
+	   mouse. */
 	--bsi-color-text-secondary: #183f56;
 	--bsi-color-link-secondary: #183f56;
+	--bsi-color-background-secondary: #183f56;
 	--bsi-color-background-secondary-hover: #183f56;
 	--bsi-color-border-secondary-hover: #183f56;
 
