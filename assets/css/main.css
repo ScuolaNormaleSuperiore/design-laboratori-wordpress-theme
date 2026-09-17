@@ -98,10 +98,6 @@ html {
 	text-decoration: none !important;
 }
 
-.menutree a {
-	text-decoration: none;
-}
-
 .box_change_map_lang {
 	width: 100%;
 	text-align: center;
@@ -150,15 +146,6 @@ html {
 .it-footer-small-prints a:hover:not(.disabled) {
 	color:#fff;
 	font-size:1rem;
-	text-decoration: underline !important;
-}
-
-.mappasitolink {
-	display: flex;
-	gap: 4px;
-}
-
-a.mappasitolink:hover {
 	text-decoration: underline !important;
 }
 

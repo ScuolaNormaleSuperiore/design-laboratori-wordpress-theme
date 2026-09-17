@@ -18,12 +18,19 @@
 
 if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 	/**
-	 * Render a sitemap node recursively as an HTML <li> element.
+	 * Render a sitemap node recursively as an HTML <li> element, using the
+	 * Bootstrap Italia 3 "link-list"/"link-sublist" pattern (same one already
+	 * validated for the "Pagine collegate" sidebar tree in page.php). Nodes at
+	 * depth 0 (the top-level entries: Home and one per content-type family)
+	 * get the "large medium" emphasis classes; every deeper level is a plain
+	 * list item. Unlike the "Pagine collegate" tree, the sitemap has no
+	 * collapse/expand toggle: every level is always fully expanded.
 	 *
-	 * @param array $dli_node Sitemap node array with keys: name, link, external, children.
+	 * @param array $dli_node  Sitemap node array with keys: name, link, external, children.
+	 * @param int   $dli_depth Nesting depth of this node (0 = top-level entry).
 	 * @return void
 	 */
-	function dli_render_sitemap_node( $dli_node ) {
+	function dli_render_sitemap_node( $dli_node, $dli_depth = 0 ) {
 		if ( ! is_array( $dli_node ) ) {
 			return;
 		}
@@ -31,23 +38,24 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 		$dli_name     = isset( $dli_node['name'] ) ? esc_html( (string) $dli_node['name'] ) : '';
 		$dli_link     = isset( $dli_node['link'] ) ? esc_url( (string) $dli_node['link'] ) : '';
 		$dli_external = ! empty( $dli_node['external'] );
+		$dli_class    = 'list-item' . ( 0 === $dli_depth ? ' large medium' : '' );
 
 		echo '<li>';
 
 		if ( '' !== $dli_link ) {
-			echo '<a class="mappasitolink"';
+			echo '<a class="' . esc_attr( $dli_class ) . '"';
 			if ( $dli_external ) {
 				echo ' target="_blank" rel="noopener noreferrer"';
 			}
-			echo ' href="' . esc_url( $dli_link ) . '">' . esc_html( $dli_name ) . '</a>';
+			echo ' href="' . esc_url( $dli_link ) . '"><span>' . esc_html( $dli_name ) . '</span></a>';
 		} else {
-			echo '<span class="mappasitolink">' . esc_html( $dli_name ) . '</span>';
+			echo '<span class="' . esc_attr( $dli_class ) . '"><span>' . esc_html( $dli_name ) . '</span></span>';
 		}
 
 		if ( ! empty( $dli_node['children'] ) && is_array( $dli_node['children'] ) ) {
-			echo '<ul>';
+			echo '<ul class="link-sublist">';
 			foreach ( $dli_node['children'] as $dli_child_node ) {
-				dli_render_sitemap_node( $dli_child_node );
+				dli_render_sitemap_node( $dli_child_node, $dli_depth + 1 );
 			}
 			echo '</ul>';
 		}
