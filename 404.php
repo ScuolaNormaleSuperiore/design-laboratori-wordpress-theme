@@ -14,14 +14,35 @@ $dli_back_url = $dli_back_url ? $dli_back_url : home_url( '/' );
 
 <main id="main-container" class="main-container" role="main">
 
-	<?php get_template_part( 'template-parts/common/breadcrumb' ); ?>
+	<!-- BANNER 404: hero a due colonne con breadcrumb integrato, stesso
+	     pattern standard delle pagine "di servizio" senza prototipo dedicato
+	     (Contatti/Newsletter). "404" come span informativo sopra il titolo,
+	     non come h1 separato: l'unico h1 di pagina resta quello del nome del
+	     laboratorio nell'header. -->
+	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-404-title">
+		<div class="container">
+			<div class="row align-items-stretch">
+				<div class="col-12 col-lg-7">
+					<section class="pt-2">
+						<?php get_template_part( 'template-parts/common/breadcrumb-hero' ); ?>
+					</section>
+					<div class="it-hero-text-wrapper px-lg-2">
+						<span class="it-category"><?php esc_html_e( '404', 'design_laboratori_italia' ); ?></span>
+						<h2 id="dli-hero-404-title"><?php esc_html_e( 'Pagina non trovata', 'design_laboratori_italia' ); ?></h2>
+					</div>
+				</div>
+				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="section bg-white">
 		<div class="container">
 			<article class="article-wrapper">
 				<div class="box_404 text-center clearfix">
-					<h1 class="xl"><?php esc_html_e( '404', 'design_laboratori_italia' ); ?></h1>
-					<h2><?php esc_html_e( 'Pagina non trovata', 'design_laboratori_italia' ); ?></h2>
-					<p>
+					<p class="fs-5">
 						<?php
 						/* translators: %1$s is the fallback URL for the "go back" link. */
 						$dli_404_message = __(
