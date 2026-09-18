@@ -98,7 +98,9 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 					</div>
 				</div>
 				<div class="col-12 col-lg-5 d-none d-lg-block">
+					<?php if ( dli_show_hero_decorative_image() ) : ?>
 					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

@@ -58,7 +58,7 @@ $dli_tags           = get_the_tags( $post->ID );
 								<figcaption class="figure-caption mt-2 text-light"><?php echo esc_html( $dli_image_metadata['image_caption'] ); ?></figcaption>
 							<?php endif; ?>
 						</figure>
-					<?php else : ?>
+					<?php elseif ( dli_show_hero_decorative_image() ) : ?>
 						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/placeholder-sns.png' ); ?>" alt="" style="width: 100%; height: 100%; object-fit: cover" />
 					<?php endif; ?>
 				</div>

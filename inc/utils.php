@@ -889,6 +889,23 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_show_hero_decorative_image' ) ) {
+	/**
+	 * Whether a hero without a real content photo should show the SNS-branded
+	 * decorative placeholder (assets/img/placeholder-sns.png) — or, on the
+	 * homepage, the uploaded hero background image (which also carries a
+	 * portion of the SNS logo). With the "standard" (non-custom) site style,
+	 * that branding doesn't make sense without the brand colors around it, so
+	 * every hero falls back to the plain solid background the "it-hero-
+	 * wrapper" component already shows by default when no image is present.
+	 *
+	 * @return bool
+	 */
+	function dli_show_hero_decorative_image() {
+		return 'custom' === dli_get_option( 'choose_style', 'setup' );
+	}
+}
+
 if ( ! function_exists( 'dli_get_monthname' ) ) {
 	/**
 	 * Return localized month name by numeric month.
