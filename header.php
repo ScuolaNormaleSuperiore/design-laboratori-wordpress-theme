@@ -182,7 +182,22 @@ $dli_current_lang = dli_current_language();
 			</div>
 		</div>
 		</div>
-		<div class="it-header-navbar-wrapper theme-light-desk">
+		<?php
+		/*
+		 * "theme-light-desk" inverte lo sfondo/testo del .navbar annidato
+		 * (.theme-light-desk .navbar{--bsi-navbar-background: var(--bsi-color-
+		 * background-inverse); --bsi-navbar-link-color: var(--bsi-color-link)}
+		 * — sfondo bianco, testo colorato) rispetto al default di BI3
+		 * (--bsi-navbar-background: var(--bsi-color-background-primary);
+		 * --bsi-navbar-link-color: var(--bsi-color-text-inverse) — sfondo
+		 * colorato, testo bianco, la stessa combinazione dell'esempio ufficiale
+		 * "Header completa", che non usa affatto questa classe). Applicata qui
+		 * solo con lo stile "custom" per non cambiare l'aspetto già in uso;
+		 * con lo stile "standard" resta il default corretto.
+		 */
+		$dli_navbar_wrapper_class = ( 'custom' === dli_get_option( 'choose_style', 'setup' ) ) ? ' theme-light-desk' : '';
+		?>
+		<div class="it-header-navbar-wrapper<?php echo esc_attr( $dli_navbar_wrapper_class ); ?>">
 		<div class="container">
 			<div class="row">
 			<div class="col-12">
