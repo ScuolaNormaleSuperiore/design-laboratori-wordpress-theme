@@ -43,7 +43,7 @@
 			<section class="py-4 border-white border-top">
 				<div class="row">
 		<div class="col-lg-4 col-md-4 pb-2">
-				<h3 class="customSpacing h4"><a href="#" title="<?php
+				<h3 class="h4"><a href="#" title="<?php
 					/* translators: %s: destination page name. */
 					echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Contatti', 'design_laboratori_italia' ) ) );
 				?>"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></a></h3>
@@ -103,7 +103,7 @@
 						$dli_menu_items = is_array( $dli_menu_items ) ? $dli_menu_items : array();
 			if ( count( $dli_menu_items ) > 0 ) {
 				?>
-				<h3 class="customSpacing h4">
+				<h3 class="h4">
 					<a href="#" title="<?php
 						/* translators: %s: destination page name. */
 						echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Link utili', 'design_laboratori_italia' ) ) );

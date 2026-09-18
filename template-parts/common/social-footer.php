@@ -56,7 +56,7 @@ if ( 'true' === $dli_show_socials ) {
 		),
 	);
 	?>
-	<h3 class="customSpacing h4">
+	<h3 class="h4">
 		<a href="#" title="<?php echo esc_attr__( 'Seguici su', 'design_laboratori_italia' ); ?>">
 			<?php echo esc_html__( 'Seguici su', 'design_laboratori_italia' ); ?>
 		</a>
