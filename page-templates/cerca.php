@@ -109,24 +109,19 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 											placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
 											value="<?php echo esc_attr( $dli_search_string ); ?>"
 										>
-										<div class="input-group-append">
-											<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></button>
-										</div>
 									</div>
 								</div>
 							</div>
-							<?php if ( $dli_has_searched ) : ?>
-								<div class="row m-0">
-									<div class="form-group col text-start">
-										<a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-primary btn-sm">
-											<svg class="icon icon-sm" aria-hidden="true" focusable="false">
-												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-close' ); ?>"></use>
-											</svg>
+							<div class="row m-0">
+								<div class="form-group col text-start d-flex flex-wrap gap-2">
+									<button type="submit" class="btn btn-secondary"><?php esc_html_e( 'Cerca', 'design_laboratori_italia' ); ?></button>
+									<?php if ( $dli_has_searched ) : ?>
+										<a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-secondary">
 											<span><?php esc_html_e( 'Annulla ricerca', 'design_laboratori_italia' ); ?></span>
 										</a>
-									</div>
+									<?php endif; ?>
 								</div>
-							<?php endif; ?>
+							</div>
 						</div>
 					</div>
 					<div class="col-12 col-lg-5 d-none d-lg-block">
