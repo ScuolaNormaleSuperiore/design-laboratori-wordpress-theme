@@ -96,6 +96,16 @@
 	--bsi-header-nav-background: var(--bsi-color-background-inverse);
 }
 
+/* .point-aside-primary (Timeline point list, usata in single-evento.php per
+   "Date e orari") calcola --bsi-timeline-point-color da --bsi-primary, la
+   tinta grezza di libreria (blu istituzionale di default), non dalla
+   famiglia semantica --bsi-color-*-primary già ribrandizzata sopra: senza
+   questo override il pallino/linea della timeline restava sul blu di
+   default anche col resto del brand corretto. */
+.it-timeline-point-list .timeline-point .point-aside.point-aside-primary {
+	--bsi-timeline-point-color: var(--bsi-color-background-primary);
+}
+
 /* .chip-primary (es. chip di filtro "selezionata") calcola il proprio testo
    da --bsi-color-text-primary e il proprio sfondo da
    --bsi-color-background-primary-hover: in v3 di default sono tinte diverse
