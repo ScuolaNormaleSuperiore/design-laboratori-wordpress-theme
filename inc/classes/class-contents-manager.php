@@ -404,6 +404,16 @@ class DLI_ContentsManager {
 				),
 			),
 		);
+		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag_level' è presente e non vuoto.
+		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'slug', // 'slug', 'name' o 'term_id'.
+					'terms'    => $params['tag_level'],
+				),
+			);
+		}
 		return new WP_Query( $args );
 	}
 
