@@ -7,15 +7,15 @@
  *   node scan.js <baseUrl> [options]
  *
  * Options:
- *   --sitemap <path>      Path to sitemap page (default: /mappa-sito/)
+ *   --sitemap <path>      Scan only one sitemap (default: IT and EN sitemaps)
  *   --timeout <ms>        Page timeout in ms (default: 15000)
  *   --concurrency <n>     Max parallel tabs (default: 3)
- *   --delay <ms>          Wait between page requests in ms (default: 300, 0 = no delay)
- *   --out <path>          Output file path without extension (default: ./report)
+ *   --delay <ms>          Wait between page requests in ms (default: 1000, 0 = no delay)
+ *   --out <path>          Output file path without extension (default: timestamped report path)
  *
  * Example:
- *   node scan.js https://laboratorio1.local/
- *   node scan.js https://laboratorio1.local/ --sitemap /mappa-sito/ --concurrency 2
+ *   node scan.js https://laboratorio1.local
+ *   node scan.js https://laboratorio1.local --sitemap /mappa-sito/ --concurrency 2
  */
 
 'use strict';

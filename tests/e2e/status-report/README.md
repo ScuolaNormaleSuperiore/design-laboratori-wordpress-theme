@@ -221,11 +221,11 @@ L'installazione va eseguita una sola volta dalla **root del tema**.
 `playwright` è incluso nelle devDependencies del `package.json` principale.
 
 ```bash
-npm install
-npm run scan:install-browser
+npm ci
+npm run status:scan:install-browser
 ```
 
-`npm run scan:install-browser` scarica il browser Chromium headless (~150 MB).
+`npm run status:scan:install-browser` scarica il browser Chromium headless (~150 MB).
 
 
 ---
@@ -235,16 +235,16 @@ npm run scan:install-browser
 
 Tutti i comandi si eseguono dalla **root del tema**.
 
-**Scansione del sito locale (URL preconfigurato: `https://laboratorio1.local`):**
+**Scansione del sito locale:**
 
 ```bash
-npm run scan:demo
+npm run status:scan -- https://laboratorio1.local
 ```
 
 **Scansione di un URL personalizzato:**
 
 ```bash
-npm run scan -- https://mio-sito.example.com
+npm run status:scan -- https://mio-sito.example.com
 ```
 
 **Oppure direttamente con Node:**
@@ -256,8 +256,8 @@ node tests/e2e/status-report/scan.js https://mio-sito.example.com
 Al termine troverai i file in `tests/e2e/status-report/reports/` con suffisso data/ora automatico, es.:
 
 ```
-tests/e2e/status-report/reports/report_20260305_1430.html
-tests/e2e/status-report/reports/report_20260305_1430.json
+tests/e2e/status-report/reports/status_report_20260305_1430.html
+tests/e2e/status-report/reports/status_report_20260305_1430.json
 ```
 
 Apri il file `.html` direttamente nel browser.
@@ -270,7 +270,7 @@ I file nella cartella `reports/` non vengono committati su git.
 ## Opzioni disponibili
 
 ```
-npm run scan -- <baseUrl> [opzioni]
+npm run status:scan -- <baseUrl> [opzioni]
 ```
 
 | Opzione | Default | Descrizione |
@@ -279,23 +279,23 @@ npm run scan -- <baseUrl> [opzioni]
 | `--sitemap <path>` | entrambe le mappe standard | Scansiona soltanto una mappa specifica invece di `/mappa-sito/` e `/en/site-map/` |
 | `--timeout <ms>` | `15000` | Millisecondi di attesa massima per ogni pagina prima di segnare TIMEOUT |
 | `--concurrency <n>` | `3` | Numero massimo di pagine visitate contemporaneamente |
-| `--delay <ms>` | `300` | Pausa in ms prima di avviare ogni richiesta di pagina, per ridurre il carico sul server. `--delay 0` disabilita il delay. |
-| `--out <path>` | `./tests/e2e/status-report/report` | Percorso di output senza estensione — lo script aggiunge `.html` e `.json` |
+| `--delay <ms>` | `1000` | Pausa in ms prima di avviare ogni richiesta di pagina, per ridurre il carico sul server. `--delay 0` disabilita il delay. |
+| `--out <path>` | `./tests/e2e/status-report/reports/status_report_<YYYYMMDD_HHMM>` | Percorso di output senza estensione — lo script aggiunge `.html` e `.json` |
 
 **Esempi:**
 
 ```bash
 # Solo URL base — output con suffisso data/ora automatico
-npm run scan -- https://laboratorio1.local
+npm run status:scan -- https://laboratorio1.local
 
 # Mappa del sito su percorso diverso
-npm run scan -- https://laboratorio1.local --sitemap /sitemap-pages/
+npm run status:scan -- https://laboratorio1.local --sitemap /mappa-sito/
 
 # Timeout più lungo per siti lenti, un tab alla volta
-npm run scan -- https://laboratorio1.local --timeout 30000 --concurrency 1
+npm run status:scan -- https://laboratorio1.local --timeout 30000 --concurrency 1
 
 # Output su nome file personalizzato (senza suffisso automatico)
-npm run scan -- https://laboratorio1.local --out ./output/2026-03-05
+npm run status:scan -- https://laboratorio1.local --out ./output/2026-03-05
 ```
 
 
@@ -347,13 +347,13 @@ Tutti i comandi si eseguono dalla **root del tema**.
 **Confronto automatico dei due report più recenti:**
 
 ```bash
-npm run compare
+npm run status:compare
 ```
 
 **Confronto con file espliciti:**
 
 ```bash
-npm run compare -- tests/e2e/status-report/reports/report_A.json tests/e2e/status-report/reports/report_B.json
+npm run status:compare -- tests/e2e/status-report/reports/status_report_A.json tests/e2e/status-report/reports/status_report_B.json
 ```
 
 **Oppure direttamente con Node:**
@@ -362,7 +362,7 @@ npm run compare -- tests/e2e/status-report/reports/report_A.json tests/e2e/statu
 node tests/e2e/status-report/compare.js [report-nuovo.json] [report-vecchio.json]
 ```
 
-Senza argomenti lo script seleziona automaticamente i due file `report_*.json`
+Senza argomenti lo script seleziona automaticamente i due file `status_report_*.json`
 più recenti presenti in `tests/e2e/status-report/reports/`.
 
 
@@ -391,8 +391,8 @@ tests/e2e/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.json
 ============================================================
 DLI Site Status Comparator
 ============================================================
-Nuovo  : reports/report_20260310_1430.json  (2026-03-10 14:30)
-Vecchio: reports/report_20260305_1000.json  (2026-03-05 10:00)
+Nuovo  : reports/status_report_20260310_1430.json  (2026-03-10 14:30)
+Vecchio: reports/status_report_20260305_1000.json  (2026-03-05 10:00)
 ============================================================
 
 RIEPILOGO DELTA
