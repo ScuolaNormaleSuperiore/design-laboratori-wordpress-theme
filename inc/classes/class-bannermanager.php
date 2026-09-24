@@ -42,7 +42,7 @@ class Banner_Manager {
 			'edit_item'             => _x( 'Modifica il Banner', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza il Banner', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Immagine del Banner', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine Banner' ),
+			'set_featured_image'    => __( 'Seleziona Immagine Banner', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Banner', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Banner', 'design_laboratori_italia' ),
 		);
@@ -75,7 +75,7 @@ class Banner_Manager {
 	public function custom_layout( $post ) {
 		if ( BANNER_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione banner', 'design_laboratori_italia' );
+			esc_html_e( 'Descrizione banner', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}

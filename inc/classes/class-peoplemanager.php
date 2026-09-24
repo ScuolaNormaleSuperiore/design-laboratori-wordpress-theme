@@ -76,7 +76,7 @@ class People_Manager {
 			'edit_item'             => _x( 'Modifica la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza la Persona', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Immagine principale della Persona', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine' ),
+			'set_featured_image'    => __( 'Seleziona Immagine', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine della Persona', 'design_laboratori_italia' ),
 		);
@@ -108,12 +108,12 @@ class People_Manager {
 	public function custom_layout( $post ) {
 		if ( PEOPLE_POST_TYPE === $post->post_type ) {
 			echo '<span><i>';
-			_e( 'Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca', 'design_laboratori_italia' );
+			esc_html_e( 'Inserire nel titolo il nome completo della persona ed eventualmente il nome completo per facilitare la ricerca', 'design_laboratori_italia' );
 			echo '.</i></span>';
 			echo '<h1>';
-			_e( 'Biografia', 'design_laboratori_italia' );
+			esc_html_e( 'Biografia', 'design_laboratori_italia' );
 			echo '</h1>';
-			_e( 'Biografia della persona', 'design_laboratori_italia' );
+			esc_html_e( 'Biografia della persona', 'design_laboratori_italia' );
 		}
 	}
 

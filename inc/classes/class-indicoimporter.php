@@ -208,7 +208,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 		// Import footer.
 		$msg = sprintf(
-			__( '*** Totali: %1$d - Scartati: %2$d - Processati: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***' ),
+			// translators: 1: total items, 2: discarded, 3: processed, 4: updated, 5: ignored, 6: errors.
+			__( '*** Totali: %1$d - Scartati: %2$d - Processati: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***', 'design_laboratori_italia' ),
 			$total,
 			$discarded,
 			$processed,
@@ -306,7 +307,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		// Assegno valori ai campi dell'evento.
 		dli_update_field( 'link_dettaglio', DLI_ITEM_LINK['DETAIL_PAGE'], $post_id );
 		$description    = isset( $item['description'] ) ? (string) $item['description'] : '';
-		$plain_text     = strip_tags( $description );
+		$plain_text     = wp_strip_all_tags( $description );
 		$plain_text     = $this->sanitize_item_text( $plain_text );
 		$truncated_text = mb_substr( $plain_text, 0, DLI_SHORT_DESCRIPTION_SIZE - 3 );
 		if ( strlen( $plain_text ) > DLI_SHORT_DESCRIPTION_SIZE ) {

@@ -41,7 +41,7 @@ class News_Manager {
 			'edit_item'             => _x( 'Modifica la Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza la Notizia', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Logo Identificativo della Notizia', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine Notizia' ),
+			'set_featured_image'    => __( 'Seleziona Immagine Notizia', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Notizia', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Notizia', 'design_laboratori_italia' ),
 		);
@@ -75,7 +75,7 @@ class News_Manager {
 	public function custom_layout( $post ) {
 		if ( NEWS_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione notizia', 'design_laboratori_italia' );
+			esc_html_e( 'Descrizione notizia', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}

@@ -81,7 +81,7 @@ class Patent_Manager {
 			'edit_item'             => _x( 'Modifica il Brevetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza il Brevetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( "Logo Identificativo dell'Brevetto", 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine Brevetto' ),
+			'set_featured_image'    => __( 'Seleziona Immagine Brevetto', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Brevetto', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Brevetto', 'design_laboratori_italia' ),
 		);
@@ -115,7 +115,7 @@ class Patent_Manager {
 	public function custom_layout( $post ) {
 		if ( PATENT_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Abstract del brevetto', 'design_laboratori_italia' );
+			esc_html_e( 'Abstract del brevetto', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}
@@ -145,7 +145,7 @@ class Patent_Manager {
 		if ( PATENT_SORTABLE_FIELD === $column ) {
 				// Ottieni il valore del meta field PATENT_SORTABLE_FIELD.
 				$value = get_post_meta( $post_id, PATENT_SORTABLE_FIELD, true );
-				echo $value ? esc_html( $value ) : __( 'N/D', 'design_laboratori_italia' );
+				echo $value ? esc_html( $value ) : esc_html__( 'N/D', 'design_laboratori_italia' );
 		}
 	}
 

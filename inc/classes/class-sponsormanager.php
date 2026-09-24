@@ -42,7 +42,7 @@ class Sponsor_Manager {
 			'edit_item'             => _x( 'Modifica lo Sponsor', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza lo Sponsor', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Logo Identificativo dello Sponsor', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine Sponsor' ),
+			'set_featured_image'    => __( 'Seleziona Immagine Sponsor', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine Sponsor', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine Sponsor', 'design_laboratori_italia' ),
 		);
@@ -76,7 +76,7 @@ class Sponsor_Manager {
 	public function custom_layout( $post ) {
 		if ( SPONSOR_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione dello Sponsor', 'design_laboratori_italia' );
+			esc_html_e( 'Descrizione dello Sponsor', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}

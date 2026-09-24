@@ -226,7 +226,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			}
 		}
 		$msg = sprintf(
-			__( '*** Totali: %1$d - Simulati: %2$d - Aggiunti: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***' ),
+			// translators: 1: total items, 2: simulated (dry-run), 3: added, 4: updated, 5: ignored, 6: errors.
+			__( '*** Totali: %1$d - Simulati: %2$d - Aggiunti: %3$d - Aggiornati: %4$d - Ignorati: %5$d - Errori: %6$d ***', 'design_laboratori_italia' ),
 			$counter,
 			$simulated_items,
 			$added_items,
@@ -242,8 +243,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 * Append a log line for one imported item and bump the matching counter.
 	 *
 	 * @param array  $results       Passed by reference: log lines accumulator.
-	 * @param string $itemCode      Post ID (and PID) of the imported item, for the log line.
-	 * @param string $itemTitle     Sanitized item title, for the log line.
+	 * @param string $item_code     Post ID (and PID) of the imported item, for the log line.
+	 * @param string $item_title    Sanitized item title, for the log line.
 	 * @param bool   $updated       Whether an existing post was updated.
 	 * @param bool   $ignored       Whether an existing post was left untouched.
 	 * @param int    $added_items   Passed by reference: bumped when a new post was created.
@@ -251,23 +252,23 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 * @param int    $ignored_items Passed by reference: bumped when an existing post was ignored.
 	 * @return void
 	 */
-	private function _process_result( &$results, $itemCode, $itemTitle, $updated, $ignored, &$added_items, &$updated_items, &$ignored_items ) {
+	private function _process_result( &$results, $item_code, $item_title, $updated, $ignored, &$added_items, &$updated_items, &$ignored_items ) {
 		if ( $updated ) {
 			array_push(
 				$results,
-				MSG_UPDATED_ITEM . $itemCode . ' - ' . $itemTitle
+				MSG_UPDATED_ITEM . $item_code . ' - ' . $item_title
 			);
 			++$updated_items;
 		} elseif ( $ignored ) {
 			array_push(
 				$results,
-				MSG_IGNORED_ITEM . $itemCode . ' - ' . $itemTitle
+				MSG_IGNORED_ITEM . $item_code . ' - ' . $item_title
 			);
 			++$ignored_items;
 		} else {
 			array_push(
 				$results,
-				MSG_IMPORTED_ITEM . $itemCode . ' - ' . $itemTitle
+				MSG_IMPORTED_ITEM . $item_code . ' - ' . $item_title
 			);
 			++$added_items;
 		}
@@ -468,7 +469,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		// Famiglia.
 		if ( $item->family ) {
 			try {
-				dli_update_field( 'famiglia', json_encode( $item->family ), $post_id );
+				dli_update_field( 'famiglia', wp_json_encode( $item->family ), $post_id );
 			} catch ( Exception $e ) {
 				$this->log_string( '*** Error: Msg:' . $e->getMessage() . ' - Code: ' . $e->getCode() );
 			}

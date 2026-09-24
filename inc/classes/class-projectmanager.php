@@ -66,7 +66,7 @@ class Project_Manager {
 	public function custom_layout( $post ) {
 		if ( PROGETTO_POST_TYPE === $post->post_type ) {
 			echo '<h1>';
-			_e( 'Descrizione del progetto', 'design_laboratori_italia' );
+			esc_html_e( 'Descrizione del progetto', 'design_laboratori_italia' );
 			echo '</h1>';
 		}
 	}

@@ -393,7 +393,7 @@ class DLI_BaseImporter {
 			'message' => $message,
 			'data'    => $data,
 		);
-		$this->log_string( json_encode( $result ) );
+		$this->log_string( wp_json_encode( $result ) );
 		return new WP_REST_Response( $result, $code );
 	}
 

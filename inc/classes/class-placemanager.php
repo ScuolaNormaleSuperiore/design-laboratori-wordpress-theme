@@ -82,7 +82,7 @@ class Place_Manager {
 			'edit_item'             => _x( 'Modifica il Luogo', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'view_item'             => _x( 'Visualizza il Luogo', 'Post Type Singular Name', 'design_laboratori_italia' ),
 			'featured_image'        => __( 'Immagine principale del Luogo', 'design_laboratori_italia' ),
-			'set_featured_image'    => __( 'Seleziona Immagine' ),
+			'set_featured_image'    => __( 'Seleziona Immagine', 'design_laboratori_italia' ),
 			'remove_featured_image' => __( 'Rimuovi Immagine', 'design_laboratori_italia' ),
 			'use_featured_image'    => __( 'Usa come Immagine del Luogo', 'design_laboratori_italia' ),
 		);
