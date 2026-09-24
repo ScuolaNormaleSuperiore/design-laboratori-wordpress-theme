@@ -14,10 +14,19 @@
  *
  * @see Walker
  */
-
 class Header_Menu_Walker extends Walker_Nav_Menu {
 
-	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	/**
+	 * Renders a single menu item as an <li> for the header menu.
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $item   Menu item data object.
+	 * @param int    $depth  Depth of menu item, used for padding.
+	 * @param array  $args   Additional strings.
+	 * @param int    $id     Current item ID.
+	 * @return void
+	 */
+	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
 		$output        .= '<li>';
 		$item_url       = ! empty( $item->url ) ? esc_url( $item->url ) : '#';
