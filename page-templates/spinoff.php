@@ -27,29 +27,37 @@ $dli_all_sector_ids   = $dli_all_sectors
 $dli_all_years        = DLI_ContentsManager::dli_get_all_spinoff_years();
 $dli_per_page         = strval( DLI_PER_PAGE );
 $dli_per_page_values  = DLI_PER_PAGE_VALUES;
+$dli_allowed_pages    = array_map( 'strval', (array) $dli_per_page_values );
 
-if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
-	$dli_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );
+$dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+if ( is_string( $dli_raw_per_page ) ) {
+	$dli_raw_per_page = sanitize_text_field( wp_unslash( $dli_raw_per_page ) );
+	if ( in_array( $dli_raw_per_page, $dli_allowed_pages, true ) ) {
+		$dli_per_page = $dli_raw_per_page;
+	}
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['business_sector'] ) && is_array( $_GET['business_sector'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_selected_sectors = array_values(
 		array_filter(
 			array_map(
 				'sanitize_text_field',
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 				wp_unslash( $_GET['business_sector'] )
 			)
 		)
 	);
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['search_string'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_search_string = sanitize_text_field( wp_unslash( $_GET['search_string'] ) );
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['foundation_year'] ) && is_numeric( $_GET['foundation_year'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_selected_year = sanitize_text_field( wp_unslash( $_GET['foundation_year'] ) );

@@ -70,9 +70,6 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 		if ( 201 === $dli_result['code'] || 204 === $dli_result['code'] ) {
 			$dli_sent_successfully = true;
 		} else {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( wp_json_encode( $dli_result ) );
-			}
 			$dli_form_errors[] = __( 'Errore durante l\'iscrizione alla newsletter.', 'design_laboratori_italia' );
 		}
 	}
