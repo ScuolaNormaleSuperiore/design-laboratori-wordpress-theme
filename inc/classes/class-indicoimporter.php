@@ -9,8 +9,14 @@ require_once 'class-base-importer.php';
 
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
 
+/**
+ * Imports events from an Indico instance's category export API.
+ */
 class DLI_IndicoImporter extends DLI_BaseImporter {
 
+	/**
+	 * Configure the importer settings and schedule the import job.
+	 */
 	public function __construct() {
 		$this->importer_name    = 'Indico Event Importer';
 		$this->job_name         = 'dli_indico_import_job';
@@ -24,6 +30,11 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$this->manage_import_job();
 	}
 
+	/**
+	 * Run the Indico events import (real or dry-run, per configuration).
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function import() {
 		$this->log_string( '*** RUNNING IMPORT: ' . $this->job_name . ' ***' );
 		// Gestione parametri.
@@ -33,7 +44,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$data = array();
 		// Verifica modulo abilitato.
 		$module_enabled = dli_get_option( 'indico_enabled', 'indico' );
-		if ( $module_enabled && $module_enabled === 'true' ) {
+		if ( $module_enabled && 'true' === $module_enabled ) {
 			// Recupero parametri di configurazione.
 			$criteria   = dli_get_option( 'indico_import_criteria', 'indico' );
 			$start_date = $this->_start_date_from_criteria( $criteria );
@@ -69,6 +80,13 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Fetch the category export JSON payload from the configured Indico instance.
+	 *
+	 * @param array $conf Import configuration (base_url, category, start_date, ...).
+	 * @return array Decoded JSON payload.
+	 * @throws Exception When the URL is invalid or the HTTP request fails/returns a non-200 status.
+	 */
 	private function get_data_to_import( $conf ) {
 		$category   = $conf['category'];
 		$base_url   = $conf['base_url'];
@@ -92,7 +110,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			throw new Exception( $msg );
 		}
 		$code = wp_remote_retrieve_response_code( $response );
-		if ( $code !== 200 ) {
+		if ( 200 !== $code ) {
 			$body = wp_remote_retrieve_body( $response );
 			$msg  = 'Errore invocando la Indico REST API. HTTP ' . $code . '. Risposta: ' . $body;
 			throw new Exception( $msg );
@@ -103,6 +121,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $resp_data;
 	}
 
+	/**
+	 * Fetch the Indico events feed and import each entry, one at a time,
+	 * skipping items whose keywords do not match the configured filter.
+	 *
+	 * @param array $conf Import configuration (import_type, keywords, lang, ...).
+	 * @return array Human-readable log lines, one per processed/discarded item plus a summary footer.
+	 * @throws Exception When the feed payload is missing a valid "results" key.
+	 */
 	private function execute_import( $conf = array() ): array {
 		$import_type = $conf['import_type'];
 		$data        = array();
@@ -111,7 +137,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$resp_data = $this->get_data_to_import( $conf );
 
 		// Import type header.
-		array_push( $data, ( $import_type === 'dryrun' ) ? MSG_HEADER_DRY_RUN : MSG_HEADER_REAL_IMPORT );
+		array_push( $data, ( 'dryrun' === $import_type ) ? MSG_HEADER_DRY_RUN : MSG_HEADER_REAL_IMPORT );
 
 		// Loop di importazione.
 		if ( ! isset( $resp_data['results'] ) || ! is_array( $resp_data['results'] ) ) {
@@ -139,7 +165,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 				continue;
 			}
 
-			if ( $import_type === 'dryrun' ) {
+			if ( 'dryrun' === $import_type ) {
 				// Importazione dry run.
 				array_push(
 					$data,
@@ -194,6 +220,17 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $data;
 	}
 
+	/**
+	 * Create or update the WordPress event post for a single Indico feed item.
+	 *
+	 * @param array  $item     Raw feed item (title, description, url, ...).
+	 * @param array  $conf     Import configuration (post_status, action, base_url, ...).
+	 * @param bool   $updated  Passed by reference: set to true when an existing post was updated.
+	 * @param bool   $ignored  Passed by reference: set to true when an existing post was left untouched.
+	 * @param string $lang     Language slug to assign to the created/updated post.
+	 * @return int Post ID of the created or matched event.
+	 * @throws Exception When wp_insert_post() fails.
+	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
 		$item_title       = $this->sanitize_import_title( (string) $item['title'] );
 		$post_name        = dli_generate_slug( $item_title );
@@ -206,7 +243,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			'post_status'  => $conf['post_status'],
 			'post_parent'  => 0,
 		);
-		$update_existent  = ( $conf['action'] === 'update' ) ? true : false;
+		$update_existent  = ( 'update' === $conf['action'] ) ? true : false;
 		// Creazione degli eventi su WordPress.
 		// Verifico esistenza evento.
 		$page_check = dli_get_content( $post_name, EVENT_POST_TYPE );
@@ -246,7 +283,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	/**
 	 * Sanitize free text fields imported from Indico.
 	 *
-	 * @param string $text
+	 * @param string $text Raw text to clean up.
 	 * @return string
 	 */
 	private function sanitize_item_text( $text ) {
@@ -257,6 +294,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $text;
 	}
 
+	/**
+	 * Populate the ACF fields of an event post from a single Indico feed item.
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param array  $item    Raw feed item (description, startDate, endDate, url, ...).
+	 * @param string $lang    Unused; kept for call-site symmetry with create_wp_content().
+	 * @return void
+	 */
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) {
 		// Assegno valori ai campi dell'evento.
 		dli_update_field( 'link_dettaglio', DLI_ITEM_LINK['DETAIL_PAGE'], $post_id );
@@ -319,6 +364,13 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 
 
 	// *** Funzioni di utilità dedicate *** //
+
+	/**
+	 * Compute the feed's "from" date filter based on the configured criteria.
+	 *
+	 * @param string $criteria One of 'all', 'this-year', 'future' (default: today).
+	 * @return string Date in 'Y-m-d' format.
+	 */
 	private function _start_date_from_criteria( $criteria ) {
 		$date_string = date( 'Y-m-d' );
 		switch ( $criteria ) {
@@ -336,6 +388,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return $date_string;
 	}
 
+	/**
+	 * Download the event's og:image (if any) and set it as the post's featured image.
+	 *
+	 * @param int    $post_id  Post ID to attach the image to.
+	 * @param string $item_url Event page URL to scrape the og:image meta tag from.
+	 * @param string $base_url Indico base URL, used to resolve relative image URLs.
+	 * @return void
+	 */
 	private function _add_post_featured_image( $post_id, $item_url, $base_url ) {
 		if ( $item_url ) {
 			$property = 'og:image';
@@ -354,6 +414,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Fetch a page and extract the "content" attribute of a <meta property="..."> tag.
+	 *
+	 * @param string $url      Page URL to fetch.
+	 * @param string $property Meta tag property name to look up (e.g. 'og:image').
+	 * @return string|null Meta tag content, or null if not found.
+	 * @throws Exception When the URL/property are invalid or the page cannot be fetched.
+	 */
 	private function _get_meta_content( $url, $property ) {
 		$url      = esc_url_raw( $url );
 		$property = sanitize_text_field( (string) $property );
@@ -389,7 +457,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$dom = new DOMDocument();
 		// Sopprimi gli errori dovuti a HTML non valido.
 		$libxml_previous = libxml_use_internal_errors( true );
-		// Carica l'HTML
+		// Carica l'HTML.
 		$dom->loadHTML( $html );
 		// Ripristina la gestione degli errori.
 		libxml_clear_errors();
@@ -413,6 +481,13 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		return null;
 	}
 
+	/**
+	 * Rewrite root-relative image src attributes to absolute URLs on the Indico instance.
+	 *
+	 * @param string $post_content Raw HTML description from the feed item.
+	 * @param string $base_url    Indico base URL used to resolve the relative paths.
+	 * @return string
+	 */
 	private function _prepare_post_content( $post_content, $base_url ) {
 		$pattern = '/src="\/([^"]*)"/';
 		// Sostituisce il pattern con la base URL.

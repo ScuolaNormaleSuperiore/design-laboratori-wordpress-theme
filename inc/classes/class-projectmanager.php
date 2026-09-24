@@ -5,7 +5,9 @@
  * @package Design_Laboratori_Italia
  */
 
-
+/**
+ * The manager that setups Progetto post types.
+ */
 class Project_Manager {
 	/**
 	 * Constructor of the Manager.
@@ -24,7 +26,12 @@ class Project_Manager {
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
-	function add_post_type() {
+	/**
+	 * Register the Progetto custom post type.
+	 *
+	 * @return void
+	 */
+	public function add_post_type() {
 		$labels = array(
 			'name'          => _x( 'Progetti', 'Post Type General Name', 'design_laboratori_italia' ),
 			'singular_name' => _x( 'Progetto', 'Post Type Singular Name', 'design_laboratori_italia' ),
@@ -46,7 +53,7 @@ class Project_Manager {
 			'taxonomies'    => array( WP_DEFAULT_TAGS ),
 		);
 		register_post_type( PROGETTO_POST_TYPE, $args );
-		// Add the custom fields
+		// Add the custom fields.
 		$this->add_fields();
 	}
 
@@ -54,7 +61,7 @@ class Project_Manager {
 		 * Customize the layout of the admin interface.
 		 *
 		 * @param Object $post - The custom post.
-		 * @return string
+		 * @return void
 		 */
 	public function custom_layout( $post ) {
 		if ( PROGETTO_POST_TYPE === $post->post_type ) {
@@ -65,7 +72,12 @@ class Project_Manager {
 	}
 
 
-	function add_fields() {
+	/**
+	 * Add the custom fields of the custom post-type.
+	 *
+	 * @return void
+	 */
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

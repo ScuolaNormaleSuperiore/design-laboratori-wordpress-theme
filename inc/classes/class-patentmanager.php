@@ -5,9 +5,11 @@
  * @package Design_Laboratori_Italia
  */
 
-
 define( 'PATENT_SORTABLE_FIELD', 'codice_brevetto' );
 
+/**
+ * The manager that setups Patent post types.
+ */
 class Patent_Manager {
 	/**
 	 * Constructor of the Manager.
@@ -108,7 +110,7 @@ class Patent_Manager {
 	 * Customize the layout of the admin interface.
 	 *
 	 * @param Object $post - The custom post.
-	 * @return string
+	 * @return void
 	 */
 	public function custom_layout( $post ) {
 		if ( PATENT_POST_TYPE === $post->post_type ) {
@@ -119,33 +121,58 @@ class Patent_Manager {
 	}
 
 
-	function add_custom_admin_columns( $columns ) {
+	/**
+	 * Add the sortable field column to the patent admin list.
+	 *
+	 * @param array $columns Existing admin list columns.
+	 * @return array
+	 */
+	public function add_custom_admin_columns( $columns ) {
 		// Inserisci una nuova colonna per il meta field PATENT_SORTABLE_FIELD.
 		$columns[ PATENT_SORTABLE_FIELD ] = __( 'Codice', 'design_laboratori_italia' );
 		return $columns;
 	}
 
-	function populate_custom_admin_columns( $column, $post_id ) {
+	/**
+	 * Render the custom column content in the patent admin list.
+	 *
+	 * @param string $column  Column name being rendered.
+	 * @param int    $post_id Post ID of the current row.
+	 * @return void
+	 */
+	public function populate_custom_admin_columns( $column, $post_id ) {
 		// Popolare la colonna personalizzata con i dati del meta field.
-		if ( $column == PATENT_SORTABLE_FIELD ) {
-				// Ottieni il valore del meta field PATENT_SORTABLE_FIELD
+		if ( PATENT_SORTABLE_FIELD === $column ) {
+				// Ottieni il valore del meta field PATENT_SORTABLE_FIELD.
 				$value = get_post_meta( $post_id, PATENT_SORTABLE_FIELD, true );
 				echo $value ? esc_html( $value ) : __( 'N/D', 'design_laboratori_italia' );
 		}
 	}
 
 
-	function sort_custom_admin_columns( $columns ) {
+	/**
+	 * Mark the sortable field column as sortable in the patent admin list.
+	 *
+	 * @param array $columns Existing sortable columns.
+	 * @return array
+	 */
+	public function sort_custom_admin_columns( $columns ) {
 		// Rendere la colonna PATENT_SORTABLE_FIELD ordinabile.
 		$columns[ PATENT_SORTABLE_FIELD ] = PATENT_SORTABLE_FIELD;
 		return $columns;
 	}
 
-	function order_custom_admin_columns( $query ) {
+	/**
+	 * Order the patent admin list by the sortable field's meta value, when requested.
+	 *
+	 * @param WP_Query $query Main admin list query.
+	 * @return void
+	 */
+	public function order_custom_admin_columns( $query ) {
 		if ( ! is_admin() || ! $query->is_main_query() ) {
 			return;
 		}
-		if ( $query->get( 'orderby' ) == PATENT_SORTABLE_FIELD ) {
+		if ( PATENT_SORTABLE_FIELD === $query->get( 'orderby' ) ) {
 			// Ordina per meta field PATENT_SORTABLE_FIELD.
 			$query->set( 'meta_key', PATENT_SORTABLE_FIELD );
 			$query->set( 'orderby', 'meta_value' );
@@ -158,7 +185,7 @@ class Patent_Manager {
 	 *
 	 * @return void
 	 */
-	function add_fields() {
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

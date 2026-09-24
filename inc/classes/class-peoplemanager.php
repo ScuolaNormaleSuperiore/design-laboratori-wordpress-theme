@@ -34,7 +34,7 @@ class People_Manager {
 	 * @return void
 	 */
 	public function add_taxonomies() {
-		// aggiungo la tassonomia struttura
+		// Aggiungo la tassonomia struttura.
 
 		$structure_labels = array(
 			'name'          => _x( 'Struttura', 'taxonomy general name', 'design_laboratori_italia' ),
@@ -103,7 +103,7 @@ class People_Manager {
 	 * Customize the layout of the admin interface.
 	 *
 	 * @param Object $post - The custom post.
-	 * @return string
+	 * @return void
 	 */
 	public function custom_layout( $post ) {
 		if ( PEOPLE_POST_TYPE === $post->post_type ) {
@@ -122,7 +122,7 @@ class People_Manager {
 	 *
 	 * @return void
 	 */
-	function add_fields() {
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

@@ -6,6 +6,11 @@
  */
 
 if ( ! function_exists( 'dli_define_spinoff_constants' ) ) {
+	/**
+	 * Define the translated labels for the Spin-off legal status field.
+	 *
+	 * @return void
+	 */
 	function dli_define_spinoff_constants() {
 		define(
 			'DLI_SPINOFF_STATUS',
@@ -18,6 +23,9 @@ if ( ! function_exists( 'dli_define_spinoff_constants' ) ) {
 	add_action( 'after_setup_theme', 'dli_define_spinoff_constants' );
 }
 
+/**
+ * The manager that setups Spin-off post types.
+ */
 class SpinOff_Manager {
 	/**
 	 * Constructor of the Manager.
@@ -113,7 +121,7 @@ class SpinOff_Manager {
 	 * Customize the layout of the admin interface.
 	 *
 	 * @param Object $post - The custom post.
-	 * @return string
+	 * @return void
 	 */
 	public function custom_layout( $post ) {
 		if ( SPINOFF_POST_TYPE === $post->post_type ) {
@@ -131,7 +139,7 @@ class SpinOff_Manager {
 	 *
 	 * @return void
 	 */
-	function add_fields() {
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

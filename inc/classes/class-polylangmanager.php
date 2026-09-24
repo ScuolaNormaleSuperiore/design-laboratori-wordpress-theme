@@ -29,16 +29,16 @@ class Polylang_Manager {
 	/**
 	 * All the post types that must be managed by Polylang.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public function add_cpt_to_pll() {
 		return DLI_POST_TYPES_TO_TRANSLATE;
 	}
 
 	/**
-	 *  all the taxonomies that must be managed by Polylang.
+	 *  All the taxonomies that must be managed by Polylang.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public function add_tax_to_pll() {
 		return DLI_TAXONOMIES_TO_TRANSLATE;

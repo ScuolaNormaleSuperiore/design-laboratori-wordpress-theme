@@ -5,7 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-
 define( 'MSG_MODULE_DISABLED', 'Import disabilitato' );
 define( 'MSG_MODULE_NOT_CONFIGURED', 'Import non configurato correttamente' );
 define( 'MSG_IMPORT_ERROR', "Si è verificato un errore durante l'esecuzione dell'import" );
@@ -19,17 +18,70 @@ define( 'MSG_HEADER_DRY_RUN', '*** Importazione in modalità DRY-RUN (nessun ogg
 define( 'MSG_HEADER_REAL_IMPORT', '*** Importazione effettiva, oggetti creati realmente ***' );
 
 
+/**
+ * Base class for scheduled/REST-triggered import jobs (Indico events, IRIS patents, ...).
+ */
 class DLI_BaseImporter {
 
+	/**
+	 * Human-readable name, used in log lines.
+	 *
+	 * @var string
+	 */
 	protected string $importer_name;
+
+	/**
+	 * Name of the scheduled WP-Cron job.
+	 *
+	 * @var string
+	 */
 	protected string $job_name;
+
+	/**
+	 * REST route suffix the importer registers, when enabled.
+	 *
+	 * @var string
+	 */
 	protected string $endpoint;
+
+	/**
+	 * Configured schedule recurrence (e.g. 'daily'), from the module's options.
+	 *
+	 * @var string
+	 */
 	protected string $schedule_type;
+
+	/**
+	 * Post type the importer creates/updates.
+	 *
+	 * @var string
+	 */
 	protected string $post_type;
+
+	/**
+	 * Whether verbose logging is enabled, from the module's options.
+	 *
+	 * @var bool
+	 */
 	protected bool $debug_enabled;
+
+	/**
+	 * Whether the scheduled job is enabled, from the module's options.
+	 *
+	 * @var bool
+	 */
 	protected bool $schedule_enabled;
+
+	/**
+	 * Whether the whole import module is enabled, from the module's options.
+	 *
+	 * @var bool
+	 */
 	protected bool $module_enabled;
 
+	/**
+	 * Base constructor; subclasses configure the properties above.
+	 */
 	protected function __construct() {}
 
 	/**
@@ -42,7 +94,7 @@ class DLI_BaseImporter {
 	/**
 	 * Esecuzione dell'import.
 	 *
-	 * @param [type] $conf
+	 * @param array $conf Import configuration.
 	 * @return void
 	 */
 	private function execute_import( $conf ) {}
@@ -50,7 +102,7 @@ class DLI_BaseImporter {
 	/**
 	 * Recupera dalla sorgente i dati da importare.
 	 *
-	 * @param [type] $conf
+	 * @param array $conf Import configuration.
 	 * @return void
 	 */
 	private function get_data_to_import( $conf ) {}
@@ -58,10 +110,11 @@ class DLI_BaseImporter {
 	/**
 	 *  Creazione/Modifica dell'post su WordPress.
 	 *
-	 * @param mixed $item
-	 * @param mixed $conf
-	 * @param mixed $updated
-	 * @param mixed $ignored
+	 * @param mixed  $item    Raw source item to import.
+	 * @param mixed  $conf    Import configuration.
+	 * @param mixed  $updated Passed by reference: set when an existing post was updated.
+	 * @param mixed  $ignored Passed by reference: set when an existing post was left untouched.
+	 * @param string $lang    Language slug to assign to the created/updated post.
 	 * @return int
 	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {}
@@ -69,8 +122,9 @@ class DLI_BaseImporter {
 	/**
 	 * Modifica dei post su WordPress.
 	 *
-	 * @param [type] $post_id
-	 * @param [type] $item
+	 * @param int    $post_id Post ID to update.
+	 * @param mixed  $item    Raw source item to import.
+	 * @param string $lang    Language slug of the post being updated.
 	 * @return void
 	 */
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) { }
@@ -78,8 +132,8 @@ class DLI_BaseImporter {
 	/**
 	 * Modifica del titolo del post.
 	 *
-	 * @param [type] $post_id
-	 * @param [type] $title
+	 * @param int    $post_id Post ID to update.
+	 * @param string $title   New post title.
 	 * @return void
 	 */
 	private function update_title( $post_id, $title ) { }
@@ -125,6 +179,11 @@ class DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Clear the importer's scheduled WP-Cron job.
+	 *
+	 * @return void
+	 */
 	public function remove_all_import_jobs() {
 		$this->log_string( '*** CANCELLO schedulazione job: ' . $this->job_name . ' ***' );
 		wp_clear_scheduled_hook( $this->job_name );
@@ -170,7 +229,7 @@ class DLI_BaseImporter {
 	/**
 	 * Verifica la Basic Authentication e che l'utente sia Amministratore.
 	 *
-	 * @param WP_REST_Request $request
+	 * @param WP_REST_Request $request Incoming REST request.
 	 * @return bool | WP_Error
 	 */
 	public function dli_permission_callback( WP_REST_Request $request ) {
@@ -323,10 +382,10 @@ class DLI_BaseImporter {
 	/**
 	 * Stampa il report dell'importazione.
 	 *
-	 * @param [type] $code
-	 * @param [type] $message
-	 * @param [type] $data
-	 * @return void
+	 * @param int    $code    HTTP-like status code to report.
+	 * @param string $message Human-readable result message.
+	 * @param array  $data    Log lines / import result payload.
+	 * @return WP_REST_Response
 	 */
 	public function send_response( $code, $message, $data ) {
 		$result = array(
@@ -341,7 +400,7 @@ class DLI_BaseImporter {
 	/**
 	 * Stampa messaggi di log, se abilitati da Configurazione.
 	 *
-	 * @param [type] $text
+	 * @param string $text Message to log.
 	 * @return void
 	 */
 	public function log_string( $text ) {
@@ -353,11 +412,11 @@ class DLI_BaseImporter {
 	/**
 	 * Trim delle stringhe di un array.
 	 *
-	 * @param [type] $array
+	 * @param array $strings Array of strings to trim.
 	 * @return array
 	 */
-	public function trim_array( $array ): array {
-		return array_map( 'trim', $array );
+	public function trim_array( $strings ): array {
+		return array_map( 'trim', $strings );
 	}
 
 	/**

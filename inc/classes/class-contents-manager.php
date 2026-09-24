@@ -5,24 +5,114 @@
  * @package Design_Laboratori_Italia
  */
 
-
-
+/**
+ * Value object holding the Open Graph data of the current page.
+ */
 class DLI_OG_Wrapper {
-	public string $id           = '';
-	public string $title        = '';
+	/**
+	 * Current item's post ID.
+	 *
+	 * @var string
+	 */
+	public string $id = '';
+
+	/**
+	 * Current item's title.
+	 *
+	 * @var string
+	 */
+	public string $title = '';
+
+	/**
+	 * Title including the laboratory name, for the og:title tag.
+	 *
+	 * @var string
+	 */
 	public string $shared_title = '';
-	public string $type         = '';
-	public string $description  = '';
-	public string $url          = '';
-	public string $locale       = '';
-	public string $site_title   = '';
+
+	/**
+	 * Current item's post type.
+	 *
+	 * @var string
+	 */
+	public string $type = '';
+
+	/**
+	 * Current item's description/excerpt.
+	 *
+	 * @var string
+	 */
+	public string $description = '';
+
+	/**
+	 * Current item's permalink.
+	 *
+	 * @var string
+	 */
+	public string $url = '';
+
+	/**
+	 * Site locale.
+	 *
+	 * @var string
+	 */
+	public string $locale = '';
+
+	/**
+	 * Laboratory name.
+	 *
+	 * @var string
+	 */
+	public string $site_title = '';
+
+	/**
+	 * Laboratory tagline.
+	 *
+	 * @var string
+	 */
 	public string $site_tagline = '';
-	public string $image        = '';
-	public string $img_width    = '';
-	public string $img_height   = '';
-	public string $img_type     = '';
-	public string $site_url     = '';
-	public string $domain       = '';
+
+	/**
+	 * Featured image URL.
+	 *
+	 * @var string
+	 */
+	public string $image = '';
+
+	/**
+	 * Featured image width in pixels.
+	 *
+	 * @var string
+	 */
+	public string $img_width = '';
+
+	/**
+	 * Featured image height in pixels.
+	 *
+	 * @var string
+	 */
+	public string $img_height = '';
+
+	/**
+	 * Featured image MIME type.
+	 *
+	 * @var string
+	 */
+	public string $img_type = '';
+
+	/**
+	 * Site URL.
+	 *
+	 * @var string
+	 */
+	public string $site_url = '';
+
+	/**
+	 * Site domain, for the og:site_name context.
+	 *
+	 * @var string
+	 */
+	public string $domain = '';
 }
 
 /**
@@ -31,6 +121,11 @@ class DLI_OG_Wrapper {
 class DLI_ContentsManager {
 
 
+	/**
+	 * Build the Open Graph data for the currently displayed page/post.
+	 *
+	 * @return DLI_OG_Wrapper
+	 */
 	public static function get_og_data() {
 		global $post;
 		$og_data     = new DLI_OG_Wrapper();
@@ -38,7 +133,7 @@ class DLI_ContentsManager {
 		$item_type   = $item_id && $post->post_type ? $post->post_type : '';
 		$is_homepage = is_home() || is_front_page();
 
-		if ( $item_id && in_array( $item_type, DLI_POST_TYPES_TO_TRANSLATE ) ) {
+		if ( $item_id && in_array( $item_type, DLI_POST_TYPES_TO_TRANSLATE, true ) ) {
 			// Get data to fill OG structure.
 			$site_title   = dli_get_option_by_lang( 'nome_laboratorio' );
 			$site_tagline = dli_get_option_by_lang( 'tagline_laboratorio' );
@@ -57,7 +152,7 @@ class DLI_ContentsManager {
 			$domain       = isset( $parsed_url['host'] ) ? $parsed_url['host'] : wp_parse_url( home_url(), PHP_URL_HOST );
 			$shared_title = $is_homepage ? $site_title : $site_title . ' - ' . $post->post_title;
 
-			// Fill OG data:
+			// Fill OG data.
 			$og_data->id           = $item_id;
 			$og_data->title        = $item_title;
 			$og_data->type         = $item_type;
@@ -77,6 +172,11 @@ class DLI_ContentsManager {
 		return $og_data;
 	}
 
+	/**
+	 * Get the distinct deposit years used across published patents.
+	 *
+	 * @return array
+	 */
 	public static function dli_get_all_patent_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
@@ -98,6 +198,11 @@ class DLI_ContentsManager {
 		return $results;
 	}
 
+	/**
+	 * Get the distinct incorporation years used across published spin-offs.
+	 *
+	 * @return array
+	 */
 	public static function dli_get_all_spinoff_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
@@ -119,6 +224,11 @@ class DLI_ContentsManager {
 		return $results;
 	}
 
+	/**
+	 * Get the distinct acquisition years used across published technical resources.
+	 *
+	 * @return array
+	 */
 	public static function dli_get_all_technical_res_years() {
 		global $wpdb;
 		$results = $wpdb->get_col(
@@ -140,6 +250,12 @@ class DLI_ContentsManager {
 		return $results;
 	}
 
+	/**
+	 * Build the breadcrumb steps (Home > ancestors > current page) for a post.
+	 *
+	 * @param WP_Post|null $post Current post, or null for the homepage only.
+	 * @return array List of steps, each with 'label', 'url' and 'class' keys.
+	 */
 	public static function build_content_path( $post ) {
 		$steps = array(
 			array(
@@ -153,7 +269,7 @@ class DLI_ContentsManager {
 				case 'page':
 					$post_parent  = $post->post_parent;
 					$post_parents = array();
-					while ( $post_parent !== 0 ) {
+					while ( 0 !== $post_parent ) {
 						$post_tmp = get_post( $post_parent );
 						if ( ! $post_tmp ) {
 							break;
@@ -166,7 +282,7 @@ class DLI_ContentsManager {
 						$post_parent    = $post_tmp->post_parent;
 					}
 
-					// reverse array
+					// Reverse array.
 					$post_parents = count( $post_parents ) > 1 ? array_reverse( $post_parents ) : $post_parents;
 
 					foreach ( $post_parents as $parent ) {
@@ -222,6 +338,12 @@ class DLI_ContentsManager {
 	}
 
 
+	/**
+	 * Build the WP_Query for the patents archive, applying search/deposit-year/thematic-area filters.
+	 *
+	 * @param array $params Archive request params (paged, per_page, search_string, deposit_year, thematic_area).
+	 * @return WP_Query
+	 */
 	public static function get_patent_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -250,6 +372,12 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the spin-offs archive, applying search/foundation-year/business-sector filters.
+	 *
+	 * @param array $params Archive request params (paged, per_page, search_string, foundation_year, business_sector).
+	 * @return WP_Query
+	 */
 	public static function get_spinoff_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -284,6 +412,12 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the technical resources archive, applying search/acquisition-year/type filters.
+	 *
+	 * @param array $params Archive request params (paged, per_page, search_string, acquisition_year, type_technical_resource).
+	 * @return WP_Query
+	 */
 	public static function get_technical_resource_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -294,16 +428,16 @@ class DLI_ContentsManager {
 			'order'          => 'ASC',
 			's'              => $params['search_string'],
 		);
-		// Aggiungi la meta_query solo se 'acquisition_year' è presente e non vuoto
-		if ( ( ! empty( $params['acquisition_year'] ) ) && ( $params['acquisition_year'] !== null ) ) {
+		// Aggiungi la meta_query solo se 'acquisition_year' è presente e non vuoto.
+		if ( ( ! empty( $params['acquisition_year'] ) ) && ( null !== $params['acquisition_year'] ) ) {
 			$args['meta_query'][] = array(
 				'key'     => 'anno_acquisizione',
 				'value'   => $params['acquisition_year'],
 				'compare' => 'IN',
 			);
 		}
-		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto
-		if ( ( ! empty( $params['type_technical_resource'] ) ) && ( $params['type_technical_resource'] !== null ) ) {
+		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto.
+		if ( ( ! empty( $params['type_technical_resource'] ) ) && ( null !== $params['type_technical_resource'] ) ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => RT_TYPE_TAXONOMY,
 				'field'    => 'term_id',
@@ -314,6 +448,12 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the events archive, ordered by start date, applying the category filter.
+	 *
+	 * @param array $params Archive request params (paged, per_page, selected_categories).
+	 * @return WP_Query
+	 */
 	public static function get_event_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -328,6 +468,12 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the news archive, applying the category filter.
+	 *
+	 * @param array $params Archive request params (paged, per_page, selected_categories).
+	 * @return WP_Query
+	 */
 	public static function get_news_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -341,6 +487,13 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the active (not-archived) projects list, ordered by priority,
+	 * applying the tag filter.
+	 *
+	 * @param array $params Archive request params (paged, per_page, today, tag_level).
+	 * @return WP_Query
+	 */
 	public static function get_projects_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -363,7 +516,7 @@ class DLI_ContentsManager {
 				// 'key'      => 'data_fine',
 				// 'compare'  => '>=',
 				// 'value'    => $params['today'],
-				// ),
+				// ),.
 				array(
 					'key'     => 'archiviato',
 					'compare' => '=',
@@ -372,7 +525,7 @@ class DLI_ContentsManager {
 			),
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -384,6 +537,13 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the archived projects list, ordered by priority,
+	 * applying the tag filter.
+	 *
+	 * @param array $params Archive request params (paged, per_page, today, tag_level).
+	 * @return WP_Query
+	 */
 	public static function get_archived_projects_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -405,7 +565,7 @@ class DLI_ContentsManager {
 			),
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag_level' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -417,6 +577,12 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Build the WP_Query for the research activities list, ordered by priority.
+	 *
+	 * @param array $params Archive request params (paged, per_page).
+	 * @return WP_Query
+	 */
 	public static function get_research_area_data_query( $params ) {
 		$args = array(
 			'post_status'    => 'publish',
@@ -432,6 +598,13 @@ class DLI_ContentsManager {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * Get all tags used by a given post type.
+	 *
+	 * @param string $post_type Post type to look up.
+	 * @param string $taxonomy  Tag taxonomy to query.
+	 * @return WP_Term[]
+	 */
 	public static function get_tags_by_post_type( $post_type, $taxonomy = WP_DEFAULT_TAGS ) {
 		$tags = get_tags(
 			array(
@@ -444,7 +617,14 @@ class DLI_ContentsManager {
 		return $tags ? $tags : array();
 	}
 
-	// PROGETTI
+	// PROGETTI.
+
+	/**
+	 * Build the WP_Query for the people list, applying the tag filter.
+	 *
+	 * @param array $params Archive request params (paged, per_page, tag_level).
+	 * @return WP_Query
+	 */
 	public static function get_people_query( $params ) {
 		$args = array(
 			'paged'          => $params['paged'],
@@ -452,7 +632,7 @@ class DLI_ContentsManager {
 			'posts_per_page' => $params['per_page'],
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && $params['tag_level'] !== '' ) {
+		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -647,6 +827,14 @@ class DLI_ContentsManager {
 		return $ids;
 	}
 
+	/**
+	 * Get the posts of a related content type whose ACF relation field references the given post.
+	 *
+	 * @param WP_Post $post       Post being referenced.
+	 * @param string  $field_name ACF field name storing the relation on the related post type.
+	 * @param string  $related_ct Related post type to query.
+	 * @return WP_Post[]
+	 */
 	public static function get_related_items( $post, $field_name, $related_ct ) {
 		$item = new WP_Query(
 			array(
@@ -666,6 +854,12 @@ class DLI_ContentsManager {
 		return $item->posts;
 	}
 
+	/**
+	 * Get the homepage main carousel items, either auto-selected (flagged posts) or
+	 * manually curated (configured post IDs), resolved to the current language.
+	 *
+	 * @return array List of item wrappers (see dli_get_post_wrapper()), sorted by the configured order.
+	 */
 	public static function get_carousel_items() {
 		$items           = array();
 		$results         = array();
@@ -673,7 +867,7 @@ class DLI_ContentsManager {
 		$order_raw       = dli_get_option( 'home_carousel_order', 'homepage' );
 		$order_date_type = in_array( $order_raw, array( 'post_date', 'post_modified', 'event_date' ), true ) ? $order_raw : 'post_date';
 		$query_orderby   = 'event_date' === $order_date_type ? 'post_date' : $order_date_type;
-		if ( $mode_auto === 'true' ) {
+		if ( 'true' === $mode_auto ) {
 			$query   = new WP_Query(
 				array(
 					'posts_per_page' => -1,
@@ -720,6 +914,13 @@ class DLI_ContentsManager {
 		return $items;
 	}
 
+	/**
+	 * Sort carousel item wrappers in place, most recent order date first.
+	 *
+	 * @param array  $items           Passed by reference: item wrappers to sort.
+	 * @param string $order_date_type One of 'post_date', 'post_modified', 'event_date'.
+	 * @return void
+	 */
 	private static function sort_carousel_items_by_order_date_desc( &$items, $order_date_type ) {
 		usort(
 			$items,
@@ -732,6 +933,13 @@ class DLI_ContentsManager {
 		);
 	}
 
+	/**
+	 * Resolve a carousel item wrapper's sort timestamp for the given order date type.
+	 *
+	 * @param array  $item            Item wrapper (see dli_get_post_wrapper()).
+	 * @param string $order_date_type One of 'post_date', 'post_modified', 'event_date'.
+	 * @return int Unix timestamp, or PHP_INT_MIN if the date is unavailable/invalid.
+	 */
 	private static function get_carousel_item_order_timestamp( $item, $order_date_type ) {
 		if ( 'post_modified' === $order_date_type ) {
 			$post_id       = isset( $item['id'] ) ? absint( $item['id'] ) : 0;
@@ -746,6 +954,12 @@ class DLI_ContentsManager {
 		return $dt ? (int) $dt->format( 'U' ) : PHP_INT_MIN;
 	}
 
+	/**
+	 * Get the projects related to a research activity ("Indirizzo di ricerca").
+	 *
+	 * @param int $event_id Post ID of the research activity.
+	 * @return WP_Post[]
+	 */
 	public static function get_projects_by_event_id( $event_id ) {
 		$query = new WP_Query(
 			array(
@@ -765,6 +979,14 @@ class DLI_ContentsManager {
 		return $query->posts;
 	}
 
+	/**
+	 * Filter a list of post types down to those that actually have at least one
+	 * post with the given status.
+	 *
+	 * @param array  $post_types  Post type slugs to check.
+	 * @param string $post_status Post status to match.
+	 * @return array Subset of $post_types that have at least one matching post.
+	 */
 	public static function get_post_types_with_results( $post_types, $post_status = 'publish' ) {
 		global $wpdb;
 
@@ -811,6 +1033,12 @@ class DLI_ContentsManager {
 		);
 	}
 
+	/**
+	 * Content types (excluding people types) that have at least one published post,
+	 * used to build the site search's "filter by type" checkboxes.
+	 *
+	 * @return array
+	 */
 	public static function get_all_contenttypes_with_results() {
 		$content_types = array_values(
 			array_filter(
@@ -865,13 +1093,24 @@ class DLI_ContentsManager {
 			$params['s'] = $search_string;
 		}
 
-		$query          = new WP_Query( $params );
-		$matched_types  = wp_list_pluck( $query->posts, 'post_type' );
+		$query         = new WP_Query( $params );
+		$matched_types = wp_list_pluck( $query->posts, 'post_type' );
 
 		return array_values( array_intersect( $content_types, array_unique( $matched_types ) ) );
 	}
 
-	// SITE SEARCH
+	// SITE SEARCH.
+
+	/**
+	 * Build the WP_Query for the site search results, defaulting to all content
+	 * types with results when none are explicitly selected.
+	 *
+	 * @param array    $selected_contents Post type slugs to restrict the search to (empty = all with results).
+	 * @param string   $search_string     Search string (may be empty).
+	 * @param int      $page_size         Results per page.
+	 * @param int|null $paged             Current page number, or null to resolve it from the request.
+	 * @return WP_Query
+	 */
 	public static function main_search_query( $selected_contents, $search_string, $page_size, $paged = null ) {
 		$has_search_string = '' !== trim( $search_string );
 		if ( null === $paged ) {
@@ -906,10 +1145,20 @@ class DLI_ContentsManager {
 		return $the_query;
 	}
 
+	/**
+	 * Get the full definition (key, name, template part, ...) of every homepage section.
+	 *
+	 * @return array
+	 */
 	public static function get_hp_sections() {
 		return DLI_HP_SECTIONS;
 	}
 
+	/**
+	 * Get the homepage sections as a flat key => name list, for use in admin selectors.
+	 *
+	 * @return array
+	 */
 	public static function get_hp_section_list() {
 		$result = array();
 		foreach ( DLI_HP_SECTIONS as $key => $item ) {
@@ -918,12 +1167,18 @@ class DLI_ContentsManager {
 		return $result;
 	}
 
+	/**
+	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
+	 *
+	 * @param bool $only_active Whether to return only the enabled sections.
+	 * @return array
+	 */
 	public static function get_hp_section_options( $only_active = false ) {
 		$sections = dli_get_option( 'site_sections', 'homepage_sections' );
 		$results  = array();
 		if ( $sections ) {
 			foreach ( $sections as $section ) {
-				if ( ( $only_active === 'false' ) || $section['enabled'] === 'true' ) {
+				if ( ( 'false' === $only_active ) || 'true' === $section['enabled'] ) {
 					array_push( $results, $section );
 				}
 			}

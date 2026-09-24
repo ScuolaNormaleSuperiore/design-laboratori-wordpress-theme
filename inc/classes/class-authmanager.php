@@ -5,18 +5,32 @@
  * @package Design_Laboratori_Italia
  */
 
-
+/**
+ * The manager that creates and configures the Super Editor role.
+ */
 class DLI_AuthorizationManager {
 	/**
 	 * Constructor of the Manager.
 	 */
 	public function __construct() {}
 
+	/**
+	 * Register the custom roles hooks.
+	 *
+	 * @return void
+	 */
 	public function setup() {
 		// Register the custom roles.
 		add_action( 'init', array( $this, 'add_super_editor' ) );
 	}
 
+	/**
+	 * Create the Super Editor role (based on Editor) and grant it (and the
+	 * administrator) permission to manage the theme's appearance and
+	 * configuration options.
+	 *
+	 * @return void
+	 */
 	public function add_super_editor() {
 		// Recupera il ruolo Editor.
 		$base_role = get_role( 'editor' );

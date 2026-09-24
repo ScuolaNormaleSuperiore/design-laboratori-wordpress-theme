@@ -5,7 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-
 /**
  * The manager that setups Course post types.
  */
@@ -71,7 +70,7 @@ class News_Manager {
 	 * Customize the layout of the admin interface.
 	 *
 	 * @param Object $post - The custom post.
-	 * @return string
+	 * @return void
 	 */
 	public function custom_layout( $post ) {
 		if ( NEWS_POST_TYPE === $post->post_type ) {
@@ -86,7 +85,7 @@ class News_Manager {
 	 *
 	 * @return void
 	 */
-	function add_fields() {
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

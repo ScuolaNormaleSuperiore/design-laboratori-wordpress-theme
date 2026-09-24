@@ -5,7 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-
 /**
  * Il manager che fa il setup del custom type Indirizzo di Ricerca.
  */
@@ -28,7 +27,12 @@ class ResearchActivities_Manager {
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 	}
 
-	function dli_register_indirizzo_di_ricerca_post_type() {
+	/**
+	 * Register the Indirizzo di Ricerca custom post type.
+	 *
+	 * @return void
+	 */
+	public function dli_register_indirizzo_di_ricerca_post_type() {
 			$labels = array(
 				'name'          => _x( 'Indirizzi di ricerca', 'Post Type General Name', 'design_laboratori_italia' ),
 				'singular_name' => _x( 'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' ),
@@ -61,7 +65,7 @@ class ResearchActivities_Manager {
 		 * Customize the layout of the admin interface.
 		 *
 		 * @param Object $post - The custom post.
-		 * @return string
+		 * @return void
 		 */
 	public function custom_layout( $post ) {
 		if ( RESEARCH_ACTIVITY_POST_TYPE === $post->post_type ) {
@@ -71,7 +75,12 @@ class ResearchActivities_Manager {
 		}
 	}
 
-	function add_fields() {
+	/**
+	 * Add the custom fields of the custom post-type.
+	 *
+	 * @return void
+	 */
+	public function add_fields() {
 
 		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 			return;

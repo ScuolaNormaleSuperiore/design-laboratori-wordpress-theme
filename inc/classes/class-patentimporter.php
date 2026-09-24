@@ -19,8 +19,14 @@ define(
 	)
 );
 
+/**
+ * Imports patents from the IRIS institutional repository web service.
+ */
 class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
+	/**
+	 * Configure the importer settings and schedule the import job.
+	 */
 	public function __construct() {
 		$this->importer_name    = 'Iris Patent Importer';
 		$this->job_name         = 'dli_iris_patent_import_job';
@@ -34,6 +40,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$this->manage_import_job();
 	}
 
+	/**
+	 * Run the IRIS patents import (real or dry-run, per configuration).
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function import() {
 		// $request
 		$code = 200;
@@ -68,6 +79,13 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Fetch the patents feed from the IRIS web service (Basic Auth over HTTPS).
+	 *
+	 * @param array $conf Import configuration (ws_url, username, password, ...).
+	 * @return array Decoded JSON payload (array of patent objects).
+	 * @throws Exception When the endpoint is not HTTPS, or the request fails/returns an invalid payload.
+	 */
 	public function get_data_to_import( $conf ) {
 		$ws_url   = esc_url_raw( (string) $conf['ws_url'] );
 		$username = $conf['username'];
@@ -92,7 +110,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		);
 		// Invocazione dell'endpoint.
 		$response = wp_safe_remote_get( $ws_url, $args );
-		// Controllo della risposta
+		// Controllo della risposta.
 		if ( is_wp_error( $response ) ) {
 			// Errore invocando il web service.
 			throw new Exception( $response->get_error_message() );
@@ -112,6 +130,13 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $data;
 	}
 
+	/**
+	 * Fetch the IRIS patents feed and import each entry (Italian + English content).
+	 *
+	 * @param array $conf Import configuration (import_type, import_action, ...).
+	 * @return array Human-readable log lines, one per processed item plus a summary footer.
+	 * @throws Exception When the feed payload is not iterable.
+	 */
 	private function execute_import( $conf = array() ): array {
 		$this->log_string( '*** INIZIO importazione da IRIS (brevetti) ***' );
 		// Invocazione del web service per recuperare i dati da Iris.
@@ -144,7 +169,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			$item_pid   = $item->pid;
 			$item_title = $this->sanitize_import_title( (string) $item->displayValue );
 
-			if ( $conf['import_type'] === 'dryrun' ) {
+			if ( 'dryrun' === $conf['import_type'] ) {
 				// Importazione dry run.
 				array_push(
 					$results,
@@ -164,7 +189,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						$ignored
 					);
 					// Gestione del risultato.
-					if ( $item_code != 0 ) {
+					if ( 0 !== $item_code ) {
 						$this->_process_result(
 							$results,
 							$item_pid . ' - ' . $item_code,
@@ -179,7 +204,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					// Creazione del contenuto corrispondente in inglese.
 					$item_code_en = $this->_translate_content( $item_code, $item, $conf, 'en' );
 					// Gestione del risultato.
-					if ( $item_code_en != 0 ) {
+					if ( 0 !== $item_code_en ) {
 						$this->_process_result(
 							$results,
 							$item_pid . ' - ' . $item_code_en,
@@ -213,6 +238,19 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$this->log_string( '*** FINE importazione da IRIS (brevetti) ***' );
 		return $results;
 	}
+	/**
+	 * Append a log line for one imported item and bump the matching counter.
+	 *
+	 * @param array  $results       Passed by reference: log lines accumulator.
+	 * @param string $itemCode      Post ID (and PID) of the imported item, for the log line.
+	 * @param string $itemTitle     Sanitized item title, for the log line.
+	 * @param bool   $updated       Whether an existing post was updated.
+	 * @param bool   $ignored       Whether an existing post was left untouched.
+	 * @param int    $added_items   Passed by reference: bumped when a new post was created.
+	 * @param int    $updated_items Passed by reference: bumped when an existing post was updated.
+	 * @param int    $ignored_items Passed by reference: bumped when an existing post was ignored.
+	 * @return void
+	 */
 	private function _process_result( &$results, $itemCode, $itemTitle, $updated, $ignored, &$added_items, &$updated_items, &$ignored_items ) {
 		if ( $updated ) {
 			array_push(
@@ -235,6 +273,17 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Create or update the Italian WordPress patent post for a single IRIS feed item.
+	 *
+	 * @param object $item    Raw feed item (displayValue, abstract, ...).
+	 * @param array  $conf    Import configuration (import_action, ...).
+	 * @param bool   $updated Passed by reference: set to true when an existing post was updated.
+	 * @param bool   $ignored Passed by reference: set to true when an existing post was left untouched.
+	 * @param string $lang    Language slug to assign to the created post.
+	 * @return int Post ID of the created or matched patent.
+	 * @throws Exception When wp_insert_post() fails.
+	 */
 	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {
 		$post_title       = $this->sanitize_import_title( (string) $item->displayValue );
 		$post_name        = dli_generate_slug( $post_title );
@@ -248,7 +297,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			'post_status'  => 'draft',
 			'post_parent'  => 0,
 		);
-		$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
+		$update_content = ( 'update' === $conf['import_action'] ) ? true : false;
 		// Verifico l'esistenza dell'oggetto su WordPress.
 		$pid      = $this->get_wp_content_id( $item );
 		$contents = dli_get_post_translations( $pid );
@@ -285,6 +334,16 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $post_id;
 	}
 
+	/**
+	 * Create or update the English translation of an imported patent post, when available.
+	 *
+	 * @param int    $post_id Post ID of the Italian version.
+	 * @param object $item    Raw feed item (displayValue_en, abstract_en, ...).
+	 * @param array  $conf    Import configuration (import_action, ...).
+	 * @param string $lang    Language slug to assign to the created translation.
+	 * @return int Post ID of the created/matched English translation, or 0 when no English title exists.
+	 * @throws Exception When wp_insert_post() fails.
+	 */
 	private function _translate_content( $post_id, $item, $conf, $lang = 'en' ): int {
 		$display_value_en  = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
 		$translate_content = ( '' !== $display_value_en );
@@ -309,7 +368,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					'post_parent'  => 0,
 				);
 
-					// Associa versione italiana e versione inglese;
+					// Associa versione italiana e versione inglese.
 					$post_id_en = wp_insert_post( $new_content_en, true );
 				if ( is_wp_error( $post_id_en ) || ! $post_id_en ) {
 					$error_message = is_wp_error( $post_id_en ) ? $post_id_en->get_error_message() : 'ID = 0';
@@ -330,7 +389,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			} else {
 				// Aggiorna versione esistente.
 				$post_id_en     = $contents[ $lang ];
-				$update_content = ( $conf['import_action'] === 'update' ) ? true : false;
+				$update_content = ( 'update' === $conf['import_action'] ) ? true : false;
 				if ( $update_content ) {
 					// Aggiorna i campi del post.
 					$pars = array(
@@ -348,8 +407,15 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		return $post_id_en;
 	}
 
+	/**
+	 * Update a patent post's title.
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param string $title   New post title.
+	 * @return void
+	 */
 	private function update_title( $post_id, $title ) {
-		// Dati da aggiornare
+		// Dati da aggiornare.
 		$updated_post = array(
 			'ID'         => $post_id,
 			'post_title' => $title,
@@ -358,19 +424,35 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		wp_update_post( $updated_post, true );
 	}
 
+	/**
+	 * Populate the ACF fields of a patent post (common fields plus per-language ones).
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param object $item    Raw feed item.
+	 * @param string $lang    Language of the post being updated ('it' or any other value for English).
+	 * @return void
+	 */
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) {
 
 		// Aggiornamento campi generici.
 		$this->_update_common_fields( $post_id, $item );
 
 		// Aggiornamento campi differenti per lingua.
-		if ( $lang === 'it' ) {
+		if ( 'it' === $lang ) {
 			$this->_update_fields_it( $post_id, $item );
 		} else {
 			$this->_update_fields_en( $post_id, $item );
 		}
 	}
 
+	/**
+	 * Populate the ACF fields shared by both language versions of a patent
+	 * (code, application number, family, deposit date, priority flag, inventors, owners).
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param object $item    Raw feed item.
+	 * @return void
+	 */
 	private function _update_common_fields( $post_id, $item ) {
 		// Codice Brevetto (codice_brevetto).
 		$item_code = $item->pid;
@@ -406,7 +488,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 			}
 		}
 
-		// isPriority
+		// isPriority.
 		if ( $item->isPriority ) {
 			dli_update_field( 'prioritario', true, $post_id );
 		} else {
@@ -419,7 +501,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		if ( $item->ownerSet && count( $item->ownerSet ) > 0 ) {
 			foreach ( $item->ownerSet as $i ) {
 				$inv_name = $i->person->firstName . ' ' . $i->person->lastName;
-				if ( $i->role->description === 'Titolare' ) {
+				if ( 'Titolare' === $i->role->description ) {
 					array_push( $inv, trim( $inv_name ) );
 				} else {
 					array_push( $inv_ref, trim( $inv_name ) );
@@ -445,6 +527,13 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		dli_update_field( 'titolari', $tit_str, $post_id );
 	}
 
+	/**
+	 * Populate the Italian-only ACF fields of a patent post (legal status, thematic areas).
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param object $item    Raw feed item.
+	 * @return void
+	 */
 	private function _update_fields_it( $post_id, $item ) {
 		$lang = 'it';
 		// Stato Legale (stato_legale).
@@ -467,11 +556,19 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Populate the English-only ACF fields of a patent post (translated legal status,
+	 * thematic areas translated to their English term).
+	 *
+	 * @param int    $post_id Post ID to update.
+	 * @param object $item    Raw feed item.
+	 * @return void
+	 */
 	private function _update_fields_en( $post_id, $item ) {
 		$lang = 'en';
 		// Stato Legale (stato_legale).
 		$legal_status_en = isset( DLI_LEGAL_STATUS_EN[ $item->legal_status ] ) ? DLI_LEGAL_STATUS_EN[ $item->legal_status ] : '';
-		if ( $legal_status_en !== '' ) {
+		if ( '' !== $legal_status_en ) {
 			dli_update_field( 'stato_legale', $legal_status_en, $post_id );
 		}
 
@@ -496,6 +593,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 	}
 
+	/**
+	 * Look up the WordPress post already imported for a given IRIS patent code.
+	 *
+	 * @param object $item Raw feed item.
+	 * @return int Post ID, or 0 if not found.
+	 */
 	private function get_wp_content_id( $item ) {
 		$args  = array(
 			'post_type'      => $this->post_type,

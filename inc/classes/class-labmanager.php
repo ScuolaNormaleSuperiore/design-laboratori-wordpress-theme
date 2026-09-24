@@ -268,6 +268,7 @@ class DLI_LabManager {
 	/**
 	 * Disabilita la REST API se necessario.
 	 *
+	 * @param object $errors Existing REST authentication error, or null/true if authenticated.
 	 * @return object.
 	 */
 	public function setup_rest_api( $errors ) {
