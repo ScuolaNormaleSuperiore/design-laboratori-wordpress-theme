@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#readme",
   "dependencies": {
-    "bootstrap-italia": "3.0.0-beta.5"
+    "bootstrap-italia": "3.0.0-beta.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

@@ -14,7 +14,7 @@ const source = resolve(packageRoot, 'dist');
 const target = resolve(themeRoot, 'assets/bootstrap-italia');
 const staging = resolve(themeRoot, 'assets/.bootstrap-italia.tmp');
 
-const expectedVersion = '3.0.0-beta.5';
+const expectedVersion = '3.0.0-beta.7';
 const packageMetadata = JSON.parse(
   await readFile(resolve(packageRoot, 'package.json'), 'utf8'),
 );

@@ -1,6 +1,6 @@
-# Aggiornamento del tema a Bootstrap Italia 3 (3.0.0-beta.5)
+# Aggiornamento del tema a Bootstrap Italia 3 (3.0.0-beta.7)
 
-Documento di lavoro che raccoglie l'attività di allineamento del tema **Design Laboratori Italia** alla versione 3 di Bootstrap Italia (era sulla 2.18.3), avviata perché la libreria è ancora in **beta** e introduce cambi strutturali rilevanti (temizzazione tramite CSS custom properties `--bsi-*` al posto delle variabili Sass, markup nuovo per diversi componenti).
+Documento di lavoro che raccoglie l'attività di allineamento del tema **Design Laboratori Italia** alla versione 3 di Bootstrap Italia (era sulla 2.18.3), avviata perché la libreria è ancora in **beta** e introduce cambi strutturali rilevanti (temizzazione tramite CSS custom properties `--bsi-*` al posto delle variabili Sass, markup nuovo per diversi componenti). Il porting è partito dalla `3.0.0-beta.5`; dipendenza e asset sono ora allineati alla `3.0.0-beta.7`.
 
 **Stato:** in corso. Lavoro svolto direttamente sul branch `main` di una copia locale del repository (non un fork/branch dedicato), con commit **solo locali**: nessun push è stato fatto né va fatto verso il repository ufficiale (`https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme`). La copia locale serve esclusivamente per analisi e test live sul container Docker della demo (`SETUP/Docker`).
 
@@ -13,9 +13,9 @@ Documento di lavoro che raccoglie l'attività di allineamento del tema **Design 
 
 ## 1. Dipendenza e asset
 
-- `package.json`: `bootstrap-italia` aggiornato da `^2.18.3` a `3.0.0-beta.5`.
+- `package.json`: `bootstrap-italia` aggiornato inizialmente da `^2.18.3` a `3.0.0-beta.5`, poi allineato alla `3.0.0-beta.7`.
 - Aggiunto lo script npm `assets:sync` (`SETUP/npm_scripts/sync-bootstrap-italia.mjs`, nuovo file) che copia `node_modules/bootstrap-italia/dist` in `assets/bootstrap-italia/` (233 file), con un controllo di versione che blocca l'esecuzione se la dipendenza installata non è esattamente quella attesa. Stesso approccio già validato nel porting statico di `bs-playground` (`scripts/sync-bootstrap-italia.mjs`).
-- `assets/bootstrap-italia/` risincronizzata interamente alla v3.0.0-beta.5.
+- `assets/bootstrap-italia/` risincronizzata interamente alla v3.0.0-beta.7. La procedura operativa corrente è descritta in `HowTo Aggiornare Bootstrap Italia.md`.
 
 ## 2. Meccanismo di temizzazione: da variabili Sass a CSS custom properties
 

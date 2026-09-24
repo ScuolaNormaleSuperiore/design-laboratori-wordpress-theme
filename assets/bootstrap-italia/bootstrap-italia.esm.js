@@ -21,6 +21,7 @@ export { default as Forward } from './plugins/forward.js';
 export { default as Masonry } from './plugins/masonry.js';
 export { default as List } from './plugins/list.js';
 export { default as Transfer } from './plugins/transfer.js';
+export { default as Chip } from './plugins/chip.js';
 export { default as Alert } from './plugins/alert.js';
 export { default as Button } from './plugins/button.js';
 export { default as Collapse } from './plugins/collapse.js';
