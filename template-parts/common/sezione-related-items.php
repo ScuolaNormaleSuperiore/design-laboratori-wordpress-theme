@@ -11,9 +11,9 @@
  */
 
 $dli_related_items = $args['items'];
-$dli_num_items      = dli_get_option( 'numero_pagine_collegate', 'notizie' );
-$dli_num_items      = $dli_num_items ? $dli_num_items : 5;
-$dli_related_items  = array_slice( $dli_related_items, 0, $dli_num_items, true );
+$dli_num_items     = dli_get_option( 'numero_pagine_collegate', 'notizie' );
+$dli_num_items     = $dli_num_items ? $dli_num_items : 5;
+$dli_related_items = array_slice( $dli_related_items, 0, $dli_num_items, true );
 ?>
 
 <section id="sezione-eventi">

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Registers the theme's mandatory/recommended plugins via TGM Plugin Activation.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 /**
  * Include the TGM_Plugin_Activation class.

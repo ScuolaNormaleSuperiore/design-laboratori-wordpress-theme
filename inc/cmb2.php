@@ -1,4 +1,9 @@
 <?php
+/**
+ * Loads CMB2 and its addons, and wires the custom field types used by the theme.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 require 'vendor/CMB2/init.php';
 require 'vendor/CMB2-conditional-logic/cmb2-conditional-logic.php';
@@ -14,6 +19,13 @@ add_filter(
 );
 require 'vendor/cmb-field-select2-master/cmb-field-select2.php';
 
+/**
+ * Filters the base URL used by CMB2 to enqueue its own CSS/JS assets.
+ *
+ * @param string $url Default CMB2 assets URL.
+ *
+ * @return string
+ */
 function update_cmb2_meta_box_url( $url ) {
 	/*
 	 * If you use a symlink, the css/js urls may have an odd path stuck in the middle, like:

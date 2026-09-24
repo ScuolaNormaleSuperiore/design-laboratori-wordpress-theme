@@ -165,8 +165,8 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 	</div>
 
 	<!-- SEZIONE FORM: stessa griglia col-lg-3 + col-lg-8 offset-lg-1 di Contatti
-	     (sidebar vuota, non esiste un elenco di contatti da affiancare al form di
-	     iscrizione), stessa card "p-5 rounded shadow" del form di Contatti. -->
+		(sidebar vuota, non esiste un elenco di contatti da affiancare al form di
+		iscrizione), stessa card "p-5 rounded shadow" del form di Contatti. -->
 	<?php
 	if ( 'no' === $dli_after_confirm && true !== $dli_sent_successfully ) {
 		$dli_current_language = dli_current_language( 'slug' );

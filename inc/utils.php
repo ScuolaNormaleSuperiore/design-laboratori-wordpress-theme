@@ -1069,7 +1069,7 @@ if ( ! function_exists( 'dli_get_event_datetime_display' ) ) {
 		/* translators: %s: start time. */
 		$start_display = $full( $start ) . ( $orario_inizio ? sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_inizio ) : '' );
 		/* translators: %s: end time. */
-		$end_display   = $full( $end ) . ( $orario_fine ? sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_fine ) : '' );
+		$end_display = $full( $end ) . ( $orario_fine ? sprintf( __( ', ore %s', 'design_laboratori_italia' ), $orario_fine ) : '' );
 		/* translators: 1: start date/time, 2: end date/time. */
 		return sprintf( __( 'Dal %1$s<br>al %2$s', 'design_laboratori_italia' ), $start_display, $end_display );
 	}

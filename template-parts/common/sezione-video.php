@@ -44,14 +44,18 @@ $dli_video_track    = $dli_args['video_track'] ?? '';
 		</div>
 		<div>
 			<video controls data-bs-video id="vid1"
-				title="<?php
+				title="
+				<?php
 					/* translators: %s: video title. */
 					echo esc_attr( sprintf( __( '%s Video', 'design_laboratori_italia' ), $dli_video_title ) );
-				?>"
-				aria-label="<?php
+				?>
+				"
+				aria-label="
+				<?php
 					/* translators: %s: video title. */
 					echo esc_attr( sprintf( __( '%s Video', 'design_laboratori_italia' ), $dli_video_title ) );
-				?>"
+				?>
+				"
 				class="video-js"
 				width="500"
 				height="281">

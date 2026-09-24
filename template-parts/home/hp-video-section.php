@@ -14,12 +14,12 @@ $dli_video_url       = dli_get_option( 'home_page_video_url', 'homepage' );
 if ( $dli_section_enabled && $dli_video_url ) {
 	?>
 	<!-- BLOCCO VIDEO: stesso pattern standard delle altre sezioni elenco della
-	     home (section+id+aria-labelledby > section-content > container > h2),
-	     già validato nel prototipo statico (sf-index.html, #blocco-video).
-	     Il markup del player (script, accept-overlay cookie YouTube, <video>,
-	     accordion di trascrizione se presente) è quello condiviso di
-	     template-parts/common/sezione-video.php, già usato dalle schede
-	     Brevetto/Spin-off/Evento — nessuna ragione per duplicarlo qui. -->
+		home (section+id+aria-labelledby > section-content > container > h2),
+		già validato nel prototipo statico (sf-index.html, #blocco-video).
+		Il markup del player (script, accept-overlay cookie YouTube, <video>,
+		accordion di trascrizione se presente) è quello condiviso di
+		template-parts/common/sezione-video.php, già usato dalle schede
+		Brevetto/Spin-off/Evento — nessuna ragione per duplicarlo qui. -->
 	<section id="blocco-video" class="section section-muted pt-3 pb-5" <?php echo ( $dli_show_title ) ? 'aria-labelledby="blocco-video-title"' : 'aria-label="' . esc_attr__( 'Video', 'design_laboratori_italia' ) . '"'; ?>>
 		<div class="section-content">
 			<div class="container">

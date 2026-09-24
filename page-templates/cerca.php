@@ -80,7 +80,7 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 		<?php wp_nonce_field( 'sf_cercasito_nonce', 'cercasito_nonce_field' ); ?>
 
 		<!-- BANNER RICERCA: hero con breadcrumb integrato e campo di ricerca, come nel
-		     prototipo (sf-site-search.html). -->
+			prototipo (sf-site-search.html). -->
 		<section id="banner-cerca" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-cerca-title">
 			<div class="container">
 				<div class="row align-items-stretch">
@@ -134,12 +134,12 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 		</section>
 
 		<!-- RISULTATI DI RICERCA: sezione mostrata solo dopo una ricerca effettiva
-		     (mai al primo accesso alla pagina), come nel prototipo — che invece la
-		     mostra sempre con un esempio statico, essendo una pagina statica senza
-		     un vero motore di ricerca dietro. I filtri "Filtra per" mostrano solo le
-		     tipologie di contenuto che hanno davvero almeno un risultato per la
-		     ricerca corrente (non l'elenco fisso di tutte le tipologie), come nel
-		     prototipo. -->
+			(mai al primo accesso alla pagina), come nel prototipo — che invece la
+			mostra sempre con un esempio statico, essendo una pagina statica senza
+			un vero motore di ricerca dietro. I filtri "Filtra per" mostrano solo le
+			tipologie di contenuto che hanno davvero almeno un risultato per la
+			ricerca corrente (non l'elenco fisso di tutte le tipologie), come nel
+			prototipo. -->
 		<?php if ( $dli_has_searched ) : ?>
 			<section id="risultati" class="p-4">
 				<div class="container my-4">

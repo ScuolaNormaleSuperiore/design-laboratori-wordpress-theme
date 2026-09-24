@@ -39,8 +39,8 @@ $dli_projects_params = array(
 	'tag_level' => $dli_selected_level,
 );
 
-$dli_projects_query   = DLI_ContentsManager::get_projects_data_query( $dli_projects_params );
-$dli_num_results      = $dli_projects_query->found_posts;
+$dli_projects_query     = DLI_ContentsManager::get_projects_data_query( $dli_projects_params );
+$dli_num_results        = $dli_projects_query->found_posts;
 $dli_tags               = DLI_ContentsManager::get_tags_by_post_type( PROGETTO_POST_TYPE );
 $dli_label_select_level = dli_get_configuration_field_by_lang( 'seleziona_livello_progetti', 'progetti' );
 $dli_label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_progetti', 'progetti' );

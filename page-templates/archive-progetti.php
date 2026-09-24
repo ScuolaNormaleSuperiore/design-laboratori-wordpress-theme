@@ -15,6 +15,7 @@ $dli_per_page        = DLI_POSTS_PER_PAGE;
 $dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
 $dli_today           = gmdate( 'Ymd' );
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination/filter parameter.
 if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination/filter parameter.
 	$dli_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );

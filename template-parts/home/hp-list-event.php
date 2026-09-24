@@ -45,8 +45,8 @@ if ( 'true' === $dli_section_enabled ) {
 
 						<?php
 						foreach ( $dli_query->posts as $dli_post ) {
-							$dli_postitem  = dli_get_post_wrapper( $dli_post );
-							$dli_item_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
+							$dli_postitem    = dli_get_post_wrapper( $dli_post );
+							$dli_item_date   = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
 							$dli_footer_date = dli_get_event_datetime_display( $dli_postitem['id'] );
 							?>
 							<!-- SINGOLO EVENTO -->

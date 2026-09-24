@@ -81,7 +81,7 @@ $dli_paginazione_page_url = static function ( $dli_page_number ) use ( $dli_per_
 					<li class="page-item disabled"><span class="page-link">&hellip;</span></li>
 					<?php
 				endif;
-				$dli_prev_shown  = $dli_p;
+				$dli_prev_shown = $dli_p;
 				$dli_is_current = ( $dli_p === $dli_current_page );
 				?>
 				<li class="page-item<?php echo $dli_is_current ? ' active' : ''; ?>">

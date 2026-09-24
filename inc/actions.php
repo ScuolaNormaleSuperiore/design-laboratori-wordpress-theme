@@ -1,7 +1,13 @@
 <?php
+/**
+ * Miscellaneous theme actions: comments, admin styling, excerpt length,
+ * customizer/admin-bar cleanup, user edit permission check.
+ *
+ * @package Design_Laboratori_Italia
+ */
 
 /**
- * disable all comments
+ * Disable all comments
  */
 function dli_disable_all_comments() {
 	if ( '' !== get_option( 'default_comment_status' ) ) {
@@ -22,9 +28,9 @@ add_action( 'admin_enqueue_scripts', 'dli_admin_css_load' );
 
 
 /**
- * customize excerpt.
+ * Customize excerpt length.
  *
- * @param $length
+ * @param int $length Default excerpt length in words (unused, always overridden).
  *
  * @return int
  */
@@ -51,6 +57,9 @@ add_action(
 );
 
 add_action( 'wp_before_admin_bar_render', 'dli_before_admin_bar_render' );
+/**
+ * Remove the "Customize" entry from the admin bar.
+ */
 function dli_before_admin_bar_render() {
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_menu( 'customize' );
@@ -67,10 +76,10 @@ function dli_edit_permission_check() {
 	global $current_user, $profileuser;
 	$screen       = get_current_screen();
 	$current_user = wp_get_current_user();
-	if ( ! is_super_admin( $current_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ) ) ) {
-		// editing a user profile
+	if ( ! is_super_admin( $current_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ), true ) ) {
+		// Editing a user profile.
 		if ( is_super_admin( $profileuser->ID ) ) {
-			// trying to edit a superadmin while less than a superadmin
+			// Trying to edit a superadmin while less than a superadmin.
 			wp_die( __( 'You do not have permission to edit this user.' ) );
 		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $current_user->ID, get_current_blog_id() ) ) ) {
 			// editing user and edited user aren't members of the same blog.

@@ -9,6 +9,7 @@
  *
  * @package Design_Laboratori_Italia
  */
+
 ?>
 
 <section id="banner-progetti" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-progetti-archive-title">

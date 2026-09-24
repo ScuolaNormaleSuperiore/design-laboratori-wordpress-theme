@@ -33,28 +33,28 @@ add_filter( 'custom_menu_order', '__return_true' );
  */
 function dli_custom_menu_order( $menu_order ) {
 	$custom_order = array(
-		'index.php',                               // Dashboard
-		'separator1',                              // ---
-		'dli_options',                             // Configurazione
-		'dli-tools',                               // Strumenti DLI
-		'edit.php',                                // Articoli
-		'edit.php?post_type=banner',               // Banner
-		'edit.php?post_type=brevetto',             // Brevetti
-		'edit.php?post_type=evento',               // Eventi
-		'edit.php?post_type=indirizzo-di-ricerca', // Indirizzi di ricerca
-		'edit.php?post_type=luogo',                // Luoghi
-		'edit.php?post_type=notizia',              // Notizie
-		'edit.php?post_type=page',                 // Pagine
-		'edit.php?post_type=persona',              // Persone
-		'edit.php?post_type=progetto',             // Progetti
-		'edit.php?post_type=pubblicazione',        // Pubblicazioni
-		'edit.php?post_type=risorsa-tecnica',      // Risorse Tecniche
-		'edit.php?post_type=spinoff',              // Spin-off
-		'edit.php?post_type=sponsor',              // Sponsor
-		'separator2',                              // ---
-		'upload.php',                              // Media
-		'themes.php',                              // Aspetto
-		'users.php',                               // Utenti
+		'index.php',                               // Dashboard.
+		'separator1',                              // ---.
+		'dli_options',                             // Configurazione.
+		'dli-tools',                               // Strumenti DLI.
+		'edit.php',                                // Articoli.
+		'edit.php?post_type=banner',               // Banner.
+		'edit.php?post_type=brevetto',             // Brevetti.
+		'edit.php?post_type=evento',               // Eventi.
+		'edit.php?post_type=indirizzo-di-ricerca', // Indirizzi di ricerca.
+		'edit.php?post_type=luogo',                // Luoghi.
+		'edit.php?post_type=notizia',              // Notizie.
+		'edit.php?post_type=page',                 // Pagine.
+		'edit.php?post_type=persona',              // Persone.
+		'edit.php?post_type=progetto',             // Progetti.
+		'edit.php?post_type=pubblicazione',        // Pubblicazioni.
+		'edit.php?post_type=risorsa-tecnica',      // Risorse Tecniche.
+		'edit.php?post_type=spinoff',              // Spin-off.
+		'edit.php?post_type=sponsor',              // Sponsor.
+		'separator2',                              // ---.
+		'upload.php',                              // Media.
+		'themes.php',                              // Aspetto.
+		'users.php',                               // Utenti.
 	);
 
 	foreach ( $menu_order as $item ) {

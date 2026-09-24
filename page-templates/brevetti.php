@@ -27,29 +27,37 @@ $dli_all_area_ids    = $dli_all_areas
 $dli_all_years       = DLI_ContentsManager::dli_get_all_patent_years();
 $dli_per_page        = strval( DLI_PER_PAGE );
 $dli_per_page_values = DLI_PER_PAGE_VALUES;
+$dli_allowed_pages   = array_map( 'strval', (array) $dli_per_page_values );
 
-if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
-	$dli_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );
+$dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+if ( is_string( $dli_raw_per_page ) ) {
+	$dli_raw_per_page = sanitize_text_field( wp_unslash( $dli_raw_per_page ) );
+	if ( in_array( $dli_raw_per_page, $dli_allowed_pages, true ) ) {
+		$dli_per_page = $dli_raw_per_page;
+	}
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['thematic_area'] ) && is_array( $_GET['thematic_area'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_selected_areas = array_values(
 		array_filter(
 			array_map(
 				'sanitize_text_field',
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 				wp_unslash( $_GET['thematic_area'] )
 			)
 		)
 	);
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['search_string'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_search_string = sanitize_text_field( wp_unslash( $_GET['search_string'] ) );
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 if ( isset( $_GET['deposit_year'] ) && is_numeric( $_GET['deposit_year'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter.
 	$dli_selected_year = sanitize_text_field( wp_unslash( $_GET['deposit_year'] ) );
@@ -160,10 +168,10 @@ $dli_num_results = $dli_query->found_posts;
 
 								$dli_summary        = dli_get_field( 'sommario_elenco' );
 								$dli_owners         = dli_get_field( 'titolari' );
-								$dli_anno_deposito   = dli_get_field( 'anno_deposito' );
-								$dli_thematic_area   = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
-								$dli_image_metadata  = dli_get_image_metadata( $post, 'item-card-list' );
-								$dli_has_image       = ! empty( $dli_image_metadata['image_url'] );
+								$dli_anno_deposito  = dli_get_field( 'anno_deposito' );
+								$dli_thematic_area  = dli_get_post_main_category( $post, THEMATIC_AREA_TAXONOMY );
+								$dli_image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
+								$dli_has_image      = ! empty( $dli_image_metadata['image_url'] );
 								?>
 								<div class="col-12 mb-4">
 									<!--start card-->

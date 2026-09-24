@@ -9,6 +9,7 @@
  *
  * @package Design_Laboratori_Italia
  */
+
 ?>
 
 <section id="banner-mappasito" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-mappasito-title">

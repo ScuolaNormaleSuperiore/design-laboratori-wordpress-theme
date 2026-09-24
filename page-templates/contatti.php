@@ -160,10 +160,10 @@ if ( 'yes' === $dli_form_submitted ) {
 	</div>
 
 	<!-- SEZIONE FORM: colonne allineate allo stesso schema delle schede di dettaglio
-	     con sidebar (col-lg-3 + col-lg-8 offset-lg-1), come nel prototipo
-	     (sf-contatti.html) — il solo gutter di bootstrap lasciava il form troppo a
-	     ridosso della lista contatti. Il <form> avvolge solo la colonna "Scrivici",
-	     non anche la sidebar dei contatti del laboratorio. -->
+		con sidebar (col-lg-3 + col-lg-8 offset-lg-1), come nel prototipo
+		(sf-contatti.html) — il solo gutter di bootstrap lasciava il form troppo a
+		ridosso della lista contatti. Il <form> avvolge solo la colonna "Scrivici",
+		non anche la sidebar dei contatti del laboratorio. -->
 	<div id="contatti_form">
 		<div class="container my-4 pt-4">
 			<div class="row">

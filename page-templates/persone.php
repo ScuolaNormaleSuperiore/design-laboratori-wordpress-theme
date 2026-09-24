@@ -28,7 +28,7 @@ $dli_vista              = is_string( $dli_vista_raw ) ? sanitize_text_field( wp_
  */
 $dli_view_type_default = dli_get_option( 'people_view_type', 'persone' );
 $dli_view_type_default = ( 'tabella' === $dli_view_type_default ) ? 'tabella' : 'chip';
-$dli_view_type          = in_array( $dli_vista, array( 'chip', 'tabella' ), true ) ? $dli_vista : $dli_view_type_default;
+$dli_view_type         = in_array( $dli_vista, array( 'chip', 'tabella' ), true ) ? $dli_vista : $dli_view_type_default;
 
 if ( 'tabella' === $dli_view_type ) {
 	// Per la vista tabella tutti i record sono scaricati una volta sola;
@@ -65,7 +65,7 @@ $dli_view_query_args = array_filter(
 		'cognome'   => $dli_selected_cognome,
 	)
 );
-$dli_view_toggle = array(
+$dli_view_toggle     = array(
 	'active'      => $dli_view_type,
 	'chip_url'    => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'chip' ) ), get_permalink() ),
 	'tabella_url' => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'tabella' ) ), get_permalink() ),

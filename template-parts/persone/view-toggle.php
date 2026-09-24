@@ -15,7 +15,7 @@
  */
 
 $dli_vt_active      = isset( $args['active'] ) ? $args['active'] : 'chip';
-$dli_vt_chip_url     = isset( $args['chip_url'] ) ? $args['chip_url'] : '';
+$dli_vt_chip_url    = isset( $args['chip_url'] ) ? $args['chip_url'] : '';
 $dli_vt_tabella_url = isset( $args['tabella_url'] ) ? $args['tabella_url'] : '';
 
 if ( ! $dli_vt_chip_url || ! $dli_vt_tabella_url ) {

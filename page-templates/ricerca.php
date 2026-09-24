@@ -13,10 +13,14 @@ define( 'RIC_CELLS_PER_ROW', 3 );
 
 $dli_per_page        = DLI_POSTS_PER_PAGE;
 $dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
+$dli_allowed_pages   = array_map( 'strval', (array) $dli_per_page_values );
 
-if ( isset( $_GET['per_page'] ) && is_numeric( $_GET['per_page'] ) ) {
-	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination/filter parameter.
-	$dli_per_page = sanitize_text_field( wp_unslash( $_GET['per_page'] ) );
+$dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+if ( is_string( $dli_raw_per_page ) ) {
+	$dli_raw_per_page = sanitize_text_field( wp_unslash( $dli_raw_per_page ) );
+	if ( in_array( $dli_raw_per_page, $dli_allowed_pages, true ) ) {
+		$dli_per_page = $dli_raw_per_page;
+	}
 }
 
 $dli_paged = absint( get_query_var( 'paged' ) );

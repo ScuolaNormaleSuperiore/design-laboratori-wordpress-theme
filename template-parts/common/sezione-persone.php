@@ -16,20 +16,20 @@ $dli_hide_icon   = dli_get_option( 'hide_person_icon', 'persone' );
 		<div class="row g-3">
 			<?php
 			foreach ( $dli_items as $dli_item ) :
-				$dli_id    = $dli_item->ID;
-				$dli_terms = get_the_terms( $dli_id, 'struttura' );
+				$dli_id             = $dli_item->ID;
+				$dli_terms          = get_the_terms( $dli_id, 'struttura' );
 				$dli_nome_struttura = $dli_terms ? $dli_terms[0]->name : '';
 
 				$dli_disattiva_pagina_dettaglio          = dli_get_field( 'disattiva_pagina_dettaglio', $dli_id );
 				$dli_nome                                = dli_get_field( 'nome', $dli_id );
-				$dli_cognome                              = dli_get_field( 'cognome', $dli_id );
-				$dli_title                                = get_the_title( $dli_id );
-				$dli_post_link                            = get_the_permalink( $dli_id );
-				$dli_categoria                             = dli_get_field( 'categoria_appartenenza', $dli_id );
-				$dli_cat_label                             = $dli_categoria && count( $dli_categoria ) ? $dli_categoria[0]->post_title : '';
-				$dli_sitoweb                               = dli_get_field( 'sito_web', $dli_id );
-				$dli_link_persona                          = get_the_permalink( $dli_id );
-				$dli_abilita_link_diretto_pagina_persona   = dli_get_field( 'abilita_link_diretto_pagina_persona', $dli_id );
+				$dli_cognome                             = dli_get_field( 'cognome', $dli_id );
+				$dli_title                               = get_the_title( $dli_id );
+				$dli_post_link                           = get_the_permalink( $dli_id );
+				$dli_categoria                           = dli_get_field( 'categoria_appartenenza', $dli_id );
+				$dli_cat_label                           = $dli_categoria && count( $dli_categoria ) ? $dli_categoria[0]->post_title : '';
+				$dli_sitoweb                             = dli_get_field( 'sito_web', $dli_id );
+				$dli_link_persona                        = get_the_permalink( $dli_id );
+				$dli_abilita_link_diretto_pagina_persona = dli_get_field( 'abilita_link_diretto_pagina_persona', $dli_id );
 				?>
 				<div class="col-lg-4">
 					<div class="avatar-wrapper avatar-extra-text">

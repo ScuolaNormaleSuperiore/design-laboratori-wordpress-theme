@@ -38,8 +38,8 @@ if ( 'true' === $dli_section_enabled ) {
 				<div class="row">
 				<?php
 				foreach ( $dli_query->posts as $dli_post ) {
-					$dli_postitem   = dli_get_post_wrapper( $dli_post );
-					$dli_blog_date  = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
+					$dli_postitem  = dli_get_post_wrapper( $dli_post );
+					$dli_blog_date = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_postitem['date'] );
 					?>
 					<!-- ARTICOLI -->
 					<div class="col-12 col-lg-4">

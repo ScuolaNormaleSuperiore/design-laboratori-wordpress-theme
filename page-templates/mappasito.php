@@ -30,9 +30,9 @@ if ( isset( $dli_page_tree[ DLI_HOMEPAGE_SLUG ] ) && is_array( $dli_page_tree[ D
 	<?php get_template_part( 'template-parts/hero/mappasito' ); ?>
 
 	<!-- MAPPA DEL SITO: albero delle pagine "page" e delle famiglie di contenuto
-	     del sito, stesso pattern link-list/link-sublist già validato per la
-	     sidebar "Pagine collegate" (page.php) — qui però senza pulsanti di
-	     espansione: ogni livello resta sempre completamente visibile. -->
+		del sito, stesso pattern link-list/link-sublist già validato per la
+		sidebar "Pagine collegate" (page.php) — qui però senza pulsanti di
+		espansione: ogni livello resta sempre completamente visibile. -->
 	<div id="dli-sitemap" class="container p-5">
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-8">

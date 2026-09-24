@@ -65,8 +65,8 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 	</script>
 
 	<!-- BANNER PAGINA: hero a due colonne con breadcrumb integrato; l'eventuale
-	     immagine in evidenza della pagina resta nel corpo (vedi sotto), non qui
-	     — stesso criterio già usato per Risorse tecniche e per page.php. -->
+		immagine in evidenza della pagina resta nel corpo (vedi sotto), non qui
+		— stesso criterio già usato per Risorse tecniche e per page.php. -->
 	<section id="banner-paginabase" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-paginabase-title">
 		<div class="container">
 			<div class="row align-items-stretch">
@@ -123,7 +123,7 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 				?>
 
 				<!-- MENU LATERALE (SIDEBAR "Pagine collegate"): stesso pattern di page.php
-				     (albero completo, sempre aperto, nessun bottone "Torna indietro"). -->
+					(albero completo, sempre aperto, nessun bottone "Torna indietro"). -->
 				<div class="sidebar-wrapper col-12 col-lg-3 border-end pb-3 mb-4 mb-lg-0">
 					<?php if ( $dli_pages ) : ?>
 						<div class="sticky-top" style="top: 1rem;">
@@ -135,9 +135,9 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 										'template-parts/common/lista-pagine-collegate',
 										null,
 										array(
-											'pages'           => $dli_pages,
+											'pages'     => $dli_pages,
 											'current_post_id' => $post->ID,
-											'top_level'       => true,
+											'top_level' => true,
 										)
 									);
 									?>

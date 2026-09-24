@@ -149,9 +149,9 @@ $dli_num_results = $dli_query->found_posts;
 							<?php
 							while ( $dli_query->have_posts() ) {
 								$dli_query->the_post();
-								$dli_result             = dli_get_post_wrapper( $post, 'medium' );
-								$dli_tipo_risorsa       = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
-								$dli_anno_acquisizione  = dli_get_field( 'anno_acquisizione' );
+								$dli_result            = dli_get_post_wrapper( $post, 'medium' );
+								$dli_tipo_risorsa      = dli_get_post_main_category( $post, RT_TYPE_TAXONOMY );
+								$dli_anno_acquisizione = dli_get_field( 'anno_acquisizione' );
 								?>
 								<div class="col-12 mb-4">
 									<article class="it-card it-card-inline it-card-inline-mini<?php echo $dli_result['image_url'] ? ' it-card-image' : ''; ?> rounded shadow-sm border">
