@@ -1,7 +1,7 @@
 # ![developers.italia](https://avatars1.githubusercontent.com/u/15377824?s=36&v=4 "developers.italia") Design Laboratori Italia
 
 
-**Design laboratori e centri di ricerca** è un tema wordpress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
+**Design laboratori e centri di ricerca** è un tema WordPress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
 Il progetto si pone l'obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
 ## Stato del progetto
 Il progetto è in fase di produzione.
@@ -42,7 +42,8 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 
 
 ## Requisiti software
-1. Il CMS Wordpress (versione >= 6.1.1).
+1. Il CMS WordPress (versione >= 6.1.1).
+2. Per lo sviluppo: PHP compatibile con l'installazione WordPress, [Composer](https://getcomposer.org/), Node.js e npm.
 
 
 ## Repository
@@ -80,6 +81,7 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 ### Guide tecniche
 - [Aggiornare la libreria Bootstrap Italia](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
+- [Aggiornamento a Bootstrap Italia 3](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Aggiornamento%20a%20Bootstrap%20Italia%203.md)
 - [REST API del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/REST-API.md)
 - [Importazione dei brevetti da IRIS](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Import%20brevettiI%20da%20RIS.md)
 
@@ -98,7 +100,7 @@ Alcuni siti in produzione realizzati con questo tema:
 
 ## Demo
 ### Docker
-E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (Wordpress + tema + plugins + contenuti d'esempio). 
+E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (WordPress + tema + plugins + contenuti d'esempio). 
 Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/SETUP/Docker/Dockerfile).
 
 Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Demo Lab** è già configurato ed è popolato con dei contenuti di prova. Lo scopo di Demo Lab è quello di mostrare le funzionalità del sistema e poterle provare velocemente, non deve essere usato in ambienti di produzione.
@@ -162,21 +164,37 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 
 ## Personalizzazione dello stile (colori e font)
 In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
-* **Stile Bootstrap Italia standard**: Stile che prevede i colori e i font di default della libreria Bootstrap Italia.
-* **Stile personalizzato**: Stile che usa colori e font personalizzati presi dai file [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) e [custom-colors.css](assets/css/custom-colors.css).
+* **Stile Bootstrap Italia standard**: colori e font predefiniti della libreria Bootstrap Italia.
+* **Stile personalizzato**: il CSS base [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) con gli override del brand in [custom-colors.css](assets/css/custom-colors.css).
 
-Il file  [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) può essere prodotto con la procedura descritta nel documento [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria/) oppure seguendo i seguenti passi:
+Bootstrap Italia 3 gestisce la tematizzazione tramite custom property CSS `--bsi-*`. Per modificare colori e font del brand intervenire in [custom-colors.css](assets/css/custom-colors.css). Il file Sass [bootstrap-italia-custom.scss](assets/scss/bootstrap-italia-custom.scss) serve a rigenerare il CSS base, ma non sostituisce gli override del brand.
 
-1. Entrare con la shell nella directory principale del template: ***design-laboratori-wordpress-theme***.
-2. Eseguire il comando ***npm install*** in modo che venga prodotta la cartella *node-modules* con tutte le dipendenze del caso.
-3. Modificare il file [bootstrap-italia-custom.scss](assets/scss/bootstrap-italia-custom.scss) indicando i valori che devono essere modificati e rigenerati.
-4. Eseguire il comando ***npm run update_layout_win*** o ***npm run update_layout_linux***. Questo comando produce un nuovo file *bootstrap-italia-custom.min* che va a sovrascrivere quello esistente.
+Per preparare l'ambiente locale eseguire `npm ci`, quindi usare `npm run update_layout_win` su Windows oppure `npm run update_layout_linux` su Linux quando si deve rigenerare il CSS compilato. Per aggiornare Bootstrap Italia seguire la [guida dedicata](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md).
 
-Altre guide su questo argomento:
+Altre risorse utili:
 * [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria).
-* [Elenco delle variabili modificabili](https://github.com/italia/bootstrap-italia/tree/main/src/scss).
 * [Tool per codifica colori](https://rgb.to/).
 * [Google Fonts](https://fonts.google.com).
+
+## Sviluppo e verifiche
+
+Dalla radice del tema, installare le dipendenze di sviluppo con:
+
+```sh
+npm ci
+composer install
+```
+
+Sono disponibili i seguenti controlli:
+
+```sh
+npm run lint:php
+npm run lint:php:fix
+composer lint:phpstan
+npm run status:scan -- https://mio-sito.example.com
+```
+
+Per le verifiche end-to-end, installare una sola volta Chromium con `npm run status:scan:install-browser`. Sono disponibili anche gli script `quality:scan`, `ux:scan` e `html:scan`; per opzioni, risultati e confronti consultare i README nelle rispettive cartelle `tests/e2e/`.
 
 ## Migrazione da 1.4.x a 1.5.x
 La versione 1.5.x del tema ha introdotto una modifica nella struttura delle pagine del sito riducendo il numero di livelli presenti.
@@ -190,7 +208,7 @@ Per aggiornare un Sito Federato da una versione 1.6.x a una versione 1.7.x è ne
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
 
 ## Sviluppi futuri
-Queste le sono le principali funzionalità previste per le prossime versioni del sistema:
+Queste sono le principali funzionalità previste per le prossime versioni del sistema:
 * Autenticazione degli operatori tramite LDAP.
 * Autenticazione degli operatori tramite Shibboleth.
 
@@ -198,7 +216,7 @@ Queste le sono le principali funzionalità previste per le prossime versioni del
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme.html). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go).
 ```
 go install github.com/italia/publiccode-parser-go/v4/publiccode-parser@latest
-cd <root_cartella_plugin>
+cd <root_cartella_tema>
 publiccode-parser publiccode.yml
 ```
 
