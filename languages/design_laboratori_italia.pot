@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-24 12:03+0000\n"
+"POT-Creation-Date: 2026-09-24 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -29,6 +29,22 @@ msgstr[1] ""
 #: template-parts/common/sezione-video.php:56
 #, php-format
 msgid "%s Video"
+msgstr ""
+
+#. 1: total items, 2: discarded, 3: processed, 4: updated, 5: ignored, 6: errors.
+#: inc/classes/class-indicoimporter.php:212
+#, php-format
+msgid ""
+"*** Totali: %1$d - Scartati: %2$d - Processati: %3$d - Aggiornati: %4$d - "
+"Ignorati: %5$d - Errori: %6$d ***"
+msgstr ""
+
+#. 1: total items, 2: simulated (dry-run), 3: added, 4: updated, 5: ignored, 6: errors.
+#: inc/classes/class-patentimporter.php:230
+#, php-format
+msgid ""
+"*** Totali: %1$d - Simulati: %2$d - Aggiunti: %3$d - Aggiornati: %4$d - "
+"Ignorati: %5$d - Errori: %6$d ***"
 msgstr ""
 
 #. 1: start time, 2: end time.
@@ -170,8 +186,8 @@ msgstr ""
 msgid "Anno di acquisizione"
 msgstr ""
 
-#: single-spinoff.php:110 single-spinoff.php:178 page-templates/spinoff.php:93
-#: page-templates/spinoff.php:95
+#: single-spinoff.php:110 single-spinoff.php:178 page-templates/spinoff.php:101
+#: page-templates/spinoff.php:103
 msgid "Anno di costituzione"
 msgstr ""
 
@@ -295,7 +311,7 @@ msgstr ""
 msgid "Campi obbligatori mancanti o email non valida."
 msgstr ""
 
-#: page-templates/newsletter.php:211
+#: page-templates/newsletter.php:208
 msgid "Captcha"
 msgstr ""
 
@@ -328,8 +344,8 @@ msgstr ""
 
 #: page-templates/brevetti.php:142 page-templates/brevetti.php:149
 #: page-templates/risorse-tecniche.php:128
-#: page-templates/risorse-tecniche.php:135 page-templates/spinoff.php:128
-#: page-templates/spinoff.php:135
+#: page-templates/risorse-tecniche.php:135 page-templates/spinoff.php:136
+#: page-templates/spinoff.php:143
 msgid "Cerca contenuto"
 msgstr ""
 
@@ -380,16 +396,16 @@ msgstr ""
 
 #: page-templates/contatti.php:137 page-templates/contatti.php:139
 #: page-templates/contatti.php:151 page-templates/contatti.php:153
-#: page-templates/newsletter.php:118 page-templates/newsletter.php:120
-#: page-templates/newsletter.php:134 page-templates/newsletter.php:136
-#: page-templates/newsletter.php:154 page-templates/newsletter.php:156
+#: page-templates/newsletter.php:115 page-templates/newsletter.php:117
+#: page-templates/newsletter.php:131 page-templates/newsletter.php:133
+#: page-templates/newsletter.php:151 page-templates/newsletter.php:153
 #: template-parts/header/alert.php:45 template-parts/header/alert.php:46
 #: template-parts/header/alert.php:47
 msgid "Chiudi avviso"
 msgstr ""
 
-#: page-templates/newsletter.php:119 page-templates/newsletter.php:135
-#: page-templates/newsletter.php:155
+#: page-templates/newsletter.php:116 page-templates/newsletter.php:132
+#: page-templates/newsletter.php:152
 msgid "Close"
 msgstr ""
 
@@ -405,7 +421,7 @@ msgstr ""
 msgid "Codice interno"
 msgstr ""
 
-#: page-templates/newsletter.php:192
+#: page-templates/newsletter.php:189
 msgid "Cognome"
 msgstr ""
 
@@ -425,7 +441,7 @@ msgstr ""
 msgid "commit (esecuzione reale)"
 msgstr ""
 
-#: page-templates/newsletter.php:96
+#: page-templates/newsletter.php:93
 msgid ""
 "Compila il form seguente per iscriverti alla newsletter, riceverai una e-"
 "mail per confermare l'iscrizione"
@@ -679,7 +695,7 @@ msgid "dry_run (simulazione)"
 msgstr ""
 
 #: footer.php:81 footer.php:82 page-templates/contatti.php:258
-#: page-templates/newsletter.php:200
+#: page-templates/newsletter.php:197
 msgid "E-mail"
 msgstr ""
 
@@ -710,7 +726,7 @@ msgid ""
 "evitare ambiguità."
 msgstr ""
 
-#: page-templates/newsletter.php:76
+#: page-templates/newsletter.php:73
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr ""
 
@@ -804,7 +820,7 @@ msgid "File vuoto o intestazione non leggibile."
 msgstr ""
 
 #: page-templates/brevetti.php:153 page-templates/risorse-tecniche.php:139
-#: page-templates/spinoff.php:139
+#: page-templates/spinoff.php:147
 msgid "Filtra"
 msgstr ""
 
@@ -979,15 +995,15 @@ msgstr ""
 msgid "Inserisci il testo del messaggio"
 msgstr ""
 
-#: page-templates/newsletter.php:195
+#: page-templates/newsletter.php:192
 msgid "Inserisci il tuo cognome"
 msgstr ""
 
-#: page-templates/contatti.php:265 page-templates/newsletter.php:203
+#: page-templates/contatti.php:265 page-templates/newsletter.php:200
 msgid "Inserisci il tuo indirizzo email"
 msgstr ""
 
-#: page-templates/contatti.php:239 page-templates/newsletter.php:189
+#: page-templates/contatti.php:239 page-templates/newsletter.php:186
 msgid "Inserisci il tuo nome"
 msgstr ""
 
@@ -1013,7 +1029,7 @@ msgstr ""
 msgid "Inventori"
 msgstr ""
 
-#: page-templates/newsletter.php:226
+#: page-templates/newsletter.php:223
 msgid "Iscrivimi alla newsletter"
 msgstr ""
 
@@ -1021,11 +1037,11 @@ msgstr ""
 msgid "Iscrivimi..."
 msgstr ""
 
-#: page-templates/newsletter.php:180
+#: page-templates/newsletter.php:177
 msgid "Iscrizione"
 msgstr ""
 
-#: page-templates/newsletter.php:117
+#: page-templates/newsletter.php:114
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr ""
 
@@ -1265,12 +1281,12 @@ msgid "Nessuna persona trovata"
 msgstr ""
 
 #. Name of the template
-#: page-templates/newsletter.php:8 page-templates/newsletter.php:94
+#: page-templates/newsletter.php:8 page-templates/newsletter.php:91
 #: template-parts/common/newsletter.php:16
 msgid "Newsletter"
 msgstr ""
 
-#: page-templates/newsletter.php:186
+#: page-templates/newsletter.php:183
 msgid "Nome"
 msgstr ""
 
@@ -1309,7 +1325,7 @@ msgstr ""
 msgid "Non sei autenticato."
 msgstr ""
 
-#: page-templates/spinoff.php:213
+#: page-templates/spinoff.php:221
 msgid "Non è stata trovata alcuna spinoff"
 msgstr ""
 
@@ -1938,7 +1954,7 @@ msgid "Ricerca"
 msgstr ""
 
 #: page-templates/brevetti.php:140 page-templates/risorse-tecniche.php:126
-#: page-templates/spinoff.php:126
+#: page-templates/spinoff.php:134
 msgid "Ricerca libera"
 msgstr ""
 
@@ -1950,7 +1966,7 @@ msgstr ""
 msgid "Ricevuta"
 msgstr ""
 
-#: page-templates/newsletter.php:133
+#: page-templates/newsletter.php:130
 msgid ""
 "Richiesta di iscrizione ricevuta correttamente, verifica la tua email per "
 "completare la procedura."
@@ -2004,7 +2020,7 @@ msgstr ""
 msgid "Rimuovi Immagine Sponsor"
 msgstr ""
 
-#: page-templates/contatti.php:313 page-templates/newsletter.php:216
+#: page-templates/contatti.php:313 page-templates/newsletter.php:213
 msgid "Riscrivi qui il codice di conferma"
 msgstr ""
 
@@ -2077,6 +2093,34 @@ msgstr ""
 msgid "Seguici su"
 msgstr ""
 
+#: inc/classes/class-peoplemanager.php:79 inc/classes/class-placemanager.php:85
+msgid "Seleziona Immagine"
+msgstr ""
+
+#: inc/classes/class-bannermanager.php:45
+msgid "Seleziona Immagine Banner"
+msgstr ""
+
+#: inc/classes/class-patentmanager.php:84
+msgid "Seleziona Immagine Brevetto"
+msgstr ""
+
+#: inc/classes/class-eventmanager.php:44
+msgid "Seleziona Immagine Evento"
+msgstr ""
+
+#: inc/classes/class-newsmanager.php:44
+msgid "Seleziona Immagine Notizia"
+msgstr ""
+
+#: inc/classes/class-spinoffmanager.php:95
+msgid "Seleziona Immagine Spin-off"
+msgstr ""
+
+#: inc/classes/class-sponsormanager.php:45
+msgid "Seleziona Immagine Sponsor"
+msgstr ""
+
 #: header.php:84
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
@@ -2097,11 +2141,11 @@ msgstr ""
 msgid "Settore attività"
 msgstr ""
 
-#: single-spinoff.php:119 single-spinoff.php:183 page-templates/spinoff.php:108
+#: single-spinoff.php:119 single-spinoff.php:183 page-templates/spinoff.php:116
 msgid "Settore di attività"
 msgstr ""
 
-#: page-templates/spinoff.php:177 page-templates/spinoff.php:182
+#: page-templates/spinoff.php:185 page-templates/spinoff.php:190
 msgid "Settore:"
 msgstr ""
 
@@ -2353,7 +2397,7 @@ msgid "Tutte le tipologie luogo"
 msgstr ""
 
 #: page-templates/brevetti.php:109 page-templates/pubblicazioni.php:169
-#: page-templates/spinoff.php:97
+#: page-templates/spinoff.php:105
 msgid "Tutti gli anni"
 msgstr ""
 
