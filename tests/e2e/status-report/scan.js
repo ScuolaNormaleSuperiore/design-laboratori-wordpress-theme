@@ -43,7 +43,8 @@ function parseArgs(argv) {
   const args = argv.slice(2);
   const opts = {
     baseUrl: null,
-    sitemap: '/mappa-sito/',
+    sitemap: null,
+    sitemapExplicit: false,
     timeout: 15000,
     concurrency: 3,
     delay: 1000, // ms to wait before starting each page request; 0 = no delay
@@ -57,6 +58,7 @@ function parseArgs(argv) {
       opts.baseUrl = arg.replace(/\/$/, '');
     } else if (arg === '--sitemap' && args[i + 1]) {
       opts.sitemap = args[++i];
+      opts.sitemapExplicit = true;
     } else if (arg === '--timeout' && args[i + 1]) {
       opts.timeout = parseInt(args[++i], 10);
     } else if (arg === '--concurrency' && args[i + 1]) {
@@ -76,18 +78,41 @@ function parseArgs(argv) {
 // URL extraction from sitemap page
 // ---------------------------------------------------------------------------
 
+const DEFAULT_SITEMAPS = [
+  '/mappa-sito/',
+  '/en/site-map/',
+];
+
+function normalizeUrl(value) {
+  const url = new URL(value);
+  url.hash = '';
+  url.search = '';
+  return url.href.replace(/\/$/, '');
+}
+
 async function extractUrls(page, baseUrl, sitemapPath, timeout) {
-  const sitemapUrl = baseUrl + sitemapPath;
+  const sitemapUrl = new URL(sitemapPath, baseUrl).href;
   console.log(`\nReading sitemap: ${sitemapUrl}`);
 
+  let response;
   try {
-    await page.goto(sitemapUrl, { waitUntil: 'load', timeout });
+    response = await page.goto(sitemapUrl, { waitUntil: 'load', timeout });
   } catch (err) {
-    console.error(`ERROR: Cannot reach sitemap page: ${err.message}`);
-    process.exit(1);
+    console.log(`Skipping unavailable sitemap: ${err.message}`);
+    return null;
   }
 
-  const urls = await page.evaluate((base) => {
+  const renderedUrl = page.url();
+  const renderedOrigin = new URL(renderedUrl).origin;
+  const hasSitemap = await page.locator('#dli-sitemap').count() > 0;
+
+  if (!response || response.status() !== 200 || !hasSitemap) {
+    const status = response ? response.status() : 'no response';
+    console.log(`Skipping unavailable sitemap: HTTP ${status}, selector #dli-sitemap not found.`);
+    return null;
+  }
+
+  const urls = await page.evaluate((origin) => {
     const anchors = Array.from(document.querySelectorAll('#dli-sitemap a[href]'));
     const found = new Set();
     anchors.forEach((a) => {
@@ -95,25 +120,27 @@ async function extractUrls(page, baseUrl, sitemapPath, timeout) {
       if (!href) return;
       let url;
       try {
-        url = new URL(href, base);
+        url = new URL(href, origin);
       } catch {
         return;
       }
       // Keep only internal URLs, strip hash and query
-      if (url.origin === new URL(base).origin) {
+      if (url.origin === origin) {
         url.hash = '';
         url.search = '';
-        found.add(url.href.replace(/\/$/, '') || '/');
+        found.add(url.href);
       }
     });
     return Array.from(found);
-  }, baseUrl);
+  }, renderedOrigin);
 
-  // Always include the homepage
-  const homepage = baseUrl + '/';
-  const unique = Array.from(new Set([homepage, ...urls])).sort();
-  console.log(`Found ${unique.length} unique internal URLs.\n`);
-  return unique;
+  return {
+    sitemapUrl: normalizeUrl(renderedUrl),
+    urls: Array.from(new Set([
+      normalizeUrl(renderedOrigin),
+      ...urls.map(normalizeUrl),
+    ])).sort(),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -320,7 +347,7 @@ async function main() {
   console.log('DLI Site Status Scanner');
   console.log('='.repeat(60));
   console.log(`Base URL    : ${opts.baseUrl}`);
-  console.log(`Sitemap     : ${opts.sitemap}`);
+  console.log(`Sitemaps    : ${opts.sitemapExplicit ? opts.sitemap : DEFAULT_SITEMAPS.join(', ')}`);
   console.log(`Timeout     : ${opts.timeout}ms`);
   console.log(`Concurrency : ${opts.concurrency}`);
   console.log(`Delay       : ${opts.delay > 0 ? opts.delay + 'ms' : 'none (--delay 0)'}`);
@@ -329,14 +356,31 @@ async function main() {
 
   const browser = await chromium.launch({ headless: true });
 
-  // Step 1: extract URLs from sitemap
-  const sitemapPage = await browser.newPage();
-  const urls = await extractUrls(sitemapPage, opts.baseUrl, opts.sitemap, opts.timeout);
-  await sitemapPage.close();
+  // Step 1: extract URLs from the available language sitemaps.
+  const sitemapPaths = opts.sitemapExplicit ? [opts.sitemap] : DEFAULT_SITEMAPS;
+  const urls = new Set();
+  const readSitemaps = new Set();
+
+  for (const sitemapPath of sitemapPaths) {
+    const sitemapPage = await browser.newPage();
+    const extracted = await extractUrls(sitemapPage, opts.baseUrl, sitemapPath, opts.timeout);
+    await sitemapPage.close();
+
+    if (!extracted || readSitemaps.has(extracted.sitemapUrl)) {
+      continue;
+    }
+
+    readSitemaps.add(extracted.sitemapUrl);
+    urls.add(extracted.sitemapUrl);
+    extracted.urls.forEach((url) => urls.add(url));
+  }
+
+  const scanUrls = Array.from(urls).sort();
+  console.log(`\nRead ${readSitemaps.size} sitemap(s); found ${scanUrls.length} unique internal URLs.\n`);
 
   // Step 2: scan all pages
-  console.log(`Scanning ${urls.length} pages (concurrency: ${opts.concurrency})...\n`);
-  const tasks = urls.map((url) => () => scanPage(browser, url, opts.timeout));
+  console.log(`Scanning ${scanUrls.length} pages (concurrency: ${opts.concurrency})...\n`);
+  const tasks = scanUrls.map((url) => () => scanPage(browser, url, opts.timeout));
   const results = await runWithConcurrency(tasks, opts.concurrency, opts.delay);
 
   await browser.close();

@@ -55,9 +55,12 @@ Lo script opera in tre fasi:
 
 **Fase 1 — Raccolta URL**
 
-Apre con un browser Chromium headless (invisibile) la pagina della mappa del sito
-(default: `/mappa-sito/`) ed estrae tutti i link interni presenti. Deduplica e
-normalizza gli URL, quindi aggiunge sempre la homepage come punto di partenza.
+Apre con un browser Chromium headless (invisibile) le due mappe standard del
+tema, `/mappa-sito/` e `/en/site-map/`, ed estrae tutti i link interni presenti.
+Una mappa è considerata disponibile solo se, dopo eventuali redirect, risponde
+con `200` e contiene `#dli-sitemap`; questo consente di gestire siti italiani,
+inglesi o bilingui senza dipendere dalla lingua principale. Deduplica e
+normalizza gli URL, compresa la homepage con o senza slash finale.
 
 **Fase 2 — Scansione pagine**
 
@@ -273,7 +276,7 @@ npm run scan -- <baseUrl> [opzioni]
 | Opzione | Default | Descrizione |
 |---|---|---|
 | `<baseUrl>` | — | URL base del sito, obbligatorio. Es: `https://laboratorio1.local` |
-| `--sitemap <path>` | `/mappa-sito/` | Percorso della pagina che contiene i link alle pagine del sito |
+| `--sitemap <path>` | entrambe le mappe standard | Scansiona soltanto una mappa specifica invece di `/mappa-sito/` e `/en/site-map/` |
 | `--timeout <ms>` | `15000` | Millisecondi di attesa massima per ogni pagina prima di segnare TIMEOUT |
 | `--concurrency <n>` | `3` | Numero massimo di pagine visitate contemporaneamente |
 | `--delay <ms>` | `300` | Pausa in ms prima di avviare ogni richiesta di pagina, per ridurre il carico sul server. `--delay 0` disabilita il delay. |
