@@ -15,10 +15,10 @@ $dli_back_url = $dli_back_url ? $dli_back_url : home_url( '/' );
 <main id="main-container" class="main-container" role="main">
 
 	<!-- BANNER 404: hero a due colonne con breadcrumb integrato, stesso
-	     pattern standard delle pagine "di servizio" senza prototipo dedicato
-	     (Contatti/Newsletter). "404" come span informativo sopra il titolo,
-	     non come h1 separato: l'unico h1 di pagina resta quello del nome del
-	     laboratorio nell'header. -->
+		pattern standard delle pagine "di servizio" senza prototipo dedicato
+		(Contatti/Newsletter). "404" come span informativo sopra il titolo,
+		non come h1 separato: l'unico h1 di pagina resta quello del nome del
+		laboratorio nell'header. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-404-title">
 		<div class="container">
 			<div class="row align-items-stretch">

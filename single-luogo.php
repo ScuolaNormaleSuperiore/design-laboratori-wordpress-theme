@@ -10,9 +10,9 @@ get_header();
 
 while ( have_posts() ) {
 	the_post();
-	$dli_id                = get_the_ID();
-	$dli_title             = get_the_title( $dli_id );
-	$dli_image_metadata    = dli_get_image_metadata( $post );
+	$dli_id             = get_the_ID();
+	$dli_title          = get_the_title( $dli_id );
+	$dli_image_metadata = dli_get_image_metadata( $post );
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
 	$dli_descrizione       = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
 	$dli_posizione         = dli_get_field( 'posizione_gps' );
@@ -30,10 +30,10 @@ while ( have_posts() ) {
 	<main id="main-container" role="main">
 
 	<!-- BANNER LUOGO: hero a due colonne (testo + immagine in evidenza), stesso
-	     pattern di single-notizia.php: l'immagine di un luogo, quando esiste, resta
-	     al proprio formato naturale (nessun object-fit forzato) in una colonna
-	     dedicata invece di un crop forzato a piena pagina; il post type "luogo" non
-	     ha un campo immagine ACF dedicato, solo l'eventuale featured image. -->
+		pattern di single-notizia.php: l'immagine di un luogo, quando esiste, resta
+		al proprio formato naturale (nessun object-fit forzato) in una colonna
+		dedicata invece di un crop forzato a piena pagina; il post type "luogo" non
+		ha un campo immagine ACF dedicato, solo l'eventuale featured image. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-luogo-title">
 		<div class="container">
 			<div class="row align-items-center">
@@ -146,8 +146,8 @@ while ( have_posts() ) {
 				<?php endif; ?>
 
 				<!-- POSIZIONE: mappa reale (campo ACF "posizione_gps", tipo OpenStreetMap/Leaflet,
-				     già pronta come markup/JS) + lista indirizzo/orari/contatti, stessa card
-				     unica del prototipo (sf-scheda-luogo.html). -->
+					già pronta come markup/JS) + lista indirizzo/orari/contatti, stessa card
+					unica del prototipo (sf-scheda-luogo.html). -->
 				<h3 class="it-page-section h4 pt-3" id="posizione"><?php esc_html_e( 'Posizione', 'design_laboratori_italia' ); ?></h3>
 				<div class="it-card rounded shadow overflow-hidden">
 					<?php if ( is_string( $dli_posizione ) && ! str_contains( $dli_posizione, 'data-map-markers="[]">' ) ) : ?>

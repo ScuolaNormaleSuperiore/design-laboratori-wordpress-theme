@@ -58,10 +58,10 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 <main id="main-container" role="main">
 
 	<!-- BANNER RISORSA TECNICA: nessuna foto ampia di copertina, hero a sfondo pieno con
-	     breadcrumb integrato non-assoluto (stesso caso di single-spinoff.php). La foto
-	     reale della risorsa, quando esiste, non sta qui né in sidebar (troppo stretta per
-	     uno sviluppo prevalentemente verticale), ma in una figure a larghezza limitata in
-	     testa al corpo: vedi sf-scheda-risorse-tecniche.html. -->
+		breadcrumb integrato non-assoluto (stesso caso di single-spinoff.php). La foto
+		reale della risorsa, quando esiste, non sta qui né in sidebar (troppo stretta per
+		uno sviluppo prevalentemente verticale), ma in una figure a larghezza limitata in
+		testa al corpo: vedi sf-scheda-risorse-tecniche.html. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-risorsa-title">
 		<div class="container">
 			<div class="row align-items-stretch">
@@ -261,9 +261,9 @@ $dli_has_photo   = ! empty( $dli_photo_url );
 
 				<?php if ( $dli_has_photo ) : ?>
 					<!-- Foto della risorsa: non in sidebar (troppo stretta per uno sviluppo
-					     prevalentemente verticale) né nell'hero (che resta a sfondo pieno).
-					     Figure a larghezza limitata in testa al corpo, aspect ratio naturale
-					     (nessun crop forzato). -->
+						prevalentemente verticale) né nell'hero (che resta a sfondo pieno).
+						Figure a larghezza limitata in testa al corpo, aspect ratio naturale
+						(nessun crop forzato). -->
 					<figure class="figure mb-4" style="max-width: 280px">
 						<img src="<?php echo esc_url( $dli_photo_url ); ?>" class="img-fluid rounded shadow-sm" title="<?php echo esc_attr( $dli_photo_title ); ?>" alt="<?php echo esc_attr( $dli_photo_title ); ?>">
 						<figcaption class="figure-caption mt-2"><?php echo esc_html( get_the_title() ); ?></figcaption>

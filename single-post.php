@@ -24,8 +24,8 @@ $dli_tags           = get_the_tags( $post->ID );
 <main id="main-container" role="main">
 
 	<!-- BANNER ARTICOLO: hero a due colonne, stesso identico pattern della scheda
-	     News (single-notizia.php) — foto reale in evidenza quando esiste, altrimenti
-	     il frammento decorativo placeholder-sns.png. -->
+		News (single-notizia.php) — foto reale in evidenza quando esiste, altrimenti
+		il frammento decorativo placeholder-sns.png. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-blog-title">
 		<div class="container">
 			<div class="row align-items-center">

@@ -16,6 +16,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.0] - 2026-09-24
+## Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
+- Bug-fixing
+
+
+
 ## [1.8.2] - 2026-09-10
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.3
@@ -37,8 +44,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiunto `rel="noopener noreferrer"` al link privacy della sezione video in Home Page.
 - Sanitizzati i contenuti HTML importati da Indico e IRIS prima del salvataggio in `post_content`.
 - Corrette le query dei filtri "anno": rimossi gli apici manuali attorno ai placeholder `%s` in `$wpdb->prepare()`.
-
-
 
 ## [REL-1.8.1] - 2026-07-17
 ## Corretto

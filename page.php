@@ -17,8 +17,8 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 <main id="main-container" role="main">
 
 	<!-- BANNER PAGINA: hero a due colonne con breadcrumb integrato; l'eventuale
-	     immagine in evidenza della pagina resta nel corpo (vedi sotto), non qui
-	     — stesso criterio già usato per Risorse tecniche. -->
+		immagine in evidenza della pagina resta nel corpo (vedi sotto), non qui
+		— stesso criterio già usato per Risorse tecniche. -->
 	<section id="banner-paginabase" class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-paginabase-title">
 		<div class="container">
 			<div class="row align-items-stretch">
@@ -70,14 +70,14 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 							'sort_column' => 'menu_order',
 						)
 					);
-				?>
+					?>
 
 				<!-- MENU LATERALE (SIDEBAR "Pagine collegate"): albero completo dei
-				     fratelli della pagina (e di tutti i loro discendenti, a qualunque
-				     profondità), non solo dei figli diretti della pagina corrente —
-				     come nel prototipo (sf-pagina-base-voce1.html). Nessun bottone
-				     "Torna indietro": con l'albero sempre visibile e la pagina padre
-				     già raggiungibile da breadcrumb non serve, come nel prototipo. -->
+					fratelli della pagina (e di tutti i loro discendenti, a qualunque
+					profondità), non solo dei figli diretti della pagina corrente —
+					come nel prototipo (sf-pagina-base-voce1.html). Nessun bottone
+					"Torna indietro": con l'albero sempre visibile e la pagina padre
+					già raggiungibile da breadcrumb non serve, come nel prototipo. -->
 				<div class="sidebar-wrapper col-12 col-lg-3 border-end pb-3 mb-4 mb-lg-0">
 					<?php if ( $dli_pages ) : ?>
 						<div class="sticky-top" style="top: 1rem;">
@@ -89,9 +89,9 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 										'template-parts/common/lista-pagine-collegate',
 										null,
 										array(
-											'pages'           => $dli_pages,
+											'pages'     => $dli_pages,
 											'current_post_id' => $post->ID,
-											'top_level'       => true,
+											'top_level' => true,
 										)
 									);
 									?>
@@ -102,7 +102,7 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 				</div>
 
 				<!-- CORPO ARTICOLO: col-lg-8 offset-lg-1, stesso schema di colonne delle
-				     schede di dettaglio con sidebar. -->
+					schede di dettaglio con sidebar. -->
 				<div class="col-12 col-lg-8 offset-lg-1">
 					<?php if ( ! empty( $dli_image_metadata['image_url'] ) ) : ?>
 						<figure class="mb-4">

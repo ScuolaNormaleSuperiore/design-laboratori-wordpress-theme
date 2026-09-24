@@ -39,7 +39,7 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 <main id="main-container" role="main">
 
 	<!-- BANNER INDIRIZZI DI RICERCA: foto di copertina con overlay + breadcrumb
-	     in overlay assoluto sopra la foto, stesso pattern di single-progetto.php. -->
+		in overlay assoluto sopra la foto, stesso pattern di single-progetto.php. -->
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
@@ -152,13 +152,13 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 			<div class="col-12 col-lg-8 offset-lg-1 it-page-sections-container">
 				<?php if ( ! empty( $dli_levels ) ) : ?>
 					<!-- Argomenti correlati: pattern generale "Gruppi di Chip" (chip come
-						 elementi semplici, non annidati in un ul/li) — it-card-taxonomy/
-						 it-card-chips usato nella card dell'elenco è invece scoped a
-						 .it-card (".it-card .it-card-chips{display:flex...}" nel CSS
-						 compilato): fuori da una card non ha alcun effetto e la lista
-						 ricade sullo stile puntato di default del browser. Chip statiche
-						 (span, non link): nessun filtro reale da azionare su questa
-						 scheda. -->
+						elementi semplici, non annidati in un ul/li) — it-card-taxonomy/
+						it-card-chips usato nella card dell'elenco è invece scoped a
+						.it-card (".it-card .it-card-chips{display:flex...}" nel CSS
+						compilato): fuori da una card non ha alcun effetto e la lista
+						ricade sullo stile puntato di default del browser. Chip statiche
+						(span, non link): nessun filtro reale da azionare su questa
+						scheda. -->
 					<div class="mb-4" role="group" aria-label="<?php echo esc_attr__( 'Argomenti correlati', 'design_laboratori_italia' ); ?>">
 						<?php foreach ( $dli_levels as $dli_level ) : ?>
 							<span class="chip chip-secondary">
@@ -171,10 +171,10 @@ $dli_eventi = DLI_ContentsManager::get_related_items( $post, 'indirizzo_di_ricer
 				if ( $dli_description ) {
 					?>
 				<h3 class="it-page-section h4" id="sezione-descrizione"><?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?></h3>
-				<?php
+					<?php
 				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
-				echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) );
-				?>
+					echo wp_kses_post( apply_filters( 'the_content', get_the_content() ) );
+					?>
 					<?php
 				}
 				?>

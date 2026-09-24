@@ -36,10 +36,10 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 <main id="main-container" role="main">
 
 	<!-- BANNER BREVETTO: foto di copertina con overlay + breadcrumb in overlay
-	     assoluto sopra la foto, stesso pattern di single-progetto.php. Niente
-	     box scuro locale (bg-dark) né chip area tematica nell'hero: pattern
-	     del prototipo statico (sf-scheda-brevetto.html), leggibilità già
-	     garantita dall'overlay + text-shadow globali. -->
+		assoluto sopra la foto, stesso pattern di single-progetto.php. Niente
+		box scuro locale (bg-dark) né chip area tematica nell'hero: pattern
+		del prototipo statico (sf-scheda-brevetto.html), leggibilità già
+		garantita dall'overlay + text-shadow globali. -->
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">

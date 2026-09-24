@@ -25,12 +25,12 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 <main id="main-container" role="main">
 
 	<!-- BANNER SPIN-OFF: nessuna foto di copertina reale (il campo immagine di
-	     questa scheda è un logo aziendale, non adatto a un fondale a piena
-	     larghezza), stesso caso già gestito in single-risorsa-tecnica.php:
-	     hero a sfondo pieno con breadcrumb integrato non-assoluto, pattern
-	     delle pagine elenco/archivio, non l'hero con foto usato in
-	     single-progetto.php/single-brevetto.php quando la foto esiste
-	     davvero. -->
+		questa scheda è un logo aziendale, non adatto a un fondale a piena
+		larghezza), stesso caso già gestito in single-risorsa-tecnica.php:
+		hero a sfondo pieno con breadcrumb integrato non-assoluto, pattern
+		delle pagine elenco/archivio, non l'hero con foto usato in
+		single-progetto.php/single-brevetto.php quando la foto esiste
+		davvero. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-spinoff-title">
 		<div class="container">
 			<div class="row align-items-stretch">

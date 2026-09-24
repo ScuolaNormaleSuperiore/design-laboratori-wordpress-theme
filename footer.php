@@ -43,10 +43,12 @@
 			<section class="py-4 border-white border-top">
 				<div class="row">
 		<div class="col-lg-4 col-md-4 pb-2">
-				<h4><a href="#" title="<?php
+				<h4><a href="#" title="
+				<?php
 					/* translators: %s: destination page name. */
 					echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Contatti', 'design_laboratori_italia' ) ) );
-				?>"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></a></h4>
+				?>
+				"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></a></h4>
 				<p>
 					<strong><?php echo esc_html( dli_get_option( 'nome_laboratorio' ) ); ?></strong><br />
 					<?php echo esc_html( dli_get_option( 'indirizzo_laboratorio' ) ); ?>
@@ -62,10 +64,12 @@
 						if ( $dli_pec ) {
 							?>
 						<li>
-							<a class="list-item" href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" title="<?php
+							<a class="list-item" href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" title="
+							<?php
 								/* translators: %s: destination page name. */
 								echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Posta Elettronica Certificata', 'design_laboratori_italia' ) ) );
-							?>">
+							?>
+							">
 							<?php echo esc_html( esc_html__( 'Posta Elettronica Certificata', 'design_laboratori_italia' ) . ': ' . $dli_pec ); ?>
 							</a>
 						</li>
@@ -104,10 +108,12 @@
 			if ( count( $dli_menu_items ) > 0 ) {
 				?>
 				<h4>
-					<a href="#" title="<?php
+					<a href="#" title="
+					<?php
 						/* translators: %s: destination page name. */
 						echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Link utili', 'design_laboratori_italia' ) ) );
-					?>">
+					?>
+					">
 					<?php echo esc_html__( 'Link utili', 'design_laboratori_italia' ); ?>
 					</a>
 				</h4>

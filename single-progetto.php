@@ -38,13 +38,13 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 <main id="main-container" role="main">
 
 	<!-- BANNER PROGETTO: foto di copertina con overlay + breadcrumb in overlay
-	     assoluto sopra la foto (va nel markup DOPO .img-responsive-wrapper per
-	     dipingere sopra senza z-index aggiuntivo, vedi assets/css/main.css
-	     ".it-hero-breadcrumb"). Niente box scuro locale sul testo: leggibilità
-	     già garantita dall'overlay a piena larghezza
-	     (.it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after) e
-	     dal text-shadow globale sui testi hero. Niente chip categorie
-	     nell'hero, pattern del prototipo statico (sf-scheda-progetto.html). -->
+		assoluto sopra la foto (va nel markup DOPO .img-responsive-wrapper per
+		dipingere sopra senza z-index aggiuntivo, vedi assets/css/main.css
+		".it-hero-breadcrumb"). Niente box scuro locale sul testo: leggibilità
+		già garantita dall'overlay a piena larghezza
+		(.it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after) e
+		dal text-shadow globale sui testi hero. Niente chip categorie
+		nell'hero, pattern del prototipo statico (sf-scheda-progetto.html). -->
 	<section class="it-hero-wrapper it-hero-small-size it-dark it-overlay">
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
@@ -212,7 +212,7 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 				<h3 class="it-page-section h4" id="sezione-descrizione">
 					<?php echo esc_html__( 'Descrizione', 'design_laboratori_italia' ); ?>
 				</h3>
-				<?php echo wp_kses_post( $dli_descrizione ); ?>
+					<?php echo wp_kses_post( $dli_descrizione ); ?>
 					<?php
 				}
 				if ( $dli_responsabili ) {

@@ -75,9 +75,9 @@ $dli_pubblicazioni = new WP_Query(
 		<main id="main-container" role="main">
 
 			<!-- BANNER PERSONA: nessuna foto di copertina disponibile per una
-			     persona, quindi hero a sfondo pieno (default Ottanio) con breadcrumb
-			     integrato, come nelle pagine di elenco/archivio, invece del pattern
-			     foto+overlay usato per le altre schede. -->
+				persona, quindi hero a sfondo pieno (default Ottanio) con breadcrumb
+				integrato, come nelle pagine di elenco/archivio, invece del pattern
+				foto+overlay usato per le altre schede. -->
 			<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-persona-title">
 				<div class="container">
 					<div class="row align-items-stretch">
@@ -247,7 +247,7 @@ $dli_pubblicazioni = new WP_Query(
 						if ( '' !== $dli_bio ) {
 							?>
 						<h3 class="it-page-section h4" id="p1"><?php esc_html_e( 'Biografia', 'design_laboratori_italia' ); ?></h3>
-						<?php the_content(); ?>
+							<?php the_content(); ?>
 							<?php
 						}
 						if ( $dli_progetti && $dli_progetti->have_posts() ) {
@@ -275,7 +275,7 @@ $dli_pubblicazioni = new WP_Query(
 										</div>
 									</article>
 								</div>
-							<?php
+								<?php
 							}
 							?>
 							</div>
@@ -317,7 +317,7 @@ $dli_pubblicazioni = new WP_Query(
 										</div>
 									</article>
 								</div>
-							<?php
+								<?php
 							}
 							?>
 							</div>
@@ -335,7 +335,7 @@ $dli_pubblicazioni = new WP_Query(
 								$dli_pubblicazioni->the_post();
 								$dli_publication_id    = get_the_ID();
 								$dli_publication_title = get_the_title( $dli_publication_id );
-								$dli_url                = dli_get_field( 'url' );
+								$dli_url               = dli_get_field( 'url' );
 								?>
 								<li class="py-3 border-bottom">
 									<h4 class="h6 mb-1">
@@ -350,7 +350,7 @@ $dli_pubblicazioni = new WP_Query(
 									</h4>
 									<div class="mb-0 text-secondary"><?php echo wp_kses_post( wpautop( do_shortcode( get_the_content() ) ) ); ?></div>
 								</li>
-							<?php
+								<?php
 							}
 							?>
 							</ul>
@@ -396,7 +396,7 @@ $dli_pubblicazioni = new WP_Query(
 										</div>
 									</a>
 								</li>
-							<?php
+								<?php
 							}
 							?>
 								</ul>

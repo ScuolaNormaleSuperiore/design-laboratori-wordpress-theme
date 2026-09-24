@@ -44,9 +44,9 @@ $dli_datetime_display   = dli_get_event_datetime_display( $post->ID );
 <main id="main-container" role="main">
 
 	<!-- BANNER EVENTO: foto di copertina a piena larghezza con overlay scuro e
-	     breadcrumb sovrapposto (pattern con foto, come Progetti/Brevetti), stesso
-	     criterio del prototipo (sf-scheda-evento.html), che lascia questa famiglia
-	     sulla variante "a piena larghezza" invece di quella a due colonne di News. -->
+		breadcrumb sovrapposto (pattern con foto, come Progetti/Brevetti), stesso
+		criterio del prototipo (sf-scheda-evento.html), che lascia questa famiglia
+		sulla variante "a piena larghezza" invece di quella a due colonne di News. -->
 	<section class="it-hero-wrapper it-dark it-overlay it-hero-small-size" aria-labelledby="dli-hero-evento-title">
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
@@ -191,9 +191,9 @@ $dli_datetime_display   = dli_get_event_datetime_display( $post->ID );
 
 				<?php if ( $dli_start_event_date ) : ?>
 					<!-- DATE E ORARI: componente "Timeline point list, calendario" di Bootstrap
-					     Italia 3 (verificato via MCP Filo), sostituisce il point-list/
-					     point-list-aside v2. Un solo punto se inizio/fine coincidono
-					     (o non c'è una data di fine), due punti distinti altrimenti. -->
+						Italia 3 (verificato via MCP Filo), sostituisce il point-list/
+						point-list-aside v2. Un solo punto se inizio/fine coincidono
+						(o non c'è una data di fine), due punti distinti altrimenti. -->
 					<h3 class="it-page-section h4 pt-3" id="date_e_orari"><?php echo esc_html__( 'Date e orari', 'design_laboratori_italia' ); ?></h3>
 					<ol class="it-timeline-point-list my-4">
 						<li class="timeline-point">

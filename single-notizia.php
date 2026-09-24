@@ -10,7 +10,7 @@
 global $post;
 get_header();
 
-$dli_main_category = dli_get_post_main_category( $post, 'category' );
+$dli_main_category  = dli_get_post_main_category( $post, 'category' );
 $dli_summary        = dli_get_field( 'descrizione_breve' );
 $dli_date           = get_the_date( DLI_ACF_DATE_FORMAT, $post );
 $dli_news_date      = dli_get_datetime_from_format( DLI_ACF_DATE_FORMAT, $dli_date );
@@ -24,11 +24,11 @@ $dli_tags           = get_the_tags( $post->ID );
 <main id="main-container" role="main">
 
 	<!-- BANNER NOTIZIA: hero a due colonne, con la foto reale in evidenza della news
-	     (formato naturale, nessun object-fit forzato) quando esiste, altrimenti il
-	     frammento decorativo placeholder-sns.png come nelle altre pagine senza foto:
-	     vedi sf-scheda-news.html, l'immagine in evidenza di una news arriva dal
-	     backoffice con formato/orientamento molto variabili e un crop forzato a piena
-	     larghezza la penalizzerebbe. -->
+		(formato naturale, nessun object-fit forzato) quando esiste, altrimenti il
+		frammento decorativo placeholder-sns.png come nelle altre pagine senza foto:
+		vedi sf-scheda-news.html, l'immagine in evidenza di una news arriva dal
+		backoffice con formato/orientamento molto variabili e un crop forzato a piena
+		larghezza la penalizzerebbe. -->
 	<section class="it-hero-wrapper it-hero-small-size" aria-labelledby="dli-hero-news-title">
 		<div class="container">
 			<div class="row align-items-center">
