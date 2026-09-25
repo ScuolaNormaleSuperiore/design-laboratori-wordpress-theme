@@ -81,3 +81,8 @@ CLAUDE.md
 tmp-alm-php-path-test.out
 tmp-alm-php-path-test.php
 tmp/
+
+# Documenti di lavoro locali (non da versionare)
+DOC/verifica-sicurezza-2026-09-18.md
+DOC/HowTo/Studio-fattibilita-Categoria-Tag-per-CPT.md
+DOC/HowTo/Studio-fattibilita-Identita-Visiva-Riuso.md
