@@ -75,6 +75,11 @@ require get_template_directory() . '/inc/utils.php';
  */
 require get_template_directory() . '/inc/sitemap.php';
 
+/**
+ * PWA support — web app manifest and related head tags.
+ */
+require get_template_directory() . '/inc/pwa.php';
+
 
 /**
  * Activation Hooks.
