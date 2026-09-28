@@ -91,23 +91,59 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 							<p class="fs-5"><?php esc_html_e( 'Trova persone, progetti, notizie e altri contenuti del sito.', 'design_laboratori_italia' ); ?></p>
 							<div class="row m-0">
 								<div class="form-group col-md-8 col-lg-9 mb-2 text-start">
-									<label for="searchstring" class="text-white"><?php esc_html_e( 'Scrivi almeno 3 caratteri per cercare', 'design_laboratori_italia' ); ?></label>
-									<div class="input-group">
-										<span class="input-group-text">
-											<svg class="icon icon-sm" aria-hidden="true" focusable="false">
-												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
-											</svg>
-										</span>
-										<input
-											type="search"
-											class="form-control"
-											id="searchstring"
-											name="searchstring"
-											minlength="3"
-											placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
-											value="<?php echo esc_attr( $dli_search_string ); ?>"
-										>
-									</div>
+									<?php if ( dli_search_autocomplete_is_enabled() ) : ?>
+										<?php $dli_autocomplete_settings = dli_search_autocomplete_settings(); ?>
+										<label for="searchstring" class="text-white">
+											<?php
+											echo esc_html(
+												sprintf(
+													/* translators: %d: minimum number of characters. */
+													_n( 'Scrivi almeno %d carattere per cercare', 'Scrivi almeno %d caratteri per cercare', $dli_autocomplete_settings['min_chars'], 'design_laboratori_italia' ),
+													$dli_autocomplete_settings['min_chars']
+												)
+											);
+											?>
+										</label>
+										<div class="position-relative">
+											<div id="searchstringWrapper" class="autocomplete-wrapper" data-default-value="<?php echo esc_attr( $dli_search_string ); ?>"></div>
+											<div
+												id="searchstringSpinner"
+												class="progress-spinner progress-spinner-active size-sm d-none position-absolute top-50 end-0 translate-middle-y me-3"
+												aria-hidden="true"
+											>
+												<span class="visually-hidden"><?php esc_html_e( 'Ricerca dei suggerimenti in corso…', 'design_laboratori_italia' ); ?></span>
+											</div>
+										</div>
+										<noscript>
+											<input
+												type="search"
+												class="form-control"
+												id="searchstring"
+												name="searchstring"
+												minlength="<?php echo esc_attr( $dli_autocomplete_settings['min_chars'] ); ?>"
+												placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
+												value="<?php echo esc_attr( $dli_search_string ); ?>"
+											>
+										</noscript>
+									<?php else : ?>
+										<label for="searchstring" class="text-white"><?php esc_html_e( 'Scrivi almeno 3 caratteri per cercare', 'design_laboratori_italia' ); ?></label>
+										<div class="input-group">
+											<span class="input-group-text">
+												<svg class="icon icon-sm" aria-hidden="true" focusable="false">
+													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-search' ); ?>"></use>
+												</svg>
+											</span>
+											<input
+												type="search"
+												class="form-control"
+												id="searchstring"
+												name="searchstring"
+												minlength="3"
+												placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
+												value="<?php echo esc_attr( $dli_search_string ); ?>"
+											>
+										</div>
+									<?php endif; ?>
 								</div>
 							</div>
 							<div class="row m-0">
@@ -159,7 +195,7 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 												<?php checked( in_array( $dli_content_type, $dli_selected_contents, true ) ); ?>
 											>
 											<label class="form-check-label" for="<?php echo esc_attr( $dli_content_type ); ?>">
-												<?php echo esc_html( ucfirst( str_replace( '-', ' ', $dli_content_type ) ) ); ?>
+												<?php echo esc_html( dli_get_post_type_label( $dli_content_type ) ); ?>
 											</label>
 										</div>
 									<?php endforeach; ?>
@@ -185,7 +221,7 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 									while ( $dli_query->have_posts() ) :
 										$dli_query->the_post();
 										$dli_result     = dli_get_post_wrapper( $post, 'medium' );
-										$dli_type_label = ucfirst( str_replace( '-', ' ', $dli_result['type'] ) );
+										$dli_type_label = dli_get_post_type_label( $dli_result['type'] );
 										?>
 										<div role="listitem" class="border-bottom py-3">
 											<a class="d-flex justify-content-between align-items-center text-decoration-none" href="<?php echo esc_url( $dli_result['link'] ); ?>">

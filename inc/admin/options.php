@@ -2914,6 +2914,119 @@ function dli_register_main_options_metabox() {
 
 			$setup_options->add_field(
 				array(
+					'id'   => $prefix . 'search_autocomplete_section',
+					'name' => __( 'Ricerca nel sito', 'design_laboratori_italia' ),
+					'type' => 'title',
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'search_autocomplete_enabled',
+					'name'    => __( 'Abilita i suggerimenti durante la digitazione', 'design_laboratori_italia' ),
+					'desc'    => __( 'Mostra suggerimenti nella pagina di ricerca del sito mentre l\'utente digita. Resta disponibile anche quando la REST API è disabilitata qui sopra.', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'false',
+					'options' => array(
+						'true'  => __( 'Si', 'design_laboratori_italia' ),
+						'false' => __( 'No', 'design_laboratori_italia' ),
+					),
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'search_autocomplete_min_chars',
+					'name'            => __( 'Caratteri minimi prima dei suggerimenti', 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'default'         => 3,
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+						'min'     => 1,
+						'max'     => 10,
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'search_autocomplete_max_results',
+					'name'            => __( 'Numero massimo di suggerimenti', 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'default'         => 5,
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+						'min'     => 1,
+						'max'     => 20,
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'search_autocomplete_delay',
+					'name'            => __( 'Attesa dopo l\'ultimo tasto (millisecondi)', 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'default'         => 300,
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+						'min'     => 0,
+						'max'     => 2000,
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'search_autocomplete_post_types',
+					'name'    => __( 'Tipologie di contenuto incluse', 'design_laboratori_italia' ),
+					'type'    => 'multicheck',
+					'default' => dli_search_autocomplete_default_post_types(),
+					'options' => dli_search_autocomplete_post_type_options(),
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'              => $prefix . 'search_autocomplete_cache_minutes',
+					'name'            => __( 'Durata della cache dei suggerimenti (minuti, 0 = nessuna cache)', 'design_laboratori_italia' ),
+					'type'            => 'text_small',
+					'default'         => 10,
+					'attributes'      => array(
+						'type'    => 'number',
+						'pattern' => '\d*',
+						'min'     => 0,
+						'max'     => 1440,
+					),
+					'sanitization_cb' => 'absint',
+					'escape_cb'       => 'absint',
+				)
+			);
+
+			$setup_options->add_field(
+				array(
+					'id'      => $prefix . 'search_autocomplete_on_select',
+					'name'    => __( 'Alla scelta di un suggerimento', 'design_laboratori_italia' ),
+					'type'    => 'radio_inline',
+					'default' => 'open',
+					'options' => array(
+						'open'   => __( 'Apri il contenuto', 'design_laboratori_italia' ),
+						'search' => __( 'Avvia la ricerca', 'design_laboratori_italia' ),
+					),
+				)
+			);
+
+			$setup_options->add_field(
+				array(
 					'id'   => 'seo_section',
 					'name' => __( 'SEO', 'design_laboratori_italia' ),
 					'type' => 'title',

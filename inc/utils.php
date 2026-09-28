@@ -1215,6 +1215,24 @@ if ( ! function_exists( 'dli_get_page_by_post_type' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_post_type_label' ) ) {
+	/**
+	 * Return the translated singular label of a post type, as registered in
+	 * its labels (e.g. "Persona"/"Person"). Falls back to a title-cased
+	 * version of the slug for an unregistered post type.
+	 *
+	 * @param string $post_type Post type slug.
+	 * @return string
+	 */
+	function dli_get_post_type_label( $post_type ) {
+		$object = get_post_type_object( $post_type );
+		if ( $object && ! empty( $object->labels->singular_name ) ) {
+			return $object->labels->singular_name;
+		}
+		return ucfirst( str_replace( '-', ' ', $post_type ) );
+	}
+}
+
 if ( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 	/**
 	 * Return all translatable content types excluding people type marker.

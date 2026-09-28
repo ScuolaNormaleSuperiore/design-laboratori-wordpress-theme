@@ -272,6 +272,16 @@ class DLI_LabManager {
 	 * @return object.
 	 */
 	public function setup_rest_api( $errors ) {
+		// The site search suggestions endpoint stays reachable even with the
+		// REST API disabled: it only ever returns already-published content,
+		// the same the anonymous site search already exposes.
+		$route = isset( $GLOBALS['wp']->query_vars['rest_route'] )
+			? untrailingslashit( $GLOBALS['wp']->query_vars['rest_route'] )
+			: '';
+		if ( '/dli/v1/suggest' === $route && function_exists( 'dli_search_autocomplete_is_enabled' ) && dli_search_autocomplete_is_enabled() ) {
+			return $errors;
+		}
+
 		if ( 'true' !== dli_get_option( 'rest_api_enabled', 'setup' ) && ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_disabled',

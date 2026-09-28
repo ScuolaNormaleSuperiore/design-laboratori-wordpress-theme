@@ -80,6 +80,11 @@ require get_template_directory() . '/inc/sitemap.php';
  */
 require get_template_directory() . '/inc/pwa.php';
 
+/**
+ * Site search autocomplete — REST suggestions endpoint and front-end asset.
+ */
+require get_template_directory() . '/inc/search-autocomplete.php';
+
 
 /**
  * Activation Hooks.

@@ -446,6 +446,27 @@ Campi principali:
 - `Abilita REST API`
   tipo: `radio_inline`
   funzione: abilita endpoint REST del tema.
+- `Abilita i suggerimenti durante la digitazione` (sezione `Ricerca nel sito`)
+  tipo: `radio_inline`
+  funzione: attiva i suggerimenti nella pagina di ricerca del sito mentre l'utente digita. Disattivato di default. Resta disponibile anche con `Abilita REST API` su `No`.
+- `Caratteri minimi prima dei suggerimenti`
+  tipo: `text_small` (numerico, 1-10)
+  funzione: quanti caratteri digitare prima che compaiano i suggerimenti (default 3).
+- `Numero massimo di suggerimenti`
+  tipo: `text_small` (numerico, 1-20)
+  funzione: quanti suggerimenti mostrare al massimo (default 5).
+- `Attesa dopo l'ultimo tasto (millisecondi)`
+  tipo: `text_small` (numerico, 0-2000)
+  funzione: pausa prima di interrogare il server dopo l'ultimo carattere digitato (default 300).
+- `Tipologie di contenuto incluse`
+  tipo: `multicheck`
+  funzione: quali tipi di contenuto compaiono nei suggerimenti. Se si deseleziona tutto, i suggerimenti restano disattivati.
+- `Durata della cache dei suggerimenti`
+  tipo: `text_small` (numerico, 0-1440 minuti)
+  funzione: per quanto tempo un risultato di ricerca resta in cache prima di essere ricalcolato. `0` disattiva la cache.
+- `Alla scelta di un suggerimento`
+  tipo: `radio_inline`
+  funzione: cosa succede quando si sceglie un suggerimento — `Apri il contenuto` (default) o `Avvia la ricerca`.
 - `Enable internal SEO management`
   tipo: `radio_inline`
   funzione: abilita gestione interna SEO/OG o delega a plugin esterno.
@@ -548,6 +569,7 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 - Login e lingua: attivare/disattivare pulsante login e selettore lingua.
 - Analytics: aggiornare codice in `Codice analytics`.
 - API/SEO: attivare o disattivare `REST API` e gestione SEO interna.
+- Ricerca nel sito: attivare `Abilita i suggerimenti durante la digitazione` e regolare soglia caratteri, numero massimo, attesa, tipologie incluse e comportamento alla scelta di un suggerimento.
 
 ## 6. Campi obbligatori (riepilogo rapido)
 Campi marcati obbligatori nel codice:

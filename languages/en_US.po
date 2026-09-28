@@ -2571,3 +2571,96 @@ msgstr "Website Link"
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
 msgstr "Youtube for video viewing"
+
+#. New strings: site search autocomplete (DEV/TODO/AutocompletePlan.md).
+#: inc/admin/options.php
+msgid "Ricerca nel sito"
+msgstr "Site search"
+
+#: page-templates/cerca.php
+msgid "Ricerca dei suggerimenti in corso…"
+msgstr "Fetching suggestions…"
+
+#: inc/admin/options.php
+msgid "Abilita i suggerimenti durante la digitazione"
+msgstr "Enable suggestions while typing"
+
+#: inc/admin/options.php
+msgid "Mostra suggerimenti nella pagina di ricerca del sito mentre l'utente digita. Resta disponibile anche quando la REST API è disabilitata qui sopra."
+msgstr "Show suggestions on the site search page while the user types. Stays available even when the REST API is disabled above."
+
+#: inc/admin/options.php
+msgid "Caratteri minimi prima dei suggerimenti"
+msgstr "Minimum characters before suggesting"
+
+#: inc/admin/options.php
+msgid "Numero massimo di suggerimenti"
+msgstr "Maximum number of suggestions"
+
+#: inc/admin/options.php
+msgid "Attesa dopo l'ultimo tasto (millisecondi)"
+msgstr "Delay after the last keystroke (milliseconds)"
+
+#: inc/admin/options.php
+msgid "Tipologie di contenuto incluse"
+msgstr "Included content types"
+
+#: inc/admin/options.php
+msgid "Durata della cache dei suggerimenti (minuti, 0 = nessuna cache)"
+msgstr "Suggestion cache duration (minutes, 0 = no cache)"
+
+#: inc/admin/options.php
+msgid "Alla scelta di un suggerimento"
+msgstr "When a suggestion is chosen"
+
+#: inc/admin/options.php
+msgid "Apri il contenuto"
+msgstr "Open the content"
+
+#: inc/admin/options.php
+msgid "Avvia la ricerca"
+msgstr "Start the search"
+
+#. translators: %d: minimum number of characters.
+#: page-templates/cerca.php
+#, php-format
+msgid "Scrivi almeno %d carattere per cercare"
+msgid_plural "Scrivi almeno %d caratteri per cercare"
+msgstr[0] "Enter at least %d character to search"
+msgstr[1] "Enter at least %d characters to search"
+
+#: inc/search-autocomplete.php
+msgid "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e Invio per selezionare."
+msgstr "When results are available, use the up and down arrows to review them and Enter to select."
+
+#: inc/search-autocomplete.php
+msgid "Nessun risultato trovato"
+msgstr "No results found"
+
+#: inc/search-autocomplete.php
+msgid "Nessun risultato di ricerca"
+msgstr "No search results"
+
+#. translators: %d: minimum number of characters.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "Digita almeno %d caratteri per vedere i suggerimenti"
+msgstr "Type at least %d characters to see suggestions"
+
+#. translators: %d: number of results.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%d risultato disponibile."
+msgstr "%d result available."
+
+#. translators: %d: number of results.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%d risultati disponibili."
+msgstr "%d results available."
+
+#. translators: 1: selected option label, 2: total number of results, 3: position of the selected option.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%1$s, risultato %3$d di %2$d"
+msgstr "%1$s, result %3$d of %2$d"

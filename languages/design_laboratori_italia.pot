@@ -2537,3 +2537,96 @@ msgstr ""
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
 msgstr ""
+
+#. New strings: site search autocomplete (DEV/TODO/AutocompletePlan.md).
+#: inc/admin/options.php
+msgid "Ricerca nel sito"
+msgstr ""
+
+#: page-templates/cerca.php
+msgid "Ricerca dei suggerimenti in corso…"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Abilita i suggerimenti durante la digitazione"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Mostra suggerimenti nella pagina di ricerca del sito mentre l'utente digita. Resta disponibile anche quando la REST API è disabilitata qui sopra."
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Caratteri minimi prima dei suggerimenti"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Numero massimo di suggerimenti"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Attesa dopo l'ultimo tasto (millisecondi)"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Tipologie di contenuto incluse"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Durata della cache dei suggerimenti (minuti, 0 = nessuna cache)"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Alla scelta di un suggerimento"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Apri il contenuto"
+msgstr ""
+
+#: inc/admin/options.php
+msgid "Avvia la ricerca"
+msgstr ""
+
+#. translators: %d: minimum number of characters.
+#: page-templates/cerca.php
+#, php-format
+msgid "Scrivi almeno %d carattere per cercare"
+msgid_plural "Scrivi almeno %d caratteri per cercare"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/search-autocomplete.php
+msgid "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e Invio per selezionare."
+msgstr ""
+
+#: inc/search-autocomplete.php
+msgid "Nessun risultato trovato"
+msgstr ""
+
+#: inc/search-autocomplete.php
+msgid "Nessun risultato di ricerca"
+msgstr ""
+
+#. translators: %d: minimum number of characters.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "Digita almeno %d caratteri per vedere i suggerimenti"
+msgstr ""
+
+#. translators: %d: number of results.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%d risultato disponibile."
+msgstr ""
+
+#. translators: %d: number of results.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%d risultati disponibili."
+msgstr ""
+
+#. translators: 1: selected option label, 2: total number of results, 3: position of the selected option.
+#: inc/search-autocomplete.php
+#, php-format
+msgid "%1$s, risultato %3$d di %2$d"
+msgstr ""
