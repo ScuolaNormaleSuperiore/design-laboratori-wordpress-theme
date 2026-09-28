@@ -16,7 +16,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.0] - 2026-09-24
+## [2.0.0] - 2026-09-28
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
 - Bug-fixing
