@@ -26,8 +26,7 @@ if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-cap
 		$dli_captcha_obj_word         = $dli_captcha_obj->generate_random_word();
 		$dli_captcha_obj_prefix       = wp_rand();
 		$dli_captcha_obj_image_name   = $dli_captcha_obj->generate_image( $dli_captcha_obj_prefix, $dli_captcha_obj_word );
-		$dli_captcha_obj_image_url    = get_bloginfo( 'wpurl' ) . '/wp-content/plugins/really-simple-captcha/tmp/';
-		$dli_captcha_obj_image_src    = $dli_captcha_obj_image_url . $dli_captcha_obj_image_name;
+		$dli_captcha_obj_image_src    = plugins_url( 'tmp/' . $dli_captcha_obj_image_name, 'really-simple-captcha/really-simple-captcha.php' );
 		$dli_captcha_obj_image_width  = $dli_captcha_obj->img_size[0];
 		$dli_captcha_obj_image_height = $dli_captcha_obj->img_size[1];
 	}
