@@ -284,7 +284,8 @@ echo wp_json_encode(
 			'resultPlural'   => __( 'persone trovate', 'design_laboratori_italia' ),
 			'noResults'      => __( 'Nessuna persona trovata', 'design_laboratori_italia' ),
 		),
-	)
+	),
+	JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
 );
 ?>
 ;

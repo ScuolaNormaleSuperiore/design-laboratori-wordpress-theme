@@ -13,10 +13,14 @@ $dli_page_permalink = get_permalink();
 
 $dli_per_page        = DLI_POSTS_PER_PAGE;
 $dli_per_page_values = DLI_POST_PER_PAGE_VALUES;
+$dli_allowed_pages   = array_map( 'strval', (array) $dli_per_page_values );
 
-$dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
-if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
-	$dli_per_page = absint( $dli_per_page_input );
+$dli_raw_per_page = filter_input( INPUT_GET, 'per_page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+if ( is_string( $dli_raw_per_page ) ) {
+	$dli_raw_per_page = sanitize_text_field( wp_unslash( $dli_raw_per_page ) );
+	if ( in_array( $dli_raw_per_page, $dli_allowed_pages, true ) ) {
+		$dli_per_page = $dli_raw_per_page;
+	}
 }
 
 $dli_selected_categories     = array();
