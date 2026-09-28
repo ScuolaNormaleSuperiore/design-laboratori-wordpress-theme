@@ -52,12 +52,13 @@ class Sponsor_Manager {
 			'labels'        => $labels,
 			'supports'      => array( 'title', 'editor', 'thumbnail' ),
 			'hierarchical'  => false,
-			'public'        => true,
+			'public'        => false,
+			'show_ui'       => true,
 			'show_in_menu'  => true,
 			'menu_position' => 6,
 			'menu_icon'     => 'dashicons-megaphone',
 			'has_archive'   => false,
-			'show_in_rest'  => true,
+			'show_in_rest'  => false,
 			'taxonomies'    => array( WP_DEFAULT_CATEGORY, WP_DEFAULT_TAGS ),
 		);
 

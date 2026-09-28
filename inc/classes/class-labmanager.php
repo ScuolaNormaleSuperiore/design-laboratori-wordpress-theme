@@ -351,5 +351,24 @@ class DLI_LabManager {
 		add_filter( 'the_generator', '__return_null' );
 		// Disable XMLRPC service.
 		add_filter( 'xmlrpc_enabled', '__return_false' );
+
+		// Security response headers: nosniff protects uploaded files (SVG included)
+		// from content-type sniffing, SAMEORIGIN prevents clickjacking via iframe
+		// embedding. Filterable so an installation whose web server already sets
+		// them can opt out instead of sending them twice.
+		add_action(
+			'send_headers',
+			function () {
+				if ( headers_sent() ) {
+					return;
+				}
+				if ( apply_filters( 'dli_send_nosniff_header', true ) ) {
+					header( 'X-Content-Type-Options: nosniff' );
+				}
+				if ( apply_filters( 'dli_send_frame_options_header', true ) ) {
+					header( 'X-Frame-Options: SAMEORIGIN' );
+				}
+			}
+		);
 	}
 }

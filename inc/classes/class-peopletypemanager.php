@@ -46,12 +46,13 @@ class PeopleType_Manager {
 			'label'         => __( 'Tipologia Persona', 'design_laboratori_italia' ),
 			'labels'        => $labels,
 			'supports'      => array( 'title' ),
-			'public'        => true,
+			'public'        => false,
+			'show_ui'       => true,
 			'show_in_menu'  => 'edit.php?post_type=persona',
 			'menu_position' => 6,
 			'menu_icon'     => 'dashicons-nametag',
 			'has_archive'   => false,
-			'show_in_rest'  => true,
+			'show_in_rest'  => false,
 			'rewrite'       => array( 'slug' => 'tipologia-persone' ),
 		);
 
