@@ -51,14 +51,12 @@ if ( 'yes' !== $dli_is_reset ) {
 	}
 }
 
-// Verify nonce before performing the search query.
-if (
-	isset( $_GET['cercasito_nonce_field'] ) &&
-	wp_verify_nonce(
-		sanitize_text_field( wp_unslash( $_GET['cercasito_nonce_field'] ) ),
-		'sf_cercasito_nonce'
-	)
-) {
+// La presenza del campo indica che il form è stato inviato; il nonce non viene
+// verificato perché una ricerca è una lettura, non un'azione di stato — così gli
+// URL di ricerca restano condivisibili/salvabili senza scadere.
+$dli_search_submitted = isset( $_GET['cercasito_nonce_field'] );
+
+if ( $dli_search_submitted ) {
 	$dli_query = DLI_ContentsManager::main_search_query(
 		$dli_selected_contents,
 		$dli_search_string,
