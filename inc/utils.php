@@ -843,9 +843,27 @@ if ( ! function_exists( 'dli_get_all_categories' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_categories_by_ct_cache_key' ) ) {
+	/**
+	 * Build the transient key used by dli_get_all_categories_by_ct().
+	 *
+	 * @param string $taxonomy Taxonomy slug.
+	 * @param string $post_type Post type slug.
+	 * @param string $content_status Post status.
+	 * @return string
+	 */
+	function dli_get_categories_by_ct_cache_key( $taxonomy, $post_type, $content_status ) {
+		return 'dli_cats_by_ct_' . md5( $taxonomy . '|' . $post_type . '|' . $content_status );
+	}
+}
+
 if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 		/**
 		 * Ritorna tutti i termini di una tassonomia ($taxonomy) associati a dei contenuti di tipo $post_type.
+		 *
+		 * Result is cached in a transient (see dli_get_categories_by_ct_cache_key()),
+		 * invalidated on save of any post whose type is mapped in
+		 * DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE (see below).
 		 *
 		 * @param string $taxonomy Taxonomy slug.
 		 * @param string $post_type Post type slug.
@@ -853,6 +871,12 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 		 * @return array
 		 */
 	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $content_status = 'publish' ) {
+		$cache_key  = dli_get_categories_by_ct_cache_key( $taxonomy, $post_type, $content_status );
+		$categories = get_transient( $cache_key );
+		if ( is_array( $categories ) ) {
+			return $categories;
+		}
+
 		$exclude_uncategorized = true;
 		$categories            = array();
 		$terms                 = get_terms(
@@ -885,6 +909,7 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 				}
 			}
 		}
+		set_transient( $cache_key, $categories, DAY_IN_SECONDS );
 		return $categories;
 	}
 }
@@ -1210,47 +1235,41 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 	/**
 	 * Return place types that currently have published place posts.
 	 *
+	 * Relies on the taxonomy's own term count (`hide_empty`) instead of running
+	 * one WP_Query per term, and caches the result in a transient invalidated
+	 * on place save (see dli_invalidate_place_types_with_results_cache()).
+	 *
 	 * @return array
 	 */
 	function dli_get_all_place_types_with_results() {
-		// recupero i termini della tassonomia tipologia luogo.
+		$cache_key                = 'dli_place_types_with_results';
+		$place_types_with_results = get_transient( $cache_key );
+		if ( is_array( $place_types_with_results ) ) {
+			return $place_types_with_results;
+		}
+
 		$tipi_luogo = get_terms(
 			array(
 				'taxonomy'   => PLACE_TYPE_TAXONOMY,
-				'hide_empty' => false,
+				'hide_empty' => true,
 			)
 		);
-		$tipi_luogo = ( is_wp_error( $tipi_luogo ) || ! is_array( $tipi_luogo ) ) ? array() : $tipi_luogo;
+		$place_types_with_results = ( is_wp_error( $tipi_luogo ) || ! is_array( $tipi_luogo ) ) ? array() : $tipi_luogo;
 
-		$place_types_with_results = array();
-
-		foreach ( $tipi_luogo as $tipo_luogo ) {
-
-			$luoghi = new WP_Query(
-				array(
-					'posts_per_page' => DLI_POSTS_PER_PAGE,
-					'paged'          => get_query_var( 'paged', 1 ),
-					'post_type'      => PLACE_POST_TYPE,
-					'orderby'        => 'title',
-					'tax_query'      => array(
-						array(
-							'taxonomy' => PLACE_TYPE_TAXONOMY,
-							'field'    => 'slug',
-							'terms'    => $tipo_luogo->slug,
-						),
-					),
-				)
-			);
-
-			$num_results = $luoghi->found_posts;
-			if ( $num_results > 0 ) {
-				array_push( $place_types_with_results, $tipo_luogo );
-			}
-			wp_reset_postdata();
-		}
+		set_transient( $cache_key, $place_types_with_results, DAY_IN_SECONDS );
 		return $place_types_with_results;
 	}
 }
+
+if ( ! function_exists( 'dli_invalidate_place_types_with_results_cache' ) ) {
+	/**
+	 * Invalidate the place-types-with-results transient when a place is saved.
+	 */
+	function dli_invalidate_place_types_with_results_cache() {
+		delete_transient( 'dli_place_types_with_results' );
+	}
+}
+add_action( 'save_post_' . PLACE_POST_TYPE, 'dli_invalidate_place_types_with_results_cache' );
 
 if ( ! function_exists( 'dli_get_default_logo' ) ) {
 	/**

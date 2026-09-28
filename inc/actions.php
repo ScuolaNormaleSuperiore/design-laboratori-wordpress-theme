@@ -88,3 +88,34 @@ function dli_edit_permission_check() {
 	}
 }
 add_filter( 'admin_head', 'dli_edit_permission_check', 1, 4 );
+
+/**
+ * Map of post type => taxonomy used by dli_get_all_categories_by_ct() call
+ * sites (page-templates/blog.php, eventi.php, notizie.php, brevetti.php,
+ * spinoff.php, risorse-tecniche.php), so the matching transient can be
+ * invalidated when a post of that type is saved.
+ */
+const DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE = array(
+	WP_DEFAULT_POST              => 'category',
+	EVENT_POST_TYPE              => 'category',
+	NEWS_POST_TYPE               => 'category',
+	PATENT_POST_TYPE             => THEMATIC_AREA_TAXONOMY,
+	SPINOFF_POST_TYPE            => BUSINESS_SECTOR_TAXONOMY,
+	TECHNICAL_RESOURCE_POST_TYPE => RT_TYPE_TAXONOMY,
+);
+
+/**
+ * Invalidate the dli_get_all_categories_by_ct() transient for the saved
+ * post's type, if that post type is one of the cached ones.
+ *
+ * @param int $post_id Saved post ID.
+ */
+function dli_invalidate_categories_by_ct_cache( $post_id ) {
+	$post_type = get_post_type( $post_id );
+	if ( ! $post_type || ! isset( DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE[ $post_type ] ) ) {
+		return;
+	}
+	$taxonomy = DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE[ $post_type ];
+	delete_transient( dli_get_categories_by_ct_cache_key( $taxonomy, $post_type, 'publish' ) );
+}
+add_action( 'save_post', 'dli_invalidate_categories_by_ct_cache' );
