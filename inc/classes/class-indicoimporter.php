@@ -373,19 +373,19 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	 * @return string Date in 'Y-m-d' format.
 	 */
 	private function _start_date_from_criteria( $criteria ) {
-		$date_string = date( 'Y-m-d' );
+		$date_string = wp_date( 'Y-m-d' );
 		switch ( $criteria ) {
 			case 'all':
 					$date_string = $this->format_import_date( '01-01-1970', 'd-m-Y', 'Y-m-d' );
 				break;
 			case 'this-year':
-					$this_year   = date( 'Y' );
+					$this_year   = wp_date( 'Y' );
 					$date_string = $this->format_import_date( '01-01-' . $this_year, 'd-m-Y', 'Y-m-d' );
 				break;
 			case 'future':
-				$date_string = date( 'Y-m-d' );
+				$date_string = wp_date( 'Y-m-d' );
 		}
-		$date_string = $date_string ? $date_string : date( 'Y-m-d' );
+		$date_string = $date_string ? $date_string : wp_date( 'Y-m-d' );
 		return $date_string;
 	}
 
@@ -402,7 +402,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			$property = 'og:image';
 			try {
 				$content = $this->_get_meta_content( $item_url, $property );
-				if ( strpos( $content, 'http' ) !== false ) {
+				if ( wp_http_validate_url( $content ) ) {
 					$img_url = $content;
 				} else {
 					$img_url = $base_url . $content;

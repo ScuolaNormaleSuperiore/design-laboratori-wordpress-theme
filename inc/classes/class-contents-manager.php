@@ -302,11 +302,12 @@ class DLI_ContentsManager {
 					);
 					break;
 				case 'post':
+					$blog_page = dli_get_page_by_post_type( WP_DEFAULT_POST );
 					array_push(
 						$steps,
 						array(
 							'label' => __( 'Blog', 'design_laboratori_italia' ),
-							'url'   => get_site_url() . '/blog',
+							'url'   => $blog_page ? get_permalink( $blog_page->ID ) : get_site_url() . '/blog',
 							'class' => 'breadcrumb-item active',
 						),
 					);
