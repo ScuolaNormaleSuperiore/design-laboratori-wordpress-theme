@@ -21,6 +21,7 @@ function computeSummary(results) {
     avgResponseTimeMs: null,
     maxResponseTimeMs: null,
     slowPages: [], // pages with responseTimeMs > 3000
+    verdict: 'PASS',
   };
 
   const times = results.map((r) => r.responseTimeMs).filter((t) => t !== null);
@@ -50,6 +51,8 @@ function computeSummary(results) {
     });
   });
 
+  summary.verdict = summary.withErrors === 0 ? 'PASS' : 'FAIL';
+
   return summary;
 }
 
@@ -73,6 +76,7 @@ function writeJson(results, summary, opts) {
       avgResponseTimeMs: summary.avgResponseTimeMs,
       maxResponseTimeMs: summary.maxResponseTimeMs,
       slowPages: summary.slowPages,
+      verdict: summary.verdict,
     },
     pages: results.map((r) => ({
       url: r.url,
@@ -329,11 +333,13 @@ async function generateReport(results, opts) {
     summary.slowPages.forEach((p) => console.log(`  ${p.responseTimeMs}ms  ${p.url}`));
   }
   console.log('='.repeat(60));
-  console.log(`Result      : ${summary.withErrors === 0 ? 'PASS' : 'FAIL'}`);
+  console.log(`Verdict     : ${summary.verdict}`);
   console.log('='.repeat(60));
 
   writeJson(results, summary, opts);
   writeHtml(results, summary, opts);
+
+  return summary;
 }
 
 module.exports = { generateReport };

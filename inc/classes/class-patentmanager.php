@@ -60,7 +60,7 @@ class Patent_Manager {
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'tipo-pubblicazione' ),
+			'rewrite'           => array( 'slug' => 'area-tematica' ),
 			'show_in_rest'      => true,
 		);
 		register_taxonomy( THEMATIC_AREA_TAXONOMY, array( PATENT_POST_TYPE ), $taxonomy_args );

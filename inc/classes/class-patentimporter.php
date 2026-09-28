@@ -202,15 +202,17 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 						);
 					}
 					// Creazione del contenuto corrispondente in inglese.
-					$item_code_en = $this->_translate_content( $item_code, $item, $conf, 'en' );
+					$updated_en   = false;
+					$ignored_en   = false;
+					$item_code_en = $this->_translate_content( $item_code, $item, $conf, 'en', $updated_en, $ignored_en );
 					// Gestione del risultato.
 					if ( 0 !== $item_code_en ) {
 						$this->_process_result(
 							$results,
 							$item_pid . ' - ' . $item_code_en,
 							$this->sanitize_import_title( (string) $item->displayValue_en ),
-							$updated,
-							$ignored,
+							$updated_en,
+							$ignored_en,
 							$added_items,
 							$updated_items,
 							$ignored_items,
@@ -342,10 +344,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 * @param object $item    Raw feed item (displayValue_en, abstract_en, ...).
 	 * @param array  $conf    Import configuration (import_action, ...).
 	 * @param string $lang    Language slug to assign to the created translation.
+	 * @param bool   $updated Set by reference: true when an existing translation was updated.
+	 * @param bool   $ignored Set by reference: true when an existing translation was left untouched.
 	 * @return int Post ID of the created/matched English translation, or 0 when no English title exists.
 	 * @throws Exception When wp_insert_post() fails.
 	 */
-	private function _translate_content( $post_id, $item, $conf, $lang = 'en' ): int {
+	private function _translate_content( $post_id, $item, $conf, $lang, &$updated, &$ignored ): int {
 		$display_value_en  = isset( $item->displayValue_en ) ? trim( (string) $item->displayValue_en ) : '';
 		$translate_content = ( '' !== $display_value_en );
 		$new_content_en    = null;
@@ -387,6 +391,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 				dli_save_post_translations( $related_posts );
 				// Aggiorna campi personalizzati.
 				$this->update_custom_fields( $post_id_en, $item, 'en' );
+				$updated = false;
 			} else {
 				// Aggiorna versione esistente.
 				$post_id_en     = $contents[ $lang ];
@@ -402,6 +407,9 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 					$this->update_title( $post_id_en, $post_title_en );
 					// Aggiorna campi personalizzati.
 					$this->update_custom_fields( $post_id_en, $item, 'en' );
+					$updated = true;
+				} else {
+					$ignored = true;
 				}
 			}
 		}

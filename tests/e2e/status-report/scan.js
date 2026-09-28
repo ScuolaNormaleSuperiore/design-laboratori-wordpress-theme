@@ -12,10 +12,12 @@
  *   --concurrency <n>     Max parallel tabs (default: 3)
  *   --delay <ms>          Wait between page requests in ms (default: 1000, 0 = no delay)
  *   --out <path>          Output file path without extension (default: timestamped report path)
+ *   --gate                Exit with code 1 if verdict is FAIL (any page with errors)
  *
  * Example:
  *   node scan.js https://laboratorio1.local
  *   node scan.js https://laboratorio1.local --sitemap /mappa-sito/ --concurrency 2
+ *   node scan.js https://laboratorio1.local --gate
  */
 
 'use strict';
@@ -50,6 +52,7 @@ function parseArgs(argv) {
     delay: 1000, // ms to wait before starting each page request; 0 = no delay
     out: null, // resolved in main after timestamp is built
     outExplicit: false,
+    gate: false,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -68,6 +71,8 @@ function parseArgs(argv) {
     } else if (arg === '--out' && args[i + 1]) {
       opts.out = args[++i];
       opts.outExplicit = true;
+    } else if (arg === '--gate') {
+      opts.gate = true;
     }
   }
 
@@ -333,7 +338,7 @@ async function main() {
   const opts = parseArgs(process.argv);
 
   if (!opts.baseUrl) {
-    console.error('Usage: node scan.js <baseUrl> [--sitemap /path/] [--timeout ms] [--concurrency n] [--out ./report]');
+    console.error('Usage: node scan.js <baseUrl> [--sitemap /path/] [--timeout ms] [--concurrency n] [--out ./report] [--gate]');
     process.exit(1);
   }
 
@@ -352,6 +357,7 @@ async function main() {
   console.log(`Concurrency : ${opts.concurrency}`);
   console.log(`Delay       : ${opts.delay > 0 ? opts.delay + 'ms' : 'none (--delay 0)'}`);
   console.log(`Output      : ${opts.out}.html / ${opts.out}.json`);
+  console.log(`Gate        : ${opts.gate}`);
   console.log('='.repeat(60));
 
   const browser = await chromium.launch({ headless: true });
@@ -386,7 +392,12 @@ async function main() {
   await browser.close();
 
   // Step 3: generate reports
-  await generateReport(results, opts);
+  const summary = await generateReport(results, opts);
+
+  if (opts.gate && summary.verdict === 'FAIL') {
+    console.error('\nGate: FAIL — exiting with code 1');
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {

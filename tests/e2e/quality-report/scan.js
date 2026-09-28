@@ -142,10 +142,6 @@ function normalizeRelPath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\/+/, '').replace(/^\/+/, '');
 }
 
-function quoteArg(arg) {
-  return `"${String(arg).replace(/"/g, '\\"')}"`;
-}
-
 function wildcardToRegex(pattern) {
   const escaped = pattern
     .replace(/[.+?^${}()|[\]\\]/g, '\\$&')
@@ -277,6 +273,25 @@ function collectPhpFilesForScope(scope) {
   return files;
 }
 
+// Files phpcs.xml.dist itself would scan: the whole theme (extensions php,css,scss),
+// minus the same four directories it excludes via <exclude-pattern>.
+const PHPCS_RULESET_EXCLUDED_DIRS = ['.git', 'vendor', 'node_modules', 'build', 'dist'];
+const PHPCS_RULESET_EXTENSIONS = ['.php', '.css', '.scss'];
+
+function collectPhpcsRulesetFiles(dir = ROOT, out = []) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (PHPCS_RULESET_EXCLUDED_DIRS.includes(entry.name)) continue;
+      collectPhpcsRulesetFiles(full, out);
+    } else if (entry.isFile() && PHPCS_RULESET_EXTENSIONS.some((ext) => entry.name.endsWith(ext))) {
+      out.push(full);
+    }
+  }
+  return out;
+}
+
 function checkPhpSyntax(timeout, scope) {
   const check = {
     id: 'php_syntax',
@@ -326,30 +341,12 @@ function checkPhpSyntax(timeout, scope) {
   return check;
 }
 
-function checkPhpcs(timeout, scope) {
-  const targets = getScopedPhpTargets(scope);
-  if (targets.length === 0) {
-    return {
-      id: 'phpcs',
-      label: 'PHPCS (WordPress coding standard)',
-      severity: 'major',
-      status: 'SKIP',
-      command: 'vendor/bin/phpcs --report=json --standard=phpcs.xml.dist --extensions=php <paths-from-phpstan.neon>',
-      durationMs: 0,
-      metrics: {
-        errors: 0,
-        warnings: 0,
-        filesWithIssues: 0,
-        filesChecked: 0,
-      },
-      source: 'altro',
-      details: [],
-    };
-  }
-
-  const scopedTargets = targets.map((t) => quoteArg(t)).join(' ');
-  const baseUnix = `vendor/bin/phpcs --report=json --standard=phpcs.xml.dist --extensions=php ${scopedTargets}`;
-  const baseWin = `vendor\\bin\\phpcs.bat --report=json --standard=phpcs.xml.dist --extensions=php ${scopedTargets}`;
+function checkPhpcs(timeout) {
+  // No explicit paths/extensions on the command line: phpcs.xml.dist's own
+  // <file> and <arg name="extensions"> decide the scope (whole theme, php/css/scss),
+  // so this gate can't silently diverge from `composer run lint:php` again.
+  const baseUnix = 'vendor/bin/phpcs --report=json --standard=phpcs.xml.dist';
+  const baseWin = 'vendor\\bin\\phpcs.bat --report=json --standard=phpcs.xml.dist';
 
   const check = {
     id: 'phpcs',
@@ -364,11 +361,11 @@ function checkPhpcs(timeout, scope) {
       filesWithIssues: 0,
       filesChecked: 0,
     },
-    source: 'phpstan.neon (paths)',
+    source: 'phpcs.xml.dist (full ruleset)',
     details: [],
   };
 
-  check.metrics.filesChecked = collectPhpFilesForScope(scope).length;
+  check.metrics.filesChecked = collectPhpcsRulesetFiles().length;
 
   const candidates = [baseUnix, baseWin];
 
@@ -741,7 +738,7 @@ function computeSummary(checks) {
     if (c.status === 'FAIL' && c.severity === 'major') summary.majorFailures += 1;
   });
 
-  if (summary.criticalFailures > 0) summary.verdict = 'FAIL';
+  if (summary.criticalFailures > 0 || summary.majorFailures > 0) summary.verdict = 'FAIL';
   else if (summary.fail > 0 || summary.warn > 0) summary.verdict = 'WARN';
 
   return summary;
@@ -876,7 +873,7 @@ function main() {
 
   const checks = [
     checkPhpSyntax(opts.timeout, scope),
-    checkPhpcs(opts.timeout, scope),
+    checkPhpcs(opts.timeout),
     checkPhpStan(opts.timeout),
     checkComposerAudit(opts.timeout),
     checkNpmAudit(opts.timeout),
