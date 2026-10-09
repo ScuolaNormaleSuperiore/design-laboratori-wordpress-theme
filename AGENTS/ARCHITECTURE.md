@@ -14,7 +14,6 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `template-parts/`: reusable template partials.
 - `page-templates/`: archive/list templates for custom content types.
 - `assets/`: styles, scripts, icons, images, Bootstrap Italia assets.
-- `DEV/`: development support area for project-specific documentation and workflows.
 - `DOC/`: project documentation and schemes.
 - `SETUP/`: ACF exports, Docker setup, and setup utilities.
 - `SETUP/npm_scripts/`: project JavaScript scripts.
@@ -35,7 +34,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `single-*.php`: detail templates for content types.
 - `page.php`: standard page template.
 - `inc/pwa.php`: PWA web app manifest — registers the `/manifest.json` virtual endpoint (same rewrite/query_vars/template_redirect pattern as the sitemap endpoints) and the related `<head>` tags (manifest link, theme-color, apple-touch-icon). No service worker.
-- `inc/search-autocomplete.php`: site search autocomplete — opt-in, disabled by default (*WP → Configurazione → Altro → Ricerca nel sito*). Registers the public `GET /wp-json/dli/v1/suggest` REST route (namespace `dli/v1`), cached in transients, and enqueues `assets/js/search-autocomplete.js` on the `page-templates/cerca.php` template. `setup_rest_api()` in `inc/classes/class-labmanager.php` carries an explicit exception so this route stays reachable even when the "Abilita REST API" option is off. See `DEV/TODO/AutocompletePlan.md` for the full design.
+- `inc/search-autocomplete.php`: site search autocomplete — opt-in, disabled by default (*WP → Configurazione → Altro → Ricerca nel sito*). Registers the public `GET /wp-json/dli/v1/suggest` REST route (namespace `dli/v1`), cached in transients, and enqueues `assets/js/search-autocomplete.js` on the `page-templates/cerca.php` template. `setup_rest_api()` in `inc/classes/class-labmanager.php` carries an explicit exception so this route stays reachable even when the "Abilita REST API" option is off.
 - `phpcs.xml.dist`: PHP CodeSniffer rules.
 - `package.json`: frontend/development tooling dependencies.
 - `publiccode.yml`: public administration reuse catalog metadata.
@@ -60,4 +59,4 @@ variants are maintained in the *Sviluppo e verifiche* section of `README.md`.
 ## References
 
 - Setup and usage details: see `PROJECT.md`.
-- Open technical issues: see `DEV/CODE_REVIEW/ISSUES_TODO.md`.
+- Review method: see `AGENTS/CODE_REVIEW.md`; private issue tracking is optional.

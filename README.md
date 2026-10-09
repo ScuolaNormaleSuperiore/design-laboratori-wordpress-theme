@@ -217,7 +217,7 @@ Per segnalare una **vulnerabilità di sicurezza** non aprire una issue pubblica:
 I contributi sono benvenuti. Prima di aprire una issue o una pull request leggere [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contesto di progetto per l'AI
-Chiedere all'assistente di codifica di "leggere il contesto del progetto". Legge prima `AGENTS.md` (Codex) o `CLAUDE.md` (Claude Code), poi, nell'ordine, `AGENTS/AGENTS_README.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Infine conferma il bootstrap, elenca le skill disponibili e chiede su cosa lavorare.
+Chiedere all'assistente di codifica di "leggere il contesto del progetto". Legge prima `AGENTS.md` (Codex) o `CLAUDE.md` (Claude Code), poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/code-review`. Infine conferma il bootstrap, elenca le skill disponibili e chiede su cosa lavorare.
 
 ## Sviluppi futuri
 Queste sono le principali funzionalità previste per le prossime versioni del sistema:

@@ -3,7 +3,7 @@
 Claude Code-specific entry point.
 
 ## Bootstrap
-Read this file first. Then read `AGENTS/AGENTS_README.md` and follow its
+Read this file first. Then read `AGENTS/AI_BOOTSTRAP.md` and follow its
 `Session bootstrap` sequence exactly.
 
 ## Claude Code Notes

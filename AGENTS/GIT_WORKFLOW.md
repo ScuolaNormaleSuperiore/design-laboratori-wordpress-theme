@@ -52,4 +52,4 @@ Examples:
 
 - Open PR from feature branch to `main`.
 - Write clear title and summary.
-- Reference related issues from `DEV/CODE_REVIEW/ISSUES_TODO.md` when applicable.
+- Reference public issues by title or number when applicable. Never copy private backlog contents into a commit or PR.
