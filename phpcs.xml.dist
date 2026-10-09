@@ -8,10 +8,31 @@
 
 	<file>.</file>
 
+	<!-- Third-party, generated and tooling files: see "Third-Party, Generated and Exported Files" in AGENTS/AI_BEHAVIOR.md. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/build/*</exclude-pattern>
 	<exclude-pattern>*/dist/*</exclude-pattern>
+	<exclude-pattern>*.min.css</exclude-pattern>
+	<exclude-pattern>*.min.js</exclude-pattern>
+	<exclude-pattern>*.map</exclude-pattern>
+	<exclude-pattern>*/assets/bootstrap-italia/*</exclude-pattern>
+	<exclude-pattern>*/assets/css/compiled/*</exclude-pattern>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<exclude-pattern>*/.agents/*</exclude-pattern>
+	<exclude-pattern>*/.claude/*</exclude-pattern>
+	<exclude-pattern>*/.codex/*</exclude-pattern>
+	<exclude-pattern>*/.codex-tmp/*</exclude-pattern>
+	<exclude-pattern>*/.composer-cache/*</exclude-pattern>
+	<exclude-pattern>*/.composer-home/*</exclude-pattern>
+	<exclude-pattern>*/DEV/*</exclude-pattern>
+	<exclude-pattern>*/tmp/*</exclude-pattern>
+
+	<!-- Project-specific vendored files. -->
+	<exclude-pattern>*/assets/js/components/*</exclude-pattern>
+	<exclude-pattern>*/assets/css/italia-icon-font.css</exclude-pattern>
+	<exclude-pattern>*/inc/admin-css/jquery-ui.css</exclude-pattern>
+	<exclude-pattern>*/tests/phpstan/*</exclude-pattern>
 
 	<rule ref="WordPress"/>
 
@@ -39,5 +60,5 @@
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound"/>
 	</rule>
 
-	<config name="minimum_supported_wp_version" value="6.0"/>
+	<config name="minimum_supported_wp_version" value="6.1.1"/>
 </ruleset>

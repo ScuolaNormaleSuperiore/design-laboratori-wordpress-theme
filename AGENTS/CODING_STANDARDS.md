@@ -83,6 +83,9 @@ introduce barriers.
   MCP server (`design-system-italia`) to retrieve the current data before
   implementation. Treat its output as implementation guidance and confirm
   normative requirements against the authoritative AgID sources listed above.
+  If the server is not available, notify the operator and use the official
+  Bootstrap Italia documentation and the markup already present in the theme;
+  do not invent component markup.
 
 ### Pre-merge accessibility checklist
 
@@ -96,6 +99,17 @@ introduce barriers.
 - For a change that may affect the published accessibility statement or feedback
   mechanism, notify the project owner so the deployed site's assessment and
   declaration can be updated.
+
+
+## Compatibility
+
+- WordPress: minimum 6.1.1 (`style.css`, `phpcs.xml.dist`, `README.md`).
+- PHP: minimum 8.0 (`Requires PHP` in `style.css`); the Docker demo runs PHP 8.3.
+  Do not use syntax or functions newer than PHP 8.0 (for example enums,
+  `readonly` properties, `never` return type) without the operator's approval.
+  Functions that WordPress polyfills, such as `str_contains()`, are allowed.
+- Do not declare or raise a minimum version in `style.css` or `README.md`
+  without the operator's confirmation.
 
 
 ## Core PHP/WordPress Rules
@@ -115,6 +129,7 @@ introduce barriers.
 - Variables: `$variable_name_with_underscores`
 - Constants: `CONSTANT_NAME_UPPERCASE`
 - Files: `file-name-with-hyphens.php`
+- Class files follow the WordPress pattern `class-<name>manager.php` (for example `class-labmanager.php`); keep the class name used by the surrounding code (`DLI_LabManager`, and the legacy `People_Manager`-style names).
 
 ### Code structure
 
@@ -130,13 +145,38 @@ introduce barriers.
 - Escape all output by context (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`).
 - Use nonces for state-changing actions.
 - Check capabilities (`current_user_can`) before privileged operations.
+- Call `wp_unslash()` before sanitizing `$_GET`, `$_POST`, `$_REQUEST`, and `$_COOKIE` values.
+- A nonce verifies intent, not authorization: always check capabilities as well. Public actions need their own abuse controls.
+- Every REST route defines an explicit `permission_callback`. Use `__return_true` only for intentionally public read-only data, with validated arguments and bounded results.
+- Redirect with `wp_safe_redirect()`. Validate remote URLs (scheme and host) and use timeouts, so user-supplied URLs cannot reach internal addresses (SSRF).
+- Validate uploads: file type, extension, and size.
+- Escape as late as possible, by context. In JavaScript, do not insert untrusted data with `innerHTML`; use `textContent`.
+- Never use `eval`, `extract`, `unserialize` on untrusted data, or shell commands built from user input.
+- Do not log or display secrets or personal data.
 
 ### WordPress-specific implementation
 
 - Prefer WordPress APIs over raw PHP alternatives.
-- Prefix custom functions/classes (project prefix: `dli_`).
+- Prefix custom functions and lowercase identifiers with `dli_` when introducing new project-specific names.
+- Preserve the existing project convention for classes and constants based on the `DLI_` prefix.
 - Use `$wpdb->prepare()` for dynamic SQL.
 - Enqueue scripts/styles with WordPress enqueue APIs.
+
+
+### Required plugin dependencies
+
+ACF and Polylang are required plugins (`SUGGESTED_PLUGINS` in `config-lab.php`); the
+theme does not activate without Polylang. Their functions are reached through the
+project wrappers: `dli_get_field()` / `dli_update_field()` and the `dli_*` Polylang
+wrappers in `inc/wrappers_polylang.php`.
+
+- In new code, do not call `get_field()`, `update_field()`, or `pll_*()` directly:
+  use the wrappers.
+- The `function_exists()` guards inside the wrappers are intentional. Do not remove
+  them and do not open issues asking to remove them.
+- Code that runs on an admin request must not cause a fatal error when one of these
+  plugins is deactivated: the front end may degrade, but the plugin screen must stay
+  reachable so an administrator can reactivate the plugin.
 
 
 ## Frontend Standards (HTML, CSS, JS)
@@ -179,10 +219,21 @@ Official references:
 - Use translator comments for formatted strings.
 
 
-## Testing and Checks
+## Verification
 
-- Write testable code (small units, clear dependencies).
-- Add tests for non-trivial logic when practical.
-- Use the canonical commands and prerequisites in the `README.md` section
-  *Sviluppo e verifiche*. Run PHP lint after PHP changes and its automatic fix
-  command only when needed.
+Write testable code (small units, clear dependencies) and add tests for non-trivial logic when practical.
+
+Pick the checks that match the change, run them, and report which ones could not run and why. Never state that something was verified when the check did not run. The canonical command list is in `AGENTS/ARCHITECTURE.md`. `phpcs.xml.dist` excludes only third-party, generated, and tooling files (see `Third-Party, Generated and Exported Files` in `AGENTS/AI_BEHAVIOR.md`); never add first-party code to its exclusions to silence a finding.
+
+| Change | Check | Notes |
+|---|---|---|
+| Any PHP file | `php -l <file>` | Syntax only |
+| Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset |
+| PHP static analysis | `composer run lint:phpstan` | Configuration and WordPress stubs: `phpstan.neon`, `tests/phpstan/` |
+| Static code quality | `npm run quality:scan` | PHP syntax, PHPCS, PHPStan, Composer and NPM audit; takes no URL |
+| Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
+| Changed rendered HTML | `npm run html:scan -- <baseUrl>` (`html:scan:gate` fails on errors) | Needs a reachable site, Java 8+, `vnu-jar` and Playwright |
+| Changed templates, styles, scripts, forms | `npm run ux:scan -- <baseUrl>` | Axe/WCAG and responsive overflow; complements manual keyboard checks |
+| SCSS changed | `npm run create_layout`, then `update_layout_win` or `update_layout_linux` | Regenerates the minified CSS |
+
+Scanners write into git-ignored `reports/` folders. No automated test suite exists for PHP logic.

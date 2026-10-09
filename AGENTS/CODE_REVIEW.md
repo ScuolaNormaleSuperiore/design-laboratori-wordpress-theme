@@ -41,13 +41,17 @@ into explicit sub-batches, targeting roughly 3,000 reviewable lines per batch.
 Do not hard-code historical counts or merge batches just to finish faster.
 Review one authorized phase at a time. A scoped review uses the same evidence
 rules without marking a full-run batch complete.
-Preserve an existing operator-supplied plan and completed phases; reconcile
-new or changed paths rather than resetting history.
+Preserve the plan and completed phases recorded in the progress file (or in an
+operator-supplied checkpoint); reconcile new or changed paths rather than
+resetting history.
 
 ## Checks
 
 - Correctness: edge cases, null/empty values, PHP compatibility, hook signatures,
-  query state, pagination, rewrites, optional ACF/Polylang guards and consumers.
+  query state, pagination, rewrites, and ACF/Polylang consumers. Judge plugin
+  integration by "Required plugin dependencies" in `AGENTS/CODING_STANDARDS.md`:
+  do not report guards or direct calls that this section declares intentional,
+  and check that code running on admin requests keeps the back office reachable.
 - Security: trust boundaries, sanitization and unslashing, contextual escaping,
   prepared SQL, authorization and nonces where required by the action,
   authenticated/public AJAX or REST handlers, uploads, redirects, remote URLs,
@@ -85,6 +89,9 @@ a specific suspected regression makes it necessary.
 ## Execution and persistence
 
 Review code without changing it. Do not weaken lint rules or mutate Git state.
+The only permitted writes are appending confirmed, deduplicated findings to
+`AGENTS/ISSUES_TODO.md` after each phase and updating the progress file
+`AGENTS/CODE_REVIEW_PROGRESS.md` for a full run (see Persistence below).
 Run relevant non-mutating static checks. Runtime checks require an authorized
 target; prefer cheap read-only checks when allowed by the operator/project.
 Otherwise give the exact suggested command and what confirms or refutes the
@@ -95,19 +102,45 @@ Use the operator timezone for dates. Mask secrets and personal data in reports.
 
 Results and phase checkpoints are delivered in chat. Bootstrap ensures
 `AGENTS/ISSUES_TODO.md` and `AGENTS/ISSUES_RESOLVED.md` exist but does not read
-them. Use the TODO file for deduplication; search the resolved archive only for
-requested history or a specific suspected regression. Both are ignored local
-files and must never be committed. Cross-session review resumption requires an
-operator-supplied checkpoint. Never invent past progress. Reset or overwrite a
-run only with explicit authorization.
+them. Use the TODO file for deduplication and to record the new confirmed
+findings of each phase; search the resolved archive only for requested history
+or a specific suspected regression. Both are ignored local
+files and must never be committed.
+
+Progress file: a full run keeps its state in the ignored local file
+`AGENTS/CODE_REVIEW_PROGRESS.md`. Bootstrap does not create or read it; Trigger F
+creates it when a full run starts and updates it at the end of every authorized
+phase and whenever a phase is skipped. It is read only when Trigger F runs. If it
+is missing or empty, the run is not started unless the operator supplies a
+checkpoint; an operator-supplied checkpoint in the conversation takes precedence
+over the file. Use this structure:
+
+```
+# CODE REVIEW PROGRESS
+Run started: <date> · Scope: full
+Inventory: <date, tracked and untracked first-party file counts>
+Baseline: <command, date, exit status, error totals>
+Batches: <n> closed of <total>
+- [x] <n>. <name> (<date>; findings: <n>; sub-batches: <8a/8b...>)
+- [ ] <n>. <name>
+Skipped: <batch and reason>
+Agreed exclusions: <paths>
+Next proposed phase: <batch>
+```
+
+Scoped reviews never update the batch list. Never invent past progress. Reset
+or overwrite a run only with explicit authorization. The three local files
+(`ISSUES_TODO.md`, `ISSUES_RESOLVED.md`, `CODE_REVIEW_PROGRESS.md`) must never be
+committed.
 
 ## Output
 
 After each phase, report files read versus inspected, confirmed findings,
 unverified questions, checks and limitations, and the next proposed phase.
 Number issue lists. Each confirmed finding uses the issue template in
-`AGENTS/AI_BEHAVIOR.md`, with file/line evidence in the description when
-the template has no dedicated field.
+`AGENTS/AI_BEHAVIOR.md` (including `Files affected` with file and line), and is
+appended to `AGENTS/ISSUES_TODO.md`.
+Unverified questions are reported in chat only and never filed.
 For the final report, include category/severity counts for findings of this
 run, Critical/High rationale, up to five recommended corrections, assumptions,
 and coverage reconciliation. Keep "findings in this run" distinct from the total open entries in
@@ -117,7 +150,8 @@ report is delivered.
 
 ## Project-specific plan
 
-Preserve the existing sixteen-batch plan when resuming a recorded run:
+Use this sixteen-batch plan for a new full run; when resuming, keep the batches and
+sub-batch splits recorded in the progress file:
 1. Bootstrap and configuration.
 2. First-party integration layer under inc/.
 3. Core service classes.
@@ -125,7 +159,7 @@ Preserve the existing sixteen-batch plan when resuming a recorded run:
 5. Admin options.
 6. Admin tooling and walkers.
 7. Structural root templates.
-8. Detail templates (retain recorded 8a/8b splits).
+8. Detail templates (split into sub-batches when too large).
 9. Filtered archives.
 10. Forms and other pages.
 11. Common/header/hero template parts.

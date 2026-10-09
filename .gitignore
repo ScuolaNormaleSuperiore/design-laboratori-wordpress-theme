@@ -77,6 +77,7 @@ composer.lock
 DEV
 AGENTS/ISSUES_TODO.md
 AGENTS/ISSUES_RESOLVED.md
+AGENTS/CODE_REVIEW_PROGRESS.md
 tmp-alm-php-path-test.out
 tmp-alm-php-path-test.php
 tmp/

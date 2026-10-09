@@ -40,6 +40,94 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `publiccode.yml`: public administration reuse catalog metadata.
 
 
+## Content Model
+
+All custom post types have `has_archive=false`: listings are WordPress pages
+with a page template, resolved through `DLI_PAGE_PER_CT` and
+`dli_get_template_page_url()`. Slugs are constants in `config-lab.php`. Each CPT
+is registered by its manager in `inc/classes/` (CPT, taxonomy and ACF field
+group together), instantiated by `DLI_LabManager::plugin_setup()`.
+
+| Post type | Detail template | Listing template (`page-templates/`) |
+|---|---|---|
+| `persona`, `progetto`, `evento`, `notizia`, `brevetto`, `luogo`, `spinoff`, `risorsa-tecnica`, `indirizzo-di-ricerca` | `single-<slug>.php` | `persone`, `progetti`, `eventi`, `notizie`, `brevetti`, `luoghi`, `spinoff`, `risorse-tecniche`, `ricerca` |
+| `pubblicazione` | none (`DLI_PUBLICATION_HAS_DETAIL` is false) | `pubblicazioni.php` |
+| `banner`, `sponsor`, `tipologia-persona` | none (`public=false`) | none |
+
+- Core `post` (blog) is extended by `Post_Manager`; core `page` by `Page_Manager`.
+- Taxonomies: `struttura` (persona), `tipologia-luogo` (luogo), `tipo-pubblicazione`,
+  `area-tematica` (brevetto), `settore-attivita` (spinoff), `tipo-risorsa-tecnica`.
+  Events, news and posts use the core `category`. `HOLDER_TAXONOMY` is defined in
+  `config-lab.php` but not registered.
+- ACF field groups are defined in PHP (`acf_add_local_field_group()` in each
+  manager). The JSON files in `SETUP/ACF_Custom_Fields/` are exports only and are
+  not loaded by code.
+- Unified item shape for listings: `DLI_POST_WRAPPER` (`config-lab.php`).
+
+
+## Runtime Components (`inc/classes/`)
+
+- `DLI_LabManager` (`class-labmanager.php`): singleton; instantiates every manager
+  and importer, sets languages, image sizes, upload limits and permalinks, filters
+  REST access (`setup_rest_api`) and applies security tweaks (no generator, no XML-RPC).
+- `DLI_AuthorizationManager`: role `dli_super_editor` (Editor plus
+  `edit_theme_options` and `dli_edit_site_configuration`).
+- `DLI_PolylangManager`: which post types and taxonomies Polylang translates.
+- One manager per content type (events, news, patents, people, people types,
+  places, projects, publications, research activities, spin-offs, sponsors,
+  technical resources, banners, posts, pages).
+- `DLI_ContentsManager`: static query helpers, site search, homepage section
+  helpers, Open Graph data.
+- `Newsletter_Manager`: Brevo newsletter subscription and validation.
+- Importers: `DLI_BaseImporter` (abstract), `DLI_IndicoImporter` (events),
+  `DLI_IrisPatentImporter` (patents); `inc/admin/class-dli-people-file-importer.php`
+  is a separate CSV people import with dry-run.
+
+
+## Conventions and Intentional Patterns
+
+- Polylang wrappers (`inc/wrappers_polylang.php`): always call `dli_*` wrappers,
+  never `pll_*` directly. Each is guarded by `function_exists()`; without Polylang
+  readers fall back to `DLI_DEFAULT_LANGUAGE` and writers do nothing. The theme
+  does not activate without Polylang.
+- ACF wrappers (`inc/wrappers_acf.php`): use `dli_get_field()` / `dli_update_field()`.
+- Options: `dli_get_option( $field, $option_key )` (CMB2 options page
+  "Configurazione", base key `dli_options`); booleans are the strings `'true'` /
+  `'false'`; `dli_get_option_by_lang()` appends `_eng` for non-Italian.
+- Helpers in `inc/utils.php` are guarded by `function_exists()`; this is intentional.
+- Class naming is mixed (`DLI_*Manager` and `Event_Manager`-style); follow the
+  existing name in the file you edit.
+- Italian is the default language; the English version is a separate
+  Polylang-linked post.
+
+
+## Public Endpoints and Hooks
+
+- REST `GET dli/v1/suggest` (search autocomplete; opt-in).
+- REST `POST custom/v1/indico-import` and `POST custom/v1/iris-patent-import`:
+  registered only when `rest_api_enabled` is `'true'`; HTTP Basic auth and
+  `manage_options` required.
+- Rewrites: `/sitemap.xml`, `/sitemap-it.xml`, `/sitemap-en.xml` (`inc/sitemap.php`)
+  and `/manifest.json` (`inc/pwa.php`).
+- WP-Cron: `dli_indico_import_job`, `dli_iris_patent_import_job`.
+- The theme registers no shortcodes and no AJAX handlers; there are no WP-CLI commands.
+- Activation (`after_switch_theme`, `inc/activation.php`): creates default pages,
+  taxonomy terms, IT/EN menus and custom tables.
+
+
+## Configuration and Caching
+
+- Constants in `config-lab.php`: languages, slugs per content type and language,
+  upload limits, pagination, roles/capabilities, `SUGGESTED_PLUGINS`,
+  `DLI_ITEM_LINK`, `DLI_HP_SECTIONS` (homepage sections; enabling and ordering
+  from the `homepage_sections` option).
+- Importer settings live in the option groups `indico` and `iris`; never print
+  or log their credentials.
+- Caching: transients only, 24h safety TTL, invalidated on `save_post` and
+  `save_post_luogo`; `dli_suggest_<md5>` uses the configured `cache_minutes`.
+  Details in `DOC/HowTo/Transient e caching nel tema.md`.
+
+
 ## Technology Stack
 
 - Platform: WordPress
@@ -52,8 +140,23 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 
 ## Quality checks
 
-The canonical commands, prerequisites, `*:gate` variants, and `*:compare`
-variants are maintained in the *Sviluppo e verifiche* section of `README.md`.
+This is the canonical list of quality-check commands for AI agents. Run them
+from the theme root. The human-facing `README.md` (*Sviluppo e verifiche*)
+describes the same checks for contributors.
+
+- PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
+  needed: `composer run lint:php:fix`.
+- Static analysis: `composer run lint:phpstan`.
+- Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
+  errors, broken resources, timeouts). Requires Chromium, installed once with
+  `npm run status:scan:install-browser`.
+- Accessibility and responsive scan: `npm run ux:scan -- <baseUrl>`.
+- HTML validity: `npm run html:scan -- <baseUrl>`; requires Java 8+ on `PATH`.
+- Static code quality (PHP syntax, PHPCS, PHPStan, Composer and NPM audit):
+  `npm run quality:scan` (no URL).
+- Each scan has a `*:gate` variant (exit code 1 on failure) and a `*:compare`
+  variant (compares the two most recent reports). Options and report formats are
+  documented in `tests/e2e/*/README.md`.
 
 
 ## References

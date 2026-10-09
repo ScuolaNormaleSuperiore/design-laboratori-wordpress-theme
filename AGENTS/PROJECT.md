@@ -71,7 +71,7 @@ https://sitofederato.sns.it
 
 ## Automated Quality Checks (tests/e2e/)
 
-Four automated scanning modules are available under `tests/e2e/`. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs. Commands and prerequisites are maintained in the *Sviluppo e verifiche* section of `README.md`.
+Four automated scanning modules are available under `tests/e2e/` (`status-report`, `quality-report`, `ux-report`, `html-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).
 
 | Module | What it checks |
 |---|---|
@@ -80,7 +80,7 @@ Four automated scanning modules are available under `tests/e2e/`. Each module pr
 | `ux-report` | Axe/WCAG accessibility violations, responsive overflow |
 | `html-report` | HTML validity via Nu Html Checker (VNU) |
 
-Each scan accepts `<baseUrl>` as required by its command.
+The `status`, `ux`, and `html` scans take a `<baseUrl>`; the `quality` scan does not.
 
 
 ## License
