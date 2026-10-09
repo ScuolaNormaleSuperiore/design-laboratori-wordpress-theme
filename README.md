@@ -1,13 +1,14 @@
 # ![developers.italia](https://avatars1.githubusercontent.com/u/15377824?s=36&v=4 "developers.italia") Design Laboratori Italia
 
 
-**Design laboratori e centri di ricerca** è un tema WordPress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l’obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività. 
+**Design laboratori e centri di ricerca** è un tema WordPress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l'obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori). Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo tema permette di pubblicare tutte le informazioni relative a una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività.
 Il progetto si pone l'obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
+
 ## Stato del progetto
 Il progetto è in fase di produzione.
 
 ## Credits
-Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) ed utilizza la libreria [***Bootstrap Italia***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CREDITS.txt).
+Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://developers.italia.it/it/software/istsc_blps020006-italia-design-scuole-wordpress-theme.html) e utilizza la libreria [***Bootstrap Italia***](https://italia.github.io/bootstrap-italia/). Tutti i plugin e le librerie utilizzate dal tema sono elencate nel file [CREDITS.txt](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CREDITS.txt).
 
 ## Funzionalità
 - Popolamento automatico del sito (pagine e menu).
@@ -24,9 +25,9 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione delle risorse tecniche del laboratorio.
 - Gestione del blog del laboratorio.
 - Pagine di archivio con paginazione.
-- Ricerca in tutti i contenuti del sito.
+- Ricerca in tutti i contenuti del sito, con suggerimenti autocomplete opzionali.
 - Gestione degli avvisi in home page.
-- Gestione dei cookies.
+- Gestione dei cookie.
 - Form di contatti.
 - Mappa del sito in HTML e XML.
 - Gestione hero in home page.
@@ -35,7 +36,8 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione sezioni eventi, news e pubblicazioni in home page.
 - Gestione banner in home page.
 - Gestione sponsor in home page.
-- Supporto delle lingue italiano ed inglese.
+- Manifest PWA installabile (senza service worker).
+- Supporto delle lingue italiano e inglese.
 - Integrazione con il software di gestione delle newsletter Brevo.
 - Importazione degli eventi da Indico.
 - Importazione dei brevetti da IRIS.
@@ -88,36 +90,36 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 ## Siti d'esempio
 Esiste un sito di test che serve a mostrare le principali funzionalità del sistema:
 * [Sito Federato DEV](https://sitofederato.sns.it)
-  
+
 Alcuni siti in produzione realizzati con questo tema:
-* <a href="https://istitutociampi.sns.it" target="_blank">Istituto di Studi Avanzati "Carlo Azeglio Ciampi"</a>
-* <a href="https://kto.sns.it" target="_blank">POCKET - Knowledge Transfer Office</a>
-* <a href="https://edevpro3.sns.it" target="_blank">EDEV PRO 3</a>
-* <a href="https://laboratoriobiologia.sns.it" target="_blank">Bio@SNS (Laboratorio di Biologia)</a>
-* <a href="https://pnrr.sns.it" target="_blank">Il PNRR alla Normale</a>
-* <a href="https://froid.sns.it" target="_blank">FROID (Corso di dottorato in Filologia Romanza e Italiana Digitale)</a>
-* <a href="https://crmdegiorgi.sns.it" target="_blank">Centro di ricerca Matematica Ennio De Giorgi (Centro di ricerca Matematica Ennio De Giorgi)</a>
+* [Istituto di Studi Avanzati "Carlo Azeglio Ciampi"](https://istitutociampi.sns.it)
+* [POCKET - Knowledge Transfer Office](https://kto.sns.it)
+* [EDEV PRO 3](https://edevpro3.sns.it)
+* [Bio@SNS (Laboratorio di Biologia)](https://laboratoriobiologia.sns.it)
+* [Il PNRR alla Normale](https://pnrr.sns.it)
+* [FROID (Corso di dottorato in Filologia Romanza e Italiana Digitale)](https://froid.sns.it)
+* [Centro di ricerca Matematica Ennio De Giorgi](https://crmdegiorgi.sns.it)
 
 ## Demo
 ### Docker
-E' possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (WordPress + tema + plugins + contenuti d'esempio). 
+Ã possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (WordPress + tema + plugins + contenuti d'esempio).
 Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/SETUP/Docker/Dockerfile).
 
-Il sito di prova fa riferimento ad un laboratorio di esempio chiamato **Demo Lab** è già configurato ed è popolato con dei contenuti di prova. Lo scopo di Demo Lab è quello di mostrare le funzionalità del sistema e poterle provare velocemente, non deve essere usato in ambienti di produzione.
+Il sito di prova fa riferimento a un laboratorio di esempio chiamato **Demo Lab**, che è già configurato e popolato con contenuti di prova. Lo scopo di Demo Lab è mostrare le funzionalità del sistema e poterle provare velocemente; non deve essere usato in ambienti di produzione.
 
 I comandi da eseguire per creare ed eseguire il container sono:
 - docker build -t demolab-img -f SETUP/Docker/Dockerfile SETUP/Docker
-- docker run -p 80:80 -p 3306:3306 --name=demolab -d demolab-img
- 
+- docker run -p 80:80 -p 127.0.0.1:3306:3306 --name=demolab -d demolab-img
+
 Per collegarsi alla shell del container, eseguire il comando:
 - docker exec -it demolab /bin/bash
-  
-L'url del sito appena creato è: http://localhost/ .
 
-Per autenticarsi come amministratore del sito l'url è http://localhost/wp-admin/ e l'account per accedere è: manager / password
+L'URL del sito appena creato è: http://localhost/ .
+
+Per autenticarsi come amministratore del sito l'URL è http://localhost/wp-admin/ e l'account per accedere è: manager / password
 
 Sul container è installato il tool *Adminer* per gestire le tabelle del database.
-L'url di *Adminer* è: http://localhost/adminer.php
+L'URL di *Adminer* è: http://localhost/adminer.php
 Per configurarlo i parametri sono:
 - System: Mysql
 - Server: 127.0.0.1
@@ -138,7 +140,7 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
 ## Ruoli e permessi
-Installando il tema viene aggiunto un ruolo chiamato **Super Editor** che ha gli stessi permessi di un Editor, con in più il permesso di configurare il plugin (WP->Configurazione) e quello di modificare il menu del tema (WP->Aspetto).
+Installando il tema viene aggiunto un ruolo chiamato **Super Editor** che ha gli stessi permessi di un Editor, con in più il permesso di configurare il tema (WP->Configurazione) e quello di modificare il menu del tema (WP->Aspetto).
 
 ## Installazione e configurazione del tema
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
@@ -157,7 +159,8 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 
 6. Creazione dei contenuti di default: *WP->Strumenti DLI->Utilità-> Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)*
 7. In *WP->Aspetto->Menu* cliccare su **Salva menu**.
-8. Configurazione del tema: Andare in *WP->Configurazione* e impostare i dati di configurazione.
+8. Configurazione del tema: andare in *WP->Configurazione* e impostare i dati di configurazione.
+
 **Immagine 1:** Backoffice: configurazione del tema.
 ![configure](assets/screenshots/configurazione1.png)
 
@@ -185,16 +188,17 @@ npm ci
 composer install
 ```
 
-Sono disponibili i seguenti controlli:
+Eseguire i controlli dalla radice del tema:
 
-```sh
-npm run lint:php
-npm run lint:php:fix
-composer lint:phpstan
-npm run status:scan -- https://mio-sito.example.com
-```
+- `composer run lint:php` (oppure `npm run lint:php`) — verifica il codice PHP rispetto agli standard di codifica WordPress configurati; `npm run lint:php:fix` corregge automaticamente le violazioni risolvibili.
+- `composer run lint:phpstan` — esegue l'analisi statica con PHPStan.
+- `npm run status:scan -- https://mio-sito.example.com` — scandisce la sitemap e segnala errori HTTP, PHP e JavaScript, problemi di caricamento delle risorse e di prestazioni delle pagine.
+- `npm run html:scan -- https://mio-sito.example.com` — valida l'HTML delle pagine renderizzate con Nu Html Checker.
+- `npm run html:scan:gate -- https://mio-sito.example.com` — esegue la stessa validazione HTML e termina con un codice di errore se il risultato è negativo, quindi è adatto come quality gate.
+- `npm run ux:scan -- https://mio-sito.example.com` — verifica l'accessibilità (Axe/WCAG) e l'overflow responsive delle pagine.
+- `npm run quality:scan` — verifica la qualità statica del codice (sintassi PHP, PHPCS, PHPStan, audit delle dipendenze).
 
-Per le verifiche end-to-end, installare una sola volta Chromium con `npm run status:scan:install-browser`. Sono disponibili anche gli script `quality:scan`, `ux:scan` e `html:scan`; per opzioni, risultati e confronti consultare i README nelle rispettive cartelle `tests/e2e/`.
+Per le verifiche end-to-end, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/e2e/*/`.
 
 ## Migrazione da 1.4.x a 1.5.x
 La versione 1.5.x del tema ha introdotto una modifica nella struttura delle pagine del sito riducendo il numero di livelli presenti.
@@ -206,6 +210,14 @@ Per aggiornare un Sito Federato da una versione 1.6.x a una versione 1.7.x è ne
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
+
+Per segnalare una **vulnerabilità di sicurezza** non aprire una issue pubblica: seguire la [policy di sicurezza](SECURITY.md) e usare la segnalazione privata delle vulnerabilità di GitHub.
+
+## Come contribuire
+I contributi sono benvenuti. Prima di aprire una issue o una pull request leggere [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Contesto di progetto per l'AI
+Chiedere all'assistente di codifica di "leggere il contesto del progetto". Legge prima `AGENTS.md` (Codex) o `CLAUDE.md` (Claude Code), poi, nell'ordine, `AGENTS/AGENTS_README.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Infine conferma il bootstrap, elenca le skill disponibili e chiede su cosa lavorare.
 
 ## Sviluppi futuri
 Queste sono le principali funzionalità previste per le prossime versioni del sistema:
@@ -222,19 +234,19 @@ publiccode-parser publiccode.yml
 
 ## Galleria
 
-**Immagine 1:** Backoffice: configurazione del carousel.
+**Immagine 2:** Backoffice: configurazione del carousel.
 ![configure](assets/screenshots/configurazione3.png)
 
-**Immagine 2:** Homepage con carousel.
+**Immagine 3:** Homepage con carousel.
 ![configure](assets/screenshots/homepage.png)
 
-**Immagine 3:** Le persone del laboratorio.
+**Immagine 4:** Le persone del laboratorio.
 ![configure](assets/screenshots/persone.png)
 
-**Immagine 4:** I progetti del laboratorio.
+**Immagine 5:** I progetti del laboratorio.
 ![configure](assets/screenshots/progetti.png)
 
-**Immagine 5:** La ricerca nel sito.
+**Immagine 6:** La ricerca nel sito.
 ![configure](assets/screenshots/ricerca.png)
 
 ## Lingue supportate

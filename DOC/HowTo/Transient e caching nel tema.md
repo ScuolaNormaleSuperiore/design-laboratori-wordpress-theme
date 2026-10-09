@@ -71,7 +71,7 @@ invalidazione, per qualche motivo, non dovesse scattare).
 
 Ad oggi il tema usa i transient in due punti, entrambi introdotti per
 correggere pattern di query N+1/non necessarie segnalati durante la code
-review (vedi `AGENTS/ISSUES_RESOLVED.md`):
+review (vedi `DEV/CODE_REVIEW/ISSUES_RESOLVED.md`):
 
 | Funzione | File | Cosa cachea | Chiave | Invalidata su |
 |---|---|---|---|---|

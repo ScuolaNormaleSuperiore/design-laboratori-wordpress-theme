@@ -16,13 +16,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+
 ## [2.0.0] - 2026-09-28
 ## Aggiunto
-- Suggerimenti di ricerca durante la digitazione nella pagina Cerca (componente Autocomplete di Bootstrap Italia), disattivati di default e configurabili da *WP → Configurazione → Altro → Ricerca nel sito*.
-
+- Aggiunto autocmplete nella ricerca del sito.
+- Aggiunta procedura di bootstrap per gli agenti AI.
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
 - Bug-fixing
+- Aggiornare Dockerfile !!!!!!!!
 
 
 

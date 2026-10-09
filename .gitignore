@@ -75,9 +75,6 @@ composer.lock
 .claude
 .codex
 DEV
-AGENTS
-AGENTS.md
-CLAUDE.md
 tmp-alm-php-path-test.out
 tmp-alm-php-path-test.php
 tmp/
