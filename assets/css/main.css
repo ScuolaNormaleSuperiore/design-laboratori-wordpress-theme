@@ -13,6 +13,13 @@ html {
 
 /* STILI PERSONALIZZATI */
 
+/* Keep the desktop navigation bar visually separate from the page hero in
+   both site styles. The inner navbar already uses the light variant; this
+   sets the matching background on its full-width wrapper. */
+.it-header-navbar-wrapper.theme-light-desk {
+	--bsi-header-nav-background: var(--bsi-color-background-inverse);
+}
+
 /* Voci lunghe troncate nel dropdown del menu principale (header.php, es. la
    voce "Pagina base" con figli): BI3 applica .dropdown-item.list-item
    {white-space:nowrap} (specificità 0,2,0), che tiene il titolo su una sola
