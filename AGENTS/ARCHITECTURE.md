@@ -78,9 +78,9 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
   technical resources, banners, posts, pages).
 - `DLI_ContentsManager`: static query helpers, site search, homepage section
   helpers, Open Graph data.
-- People table (`template-parts/persone/view-tabella.php`): client-side table
-  data is serialized inline; email addresses are sanitized and obfuscated with
-  `antispambot()` only when the email column is enabled.
+- Public person email addresses (`single-persona.php` and
+  `template-parts/persone/view-tabella.php`) are sanitized and obfuscated with
+  `antispambot()`; table data omits them when the email column is disabled.
 - `Newsletter_Manager`: Brevo newsletter subscription and validation.
 - Importers: `DLI_BaseImporter` (abstract), `DLI_IndicoImporter` (events),
   `DLI_IrisPatentImporter` (patents); `inc/admin/class-dli-people-file-importer.php`

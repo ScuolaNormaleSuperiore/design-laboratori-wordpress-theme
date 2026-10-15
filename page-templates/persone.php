@@ -56,6 +56,9 @@ $dli_label_all_levels     = dli_get_configuration_field_by_lang( 'tutti_i_livell
 $dli_filter_structure_hidden = ( 'true' === dli_get_option( 'hide_filter_structure', 'persone' ) );
 $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 'persone' ) );
 
+// The structure is shown unless the option is explicitly set to 'false' (also when never saved).
+$dli_show_structure = ( 'false' !== dli_get_option( 'show_person_structure', 'persone' ) );
+
 // URL dei bottoni Schede/Tabella: preservano i filtri attualmente attivi, cambiano solo "vista".
 $dli_view_query_args = array_filter(
 	array(
@@ -127,6 +130,7 @@ $dli_view_toggle     = array(
 									'categories'         => $dli_page_data['categories'],
 									'selected_type'      => $dli_selected_type,
 									'hide_icon'          => $dli_hide_icon,
+									'show_structure'     => $dli_show_structure,
 								)
 							);
 							?>

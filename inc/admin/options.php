@@ -154,36 +154,30 @@ function dli_register_main_options_metabox() {
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'telefono_laboratorio',
-			'name'       => __( 'Telefono', 'design_laboratori_italia' ) . '&nbsp;*',
+			'name'       => __( 'Telefono', 'design_laboratori_italia' ),
 			'desc'       => __( 'Il numero di telefono del Laboratorio', 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'attributes' => array(
-				'required' => 'required',
-			),
+			'attributes' => array(),
 		)
 	);
 
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'nome_ente_appartenza',
-			'name'       => __( 'Ente padre', 'design_laboratori_italia' ) . '&nbsp;*',
+			'name'       => __( 'Ente padre', 'design_laboratori_italia' ),
 			'desc'       => __( "Il nome dell'ente padre", 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'attributes' => array(
-				'required' => 'required',
-			),
+			'attributes' => array(),
 		)
 	);
 
 	$header_options->add_field(
 		array(
 			'id'         => $prefix . 'url_ente_appartenenza',
-			'name'       => __( 'Url ente padre', 'design_laboratori_italia' ) . '&nbsp;*',
+			'name'       => __( 'Url ente padre', 'design_laboratori_italia' ),
 			'desc'       => __( "L'url dell'ente padre", 'design_laboratori_italia' ),
 			'type'       => 'text',
-			'attributes' => array(
-				'required' => 'required',
-			),
+			'attributes' => array(),
 		)
 	);
 
@@ -1227,6 +1221,24 @@ function dli_register_main_options_metabox() {
 			'desc'       => __( "Nascondi l'icona della persona nell'elenco delle persone", 'design_laboratori_italia' ) . '.',
 			'type'       => 'radio_inline',
 			'default'    => 'false',
+			'options'    => array(
+				'true'  => __( 'Si', 'design_laboratori_italia' ),
+				'false' => __( 'No', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => $prefix . 'people_view_type',
+				'data-conditional-value' => 'chip',
+			),
+		)
+	);
+
+	$persone_options->add_field(
+		array(
+			'id'         => $prefix . 'show_person_structure',
+			'name'       => __( 'Visualizza struttura', 'design_laboratori_italia' ),
+			'desc'       => __( 'Indicare se la struttura della persona deve comparire nell\'elenco delle persone (insieme al livello) e nella pagina di dettaglio', 'design_laboratori_italia' ) . '.',
+			'type'       => 'radio_inline',
+			'default'    => 'true',
 			'options'    => array(
 				'true'  => __( 'Si', 'design_laboratori_italia' ),
 				'false' => __( 'No', 'design_laboratori_italia' ),

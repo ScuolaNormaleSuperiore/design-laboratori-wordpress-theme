@@ -1225,6 +1225,37 @@ if ( ! function_exists( 'dli_get_post_type_label' ) ) {
 	 * @return string
 	 */
 	function dli_get_post_type_label( $post_type ) {
+		/*
+		 * The labels registered with register_post_type() are built on "init",
+		 * before Polylang sets the current language, so they stay in the default
+		 * language. Translate the theme labels here, at call time, so that they
+		 * follow the current language.
+		 */
+		switch ( $post_type ) {
+			case PEOPLE_POST_TYPE:
+				return _x( 'Persona', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case PROGETTO_POST_TYPE:
+				return _x( 'Progetto', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case EVENT_POST_TYPE:
+				return _x( 'Evento', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case NEWS_POST_TYPE:
+				return _x( 'Notizia', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case PATENT_POST_TYPE:
+				return _x( 'Brevetto', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case PLACE_POST_TYPE:
+				return _x( 'Luogo', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case PUBLICATION_POST_TYPE:
+				return _x( 'Pubblicazione', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case SPINOFF_POST_TYPE:
+				return _x( 'Spin-off', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case RESEARCH_ACTIVITY_POST_TYPE:
+				return _x( 'Indirizzo di ricerca', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case TECHNICAL_RESOURCE_POST_TYPE:
+				return _x( 'Risorsa Tecnica', 'Post Type Singular Name', 'design_laboratori_italia' );
+			case 'page':
+				return __( 'Pagina', 'design_laboratori_italia' );
+		}
+
 		$object = get_post_type_object( $post_type );
 		if ( $object && ! empty( $object->labels->singular_name ) ) {
 			return $object->labels->singular_name;
@@ -1346,12 +1377,17 @@ if ( ! function_exists( 'dli_get_site_tree' ) ) {
 		$pt[ $hp['slug'] ] = $hp;
 
 		// Aggiungi link alla pagina del sito padre.
-		$ente             = dli_get_tree_item();
-		$ente['name']     = dli_get_option( 'nome_ente_appartenza' );
-		$ente['slug']     = DLI_ENTE_SLUG;
-		$ente['external'] = 'true';
-		$ente['link']     = dli_get_option( 'url_ente_appartenenza' );
-		$pt[ $hp['slug'] ]['children'][ $ente['slug'] ] = $ente;
+		// The parent institution fields are optional: add the entry only when both are set.
+		$ente_name = dli_get_option( 'nome_ente_appartenza' );
+		$ente_link = dli_get_option( 'url_ente_appartenenza' );
+		if ( $ente_name && $ente_link ) {
+			$ente             = dli_get_tree_item();
+			$ente['name']     = $ente_name;
+			$ente['slug']     = DLI_ENTE_SLUG;
+			$ente['external'] = 'true';
+			$ente['link']     = $ente_link;
+			$pt[ $hp['slug'] ]['children'][ $ente['slug'] ] = $ente;
+		}
 
 		// Recupera elenco dei menu per lingua.
 		$menu_items = dli_get_all_menus_by_lang( $lng_slug );

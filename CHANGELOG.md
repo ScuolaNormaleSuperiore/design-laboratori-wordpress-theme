@@ -10,11 +10,19 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
-- Import eventi da feed RSS di Drupal.
+- Refactoring procedure di import.
+- Import eventi da feed RSS o REST API di Drupal.
+- Import eventi da feed RSS o REST API di WordPress.
+- Contenuto "Posizioni aperte".
+- REST API per leggere i contenuti principali del sito.
+- MCP Abilities.
+- Dashboard editoriale unificata (broken links, immagini mancanti, post non tradotti)
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (completamento del PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
-
+- Assistente qualità contenuto nell'editor (pre-publish checks Gutenberg).
+- Import di pubblicazioni da Iris.
+- Sezione Word Cloud per tag.
 
 
 

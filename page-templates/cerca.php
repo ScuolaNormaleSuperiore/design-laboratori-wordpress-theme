@@ -98,7 +98,7 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 											echo esc_html(
 												sprintf(
 													/* translators: %d: minimum number of characters. */
-													_n( 'Scrivi almeno %d carattere per cercare', 'Scrivi almeno %d caratteri per cercare', $dli_autocomplete_settings['min_chars'], 'design_laboratori_italia' ),
+													_n( 'Scrivi almeno %d carattere per vedere i suggerimenti', 'Scrivi almeno %d caratteri per vedere i suggerimenti', $dli_autocomplete_settings['min_chars'], 'design_laboratori_italia' ),
 													$dli_autocomplete_settings['min_chars']
 												)
 											);
@@ -120,13 +120,12 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 												class="form-control"
 												id="searchstring"
 												name="searchstring"
-												minlength="<?php echo esc_attr( $dli_autocomplete_settings['min_chars'] ); ?>"
 												placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
 												value="<?php echo esc_attr( $dli_search_string ); ?>"
 											>
 										</noscript>
 									<?php else : ?>
-										<label for="searchstring" class="text-white"><?php esc_html_e( 'Scrivi almeno 3 caratteri per cercare', 'design_laboratori_italia' ); ?></label>
+										<label for="searchstring" class="text-white"><?php esc_html_e( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?></label>
 										<div class="input-group">
 											<span class="input-group-text">
 												<svg class="icon icon-sm" aria-hidden="true" focusable="false">
@@ -138,7 +137,6 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 												class="form-control"
 												id="searchstring"
 												name="searchstring"
-												minlength="3"
 												placeholder="<?php echo esc_attr__( 'Cosa stai cercando?', 'design_laboratori_italia' ); ?>"
 												value="<?php echo esc_attr( $dli_search_string ); ?>"
 											>

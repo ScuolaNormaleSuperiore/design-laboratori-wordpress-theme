@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-24 13:23+0000\n"
+"POT-Creation-Date: 2026-10-15 08:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,12 +17,28 @@ msgstr ""
 "X-Domain: design_laboratori_italia"
 
 #. 1: number of results, 2: search query
-#: page-templates/cerca.php:176
+#: page-templates/cerca.php:208
 #, php-format
 msgid "%1$d risultato per «%2$s»"
 msgid_plural "%1$d risultati per «%2$s»"
 msgstr[0] ""
 msgstr[1] ""
+
+#. 1: selected option label, 2: total number of results, 3: position of the selected option.
+#: inc/search-autocomplete.php:334
+#, php-format
+msgid "%1$s, risultato %3$d di %2$d"
+msgstr ""
+
+#. %d: number of results.
+#: inc/search-autocomplete.php:332
+msgid "%d risultati disponibili."
+msgstr ""
+
+#. %d: number of results.
+#: inc/search-autocomplete.php:330
+msgid "%d risultato disponibile."
+msgstr ""
 
 #. %s: video title.
 #: template-parts/common/sezione-video.php:50
@@ -40,7 +56,7 @@ msgid ""
 msgstr ""
 
 #. 1: total items, 2: simulated (dry-run), 3: added, 4: updated, 5: ignored, 6: errors.
-#: inc/classes/class-patentimporter.php:230
+#: inc/classes/class-patentimporter.php:232
 #, php-format
 msgid ""
 "*** Totali: %1$d - Simulati: %2$d - Aggiunti: %3$d - Aggiornati: %4$d - "
@@ -48,14 +64,14 @@ msgid ""
 msgstr ""
 
 #. 1: start time, 2: end time.
-#: inc/utils.php:1052
+#: inc/utils.php:1077
 #, php-format
 msgid ", ore %1$s–%2$s"
 msgstr ""
 
 #. %s: start time.
 #. %s: end time.
-#: inc/utils.php:1055 inc/utils.php:1070 inc/utils.php:1072
+#: inc/utils.php:1080 inc/utils.php:1095 inc/utils.php:1097
 #, php-format
 msgid ", ore %s"
 msgstr ""
@@ -76,7 +92,7 @@ msgstr ""
 msgid "Abstract del brevetto"
 msgstr ""
 
-#: header.php:128
+#: header.php:140
 msgid "Accedi"
 msgstr ""
 
@@ -150,11 +166,11 @@ msgstr ""
 msgid "Aggiungi una Tipologia luogo"
 msgstr ""
 
-#: inc/utils.php:1095
+#: inc/utils.php:1120
 msgid "ago"
 msgstr ""
 
-#: inc/utils.php:926
+#: inc/utils.php:951
 msgid "agosto"
 msgstr ""
 
@@ -195,11 +211,11 @@ msgstr ""
 msgid "Anno di deposito"
 msgstr ""
 
-#: page-templates/contatti.php:329
+#: page-templates/contatti.php:337
 msgid "Annulla"
 msgstr ""
 
-#: page-templates/cerca.php:120
+#: page-templates/cerca.php:152
 msgid "Annulla ricerca"
 msgstr ""
 
@@ -209,11 +225,11 @@ msgstr ""
 msgid "Approfondisci: %s"
 msgstr ""
 
-#: inc/utils.php:1091
+#: inc/utils.php:1116
 msgid "apr"
 msgstr ""
 
-#: inc/utils.php:922
+#: inc/utils.php:947
 msgid "aprile"
 msgstr ""
 
@@ -258,14 +274,14 @@ msgstr ""
 msgid "Argomento:"
 msgstr ""
 
-#: inc/utils.php:1564
+#: inc/utils.php:1637
 msgid ""
 "ATTENZIONE: I seguenti plugin devono essere installati e attivati "
 "obbligatoriamente: "
 msgstr ""
 
 #. Name of the template
-#: single-persona.php:201 single-persona.php:297 inc/utils.php:273
+#: single-persona.php:203 single-persona.php:299 inc/utils.php:273
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr ""
@@ -278,7 +294,7 @@ msgstr ""
 msgid "Banner"
 msgstr ""
 
-#: single-persona.php:169 single-persona.php:249
+#: single-persona.php:171 single-persona.php:251
 #: inc/classes/class-peoplemanager.php:114
 msgid "Biografia"
 msgstr ""
@@ -288,7 +304,7 @@ msgid "Biografia della persona"
 msgstr ""
 
 #. Name of the template
-#: page-templates/blog.php:2 inc/classes/class-contents-manager.php:308
+#: page-templates/blog.php:2 inc/classes/class-contents-manager.php:309
 #: template-parts/home/hp-list-article.php:32
 #: template-parts/home/hp-list-article.php:36
 msgid "Blog"
@@ -311,22 +327,22 @@ msgstr ""
 msgid "Campi obbligatori mancanti o email non valida."
 msgstr ""
 
-#: page-templates/newsletter.php:208
+#: page-templates/newsletter.php:212
 msgid "Captcha"
 msgstr ""
 
-#: page-templates/contatti.php:299
+#: page-templates/contatti.php:303
 msgid "captcha"
 msgstr ""
 
-#: page-templates/blog.php:76 page-templates/eventi.php:77
-#: page-templates/notizie.php:77
+#: page-templates/blog.php:76 page-templates/eventi.php:81
+#: page-templates/notizie.php:81
 msgid "Categoria"
 msgstr ""
 
 #: page-templates/blog.php:116 page-templates/blog.php:121
-#: page-templates/eventi.php:138 page-templates/eventi.php:143
-#: page-templates/notizie.php:118 page-templates/notizie.php:123
+#: page-templates/eventi.php:142 page-templates/eventi.php:147
+#: page-templates/notizie.php:122 page-templates/notizie.php:127
 #: template-parts/common/sezione-box-notizia.php:23
 #: template-parts/home/carousel.php:64
 #: template-parts/home/hp-list-article.php:68
@@ -334,7 +350,7 @@ msgstr ""
 msgid "Categoria correlata:"
 msgstr ""
 
-#: header.php:165 page-templates/cerca.php:92 page-templates/cerca.php:117
+#: header.php:177 page-templates/cerca.php:90 page-templates/cerca.php:149
 msgid "Cerca"
 msgstr ""
 
@@ -349,7 +365,7 @@ msgstr ""
 msgid "Cerca contenuto"
 msgstr ""
 
-#: header.php:169 header.php:170 header.php:171
+#: header.php:181 header.php:182 header.php:183
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -357,7 +373,7 @@ msgstr ""
 msgid "Cerca per cognome"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:133
+#: template-parts/persone/view-tabella.php:136
 msgid "Cerca per nome, cognome, tipologia o struttura"
 msgstr ""
 
@@ -369,7 +385,7 @@ msgstr ""
 msgid "Cerca Struttura"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:125
+#: template-parts/persone/view-tabella.php:128
 msgid "Cerca testo"
 msgstr ""
 
@@ -390,22 +406,22 @@ msgid "Cessata"
 msgstr ""
 
 #: single-indirizzo-di-ricerca.php:94 single-luogo.php:93
-#: single-persona.php:145 single-progetto.php:113
+#: single-persona.php:147 single-progetto.php:113
 msgid "Chevron Left"
 msgstr ""
 
-#: page-templates/contatti.php:137 page-templates/contatti.php:139
-#: page-templates/contatti.php:151 page-templates/contatti.php:153
-#: page-templates/newsletter.php:115 page-templates/newsletter.php:117
-#: page-templates/newsletter.php:131 page-templates/newsletter.php:133
-#: page-templates/newsletter.php:151 page-templates/newsletter.php:153
+#: page-templates/contatti.php:139 page-templates/contatti.php:141
+#: page-templates/contatti.php:153 page-templates/contatti.php:155
+#: page-templates/newsletter.php:119 page-templates/newsletter.php:121
+#: page-templates/newsletter.php:135 page-templates/newsletter.php:137
+#: page-templates/newsletter.php:155 page-templates/newsletter.php:157
 #: template-parts/header/alert.php:45 template-parts/header/alert.php:46
 #: template-parts/header/alert.php:47
 msgid "Chiudi avviso"
 msgstr ""
 
-#: page-templates/newsletter.php:116 page-templates/newsletter.php:132
-#: page-templates/newsletter.php:152
+#: page-templates/newsletter.php:120 page-templates/newsletter.php:136
+#: page-templates/newsletter.php:156
 msgid "Close"
 msgstr ""
 
@@ -413,7 +429,7 @@ msgstr ""
 msgid "Codice"
 msgstr ""
 
-#: page-templates/contatti.php:306
+#: page-templates/contatti.php:310
 msgid "Codice di conferma"
 msgstr ""
 
@@ -421,7 +437,7 @@ msgstr ""
 msgid "Codice interno"
 msgstr ""
 
-#: page-templates/newsletter.php:189
+#: page-templates/newsletter.php:193
 msgid "Cognome"
 msgstr ""
 
@@ -441,13 +457,13 @@ msgstr ""
 msgid "commit (esecuzione reale)"
 msgstr ""
 
-#: page-templates/newsletter.php:93
+#: page-templates/newsletter.php:97
 msgid ""
 "Compila il form seguente per iscriverti alla newsletter, riceverai una e-"
 "mail per confermare l'iscrizione"
 msgstr ""
 
-#: page-templates/contatti.php:66 inc/classes/class-newslettermanager.php:172
+#: page-templates/contatti.php:68 inc/classes/class-newslettermanager.php:172
 msgid "Compilare tutti i campi obbligatori."
 msgstr ""
 
@@ -476,16 +492,16 @@ msgstr ""
 msgid "Condivido con piacere questo post"
 msgstr ""
 
-#: page-templates/contatti.php:330
+#: page-templates/contatti.php:339 page-templates/contatti.php:341
 msgid "Conferma"
 msgstr ""
 
 #. Name of the template
 #: footer.php:49 footer.php:51 single-evento.php:150 single-evento.php:256
 #: single-indirizzo-di-ricerca.php:133 single-indirizzo-di-ricerca.php:220
-#: single-persona.php:232 single-persona.php:409 single-spinoff.php:137
+#: single-persona.php:234 single-persona.php:411 single-spinoff.php:137
 #: single-spinoff.php:193 page-templates/contatti.php:2
-#: page-templates/contatti.php:118 page-templates/contatti.php:175
+#: page-templates/contatti.php:120 page-templates/contatti.php:177
 msgid "Contatti"
 msgstr ""
 
@@ -501,11 +517,12 @@ msgstr ""
 msgid "cookie policy"
 msgstr ""
 
-#: page-templates/contatti.php:87
+#: page-templates/contatti.php:89
 msgid "Copia del messaggio non inviata."
 msgstr ""
 
-#: page-templates/cerca.php:109
+#: page-templates/cerca.php:123 page-templates/cerca.php:128
+#: page-templates/cerca.php:140
 msgid "Cosa stai cercando?"
 msgstr ""
 
@@ -529,14 +546,14 @@ msgid "Creerebbe la persona (dry-run)."
 msgstr ""
 
 #. 1: start day, 2: full end date.
-#: inc/utils.php:1063
+#: inc/utils.php:1088
 #, php-format
 msgid "Dal %1$d<br>al %2$s"
 msgstr ""
 
 #. 1: full start date, 2: full end date.
 #. 1: start date/time, 2: end date/time.
-#: inc/utils.php:1066 inc/utils.php:1074
+#: inc/utils.php:1091 inc/utils.php:1099
 #, php-format
 msgid "Dal %1$s<br>al %2$s"
 msgstr ""
@@ -564,7 +581,7 @@ msgstr ""
 msgid "Descrizione"
 msgstr ""
 
-#: inc/classes/class-bannermanager.php:78
+#: inc/classes/class-bannermanager.php:79
 msgid "Descrizione banner"
 msgstr ""
 
@@ -584,7 +601,7 @@ msgstr ""
 msgid "Descrizione della Spin-off"
 msgstr ""
 
-#: inc/classes/class-sponsormanager.php:79
+#: inc/classes/class-sponsormanager.php:80
 msgid "Descrizione dello Sponsor"
 msgstr ""
 
@@ -648,7 +665,7 @@ msgstr ""
 msgid "Dettagli dell'evento"
 msgstr ""
 
-#: single-persona.php:157
+#: single-persona.php:159
 msgid "Dettagli della persona"
 msgstr ""
 
@@ -664,15 +681,20 @@ msgstr ""
 msgid "Dettaglio righe elaborate"
 msgstr ""
 
-#: inc/utils.php:1099
+#: inc/utils.php:1124
 msgid "dic"
 msgstr ""
 
-#: inc/utils.php:930
+#: inc/utils.php:955
 msgid "dicembre"
 msgstr ""
 
-#: inc/classes/class-labmanager.php:316
+#. %d: minimum number of characters.
+#: inc/search-autocomplete.php:328
+msgid "Digita almeno %d caratteri per vedere i suggerimenti"
+msgstr ""
+
+#: inc/classes/class-labmanager.php:326
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
@@ -694,8 +716,8 @@ msgstr ""
 msgid "dry_run (simulazione)"
 msgstr ""
 
-#: footer.php:81 footer.php:82 page-templates/contatti.php:258
-#: page-templates/newsletter.php:197
+#: footer.php:81 footer.php:82 page-templates/contatti.php:262
+#: page-templates/newsletter.php:201
 msgid "E-mail"
 msgstr ""
 
@@ -711,12 +733,12 @@ msgstr ""
 msgid "Elenco delle pagine del sito"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:230
+#: template-parts/persone/view-tabella.php:233
 msgid "Elenco persone"
 msgstr ""
 
 #: single-luogo.php:202 inc/admin/class-dli-tools-admin.php:720
-#: template-parts/persone/view-tabella.php:244
+#: template-parts/persone/view-tabella.php:247
 msgid "Email"
 msgstr ""
 
@@ -726,11 +748,11 @@ msgid ""
 "evitare ambiguità."
 msgstr ""
 
-#: page-templates/newsletter.php:73
+#: page-templates/newsletter.php:77
 msgid "Errore durante l'iscrizione alla newsletter."
 msgstr ""
 
-#: page-templates/contatti.php:335
+#: page-templates/contatti.php:347
 msgid "Errore nonce rilevato durante l'invio del form."
 msgstr ""
 
@@ -746,7 +768,7 @@ msgstr ""
 msgid "Es. Rossi"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:132
+#: template-parts/persone/view-tabella.php:135
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
@@ -786,7 +808,7 @@ msgstr ""
 msgid "Evento"
 msgstr ""
 
-#: header.php:87 template-parts/header/secondary-menu.php:35
+#: header.php:99 template-parts/header/secondary-menu.php:35
 #: template-parts/header/top-menu.php:16
 msgid "Expand"
 msgstr ""
@@ -795,11 +817,11 @@ msgstr ""
 msgid "Famiglia brevettuale"
 msgstr ""
 
-#: inc/utils.php:1089
+#: inc/utils.php:1114
 msgid "feb"
 msgstr ""
 
-#: inc/utils.php:920
+#: inc/utils.php:945
 msgid "febbraio"
 msgstr ""
 
@@ -824,7 +846,7 @@ msgstr ""
 msgid "Filtra"
 msgstr ""
 
-#: page-templates/cerca.php:151
+#: page-templates/cerca.php:183
 msgid "Filtra per"
 msgstr ""
 
@@ -844,11 +866,11 @@ msgstr ""
 msgid "Formato non valido: è richiesto un file .csv."
 msgstr ""
 
-#: inc/utils.php:1088
+#: inc/utils.php:1113
 msgid "gen"
 msgstr ""
 
-#: inc/utils.php:919
+#: inc/utils.php:944
 msgid "gennaio"
 msgstr ""
 
@@ -856,11 +878,11 @@ msgstr ""
 msgid "Gestione cookies"
 msgstr ""
 
-#: inc/utils.php:1093
+#: inc/utils.php:1118
 msgid "giu"
 msgstr ""
 
-#: inc/utils.php:924
+#: inc/utils.php:949
 msgid "giugno"
 msgstr ""
 
@@ -905,17 +927,23 @@ msgid ""
 "paragrafi)."
 msgstr ""
 
-#: page-templates/contatti.php:58 page-templates/newsletter.php:57
+#: page-templates/contatti.php:62 page-templates/newsletter.php:60
 msgid "Il codice di controllo non è valido."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:303
+#: inc/classes/class-labmanager.php:313
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr ""
 
 #. Name of the template
 #: page-templates/il-laboratorio.php:2
 msgid "Il Laboratorio"
+msgstr ""
+
+#: page-templates/contatti.php:58 page-templates/contatti.php:330
+#: page-templates/newsletter.php:56 page-templates/newsletter.php:223
+msgid ""
+"Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi."
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:44
@@ -957,13 +985,13 @@ msgstr ""
 msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr ""
 
-#: page-templates/contatti.php:71 inc/classes/class-newslettermanager.php:176
+#: page-templates/contatti.php:73 inc/classes/class-newslettermanager.php:176
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
 #: single-brevetto.php:99 single-brevetto.php:102 single-evento.php:105
 #: single-evento.php:109 single-indirizzo-di-ricerca.php:99 single-luogo.php:96
-#: single-persona.php:148 single-progetto.php:116
+#: single-persona.php:150 single-progetto.php:116
 #: single-risorsa-tecnica.php:118 single-risorsa-tecnica.php:121
 #: single-spinoff.php:83 single-spinoff.php:86
 msgid "Indietro"
@@ -991,23 +1019,23 @@ msgid ""
 "completo per facilitare la ricerca"
 msgstr ""
 
-#: page-templates/contatti.php:252
+#: page-templates/contatti.php:256
 msgid "Inserisci il testo del messaggio"
 msgstr ""
 
-#: page-templates/newsletter.php:192
+#: page-templates/newsletter.php:196
 msgid "Inserisci il tuo cognome"
 msgstr ""
 
-#: page-templates/contatti.php:265 page-templates/newsletter.php:200
+#: page-templates/contatti.php:269 page-templates/newsletter.php:204
 msgid "Inserisci il tuo indirizzo email"
 msgstr ""
 
-#: page-templates/contatti.php:239 page-templates/newsletter.php:186
+#: page-templates/contatti.php:243 page-templates/newsletter.php:190
 msgid "Inserisci il tuo nome"
 msgstr ""
 
-#: page-templates/contatti.php:276
+#: page-templates/contatti.php:280
 msgid "Inserisci il tuo numero di telefono"
 msgstr ""
 
@@ -1021,7 +1049,7 @@ msgstr ""
 msgid "Intestazione non valida: colonna obbligatoria \"%s\" non trovata."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:347
+#: inc/classes/class-labmanager.php:357
 msgid "Invalid username or password"
 msgstr ""
 
@@ -1029,7 +1057,7 @@ msgstr ""
 msgid "Inventori"
 msgstr ""
 
-#: page-templates/newsletter.php:223
+#: page-templates/newsletter.php:232 page-templates/newsletter.php:234
 msgid "Iscrivimi alla newsletter"
 msgstr ""
 
@@ -1037,19 +1065,19 @@ msgstr ""
 msgid "Iscrivimi..."
 msgstr ""
 
-#: page-templates/newsletter.php:177
+#: page-templates/newsletter.php:181
 msgid "Iscrizione"
 msgstr ""
 
-#: page-templates/newsletter.php:114
+#: page-templates/newsletter.php:118
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:278
+#: inc/classes/class-labmanager.php:288
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
 
-#: inc/classes/class-labmanager.php:299
+#: inc/classes/class-labmanager.php:309
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
@@ -1098,11 +1126,11 @@ msgstr ""
 msgid "Logo Identificativo dello Sponsor"
 msgstr ""
 
-#: inc/utils.php:1094
+#: inc/utils.php:1119
 msgid "lug"
 msgstr ""
 
-#: inc/utils.php:925
+#: inc/utils.php:950
 msgid "luglio"
 msgstr ""
 
@@ -1115,15 +1143,15 @@ msgstr ""
 msgid "Luogo"
 msgstr ""
 
-#: inc/utils.php:1092
+#: inc/utils.php:1117
 msgid "mag"
 msgstr ""
 
-#: inc/utils.php:923
+#: inc/utils.php:948
 msgid "maggio"
 msgstr ""
 
-#: single-persona.php:432 template-parts/common/sezione-contatti.php:46
+#: single-persona.php:434 template-parts/common/sezione-contatti.php:46
 msgid "Mail"
 msgstr ""
 
@@ -1136,7 +1164,7 @@ msgstr ""
 msgid "Mappa del sito in Italiano"
 msgstr ""
 
-#: inc/utils.php:1090
+#: inc/utils.php:1115
 msgid "mar"
 msgstr ""
 
@@ -1144,11 +1172,11 @@ msgstr ""
 msgid "Marca e modello"
 msgstr ""
 
-#: inc/utils.php:921
+#: inc/utils.php:946
 msgid "marzo"
 msgstr ""
 
-#: functions.php:148
+#: functions.php:158
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1156,19 +1184,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:146
+#: functions.php:156
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:147
+#: functions.php:157
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:144
+#: functions.php:154
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:145
+#: functions.php:155
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1176,11 +1204,11 @@ msgstr ""
 msgid "Messaggio"
 msgstr ""
 
-#: page-templates/contatti.php:136
+#: page-templates/contatti.php:138
 msgid "Messaggio inviato correttamente"
 msgstr ""
 
-#: page-templates/contatti.php:79
+#: page-templates/contatti.php:81
 msgid "Messaggio non inviato"
 msgstr ""
 
@@ -1230,7 +1258,7 @@ msgstr ""
 msgid "Modifica tipo risorsa"
 msgstr ""
 
-#: header.php:205 header.php:207
+#: header.php:217 header.php:219
 msgid "Mostra/Nascondi la navigazione"
 msgstr ""
 
@@ -1244,7 +1272,7 @@ msgstr ""
 msgid "N/D"
 msgstr ""
 
-#: header.php:215 header.php:216 header.php:217
+#: header.php:227 header.php:228 header.php:229
 msgid "Nascondi la navigazione"
 msgstr ""
 
@@ -1256,11 +1284,11 @@ msgstr ""
 msgid "Navigazione pagine"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:258
+#: template-parts/persone/view-tabella.php:261
 msgid "Navigazione pagine persone"
 msgstr ""
 
-#: header.php:203
+#: header.php:215
 msgid "Navigazione principale"
 msgstr ""
 
@@ -1272,30 +1300,38 @@ msgstr ""
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr ""
 
-#: page-templates/cerca.php:211
+#: inc/search-autocomplete.php:326
+msgid "Nessun risultato di ricerca"
+msgstr ""
+
+#: page-templates/cerca.php:243
 msgid "Nessun risultato per i filtri selezionati."
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:285
+#: inc/search-autocomplete.php:325
+msgid "Nessun risultato trovato"
+msgstr ""
+
+#: template-parts/persone/view-tabella.php:288
 msgid "Nessuna persona trovata"
 msgstr ""
 
 #. Name of the template
-#: page-templates/newsletter.php:8 page-templates/newsletter.php:91
+#: page-templates/newsletter.php:8 page-templates/newsletter.php:95
 #: template-parts/common/newsletter.php:16
 msgid "Newsletter"
 msgstr ""
 
-#: page-templates/newsletter.php:183
+#: page-templates/newsletter.php:187
 msgid "Nome"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:213
-#: template-parts/persone/view-tabella.php:233
+#: template-parts/persone/view-tabella.php:216
+#: template-parts/persone/view-tabella.php:236
 msgid "Nome / Cognome"
 msgstr ""
 
-#: page-templates/contatti.php:232 inc/admin/class-dli-tools-admin.php:719
+#: page-templates/contatti.php:236 inc/admin/class-dli-tools-admin.php:719
 msgid "Nome e cognome"
 msgstr ""
 
@@ -1333,11 +1369,11 @@ msgstr ""
 msgid "Non è stata trovata nessuna attività di ricerca"
 msgstr ""
 
-#: page-templates/notizie.php:140
+#: page-templates/notizie.php:144
 msgid "Non è stata trovata nessuna notizia"
 msgstr ""
 
-#: page-templates/persone.php:137
+#: page-templates/persone.php:141
 msgid "Non è stata trovata nessuna persona"
 msgstr ""
 
@@ -1345,7 +1381,7 @@ msgstr ""
 msgid "Non è stato trovato alcun brevetto"
 msgstr ""
 
-#: page-templates/eventi.php:160
+#: page-templates/eventi.php:164
 msgid "Non è stato trovato alcun evento"
 msgstr ""
 
@@ -1376,11 +1412,11 @@ msgstr ""
 msgid "Notizie"
 msgstr ""
 
-#: inc/utils.php:1098
+#: inc/utils.php:1123
 msgid "nov"
 msgstr ""
 
-#: inc/utils.php:929
+#: inc/utils.php:954
 msgid "novembre"
 msgstr ""
 
@@ -1433,19 +1469,19 @@ msgstr ""
 msgid "Orari"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:207
+#: template-parts/persone/view-tabella.php:210
 msgid "Ordina per"
 msgstr ""
 
-#: inc/utils.php:1097
+#: inc/utils.php:1122
 msgid "ott"
 msgstr ""
 
-#: inc/utils.php:928
+#: inc/utils.php:953
 msgid "ottobre"
 msgstr ""
 
-#: template-parts/common/paginazione.php:93
+#: inc/utils.php:1256 template-parts/common/paginazione.php:93
 msgid "Pagina"
 msgstr ""
 
@@ -1459,12 +1495,12 @@ msgid "Pagina non trovata"
 msgstr ""
 
 #: template-parts/common/paginazione.php:63
-#: template-parts/persone/view-tabella.php:281
+#: template-parts/persone/view-tabella.php:284
 msgid "Pagina precedente"
 msgstr ""
 
 #: template-parts/common/paginazione.php:104
-#: template-parts/persone/view-tabella.php:282
+#: template-parts/persone/view-tabella.php:285
 msgid "Pagina successiva"
 msgstr ""
 
@@ -1512,7 +1548,7 @@ msgstr ""
 msgid "Persona creata."
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:283
+#: template-parts/persone/view-tabella.php:286
 msgid "persona trovata"
 msgstr ""
 
@@ -1522,7 +1558,7 @@ msgstr ""
 msgid "Persone"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:284
+#: template-parts/persone/view-tabella.php:287
 msgid "persone trovate"
 msgstr ""
 
@@ -1705,22 +1741,22 @@ msgctxt "Post Type Singular Name"
 msgid "Banner"
 msgstr ""
 
-#: inc/classes/class-patentmanager.php:78
+#: inc/utils.php:1244 inc/classes/class-patentmanager.php:78
 msgctxt "Post Type Singular Name"
 msgid "Brevetto"
 msgstr ""
 
-#: inc/classes/class-eventmanager.php:38
+#: inc/utils.php:1240 inc/classes/class-eventmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Evento"
 msgstr ""
 
-#: inc/classes/class-researchactivitiesmanager.php:38
+#: inc/utils.php:1252 inc/classes/class-researchactivitiesmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Indirizzo di ricerca"
 msgstr ""
 
-#: inc/classes/class-placemanager.php:79
+#: inc/utils.php:1246 inc/classes/class-placemanager.php:79
 msgctxt "Post Type Singular Name"
 msgid "Luogo"
 msgstr ""
@@ -1790,32 +1826,32 @@ msgctxt "Post Type Singular Name"
 msgid "Modifica lo Sponsor"
 msgstr ""
 
-#: inc/classes/class-newsmanager.php:38
+#: inc/utils.php:1242 inc/classes/class-newsmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Notizia"
 msgstr ""
 
-#: inc/classes/class-peoplemanager.php:73
+#: inc/utils.php:1236 inc/classes/class-peoplemanager.php:73
 msgctxt "Post Type Singular Name"
 msgid "Persona"
 msgstr ""
 
-#: inc/classes/class-projectmanager.php:37
+#: inc/utils.php:1238 inc/classes/class-projectmanager.php:37
 msgctxt "Post Type Singular Name"
 msgid "Progetto"
 msgstr ""
 
-#: inc/classes/class-publicationmanager.php:73
+#: inc/utils.php:1248 inc/classes/class-publicationmanager.php:73
 msgctxt "Post Type Singular Name"
 msgid "Pubblicazione"
 msgstr ""
 
-#: inc/classes/class-technicalresourcemanager.php:71
+#: inc/utils.php:1254 inc/classes/class-technicalresourcemanager.php:71
 msgctxt "Post Type Singular Name"
 msgid "Risorsa Tecnica"
 msgstr ""
 
-#: inc/classes/class-spinoffmanager.php:89
+#: inc/utils.php:1250 inc/classes/class-spinoffmanager.php:89
 msgctxt "Post Type Singular Name"
 msgid "Spin-off"
 msgstr ""
@@ -1903,7 +1939,7 @@ msgid "Privacy"
 msgstr ""
 
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:203
-#: single-persona.php:178 single-persona.php:255 single-risorsa-tecnica.php:244
+#: single-persona.php:180 single-persona.php:257 single-risorsa-tecnica.php:244
 #: single-risorsa-tecnica.php:356 inc/utils.php:279
 msgid "Progetti"
 msgstr ""
@@ -1916,11 +1952,17 @@ msgstr ""
 msgid "Pubblicazione"
 msgstr ""
 
-#: single-persona.php:212 single-persona.php:329 single-progetto.php:172
+#: single-persona.php:214 single-persona.php:331 single-progetto.php:172
 #: single-progetto.php:268 inc/utils.php:280
 #: template-parts/home/hp-list-publication.php:32
 #: template-parts/home/hp-list-publication.php:36
 msgid "Pubblicazioni"
+msgstr ""
+
+#: inc/search-autocomplete.php:324
+msgid ""
+"Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e "
+"Invio per selezionare."
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:211
@@ -1953,6 +1995,10 @@ msgstr ""
 msgid "Ricerca"
 msgstr ""
 
+#: page-templates/cerca.php:114
+msgid "Ricerca dei suggerimenti in corso…"
+msgstr ""
+
 #: page-templates/brevetti.php:140 page-templates/risorse-tecniche.php:126
 #: page-templates/spinoff.php:134
 msgid "Ricerca libera"
@@ -1962,11 +2008,11 @@ msgstr ""
 msgid "Ricevi via email la nostra newsletter"
 msgstr ""
 
-#: page-templates/contatti.php:83
+#: page-templates/contatti.php:85
 msgid "Ricevuta"
 msgstr ""
 
-#: page-templates/newsletter.php:130
+#: page-templates/newsletter.php:134
 msgid ""
 "Richiesta di iscrizione ricevuta correttamente, verifica la tua email per "
 "completare la procedura."
@@ -2020,7 +2066,7 @@ msgstr ""
 msgid "Rimuovi Immagine Sponsor"
 msgstr ""
 
-#: page-templates/contatti.php:313 page-templates/newsletter.php:213
+#: page-templates/contatti.php:317 page-templates/newsletter.php:217
 msgid "Riscrivi qui il codice di conferma"
 msgstr ""
 
@@ -2037,7 +2083,7 @@ msgstr ""
 msgid "Risorse-Tecniche"
 msgstr ""
 
-#: page-templates/cerca.php:185
+#: page-templates/cerca.php:217
 msgid "Risultati di ricerca"
 msgstr ""
 
@@ -2075,11 +2121,14 @@ msgstr ""
 msgid "Scopri di più su: %s"
 msgstr ""
 
-#: page-templates/cerca.php:96
-msgid "Scrivi almeno 3 caratteri per cercare"
-msgstr ""
+#. %d: minimum number of characters.
+#: page-templates/cerca.php:101
+msgid "Scrivi almeno %d carattere per vedere i suggerimenti"
+msgid_plural "Scrivi almeno %d caratteri per vedere i suggerimenti"
+msgstr[0] ""
+msgstr[1] ""
 
-#: page-templates/contatti.php:226
+#: page-templates/contatti.php:230
 msgid "Scrivici"
 msgstr ""
 
@@ -2121,7 +2170,7 @@ msgstr ""
 msgid "Seleziona Immagine Sponsor"
 msgstr ""
 
-#: header.php:84
+#: header.php:96
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
@@ -2129,11 +2178,11 @@ msgstr ""
 msgid "separare con"
 msgstr ""
 
-#: inc/utils.php:1096
+#: inc/utils.php:1121
 msgid "set"
 msgstr ""
 
-#: inc/utils.php:927
+#: inc/utils.php:952
 msgid "settembre"
 msgstr ""
 
@@ -2161,7 +2210,7 @@ msgstr ""
 msgid "Site Map in English"
 msgstr ""
 
-#: single-evento.php:292 single-persona.php:451 single-progetto.php:76
+#: single-evento.php:292 single-persona.php:453 single-progetto.php:76
 #: single-spinoff.php:228 template-parts/common/sezione-contatti.php:68
 msgid "Sito web"
 msgstr ""
@@ -2208,9 +2257,9 @@ msgid "Strumenti DLI"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:48 template-parts/persone/filters.php:76
-#: template-parts/persone/view-tabella.php:141
-#: template-parts/persone/view-tabella.php:215
-#: template-parts/persone/view-tabella.php:238
+#: template-parts/persone/view-tabella.php:144
+#: template-parts/persone/view-tabella.php:218
+#: template-parts/persone/view-tabella.php:241
 msgid "Struttura"
 msgstr ""
 
@@ -2218,8 +2267,8 @@ msgstr ""
 msgid "Tabella"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:218
-#: template-parts/persone/view-tabella.php:241
+#: template-parts/persone/view-tabella.php:221
+#: template-parts/persone/view-tabella.php:244
 msgid "TAG"
 msgstr ""
 
@@ -2284,15 +2333,15 @@ msgid "Tipologia luogo"
 msgstr ""
 
 #: footer.php:90 footer.php:91 single-luogo.php:189
-#: page-templates/contatti.php:269 template-parts/persone/view-tabella.php:247
+#: page-templates/contatti.php:273 template-parts/persone/view-tabella.php:250
 msgid "Telefono"
 msgstr ""
 
-#: single-persona.php:417 template-parts/common/sezione-contatti.php:28
+#: single-persona.php:419 template-parts/common/sezione-contatti.php:28
 msgid "Telephone"
 msgstr ""
 
-#: page-templates/contatti.php:245
+#: page-templates/contatti.php:249
 msgid "Testo del messaggio"
 msgstr ""
 
@@ -2300,7 +2349,7 @@ msgstr ""
 msgid "Tipi di importazione"
 msgstr ""
 
-#: page-templates/cerca.php:198
+#: page-templates/cerca.php:230
 msgid "Tipo di contenuto:"
 msgstr ""
 
@@ -2330,9 +2379,9 @@ msgstr ""
 
 #: page-templates/luoghi.php:101 page-templates/pubblicazioni.php:181
 #: template-parts/persone/filters.php:93
-#: template-parts/persone/view-tabella.php:160
-#: template-parts/persone/view-tabella.php:211
-#: template-parts/persone/view-tabella.php:235
+#: template-parts/persone/view-tabella.php:163
+#: template-parts/persone/view-tabella.php:214
+#: template-parts/persone/view-tabella.php:238
 msgid "Tipologia"
 msgstr ""
 
@@ -2357,7 +2406,7 @@ msgid "Titolo"
 msgstr ""
 
 #: single-brevetto.php:88 single-indirizzo-di-ricerca.php:81
-#: single-luogo.php:80 single-persona.php:133 single-progetto.php:98
+#: single-luogo.php:80 single-persona.php:135 single-progetto.php:98
 #: single-risorsa-tecnica.php:102 single-spinoff.php:68
 msgid "Toggle navigation"
 msgstr ""
@@ -2366,7 +2415,7 @@ msgstr ""
 msgid "Trascrizione"
 msgstr ""
 
-#: page-templates/cerca.php:93
+#: page-templates/cerca.php:91
 msgid "Trova persone, progetti, notizie e altri contenuti del sito."
 msgstr ""
 
@@ -2383,12 +2432,12 @@ msgid "Tutte le pubblicazioni"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:43 template-parts/persone/filters.php:79
-#: template-parts/persone/view-tabella.php:145
+#: template-parts/persone/view-tabella.php:148
 msgid "Tutte le strutture"
 msgstr ""
 
 #: template-parts/persone/filters.php:96
-#: template-parts/persone/view-tabella.php:164
+#: template-parts/persone/view-tabella.php:167
 msgid "Tutte le tipologie"
 msgstr ""
 
@@ -2419,7 +2468,7 @@ msgstr ""
 msgid "Tutti i tipi"
 msgstr ""
 
-#: single-persona.php:223 single-persona.php:365
+#: single-persona.php:225 single-persona.php:367
 msgid "Ulteriori informazioni"
 msgstr ""
 
@@ -2476,7 +2525,7 @@ msgstr ""
 msgid "Utilità — Strumenti DLI"
 msgstr ""
 
-#: page-templates/contatti.php:119
+#: page-templates/contatti.php:121
 msgid "Utilizza i dati di contatto o compila il form sottostante."
 msgstr ""
 
@@ -2506,7 +2555,7 @@ msgstr ""
 msgid "Vai alla pagina: Newsletter"
 msgstr ""
 
-#: page-templates/contatti.php:102 page-templates/newsletter.php:50
+#: page-templates/contatti.php:104 page-templates/newsletter.php:50
 msgid "Valore di Nonce errato."
 msgstr ""
 
@@ -2526,107 +2575,14 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: page-templates/contatti.php:285
+#: page-templates/contatti.php:289
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
 msgstr ""
 
-#: single-persona.php:447
+#: single-persona.php:449
 msgid "Website Link"
 msgstr ""
 
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
-msgstr ""
-
-#. New strings: site search autocomplete (DEV/TODO/AutocompletePlan.md).
-#: inc/admin/options.php
-msgid "Ricerca nel sito"
-msgstr ""
-
-#: page-templates/cerca.php
-msgid "Ricerca dei suggerimenti in corso…"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Abilita i suggerimenti durante la digitazione"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Mostra suggerimenti nella pagina di ricerca del sito mentre l'utente digita. Resta disponibile anche quando la REST API è disabilitata qui sopra."
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Caratteri minimi prima dei suggerimenti"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Numero massimo di suggerimenti"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Attesa dopo l'ultimo tasto (millisecondi)"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Tipologie di contenuto incluse"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Durata della cache dei suggerimenti (minuti, 0 = nessuna cache)"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Alla scelta di un suggerimento"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Apri il contenuto"
-msgstr ""
-
-#: inc/admin/options.php
-msgid "Avvia la ricerca"
-msgstr ""
-
-#. translators: %d: minimum number of characters.
-#: page-templates/cerca.php
-#, php-format
-msgid "Scrivi almeno %d carattere per cercare"
-msgid_plural "Scrivi almeno %d caratteri per cercare"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/search-autocomplete.php
-msgid "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e Invio per selezionare."
-msgstr ""
-
-#: inc/search-autocomplete.php
-msgid "Nessun risultato trovato"
-msgstr ""
-
-#: inc/search-autocomplete.php
-msgid "Nessun risultato di ricerca"
-msgstr ""
-
-#. translators: %d: minimum number of characters.
-#: inc/search-autocomplete.php
-#, php-format
-msgid "Digita almeno %d caratteri per vedere i suggerimenti"
-msgstr ""
-
-#. translators: %d: number of results.
-#: inc/search-autocomplete.php
-#, php-format
-msgid "%d risultato disponibile."
-msgstr ""
-
-#. translators: %d: number of results.
-#: inc/search-autocomplete.php
-#, php-format
-msgid "%d risultati disponibili."
-msgstr ""
-
-#. translators: 1: selected option label, 2: total number of results, 3: position of the selected option.
-#: inc/search-autocomplete.php
-#, php-format
-msgid "%1$s, risultato %3$d di %2$d"
 msgstr ""

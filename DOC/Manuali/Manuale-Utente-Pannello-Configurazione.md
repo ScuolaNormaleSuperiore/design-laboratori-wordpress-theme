@@ -207,6 +207,9 @@ Campi principali:
 - `Nascondi icona`
   tipo: `radio_inline`
   funzione: mostra/nasconde icona persona in elenco.
+- `Visualizza struttura`
+  tipo: `radio_inline`
+  funzione: mostra/nasconde la struttura della persona nella visualizzazione a chip (insieme al livello, sotto il nome) e nella pagina di dettaglio della persona; valore predefinito `Si` (la struttura viene mostrata). Nella visualizzazione a tabella si usa `Nascondi struttura`.
 - `Modalita' scelta struttura`
   tipo: `select`
   funzione: filtro struttura con chip/select/disabilitato.

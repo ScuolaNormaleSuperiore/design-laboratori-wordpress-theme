@@ -13,6 +13,7 @@
  *     @type WP_Post[] $categories          Categorie (tipologia-persona) ordinate per priorità.
  *     @type string    $selected_type       ID categoria selezionata ('' = nessuna).
  *     @type string    $hide_icon           'true' per nascondere l'avatar, 'false' per mostrarlo.
+ *     @type bool      $show_structure      false per nascondere struttura e livello sotto il nome (default true).
  * }
  */
 
@@ -20,6 +21,7 @@ $dli_v_people_by_category = isset( $args['people_by_category'] ) ? $args['people
 $dli_v_categories         = isset( $args['categories'] ) ? $args['categories'] : array();
 $dli_v_hide_icon          = isset( $args['hide_icon'] ) ? $args['hide_icon'] : 'false';
 $dli_v_selected_type      = isset( $args['selected_type'] ) ? (string) $args['selected_type'] : '';
+$dli_v_show_structure     = isset( $args['show_structure'] ) ? (bool) $args['show_structure'] : true;
 
 foreach ( $dli_v_categories as $dli_v_category ) :
 	$dli_v_category_id   = $dli_v_category->ID;
@@ -83,7 +85,7 @@ foreach ( $dli_v_categories as $dli_v_category ) :
 
 								<?php
 								$dli_v_structure_terms = get_the_terms( $dli_v_person_id, STRUCTURE_TAXONOMY );
-								if ( ! is_wp_error( $dli_v_structure_terms ) && ! empty( $dli_v_structure_terms ) ) :
+								if ( $dli_v_show_structure && ! is_wp_error( $dli_v_structure_terms ) && ! empty( $dli_v_structure_terms ) ) :
 									?>
 									<p><?php echo esc_html( $dli_v_structure_terms[0]->name ); ?>&nbsp;</p>
 									<?php if ( count( $dli_v_person_levels ) ) : ?>

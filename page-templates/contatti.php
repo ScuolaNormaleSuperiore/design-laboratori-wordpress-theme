@@ -176,6 +176,7 @@ if ( 'yes' === $dli_form_submitted ) {
 						<div class="it-list-wrapper">
 							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></h3>
 							<ul class="it-list">
+								<?php if ( $dli_phone ) { ?>
 								<li>
 									<a class="list-item" href="<?php echo esc_url( 'tel:' . preg_replace( '/\s+/', '', $dli_phone ) ); ?>">
 										<div class="it-rounded-icon">
@@ -186,6 +187,7 @@ if ( 'yes' === $dli_form_submitted ) {
 										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_phone ); ?></span></div>
 									</a>
 								</li>
+								<?php } ?>
 								<li>
 									<a href="<?php echo esc_url( 'mailto:' . $dli_site_email ); ?>" class="list-item">
 										<div class="it-rounded-icon">

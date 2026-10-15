@@ -51,9 +51,21 @@ $dli_current_lang = dli_current_language();
 				<div class="col-12">
 				<!-- SLIM HEADER -->
 				<div class="it-header-slim-wrapper-content">
-						<a class="d-none d-lg-block navbar-brand" 
-							href="<?php echo esc_url( dli_get_option( 'url_ente_appartenenza' ) ); ?>" 
-							target="_blank" rel="noopener noreferrer"><?php echo esc_html( dli_get_option( 'nome_ente_appartenza' ) ); ?></a>
+						<?php
+						$dli_parent_name = dli_get_option( 'nome_ente_appartenza' );
+						$dli_parent_url  = dli_get_option( 'url_ente_appartenenza' );
+						if ( $dli_parent_name && $dli_parent_url ) {
+							?>
+						<a class="d-none d-lg-block navbar-brand"
+							href="<?php echo esc_url( $dli_parent_url ); ?>"
+							target="_blank" rel="noopener noreferrer"><?php echo esc_html( $dli_parent_name ); ?></a>
+							<?php
+						} elseif ( $dli_parent_name ) {
+							?>
+						<span class="d-none d-lg-block navbar-brand"><?php echo esc_html( $dli_parent_name ); ?></span>
+							<?php
+						}
+						?>
 					<div class="nav-mobile">
 						<!-- TOP MENU -->
 						<?php

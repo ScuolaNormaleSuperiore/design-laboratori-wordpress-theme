@@ -18,16 +18,18 @@ while ( have_posts() ) {
 	if ( is_array( $dli_categoria_items ) && ! empty( $dli_categoria_items ) && isset( $dli_categoria_items[0]->nome ) ) {
 		$dli_categoria_appartenenza = $dli_categoria_items[0]->nome;
 	}
-	$dli_allegato_cv    = dli_get_field( 'allegato_cv' );
-	$dli_allegato1      = dli_get_field( 'allegato1' );
-	$dli_allegato2      = dli_get_field( 'allegato2' );
-	$dli_allegato3      = dli_get_field( 'allegato3' );
-	$dli_telefono       = dli_get_field( 'telefono' );
-	$dli_email          = dli_get_field( 'email' );
-	$dli_sito_web       = dli_get_field( 'sito_web' );
-	$dli_terms          = get_the_terms( $dli_id, 'struttura' );
-	$dli_terms          = $dli_terms ? $dli_terms : array();
-	$dli_nome_struttura = count( $dli_terms ) ? $dli_terms[0]->name : '';
+	$dli_allegato_cv      = dli_get_field( 'allegato_cv' );
+	$dli_allegato1        = dli_get_field( 'allegato1' );
+	$dli_allegato2        = dli_get_field( 'allegato2' );
+	$dli_allegato3        = dli_get_field( 'allegato3' );
+	$dli_telefono         = dli_get_field( 'telefono' );
+	$dli_email            = sanitize_email( (string) dli_get_field( 'email' ) );
+	$dli_email_obfuscated = antispambot( $dli_email );
+	$dli_sito_web         = dli_get_field( 'sito_web' );
+	$dli_terms            = get_the_terms( $dli_id, 'struttura' );
+	$dli_terms            = $dli_terms ? $dli_terms : array();
+	// The structure is shown unless the option is explicitly set to 'false' (also when never saved).
+	$dli_nome_struttura = ( count( $dli_terms ) && 'false' !== dli_get_option( 'show_person_structure', 'persone' ) ) ? $dli_terms[0]->name : '';
 }
 
 // recupero la lista dei progetti.
@@ -426,14 +428,14 @@ $dli_pubblicazioni = new WP_Query(
 									if ( '' !== $dli_email ) {
 										?>
 									<li>
-											<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
+											<a href="mailto:<?php echo esc_attr( $dli_email_obfuscated ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" role="img">
 													<title><?php echo esc_html__( 'Mail', 'design_laboratori_italia' ); ?></title>
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email_obfuscated ); ?></span></div>
 										</a>
 									</li>
 										<?php
