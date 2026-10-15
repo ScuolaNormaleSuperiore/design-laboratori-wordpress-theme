@@ -11,7 +11,7 @@ $dli_show_title      = $args['show_title'] ?? false;
 if ( 'true' === $dli_section_enabled ) {
 	$dli_hero_size_big = dli_get_option( 'home_main_hero_size', 'homepage' ) !== 'small';
 	$dli_hero_class    = $dli_hero_size_big ? '' : 'it-hero-small-size';
-	$dli_image_url     = dli_show_hero_decorative_image() ? dli_get_option( 'home_main_hero_image', 'homepage' ) : '';
+	$dli_image_url     = dli_get_option( 'home_main_hero_image', 'homepage' );
 	$dli_image_id      = attachment_url_to_postid( $dli_image_url );
 	$dli_image_alt     = get_post_meta( $dli_image_id, '_wp_attachment_image_alt', true );
 	$dli_image_title   = get_the_title( $dli_image_id );

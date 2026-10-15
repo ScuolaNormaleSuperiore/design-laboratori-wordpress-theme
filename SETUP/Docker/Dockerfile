@@ -12,21 +12,21 @@
 FROM php:8.3-apache
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-6.9.4.tar.gz
+ARG WP_ARCHIVE=wordpress-7.1.3.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
-ARG ADMINER=https://github.com/vrana/adminer/releases/download/v5.4.2/adminer-5.4.2.php
+ARG ADMINER=https://github.com/vrana/adminer/releases/download/v6.1.2/adminer-6.1.2.php
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
-ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.1.6.1.zip
-ARG PLG_ACF=advanced-custom-fields.6.7.1.zip
+ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.latest-stable.zip
+ARG PLG_ACF=advanced-custom-fields.latest-stable.zip
 ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
-ARG PLG_POLYLANG=polylang.3.8.zip
+ARG PLG_POLYLANG=polylang.latest-stable.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
-ARG PLG_SMTP=wp-mail-smtp.4.7.1.zip
+ARG PLG_SMTP=wp-mail-smtp.latest-stable.zip
 
 # Plugion facoltativi o di sviluppo
-ARG PLG_LOCO_TRANSLATE=loco-translate.2.8.3.zip
-ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.3.1.6.zip
+ARG PLG_LOCO_TRANSLATE=loco-translate.latest-stable.zip
+ARG PLG_REG_THUMBNAILS=regenerate-thumbnails.latest-stable.zip
 ##############################################################################
 
 
@@ -62,7 +62,7 @@ RUN apt-get install -y mariadb-server && \
 
 # Install Wordpress and the needed plugin
 WORKDIR /tmp
-RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
+RUN curl -fL -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	rm -rf /var/www/html && \
 	tar -xvzf /tmp/${WP_ARCHIVE} --directory /var/www/ && \
 	mv /var/www/wordpress /var/www/html	&& \
@@ -73,21 +73,21 @@ RUN curl -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	cd /var/www/html/wp-content/themes && \
 	git clone --branch dev --single-branch ${DLI_THEME} && \
 	cd /var/www/html/wp-content/plugins && \
-	curl -o /tmp/${PLG_ACF_OPENSTRRETMAP} ${BASE_PLUGIN_URL}/${PLG_ACF_OPENSTRRETMAP} && \
+	curl -fL -o /tmp/${PLG_ACF_OPENSTRRETMAP} ${BASE_PLUGIN_URL}/${PLG_ACF_OPENSTRRETMAP} && \
 	unzip /tmp/${PLG_ACF_OPENSTRRETMAP}  && \
-	curl -o /tmp/${PLG_ACF} ${BASE_PLUGIN_URL}/${PLG_ACF} && \
+	curl -fL -o /tmp/${PLG_ACF} ${BASE_PLUGIN_URL}/${PLG_ACF} && \
 	unzip /tmp/${PLG_ACF}  && \
-	curl -o /tmp/${PLG_ARIA_LABEL} ${BASE_PLUGIN_URL}/${PLG_ARIA_LABEL} && \
+	curl -fL -o /tmp/${PLG_ARIA_LABEL} ${BASE_PLUGIN_URL}/${PLG_ARIA_LABEL} && \
 	unzip /tmp/${PLG_ARIA_LABEL}  && \
-	curl -o /tmp/${PLG_LOCO_TRANSLATE} ${BASE_PLUGIN_URL}/${PLG_LOCO_TRANSLATE} && \
+	curl -fL -o /tmp/${PLG_LOCO_TRANSLATE} ${BASE_PLUGIN_URL}/${PLG_LOCO_TRANSLATE} && \
 	unzip /tmp/${PLG_LOCO_TRANSLATE}  && \
-	curl -o /tmp/${PLG_REG_THUMBNAILS} ${BASE_PLUGIN_URL}/${PLG_REG_THUMBNAILS} && \
+	curl -fL -o /tmp/${PLG_REG_THUMBNAILS} ${BASE_PLUGIN_URL}/${PLG_REG_THUMBNAILS} && \
 	unzip /tmp/${PLG_REG_THUMBNAILS}  && \
-	curl -o /tmp/${PLG_POLYLANG} ${BASE_PLUGIN_URL}/${PLG_POLYLANG} && \
+	curl -fL -o /tmp/${PLG_POLYLANG} ${BASE_PLUGIN_URL}/${PLG_POLYLANG} && \
 	unzip /tmp/${PLG_POLYLANG}  && \
-	curl -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
+	curl -fL -o /tmp/${PLG_SMTP} ${BASE_PLUGIN_URL}/${PLG_SMTP} && \
 	unzip /tmp/${PLG_SMTP}  && \
-	curl -o /tmp/${PLG_CAPTCHA} ${BASE_PLUGIN_URL}/${PLG_CAPTCHA} && \
+	curl -fL -o /tmp/${PLG_CAPTCHA} ${BASE_PLUGIN_URL}/${PLG_CAPTCHA} && \
 	unzip /tmp/${PLG_CAPTCHA}  && \
 	cp -f /tmp/wp-config.php  /var/www/html/wp-config.php && \
 	cp /tmp/.htaccess /var/www/html/.htaccess && \

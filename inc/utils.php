@@ -917,17 +917,14 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 if ( ! function_exists( 'dli_show_hero_decorative_image' ) ) {
 	/**
 	 * Whether a hero without a real content photo should show the SNS-branded
-	 * decorative placeholder (assets/img/placeholder-sns.png) — or, on the
-	 * homepage, the uploaded hero background image (which also carries a
-	 * portion of the SNS logo). With the "standard" (non-custom) site style,
-	 * that branding doesn't make sense without the brand colors around it, so
-	 * every hero falls back to the plain solid background the "it-hero-
-	 * wrapper" component already shows by default when no image is present.
+	 * decorative placeholder (assets/img/placeholder-sns.png). Decorative
+	 * hero images are always shown when their template provides one,
+	 * independently of the selected site style.
 	 *
 	 * @return bool
 	 */
 	function dli_show_hero_decorative_image() {
-		return 'custom' === dli_get_option( 'choose_style', 'setup' );
+		return true;
 	}
 }
 
