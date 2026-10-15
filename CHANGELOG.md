@@ -31,12 +31,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [2.0.0] - 2026-10-15
 ## Aggiunto
-- Aggiunto autocmplete nella ricerca del sito.
-- Aggiunta procedura di bootstrap per gli agenti AI.
+- Aggiunto autocomplete nella ricerca del sito
+- Aggiunta procedura di bootstrap per gli agenti AI
 ## Modificato
-- Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
-- Bug-fixing
-- Aggiornato Dockerfile.
+- Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7
+- Bug-fixing: corrette segnalazioni degli utenti
+- Aggiornato Dockerfile
+- Aggiornati i file delle traduzioni
+- Corretto il file publiccode.yml
 
 
 
