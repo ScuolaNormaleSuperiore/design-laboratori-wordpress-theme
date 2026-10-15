@@ -28,6 +28,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezione Word Cloud per tag.
 
 
+## [2.0.1] - 2026-10-16
+## Corretto
+- Uniformata la visualizzazione della barra di navigazione principale tra stile standard e personalizzato.
+- Le immagini configurate e decorative degli hero sono ora visualizzate indipendentemente dallo stile scelto.
+- Corretta la gestione dei colori nello stile personalizzato e nello stile standard.
+
 
 ## [2.0.0] - 2026-10-15
 ## Aggiunto
