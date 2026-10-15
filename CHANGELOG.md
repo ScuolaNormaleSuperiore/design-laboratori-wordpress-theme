@@ -17,25 +17,35 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Import eventi da feed RSS o REST API di Drupal.
 - Import eventi da feed RSS o REST API di WordPress.
 - Contenuto "Posizioni aperte".
-- REST API per leggere i contenuti principali del sito.
+- Endpoint REST pubblici per collezioni di contenuti selezionate, con schema, cache e controlli di autorizzazione.
 - MCP Abilities.
-- Dashboard editoriale unificata (broken links, immagini mancanti, post non tradotti)
+- Dashboard editoriale unificata per link non validi, immagini mancanti, contenuti non tradotti ed eventi scaduti.
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (completamento del PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
-- Assistente qualità contenuto nell'editor (pre-publish checks Gutenberg).
+- Matrice granulare di ruoli e capability per contenuto e fase del flusso editoriale.
+- Assistente qualità contenuto nell'editor (controlli pre-pubblicazione Gutenberg per estratti, alt text e campi SEO).
+- Ricerca avanzata con filtri per tipologia di contenuto, anno, area e lingua.
+- Controlli periodici di integrità dei dati con avvisi amministrativi (relazioni orfane, date e tassonomie non valide).
 - Import di pubblicazioni da Iris.
-- Sezione Word Cloud per tag.
+- Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
+
+
+
 
 
 ## [2.0.1] - 2026-10-16
 ## Corretto
-- Uniformata la visualizzazione della barra di navigazione principale tra stile standard e personalizzato.
-- Le immagini configurate e decorative degli hero sono ora visualizzate indipendentemente dallo stile scelto.
-- Corretta la gestione dei colori nello stile personalizzato e nello stile standard.
+- Bug-fixing
+
+
 
 
 ## [2.0.0] - 2026-10-15
+## Corretto
+- Uniformata la visualizzazione della barra di navigazione principale tra stile standard e personalizzato.
+- Le immagini configurate e decorative degli hero sono ora visualizzate indipendentemente dallo stile scelto.
+- Corretta la gestione dei colori nello stile personalizzato e nello stile standard.
 ## Aggiunto
 - Aggiunto autocomplete nella ricerca del sito
 - Aggiunta procedura di bootstrap per gli agenti AI
@@ -45,8 +55,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Aggiornato Dockerfile
 - Aggiornati i file delle traduzioni
 - Corretto il file publiccode.yml
-
-
 
 ## [1.8.2] - 2026-09-10
 ## Modificato
