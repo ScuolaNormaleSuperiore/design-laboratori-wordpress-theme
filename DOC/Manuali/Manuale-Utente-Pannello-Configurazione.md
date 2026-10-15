@@ -158,43 +158,7 @@ Campi principali:
   tipo: `wysiwyg`
   funzione: testo introduttivo pagina laboratorio in IT/EN.
 
-### 4.6 Tab `Blog` (`blog`)
-Funzione: testo introduttivo della pagina blog.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: descrizione intro pagina blog (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: descrizione intro pagina blog (EN).
-
-### 4.7 Tab `Novita'` (`notizie`)
-Funzione: testi e parametri della pagina panoramica notizie/eventi collegati.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo introduttivo sezione novita' (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo introduttivo sezione novita' (EN).
-- `Numero pagine collegate`
-  tipo: `text_small` (numerico)
-  funzione: limite massimo di notizie/eventi collegabili a una pagina.
-
-### 4.8 Tab `Eventi` (`eventi`)
-Funzione: testi introduttivi della pagina panoramica eventi.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo intro eventi (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo intro eventi (EN).
-
-### 4.9 Tab `Persone` (`persone`)
+### 4.6 Tab `Persone` (`persone`)
 Funzione: configura testi, filtri e opzioni di visualizzazione archivio persone.
 
 Campi principali:
@@ -225,6 +189,42 @@ Campi principali:
 - `Visualizza etichetta Dettagli`
   tipo: `radio_inline`
   funzione: mostra/nasconde label "Dettagli" nel dettaglio persona.
+
+### 4.7 Tab `Novita'` (`notizie`)
+Funzione: testi e parametri della pagina panoramica notizie/eventi collegati.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo introduttivo sezione novita' (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo introduttivo sezione novita' (EN).
+- `Numero pagine collegate`
+  tipo: `text_small` (numerico)
+  funzione: limite massimo di notizie/eventi collegabili a una pagina.
+
+### 4.8 Tab `Eventi` (`eventi`)
+Funzione: testi introduttivi della pagina panoramica eventi.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo intro eventi (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo intro eventi (EN).
+
+### 4.9 Tab `Blog` (`blog`)
+Funzione: testo introduttivo della pagina blog.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: descrizione intro pagina blog (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: descrizione intro pagina blog (EN).
 
 ### 4.10 Tab `Pubblicazioni` (`pubblicazioni`)
 Funzione: testi introduttivi della pagina panoramica pubblicazioni.

@@ -13,7 +13,8 @@ get_header();
 $dli_description      = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
 $dli_summary          = dli_get_field( 'descrizione_breve' );
 $dli_telefono         = dli_get_field( 'telefono' );
-$dli_email            = dli_get_field( 'email' );
+	$dli_email            = sanitize_email( (string) dli_get_field( 'email' ) );
+	$dli_email_obfuscated = antispambot( $dli_email );
 $dli_sito_web         = dli_get_field( 'sito_web' );
 $dli_note             = dli_get_field( 'note' );
 $dli_stato            = dli_get_field( 'stato' );
@@ -207,13 +208,13 @@ $dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXON
 							<?php endif; ?>
 							<?php if ( $dli_email ) : ?>
 								<li>
-									<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
+									<a href="mailto:<?php echo esc_attr( $dli_email_obfuscated ); ?>" class="list-item">
 										<div class="it-rounded-icon">
 											<svg class="icon" aria-hidden="true" focusable="false">
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 											</svg>
 										</div>
-										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email ); ?></span></div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email_obfuscated ); ?></span></div>
 									</a>
 								</li>
 							<?php endif; ?>

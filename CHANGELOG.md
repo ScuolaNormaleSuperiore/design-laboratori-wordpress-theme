@@ -10,6 +10,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
+- Rivedere il campo descrizione dei campi del backoffice in modo che si capisca meglio cosa fa quella configurazione. Aggiungere formato consigliato immagini.
 - Refactoring procedure di import.
 - Import eventi da feed RSS o REST API di Drupal.
 - Import eventi da feed RSS o REST API di WordPress.

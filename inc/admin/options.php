@@ -879,236 +879,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	/**
-	* 6 - Registers options page "Blog".
-	*/
-	$args = array(
-		'id'           => 'dli_options_blog',
-		'title'        => esc_html__( 'Il blog', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'blog',
-		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Blog', 'design_laboratori_italia' ),
-	);
-
-	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-
-	$blog_options = new_cmb2_box( $args );
-
-		$blog_landing_url = dli_get_template_page_url( 'page-templates/blog.php' );
-		/* translators: %s: URL of blog page. */
-		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> il blog</a>', 'design_laboratori_italia' ), $blog_landing_url );
-		$blog_options->add_field(
-			array(
-				'id'   => $prefix . 'blog_istruzioni',
-				'name' => __( 'Sezione Il Blog', 'design_laboratori_italia' ),
-				'desc' => $descr,
-				'type' => 'title',
-			)
-		);
-
-		$blog_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_blog',
-				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "Gli articoli del laboratorio"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-		$blog_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_blog' . DLI_ENG_SUFFIX_LANGUAGE,
-				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "The papers from the Lab"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-	/**
-	* 7 - Registers options page "Novità".
-	*/
-	$args = array(
-		'id'           => 'dli_options_notizie',
-		'title'        => esc_html__( 'Le Novità', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'notizie',
-		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),
-	);
-
-	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-
-	$notizie_options = new_cmb2_box( $args );
-
-		$notizie_landing_url = dli_get_template_page_url( 'page-templates/notizie.php' );
-		/* translators: %s: URL of news overview page. */
-		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Novità</a>', 'design_laboratori_italia' ), $notizie_landing_url );
-
-		$notizie_options->add_field(
-			array(
-				'id'   => $prefix . 'notizie_istruzioni',
-				'name' => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
-				'desc' => $descr,
-				'type' => 'title',
-			)
-		);
-
-		$notizie_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_notizie',
-				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "Le notizie del laboratorio"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-		$notizie_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_notizie' . DLI_ENG_SUFFIX_LANGUAGE,
-				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "News from the Lab"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-		$notizie_options->add_field(
-			array(
-				'id'              => $prefix . 'numero_pagine_collegate',
-				'name'            => __( 'Numero pagine collegate', 'design_laboratori_italia' ),
-				'desc'            => __( 'Numero massimo di pagine (notizie ed eventi) associabili a una pagina', 'design_laboratori_italia' ),
-				'type'            => 'text_small',
-				'default'         => 5,
-				'attributes'      => array(
-					'type'    => 'number',
-					'pattern' => '\d*',
-				),
-				'sanitization_cb' => 'absint',
-			)
-		);
-
-	/**
-	* 8 - Registers options page "Eventi".
-	*/
-	$args = array(
-		'id'           => 'dli_options_eventi',
-		'title'        => esc_html__( 'Gli eventi', 'design_laboratori_italia' ),
-		'object_types' => array( 'options-page' ),
-		'option_key'   => 'eventi',
-		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
-		'parent_slug'  => 'dli_options',
-		'tab_group'    => 'dli_options',
-		'tab_title'    => __( 'Eventi', 'design_laboratori_italia' ),
-	);
-
-	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
-		$args['display_cb'] = 'dli_options_display_with_tabs';
-	}
-
-	$eventi_options = new_cmb2_box( $args );
-
-		$eventi_landing_url = dli_get_template_page_url( 'page-templates/eventi.php' );
-		/* translators: %s: URL of events overview page. */
-		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica degli Eventi</a>', 'design_laboratori_italia' ), $eventi_landing_url );
-		$eventi_options->add_field(
-			array(
-				'id'   => $prefix . 'eventi_istruzioni',
-				'name' => __( 'Sezione Eventi', 'design_laboratori_italia' ),
-				'desc' => $descr,
-				'type' => 'title',
-			)
-		);
-
-		$eventi_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_eventi',
-				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "Gli eventi del laboratorio"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-		$eventi_options->add_field(
-			array(
-				'id'      => $prefix . 'testo_eventi' . DLI_ENG_SUFFIX_LANGUAGE,
-				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
-				'desc'    => __( 'es: "Events from the Lab"', 'design_laboratori_italia' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'textarea_rows' => 1,
-					'media_buttons' => false,
-					'teeny'         => true,
-					'quicktags'     => false,
-					'tinymce'       => array(
-						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
-						'valid_elements' => 'a[href],strong,em,p,br',
-					),
-				),
-			)
-		);
-
-	/**
-	* 9 - Registers options page "Persone".
+	* 6 - Registers options page "Persone".
 	*/
 	$args = array(
 		'id'           => 'dli_options_persone',
@@ -1556,6 +1327,235 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+
+	/**
+	* 7 - Registers options page "Novità".
+	*/
+	$args = array(
+		'id'           => 'dli_options_notizie',
+		'title'        => esc_html__( 'Le Novità', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'notizie',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Novità', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$notizie_options = new_cmb2_box( $args );
+
+		$notizie_landing_url = dli_get_template_page_url( 'page-templates/notizie.php' );
+		/* translators: %s: URL of news overview page. */
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica delle Novità</a>', 'design_laboratori_italia' ), $notizie_landing_url );
+
+		$notizie_options->add_field(
+			array(
+				'id'   => $prefix . 'notizie_istruzioni',
+				'name' => __( 'Sezione Le Novità', 'design_laboratori_italia' ),
+				'desc' => $descr,
+				'type' => 'title',
+			)
+		);
+
+		$notizie_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_notizie',
+				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "Le notizie del laboratorio"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
+
+		$notizie_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_notizie' . DLI_ENG_SUFFIX_LANGUAGE,
+				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "News from the Lab"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
+
+		$notizie_options->add_field(
+			array(
+				'id'              => $prefix . 'numero_pagine_collegate',
+				'name'            => __( 'Numero pagine collegate', 'design_laboratori_italia' ),
+				'desc'            => __( 'Numero massimo di pagine (notizie ed eventi) associabili a una pagina', 'design_laboratori_italia' ),
+				'type'            => 'text_small',
+				'default'         => 5,
+				'attributes'      => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				),
+				'sanitization_cb' => 'absint',
+			)
+		);
+
+	/**
+	* 8 - Registers options page "Eventi".
+	*/
+	$args = array(
+		'id'           => 'dli_options_eventi',
+		'title'        => esc_html__( 'Gli eventi', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'eventi',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Eventi', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$eventi_options = new_cmb2_box( $args );
+
+		$eventi_landing_url = dli_get_template_page_url( 'page-templates/eventi.php' );
+		/* translators: %s: URL of events overview page. */
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> la pagina di panoramica degli Eventi</a>', 'design_laboratori_italia' ), $eventi_landing_url );
+		$eventi_options->add_field(
+			array(
+				'id'   => $prefix . 'eventi_istruzioni',
+				'name' => __( 'Sezione Eventi', 'design_laboratori_italia' ),
+				'desc' => $descr,
+				'type' => 'title',
+			)
+		);
+
+		$eventi_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_eventi',
+				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "Gli eventi del laboratorio"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
+
+		$eventi_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_eventi' . DLI_ENG_SUFFIX_LANGUAGE,
+				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "Events from the Lab"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
+
+	/**
+	* 9 - Registers options page "Blog".
+	*/
+	$args = array(
+		'id'           => 'dli_options_blog',
+		'title'        => esc_html__( 'Il blog', 'design_laboratori_italia' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'blog',
+		'capability'   => DLI_EDIT_CONFIG_PERMISSION,
+		'parent_slug'  => 'dli_options',
+		'tab_group'    => 'dli_options',
+		'tab_title'    => __( 'Blog', 'design_laboratori_italia' ),
+	);
+
+	// 'tab_group' property is supported in > 2.4.0.
+	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		$args['display_cb'] = 'dli_options_display_with_tabs';
+	}
+
+	$blog_options = new_cmb2_box( $args );
+
+		$blog_landing_url = dli_get_template_page_url( 'page-templates/blog.php' );
+		/* translators: %s: URL of blog page. */
+		$descr = sprintf( __( 'Inserisci qui le informazioni utili a popolare <a href="%s"> il blog</a>', 'design_laboratori_italia' ), $blog_landing_url );
+		$blog_options->add_field(
+			array(
+				'id'   => $prefix . 'blog_istruzioni',
+				'name' => __( 'Sezione Il Blog', 'design_laboratori_italia' ),
+				'desc' => $descr,
+				'type' => 'title',
+			)
+		);
+
+		$blog_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_blog',
+				'name'    => __( 'Descrizione Sezione', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "Gli articoli del laboratorio"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
+
+		$blog_options->add_field(
+			array(
+				'id'      => $prefix . 'testo_blog' . DLI_ENG_SUFFIX_LANGUAGE,
+				'name'    => __( 'Descrizione Sezione ENG', 'design_laboratori_italia' ),
+				'desc'    => __( 'es: "The papers from the Lab"', 'design_laboratori_italia' ),
+				'type'    => 'wysiwyg',
+				'options' => array(
+					'textarea_rows' => 1,
+					'media_buttons' => false,
+					'teeny'         => true,
+					'quicktags'     => false,
+					'tinymce'       => array(
+						'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+						'valid_elements' => 'a[href],strong,em,p,br',
+					),
+				),
+			)
+		);
 
 	/**
 	* 10 - Registers options page "Pubblicazioni".

@@ -33,7 +33,8 @@ $dli_orario_fine        = $dli_orario_fine ? $dli_orario_fine : '';
 $dli_luogo              = dli_get_field( 'luogo' );
 $dli_label_contatti     = dli_get_field( 'label_contatti' );
 $dli_telefono           = dli_get_field( 'telefono' );
-$dli_email              = dli_get_field( 'email' );
+	$dli_email              = sanitize_email( (string) dli_get_field( 'email' ) );
+	$dli_email_obfuscated   = antispambot( $dli_email );
 $dli_sito_web           = dli_get_field( 'sitoweb' );
 $dli_video              = dli_get_field( 'video' );
 $dli_allegato           = dli_get_field( 'allegato' );
@@ -271,13 +272,13 @@ $dli_datetime_display   = dli_get_event_datetime_display( $post->ID );
 							<?php endif; ?>
 							<?php if ( $dli_email ) : ?>
 								<li>
-									<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" class="list-item">
+									<a href="mailto:<?php echo esc_attr( $dli_email_obfuscated ); ?>" class="list-item">
 										<div class="it-rounded-icon">
 											<svg class="icon" aria-hidden="true" focusable="false">
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 											</svg>
 										</div>
-										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email ); ?></span></div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_email_obfuscated ); ?></span></div>
 									</a>
 								</li>
 							<?php endif; ?>

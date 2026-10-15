@@ -9,6 +9,7 @@ $dli_items      = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $a
 $dli_section_id = isset( $args['section_id'] ) ? sanitize_key( $args['section_id'] ) : '';
 $dli_phone      = isset( $dli_items['phone'] ) ? sanitize_text_field( (string) $dli_items['phone'] ) : '';
 $dli_email      = isset( $dli_items['email'] ) ? sanitize_email( $dli_items['email'] ) : '';
+$dli_email_obfuscated = antispambot( $dli_email );
 $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['website'] ) : '';
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
@@ -40,7 +41,7 @@ $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['webs
 			if ( $dli_email ) {
 				?>
 				<li>
-					<a href="<?php echo esc_url( 'mailto:' . $dli_email ); ?>" class="list-item" target="_blank" rel="noopener noreferrer">
+					<a href="mailto:<?php echo esc_attr( $dli_email_obfuscated ); ?>" class="list-item" target="_blank" rel="noopener noreferrer">
 					<div class="it-rounded-icon">
 					<svg class="icon" role="img">
 						<title><?php echo esc_html__( 'Mail', 'design_laboratori_italia' ); ?></title>
@@ -48,7 +49,7 @@ $dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['webs
 					</svg>
 					</div>
 					<div class="it-right-zone">
-							<span class="text"><?php echo esc_html( $dli_email ); ?></span>
+							<span class="text"><?php echo esc_html( $dli_email_obfuscated ); ?></span>
 					</div>
 				</a>
 			</li>

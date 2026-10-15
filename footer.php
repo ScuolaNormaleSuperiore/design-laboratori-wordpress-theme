@@ -55,22 +55,24 @@
 				</p>
 				<div class="link-list-wrapper">
 					<?php
-						$dli_email    = dli_get_option( 'email_laboratorio' );
+						$dli_email    = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
 						$dli_telefono = dli_get_option( 'telefono_laboratorio' );
-						$dli_pec      = dli_get_option( 'pec_laboratorio' );
+						$dli_pec      = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
+						$dli_email_obfuscated = antispambot( $dli_email );
+						$dli_pec_obfuscated   = antispambot( $dli_pec );
 					?>
 					<ul class="footer-list link-list clearfix">
 						<?php
 						if ( $dli_pec ) {
 							?>
 						<li>
-							<a class="list-item" href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_pec ) ); ?>" title="
+							<a class="list-item" href="mailto:<?php echo esc_attr( $dli_pec_obfuscated ); ?>" title="
 							<?php
 								/* translators: %s: destination page name. */
 								echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Posta Elettronica Certificata', 'design_laboratori_italia' ) ) );
 							?>
 							">
-							<?php echo esc_html( esc_html__( 'Posta Elettronica Certificata', 'design_laboratori_italia' ) . ': ' . $dli_pec ); ?>
+							<?php echo esc_html__( 'Posta Elettronica Certificata', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_pec_obfuscated ); ?>
 							</a>
 						</li>
 							<?php
@@ -78,8 +80,8 @@
 						if ( $dli_email ) {
 							?>
 						<li>
-							<a class="list-item" href="<?php echo esc_url( 'mailto:' . sanitize_email( $dli_email ) ); ?>" title="<?php echo esc_attr__( 'E-mail', 'design_laboratori_italia' ); ?>">
-							<?php echo esc_html( esc_html__( 'E-mail', 'design_laboratori_italia' ) . ': ' . $dli_email ); ?>
+							<a class="list-item" href="mailto:<?php echo esc_attr( $dli_email_obfuscated ); ?>" title="<?php echo esc_attr__( 'E-mail', 'design_laboratori_italia' ); ?>">
+							<?php echo esc_html__( 'E-mail', 'design_laboratori_italia' ); ?>: <?php echo esc_html( $dli_email_obfuscated ); ?>
 							</a>
 						</li>
 							<?php

@@ -9,9 +9,11 @@ global $post;
 
 get_header();
 
-$dli_site_email      = dli_get_option( 'email_laboratorio' );
+$dli_site_email      = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
 $dli_phone           = dli_get_option( 'telefono_laboratorio' );
-$dli_pec             = dli_get_option( 'pec_laboratorio' );
+$dli_pec             = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
+$dli_site_email_obfuscated = antispambot( $dli_site_email );
+$dli_pec_obfuscated        = antispambot( $dli_pec );
 $dli_website         = get_site_url();
 $dli_website_label   = preg_replace( '#^https?://#', '', $dli_website );
 $dli_show_error      = false;
@@ -189,13 +191,13 @@ if ( 'yes' === $dli_form_submitted ) {
 								</li>
 								<?php } ?>
 								<li>
-									<a href="<?php echo esc_url( 'mailto:' . $dli_site_email ); ?>" class="list-item">
+									<a href="mailto:<?php echo esc_attr( $dli_site_email_obfuscated ); ?>" class="list-item">
 										<div class="it-rounded-icon">
 											<svg class="icon" aria-hidden="true" focusable="false">
 												<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 											</svg>
 										</div>
-										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_site_email ); ?></span></div>
+										<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_site_email_obfuscated ); ?></span></div>
 									</a>
 								</li>
 								<li>
@@ -210,13 +212,13 @@ if ( 'yes' === $dli_form_submitted ) {
 								</li>
 								<?php if ( $dli_pec ) : ?>
 									<li>
-										<a href="<?php echo esc_url( 'mailto:' . $dli_pec ); ?>" class="list-item">
+										<a href="mailto:<?php echo esc_attr( $dli_pec_obfuscated ); ?>" class="list-item">
 											<div class="it-rounded-icon">
 												<svg class="icon" aria-hidden="true" focusable="false">
 													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-mail' ); ?>"></use>
 												</svg>
 											</div>
-											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_pec ); ?></span></div>
+											<div class="it-right-zone"><span class="text"><?php echo esc_html( $dli_pec_obfuscated ); ?></span></div>
 										</a>
 									</li>
 								<?php endif; ?>
