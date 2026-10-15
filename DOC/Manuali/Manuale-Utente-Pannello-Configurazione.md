@@ -190,76 +190,18 @@ Campi principali:
   tipo: `radio_inline`
   funzione: mostra/nasconde label "Dettagli" nel dettaglio persona.
 
-### 4.7 Tab `Novita'` (`notizie`)
-Funzione: testi e parametri della pagina panoramica notizie/eventi collegati.
+### 4.7 Tab `Indirizzi di ricerca` (`ricerca`)
+Funzione: testi introduttivi della pagina panoramica attivita'/indirizzi di ricerca.
 
 Campi principali:
 - `Descrizione Sezione`
   tipo: `wysiwyg`
-  funzione: testo introduttivo sezione novita' (IT).
+  funzione: testo intro indirizzi di ricerca (IT).
 - `Descrizione Sezione ENG`
   tipo: `wysiwyg`
-  funzione: testo introduttivo sezione novita' (EN).
-- `Numero pagine collegate`
-  tipo: `text_small` (numerico)
-  funzione: limite massimo di notizie/eventi collegabili a una pagina.
+  funzione: testo intro indirizzi di ricerca (EN).
 
-### 4.8 Tab `Eventi` (`eventi`)
-Funzione: testi introduttivi della pagina panoramica eventi.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo intro eventi (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo intro eventi (EN).
-
-### 4.9 Tab `Blog` (`blog`)
-Funzione: testo introduttivo della pagina blog.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: descrizione intro pagina blog (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: descrizione intro pagina blog (EN).
-
-### 4.10 Tab `Pubblicazioni` (`pubblicazioni`)
-Funzione: testi introduttivi della pagina panoramica pubblicazioni.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo intro pubblicazioni (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo intro pubblicazioni (EN).
-
-### 4.11 Tab `Brevetti` (`brevetti`)
-Funzione: testi introduttivi della pagina panoramica brevetti.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo intro brevetti (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo intro brevetti (EN).
-
-### 4.12 Tab `Spin-off` (`spinoff`)
-Funzione: testi introduttivi della pagina panoramica spin-off.
-
-Campi principali:
-- `Descrizione Sezione`
-  tipo: `wysiwyg`
-  funzione: testo intro spin-off (IT).
-- `Descrizione Sezione ENG`
-  tipo: `wysiwyg`
-  funzione: testo intro spin-off (EN).
-
-### 4.13 Tab `Progetti` (`progetti`)
+### 4.8 Tab `Progetti` (`progetti`)
 Funzione: testi introduttivi e opzioni filtro/paginazione della pagina progetti.
 
 Campi principali:
@@ -285,18 +227,59 @@ Campi principali:
   tipo: `radio_inline`
   funzione: mostra/nasconde label "Dettagli" nella scheda progetto.
 
-### 4.14 Tab `Indirizzi di ricerca` (`ricerca`)
-Funzione: testi introduttivi della pagina panoramica attivita'/indirizzi di ricerca.
+### 4.9 Tab `Pubblicazioni` (`pubblicazioni`)
+Funzione: testi introduttivi della pagina panoramica pubblicazioni.
 
 Campi principali:
 - `Descrizione Sezione`
   tipo: `wysiwyg`
-  funzione: testo intro indirizzi di ricerca (IT).
+  funzione: testo intro pubblicazioni (IT).
 - `Descrizione Sezione ENG`
   tipo: `wysiwyg`
-  funzione: testo intro indirizzi di ricerca (EN).
+  funzione: testo intro pubblicazioni (EN).
 
-### 4.15 Tab `Luoghi` (`luoghi`)
+### 4.10 Tab `Brevetti` (`brevetti`)
+Funzione: testi introduttivi della pagina panoramica brevetti.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo intro brevetti (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo intro brevetti (EN).
+
+### 4.11 Tab `Spin-off` (`spinoff`)
+Funzione: testi introduttivi della pagina panoramica spin-off.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo intro spin-off (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo intro spin-off (EN).
+
+### 4.12 Tab `Risorse tecniche` (`risorse-tecniche`)
+Funzione: testi introduttivi della pagina panoramica risorse tecniche.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo intro risorse tecniche (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo intro risorse tecniche (EN).
+
+### 4.13 Tab `Sponsors` (`sponsors`)
+Funzione: layout della sezione sponsor in homepage.
+
+Campi principali:
+- `Numero di elementi`
+  tipo: `select`
+  funzione: numero di sponsor mostrati per riga.
+
+### 4.14 Tab `Luoghi` (`luoghi`)
 Funzione: testi introduttivi e opzione mappa della pagina luoghi.
 
 Campi principali:
@@ -310,24 +293,41 @@ Campi principali:
   tipo: `radio_inline`
   funzione: controlla la posizione/visibilita' della mappa nella pagina.
 
-### 4.16 Tab `Risorse tecniche` (`risorse-tecniche`)
-Funzione: testi introduttivi della pagina panoramica risorse tecniche.
+### 4.15 Tab `Novita'` (`notizie`)
+Funzione: testi e parametri della pagina panoramica notizie/eventi collegati.
 
 Campi principali:
 - `Descrizione Sezione`
   tipo: `wysiwyg`
-  funzione: testo intro risorse tecniche (IT).
+  funzione: testo introduttivo sezione novita' (IT).
 - `Descrizione Sezione ENG`
   tipo: `wysiwyg`
-  funzione: testo intro risorse tecniche (EN).
+  funzione: testo introduttivo sezione novita' (EN).
+- `Numero pagine collegate`
+  tipo: `text_small` (numerico)
+  funzione: limite massimo di notizie/eventi collegabili a una pagina.
 
-### 4.17 Tab `Sponsors` (`sponsors`)
-Funzione: layout della sezione sponsor in homepage.
+### 4.16 Tab `Eventi` (`eventi`)
+Funzione: testi introduttivi della pagina panoramica eventi.
 
 Campi principali:
-- `Numero di elementi`
-  tipo: `select`
-  funzione: numero di sponsor mostrati per riga.
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: testo intro eventi (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: testo intro eventi (EN).
+
+### 4.17 Tab `Blog` (`blog`)
+Funzione: testo introduttivo della pagina blog.
+
+Campi principali:
+- `Descrizione Sezione`
+  tipo: `wysiwyg`
+  funzione: descrizione intro pagina blog (IT).
+- `Descrizione Sezione ENG`
+  tipo: `wysiwyg`
+  funzione: descrizione intro pagina blog (EN).
 
 ### 4.18 Tab `Socialmedia` (`socials`)
 Funzione: abilita icone social e definisce i link canale.
