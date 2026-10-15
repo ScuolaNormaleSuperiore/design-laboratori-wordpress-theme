@@ -50,11 +50,15 @@ if (
 	$dli_form_errors[] = __( 'Valore di Nonce errato.', 'design_laboratori_italia' );
 }
 
-// Verifica del captcha.
-if ( $dli_form_submission && $dli_captcha_enabled ) {
-	$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
-	if ( ! $dli_captcha_valid ) {
-		$dli_form_errors[] = __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+// Verify CAPTCHA availability and response before subscription.
+if ( $dli_form_submission ) {
+	if ( ! $dli_captcha_enabled ) {
+		$dli_form_errors[] = __( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
+	} else {
+		$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+		if ( ! $dli_captcha_valid ) {
+			$dli_form_errors[] = __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+		}
 	}
 }
 
@@ -214,13 +218,21 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 											<input name="captcha-prefix" id="captcha-prefix" class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>">
 										</div>
 									</div>
+								<?php else : ?>
+									<div class="alert alert-warning" role="alert">
+										<?php echo esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' ); ?>
+									</div>
 								<?php endif; ?>
 
 								<!-- SUBMIT -->
 								<div class="row mt-4">
 									<div class="form-group col text-center">
 										<input type="hidden" name="form_sent" id="form_sent" value="yes">
-										<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
+										<?php if ( ! $dli_captcha_enabled ) : ?>
+											<button type="submit" class="btn btn-primary" disabled aria-disabled="true"><?php echo esc_html__( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
+										<?php else : ?>
+											<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Iscrivimi alla newsletter', 'design_laboratori_italia' ); ?></button>
+										<?php endif; ?>
 									</div>
 								</div>
 							</form>

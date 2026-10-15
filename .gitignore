@@ -49,6 +49,9 @@ tests/e2e/html-report/reports/*
 tests/e2e/issues-report/reports/*
 !tests/e2e/issues-report/reports/.gitkeep
 
+# Archived scanner reports (local only, folders included)
+tests/e2e/*/archived/
+
 # BUILD CSS
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css

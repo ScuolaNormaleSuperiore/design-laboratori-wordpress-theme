@@ -10,6 +10,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
+- Import eventi da feed RSS di Drupal.
 - Refactoring codice menu configurazione (creazione ConfigurationManager).
 - Refactoring codice wrapper Polylang (completamento del PolylangManager).
 - Refactoring: spostare nel PluginManager tutte le configurazioni fatte nel file functions.php.
@@ -17,14 +18,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.0] - 2026-09-28
+## [2.0.0] - 2026-10-15
 ## Aggiunto
 - Aggiunto autocmplete nella ricerca del sito.
 - Aggiunta procedura di bootstrap per gli agenti AI.
 ## Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
 - Bug-fixing
-- Aggiornare Dockerfile !!!!!!!!
+- Aggiornato Dockerfile.
 
 
 

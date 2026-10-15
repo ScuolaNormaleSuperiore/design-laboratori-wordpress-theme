@@ -1,19 +1,21 @@
 # This repository adheres to the publiccode.yml standard by including this
 # metadata file that makes public software easily discoverable.
-# More info at https://github.com/italia/publiccode.yml
+# More info at https://github.com/publiccodeyml/publiccode.yml
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
 softwareVersion: 2.0.0
 categories:
   - website-builder
+  - content-management
 description:
   it:
     documentation: >-
-      https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/README.md
+      https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md
     features:
       - Popolamento automatico del sito (pagine e menu).
       - Sezione per la configurazione del tema e dei contenuti.
+      - Personalizzazione del layout della home page.
       - Gestione delle persone del laboratorio.
       - Gestione dei progetti del laboratorio.
       - Gestione delle news e degli eventi del laboratorio.
@@ -25,9 +27,9 @@ description:
       - Gestione delle risorse tecniche del laboratorio.
       - Gestione del blog del laboratorio.
       - Pagine di archivio con paginazione.
-      - Ricerca in tutti i contenuti del sito.
+      - Ricerca in tutti i contenuti del sito, con suggerimenti autocomplete opzionali.
       - Gestione degli avvisi in home page.
-      - Gestione dei cookies.
+      - Gestione dei cookie.
       - Form di contatti.
       - Mappa del sito in HTML e XML.
       - Gestione hero in home page.
@@ -40,19 +42,19 @@ description:
       - Integrazione con il software di gestione delle newsletter Brevo.
       - Importazione degli eventi da Indico.
       - Importazione dei brevetti da IRIS.
-      - Manifesto PWA.
+      - Manifest PWA installabile (senza service worker).
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
-      Design laboratori e centri di ricerca è un tema wordpress basato sul modello di siti per le
+      Design laboratori e centri di ricerca è un tema WordPress basato sul modello di siti per le
       scuole italiane e sviluppato dalla Scuola Normale Superiore con l'obiettivo di creare un modello
-      di sito per le strutture di ricerca (centri e laboratori).  Una volta installato, l'ambiente offre
+      di sito per le strutture di ricerca (centri e laboratori). Una volta installato, l'ambiente offre
       una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito.
-      Questo sito permette di pubblicare tutte le informazioni relative ad una struttura di ricerca:
+      Il sito permette di pubblicare tutte le informazioni relative a una struttura di ricerca:
       personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di
       ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività.
-      Il progetto si  pone l'obiettivo di obiettivo di dare evidenza e valore alle attività e al personale
-      di ricerca delle strutture. E' possibile provare in modo semplice il sistema in locale utilizzando il
-      Dockerfile predente nel sorgente del progetto.
+      Il progetto si pone l'obiettivo di dare evidenza e valore alle attività e al personale
+      di ricerca delle strutture. È possibile provare in modo semplice il sistema in locale utilizzando il
+      Dockerfile presente nel sorgente del progetto oppure il sito dimostrativo https://sitofederato.sns.it.
     screenshots:
       - assets/screenshots/homepage.png
       - assets/screenshots/homepage2.png
@@ -66,6 +68,7 @@ description:
       - assets/screenshots/indirizzi-di-ricerca.png
       - assets/screenshots/ricerca.png
       - assets/screenshots/eventi.png
+      - assets/screenshots/notizie.png
       - assets/screenshots/ciampi1.png
       - assets/screenshots/kto1.png
       - assets/screenshots/kto2.png
@@ -77,12 +80,15 @@ intendedAudience:
     - it
   scope:
     - education
+    - research
 usedBy:
   - Istituto di Studi Avanzati Carlo Azeglio Ciampi - Scuola Normale Superiore - https://istitutociampi.sns.it
   - POCKET - Knowledge Transfer Office - Scuola Normale Superiore - https://kto.sns.it
   - EDEV PRO 3 - Experts, Decisions, Epistemic Values - https://edevpro3.sns.it
   - FROID- Corso di dottorato in Filologia Romanza e Italiana Digitale - Scuola Normale Superiore - https://froid.sns.it
   - CRM De Giorgi - Centro di Ricerca Matematica Ennio De Giorgi - Scuola Normale Superiore - https://crmdegiorgi.sns.it
+  - Bio@SNS - Laboratorio di Biologia - Scuola Normale Superiore - https://laboratoriobiologia.sns.it
+  - Il PNRR alla Normale - Scuola Normale Superiore - https://pnrr.sns.it
 it:
   countryExtensionVersion: '0.2'
   riuso:
@@ -98,6 +104,8 @@ it:
     spid: false
 legal:
   license: GPL-3.0-or-later
+  mainCopyrightOwner: Scuola Normale Superiore
+  repoOwner: Scuola Normale Superiore
 localisation:
   availableLanguages:
     - it
@@ -107,15 +115,25 @@ dependsOn:
   open:
     - name: WordPress
       optional: false
+      versionMin: '6.1.1'
+    - name: PHP
+      optional: false
+      versionMin: '8.0'
+    - name: Advanced Custom Fields
+      optional: false
+    - name: Polylang
+      optional: false
 maintenance:
   contacts:
     - email: servizi.informativi@sns.it
       name: Servizi Informativi SNS
   type: community
 name: Design Laboratori Italia
+landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-09-10'
+releaseDate: '2026-10-15'
+roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
-logo: assets/img/logo_sito_federato.png
+logo: assets/img/logo_sito_federato_quadrato.svg

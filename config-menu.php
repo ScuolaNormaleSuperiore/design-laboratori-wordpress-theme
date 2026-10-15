@@ -185,7 +185,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => 'https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme',
+				'link'         => 'https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a',
 			),
 		),
 	)
@@ -449,7 +449,7 @@ define(
 				'post_type'    => '',
 				'status'       => 'publish',
 				'classes'      => 'footer-link',
-				'link'         => 'https://developers.italia.it/it/software/sns_pi-scuolanormalesuperiore-design-laboratori-wordpress-theme',
+				'link'         => 'https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a',
 			),
 		),
 	)

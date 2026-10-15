@@ -92,7 +92,10 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		$dli_tb_r_tag_slugs = wp_list_pluck( $dli_tb_r_tag_terms, 'slug' );
 	}
 
-	$dli_tb_r_email      = (string) dli_get_field( 'email', $dli_tb_pid );
+	$dli_tb_r_email      = '';
+	if ( ! $dli_tb_hide_email ) {
+		$dli_tb_r_email = antispambot( sanitize_email( (string) dli_get_field( 'email', $dli_tb_pid ) ) );
+	}
 	$dli_tb_r_phone      = (string) dli_get_field( 'telefono', $dli_tb_pid );
 	$dli_tb_r_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_r_phone );
 
@@ -384,7 +387,7 @@ echo wp_json_encode(
 				if ( cfg.cols.email ) {
 					html += '<td class="d-none d-md-table-cell">';
 					if ( row.email ) {
-						html += '<a href="mailto:' + escHtml( row.email ) + '">' + escHtml( row.email ) + '</a>';
+						html += '<a href="mailto:' + row.email + '">' + row.email + '</a>';
 					}
 					html += '</td>';
 				}

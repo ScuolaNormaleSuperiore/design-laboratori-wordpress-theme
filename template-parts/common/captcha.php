@@ -5,6 +5,8 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
+$dli_captcha_enabled = false;
+
 if ( is_plugin_active( plugin_basename( 'really-simple-captcha/really-simple-captcha.php' ) ) ) {
 	if ( class_exists( 'ReallySimpleCaptcha' ) ) {
 		$dli_captcha_enabled          = true;

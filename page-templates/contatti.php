@@ -22,6 +22,7 @@ $dli_sent            = false;
 $dli_result_text     = '';
 $dli_nonce_error     = false;
 $dli_form_submitted  = 'no';
+$dli_captcha_valid   = false;
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 require_once DLI_THEMA_PATH . '/template-parts/common/captcha.php';
@@ -52,13 +53,14 @@ if ( 'yes' === $dli_form_submitted ) {
 		$dli_header_mail = str_replace( array( "\r", "\n" ), '', $dli_email_address );
 		$dli_headers     = "From: {$dli_header_mail}\r\nReply-To: {$dli_header_mail}";
 
-		if ( $dli_captcha_enabled ) {
+		if ( ! $dli_captcha_enabled ) {
+			$dli_form_valid   = false;
+			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
+		} else {
 			$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
 			if ( ! $dli_captcha_valid ) {
 				$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}
-		} else {
-			$dli_captcha_valid = true;
 		}
 
 		if ( '' === $dli_full_name || '' === $dli_email_address || '' === $dli_message_text ) {
@@ -71,7 +73,7 @@ if ( 'yes' === $dli_form_submitted ) {
 			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' );
 		}
 
-		$dli_form_valid = $dli_form_valid && ( $dli_captcha_valid || ! $dli_captcha_enabled );
+		$dli_form_valid = $dli_form_valid && $dli_captcha_valid;
 
 		if ( $dli_form_valid ) {
 			$dli_sent = wp_mail( $dli_to, $dli_subject, wp_strip_all_tags( $dli_message_text ), $dli_headers );
@@ -321,13 +323,21 @@ if ( 'yes' === $dli_form_submitted ) {
 										>
 									</div>
 								</div>
+							<?php else : ?>
+								<div class="alert alert-warning" role="alert">
+									<?php echo esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' ); ?>
+								</div>
 							<?php endif; ?>
 
 							<div class="row mt-4">
 								<div class="form-group col text-center">
 									<input type="hidden" name="forminviato" id="forminviato" value="yes">
 									<button type="button" class="btn btn-outline-primary"><?php echo esc_html__( 'Annulla', 'design_laboratori_italia' ); ?></button>
-									<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Conferma', 'design_laboratori_italia' ); ?></button>
+									<?php if ( ! $dli_captcha_enabled ) : ?>
+										<button type="submit" class="btn btn-primary" disabled aria-disabled="true"><?php echo esc_html__( 'Conferma', 'design_laboratori_italia' ); ?></button>
+									<?php else : ?>
+										<button type="submit" class="btn btn-primary"><?php echo esc_html__( 'Conferma', 'design_laboratori_italia' ); ?></button>
+									<?php endif; ?>
 								</div>
 							</div>
 
