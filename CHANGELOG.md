@@ -10,6 +10,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
+- Introdurre test di unità, integrazione ed e2e.
 - Configurazione dei test: unità, integrazione e funzionali (e2e).
 - Rivedere il campo descrizione dei campi del backoffice in modo che si capisca meglio cosa fa quella configurazione. Aggiungere formato consigliato immagini.
 - Inserire sezione di configurazione colori nel backoffice.
@@ -33,6 +34,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.2] - 2026-10-20
+- Introdotti test di unità, integrazione ed e2e.
+
+
 
 ## [2.0.1] - 2026-10-16
 ## Corretto
@@ -40,9 +45,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Elenchi senza contenuti: messaggio di elenco vuoto e filtri nascosti.
 ## Modificato
 - Persone: il tipo di visualizzazione può essere Chip, Tabella o Entrambe (default).
-
-
-
 
 ## [2.0.0] - 2026-10-15
 ## Corretto
