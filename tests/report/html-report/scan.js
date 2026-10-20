@@ -431,7 +431,7 @@ async function main() {
 
   if (!opts.outExplicit) {
     const ts = buildTimestamp(new Date());
-    opts.out = `./tests/e2e/html-report/reports/html_report_${ts}`;
+    opts.out = `./tests/report/html-report/reports/html_report_${ts}`;
   }
 
   const vnuJarPath = requireVnu();

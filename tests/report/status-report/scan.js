@@ -345,7 +345,7 @@ async function main() {
   // Build timestamped default output path unless --out was explicitly provided
   if (!opts.outExplicit) {
     const ts = buildTimestamp(new Date());
-    opts.out = `./tests/e2e/status-report/reports/status_report_${ts}`;
+    opts.out = `./tests/report/status-report/reports/status_report_${ts}`;
   }
 
   console.log('='.repeat(60));

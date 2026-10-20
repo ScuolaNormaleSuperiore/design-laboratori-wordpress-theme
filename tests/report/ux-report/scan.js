@@ -473,7 +473,7 @@ async function main() {
 
   if (!opts.outExplicit) {
     const ts = buildTimestamp(new Date());
-    opts.out = `./tests/e2e/ux-report/reports/ux_report_${ts}`;
+    opts.out = `./tests/report/ux-report/reports/ux_report_${ts}`;
   }
 
   const AxeBuilder = requireAxe();

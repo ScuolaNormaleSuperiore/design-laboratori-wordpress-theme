@@ -69,9 +69,9 @@ Use the Dockerfile provided in the `SETUP/Docker/` directory to set up a local d
 https://sitofederato.sns.it
 
 
-## Automated Quality Checks (tests/e2e/)
+## Automated Quality Checks (tests/report/)
 
-Four automated scanning modules are available under `tests/e2e/` (`status-report`, `quality-report`, `ux-report`, `html-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).
+Four automated scanning modules are available under `tests/report/` (`status-report`, `quality-report`, `ux-report`, `html-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).
 
 | Module | What it checks |
 |---|---|

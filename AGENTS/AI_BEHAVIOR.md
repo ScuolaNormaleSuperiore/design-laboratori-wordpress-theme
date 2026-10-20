@@ -108,7 +108,7 @@ Shared issue rules:
 | **A** | `/audit-url <URL>` | Singola URL — audit runtime (HTML, JS, performance, accessibilità) | "Check URL X" / "Controlla l'URL X", "Audit page X" / "Verifica la pagina X" |
 | **B** | `/issues` | `AGENTS/ISSUES_TODO.md` — individua le issue aperte e suggerisce da dove partire | "Check if there are new issues" / "Ci sono issue da risolvere?", "Check if there are issues to fix" / "Da dove parto con le issue?" |
 | **C** | `/issues-table` | `AGENTS/ISSUES_TODO.md` — tabella numerica per categoria × severità | "I want a tabular issue summary" / "Fammi un riepilogo tabellare delle issue" |
-| **D** | `/issues-snapshot` | `AGENTS/ISSUES_TODO.md` — tabella a video + snapshot JSON in `tests/e2e/issues-report/reports/` | "Fammi uno snapshot delle issue" / "Genera il report JSON delle issue" |
+| **D** | `/issues-snapshot` | `AGENTS/ISSUES_TODO.md` — tabella a video + snapshot JSON in `tests/report/issues-report/reports/` | "Fammi uno snapshot delle issue" / "Genera il report JSON delle issue" |
 | **E** | `/issues-triage` | `AGENTS/ISSUES_TODO.md` — triage interattivo, una issue alla volta (correggere / trascurare / abbassare priorità) | "Scodiamo le issue" / "Triage interattivo delle issue", "Let's triage the issues one by one" / "Facciamo il dequeue delle issue" |
 | **F** | `/code-review [scope]` | Qualsiasi code review del codice — strutturata, multi-sessione, guidata da `AGENTS/CODE_REVIEW.md`: riprende da dove era arrivata e propone la fase successiva | "Avvia la code review" / "Start the code review", "Riprendi la code review" / "Resume the code review", "A che punto è la code review?" / "Code review status", "Mi fai una code review del codice?", "Fai una review completa del file/cartella X" |
 
@@ -219,12 +219,12 @@ Mandatory workflow:
      ]
    }
    ```
-7. Write the JSON to `tests/e2e/issues-report/reports/issues_report_<YYYYMMDD_HHMM>.json` using the available file-editing tool (create the directory if it doesn't exist).
+7. Write the JSON to `tests/report/issues-report/reports/issues_report_<YYYYMMDD_HHMM>.json` using the available file-editing tool (create the directory if it doesn't exist).
 8. Confirm the output file path to the user.
 
 Expected output:
 - The tabular summary (same as Trigger C).
-- Confirmation line: `JSON saved: tests/e2e/issues-report/reports/issues_report_<ts>.json`
+- Confirmation line: `JSON saved: tests/report/issues-report/reports/issues_report_<ts>.json`
 
 ### Trigger E: Interactive issue triage (dequeue one by one)
 Slash alias: `/issues-triage`
@@ -340,9 +340,9 @@ The AGENTS documents link to resources outside the repository (the official Word
 | `languages/*.orig`, `*.po~`, `*.pot~` | Local backup files | Ignore |
 | `SETUP/ACF_Custom_Fields/*.json` | Exports of the ACF field groups registered in PHP | Not loaded at runtime; update only to mirror a PHP change |
 | `SETUP/Docker/` | Demo environment assets | Edit only when the task concerns the demo |
-| `tests/e2e/*/reports/`, `*/archived/` | Generated scanner output (git-ignored) | Never edit by hand |
+| `tests/report/*/reports/` | Generated scanner output (git-ignored) | Never edit by hand |
 
-Project code that receives full attention: `inc/` (except `inc/vendor/`), the root templates, `page-templates/`, `template-parts/`, `inc/walkers/`, `inc/admin-js/options.js`, `inc/admin-css/style-admin.css`, `assets/css/main.css`, `custom-colors.css`, `fonts.css`, `assets/js/main.js`, `assets/js/search-autocomplete.js`, `assets/scss/`, and the tooling in `tests/e2e/` and `SETUP/npm_scripts/`.
+Project code that receives full attention: `inc/` (except `inc/vendor/`), the root templates, `page-templates/`, `template-parts/`, `inc/walkers/`, `inc/admin-js/options.js`, `inc/admin-css/style-admin.css`, `assets/css/main.css`, `custom-colors.css`, `fonts.css`, `assets/js/main.js`, `assets/js/search-autocomplete.js`, `assets/scss/`, and the tooling in `tests/report/` and `SETUP/npm_scripts/`.
 
 Calls into excluded code stay in scope for review and refactoring.
 

@@ -62,7 +62,7 @@ Run the checks relevant to your change from the theme root:
   responsive checks.
 
 See the [README.md](README.md#test-e-controlli-di-qualità) and
-`tests/e2e/*/README.md` for prerequisites and detailed usage.
+`tests/report/*/README.md` for prerequisites and detailed usage.
 
 ## Pull requests
 

@@ -44,7 +44,7 @@ function tsFromFilename(filename) {
 
 function findTwoMostRecentReports() {
   if (!fs.existsSync(REPORTS_DIR)) {
-    console.error('ERROR: reports/ directory not found.');
+    console.error('ERROR: reports/ directory not found. Run a scan first with: npm run status:scan -- <url>');
     process.exit(1);
   }
 

@@ -29,28 +29,8 @@ Thumbs.db
 /.htaccess
 
 
-# Site status scanner
-tests/e2e/status-report/reports/*
-!tests/e2e/status-report/reports/.gitkeep
-
-# Site quality scanner
-tests/e2e/quality-report/reports/*
-!tests/e2e/quality-report/reports/.gitkeep
-
-# UX scanner (accessibility + responsive)
-tests/e2e/ux-report/reports/*
-!tests/e2e/ux-report/reports/.gitkeep
-
-# HTML validation scanner (VNU)
-tests/e2e/html-report/reports/*
-!tests/e2e/html-report/reports/.gitkeep
-
-# Issues report snapshots (AI-generated JSON)
-tests/e2e/issues-report/reports/*
-!tests/e2e/issues-report/reports/.gitkeep
-
-# Archived scanner reports (local only, folders included)
-tests/e2e/*/archived/
+# Report scanners: generated reports are local only (folders included)
+tests/report/*/reports/
 
 # BUILD CSS
 assets/css/compiled

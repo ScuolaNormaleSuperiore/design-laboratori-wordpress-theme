@@ -18,7 +18,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports, Docker setup, and setup utilities.
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
-- `tests/e2e/`: automated quality scanning modules (status, quality, ux, html).
+- `tests/report/`: automated quality scanning modules (status, quality, ux, html).
 
 
 ## Main Files
@@ -159,7 +159,7 @@ describes the same checks for contributors.
   `npm run quality:scan` (no URL).
 - Each scan has a `*:gate` variant (exit code 1 on failure) and a `*:compare`
   variant (compares the two most recent reports). Options and report formats are
-  documented in `tests/e2e/*/README.md`.
+  documented in `tests/report/*/README.md`.
 
 
 ## References

@@ -13,7 +13,7 @@ Report statico qualità codice per confrontare versioni del tema oltre al report
 
 ## Output
 
-Lo scanner genera due file in `tests/e2e/quality-report/reports/`:
+Lo scanner genera due file in `tests/report/quality-report/reports/`:
 
 - `quality_report_YYYYMMDD_HHMM.json`
 - `quality_report_YYYYMMDD_HHMM.html`
@@ -44,13 +44,13 @@ Note importanti:
 ## Uso diretto
 
 ```bash
-node tests/e2e/quality-report/scan.js
-node tests/e2e/quality-report/scan.js --timeout 180000
-node tests/e2e/quality-report/scan.js --out ./tests/e2e/quality-report/reports/my_quality --gate
+node tests/report/quality-report/scan.js
+node tests/report/quality-report/scan.js --timeout 180000
+node tests/report/quality-report/scan.js --out ./tests/report/quality-report/reports/my_quality --gate
 
-node tests/e2e/quality-report/compare.js
-node tests/e2e/quality-report/compare.js <new_report.json> <old_report.json>
-node tests/e2e/quality-report/compare.js <new_report.json> <old_report.json> --out ./tests/e2e/quality-report/reports/my_compare
+node tests/report/quality-report/compare.js
+node tests/report/quality-report/compare.js <new_report.json> <old_report.json>
+node tests/report/quality-report/compare.js <new_report.json> <old_report.json> --out ./tests/report/quality-report/reports/my_compare
 ```
 
 ## Esecuzione manuale step-by-step
@@ -77,13 +77,13 @@ npm audit --omit=dev
 Esempio comando unico per generare il report:
 
 ```bash
-node tests/e2e/quality-report/scan.js --out tests/e2e/quality-report/reports/quality_report_manual
+node tests/report/quality-report/scan.js --out tests/report/quality-report/reports/quality_report_manual
 ```
 
 Su Windows, se `node` non è nel PATH della shell corrente:
 
 ```powershell
-& 'C:\Program Files\nodejs\node.exe' tests/e2e/quality-report/scan.js --out tests/e2e/quality-report/reports/quality_report_manual
+& 'C:\Program Files\nodejs\node.exe' tests/report/quality-report/scan.js --out tests/report/quality-report/reports/quality_report_manual
 ```
 
 ## Regole verdict

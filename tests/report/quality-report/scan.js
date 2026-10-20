@@ -38,7 +38,7 @@ function parseArgs(argv) {
 
   if (!opts.out) {
     const ts = buildTimestamp(new Date());
-    opts.out = path.join('tests', 'e2e', 'quality-report', 'reports', `quality_report_${ts}`);
+    opts.out = path.join('tests', 'report', 'quality-report', 'reports', `quality_report_${ts}`);
   }
 
   return opts;

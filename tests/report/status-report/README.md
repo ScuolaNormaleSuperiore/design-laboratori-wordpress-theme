@@ -82,7 +82,7 @@ senza bloccarsi.
 
 Al termine della scansione produce il riepilogo numerico in console (con tempi
 medi e massimi) e scrive i due file di output (`report.html` e `report.json`)
-nella cartella `tests/e2e/status-report/reports/` con suffisso data/ora automatico.
+nella cartella `tests/report/status-report/reports/` con suffisso data/ora automatico.
 
 
 ---
@@ -250,14 +250,14 @@ npm run status:scan -- https://mio-sito.example.com
 **Oppure direttamente con Node:**
 
 ```bash
-node tests/e2e/status-report/scan.js https://mio-sito.example.com
+node tests/report/status-report/scan.js https://mio-sito.example.com
 ```
 
-Al termine troverai i file in `tests/e2e/status-report/reports/` con suffisso data/ora automatico, es.:
+Al termine troverai i file in `tests/report/status-report/reports/` con suffisso data/ora automatico, es.:
 
 ```
-tests/e2e/status-report/reports/status_report_20260305_1430.html
-tests/e2e/status-report/reports/status_report_20260305_1430.json
+tests/report/status-report/reports/status_report_20260305_1430.html
+tests/report/status-report/reports/status_report_20260305_1430.json
 ```
 
 Apri il file `.html` direttamente nel browser.
@@ -280,7 +280,7 @@ npm run status:scan -- <baseUrl> [opzioni]
 | `--timeout <ms>` | `15000` | Millisecondi di attesa massima per ogni pagina prima di segnare TIMEOUT |
 | `--concurrency <n>` | `3` | Numero massimo di pagine visitate contemporaneamente |
 | `--delay <ms>` | `1000` | Pausa in ms prima di avviare ogni richiesta di pagina, per ridurre il carico sul server. `--delay 0` disabilita il delay. |
-| `--out <path>` | `./tests/e2e/status-report/reports/status_report_<YYYYMMDD_HHMM>` | Percorso di output senza estensione — lo script aggiunge `.html` e `.json` |
+| `--out <path>` | `./tests/report/status-report/reports/status_report_<YYYYMMDD_HHMM>` | Percorso di output senza estensione — lo script aggiunge `.html` e `.json` |
 
 **Esempi:**
 
@@ -353,17 +353,17 @@ npm run status:compare
 **Confronto con file espliciti:**
 
 ```bash
-npm run status:compare -- tests/e2e/status-report/reports/status_report_A.json tests/e2e/status-report/reports/status_report_B.json
+npm run status:compare -- tests/report/status-report/reports/status_report_A.json tests/report/status-report/reports/status_report_B.json
 ```
 
 **Oppure direttamente con Node:**
 
 ```bash
-node tests/e2e/status-report/compare.js [report-nuovo.json] [report-vecchio.json]
+node tests/report/status-report/compare.js [report-nuovo.json] [report-vecchio.json]
 ```
 
 Senza argomenti lo script seleziona automaticamente i due file `status_report_*.json`
-più recenti presenti in `tests/e2e/status-report/reports/`.
+più recenti presenti in `tests/report/status-report/reports/`.
 
 
 ## Opzioni disponibili
@@ -373,7 +373,7 @@ più recenti presenti in `tests/e2e/status-report/reports/`.
 | `[file-nuovo]` | auto (più recente) | Percorso del report JSON più recente |
 | `[file-vecchio]` | auto (secondo più recente) | Percorso del report JSON di riferimento |
 | `--timing-threshold <ms>` | `500` | Soglia in ms per classificare una variazione TTFB come significativa |
-| `--out <path>` | `./tests/e2e/status-report/reports/compare_<ts>_vs_<ts>` | Percorso output senza estensione |
+| `--out <path>` | `./tests/report/status-report/reports/compare_<ts>_vs_<ts>` | Percorso output senza estensione |
 
 
 ## Risultati prodotti
@@ -381,8 +381,8 @@ più recenti presenti in `tests/e2e/status-report/reports/`.
 Al termine della comparazione vengono creati due file nella cartella `reports/`:
 
 ```
-tests/e2e/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.html
-tests/e2e/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.json
+tests/report/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.html
+tests/report/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.json
 ```
 
 ### Console

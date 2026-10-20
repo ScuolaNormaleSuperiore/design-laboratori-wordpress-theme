@@ -211,7 +211,7 @@ Eseguire i controlli dalla radice del tema:
 - `npm run ux:scan -- https://mio-sito.example.com` — verifica l'accessibilità (Axe/WCAG) e l'overflow responsive delle pagine.
 - `npm run quality:scan` — verifica la qualità statica del codice (sintassi PHP, PHPCS, PHPStan, audit delle dipendenze).
 
-Per le verifiche end-to-end, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/e2e/*/`.
+Gli scanner `status`, `html`, `ux` e `quality` producono report (HTML e JSON) senza asserzioni pass/fail e si trovano in `tests/report/`. Per quelli che aprono le pagine nel browser, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/report/*/`.
 
 ## Verifica file publiccode.yml
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.
