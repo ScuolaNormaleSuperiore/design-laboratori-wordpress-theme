@@ -10,17 +10,17 @@
 global $post;
 get_header();
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
-$dli_description      = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
-$dli_summary          = dli_get_field( 'descrizione_breve' );
-$dli_telefono         = dli_get_field( 'telefono' );
+$dli_description          = ( '.' === $post->post_content ) ? '' : apply_filters( 'the_content', $post->post_content );
+$dli_summary              = dli_get_field( 'descrizione_breve' );
+$dli_telefono             = dli_get_field( 'telefono' );
 	$dli_email            = sanitize_email( (string) dli_get_field( 'email' ) );
 	$dli_email_obfuscated = antispambot( $dli_email );
-$dli_sito_web         = dli_get_field( 'sito_web' );
-$dli_note             = dli_get_field( 'note' );
-$dli_stato            = dli_get_field( 'stato' );
-$dli_year             = dli_get_field( 'anno_costituzione' );
-$dli_video            = dli_get_field( 'video' );
-$dli_settore_attivita = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
+$dli_sito_web             = dli_get_field( 'sito_web' );
+$dli_note                 = dli_get_field( 'note' );
+$dli_stato                = dli_get_field( 'stato' );
+$dli_year                 = dli_get_field( 'anno_costituzione' );
+$dli_video                = dli_get_field( 'video' );
+$dli_settore_attivita     = dli_get_post_main_category( $post, BUSINESS_SECTOR_TAXONOMY );
 ?>
 
 <main id="main-container" role="main">

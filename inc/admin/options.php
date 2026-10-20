@@ -963,11 +963,12 @@ function dli_register_main_options_metabox() {
 			'name'             => __( 'Tipo visualizzazione', 'design_laboratori_italia' ),
 			'desc'             => __( 'Scegli il tipo di visualizzazione da usare nella pagina Persone', 'design_laboratori_italia' ),
 			'type'             => 'select',
-			'default'          => 'chip',
+			'default'          => 'entrambe',
 			'show_option_none' => false,
 			'options'          => array(
-				'chip'    => __( 'Chip', 'design_laboratori_italia' ),
-				'tabella' => __( 'Tabella', 'design_laboratori_italia' ),
+				'entrambe' => __( 'Entrambe', 'design_laboratori_italia' ),
+				'chip'     => __( 'Chip', 'design_laboratori_italia' ),
+				'tabella'  => __( 'Tabella', 'design_laboratori_italia' ),
 			),
 		)
 	);
@@ -980,7 +981,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'title',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip',
+				'data-conditional-value' => 'chip,entrambe',
 			),
 		)
 	);
@@ -998,7 +999,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip',
+				'data-conditional-value' => 'chip,entrambe',
 			),
 		)
 	);
@@ -1016,7 +1017,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip',
+				'data-conditional-value' => 'chip,entrambe',
 			),
 		)
 	);
@@ -1034,7 +1035,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip',
+				'data-conditional-value' => 'chip,entrambe',
 			),
 		)
 	);
@@ -1047,7 +1048,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'title',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1065,7 +1066,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1083,7 +1084,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1101,7 +1102,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1119,7 +1120,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1137,7 +1138,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1155,7 +1156,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'tabella',
+				'data-conditional-value' => 'tabella,entrambe',
 			),
 		)
 	);
@@ -1168,7 +1169,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'title',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1186,7 +1187,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1205,7 +1206,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes'       => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1218,7 +1219,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'title',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1236,7 +1237,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1249,7 +1250,7 @@ function dli_register_main_options_metabox() {
 			'type'       => 'title',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1267,7 +1268,7 @@ function dli_register_main_options_metabox() {
 			),
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1281,7 +1282,7 @@ function dli_register_main_options_metabox() {
 			'default'    => 'Seleziona TAG',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1295,7 +1296,7 @@ function dli_register_main_options_metabox() {
 			'default'    => 'Select TAG',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1309,7 +1310,7 @@ function dli_register_main_options_metabox() {
 			'default'    => 'Tutti i TAG',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);
@@ -1323,7 +1324,7 @@ function dli_register_main_options_metabox() {
 			'default'    => 'All TAGs',
 			'attributes' => array(
 				'data-conditional-id'    => $prefix . 'people_view_type',
-				'data-conditional-value' => 'chip,tabella',
+				'data-conditional-value' => 'chip,tabella,entrambe',
 			),
 		)
 	);

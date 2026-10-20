@@ -18,7 +18,7 @@
 
 :root {
 	/* Famiglia "primary": v3 di default usa il blu istituzionale
-	   (#0066cc, --bsi-color-blue-40) — sostituito con l'Ottanio SNS. */
+		(#0066cc, --bsi-color-blue-40) — sostituito con l'Ottanio SNS. */
 	--bsi-color-background-primary: #00728d;
 	--bsi-color-background-primary-hover: #00728d;
 	--bsi-color-background-primary-active: #00728d;
@@ -30,20 +30,20 @@
 	--bsi-color-text-primary: #00728d;
 
 	/* Famiglia "icon-*": variabili SEPARATE da --bsi-color-*-primary, con
-	   valori letterali propri (non un var()) — governano il fill di .icon
-	   di default, .icon-primary e le icone header (social, ricerca,
-	   brand). Senza questo override restano sul blu di default anche col
-	   resto del brand già corretto. */
+		valori letterali propri (non un var()) — governano il fill di .icon
+		di default, .icon-primary e le icone header (social, ricerca,
+		brand). Senza questo override restano sul blu di default anche col
+		resto del brand già corretto. */
 	--bsi-icon-primary: #00728d;
 	--bsi-icon-primary-hover: #00728d;
 	--bsi-icon-secondary: #183f56;
 
 	/* Famiglia "secondary": Dark Blue SNS. Manca il riposo di
-	   --bsi-color-background-secondary (usato da .btn-secondary a riposo,
-	   non solo su :hover): senza questa riga i bottoni .btn-secondary
-	   restano sullo slate di default di Bootstrap Italia (#5c6f82), mai
-	   presente nella guida SNS, e diventano Dark Blue solo al passaggio del
-	   mouse. */
+		--bsi-color-background-secondary (usato da .btn-secondary a riposo,
+		non solo su :hover): senza questa riga i bottoni .btn-secondary
+		restano sullo slate di default di Bootstrap Italia (#5c6f82), mai
+		presente nella guida SNS, e diventano Dark Blue solo al passaggio del
+		mouse. */
 	--bsi-color-text-secondary: #183f56;
 	--bsi-color-link-secondary: #183f56;
 	--bsi-color-background-secondary: #183f56;
@@ -51,55 +51,55 @@
 	--bsi-color-border-secondary-hover: #183f56;
 
 	/* Footer (.it-footer-main/.it-footer-small-prints): Bootstrap Italia 3
-	   consuma --bsi-color-background-primary-muted/-deep per quegli
-	   elementi. Secondario (Dark Blue) per il livello "muted", primario
-	   (Ottanio) per il "deep" — stessa scelta del prototipo statico, non
-	   una vera scala primary->deep graduata ma due toni scuri distinti. */
+		consuma --bsi-color-background-primary-muted/-deep per quegli
+		elementi. Secondario (Dark Blue) per il livello "muted", primario
+		(Ottanio) per il "deep" — stessa scelta del prototipo statico, non
+		una vera scala primary->deep graduata ma due toni scuri distinti. */
 	--bsi-color-background-primary-muted: #183f56;
 	--bsi-color-background-primary-deep: #00728d;
 }
 
 /* La barra slim dell'header (.it-header-slim-wrapper, "Ente appartenenza")
-   non eredita --bsi-color-background-primary da :root: Bootstrap Italia 3
-   dichiara --bsi-header-slim-background direttamente su
-   .it-header-slim-wrapper, legato al blu di default. Una dichiarazione
-   diretta sull'elemento vince sempre sull'ereditarietà da :root, quindi va
-   sovrascritta qui, sullo stesso selettore. */
+	non eredita --bsi-color-background-primary da :root: Bootstrap Italia 3
+	dichiara --bsi-header-slim-background direttamente su
+	.it-header-slim-wrapper, legato al blu di default. Una dichiarazione
+	diretta sull'elemento vince sempre sull'ereditarietà da :root, quindi va
+	sovrascritta qui, sullo stesso selettore. */
 .it-header-slim-wrapper {
 	--bsi-header-slim-background: #00728d;
 }
 
 /* Bug Bootstrap Italia 3.0.0-beta.5 (non ancora segnalato upstream):
-   .it-hero-text-wrapper ha una regola base
-   background: rgba(0,0,0,0) !important con la STESSA specificità della
-   utility .bg-dark (anch'essa !important sulla stessa proprietà) — a
-   parità di specificità e !important vince l'ultima dichiarata nel foglio
-   compilato, che è quella trasparente. Risultato: <div
-   class="it-hero-text-wrapper bg-dark"> non produce alcuno sfondo scuro
-   dietro al testo dell'hero. Un selettore composto ha specificità maggiore
-   e vince indipendentemente dall'ordine nel sorgente. */
+	.it-hero-text-wrapper ha una regola base
+	background: rgba(0,0,0,0) !important con la STESSA specificità della
+	utility .bg-dark (anch'essa !important sulla stessa proprietà) — a
+	parità di specificità e !important vince l'ultima dichiarata nel foglio
+	compilato, che è quella trasparente. Risultato: <div
+	class="it-hero-text-wrapper bg-dark"> non produce alcuno sfondo scuro
+	dietro al testo dell'hero. Un selettore composto ha specificità maggiore
+	e vince indipendentemente dall'ordine nel sorgente. */
 .it-hero-text-wrapper.bg-dark {
 	background-color: rgba(var(--bsi-dark-rgb), var(--bsi-bg-opacity, 1)) !important;
 }
 
 /* .point-aside-primary (Timeline point list, usata in single-evento.php per
-   "Date e orari") calcola --bsi-timeline-point-color da --bsi-primary, la
-   tinta grezza di libreria (blu istituzionale di default), non dalla
-   famiglia semantica --bsi-color-*-primary già ribrandizzata sopra: senza
-   questo override il pallino/linea della timeline restava sul blu di
-   default anche col resto del brand corretto. */
+	"Date e orari") calcola --bsi-timeline-point-color da --bsi-primary, la
+	tinta grezza di libreria (blu istituzionale di default), non dalla
+	famiglia semantica --bsi-color-*-primary già ribrandizzata sopra: senza
+	questo override il pallino/linea della timeline restava sul blu di
+	default anche col resto del brand corretto. */
 .it-timeline-point-list .timeline-point .point-aside.point-aside-primary {
 	--bsi-timeline-point-color: var(--bsi-color-background-primary);
 }
 
 /* .chip-primary (es. chip di filtro "selezionata") calcola il proprio testo
-   da --bsi-color-text-primary e il proprio sfondo da
-   --bsi-color-background-primary-hover: in v3 di default sono tinte diverse
-   (testo Ottanio scuro su sfondo azzurro chiaro), ma qui sopra la famiglia
-   "primary" è appiattita su un unico Ottanio (stessa scelta già fatta nel
-   prototipo statico bs-playground, mai esercitata però su un componente
-   chip): senza questo override il testo risulterebbe Ottanio su sfondo
-   Ottanio, illeggibile. */
+	da --bsi-color-text-primary e il proprio sfondo da
+	--bsi-color-background-primary-hover: in v3 di default sono tinte diverse
+	(testo Ottanio scuro su sfondo azzurro chiaro), ma qui sopra la famiglia
+	"primary" è appiattita su un unico Ottanio (stessa scelta già fatta nel
+	prototipo statico bs-playground, mai esercitata però su un componente
+	chip): senza questo override il testo risulterebbe Ottanio su sfondo
+	Ottanio, illeggibile. */
 .chip-primary {
 	--bsi-chip-text-color: var(--bsi-color-text-inverse);
 }

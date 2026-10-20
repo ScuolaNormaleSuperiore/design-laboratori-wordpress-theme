@@ -9,22 +9,22 @@ global $post;
 
 get_header();
 
-$dli_site_email      = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
-$dli_phone           = dli_get_option( 'telefono_laboratorio' );
-$dli_pec             = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
+$dli_site_email            = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
+$dli_phone                 = dli_get_option( 'telefono_laboratorio' );
+$dli_pec                   = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
 $dli_site_email_obfuscated = antispambot( $dli_site_email );
 $dli_pec_obfuscated        = antispambot( $dli_pec );
-$dli_website         = get_site_url();
-$dli_website_label   = preg_replace( '#^https?://#', '', $dli_website );
-$dli_show_error      = false;
-$dli_show_success    = false;
-$dli_captcha_enabled = false;
-$dli_form_valid      = true;
-$dli_sent            = false;
-$dli_result_text     = '';
-$dli_nonce_error     = false;
-$dli_form_submitted  = 'no';
-$dli_captcha_valid   = false;
+$dli_website               = get_site_url();
+$dli_website_label         = preg_replace( '#^https?://#', '', $dli_website );
+$dli_show_error            = false;
+$dli_show_success          = false;
+$dli_captcha_enabled       = false;
+$dli_form_valid            = true;
+$dli_sent                  = false;
+$dli_result_text           = '';
+$dli_nonce_error           = false;
+$dli_form_submitted        = 'no';
+$dli_captcha_valid         = false;
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 require_once DLI_THEMA_PATH . '/template-parts/common/captcha.php';

@@ -55,9 +55,9 @@
 				</p>
 				<div class="link-list-wrapper">
 					<?php
-						$dli_email    = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
-						$dli_telefono = dli_get_option( 'telefono_laboratorio' );
-						$dli_pec      = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
+						$dli_email            = sanitize_email( (string) dli_get_option( 'email_laboratorio' ) );
+						$dli_telefono         = dli_get_option( 'telefono_laboratorio' );
+						$dli_pec              = sanitize_email( (string) dli_get_option( 'pec_laboratorio' ) );
 						$dli_email_obfuscated = antispambot( $dli_email );
 						$dli_pec_obfuscated   = antispambot( $dli_pec );
 					?>

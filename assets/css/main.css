@@ -5,45 +5,45 @@
 
 html {
 	margin: 0;
-  padding: 0;
+	padding: 0;
 	font-size: 16px;
-  background-color: white;
+	background-color: white;
 }
 
 
 /* STILI PERSONALIZZATI */
 
 /* Keep the desktop navigation bar visually separate from the page hero in
-   both site styles. The inner navbar already uses the light variant; this
-   sets the matching background on its full-width wrapper. */
+	both site styles. The inner navbar already uses the light variant; this
+	sets the matching background on its full-width wrapper. */
 .it-header-navbar-wrapper.theme-light-desk {
 	--bsi-header-nav-background: var(--bsi-color-background-inverse);
 }
 
 /* Voci lunghe troncate nel dropdown del menu principale (header.php, es. la
-   voce "Pagina base" con figli): BI3 applica .dropdown-item.list-item
-   {white-space:nowrap} (specificità 0,2,0), che tiene il titolo su una sola
-   riga anche quando è più lungo della larghezza del dropdown, facendolo
-   uscire dal riquadro. Una regola ufficiale corregge questo a "normal", ma
-   solo dentro un megamenu (.megamenu ... .list-item{white-space:normal}) —
-   il nostro dropdown (inc/walkers/main-menu-walker.php) non usa .megamenu,
-   quindi non la riceve. Corretto qui con una regola di specificità
-   maggiore (tre classi) sullo stesso contenitore. */
+	voce "Pagina base" con figli): BI3 applica .dropdown-item.list-item
+	{white-space:nowrap} (specificità 0,2,0), che tiene il titolo su una sola
+	riga anche quando è più lungo della larghezza del dropdown, facendolo
+	uscire dal riquadro. Una regola ufficiale corregge questo a "normal", ma
+	solo dentro un megamenu (.megamenu ... .list-item{white-space:normal}) —
+	il nostro dropdown (inc/walkers/main-menu-walker.php) non usa .megamenu,
+	quindi non la riceve. Corretto qui con una regola di specificità
+	maggiore (tre classi) sullo stesso contenitore. */
 .it-header-navbar-wrapper .dropdown-menu .list-item {
 	white-space: normal;
 }
 
 /* Sidebar "Pagine collegate" (page.php): bottone di espansione/compressione
-   delle sottovoci separato dal link di navigazione. In Bootstrap
-   data-bs-toggle="collapse" su un <a> con href reale blocca sempre la
-   navigazione (preventDefault incondizionato sui tag <a>), quindi la voce
-   non può essere insieme link e trigger dell'accordion sullo stesso
-   elemento. Qui il testo resta un <a class="list-item"> normale e solo la
-   freccina è un <button> a parte, con la stessa animazione di rotazione
-   della regola ufficiale .list-item[aria-expanded] (non applicabile qui
-   perché non è un .list-item). Stesso identico pattern già validato nel
-   prototipo statico bs-playground (sf-pagina-base-voce1.html, vedi il suo
-   css/main.css). */
+	delle sottovoci separato dal link di navigazione. In Bootstrap
+	data-bs-toggle="collapse" su un <a> con href reale blocca sempre la
+	navigazione (preventDefault incondizionato sui tag <a>), quindi la voce
+	non può essere insieme link e trigger dell'accordion sullo stesso
+	elemento. Qui il testo resta un <a class="list-item"> normale e solo la
+	freccina è un <button> a parte, con la stessa animazione di rotazione
+	della regola ufficiale .list-item[aria-expanded] (non applicabile qui
+	perché non è un .list-item). Stesso identico pattern già validato nel
+	prototipo statico bs-playground (sf-pagina-base-voce1.html, vedi il suo
+	css/main.css). */
 .btn-toggle-sublist {
 	display: inline-flex;
 	flex-shrink: 0;
@@ -63,13 +63,13 @@ html {
 }
 
 /* Indentazione crescente per livello nella sidebar "Pagine collegate". La
-   regola ufficiale BI3 (.sidebar-linklist-wrapper ... ul.link-sublist li
-   a{padding-inline-start:var(--bsi-sidebar-link-sublist-indent)}) applica lo
-   stesso rientro fisso a qualunque <a> dentro un .link-sublist,
-   indipendentemente dalla profondità: una voce di terzo livello risultava
-   così allo stesso livello visivo delle voci di secondo livello. Qui si
-   aggiunge un rientro supplementare quando il link-sublist è annidato in un
-   altro link-sublist. */
+	regola ufficiale BI3 (.sidebar-linklist-wrapper ... ul.link-sublist li
+	a{padding-inline-start:var(--bsi-sidebar-link-sublist-indent)}) applica lo
+	stesso rientro fisso a qualunque <a> dentro un .link-sublist,
+	indipendentemente dalla profondità: una voce di terzo livello risultava
+	così allo stesso livello visivo delle voci di secondo livello. Qui si
+	aggiunge un rientro supplementare quando il link-sublist è annidato in un
+	altro link-sublist. */
 .sidebar-linklist-wrapper .link-list-wrapper .link-sublist .link-sublist li a {
 	padding-inline-start: calc(var(--bsi-sidebar-link-sublist-indent) * 2);
 }
@@ -115,7 +115,7 @@ html {
 
 .it-brand-tagline {
 	font-size: 1rem !important;
-    
+
 }
 
 .display_block {
@@ -196,21 +196,21 @@ html {
 }
 
 .it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after {
-	 background: rgba(0, 64, 89, 0.2);
+	background: rgba(0, 64, 89, 0.2);
 }
 
 .it-hero-wrapper.it-overlay.it-primary .img-responsive-wrapper:after {
-	 background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.2);
 }
 
 .container-banner-home .it-hero-wrapper .it-hero-text-wrapper {
-	 background: rgba(0, 64, 89, 0.4) !important;
+	background: rgba(0, 64, 89, 0.4) !important;
 }
 
 /* Breadcrumb sovrapposto all'hero, pattern "scheda di dettaglio con foto"
-   (v. sf-scheda-progetto.html del prototipo statico): va nel markup DOPO
-   .img-responsive-wrapper, posizionato qui in overlay assoluto sopra la
-   foto invece che come sezione separata sopra l'hero. */
+	(v. sf-scheda-progetto.html del prototipo statico): va nel markup DOPO
+	.img-responsive-wrapper, posizionato qui in overlay assoluto sopra la
+	foto invece che come sezione separata sopra l'hero. */
 .it-hero-wrapper .it-hero-breadcrumb {
 	position: absolute;
 	top: 0;
@@ -225,10 +225,10 @@ html {
 	--bsi-breadcrumb-divider-color: var(--bsi-color-text-inverse);
 	--bsi-breadcrumb-separator-color: var(--bsi-color-text-inverse);
 	/* --bsi-breadcrumb-item-active-color non ha un default proprio nel CSS
-	   compilato (esiste solo dentro il modificatore ufficiale .breadcrumb.dark,
-	   qui non usato perché imposta anche uno sfondo pieno sul breadcrumb):
-	   senza questo override .breadcrumb-item.active eredita il colore testo
-	   di base (quasi nero), illeggibile sull'hero scuro. */
+		compilato (esiste solo dentro il modificatore ufficiale .breadcrumb.dark,
+		qui non usato perché imposta anche uno sfondo pieno sul breadcrumb):
+		senza questo override .breadcrumb-item.active eredita il colore testo
+		di base (quasi nero), illeggibile sull'hero scuro. */
 	--bsi-breadcrumb-item-active-color: var(--bsi-color-text-inverse);
 }
 
@@ -238,17 +238,17 @@ html {
 }
 
 /* Icona disallineata nel form di ricerca dell'hero (page-templates/cerca.php):
-   BI3 applica margin-bottom:var(--bsi-spacing-m) (24px) a QUALSIASI span
-   dentro .it-hero-text-wrapper (pensato per span di testo tipo it-category),
-   ma la regola matcha anche lo <span class="input-group-text"> dell'icona di
-   ricerca. Con align-items:stretch (default) quel margin-bottom entra nel
-   margin-box centrato dal flex layout, portando l'altezza della riga
-   dell'input-group a 42+24=66px e stretchando input/bottone fino a quella
-   misura, con l'icona (che non si stretcha, resta 42px) spinta in alto —
-   stesso identico bug già risolto nel prototipo statico bs-playground
-   (sf-site-search.html, vedi il suo css/main.css). Azzerato qui il
-   margin-bottom sull'icona; align-items:center allinea poi icona, campo e
-   bottone sulle rispettive altezze naturali. */
+	BI3 applica margin-bottom:var(--bsi-spacing-m) (24px) a QUALSIASI span
+	dentro .it-hero-text-wrapper (pensato per span di testo tipo it-category),
+	ma la regola matcha anche lo <span class="input-group-text"> dell'icona di
+	ricerca. Con align-items:stretch (default) quel margin-bottom entra nel
+	margin-box centrato dal flex layout, portando l'altezza della riga
+	dell'input-group a 42+24=66px e stretchando input/bottone fino a quella
+	misura, con l'icona (che non si stretcha, resta 42px) spinta in alto —
+	stesso identico bug già risolto nel prototipo statico bs-playground
+	(sf-site-search.html, vedi il suo css/main.css). Azzerato qui il
+	margin-bottom sull'icona; align-items:center allinea poi icona, campo e
+	bottone sulle rispettive altezze naturali. */
 .it-hero-wrapper .input-group-text {
 	margin-bottom: 0 !important;
 }
@@ -258,18 +258,18 @@ html {
 }
 
 /* BI3 azzera di default il bordo tra l'icona e il campo (.input-group-text ha
-   border-right:0, l'input successivo border-left:0) per un effetto "campo
-   unico": nel form di ricerca dell'hero il risultato è che l'icona sembra
-   priva di un proprio bordo, senza alcuna separazione visiva dal campo.
-   Ripristinato un bordo sottile tra i due. */
+	border-right:0, l'input successivo border-left:0) per un effetto "campo
+	unico": nel form di ricerca dell'hero il risultato è che l'icona sembra
+	priva di un proprio bordo, senza alcuna separazione visiva dal campo.
+	Ripristinato un bordo sottile tra i due. */
 #ricercasitoform .input-group-text {
 	border-right-width: 1px;
 }
 
 /* Font su testi descrittivi hero e carousel home: allineato al font-sans di
-   Bootstrap Italia 3 (Titillium Web), non più l'hardcoded "Roboto" del
-   vecchio $font-family-sans-serif v2 (assets/css/custom-colors.css non
-   sovrascrive --bsi-font-sans: resta il default v3). */
+	Bootstrap Italia 3 (Titillium Web), non più l'hardcoded "Roboto" del
+	vecchio $font-family-sans-serif v2 (assets/css/custom-colors.css non
+	sovrascrive --bsi-font-sans: resta il default v3). */
 .it-hero-wrapper .it-hero-text-wrapper p,
 .it-carousel-wrapper .card-text,
 .it-carousel-wrapper .card-signature {
@@ -277,16 +277,16 @@ html {
 }
 
 /* RIMOSSO l'override di .font-serif ("evita Roboto come prima scelta su
-   contenuti font-serif"): era un patch dell'epoca v2 (Roboto forzato in
-   testa al font-sans). Bootstrap Italia 3 già dichiara
-   .font-serif{font-family:var(--bsi-font-serif) !important} correttamente
-   (Lora, non sovrascritto): l'override qui sotto lo forzava a Titillium
-   Web con pari specificità/!important, rompendo lo stile serif previsto —
-   rimosso, non sovrascrivere più. */
+	contenuti font-serif"): era un patch dell'epoca v2 (Roboto forzato in
+	testa al font-sans). Bootstrap Italia 3 già dichiara
+	.font-serif{font-family:var(--bsi-font-serif) !important} correttamente
+	(Lora, non sovrascritto): l'override qui sotto lo forzava a Titillium
+	Web con pari specificità/!important, rompendo lo stile serif previsto —
+	rimosso, non sovrascrivere più. */
 
 /* Descrizioni card: allineato al font-sans di Bootstrap Italia 3 (già il
-   default su .card-text via body{font-family:var(--bsi-font-sans)}), non
-   più l'hardcoded "Roboto" del vecchio custom.scss v2. */
+	default su .card-text via body{font-family:var(--bsi-font-sans)}), non
+	più l'hardcoded "Roboto" del vecchio custom.scss v2. */
 .card .card-body .card-text,
 .card .card-body .card-text a {
 	font-family: var(--bsi-font-sans);
@@ -322,8 +322,8 @@ html {
 	height: 8px;
 	border-radius: 50%;
 	/* Era --bs-primary (namespace Bootstrap 5 standard, non --bsi-* di
-	   Bootstrap Italia): la variabile non esiste in questo progetto, quindi
-	   cadeva sempre sul fallback hardcoded #0066cc invece del brand. */
+		Bootstrap Italia): la variabile non esiste in questo progetto, quindi
+		cadeva sempre sul fallback hardcoded #0066cc invece del brand. */
 	background-color: var(--bsi-color-background-primary);
 	margin-left: 6px;
 	vertical-align: middle;

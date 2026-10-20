@@ -1294,7 +1294,7 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 			return $place_types_with_results;
 		}
 
-		$tipi_luogo = get_terms(
+		$tipi_luogo               = get_terms(
 			array(
 				'taxonomy'   => PLACE_TYPE_TAXONOMY,
 				'hide_empty' => true,

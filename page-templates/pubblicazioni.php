@@ -145,6 +145,9 @@ if ( ! empty( $dli_tipi_pubblicazione_params ) ) {
 $dli_pubblicazioni_query = new WP_Query( $dli_query_args );
 $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 
+// No results and no active filter: the site has no publications at all, so the filters are not shown.
+$dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tipi_pubblicazione_params );
+
 ?>
 
 <main id="main-container" role="main">
@@ -156,6 +159,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 	<section id="pubblicazioni">
 		<div class="container py-5 px-3 px-md-5">
 			<div class="row">
+				<?php if ( ! $dli_no_items ) : ?>
 				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
 					<form action="<?php echo esc_url( get_permalink() ); ?>" id="pubblicazioniform" method="GET">
 						<div class="sticky-top pt-3" style="top: 1rem;">
@@ -199,6 +203,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 						</div>
 					</form>
 				</div>
+				<?php endif; ?>
 				<!-- PUBBLICAZIONI -->
 				<?php
 				if ( $dli_num_results ) {
@@ -279,7 +284,7 @@ $dli_num_results         = $dli_pubblicazioni_query->found_posts;
 					wp_reset_postdata();
 				} else {
 					?>
-					<div class="col-12 col-lg-8 offset-lg-1">
+					<div class="<?php echo $dli_no_items ? 'col-12' : 'col-12 col-lg-8 offset-lg-1'; ?>">
 						<div class="row p-2">
 							<?php esc_html_e( 'Non e stata trovata nessuna pubblicazione', 'design_laboratori_italia' ); ?>
 						</div>

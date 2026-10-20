@@ -21,14 +21,21 @@ $dli_selected_cognome   = is_string( $dli_selected_cognome_raw ) ? sanitize_text
 $dli_vista              = is_string( $dli_vista_raw ) ? sanitize_text_field( wp_unslash( $dli_vista_raw ) ) : '';
 
 /*
- * La vista (Schede/Tabella) è normalmente scelta in configurazione
- * (people_view_type), ma l'utente può cambiarla al volo dal bottone Schede/
- * Tabella in pagina (?vista=chip|tabella): l'URL, quando presente e valido,
- * vince sul default di configurazione.
+ * La vista è scelta in configurazione (people_view_type): 'chip', 'tabella' o
+ * 'entrambe' (default, anche se l'opzione non è mai stata salvata).
+ * Con 'chip' o 'tabella' la vista è fissa: il parametro ?vista= è ignorato e il
+ * bottone Schede/Tabella non compare. Con 'entrambe' parte la vista a schede e
+ * l'utente può cambiarla dal bottone (?vista=chip|tabella).
  */
-$dli_view_type_default = dli_get_option( 'people_view_type', 'persone' );
-$dli_view_type_default = ( 'tabella' === $dli_view_type_default ) ? 'tabella' : 'chip';
-$dli_view_type         = in_array( $dli_vista, array( 'chip', 'tabella' ), true ) ? $dli_vista : $dli_view_type_default;
+$dli_view_mode = dli_get_option( 'people_view_type', 'persone' );
+$dli_view_mode = in_array( $dli_view_mode, array( 'chip', 'tabella' ), true ) ? $dli_view_mode : 'entrambe';
+$dli_has_both  = ( 'entrambe' === $dli_view_mode );
+
+if ( $dli_has_both ) {
+	$dli_view_type = ( 'tabella' === $dli_vista ) ? 'tabella' : 'chip';
+} else {
+	$dli_view_type = $dli_view_mode;
+}
 
 if ( 'tabella' === $dli_view_type ) {
 	// Per la vista tabella tutti i record sono scaricati una volta sola;
@@ -59,6 +66,19 @@ $dli_filter_type_hidden      = ( 'true' === dli_get_option( 'hide_filter_type', 
 // The structure is shown unless the option is explicitly set to 'false' (also when never saved).
 $dli_show_structure = ( 'false' !== dli_get_option( 'show_person_structure', 'persone' ) );
 
+// No results and no active filter: the site has no people at all, so the filters are not shown.
+$dli_show_filters = $dli_page_data['result_count']
+	|| '' !== $dli_selected_structure
+	|| '' !== $dli_selected_level
+	|| '' !== $dli_selected_type
+	|| '' !== $dli_selected_cognome;
+
+// In the cards view the type filter is applied by the view itself: a type without people leaves nothing to show.
+$dli_has_results = (bool) $dli_page_data['result_count'];
+if ( $dli_has_results && 'tabella' !== $dli_view_type && '' !== $dli_selected_type ) {
+	$dli_has_results = ! empty( $dli_page_data['people_by_category'][ (int) $dli_selected_type ] );
+}
+
 // URL dei bottoni Schede/Tabella: preservano i filtri attualmente attivi, cambiano solo "vista".
 $dli_view_query_args = array_filter(
 	array(
@@ -73,6 +93,11 @@ $dli_view_toggle     = array(
 	'chip_url'    => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'chip' ) ), get_permalink() ),
 	'tabella_url' => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'tabella' ) ), get_permalink() ),
 );
+
+// With a single configured view there is nothing to switch to: the toggle is not rendered.
+if ( ! $dli_has_both ) {
+	$dli_view_toggle = array();
+}
 ?>
 
 <main id="main-container" role="main">
@@ -83,7 +108,7 @@ $dli_view_toggle     = array(
 		<div class="container my-4">
 			<section class="section bg-gray-light py-5">
 				<div class="container">
-					<?php if ( 'tabella' !== $dli_view_type ) : ?>
+					<?php if ( 'tabella' !== $dli_view_type && $dli_show_filters ) : ?>
 						<?php
 						get_template_part(
 							'template-parts/persone/filters',
@@ -108,7 +133,7 @@ $dli_view_toggle     = array(
 						?>
 					<?php endif; ?>
 
-					<?php if ( $dli_page_data['result_count'] ) : ?>
+					<?php if ( $dli_has_results ) : ?>
 						<?php if ( 'tabella' === $dli_view_type ) : ?>
 							<?php
 							get_template_part(

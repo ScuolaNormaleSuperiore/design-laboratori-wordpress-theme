@@ -92,7 +92,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		$dli_tb_r_tag_slugs = wp_list_pluck( $dli_tb_r_tag_terms, 'slug' );
 	}
 
-	$dli_tb_r_email      = '';
+	$dli_tb_r_email = '';
 	if ( ! $dli_tb_hide_email ) {
 		$dli_tb_r_email = antispambot( sanitize_email( (string) dli_get_field( 'email', $dli_tb_pid ) ) );
 	}

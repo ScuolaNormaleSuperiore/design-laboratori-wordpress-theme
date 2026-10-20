@@ -78,13 +78,13 @@ class Publication_Manager {
 		);
 
 		$args = array(
-			'label'           => __( 'Pubblicazione', 'design_laboratori_italia' ),
-			'labels'          => $labels,
-			'supports'        => array( 'title', 'editor', 'thumbnail' ),
-			'hierarchical'    => false,
-			'capability_type' => 'post',
-			'map_meta_cap'    => true,
-			'rewrite'         => false,
+			'label'               => __( 'Pubblicazione', 'design_laboratori_italia' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'hierarchical'        => false,
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'rewrite'             => false,
 			'query_var'           => false,
 			'show_ui'             => true,
 			'public'              => true,

@@ -5,12 +5,12 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_items      = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $args['items'] : array();
-$dli_section_id = isset( $args['section_id'] ) ? sanitize_key( $args['section_id'] ) : '';
-$dli_phone      = isset( $dli_items['phone'] ) ? sanitize_text_field( (string) $dli_items['phone'] ) : '';
-$dli_email      = isset( $dli_items['email'] ) ? sanitize_email( $dli_items['email'] ) : '';
+$dli_items            = ( isset( $args['items'] ) && is_array( $args['items'] ) ) ? $args['items'] : array();
+$dli_section_id       = isset( $args['section_id'] ) ? sanitize_key( $args['section_id'] ) : '';
+$dli_phone            = isset( $dli_items['phone'] ) ? sanitize_text_field( (string) $dli_items['phone'] ) : '';
+$dli_email            = isset( $dli_items['email'] ) ? sanitize_email( $dli_items['email'] ) : '';
 $dli_email_obfuscated = antispambot( $dli_email );
-$dli_website    = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['website'] ) : '';
+$dli_website          = isset( $dli_items['website'] ) ? esc_url_raw( $dli_items['website'] ) : '';
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 	<?php

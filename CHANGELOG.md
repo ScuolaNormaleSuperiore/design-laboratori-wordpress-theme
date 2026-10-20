@@ -37,6 +37,9 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.0.1] - 2026-10-16
 ## Corretto
 - Bug-fixing
+- Elenchi senza contenuti: messaggio di elenco vuoto e filtri nascosti.
+## Modificato
+- Persone: il tipo di visualizzazione può essere Chip, Tabella o Entrambe (default).
 
 
 

@@ -54,8 +54,8 @@ $dli_label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_
 	<section id="progetti">
 		<div class="container p-5">
 
-			<!-- Filtro per TAG -->
-			<?php if ( count( $dli_tags ) > 0 ) : ?>
+			<!-- Filtro per TAG: nascosto se non ci sono progetti attivi e nessun filtro attivo -->
+			<?php if ( count( $dli_tags ) > 0 && ( $dli_num_results || '' !== $dli_selected_level ) ) : ?>
 				<div class="row mb-5 gy-3 align-items-end">
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="select-wrapper<?php echo ( '' !== $dli_selected_level ) ? ' dli-filter-active' : ''; ?>">

@@ -62,6 +62,9 @@ $dli_params = array(
 $dli_the_query      = DLI_ContentsManager::get_news_data_query( $dli_params );
 $dli_num_results    = $dli_the_query->found_posts;
 $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE );
+
+// No results and no active filter: the site has no news at all, so the filters are not shown.
+$dli_no_items = ! $dli_num_results && empty( $dli_selected_categories );
 ?>
 
 <main id="main-container" class="main-container bluelectric" role="main">
@@ -74,6 +77,7 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 		<div class="container my-4">
 			<div class="row pt-0">
 
+				<?php if ( ! $dli_no_items ) : ?>
 				<!--COLONNA FILTRI -->
 				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
 					<div class="sticky-top pt-4" style="top: 1rem;">
@@ -95,6 +99,7 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 					</div>
 				</div>
 				<!--COLONNA FILTRI -->
+				<?php endif; ?>
 
 				<?php if ( $dli_num_results ) : ?>
 					<!-- Inizio ELENCO NEWS -->
@@ -139,7 +144,7 @@ $dli_all_categories = dli_get_all_categories_by_ct( 'category', NEWS_POST_TYPE )
 					</div>
 					<!-- Fine elenco news-->
 				<?php else : ?>
-					<div class="col-12 col-lg-8 offset-lg-1">
+					<div class="<?php echo $dli_no_items ? 'col-12' : 'col-12 col-lg-8 offset-lg-1'; ?>">
 						<div class="row pt-2">
 							<?php echo esc_html__( 'Non è stata trovata nessuna notizia', 'design_laboratori_italia' ); ?>
 						</div>
