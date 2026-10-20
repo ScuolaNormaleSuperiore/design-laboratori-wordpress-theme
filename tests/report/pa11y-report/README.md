@@ -58,7 +58,7 @@ Opzioni:
 | `--timeout <ms>` | Timeout per pagina (default `60000`) |
 | `--concurrency <n>` | Pagine controllate in parallelo (default `2`) |
 | `--insecure` | Accetta certificati HTTPS non validi (solo sviluppo locale) |
-| `--out <percorso>` | Percorso dei file di report, senza estensione |
+| `--out <percorso>` | Percorso dei report senza estensione: scrive `<percorso>.json` e la cartella HTML `<percorso>/` |
 
 Esempio: `npm run pa11y:scan:gate -- https://laboratorio1.local --threshold 5`
 
@@ -67,9 +67,11 @@ Esempio: `npm run pa11y:scan:gate -- https://laboratorio1.local --threshold 5`
 
 I report sono scritti in `tests/report/pa11y-report/reports/` (cartella non tracciata da Git):
 
-- `pa11y_report_AAAAMMGG_HHMM.html`: sommario consultabile nel browser;
-- `pa11y_report_AAAAMMGG_HHMM.json`: dati completi, pagina per pagina, con tipo
-  (`error`, `warning`, `notice`), codice della regola, messaggio, selettore e contesto.
+- `pa11y_report_AAAAMMGG_HHMM/index.html`: **apri questo file nel browser**. È il riepilogo, con una riga per pagina e viewport (errori, avvisi, note). Cliccando sull'URL si apre la **pagina di dettaglio** di quella pagina, nella stessa cartella.
+- `pa11y_report_AAAAMMGG_HHMM/<pagina>-<viewport>.html`: una pagina di dettaglio per ogni URL controllato. Per ogni problema mostra il livello (errore, avviso, nota), il titolo, la regola (`axe: color-contrast`, `htmlcs: WCAG2AA…`), l'elemento HTML coinvolto e il suo **selettore CSS**, con i collegamenti alla spiegazione della regola. In alto, "Toggle by type" permette di mostrare solo gli **errori**; conviene farlo, perché le note sono molte.
+- `pa11y_report_AAAAMMGG_HHMM.json`: gli stessi dati in formato JSON, pagina per pagina, per elaborarli con altri strumenti.
+
+La cartella HTML va tenuta intera: l'indice rimanda alle pagine di dettaglio con collegamenti relativi.
 
 Nella scansione normale avvisi e note sono inclusi, quindi una pagina risulta "non
 superata" anche con soli avvisi. Il gate guarda solo gli errori.

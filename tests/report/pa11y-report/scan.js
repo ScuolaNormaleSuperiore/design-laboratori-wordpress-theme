@@ -22,8 +22,9 @@
  *   --timeout <ms>      Page timeout in ms (default: 60000)
  *   --concurrency <n>   Pages checked in parallel (default: 2)
  *   --insecure          Accept invalid HTTPS certificates (local development only)
- *   --out <path>        Output path without extension
- *                       (default: ./reports/pa11y_report_<YYYYMMDD_HHMM>)
+ *   --out <path>        Output path without extension. Writes <path>.json and the HTML
+ *                       report folder <path>/ (open <path>/index.html); default:
+ *                       ./tests/report/pa11y-report/reports/pa11y_report_<YYYYMMDD_HHMM>
  *
  * Extra URLs: add them (paths or absolute URLs) to pa11yci.urls.local.json, a
  * JSON array ignored by Git.
@@ -248,14 +249,6 @@ function buildConfig(opts, pages, htmlDir, jsonFile) {
   };
 }
 
-function findFirstHtml(dir) {
-  if (!fs.existsSync(dir)) return null;
-  const files = fs.readdirSync(dir).filter((name) => name.endsWith('.html'));
-  if (files.length === 0) return null;
-  const index = files.find((name) => name.toLowerCase().startsWith('index')) || files[0];
-  return path.join(dir, index);
-}
-
 function runPa11yCi(configFile, opts) {
   return new Promise((resolve) => {
     const bin = require.resolve('pa11y-ci/bin/pa11y-ci.js');
@@ -284,7 +277,7 @@ async function main() {
   const ts = timestamp();
   const outBase = opts.out ? path.resolve(opts.out) : path.join(REPORTS_DIR, `pa11y_report_${ts}`);
   const jsonFile = `${outBase}.json`;
-  const htmlFinal = `${outBase}.html`;
+  const htmlFolder = outBase;
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dli-pa11y-'));
   const htmlDir = path.join(workDir, 'html');
 
@@ -309,10 +302,11 @@ async function main() {
   const code = await runPa11yCi(configFile, opts);
 
   if (!opts.gate) {
-    const html = findFirstHtml(htmlDir);
-    if (html) {
-      fs.copyFileSync(html, htmlFinal);
-      console.log(`HTML report: ${path.relative(process.cwd(), htmlFinal)}`);
+    // The HTML reporter writes index.html plus one detail page per URL (with the issues):
+    // the whole folder is kept so the links of the index keep working.
+    if (fs.existsSync(path.join(htmlDir, 'index.html'))) {
+      fs.cpSync(htmlDir, htmlFolder, { recursive: true });
+      console.log(`HTML report: ${path.relative(process.cwd(), path.join(htmlFolder, 'index.html'))}`);
     }
     if (fs.existsSync(jsonFile)) {
       console.log(`JSON report: ${path.relative(process.cwd(), jsonFile)}`);
