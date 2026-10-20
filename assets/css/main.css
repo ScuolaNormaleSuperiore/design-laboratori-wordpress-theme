@@ -105,6 +105,16 @@ html {
 	text-decoration: none !important;
 }
 
+/* Card titles: links are underlined on hover and keyboard focus only. */
+.it-card .it-card-title a {
+	text-decoration: none;
+}
+
+.it-card .it-card-title a:hover,
+.it-card .it-card-title a:focus-visible {
+	text-decoration: underline;
+}
+
 .box_change_map_lang {
 	width: 100%;
 	text-align: center;
