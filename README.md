@@ -205,13 +205,16 @@ Eseguire i controlli dalla radice del tema:
 
 - `composer run lint:php` (oppure `npm run lint:php`) — verifica il codice PHP rispetto agli standard di codifica WordPress configurati; `npm run lint:php:fix` corregge automaticamente le violazioni risolvibili.
 - `composer run lint:phpstan` — esegue l'analisi statica con PHPStan.
-- `npm run status:scan -- https://mio-sito.example.com` — scandisce la sitemap e segnala errori HTTP, PHP e JavaScript, problemi di caricamento delle risorse e di prestazioni delle pagine.
+- `npm run status:scan -- https://mio-sito.example.com` — scandisce la mappa del sito e segnala errori HTTP, PHP e JavaScript, problemi di caricamento delle risorse e di prestazioni delle pagine.
+- `npm run status:scan:gate -- https://mio-sito.example.com` — esegue la stessa scansione e termina con codice 1 se almeno una pagina ha errori (un overflow a 320 px è solo un avviso).
 - `npm run html:scan -- https://mio-sito.example.com` — valida l'HTML delle pagine renderizzate con Nu Html Checker.
 - `npm run html:scan:gate -- https://mio-sito.example.com` — esegue la stessa validazione HTML e termina con un codice di errore se il risultato è negativo, quindi è adatto come quality gate.
-- `npm run ux:scan -- https://mio-sito.example.com` — verifica l'accessibilità (Axe/WCAG) e l'overflow responsive delle pagine.
-- `npm run quality:scan` — verifica la qualità statica del codice (sintassi PHP, PHPCS, PHPStan, audit delle dipendenze).
+- `npm run pa11y:scan -- https://mio-sito.example.com` — verifica l'accessibilità (WCAG 2 AA, motori axe e HTML CodeSniffer) di ogni pagina della sitemap, a 1280 px e a 320 px.
+- `npm run pa11y:scan:gate -- https://mio-sito.example.com` — conta solo gli errori WCAG e termina con codice 2 se ce ne sono oltre la soglia (`--threshold N`), quindi è adatto come quality gate.
+- `npm run status:compare` e `npm run html:compare` — confrontano le due scansioni più recenti (`pa11y` non ha un comando di confronto).
+- `composer audit` e `npm audit --omit=dev` — segnalano le vulnerabilità note delle dipendenze.
 
-Gli scanner `status`, `html`, `ux` e `quality` producono report (HTML e JSON) senza asserzioni pass/fail e si trovano in `tests/report/`. Per quelli che aprono le pagine nel browser, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/report/*/`.
+Gli scanner `status`, `html` e `pa11y` producono report (HTML e JSON) senza asserzioni pass/fail e si trovano in `tests/report/`. Per quelli che aprono le pagine nel browser, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/report/*/`.
 
 ## Verifica file publiccode.yml
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.

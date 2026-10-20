@@ -22,15 +22,11 @@
     "status:scan:gate": "node tests/report/status-report/scan.js --gate",
     "status:scan:install-browser": "npx playwright install chromium",
     "status:compare": "node tests/report/status-report/compare.js",
-    "quality:scan": "node tests/report/quality-report/scan.js",
-    "quality:scan:gate": "node tests/report/quality-report/scan.js --gate",
-    "quality:compare": "node tests/report/quality-report/compare.js",
-    "ux:scan": "node tests/report/ux-report/scan.js",
-    "ux:scan:gate": "node tests/report/ux-report/scan.js --gate",
-    "ux:compare": "node tests/report/ux-report/compare.js",
     "html:scan": "node tests/report/html-report/scan.js",
     "html:scan:gate": "node tests/report/html-report/scan.js --gate",
-    "html:compare": "node tests/report/html-report/compare.js"
+    "html:compare": "node tests/report/html-report/compare.js",
+    "pa11y:scan": "node tests/report/pa11y-report/scan.js",
+    "pa11y:scan:gate": "node tests/report/pa11y-report/scan.js --gate"
   },
   "repository": {
     "type": "git",
@@ -46,8 +42,9 @@
     "bootstrap-italia": "3.0.0-beta.7"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.1",
     "clean-css-cli": "^5.4.2",
+    "pa11y-ci": "^5.0.0",
+    "pa11y-ci-reporter-html": "^9.0.0",
     "playwright": "^1.50.0",
     "replace-in-file": "^6.3.5",
     "sass": "^1.81.0",

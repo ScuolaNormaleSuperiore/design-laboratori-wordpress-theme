@@ -94,7 +94,7 @@ introduce barriers.
 - Check semantic structure, accessible names, alternative text, heading order,
   language attributes, and ARIA validity.
 - Check contrast, text resizing/zoom, reflow, and responsive layouts.
-- Run `npm run ux:scan -- <baseUrl>` when a local or test URL is available.
+- Run `npm run pa11y:scan -- <baseUrl>` when a local or test URL is available.
   Automated checks support review but do not replace manual testing.
 - For a change that may affect the published accessibility statement or feedback
   mechanism, notify the project owner so the deployed site's assessment and
@@ -258,10 +258,10 @@ Pick the checks that match the change, run them, and report which ones could not
 | Any PHP file | `php -l <file>` | Syntax only |
 | Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset |
 | PHP static analysis | `composer run lint:phpstan` | Configuration and WordPress stubs: `phpstan.neon`, `tests/phpstan/` |
-| Static code quality | `npm run quality:scan` | PHP syntax, PHPCS, PHPStan, Composer and NPM audit; takes no URL |
+| Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
 | Changed rendered HTML | `npm run html:scan -- <baseUrl>` (`html:scan:gate` fails on errors) | Needs a reachable site, Java 8+, `vnu-jar` and Playwright |
-| Changed templates, styles, scripts, forms | `npm run ux:scan -- <baseUrl>` | Axe/WCAG and responsive overflow; complements manual keyboard checks |
+| Changed templates, styles, scripts, forms | `npm run pa11y:scan -- <baseUrl>` (`pa11y:scan:gate` fails on WCAG errors) | WCAG 2 AA at 1280 px and 320 px; needs a reachable site and Playwright's Chromium; complements manual keyboard checks |
 | SCSS changed | `npm run create_layout`, then `update_layout_win` or `update_layout_linux` | Regenerates the minified CSS |
 
 Scanners write into git-ignored `reports/` folders. No automated test suite exists for PHP logic.

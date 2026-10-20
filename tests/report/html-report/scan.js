@@ -13,7 +13,7 @@
  *   --sitemap <path>   Path to sitemap page (default: /mappa-sito/)
  *   --timeout <ms>     Page timeout in ms (default: 30000)
  *   --delay <ms>       Wait between pages in ms (default: 500; 0 = no delay)
- *   --out <path>       Output path without extension (default: ./reports/html_report_<ts>)
+ *   --out <path>       Output path without extension (default: ./tests/report/html-report/reports/html_report_<ts>)
  *   --gate             Exit with code 1 if verdict is FAIL
  *
  * Prerequisites:
@@ -99,7 +99,7 @@ function parseArgs(argv) {
 }
 
 // ---------------------------------------------------------------------------
-// URL extraction from sitemap page (same logic as status-report and ux-report)
+// URL extraction from sitemap page (same logic as status-report)
 // ---------------------------------------------------------------------------
 
 async function extractUrls(page, baseUrl, sitemapPath, timeout) {

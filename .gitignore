@@ -31,6 +31,16 @@ Thumbs.db
 
 # Report scanners: generated reports are local only (folders included)
 tests/report/*/reports/
+# Extra URLs for the pa11y scanner (local only)
+tests/report/pa11y-report/pa11yci.urls.local.json
+# Scanner reports written elsewhere with --out (local only)
+/output/
+**/status_report_*
+**/html_report_*
+**/pa11y_report_*
+**/issues_report_*
+**/compare_*_vs_*
+**/html_compare_*
 
 # BUILD CSS
 assets/css/compiled

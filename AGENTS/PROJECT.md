@@ -71,16 +71,15 @@ https://sitofederato.sns.it
 
 ## Automated Quality Checks (tests/report/)
 
-Four automated scanning modules are available under `tests/report/` (`status-report`, `quality-report`, `ux-report`, `html-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports and supports a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).
+Three automated scanning modules are available under `tests/report/` (`status-report`, `html-report`, `pa11y-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports; `status` and `html` also support a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).
 
 | Module | What it checks |
 |---|---|
-| `status-report` | HTTP errors, PHP errors, JS errors, broken resources, timeouts |
-| `quality-report` | PHP syntax, PHPCS, PHPStan, Composer audit, NPM audit |
-| `ux-report` | Axe/WCAG accessibility violations, responsive overflow |
+| `status-report` | HTTP errors, PHP errors, JS errors, broken resources, timeouts, horizontal overflow at 320 px |
 | `html-report` | HTML validity via Nu Html Checker (VNU) |
+| `pa11y-report` | WCAG 2 AA violations (axe and HTML CodeSniffer) at 1280 px and 320 px |
 
-The `status`, `ux`, and `html` scans take a `<baseUrl>`; the `quality` scan does not.
+All scans take a `<baseUrl>`. Static code quality is checked with `composer run lint:php`, `composer run lint:phpstan`, `composer audit` and `npm audit --omit=dev`.
 
 
 ## License

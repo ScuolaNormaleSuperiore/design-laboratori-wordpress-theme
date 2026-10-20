@@ -18,7 +18,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports, Docker setup, and setup utilities.
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
-- `tests/report/`: automated quality scanning modules (status, quality, ux, html).
+- `tests/report/`: automated scanning modules that produce reports (status, html, pa11y, issues).
 
 
 ## Main Files
@@ -153,13 +153,13 @@ describes the same checks for contributors.
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.
-- Accessibility and responsive scan: `npm run ux:scan -- <baseUrl>`.
+- Accessibility scan (WCAG 2 AA, desktop and 320 px): `npm run pa11y:scan -- <baseUrl>`.
 - HTML validity: `npm run html:scan -- <baseUrl>`; requires Java 8+ on `PATH`.
-- Static code quality (PHP syntax, PHPCS, PHPStan, Composer and NPM audit):
-  `npm run quality:scan` (no URL).
-- Each scan has a `*:gate` variant (exit code 1 on failure) and a `*:compare`
-  variant (compares the two most recent reports). Options and report formats are
-  documented in `tests/report/*/README.md`.
+- Dependency vulnerabilities: `composer audit` and `npm audit --omit=dev`.
+- `status` and `html` have a `*:gate` variant (exit code 1 on failure) and a
+  `*:compare` variant (compares the two most recent reports); `pa11y:scan:gate`
+  exits with code 2 when WCAG errors exceed the threshold. Options and report
+  formats are documented in `tests/report/*/README.md`.
 
 
 ## References

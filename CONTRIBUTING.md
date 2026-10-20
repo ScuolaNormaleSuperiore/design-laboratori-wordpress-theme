@@ -58,10 +58,10 @@ Run the checks relevant to your change from the theme root:
 - `composer run lint:php` for PHP coding standards;
 - `npm run status:scan -- https://your-site.example` for runtime status checks;
 - `npm run html:scan:gate -- https://your-site.example` for rendered HTML validation;
-- `npm run ux:scan -- https://your-site.example` for accessibility (Axe/WCAG) and
-  responsive checks.
+- `npm run pa11y:scan -- https://your-site.example` for accessibility (WCAG 2 AA at
+  1280 px and 320 px); `npm run pa11y:scan:gate` fails on any WCAG error.
 
-See the [README.md](README.md#test-e-controlli-di-qualità) and
+See the [README.md](README.md#sviluppo-e-verifiche) and
 `tests/report/*/README.md` for prerequisites and detailed usage.
 
 ## Pull requests

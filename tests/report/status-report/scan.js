@@ -178,6 +178,60 @@ function extractPhpErrors(html) {
 // Single page scan
 // ---------------------------------------------------------------------------
 
+const OVERFLOW_VIEWPORT = { width: 320, height: 800 };
+
+/**
+ * Resizes the page to 320 px and reports whether it scrolls horizontally.
+ * Hidden elements, screen-reader-only text and elements clipped by a scroll
+ * container are ignored when listing the culprits. Never throws: a failed
+ * check simply reports nothing.
+ */
+async function checkOverflow(page) {
+  try {
+    await page.setViewportSize(OVERFLOW_VIEWPORT);
+    await page.waitForTimeout(300);
+    return await page.evaluate(() => {
+      const doc = document.documentElement;
+      const vw = doc.clientWidth;
+      if (doc.scrollWidth <= vw + 1) return null;
+      const srOnly = /(^|\s)(visually-hidden|sr-only|visually-hidden-focusable)(\s|$)/;
+      const label = (el) => {
+        const id = el.id ? `#${el.id}` : '';
+        const cls = typeof el.className === 'string' && el.className.trim()
+          ? `.${el.className.trim().split(/\s+/).slice(0, 2).join('.')}`
+          : '';
+        return `${el.tagName.toLowerCase()}${id}${cls}`;
+      };
+      const clippedByAncestor = (el) => {
+        let parent = el.parentElement;
+        while (parent && parent !== document.body) {
+          const style = getComputedStyle(parent);
+          if (['hidden', 'auto', 'scroll', 'clip'].includes(style.overflowX)
+            && parent.getBoundingClientRect().right <= vw + 1) {
+            return true;
+          }
+          parent = parent.parentElement;
+        }
+        return false;
+      };
+      const culprits = [];
+      for (const el of document.body.querySelectorAll('*')) {
+        if (culprits.length >= 5) break;
+        const rect = el.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0 || rect.right <= vw + 1) continue;
+        const style = getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden') continue;
+        if (srOnly.test(typeof el.className === 'string' ? el.className : '')) continue;
+        if (el.closest('.visually-hidden, .sr-only') || clippedByAncestor(el)) continue;
+        culprits.push(label(el));
+      }
+      return { scrollWidth: doc.scrollWidth, clientWidth: vw, culprits };
+    });
+  } catch {
+    return null;
+  }
+}
+
 async function scanPage(browser, url, timeout) {
   const result = {
     url,
@@ -185,6 +239,7 @@ async function scanPage(browser, url, timeout) {
     ttfbMs: null,       // Time To First Byte — server-only, not affected by concurrency
     responseTimeMs: null, // Total load time — includes all resources, affected by concurrency
     errors: [],
+    warnings: [], // non-blocking findings (e.g. horizontal overflow at 320 px)
     timedOut: false,
   };
 
@@ -263,6 +318,16 @@ async function scanPage(browser, url, timeout) {
     const phpErrors = extractPhpErrors(html);
     phpErrors.forEach((msg) => result.errors.push({ type: 'PHP', message: msg }));
 
+    // Reflow at 320 px (WCAG 1.4.10): the page must not scroll horizontally
+    const overflow = await checkOverflow(page);
+    if (overflow) {
+      result.warnings.push({
+        type: 'OVERFLOW',
+        message: `Horizontal scroll at 320 px (scrollWidth ${overflow.scrollWidth} > ${overflow.clientWidth})` +
+          (overflow.culprits.length ? `; elements: ${overflow.culprits.join(', ')}` : ''),
+      });
+    }
+
   } catch (err) {
     if (err.name === 'TimeoutError' || err.message.includes('Timeout')) {
       result.timedOut = true;
@@ -321,12 +386,16 @@ async function runWithConcurrency(tasks, concurrency, delay) {
 }
 
 function printProgress(result) {
-  const icon = result.errors.length === 0 ? '✓' : '✗';
+  const hasWarnings = (result.warnings || []).length > 0;
+  const icon = result.errors.length > 0 ? '✗' : (hasWarnings ? '!' : '✓');
   const errCount = result.errors.length > 0 ? ` (${result.errors.length} error${result.errors.length > 1 ? 's' : ''})` : '';
   const status = result.timedOut ? ' [TIMEOUT]' : result.status ? ` [${result.status}]` : '';
   console.log(`  ${icon}  ${result.url}${status}${errCount}`);
   result.errors.forEach((e) => {
     console.log(`       [${e.type}] ${e.message}`);
+  });
+  (result.warnings || []).forEach((w) => {
+    console.log(`       [${w.type}] ${w.message}`);
   });
 }
 

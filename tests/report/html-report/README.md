@@ -23,8 +23,8 @@ npm run html:scan:gate -- https://laboratorio1.local
 # Compare the two most recent reports
 npm run html:compare
 
-# Compare two specific reports
-npm run html:compare -- reports/html_report_20260310_1400.json reports/html_report_20260309_0900.json
+# Compare two specific reports (paths relative to the theme root)
+npm run html:compare -- tests/report/html-report/reports/html_report_20260310_1400.json tests/report/html-report/reports/html_report_20260309_0900.json
 ```
 
 

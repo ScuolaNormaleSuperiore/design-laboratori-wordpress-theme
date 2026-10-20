@@ -18,6 +18,7 @@ function computeSummary(results) {
     resourceErrors: 0,
     contentErrors: 0,
     timeouts: 0,
+    overflowPages: 0,
     avgResponseTimeMs: null,
     maxResponseTimeMs: null,
     slowPages: [], // pages with responseTimeMs > 3000
@@ -36,6 +37,9 @@ function computeSummary(results) {
   }
 
   results.forEach((r) => {
+    (r.warnings || []).forEach((w) => {
+      if (w.type === 'OVERFLOW') summary.overflowPages++;
+    });
     if (r.errors.length === 0) {
       summary.ok++;
     } else {
@@ -51,7 +55,9 @@ function computeSummary(results) {
     });
   });
 
-  summary.verdict = summary.withErrors === 0 ? 'PASS' : 'FAIL';
+  if (summary.withErrors > 0) summary.verdict = 'FAIL';
+  else if (summary.overflowPages > 0) summary.verdict = 'WARN';
+  else summary.verdict = 'PASS';
 
   return summary;
 }
@@ -73,6 +79,7 @@ function writeJson(results, summary, opts) {
       resourceErrors: summary.resourceErrors,
       contentErrors: summary.contentErrors,
       timeouts: summary.timeouts,
+      overflowPages: summary.overflowPages,
       avgResponseTimeMs: summary.avgResponseTimeMs,
       maxResponseTimeMs: summary.maxResponseTimeMs,
       slowPages: summary.slowPages,
@@ -85,6 +92,7 @@ function writeJson(results, summary, opts) {
       responseTimeMs: r.responseTimeMs,
       timedOut: r.timedOut,
       errors: r.errors,
+      warnings: r.warnings || [],
     })),
   };
 
@@ -106,6 +114,7 @@ function errorBadge(type) {
     CONTENT: '#7f8c8d',
     TIMEOUT: '#7f8c8d',
     INTERNAL: '#c0392b',
+    OVERFLOW: '#b7791f',
   };
   const bg = colors[type] || '#555';
   return `<span style="background:${bg};color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;font-weight:bold;white-space:nowrap">${type}</span>`;
@@ -172,9 +181,9 @@ function escHtml(str) {
 }
 
 function writeHtml(results, summary, opts) {
-  const pass = summary.withErrors === 0;
-  const passLabel = pass ? 'PASS' : 'FAIL';
-  const passColor = pass ? '#27ae60' : '#c0392b';
+  const passLabel = summary.verdict;
+  const passColor = summary.verdict === 'PASS' ? '#27ae60' : (summary.verdict === 'WARN' ? '#b7791f' : '#c0392b');
+  const overflowPages = results.filter((r) => (r.warnings || []).some((w) => w.type === 'OVERFLOW'));
   const scannedAt = new Date().toLocaleString('it-IT');
 
   // Sort: errors first
@@ -230,6 +239,7 @@ function writeHtml(results, summary, opts) {
   <div class="card"><div class="num" style="color:#8e44ad">${summary.jsErrors}</div><div class="lbl">JS errors</div></div>
   <div class="card"><div class="num" style="color:#2980b9">${summary.resourceErrors}</div><div class="lbl">Risorse 404</div></div>
   <div class="card"><div class="num" style="color:#7f8c8d">${summary.timeouts}</div><div class="lbl">Timeout</div></div>
+  <div class="card"><div class="num" style="color:#b7791f">${summary.overflowPages}</div><div class="lbl">Overflow 320px</div></div>
   <div class="card"><div class="num" style="color:#16a085">${summary.avgResponseTimeMs !== null ? summary.avgResponseTimeMs + 'ms' : '—'}</div><div class="lbl">Tempo medio</div></div>
   <div class="card"><div class="num" style="color:${summary.maxResponseTimeMs > 3000 ? '#c0392b' : '#16a085'}">${summary.maxResponseTimeMs !== null ? summary.maxResponseTimeMs + 'ms' : '—'}</div><div class="lbl">Tempo max</div></div>
 </div>
@@ -247,6 +257,13 @@ ${errorPages.length > 0 ? `
     </tr>
   </thead>
   <tbody>${errorRows}</tbody>
+</table>` : ''}
+
+${overflowPages.length > 0 ? `
+<div class="section-title">Pagine con overflow orizzontale a 320 px (${overflowPages.length})</div>
+<table>
+  <thead><tr><th>URL</th><th>Dettaglio</th></tr></thead>
+  <tbody>${overflowPages.map((r) => `<tr><td style="padding:8px 12px"><a href="${escHtml(r.url)}" target="_blank" rel="noopener">${escHtml(r.url)}</a></td><td style="padding:8px 12px"><code>${escHtml(r.warnings.filter((w) => w.type === 'OVERFLOW').map((w) => w.message).join(' | '))}</code></td></tr>`).join('')}</tbody>
 </table>` : ''}
 
 ${okPages.length > 0 ? `
@@ -326,6 +343,7 @@ async function generateReport(results, opts) {
   console.log(`JS errors   : ${summary.jsErrors}`);
   console.log(`Res. errors : ${summary.resourceErrors}`);
   console.log(`Timeouts    : ${summary.timeouts}`);
+  console.log(`Overflow 320: ${summary.overflowPages}`);
   console.log(`Avg time    : ${summary.avgResponseTimeMs !== null ? summary.avgResponseTimeMs + 'ms' : '—'}`);
   console.log(`Max time    : ${summary.maxResponseTimeMs !== null ? summary.maxResponseTimeMs + 'ms' : '—'}`);
   if (summary.slowPages.length > 0) {

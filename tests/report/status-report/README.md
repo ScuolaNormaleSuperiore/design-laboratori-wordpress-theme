@@ -34,6 +34,7 @@ Lo scanner esegue questi controlli su ogni pagina del sito:
 | **JS** | Errori JavaScript a runtime: messaggi `console.error()` ed eccezioni non catturate |
 | **NET** | Risorse non caricate durante il rendering: immagini, fogli CSS, script JS, font che rispondono con status >= 400 |
 | **CONTENT** | Pagine con body inferiore a 200 caratteri visibili, spia di un rendering vuoto o interrotto |
+| **OVERFLOW** | Pagine che a 320 px di larghezza scorrono in orizzontale (criterio WCAG di *reflow*, 1.4.10). È un **avviso**: porta il verdetto a `WARN` ma non fa fallire il gate. Elenca fino a 5 elementi che sporgono, ignorando elementi nascosti, testo riservato agli screen reader ed elementi ritagliati da un contenitore con scorrimento |
 | **TIMEOUT** | Pagine che non rispondono entro il timeout configurato |
 
 Per ogni pagina lo scanner registra anche due misure di tempo:
@@ -146,7 +147,7 @@ con:
 
 - **Intestazione** con URL del sito, data e ora della scansione, numero di pagine
 - **Riepilogo numerico** — card sempre visibili con:
-  - Indicatore globale **PASS** (zero errori) o **FAIL** (errori presenti)
+  - Indicatore globale **PASS** (zero errori e zero avvisi), **WARN** (nessun errore ma almeno una pagina con overflow a 320 px) o **FAIL** (errori presenti)
   - Pagine OK / Pagine con errori / Totale pagine
   - Contatore per categoria: HTTP, PHP, JS, risorse 404, timeout
   - Tempo medio e tempo massimo di risposta
@@ -281,6 +282,7 @@ npm run status:scan -- <baseUrl> [opzioni]
 | `--concurrency <n>` | `3` | Numero massimo di pagine visitate contemporaneamente |
 | `--delay <ms>` | `1000` | Pausa in ms prima di avviare ogni richiesta di pagina, per ridurre il carico sul server. `--delay 0` disabilita il delay. |
 | `--out <path>` | `./tests/report/status-report/reports/status_report_<YYYYMMDD_HHMM>` | Percorso di output senza estensione — lo script aggiunge `.html` e `.json` |
+| `--gate` | disattivato | Esce con codice 1 se il verdetto è FAIL (almeno una pagina con errori). Un verdetto `WARN` (solo overflow a 320 px) non fa fallire il gate. Scorciatoia: `npm run status:scan:gate -- <baseUrl>` |
 
 **Esempi:**
 
@@ -296,6 +298,9 @@ npm run status:scan -- https://laboratorio1.local --timeout 30000 --concurrency 
 
 # Output su nome file personalizzato (senza suffisso automatico)
 npm run status:scan -- https://laboratorio1.local --out ./output/2026-03-05
+
+# Con gate: codice di uscita 1 se ci sono pagine con errori
+npm run status:scan:gate -- https://laboratorio1.local
 ```
 
 
