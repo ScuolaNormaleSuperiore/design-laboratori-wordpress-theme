@@ -5,6 +5,8 @@
  * @package Design_Laboratori_Italia
  */
 
+defined( 'ABSPATH' ) || exit;
+
 require 'vendor/CMB2/init.php';
 require 'vendor/CMB2-conditional-logic/cmb2-conditional-logic.php';
 require 'vendor/CMB2-field-Leaflet-Geocoder/cmb-field-leaflet-map.php';
@@ -26,18 +28,16 @@ require 'vendor/cmb-field-select2-master/cmb-field-select2.php';
  *
  * @return string
  */
-function update_cmb2_meta_box_url( $url ) {
+function dli_update_cmb2_meta_box_url( $url ) {
 	/*
-	 * If you use a symlink, the css/js urls may have an odd path stuck in the middle, like:
+	 * The theme ships its own copy of CMB2 (inc/vendor/CMB2), so the assets URL is
+	 * forced on purpose: with a symlinked or non-standard directory layout CMB2 could
+	 * compute a broken URL for its css/js, like:
 	 * http://SITEURL/wp-content/plugins/Users/jt/Sites/CMB2/cmb2/js/cmb2.js?ver=X.X.X
-	 * Or something like that.
 	 *
-	 * INSTEAD of completely replacing the URL,
-	 * It is best to do a str_replace. This ensures you only change the url if it's
-	 * pointing to the broken resource. This ensures that if another version of CMB2
-	 * is loaded (i.e. in a 3rd part plugin), that their correct URL will load,
-	 * rather than forcing yours.
+	 * The incoming $url is ignored intentionally. No other plugin is expected to
+	 * bundle a different CMB2 copy alongside the theme.
 	 */
 	return get_stylesheet_directory_uri() . '/inc/vendor/CMB2/';
 }
-add_filter( 'cmb2_meta_box_url', 'update_cmb2_meta_box_url' );
+add_filter( 'cmb2_meta_box_url', 'dli_update_cmb2_meta_box_url' );
