@@ -14,6 +14,8 @@ Read this file first. Then read `AGENTS/AI_BOOTSTRAP.md` and follow its
 - Lint policy:
   - Use the canonical quality-check command list in `AGENTS/ARCHITECTURE.md`.
   - If `composer run lint:php` is blocked in WSL, use the Windows PHP fallback with `vendor/bin/phpcs` and always report the outcome.
+- Test policy:
+  - Follow the `Test-driven workflow` section of `AGENTS/AI_BEHAVIOR.md`; run `composer test:unit` and report the outcome.
 - Response format preference:
   - Keep outputs brief, numbered, and findings-first.
   - For URL audits, report only high-impact issues unless explicitly asked for exhaustive findings.

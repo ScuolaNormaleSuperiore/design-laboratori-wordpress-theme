@@ -257,6 +257,7 @@ Pick the checks that match the change, run them, and report which ones could not
 |---|---|---|
 | Any PHP file | `php -l <file>` | Syntax only |
 | Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset |
+| Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
 | PHP static analysis | `composer run lint:phpstan` | Configuration and WordPress stubs: `phpstan.neon`, `tests/phpstan/` |
 | Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
@@ -264,4 +265,11 @@ Pick the checks that match the change, run them, and report which ones could not
 | Changed templates, styles, scripts, forms | `npm run pa11y:scan -- <baseUrl>` (`pa11y:scan:gate` fails on WCAG errors) | WCAG 2 AA at 1280 px and 320 px; needs a reachable site and Playwright's Chromium; complements manual keyboard checks |
 | SCSS changed | `npm run create_layout`, then `update_layout_win` or `update_layout_linux` | Regenerates the minified CSS |
 
-Scanners write into git-ignored `reports/` folders. No automated test suite exists for PHP logic.
+Scanners write into git-ignored `reports/` folders. Only the unit suite exists for now: integration and E2E suites are planned (see `Test-driven workflow` in `AGENTS/AI_BEHAVIOR.md`).
+
+### Tests
+
+- Unit tests live in `tests/unit/`, one file per area, named `DLI_<Name>_Unit_Test.php` with a class of the same name. They run without WordPress: if the code under test needs WordPress, it is not a unit test.
+- Every `Bug` or `Security` fix comes with a regression test, written first and seen failing (`Test-driven workflow`).
+- `tests/` is excluded from PHPCS: the style of test code is not checked automatically, so follow the surrounding test files and `.editorconfig`.
+- A failing contract test (versions, release date, AGENTS documents) means a file was updated and another one forgotten: fix the data, not the test.

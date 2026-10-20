@@ -205,6 +205,7 @@ Eseguire i controlli dalla radice del tema:
 
 - `composer run lint:php` (oppure `npm run lint:php`) — verifica il codice PHP rispetto agli standard di codifica WordPress configurati; `npm run lint:php:fix` corregge automaticamente le violazioni risolvibili.
 - `composer run lint:phpstan` — esegue l'analisi statica con PHPStan.
+- `composer test:unit` — esegue i test unit (PHPUnit, senza WordPress, pochi secondi): funzioni pure, tabelle di configurazione e coerenza dei file di rilascio (versione e data in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml`, `CHANGELOG.md`). Il hook `pre-commit` li esegue a ogni commit e blocca il commit se uno fallisce. Dettagli in `tests/unit/README.md`.
 - `npm run status:scan -- https://mio-sito.example.com` — scandisce la mappa del sito e segnala errori HTTP, PHP e JavaScript, problemi di caricamento delle risorse e di prestazioni delle pagine.
 - `npm run status:scan:gate -- https://mio-sito.example.com` — esegue la stessa scansione e termina con codice 1 se almeno una pagina ha errori (un overflow a 320 px è solo un avviso).
 - `npm run html:scan -- https://mio-sito.example.com` — valida l'HTML delle pagine renderizzate con Nu Html Checker.
@@ -213,6 +214,8 @@ Eseguire i controlli dalla radice del tema:
 - `npm run pa11y:scan:gate -- https://mio-sito.example.com` — conta solo gli errori WCAG e termina con codice 2 se ce ne sono oltre la soglia (`--threshold N`), quindi è adatto come quality gate.
 - `npm run status:compare` e `npm run html:compare` — confrontano le due scansioni più recenti (`pa11y` non ha un comando di confronto).
 - `composer audit` e `npm audit --omit=dev` — segnalano le vulnerabilità note delle dipendenze.
+
+I test e gli scanner sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in `.gitattributes`). La panoramica è in `tests/README.md`.
 
 Gli scanner `status`, `html` e `pa11y` producono report (HTML e JSON) senza asserzioni pass/fail e si trovano in `tests/report/`. Per quelli che aprono le pagine nel browser, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/report/*/`.
 

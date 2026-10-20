@@ -10,6 +10,7 @@ Read this file first. Then read `AGENTS/AI_BOOTSTRAP.md` and follow its
 - Use plan mode for non-trivial tasks (new features, multi-file refactors, architectural decisions).
 - Prefer atomic `Edit` operations over full file rewrites — smaller diffs are easier to review.
 - Use `Glob`/`Grep` for directed searches; use the Explore agent for broader codebase discovery.
+- When planning, changing or fixing code, follow the `Test-driven workflow` section of `AGENTS/AI_BEHAVIOR.md`.
 
 ## Execution environment
 - On Windows use PowerShell or Git Bash, each with its own syntax; do not assume WSL.

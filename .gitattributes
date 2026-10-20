@@ -27,3 +27,10 @@
 *.svg   binary
 *.zip   binary
 *.pdf   binary
+
+# Left out of the release archives (GitHub "Source code" zip): tests and their
+# configuration, scanners included. They are available in the cloned repository.
+/tests export-ignore
+/phpunit.xml export-ignore
+/phpunit-integration.xml export-ignore
+/playwright.config.js export-ignore

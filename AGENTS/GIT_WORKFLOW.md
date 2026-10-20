@@ -49,7 +49,7 @@ the exploitable details of an unfixed or recently fixed vulnerability.
 ## Pre-commit checks
 
 - If a commit on `main` is requested, stop and ask the operator for explicit confirmation; commits normally go on `dev`.
-- Run `composer run lint:php` when possible (see `AGENTS/ARCHITECTURE.md`).
+- Run `composer run lint:php` and `composer test:unit` when possible (see `AGENTS/ARCHITECTURE.md`). The `pre-commit` hook runs the unit suite anyway.
 - Do not commit secrets, API keys, or `.env` files.
 - Before every commit, scan staged files for sensitive data (for example: API keys, tokens, passwords, private keys, auth headers, cookies, personal data). If potential sensitive data is found, stop the commit flow, report only its type and file/path (never its value), and remove, redact, or revoke the data before proceeding. Never commit sensitive data, even with user confirmation.
 - `.githooks/pre-commit` runs three automatic checks: a secret scan on staged files, an l10n guard and the unit test suite (the same one as `composer test:unit`). A failing unit test blocks the commit, and PHPUnit must be installed (`composer install`). The l10n guard adds the missing `defined( 'ABSPATH' ) || exit;` line to staged `languages/*.l10n.php` files (Loco Translate strips it on export) and re-stages them. This automatic change is expected: do not undo it, and mention it in the final summary.

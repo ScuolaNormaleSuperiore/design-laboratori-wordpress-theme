@@ -19,6 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
 - `tests/report/`: automated scanning modules that produce reports (status, html, pa11y, issues).
+- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). `tests/phpstan/`: WordPress stubs for PHPStan.
 
 
 ## Main Files
@@ -150,6 +151,7 @@ describes the same checks for contributors.
 - PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
   needed: `composer run lint:php:fix`.
 - Static analysis: `composer run lint:phpstan`.
+- Unit tests: `composer test:unit` (PHPUnit, no WordPress; also run by `.githooks/pre-commit`).
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.

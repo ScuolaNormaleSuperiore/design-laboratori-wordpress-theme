@@ -69,6 +69,10 @@ Use the Dockerfile provided in the `SETUP/Docker/` directory to set up a local d
 https://sitofederato.sns.it
 
 
+## Automated Tests (tests/unit/)
+
+Unit tests (PHPUnit, no WordPress) live in `tests/unit/` and run with `composer test:unit`; the `pre-commit` hook runs them too. They cover pure helper functions, configuration tables and consistency of the release files (version, release date) and of the AGENTS documents. Integration and E2E suites are planned. See `Test-driven workflow` in `AI_BEHAVIOR.md`.
+
 ## Automated Quality Checks (tests/report/)
 
 Three automated scanning modules are available under `tests/report/` (`status-report`, `html-report`, `pa11y-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports; `status` and `html` also support a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).

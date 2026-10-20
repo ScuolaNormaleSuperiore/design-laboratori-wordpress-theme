@@ -65,7 +65,7 @@ resetting history.
 - Maintainability: duplicated or dead logic, complexity, project naming,
   internationalization, source/output consistency and dependency integration.
 - Tooling: meaningful assertions, exit codes, failure propagation, safe writes,
-  deterministic comparisons, version consistency and scanner blind spots.
+  deterministic comparisons, version consistency, scanner and test blind spots.
 - Report style/documentation findings only with concrete impact. Do not create
   a cosmetic sweep; accessibility remains a mandatory quality requirement.
 
@@ -176,7 +176,9 @@ documentation, translation catalogues, and test material other than maintained
 scan/compare/report scripts. Exported ACF declaration bodies are inspected
 through targeted field/location/consumer checks; surrounding registration,
 guards and callbacks receive full review.
-The baseline uses the available quality scanner, or individual configured
-static tools if the scanner cannot run. Record unavailable tools explicitly.
+The baseline uses the individual quality commands listed in ARCHITECTURE.md
+(`composer run lint:php`, `composer run lint:phpstan`, `composer test:unit`,
+`composer audit`, `npm audit --omit=dev`) and, when a site is reachable, the
+report scanners in `tests/report/`. Record unavailable tools explicitly.
 Project prefixes and wrapper conventions come from CODING_STANDARDS.md and
 ARCHITECTURE.md, not from guessed generic WordPress naming.
