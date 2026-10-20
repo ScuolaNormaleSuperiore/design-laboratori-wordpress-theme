@@ -132,7 +132,7 @@ name: Design Laboratori Italia
 landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-10-16'
+releaseDate: '2026-10-20'
 roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'

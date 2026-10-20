@@ -4,3 +4,11 @@ set -euo pipefail
 repo_root="$(git rev-parse --show-toplevel)"
 "$repo_root/.githooks/check-staged-secrets.sh"
 "$repo_root/.githooks/check-staged-l10n.sh"
+
+# Unit tests (fast, no WordPress needed): a failing test blocks the commit.
+if [ ! -f "$repo_root/vendor/bin/phpunit" ]; then
+	echo "pre-commit: PHPUnit is not installed. Run 'composer install' and commit again." >&2
+	exit 1
+fi
+echo "pre-commit: running unit tests..."
+(cd "$repo_root" && php vendor/bin/phpunit --testsuite unit --colors=never)

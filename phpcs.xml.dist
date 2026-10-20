@@ -27,6 +27,7 @@
 	<exclude-pattern>*/.composer-home/*</exclude-pattern>
 	<exclude-pattern>*/DEV/*</exclude-pattern>
 	<exclude-pattern>*/tmp/*</exclude-pattern>
+	<exclude-pattern>*/tests/*</exclude-pattern>
 
 	<!-- Project-specific vendored files. -->
 	<exclude-pattern>*/assets/js/components/*</exclude-pattern>

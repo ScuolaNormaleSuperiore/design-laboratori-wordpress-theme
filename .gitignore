@@ -29,6 +29,9 @@ Thumbs.db
 /.htaccess
 
 
+# PHPUnit cache (local only)
+.phpunit.cache/
+
 # Report scanners: generated reports are local only (folders included)
 tests/report/*/reports/
 # Extra URLs for the pa11y scanner (local only)
