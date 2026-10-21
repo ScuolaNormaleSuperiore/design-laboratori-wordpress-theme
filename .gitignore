@@ -31,6 +31,9 @@ Thumbs.db
 
 # PHPUnit cache (local only)
 .phpunit.cache/
+tests/integration/.cache/
+tests/e2e/test-results/
+tests/e2e/playwright-report/
 
 # Report scanners: generated reports are local only (folders included)
 tests/report/*/reports/

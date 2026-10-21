@@ -14,7 +14,11 @@
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
     "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=512M",
     "test": "phpunit",
-    "test:unit": "phpunit --testsuite unit"
+    "test:unit": "phpunit --testsuite unit",
+    "test:integration": [
+      "@php tests/bin/fetch-test-plugins.php",
+      "phpunit -c phpunit-integration.xml"
+    ]
   },
   "config": {
     "allow-plugins": {

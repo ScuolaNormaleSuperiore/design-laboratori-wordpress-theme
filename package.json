@@ -26,7 +26,10 @@
     "html:scan:gate": "node tests/report/html-report/scan.js --gate",
     "html:compare": "node tests/report/html-report/compare.js",
     "pa11y:scan": "node tests/report/pa11y-report/scan.js",
-    "pa11y:scan:gate": "node tests/report/pa11y-report/scan.js --gate"
+    "pa11y:scan:gate": "node tests/report/pa11y-report/scan.js --gate",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui"
   },
   "repository": {
     "type": "git",
@@ -42,6 +45,7 @@
     "bootstrap-italia": "3.0.0-beta.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "clean-css-cli": "^5.4.2",
     "pa11y-ci": "^5.0.0",
     "pa11y-ci-reporter-html": "^9.0.0",
