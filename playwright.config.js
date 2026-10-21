@@ -10,8 +10,10 @@ module.exports = defineConfig( {
 	// The tests share one WordPress site: they run one at a time.
 	workers: 1,
 	fullyParallel: false,
-	// Login and the first admin page are slow on a local site (4-9 s): the default
-	// 5 s of the assertions is too tight.
+	// Login and an admin page take 4-9 s on a local site: the default 5 s of the
+	// assertions is too tight. (The much slower first load after a restore is absorbed by
+	// the warm-up of the global setup.)
+	timeout: 60000,
 	expect: { timeout: 15000 },
 	reporter: [
 		[ 'list' ],
