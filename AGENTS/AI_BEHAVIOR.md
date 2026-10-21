@@ -93,7 +93,7 @@ Do not install or enable skills without the operator's authorization.
 ### Relevance for this project
 This theme is a **classic** WordPress theme: no `theme.json`, no `block.json`, no `templates/` or `parts/`
 directories, no custom Gutenberg blocks. PHPStan is part of the quality gate (`composer run lint:phpstan`,
-with `phpstan.neon` and WordPress stubs in `tests/phpstan/`) next to PHPCS (`composer run lint:php`). The
+with `phpstan.neon` and WordPress stubs in `tests/utils/`) next to PHPCS (`composer run lint:php`). The
 theme registers real REST routes with `register_rest_route()` (search autocomplete and the importers).
 
 | Task at hand | Skill to consider |

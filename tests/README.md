@@ -39,9 +39,44 @@ cartella: [`status-report`](report/status-report/README.md),
 [`pa11y-report`](report/pa11y-report/README.md).
 
 
+## Variabili d'ambiente
+
+I test unit non ne richiedono. Le altre suite leggono le variabili seguenti (mai scritte
+in un file del repository). Quelle senza valore predefinito vanno definite prima di
+lanciare la suite.
+
+| Variabile | Suite | Significato | Valore predefinito |
+|---|---|---|---|
+| `WP_TESTS_DIR` | integrazione | cartella `tests/phpunit` di `wordpress-develop` | `C:/WordpressDEV/wordpress-develop/tests/phpunit` |
+| `WP_TESTS_CONFIG_FILE_PATH` | integrazione | `wp-tests-config.php` alternativo | quello nella radice di `wordpress-develop` |
+| `DLI_TEST_PLUGINS_DIR` | integrazione | cartella con ACF e Polylang | `tests/integration/.cache/plugins` |
+| `DLI_E2E_BASE_URL` | E2E | URL del sito E2E | `https://dli-wp-e2e.local` |
+| `DLI_E2E_ADMIN_USER` | E2E | utente amministratore del sito E2E | `e2e-admin` |
+| `DLI_E2E_ADMIN_PASSWORD` | E2E | password dell'amministratore | `password` |
+
+Gli utenti di prova del sito E2E sono `e2e-admin`, `e2e-super-editor` ed `e2e-editor`,
+tutti con password `password` (sito locale di prova: non riusare mai queste credenziali
+su un sito vero). Sono descritti, con la baseline del database, in
+[`tests/e2e/README.md`](e2e/README.md).
+
+Quando sarà pronto il ripristino del sito E2E (WP-CLI e `baseline.sql`) serviranno anche
+`DLI_E2E_SITE_PATH`, `DLI_E2E_WP_CLI_PHAR`, `DLI_E2E_PHP_BIN`, `DLI_E2E_MYSQL_BIN_DIR`,
+`DLI_E2E_SKIP_RESET` e le credenziali degli altri utenti di prova:
+sono descritte in [`tests/e2e/README.md`](e2e/README.md), ma nessuno script le legge ancora.
+
+Esempio di sostituzione di un valore (PowerShell), valido per la sessione corrente:
+
+```
+$env:DLI_E2E_BASE_URL = 'https://altro-sito.local'
+```
+
+
 ## Altre cartelle
 
-- `tests/phpstan/`: stub delle funzioni di WordPress per PHPStan (`composer run lint:phpstan`).
+- `tests/utils/`: file di supporto. `wordpress-lite-stubs.php` contiene gli stub delle
+  funzioni di WordPress per PHPStan (`composer run lint:phpstan`);
+  `fetch-test-plugins.php` scarica ACF e Polylang per i test di integrazione
+  (lo lancia `composer test:integration`).
 
 Per i controlli statici (PHPCS, PHPStan, audit delle dipendenze) vedi la sezione
 "Sviluppo e verifiche" del `README.md` principale.

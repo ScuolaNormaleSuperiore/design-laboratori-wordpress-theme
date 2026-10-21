@@ -27,7 +27,7 @@ tables (prefix `wptests_`) on every run.
 composer test:integration
 ```
 
-The command first runs `tests/bin/fetch-test-plugins.php`, then PHPUnit with
+The command first runs `tests/utils/fetch-test-plugins.php`, then PHPUnit with
 `phpunit-integration.xml`.
 
 ## Plugins

@@ -3,7 +3,7 @@ parameters:
   parallel:
     maximumNumberOfProcesses: 1
   scanFiles:
-    - tests/phpstan/wordpress-lite-stubs.php
+    - tests/utils/wordpress-lite-stubs.php
   paths:
     - inc
     - page-templates

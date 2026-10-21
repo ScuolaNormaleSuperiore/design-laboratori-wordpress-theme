@@ -19,7 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
 - `tests/report/`: automated scanning modules that produce reports (status, html, pa11y, issues).
-- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). `tests/phpstan/`: WordPress stubs for PHPStan.
+- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). `tests/utils/`: WordPress stubs for PHPStan.
 
 
 ## Main Files

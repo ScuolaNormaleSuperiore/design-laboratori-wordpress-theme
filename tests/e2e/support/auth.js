@@ -1,19 +1,17 @@
-// Login helpers of the E2E tests. Credentials come from environment variables
-// and are never stored in the repository.
+// Login helpers of the E2E tests. The users exist in tests/e2e/fixtures/baseline.sql
+// with the well-known password "password": the site is a local test site. Each value
+// can be overridden with an environment variable (see tests/e2e/README.md).
 const { expect } = require( '@playwright/test' );
 
 /**
- * Read a mandatory environment variable.
+ * Read an environment variable, with a default.
  *
- * @param {string} name Variable name.
+ * @param {string} name     Variable name.
+ * @param {string} fallback Value used when the variable is not set.
  * @return {string} Value.
  */
-function requireEnv( name ) {
-	const value = process.env[ name ];
-	if ( ! value ) {
-		throw new Error( `Environment variable ${ name } is not set (see tests/e2e/README.md).` );
-	}
-	return value;
+function env( name, fallback ) {
+	return process.env[ name ] || fallback;
 }
 
 /**
@@ -37,7 +35,7 @@ async function login( page, user, password ) {
  * @param {import('@playwright/test').Page} page Page.
  */
 async function loginAsAdmin( page ) {
-	await login( page, requireEnv( 'DLI_E2E_ADMIN_USER' ), requireEnv( 'DLI_E2E_ADMIN_PASSWORD' ) );
+	await login( page, env( 'DLI_E2E_ADMIN_USER', 'e2e-admin' ), env( 'DLI_E2E_ADMIN_PASSWORD', 'password' ) );
 }
 
 module.exports = { login, loginAsAdmin };

@@ -33,7 +33,6 @@
 	<exclude-pattern>*/assets/js/components/*</exclude-pattern>
 	<exclude-pattern>*/assets/css/italia-icon-font.css</exclude-pattern>
 	<exclude-pattern>*/inc/admin-css/jquery-ui.css</exclude-pattern>
-	<exclude-pattern>*/tests/phpstan/*</exclude-pattern>
 
 	<rule ref="WordPress"/>
 

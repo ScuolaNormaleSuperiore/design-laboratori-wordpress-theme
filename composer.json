@@ -16,7 +16,7 @@
     "test": "phpunit",
     "test:unit": "phpunit --testsuite unit",
     "test:integration": [
-      "@php tests/bin/fetch-test-plugins.php",
+      "@php tests/utils/fetch-test-plugins.php",
       "phpunit -c phpunit-integration.xml"
     ]
   },

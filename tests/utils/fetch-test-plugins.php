@@ -11,7 +11,7 @@
  * The cache folder is `DLI_TEST_PLUGINS_DIR` or, by default,
  * `tests/integration/.cache/plugins/` (ignored by Git).
  *
- * Usage: php tests/bin/fetch-test-plugins.php
+ * Usage: php tests/utils/fetch-test-plugins.php
  *
  * @package Design_Laboratori_Italia
  */
