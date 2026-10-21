@@ -20,10 +20,15 @@ produce reports and are a different thing.
 
 ## Run
 
+The tests are launched through Composer, like the other suites. Playwright is a Node.js
+tool, so each Composer script calls the `npm run test:e2e*` script of the same name
+(you can use either).
+
 ```
-npm run test:e2e           # headless
-npm run test:e2e:headed    # visible browser
-npm run test:e2e:ui        # Playwright UI mode
+composer test:e2e           # headless
+composer test:e2e:headed    # visible browser
+composer test:e2e:ui        # Playwright UI mode
+composer test:e2e -- config-permissions    # one spec (options after --)
 ```
 
 ## Environment variables
@@ -45,7 +50,7 @@ needed on a correctly prepared site. Example of an override (PowerShell):
 
 ```
 $env:DLI_E2E_ADMIN_PASSWORD = 'another-password'
-npm run test:e2e
+composer test:e2e
 ```
 
 ## Test users
@@ -70,7 +75,7 @@ transients and no sessions.
 
 ### Automatic restore
 
-`npm run test:e2e` restores the baseline **before and after** the run
+`composer test:e2e` restores the baseline **before and after** the run
 (`global-setup.js` and `global-teardown.js`, which call `support/reset.js`, which runs
 `support/reset-baseline.php`). The PHP script reads the connection data from the
 `wp-config.php` of the site (`DLI_E2E_SITE_PATH`), runs the dump with `mysqli` and drops
