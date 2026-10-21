@@ -1,68 +1,12 @@
 <?php
 /**
- * Lightweight WordPress stubs for PHPStan.
+ * Lightweight third-party stubs for PHPStan.
  *
  * These declarations are intentionally minimal and are only used
  * by static analysis to reduce false positives in this theme.
  *
  * @package Design_Laboratori_WordPress_Theme
  */
-
-if ( ! class_exists( 'WP_Post' ) ) {
-	class WP_Post {}
-}
-
-if ( ! class_exists( 'WP_Query' ) ) {
-	class WP_Query {
-		/** @var array<int, WP_Post> */
-		public $posts = array();
-
-		/**
-		 * @param array<string, mixed>|string $query
-		 */
-		public function __construct( $query = '' ) {}
-	}
-}
-
-if ( ! class_exists( 'WP_Error' ) ) {
-	class WP_Error {
-		/**
-		 * @param string $code
-		 * @param string $message
-		 * @param mixed  $data
-		 */
-		public function __construct( $code = '', $message = '', $data = null ) {}
-	}
-}
-
-if ( ! class_exists( 'WP_REST_Request' ) ) {
-	class WP_REST_Request {}
-}
-
-if ( ! class_exists( 'WP_REST_Response' ) ) {
-	class WP_REST_Response {
-		/**
-		 * @param mixed $data
-		 * @param int   $status
-		 * @param array<string, string> $headers
-		 */
-		public function __construct( $data = null, $status = 200, $headers = array() ) {}
-	}
-}
-
-if ( ! class_exists( 'WP_REST_Server' ) ) {
-	class WP_REST_Server {
-		public const READABLE   = 'GET';
-		public const CREATABLE  = 'POST';
-		public const EDITABLE   = 'PUT';
-		public const DELETABLE  = 'DELETE';
-		public const ALLMETHODS = 'GET,POST,PUT,DELETE';
-	}
-}
-
-if ( ! class_exists( 'Walker_Nav_Menu' ) ) {
-	class Walker_Nav_Menu {}
-}
 
 if ( ! class_exists( 'CMB2_Boxes' ) ) {
 	class CMB2_Boxes {
@@ -73,4 +17,64 @@ if ( ! class_exists( 'CMB2_Boxes' ) ) {
 			return array();
 		}
 	}
+}
+
+if ( ! class_exists( 'CMB2' ) ) {
+	class CMB2 {
+		/**
+		 * @param array<string, mixed> $field    Field configuration.
+		 * @param int                  $position Field position.
+		 * @return string|false
+		 */
+		public function add_field( $field, $position = 0 ) {
+			return false;
+		}
+	}
+}
+
+if ( ! defined( 'CMB2_VERSION' ) ) {
+	define( 'CMB2_VERSION', '2.11.0' );
+}
+
+if ( ! function_exists( 'new_cmb2_box' ) ) {
+	/**
+	 * @param array<string, mixed> $meta_box_config Metabox configuration.
+	 * @return CMB2
+	 */
+	function new_cmb2_box( $meta_box_config ) {
+		return new CMB2();
+	}
+}
+
+if ( ! function_exists( 'get_field' ) ) {
+	/**
+	 * @param string|int $selector     ACF field name or key.
+	 * @param mixed      $post_id      Post ID or ACF context.
+	 * @param bool       $format_value Whether to format the value.
+	 * @return mixed
+	 */
+	function get_field( $selector, $post_id = false, $format_value = true ) {
+		return null;
+	}
+}
+
+if ( ! function_exists( 'update_field' ) ) {
+	/**
+	 * @param string|int $selector ACF field name or key.
+	 * @param mixed      $value    Value to store.
+	 * @param mixed      $post_id  Post ID or ACF context.
+	 * @return int|bool
+	 */
+	function update_field( $selector, $value, $post_id = false ) {
+		return false;
+	}
+}
+
+if ( ! function_exists( 'tgmpa' ) ) {
+	/**
+	 * @param array<int, array<string, mixed>> $plugins Plugin definitions.
+	 * @param array<string, mixed>              $config  TGM configuration.
+	 * @return void
+	 */
+	function tgmpa( $plugins, $config = array() ) {}
 }

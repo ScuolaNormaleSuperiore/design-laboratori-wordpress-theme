@@ -108,18 +108,6 @@ class DLI_BaseImporter {
 	private function get_data_to_import( $conf ) {}
 
 	/**
-	 *  Creazione/Modifica dell'post su WordPress.
-	 *
-	 * @param mixed  $item    Raw source item to import.
-	 * @param mixed  $conf    Import configuration.
-	 * @param mixed  $updated Passed by reference: set when an existing post was updated.
-	 * @param mixed  $ignored Passed by reference: set when an existing post was left untouched.
-	 * @param string $lang    Language slug to assign to the created/updated post.
-	 * @return int
-	 */
-	private function create_wp_content( $item, $conf, &$updated, &$ignored, $lang = 'it' ): int {}
-
-	/**
 	 * Modifica dei post su WordPress.
 	 *
 	 * @param int    $post_id Post ID to update.

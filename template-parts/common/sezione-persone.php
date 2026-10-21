@@ -5,7 +5,7 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_args        = is_array( $args ) ? $args : array();
+$dli_args        = isset( $args ) && is_array( $args ) ? $args : array();
 $dli_items       = isset( $dli_args['items'] ) && is_array( $dli_args['items'] ) ? $dli_args['items'] : array();
 $dli_section_id  = $dli_args['section_id'] ?? '';
 $dli_num_results = count( $dli_items );

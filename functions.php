@@ -71,6 +71,11 @@ require get_template_directory() . '/inc/menu-order.php';
 require get_template_directory() . '/inc/utils.php';
 
 /**
+ * Optional CAPTCHA integration.
+ */
+require get_template_directory() . '/inc/captcha.php';
+
+/**
  * Sitemap — HTML helpers and XML endpoints.
  */
 require get_template_directory() . '/inc/sitemap.php';

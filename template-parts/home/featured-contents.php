@@ -32,13 +32,40 @@ if ( 'true' === $dli_section_enabled ) {
 
 			if ( 'card-news' === $dli_template ) {
 				// CARD NOTIZIE.
-				get_template_part( 'template-parts/home/card-news', null, array( $dli_index, $dli_label, $dli_template, $dli_pt ) );
+				get_template_part(
+					'template-parts/home/card-news',
+					null,
+					array(
+						'box_number'    => $dli_index,
+						'box_label'     => $dli_label,
+						'box_template'  => $dli_template,
+						'box_post_type' => $dli_pt,
+					)
+				);
 			} elseif ( 'card-eventi' === $dli_template ) {
 				// CARD_EVENTI.
-				get_template_part( 'template-parts/home/card-eventi', null, array( $dli_index, $dli_label, $dli_template, $dli_pt ) );
+				get_template_part(
+					'template-parts/home/card-eventi',
+					null,
+					array(
+						'box_number'    => $dli_index,
+						'box_label'     => $dli_label,
+						'box_template'  => $dli_template,
+						'box_post_type' => $dli_pt,
+					)
+				);
 			} else {
 				// CARD PUBBLICAZIONI.
-				get_template_part( 'template-parts/home/card-pubblicazioni', null, array( $dli_index, $dli_label, $dli_template, $dli_pt ) );
+				get_template_part(
+					'template-parts/home/card-pubblicazioni',
+					null,
+					array(
+						'box_number'    => $dli_index,
+						'box_label'     => $dli_label,
+						'box_template'  => $dli_template,
+						'box_post_type' => $dli_pt,
+					)
+				);
 			}
 		}
 		?>

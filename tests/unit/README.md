@@ -12,7 +12,7 @@ suite di integrazione, non a questa.
 ## Requisiti
 
 - PHP 8.0 o superiore (provato su 8.4) e Composer
-- Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6 e `yoast/phpunit-polyfills`)
+- Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6, `yoast/phpunit-polyfills` e gli stub WordPress per PHPStan)
 
 
 ## Esecuzione
@@ -43,6 +43,7 @@ Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
 | `DLI_Release_Version_Unit_Test.php` | La versione è la stessa in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml` e nella prima voce di `CHANGELOG.md` |
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` coincide con la data della prima voce di `CHANGELOG.md` |
 | `DLI_Agents_Docs_Unit_Test.php` | I documenti citati da `AGENTS/AI_BOOTSTRAP.md` esistono (esclusi i file locali ignorati da Git) |
+| `DLI_Captcha_Unit_Test.php` | L’helper CAPTCHA fallisce in modo sicuro quando il plugin opzionale Really Simple CAPTCHA non è disponibile |
 
 Se un test di contratto fallisce, di solito significa che una versione o una data è
 stata aggiornata in un file e dimenticata in un altro: va allineata, non il test.
@@ -53,7 +54,7 @@ stata aggiornata in un file e dimenticata in un altro: va allineata, non il test
 - `phpunit.xml` (radice del tema) definisce la suite `unit` su `tests/unit/`.
 - `tests/bootstrap-unit.php` carica l'autoloader di Composer, definisce `ABSPATH` e pochi
   *stub* di funzioni di WordPress (`__`, `_x`, `add_action`, `plugin_dir_path`, ...), poi
-  include `config-lab.php` e `inc/utils.php`. Gli stub servono solo per poter caricare
+  include `config-lab.php`, `inc/utils.php` e `inc/captcha.php`. Gli stub servono solo per poter caricare
   questi file: non riproducono il comportamento di WordPress.
 - Le classi di test si chiamano `DLI_<Nome>_Unit_Test`, un file per area, con il nome
   del file uguale a quello della classe.

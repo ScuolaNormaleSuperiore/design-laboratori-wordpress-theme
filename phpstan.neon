@@ -3,7 +3,15 @@ parameters:
   parallel:
     maximumNumberOfProcesses: 1
   scanFiles:
+    - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+    - tests/utils/wordpress-runtime-stubs.php
+    - tests/utils/theme-runtime-stubs.php
     - tests/utils/wordpress-lite-stubs.php
+    - tests/utils/polylang-stubs.php
+    - tests/utils/really-simple-captcha-stubs.php
+    - config-lab.php
+    - config-pages.php
+    - config-menu.php
   paths:
     - inc
     - page-templates
@@ -24,8 +32,3 @@ parameters:
     - SETUP/*
     - DOC/*
     - AGENTS/*
-  reportUnmatchedIgnoredErrors: false
-  ignoreErrors:
-    - '#Call to undefined function [a-zA-Z0-9_\\\\]+#'
-    - '#Function [a-zA-Z0-9_\\\\]+ not found#'
-    - '#Constant [A-Z0-9_]+ not found#'

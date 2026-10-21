@@ -7,12 +7,13 @@
     "wp-coding-standards/wpcs": "^3.1",
     "phpstan/phpstan": "1.12",
     "phpunit/phpunit": "^9.5",
-    "yoast/phpunit-polyfills": "^4.0"
+    "yoast/phpunit-polyfills": "^4.0",
+    "php-stubs/wordpress-stubs": "^7.1"
   },
   "scripts": {
     "lint:php": "phpcs --standard=phpcs.xml.dist",
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
-    "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=512M",
+    "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
     "test": "phpunit",
     "test:unit": "phpunit --testsuite unit",
     "test:integration": [

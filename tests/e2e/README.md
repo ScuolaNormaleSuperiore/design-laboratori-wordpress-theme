@@ -10,10 +10,11 @@ produce reports and are a different thing.
   linked into `wp-content` (junctions to the working copy) and **activated**
   (plugins first, then the theme). Permalinks saved once.
 - `DB_HOST` in the site's `wp-config.php` set to the host and port of its MariaDB
-  (for example `127.0.0.1:10059`, instead of `localhost`), so that WP-CLI and
-  `mysql` started from a normal shell reach the database. The port is the one
-  Local assigned to the site and it can change: check it after restarting Local.
-- Node.js and `npm install`.
+  (for example `127.0.0.1:10059`, instead of `localhost`), so that the reset script,
+  started from a normal shell, reaches the database. The port is the one Local
+  assigned to the site and it can change: check it after restarting Local.
+- Node.js, `npm install`, and PHP with `mysqli` on the `PATH` (the reset script uses
+  it; no `mysql` client and no WP-CLI are needed).
 - Chromium for the installed Playwright version, installed once with
   `npm run status:scan:install-browser` (the same browser the scanners use).
 
@@ -27,28 +28,20 @@ npm run test:e2e:ui        # Playwright UI mode
 
 ## Environment variables
 
-Read today:
-
 | Variable | Meaning | Default |
 |---|---|---|
+| `DLI_E2E_SITE_PATH` | folder of the WordPress installation of the E2E site (the one with `wp-config.php`), for example `C:\Users\<user>\Local Sites\dli-wp-e2e\app\public` | none: **required**, unless the reset is skipped |
+| `DLI_E2E_SKIP_RESET` | `1` to skip the reset before and after the run, for debugging a spec | unset |
 | `DLI_E2E_BASE_URL` | URL of the E2E site | `https://dli-wp-e2e.local` |
 | `DLI_E2E_ADMIN_USER` | administrator user name | `e2e-admin` |
 | `DLI_E2E_ADMIN_PASSWORD` | administrator password | `password` |
+| `DLI_E2E_SUPER_EDITOR_USER`, `DLI_E2E_SUPER_EDITOR_PASSWORD` | Super Editor user | `e2e-super-editor`, `password` |
+| `DLI_E2E_EDITOR_USER`, `DLI_E2E_EDITOR_PASSWORD` | Editor user | `e2e-editor`, `password` |
 
-Planned, for the reset of the site to a baseline (**no script reads them yet**):
-
-| Variable | Meaning | Value on a Local setup |
-|---|---|---|
-| `DLI_E2E_SITE_PATH` | folder of the WordPress installation of the E2E site | `...\Local Sites\dli-wp-e2e\app\public` |
-| `DLI_E2E_WP_CLI_PHAR` | `wp-cli.phar` bundled with Local | `C:\Program Files (x86)\Local\resources\extraResources\bin\wp-cli\wp-cli.phar` |
-| `DLI_E2E_PHP_BIN` | PHP used to run WP-CLI | `php` from the `PATH`, or the PHP of the Local site (`...\Local\lightning-services\php-<version>\bin\win64\php.exe`) |
-| `DLI_E2E_MYSQL_BIN_DIR` | folder with `mysql` and `mysqldump` | `...\Local\lightning-services\mariadb-<version>\bin\win32\bin` |
-| `DLI_E2E_SKIP_RESET` | `1` to skip the reset, for debugging | unset |
-| `DLI_E2E_SUPER_EDITOR_USER`, `DLI_E2E_SUPER_EDITOR_PASSWORD` | Super Editor test user | created by the baseline |
-| `DLI_E2E_EDITOR_USER`, `DLI_E2E_EDITOR_PASSWORD` | Editor test user | created by the baseline |
-
-The defaults match the test users below, so on a correctly prepared site no variable
-is needed. Example of an override (PowerShell):
+`DLI_E2E_SITE_PATH` depends on the machine, so set it once as a user environment
+variable (on Windows: *System Properties → Environment Variables*, then open a new
+terminal). The other defaults match the test users below, so no other variable is
+needed on a correctly prepared site. Example of an override (PowerShell):
 
 ```
 $env:DLI_E2E_ADMIN_PASSWORD = 'another-password'
@@ -75,33 +68,56 @@ languages `it` and `en`, the 42 pages and menu items created by the theme activa
 the three users above and no other content. It has no real personal data, no
 transients and no sessions.
 
-Restore it by hand (PowerShell, from the theme root; `mysql` must be on the `PATH`,
-for example the `bin` folder of the MariaDB of Local; use forward slashes in the path
-to the SQL file, or `mysql` fails on the backslashes):
+### Automatic restore
 
-```
-php "C:\Program Files (x86)\Local\resources\extraResources\bin\wp-cli\wp-cli.phar" --path="<site>\app\public" db import "<theme root>/tests/e2e/fixtures/baseline.sql"
-```
+`npm run test:e2e` restores the baseline **before and after** the run
+(`global-setup.js` and `global-teardown.js`, which call `support/reset.js`, which runs
+`support/reset-baseline.php`). The PHP script reads the connection data from the
+`wp-config.php` of the site (`DLI_E2E_SITE_PATH`), runs the dump with `mysqli` and drops
+and recreates every table. Nothing but PHP is needed.
 
-Regenerate it, after preparing the site in the state you want:
+For safety it refuses to import when the database does not belong to the site of the
+baseline: the `siteurl` host stored in the database must be the one in the dump
+(`dli-wp-e2e.local`), and the table prefix must be the same. So pointing
+`DLI_E2E_SITE_PATH` at a development site does not wipe it, and the site must be
+called `dli-wp-e2e`. To debug a spec without the restore, set `DLI_E2E_SKIP_RESET=1`.
+
+To restore it by hand: `php tests/e2e/support/reset-baseline.php <site folder> tests/e2e/fixtures/baseline.sql`.
+
+### Regenerate
+
+Only maintainers regenerate the baseline, after preparing the site in the state they
+want. It needs WP-CLI and `mysqldump` (for example the ones bundled with Local; put
+the `bin` folder of the MariaDB of Local on the `PATH`):
 
 1. Delete the transients: `wp db query "DELETE FROM wp_options WHERE option_name REGEXP 'transient'"`
    (do not write `%` in the query: `cmd.exe` expands it).
 2. Export: `wp db export "<theme root>/tests/e2e/fixtures/baseline.sql" --skip-extended-insert --skip-comments`
-   (one row per line, so that a change shows up as a small diff).
-3. Check that the file has no real names, emails or local paths.
+   (one row per line, so that a change shows up as a small diff; use forward slashes
+   in the path).
+3. Mask the institutional addresses that the theme puts in the default Privacy policy
+   page (`protocollo@pec.sns.it`, `dpo@sns.it`, `privacy@sns.it`): replace every letter
+   and digit with `x` and keep `@` and the dots, **without changing the length** (the
+   dump contains serialized data, where the length of each string is written).
+4. Check that the file has no real names, emails, IP addresses, tokens or local paths,
+   and that every serialized value can still be read.
 
-The automatic restore before each run (`global-setup.js`) does not exist yet.
+The dump was made with MariaDB 10.11 (the one of Local).
 
 ## Layout
 
-- `specs/`: the test files (`*.spec.js`).
-- `support/auth.js`: login helpers.
+- `specs/`: the test files (`*.spec.js`): `home` (the home page loads), `admin-login`
+  (the administrator logs in), `config-permissions` (administrator and Super Editor open
+  the Configurazione page, the Editor gets a 403).
+- `support/auth.js`: login helpers (`loginAsAdmin`, `loginAsSuperEditor`, `loginAsEditor`).
+- `support/reset.js` and `support/reset-baseline.php`: restore of the baseline.
+- `global-setup.js` and `global-teardown.js`: run the restore before and after the tests.
+- `fixtures/baseline.sql`: the baseline.
 - `test-results/` and `playwright-report/`: generated output, ignored by Git.
 
 ## Status
 
-Only the first two specs exist (home page, administrator login). The baseline
-exists and restores correctly by hand, but nothing restores it automatically
-between runs yet: do not rely on the content of the site being the same between
-runs until `global-setup.js` is in place.
+Five tests in three specs, all green, with the baseline restored before and after the
+run. They are the starting set that proves the infrastructure; the real coverage
+(options, people views, search, language) is the next phase. The assertions wait up to
+15 s, because login and the first admin page are slow on a local site.

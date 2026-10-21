@@ -59,10 +59,10 @@ tutti con password `password` (sito locale di prova: non riusare mai queste cred
 su un sito vero). Sono descritti, con la baseline del database, in
 [`tests/e2e/README.md`](e2e/README.md).
 
-Quando sarà pronto il ripristino del sito E2E (WP-CLI e `baseline.sql`) serviranno anche
-`DLI_E2E_SITE_PATH`, `DLI_E2E_WP_CLI_PHAR`, `DLI_E2E_PHP_BIN`, `DLI_E2E_MYSQL_BIN_DIR`,
-`DLI_E2E_SKIP_RESET` e le credenziali degli altri utenti di prova:
-sono descritte in [`tests/e2e/README.md`](e2e/README.md), ma nessuno script le legge ancora.
+I test E2E ripristinano il database del sito prima e dopo l'esecuzione e richiedono
+`DLI_E2E_SITE_PATH` (cartella del sito); `DLI_E2E_SKIP_RESET=1` salta il ripristino.
+Anche le credenziali degli utenti di prova hanno un valore predefinito. Tutto è descritto
+in [`tests/e2e/README.md`](e2e/README.md).
 
 Esempio di sostituzione di un valore (PowerShell), valido per la sessione corrente:
 

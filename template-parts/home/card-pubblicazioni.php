@@ -5,10 +5,11 @@
  * @package Design_Laboratori_Italia
  */
 
-$dli_box_number    = $args[0];
-$dli_box_label     = $args[1];
-$dli_box_template  = $args[2];
-$dli_box_post_type = $args[3];
+$dli_args          = isset( $args ) && is_array( $args ) ? $args : array();
+$dli_box_number    = $dli_args['box_number'] ?? 0;
+$dli_box_label     = $dli_args['box_label'] ?? '';
+$dli_box_template  = $dli_args['box_template'] ?? '';
+$dli_box_post_type = $dli_args['box_post_type'] ?? '';
 $dli_box_items     = 2;
 $dli_order_field   = 'post_date';
 

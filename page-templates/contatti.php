@@ -18,7 +18,6 @@ $dli_website               = get_site_url();
 $dli_website_label         = preg_replace( '#^https?://#', '', $dli_website );
 $dli_show_error            = false;
 $dli_show_success          = false;
-$dli_captcha_enabled       = false;
 $dli_form_valid            = true;
 $dli_sent                  = false;
 $dli_result_text           = '';
@@ -27,7 +26,8 @@ $dli_form_submitted        = 'no';
 $dli_captcha_valid         = false;
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once DLI_THEMA_PATH . '/template-parts/common/captcha.php';
+$dli_captcha         = dli_get_captcha_data();
+$dli_captcha_enabled = $dli_captcha['enabled'];
 
 // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Raw POST is read to repopulate the form; email sending remains nonce-gated below.
 $dli_post_data = wp_unslash( $_POST );
@@ -59,7 +59,7 @@ if ( 'yes' === $dli_form_submitted ) {
 			$dli_form_valid   = false;
 			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
 		} else {
-			$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+			$dli_captcha_valid = dli_validate_captcha( $dli_captcha, $dli_captcha_prefix, $dli_captcha_field );
 			if ( ! $dli_captcha_valid ) {
 				$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}
@@ -301,10 +301,10 @@ if ( 'yes' === $dli_form_submitted ) {
 								<div class="row" style="margin-top: 20px;">
 									<div class="form-group col-md-6" style="text-align: center">
 										<img
-											src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>"
+											src="<?php echo esc_url( $dli_captcha['image_src'] ); ?>"
 											alt="<?php echo esc_attr__( 'captcha', 'design_laboratori_italia' ); ?>"
-											width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>"
-											height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>"
+											width="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>"
+											height="<?php echo esc_attr( $dli_captcha['image_height'] ); ?>"
 										>
 									</div>
 									<div class="form-group col-md-6">
@@ -314,7 +314,7 @@ if ( 'yes' === $dli_form_submitted ) {
 										<input
 											name="captcha-field"
 											id="captcha-field"
-											size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>"
+											size="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>"
 											type="text"
 											placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>"
 										>
@@ -323,7 +323,7 @@ if ( 'yes' === $dli_form_submitted ) {
 											id="captcha-prefix"
 											class="form-control"
 											type="hidden"
-											value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>"
+											value="<?php echo esc_attr( $dli_captcha['prefix'] ); ?>"
 										>
 									</div>
 								</div>

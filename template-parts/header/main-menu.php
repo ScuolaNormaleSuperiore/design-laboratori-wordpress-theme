@@ -5,7 +5,8 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_locations = $args['locations'];
+$dli_args      = isset( $args ) && is_array( $args ) ? $args : array();
+$dli_locations = $dli_args['locations'] ?? array();
 ?>
 
 	<nav aria-label="<?php echo esc_attr__( 'Principale', 'design_laboratori_italia' ); ?>" class="p-0">

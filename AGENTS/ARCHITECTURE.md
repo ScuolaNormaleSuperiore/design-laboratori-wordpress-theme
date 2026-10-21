@@ -19,7 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
 - `tests/report/`: automated scanning modules that produce reports (status, html, pa11y, issues).
-- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). `tests/utils/`: WordPress stubs for PHPStan.
+- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/utils/` holds local stubs for optional third-party APIs.
 
 
 ## Main Files
@@ -35,6 +35,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `single-*.php`: detail templates for content types.
 - `page.php`: standard page template.
 - `inc/pwa.php`: PWA web app manifest — registers the `/manifest.json` virtual endpoint (same rewrite/query_vars/template_redirect pattern as the sitemap endpoints) and the related `<head>` tags (manifest link, theme-color, apple-touch-icon). No service worker.
+- `inc/captcha.php`: optional Really Simple CAPTCHA integration — provides explicit CAPTCHA challenge data and validation helpers for the Contact and Newsletter templates.
 - `inc/search-autocomplete.php`: site search autocomplete — opt-in, disabled by default (*WP → Configurazione → Altro → Ricerca nel sito*). Registers the public `GET /wp-json/dli/v1/suggest` REST route (namespace `dli/v1`), cached in transients, and enqueues `assets/js/search-autocomplete.js` on the `page-templates/cerca.php` template. `setup_rest_api()` in `inc/classes/class-labmanager.php` carries an explicit exception so this route stays reachable even when the "Abilita REST API" option is off.
 - `phpcs.xml.dist`: PHP CodeSniffer rules.
 - `package.json`: frontend/development tooling dependencies.

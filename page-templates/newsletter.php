@@ -34,7 +34,8 @@ $dli_sent_successfully = false;
 $dli_form_errors       = array();
 $dli_user_phone        = ''; // TODO: Add international prefix management if required.
 
-require_once DLI_THEMA_PATH . '/template-parts/common/captcha.php';
+$dli_captcha         = dli_get_captcha_data();
+$dli_captcha_enabled = $dli_captcha['enabled'];
 
 // Verifica nonce.
 if (
@@ -55,7 +56,7 @@ if ( $dli_form_submission ) {
 	if ( ! $dli_captcha_enabled ) {
 		$dli_form_errors[] = __( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
 	} else {
-		$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+		$dli_captcha_valid = dli_validate_captcha( $dli_captcha, $dli_captcha_prefix, $dli_captcha_field );
 		if ( ! $dli_captcha_valid ) {
 			$dli_form_errors[] = __( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 		}
@@ -209,13 +210,13 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 								<?php if ( $dli_captcha_enabled ) : ?>
 									<div class="row" style="margin-top: 20px;">
 										<div class="form-group col-md-6" style="text-align: center">
-											<img src="<?php echo esc_url( $dli_captcha_obj_image_src ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
-												width="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" height="<?php echo esc_attr( $dli_captcha_obj_image_height ); ?>">
+											<img src="<?php echo esc_url( $dli_captcha['image_src'] ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
+												width="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>" height="<?php echo esc_attr( $dli_captcha['image_height'] ); ?>">
 										</div>
 										<div class="form-group col-md-6">
-											<input name="captcha-field" id="captcha-field" size="<?php echo esc_attr( $dli_captcha_obj_image_width ); ?>" type="text"
+											<input name="captcha-field" id="captcha-field" size="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>" type="text"
 												placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>">
-											<input name="captcha-prefix" id="captcha-prefix" class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha_obj_prefix ); ?>">
+											<input name="captcha-prefix" id="captcha-prefix" class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha['prefix'] ); ?>">
 										</div>
 									</div>
 								<?php else : ?>

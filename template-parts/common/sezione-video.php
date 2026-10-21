@@ -6,7 +6,7 @@
  */
 
 $dli_cookie_pol_url = dli_get_translated_page_url_by_slug( SLUG_PRIVACY_IT );
-$dli_args           = is_array( $args ) ? $args : array();
+$dli_args           = isset( $args ) && is_array( $args ) ? $args : array();
 $dli_video          = $dli_args['video'] ?? '';
 $dli_video_text     = $dli_args['video_text'] ?? '';
 $dli_video_title    = $dli_args['video_title'] ?? '';

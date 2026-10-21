@@ -4,9 +4,15 @@ const { defineConfig } = require( '@playwright/test' );
 module.exports = defineConfig( {
 	testDir: './tests/e2e/specs',
 	outputDir: './tests/e2e/test-results',
+	// The site is restored to the baseline before and after the run.
+	globalSetup: './tests/e2e/global-setup.js',
+	globalTeardown: './tests/e2e/global-teardown.js',
 	// The tests share one WordPress site: they run one at a time.
 	workers: 1,
 	fullyParallel: false,
+	// Login and the first admin page are slow on a local site (4-9 s): the default
+	// 5 s of the assertions is too tight.
+	expect: { timeout: 15000 },
 	reporter: [
 		[ 'list' ],
 		[ 'html', { outputFolder: 'tests/e2e/playwright-report', open: 'never' } ],

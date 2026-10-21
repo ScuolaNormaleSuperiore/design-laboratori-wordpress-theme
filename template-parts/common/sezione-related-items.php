@@ -10,7 +10,8 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_related_items = $args['items'];
+$dli_args          = isset( $args ) && is_array( $args ) ? $args : array();
+$dli_related_items = isset( $dli_args['items'] ) && is_array( $dli_args['items'] ) ? $dli_args['items'] : array();
 $dli_num_items     = dli_get_option( 'numero_pagine_collegate', 'notizie' );
 $dli_num_items     = $dli_num_items ? $dli_num_items : 5;
 $dli_related_items = array_slice( $dli_related_items, 0, $dli_num_items, true );

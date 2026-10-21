@@ -38,4 +38,26 @@ async function loginAsAdmin( page ) {
 	await login( page, env( 'DLI_E2E_ADMIN_USER', 'e2e-admin' ), env( 'DLI_E2E_ADMIN_PASSWORD', 'password' ) );
 }
 
-module.exports = { login, loginAsAdmin };
+/**
+ * Log in as the Super Editor (DLI_E2E_SUPER_EDITOR_USER, DLI_E2E_SUPER_EDITOR_PASSWORD).
+ *
+ * @param {import('@playwright/test').Page} page Page.
+ */
+async function loginAsSuperEditor( page ) {
+	await login(
+		page,
+		env( 'DLI_E2E_SUPER_EDITOR_USER', 'e2e-super-editor' ),
+		env( 'DLI_E2E_SUPER_EDITOR_PASSWORD', 'password' )
+	);
+}
+
+/**
+ * Log in as the Editor (DLI_E2E_EDITOR_USER, DLI_E2E_EDITOR_PASSWORD).
+ *
+ * @param {import('@playwright/test').Page} page Page.
+ */
+async function loginAsEditor( page ) {
+	await login( page, env( 'DLI_E2E_EDITOR_USER', 'e2e-editor' ), env( 'DLI_E2E_EDITOR_PASSWORD', 'password' ) );
+}
+
+module.exports = { login, loginAsAdmin, loginAsSuperEditor, loginAsEditor };

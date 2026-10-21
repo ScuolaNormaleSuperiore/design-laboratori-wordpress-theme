@@ -93,7 +93,7 @@ if ( ! function_exists( 'dli_set_term_language' ) ) {
 		if ( ! function_exists( 'pll_set_term_language' ) ) {
 			return;
 		}
-		return pll_set_term_language( $term, $lang );
+		pll_set_term_language( $term, $lang );
 	}
 }
 
@@ -108,7 +108,7 @@ if ( ! function_exists( 'dli_save_term_translations' ) ) {
 		if ( ! function_exists( 'pll_save_term_translations' ) ) {
 			return;
 		}
-		return pll_save_term_translations( $related_taxonomies );
+		pll_save_term_translations( $related_taxonomies );
 	}
 }
 
@@ -124,7 +124,7 @@ if ( ! function_exists( 'dli_set_post_language' ) ) {
 		if ( ! function_exists( 'pll_set_post_language' ) ) {
 			return;
 		}
-		return pll_set_post_language( $post, $lang );
+		pll_set_post_language( $post, $lang );
 	}
 }
 
@@ -139,7 +139,7 @@ if ( ! function_exists( 'dli_save_post_translations' ) ) {
 		if ( ! function_exists( 'pll_save_post_translations' ) ) {
 			return;
 		}
-		return pll_save_post_translations( $related_posts );
+		pll_save_post_translations( $related_posts );
 	}
 }
 

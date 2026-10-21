@@ -5,7 +5,8 @@
  * @package Design_Laboratori_WordPress_Theme
  */
 
-$dli_item = $args['item'];
+$dli_args = isset( $args ) && is_array( $args ) ? $args : array();
+$dli_item = $dli_args['item'] ?? null;
 if ( $dli_item ) {
 	$dli_id             = $dli_item->ID;
 	$dli_link           = get_the_permalink( $dli_id );

@@ -1001,10 +1001,6 @@ class DLI_ContentsManager {
 			)
 		);
 
-		if ( empty( $post_types ) ) {
-			return array();
-		}
-
 		$post_types_placeholders = implode( ', ', array_fill( 0, count( $post_types ), '%s' ) );
 		$prepare_args            = array_merge(
 			array(
@@ -1050,10 +1046,6 @@ class DLI_ContentsManager {
 			)
 		);
 
-		if ( empty( $content_types ) ) {
-			return array();
-		}
-
 		return self::get_post_types_with_results( $content_types, 'publish' );
 	}
 
@@ -1077,10 +1069,6 @@ class DLI_ContentsManager {
 				}
 			)
 		);
-
-		if ( empty( $content_types ) ) {
-			return array();
-		}
 
 		$params = array(
 			'post_type'      => $content_types,
