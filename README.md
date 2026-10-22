@@ -32,8 +32,14 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Mappa del sito in HTML e XML.
 - Gestione hero in home page.
 - Carousel in home page con contenuti selezionabili.
-- Gestione contenuti in evidenza in home page.
+- Gestione contenuti in evidenza in home page, a larghezza adattiva in base al numero di box con contenuti effettivi.
 - Gestione sezioni eventi, news e pubblicazioni in home page.
+- Sezione home "Pagine in evidenza": card di navigazione verso le pagine promosse.
+- Sezione home "Navigazione per pagine": elenco delle sottopagine dirette di ogni pagina promossa.
+- Sezione home "Indice di una pagina" (ripetibile, una pagina diversa per riga): esplora su due livelli la struttura di una pagina scelta.
+- Sezione home "Pannello tab": gruppo di tab bilingue con descrizione e pagine collegate opzionali.
+- Scheda di dettaglio pubblica delle pubblicazioni (titolo cliccabile, copertina, autori, descrizione, link esterno).
+- Pagina base: visualizzazione opzionale delle sottopagine dirette come card in fondo al contenuto.
 - Gestione banner in home page.
 - Gestione sponsor in home page.
 - Manifest PWA installabile (senza service worker).
@@ -120,6 +126,10 @@ Altre risorse utili:
 - [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
 - [Manuale operatore: persone](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore-persone.md)
 - [Pannello di configurazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md)
+
+### Manuali per utenti finali e riuso (cartella docs/)
+- [Manuale Utente](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/docs/Manuale-Utente.md) — content type, composizione della home page, pagine base e menu, per chi ha il ruolo Super Editor.
+- [Manuale Amministratore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/docs/Manuale-Amministratore.md) — ruoli e permessi, pannello di configurazione completo, note di architettura per chi valuta il tema in ottica di riuso.
 
 ### Manuali di gestione dei contenuti
 - [Attività di ricerca](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md)

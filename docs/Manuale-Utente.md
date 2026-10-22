@@ -82,7 +82,7 @@ Le sezioni della home sono gestite da **WP → Configurazione → Sezioni HP** (
 | **Descrizione del sito** | Testo in "Il Laboratorio" |
 | **Pannello tab** | Gruppo di tab configurato in Layout HP: ogni tab ha etichetta, descrizione e, facoltativamente, un elenco di pagine collegate mostrato in fondo al pannello (bilingue IT/EN) |
 | **Carousel principale** | Contenuti con `Promuovi in carousel` attivo (selezione automatica o manuale) |
-| **Contenuti in evidenza** | 3 box configurabili (tipo di contenuto + template) |
+| **Contenuti in evidenza** | 3 box configurabili (tipo di contenuto + template); la larghezza delle colonne si adatta da sola a quanti box hanno davvero contenuti da mostrare (1 box = tutta la larghezza, 2 = metà ciascuno, 3 = un terzo ciascuno) |
 | **Eventi / Notizie / Pubblicazioni / Articoli** | Contenuti con `Promuovi in Home` attivo per quel tipo |
 | **Banner** | Content type Banner |
 | **Sponsor** | Content type Sponsor |
@@ -98,7 +98,7 @@ Le pagine generiche del sito (non un content type dedicato) usano il template "P
 
 - **Pagine collegate**: relazione verso Notizie/Eventi mostrati in fondo alla pagina.
 - **Promuovi in Home**: la pagina compare nella sezione home "Pagine in evidenza" (come card) e, se ha sottopagine, anche in "Navigazione per pagine" (come elenco).
-- **Mostra le sottopagine come card**: se attivo, in testa al corpo della pagina compare un blocco "In questa sezione" con una card per ogni sottopagina diretta (titolo, estratto automatico, link "Vai al servizio") — utile per pagine "indice" con molte sottosezioni.
+- **Mostra le sottopagine come card**: se attivo, dopo il contenuto della pagina compare un gruppo di card, una per ogni sottopagina diretta (titolo, estratto automatico, link "Vai al servizio") — utile per pagine "indice" con molte sottosezioni.
 
 La gerarchia (pagina padre/figlia, impostabile in "Attributi pagina") determina anche la sidebar **"Pagine collegate"**, che mostra sempre l'intero albero della famiglia di pagine a cui appartiene quella corrente (fratelli e discendenti a qualunque profondità), con le voci con figli espandibili/comprimibili.
 

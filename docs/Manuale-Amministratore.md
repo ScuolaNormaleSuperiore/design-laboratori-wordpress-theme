@@ -24,7 +24,7 @@ Tutte le altre schede (contenuti, Layout HP, Sezioni HP, Avvisi in Home, Social,
 |---|---|---|
 | Opzioni di base | Nome/tagline del laboratorio (IT/EN), indirizzo/contatti/PEC, ente di appartenenza, loghi (header/footer/mobile, visibilità) | Super Editor |
 | Avvisi in Home | Messaggi di avviso ripetibili (colore, testo max 140 caratteri, link) | Super Editor |
-| **Sezioni HP** | Attiva/disattiva e ordina le sezioni della home (drag&drop); per riga: titolo sezione sì/no, sfondo bianco/grigio, e campo "Pagina" quando la riga è "Indice di una pagina" | Super Editor |
+| **Sezioni HP** | Attiva/disattiva e ordina le sezioni della home con le frecce su/giù di ogni riga (visibili anche a riga chiusa, non serve aprirla); il titolo della riga chiusa mostra tra parentesi la sezione scelta (es. "Sezione 1 (Hero principale)"); per riga: titolo sezione sì/no, sfondo bianco/grigio, e campo "Pagina" quando la riga è "Indice di una pagina" | Super Editor |
 | Layout HP | Hero principale, carousel, le 3 sezioni "Pagine in evidenza" / "Navigazione per pagine" / "Pannello tab" (titoli bilingue + contenuti), "Indice di una pagina" (vedi §3), box di Contenuti in evidenza, Video | Super Editor |
 | Laboratorio | Etichetta e descrizione della pagina "Il laboratorio" (IT/EN) | Super Editor |
 | Persone | Testi introduttivi, filtri (struttura/tag), modalità vista (chip/tabella) | Super Editor |
