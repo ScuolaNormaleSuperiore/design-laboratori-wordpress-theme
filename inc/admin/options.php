@@ -419,6 +419,38 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'               => 'page_id',
+			'name'             => __( 'Pagina (solo per "Indice di una pagina")', 'design_laboratori_italia' ),
+			'desc'             => __( 'Pagina di cui mostrare la struttura. Visibile solo quando "Sezione" è impostata su "Indice di una pagina": aggiungendo più righe con questa sezione, ciascuna può puntare a una pagina diversa.', 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'show_option_none' => true,
+			'options_cb'       => 'dli_get_pages_for_select',
+			'attributes'       => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => 'page_index_section',
+			),
+		)
+	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'         => 'background',
+			'name'       => __( 'Sfondo sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Disponibile per "Pagine in evidenza", "Navigazione per pagine", "Indice di una pagina" e "Pannello tab". Se non impostato, resta lo sfondo di default di quella sezione.', 'design_laboratori_italia' ),
+			'type'       => 'radio_inline',
+			'options'    => array(
+				'white' => __( 'Bianco', 'design_laboratori_italia' ),
+				'muted' => __( 'Grigio chiaro', 'design_laboratori_italia' ),
+			),
+			'attributes' => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => 'navigation_section,fasi_section,page_index_section,tabs_section',
+			),
+		)
+	);
 
 	/**
 	 * 3 - Registers options page "Home".
@@ -566,6 +598,213 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	// *** SEZIONE "COSA PUOI FARE" (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione',
+			'name' => __( 'Sezione "Pagine in evidenza"', 'design_laboratori_italia' ),
+			'desc' => __( 'Mostra fino a 6 pagine per cui è stato spuntato il flag "Promuovi in home" (scheda Pagina, in fondo), in ordine di menu.', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione_title',
+			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_navigazione_text',
+			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_navigazione_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	// *** SEZIONE "LE SEZIONI DEL SITO" (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_fasi',
+			'name' => __( 'Sezione "Navigazione per pagine"', 'design_laboratori_italia' ),
+			'desc' => __( 'Per ogni pagina con il flag "Promuovi in home" (lo stesso usato da "Pagine in evidenza") mostra il titolo e, in elenco, le sue sottopagine (fino a 4, in ordine di menu). Le pagine senza sottopagine non vengono mostrate.', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_fasi_title',
+			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_fasi_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_fasi_text',
+			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_fasi_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	// *** SEZIONE "PANNELLO TAB" (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tab',
+			'name' => __( 'Sezione "Pannello tab"', 'design_laboratori_italia' ),
+			'desc' => __( 'Componente a tab: per ciascuna voce del gruppo sottostante, un\'etichetta, un testo e (facoltativo) un elenco di pagine collegate mostrato in fondo al pannello. Consigliati almeno 2 tab; il primo della lista è quello aperto di default.', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tab_title',
+			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tab_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_tab_group_id = $home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_tab_items',
+			'type'       => 'group',
+			'desc'       => __( 'Elenco dei tab (consigliati almeno 2):', 'design_laboratori_italia' ) . '.',
+			'repeatable' => true,
+			'options'    => array(
+				'group_title'    => __( 'Tab', 'design_laboratori_italia' ) . ' {#}',
+				'add_button'     => __( 'Aggiungi il tab', 'design_laboratori_italia' ),
+				'remove_button'  => __( 'Rimuovi il tab', 'design_laboratori_italia' ),
+				'sortable'       => true,
+				'closed'         => true,
+				'remove_confirm' => esc_html__( 'Sei sicuro di voler rimuovere il tab?', 'design_laboratori_italia' ),
+			),
+		)
+	);
+	$home_options->add_group_field(
+		$home_tab_group_id,
+		array(
+			'id'   => 'etichetta',
+			'name' => __( 'Etichetta tab', 'design_laboratori_italia' ),
+			'desc' => __( 'Testo breve mostrato sul pulsante del tab (una o due parole).', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+	$home_options->add_group_field(
+		$home_tab_group_id,
+		array(
+			'id'   => 'etichetta_eng',
+			'name' => __( 'Etichetta tab ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+	$home_options->add_group_field(
+		$home_tab_group_id,
+		array(
+			'id'      => 'descrizione',
+			'name'    => __( 'Descrizione', 'design_laboratori_italia' ),
+			'desc'    => __( 'Testo del pannello (uno o più paragrafi).', 'design_laboratori_italia' ),
+			'type'    => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 4,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br',
+				),
+			),
+		)
+	);
+	$home_options->add_group_field(
+		$home_tab_group_id,
+		array(
+			'id'      => 'descrizione_eng',
+			'name'    => __( 'Descrizione ENG', 'design_laboratori_italia' ),
+			'type'    => 'wysiwyg',
+			'options' => array(
+				'textarea_rows' => 4,
+				'media_buttons' => false,
+				'teeny'         => true,
+				'quicktags'     => false,
+				'tinymce'       => array(
+					'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+					'valid_elements' => 'a[href],strong,em,p,br',
+				),
+			),
+		)
+	);
+	$home_options->add_group_field(
+		$home_tab_group_id,
+		array(
+			'id'         => 'pagine',
+			'name'       => __( 'Pagine collegate', 'design_laboratori_italia' ),
+			'desc'       => __( 'Facoltativo: pagine mostrate come elenco di link in fondo al pannello. Se nessuna pagina è selezionata, il pannello mostra solo la descrizione.', 'design_laboratori_italia' ),
+			'type'       => 'pw_multiselect',
+			'options_cb' => 'dli_get_pages_for_select',
+		)
+	);
+
 	$home_options->add_field(
 		array(
 			'id'   => $prefix . 'home_istruzioni_1',
@@ -677,9 +916,9 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-news',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
+					'card-news'          => __( 'Elenco notizie', 'design_laboratori_italia' ),
+					'card-pubblicazioni' => __( 'Elenco pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'        => __( 'Elenco eventi', 'design_laboratori_italia' ),
 				),
 			)
 		);
@@ -728,9 +967,9 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-eventi',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
+					'card-news'          => __( 'Elenco notizie', 'design_laboratori_italia' ),
+					'card-pubblicazioni' => __( 'Elenco pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'        => __( 'Elenco eventi', 'design_laboratori_italia' ),
 				),
 			)
 		);
@@ -779,9 +1018,9 @@ function dli_register_main_options_metabox() {
 				'default'          => 'card-pubblicazioni',
 				'show_option_none' => false,
 				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
+					'card-news'          => __( 'Elenco notizie', 'design_laboratori_italia' ),
+					'card-pubblicazioni' => __( 'Elenco pubblicazioni', 'design_laboratori_italia' ),
+					'card-eventi'        => __( 'Elenco eventi', 'design_laboratori_italia' ),
 				),
 			)
 		);
@@ -3138,8 +3377,56 @@ function dli_options_assets() {
 	$current_screen = get_current_screen();
 
 	if ( strpos( $current_screen->id, 'configurazione_page_' ) !== false || 'toplevel_page_dli_options' === $current_screen->id ) {
-		wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css', array(), '1.0' );
-		wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog' ), '1.0', true );
+		// Versione basata su filemtime() (non una stringa fissa '1.0'): senza
+		// questo, il browser continua a servire dalla cache una versione
+		// precedente di options.js dopo ogni modifica, perché l'URL
+		// enqueued (?ver=1.0) resta identico — stesso pattern già usato in
+		// dli_scripts() per gli asset del frontend.
+		$dli_options_css_path = get_stylesheet_directory() . '/inc/admin-css/jquery-ui.css';
+		$dli_options_js_path  = get_stylesheet_directory() . '/inc/admin-js/options.js';
+		$dli_options_css_ver  = file_exists( $dli_options_css_path ) ? (string) filemtime( $dli_options_css_path ) : '1.0';
+		$dli_options_js_ver   = file_exists( $dli_options_js_path ) ? (string) filemtime( $dli_options_js_path ) : '1.0';
+
+		wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css', array(), $dli_options_css_ver );
+		// Posiziona nell'intestazione delle righe di "Sezioni HP" le frecce
+		// su/giu spostate li' da options.js (dliMoveShiftRowsToHeader), a
+		// sinistra, prima sia del nome sezione sia della "x" di rimozione: la
+		// "x" (posizionata di suo a left:0 dal CSS vendor di CMB2) viene
+		// spostata piu' a destra, con uno spazio dedicato prima di essa, per
+		// evitare che un click destinato alle frecce cancelli la riga per
+		// errore.
+		wp_add_inline_style( 'dli_options_dialog', '
+			#site_sections_repeat > .cmb-repeatable-grouping { position: relative; }
+			#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows {
+				position: absolute;
+				top: .4em;
+				width: 1.8em;
+				height: 1.8em;
+				padding: 0;
+				line-height: 1.8em;
+				text-align: center;
+				box-sizing: border-box;
+			}
+			#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows .dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+				line-height: 1.8em;
+				vertical-align: middle;
+			}
+			#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-up { left: 0; }
+			#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-down { left: 2.2em; }
+			#site_sections_repeat > .cmb-repeatable-grouping > .cmb-remove-group-row.dashicons-no-alt {
+				left: 5em !important;
+			}
+			#site_sections_repeat .cmb-group-title { padding-left: 7em; }
+		' );
+		// 'cmb2-scripts' è in dipendenza (non solo 'jquery') perché options.js
+		// deve girare DOPO cmb.init() di CMB2 (es. per spostare le frecce di
+		// riordino già inserite da CMB2 nel DOM) — altrimenti, essendo
+		// entrambi legati a $(document).ready, l'ordine dipenderebbe solo
+		// dall'ordine di stampa degli script in pagina.
+		wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'cmb2-scripts' ), $dli_options_js_ver, true );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'dli_options_assets' );

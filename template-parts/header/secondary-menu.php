@@ -27,16 +27,21 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 					$dli_active_class = 'active';
 				}
 				if ( count( $dli_item['children'] ) > 0 ) {
+					// Id univoco per voce di menu: con più voci di primo livello
+					// con figli in questo menu, un id letterale fisso si
+					// duplicherebbe nel DOM (HTML non valido, e aria-labelledby
+					// del secondo pannello risolverebbe erroneamente al primo).
+					$dli_dropdown_id = 'mainNavDropdown-' . $dli_item['element']->ID;
 					?>
 				<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
+						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="<?php echo esc_attr( $dli_dropdown_id ); ?>">
 							<span><?php echo esc_html( $dli_item['element']->title ); ?></span>
 						<svg class="icon icon-xs" role="img">
 							<title><?php echo esc_html__( 'Expand', 'design_laboratori_italia' ); ?></title>
 								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 						</svg>
 					</a>
-					<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
+					<div class="dropdown-menu" role="region" aria-labelledby="<?php echo esc_attr( $dli_dropdown_id ); ?>">
 						<div class="link-list-wrapper">
 							<ul class="link-list">
 									<li><a class="dropdown-item list-item" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_html( $dli_item['element']->title ); ?></span></a></li>

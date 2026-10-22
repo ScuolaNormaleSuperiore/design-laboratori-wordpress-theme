@@ -29,6 +29,7 @@ define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SI
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
+define( 'DLI_BREADCRUMB_TITLE_WORDS', 8 );
 
 // Pagination.
 define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
@@ -53,7 +54,7 @@ define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
 // Feature flags.
 // Set to true only if a single-pubblicazione.php template exists and detail pages are intentionally exposed.
-define( 'DLI_PUBLICATION_HAS_DETAIL', false );
+define( 'DLI_PUBLICATION_HAS_DETAIL', true );
 
 // CUSTOM CONTENT TYPES.
 define( 'BANNER_POST_TYPE', 'banner' );
@@ -347,11 +348,23 @@ define(
 				'name'     => 'Hero principale',
 				'template' => 'template-parts/home/main-hero',
 			),
+		'navigation_section'   =>
+			array(
+				'id'       => 'navigation_section',
+				'name'     => 'Pagine in evidenza',
+				'template' => 'template-parts/home/hp-navigation-section',
+			),
 		'site_description'     =>
 				array(
 					'id'       => 'site_description',
 					'name'     => 'Descrizione del sito',
 					'template' => 'template-parts/home/site-presentation',
+				),
+		'tabs_section'         =>
+				array(
+					'id'       => 'tabs_section',
+					'name'     => 'Pannello tab',
+					'template' => 'template-parts/home/hp-tabs-section',
 				),
 		'main_carousel'        =>
 			array(
@@ -400,6 +413,18 @@ define(
 					'id'       => 'sponsors_section',
 					'name'     => 'Sponsor',
 					'template' => 'template-parts/home/hp-sponsor-section',
+				),
+		'fasi_section'         =>
+				array(
+					'id'       => 'fasi_section',
+					'name'     => 'Navigazione per pagine',
+					'template' => 'template-parts/home/hp-fasi-section',
+				),
+		'page_index_section'   =>
+				array(
+					'id'       => 'page_index_section',
+					'name'     => 'Indice di una pagina',
+					'template' => 'template-parts/home/hp-page-index-section',
 				),
 		'video_section'        =>
 			array(

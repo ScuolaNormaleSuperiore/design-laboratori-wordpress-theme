@@ -71,6 +71,10 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		$dli_tb_r_link   = (string) get_the_permalink( $dli_tb_pid );
 		$dli_tb_r_target = '';
 	}
+	// esc_url() scarta gli schemi non ammessi (es. "javascript:"): il campo
+	// ACF "Sito web" valida solo che la stringa contenga "://", non lo
+	// schema, quindi un valore scorretto qui andrebbe comunque nel JSON.
+	$dli_tb_r_link = esc_url_raw( $dli_tb_r_link );
 
 	$dli_tb_r_type = isset( $dli_tb_category_map[ $dli_tb_cat_id ] )
 		? (string) $dli_tb_category_map[ $dli_tb_cat_id ]
@@ -96,8 +100,12 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 	if ( ! $dli_tb_hide_email ) {
 		$dli_tb_r_email = antispambot( sanitize_email( (string) dli_get_field( 'email', $dli_tb_pid ) ) );
 	}
-	$dli_tb_r_phone      = (string) dli_get_field( 'telefono', $dli_tb_pid );
-	$dli_tb_r_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_r_phone );
+	$dli_tb_r_phone      = '';
+	$dli_tb_r_phone_href = '';
+	if ( ! $dli_tb_hide_phone ) {
+		$dli_tb_r_phone      = (string) dli_get_field( 'telefono', $dli_tb_pid );
+		$dli_tb_r_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_r_phone );
+	}
 
 	$dli_tb_json_rows[] = array(
 		'name'           => $dli_tb_r_name,

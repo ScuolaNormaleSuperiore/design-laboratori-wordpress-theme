@@ -60,6 +60,10 @@ if ( 'yes' === $dli_form_submitted ) {
 			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
 		} else {
 			$dli_captcha_valid = $dli_captcha_obj->check( $dli_captcha_prefix, $dli_captcha_field );
+			// Consuma subito la challenge verificata: check() da solo non la
+			// invalida, quindi la stessa coppia prefix/risposta resterebbe
+			// valida per ulteriori invii (replay) finché non scade da sé.
+			$dli_captcha_obj->remove( $dli_captcha_prefix );
 			if ( ! $dli_captcha_valid ) {
 				$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}

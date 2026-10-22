@@ -19,13 +19,19 @@ $dli_active_sections = DLI_ContentsManager::get_hp_section_options( true );
 		$dli_section_data = ( $dli_section_id && array_key_exists( $dli_section_id, $dli_all_sections ) ) ? $dli_all_sections[ $dli_section_id ] : null;
 
 		if ( $dli_section_data ) {
+			// $dli_section può contenere campi aggiuntivi specifici di una
+			// sezione (es. "page_id" per "Indice di una pagina"): passati
+			// così come sono, il template-part li legge da $args se servono.
 			get_template_part(
 				$dli_section_data['template'],
 				null,
-				array(
-					'id'         => $dli_section['id'],
-					'show_title' => $dli_section['show_title'],
-					'enabled'    => $dli_section['enabled'],
+				array_merge(
+					$dli_section,
+					array(
+						'id'         => $dli_section['id'],
+						'show_title' => $dli_section['show_title'],
+						'enabled'    => $dli_section['enabled'],
+					)
 				)
 			);
 		}

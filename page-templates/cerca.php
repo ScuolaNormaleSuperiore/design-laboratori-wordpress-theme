@@ -22,7 +22,9 @@ $dli_per_page_values   = DLI_PER_PAGE_VALUES;
 
 $dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
 if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
-	$dli_per_page = absint( $dli_per_page_input );
+	// Tetto massimo ai valori ammessi: un intero positivo valido ma enorme
+	// non deve comunque bypassare la paginazione.
+	$dli_per_page = min( absint( $dli_per_page_input ), (int) max( $dli_per_page_values ) );
 }
 
 if ( isset( $_GET['isreset'] ) ) {

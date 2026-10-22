@@ -12,6 +12,26 @@ get_header();
 $dli_image_metadata = dli_get_image_metadata( $post, 'full' );
 $dli_image_metadata = is_array( $dli_image_metadata ) ? $dli_image_metadata : array();
 $dli_related_items  = dli_get_field( 'pagine_collegate' );
+
+// "In questa sezione": card di navigazione verso le sottopagine dirette,
+// mostrate in coda al corpo (dopo the_content()) solo se l'autore ha attivato
+// l'apposito flag sulla pagina — stesso componente card-nav di "Cosa puoi
+// fare" in home, pattern validato nel prototipo statico bs-playground
+// (sf-pagina-base-voce2.html).
+$dli_show_children_cards = dli_get_field( 'mostra_sottopagine_a_card' );
+$dli_child_pages         = array();
+if ( $dli_show_children_cards ) {
+	$dli_child_pages = get_posts(
+		array(
+			'post_type'      => WP_DEFAULT_PAGE,
+			'post_status'    => 'publish',
+			'post_parent'    => $post->ID,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'posts_per_page' => -1,
+		)
+	);
+}
 ?>
 
 <main id="main-container" role="main">
@@ -119,6 +139,40 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 					<?php endif; ?>
 
 					<?php the_content(); ?>
+
+					<?php if ( ! empty( $dli_child_pages ) ) : ?>
+						<section id="sottosezioni" aria-label="<?php echo esc_attr__( 'In questa sezione', 'design_laboratori_italia' ); ?>">
+							<ul class="row list-unstyled mb-0">
+								<?php foreach ( $dli_child_pages as $dli_child_page ) : ?>
+									<?php
+									$dli_child_id    = $dli_child_page->ID;
+									$dli_child_title = get_the_title( $dli_child_id );
+									$dli_child_link  = get_permalink( $dli_child_id );
+									$dli_abstract    = get_the_excerpt( $dli_child_id );
+									?>
+									<li class="col-12 col-md-6 mb-4">
+										<article class="it-card it-card-height-full bg-white rounded shadow-sm border card-nav">
+											<h3 class="it-card-title h4 fw-bold"><?php echo esc_html( $dli_child_title ); ?></h3>
+											<?php if ( $dli_abstract ) : ?>
+												<div class="it-card-body">
+													<p class="it-card-text text-muted"><?php echo esc_html( $dli_abstract ); ?></p>
+												</div>
+											<?php endif; ?>
+											<footer class="it-card-footer justify-content-start">
+												<a class="fw-semibold" href="<?php echo esc_url( $dli_child_link ); ?>">
+													<?php echo esc_html__( 'Vai al servizio', 'design_laboratori_italia' ); ?>
+													<span class="visually-hidden">: <?php echo esc_html( $dli_child_title ); ?></span>
+													<svg class="icon icon-sm icon-primary ms-2" aria-hidden="true" focusable="false">
+														<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right' ); ?>"></use>
+													</svg>
+												</a>
+											</footer>
+										</article>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</section>
+					<?php endif; ?>
 
 					<!-- NEWS ED EVENTI (pagine_collegate) -->
 					<?php

@@ -146,6 +146,12 @@ Campi principali:
 - `featured_contents_*` (Box 1/2/3)
   tipo: `group` con campi `label`, `tipo contenuto`, `template`
   funzione: configura i tre box dei contenuti in evidenza.
+- `Titolo sezione` / `Titolo sezione ENG` (sezione "Cosa puoi fare")
+  tipo: `text`
+  funzione: titolo IT/EN della sezione home "Cosa puoi fare".
+- `Sottotitolo sezione` / `Sottotitolo sezione ENG` (sezione "Cosa puoi fare")
+  tipo: `textarea`
+  funzione: sottotitolo IT/EN della sezione (max 512 caratteri).
 
 ### 4.5 Tab `Laboratorio` (`il_laboratorio`)
 Funzione: testi della pagina panoramica "Il laboratorio".
@@ -499,6 +505,7 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 - Carousel automatico: impostare `Selezione Automatica` su `Si`.
 - Carousel manuale: impostare `Selezione Automatica` su `No` e compilare `Selezione articoli`.
 - Box contenuti in evidenza: aprire `Box 1/2/3`, impostare tipo/template/label e salvare.
+- Sezione "Cosa puoi fare": aggiornare `Titolo sezione`/`Sottotitolo sezione` (IT/EN); le card mostrate sono automatiche, non selezionabili qui — per farle comparire, aprire ciascuna Pagina interessata e spuntare `Promuovi in Home` in fondo alla scheda (fino a 6 pagine, nell'ordine del menu). Ricordarsi di abilitare anche la sezione `navigation_section` ("Cosa puoi fare") nel tab `Sezioni HP`.
 
 ### 5.5 `Laboratorio`
 - Aggiornare i testi di pagina: modificare `Etichetta` e `Descrizione` (IT/EN).

@@ -41,7 +41,9 @@ class DLI_Config_Unit_Test extends TestCase {
 	public function test_home_page_sections() {
 		$expected = array(
 			'main_hero',
+			'navigation_section',
 			'site_description',
+			'tabs_section',
 			'main_carousel',
 			'featured_contents',
 			'events_section',
@@ -50,6 +52,8 @@ class DLI_Config_Unit_Test extends TestCase {
 			'articles_section',
 			'banners_section',
 			'sponsors_section',
+			'fasi_section',
+			'page_index_section',
 			'video_section',
 		);
 		$this->assertSame( $expected, array_keys( DLI_HP_SECTIONS ) );

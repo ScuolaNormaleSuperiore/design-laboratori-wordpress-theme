@@ -86,6 +86,7 @@ Suggerimenti:
 ## 8. Home page: cosa puo' gestire l'operatore
 In base alla configurazione del sito, puoi intervenire su:
 - hero principale
+- sezione "Cosa puoi fare" (card automatiche verso le Pagine con il flag `Promuovi in Home` attivo, vedi `WP -> Configurazione -> Home`)
 - blocchi in evidenza
 - sezioni eventi/news/pubblicazioni
 - carousel

@@ -8,12 +8,12 @@ Il content type `Pubblicazione` rappresenta una pubblicazione scientifica o tecn
 
 Caratteristiche principali:
 - slug tecnico post type: `pubblicazione`
-- contenuto pubblico
-- gerarchico (`hierarchical = true`)
+- contenuto pubblico, con una propria scheda di dettaglio (vedi sotto)
+- non gerarchico (`hierarchical = false`)
 - campi nativi WordPress supportati:
 1. `Titolo`
-2. `Contenuto` (testo descrittivo/scheda breve della pubblicazione)
-3. `Immagine in evidenza`
+2. `Contenuto` (testo descrittivo/scheda breve della pubblicazione, mostrato nella sezione "Descrizione" della scheda)
+3. `Immagine in evidenza` (usata come copertina del volume, vedi 4.2)
 
 ## 3. Dove si gestisce nel backoffice
 - Menu principale: `Pubblicazioni`.
@@ -21,6 +21,8 @@ Caratteristiche principali:
 1. `Pubblicazioni > Aggiungi Pubblicazione`
 2. `Pubblicazioni > Tutte le Pubblicazioni`
 3. Apertura della singola scheda per modifica rapida o completa.
+
+Ogni pubblicazione pubblicata ha una propria pagina pubblica di dettaglio, raggiungibile cliccando il titolo nell'elenco `Le pubblicazioni`. La scheda mostra: categoria/tipologia, titolo, anno in evidenza (hero); copertina (o un'immagine decorativa generica se non impostata) e il bottone "Condividi" in una colonna laterale; `Autori` (con link alle rispettive schede persona, quando disponibili), `Descrizione` e, se compilato, il bottone "Consulta la pubblicazione" che rimanda al campo `Url`.
 
 ## 4. Campi principali della scheda (ACF)
 Nel box `Campi Pubblicazione` sono presenti i seguenti campi.
@@ -46,6 +48,9 @@ Nel box `Campi Pubblicazione` sono presenti i seguenti campi.
   tipo: `true_false`
   obbligatorio: `No`
   correlazioni: `Nessuna` (usato per evidenza in homepage)
+
+### 4.2 Copertina
+Non esiste un campo ACF dedicato: la copertina mostrata nella scheda di dettaglio e nell'elenco e' sempre il campo nativo `Immagine in evidenza`. Se non e' impostata, la scheda di dettaglio mostra un'immagine decorativa generica al suo posto; nell'elenco, le pubblicazioni senza immagine in evidenza vengono semplicemente mostrate senza copertina (card senza immagine).
 
 ## 5. Inserimento
 1. Aprire `Pubblicazioni > Aggiungi Pubblicazione`.
@@ -98,7 +103,7 @@ Nelle opzioni tema (`dli_options > Pubblicazioni`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 
-Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singola scheda.
+Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singola scheda (che non ha testi configurabili: mostra sempre i campi della pubblicazione stessa).
 
 ## 11. Check-list rapida prima della pubblicazione
 - `Titolo` valorizzato
@@ -110,3 +115,4 @@ Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singol
 - `Tag` coerenti (se usati)
 - eventuali relazioni con `Progetti` verificate
 - flag `Promuovi in Home` / `Promuovi in carousel` coerenti con la visibilita' desiderata
+- `Immagine in evidenza` impostata, se disponibile una copertina reale (consigliata ma non obbligatoria: in sua assenza la scheda mostra un'immagine decorativa generica)

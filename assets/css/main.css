@@ -20,16 +20,72 @@ html {
 	--bsi-header-nav-background: var(--bsi-color-background-inverse);
 }
 
-/* Voci lunghe troncate nel dropdown del menu principale (header.php, es. la
-	voce "Pagina base" con figli): BI3 applica .dropdown-item.list-item
-	{white-space:nowrap} (specificità 0,2,0), che tiene il titolo su una sola
-	riga anche quando è più lungo della larghezza del dropdown, facendolo
-	uscire dal riquadro. Una regola ufficiale corregge questo a "normal", ma
-	solo dentro un megamenu (.megamenu ... .list-item{white-space:normal}) —
-	il nostro dropdown (inc/walkers/main-menu-walker.php) non usa .megamenu,
-	quindi non la riceve. Corretto qui con una regola di specificità
-	maggiore (tre classi) sullo stesso contenitore. */
-.it-header-navbar-wrapper .dropdown-menu .list-item {
+/* Titoli colonne footer (Contatti/Link utili/Seguici su/Newsletter): erano
+	h4, ora h3 per non saltare livelli dopo l'h2 del brand (la tagline, prima
+	un h3 nascosto sotto i 768px, è stata convertita in <p> — senza questo
+	cambio le colonne sarebbero rimaste h4, creando un salto h2→h4 su
+	QUALUNQUE larghezza, non solo sotto i 768px come nel bug originale).
+	Replica lo stile che Bootstrap Italia applica di default solo a
+	`.it-footer h4`. Stesso fix già applicato nel prototipo statico
+	bs-playground. */
+.it-footer-main h3:not(.it-brand-wrapper h3) {
+	margin-bottom: var(--bsi-spacing-s);
+	font-size: var(--bsi-label-font-size);
+	font-weight: var(--bsi-heading-font-weight-weak);
+	text-transform: uppercase;
+}
+
+/* L'header (position:relative; z-index:5 in BI3) crea uno stacking context:
+	il menu mobile (fixed, z-index 1055) e i dropdown/megamenu restano quindi
+	sotto qualunque elemento sticky della pagina (.sticky-top, z-index 1020,
+	usato dalle sidebar filtri e dall'albero "Pagine collegate"), che
+	comparivano sopra il menu aperto. Con z-index 1030 l'header sta sopra gli
+	sticky e sotto le modali (1055). Stesso fix già applicato nel prototipo
+	statico bs-playground. */
+.it-header-wrapper {
+	z-index: 1030;
+}
+
+/* Tra lg e xl (992-1199px) la barra di navigazione può avere più voci a
+	sinistra e a destra di quante ne entrino, con un'etichetta lunga che le fa
+	andare a capo e la pagina scorrere in orizzontale. Si stringono padding e
+	corpo del testo solo in questo intervallo. Stesso fix già applicato nel
+	prototipo statico bs-playground. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.it-header-navbar-wrapper .navbar .navbar-nav .nav-link {
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		font-size: 0.875rem;
+	}
+}
+
+/* Menu mobile (Bootstrap Italia 3.0.0-beta.6+): la libreria clona il brand
+	dell'header nella testata del menu, su sfondo primario
+	(--bsi-navbar-brand-mobile-background). Il logo è un'immagine colorata
+	(non un'icona SVG con fill ereditato), quindi risultava teal su teal e
+	quasi invisibile: lo si rende bianco, come già fatto per il logo del
+	footer (.color-invert). Stesso fix già applicato nel prototipo statico
+	bs-playground. */
+.navbar-collapsable .menu-wrapper .it-brand-wrapper.it-brand-mobile img {
+	filter: brightness(0) invert(1);
+}
+
+/* Voci lunghe nel dropdown del menu principale (header.php, es. la voce
+	"Pagina base" con figli, o un'etichetta particolarmente lunga): BI3
+	applica .dropdown-item.list-item{white-space:nowrap}, che tiene il
+	titolo su una sola riga anche quando è più lungo della larghezza del
+	dropdown, facendolo uscire dal riquadro. Una regola ufficiale corregge
+	questo a "normal", ma solo dentro un megamenu (.megamenu ...
+	.list-item{white-space:normal}) — il nostro dropdown
+	(inc/walkers/main-menu-walker.php) non usa la classe .megamenu, quindi
+	non la riceve. Il pannello riceve anche un max-width così le voci vanno
+	a capo senza che il dropdown si allarghi oltre una misura ragionevole.
+	Stesso identico fix già applicato nel prototipo statico bs-playground. */
+.navbar .dropdown-menu:not(.megamenu .dropdown-menu) {
+	max-width: 22rem;
+}
+
+.navbar .dropdown-menu:not(.megamenu .dropdown-menu) .list-item {
 	white-space: normal;
 }
 
@@ -62,15 +118,25 @@ html {
 	transform: rotate(180deg);
 }
 
-/* Indentazione crescente per livello nella sidebar "Pagine collegate". La
-	regola ufficiale BI3 (.sidebar-linklist-wrapper ... ul.link-sublist li
-	a{padding-inline-start:var(--bsi-sidebar-link-sublist-indent)}) applica lo
-	stesso rientro fisso a qualunque <a> dentro un .link-sublist,
-	indipendentemente dalla profondità: una voce di terzo livello risultava
-	così allo stesso livello visivo delle voci di secondo livello. Qui si
-	aggiunge un rientro supplementare quando il link-sublist è annidato in un
-	altro link-sublist. */
-.sidebar-linklist-wrapper .link-list-wrapper .link-sublist .link-sublist li a {
+/* Indentazione crescente per livello nella sidebar "Pagine collegate". BI3
+	prevede già un rientro per le sottoliste (--bsi-sidebar-link-sublist-indent,
+	variabile di componente sovrascrivibile) ma lo applica come
+	padding-inline-start che SOSTITUISCE il padding base del link (spacing-s):
+	con il valore di default (spacing-m) il secondo livello risultava rientrato
+	di soli 8px — impostato qui a 2rem. Il terzo livello usa il doppio del
+	valore (regola sotto). */
+.sidebar-wrapper {
+	--bsi-sidebar-link-sublist-indent: 2rem;
+}
+
+/* Il selettore deve avere almeno la specificità di quello ufficiale BI3
+	(dalla beta.6 prefissato da .sidebar-wrapper, vedi regola sopra): con un
+	selettore più debole (es. senza .sidebar-wrapper o con solo .link-sublist
+	invece di ul.link-sublist) la regola viene ignorata e il terzo livello
+	resta allineato al secondo. Stesso identico fix già applicato nel
+	prototipo statico bs-playground dopo l'aggiornamento a Bootstrap Italia
+	3.0.0-beta.6+. */
+.sidebar-wrapper .sidebar-linklist-wrapper .link-list-wrapper ul.link-sublist ul.link-sublist li a {
 	padding-inline-start: calc(var(--bsi-sidebar-link-sublist-indent) * 2);
 }
 
@@ -199,6 +265,13 @@ html {
 	color: white !important;
 }
 
+/* Testo secondario avatar (es. struttura/ciclo nelle card persone): BI3 lo
+	colora con --bsi-color-text-secondary senza una variabile di componente
+	dedicata. Stesso fix già applicato nel prototipo statico bs-playground. */
+.avatar-extra-text .extra-text p {
+	color: var(--bsi-color-text-base);
+}
+
 /* modifiche visibilità  hero e banner */
 
 .it-hero-wrapper .it-hero-text-wrapper span, .it-hero-wrapper .it-hero-text-wrapper h1, .it-hero-wrapper .it-hero-text-wrapper .h1, .it-hero-wrapper .it-hero-text-wrapper h2, .it-hero-wrapper .it-hero-text-wrapper .h2, .it-hero-wrapper .it-hero-text-wrapper h3, .it-hero-wrapper .it-hero-text-wrapper .h3, .it-hero-wrapper .it-hero-text-wrapper h4, .it-hero-wrapper .it-hero-text-wrapper .h4, .it-hero-wrapper .it-hero-text-wrapper h5, .it-hero-wrapper .it-hero-text-wrapper .h5, .it-hero-wrapper .it-hero-text-wrapper h6, .it-hero-wrapper .it-hero-text-wrapper .h6, .it-hero-wrapper .it-hero-text-wrapper p {
@@ -322,6 +395,170 @@ html {
 #people-table thead th button {
 	color: inherit !important;
 	font-weight: 600 !important;
+}
+
+/* Placeholder decorativo nell'hero di single-pubblicazione.php: il pattern
+	standard (width/height 100% + object-fit: cover) segue l'altezza
+	dell'hero, e con titoli lunghi (hero più alto per via del testo che va a
+	capo) ingrandiva lo stemma ritagliandolo ai lati. Qui resta alla scala
+	naturale (16:9 a tutta larghezza della colonna), ancorato in alto e
+	sfumato in basso, così non si vede il bordo del ritaglio quando l'hero è
+	più alto del necessario. Stesso fix già applicato nel prototipo statico
+	bs-playground. */
+.hero-placeholder-scala-fissa {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	-webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+	mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+/* Copertina nella sidebar di single-pubblicazione.php: a tutta colonna su
+   desktop; sotto lg la sidebar va sopra il corpo e una copertina verticale a
+   piena larghezza occuperebbe più di uno schermo, quindi si limita. Formato
+   naturale preservato (nessun object-fit), stesso pattern del prototipo
+   statico bs-playground. */
+.pubblicazione-copertina {
+	max-width: 12rem;
+}
+
+@media (min-width: 992px) {
+	.pubblicazione-copertina {
+		max-width: none;
+	}
+}
+
+/* Copertina mancante: placeholder-copertina-sns.png è uno stemma bianco
+   semitrasparente su fondo trasparente, il colore lo dà lo sfondo primario. */
+.pubblicazione-copertina-placeholder img {
+	background-color: var(--bsi-color-background-primary);
+}
+
+/* Card pubblicazione con copertina (elenco pubblicazioni): la copertina sta
+   in una colonna stretta al proprio formato naturale invece che ritagliata
+   con object-fit: cover in un riquadro 1x1 (le copertine sono quasi sempre
+   verticali). Su mobile la card è in colonna, copertina piccola sopra. */
+.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper {
+	padding: var(--bsi-card-spacing-y) var(--bsi-card-spacing-x) 0;
+}
+
+.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper img {
+	display: block;
+	width: 100%;
+	max-width: 8rem;
+	height: auto;
+	border-radius: var(--bsi-card-border-radius-inner);
+}
+
+@media (min-width: 768px) {
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper {
+		flex: 0 0 10rem;
+		width: 10rem;
+		padding: var(--bsi-card-spacing-y) 0 var(--bsi-card-spacing-y) var(--bsi-card-spacing-x);
+	}
+
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-inline-content {
+		flex: 1;
+		width: auto;
+	}
+
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper img {
+		max-width: none;
+	}
+}
+
+/* Card "Cosa puoi fare" (hp-navigation-section.php): corpo a crescita
+   flessibile così il link "Vai al servizio" resta sempre in fondo alla card
+   a pari altezza (it-card-height-full), anche con abstract di lunghezza
+   diversa tra una card e l'altra. Titolo colorato con la variabile semantica
+   (non l'utility .text-primary, che prenderebbe il blu non brandizzato di
+   Bootstrap Italia). Stesso pattern del prototipo statico bs-playground. */
+.card-nav .it-card-body {
+	flex-grow: 1;
+}
+
+.card-nav .it-card-title {
+	color: var(--bsi-color-text-primary);
+}
+
+/* Liste "Azioni, con freccia" delle sezioni "Le sezioni del sito"
+   (hp-fasi-section.php, #blocco-fasi) e "Indice di una pagina"
+   (hp-page-index-section.php, .blocco-indice-fase — classe e non id: la
+   sezione può essere ripetuta più volte in home, ciascuna con un id univoco
+   basato sulla pagina selezionata): BI3 sottolinea di default il testo del
+   list-item e, al passaggio del mouse, aggiunge uno sfondo/ombra alla
+   cella — qui si preferisce restare senza, con la sola sottolineatura su
+   hover/focus (coerente con la policy generale dei link della sezione).
+   #blocco-tab incluso per coerenza con lo stesso pattern nel prototipo
+   statico bs-playground (sezione "Aree di attività", non ancora presente in
+   questo tema). */
+#blocco-fasi .it-list .list-item .text,
+.blocco-indice-fase .it-list .list-item .text,
+#blocco-tab .it-list .list-item .text {
+	text-decoration: none;
+}
+
+#blocco-fasi .it-list .list-item:hover .text,
+#blocco-fasi .it-list .list-item:focus-visible .text,
+.blocco-indice-fase .it-list .list-item:hover .text,
+.blocco-indice-fase .it-list .list-item:focus-visible .text,
+#blocco-tab .it-list .list-item:hover .text,
+#blocco-tab .it-list .list-item:focus-visible .text {
+	text-decoration: underline;
+}
+
+#blocco-fasi .it-list .list-item:hover,
+#blocco-fasi .it-list .list-item:focus-visible,
+.blocco-indice-fase .it-list .list-item:hover,
+.blocco-indice-fase .it-list .list-item:focus-visible,
+#blocco-tab .it-list .list-item:hover,
+#blocco-tab .it-list .list-item:focus-visible {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+
+/* "Pannello tab" (hp-tabs-section.php, #blocco-tab): la barra dei tab (nav-
+   tabs) ha di suo uno sfondo bianco fisso (--bsi-tabs-background-color:
+   var(--bsi-color-background-inverse), cioè #fff), indipendente dallo sfondo
+   scelto per la sezione in "Sezioni HP" — con sfondo sezione "grigio chiaro"
+   risultava una fascia bianca ben visibile sopra al pannello. La si rimuove
+   per lasciar trasparire lo sfondo reale della sezione. */
+#blocco-tab .nav-tabs {
+	background-color: transparent;
+}
+
+/* Data degli eventi (home "Contenuti in evidenza" e archivio eventi): è un
+	it-card-subtitle, che in BI3 ha corpo e peso da titolo (24px/600, come h5):
+	risultava pari al titolo della card. Il corpo scende a quello di etichetta
+	(16px), il peso resta quello standard (600), nel colore del testo per la
+	leggibilità. Stesso fix già applicato nel prototipo statico bs-playground
+	(lì lo stesso wrapper dell'archivio eventi ha id="eventi", qui "events"). */
+#blocco-card .it-card .it-card-body .it-card-subtitle,
+#events .it-card .it-card-body .it-card-subtitle {
+	font-size: var(--bsi-label-font-size);
+}
+
+/* Uniforma le dimensioni dei titoli in home page: h1 40px, h2 32px, h3 24px,
+   titoli delle card 24px, sempre uguali a qualunque breakpoint (BI3 di suo
+   ingrandisce i titoli da 576px in su) e a prescindere dalla classe di
+   utility (.h3/.h4/.h5) usata finora in modo incoerente da una sezione
+   all'altra. L'unico <h1> reale della pagina è il titolo del brand in
+   header (identità del sito, condivisa da tutto il tema, non un titolo di
+   contenuto): il titolo hero resta un h2 per correttezza semantica (un solo
+   h1 per pagina), ma è quello che deve risultare il più grande in home,
+   quindi va trattato come "h1" visivo e preso singolarmente per id. */
+body.home #dli-hero-main-title {
+	font-size: 40px !important;
+}
+
+body.home h2 {
+	font-size: 32px !important;
+}
+
+body.home h3,
+body.home .it-card-title {
+	font-size: 24px !important;
 }
 
 /* Indicatore filtro attivo sulle select */

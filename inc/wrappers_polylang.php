@@ -296,6 +296,26 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_pick_lang_value' ) ) {
+	/**
+	 * Pick the IT/EN variant of an already-known pair of values (es. una riga
+	 * di un gruppo CMB2 ripetibile, dove non ha senso un lookup su
+	 * dli_get_option()), con lo stesso fallback sulla lingua di default usato
+	 * da dli_get_configuration_field_by_lang().
+	 *
+	 * @param string $it_value Valore italiano (o nella lingua di default).
+	 * @param string $en_value Valore inglese.
+	 * @return string
+	 */
+	function dli_pick_lang_value( $it_value, $en_value ) {
+		$value = ( dli_current_language() === DLI_IT_SLUG ) ? $it_value : $en_value;
+		if ( ! $value ) {
+			$value = ( DLI_IT_SLUG === dli_default_language( 'slug' ) ) ? $it_value : $en_value;
+		}
+		return $value;
+	}
+}
+
 if ( ! function_exists( 'dli_get_configuration_field_by_lang' ) ) {
 	/**
 	 * Recupera il valore di un'opzione di configurazione nella lingua corrente,

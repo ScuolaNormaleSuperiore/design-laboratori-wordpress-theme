@@ -295,7 +295,7 @@ class DLI_ContentsManager {
 					array_push(
 						$steps,
 						array(
-							'label' => $post->post_title,
+							'label' => wp_trim_words( $post->post_title, DLI_BREADCRUMB_TITLE_WORDS ),
 							'url'   => get_permalink( $post->ID ),
 							'class' => 'breadcrumb-item active',
 						),
@@ -327,7 +327,7 @@ class DLI_ContentsManager {
 					array_push(
 						$steps,
 						array(
-							'label' => $post->post_title,
+							'label' => wp_trim_words( $post->post_title, DLI_BREADCRUMB_TITLE_WORDS ),
 							'url'   => get_permalink( $post->ID ),
 							'class' => 'breadcrumb-item active',
 						),
@@ -1086,7 +1086,10 @@ class DLI_ContentsManager {
 			'post_type'      => $content_types,
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'fields'         => 'all',
+			// Serve solo il post_type di ogni risultato (vedi wp_list_pluck
+			// sotto): 'id=>post_type' evita di caricare l'intero WP_Post per
+			// ogni corrispondenza, a differenza di 'fields' => 'all'.
+			'fields'         => 'id=>post_type',
 			'no_found_rows'  => true,
 		);
 

@@ -261,6 +261,45 @@ if ( ! function_exists( 'dli_get_event_order_date' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_hp_section_background_class' ) ) {
+	/**
+	 * Resolve the "section-muted" class for a homepage section from its
+	 * per-row "Sfondo sezione" setting (Sezioni HP, campo "background"),
+	 * ricadendo sullo sfondo di default di quella sezione se non impostato
+	 * (righe salvate prima dell'introduzione di questo campo).
+	 *
+	 * @param array  $args           Template-part $args (riga di Sezioni HP).
+	 * @param string $default_bg     'white' o 'muted': sfondo di default della sezione.
+	 * @return string ' section-muted' oppure stringa vuota, da concatenare alla classe della sezione.
+	 */
+	function dli_get_hp_section_background_class( $args, $default_bg = 'white' ) {
+		$background = is_array( $args ) && ! empty( $args['background'] ) ? $args['background'] : $default_bg;
+		return ( 'muted' === $background ) ? ' section-muted' : '';
+	}
+}
+
+if ( ! function_exists( 'dli_get_pages_for_select' ) ) {
+	/**
+	 * Return all published pages as id => title, for use in an admin page-picker select.
+	 *
+	 * @param mixed $item Unused parameter kept for consistency with other CMB2 options_cb callbacks.
+	 * @return array
+	 */
+	function dli_get_pages_for_select( $item ) {
+		$pages  = get_pages(
+			array(
+				'sort_column' => 'post_title',
+				'sort_order'  => 'ASC',
+			)
+		);
+		$result = array();
+		foreach ( $pages as $page ) {
+			$result[ $page->ID ] = $page->post_title;
+		}
+		return $result;
+	}
+}
+
 if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 	/**
 	 * Return localized post type labels for content boxes.

@@ -11,11 +11,11 @@ if ( 'true' === $dli_newsletter_enabled ) {
 	$dli_current_language = dli_current_language( 'slug' );
 	$dli_page_url         = dli_get_newsletter_link( $dli_current_language );
 	?>
-	<h4>
+	<h3>
 		<a href="<?php echo esc_url( $dli_page_url ); ?>" title="<?php echo esc_attr__( 'Vai alla pagina: Newsletter', 'design_laboratori_italia' ); ?>">
 			<?php echo esc_html__( 'Newsletter', 'design_laboratori_italia' ); ?>
 		</a>
-	</h4>
+	</h3>
 
 	<div class="pb-2 bg-dark bg-transparent ">
 		<p>
