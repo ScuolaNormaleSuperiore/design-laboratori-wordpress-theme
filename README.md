@@ -201,23 +201,21 @@ npm ci
 composer install
 ```
 
-Eseguire i controlli dalla radice del tema:
+Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono il codice), **Test** (con asserzioni: passano o falliscono) e **Report** (fotografano un sito in funzione e producono un risultato da leggere). I Controlli statici e i Test si lanciano con Composer, i Report con npm.
 
-- `composer run lint:php` (oppure `npm run lint:php`) — verifica il codice PHP rispetto agli standard di codifica WordPress configurati; `npm run lint:php:fix` corregge automaticamente le violazioni risolvibili.
-- `composer run lint:phpstan` — esegue l'analisi statica con PHPStan.
-- `composer test:unit` — esegue i test unit (PHPUnit, senza WordPress, pochi secondi): funzioni pure, tabelle di configurazione e coerenza dei file di rilascio (versione e data in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml`, `CHANGELOG.md`). Il hook `pre-commit` li esegue a ogni commit e blocca il commit se uno fallisce. Dettagli in `tests/unit/README.md`.
-- `npm run status:scan -- https://mio-sito.example.com` — scandisce la mappa del sito e segnala errori HTTP, PHP e JavaScript, problemi di caricamento delle risorse e di prestazioni delle pagine.
-- `npm run status:scan:gate -- https://mio-sito.example.com` — esegue la stessa scansione e termina con codice 1 se almeno una pagina ha errori (un overflow a 320 px è solo un avviso).
-- `npm run html:scan -- https://mio-sito.example.com` — valida l'HTML delle pagine renderizzate con Nu Html Checker.
-- `npm run html:scan:gate -- https://mio-sito.example.com` — esegue la stessa validazione HTML e termina con un codice di errore se il risultato è negativo, quindi è adatto come quality gate.
-- `npm run pa11y:scan -- https://mio-sito.example.com` — verifica l'accessibilità (WCAG 2 AA, motori axe e HTML CodeSniffer) di ogni pagina della sitemap, a 1280 px e a 320 px.
-- `npm run pa11y:scan:gate -- https://mio-sito.example.com` — conta solo gli errori WCAG e termina con codice 2 se ce ne sono oltre la soglia (`--threshold N`), quindi è adatto come quality gate.
-- `npm run status:compare` e `npm run html:compare` — confrontano le due scansioni più recenti (`pa11y` non ha un comando di confronto).
-- `composer audit` e `npm audit --omit=dev` — segnalano le vulnerabilità note delle dipendenze.
+| Famiglia | Comando | Cosa fa |
+|---|---|---|
+| Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress) |
+| | `composer run lint:phpstan` | Analisi statica con PHPStan |
+| | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
+| Test | `composer test:unit` | Funzioni pure, configurazioni e coerenza dei file di rilascio, senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
+| | `composer test:integration` | Comportamento che dipende da WordPress, su un WordPress di test con ACF e Polylang reali e un database dedicato |
+| | `composer test:e2e` | Browser (Playwright) su un sito Local dedicato |
+| Report | `npm run status:scan -- <url>` | Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px |
+| | `npm run html:scan -- <url>` | Validità dell'HTML (Nu Html Checker) |
+| | `npm run pa11y:scan -- <url>` | Accessibilità WCAG 2 AA a 1280 px e a 320 px |
 
-I test e gli scanner sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in `.gitattributes`). La panoramica è in `tests/README.md`.
-
-Gli scanner `status`, `html` e `pa11y` producono report (HTML e JSON) senza asserzioni pass/fail e si trovano in `tests/report/`. Per quelli che aprono le pagine nel browser, installare una sola volta Chromium con `npm run status:scan:install-browser`. Opzioni, risultati e confronti tra le esecuzioni sono descritti nei README delle cartelle `tests/report/*/`.
+Requisiti, preparazione, opzioni, varianti `:gate` e `:compare` sono descritti in [`tests/README.md`](tests/README.md) e nei README delle cartelle che ne dipendono. Test e Report sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in `.gitattributes`).
 
 ## Verifica file publiccode.yml
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.

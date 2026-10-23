@@ -1,11 +1,12 @@
-# DLI Accessibility Scanner (pa11y)
+# Report di accessibilità (`pa11y-report`)
 
-Scanner di accessibilità per siti basati sul tema **Design Laboratori WordPress**.
+Report di accessibilità per siti basati sul tema **Design Laboratori WordPress**. Fa parte dei
+[Report](../README.md): requisiti comuni e convenzioni sono lì.
+
 Controlla le pagine del sito rispetto a **WCAG 2 AA** con [pa11y-ci](https://github.com/pa11y/pa11y-ci),
 usando i due motori `axe` e `htmlcs` (HTML CodeSniffer).
 
-Come gli altri scanner di `tests/report/`, produce un report (HTML e JSON) e non
-contiene asserzioni pass/fail, tranne la modalità `--gate`.
+Produce un risultato (HTML e JSON) e non contiene asserzioni pass/fail, tranne la modalità `--gate`.
 
 
 ## Cosa controlla
@@ -29,9 +30,9 @@ e `#mobile-320`).
 
 ## Requisiti
 
-- Node.js e le dipendenze del tema: `npm ci`
-- Chromium di Playwright, installato una sola volta: `npm run status:scan:install-browser`
-  (lo scanner riusa quello e non scarica un altro browser)
+Quelli comuni a tutti i Report (Node.js, `npm ci`, Chromium di Playwright) sono in
+[`tests/report/README.md`](../README.md). `pa11y-report` riusa il Chromium di Playwright e non
+scarica un altro browser. Non serve Java.
 
 
 ## Esecuzione
@@ -83,4 +84,4 @@ superata" anche con soli avvisi. Il gate guarda solo gli errori.
   per adottarlo gradualmente usare `--threshold`.
 - Gli strumenti automatici trovano solo una parte dei problemi di accessibilità e
   non sostituiscono la verifica manuale con la tastiera (vedi `AGENTS/CODING_STANDARDS.md`).
-- Se Chromium non viene trovato, lo scanner lo dice e si ferma.
+- Se Chromium non viene trovato, il modulo lo dice e si ferma.

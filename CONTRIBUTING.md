@@ -53,20 +53,24 @@ commit, and pull-request conventions.
 
 ## Testing and quality checks
 
-Run the checks relevant to your change from the theme root:
+Run the checks relevant to your change from the theme root. There are three families:
+static checks (`composer`), tests (`composer`) and reports (`npm`):
 
-- `composer run lint:php` for PHP coding standards;
+- `composer run lint:php` and `composer run lint:phpstan` for PHP coding standards and
+  static analysis;
 - `composer test:unit` for the unit tests (also run by the `pre-commit` hook, which blocks
   the commit when one fails);
-- `npm run status:scan -- https://your-site.example` for runtime status checks;
-- `npm run html:scan:gate -- https://your-site.example` for rendered HTML validation;
-- `npm run pa11y:scan -- https://your-site.example` for accessibility (WCAG 2 AA at
-  1280 px and 320 px); `npm run pa11y:scan:gate` fails on any WCAG error.
+- `composer test:integration` when the change depends on WordPress (roles and permissions,
+  REST routes, queries, content types), and `composer test:e2e` for what the user sees or
+  the admin flows; both need a prepared environment (see below);
+- `npm run status:scan`, `npm run html:scan:gate` and `npm run pa11y:scan`, each followed by
+  `-- https://your-site.example`, for runtime status, rendered HTML validation and
+  accessibility, when you change templates or styles.
 
-See the [README.md](README.md#sviluppo-e-verifiche), `tests/README.md`,
-`tests/unit/README.md` and `tests/report/*/README.md` for prerequisites and detailed
-usage. Tests and scanners are not included in the release archives, only in the cloned
-repository.
+See [tests/README.md](tests/README.md) for what each family is for and how to run it, and
+the README in each suite folder (`tests/unit/`, `tests/integration/`, `tests/e2e/`,
+`tests/report/`) for prerequisites and configuration. Tests and reports are not included
+in the release archives, only in the cloned repository.
 
 ## Pull requests
 

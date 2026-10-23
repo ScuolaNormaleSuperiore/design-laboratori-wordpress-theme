@@ -341,7 +341,7 @@ function renderTimingSection(pages, threshold) {
 
   return `
 <div class="section-title">Variazioni TTFB significative (&gt; &pm;${threshold} ms)</div>
-<p style="font-size:0.8em;color:#666;margin:-4px 0 8px">TTFB &egrave; il tempo server, indipendente dalla concorrenza dello scanner.</p>
+<p style="font-size:0.8em;color:#666;margin:-4px 0 8px">TTFB &egrave; il tempo server, indipendente dalla concorrenza della scansione.</p>
 <table>
   <thead><tr>
     <th style="width:36px"></th>

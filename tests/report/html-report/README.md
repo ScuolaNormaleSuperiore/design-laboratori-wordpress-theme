@@ -1,71 +1,73 @@
-# DLI HTML Validation Report
+# Report di validità HTML (`html-report`)
 
-Scans all site pages and validates their rendered HTML against the **Nu Html Checker (VNU)**.
-Each page is loaded via Playwright (full browser render), then the HTML is passed to VNU via stdin.
+Valida l'HTML renderizzato di tutte le pagine del sito con il **Nu Html Checker (VNU)**. Fa parte dei
+[Report](../README.md): requisiti comuni e convenzioni sono lì.
 
-
-## Prerequisites
-
-- **Java 8+** installed and available on `PATH`
-- **vnu-jar** npm package: `npm install --save-dev vnu-jar`
-- **Playwright chromium**: `npx playwright install chromium`
+Ogni pagina viene caricata con Playwright (rendering completo del browser, quindi con l'output di PHP) e
+l'HTML ottenuto passa a VNU tramite standard input. L'elenco delle pagine viene dalla mappa del sito del tema.
 
 
-## Commands
+## Requisiti
 
-```bash
-# Run a full scan
+Oltre a quelli comuni ai Report (Node.js, `npm ci`, Chromium di Playwright) serve **Java 8 o superiore** nel
+`PATH`: VNU è un programma Java. Il pacchetto `vnu-jar` è già tra le dipendenze del tema, non va installato a parte.
+
+
+## Esecuzione
+
+```sh
+# Scansione completa
 npm run html:scan -- https://laboratorio1.local
 
-# Run with gate (exit code 1 if verdict is FAIL)
+# Con gate: codice di uscita 1 se il verdetto è FAIL
 npm run html:scan:gate -- https://laboratorio1.local
 
-# Compare the two most recent reports
+# Confronto degli ultimi due risultati
 npm run html:compare
 
-# Compare two specific reports (paths relative to the theme root)
+# Confronto di due risultati precisi (percorsi relativi alla radice del tema)
 npm run html:compare -- tests/report/html-report/reports/html_report_20260310_1400.json tests/report/html-report/reports/html_report_20260309_0900.json
 ```
 
 
-## Options
+## Opzioni
 
-| Option | Default | Description |
+| Opzione | Default | Descrizione |
 |---|---|---|
-| `<baseUrl>` | _(required)_ | Base URL of the site to scan |
-| `--sitemap <path>` | `/mappa-sito/` | Path to the sitemap page |
-| `--timeout <ms>` | `30000` | Page load timeout |
-| `--delay <ms>` | `500` | Wait between pages (0 = no delay) |
-| `--out <path>` | auto timestamp | Output path without extension |
-| `--gate` | `false` | Exit with code 1 if verdict is FAIL |
+| `<baseUrl>` | _(obbligatorio)_ | URL base del sito da controllare |
+| `--sitemap <path>` | `/mappa-sito/` | Percorso della pagina con la mappa del sito |
+| `--timeout <ms>` | `30000` | Tempo massimo di caricamento di una pagina |
+| `--delay <ms>` | `500` | Pausa tra una pagina e l'altra (`0` = nessuna pausa) |
+| `--out <path>` | data e ora automatiche | Percorso dei risultati senza estensione |
+| `--gate` | disattivato | Esce con codice 1 se il verdetto è FAIL |
+
+`html:compare` accetta due file JSON (il più recente, poi il precedente) oppure, senza argomenti, usa i due più
+recenti della cartella `reports/`; l'opzione `--out <file.html>` sceglie dove scrivere il confronto.
 
 
-## Output
+## Risultati prodotti
 
-Each scan generates two files in `reports/`:
+Ogni scansione scrive due file in `tests/report/html-report/reports/`:
 
-- `html_report_YYYYMMDD_HHMM.json` — structured data
-- `html_report_YYYYMMDD_HHMM.html` — visual report
+- `html_report_AAAAMMGG_HHMM.json`: i dati strutturati;
+- `html_report_AAAAMMGG_HHMM.html`: il risultato da aprire nel browser.
 
-Each compare generates one file in `reports/`:
-
-- `html_compare_<new>_vs_<old>.html`
+Ogni confronto scrive un file nella stessa cartella: `html_compare_<nuovo>_vs_<vecchio>.html`.
 
 
-## Verdict rules
+## Regole del verdetto
 
-| Verdict | Condition |
+| Verdetto | Condizione |
 |---|---|
-| **PASS** | No errors and no warnings |
-| **WARN** | Warnings present, no errors |
-| **FAIL** | One or more HTML errors |
+| **PASS** | Nessun errore e nessun avviso |
+| **WARN** | Ci sono avvisi, nessun errore |
+| **FAIL** | Almeno un errore HTML |
 
-VNU **errors** (`type: "error"`) map to FAIL.
-VNU **warnings** (`type: "info", subType: "warning"`) map to WARN.
-Informational messages are ignored.
+Gli **errori** di VNU (`type: "error"`) danno FAIL. Gli **avvisi** (`type: "info", subType: "warning"`) danno WARN. I
+messaggi solo informativi sono ignorati.
 
 
-## JSON structure
+## Struttura del JSON
 
 ```json
 {
@@ -99,10 +101,10 @@ Informational messages are ignored.
 ```
 
 
-## Notes
+## Note importanti
 
-- Pages are scanned **sequentially** (no concurrency) because VNU is CPU-intensive.
-- The scanner uses Playwright to get the fully rendered HTML (including PHP output), not a static fetch.
-- `pageError`: set when Playwright cannot load the page (timeout, network error).
-- `vnuError`: set when the VNU process itself fails (Java not found, jar error).
-- Historical reports are stored in `archived/`; `reports/` is git-ignored.
+- Le pagine si controllano **una alla volta** (nessuna concorrenza) perché VNU consuma molta CPU.
+- Il modulo usa Playwright per ottenere l'HTML già renderizzato (compreso l'output di PHP), non un semplice scaricamento.
+- `pageError`: valorizzato quando Playwright non riesce a caricare la pagina (timeout, errore di rete).
+- `vnuError`: valorizzato quando il processo VNU stesso fallisce (Java non trovato, errore del jar).
+- La cartella `reports/` non è tracciata da Git.

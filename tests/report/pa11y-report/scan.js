@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * DLI Accessibility Scanner (pa11y-ci)
+ * DLI Accessibility Report (pa11y-ci)
  *
  * Checks the accessibility (WCAG 2 AA) of the site pages with pa11y-ci, using
  * the axe and HTML CodeSniffer runners. Every page is checked twice: on a
@@ -288,7 +288,7 @@ async function main() {
   }
 
   console.log('====================================================================');
-  console.log('DLI Accessibility Scanner (pa11y-ci, WCAG2AA)');
+  console.log('DLI Accessibility Report (pa11y-ci, WCAG2AA)');
   console.log('====================================================================');
   console.log(`Base URL : ${opts.baseUrl}`);
   console.log(`Pages    : ${pages.length} (from ${source}), ${VIEWPORTS.length} viewports each`);

@@ -7,7 +7,7 @@ sono Test né Controlli statici: la panoramica delle tre famiglie è in
 
 | Modulo | Cosa verifica | Comandi | Dettagli |
 |---|---|---|---|
-| `status-report` | Errori HTTP, PHP e JavaScript, risorse non caricate, pagine vuote, timeout, tempi e overflow orizzontale a 320 px | `status:scan`, `status:scan:gate`, `status:compare` | [`status-report/README.md`](status-report/README.md) |
+| `status-report` | Errori HTTP, PHP e JavaScript, risorse non caricate, pagine vuote, timeout, tempi e overflow orizzontale a 320 px | `status:scan`, `status:scan:gate`, `status:compare` | [`status-report/README.md`](status-report/README.md), comparatore in [`COMPARE.md`](status-report/COMPARE.md) |
 | `html-report` | Validità dell'HTML (Nu Html Checker) | `html:scan`, `html:scan:gate`, `html:compare` | [`html-report/README.md`](html-report/README.md) |
 | `pa11y-report` | Accessibilità WCAG 2 AA a 1280 px e a 320 px | `pa11y:scan`, `pa11y:scan:gate` | [`pa11y-report/README.md`](pa11y-report/README.md) |
 

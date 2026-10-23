@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * DLI Site Status Scanner
+ * DLI Site Status Report
  *
  * Usage:
  *   node scan.js <baseUrl> [options]
@@ -418,7 +418,7 @@ async function main() {
   }
 
   console.log('='.repeat(60));
-  console.log('DLI Site Status Scanner');
+  console.log('DLI Site Status Report');
   console.log('='.repeat(60));
   console.log(`Base URL    : ${opts.baseUrl}`);
   console.log(`Sitemaps    : ${opts.sitemapExplicit ? opts.sitemap : DEFAULT_SITEMAPS.join(', ')}`);

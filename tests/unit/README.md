@@ -2,8 +2,9 @@
 
 I test unit controllano la logica che **non dipende da WordPress**: funzioni pure,
 tabelle di configurazione e "test di contratto" sui file del repository (versioni,
-date di rilascio, documentazione per gli agenti AI). Girano in pochi secondi e non
-richiedono database, sito o plugin.
+date di rilascio, documentazione per gli agenti AI). Girano in meno di un secondo e non
+richiedono database, sito o plugin. Il hook `pre-commit` li esegue a ogni commit e blocca il commit
+se uno fallisce.
 
 I test che hanno bisogno di WordPress (hook, query, REST, ruoli) appartengono alla
 suite di integrazione, non a questa.
@@ -12,7 +13,12 @@ suite di integrazione, non a questa.
 ## Requisiti
 
 - PHP 8.0 o superiore (provato su 8.4) e Composer
-- Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6, `yoast/phpunit-polyfills` e gli stub WordPress per PHPStan)
+- Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6 e `yoast/phpunit-polyfills`, tra le altre)
+
+
+## Configurazione e variabili d'ambiente
+
+Nessuna: la suite non legge variabili d'ambiente e non ha bisogno di un file di configurazione oltre a `phpunit.xml`.
 
 
 ## Esecuzione
@@ -23,7 +29,8 @@ Dalla radice del tema:
 composer test:unit
 ```
 
-`composer test` esegue tutte le suite di PHPUnit; per ora c'è solo `unit`.
+`composer test` lancia PHPUnit con `phpunit.xml`, cioè la stessa suite `unit`; i test di integrazione hanno un
+comando a parte (vedi [`../integration/README.md`](../integration/README.md)).
 Per eseguire un solo file o un solo test:
 
 ```sh
@@ -61,6 +68,8 @@ stata aggiornata in un file e dimenticata in un altro: va allineata, non il test
 - La cartella `tests/` è esclusa da PHPCS (`phpcs.xml.dist`): lo stile dei test non è
   controllato automaticamente.
 
-Per aggiungere un test: creare `tests/unit/DLI_<Nome>_Unit_Test.php` con una classe che
+## Come aggiungere un test
+
+Creare `tests/unit/DLI_<Nome>_Unit_Test.php` con una classe che
 estende `PHPUnit\Framework\TestCase`. Se la funzione da provare dipende da WordPress,
 non è un test unit.

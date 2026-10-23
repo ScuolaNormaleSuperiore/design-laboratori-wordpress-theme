@@ -65,7 +65,7 @@ resetting history.
 - Maintainability: duplicated or dead logic, complexity, project naming,
   internationalization, source/output consistency and dependency integration.
 - Tooling: meaningful assertions, exit codes, failure propagation, safe writes,
-  deterministic comparisons, version consistency, scanner and test blind spots.
+  deterministic comparisons, version consistency, Report and test blind spots.
 - Report style/documentation findings only with concrete impact. Do not create
   a cosmetic sweep; accessibility remains a mandatory quality requirement.
 
@@ -179,6 +179,6 @@ guards and callbacks receive full review.
 The baseline uses the individual quality commands listed in ARCHITECTURE.md
 (`composer run lint:php`, `composer run lint:phpstan`, `composer test:unit`,
 `composer audit`, `npm audit --omit=dev`) and, when a site is reachable, the
-report scanners in `tests/report/`. Record unavailable tools explicitly.
+Reports in `tests/report/`. Record unavailable tools explicitly.
 Project prefixes and wrapper conventions come from CODING_STANDARDS.md and
 ARCHITECTURE.md, not from guessed generic WordPress naming.

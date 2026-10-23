@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * DLI HTML Validation Scanner
+ * DLI HTML Validation Report
  *
  * Scans all site pages and validates their rendered HTML against the
  * Nu Html Checker (VNU). Requires Java 8+ and the vnu-jar npm package.
@@ -437,7 +437,7 @@ async function main() {
   const vnuJarPath = requireVnu();
 
   console.log('='.repeat(60));
-  console.log('DLI HTML Validation Scanner');
+  console.log('DLI HTML Validation Report');
   console.log('='.repeat(60));
   console.log(`Base URL : ${opts.baseUrl}`);
   console.log(`Sitemap  : ${opts.sitemap}`);

@@ -1,11 +1,14 @@
-# DLI Site Status Scanner
+# Report di stato del sito (`status-report`)
 
-Scanner automatico pre-produzione per siti basati sul tema **Design Laboratori WordPress**.
+Report pre-produzione per siti basati sul tema **Design Laboratori WordPress**. Fa parte dei
+[Report](../README.md): requisiti, installazione e convenzioni comuni sono lì.
 
-Visita tutte le pagine del sito partendo dalla mappa del sito e produce un report
+Visita tutte le pagine del sito partendo dalla mappa del sito e produce un risultato
 dettagliato degli errori trovati: errori HTTP, errori PHP nel sorgente, errori
-JavaScript a runtime, risorse non caricate (immagini, CSS, font, script) e tempi
-di risposta per pagina.
+JavaScript a runtime, risorse non caricate (immagini, CSS, font, script), overflow
+orizzontale a 320 px e tempi di risposta per pagina.
+
+Il confronto tra due esecuzioni (`status:compare`) è descritto in [`COMPARE.md`](COMPARE.md).
 
 
 ## Indice
@@ -14,18 +17,14 @@ di risposta per pagina.
 - [Come funziona](#come-funziona)
 - [Risultati prodotti](#risultati-prodotti)
 - [Requisiti](#requisiti)
-- [Installazione](#installazione)
 - [Esecuzione](#esecuzione)
 - [Opzioni disponibili](#opzioni-disponibili)
 - [Note importanti](#note-importanti)
 
 
----
-
-
 ## Cosa fa
 
-Lo scanner esegue questi controlli su ogni pagina del sito:
+Il modulo esegue questi controlli su ogni pagina del sito:
 
 | Categoria | Cosa rileva |
 |---|---|
@@ -37,18 +36,14 @@ Lo scanner esegue questi controlli su ogni pagina del sito:
 | **OVERFLOW** | Pagine che a 320 px di larghezza scorrono in orizzontale (criterio WCAG di *reflow*, 1.4.10). È un **avviso**: porta il verdetto a `WARN` ma non fa fallire il gate. Elenca fino a 5 elementi che sporgono, ignorando elementi nascosti, testo riservato agli screen reader ed elementi ritagliati da un contenitore con scorrimento |
 | **TIMEOUT** | Pagine che non rispondono entro il timeout configurato |
 
-Per ogni pagina lo scanner registra anche due misure di tempo:
+Per ogni pagina il modulo registra anche due misure di tempo:
 
 | Metrica | Descrizione |
 |---|---|
-| **TTFB** | *Time To First Byte* — tempo tra l'invio della richiesta HTTP e il primo byte ricevuto dal server. Misura esclusivamente la latenza server-side (PHP + DB) ed è **indipendente dalla concorrenza** dello scanner. |
+| **TTFB** | *Time To First Byte* — tempo tra l'invio della richiesta HTTP e il primo byte ricevuto dal server. Misura esclusivamente la latenza server-side (PHP + DB) ed è **indipendente dalla concorrenza** del modulo. |
 | **Load** | Tempo totale dall'inizio della navigazione all'evento `load` del browser. Include il caricamento di tutte le risorse (CSS, JS, immagini) ed è influenzato dal numero di pagine visitate in parallelo (`--concurrency`). |
 
 Usare il **TTFB** per identificare colli di bottiglia server-side (query lente, PHP pesante). Se TTFB è basso ma Load è alto, il problema è nel numero o nel peso delle risorse della pagina.
-
-
----
-
 
 ## Come funziona
 
@@ -85,10 +80,6 @@ Al termine della scansione produce il riepilogo numerico in console (con tempi
 medi e massimi) e scrive i due file di output (`report.html` e `report.json`)
 nella cartella `tests/report/status-report/reports/` con suffisso data/ora automatico.
 
-
----
-
-
 ## Risultati prodotti
 
 ### Console
@@ -97,7 +88,7 @@ Durante la scansione lo script stampa l'avanzamento in tempo reale:
 
 ```
 ============================================================
-DLI Site Status Scanner
+DLI Site Status Report
 ============================================================
 Base URL    : https://laboratorio1.local
 Sitemap     : /mappa-sito/
@@ -202,34 +193,10 @@ scansioni successive:
 }
 ```
 
-
----
-
-
 ## Requisiti
 
-- **Node.js** >= 18
-- Connessione di rete al sito da scansionare
-- Il sito deve essere raggiungibile (staging o produzione)
-
-
----
-
-
-## Installazione
-
-L'installazione va eseguita una sola volta dalla **root del tema**.
-`playwright` è incluso nelle devDependencies del `package.json` principale.
-
-```bash
-npm ci
-npm run status:scan:install-browser
-```
-
-`npm run status:scan:install-browser` scarica il browser Chromium headless (~150 MB).
-
-
----
+Quelli comuni a tutti i Report (Node.js, `npm ci`, Chromium di Playwright) sono in
+[`tests/report/README.md`](../README.md). In più serve un sito raggiungibile, di staging o di produzione.
 
 
 ## Esecuzione
@@ -263,10 +230,6 @@ tests/report/status-report/reports/status_report_20260305_1430.json
 
 Apri il file `.html` direttamente nel browser.
 I file nella cartella `reports/` non vengono committati su git.
-
-
----
-
 
 ## Opzioni disponibili
 
@@ -303,10 +266,6 @@ npm run status:scan -- https://laboratorio1.local --out ./output/2026-03-05
 npm run status:scan:gate -- https://laboratorio1.local
 ```
 
-
----
-
-
 ## Note importanti
 
 **Errori PHP visibili solo in modalità debug**
@@ -318,7 +277,7 @@ define('WP_DEBUG', true);
 define('WP_DEBUG_DISPLAY', true);
 ```
 
-Usare lo scanner sull'ambiente di **staging** con debug attivo.
+Eseguire il modulo sull'ambiente di **staging** con debug attivo.
 In produzione con `WP_DEBUG = false` la categoria PHP non produce risultati
 (il che è corretto: in produzione il debug deve essere disattivato).
 
@@ -329,160 +288,6 @@ inclusi nella scansione del sorgente HTML. Gli errori JS delle chiamate AJAX
 vengono comunque catturati tramite `console.error` e `pageerror`.
 
 **File di output esclusi da git**
+**Risultati esclusi da Git**
 
-La cartella `reports/` è nel `.gitignore` della root del tema: i report
-generati non vengono committati. Solo il file `reports/.gitkeep` è tracciato
-per mantenere la cartella nel repository.
-
-
----
-
-
-# DLI Site Status Comparator
-
-Script Node.js che confronta due report JSON prodotti da `scan.js` e indica
-per ogni pagina se la situazione è **migliorata**, **peggiorata** o **invariata**
-rispetto alla scansione precedente.
-
-
-## Esecuzione
-
-Tutti i comandi si eseguono dalla **root del tema**.
-
-**Confronto automatico dei due report più recenti:**
-
-```bash
-npm run status:compare
-```
-
-**Confronto con file espliciti:**
-
-```bash
-npm run status:compare -- tests/report/status-report/reports/status_report_A.json tests/report/status-report/reports/status_report_B.json
-```
-
-**Oppure direttamente con Node:**
-
-```bash
-node tests/report/status-report/compare.js [report-nuovo.json] [report-vecchio.json]
-```
-
-Senza argomenti lo script seleziona automaticamente i due file `status_report_*.json`
-più recenti presenti in `tests/report/status-report/reports/`.
-
-
-## Opzioni disponibili
-
-| Opzione | Default | Descrizione |
-|---|---|---|
-| `[file-nuovo]` | auto (più recente) | Percorso del report JSON più recente |
-| `[file-vecchio]` | auto (secondo più recente) | Percorso del report JSON di riferimento |
-| `--timing-threshold <ms>` | `500` | Soglia in ms per classificare una variazione TTFB come significativa |
-| `--out <path>` | `./tests/report/status-report/reports/compare_<ts>_vs_<ts>` | Percorso output senza estensione |
-
-
-## Risultati prodotti
-
-Al termine della comparazione vengono creati due file nella cartella `reports/`:
-
-```
-tests/report/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.html
-tests/report/status-report/reports/compare_<ts-nuovo>_vs_<ts-vecchio>.json
-```
-
-### Console
-
-```
-============================================================
-DLI Site Status Comparator
-============================================================
-Nuovo  : reports/status_report_20260310_1430.json  (2026-03-10 14:30)
-Vecchio: reports/status_report_20260305_1000.json  (2026-03-05 10:00)
-============================================================
-
-RIEPILOGO DELTA
-------------------------------------------------------------
-Pagine confrontate :  34
-Pagine fisse       :   3  (errori risolti)
-Regressioni        :   1  (errori nuovi)
-Errori modificati  :   2
-Errori persistenti :   4
-Pagine OK stabili  :  24
-Pagine nuove       :   0
-Pagine rimosse     :   0
-------------------------------------------------------------
-Pagine più veloci  :   5  (TTFB migliorato > 500ms)
-Pagine più lente   :   2  (TTFB peggiorato > 500ms)
-Delta TTFB medio   : -120ms
-Delta Load medio   :  -80ms
-------------------------------------------------------------
-Risultato          : MIGLIORATO  (regressioni: 1, fix: 3)
-============================================================
-```
-
-### compare.html
-
-File HTML autonomo (apribile direttamente nel browser) con:
-
-- Intestazione con i due file confrontati e le rispettive date
-- Card riepilogo con i contatori delta
-- **Verdetto globale**: `MIGLIORATO` / `PEGGIORATO` / `INVARIATO`
-- Sezione **Regressioni** — pagine con errori nuovi
-- Sezione **Pagine fisse** — pagine in cui gli errori sono stati risolti
-- Sezione **Errori modificati** — pagine in cui la lista errori è cambiata
-- Sezione **Errori persistenti** — collassata di default
-- Sezione **Tempi di risposta** — pagine con variazione TTFB significativa (> ±500ms)
-- Sezione **Pagine nuove/rimosse** — se presenti
-
-### compare.json
-
-```json
-{
-  "comparedAt": "2026-03-10T14:45:00.000Z",
-  "newReport":  { "file": "report_20260310_1430.json", "scannedAt": "...", "baseUrl": "..." },
-  "oldReport":  { "file": "report_20260305_1000.json", "scannedAt": "...", "baseUrl": "..." },
-  "summary": {
-    "fixed":            3,
-    "regressions":      1,
-    "changedErrors":    2,
-    "persistentErrors": 4,
-    "unchangedOk":     24,
-    "newPages":         0,
-    "removedPages":     0,
-    "fasterPages":      5,
-    "slowerPages":      2,
-    "avgTtfbDeltaMs": -120,
-    "avgLoadDeltaMs":  -80,
-    "verdict":         "IMPROVED"
-  },
-  "pages": [
-    {
-      "url": "https://laboratorio1.local/spinoff/biloab",
-      "delta": "FIXED",
-      "old": { "errors": [{ "type": "JS", "message": "..." }], "ttfbMs": 210, "responseTimeMs": 980 },
-      "new": { "errors": [], "ttfbMs": 185, "responseTimeMs": 870 },
-      "ttfbDelta": -25,
-      "loadDelta": -110
-    }
-  ]
-}
-```
-
-### Stati delta per pagina
-
-| Stato | Significato |
-|---|---|
-| `FIXED` | Errori presenti nel vecchio report, assenti nel nuovo |
-| `REGRESSION` | Nessun errore nel vecchio report, errori nel nuovo |
-| `CHANGED_ERROR` | Errori in entrambi, ma lista diversa |
-| `UNCHANGED_ERROR` | Errori identici in entrambi |
-| `UNCHANGED_OK` | Nessun errore in entrambi |
-| `NEW_PAGE` | URL presente solo nel nuovo report |
-| `REMOVED_PAGE` | URL presente solo nel vecchio report |
-
-
-## Dipendenze
-
-Nessuna dipendenza aggiuntiva. `compare.js` usa solo moduli Node.js built-in
-(`fs`, `path`): **non è necessario eseguire `npm install`** dopo aver aggiunto
-questo script.
+La cartella `reports/` è nel `.gitignore` della radice del tema: i risultati generati non vengono committati.

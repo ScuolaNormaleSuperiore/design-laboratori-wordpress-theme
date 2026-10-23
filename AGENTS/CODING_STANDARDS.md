@@ -265,7 +265,7 @@ Pick the checks that match the change, run them, and report which ones could not
 | Changed templates, styles, scripts, forms | `npm run pa11y:scan -- <baseUrl>` (`pa11y:scan:gate` fails on WCAG errors) | WCAG 2 AA at 1280 px and 320 px; needs a reachable site and Playwright's Chromium; complements manual keyboard checks |
 | SCSS changed | `npm run create_layout`, then `update_layout_win` or `update_layout_linux` | Regenerates the minified CSS |
 
-Scanners write into git-ignored `reports/` folders. Only the unit suite exists for now: integration and E2E suites are planned (see `Test-driven workflow` in `AGENTS/AI_BEHAVIOR.md`).
+Reports write into git-ignored `reports/` folders. The unit, integration and E2E suites exist (see `Test-driven workflow` in `AGENTS/AI_BEHAVIOR.md`).
 
 ### Tests
 
