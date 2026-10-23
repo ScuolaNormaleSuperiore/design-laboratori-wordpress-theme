@@ -258,6 +258,8 @@ Pick the checks that match the change, run them, and report which ones could not
 | Any PHP file | `php -l <file>` | Syntax only |
 | Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset |
 | Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
+| Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`; needs `wordpress-develop` and `wp-tests-config.php`; see `tests/integration/README.md` |
+| What the user sees or admin flows that need a browser | `composer test:e2e` | Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |
 | PHP static analysis | `composer run lint:phpstan` | Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local optional-plugin stubs: `tests/utils/` |
 | Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |

@@ -18,8 +18,10 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports, Docker setup, and setup utilities.
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
-- `tests/report/`: automated scanning modules that produce reports (status, html, pa11y, issues).
+- `tests/report/`: Report modules that produce results to read, without assertions (status, html, pa11y); `issues-report/` only stores issue snapshots.
 - `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/utils/` holds local stubs for optional third-party APIs.
+- `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang.
+- `tests/e2e/`, `playwright.config.js`: Playwright functional tests on the dedicated Local site `dli-wp-e2e`, with a database baseline restored before and after each run.
 
 
 ## Main Files
@@ -147,12 +149,15 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 
 This is the canonical list of quality-check commands for AI agents. Run them
 from the theme root. The human-facing `README.md` (*Sviluppo e verifiche*)
-describes the same checks for contributors.
+and `tests/README.md` describe the same checks for contributors. Checks come in
+three families: static checks and tests (run with Composer) and Reports (run with npm).
 
 - PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
   needed: `composer run lint:php:fix`.
 - Static analysis: `composer run lint:phpstan`.
 - Unit tests: `composer test:unit` (PHPUnit, no WordPress; also run by `.githooks/pre-commit`).
+- Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
+- E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook).
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.

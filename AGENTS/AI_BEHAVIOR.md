@@ -37,8 +37,8 @@ Automated tests are part of planning, changing and fixing code in this project.
 | Level | Command | Status |
 |---|---|---|
 | Unit (PHPUnit, no WordPress) | `composer test:unit` | Available; also run by the `pre-commit` hook |
-| Integration (real WordPress, ACF and Polylang) | not available yet | Planned |
-| E2E (browser on a dedicated site) | not available yet | Planned |
+| Integration (real WordPress, ACF and Polylang) | `composer test:integration` | Available on the maintainer machine (needs the dedicated database `dli_wordpress_test` and `wordpress-develop`, see `tests/integration/README.md`); not run by the `pre-commit` hook |
+| E2E (browser on a dedicated site) | `composer test:e2e` | Available on the maintainer machine (needs the Local site `dli-wp-e2e` and `DLI_E2E_SITE_PATH`, see `tests/e2e/README.md`); not run by the `pre-commit` hook |
 
 A level counts only when its suite exists and can run in the current environment. When it cannot, say so in the report: never write "verified" for a check that did not run. When a suite is added, update this table and `Verification` in `AGENTS/CODING_STANDARDS.md`. The Reports in `tests/report/` produce results to read, they are not tests.
 
