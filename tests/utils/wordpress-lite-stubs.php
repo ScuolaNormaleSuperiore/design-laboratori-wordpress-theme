@@ -21,6 +21,17 @@ if ( ! class_exists( 'CMB2_Boxes' ) ) {
 
 if ( ! class_exists( 'CMB2' ) ) {
 	class CMB2 {
+		/** @var string */
+		public $cmb_id = '';
+
+		/**
+		 * @param string $property Property name.
+		 * @return mixed
+		 */
+		public function prop( $property ) {
+			return null;
+		}
+
 		/**
 		 * @param array<string, mixed> $field    Field configuration.
 		 * @param int                  $position Field position.

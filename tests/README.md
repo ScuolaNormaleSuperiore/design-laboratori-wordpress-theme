@@ -63,6 +63,10 @@ I moduli (`status-report`, `html-report`, `pa11y-report`) e le convenzioni comun
 [`report/README.md`](report/README.md). I risultati finiscono in `tests/report/<modulo>/reports/` e
 non vengono tracciati da Git.
 
+Varianti: `status:scan:gate`, `html:scan:gate` e `pa11y:scan:gate` danno un codice di uscita diverso da zero
+se il sito ha problemi; `status:compare` e `html:compare` confrontano gli ultimi due risultati. Chromium si installa
+una volta con `npm run status:scan:install-browser`.
+
 
 ## Mappa della cartella
 
