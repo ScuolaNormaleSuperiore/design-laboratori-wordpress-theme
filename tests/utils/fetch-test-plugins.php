@@ -60,6 +60,13 @@ foreach ( $dli_plugins as $dli_slug => $dli_main_file ) {
 	);
 	$dli_zip     = @file_get_contents( $dli_url, false, $dli_context );
 	if ( false === $dli_zip || '' === $dli_zip ) {
+		// PHP may be unable to verify certificates (e.g. a portable PHP without cacert.pem): try the system curl.
+		$dli_curl_out = tempnam( sys_get_temp_dir(), 'dli' );
+		exec( 'curl -fsSL --max-time 60 -o ' . escapeshellarg( $dli_curl_out ) . ' ' . escapeshellarg( $dli_url ), $dli_curl_log, $dli_curl_status );
+		$dli_zip = ( 0 === $dli_curl_status ) ? file_get_contents( $dli_curl_out ) : false;
+		unlink( $dli_curl_out );
+	}
+	if ( ! is_string( $dli_zip ) || '' === $dli_zip ) {
 		fwrite( STDERR, "Download failed: $dli_url\n" );
 		exit( 1 );
 	}
