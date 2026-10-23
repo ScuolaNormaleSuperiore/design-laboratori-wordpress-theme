@@ -9,7 +9,6 @@
  * @package Design_Laboratori_Italia
  */
 
-define( 'ABSPATH', '' );
 define( 'MINUTE_IN_SECONDS', 60 );
 define( 'DAY_IN_SECONDS', 86400 );
 define( 'MB_IN_BYTES', 1048576 );

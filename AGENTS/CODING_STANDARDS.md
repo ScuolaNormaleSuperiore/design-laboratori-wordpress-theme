@@ -103,7 +103,7 @@ introduce barriers.
 
 ## Compatibility
 
-- WordPress: minimum 6.1.1 (`style.css`, `phpcs.xml.dist`, `README.md`).
+- WordPress: minimum 6.6.2 (`style.css`, `phpcs.xml.dist`, `README.md`).
 - PHP: minimum 8.0 (`Requires PHP` in `style.css`); the Docker demo runs PHP 8.3.
   Do not use syntax or functions newer than PHP 8.0 (for example enums,
   `readonly` properties, `never` return type) without the operator's approval.

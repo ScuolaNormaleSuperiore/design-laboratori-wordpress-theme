@@ -29,6 +29,29 @@ if ( ! class_exists( 'CMB2' ) ) {
 		public function add_field( $field, $position = 0 ) {
 			return false;
 		}
+
+		/**
+		 * @param string               $parent_field_id Parent field identifier.
+		 * @param array<string, mixed> $field           Field configuration.
+		 * @param int                  $position        Field position.
+		 * @return array<string, string>|false
+		 */
+		public function add_group_field( $parent_field_id, $field, $position = 0 ) {
+			return false;
+		}
+	}
+}
+
+if ( ! class_exists( 'CMB2_Options_Hookup' ) ) {
+	class CMB2_Options_Hookup {
+		/** @var CMB2 */
+		public $cmb;
+
+		/** @var string */
+		public $option_key = '';
+
+		/** @return void */
+		public function options_page_metabox() {}
 	}
 }
 

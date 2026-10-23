@@ -60,5 +60,5 @@
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound"/>
 	</rule>
 
-	<config name="minimum_supported_wp_version" value="6.1.1"/>
+	<config name="minimum_supported_wp_version" value="6.6.2"/>
 </ruleset>

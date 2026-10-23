@@ -29,7 +29,7 @@ class Patent_Manager {
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
 		// Add column to the list of items in the back-office.
-		add_action( 'manage_edit-brevetto_columns', array( $this, 'add_custom_admin_columns' ) );
+		add_filter( 'manage_edit-brevetto_columns', array( $this, 'add_custom_admin_columns' ) );
 		add_action( 'manage_brevetto_posts_custom_column', array( $this, 'populate_custom_admin_columns' ), 10, 2 );
 		add_filter( 'manage_edit-brevetto_sortable_columns', array( $this, 'sort_custom_admin_columns' ) );
 		add_action( 'pre_get_posts', array( $this, 'order_custom_admin_columns' ) );

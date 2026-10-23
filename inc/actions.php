@@ -87,7 +87,7 @@ function dli_edit_permission_check() {
 		}
 	}
 }
-add_filter( 'admin_head', 'dli_edit_permission_check', 1, 4 );
+add_action( 'admin_head', 'dli_edit_permission_check', 1 );
 
 /**
  * Map of post type => taxonomy used by dli_get_all_categories_by_ct() call

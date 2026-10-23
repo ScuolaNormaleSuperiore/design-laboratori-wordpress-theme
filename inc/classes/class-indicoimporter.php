@@ -470,6 +470,10 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		// Verifica se sono stati trovati tag <meta>.
 		if ( $meta_tags && $meta_tags->length > 0 ) {
 			foreach ( $meta_tags as $meta_tag ) {
+				if ( ! $meta_tag instanceof DOMElement ) {
+					continue;
+				}
+
 				if ( $property !== $meta_tag->getAttribute( 'property' ) ) {
 					continue;
 				}

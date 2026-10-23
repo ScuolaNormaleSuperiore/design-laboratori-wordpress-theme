@@ -115,7 +115,7 @@ dependsOn:
   open:
     - name: WordPress
       optional: false
-      versionMin: '6.1.1'
+      versionMin: '6.6.2'
     - name: PHP
       optional: false
       versionMin: '8.0'

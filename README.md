@@ -60,7 +60,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ![configure](assets/screenshots/ricerca.png)
 
 ## Requisiti software
-1. Il CMS WordPress (versione >= 6.1.1).
+1. Il CMS WordPress (versione >= 6.6.2).
 2. PHP >= 8.0.
 3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm.
 

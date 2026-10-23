@@ -1,12 +1,17 @@
+includes:
+  - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
 parameters:
-  level: 1
+  dynamicConstantNames:
+    - ABSPATH
+  level: 2
   parallel:
     maximumNumberOfProcesses: 1
   scanFiles:
-    - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
     - tests/utils/wordpress-runtime-stubs.php
     - tests/utils/theme-runtime-stubs.php
     - tests/utils/wordpress-lite-stubs.php
+    - tests/utils/third-party-runtime-stubs.php
     - tests/utils/polylang-stubs.php
     - tests/utils/really-simple-captcha-stubs.php
     - config-lab.php

@@ -1498,7 +1498,7 @@ if ( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 	 * Return the slugs of all the page that are archives of posts.
 	 * Ritorna un array di coppie: <slug> => <post_type>.
 	 *
-	 * @return array.
+	 * @return array<string, string>
 	 */
 	function dli_get_pt_archive_slugs() {
 		$slugs = array();
@@ -1544,7 +1544,7 @@ if ( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
 	 *
 	 * @param array $categories Categories to map.
-	 * @return array.
+	 * @return array<string, array<int, string>>
 	 */
 	function dli_get_slugs_by_category( $categories ) {
 		$slugmap = array();

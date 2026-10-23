@@ -31,7 +31,7 @@ class Polylang_Manager {
 	 *
 	 * @return array
 	 */
-	public function add_cpt_to_pll() {
+	public function add_cpt_to_pll( $post_types, $is_settings ) {
 		return DLI_POST_TYPES_TO_TRANSLATE;
 	}
 
@@ -40,7 +40,7 @@ class Polylang_Manager {
 	 *
 	 * @return array
 	 */
-	public function add_tax_to_pll() {
+	public function add_tax_to_pll( $taxonomies, $is_settings ) {
 		return DLI_TAXONOMIES_TO_TRANSLATE;
 	}
 }

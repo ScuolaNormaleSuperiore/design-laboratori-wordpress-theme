@@ -1,82 +1,82 @@
-# Test e scanner
+# Controlli, test e report
 
-La cartella `tests/` raccoglie due famiglie di strumenti, con scopi diversi.
+Questo è il punto di ingresso: spiega a cosa serve ogni strumento e come si lancia. Requisiti,
+configurazione e variabili d'ambiente di ogni suite stanno nel README della sua cartella.
 
-| Famiglia | Cartella | Cosa fa | Esito |
-|---|---|---|---|
-| **Test** (con asserzioni) | `tests/unit/` | Verifica che il codice e i file del repository si comportino come previsto | Passano o falliscono (`composer test:unit`) |
-| **Scanner** (producono report) | `tests/report/` | Guardano il sito in funzione e producono un report HTML e JSON | Un report da leggere; `--gate` dà un codice di errore |
+Gli strumenti di verifica del tema sono di tre famiglie, con scopi diversi.
 
-Le suite di integrazione (WordPress reale) e di E2E (browser su un sito dedicato) sono
-previste ma non ancora presenti: quando esisteranno avranno una propria cartella e un
-proprio README.
+| Famiglia | A cosa risponde | Serve un sito in funzione? | Strumenti | Esito |
+|---|---|---|---|---|
+| **Controlli statici** | Il codice è scritto bene e può rompersi? | No: leggono i sorgenti | PHPCS, PHPStan, `composer audit`, `npm audit` | Elenco di segnalazioni (PHPCS può correggere da solo con `lint:php:fix`, PHPStan no) |
+| **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test. E2E: sì, un sito Local dedicato | PHPUnit, Playwright | Passano o falliscono |
+| **Report** | Il sito in funzione ha errori, HTML non valido, problemi di accessibilità? | Sì, un sito raggiungibile | Moduli di `tests/report/` | Un risultato HTML e JSON da leggere; `--gate` dà un codice di uscita |
 
-Questa cartella è nel repository clonato ma **non** nel pacchetto zip che GitHub genera
-per ogni versione (`export-ignore` in `.gitattributes`).
-
-
-## Test unit
-
-- Cartella: `tests/unit/`, configurazione in `phpunit.xml`, avvio in `tests/bootstrap-unit.php`.
-- Comando, dalla radice del tema: `composer test:unit`.
-- Non servono WordPress, database o browser. Il hook `pre-commit` li esegue a ogni commit.
-- Dettagli, elenco dei file di test e come aggiungerne uno: [`tests/unit/README.md`](unit/README.md).
+I Controlli statici e i Test si lanciano con **Composer**, i Report con **npm**, sempre dalla
+radice del tema.
 
 
-## Scanner
+## Come si lancia ciascuno
 
-| Scanner | Comando | Cosa verifica |
-|---|---|---|
-| `status-report` | `npm run status:scan -- <url>` | Errori HTTP, PHP e JavaScript, risorse non caricate, pagine vuote, timeout, tempi e overflow orizzontale a 320 px |
-| `html-report` | `npm run html:scan -- <url>` | Validità dell'HTML (Nu Html Checker) |
-| `pa11y-report` | `npm run pa11y:scan -- <url>` | Accessibilità WCAG 2 AA a 1280 px e a 320 px |
-| `issues-report` | trigger `/issues-snapshot` | Cartella degli snapshot delle issue: non è uno scanner |
+| Cosa | Comando | Tempo indicativo | Nell'hook `pre-commit`? | Requisiti e variabili |
+|---|---|---|---|---|
+| Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | — | No | — |
+| Analisi statica (PHPStan) | `composer run lint:phpstan` | — | No | — |
+| Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
+| Test di integrazione | `composer test:integration` | circa 10 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
+| Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 40 secondi | No | [`e2e/README.md`](e2e/README.md) |
+| Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
-I report sono scritti in `tests/report/<scanner>/reports/` e non vengono tracciati da Git.
-Opzioni, varianti `:gate` e `:compare` e formato dei report sono nei README di ogni
-cartella: [`status-report`](report/status-report/README.md),
-[`html-report`](report/html-report/README.md),
-[`pa11y-report`](report/pa11y-report/README.md).
-
-
-## Variabili d'ambiente
-
-I test unit non ne richiedono. Le altre suite leggono le variabili seguenti (mai scritte
-in un file del repository). Quelle senza valore predefinito vanno definite prima di
-lanciare la suite.
-
-| Variabile | Suite | Significato | Valore predefinito |
-|---|---|---|---|
-| `WP_TESTS_DIR` | integrazione | cartella `tests/phpunit` di `wordpress-develop` | `C:/WordpressDEV/wordpress-develop/tests/phpunit` |
-| `WP_TESTS_CONFIG_FILE_PATH` | integrazione | `wp-tests-config.php` alternativo | quello nella radice di `wordpress-develop` |
-| `DLI_TEST_PLUGINS_DIR` | integrazione | cartella con ACF e Polylang | `tests/integration/.cache/plugins` |
-| `DLI_E2E_BASE_URL` | E2E | URL del sito E2E | `https://dli-wp-e2e.local` |
-| `DLI_E2E_ADMIN_USER` | E2E | utente amministratore del sito E2E | `e2e-admin` |
-| `DLI_E2E_ADMIN_PASSWORD` | E2E | password dell'amministratore | `password` |
-
-Gli utenti di prova del sito E2E sono `e2e-admin`, `e2e-super-editor` ed `e2e-editor`,
-tutti con password `password` (sito locale di prova: non riusare mai queste credenziali
-su un sito vero). Sono descritti, con la baseline del database, in
-[`tests/e2e/README.md`](e2e/README.md).
-
-I test E2E ripristinano il database del sito prima e dopo l'esecuzione e richiedono
-`DLI_E2E_SITE_PATH` (cartella del sito); `DLI_E2E_SKIP_RESET=1` salta il ripristino.
-Anche le credenziali degli utenti di prova hanno un valore predefinito. Tutto è descritto
-in [`tests/e2e/README.md`](e2e/README.md).
-
-Esempio di sostituzione di un valore (PowerShell), valido per la sessione corrente:
-
-```
-$env:DLI_E2E_BASE_URL = 'https://altro-sito.local'
-```
+Quando eseguirli:
+- **Prima di ogni commit:** il test unit parte da solo con l'hook; PHPCS e PHPStan si lanciano a mano sui file toccati.
+- **Dopo una modifica che dipende da WordPress** (ruoli, permessi, rotte REST, query, tipi di contenuto): i test di integrazione.
+- **Dopo una modifica a ciò che l'utente vede o a un flusso dell'amministrazione:** i test E2E.
+- **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
 
 
-## Altre cartelle
+## Controlli statici
 
-- `tests/utils/`: file di supporto. `wordpress-lite-stubs.php` contiene gli stub delle
-  funzioni di WordPress per PHPStan (`composer run lint:phpstan`);
-  `fetch-test-plugins.php` scarica ACF e Polylang per i test di integrazione
-  (lo lancia `composer test:integration`).
+- `composer run lint:php` verifica lo stile con PHPCS (regole in `phpcs.xml.dist`); `composer run lint:php:fix` corregge da solo ciò che può.
+- `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in `phpstan.neon`).
+- `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
 
-Per i controlli statici (PHPCS, PHPStan, audit delle dipendenze) vedi la sezione
-"Sviluppo e verifiche" del `README.md` principale.
+PHPStan non conosce WordPress da solo: alcuni file di supporto in `tests/utils/` gli dicono
+come sono fatte le funzioni e le classi usate dal tema.
+
+
+## Test
+
+Le tre suite hanno ciascuna la propria cartella, configurazione e README:
+
+- **Unit** (`tests/unit/`): funzioni e file del repository, senza WordPress, database o browser.
+- **Integrazione** (`tests/integration/`): WordPress vero, con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
+- **E2E** (`tests/e2e/`): Playwright su un sito Local dedicato, che torna a uno stato di partenza prima e dopo ogni corsa.
+
+Scelta del livello: si usa il più basso che dimostra il comportamento. Ciò che dipende da
+WordPress va in integrazione; il browser serve solo per ciò che lo richiede, perché è il più
+lento. Le regole per chi scrive o modifica codice (quando serve un test, test di regressione
+per i difetti corretti) sono in `AGENTS/AI_BEHAVIOR.md`.
+
+
+## Report
+
+I moduli (`status-report`, `html-report`, `pa11y-report`) e le convenzioni comuni sono in
+[`report/README.md`](report/README.md). I risultati finiscono in `tests/report/<modulo>/reports/` e
+non vengono tracciati da Git.
+
+
+## Mappa della cartella
+
+| Cartella | Contenuto |
+|---|---|
+| `tests/unit/` | Test unit (PHPUnit), con `tests/bootstrap-unit.php` e `phpunit.xml` nella radice |
+| `tests/integration/` | Test di integrazione (PHPUnit), con `tests/bootstrap-integration.php` e `phpunit-integration.xml` |
+| `tests/e2e/` | Test E2E (Playwright): specifiche, supporto, baseline del database; configurazione in `playwright.config.js` |
+| `tests/report/` | Moduli Report |
+| `tests/utils/` | File di supporto: stub di WordPress e dei plugin per PHPStan, `fetch-test-plugins.php` per i test di integrazione |
+
+
+## Pacchetto di rilascio
+
+Tutta la cartella `tests/`, `phpunit.xml`, `phpunit-integration.xml` e `playwright.config.js` sono nel
+repository clonato ma **non** nel pacchetto zip che GitHub genera per ogni versione
+(`export-ignore` in `.gitattributes`).

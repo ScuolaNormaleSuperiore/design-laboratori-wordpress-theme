@@ -51,11 +51,11 @@ class Main_Menu_Walker extends Walker_Nav_Menu {
 	 * @param string $output Output HTML.
 	 * @param object $item   Menu item.
 	 * @param int    $depth  Depth level.
-	 * @param array  $args   Walker args.
+	 * @param object $args   Walker arguments.
 	 * @param int    $id     Item ID.
 	 * @return void
 	 */
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 		// Set active tab.
 		$active_class = '';
 		if ( get_permalink() === $item->url ) {
