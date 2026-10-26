@@ -46,7 +46,7 @@ if ( is_array( $dli_tipologia_raw ) ) {
 	$dli_tipi_pubblicazione_params = array_map( 'sanitize_key', $dli_tipologia_raw );
 }
 
-if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) ) {
+if ( is_array( $dli_tipi_pubblicazione ) ) {
 	$dli_available_type_slugs      = wp_list_pluck( $dli_tipi_pubblicazione, 'slug' );
 	$dli_tipi_pubblicazione_params = array_values(
 		array_intersect( $dli_tipi_pubblicazione_params, $dli_available_type_slugs )
@@ -67,12 +67,10 @@ $dli_publication_ids    = get_posts(
 	)
 );
 
-if ( is_array( $dli_publication_ids ) ) {
-	foreach ( $dli_publication_ids as $dli_publication_id ) {
-		$dli_anno = absint( get_post_meta( $dli_publication_id, 'anno', true ) );
-		if ( $dli_anno > 0 ) {
-			$dli_anni_pubblicazioni[ $dli_anno ] = (string) $dli_anno;
-		}
+foreach ( $dli_publication_ids as $dli_publication_id ) {
+	$dli_anno = absint( get_post_meta( $dli_publication_id, 'anno', true ) );
+	if ( $dli_anno > 0 ) {
+		$dli_anni_pubblicazioni[ $dli_anno ] = (string) $dli_anno;
 	}
 }
 
@@ -178,7 +176,7 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 								</div>
 							</div>
 							<?php
-							if ( is_array( $dli_tipi_pubblicazione ) && ! is_wp_error( $dli_tipi_pubblicazione ) && count( $dli_tipi_pubblicazione ) >= 1 ) {
+							if ( is_array( $dli_tipi_pubblicazione ) && count( $dli_tipi_pubblicazione ) >= 1 ) {
 								?>
 								<!-- FILTRO PER CATEGORIA -->
 								<div class="row pt-5">
@@ -220,7 +218,7 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 								$dli_image_metadata = dli_get_image_metadata( get_post( $dli_item_id ) );
 								$dli_img_url        = ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) ? $dli_image_metadata['image_url'] : null;
 								$dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
-								$dli_item_terms     = ( is_array( $dli_item_terms ) && ! is_wp_error( $dli_item_terms ) ) ? $dli_item_terms : array();
+								$dli_item_terms     = is_array( $dli_item_terms ) ? $dli_item_terms : array();
 								?>
 								<!--start card-->
 								<div class="col-12 mb-4">

@@ -10,7 +10,6 @@
 global $post;
 get_header();
 $dli_image_metadata = dli_get_image_metadata( $post, 'full' );
-$dli_image_metadata = is_array( $dli_image_metadata ) ? $dli_image_metadata : array();
 $dli_related_items  = dli_get_field( 'pagine_collegate' );
 ?>
 
@@ -53,7 +52,7 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 					// Get top parent page ID.
 					$dli_top_parent = dli_get_page_anchestor_id( $post );
 					$dli_slugs      = dli_get_page_slug_anchestors( $post );
-					$dli_slugs      = is_array( $dli_slugs ) ? array_reverse( $dli_slugs ) : array();
+					$dli_slugs      = array_reverse( $dli_slugs );
 				if ( count( $dli_slugs ) > 1 && ( SLUG_LABORATORIO_IT === $dli_slugs[0] || SLUG_LABORATORIO_EN === $dli_slugs[0] ) ) {
 					$dli_top_parent_page = get_page_by_path( $dli_slugs[0] . '/' . $dli_slugs[1] );
 					if ( $dli_top_parent_page instanceof WP_Post ) {

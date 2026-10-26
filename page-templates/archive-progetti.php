@@ -99,7 +99,7 @@ $dli_label_all_levels   = dli_get_configuration_field_by_lang( 'tutti_i_livelli_
 					<?php
 					$dli_image_metadata = dli_get_image_metadata( $post, 'item-card-list' );
 					$dli_levels         = wp_get_post_terms( get_the_ID(), 'post_tag' );
-					$dli_levels         = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
+					$dli_levels         = is_wp_error( $dli_levels ) ? array() : $dli_levels;
 					?>
 
 					<!-- start card -->

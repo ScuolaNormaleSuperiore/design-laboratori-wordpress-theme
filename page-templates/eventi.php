@@ -81,7 +81,7 @@ $dli_no_items = ! $dli_num_results && empty( $dli_selected_categories );
 				<!--COLONNA FILTRI -->
 				<div class="col-12 col-lg-3 border-bottom pb-3 mb-4 mb-lg-0">
 					<div class="sticky-top pt-4" style="top: 1rem;">
-						<?php if ( ! empty( $dli_all_categories ) && is_array( $dli_all_categories ) ) : ?>
+						<?php if ( ! empty( $dli_all_categories ) ) : ?>
 							<h3 class="h6 text-uppercase border-bottom"><?php echo esc_html__( 'Categoria', 'design_laboratori_italia' ); ?></h3>
 							<div>
 								<form action="<?php echo esc_url( get_permalink() ); ?>" id="eventiform" method="GET">

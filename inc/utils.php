@@ -1300,7 +1300,7 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 				'hide_empty' => true,
 			)
 		);
-		$place_types_with_results = ( is_wp_error( $tipi_luogo ) || ! is_array( $tipi_luogo ) ) ? array() : $tipi_luogo;
+		$place_types_with_results = is_wp_error( $tipi_luogo ) ? array() : $tipi_luogo;
 
 		set_transient( $cache_key, $place_types_with_results, DAY_IN_SECONDS );
 		return $place_types_with_results;

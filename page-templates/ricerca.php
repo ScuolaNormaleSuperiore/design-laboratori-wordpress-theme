@@ -71,7 +71,7 @@ $dli_num_results = $dli_query->found_posts;
 					$dli_image_metadata = dli_get_image_metadata( $dli_research_post, 'item-card-list' );
 					$dli_responsabili   = dli_get_field( 'responsabile_attivita_di_ricerca', $dli_research_id );
 					$dli_levels         = wp_get_post_terms( $dli_research_id, 'post_tag' );
-					$dli_levels         = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
+					$dli_levels         = is_wp_error( $dli_levels ) ? array() : $dli_levels;
 
 					$dli_responsabili_names = array();
 					if ( is_array( $dli_responsabili ) ) {

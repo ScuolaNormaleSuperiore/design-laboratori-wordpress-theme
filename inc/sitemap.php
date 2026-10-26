@@ -26,7 +26,7 @@ if ( ! function_exists( 'dli_render_sitemap_node' ) ) {
 	 * list item. Unlike the "Pagine collegate" tree, the sitemap has no
 	 * collapse/expand toggle: every level is always fully expanded.
 	 *
-	 * @param array $dli_node  Sitemap node array with keys: name, link, external, children.
+	 * @param mixed $dli_node  Sitemap node (an array with keys: name, link, external, children); anything else is ignored.
 	 * @param int   $dli_depth Nesting depth of this node (0 = top-level entry).
 	 * @return void
 	 */

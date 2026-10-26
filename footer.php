@@ -104,7 +104,7 @@
 			<?php
 						$dli_location   = 'menu-links';
 						$dli_locations  = get_nav_menu_locations();
-						$dli_menu_id    = ( is_array( $dli_locations ) && isset( $dli_locations[ $dli_location ] ) ) ? $dli_locations[ $dli_location ] : 0;
+						$dli_menu_id    = ( isset( $dli_locations[ $dli_location ] ) ) ? $dli_locations[ $dli_location ] : 0;
 						$dli_menu_items = $dli_menu_id ? wp_get_nav_menu_items( $dli_menu_id ) : array();
 						$dli_menu_items = is_array( $dli_menu_items ) ? $dli_menu_items : array();
 			if ( count( $dli_menu_items ) > 0 ) {

@@ -81,7 +81,7 @@ $dli_num_results = $dli_query->found_posts;
 					<form action="<?php echo esc_url( get_permalink() ); ?>" id="techresourcesform" method="GET">
 						<div class="sticky-top pt-3" style="top: 1rem;">
 							<!-- FILTRO PER ANNO -->
-							<?php if ( is_array( $dli_all_years ) && count( $dli_all_years ) > 0 ) { ?>
+							<?php if ( count( $dli_all_years ) > 0 ) { ?>
 								<div class="row">
 									<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Anno di acquisizione', 'design_laboratori_italia' ); ?></h3>
 									<div class="select-wrapper">
@@ -99,7 +99,7 @@ $dli_num_results = $dli_query->found_posts;
 							<?php } ?>
 
 							<!-- FILTRO PER TIPO DI RISORSA -->
-							<?php if ( is_array( $dli_all_types ) && count( $dli_all_types ) > 0 ) { ?>
+							<?php if ( count( $dli_all_types ) > 0 ) { ?>
 								<div class="row pt-5">
 									<h3 class="h6 text-uppercase border-bottom"><?php esc_html_e( 'Tipo di risorsa', 'design_laboratori_italia' ); ?></h3>
 									<div>

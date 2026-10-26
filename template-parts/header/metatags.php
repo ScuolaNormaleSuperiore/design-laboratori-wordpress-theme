@@ -9,7 +9,6 @@ $dli_locale_str = pll_current_language( 'locale' );
 $dli_nome_lab   = dli_get_option_by_lang( 'nome_laboratorio' );
 $dli_tagline    = dli_get_option_by_lang( 'tagline_laboratorio' );
 $dli_wrapper    = dli_get_post_wrapper( get_post() );
-$dli_wrapper    = is_array( $dli_wrapper ) ? $dli_wrapper : array();
 
 $dli_copyright     = $dli_nome_lab;
 $dli_resource_type = 'document';

@@ -52,7 +52,7 @@ foreach ( $dli_v_categories as $dli_v_category ) :
 					$dli_v_person_site_url         = dli_get_field( 'sito_web', $dli_v_person_id );
 					$dli_v_person_title            = get_the_title( $dli_v_person_id );
 					$dli_v_person_levels           = wp_get_post_terms( $dli_v_person_id, WP_DEFAULT_TAGS );
-					$dli_v_person_levels           = ( is_wp_error( $dli_v_person_levels ) || ! is_array( $dli_v_person_levels ) ) ? array() : $dli_v_person_levels;
+					$dli_v_person_levels           = is_wp_error( $dli_v_person_levels ) ? array() : $dli_v_person_levels;
 					?>
 					<div class="col-lg-4">
 						<div class="avatar-wrapper avatar-extra-text">

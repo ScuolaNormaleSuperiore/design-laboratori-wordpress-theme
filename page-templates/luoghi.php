@@ -19,7 +19,7 @@ $dli_allowed_place_types = get_terms(
 	)
 );
 
-$dli_allowed_place_types = ( is_wp_error( $dli_allowed_place_types ) || ! is_array( $dli_allowed_place_types ) )
+$dli_allowed_place_types = is_wp_error( $dli_allowed_place_types )
 	? array()
 	: $dli_allowed_place_types;
 

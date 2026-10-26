@@ -8,7 +8,7 @@
 $dli_args        = isset( $args ) && is_array( $args ) ? $args : array();
 $dli_items       = isset( $dli_args['items'] ) && is_array( $dli_args['items'] ) ? $dli_args['items'] : array();
 $dli_section_id  = $dli_args['section_id'] ?? '';
-$dli_num_results = is_array( $dli_items ) ? count( $dli_items ) : 0;
+$dli_num_results = count( $dli_items );
 ?>
 <section id="<?php echo esc_attr( 'sezione-' . $dli_section_id ); ?>">
 	<?php if ( $dli_num_results ) : ?>
