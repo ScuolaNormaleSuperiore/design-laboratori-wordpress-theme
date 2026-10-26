@@ -83,7 +83,7 @@ una volta con `npm run status:scan:install-browser`.
 | `tests/integration/support/` | Script di preparazione dei plugin richiesti dai test di integrazione |
 | `tests/e2e/` | Test E2E (Playwright): specifiche, supporto, baseline del database; configurazione in `playwright.config.js` |
 | `tests/report/` | Moduli Report |
-| `tests/phpstan/` | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan |
+| `tests/phpstan/` | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan: vedi [`phpstan/README.md`](phpstan/README.md) |
 
 
 ## Pacchetto di rilascio
