@@ -37,7 +37,7 @@ npm run html:compare -- tests/report/html-report/reports/html_report_20260310_14
 | `<baseUrl>` | _(obbligatorio)_ | URL base del sito da controllare |
 | `--sitemap <path>` | `/mappa-sito/` | Percorso della pagina con la mappa del sito |
 | `--timeout <ms>` | `30000` | Tempo massimo di caricamento di una pagina |
-| `--delay <ms>` | `500` | Pausa tra una pagina e l'altra (`0` = nessuna pausa) |
+| `--delay <ms>` | `1000` | Pausa tra una pagina e l'altra (`0` = nessuna pausa) |
 | `--out <path>` | data e ora automatiche | Percorso dei risultati senza estensione |
 | `--gate` | disattivato | Esce con codice 1 se il verdetto è FAIL |
 

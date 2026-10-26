@@ -260,9 +260,9 @@ add_filter( 'pll_cookie_args', 'dli_harden_polylang_cookie' );
  * block editor continues to work. The public archive uses its own WP_Query
  * and is not affected by this authorization check.
  *
- * @param mixed           $result  Response to replace, or null to continue.
- * @param WP_REST_Server  $server  REST server instance.
- * @param WP_REST_Request $request Current REST request.
+ * @param mixed          $result  Response to replace, or null to continue.
+ * @param WP_REST_Server $server  REST server instance.
+ * @param mixed          $request Current REST request (a WP_REST_Request when WordPress calls the filter).
  * @return mixed|WP_Error
  */
 function dli_restrict_publication_rest_access( $result, $server, $request ) {

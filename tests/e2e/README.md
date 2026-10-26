@@ -14,7 +14,7 @@ fotografano un sito in funzione senza asserzioni.
   `127.0.0.1:10004` invece di `localhost`, perché lo script di ripristino, lanciato da una shell normale,
   raggiunga il database. La porta è quella che Local ha assegnato al sito (scheda Database) e può
   cambiare: va ricontrollata dopo ogni riavvio di Local.
-- Node.js con `npm install` (rifarlo dopo un `git pull` che cambia `package.json`) e PHP con `mysqli` nel `PATH`
+- Node.js con `npm ci` (rieseguirlo dopo un `git pull` che cambia `package.json` o `package-lock.json`) e PHP con `mysqli` nel `PATH`
   (lo usa lo script di ripristino; non servono il client `mysql` né WP-CLI).
 - Chromium per la versione di Playwright installata, scaricato una volta con `npm run status:scan:install-browser`
   (lo stesso browser dei Report).

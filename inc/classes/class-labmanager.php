@@ -89,7 +89,7 @@ class DLI_LabManager {
 	/**
 	 * The static instance of the LabManager.
 	 *
-	 * @var object
+	 * @var self|null
 	 */
 	protected static $instance = null;
 

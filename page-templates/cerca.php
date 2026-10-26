@@ -63,10 +63,8 @@ if ( $dli_search_submitted ) {
 		$dli_per_page
 	);
 
-	if ( $dli_query instanceof WP_Query ) {
-		$dli_num_results       = $dli_query->found_posts;
-		$dli_all_content_types = DLI_ContentsManager::get_contenttypes_with_search_results( $dli_search_string );
-	}
+	$dli_num_results       = $dli_query->found_posts;
+	$dli_all_content_types = DLI_ContentsManager::get_contenttypes_with_search_results( $dli_search_string );
 }
 $dli_has_searched = ( $dli_query instanceof WP_Query );
 // End preparing search params.

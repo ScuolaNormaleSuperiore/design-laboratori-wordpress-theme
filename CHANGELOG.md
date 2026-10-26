@@ -30,12 +30,13 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Controlli periodici di integrità dei dati con avvisi amministrativi (relazioni orfane, date e tassonomie non valide).
 - Import di pubblicazioni da Iris.
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
-
+- PHPStan: raggiungere livello 6.
 
 
 
 ## [2.0.2] - 2026-10-20
 - Introdotti test di unità, integrazione ed e2e.
+- Introdotti test phpstan. Lçivello raggiunto: 4.
 
 
 
