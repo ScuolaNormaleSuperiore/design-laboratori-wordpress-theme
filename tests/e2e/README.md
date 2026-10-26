@@ -124,8 +124,10 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `home.spec.js` | la home si carica (stato inferiore a 400, attributo `lang`) |
 | `admin-login.spec.js` | l'amministratore entra in `wp-admin` |
 | `config-permissions.spec.js` | amministratore e Super Editor aprono la pagina Configurazione, l'Editor riceve 403 |
+| `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato; un invio forzato con campi vuoti mostra i tre messaggi di validazione in ordine; un invio con un nonce sbagliato viene rifiutato |
+| `newsletter.spec.js` | pagina newsletter, campi del form e validazione browser dell'email non valida |
 
-Sono cinque test, il minimo che dimostra che l'infrastruttura funziona. La copertura vera (opzioni condizionali
+Sono dieci test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, archivi vuoti, ricerca, cambio lingua, manifest) è da scrivere.
 
 

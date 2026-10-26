@@ -6,6 +6,7 @@ parameters:
     - ABSPATH
     - CMB2_VERSION
     - DLI_PUBLICATION_HAS_DETAIL
+    - DLI_POST_TYPES_TO_TRANSLATE
   level: 3
   parallel:
     maximumNumberOfProcesses: 1

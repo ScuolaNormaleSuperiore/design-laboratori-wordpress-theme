@@ -170,8 +170,8 @@ if ( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	/**
 	 * Build a normalized wrapper for a post based on its post type.
 	 *
-	 * @param WP_Post $result Source post object.
-	 * @param string  $image_format Target image size key.
+	 * @param WP_Post|null $result Source post object, or null when there is none (for example get_post() outside the loop).
+	 * @param string       $image_format Target image size key.
 	 * @return array
 	 */
 	function dli_get_post_wrapper( $result, $image_format = 'item-carousel' ) {
@@ -877,9 +877,8 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 			return $categories;
 		}
 
-		$exclude_uncategorized = true;
-		$categories            = array();
-		$terms                 = get_terms(
+		$categories = array();
+		$terms      = get_terms(
 			array(
 				'taxonomy'   => $taxonomy,
 				'hide_empty' => true,
@@ -895,7 +894,7 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 		);
 		if ( $terms ) {
 			foreach ( $terms as $term ) {
-				if ( ! $exclude_uncategorized || 'Uncategorized' !== $term->name ) {
+				if ( 'Uncategorized' !== $term->name ) {
 					array_push(
 						$categories,
 						array(

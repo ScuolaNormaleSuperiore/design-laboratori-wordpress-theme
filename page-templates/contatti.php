@@ -57,11 +57,11 @@ if ( 'yes' === $dli_form_submitted ) {
 
 		if ( ! $dli_captcha_enabled ) {
 			$dli_form_valid   = false;
-			$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
+			$dli_result_text .= esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' );
 		} else {
 			$dli_captcha_valid = dli_validate_captcha( $dli_captcha, $dli_captcha_prefix, $dli_captcha_field );
 			if ( ! $dli_captcha_valid ) {
-				$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
+				$dli_result_text .= esc_html__( 'Il codice di controllo non è valido.', 'design_laboratori_italia' );
 			}
 		}
 
@@ -93,17 +93,17 @@ if ( 'yes' === $dli_form_submitted ) {
 			}
 		}
 
-		if ( 'yes' === $dli_form_submitted && $dli_sent ) {
+		if ( $dli_sent ) {
 			$dli_show_success = true;
 		}
 
-		if ( ! $dli_form_valid || ( 'yes' === $dli_form_submitted && ! $dli_sent ) ) {
+		if ( ! $dli_form_valid || ! $dli_sent ) {
 			$dli_show_error = true;
 		}
 	} else {
 		$dli_show_error   = true;
 		$dli_nonce_error  = true;
-		$dli_result_text .= ( '' === $dli_result_text ? '' : '<br />' ) . esc_html__( 'Valore di Nonce errato.', 'design_laboratori_italia' );
+		$dli_result_text .= esc_html__( 'Valore di Nonce errato.', 'design_laboratori_italia' );
 	}
 }
 ?>

@@ -90,6 +90,8 @@ lo script ripiega sul comando `curl` del sistema.
 | `DLI_Spike_Integration_Test.php` | L'ambiente: tema attivo, ACF e Polylang attivi, ruolo Super Editor, pagine create da `after_switch_theme`, tipo di contenuto `persona` |
 | `DLI_Search_Autocomplete_Integration_Test.php` | L'autocomplete della ricerca: rotta assente di default e presente se attiva, query corta, solo contenuti pubblicati, limite massimo di risultati |
 | `DLI_Homepage_Sections_Integration_Test.php` | Le sezioni della home configurate: restituisce tutte le sezioni oppure solo quelle abilitate quando richiesto |
+| `DLI_Categories_By_Content_Type_Integration_Test.php` | Le categorie dei filtri degli archivi (`dli_get_all_categories_by_ct()`): elenca quelle usate da contenuti pubblicati, con i dati necessari, mai «Uncategorized» e non quelle usate solo da bozze |
+| `DLI_Newsletter_Integration_Test.php` | Client Brevo della newsletter: payload di double opt-in e gestione di risposte accettate o di errore, senza richieste esterne |
 
 Sono ancora da scrivere, tra gli altri: le rotte di importazione, i permessi, sitemap e manifest, le query dei
 contenuti, gli elenchi vuoti, le modalità di visualizzazione delle persone, l'attivazione del tema, i tipi di
