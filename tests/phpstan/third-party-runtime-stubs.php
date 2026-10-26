@@ -3,7 +3,8 @@
  * Third-party runtime declarations for PHPStan.
  *
  * These functions are provided by required dependencies that are not loaded
- * during static analysis. This file is scanned by PHPStan only.
+ * during static analysis. This file is scanned by PHPStan only from
+ * tests/phpstan/.
  *
  * @package Design_Laboratori_Italia
  */

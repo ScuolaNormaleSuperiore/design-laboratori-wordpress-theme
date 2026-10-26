@@ -4,7 +4,7 @@
  *
  * Loads the WordPress test framework (wordpress-develop), then ACF and Polylang
  * from the plugins cache and the theme, before WordPress finishes booting. Run
- * `php tests/utils/fetch-test-plugins.php` first (the Composer script does it).
+ * `php tests/integration/support/fetch-test-plugins.php` first (the Composer script does it).
  *
  * Environment variables:
  * - WP_TESTS_DIR: `tests/phpunit` folder of wordpress-develop
@@ -55,7 +55,7 @@ define(
 
 foreach ( DLI_TEST_PLUGIN_FILES as $dli_plugin_file ) {
 	if ( ! file_exists( DLI_TEST_PLUGINS_DIR . '/' . $dli_plugin_file ) ) {
-		fwrite( STDERR, "Plugin $dli_plugin_file not found in " . DLI_TEST_PLUGINS_DIR . ". Run: php tests/utils/fetch-test-plugins.php\n" );
+		fwrite( STDERR, "Plugin $dli_plugin_file not found in " . DLI_TEST_PLUGINS_DIR . ". Run: php tests/integration/support/fetch-test-plugins.php\n" );
 		exit( 1 );
 	}
 }

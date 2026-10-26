@@ -160,9 +160,8 @@ class DLI_People_File_Importer {
 			true
 		);
 
-		if ( is_wp_error( $post_id ) || ! $post_id ) {
-			$error_msg = is_wp_error( $post_id ) ? $post_id->get_error_message() : __( 'Errore sconosciuto.', 'design_laboratori_italia' );
-			return self::make_result( 'error', $row_num, $display_name, $email, 'ERRORE', $error_msg );
+		if ( is_wp_error( $post_id ) ) {
+			return self::make_result( 'error', $row_num, $display_name, $email, 'ERRORE', $post_id->get_error_message() );
 		}
 
 		self::set_custom_fields( $post_id, $data );

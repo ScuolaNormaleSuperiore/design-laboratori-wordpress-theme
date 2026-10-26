@@ -7,16 +7,16 @@ parameters:
     - CMB2_VERSION
     - DLI_PUBLICATION_HAS_DETAIL
     - DLI_POST_TYPES_TO_TRANSLATE
-  level: 3
+  level: 4
   parallel:
     maximumNumberOfProcesses: 1
   scanFiles:
-    - tests/utils/wordpress-runtime-stubs.php
-    - tests/utils/theme-runtime-stubs.php
-    - tests/utils/wordpress-lite-stubs.php
-    - tests/utils/third-party-runtime-stubs.php
-    - tests/utils/polylang-stubs.php
-    - tests/utils/really-simple-captcha-stubs.php
+    - tests/phpstan/wordpress-runtime-stubs.php
+    - tests/phpstan/theme-runtime-stubs.php
+    - tests/phpstan/wordpress-lite-stubs.php
+    - tests/phpstan/third-party-runtime-stubs.php
+    - tests/phpstan/polylang-stubs.php
+    - tests/phpstan/really-simple-captcha-stubs.php
     - config-lab.php
     - config-pages.php
     - config-menu.php
@@ -24,11 +24,28 @@ parameters:
     - inc
     - page-templates
     - template-parts
+    - 404.php
     - archive.php
-    - page.php
-    - header.php
+    - category.php
+    - config-lab.php
+    - config-menu.php
+    - config-pages.php
     - footer.php
     - functions.php
+    - header.php
+    - home.php
+    - index.php
+    - page.php
+    - single-brevetto.php
+    - single-evento.php
+    - single-indirizzo-di-ricerca.php
+    - single-luogo.php
+    - single-notizia.php
+    - single-persona.php
+    - single-post.php
+    - single-progetto.php
+    - single-risorsa-tecnica.php
+    - single-spinoff.php
   excludePaths:
     - vendor/*
     - inc/vendor/*

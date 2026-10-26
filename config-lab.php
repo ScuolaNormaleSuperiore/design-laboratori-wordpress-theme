@@ -24,6 +24,7 @@ define( 'DLI_ENTE_SLUG', 'enteappartenenza' );
 // Max Attachment Size.
 define( 'DLI_MAX_PDF_FILE_SIZE_MB', 2 );
 define( 'DLI_MAX_IMG_FILE_SIZE_MB', 1 );
+// @phpstan-ignore greater.alwaysTrue (Both limits are configuration values that can be edited: this keeps the larger one.)
 define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SIZE_MB ) ? DLI_MAX_PDF_FILE_SIZE_MB : DLI_MAX_IMG_FILE_SIZE_MB );
 
 // Define global lab data format.

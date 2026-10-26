@@ -217,6 +217,12 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 
 Requisiti, preparazione, opzioni, varianti `:gate` e `:compare` sono descritti in [`tests/README.md`](tests/README.md) e nei README delle cartelle che ne dipendono. Test e Report sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in `.gitattributes`).
 
+## Controlli automatici
+
+![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/badge)
+
+OpenSSF Scorecard esegue su GitHub un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali descritti sopra.
+
 ## Verifica file publiccode.yml
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.
 ```

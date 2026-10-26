@@ -1,6 +1,6 @@
 <?php
 /**
- * Really Simple CAPTCHA 2.4 declarations for PHPStan.
+ * Really Simple CAPTCHA 2.4 declarations for PHPStan, loaded from tests/phpstan/.
  *
  * @package Design_Laboratori_Italia
  */

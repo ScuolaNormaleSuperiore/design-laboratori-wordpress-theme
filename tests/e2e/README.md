@@ -126,9 +126,11 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `config-permissions.spec.js` | amministratore e Super Editor aprono la pagina Configurazione, l'Editor riceve 403 |
 | `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato; un invio forzato con campi vuoti mostra i tre messaggi di validazione in ordine; un invio con un nonce sbagliato viene rifiutato |
 | `newsletter.spec.js` | pagina newsletter, campi del form e validazione browser dell'email non valida |
+| `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
+| `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
 
-Sono dieci test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
-delle persone, selettore Schede/Tabella, archivi vuoti, ricerca, cambio lingua, manifest) è da scrivere.
+Sono dodici test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
+delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.
 
 
 ## Come funziona

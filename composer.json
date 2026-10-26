@@ -24,7 +24,7 @@
     ],
     "test:unit": "phpunit --testsuite unit",
     "test:integration": [
-      "@php tests/utils/fetch-test-plugins.php",
+      "@php tests/integration/support/fetch-test-plugins.php",
       "phpunit -c phpunit-integration.xml"
     ],
     "test:e2e": "npm run test:e2e --",

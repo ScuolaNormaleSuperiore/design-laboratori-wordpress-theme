@@ -8,6 +8,21 @@
 global $post;
 get_header();
 
+// Defaults for when the loop below does not run (on a single page it always does).
+$dli_title             = '';
+$dli_image_metadata    = array();
+$dli_descrizione       = '';
+$dli_posizione         = '';
+$dli_come_raggiungerci = '';
+$dli_indirizzo         = '';
+$dli_cap               = '';
+$dli_orari             = '';
+$dli_telefono          = '';
+$dli_mail              = '';
+$dli_pec               = '';
+$dli_mail_obfuscated   = '';
+$dli_pec_obfuscated    = '';
+
 while ( have_posts() ) {
 	the_post();
 	$dli_id             = get_the_ID();

@@ -251,9 +251,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$post_id    = $page_check ? $page_check->ID : 0;
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_page, true );
-			if ( is_wp_error( $post_id ) || ! $post_id ) {
-				$error_message = is_wp_error( $post_id ) ? $post_id->get_error_message() : 'ID = 0';
-				throw new Exception( 'wp_insert_post fallito: ' . $error_message );
+			if ( is_wp_error( $post_id ) ) {
+				throw new Exception( 'wp_insert_post fallito: ' . $post_id->get_error_message() );
 			}
 			$updated = false;
 			$this->update_custom_fields( $post_id, $item );

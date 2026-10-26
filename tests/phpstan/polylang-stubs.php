@@ -4,7 +4,7 @@
  *
  * Polylang is an optional runtime dependency and is not installed in the
  * local analysis environment. Keep this list restricted to APIs called by
- * first-party theme code.
+ * first-party theme code. It is loaded from tests/phpstan/ only.
  *
  * @package Design_Laboratori_Italia
  */

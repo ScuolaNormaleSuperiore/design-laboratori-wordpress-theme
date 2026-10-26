@@ -297,16 +297,14 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 					?>
 				<!-- EVENTI -->
 					<?php
-					if ( $dli_eventi ) {
-						get_template_part(
-							'template-parts/common/sezione-related-items',
-							null,
-							array(
-								'section_id' => 'eventi',
-								'items'      => $dli_eventi,
-							)
-						);
-					}
+					get_template_part(
+						'template-parts/common/sezione-related-items',
+						null,
+						array(
+							'section_id' => 'eventi',
+							'items'      => $dli_eventi,
+						)
+					);
 				}
 				if ( $dli_risorse ) {
 					?>
@@ -315,16 +313,14 @@ $dli_risorse = dli_get_field( 'risorse_tecniche' );
 					<?php echo esc_html( dli_translate( 'Risorse tecniche', 'design_laboratori_italia' ) ); ?>
 				</h3>
 					<?php
-					if ( $dli_risorse ) {
-						get_template_part(
-							'template-parts/common/sezione-related-technical-resources',
-							null,
-							array(
-								'section_id' => 'risorse-tecniche',
-								'items'      => $dli_risorse,
-							)
-						);
-					}
+					get_template_part(
+						'template-parts/common/sezione-related-technical-resources',
+						null,
+						array(
+							'section_id' => 'risorse-tecniche',
+							'items'      => $dli_risorse,
+						)
+					);
 				}
 				?>
 			</div>

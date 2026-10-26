@@ -96,6 +96,7 @@ class DLI_BaseImporter {
 	 *
 	 * @param array $conf Import configuration.
 	 * @return void
+	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
 	private function execute_import( $conf ) {}
 
@@ -104,6 +105,7 @@ class DLI_BaseImporter {
 	 *
 	 * @param array $conf Import configuration.
 	 * @return void
+	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
 	private function get_data_to_import( $conf ) {}
 
@@ -114,6 +116,7 @@ class DLI_BaseImporter {
 	 * @param mixed  $item    Raw source item to import.
 	 * @param string $lang    Language slug of the post being updated.
 	 * @return void
+	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) { }
 
@@ -123,6 +126,7 @@ class DLI_BaseImporter {
 	 * @param int    $post_id Post ID to update.
 	 * @param string $title   New post title.
 	 * @return void
+	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
 	private function update_title( $post_id, $title ) { }
 
@@ -436,19 +440,13 @@ class DLI_BaseImporter {
 		}
 
 		$term_item = term_exists( $term_name, $taxonomy );
-		if ( is_array( $term_item ) && isset( $term_item['term_id'] ) ) {
+		if ( is_array( $term_item ) ) {
 			return (int) $term_item['term_id'];
-		}
-		if ( is_int( $term_item ) ) {
-			return $term_item;
 		}
 
 		$new_term = wp_insert_term( $term_name, $taxonomy );
 		if ( is_wp_error( $new_term ) ) {
 			throw new Exception( 'Errore creazione termine tassonomia: ' . $new_term->get_error_message() );
-		}
-		if ( ! is_array( $new_term ) || ! isset( $new_term['term_id'] ) ) {
-			throw new Exception( 'Creazione termine tassonomia fallita: term_id mancante.' );
 		}
 
 		return (int) $new_term['term_id'];

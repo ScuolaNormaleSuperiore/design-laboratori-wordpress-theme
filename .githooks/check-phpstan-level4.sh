@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Runs the whole-theme PHPStan level-4 gate. Add this script to pre-commit only
-# after phpstan.neon is set to level 4 and the analysis has no errors.
+# Runs the whole-theme PHPStan level-4 gate. It is called by .githooks/pre-commit and
+# blocks the commit when the analysis reports any error.
 
 set -euo pipefail
 

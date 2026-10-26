@@ -393,7 +393,7 @@ function dli_create_the_pages() {
 				}
 			}
 			$new_page_it_id = wp_insert_post( $new_page, true );
-			if ( ! is_wp_error( $new_page_it_id ) && $new_page_it_id > 0 ) {
+			if ( ! is_wp_error( $new_page_it_id ) ) {
 				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
 			} else {
 				$new_page_it_id = 0;
@@ -431,7 +431,7 @@ function dli_create_the_pages() {
 				}
 			}
 			$new_page_en_id = wp_insert_post( $new_page, true );
-			if ( ! is_wp_error( $new_page_en_id ) && $new_page_en_id > 0 ) {
+			if ( ! is_wp_error( $new_page_en_id ) ) {
 				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );
 			} else {
 				$new_page_en_id = 0;

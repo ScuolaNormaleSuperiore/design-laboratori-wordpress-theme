@@ -51,6 +51,7 @@ Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` coincide con la data della prima voce di `CHANGELOG.md` |
 | `DLI_Agents_Docs_Unit_Test.php` | I documenti citati da `AGENTS/AI_BOOTSTRAP.md` esistono (esclusi i file locali ignorati da Git) |
 | `DLI_Captcha_Unit_Test.php` | L’helper CAPTCHA fallisce in modo sicuro quando il plugin opzionale Really Simple CAPTCHA non è disponibile |
+| `DLI_PHPStan_Config_Unit_Test.php` | `phpstan.neon`: ogni file PHP della radice è nei percorsi analizzati, ogni cartella con codice PHP è analizzata o esclusa in modo esplicito e il livello non scende sotto il 4 |
 
 Se un test di contratto fallisce, di solito significa che una versione o una data è
 stata aggiornata in un file e dimenticata in un altro: va allineata, non il test.

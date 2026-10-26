@@ -135,7 +135,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	 *
 	 * @param array $conf Import configuration (import_type, import_action, ...).
 	 * @return array Human-readable log lines, one per processed item plus a summary footer.
-	 * @throws Exception When the feed payload is not iterable.
+	 * @throws Exception When the feed cannot be fetched or its payload is not valid (see get_data_to_import()).
 	 */
 	private function execute_import( $conf = array() ): array {
 		$this->log_string( '*** INIZIO importazione da IRIS (brevetti) ***' );
@@ -150,10 +150,6 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		$added_items     = 0;
 		$updated_items   = 0;
 		$ignored_items   = 0;
-
-		if ( ! is_iterable( $data ) ) {
-			throw new Exception( 'Payload IRIS non iterabile: impossibile avviare il loop di importazione.' );
-		}
 
 		foreach ( $data as $item ) {
 			if ( ! is_object( $item ) || ! isset( $item->pid ) || ! isset( $item->displayValue ) ) {
@@ -307,9 +303,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 		if ( ! isset( $contents[ $lang ] ) ) {
 			$post_id = wp_insert_post( $new_content, true );
-			if ( is_wp_error( $post_id ) || ! $post_id ) {
-				$error_message = is_wp_error( $post_id ) ? $post_id->get_error_message() : 'ID = 0';
-				throw new Exception( 'wp_insert_post fallito: ' . $error_message );
+			if ( is_wp_error( $post_id ) ) {
+				throw new Exception( 'wp_insert_post fallito: ' . $post_id->get_error_message() );
 			}
 			$updated = false;
 			// Aggiorna campi personalizzati.
@@ -375,9 +370,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 
 					// Associa versione italiana e versione inglese.
 					$post_id_en = wp_insert_post( $new_content_en, true );
-				if ( is_wp_error( $post_id_en ) || ! $post_id_en ) {
-					$error_message = is_wp_error( $post_id_en ) ? $post_id_en->get_error_message() : 'ID = 0';
-					throw new Exception( 'wp_insert_post (EN) fallito: ' . $error_message );
+				if ( is_wp_error( $post_id_en ) ) {
+					throw new Exception( 'wp_insert_post (EN) fallito: ' . $post_id_en->get_error_message() );
 				}
 
 				// Assign the EN language to the page.

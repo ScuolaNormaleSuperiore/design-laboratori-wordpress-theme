@@ -4,7 +4,7 @@
  *
  * The theme defines these in config-lab.php with define(). The values below
  * model only the types needed by static analysis; they are never loaded by
- * WordPress.
+ * WordPress and live under tests/phpstan/.
  *
  * @package Design_Laboratori_Italia
  */

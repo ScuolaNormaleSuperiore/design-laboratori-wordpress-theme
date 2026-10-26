@@ -61,7 +61,7 @@ Dalla radice del tema:
 composer test:integration
 ```
 
-Il comando lancia prima `tests/utils/fetch-test-plugins.php` (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
+Il comando lancia prima `tests/integration/support/fetch-test-plugins.php` (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
 `phpunit-integration.xml`. Per un solo file o un solo test:
 
 ```sh
@@ -91,7 +91,9 @@ lo script ripiega sul comando `curl` del sistema.
 | `DLI_Search_Autocomplete_Integration_Test.php` | L'autocomplete della ricerca: rotta assente di default e presente se attiva, query corta, solo contenuti pubblicati, limite massimo di risultati |
 | `DLI_Homepage_Sections_Integration_Test.php` | Le sezioni della home configurate: restituisce tutte le sezioni oppure solo quelle abilitate quando richiesto |
 | `DLI_Categories_By_Content_Type_Integration_Test.php` | Le categorie dei filtri degli archivi (`dli_get_all_categories_by_ct()`): elenca quelle usate da contenuti pubblicati, con i dati necessari, mai «Uncategorized» e non quelle usate solo da bozze |
+| `DLI_Base_Importer_Integration_Test.php` | L'assistente dei termini degli importatori (`get_or_create_term_id()`): crea un termine mancante, riusa quello esistente senza duplicarlo, ignora gli spazi, rifiuta nome vuoto o tassonomia sconosciuta |
 | `DLI_Newsletter_Integration_Test.php` | Client Brevo della newsletter: payload di double opt-in e gestione di risposte accettate o di errore, senza richieste esterne |
+| `DLI_Contact_Form_Integration_Test.php` | Il form dei contatti (`page-templates/contatti.php` mostrato con una richiesta POST simulata, CAPTCHA finto e `wp_mail()` intercettato, senza SMTP): invio riuscito, invio fallito, CAPTCHA o prefisso sbagliati, nonce sbagliato o assente, campi obbligatori ed e-mail non valida, nessuna intestazione aggiunta con gli a capo nell'indirizzo, copia di ricevuta solo se richiesta, form non utilizzabile senza il plugin CAPTCHA, form non inviato senza messaggi. Dettaglio: nel `wordpress-develop` di prova mancano i file compilati (emoji, stili dei blocchi), quindi il test stacca le azioni di WordPress che li leggono |
 
 Sono ancora da scrivere, tra gli altri: le rotte di importazione, i permessi, sitemap e manifest, le query dei
 contenuti, gli elenchi vuoti, le modalità di visualizzazione delle persone, l'attivazione del tema, i tipi di

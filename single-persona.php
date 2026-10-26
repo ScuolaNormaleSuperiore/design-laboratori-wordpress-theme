@@ -5,7 +5,24 @@
  * @package Design_Laboratori_Italia
  */
 
+global $post;
 get_header();
+
+// Defaults for when the loop below does not run (on a single page it always does).
+$dli_id                     = 0;
+$dli_title                  = '';
+$dli_image_url              = '';
+$dli_bio                    = '';
+$dli_categoria_appartenenza = '';
+$dli_nome_struttura         = '';
+$dli_allegato_cv            = '';
+$dli_allegato1              = '';
+$dli_allegato2              = '';
+$dli_allegato3              = '';
+$dli_telefono               = '';
+$dli_email                  = '';
+$dli_email_obfuscated       = '';
+$dli_sito_web               = '';
 
 while ( have_posts() ) {
 	the_post();
@@ -173,7 +190,7 @@ $dli_pubblicazioni = new WP_Query(
 												</li>
 														<?php
 													}
-													if ( $dli_progetti && $dli_progetti->have_posts() ) {
+													if ( $dli_progetti->have_posts() ) {
 														?>
 												<li class="nav-item">
 													<a class="nav-link" href="#p2">
@@ -194,7 +211,7 @@ $dli_pubblicazioni = new WP_Query(
 														}
 													}
 													$dli_progetti->rewind_posts();
-													if ( is_array( $dli_indirizzi_di_ricerca_ids ) && count( $dli_indirizzi_di_ricerca_ids ) > 0 ) {
+													if ( count( $dli_indirizzi_di_ricerca_ids ) > 0 ) {
 														?>
 												<li class="nav-item">
 													<a class="nav-link" href="#p3">
@@ -207,7 +224,7 @@ $dli_pubblicazioni = new WP_Query(
 												</li>
 														<?php
 													}
-													if ( $dli_pubblicazioni && $dli_pubblicazioni->have_posts() ) {
+													if ( $dli_pubblicazioni->have_posts() ) {
 														?>
 												<li class="nav-item">
 													<a class="nav-link" href="#p4">
@@ -252,7 +269,7 @@ $dli_pubblicazioni = new WP_Query(
 							<?php the_content(); ?>
 							<?php
 						}
-						if ( $dli_progetti && $dli_progetti->have_posts() ) {
+						if ( $dli_progetti->have_posts() ) {
 							?>
 						<h3 class="it-page-section h4" id="p2"><?php esc_html_e( 'Progetti', 'design_laboratori_italia' ); ?></h3>
 						<!-- PROGETTI -->
@@ -284,7 +301,7 @@ $dli_pubblicazioni = new WP_Query(
 						</section>
 							<?php
 						}
-						if ( is_array( $dli_indirizzi_di_ricerca_ids ) && count( $dli_indirizzi_di_ricerca_ids ) > 0 ) {
+						if ( count( $dli_indirizzi_di_ricerca_ids ) > 0 ) {
 							// recupero la lista degli indirizzi di ricerca.
 							$dli_indirizzi_di_ricerca = new WP_Query(
 								array(
@@ -326,7 +343,7 @@ $dli_pubblicazioni = new WP_Query(
 						</section>
 							<?php
 						}
-						if ( $dli_pubblicazioni && $dli_pubblicazioni->have_posts() ) {
+						if ( $dli_pubblicazioni->have_posts() ) {
 							?>
 						<h3 class="it-page-section h4 pt-3" id="p4"><?php esc_html_e( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h3>
 						<!-- PUBBLICAZIONI -->

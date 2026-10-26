@@ -146,7 +146,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 										</li>
 											<?php
 										}
-										if ( $dli_famiglie && ( ! empty( $dli_famiglie ) ) ) {
+										if ( $dli_famiglie ) {
 											?>
 										<li class="nav-item">
 											<a class="nav-link" href="#famiglia">
@@ -226,7 +226,7 @@ if ( json_last_error() === JSON_ERROR_NONE ) {
 					</p>
 				<?php endif; ?>
 
-				<?php if ( $dli_famiglie && ! empty( $dli_famiglie ) ) : ?>
+				<?php if ( $dli_famiglie ) : ?>
 					<h3 class="it-page-section h4 pt-3" id="famiglia"><?php echo esc_html__( 'Famiglia brevettuale', 'design_laboratori_italia' ); ?></h3>
 					<div class="table-responsive">
 						<table class="table table-striped">

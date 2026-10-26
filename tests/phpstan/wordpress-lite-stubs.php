@@ -3,7 +3,8 @@
  * Lightweight third-party stubs for PHPStan.
  *
  * These declarations are intentionally minimal and are only used
- * by static analysis to reduce false positives in this theme.
+ * by static analysis to reduce false positives in this theme. They live under
+ * tests/phpstan/.
  *
  * @package Design_Laboratori_WordPress_Theme
  */

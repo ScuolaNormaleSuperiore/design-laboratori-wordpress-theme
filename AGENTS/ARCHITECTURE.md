@@ -18,9 +18,10 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/`: ACF exports, Docker setup, and setup utilities.
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
+- `.github/workflows/scorecard.yml`: GitHub Action settimanale che osserva la postura di sicurezza della supply chain del repository e pubblica il report in GitHub Code Scanning.
 - `tests/report/`: Report modules that produce results to read, without assertions (status, html, pa11y); `issues-report/` only stores issue snapshots.
-- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/utils/` holds local stubs for optional third-party APIs.
-- `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang.
+- `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/phpstan/` holds local runtime and optional-plugin stubs.
+- `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang; its `support/` folder prepares the required plugins.
 - `tests/e2e/`, `playwright.config.js`: Playwright functional tests on the dedicated Local site `dli-wp-e2e`, with a database baseline restored before and after each run.
 
 
@@ -154,11 +155,11 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 
 - PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
   needed: `composer run lint:php:fix`.
-- Static analysis: `composer run lint:phpstan`; after the current migration is
-  clean, it runs the whole theme at the required level 4. `composer run
-  lint:phpstan:level5` is the non-blocking whole-theme progress check toward
-  level 5. The level-4 commit gate is `.githooks/check-phpstan-level4.sh` and
-  is enabled only after the level-4 migration reaches zero errors.
+- Static analysis: `composer run lint:phpstan` runs the whole theme at the required
+  level 4 (`phpstan.neon`). It is also the commit gate: `.githooks/pre-commit` runs it
+  through `.githooks/check-phpstan-level4.sh` and blocks the commit on any error.
+  `composer run lint:phpstan:level5` is the non-blocking whole-theme progress check
+  toward level 5.
 - Unit tests: `composer test:unit` (PHPUnit, no WordPress; also run by `.githooks/pre-commit`).
 - Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook).
@@ -169,6 +170,7 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 - Accessibility scan (WCAG 2 AA, desktop and 320 px): `npm run pa11y:scan -- <baseUrl>`.
 - HTML validity: `npm run html:scan -- <baseUrl>`; requires Java 8+ on `PATH`.
 - Dependency vulnerabilities: `composer audit` and `npm audit --omit=dev`.
+- OpenSSF Scorecard runs remotely on GitHub after changes to the default branch, branch-protection changes and on a weekly schedule. It is observational: it does not run locally and does not block commits.
 - `status` and `html` have a `*:gate` variant (exit code 1 on failure) and a
   `*:compare` variant (compares the two most recent reports); `pa11y:scan:gate`
   exits with code 2 when WCAG errors exceed the threshold. Options and report

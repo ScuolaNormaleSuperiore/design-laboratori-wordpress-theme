@@ -36,10 +36,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.0.2] - 2026-10-20
-- Introdotti test di unità, integrazione ed e2e.
-- Introdotti test phpstan. Livello raggiunto: 4.
-- Bug-fixes.
-
+- Refactoring: Introdotti test di unità, integrazione ed e2e.
+- Refactoring: Introdotti test phpstan. Livello raggiunto: 4.
+- Bug-fixing: Corretti vari bug rilevati dalla AI.
+- Aggiunti test e2 nelle form pincipali del sito: contacts, newsletter and site search.
+- Introduzione nel progetto di OpenSSF Scorecard.
 
 
 ## [2.0.1] - 2026-10-16

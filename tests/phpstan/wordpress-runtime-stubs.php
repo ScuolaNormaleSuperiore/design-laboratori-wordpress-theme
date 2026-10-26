@@ -4,7 +4,8 @@
  *
  * WordPress defines these while bootstrapping the application. They are not
  * part of php-stubs/wordpress-stubs because their values depend on each
- * installation. This file is loaded only through PHPStan's scanFiles.
+ * installation. This file is loaded only through PHPStan's scanFiles from
+ * tests/phpstan/.
  *
  * @package Design_Laboratori_Italia
  */

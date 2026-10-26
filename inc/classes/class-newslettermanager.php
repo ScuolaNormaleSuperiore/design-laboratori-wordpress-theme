@@ -192,6 +192,7 @@ class Newsletter_Manager {
 	 *
 	 * @return array Response with 'code', 'message' and 'body' keys.
 	 * @throws Exception When the Brevo API request fails (caught internally; never propagates).
+	 * @phpstan-ignore throws.unusedType (The exception is thrown in the try block and caught below; PHPCS requires the tag.)
 	 */
 	public function subscribe_user() {
 		$result = array(

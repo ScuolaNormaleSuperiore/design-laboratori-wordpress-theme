@@ -20,15 +20,15 @@ radice del tema.
 | Cosa | Comando | Tempo indicativo | Nell'hook `pre-commit`? | Requisiti e variabili |
 |---|---|---|---|---|
 | Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | — | No | — |
-| Analisi statica (PHPStan) | `composer run lint:phpstan` | — | No | — |
+| Analisi statica (PHPStan) | `composer run lint:phpstan` | pochi secondi | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
-| Test di integrazione | `composer test:integration` | circa 10 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
+| Test di integrazione | `composer test:integration` | circa 20 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
 | Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 40 secondi | No | [`e2e/README.md`](e2e/README.md) |
 | Tutti i test | `composer test:all` (unit, integrazione ed E2E, in quest'ordine) | circa 1 minuto e mezzo | No | requisiti di tutte e tre le suite; si ferma alla prima che fallisce |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
-- **Prima di ogni commit:** il test unit parte da solo con l'hook; PHPCS e PHPStan si lanciano a mano sui file toccati.
+- **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 4, intero tema) e i test unit, e blocca il commit se uno fallisce; PHPCS si lancia a mano sui file toccati.
 - **Dopo una modifica che dipende da WordPress** (ruoli, permessi, rotte REST, query, tipi di contenuto): i test di integrazione.
 - **Dopo una modifica a ciò che l'utente vede o a un flusso dell'amministrazione:** i test E2E.
 - **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
@@ -40,12 +40,12 @@ Quando eseguirli:
 - `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in `phpstan.neon`).
 - `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
 
-La soglia del tema è PHPStan livello 4, attivata sull'intero tema dopo il
-completamento della migrazione in corso. `composer run lint:phpstan:level5`
+La soglia del tema è PHPStan livello 4 sull'intero tema ed è un controllo bloccante
+nell'hook `pre-commit`. `composer run lint:phpstan:level5`
 misura invece il lavoro residuo verso il livello 5 e non blocca i commit; gli
 errori non vanno nascosti con baseline generiche o `ignoreErrors` generici.
 
-PHPStan non conosce WordPress da solo: alcuni file di supporto in `tests/utils/` gli dicono
+PHPStan non conosce WordPress da solo: alcuni stub in `tests/phpstan/` gli dicono
 come sono fatte le funzioni e le classi usate dal tema.
 
 
@@ -80,9 +80,10 @@ una volta con `npm run status:scan:install-browser`.
 |---|---|
 | `tests/unit/` | Test unit (PHPUnit), con `tests/bootstrap-unit.php` e `phpunit.xml` nella radice |
 | `tests/integration/` | Test di integrazione (PHPUnit), con `tests/bootstrap-integration.php` e `phpunit-integration.xml` |
+| `tests/integration/support/` | Script di preparazione dei plugin richiesti dai test di integrazione |
 | `tests/e2e/` | Test E2E (Playwright): specifiche, supporto, baseline del database; configurazione in `playwright.config.js` |
 | `tests/report/` | Moduli Report |
-| `tests/utils/` | File di supporto: stub di WordPress e dei plugin per PHPStan, `fetch-test-plugins.php` per i test di integrazione |
+| `tests/phpstan/` | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan |
 
 
 ## Pacchetto di rilascio

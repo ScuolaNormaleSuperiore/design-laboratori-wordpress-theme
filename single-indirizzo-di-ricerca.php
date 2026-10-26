@@ -26,7 +26,7 @@ $dli_contatti       = array(
 );
 
 $dli_levels = wp_get_post_terms( $post->ID, 'post_tag' );
-$dli_levels = ( is_wp_error( $dli_levels ) || ! is_array( $dli_levels ) ) ? array() : $dli_levels;
+$dli_levels = is_wp_error( $dli_levels ) ? array() : $dli_levels;
 
 // Recupero la lista dei progetti correlati.
 $dli_progetti = DLI_ContentsManager::get_related_items( $post, 'elenco_indirizzi_di_ricerca_correlati', array( PROGETTO_POST_TYPE ) );
