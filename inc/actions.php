@@ -80,10 +80,10 @@ function dli_edit_permission_check() {
 		// Editing a user profile.
 		if ( is_super_admin( $profileuser->ID ) ) {
 			// Trying to edit a superadmin while less than a superadmin.
-			wp_die( esc_html__( 'You do not have permission to edit this user.', 'design_laboratori_italia' ) );
+			wp_die( esc_html__( 'Non hai il permesso di modificare questo utente.', 'design_laboratori_italia' ) );
 		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $editing_user->ID, get_current_blog_id() ) ) ) {
 			// editing user and edited user aren't members of the same blog.
-			wp_die( esc_html__( 'You do not have permission to edit this user.', 'design_laboratori_italia' ) );
+			wp_die( esc_html__( 'Non hai il permesso di modificare questo utente.', 'design_laboratori_italia' ) );
 		}
 	}
 }
