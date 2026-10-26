@@ -10,8 +10,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
-- Introdurre test di unità, integrazione ed e2e.
-- Configurazione dei test: unità, integrazione e funzionali (e2e).
 - Rivedere il campo descrizione dei campi del backoffice in modo che si capisca meglio cosa fa quella configurazione. Aggiungere formato consigliato immagini.
 - Inserire sezione di configurazione colori nel backoffice.
 - Refactoring procedure di import.
@@ -35,17 +33,22 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.4] - 2026-10-28
+## Aggiunto
+## Corretto
+
+
+
+
 ## [2.0.3] - 2026-10-26
 ## Aggiunto
 - Introdotti test di unità, integrazione ed e2e.
-- Aggiunti test e2 nelle form pincipali del sito: contacts, newsletter and site search.
+- Aggiunti test e2e nei form principali del sito: contatti, newsletter e ricerca.
 - Introduzione nel progetto di OpenSSF Scorecard.
-- ## Corretto
+- Controllo PHPCS (solo errori) sui file in staging nel gancio di commit.
+## Corretto
 - Refactoring: Introdotti test phpstan. Livello raggiunto: 4.
 - Bug-fixing: Corretti vari bug rilevati dalla AI.
-
-
-
 
 ## [2.0.2] - 2026-10-20
 ## Corretto
