@@ -8,6 +8,9 @@ repo_root="$(git rev-parse --show-toplevel)"
 # Static analysis: the whole theme must pass PHPStan level 4 (phpstan.neon).
 "$repo_root/.githooks/check-phpstan-level4.sh"
 
+# Coding standards: PHPCS errors (not warnings) in the staged PHP, CSS and SCSS files block the commit.
+"$repo_root/.githooks/check-staged-phpcs.sh"
+
 # Unit tests (fast, no WordPress needed): a failing test blocks the commit.
 if [ ! -f "$repo_root/vendor/bin/phpunit" ]; then
 	echo "pre-commit: PHPUnit is not installed. Run 'composer install' and commit again." >&2

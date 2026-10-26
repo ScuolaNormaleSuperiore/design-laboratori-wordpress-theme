@@ -273,7 +273,7 @@ Pick the checks that match the change, run them, and report which ones could not
 | Change | Check | Notes |
 |---|---|---|
 | Any PHP file | `php -l <file>` | Syntax only |
-| Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset |
+| Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset. The `pre-commit` hook runs it on the staged files and blocks the commit on errors (warnings do not block), also for errors that were already in the file |
 | Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
 | Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`; needs `wordpress-develop` and `wp-tests-config.php`; see `tests/integration/README.md` |
 | What the user sees or admin flows that need a browser | `composer test:e2e` | Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |

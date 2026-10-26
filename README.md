@@ -205,7 +205,7 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 
 | Famiglia | Comando | Cosa fa |
 |---|---|---|
-| Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress) |
+| Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress). Il hook `pre-commit` lo esegue sui file in staging e blocca il commit se ci sono errori |
 | | `composer run lint:phpstan` | Analisi statica con PHPStan |
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
 | Test | `composer test:unit` | Funzioni pure, configurazioni e coerenza dei file di rilascio, senza WordPress. Il hook `pre-commit` li esegue a ogni commit |

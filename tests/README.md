@@ -19,7 +19,7 @@ radice del tema.
 
 | Cosa | Comando | Tempo indicativo | Nell'hook `pre-commit`? | Requisiti e variabili |
 |---|---|---|---|---|
-| Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | — | No | — |
+| Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | l'intero tema, qualche minuto; l'hook controlla solo i file in staging, meno di un secondo ciascuno | **Sì, solo gli errori** dei file PHP, CSS e SCSS in staging | — |
 | Analisi statica (PHPStan) | `composer run lint:phpstan` | pochi secondi | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
 | Test di integrazione | `composer test:integration` | circa 20 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
@@ -28,7 +28,7 @@ radice del tema.
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
-- **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 4, intero tema) e i test unit, e blocca il commit se uno fallisce; PHPCS si lancia a mano sui file toccati.
+- **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 4, intero tema), PHPCS sui file in staging e i test unit, e blocca il commit se uno fallisce. Per PHPCS bloccano solo gli **errori** (gli avvisi non vengono mostrati) e conta ciò che è in staging, non il file su disco.
 - **Dopo una modifica che dipende da WordPress** (ruoli, permessi, rotte REST, query, tipi di contenuto): i test di integrazione.
 - **Dopo una modifica a ciò che l'utente vede o a un flusso dell'amministrazione:** i test E2E.
 - **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
@@ -36,7 +36,7 @@ Quando eseguirli:
 
 ## Controlli statici
 
-- `composer run lint:php` verifica lo stile con PHPCS (regole in `phpcs.xml.dist`); `composer run lint:php:fix` corregge da solo ciò che può.
+- `composer run lint:php` verifica lo stile con PHPCS (regole in `phpcs.xml.dist`); `composer run lint:php:fix` corregge da solo ciò che può. Il tema ha ancora molte segnalazioni preesistenti (issue nel backlog): l'hook `pre-commit` esegue PHPCS (`.githooks/check-staged-phpcs.sh`) sui file in staging e blocca il commit se hanno **errori**, anche preesistenti; chi tocca un file con errori deve quindi correggerli. È una prova decisa il 2026-10-26: se blocca troppo si passa a «nessuna segnalazione nuova rispetto a `HEAD`».
 - `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in `phpstan.neon`).
 - `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
 

@@ -73,17 +73,17 @@ add_filter( 'enable_edit_any_user_configuration', '__return_true' );
  * members of the blog and prevents the super admin being edited.
  */
 function dli_edit_permission_check() {
-	global $current_user, $profileuser;
+	global $profileuser;
 	$screen       = get_current_screen();
-	$current_user = wp_get_current_user();
-	if ( ! is_super_admin( $current_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ), true ) ) {
+	$editing_user = wp_get_current_user();
+	if ( ! is_super_admin( $editing_user->ID ) && in_array( $screen->base, array( 'user-edit', 'user-edit-network' ), true ) ) {
 		// Editing a user profile.
 		if ( is_super_admin( $profileuser->ID ) ) {
 			// Trying to edit a superadmin while less than a superadmin.
-			wp_die( __( 'You do not have permission to edit this user.' ) );
-		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $current_user->ID, get_current_blog_id() ) ) ) {
+			wp_die( esc_html__( 'You do not have permission to edit this user.', 'design_laboratori_italia' ) );
+		} elseif ( ! ( is_user_member_of_blog( $profileuser->ID, get_current_blog_id() ) && is_user_member_of_blog( $editing_user->ID, get_current_blog_id() ) ) ) {
 			// editing user and edited user aren't members of the same blog.
-			wp_die( __( 'You do not have permission to edit this user.' ) );
+			wp_die( esc_html__( 'You do not have permission to edit this user.', 'design_laboratori_italia' ) );
 		}
 	}
 }

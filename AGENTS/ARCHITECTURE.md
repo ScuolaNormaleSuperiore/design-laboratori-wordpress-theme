@@ -154,7 +154,9 @@ and `tests/README.md` describe the same checks for contributors. Checks come in
 three families: static checks and tests (run with Composer) and Reports (run with npm).
 
 - PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
-  needed: `composer run lint:php:fix`.
+  needed: `composer run lint:php:fix`. The commit gate also runs PHPCS on the staged PHP,
+  CSS and SCSS files (`.githooks/check-staged-phpcs.sh`, errors only, staged content) and
+  blocks the commit on any error, including errors that were already in the file.
 - Static analysis: `composer run lint:phpstan` runs the whole theme at the required
   level 4 (`phpstan.neon`). It is also the commit gate: `.githooks/pre-commit` runs it
   through `.githooks/check-phpstan-level4.sh` and blocks the commit on any error.
