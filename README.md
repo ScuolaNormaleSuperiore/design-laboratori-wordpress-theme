@@ -206,16 +206,18 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | Famiglia | Comando | Cosa fa |
 |---|---|---|
 | Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress). Il hook `pre-commit` lo esegue sui file in staging e blocca il commit se ci sono errori |
-| | `composer run lint:phpstan` | Analisi statica con PHPStan |
+| | `composer run lint:phpstan` | Analisi statica con [PHPStan](tests/phpstan/README.md) |
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
-| Test | `composer test:unit` | Funzioni pure, configurazioni e coerenza dei file di rilascio, senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
-| | `composer test:integration` | Comportamento che dipende da WordPress, su un WordPress di test con ACF e Polylang reali e un database dedicato |
-| | `composer test:e2e` | Browser (Playwright) su un sito Local dedicato |
-| Report | `npm run status:scan -- <url>` | Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px |
-| | `npm run html:scan -- <url>` | Validità dell'HTML (Nu Html Checker) |
-| | `npm run pa11y:scan -- <url>` | Accessibilità WCAG 2 AA a 1280 px e a 320 px |
+| Test | `composer test:unit` | [Funzioni pure, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
+| | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test con ACF e Polylang reali e un database dedicato |
+| | `composer test:e2e` | [Browser (Playwright) su un sito Local dedicato](tests/e2e/README.md) |
+| Report | `npm run status:scan -- <url>` | [Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px](tests/report/status-report/README.md) |
+| | `npm run html:scan -- <url>` | [Validità dell'HTML (Nu Html Checker)](tests/report/html-report/README.md) |
+| | `npm run pa11y:scan -- <url>` | [Accessibilità WCAG 2 AA a 1280 px e a 320 px](tests/report/pa11y-report/README.md) |
 
-Requisiti, preparazione, opzioni, varianti `:gate` e `:compare` sono descritti in [`tests/README.md`](tests/README.md) e nei README delle cartelle che ne dipendono. Test e Report sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in `.gitattributes`).
+I controlli che scattano a ogni commit (segreti, PHPStan, PHPCS sui file in staging, test unit, testo del messaggio) sono elencati in [Cosa controlla il commit](tests/README.md#cosa-controlla-il-commit).
+
+Requisiti, preparazione, opzioni e varianti `:gate` e `:compare` sono descritti nel [punto di ingresso dei controlli](tests/README.md), che rimanda ai README di [test unit](tests/unit/README.md), [integrazione](tests/integration/README.md), [E2E](tests/e2e/README.md), [PHPStan](tests/phpstan/README.md) e [Report](tests/report/README.md). [Test e Report](tests/) sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in [.gitattributes](.gitattributes)).
 
 ## Controlli automatici
 

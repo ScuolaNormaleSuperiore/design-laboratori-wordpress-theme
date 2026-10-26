@@ -42,12 +42,12 @@ npm run html:compare -- tests/report/html-report/reports/html_report_20260310_14
 | `--gate` | disattivato | Esce con codice 1 se il verdetto è FAIL |
 
 `html:compare` accetta due file JSON (il più recente, poi il precedente) oppure, senza argomenti, usa i due più
-recenti della cartella `reports/`; l'opzione `--out <file.html>` sceglie dove scrivere il confronto.
+recenti della [cartella `reports/`](reports/); l'opzione `--out <file.html>` sceglie dove scrivere il confronto.
 
 
 ## Risultati prodotti
 
-Ogni scansione scrive due file in `tests/report/html-report/reports/`:
+Ogni scansione scrive due file nella [cartella `reports/`](reports/):
 
 - `html_report_AAAAMMGG_HHMM.json`: i dati strutturati;
 - `html_report_AAAAMMGG_HHMM.html`: il risultato da aprire nel browser.

@@ -2,8 +2,8 @@
 
 I Report guardano un **sito in funzione** e producono un risultato (HTML e JSON) da leggere:
 non hanno asserzioni e non fanno passare o fallire nulla, salvo con l'opzione `--gate`. Non
-sono Test né Controlli statici: la panoramica delle tre famiglie è in
-[`tests/README.md`](../README.md).
+sono Test né Controlli statici: la panoramica delle tre famiglie è nel
+[punto di ingresso dei controlli](../README.md).
 
 | Modulo | Cosa verifica | Comandi | Dettagli |
 |---|---|---|---|
@@ -11,8 +11,8 @@ sono Test né Controlli statici: la panoramica delle tre famiglie è in
 | `html-report` | Validità dell'HTML (Nu Html Checker) | `html:scan`, `html:scan:gate`, `html:compare` | [`html-report/README.md`](html-report/README.md) |
 | `pa11y-report` | Accessibilità WCAG 2 AA a 1280 px e a 320 px | `pa11y:scan`, `pa11y:scan:gate` | [`pa11y-report/README.md`](pa11y-report/README.md) |
 
-La cartella `issues-report/` non contiene un Report: raccoglie gli snapshot delle issue
-prodotti dal trigger `/issues-snapshot` (vedi `AGENTS/AI_BEHAVIOR.md`).
+La cartella [`issues-report/`](issues-report/) non contiene un Report: raccoglie gli snapshot delle issue
+prodotti dal trigger `/issues-snapshot` (vedi [`../../AGENTS/AI_BEHAVIOR.md`](../../AGENTS/AI_BEHAVIOR.md)).
 
 
 ## Requisiti comuni
@@ -40,11 +40,11 @@ npm run status:scan:install-browser
   npm run status:scan -- https://laboratorio1.local
   ```
 
-- **Risultati:** in `tests/report/<modulo>/reports/`, con data e ora nel nome. Quella cartella è
+- **Risultati:** nelle cartelle [`<modulo>/reports/`](./), con data e ora nel nome. Quella cartella è
   ignorata da Git e non va committata. Ogni modulo scrive un file HTML da aprire nel browser e un
   file JSON con gli stessi dati.
-- **Certificati dei siti Local:** `pa11y-report` legge la sitemap fidandosi dei certificati di
-  sistema e ha l'opzione `--insecure` (solo in sviluppo); per gli altri moduli vedi il loro README.
+- **Certificati dei siti Local:** [`pa11y-report`](pa11y-report/README.md) legge la sitemap fidandosi dei certificati di
+  sistema e ha l'opzione `--insecure` (solo in sviluppo); per gli altri moduli vedi i rispettivi README nella tabella.
 - **`:gate`:** variante che dà un codice di uscita diverso da zero quando il sito ha problemi, per
   poterla usare in uno script o in un hook.
 - **`:compare`:** confronta gli ultimi due risultati e mostra cosa è cambiato (`status:compare`
@@ -56,4 +56,4 @@ npm run status:scan:install-browser
 | `status:scan:gate`, `html:scan:gate` | `1` se il verdetto è FAIL |
 | `pa11y:scan:gate` | `2` se gli errori WCAG superano la soglia (`--threshold`, predefinita `0`); `1` per errori di esecuzione |
 
-Opzioni, formato dei risultati e regole del verdetto sono nel README di ciascun modulo.
+Opzioni, formato dei risultati e regole del verdetto sono nei README dei moduli collegati nella tabella.

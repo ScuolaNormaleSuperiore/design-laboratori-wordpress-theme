@@ -1,7 +1,9 @@
 # Controlli, test e report
 
 Questo è il punto di ingresso: spiega a cosa serve ogni strumento e come si lancia. Requisiti,
-configurazione e variabili d'ambiente di ogni suite stanno nel README della sua cartella.
+configurazione e variabili d'ambiente sono nei README di [test unit](unit/README.md),
+[integrazione](integration/README.md), [E2E](e2e/README.md), [PHPStan](phpstan/README.md)
+e [Report](report/README.md).
 
 Gli strumenti di verifica del tema sono di tre famiglie, con scopi diversi.
 
@@ -34,10 +36,30 @@ Quando eseguirli:
 - **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
 
 
+## Cosa controlla il commit
+
+Gli hook di Git stanno in `.githooks/` e si attivano una volta per clone con `git config core.hooksPath .githooks`. A ogni commit scattano sei controlli, nell'ordine della tabella:
+
+| # | Controllo | Cosa guarda | Blocca il commit? |
+|---|---|---|---|
+| 1 | Segreti (`check-staged-secrets.sh`) | Le righe aggiunte: chiavi private, token (AWS, GitHub, Slack), `sk-…`, URL con utente e password, `password = "…"` | Sì |
+| 2 | Guardia l10n (`check-staged-l10n.sh`) | I file `languages/*.l10n.php`: rimette la riga `defined( 'ABSPATH' ) \|\| exit;` che Loco Translate toglie a ogni esportazione | No: corregge da sola e rimette il file in staging |
+| 3 | PHPStan livello 4 (`check-phpstan-level4.sh`) | L'intero tema, non solo i file del commit | Sì, a qualunque errore |
+| 4 | PHPCS (`check-staged-phpcs.sh`) | I file PHP, CSS e SCSS in staging, sul contenuto in staging | Sì, solo per gli **errori**; gli avvisi non bloccano |
+| 5 | Test unit | La suite unit (`composer test:unit`) | Sì |
+| 6 | Testo del commit (`commit-msg`) | Un trailer `Co-Authored-By:` che attribuisce il commit a un assistente AI | Sì |
+
+Cinque controlli su sei bloccano; i controlli 1-5 sono nel `pre-commit` e il 6 nel `commit-msg`.
+
+- Il primo controllo che fallisce ferma gli altri: i controlli seguenti non partono finché non lo risolvi.
+- PHPCS blocca anche per gli errori già presenti in un file che tocchi: chi modifica un file con errori deve correggerli.
+- `git commit --no-verify` salta **tutti** i controlli, segreti compresi: non si usa.
+- Non partono nel commit: integrazione, E2E, Report, `composer audit` e `composer run lint:phpstan:level5`.
+
 ## Controlli statici
 
-- `composer run lint:php` verifica lo stile con PHPCS (regole in `phpcs.xml.dist`); `composer run lint:php:fix` corregge da solo ciò che può. Il tema ha ancora molte segnalazioni preesistenti (issue nel backlog): l'hook `pre-commit` esegue PHPCS (`.githooks/check-staged-phpcs.sh`) sui file in staging e blocca il commit se hanno **errori**, anche preesistenti; chi tocca un file con errori deve quindi correggerli. È una prova decisa il 2026-10-26: se blocca troppo si passa a «nessuna segnalazione nuova rispetto a `HEAD`».
-- `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in `phpstan.neon`).
+- `composer run lint:php` verifica lo stile con PHPCS (regole in [`../phpcs.xml.dist`](../phpcs.xml.dist)); `composer run lint:php:fix` corregge da solo ciò che può. Il tema ha ancora molte segnalazioni preesistenti (issue nel backlog): l'hook `pre-commit` esegue PHPCS ([`../.githooks/check-staged-phpcs.sh`](../.githooks/check-staged-phpcs.sh)) sui file in staging e blocca il commit se hanno **errori**, anche preesistenti; chi tocca un file con errori deve quindi correggerli. È una prova decisa il 2026-10-26: se blocca troppo si passa a «nessuna segnalazione nuova rispetto a `HEAD`».
+- `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in [`../phpstan.neon`](../phpstan.neon)).
 - `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
 
 La soglia del tema è PHPStan livello 4 sull'intero tema ed è un controllo bloccante
@@ -45,7 +67,7 @@ nell'hook `pre-commit`. `composer run lint:phpstan:level5`
 misura invece il lavoro residuo verso il livello 5 e non blocca i commit; gli
 errori non vanno nascosti con baseline generiche o `ignoreErrors` generici.
 
-PHPStan non conosce WordPress da solo: alcuni stub in `tests/phpstan/` gli dicono
+PHPStan non conosce WordPress da solo: gli [stub locali](phpstan/README.md) gli dicono
 come sono fatte le funzioni e le classi usate dal tema.
 
 
@@ -53,20 +75,20 @@ come sono fatte le funzioni e le classi usate dal tema.
 
 Le tre suite hanno ciascuna la propria cartella, configurazione e README:
 
-- **Unit** (`tests/unit/`): funzioni e file del repository, senza WordPress, database o browser.
-- **Integrazione** (`tests/integration/`): WordPress vero, con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
-- **E2E** (`tests/e2e/`): Playwright su un sito Local dedicato, che torna a uno stato di partenza prima e dopo ogni corsa.
+- **[Unit](unit/README.md)**: funzioni e file del repository, senza WordPress, database o browser.
+- **[Integrazione](integration/README.md)**: WordPress vero, con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
+- **[E2E](e2e/README.md)**: Playwright su un sito Local dedicato, che torna a uno stato di partenza prima e dopo ogni corsa.
 
 Scelta del livello: si usa il più basso che dimostra il comportamento. Ciò che dipende da
 WordPress va in integrazione; il browser serve solo per ciò che lo richiede, perché è il più
 lento. Le regole per chi scrive o modifica codice (quando serve un test, test di regressione
-per i difetti corretti) sono in `AGENTS/AI_BEHAVIOR.md`.
+per i difetti corretti) sono in [`../AGENTS/AI_BEHAVIOR.md`](../AGENTS/AI_BEHAVIOR.md).
 
 
 ## Report
 
 I moduli (`status-report`, `html-report`, `pa11y-report`) e le convenzioni comuni sono in
-[`report/README.md`](report/README.md). I risultati finiscono in `tests/report/<modulo>/reports/` e
+[`report/README.md`](report/README.md). I risultati finiscono nelle cartelle [`report/<modulo>/reports/`](report/) e
 non vengono tracciati da Git.
 
 Varianti: `status:scan:gate`, `html:scan:gate` e `pa11y:scan:gate` danno un codice di uscita diverso da zero
@@ -78,16 +100,17 @@ una volta con `npm run status:scan:install-browser`.
 
 | Cartella | Contenuto |
 |---|---|
-| `tests/unit/` | Test unit (PHPUnit), con `tests/bootstrap-unit.php` e `phpunit.xml` nella radice |
-| `tests/integration/` | Test di integrazione (PHPUnit), con `tests/bootstrap-integration.php` e `phpunit-integration.xml` |
-| `tests/integration/support/` | Script di preparazione dei plugin richiesti dai test di integrazione |
-| `tests/e2e/` | Test E2E (Playwright): specifiche, supporto, baseline del database; configurazione in `playwright.config.js` |
-| `tests/report/` | Moduli Report |
-| `tests/phpstan/` | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan: vedi [`phpstan/README.md`](phpstan/README.md) |
+| [unit/](unit/) | Test unit (PHPUnit), con [`bootstrap-unit.php`](bootstrap-unit.php) e [`phpunit.xml`](../phpunit.xml) nella radice |
+| [integration/](integration/) | Test di integrazione (PHPUnit), con [`bootstrap-integration.php`](bootstrap-integration.php) e [`phpunit-integration.xml`](../phpunit-integration.xml) |
+| [integration/support/](integration/support/) | Script di preparazione dei plugin richiesti dai test di integrazione |
+| [e2e/](e2e/) | Test E2E (Playwright): [specifiche](e2e/specs/), [supporto](e2e/support/), [baseline](e2e/fixtures/); configurazione in [`../playwright.config.js`](../playwright.config.js) |
+| [report/](report/) | Moduli Report |
+| [phpstan/](phpstan/) | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan: vedi [`phpstan/README.md`](phpstan/README.md) |
 
 
 ## Pacchetto di rilascio
 
-Tutta la cartella `tests/`, `phpunit.xml`, `phpunit-integration.xml` e `playwright.config.js` sono nel
+Tutta la cartella [`tests/`](.), [`phpunit.xml`](../phpunit.xml),
+[`phpunit-integration.xml`](../phpunit-integration.xml) e [`playwright.config.js`](../playwright.config.js) sono nel
 repository clonato ma **non** nel pacchetto zip che GitHub genera per ogni versione
-(`export-ignore` in `.gitattributes`).
+(`export-ignore` in [`../.gitattributes`](../.gitattributes)).

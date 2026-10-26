@@ -18,7 +18,7 @@ suite di integrazione, non a questa.
 
 ## Configurazione e variabili d'ambiente
 
-Nessuna: la suite non legge variabili d'ambiente e non ha bisogno di un file di configurazione oltre a `phpunit.xml`.
+Nessuna: la suite non legge variabili d'ambiente e non ha bisogno di un file di configurazione oltre a [`../../phpunit.xml`](../../phpunit.xml).
 
 
 ## Esecuzione
@@ -29,8 +29,8 @@ Dalla radice del tema:
 composer test:unit
 ```
 
-`composer test` lancia PHPUnit con `phpunit.xml`, cioè la stessa suite `unit`; i test di integrazione hanno un
-comando a parte (vedi [`../integration/README.md`](../integration/README.md)).
+`composer test` lancia PHPUnit con [`../../phpunit.xml`](../../phpunit.xml), cioè la stessa suite `unit`; i test di integrazione hanno un
+comando a parte (vedi i [test di integrazione](../integration/README.md)).
 Per eseguire un solo file o un solo test:
 
 ```sh
@@ -59,18 +59,18 @@ stata aggiornata in un file e dimenticata in un altro: va allineata, non il test
 
 ## Come funziona
 
-- `phpunit.xml` (radice del tema) definisce la suite `unit` su `tests/unit/`.
-- `tests/bootstrap-unit.php` carica l'autoloader di Composer, definisce `ABSPATH` e pochi
+- [`phpunit.xml`](../../phpunit.xml) (radice del tema) definisce la suite `unit` su questa [cartella](./).
+- [`../bootstrap-unit.php`](../bootstrap-unit.php) carica l'autoloader di Composer, definisce `ABSPATH` e pochi
   *stub* di funzioni di WordPress (`__`, `_x`, `add_action`, `plugin_dir_path`, ...), poi
   include `config-lab.php`, `inc/utils.php` e `inc/captcha.php`. Gli stub servono solo per poter caricare
   questi file: non riproducono il comportamento di WordPress.
 - Le classi di test si chiamano `DLI_<Nome>_Unit_Test`, un file per area, con il nome
   del file uguale a quello della classe.
-- La cartella `tests/` è esclusa da PHPCS (`phpcs.xml.dist`): lo stile dei test non è
+- La cartella [`../`](../) è esclusa da PHPCS ([`../../phpcs.xml.dist`](../../phpcs.xml.dist)): lo stile dei test non è
   controllato automaticamente.
 
 ## Come aggiungere un test
 
-Creare `tests/unit/DLI_<Nome>_Unit_Test.php` con una classe che
+Creare un file nella [cartella dei test unit](./) chiamato `DLI_<Nome>_Unit_Test.php` con una classe che
 estende `PHPUnit\Framework\TestCase`. Se la funzione da provare dipende da WordPress,
 non è un test unit.

@@ -17,7 +17,7 @@ Produce un risultato (HTML e JSON) e non contiene asserzioni pass/fail, tranne l
   rimanda a `/sitemap-it.xml` e `/sitemap-en.xml`).
 - Se la sitemap non è raggiungibile, si usa una lista fissa (`/`, `/mappa-sito/`,
   `/en/site-map/`).
-- Per aggiungere pagine, creare il file `pa11yci.urls.local.json` in questa cartella
+- Per aggiungere pagine, creare il file `pa11yci.urls.local.json` in [questa cartella](./)
   (ignorato da Git) con un array di percorsi o URL assoluti:
 
 ```json
@@ -66,7 +66,7 @@ Esempio: `npm run pa11y:scan:gate -- https://laboratorio1.local --threshold 5`
 
 ## Risultati
 
-I report sono scritti in `tests/report/pa11y-report/reports/` (cartella non tracciata da Git):
+I report sono scritti nella [cartella `reports/`](reports/) (non tracciata da Git):
 
 - `pa11y_report_AAAAMMGG_HHMM/index.html`: **apri questo file nel browser**. È il riepilogo, con una riga per pagina e viewport (errori, avvisi, note). Cliccando sull'URL si apre la **pagina di dettaglio** di quella pagina, nella stessa cartella.
 - `pa11y_report_AAAAMMGG_HHMM/<pagina>-<viewport>.html`: una pagina di dettaglio per ogni URL controllato. Per ogni problema mostra il livello (errore, avviso, nota), il titolo, la regola (`axe: color-contrast`, `htmlcs: WCAG2AA…`), l'elemento HTML coinvolto e il suo **selettore CSS**, con i collegamenti alla spiegazione della regola. In alto, "Toggle by type" permette di mostrare solo gli **errori**; conviene farlo, perché le note sono molte.

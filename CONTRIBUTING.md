@@ -67,6 +67,10 @@ static checks (`composer`), tests (`composer`) and reports (`npm`):
   `-- https://your-site.example`, for runtime status, rendered HTML validation and
   accessibility, when you change templates or styles.
 
+The checks that run on every commit (secret scan, whole-theme PHPStan, PHPCS on the staged
+files, unit tests, commit-message check) are listed in
+[tests/README.md](tests/README.md#cosa-controlla-il-commit); five of the six block the commit.
+
 See [tests/README.md](tests/README.md) for what each family is for and how to run it, and
 the README in each suite folder (`tests/unit/`, `tests/integration/`, `tests/e2e/`,
 `tests/report/`) for prerequisites and configuration. Tests and reports are not included

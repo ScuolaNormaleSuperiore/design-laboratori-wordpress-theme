@@ -64,7 +64,7 @@ Il sito deve essere acceso in Local. Una corsa dura circa 40 secondi. Dopo la co
 
 ## Utenti di prova
 
-La baseline (`fixtures/baseline.sql`) contiene questi utenti. La password è la stessa per tutti ed è volutamente
+La baseline ([`fixtures/baseline.sql`](fixtures/baseline.sql)) contiene questi utenti. La password è la stessa per tutti ed è volutamente
 banale: il sito è un sito di prova locale, non raggiungibile da fuori. **Non riusare mai queste credenziali su
 un sito vero.**
 
@@ -77,7 +77,7 @@ un sito vero.**
 
 ## Baseline
 
-`fixtures/baseline.sql` è un dump del database di `dli-wp-e2e` in uno stato noto: tema, ACF, ACF OpenStreetMap
+[`fixtures/baseline.sql`](fixtures/baseline.sql) è un dump del database di `dli-wp-e2e` in uno stato noto: tema, ACF, ACF OpenStreetMap
 Field e Polylang attivi, permalink `/%postname%/`, lingue `it` ed `en`, le 42 pagine e le voci di menu create
 dall'attivazione del tema, i tre utenti qui sopra e nessun altro contenuto. Non contiene dati personali reali,
 transient né sessioni.
@@ -85,8 +85,8 @@ transient né sessioni.
 
 ### Ripristino automatico
 
-`composer test:e2e` ripristina la baseline **prima e dopo** la corsa (`global-setup.js` e `global-teardown.js`,
-che chiamano `support/reset.js`, che lancia `support/reset-baseline.php`). Lo script PHP legge i dati di
+`composer test:e2e` ripristina la baseline **prima e dopo** la corsa ([`global-setup.js`](global-setup.js) e [`global-teardown.js`](global-teardown.js),
+che chiamano [`support/reset.js`](support/reset.js), che lancia [`support/reset-baseline.php`](support/reset-baseline.php)). Lo script PHP legge i dati di
 connessione dal `wp-config.php` del sito (`DLI_E2E_SITE_PATH`), esegue il dump con `mysqli` e cancella e
 ricrea ogni tabella. Non serve altro che PHP.
 
@@ -135,14 +135,14 @@ delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere
 
 ## Come funziona
 
-- `specs/`: i file di test (`*.spec.js`).
-- `support/auth.js`: gli helper di login (`loginAsAdmin`, `loginAsSuperEditor`, `loginAsEditor`).
-- `support/reset.js` e `support/reset-baseline.php`: il ripristino della baseline.
-- `global-setup.js` e `global-teardown.js`: lanciano il ripristino prima e dopo i test e fanno un login di
+- [`specs/`](specs/): i file di test (`*.spec.js`).
+- [`support/auth.js`](support/auth.js): gli helper di login (`loginAsAdmin`, `loginAsSuperEditor`, `loginAsEditor`).
+- [`support/reset.js`](support/reset.js) e [`support/reset-baseline.php`](support/reset-baseline.php): il ripristino della baseline.
+- [`global-setup.js`](global-setup.js) e [`global-teardown.js`](global-teardown.js): lanciano il ripristino prima e dopo i test e fanno un login di
   riscaldamento (il primo accesso a `wp-admin` dopo il ripristino è lento).
-- `fixtures/baseline.sql`: la baseline.
+- [`fixtures/baseline.sql`](fixtures/baseline.sql): la baseline.
 - `test-results/` e `playwright-report/`: risultati generati, ignorati da Git.
-- La configurazione è in `playwright.config.js` (radice del tema): un solo worker perché i test condividono lo
+- La configurazione è in [`../../playwright.config.js`](../../playwright.config.js) (radice del tema): un solo worker perché i test condividono lo
   stesso sito, timeout di 60 s per test e di 15 s per le asserzioni (login e prima pagina di amministrazione sono
   lenti su un sito locale), un nuovo tentativo per test.
 
@@ -153,6 +153,6 @@ nel riepilogo: non è un errore del tema, ma se i «flaky» diventano frequenti 
 
 ## Come aggiungere una specifica
 
-Creare `tests/e2e/specs/<nome>.spec.js` con `test( ... )` di `@playwright/test`. Per un utente autenticato usare gli helper
-di `support/auth.js`. Provare solo ciò che richiede un browser: il resto va nei test di integrazione. Il ripristino
+Creare un file nella [cartella delle specifiche](specs/) chiamato `<nome>.spec.js` con `test( ... )` di `@playwright/test`. Per un utente autenticato usare gli helper
+di [`support/auth.js`](support/auth.js). Provare solo ciò che richiede un browser: il resto va nei [test di integrazione](../integration/README.md). Il ripristino
 della baseline avviene da solo; se la specifica richiede dati di esempio, vanno nella baseline (si rigenera come sopra).

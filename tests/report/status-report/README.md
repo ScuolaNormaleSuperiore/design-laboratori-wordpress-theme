@@ -78,7 +78,7 @@ senza bloccarsi.
 
 Al termine della scansione produce il riepilogo numerico in console (con tempi
 medi e massimi) e scrive i due file di output (`report.html` e `report.json`)
-nella cartella `tests/report/status-report/reports/` con suffisso data/ora automatico.
+nella [cartella `reports/`](reports/) con suffisso data/ora automatico.
 
 ## Risultati prodotti
 
@@ -196,7 +196,7 @@ scansioni successive:
 ## Requisiti
 
 Quelli comuni a tutti i Report (Node.js, `npm ci`, Chromium di Playwright) sono in
-[`tests/report/README.md`](../README.md). In più serve un sito raggiungibile, di staging o di produzione.
+[README dei Report](../README.md). In più serve un sito raggiungibile, di staging o di produzione.
 
 
 ## Esecuzione
@@ -221,7 +221,7 @@ npm run status:scan -- https://mio-sito.example.com
 node tests/report/status-report/scan.js https://mio-sito.example.com
 ```
 
-Al termine troverai i file in `tests/report/status-report/reports/` con suffisso data/ora automatico, es.:
+Al termine troverai i file nella [cartella `reports/`](reports/) con suffisso data/ora automatico, es.:
 
 ```
 tests/report/status-report/reports/status_report_20260305_1430.html
@@ -287,7 +287,6 @@ I contenuti caricati via chiamate AJAX dopo il page load potrebbero non essere
 inclusi nella scansione del sorgente HTML. Gli errori JS delle chiamate AJAX
 vengono comunque catturati tramite `console.error` e `pageerror`.
 
-**File di output esclusi da git**
 **Risultati esclusi da Git**
 
 La cartella `reports/` è nel `.gitignore` della radice del tema: i risultati generati non vengono committati.

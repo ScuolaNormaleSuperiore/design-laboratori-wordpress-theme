@@ -9,7 +9,7 @@ composer run lint:phpstan
 ```
 
 La configurazione è in [`phpstan.neon`](../../phpstan.neon): livello **4** su tutti i file PHP del tema, ed è un
-controllo che blocca il commit (vedi [`tests/README.md`](../README.md)).
+controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../README.md)).
 
 
 ## Da dove arrivano le dichiarazioni
@@ -23,16 +23,16 @@ controllo che blocca il commit (vedi [`tests/README.md`](../README.md)).
 
 | File | Che cosa dichiara |
 |---|---|
-| `wordpress-runtime-stubs.php` | Costanti che WordPress definisce all'avvio e che non sono negli stub del core, perché il loro valore dipende dall'installazione: `MINUTE_IN_SECONDS`, `DAY_IN_SECONDS`, `MB_IN_BYTES` |
-| `theme-runtime-stubs.php` | Costanti del tema che `config-lab.php` definisce chiamando funzioni, quindi con un valore che PHPStan non riesce a calcolare: `DLI_THEMA_PATH` (`plugin_dir_path()`) e `DLI_POST_PER_PAGE_VALUES_COMBINED` (`array_combine()`) |
-| `polylang-stubs.php` | Le funzioni `pll_*` che il tema chiama (lingua corrente e predefinita, elenco delle lingue, traduzioni di articoli e termini). Polylang non è installato nell'ambiente di analisi |
-| `third-party-runtime-stubs.php` | `acf_add_local_field_group()` e `cmb2_get_option()`, fornite da dipendenze che durante l'analisi non vengono caricate |
-| `wordpress-lite-stubs.php` | Dichiarazioni minime di librerie incluse o richieste: CMB2 (`CMB2_Boxes`, `CMB2`, `CMB2_Options_Hookup`, `new_cmb2_box()`, `CMB2_VERSION`), ACF (`get_field()`, `update_field()`) e `tgmpa()` |
-| `really-simple-captcha-stubs.php` | La classe `ReallySimpleCaptcha`, con la sola parte dell'interfaccia usata dal tema |
+| [`wordpress-runtime-stubs.php`](wordpress-runtime-stubs.php) | Costanti che WordPress definisce all'avvio e che non sono negli stub del core, perché il loro valore dipende dall'installazione: `MINUTE_IN_SECONDS`, `DAY_IN_SECONDS`, `MB_IN_BYTES` |
+| [`theme-runtime-stubs.php`](theme-runtime-stubs.php) | Costanti del tema che [`../../config-lab.php`](../../config-lab.php) definisce chiamando funzioni, quindi con un valore che PHPStan non riesce a calcolare: `DLI_THEMA_PATH` (`plugin_dir_path()`) e `DLI_POST_PER_PAGE_VALUES_COMBINED` (`array_combine()`) |
+| [`polylang-stubs.php`](polylang-stubs.php) | Le funzioni `pll_*` che il tema chiama (lingua corrente e predefinita, elenco delle lingue, traduzioni di articoli e termini). Polylang non è installato nell'ambiente di analisi |
+| [`third-party-runtime-stubs.php`](third-party-runtime-stubs.php) | `acf_add_local_field_group()` e `cmb2_get_option()`, fornite da dipendenze che durante l'analisi non vengono caricate |
+| [`wordpress-lite-stubs.php`](wordpress-lite-stubs.php) | Dichiarazioni minime di librerie incluse o richieste: CMB2 (`CMB2_Boxes`, `CMB2`, `CMB2_Options_Hookup`, `new_cmb2_box()`, `CMB2_VERSION`), ACF (`get_field()`, `update_field()`) e `tgmpa()` |
+| [`really-simple-captcha-stubs.php`](really-simple-captcha-stubs.php) | La classe `ReallySimpleCaptcha`, con la sola parte dell'interfaccia usata dal tema |
 
 ## Come vengono usati
 
-- Sono elencati in `scanFiles` di `phpstan.neon`: PHPStan li **legge** per conoscere i simboli, ma non li analizza.
+- Sono elencati in `scanFiles` di [`../../phpstan.neon`](../../phpstan.neon): PHPStan li **legge** per conoscere i simboli, ma non li analizza.
 - **Non sono mai caricati da WordPress né da PHPUnit.** Esistono solo per l'analisi statica.
 - La cartella è esclusa dall'analisi (`tests/*`) e da PHPCS, e non entra nel pacchetto di rilascio (`export-ignore`).
 - Le funzioni e le classi sono protette da `function_exists()` e `class_exists()`, per non entrare in conflitto con quelle
@@ -60,9 +60,9 @@ controllo che blocca il commit (vedi [`tests/README.md`](../README.md)).
 - Si dichiara **solo** ciò che il codice del tema chiama davvero.
 - Non si aggiunge uno stub per far sparire un errore sul codice del tema: lì si corregge il codice o il suo PHPDoc.
 - Niente baseline e niente `ignoreErrors` generici. Le sole eccezioni ammesse sono le costanti dichiarate dinamiche
-  in `phpstan.neon` (`ABSPATH`, `CMB2_VERSION`, `DLI_PUBLICATION_HAS_DETAIL`, `DLI_POST_TYPES_TO_TRANSLATE`) e le
+  in [`../../phpstan.neon`](../../phpstan.neon) (`ABSPATH`, `CMB2_VERSION`, `DLI_PUBLICATION_HAS_DETAIL`, `DLI_POST_TYPES_TO_TRANSLATE`) e le
   annotazioni `@phpstan-ignore <identificatore> (motivo)` sul singolo punto, con il motivo scritto accanto.
 - Il livello non scende sotto il 4 e ogni file PHP del tema deve essere nei percorsi analizzati: lo verifica
-  `tests/unit/DLI_PHPStan_Config_Unit_Test.php`.
+  [`../unit/DLI_PHPStan_Config_Unit_Test.php`](../unit/DLI_PHPStan_Config_Unit_Test.php).
 - Quando si aggiorna ACF, Polylang, CMB2 o Really Simple CAPTCHA, controllare che le firme dichiarate qui siano ancora
   quelle vere.

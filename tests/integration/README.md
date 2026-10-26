@@ -61,8 +61,8 @@ Dalla radice del tema:
 composer test:integration
 ```
 
-Il comando lancia prima `tests/integration/support/fetch-test-plugins.php` (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
-`phpunit-integration.xml`. Per un solo file o un solo test:
+Il comando lancia prima [`support/fetch-test-plugins.php`](support/fetch-test-plugins.php) (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
+[`../../phpunit-integration.xml`](../../phpunit-integration.xml). Per un solo file o un solo test:
 
 ```sh
 vendor/bin/phpunit -c phpunit-integration.xml --filter test_super_editor_role_exists
@@ -102,10 +102,10 @@ contenuto e le tassonomie.
 
 ## Come funziona
 
-- `phpunit-integration.xml` definisce la suite `integration` su `tests/integration/`.
-- `tests/bootstrap-integration.php` controlla `DB_NAME`, sceglie la cartella dei plugin, carica la suite di
+- [`phpunit-integration.xml`](../../phpunit-integration.xml) definisce la suite `integration` su questa [cartella](./).
+- [`../bootstrap-integration.php`](../bootstrap-integration.php) controlla `DB_NAME`, sceglie la cartella dei plugin, carica la suite di
   WordPress e rende attivi ACF, Polylang e il tema (che sta fuori dal WordPress di test).
-- La classe base `DLI_Integration_Test_Case` (`tests/integration/support/`) crea la lingua italiana, di cui Polylang
+- La classe base [`DLI_Integration_Test_Case`](support/class-dli-integration-test-case.php) crea la lingua italiana, di cui Polylang
   ha bisogno per ogni query per lingua, e offre `create_post()` e `set_theme_options()`.
 - Ogni test gira in una transazione annullata alla fine: i dati creati da un test non restano nel database.
 
@@ -121,7 +121,7 @@ Trabocchetti noti:
 
 ## Come aggiungere un test
 
-Creare `tests/integration/DLI_<Nome>_Integration_Test.php` (nome del file uguale a quello della classe) con una
+Creare un file nella [cartella dei test di integrazione](./) chiamato `DLI_<Nome>_Integration_Test.php` (nome del file uguale a quello della classe) con una
 classe che estende `DLI_Integration_Test_Case`. Per ogni difetto di tipo `Bug` o `Security` corretto va aggiunto il
-test di regressione (vedi `Test-driven workflow` in `AGENTS/AI_BEHAVIOR.md`). Se il codice da provare non
+test di regressione (vedi `Test-driven workflow` in [`../../AGENTS/AI_BEHAVIOR.md`](../../AGENTS/AI_BEHAVIOR.md)). Se il codice da provare non
 dipende da WordPress, è un test unit.
