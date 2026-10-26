@@ -24,6 +24,7 @@ radice del tema.
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
 | Test di integrazione | `composer test:integration` | circa 10 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
 | Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 40 secondi | No | [`e2e/README.md`](e2e/README.md) |
+| Tutti i test | `composer test:all` (unit, integrazione ed E2E, in quest'ordine) | circa 1 minuto e mezzo | No | requisiti di tutte e tre le suite; si ferma alla prima che fallisce |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
@@ -38,6 +39,11 @@ Quando eseguirli:
 - `composer run lint:php` verifica lo stile con PHPCS (regole in `phpcs.xml.dist`); `composer run lint:php:fix` corregge da solo ciò che può.
 - `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in `phpstan.neon`).
 - `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
+
+La soglia del tema è PHPStan livello 4, attivata sull'intero tema dopo il
+completamento della migrazione in corso. `composer run lint:phpstan:level5`
+misura invece il lavoro residuo verso il livello 5 e non blocca i commit; gli
+errori non vanno nascosti con baseline generiche o `ignoreErrors` generici.
 
 PHPStan non conosce WordPress da solo: alcuni file di supporto in `tests/utils/` gli dicono
 come sono fatte le funzioni e le classi usate dal tema.

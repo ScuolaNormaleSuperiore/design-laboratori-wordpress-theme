@@ -430,7 +430,7 @@ class DLI_ContentsManager {
 			's'              => $params['search_string'],
 		);
 		// Aggiungi la meta_query solo se 'acquisition_year' è presente e non vuoto.
-		if ( ( ! empty( $params['acquisition_year'] ) ) && ( null !== $params['acquisition_year'] ) ) {
+		if ( ! empty( $params['acquisition_year'] ) ) {
 			$args['meta_query'][] = array(
 				'key'     => 'anno_acquisizione',
 				'value'   => $params['acquisition_year'],
@@ -438,7 +438,7 @@ class DLI_ContentsManager {
 			);
 		}
 		// Aggiungi la tax_query solo se 'type_technical_resource' è presente e non vuoto.
-		if ( ( ! empty( $params['type_technical_resource'] ) ) && ( null !== $params['type_technical_resource'] ) ) {
+		if ( ! empty( $params['type_technical_resource'] ) ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => RT_TYPE_TAXONOMY,
 				'field'    => 'term_id',
@@ -526,7 +526,7 @@ class DLI_ContentsManager {
 			),
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
+		if ( ! empty( $params['tag_level'] ) ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -566,7 +566,7 @@ class DLI_ContentsManager {
 			),
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag_level' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
+		if ( ! empty( $params['tag_level'] ) ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -633,7 +633,7 @@ class DLI_ContentsManager {
 			'posts_per_page' => $params['per_page'],
 		);
 		// Aggiungi la condizione per il filtro tag solo se il parametro 'tag' è presente e non vuoto.
-		if ( ! empty( $params['tag_level'] ) && '' !== $params['tag_level'] ) {
+		if ( ! empty( $params['tag_level'] ) ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'post_tag',
@@ -783,7 +783,7 @@ class DLI_ContentsManager {
 				'hide_empty' => false,
 			)
 		);
-		$structures = ( is_wp_error( $structures ) || ! is_array( $structures ) ) ? array() : $structures;
+		$structures = is_wp_error( $structures ) ? array() : $structures;
 
 		$tags = self::get_tags_by_post_type( PEOPLE_POST_TYPE );
 
@@ -984,7 +984,7 @@ class DLI_ContentsManager {
 	 * Filter a list of post types down to those that actually have at least one
 	 * post with the given status.
 	 *
-	 * @param array  $post_types  Post type slugs to check.
+	 * @param mixed  $post_types  Post type slugs to check; anything but a non-empty array gives an empty result.
 	 * @param string $post_status Post status to match.
 	 * @return array Subset of $post_types that have at least one matching post.
 	 */

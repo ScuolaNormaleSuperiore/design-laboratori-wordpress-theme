@@ -251,6 +251,16 @@ references:
 
 Write testable code (small units, clear dependencies) and add tests for non-trivial logic when practical.
 
+### PHPStan quality gate
+
+PHPStan level 4 is the minimum for the whole theme. The current migration must
+reach zero errors before `phpstan.neon` and the whole-theme pre-commit gate are
+set to level 4. `composer run lint:phpstan:level5` measures the remaining work
+toward level 5 but does not block commits. Use precise PHPDoc, stubs and runtime
+guards to model WordPress's dynamic APIs. Do not add a broad baseline or generic
+`ignoreErrors`; any unavoidable exception must be limited to one identifier and
+path, documented with its reason and a review date.
+
 Pick the checks that match the change, run them, and report which ones could not run and why. Never state that something was verified when the check did not run. The canonical command list is in `AGENTS/ARCHITECTURE.md`. `phpcs.xml.dist` excludes only third-party, generated, and tooling files (see `Third-Party, Generated and Exported Files` in `AGENTS/AI_BEHAVIOR.md`); never add first-party code to its exclusions to silence a finding.
 
 | Change | Check | Notes |
@@ -260,7 +270,7 @@ Pick the checks that match the change, run them, and report which ones could not
 | Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
 | Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`; needs `wordpress-develop` and `wp-tests-config.php`; see `tests/integration/README.md` |
 | What the user sees or admin flows that need a browser | `composer test:e2e` | Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |
-| PHP static analysis | `composer run lint:phpstan` | Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local optional-plugin stubs: `tests/utils/` |
+| PHP static analysis | `composer run lint:phpstan`; `composer run lint:phpstan:level5` | The whole-theme gate is level 4 once its migration is clean; level 5 is a non-blocking progress check. Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local optional-plugin stubs: `tests/utils/` |
 | Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
 | Changed rendered HTML | `npm run html:scan -- <baseUrl>` (`html:scan:gate` fails on errors) | Needs a reachable site, Java 8+, `vnu-jar` and Playwright |

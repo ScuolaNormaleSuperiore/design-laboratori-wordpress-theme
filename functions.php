@@ -237,8 +237,8 @@ add_filter( 'nav_menu_link_attributes', 'dli_add_menu_link_class', 1, 3 );
  * cookie. Registering it on older versions is harmless because the hook is
  * never fired.
  *
- * @param array $cookie_args Cookie arguments supplied by Polylang.
- * @return array
+ * @param mixed $cookie_args Cookie arguments supplied by Polylang (an array when the filter is well-formed).
+ * @return mixed The hardened arguments, or the unchanged value when it is not an array.
  */
 function dli_harden_polylang_cookie( $cookie_args ) {
 	if ( ! is_array( $cookie_args ) ) {

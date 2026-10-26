@@ -15,7 +15,13 @@
     "lint:php": "phpcs --standard=phpcs.xml.dist",
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
     "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
+    "lint:phpstan:level5": "phpstan analyse --configuration=phpstan.neon --level=5 --no-progress --memory-limit=2G",
     "test": "phpunit",
+    "test:all": [
+      "@test:unit",
+      "@test:integration",
+      "@test:e2e"
+    ],
     "test:unit": "phpunit --testsuite unit",
     "test:integration": [
       "@php tests/utils/fetch-test-plugins.php",
@@ -26,6 +32,8 @@
     "test:e2e:ui": "npm run test:e2e:ui --"
   },
   "scripts-descriptions": {
+    "lint:phpstan:level5": "Non-blocking PHPStan level-5 progress check for the whole theme",
+    "test:all": "All the tests in order: unit, integration, E2E (stops at the first failing suite; needs the integration and E2E setup)",
     "test:unit": "Unit tests (PHPUnit, no WordPress)",
     "test:integration": "Integration tests (PHPUnit on a real WordPress, dedicated database)",
     "test:e2e": "Functional tests (Playwright on the E2E site; needs DLI_E2E_SITE_PATH). Extra options after --",

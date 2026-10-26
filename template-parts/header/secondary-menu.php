@@ -14,7 +14,7 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 
 	$dli_menu = array_key_exists( $dli_location, $dli_locations ) ? wp_get_nav_menu_object( $dli_locations[ $dli_location ] ) : array();
 	if ( $dli_menu ) {
-		$dli_menuitems = $dli_menu ? wp_get_nav_menu_items( $dli_menu->term_id, array( 'order' => 'DESC' ) ) : array();
+		$dli_menuitems = wp_get_nav_menu_items( $dli_menu->term_id, array( 'order' => 'DESC' ) );
 		$dli_menuitems = $dli_menuitems ? dli_menu_tree_by_items( $dli_menuitems ) : array();
 
 		if ( has_nav_menu( $dli_location ) && count( $dli_menuitems ) ) {

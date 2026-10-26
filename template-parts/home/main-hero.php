@@ -23,7 +23,7 @@ if ( 'true' === $dli_section_enabled ) {
 	?>
 	<section class="it-hero-wrapper it-dark it-overlay <?php echo esc_attr( $dli_hero_class ); ?>" aria-labelledby="dli-hero-main-title">
 	<?php
-	if ( $dli_image_url && '' !== $dli_image_url ) {
+	if ( $dli_image_url ) {
 		?>
 		<div class="img-responsive-wrapper">
 			<div class="img-responsive">
@@ -42,7 +42,7 @@ if ( 'true' === $dli_section_enabled ) {
 						<h2 id="dli-hero-main-title"><?php echo esc_html( $dli_hero_title ); ?></h2>
 						<p class="d-none d-lg-block"><?php echo wp_kses_post( $dli_hero_text ); ?></p>
 						<?php
-						if ( $dli_hero_url && '' !== $dli_hero_url ) {
+						if ( $dli_hero_url ) {
 							?>
 						<div class="it-btn-container">
 							<a class="btn btn-sm btn-secondary" href="<?php echo esc_url( $dli_hero_url ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: hero title */ __( 'Approfondisci: %s', 'design_laboratori_italia' ), $dli_hero_title ) ); ?>"><?php echo esc_html( $dli_button_label ); ?></a>

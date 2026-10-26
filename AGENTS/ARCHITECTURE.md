@@ -154,10 +154,15 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 
 - PHP lint (canonical): `composer run lint:php`. Automatic fixes, only when
   needed: `composer run lint:php:fix`.
-- Static analysis: `composer run lint:phpstan`.
+- Static analysis: `composer run lint:phpstan`; after the current migration is
+  clean, it runs the whole theme at the required level 4. `composer run
+  lint:phpstan:level5` is the non-blocking whole-theme progress check toward
+  level 5. The level-4 commit gate is `.githooks/check-phpstan-level4.sh` and
+  is enabled only after the level-4 migration reaches zero errors.
 - Unit tests: `composer test:unit` (PHPUnit, no WordPress; also run by `.githooks/pre-commit`).
 - Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook).
+- All tests: `composer test:all` runs the unit, integration and E2E suites in this order and stops at the first one that fails; it needs the setup of all three (not run by the hook).
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.

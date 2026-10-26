@@ -5,6 +5,10 @@ repo_root="$(git rev-parse --show-toplevel)"
 "$repo_root/.githooks/check-staged-secrets.sh"
 "$repo_root/.githooks/check-staged-l10n.sh"
 
+# Enable the whole-theme level-4 gate only after the active PHPStan migration
+# has reached zero errors at level 4.
+# "$repo_root/.githooks/check-phpstan-level4.sh"
+
 # Unit tests (fast, no WordPress needed): a failing test blocks the commit.
 if [ ! -f "$repo_root/vendor/bin/phpunit" ]; then
 	echo "pre-commit: PHPUnit is not installed. Run 'composer install' and commit again." >&2

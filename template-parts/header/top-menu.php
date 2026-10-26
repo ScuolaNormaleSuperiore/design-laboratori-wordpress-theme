@@ -24,7 +24,7 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 			$dli_menuitems = array();
 	if ( has_nav_menu( $dli_menu_name ) && array_key_exists( $dli_menu_name, $dli_locations ) ) {
 		$dli_menu = wp_get_nav_menu_object( $dli_locations[ $dli_menu_name ] );
-		if ( ! $dli_menu || ! isset( $dli_menu->term_id ) ) {
+		if ( ! $dli_menu ) {
 			$dli_menu = null;
 		}
 	}

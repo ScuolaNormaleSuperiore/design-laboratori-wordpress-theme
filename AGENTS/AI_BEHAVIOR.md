@@ -480,6 +480,7 @@ If a required check fails and cannot be fixed safely in scope, add/update an iss
 ## Definition of Done
 Before marking work complete:
 - Run the checks listed in `Verification` in `AGENTS/CODING_STANDARDS.md` that match the change (at minimum `composer run lint:php` when environment/dependencies are available).
+- For PHP changes, meet the PHPStan quality gate in `AGENTS/CODING_STANDARDS.md`.
 - Run the test suites that match the change (`Test-driven workflow`): `composer test:unit` always; integration and E2E when the area touched needs them and the suite exists. State which suites were not run and why.
 - For `Bug` and `Security` fixes, check that the regression test exists and passes.
 - Re-check changed templates/components for escaping and structural validity.
