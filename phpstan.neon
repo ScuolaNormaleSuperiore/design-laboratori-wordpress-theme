@@ -4,6 +4,8 @@ includes:
 parameters:
   dynamicConstantNames:
     - ABSPATH
+    - CMB2_VERSION
+    - DLI_PUBLICATION_HAS_DETAIL
   level: 3
   parallel:
     maximumNumberOfProcesses: 1

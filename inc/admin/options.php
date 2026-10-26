@@ -24,7 +24,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -267,7 +267,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -351,7 +351,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Sezioni HP', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$section_options = new_cmb2_box( $args );
@@ -436,7 +436,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -801,7 +801,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -892,7 +892,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Persone', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -1343,7 +1343,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Indirizzi di ricerca', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$ricerca_options     = new_cmb2_box( $args );
@@ -1414,7 +1414,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Progetti', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$progetti_options     = new_cmb2_box( $args );
@@ -1570,7 +1570,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Pubblicazioni', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$pubblicazioni_options     = new_cmb2_box( $args );
@@ -1658,7 +1658,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Brevetti', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$brevetti_options     = new_cmb2_box( $args );
@@ -1728,7 +1728,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Spin-off', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$spinoff_options     = new_cmb2_box( $args );
@@ -1798,7 +1798,7 @@ function dli_register_main_options_metabox() {
 		'tab_title'    => __( 'Risorse tecniche', 'design_laboratori_italia' ),
 	);
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 	$spinoff_options     = new_cmb2_box( $args );
@@ -1868,7 +1868,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
@@ -1913,7 +1913,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
@@ -1997,7 +1997,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -2084,7 +2084,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -2155,7 +2155,7 @@ function dli_register_main_options_metabox() {
 	);
 
 	// 'tab_group' property is supported in > 2.4.0.
-	if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+	if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 		$args['display_cb'] = 'dli_options_display_with_tabs';
 	}
 
@@ -2226,7 +2226,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
@@ -2354,7 +2354,7 @@ function dli_register_main_options_metabox() {
 			'tab_title'    => __( 'Indico', 'design_laboratori_italia' ),
 		);
 
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
@@ -2566,7 +2566,7 @@ function dli_register_main_options_metabox() {
 			'tab_title'    => __( 'Iris', 'design_laboratori_italia' ),
 		);
 
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 				$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
@@ -2727,7 +2727,7 @@ function dli_register_main_options_metabox() {
 		);
 
 		// 'tab_group' property is supported in > 2.4.0.
-		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+		if ( version_compare( CMB2_VERSION, '2.4.0', '>' ) ) {
 			$args['display_cb'] = 'dli_options_display_with_tabs';
 		}
 
