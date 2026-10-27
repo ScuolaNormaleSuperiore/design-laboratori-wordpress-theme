@@ -1,0 +1,42 @@
+# Dependabot version updates (OpenSSF Scorecard, Dependency-Update-Tool).
+# Pull requests target `dev`, where the work happens; `main` receives the release pull request.
+# Monthly cadence and few open pull requests: each one must be reviewed by a maintainer.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: composer
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    groups:
+      composer-dev-tools:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: npm
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    groups:
+      npm-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: docker
+    directory: /SETUP/Docker
+    target-branch: dev
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 2

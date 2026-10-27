@@ -9,7 +9,10 @@
 ##############################################################################
 
 ###### Start from an official Php release with Apache ######
-FROM php:8.3-apache
+# The image is pinned by digest (OpenSSF Scorecard, Pinned-Dependencies): php:8.4-apache, PHP 8.4.27,
+# image built on 2026-10-21. Dependabot proposes the new digest; to update it by hand:
+#   docker buildx imagetools inspect php:8.4-apache   (use the "Digest:" line)
+FROM php:8.4-apache@sha256:c6527b06c772a2c3cae648ce58c23a2a12ed2fed41cdfb0619ea64be008cc601
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
 ARG WP_ARCHIVE=wordpress-7.1.3.tar.gz

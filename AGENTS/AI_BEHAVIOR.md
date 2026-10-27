@@ -372,8 +372,10 @@ Calls into excluded code stay in scope for review and refactoring.
 
 
 ## Repository Scope Boundaries
-- Modify files only inside this theme repository: `wp-content/themes/design-laboratori-wordpress-theme/`.
-- Never modify files outside this repository (for example user/system files, editor extension files, or any path under `.vscode/` not owned by this repo). The only exception is the local ignored files `AGENTS/ISSUES_TODO.md`, `AGENTS/ISSUES_RESOLVED.md` and `AGENTS/CODE_REVIEW_PROGRESS.md`, which may be symlinks to a private folder outside the repository and are written through the link (or, if a tool refuses symlinks, at the real target path it reports).
+- Modify files only inside this theme repository: `wp-content/themes/design-laboratori-wordpress-theme/`, except for the explicitly allowed local areas below.
+- `DEV/` is a symbolic link to a private project directory outside the repository. Treat it as part of the project context: AI agents may search, read and modify it when the task requires it. Its contents are local working material and must never be staged or committed.
+- The local ignored files `AGENTS/ISSUES_TODO.md`, `AGENTS/ISSUES_RESOLVED.md` and `AGENTS/CODE_REVIEW_PROGRESS.md` may also be symlinks to a private folder outside the repository and are written through the link (or, if a tool refuses symlinks, at the real target path it reports). They must never be staged or committed.
+- Never modify other files outside this repository (for example user/system files, editor extension files, or any path under `.vscode/` not owned by this repo).
 - Never modify external WordPress components such as:
   - other themes under `wp-content/themes/`
   - plugins under `wp-content/plugins/`

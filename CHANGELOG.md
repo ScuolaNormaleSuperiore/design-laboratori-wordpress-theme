@@ -36,6 +36,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.0.4] - 2026-10-28
 ## Aggiunto
 ## Corretto
+- Verificata compatibilità con PHP 8.4.
 
 
 
