@@ -21,8 +21,8 @@ if ( ! class_exists( 'Project_Manager' ) ) {
 	include_once 'class-projectmanager.php';
 }
 
-if ( ! class_exists( 'Publication_Manager' ) ) {
-	include_once 'class-publicationmanager.php';
+if ( ! class_exists( 'DLI_Publication_Manager' ) ) {
+	include_once 'class-dli-publication-manager.php';
 }
 
 if ( ! class_exists( 'Patent_Manager' ) ) {
@@ -57,8 +57,8 @@ if ( ! class_exists( 'Post_Manager' ) ) {
 	include_once 'class-postmanager.php';
 }
 
-if ( ! class_exists( 'Page_Manager' ) ) {
-	include_once 'class-pagemanager.php';
+if ( ! class_exists( 'DLI_Page_Manager' ) ) {
+	include_once 'class-dli-page-manager.php';
 }
 
 if ( ! class_exists( 'Polylang_Manager' ) ) {
@@ -169,7 +169,7 @@ class DLI_LabManager {
 		$ctprm->setup();
 
 		// Setup del post type Pubblicazione.
-		$publm = new Publication_Manager();
+		$publm = new DLI_Publication_Manager();
 		$publm->setup();
 
 		// Setup del post type Brevetto.
@@ -193,7 +193,7 @@ class DLI_LabManager {
 		$ctprog->setup();
 
 		// Setup della pagina base.
-		$pgprog = new Page_Manager();
+		$pgprog = new DLI_Page_Manager();
 		$pgprog->setup();
 
 		// Setup del post type Luoghi.

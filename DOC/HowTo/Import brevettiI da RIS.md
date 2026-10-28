@@ -23,6 +23,6 @@ L'impoirtazione può essere eseguita, attivando la registrazione del cronjob ass
  
  - **class-irispatent-importer.php**: Qui è presente il codice che si occupa dell'importazione dei brevetti da ***web service*** o da ***cronjob***.
 
- - **class-labmanager.php**: qui c'è il codice per importare gli oggetti Patent_Manager e DLI_IrisPatentImporter e per inizializzarli (con il metodo **setup**).
+ - **class-dli-labmanager.php**: qui c'è il codice per importare gli oggetti Patent_Manager e DLI_IrisPatentImporter e per inizializzarli (con il metodo **setup**).
   
  - **options.php**: in questo file ci sono le opzioni di configurazione dell'importer dei brevetti e i dati di connessione al web service per il recupero dei dati da importare.

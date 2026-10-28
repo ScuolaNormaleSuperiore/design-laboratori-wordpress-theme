@@ -8,7 +8,7 @@
 /**
  * The manager that setups Page content.
  */
-class Page_Manager {
+class DLI_Page_Manager {
 	/**
 	 * Constructor of the Manager.
 	 */

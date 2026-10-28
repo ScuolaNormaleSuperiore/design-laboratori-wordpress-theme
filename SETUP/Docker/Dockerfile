@@ -22,7 +22,6 @@ ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin
 
 ARG PLG_ACF_OPENSTRRETMAP=acf-openstreetmap-field.latest-stable.zip
 ARG PLG_ACF=advanced-custom-fields.latest-stable.zip
-ARG PLG_ARIA_LABEL=better-aria-label-support.0.1.zip
 ARG PLG_POLYLANG=polylang.latest-stable.zip
 ARG PLG_CAPTCHA=really-simple-captcha.zip
 ARG PLG_SMTP=wp-mail-smtp.latest-stable.zip
@@ -80,8 +79,6 @@ RUN curl -fL -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	unzip /tmp/${PLG_ACF_OPENSTRRETMAP}  && \
 	curl -fL -o /tmp/${PLG_ACF} ${BASE_PLUGIN_URL}/${PLG_ACF} && \
 	unzip /tmp/${PLG_ACF}  && \
-	curl -fL -o /tmp/${PLG_ARIA_LABEL} ${BASE_PLUGIN_URL}/${PLG_ARIA_LABEL} && \
-	unzip /tmp/${PLG_ARIA_LABEL}  && \
 	curl -fL -o /tmp/${PLG_LOCO_TRANSLATE} ${BASE_PLUGIN_URL}/${PLG_LOCO_TRANSLATE} && \
 	unzip /tmp/${PLG_LOCO_TRANSLATE}  && \
 	curl -fL -o /tmp/${PLG_REG_THUMBNAILS} ${BASE_PLUGIN_URL}/${PLG_REG_THUMBNAILS} && \

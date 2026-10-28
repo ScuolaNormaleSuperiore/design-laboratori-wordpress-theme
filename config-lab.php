@@ -306,11 +306,6 @@ define(
 			'required' => true,
 		),
 		array(
-			'name'     => 'Better aria label support',
-			'slug'     => 'better-aria-label-support',
-			'required' => true,
-		),
-		array(
 			'name'     => 'Polylang - Multilanguage support',
 			'slug'     => 'polylang',
 			'required' => true,

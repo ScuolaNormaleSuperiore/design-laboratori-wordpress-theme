@@ -31,7 +31,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
   - Loads configuration files: `config-lab.php`, `config-pages.php`, `config-menu.php`.
   - Loads wrappers/utilities/modules: `inc/wrappers_polylang.php`, `inc/wrappers_acf.php`, `inc/utils.php`, `inc/actions.php`, `inc/activation.php`.
   - Loads dependencies/admin tooling: `inc/theme-dependencies.php`, `inc/cmb2.php`, `inc/admin/options.php`.
-  - Loads and instantiates runtime managers: `inc/classes/class-contents-manager.php`, `inc/classes/class-labmanager.php` (`DLI_LabManager::plugin_setup()`).
+  - Loads and instantiates runtime managers: `inc/classes/class-dli-contentsmanager.php` (with `class-dli-og-wrapper.php`, the Open Graph value object), `inc/classes/class-dli-labmanager.php` (`DLI_LabManager::plugin_setup()`).
 - `config-lab.php`: theme constants.
 - `config-menu.php`: default menu definitions.
 - `config-pages.php`: default page definitions.
@@ -59,7 +59,7 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 | `pubblicazione` | none (`DLI_PUBLICATION_HAS_DETAIL` is false) | `pubblicazioni.php` |
 | `banner`, `sponsor`, `tipologia-persona` | none (`public=false`) | none |
 
-- Core `post` (blog) is extended by `Post_Manager`; core `page` by `Page_Manager`.
+- Core `post` (blog) is extended by `Post_Manager`; core `page` by `DLI_Page_Manager`.
 - Taxonomies: `struttura` (persona), `tipologia-luogo` (luogo), `tipo-pubblicazione`,
   `area-tematica` (brevetto), `settore-attivita` (spinoff), `tipo-risorsa-tecnica`.
   Events, news and posts use the core `category`. `HOLDER_TAXONOMY` is defined in
@@ -72,7 +72,7 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 
 ## Runtime Components (`inc/classes/`)
 
-- `DLI_LabManager` (`class-labmanager.php`): singleton; instantiates every manager
+- `DLI_LabManager` (`class-dli-labmanager.php`): singleton; instantiates every manager
   and importer, sets languages, image sizes, upload limits and permalinks, filters
   REST access (`setup_rest_api`) and applies security tweaks (no generator, no XML-RPC).
 - `DLI_AuthorizationManager`: role `dli_super_editor` (Editor plus

@@ -5,114 +5,8 @@
  * @package Design_Laboratori_Italia
  */
 
-/**
- * Value object holding the Open Graph data of the current page.
- */
-class DLI_OG_Wrapper {
-	/**
-	 * Current item's post ID.
-	 *
-	 * @var string
-	 */
-	public string $id = '';
-
-	/**
-	 * Current item's title.
-	 *
-	 * @var string
-	 */
-	public string $title = '';
-
-	/**
-	 * Title including the laboratory name, for the og:title tag.
-	 *
-	 * @var string
-	 */
-	public string $shared_title = '';
-
-	/**
-	 * Current item's post type.
-	 *
-	 * @var string
-	 */
-	public string $type = '';
-
-	/**
-	 * Current item's description/excerpt.
-	 *
-	 * @var string
-	 */
-	public string $description = '';
-
-	/**
-	 * Current item's permalink.
-	 *
-	 * @var string
-	 */
-	public string $url = '';
-
-	/**
-	 * Site locale.
-	 *
-	 * @var string
-	 */
-	public string $locale = '';
-
-	/**
-	 * Laboratory name.
-	 *
-	 * @var string
-	 */
-	public string $site_title = '';
-
-	/**
-	 * Laboratory tagline.
-	 *
-	 * @var string
-	 */
-	public string $site_tagline = '';
-
-	/**
-	 * Featured image URL.
-	 *
-	 * @var string
-	 */
-	public string $image = '';
-
-	/**
-	 * Featured image width in pixels.
-	 *
-	 * @var string
-	 */
-	public string $img_width = '';
-
-	/**
-	 * Featured image height in pixels.
-	 *
-	 * @var string
-	 */
-	public string $img_height = '';
-
-	/**
-	 * Featured image MIME type.
-	 *
-	 * @var string
-	 */
-	public string $img_type = '';
-
-	/**
-	 * Site URL.
-	 *
-	 * @var string
-	 */
-	public string $site_url = '';
-
-	/**
-	 * Site domain, for the og:site_name context.
-	 *
-	 * @var string
-	 */
-	public string $domain = '';
+if ( ! class_exists( 'DLI_OG_Wrapper' ) ) {
+	require_once __DIR__ . '/class-dli-og-wrapper.php';
 }
 
 /**
@@ -1001,21 +895,16 @@ class DLI_ContentsManager {
 			)
 		);
 
-		$post_types_placeholders = implode( ', ', array_fill( 0, count( $post_types ), '%s' ) );
-		$prepare_args            = array_merge(
-			array(
-				sanitize_key( $post_status ),
-			),
-			$post_types
+		$rows = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT post_type
+				FROM {$wpdb->posts}
+				WHERE post_status = %s
+					AND post_type IN (" . implode( ', ', array_fill( 0, count( $post_types ), '%s' ) ) . ')
+				GROUP BY post_type',
+				array_merge( array( sanitize_key( $post_status ) ), $post_types )
+			)
 		);
-		$sql                     = "SELECT post_type
-			FROM {$wpdb->posts}
-			WHERE post_status = %s
-				AND post_type IN (" . $post_types_placeholders . ')
-			GROUP BY post_type';
-
-		$query = $wpdb->prepare( $sql, ...$prepare_args );
-		$rows  = $wpdb->get_col( $query );
 		if ( ! is_array( $rows ) || empty( $rows ) ) {
 			return array();
 		}

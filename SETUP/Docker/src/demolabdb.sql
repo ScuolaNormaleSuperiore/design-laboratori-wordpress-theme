@@ -310,7 +310,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (30,	'hack_file',	'0',	'yes'),
 (31,	'blog_charset',	'UTF-8',	'yes'),
 (32,	'moderation_keys',	'',	'no'),
-(33,	'active_plugins',	'a:8:{i:0;s:21:\"polylang/polylang.php\";i:1;s:33:\"acf-openstreetmap-field/index.php\";i:2;s:30:\"advanced-custom-fields/acf.php\";i:3;s:55:\"better-aria-label-support/better-aria-label-support.php\";i:4;s:23:\"loco-translate/loco.php\";i:5;s:47:\"really-simple-captcha/really-simple-captcha.php\";i:6;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:7;s:29:\"wp-mail-smtp/wp_mail_smtp.php\";}',	'yes'),
+(33,	'active_plugins',	'a:7:{i:0;s:21:\"polylang/polylang.php\";i:1;s:33:\"acf-openstreetmap-field/index.php\";i:2;s:30:\"advanced-custom-fields/acf.php\";i:3;s:23:\"loco-translate/loco.php\";i:4;s:47:\"really-simple-captcha/really-simple-captcha.php\";i:5;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:6;s:29:\"wp-mail-smtp/wp_mail_smtp.php\";}',	'yes'),
 (34,	'category_base',	'',	'yes'),
 (35,	'ping_sites',	'https://rpc.pingomatic.com/',	'yes'),
 (36,	'comment_max_links',	'2',	'yes'),

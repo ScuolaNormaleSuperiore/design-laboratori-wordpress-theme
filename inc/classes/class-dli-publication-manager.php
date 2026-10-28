@@ -8,7 +8,7 @@
 /**
  * The manager that setups Course post types.
  */
-class Publication_Manager {
+class DLI_Publication_Manager {
 	/**
 	 * Constructor of the Manager.
 	 */

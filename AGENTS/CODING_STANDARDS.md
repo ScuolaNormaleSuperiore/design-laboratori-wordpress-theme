@@ -135,7 +135,7 @@ introduce barriers.
 - Variables: `$variable_name_with_underscores`
 - Constants: `CONSTANT_NAME_UPPERCASE`
 - Files: `file-name-with-hyphens.php`
-- Class files follow the WordPress pattern `class-<name>manager.php` (for example `class-labmanager.php`); keep the class name used by the surrounding code (`DLI_LabManager`, and the legacy `People_Manager`-style names).
+- New or renamed classes follow WPCS: the `DLI_` prefix, and a file named after the class with `class-` prepended, lowercase and with hyphens instead of underscores (`DLI_Page_Manager` in `class-dli-page-manager.php`, `DLI_LabManager` in `class-dli-labmanager.php`). The legacy managers that still use the `People_Manager` style and the old file names (`class-peoplemanager.php`) keep them until they are renamed: do not rename one only to make a commit pass, rename it when you have to touch the file (the PHPCS pre-commit check blocks a staged file with errors).
 
 ### Code structure
 

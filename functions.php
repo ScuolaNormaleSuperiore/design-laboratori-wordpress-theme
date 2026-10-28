@@ -106,7 +106,7 @@ require get_template_directory() . '/inc/actions.php';
  * Import the Contents Manager.
  */
 if ( ! class_exists( 'DLI_ContentsManager' ) ) {
-	require get_template_directory() . '/inc/classes/class-contents-manager.php';
+	require get_template_directory() . '/inc/classes/class-dli-contentsmanager.php';
 }
 
 
@@ -114,7 +114,7 @@ if ( ! class_exists( 'DLI_ContentsManager' ) ) {
 
 // Setup the post types used by the theme.
 if ( ! class_exists( 'DLI_LabManager' ) ) {
-	include_once 'inc/classes/class-labmanager.php';
+	include_once 'inc/classes/class-dli-labmanager.php';
 	global $dli_lab_manager;
 	$dli_lab_manager = new DLI_LabManager();
 	$dli_lab_manager->plugin_setup();
