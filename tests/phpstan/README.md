@@ -60,7 +60,7 @@ controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../REA
 - Si dichiara **solo** ciò che il codice del tema chiama davvero.
 - Non si aggiunge uno stub per far sparire un errore sul codice del tema: lì si corregge il codice o il suo PHPDoc.
 - Niente baseline e niente `ignoreErrors` generici. Le sole eccezioni ammesse sono le costanti dichiarate dinamiche
-  in [`../../phpstan.neon`](../../phpstan.neon) (`ABSPATH`, `CMB2_VERSION`, `DLI_PUBLICATION_HAS_DETAIL`, `DLI_POST_TYPES_TO_TRANSLATE`) e le
+  in [`../../phpstan.neon`](../../phpstan.neon) (`ABSPATH`, `CMB2_VERSION`, `DLI_POST_TYPES_TO_TRANSLATE`) e le
   annotazioni `@phpstan-ignore <identificatore> (motivo)` sul singolo punto, con il motivo scritto accanto.
 - Il livello non scende sotto il 4 e ogni file PHP del tema deve essere nei percorsi analizzati: lo verifica
   [`../unit/DLI_PHPStan_Config_Unit_Test.php`](../unit/DLI_PHPStan_Config_Unit_Test.php).

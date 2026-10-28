@@ -22,7 +22,7 @@ Ogni pubblicazione ha una propria pagina pubblica, raggiungibile da un indirizzo
 Cosa mostra la scheda:
 - in alto: la `Tipo pubblicazione`, il `Titolo` e l'`Anno`;
 - a sinistra: la copertina (l'`Immagine in evidenza`; se manca, un'immagine segnaposto con lo stemma) e i pulsanti di condivisione;
-- a destra, nell'ordine: `Autori`, `Descrizione` (il testo dell'editor) e il pulsante `Consulta la pubblicazione` (il campo `Url`, che si apre in una nuova finestra).
+- a destra, nell'ordine: `Autori`, `Descrizione` (il testo dell'editor) e i pulsanti `Consulta la pubblicazione` (il campo `Url`) e `Scarica la pubblicazione` (il campo `Allegato`, con tipo e dimensione del file, per esempio «PDF, 1,2 MB»). Entrambi si aprono in una nuova finestra e compaiono solo se il campo è compilato.
 
 Ogni blocco compare solo se ha un contenuto: una pubblicazione con solo titolo e anno mostra soltanto quelli.
 
@@ -32,6 +32,23 @@ Regole da conoscere:
 - **Testo alternativo della copertina:** è quello scritto nella libreria dei media (campo `Testo alternativo`). Se è vuoto, la scheda usa il testo generico «Copertina della pubblicazione»: per chi usa un lettore di schermo conviene compilarlo.
 - **Protetta da password:** se in `Visibilità` si imposta `Protetto da password`, la scheda mostra il titolo, l'anno e il modulo per inserire la password; autori, descrizione e link compaiono solo dopo averla inserita.
 - **Indirizzo:** deriva dal campo `Indirizzo` (slug) della pubblicazione, che WordPress compila dal titolo al primo salvataggio. Se lo si modifica su una pubblicazione già pubblicata, i link salvati altrove (altri siti, segnalibri) possono smettere di funzionare.
+
+### Dove porta il titolo di una pubblicazione
+Negli elenchi (pagina `Le pubblicazioni`, scheda della persona e del progetto), nella ricerca del sito, nei suggerimenti e nel carousel in home il titolo porta dove indica il campo `Link dettaglio`, come per eventi e notizie:
+
+| Scelta | Il titolo porta a | Se manca il link |
+|---|---|---|
+| `Scheda dettaglio` (predefinita) | la scheda della pubblicazione, nella stessa finestra | non può mancare |
+| `Sito web` | il campo `Url`, in una nuova finestra | il titolo resta testo semplice, senza link |
+| `Link ad allegato` | il file del campo `Allegato`, in una nuova finestra | il titolo resta testo semplice, senza link |
+
+Note:
+- Le pubblicazioni già esistenti hanno la scelta `Scheda dettaglio`: non cambia nulla finché non la si modifica.
+- Anche con `Sito web` o `Link ad allegato` la scheda della pubblicazione resta raggiungibile dal suo indirizzo.
+- Una pubblicazione **protetta da password** porta sempre alla sua scheda (dove si inserisce la password), qualunque sia la scelta: il sito esterno e il file sono ciò che la password protegge. Negli elenchi mostra solo titolo, tipologia e anno, senza autori né descrizione.
+- **Allegato e password:** il pulsante di download non compare sulla scheda di una pubblicazione protetta, ma il file resta nella libreria dei media di WordPress e chi ne conosce l'indirizzo lo scarica comunque. Per un file davvero riservato non basta la password della pubblicazione.
+- Negli elenchi la card di una pubblicazione mostra gli **autori** al posto della descrizione; la descrizione si legge nella scheda.
+- Una pubblicazione senza alcun link compare nella ricerca come testo non cliccabile.
 
 ## 3. Dove si gestisce nel backoffice
 - Menu principale: `Pubblicazioni`.
@@ -56,6 +73,14 @@ Nel box `Campi Pubblicazione` sono presenti i seguenti campi.
   tipo: `url`
   obbligatorio: `No`
   correlazioni: `Nessuna` (link esterno alla pubblicazione)
+- `Allegato`
+  tipo: `file`
+  obbligatorio: `No`
+  correlazioni: `Nessuna` (file PDF della pubblicazione: sono ammessi solo file PDF)
+- `Link dettaglio`
+  tipo: `select`
+  obbligatorio: `No`
+  correlazioni: `Nessuna` (sceglie dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel; predefinito `Scheda dettaglio`)
 - `Promuovi in carousel`
   tipo: `true_false`
   obbligatorio: `No`
@@ -116,7 +141,7 @@ La prima volta che una pagina del sito viene aperta dopo l'aggiornamento, il tem
 (`/pubblicazione/...`); non serve salvare i permalink a mano. Se per qualche motivo un indirizzo risponde «Pagina non trovata», si
 risolve da `Impostazioni > Permalink` premendo `Salva modifiche` senza cambiare nulla.
 
-Da questo momento le pubblicazioni sono anche leggibili tramite l'API REST di WordPress (`/wp-json/wp/v2/pubblicazione`), come i
+Da questo momento (e per sempre: non esiste più un interruttore per tornare alle pubblicazioni senza scheda) le pubblicazioni sono anche leggibili tramite l'API REST di WordPress (`/wp-json/wp/v2/pubblicazione`), come i
 contenuti pubblici delle altre tipologie, a meno che l'API REST sia disattivata nelle opzioni del tema.
 
 ## 10. Configurazioni backoffice
@@ -131,7 +156,7 @@ Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singol
 - campo ACF `Anno` valorizzato
 - `Tipo pubblicazione` assegnata
 - `Autori` valorizzati (se disponibili)
-- `Url` valorizzato e valido (se disponibile)
+- `Url` valorizzato e valido (se disponibile) e, se si vuole che il titolo porti al sito o al file, `Link dettaglio` coerente (`Sito web` con `Url`, `Link ad allegato` con `Allegato`)
 - contenuto testuale coerente e aggiornato (se non c'e' una descrizione, lasciare vuoto l'editor)
 - `Immagine in evidenza` con `Testo alternativo` compilato, se si carica una copertina
 - `Tag` coerenti (se usati)

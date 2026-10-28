@@ -1641,6 +1641,10 @@ msgctxt "Post Type General Name"
 msgid "Risorse Tecniche"
 msgstr ""
 
+#: single-pubblicazione.php:150
+msgid "Scarica la pubblicazione"
+msgstr ""
+
 #: single-pubblicazione.php:129
 msgid "si apre in una nuova finestra"
 msgstr ""

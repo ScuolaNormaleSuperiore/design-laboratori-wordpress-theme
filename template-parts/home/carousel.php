@@ -43,7 +43,17 @@ if ( 'true' === $dli_section_enabled ) {
 								<div class="card-wrapper h-100 pb-0">
 									<article class="it-card it-card-height-full rounded shadow-sm border">
 										<h3 class="h5 it-card-title big-heading">
-											<a href="<?php echo esc_url( $dli_item['link'] ); ?>"><?php echo esc_html( $dli_item['title'] ); ?></a>
+											<?php
+											get_template_part(
+												'template-parts/common/linked-title',
+												null,
+												array(
+													'title' => $dli_item['title'],
+													'url' => $dli_item['link'],
+													'external' => ! empty( $dli_item['link_external'] ),
+												)
+											);
+											?>
 										</h3>
 										<div class="it-card-body">
 											<p class="it-card-text"><?php echo esc_html( $dli_item['description'] ); ?></p>

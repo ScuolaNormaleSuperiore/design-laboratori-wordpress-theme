@@ -377,3 +377,35 @@ html {
 .pubblicazione-copertina-placeholder img {
 	background-color: var(--bsi-color-background-primary);
 }
+
+/* Card pubblicazione con copertina (elenco pubblicazioni): la copertina sta in una colonna stretta
+	al proprio formato naturale invece che ritagliata con object-fit: cover in un riquadro 1x1 (le
+	copertine sono quasi sempre verticali). Su mobile la card è in colonna, copertina piccola sopra. */
+.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper {
+	padding: var(--bsi-card-spacing-y) var(--bsi-card-spacing-x) 0;
+}
+
+.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper img {
+	display: block;
+	width: 100%;
+	max-width: 8rem;
+	height: auto;
+	border-radius: var(--bsi-card-border-radius-inner);
+}
+
+@media (min-width: 768px) {
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper {
+		flex: 0 0 10rem;
+		width: 10rem;
+		padding: var(--bsi-card-spacing-y) 0 var(--bsi-card-spacing-y) var(--bsi-card-spacing-x);
+	}
+
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-inline-content {
+		flex: 1;
+		width: auto;
+	}
+
+	.it-card.it-card-inline.it-card-image.pubblicazione-card .it-card-image-wrapper img {
+		max-width: none;
+	}
+}

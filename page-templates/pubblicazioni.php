@@ -213,7 +213,8 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 								$dli_pubblicazioni_query->the_post();
 								$dli_item_id        = get_the_ID();
 								$dli_item_title     = get_the_title( $dli_item_id );
-								$dli_item_url       = dli_get_field( 'url' );
+								$dli_item_link      = dli_get_publication_link( $dli_item_id );
+								$dli_item_autori    = post_password_required( $dli_item_id ) ? array() : wp_list_pluck( dli_get_publication_authors( $dli_item_id ), 'name' );
 								$dli_item_anno      = dli_get_field( 'anno' );
 								$dli_image_metadata = dli_get_image_metadata( get_post( $dli_item_id ) );
 								$dli_img_url        = ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) ? $dli_image_metadata['image_url'] : null;
@@ -222,24 +223,28 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 								?>
 								<!--start card-->
 								<div class="col-12 mb-4">
-									<article class="it-card<?php echo $dli_img_url ? ' it-card-inline it-card-image' : ''; ?> rounded shadow-sm border">
+									<article class="it-card<?php echo $dli_img_url ? ' it-card-inline it-card-image pubblicazione-card' : ''; ?> rounded shadow-sm border">
 										<?php if ( $dli_img_url ) : ?>
 											<div class="it-card-inline-content">
 										<?php endif; ?>
 											<h3 class="it-card-title h5 text-break" style="overflow-wrap: anywhere;">
-												<?php if ( ! empty( $dli_item_url ) ) : ?>
-													<a href="<?php echo esc_url( $dli_item_url ); ?>" target="_blank" rel="noopener noreferrer">
-														<?php echo esc_html( $dli_item_title ); ?>
-													</a>
-												<?php else : ?>
-													<?php echo esc_html( $dli_item_title ); ?>
-												<?php endif; ?>
+												<?php
+												get_template_part(
+													'template-parts/common/linked-title',
+													null,
+													array(
+														'title'    => $dli_item_title,
+														'url'      => $dli_item_link['url'],
+														'external' => $dli_item_link['external'],
+													)
+												);
+												?>
 											</h3>
-											<div class="it-card-body">
-												<div class="it-card-text text-break" style="overflow-wrap: anywhere;">
-													<?php echo wp_kses_post( wpautop( get_the_content() ) ); ?>
+											<?php if ( ! empty( $dli_item_autori ) ) : ?>
+												<div class="it-card-body">
+													<p class="it-card-text text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( implode( ', ', $dli_item_autori ) ); ?></p>
 												</div>
-											</div>
+											<?php endif; ?>
 											<?php if ( ! empty( $dli_item_terms ) || $dli_item_anno ) : ?>
 												<footer class="it-card-footer">
 													<?php if ( ! empty( $dli_item_terms ) ) : ?>
@@ -259,15 +264,10 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 											<?php endif; ?>
 										<?php if ( $dli_img_url ) : ?>
 											</div>
-											<div class="it-card-image-wrapper" style="background-color: var(--bsi-color-background-primary-light);">
-												<div class="ratio ratio-1x1">
-													<figure class="figure img-full">
-														<img src="<?php echo esc_url( $dli_img_url ); ?>"
-															style="object-fit: cover;"
-															title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
-															alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
-													</figure>
-												</div>
+											<div class="it-card-image-wrapper">
+												<img src="<?php echo esc_url( $dli_img_url ); ?>"
+													title="<?php echo esc_attr( $dli_image_metadata['image_title'] ); ?>"
+													alt="<?php echo esc_attr( $dli_image_metadata['image_alt'] ); ?>">
 											</div>
 										<?php endif; ?>
 									</article>

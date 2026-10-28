@@ -52,12 +52,6 @@ define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_IT', ' [template attivo]' );
 define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
-// Feature flags.
-// Set to true only if a single-pubblicazione.php template exists and detail pages are intentionally exposed.
-// When true the publications are public, searchable, have a readable address (/pubblicazione/<slug>/)
-// and their REST route is not restricted to the users who can edit posts.
-define( 'DLI_PUBLICATION_HAS_DETAIL', true );
-
 // CUSTOM CONTENT TYPES.
 define( 'BANNER_POST_TYPE', 'banner' );
 define( 'EVENT_POST_TYPE', 'evento' );

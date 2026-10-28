@@ -4,6 +4,7 @@
  *
  * Provides:
  *  - dli_get_publication_authors()  The authors of a publication that can be shown, with their link.
+ *  - dli_get_publication_link()     Where the title of a publication leads, and whether it leaves the site.
  *
  * @package Design_Laboratori_Italia
  */
@@ -56,5 +57,40 @@ if ( ! function_exists( 'dli_get_publication_authors' ) ) {
 		}
 
 		return $authors;
+	}
+}
+
+if ( ! function_exists( 'dli_get_publication_link' ) ) {
+	/**
+	 * Where the title of a publication leads in the lists, the search and the carousel.
+	 *
+	 * The editor chooses it with the `link_dettaglio` field, like for events and news: the detail
+	 * page (default, also for the publications saved before the field existed), the external link of
+	 * the `url` field, or the attached file. A choice without its link or file gives no link at all:
+	 * the url is an empty string and the template prints the title as plain text.
+	 *
+	 * A password-protected publication always leads to its detail page: the external link and the
+	 * file are what the password protects.
+	 *
+	 * @param WP_Post|int $publication The publication.
+	 * @return array{url: string, external: bool} The address, and whether it leaves the site (a link to another
+	 *                                            site or to a file: it opens in a new window).
+	 */
+	function dli_get_publication_link( $publication ) {
+		$publication = get_post( $publication );
+		if ( ! $publication instanceof WP_Post ) {
+			return array(
+				'url'      => '',
+				'external' => false,
+			);
+		}
+
+		$permalink = get_permalink( $publication );
+		$url       = post_password_required( $publication ) ? $permalink : (string) dli_manage_item_link( $publication );
+
+		return array(
+			'url'      => $url,
+			'external' => '' !== $url && $url !== $permalink,
+		);
 	}
 }

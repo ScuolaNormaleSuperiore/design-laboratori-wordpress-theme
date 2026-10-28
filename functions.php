@@ -259,41 +259,6 @@ function dli_harden_polylang_cookie( $cookie_args ) {
 add_filter( 'pll_cookie_args', 'dli_harden_polylang_cookie' );
 
 /**
- * Prevent unauthenticated REST reads of publications without detail pages.
- *
- * The REST route remains available to users who can edit posts so that the
- * block editor continues to work. The public archive uses its own WP_Query
- * and is not affected by this authorization check.
- *
- * @param mixed          $result  Response to replace, or null to continue.
- * @param WP_REST_Server $server  REST server instance.
- * @param mixed          $request Current REST request (a WP_REST_Request when WordPress calls the filter).
- * @return mixed|WP_Error
- */
-function dli_restrict_publication_rest_access( $result, $server, $request ) {
-	if ( DLI_PUBLICATION_HAS_DETAIL || ! ( $request instanceof WP_REST_Request ) ) {
-		return $result;
-	}
-
-	$route      = untrailingslashit( $request->get_route() );
-	$route_base = '/wp/v2/' . PUBLICATION_POST_TYPE;
-	if ( $route_base !== $route && 0 !== strpos( $route, $route_base . '/' ) ) {
-		return $result;
-	}
-
-	if ( current_user_can( 'edit_posts' ) ) {
-		return $result;
-	}
-
-	return new WP_Error(
-		'rest_forbidden',
-		__( 'Non hai i permessi per accedere a questa risorsa.', 'design_laboratori_italia' ),
-		array( 'status' => rest_authorization_required_code() )
-	);
-}
-add_filter( 'rest_pre_dispatch', 'dli_restrict_publication_rest_access', 10, 3 );
-
-/**
  * Allow SVG upload MIME type.
  *
  * @param array $upload_mimes Allowed upload MIME types.

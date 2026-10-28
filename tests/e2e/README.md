@@ -129,6 +129,9 @@ Tutti inventati, assegnati all'utente `e2e-admin`. Servono alle specifiche sulle
 | «E2E complete publication» | en | traduzione della precedente, tipologia «Article in journal» |
 | «Pubblicazione E2E minima» | it | solo titolo e anno 2023, tipologia «Monografia»: senza autori, link esterno, descrizione né copertina |
 | «Pubblicazione E2E protetta» | it | protetta da password (`e2e-password`), un autore, link esterno, tipologia «Articolo in rivista» |
+| «Pubblicazione E2E sito esterno» | it | «Link dettaglio» = Sito web, `Url` `https://example.org/e2e-sito-esterno`: il titolo nelle liste porta al sito, in una nuova finestra |
+| «Pubblicazione E2E senza link» | it | «Link dettaglio» = Sito web ma `Url` vuoto: il titolo è testo semplice, senza link |
+| «Pubblicazione E2E con allegato» | it | «Link dettaglio» = Link ad allegato, con una voce di media PDF (`2026/10/e2e-articolo.pdf`, senza il file nel dump: si verifica l'indirizzo, non il download) |
 
 Le tipologie di pubblicazione sono quelle create dall'attivazione del tema (non ne esistono altre). Le persone non hanno
 una tipologia, quindi non compaiono nell'elenco `/persone/`: servono solo come autori. Nessun contenuto ha una immagine
@@ -180,6 +183,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `newsletter.spec.js` | pagina newsletter, campi del form e validazione browser dell'email non valida |
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
+| `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice) e nella ricerca del sito, autori al posto della descrizione nelle card (e non per una pubblicazione protetta), pulsante «Scarica la pubblicazione» nella scheda, scheda ancora raggiungibile con «Sito web» |
 | `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
 
 Sono dodici test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali

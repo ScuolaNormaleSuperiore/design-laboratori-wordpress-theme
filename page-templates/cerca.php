@@ -220,19 +220,35 @@ $dli_has_searched = ( $dli_query instanceof WP_Query );
 										$dli_type_label = dli_get_post_type_label( $dli_result['type'] );
 										?>
 										<div role="listitem" class="border-bottom py-3">
-											<a class="d-flex justify-content-between align-items-center text-decoration-none" href="<?php echo esc_url( $dli_result['link'] ); ?>">
+											<?php $dli_result_external = ! empty( $dli_result['link_external'] ); ?>
+											<?php if ( '' !== $dli_result['link'] ) : ?>
+												<a class="d-flex justify-content-between align-items-center text-decoration-none" href="<?php echo esc_url( $dli_result['link'] ); ?>"<?php echo $dli_result_external ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
+											<?php else : ?>
+												<div class="d-flex justify-content-between align-items-center">
+											<?php endif; ?>
 												<span>
-													<span class="d-block h6 mb-1"><?php echo esc_html( $dli_result['title'] ); ?></span>
+													<span class="d-block h6 mb-1">
+														<?php echo esc_html( $dli_result['title'] ); ?>
+														<?php if ( '' !== $dli_result['link'] && $dli_result_external ) : ?>
+															<span class="visually-hidden">(<?php echo esc_html__( 'si apre in una nuova finestra', 'design_laboratori_italia' ); ?>)</span>
+														<?php endif; ?>
+													</span>
 													<span class="d-block text-secondary mb-1"><?php echo esc_html( wp_trim_words( $dli_result['description'], DLI_ACF_SHORT_DESC_LENGTH ) ); ?></span>
 													<span class="d-block text-uppercase fw-semibold small">
 														<span class="visually-hidden"><?php esc_html_e( 'Tipo di contenuto:', 'design_laboratori_italia' ); ?></span>
 														<?php echo esc_html( $dli_type_label ); ?>
 													</span>
 												</span>
-												<svg class="icon icon-primary flex-shrink-0 ms-3" aria-hidden="true" focusable="false">
-													<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right' ); ?>"></use>
-												</svg>
-											</a>
+												<?php if ( '' !== $dli_result['link'] ) : ?>
+													<svg class="icon icon-primary flex-shrink-0 ms-3" aria-hidden="true" focusable="false">
+														<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-chevron-right' ); ?>"></use>
+													</svg>
+												<?php endif; ?>
+											<?php if ( '' !== $dli_result['link'] ) : ?>
+												</a>
+											<?php else : ?>
+												</div>
+											<?php endif; ?>
 										</div>
 									<?php endwhile; ?>
 								</div>

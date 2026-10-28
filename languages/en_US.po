@@ -1672,6 +1672,10 @@ msgctxt "Post Type General Name"
 msgid "Risorse Tecniche"
 msgstr "Technical Resources"
 
+#: single-pubblicazione.php:150
+msgid "Scarica la pubblicazione"
+msgstr "Download the publication"
+
 #: inc/classes/class-spinoffmanager.php:88
 msgctxt "Post Type General Name"
 msgid "Spin-off"

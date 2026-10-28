@@ -66,16 +66,9 @@ class DLI_Publication_Detail_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
-	 * The detail page is switched on by the configuration.
+	 * The content type is public, searchable and available in menus.
 	 */
-	public function test_detail_is_enabled() {
-		$this->assertTrue( DLI_PUBLICATION_HAS_DETAIL );
-	}
-
-	/**
-	 * With the detail active the content type is public, searchable and available in menus.
-	 */
-	public function test_post_type_is_public_when_the_detail_is_active() {
+	public function test_post_type_is_public_searchable_and_in_menus() {
 		$post_type = get_post_type_object( PUBLICATION_POST_TYPE );
 
 		$this->assertTrue( $post_type->publicly_queryable );
@@ -114,23 +107,26 @@ class DLI_Publication_Detail_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
-	 * With the detail active, anonymous visitors are not blocked on the publications REST route.
+	 * Anonymous visitors can read the publications through the REST API, like the other public content.
 	 *
-	 * The REST API can still be disabled as a whole by the theme setting: this only checks that the
-	 * publication-specific restriction is off, and that the route exists.
+	 * The REST API can still be disabled as a whole by the theme setting for users who are not logged in:
+	 * this checks that nothing specific to the publications restricts the route.
 	 */
-	public function test_publications_rest_route_is_not_restricted_for_anonymous_visitors() {
+	public function test_publications_rest_route_is_readable_by_anonymous_visitors() {
 		wp_set_current_user( 0 );
+		$this->create_publication( array( 'post_title' => 'Pubblicazione via REST' ), array( 'anno' => 2024 ) );
 
 		$this->assertArrayHasKey( '/wp/v2/' . PUBLICATION_POST_TYPE, rest_get_server()->get_routes() );
-		$request = new WP_REST_Request( 'GET', '/wp/v2/' . PUBLICATION_POST_TYPE );
-		$this->assertNull( dli_restrict_publication_rest_access( null, rest_get_server(), $request ) );
+		$response = rest_do_request( new WP_REST_Request( 'GET', '/wp/v2/' . PUBLICATION_POST_TYPE ) );
+
+		$this->assertSame( 200, $response->get_status() );
+		$this->assertContains( 'Pubblicazione via REST', wp_list_pluck( wp_list_pluck( $response->get_data(), 'title' ), 'rendered' ) );
 	}
 
 	/**
 	 * The archive page of the publications is listed among the archive pages of the site.
 	 */
-	public function test_publications_archive_is_listed_when_the_detail_is_active() {
+	public function test_publications_archive_is_listed_among_the_archive_pages() {
 		$this->assertArrayHasKey( SLUG_PUBBLICAZIONI_IT, dli_get_pt_archive_slugs() );
 		$this->assertSame( PUBLICATION_POST_TYPE, dli_get_pt_archive_slugs()[ SLUG_PUBBLICAZIONI_IT ] );
 	}
@@ -162,7 +158,7 @@ class DLI_Publication_Detail_Integration_Test extends DLI_Integration_Test_Case 
 		$this->assertMatchesRegularExpression( '#<a href="' . preg_quote( get_permalink( $linked ), '#' ) . '">Ada Lovelace</a>#', $html );
 		$this->assertStringContainsString( 'Alan Turing', $html );
 		$this->assertStringNotContainsString( get_permalink( $no_page ), $html, 'An author with the detail page disabled has no link.' );
-		$this->assertMatchesRegularExpression( '#<a class="btn btn-primary btn-icon" href="https://example.org/pubblicazione" target="_blank" rel="noopener noreferrer">#', $html );
+		$this->assertMatchesRegularExpression( '#<a class="btn btn-primary btn-icon me-2 mb-2" href="https://example.org/pubblicazione" target="_blank" rel="noopener noreferrer">#', $html );
 		$this->assertStringContainsString( 'pubblicazione-copertina-placeholder', $html, 'Without a cover the placeholder is shown.' );
 	}
 
@@ -237,6 +233,37 @@ class DLI_Publication_Detail_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
+	 * The attached PDF is offered as a second button, next to the external link, with its type.
+	 */
+	public function test_attachment_is_offered_as_a_download_button() {
+		$pdf = self::factory()->attachment->create( array( 'post_mime_type' => 'application/pdf' ) );
+		update_post_meta( $pdf, '_wp_attached_file', '2026/10/articolo-completo.pdf' );
+		$publ_id = $this->create_publication( array( 'post_title' => 'Con PDF' ), array( 'anno' => 2024, 'allegato' => $pdf ) );
+
+		$html = $this->render_single( $publ_id );
+
+		$this->assertStringContainsString( 'href="' . wp_get_attachment_url( $pdf ) . '"', $html );
+		$this->assertStringContainsString( esc_html__( 'Scarica la pubblicazione', 'design_laboratori_italia' ), $html );
+		$this->assertStringContainsString( '(PDF', $html );
+		$this->assertStringContainsString( 'id="link"', $html );
+	}
+
+	/**
+	 * Without a file there is no download button, and a protected publication does not offer it either.
+	 */
+	public function test_attachment_button_is_absent_without_file_and_when_protected() {
+		$pdf = self::factory()->attachment->create( array( 'post_mime_type' => 'application/pdf' ) );
+		update_post_meta( $pdf, '_wp_attached_file', '2026/10/riservato.pdf' );
+		$none      = $this->create_publication( array( 'post_title' => 'Senza file' ), array( 'anno' => 2024 ) );
+		$protected = $this->create_publication( array( 'post_title' => 'Con PDF protetto', 'post_password' => 'segreto' ), array( 'anno' => 2024, 'allegato' => $pdf ) );
+
+		$this->assertStringNotContainsString( esc_html__( 'Scarica la pubblicazione', 'design_laboratori_italia' ), $this->render_single( $none ) );
+		$html = $this->render_single( $protected );
+		$this->assertStringNotContainsString( esc_html__( 'Scarica la pubblicazione', 'design_laboratori_italia' ), $html );
+		$this->assertStringNotContainsString( 'riservato.pdf', $html );
+	}
+
+	/**
 	 * The cover uses the alternative text written in the media library, or a neutral text without it.
 	 */
 	public function test_cover_uses_the_alternative_text_of_the_attachment() {
@@ -259,7 +286,9 @@ class DLI_Publication_Detail_Integration_Test extends DLI_Integration_Test_Case 
 		$this->assertMatchesRegularExpression( '#class="figure-img img-fluid rounded shadow-sm mb-0" src="[^"]+copertina-' . $with_alt . '\.png" alt="Copertina rossa con titolo"#', $html_alt );
 		$this->assertStringNotContainsString( 'pubblicazione-copertina-placeholder', $html_alt );
 
+		// The neutral text is translated: compare with the translation, whatever the language of the test site.
+		$neutral_alt = __( 'Copertina della pubblicazione', 'design_laboratori_italia' );
 		$html_no_alt = $this->render_single( $no_alt );
-		$this->assertMatchesRegularExpression( '#src="[^"]+copertina-' . $no_alt . '\.png" alt="Copertina della pubblicazione"#', $html_no_alt );
+		$this->assertMatchesRegularExpression( '#src="[^"]+copertina-' . $no_alt . '\.png" alt="' . preg_quote( esc_attr( $neutral_alt ), '#' ) . '"#', $html_no_alt );
 	}
 }

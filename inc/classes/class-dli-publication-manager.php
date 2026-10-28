@@ -48,7 +48,7 @@ class DLI_Publication_Manager {
 	 * @return void
 	 */
 	public function maybe_flush_rewrite_rules() {
-		if ( ! DLI_PUBLICATION_HAS_DETAIL || get_option( 'dli_publication_rules_version' ) === self::REWRITE_RULES_VERSION ) {
+		if ( get_option( 'dli_publication_rules_version' ) === self::REWRITE_RULES_VERSION ) {
 			return;
 		}
 		flush_rewrite_rules();
@@ -111,13 +111,13 @@ class DLI_Publication_Manager {
 			'hierarchical'        => false,
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
-			'rewrite'             => DLI_PUBLICATION_HAS_DETAIL ? array( 'slug' => PUBLICATION_POST_TYPE ) : false,
+			'rewrite'             => array( 'slug' => PUBLICATION_POST_TYPE ),
 			'query_var'           => false,
 			'show_ui'             => true,
 			'public'              => true,
-			'publicly_queryable'  => DLI_PUBLICATION_HAS_DETAIL,
-			'exclude_from_search' => ! DLI_PUBLICATION_HAS_DETAIL,
-			'show_in_nav_menus'   => DLI_PUBLICATION_HAS_DETAIL,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'show_in_nav_menus'   => true,
 			'show_in_menu'        => true,
 			'menu_position'       => 6,
 			'menu_icon'           => 'dashicons-book',
@@ -223,6 +223,56 @@ class DLI_Publication_Manager {
 							),
 							'default_value'     => '',
 							'placeholder'       => '',
+						),
+						array(
+							'key'               => 'field_6a3c9e0b1d4f3',
+							'label'             => 'Allegato',
+							'name'              => 'allegato',
+							'aria-label'        => '',
+							'type'              => 'file',
+							'instructions'      => 'File PDF della pubblicazione. Il pulsante della scheda lo offre in download; se la scelta qui sotto è «Link ad allegato» il titolo nelle liste porta al file.',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'return_format'     => 'array',
+							'library'           => 'all',
+							'min_size'          => '',
+							'max_size'          => '',
+							'mime_types'        => 'pdf',
+						),
+						array(
+							'key'               => 'field_6a3c9e0b1d4f2',
+							'label'             => 'Link dettaglio',
+							'name'              => 'link_dettaglio',
+							'aria-label'        => '',
+							'type'              => 'select',
+							'instructions'      => 'Dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel. «Sito web» usa il campo Url; «Link ad allegato» usa il campo Allegato. La scheda resta comunque raggiungibile dal suo indirizzo.',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'choices'           => array(
+								DLI_ITEM_LINK['DETAIL_PAGE'] => 'Scheda dettaglio',
+								DLI_ITEM_LINK['WEBSITE'] => 'Sito web',
+								DLI_ITEM_LINK['ATTACHMENT'] => 'Link ad allegato',
+							),
+							'default_value'     => DLI_ITEM_LINK['DETAIL_PAGE'],
+							'return_format'     => 'value',
+							'multiple'          => 0,
+							'allow_null'        => 0,
+							'allow_in_bindings' => 0,
+							'ui'                => 0,
+							'ajax'              => 0,
+							'placeholder'       => '',
+							'create_options'    => 0,
+							'save_options'      => 0,
 						),
 						array(
 							'key'               => 'field_63e6d1ff4bf3c',

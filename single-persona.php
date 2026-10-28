@@ -354,20 +354,28 @@ $dli_pubblicazioni = new WP_Query(
 								$dli_pubblicazioni->the_post();
 								$dli_publication_id    = get_the_ID();
 								$dli_publication_title = get_the_title( $dli_publication_id );
-								$dli_url               = dli_get_field( 'url' );
+								$dli_link              = dli_get_publication_link( $dli_publication_id );
 								?>
 								<li class="py-3 border-bottom">
 									<h4 class="h6 mb-1">
 										<svg class="icon icon-sm icon-primary align-top" aria-hidden="true" focusable="false">
 											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-note' ); ?>"></use>
 										</svg>
-										<?php if ( $dli_url ) : ?>
-											<a href="<?php echo esc_url( $dli_url ); ?>"><?php echo esc_html( $dli_publication_title ); ?></a>
-										<?php else : ?>
-											<?php echo esc_html( $dli_publication_title ); ?>
-										<?php endif; ?>
+										<?php
+										get_template_part(
+											'template-parts/common/linked-title',
+											null,
+											array(
+												'title'    => $dli_publication_title,
+												'url'      => $dli_link['url'],
+												'external' => $dli_link['external'],
+											)
+										);
+										?>
 									</h4>
-									<div class="mb-0 text-secondary"><?php echo wp_kses_post( wpautop( do_shortcode( get_the_content() ) ) ); ?></div>
+									<?php if ( ! post_password_required() ) : ?>
+										<div class="mb-0 text-secondary"><?php echo wp_kses_post( wpautop( do_shortcode( get_the_content() ) ) ); ?></div>
+									<?php endif; ?>
 								</li>
 								<?php
 							}

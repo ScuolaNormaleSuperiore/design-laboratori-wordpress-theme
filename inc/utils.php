@@ -296,14 +296,15 @@ if ( ! function_exists( 'dli_manage_item_link' ) ) {
 		$link_type = dli_get_field( 'link_dettaglio', $item );
 		switch ( $link_type ) {
 			case DLI_ITEM_LINK['WEBSITE']:
-				$website = dli_get_field( 'sitoweb', $item );
+				// Events and news have a dedicated field; a publication keeps its external link in `url`.
+				$website = dli_get_field( PUBLICATION_POST_TYPE === get_post_type( $item ) ? 'url' : 'sitoweb', $item );
 				if ( $website ) {
 					$item_link = $website;
 				}
 				break;
 			case DLI_ITEM_LINK['ATTACHMENT']:
 				$allegato = dli_get_field( 'allegato', $item );
-				if ( $allegato ) {
+				if ( is_array( $allegato ) && ! empty( $allegato['url'] ) ) {
 					$item_link = $allegato['url'];
 				}
 				break;
@@ -411,8 +412,9 @@ if ( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 		$page_title     = $page ? $page->post_title : '';
 		$page_link      = $page ? get_permalink( $page->ID ) : '';
 		$post_title     = get_the_title( $item );
-		$link_pubbl     = dli_get_field( 'url', $item );
-		$link_pubbl     = $link_pubbl ? $link_pubbl : '';
+		$link_pubbl     = dli_get_publication_link( $item );
+		// A password-protected publication shows only its title and type: no description, no content.
+		$is_protected = post_password_required( $item );
 		// @TODO: Popolare $result e non ridefinirlo.
 		$result = array(
 			'id'            => $item->ID,
@@ -423,9 +425,10 @@ if ( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 			'order_date'    => dli_get_post_order_date( $item ),
 			'orario_inizio' => null,
 			'title'         => $post_title,
-			'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
-			'full_content'  => get_the_content( $item ),
-			'link'          => $link_pubbl,
+			'description'   => $is_protected ? '' : wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
+			'full_content'  => $is_protected ? '' : get_the_content( $item ),
+			'link'          => $link_pubbl['url'],
+			'link_external' => $link_pubbl['external'],
 			'image_url'     => $image_metadata['image_url'],
 			'image_alt'     => $image_metadata['image_alt'],
 			'image_title'   => $image_metadata['image_title'],
@@ -1505,9 +1508,6 @@ if ( ! function_exists( 'dli_get_pt_archive_slugs' ) ) {
 			if ( PEOPLE_TYPE_POST_TYPE === $pt ) {
 				continue;
 			}
-			if ( PUBLICATION_POST_TYPE === $pt && ! DLI_PUBLICATION_HAS_DETAIL ) {
-				continue;
-			}
 			foreach ( $items as $lang => $slug ) {
 				$slugs[ $slug ] = $pt;
 			}
@@ -1834,6 +1834,7 @@ if ( ! function_exists( 'dli_translate' ) ) {
 		$lang        = dli_current_language();
 		$translation = $wpdb->get_var(
 			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Exception decided by the maintainer (2026-10-28): the table name is built from $wpdb->prefix and a constant, not from input. To be fixed with the %i placeholder in the PHPCS clean-up plan.
 				"SELECT translation FROM $table WHERE label = %s AND domain = %s AND lang = %s LIMIT 1",
 				$text,
 				$domain,
@@ -1845,6 +1846,7 @@ if ( ! function_exists( 'dli_translate' ) ) {
 			return $translation;
 		} else {
 			// Altrimenti, restituisci la traduzione standard fatta con gettext.
+			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText,WordPress.WP.I18n.NonSingularStringLiteralDomain -- Exception decided by the maintainer (2026-10-28): the text is a literal at every call site; this helper only looks it up at run time. To be revisited in the PHPCS clean-up plan.
 			return __( $text, $domain );
 		}
 	}

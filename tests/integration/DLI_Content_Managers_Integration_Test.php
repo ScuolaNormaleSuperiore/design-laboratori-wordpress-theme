@@ -24,6 +24,22 @@ class DLI_Content_Managers_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * A field of an ACF field group, by name.
+	 *
+	 * @param string $group_key The key of the field group.
+	 * @param string $name      The name of the field.
+	 * @return array The field.
+	 */
+	private function get_field_by_name( $group_key, $name ) {
+		foreach ( acf_get_fields( $group_key ) as $field ) {
+			if ( $name === $field['name'] ) {
+				return $field;
+			}
+		}
+		$this->fail( "The field group $group_key has no field named $name." );
+	}
+
+	/**
 	 * The managers are loaded with the theme prefix.
 	 */
 	public function test_manager_classes_have_the_theme_prefix() {
@@ -101,8 +117,33 @@ class DLI_Content_Managers_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertIsArray( $group );
 		$this->assertSame( PUBLICATION_POST_TYPE, $group['location'][0][0]['value'] );
 		$this->assertSame(
-			array( 'anno', 'autori', 'url', 'promuovi_in_carousel', 'promuovi_in_home' ),
+			array( 'anno', 'autori', 'url', 'allegato', 'link_dettaglio', 'promuovi_in_carousel', 'promuovi_in_home' ),
 			$this->get_field_names( 'group_63ca5c47b914d' )
 		);
+	}
+
+	/**
+	 * A publication chooses where its title leads in the lists, like events and news.
+	 */
+	public function test_publication_link_choice_field() {
+		$field = $this->get_field_by_name( 'group_63ca5c47b914d', 'link_dettaglio' );
+
+		$this->assertSame( 'select', $field['type'] );
+		$this->assertSame( DLI_ITEM_LINK['DETAIL_PAGE'], $field['default_value'] );
+		$this->assertSame(
+			array( DLI_ITEM_LINK['DETAIL_PAGE'], DLI_ITEM_LINK['WEBSITE'], DLI_ITEM_LINK['ATTACHMENT'] ),
+			array_keys( $field['choices'] )
+		);
+	}
+
+	/**
+	 * The attachment of a publication is a PDF file, returned as an array.
+	 */
+	public function test_publication_attachment_field_accepts_only_pdf() {
+		$field = $this->get_field_by_name( 'group_63ca5c47b914d', 'allegato' );
+
+		$this->assertSame( 'file', $field['type'] );
+		$this->assertSame( 'array', $field['return_format'] );
+		$this->assertSame( 'pdf', $field['mime_types'] );
 	}
 }

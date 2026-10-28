@@ -20,6 +20,18 @@ $dli_password_required = post_password_required( $post );
 $dli_anno      = dli_get_field( 'anno' );
 $dli_authors   = $dli_password_required ? array() : dli_get_publication_authors( $post );
 $dli_url       = $dli_password_required ? '' : dli_get_field( 'url' );
+$dli_file      = $dli_password_required ? null : dli_get_field( 'allegato' );
+$dli_file_url  = is_array( $dli_file ) && ! empty( $dli_file['url'] ) ? $dli_file['url'] : '';
+// Type and size of the file, when known: "PDF, 1.2 MB".
+$dli_file_info = '' === $dli_file_url ? '' : implode(
+	', ',
+	array_filter(
+		array(
+			strtoupper( pathinfo( (string) wp_parse_url( $dli_file_url, PHP_URL_PATH ), PATHINFO_EXTENSION ) ),
+			! empty( $dli_file['filesize'] ) ? size_format( (int) $dli_file['filesize'] ) : '',
+		)
+	)
+);
 $dli_content   = trim( $post->post_content );
 $dli_has_text  = ! $dli_password_required && '' !== $dli_content && '.' !== $dli_content;
 $dli_tipologia = dli_get_post_main_category( $post, PUBLICATION_TYPE_TAXONOMY );
@@ -121,16 +133,30 @@ if ( '' === $dli_image_alt ) {
 						</article>
 					<?php endif; ?>
 
-					<?php if ( $dli_url ) : ?>
+					<?php if ( $dli_url || $dli_file_url ) : ?>
 						<article id="link" class="mb-4">
 							<h3 class="h4 visually-hidden"><?php echo esc_html__( 'Link', 'design_laboratori_italia' ); ?></h3>
-							<a class="btn btn-primary btn-icon" href="<?php echo esc_url( $dli_url ); ?>" target="_blank" rel="noopener noreferrer">
-								<span><?php echo esc_html__( 'Consulta la pubblicazione', 'design_laboratori_italia' ); ?></span>
-								<span class="visually-hidden">(<?php echo esc_html__( 'si apre in una nuova finestra', 'design_laboratori_italia' ); ?>)</span>
-								<svg class="icon icon-sm icon-inverse ms-1" aria-hidden="true" focusable="false">
-									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-external-link' ); ?>"></use>
-								</svg>
-							</a>
+							<?php if ( $dli_url ) : ?>
+								<a class="btn btn-primary btn-icon me-2 mb-2" href="<?php echo esc_url( $dli_url ); ?>" target="_blank" rel="noopener noreferrer">
+									<span><?php echo esc_html__( 'Consulta la pubblicazione', 'design_laboratori_italia' ); ?></span>
+									<span class="visually-hidden">(<?php echo esc_html__( 'si apre in una nuova finestra', 'design_laboratori_italia' ); ?>)</span>
+									<svg class="icon icon-sm icon-inverse ms-1" aria-hidden="true" focusable="false">
+										<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-external-link' ); ?>"></use>
+									</svg>
+								</a>
+							<?php endif; ?>
+							<?php if ( $dli_file_url ) : ?>
+								<a class="btn btn-outline-primary btn-icon mb-2" href="<?php echo esc_url( $dli_file_url ); ?>" target="_blank" rel="noopener noreferrer">
+									<span><?php echo esc_html__( 'Scarica la pubblicazione', 'design_laboratori_italia' ); ?></span>
+									<?php if ( '' !== $dli_file_info ) : ?>
+										<span>(<?php echo esc_html( $dli_file_info ); ?>)</span>
+									<?php endif; ?>
+									<span class="visually-hidden">(<?php echo esc_html__( 'si apre in una nuova finestra', 'design_laboratori_italia' ); ?>)</span>
+									<svg class="icon icon-sm ms-1" aria-hidden="true" focusable="false">
+										<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-download' ); ?>"></use>
+									</svg>
+								</a>
+							<?php endif; ?>
 						</article>
 					<?php endif; ?>
 				</div>

@@ -5,7 +5,6 @@ parameters:
   dynamicConstantNames:
     - ABSPATH
     - CMB2_VERSION
-    - DLI_PUBLICATION_HAS_DETAIL
     - DLI_POST_TYPES_TO_TRANSLATE
   level: 4
   parallel:
