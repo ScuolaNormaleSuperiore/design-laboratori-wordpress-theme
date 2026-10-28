@@ -36,6 +36,26 @@ Quando eseguirli:
 - **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
 
 
+### Eseguire un solo test
+
+Ha senso e funziona con tutte e tre le suite. Serve mentre si sviluppa un test o si indaga su un fallimento:
+si risparmia tempo e si vede un solo risultato. Non sostituisce la suite completa, che resta quella da lanciare prima di un commit
+o di una release. I comandi, tutti da lanciare dalla radice del tema, sono stati provati:
+
+| Suite | Un solo file | Un solo test | Elencare i test disponibili |
+|---|---|---|---|
+| Unit | `composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php` | `composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name` | `composer test:unit -- --list-tests` |
+| Integrazione | `composer test:integration -- tests/integration/DLI_Spike_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `vendor/bin/phpunit -c phpunit-integration.xml --list-tests` |
+| E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:44` oppure `composer test:e2e -- -g "wrong nonce"` | `composer test:e2e -- --list` |
+
+Regole utili:
+- Tutto ciò che sta dopo `--` viene passato allo strumento che esegue i test (PHPUnit o Playwright).
+- Con PHPUnit, `--filter` accetta un nome intero o una parte (`--filter DLI_Utils_Unit_Test` esegue tutta la classe) e anche la forma `Classe::metodo`.
+- **Se il filtro non trova nulla**, PHPUnit scrive «No tests executed!» ma esce con codice `0`: un errore di battitura sembra un successo. Guardare sempre il numero di test eseguiti. Playwright, nello stesso caso, esce con codice `1`.
+- Un test di integrazione o E2E isolato può passare da solo e fallire dentro la suite (o il contrario) se dipende dallo stato lasciato da un altro: ogni test di integrazione gira in una transazione annullata a fine test, mentre per l'E2E la baseline si ripristina prima e dopo ogni corsa.
+- Il dettaglio di ciascuna suite (altre opzioni, ripetizioni, variabili) è nel suo README: [unit](unit/README.md#eseguire-un-solo-test), [integrazione](integration/README.md#eseguire-un-solo-test), [E2E](e2e/README.md#eseguire-un-solo-test).
+
+
 ## Cosa controlla il commit
 
 Gli hook di Git stanno in `.githooks/` e si attivano una volta per clone con `git config core.hooksPath .githooks`. A ogni commit scattano sei controlli, nell'ordine della tabella:

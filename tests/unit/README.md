@@ -31,14 +31,29 @@ composer test:unit
 
 `composer test` lancia PHPUnit con [`../../phpunit.xml`](../../phpunit.xml), cioè la stessa suite `unit`; i test di integrazione hanno un
 comando a parte (vedi i [test di integrazione](../integration/README.md)).
-Per eseguire un solo file o un solo test:
+Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
+
+
+### Eseguire un solo test
+
+Ha senso: la suite dura meno di un secondo, ma un solo test rende l'output leggibile quando si sta scrivendo o correggendo
+un test. Comandi provati, dalla radice del tema:
 
 ```sh
-vendor/bin/phpunit tests/unit/DLI_Utils_Unit_Test.php
-vendor/bin/phpunit --filter test_monthname_for_valid_months
+composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php                                   # un solo file
+composer test:unit -- --filter DLI_Utils_Unit_Test                                         # una sola classe
+composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name          # un solo test
+composer test:unit -- --filter DLI_Utils_Unit_Test::test_persona_display_name_joins_first_and_last_name
+composer test:unit -- --list-tests                                                         # tutti i test, come Classe::metodo
 ```
 
-Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
+Tutto ciò che sta dopo `--` va a PHPUnit. Gli stessi argomenti funzionano con `vendor/bin/phpunit` (usa lo stesso `phpunit.xml`), per
+esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
+
+- `--filter` accetta un nome intero o una parte: basta un frammento del nome per eseguire più test.
+- **Se il filtro non trova nulla**, PHPUnit scrive `No tests executed!` ma esce con codice `0`, quindi un errore di battitura sembra
+  un successo: controllare il numero di test eseguiti (`OK (1 test, …)`).
+- Un test isolato non sostituisce la suite: l'hook `pre-commit` esegue comunque tutta la suite unit.
 
 
 ## Cosa copre

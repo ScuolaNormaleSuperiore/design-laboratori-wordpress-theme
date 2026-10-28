@@ -62,6 +62,39 @@ composer test:e2e -- config-permissions    # una sola specifica (le opzioni dopo
 Il sito deve essere acceso in Local. Una corsa dura circa 40 secondi. Dopo la corsa il sito è alla baseline.
 
 
+### Eseguire un solo test
+
+Ha senso, per esempio per riprovare un test segnalato come «flaky» o per sviluppare una specifica nuova. Tutto ciò che sta dopo `--`
+va a Playwright. Dalla radice del tema:
+
+```sh
+composer test:e2e -- tests/e2e/specs/admin-login.spec.js                  # un solo file (qui contiene un solo test)
+composer test:e2e -- admin-login                                          # lo stesso: un frammento del nome del file
+composer test:e2e -- tests/e2e/specs/contact-form.spec.js:44              # il test che inizia alla riga 44
+composer test:e2e -- -g "wrong nonce"                                     # per titolo (espressione regolare sul titolo)
+composer test:e2e -- --list                                               # elenca i test senza eseguirli
+composer test:e2e -- tests/e2e/specs/admin-login.spec.js --repeat-each=5  # lo ripete 5 volte (per capire se è instabile)
+composer test:e2e:headed -- admin-login                                   # con il browser visibile
+```
+
+- `--list` non esegue nulla e non ripristina la baseline: è il modo sicuro per controllare che il filtro scelga i test voluti
+  (`--list -g "wrong nonce"`, `--list admin-login`). Se non trova nulla scrive `Total: 0 tests` ed esce con codice `1`.
+- Il numero di riga (`:44`) è quello che compare nell'errore, ma cambia quando si modifica il file: per un riferimento stabile
+  usare il filtro per titolo `-g`.
+- **Anche per un solo test la suite ripristina la baseline prima e dopo** ([`global-setup.js`](global-setup.js) e
+  [`global-teardown.js`](global-teardown.js)): il tempo totale è quello del test più alcuni secondi di ripristino.
+- Per saltare il ripristino mentre si fa il debug di una specifica, impostare `DLI_E2E_SKIP_RESET=1`. Il sito resta allora nello stato in cui
+  il test lo lascia: prima di una corsa vera ripristinarlo (vedi sotto) o lanciare la suite senza la variabile.
+
+  ```sh
+  DLI_E2E_SKIP_RESET=1 composer test:e2e -- admin-login      # Git Bash
+  ```
+  ```powershell
+  $env:DLI_E2E_SKIP_RESET = '1'; composer test:e2e -- admin-login   # PowerShell
+  ```
+- Un test E2E isolato non sostituisce la suite: due test possono influenzarsi se uno lascia dati, e solo la corsa completa lo mostra.
+
+
 ## Utenti di prova
 
 La baseline ([`fixtures/baseline.sql`](fixtures/baseline.sql)) contiene questi utenti. La password è la stessa per tutti ed è volutamente
@@ -79,8 +112,25 @@ un sito vero.**
 
 [`fixtures/baseline.sql`](fixtures/baseline.sql) è un dump del database di `dli-wp-e2e` in uno stato noto: tema, ACF, ACF OpenStreetMap
 Field e Polylang attivi, permalink `/%postname%/`, lingue `it` ed `en`, le 42 pagine e le voci di menu create
-dall'attivazione del tema, i tre utenti qui sopra e nessun altro contenuto. Non contiene dati personali reali,
-transient né sessioni.
+dall'attivazione del tema, i tre utenti qui sopra e i contenuti di esempio elencati sotto. Non contiene dati
+personali reali, transient né sessioni.
+
+### Contenuti di esempio
+
+Tutti inventati, assegnati all'utente `e2e-admin`. Servono alle specifiche sulle pubblicazioni e sui loro autori:
+
+| Contenuto | Lingua | Cosa lo distingue |
+|---|---|---|
+| Persona «Autore Uno E2E» | it | scheda di dettaglio attiva |
+| Persona «Autore Due E2E» | it | `disattiva_pagina_dettaglio` attivo (autore senza link alla scheda) |
+| «Pubblicazione E2E completa» | it | anno 2024, due autori, link esterno, descrizione, tipologia «Articolo in rivista», in evidenza nella home |
+| «E2E complete publication» | en | traduzione della precedente, tipologia «Article in journal» |
+| «Pubblicazione E2E minima» | it | solo titolo e anno 2023, tipologia «Monografia»: senza autori, link esterno, descrizione né copertina |
+| «Pubblicazione E2E protetta» | it | protetta da password (`e2e-password`), un autore, link esterno, tipologia «Articolo in rivista» |
+
+Le tipologie di pubblicazione sono quelle create dall'attivazione del tema (non ne esistono altre). Le persone non hanno
+una tipologia, quindi non compaiono nell'elenco `/persone/`: servono solo come autori. Nessun contenuto ha una immagine
+in evidenza: i file dei media non sono nel dump, quindi la copertina si prova con i test di integrazione.
 
 
 ### Ripristino automatico

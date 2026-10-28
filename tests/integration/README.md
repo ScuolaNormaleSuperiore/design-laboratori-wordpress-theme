@@ -62,14 +62,32 @@ composer test:integration
 ```
 
 Il comando lancia prima [`support/fetch-test-plugins.php`](support/fetch-test-plugins.php) (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
-[`../../phpunit-integration.xml`](../../phpunit-integration.xml). Per un solo file o un solo test:
-
-```sh
-vendor/bin/phpunit -c phpunit-integration.xml --filter test_super_editor_role_exists
-```
+[`../../phpunit-integration.xml`](../../phpunit-integration.xml).
 
 Il codice di uscita è `0` se tutto passa, `1` altrimenti. Se manca un requisito la suite si ferma
 subito con un messaggio che dice cosa manca.
+
+
+### Eseguire un solo test
+
+Ha senso e funziona: ogni test gira in una transazione che viene annullata alla fine, quindi un test isolato non dipende da
+quelli che lo precedono e non lascia dati nel database di prova. Comandi provati, dalla radice del tema:
+
+```sh
+composer test:integration -- tests/integration/DLI_Spike_Integration_Test.php                       # un solo file
+composer test:integration -- --filter DLI_Content_Managers_Integration_Test                         # una sola classe
+composer test:integration -- --filter test_super_editor_role_exists                                 # un solo test
+composer test:integration -- --filter DLI_Content_Managers_Integration_Test::test_publication_post_type_and_taxonomy_are_registered
+vendor/bin/phpunit -c phpunit-integration.xml --filter test_super_editor_role_exists                # senza passare da Composer
+vendor/bin/phpunit -c phpunit-integration.xml --list-tests                                          # tutti i test, come Classe::metodo
+```
+
+- Con `composer test:integration` gli argomenti dopo `--` arrivano a PHPUnit, ma lo script lancia prima `support/fetch-test-plugins.php`
+  (pochi secondi in più; scarica ACF e Polylang solo al primo avvio). Con `vendor/bin/phpunit -c phpunit-integration.xml` si salta quel
+  passaggio: usarlo solo se i plugin di test sono già stati preparati.
+- `--filter` accetta un nome intero o una parte, anche nella forma `Classe::metodo`.
+- **Se il filtro non trova nulla**, PHPUnit scrive `No tests executed!` ma esce con codice `0`: guardare sempre il numero di test eseguiti.
+- Servono gli stessi requisiti della suite completa (database `dli_wordpress_test`, `wordpress-develop`): un solo test non li evita.
 
 
 ### Plugin di test
