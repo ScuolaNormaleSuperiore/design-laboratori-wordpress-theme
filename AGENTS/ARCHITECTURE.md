@@ -40,6 +40,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `inc/pwa.php`: PWA web app manifest — registers the `/manifest.json` virtual endpoint (same rewrite/query_vars/template_redirect pattern as the sitemap endpoints) and the related `<head>` tags (manifest link, theme-color, apple-touch-icon). No service worker.
 - `inc/captcha.php`: optional Really Simple CAPTCHA integration — provides explicit CAPTCHA challenge data and validation helpers for the Contact and Newsletter templates.
 - `inc/search-autocomplete.php`: site search autocomplete — opt-in, disabled by default (*WP → Configurazione → Altro → Ricerca nel sito*). Registers the public `GET /wp-json/dli/v1/suggest` REST route (namespace `dli/v1`), cached in transients, and enqueues `assets/js/search-autocomplete.js` on the `page-templates/cerca.php` template. `setup_rest_api()` in `inc/classes/class-labmanager.php` carries an explicit exception so this route stays reachable even when the "Abilita REST API" option is off.
+- `inc/publications.php`: helpers of the publications shared by the detail page, the archive and the home cards. `dli_get_publication_authors()` returns the authors that can be shown (published persons with a name, with the link to their page unless the detail page is disabled). The detail address (`/pubblicazione/<slug>/`) is registered by `DLI_Publication_Manager`, which rewrites the rewrite rules once per `REWRITE_RULES_VERSION` (option `dli_publication_rules_version`) so that a site updating the theme needs no manual permalink save.
 - `phpcs.xml.dist`: PHP CodeSniffer rules.
 - `package.json`: frontend/development tooling dependencies.
 - `publiccode.yml`: public administration reuse catalog metadata.
@@ -56,7 +57,7 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 | Post type | Detail template | Listing template (`page-templates/`) |
 |---|---|---|
 | `persona`, `progetto`, `evento`, `notizia`, `brevetto`, `luogo`, `spinoff`, `risorsa-tecnica`, `indirizzo-di-ricerca` | `single-<slug>.php` | `persone`, `progetti`, `eventi`, `notizie`, `brevetti`, `luoghi`, `spinoff`, `risorse-tecniche`, `ricerca` |
-| `pubblicazione` | none (`DLI_PUBLICATION_HAS_DETAIL` is false) | `pubblicazioni.php` |
+| `pubblicazione` | `single-pubblicazione.php` (`DLI_PUBLICATION_HAS_DETAIL` is true) | `pubblicazioni.php` |
 | `banner`, `sponsor`, `tipologia-persona` | none (`public=false`) | none |
 
 - Core `post` (blog) is extended by `Post_Manager`; core `page` by `DLI_Page_Manager`.

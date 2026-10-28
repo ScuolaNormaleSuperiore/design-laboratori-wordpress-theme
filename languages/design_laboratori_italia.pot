@@ -211,6 +211,10 @@ msgstr ""
 msgid "Anno di deposito"
 msgstr ""
 
+#: single-pubblicazione.php:58
+msgid "Anno di pubblicazione:"
+msgstr ""
+
 #: page-templates/contatti.php:339
 msgid "Annulla"
 msgstr ""
@@ -288,6 +292,10 @@ msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:529
 msgid "attivo"
+msgstr ""
+
+#: single-pubblicazione.php:103
+msgid "Autori"
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:51
@@ -496,6 +504,10 @@ msgstr ""
 msgid "Conferma"
 msgstr ""
 
+#: single-pubblicazione.php:128
+msgid "Consulta la pubblicazione"
+msgstr ""
+
 #. Name of the template
 #: footer.php:49 footer.php:51 single-evento.php:151 single-evento.php:257
 #: single-indirizzo-di-ricerca.php:133 single-indirizzo-di-ricerca.php:220
@@ -515,6 +527,10 @@ msgstr ""
 
 #: template-parts/common/sezione-video.php:31
 msgid "cookie policy"
+msgstr ""
+
+#: single-pubblicazione.php:30
+msgid "Copertina della pubblicazione"
 msgstr ""
 
 #: page-templates/contatti.php:91
@@ -1623,6 +1639,10 @@ msgstr ""
 #: inc/classes/class-technicalresourcemanager.php:70
 msgctxt "Post Type General Name"
 msgid "Risorse Tecniche"
+msgstr ""
+
+#: single-pubblicazione.php:129
+msgid "si apre in una nuova finestra"
 msgstr ""
 
 #: inc/classes/class-spinoffmanager.php:88

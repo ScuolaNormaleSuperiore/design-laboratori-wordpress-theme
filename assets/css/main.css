@@ -338,3 +338,42 @@ html {
 	margin-left: 6px;
 	vertical-align: middle;
 }
+
+/* Scheda pubblicazione (single-pubblicazione.php) */
+
+/* Placeholder decorativo nell'hero: il pattern standard (width/height 100% + object-fit: cover)
+	segue l'altezza dell'hero e, con titoli lunghi (hero più alto), ingrandiva lo stemma
+	ritagliandolo ai lati. Qui resta alla scala naturale (16:9 a tutta larghezza della colonna),
+	ancorato in alto e sfumato in basso, così non si vede il bordo del ritaglio. */
+.hero-placeholder-scala-fissa {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	-webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+	mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+/* Sidebar con copertina e condivisione: resta ferma sotto l'intestazione mentre si legge il corpo. */
+.pubblicazione-sidebar {
+	top: 1rem;
+}
+
+/* Copertina nella sidebar: a tutta colonna su desktop; sotto lg la sidebar va sopra il corpo e una
+	copertina verticale a piena larghezza occuperebbe più di uno schermo, quindi si limita. Formato
+	naturale preservato (nessun object-fit). */
+.pubblicazione-copertina {
+	max-width: 12rem;
+}
+
+@media (min-width: 992px) {
+	.pubblicazione-copertina {
+		max-width: none;
+	}
+}
+
+/* Copertina mancante: placeholder-copertina-sns.png è uno stemma bianco semitrasparente su fondo
+	trasparente, il colore lo dà lo sfondo primario. */
+.pubblicazione-copertina-placeholder img {
+	background-color: var(--bsi-color-background-primary);
+}

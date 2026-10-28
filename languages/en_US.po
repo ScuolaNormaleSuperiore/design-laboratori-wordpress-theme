@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-10-26 15:09+0000\n"
+"PO-Revision-Date: 2026-10-28 13:22+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -216,6 +216,10 @@ msgstr "Year of foundation"
 msgid "Anno di deposito"
 msgstr "Deposit year"
 
+#: single-pubblicazione.php:58
+msgid "Anno di pubblicazione:"
+msgstr "Year of publication:"
+
 #: page-templates/contatti.php:339
 msgid "Annulla"
 msgstr "Cancel"
@@ -294,6 +298,10 @@ msgstr "Research activities"
 #: inc/admin/class-dli-tools-admin.php:529
 msgid "attivo"
 msgstr "active"
+
+#: single-pubblicazione.php:103
+msgid "Autori"
+msgstr "Authors"
 
 #: inc/classes/class-bannermanager.php:51
 msgid "Banner"
@@ -503,6 +511,10 @@ msgstr "I am happy to share this post"
 msgid "Conferma"
 msgstr "Confirmation"
 
+#: single-pubblicazione.php:128
+msgid "Consulta la pubblicazione"
+msgstr "View the publication"
+
 #. Name of the template
 #: footer.php:49 footer.php:51 single-evento.php:151 single-evento.php:257
 #: single-indirizzo-di-ricerca.php:133 single-indirizzo-di-ricerca.php:220
@@ -523,6 +535,10 @@ msgstr "Featured content"
 #: template-parts/common/sezione-video.php:31
 msgid "cookie policy"
 msgstr "cookie policy"
+
+#: single-pubblicazione.php:30
+msgid "Copertina della pubblicazione"
+msgstr "Publication cover"
 
 #: page-templates/contatti.php:91
 msgid "Copia del messaggio non inviata."
@@ -2247,6 +2263,10 @@ msgstr "Useful Links Section"
 #: inc/admin/class-dli-tools-admin.php:179
 msgid "Sezioni Strumenti DLI"
 msgstr "DLI Tools sections"
+
+#: single-pubblicazione.php:129
+msgid "si apre in una nuova finestra"
+msgstr "opens in a new window"
 
 #: page-templates/mappasito.php:63
 msgid "Site Map in English"

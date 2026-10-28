@@ -54,7 +54,9 @@ define( 'DLI_TEXT_TEMPLATE_ACTIVE_EN', ' [template active]' );
 
 // Feature flags.
 // Set to true only if a single-pubblicazione.php template exists and detail pages are intentionally exposed.
-define( 'DLI_PUBLICATION_HAS_DETAIL', false );
+// When true the publications are public, searchable, have a readable address (/pubblicazione/<slug>/)
+// and their REST route is not restricted to the users who can edit posts.
+define( 'DLI_PUBLICATION_HAS_DETAIL', true );
 
 // CUSTOM CONTENT TYPES.
 define( 'BANNER_POST_TYPE', 'banner' );

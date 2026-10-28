@@ -15,6 +15,24 @@ Caratteristiche principali:
 2. `Contenuto` (testo descrittivo/scheda breve della pubblicazione)
 3. `Immagine in evidenza`
 
+## 2 bis. La scheda di dettaglio della pubblicazione
+Ogni pubblicazione ha una propria pagina pubblica, raggiungibile da un indirizzo leggibile del tipo
+`/pubblicazione/titolo-della-pubblicazione/` (in inglese `/en/pubblicazione/titolo-in-inglese/`).
+
+Cosa mostra la scheda:
+- in alto: la `Tipo pubblicazione`, il `Titolo` e l'`Anno`;
+- a sinistra: la copertina (l'`Immagine in evidenza`; se manca, un'immagine segnaposto con lo stemma) e i pulsanti di condivisione;
+- a destra, nell'ordine: `Autori`, `Descrizione` (il testo dell'editor) e il pulsante `Consulta la pubblicazione` (il campo `Url`, che si apre in una nuova finestra).
+
+Ogni blocco compare solo se ha un contenuto: una pubblicazione con solo titolo e anno mostra soltanto quelli.
+
+Regole da conoscere:
+- **Autori:** il nome è un link alla scheda della persona, tranne quando la persona ha `Disattiva pagina di dettaglio`: in quel caso il nome compare senza link. Una persona in bozza (non pubblicata) **non** compare tra gli autori.
+- **Descrizione `.`:** il testo formato da un solo punto (lo scrivono gli importatori quando manca una descrizione) viene considerato vuoto e il blocco `Descrizione` non compare. Il contenuto nel database non viene modificato.
+- **Testo alternativo della copertina:** è quello scritto nella libreria dei media (campo `Testo alternativo`). Se è vuoto, la scheda usa il testo generico «Copertina della pubblicazione»: per chi usa un lettore di schermo conviene compilarlo.
+- **Protetta da password:** se in `Visibilità` si imposta `Protetto da password`, la scheda mostra il titolo, l'anno e il modulo per inserire la password; autori, descrizione e link compaiono solo dopo averla inserita.
+- **Indirizzo:** deriva dal campo `Indirizzo` (slug) della pubblicazione, che WordPress compila dal titolo al primo salvataggio. Se lo si modifica su una pubblicazione già pubblicata, i link salvati altrove (altri siti, segnalibri) possono smettere di funzionare.
+
 ## 3. Dove si gestisce nel backoffice
 - Menu principale: `Pubblicazioni`.
 - Azioni disponibili:
@@ -93,6 +111,14 @@ Flusso consigliato:
 2. nelle schede `Progetto` pertinenti, valorizzare il campo `Pubblicazioni`;
 3. verificare in frontend che i collegamenti siano coerenti.
 
+## 9 bis. Dopo l'aggiornamento del tema su un sito già in uso
+La prima volta che una pagina del sito viene aperta dopo l'aggiornamento, il tema registra da solo i nuovi indirizzi delle pubblicazioni
+(`/pubblicazione/...`); non serve salvare i permalink a mano. Se per qualche motivo un indirizzo risponde «Pagina non trovata», si
+risolve da `Impostazioni > Permalink` premendo `Salva modifiche` senza cambiare nulla.
+
+Da questo momento le pubblicazioni sono anche leggibili tramite l'API REST di WordPress (`/wp-json/wp/v2/pubblicazione`), come i
+contenuti pubblici delle altre tipologie, a meno che l'API REST sia disattivata nelle opzioni del tema.
+
 ## 10. Configurazioni backoffice
 Nelle opzioni tema (`dli_options > Pubblicazioni`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
@@ -106,7 +132,8 @@ Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singol
 - `Tipo pubblicazione` assegnata
 - `Autori` valorizzati (se disponibili)
 - `Url` valorizzato e valido (se disponibile)
-- contenuto testuale coerente e aggiornato
+- contenuto testuale coerente e aggiornato (se non c'e' una descrizione, lasciare vuoto l'editor)
+- `Immagine in evidenza` con `Testo alternativo` compilato, se si carica una copertina
 - `Tag` coerenti (se usati)
 - eventuali relazioni con `Progetti` verificate
 - flag `Promuovi in Home` / `Promuovi in carousel` coerenti con la visibilita' desiderata

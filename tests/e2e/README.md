@@ -113,7 +113,9 @@ un sito vero.**
 [`fixtures/baseline.sql`](fixtures/baseline.sql) è un dump del database di `dli-wp-e2e` in uno stato noto: tema, ACF, ACF OpenStreetMap
 Field e Polylang attivi, permalink `/%postname%/`, lingue `it` ed `en`, le 42 pagine e le voci di menu create
 dall'attivazione del tema, i tre utenti qui sopra e i contenuti di esempio elencati sotto. Non contiene dati
-personali reali, transient né sessioni.
+personali reali, transient né sessioni. Contiene anche le regole degli indirizzi (`rewrite_rules`) già scritte, con quelle delle pubblicazioni
+(`/pubblicazione/<slug>/`), e l'opzione `dli_publication_rules_version`: se si cambia un indirizzo dei contenuti, la baseline va rigenerata
+(altrimenti il tema riscrive le regole alla prima richiesta di ogni corsa).
 
 ### Contenuti di esempio
 
@@ -178,6 +180,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `newsletter.spec.js` | pagina newsletter, campi del form e validazione browser dell'email non valida |
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
+| `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
 
 Sono dodici test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.

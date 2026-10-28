@@ -26,6 +26,33 @@ class DLI_Publication_Manager {
 		add_action( 'init', array( $this, 'add_post_type' ) );
 		// Customize the post type layout of the admin interface.
 		add_action( 'edit_form_after_title', array( $this, 'custom_layout' ) );
+		// Write the rewrite rules of the detail address once (after the post type is registered).
+		add_action( 'init', array( $this, 'maybe_flush_rewrite_rules' ), 20 );
+	}
+
+	/**
+	 * Version of the rewrite rules of the publications.
+	 *
+	 * Raise it when the address of a publication changes: the rules are written again once, at the
+	 * next request, on every site that updates the theme (no manual permalink save is needed).
+	 */
+	const REWRITE_RULES_VERSION = '1';
+
+	/**
+	 * Write the rewrite rules again, once per version of the rules.
+	 *
+	 * WordPress keeps the rules in the database and rewrites them only when asked: without this, a
+	 * site that updates the theme answers 404 on the address of every publication until someone
+	 * saves the permalinks. Same pattern as `dli_pwa_maybe_flush_rewrite_rules()`.
+	 *
+	 * @return void
+	 */
+	public function maybe_flush_rewrite_rules() {
+		if ( ! DLI_PUBLICATION_HAS_DETAIL || get_option( 'dli_publication_rules_version' ) === self::REWRITE_RULES_VERSION ) {
+			return;
+		}
+		flush_rewrite_rules();
+		update_option( 'dli_publication_rules_version', self::REWRITE_RULES_VERSION );
 	}
 
 	/**
@@ -84,7 +111,7 @@ class DLI_Publication_Manager {
 			'hierarchical'        => false,
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
-			'rewrite'             => false,
+			'rewrite'             => DLI_PUBLICATION_HAS_DETAIL ? array( 'slug' => PUBLICATION_POST_TYPE ) : false,
 			'query_var'           => false,
 			'show_ui'             => true,
 			'public'              => true,

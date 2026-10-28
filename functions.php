@@ -90,6 +90,11 @@ require get_template_directory() . '/inc/pwa.php';
  */
 require get_template_directory() . '/inc/search-autocomplete.php';
 
+/**
+ * Publications — helpers shared by the detail page, the archive and the home cards.
+ */
+require get_template_directory() . '/inc/publications.php';
+
 
 /**
  * Activation Hooks.

@@ -44,6 +44,7 @@ parameters:
     - single-persona.php
     - single-post.php
     - single-progetto.php
+    - single-pubblicazione.php
     - single-risorsa-tecnica.php
     - single-spinoff.php
   excludePaths:
