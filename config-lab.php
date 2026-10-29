@@ -35,6 +35,9 @@ define( 'DLI_PAGE_CARD_EXCERPT_WORDS', 30 );
 // Items shown by default by the homepage section "Card di navigazione"; the editor can change the number for each row of
 // Sezioni HP, between DLI_HP_ITEMS_MIN and DLI_HP_ITEMS_MAX.
 define( 'DLI_HP_NAVIGATION_DEFAULT_ITEMS', 6 );
+// "Navigazione per pagine": groups (promoted pages with subpages) and subpages per group shown by default.
+define( 'DLI_HP_FASI_DEFAULT_ITEMS', 4 );
+define( 'DLI_HP_FASI_DEFAULT_SUBITEMS', 4 );
 define( 'DLI_HP_ITEMS_MIN', 1 );
 define( 'DLI_HP_ITEMS_MAX', 12 );
 
@@ -371,6 +374,15 @@ define(
 				'template'   => 'template-parts/home/hp-navigation-section',
 				'background' => 'muted',
 				'max_items'  => 6,
+			),
+		'fasi_section'         =>
+			array(
+				'id'           => 'fasi_section',
+				'name'         => 'Navigazione per pagine',
+				'template'     => 'template-parts/home/hp-fasi-section',
+				'background'   => 'muted',
+				'max_items'    => 4,
+				'max_subitems' => 4,
 			),
 		'events_section'       =>
 				array(

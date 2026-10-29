@@ -2788,3 +2788,20 @@ msgstr ""
 #: inc/admin/options.php:432
 msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
 msgstr ""
+
+#: template-parts/home/hp-fasi-section.php:44
+msgid "Navigazione per pagine"
+msgstr ""
+
+#: inc/admin/options.php:920
+msgid "Sezione \"Navigazione per pagine\""
+msgstr ""
+
+#. translators: 1: the number of groups shown by default, 2: the number of subpages of each group shown by default
+#: inc/admin/options.php:923
+msgid "Per ogni pagina con il campo \"Promuovi in Home\" acceso (lo stesso usato da \"Card di navigazione\") che ha sottopagine pubblicate, mostra il titolo della pagina e un elenco di link alle sue sottopagine. Gruppi e sottopagine seguono il campo \"Ordine\" della pagina (Attributi pagina) e poi il titolo; le pagine in bozza o protette da password non compaiono. Di default fino a %1$d gruppi con %2$d sottopagine ciascuno: i due numeri si cambiano in \"Sezioni HP\". La sezione si attiva e si ordina in \"Sezioni HP\"."
+msgstr ""
+
+#: inc/admin/options.php:454
+msgid "Numero massimo di sottopagine per gruppo"
+msgstr ""

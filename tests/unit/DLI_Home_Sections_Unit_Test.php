@@ -233,4 +233,49 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertArrayNotHasKey( 'max_items', $rows[3] );
 		$this->assertArrayNotHasKey( 'max_items', $rows[4], 'A row saved before the field existed is not given one.' );
 	}
+
+	/**
+	 * The columns of the groups of "Navigazione per pagine" follow how many groups there are, up to four per row.
+	 */
+	public function test_navigation_groups_columns_follow_the_number_of_groups() {
+		$this->assertSame( 'col-12 col-md-8 col-lg-6', dli_get_hp_groups_column_class( 1 ) );
+		$this->assertSame( 'col-12 col-md-6', dli_get_hp_groups_column_class( 2 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-4', dli_get_hp_groups_column_class( 3 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-3', dli_get_hp_groups_column_class( 4 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-3', dli_get_hp_groups_column_class( 9 ), 'More than four: four per row, then the next row.' );
+		$this->assertSame( 'col-12 col-md-8 col-lg-6', dli_get_hp_groups_column_class( 0 ) );
+	}
+
+	/**
+	 * A row keeps a valid number of sub-items per group, like it keeps the number of items.
+	 */
+	public function test_rows_keep_a_valid_number_of_subitems() {
+		$rows = dli_normalize_hp_section_rows(
+			array(
+				array(
+					'id'           => 'fasi_section',
+					'max_subitems' => '3',
+				),
+				array(
+					'id'           => 'fasi_section',
+					'max_subitems' => '900',
+				),
+				array(
+					'id'           => 'fasi_section',
+					'max_subitems' => 'tante',
+				),
+				array(
+					'id'           => 'fasi_section',
+					'max_subitems' => '',
+				),
+				array( 'id' => 'fasi_section' ),
+			)
+		);
+
+		$this->assertSame( 3, $rows[0]['max_subitems'] );
+		$this->assertSame( DLI_HP_ITEMS_MAX, $rows[1]['max_subitems'] );
+		$this->assertArrayNotHasKey( 'max_subitems', $rows[2] );
+		$this->assertArrayNotHasKey( 'max_subitems', $rows[3] );
+		$this->assertArrayNotHasKey( 'max_subitems', $rows[4] );
+	}
 }

@@ -5,6 +5,7 @@
  * Provides:
  *  - dli_get_subpage_cards()        The direct subpages of a page that can be listed as navigation cards.
  *  - dli_get_promoted_page_cards()  The pages promoted to the home that "Card di navigazione" lists as cards.
+ *  - dli_get_promoted_page_groups() The promoted pages with their subpages, for "Navigazione per pagine".
  *
  * @package Design_Laboratori_Italia
  */
@@ -126,5 +127,85 @@ if ( ! function_exists( 'dli_get_promoted_page_cards' ) ) {
 		}
 
 		return $cards;
+	}
+}
+
+if ( ! function_exists( 'dli_get_promoted_page_groups' ) ) {
+	/**
+	 * The promoted pages with their subpages, as groups, for the section "Navigazione per pagine".
+	 *
+	 * A group is a published page of the current language with the field "Promuovi in Home" on that has at least
+	 * one published subpage without a password; the others are left out. Groups and subpages are ordered by the
+	 * field "Ordine" of the page (`menu_order`) and then by title, and the limit is applied after that, so the
+	 * ones kept are the first by order. Password-protected pages and subpages are never listed and do not take a
+	 * place. The menus of the site are not read: the subpages are the ones of `post_parent`.
+	 *
+	 * @param int $max_groups The most groups to return.
+	 * @param int $max_items  The most subpages to return in each group.
+	 * @return array<int, array{id: int, title: string, items: array<int, array{id: int, title: string, url: string}>}> The groups, in order.
+	 */
+	function dli_get_promoted_page_groups( $max_groups, $max_items ) {
+		$max_groups = max( 1, (int) $max_groups );
+		$max_items  = max( 1, (int) $max_items );
+
+		$parents = get_posts(
+			array(
+				'post_type'      => WP_DEFAULT_PAGE,
+				'post_status'    => 'publish',
+				'has_password'   => false,
+				'orderby'        => array(
+					'menu_order' => 'ASC',
+					'title'      => 'ASC',
+				),
+				'posts_per_page' => -1,
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
+					array(
+						'key'     => 'promuovi_in_home',
+						'compare' => '=',
+						'value'   => 1,
+					),
+				),
+			)
+		);
+
+		$groups = array();
+		foreach ( $parents as $parent ) {
+			$children = get_posts(
+				array(
+					'post_type'      => WP_DEFAULT_PAGE,
+					'post_status'    => 'publish',
+					'has_password'   => false,
+					'post_parent'    => $parent->ID,
+					'orderby'        => array(
+						'menu_order' => 'ASC',
+						'title'      => 'ASC',
+					),
+					'posts_per_page' => $max_items,
+				)
+			);
+			if ( empty( $children ) ) {
+				continue;
+			}
+
+			$items = array();
+			foreach ( $children as $child ) {
+				$items[] = array(
+					'id'    => $child->ID,
+					'title' => get_the_title( $child ),
+					'url'   => (string) get_permalink( $child ),
+				);
+			}
+
+			$groups[] = array(
+				'id'    => $parent->ID,
+				'title' => get_the_title( $parent ),
+				'items' => $items,
+			);
+			if ( count( $groups ) >= $max_groups ) {
+				break;
+			}
+		}
+
+		return $groups;
 	}
 }

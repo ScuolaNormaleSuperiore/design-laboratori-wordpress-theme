@@ -10,6 +10,7 @@
  *  - dli_normalize_hp_max_items()          The number of items a section shows, a whole number in range.
  *  - dli_sanitize_hp_max_items()           Sanitization of the field "Numero massimo di elementi".
  *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
+ *  - dli_get_hp_groups_column_class()      The columns of the groups of "Navigazione per pagine".
  *
  * @package Design_Laboratori_Italia
  */
@@ -108,7 +109,7 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	 * Nothing is rewritten in the database: the saved rows are only read. A row that is not an array, or
 	 * without the id of a section, is left out. `enabled` and `show_title` are `true` only when saved
 	 * as `true`, otherwise `false`. A background that is not white or muted is dropped, so the template uses
-	 * the default of its section. A `max_items` that is not a whole number is dropped and one out of range is brought to the nearest limit. Any other property of the row is kept as it is, in the same order. Every row
+	 * the default of its section. A `max_items` or `max_subitems` that is not a whole number is dropped and one out of range is brought to the nearest limit. Any other property of the row is kept as it is, in the same order. Every row
 	 * carries `instance`, the position (starting from 1) it has in the saved list, that stays the same when
 	 * other rows are turned off: a section that can be repeated uses it to have its own identifiers.
 	 *
@@ -138,12 +139,14 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 					$row['background'] = $background;
 				}
 			}
-			if ( array_key_exists( 'max_items', $row ) ) {
-				$max_items = dli_sanitize_hp_max_items( $row['max_items'] );
-				if ( '' === $max_items ) {
-					unset( $row['max_items'] );
-				} else {
-					$row['max_items'] = $max_items;
+			foreach ( array( 'max_items', 'max_subitems' ) as $number_key ) {
+				if ( array_key_exists( $number_key, $row ) ) {
+					$number = dli_sanitize_hp_max_items( $row[ $number_key ] );
+					if ( '' === $number ) {
+						unset( $row[ $number_key ] );
+					} else {
+						$row[ $number_key ] = $number;
+					}
 				}
 			}
 			$row['instance'] = $position;
@@ -179,5 +182,31 @@ if ( ! function_exists( 'dli_get_hp_navigation_column_class' ) ) {
 			return 'col-12 col-md-6 col-lg-3';
 		}
 		return 'col-12 col-md-6 col-lg-4';
+	}
+}
+
+if ( ! function_exists( 'dli_get_hp_groups_column_class' ) ) {
+	/**
+	 * The classes of the column of each group of "Navigazione per pagine", for the number of groups shown.
+	 *
+	 * One group is narrower than the page, two take half each, three a third, four or more a quarter and then
+	 * the next row. On a tablet the groups are two per row; on a phone the template prints an accordion instead.
+	 *
+	 * @param int $count The number of groups.
+	 * @return string The classes of the column.
+	 */
+	function dli_get_hp_groups_column_class( $count ) {
+		$count = (int) $count;
+
+		if ( $count <= 1 ) {
+			return 'col-12 col-md-8 col-lg-6';
+		}
+		if ( 2 === $count ) {
+			return 'col-12 col-md-6';
+		}
+		if ( 3 === $count ) {
+			return 'col-12 col-md-6 col-lg-4';
+		}
+		return 'col-12 col-md-6 col-lg-3';
 	}
 }

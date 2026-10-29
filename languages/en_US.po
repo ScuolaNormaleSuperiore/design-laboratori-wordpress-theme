@@ -2825,3 +2825,20 @@ msgstr "Maximum number of items"
 #: inc/admin/options.php:432
 msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
 msgstr "From %1$d to %2$d. If empty, the default number of that section is used."
+
+#: template-parts/home/hp-fasi-section.php:44
+msgid "Navigazione per pagine"
+msgstr "Navigation by pages"
+
+#: inc/admin/options.php:920
+msgid "Sezione \"Navigazione per pagine\""
+msgstr "Section \"Navigation by pages\""
+
+#. translators: 1: the number of groups shown by default, 2: the number of subpages of each group shown by default
+#: inc/admin/options.php:923
+msgid "Per ogni pagina con il campo \"Promuovi in Home\" acceso (lo stesso usato da \"Card di navigazione\") che ha sottopagine pubblicate, mostra il titolo della pagina e un elenco di link alle sue sottopagine. Gruppi e sottopagine seguono il campo \"Ordine\" della pagina (Attributi pagina) e poi il titolo; le pagine in bozza o protette da password non compaiono. Di default fino a %1$d gruppi con %2$d sottopagine ciascuno: i due numeri si cambiano in \"Sezioni HP\". La sezione si attiva e si ordina in \"Sezioni HP\"."
+msgstr "For each page with the field \"Promuovi in Home\" on (the same used by \"Navigation cards\") that has published subpages, shows the title of the page and a list of links to its subpages. Groups and subpages follow the \"Order\" field of the page (Page attributes) and then the title; draft or password-protected pages do not appear. By default up to %1$d groups with %2$d subpages each: the two numbers are changed in \"Sezioni HP\". The section is activated and ordered in \"Sezioni HP\"."
+
+#: inc/admin/options.php:454
+msgid "Numero massimo di sottopagine per gruppo"
+msgstr "Maximum number of subpages per group"

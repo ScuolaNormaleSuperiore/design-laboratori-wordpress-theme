@@ -194,6 +194,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
 | `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice) e nella ricerca del sito, autori al posto della descrizione nelle card (e non per una pubblicazione protetta), pulsante «Scarica la pubblicazione» nella scheda, scheda ancora raggiungibile con «Sito web» |
+| `home-navigation-groups.spec.js` | sezione «Navigazione per pagine»: campi della riga solo per questa sezione, due gruppi in ordine con il titolo come testo e le sottopagine come link (né protetta né bozza, né pagina senza figli), accordion nascosto su desktop, link alla pagina, assente in inglese; su telefono accordion con il primo pannello aperto e i link dei pannelli chiusi non visibili, nessun overflow; tetti di gruppi e sottopagine scelti nella riga |
 | `home-navigation-section.spec.js` | sezione «Card di navigazione»: da Layout HP e Sezioni HP alla home (titolo e sottotitolo, tre pagine promosse nell'ordine atteso, né la protetta né la bozza, sfondo grigio di default, link alla pagina, assente in inglese senza pagine promosse) e a 320 px (una card per riga, sfondo bianco, nessun overflow) |
 | `home-sections-admin.spec.js` | Configurazione → Sezioni HP: nome della sezione e frecce nell'intestazione di ogni riga anche chiusa (senza sovrapposizioni con la ✕), riga nuova con le sue frecce, scambio di due righe con valori opposti dei radio (valori conservati dopo lo scambio, il salvataggio e il ricaricamento), accesso negato a un Editor |
 | `example-pages-tool.spec.js` | Strumenti DLI → Utilità: due box separati; il box «Pagine di esempio» crea la sezione in italiano e inglese (24 pagine, con le 4 card nelle due pagine principali), rilanciato non duplica, «Rimuovi» la cancella (404); rifiutando la conferma non si crea nulla |
@@ -201,7 +202,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `home-publications.spec.js` | pubblicazioni della home (box di «Contenuti in evidenza» e sezione «Pubblicazioni», configurati nella baseline): autori, tipologia e anno nella card, dal titolo alla scheda, dalla tipologia all'elenco filtrato, pulsante «Tutte le pubblicazioni», nessun overflow orizzontale a 320 px |
 | `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
 
-Sono trentasette test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
+Sono quaranta test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.
 
 

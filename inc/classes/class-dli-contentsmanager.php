@@ -1083,6 +1083,24 @@ class DLI_ContentsManager {
 	}
 
 	/**
+	 * The homepage sections that let the editor choose how many sub-items each of their groups shows.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `max_subitems`: its default number
+	 * when the row says nothing. The field "Numero massimo di sottopagine per gruppo" of Sezioni HP is shown only for these sections.
+	 *
+	 * @return array<string, int> Section id => default number of sub-items per group.
+	 */
+	public static function get_hp_sections_with_max_subitems() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( isset( $section['max_subitems'] ) && is_int( $section['max_subitems'] ) ) {
+				$result[ $id ] = dli_normalize_hp_max_items( $section['max_subitems'], DLI_HP_ITEMS_MIN );
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
 	 *
 	 * The saved rows are only read, never rewritten. A row that is not a row, or has no section, is left out;

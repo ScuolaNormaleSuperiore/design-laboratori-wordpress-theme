@@ -45,6 +45,7 @@ class DLI_Config_Unit_Test extends TestCase {
 			'main_carousel',
 			'featured_contents',
 			'navigation_section',
+			'fasi_section',
 			'events_section',
 			'news_section',
 			'publications_section',
