@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-10-28 13:22+0000\n"
+"PO-Revision-Date: 2026-10-29 08:07+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -67,14 +67,14 @@ msgstr ""
 "%5$d - Errors: %6$d ***"
 
 #. 1: start time, 2: end time.
-#: inc/utils.php:1073
+#: inc/utils.php:1076
 #, php-format
 msgid ", ore %1$s–%2$s"
 msgstr ", at %1$s–%2$s"
 
 #. %s: start time.
 #. %s: end time.
-#: inc/utils.php:1076 inc/utils.php:1091 inc/utils.php:1093
+#: inc/utils.php:1079 inc/utils.php:1094 inc/utils.php:1096
 #, php-format
 msgid ", ore %s"
 msgstr ", at %s"
@@ -119,7 +119,7 @@ msgstr "Update thematic area"
 msgid "aggiorna esistenti (salta se non esiste)"
 msgstr "update existing (skip if not found)"
 
-#: inc/classes/class-publicationmanager.php:45
+#: inc/classes/class-dli-publication-manager.php:72
 msgid "Aggiorna il tipo pubblicazione"
 msgstr "Update publication type"
 
@@ -151,7 +151,7 @@ msgstr "Would update the person (dry run)."
 msgid "Aggiungi un settore attività"
 msgstr "Add a business sector"
 
-#: inc/classes/class-publicationmanager.php:46
+#: inc/classes/class-dli-publication-manager.php:73
 msgid "Aggiungi un tipo pubblicazione"
 msgstr "Add a publication type"
 
@@ -171,11 +171,11 @@ msgstr "Add a structure"
 msgid "Aggiungi una Tipologia luogo"
 msgstr "Add a place type"
 
-#: inc/utils.php:1116
+#: inc/utils.php:1119
 msgid "ago"
 msgstr "aug"
 
-#: inc/utils.php:947
+#: inc/utils.php:950
 msgid "agosto"
 msgstr "august"
 
@@ -216,7 +216,7 @@ msgstr "Year of foundation"
 msgid "Anno di deposito"
 msgstr "Deposit year"
 
-#: single-pubblicazione.php:58
+#: single-pubblicazione.php:70
 msgid "Anno di pubblicazione:"
 msgstr "Year of publication:"
 
@@ -234,11 +234,11 @@ msgstr "Clear search"
 msgid "Approfondisci: %s"
 msgstr "Learn more: %s"
 
-#: inc/utils.php:1112
+#: inc/utils.php:1115
 msgid "apr"
 msgstr "apr"
 
-#: inc/utils.php:943
+#: inc/utils.php:946
 msgid "aprile"
 msgstr "april"
 
@@ -299,7 +299,7 @@ msgstr "Research activities"
 msgid "attivo"
 msgstr "active"
 
-#: single-pubblicazione.php:103
+#: single-pubblicazione.php:115
 msgid "Autori"
 msgstr "Authors"
 
@@ -317,7 +317,7 @@ msgid "Biografia della persona"
 msgstr "Biography of the person"
 
 #. Name of the template
-#: page-templates/blog.php:2 inc/classes/class-contents-manager.php:309
+#: page-templates/blog.php:2 inc/classes/class-dli-contentsmanager.php:203
 #: template-parts/home/hp-list-article.php:32
 #: template-parts/home/hp-list-article.php:36
 msgid "Blog"
@@ -357,7 +357,7 @@ msgstr "Category"
 #: page-templates/eventi.php:147 page-templates/eventi.php:152
 #: page-templates/notizie.php:127 page-templates/notizie.php:132
 #: template-parts/common/sezione-box-notizia.php:23
-#: template-parts/home/carousel.php:64
+#: template-parts/home/carousel.php:74
 #: template-parts/home/hp-list-article.php:68
 #: template-parts/home/hp-list-news.php:69
 msgid "Categoria correlata:"
@@ -402,7 +402,7 @@ msgstr "Search structure"
 msgid "Cerca testo"
 msgstr "Search text"
 
-#: inc/classes/class-publicationmanager.php:42
+#: inc/classes/class-dli-publication-manager.php:69
 msgid "Cerca tipo pubblicazione"
 msgstr "Search publication type"
 
@@ -511,14 +511,14 @@ msgstr "I am happy to share this post"
 msgid "Conferma"
 msgstr "Confirmation"
 
-#: single-pubblicazione.php:128
+#: single-pubblicazione.php:141
 msgid "Consulta la pubblicazione"
 msgstr "View the publication"
 
 #. Name of the template
 #: footer.php:49 footer.php:51 single-evento.php:151 single-evento.php:257
 #: single-indirizzo-di-ricerca.php:133 single-indirizzo-di-ricerca.php:220
-#: single-persona.php:251 single-persona.php:428 single-spinoff.php:138
+#: single-persona.php:251 single-persona.php:436 single-spinoff.php:138
 #: single-spinoff.php:194 page-templates/contatti.php:2
 #: page-templates/contatti.php:122 page-templates/contatti.php:179
 msgid "Contatti"
@@ -536,7 +536,8 @@ msgstr "Featured content"
 msgid "cookie policy"
 msgstr "cookie policy"
 
-#: single-pubblicazione.php:30
+#: single-pubblicazione.php:42
+#: tests/integration/DLI_Publication_Detail_Integration_Test.php:290
 msgid "Copertina della pubblicazione"
 msgstr "Publication cover"
 
@@ -569,14 +570,14 @@ msgid "Creerebbe la persona (dry-run)."
 msgstr "Would create the person (dry run)."
 
 #. 1: start day, 2: full end date.
-#: inc/utils.php:1084
+#: inc/utils.php:1087
 #, php-format
 msgid "Dal %1$d<br>al %2$s"
 msgstr "From %1$d<br>to %2$s"
 
 #. 1: full start date, 2: full end date.
 #. 1: start date/time, 2: end date/time.
-#: inc/utils.php:1087 inc/utils.php:1095
+#: inc/utils.php:1090 inc/utils.php:1098
 #, php-format
 msgid "Dal %1$s<br>al %2$s"
 msgstr "From %1$s<br>to %2$s"
@@ -600,7 +601,8 @@ msgstr "Activation data reloaded successfully."
 #: single-evento.php:124 single-evento.php:189
 #: single-indirizzo-di-ricerca.php:112 single-indirizzo-di-ricerca.php:173
 #: single-luogo.php:127 single-progetto.php:139 single-progetto.php:213
-#: single-risorsa-tecnica.php:136 single-spinoff.php:102
+#: single-pubblicazione.php:131 single-risorsa-tecnica.php:136
+#: single-spinoff.php:102
 msgid "Descrizione"
 msgstr "Description"
 
@@ -612,7 +614,7 @@ msgstr "Banner description"
 msgid "Descrizione del progetto"
 msgstr "Description of the project"
 
-#: inc/classes/class-publicationmanager.php:117
+#: inc/classes/class-dli-publication-manager.php:144
 msgid "Descrizione della pubblicazione"
 msgstr "Description of the publication"
 
@@ -708,11 +710,11 @@ msgstr "Spin-off details"
 msgid "Dettaglio righe elaborate"
 msgstr "Processed rows details"
 
-#: inc/utils.php:1120
+#: inc/utils.php:1123
 msgid "dic"
 msgstr "dec"
 
-#: inc/utils.php:951
+#: inc/utils.php:954
 msgid "dicembre"
 msgstr "december"
 
@@ -721,7 +723,7 @@ msgstr "december"
 msgid "Digita almeno %d caratteri per vedere i suggerimenti"
 msgstr "Type at least %d characters to see suggestions"
 
-#: inc/classes/class-labmanager.php:326
+#: inc/classes/class-dli-labmanager.php:326
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
@@ -844,11 +846,11 @@ msgstr "Expand"
 msgid "Famiglia brevettuale"
 msgstr "Patent family"
 
-#: inc/utils.php:1110
+#: inc/utils.php:1113
 msgid "feb"
 msgstr "feb"
 
-#: inc/utils.php:941
+#: inc/utils.php:944
 msgid "febbraio"
 msgstr "february"
 
@@ -893,11 +895,11 @@ msgstr "Until"
 msgid "Formato non valido: è richiesto un file .csv."
 msgstr "Invalid format: a .csv file is required."
 
-#: inc/utils.php:1109
+#: inc/utils.php:1112
 msgid "gen"
 msgstr "jan"
 
-#: inc/utils.php:940
+#: inc/utils.php:943
 msgid "gennaio"
 msgstr "january"
 
@@ -905,11 +907,11 @@ msgstr "january"
 msgid "Gestione cookies"
 msgstr "Cookies management"
 
-#: inc/utils.php:1114
+#: inc/utils.php:1117
 msgid "giu"
 msgstr "jun"
 
-#: inc/utils.php:945
+#: inc/utils.php:948
 msgid "giugno"
 msgstr "june"
 
@@ -917,7 +919,7 @@ msgstr "june"
 msgid "Hai installato i seguenti cookies di terze parti:"
 msgstr "You have installed the following third-party cookies:"
 
-#: inc/utils.php:690 inc/classes/class-contents-manager.php:262
+#: inc/utils.php:693 inc/classes/class-dli-contentsmanager.php:156
 msgid "Home"
 msgstr "Home"
 
@@ -960,7 +962,7 @@ msgstr ""
 msgid "Il codice di controllo non è valido."
 msgstr "The check code is invalid."
 
-#: inc/classes/class-labmanager.php:313
+#: inc/classes/class-dli-labmanager.php:313
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr "PDF file is too large. Maximum allowed: 2MB."
 
@@ -1085,7 +1087,7 @@ msgstr "Required CSV header"
 msgid "Intestazione non valida: colonna obbligatoria \"%s\" non trovata."
 msgstr "Invalid header: Required column \"%s\" not found."
 
-#: inc/classes/class-labmanager.php:357
+#: inc/classes/class-dli-labmanager.php:357
 msgid "Invalid username or password"
 msgstr "Invalid username or password"
 
@@ -1109,11 +1111,11 @@ msgstr "Subscription"
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr "Newsletter subscription successful."
 
-#: inc/classes/class-labmanager.php:288
+#: inc/classes/class-dli-labmanager.php:288
 msgid "L'API REST di WordPress è disabilitata."
 msgstr "WordPress REST API is disabled."
 
-#: inc/classes/class-labmanager.php:309
+#: inc/classes/class-dli-labmanager.php:309
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr "Image is too large. Maximum allowed: 1MB."
 
@@ -1130,7 +1132,7 @@ msgstr "Publications"
 msgid "Leggi di piu"
 msgstr "Read more"
 
-#: template-parts/common/sezione-contatti.php:64
+#: single-pubblicazione.php:138 template-parts/common/sezione-contatti.php:64
 msgid "Link"
 msgstr "Link"
 
@@ -1163,11 +1165,11 @@ msgstr "News identification logo"
 msgid "Logo Identificativo dello Sponsor"
 msgstr "Sponsor Identification Logo"
 
-#: inc/utils.php:1115
+#: inc/utils.php:1118
 msgid "lug"
 msgstr "jul"
 
-#: inc/utils.php:946
+#: inc/utils.php:949
 msgid "luglio"
 msgstr "july"
 
@@ -1180,15 +1182,15 @@ msgstr "Places"
 msgid "Luogo"
 msgstr "Location"
 
-#: inc/utils.php:1113
+#: inc/utils.php:1116
 msgid "mag"
 msgstr "may"
 
-#: inc/utils.php:944
+#: inc/utils.php:947
 msgid "maggio"
 msgstr "may"
 
-#: single-persona.php:451 template-parts/common/sezione-contatti.php:47
+#: single-persona.php:459 template-parts/common/sezione-contatti.php:47
 msgid "Mail"
 msgstr "Mail"
 
@@ -1201,7 +1203,7 @@ msgstr "Site Map"
 msgid "Mappa del sito in Italiano"
 msgstr "Site Map in Italian"
 
-#: inc/utils.php:1111
+#: inc/utils.php:1114
 msgid "mar"
 msgstr "mar"
 
@@ -1209,11 +1211,11 @@ msgstr "mar"
 msgid "Marca e modello"
 msgstr "Brand and model"
 
-#: inc/utils.php:942
+#: inc/utils.php:945
 msgid "marzo"
 msgstr "march"
 
-#: functions.php:163
+#: functions.php:168
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
@@ -1221,19 +1223,19 @@ msgstr "Footer link menu - footer"
 msgid "Menu contatti"
 msgstr "Contacts menu"
 
-#: functions.php:161
+#: functions.php:166
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:162
+#: functions.php:167
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:159
+#: functions.php:164
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:160
+#: functions.php:165
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -1276,7 +1278,7 @@ msgstr "Import mode"
 msgid "Modifica area tematica"
 msgstr "Edit thematic area"
 
-#: inc/classes/class-publicationmanager.php:44
+#: inc/classes/class-dli-publication-manager.php:71
 msgid "Modifica il tipo pubblicazione"
 msgstr "Update the publication type"
 
@@ -1342,7 +1344,7 @@ msgstr "No file uploaded or upload error."
 msgid "Nessun risultato di ricerca"
 msgstr "No search results"
 
-#: page-templates/cerca.php:241
+#: page-templates/cerca.php:257
 msgid "Nessun risultato per i filtri selezionati."
 msgstr "No results for the selected filters."
 
@@ -1384,10 +1386,6 @@ msgstr "No publications available"
 #: inc/admin/class-dli-tools-admin.php:155
 msgid "Non hai i permessi per accedere a questa pagina."
 msgstr "You do not have permission to access this page."
-
-#: functions.php:285
-msgid "Non hai i permessi per accedere a questa risorsa."
-msgstr "You do not have permission to access this resource."
 
 #: inc/admin/class-dli-tools-admin.php:123
 #: inc/admin/class-dli-tools-admin.php:296
@@ -1458,11 +1456,11 @@ msgstr "News"
 msgid "Notizie"
 msgstr "News"
 
-#: inc/utils.php:1119
+#: inc/utils.php:1122
 msgid "nov"
 msgstr "nov"
 
-#: inc/utils.php:950
+#: inc/utils.php:953
 msgid "novembre"
 msgstr "november"
 
@@ -1490,7 +1488,7 @@ msgstr "New place type"
 msgid "Nuovo area settore attività"
 msgstr "New business sector area"
 
-#: inc/classes/class-publicationmanager.php:47
+#: inc/classes/class-dli-publication-manager.php:74
 msgid "Nuovo tipo pubblicazione"
 msgstr "New publication type"
 
@@ -1522,15 +1520,15 @@ msgstr "Opening hours"
 msgid "Ordina per"
 msgstr "Sort by"
 
-#: inc/utils.php:1118
+#: inc/utils.php:1121
 msgid "ott"
 msgstr "oct"
 
-#: inc/utils.php:949
+#: inc/utils.php:952
 msgid "ottobre"
 msgstr "october"
 
-#: inc/utils.php:1252 template-parts/common/paginazione.php:93
+#: inc/utils.php:1255 template-parts/common/paginazione.php:93
 msgid "Pagina"
 msgstr "Page"
 
@@ -1662,7 +1660,7 @@ msgctxt "Post Type General Name"
 msgid "Progetti"
 msgstr "Projects"
 
-#: inc/classes/class-publicationmanager.php:72
+#: inc/classes/class-dli-publication-manager.php:99
 msgctxt "Post Type General Name"
 msgid "Pubblicazioni"
 msgstr "Publications"
@@ -1671,10 +1669,6 @@ msgstr "Publications"
 msgctxt "Post Type General Name"
 msgid "Risorse Tecniche"
 msgstr "Technical Resources"
-
-#: single-pubblicazione.php:150
-msgid "Scarica la pubblicazione"
-msgstr "Download the publication"
 
 #: inc/classes/class-spinoffmanager.php:88
 msgctxt "Post Type General Name"
@@ -1701,7 +1695,7 @@ msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Persona"
 msgstr "Add the Person"
 
-#: inc/classes/class-publicationmanager.php:75
+#: inc/classes/class-dli-publication-manager.php:102
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi la Pubblicazione"
 msgstr "Add the Publication"
@@ -1721,7 +1715,7 @@ msgctxt "Post Type Singular Name"
 msgid "Aggiungi Persona"
 msgstr "Add Person"
 
-#: inc/classes/class-publicationmanager.php:74
+#: inc/classes/class-dli-publication-manager.php:101
 msgctxt "Post Type Singular Name"
 msgid "Aggiungi Pubblicazione"
 msgstr "Add Publication"
@@ -1796,22 +1790,22 @@ msgctxt "Post Type Singular Name"
 msgid "Banner"
 msgstr "Banner"
 
-#: inc/utils.php:1240 inc/classes/class-patentmanager.php:78
+#: inc/utils.php:1243 inc/classes/class-patentmanager.php:78
 msgctxt "Post Type Singular Name"
 msgid "Brevetto"
 msgstr "Patent"
 
-#: inc/utils.php:1236 inc/classes/class-eventmanager.php:38
+#: inc/utils.php:1239 inc/classes/class-eventmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Evento"
 msgstr "Event"
 
-#: inc/utils.php:1248 inc/classes/class-researchactivitiesmanager.php:38
+#: inc/utils.php:1251 inc/classes/class-researchactivitiesmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Indirizzo di ricerca"
 msgstr "Research activity"
 
-#: inc/utils.php:1242 inc/classes/class-placemanager.php:79
+#: inc/utils.php:1245 inc/classes/class-placemanager.php:79
 msgctxt "Post Type Singular Name"
 msgid "Luogo"
 msgstr "Place"
@@ -1856,7 +1850,7 @@ msgctxt "Post Type Singular Name"
 msgid "Modifica la Persona"
 msgstr "Update the Person"
 
-#: inc/classes/class-publicationmanager.php:76
+#: inc/classes/class-dli-publication-manager.php:103
 msgctxt "Post Type Singular Name"
 msgid "Modifica la Pubblicazione"
 msgstr "Update the Publication"
@@ -1881,32 +1875,32 @@ msgctxt "Post Type Singular Name"
 msgid "Modifica lo Sponsor"
 msgstr "Edit a Sponsor"
 
-#: inc/utils.php:1238 inc/classes/class-newsmanager.php:38
+#: inc/utils.php:1241 inc/classes/class-newsmanager.php:38
 msgctxt "Post Type Singular Name"
 msgid "Notizia"
 msgstr "News"
 
-#: inc/utils.php:1232 inc/classes/class-peoplemanager.php:73
+#: inc/utils.php:1235 inc/classes/class-peoplemanager.php:73
 msgctxt "Post Type Singular Name"
 msgid "Persona"
 msgstr "Person"
 
-#: inc/utils.php:1234 inc/classes/class-projectmanager.php:37
+#: inc/utils.php:1237 inc/classes/class-projectmanager.php:37
 msgctxt "Post Type Singular Name"
 msgid "Progetto"
 msgstr "Project"
 
-#: inc/utils.php:1244 inc/classes/class-publicationmanager.php:73
+#: inc/utils.php:1247 inc/classes/class-dli-publication-manager.php:100
 msgctxt "Post Type Singular Name"
 msgid "Pubblicazione"
 msgstr "Publication"
 
-#: inc/utils.php:1250 inc/classes/class-technicalresourcemanager.php:71
+#: inc/utils.php:1253 inc/classes/class-technicalresourcemanager.php:71
 msgctxt "Post Type Singular Name"
 msgid "Risorsa Tecnica"
 msgstr "Technical Resource"
 
-#: inc/utils.php:1246 inc/classes/class-spinoffmanager.php:89
+#: inc/utils.php:1249 inc/classes/class-spinoffmanager.php:89
 msgctxt "Post Type Singular Name"
 msgid "Spin-off"
 msgstr "Spin-off"
@@ -1951,7 +1945,7 @@ msgctxt "Post Type Singular Name"
 msgid "Visualizza la Persona"
 msgstr "Display the Person"
 
-#: inc/classes/class-publicationmanager.php:77
+#: inc/classes/class-dli-publication-manager.php:104
 msgctxt "Post Type Singular Name"
 msgid "Visualizza la Pubblicazione"
 msgstr "Display the Publication"
@@ -2003,7 +1997,7 @@ msgstr "Projects"
 msgid "Progetto"
 msgstr "Project"
 
-#: inc/classes/class-publicationmanager.php:81
+#: inc/classes/class-dli-publication-manager.php:108
 msgid "Pubblicazione"
 msgstr "Publication"
 
@@ -2066,7 +2060,7 @@ msgid "Ricevi via email la nostra newsletter"
 msgstr "Receive our newsletter by email"
 
 #: page-templates/contatti.php:87
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:347
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:317
 msgid "Ricevuta"
 msgstr "Received"
 
@@ -2169,6 +2163,13 @@ msgstr "Skipped"
 msgid "Scarica CSV di esempio"
 msgstr "Download sample CSV"
 
+#: single-pubblicazione.php:150
+#: tests/integration/DLI_Publication_Detail_Integration_Test.php:246
+#: tests/integration/DLI_Publication_Detail_Integration_Test.php:260
+#: tests/integration/DLI_Publication_Detail_Integration_Test.php:262
+msgid "Scarica la pubblicazione"
+msgstr "Download the publication"
+
 #: page-templates/risorse-tecniche.php:90
 msgid "Scegli un'opzione"
 msgstr "Select an option"
@@ -2240,11 +2241,11 @@ msgstr "Language selection: selected language"
 msgid "separare con"
 msgstr "separate with"
 
-#: inc/utils.php:1117
+#: inc/utils.php:1120
 msgid "set"
 msgstr "sept"
 
-#: inc/utils.php:948
+#: inc/utils.php:951
 msgid "settembre"
 msgstr "september"
 
@@ -2268,7 +2269,9 @@ msgstr "Useful Links Section"
 msgid "Sezioni Strumenti DLI"
 msgstr "DLI Tools sections"
 
-#: single-pubblicazione.php:129
+#: single-pubblicazione.php:142 single-pubblicazione.php:154
+#: page-templates/cerca.php:233 template-parts/common/linked-title.php:32
+#: tests/integration/DLI_Publication_Archive_Integration_Test.php:62
 msgid "si apre in una nuova finestra"
 msgstr "opens in a new window"
 
@@ -2276,7 +2279,7 @@ msgstr "opens in a new window"
 msgid "Site Map in English"
 msgstr "Site Map in English"
 
-#: single-evento.php:293 single-persona.php:470 single-progetto.php:76
+#: single-evento.php:293 single-persona.php:478 single-progetto.php:76
 #: single-spinoff.php:229 template-parts/common/sezione-contatti.php:69
 msgid "Sito web"
 msgstr "Website"
@@ -2353,7 +2356,7 @@ msgctxt "taxonomy general name"
 msgid "Struttura"
 msgstr "Structure"
 
-#: inc/classes/class-publicationmanager.php:40
+#: inc/classes/class-dli-publication-manager.php:67
 msgctxt "taxonomy general name"
 msgid "Tipo pubblicazione"
 msgstr "Publication type"
@@ -2383,7 +2386,7 @@ msgctxt "taxonomy singular name"
 msgid "Struttura"
 msgstr "Structure"
 
-#: inc/classes/class-publicationmanager.php:41
+#: inc/classes/class-dli-publication-manager.php:68
 msgctxt "taxonomy singular name"
 msgid "Tipo pubblicazione"
 msgstr "Publication type"
@@ -2403,7 +2406,7 @@ msgstr "Place type"
 msgid "Telefono"
 msgstr "Phone"
 
-#: single-persona.php:436 template-parts/common/sezione-contatti.php:29
+#: single-persona.php:444 template-parts/common/sezione-contatti.php:29
 msgid "Telephone"
 msgstr "Telephone"
 
@@ -2415,7 +2418,7 @@ msgstr "Message text"
 msgid "Tipi di importazione"
 msgstr "Import types"
 
-#: page-templates/cerca.php:228
+#: page-templates/cerca.php:238
 msgid "Tipo di contenuto:"
 msgstr "Content type:"
 
@@ -2434,7 +2437,7 @@ msgstr "Resource type:"
 msgid "Tipo file non valido (%s). È richiesto un file CSV."
 msgstr "Invalid file type (%s). A CSV file is required."
 
-#: inc/classes/class-publicationmanager.php:48
+#: inc/classes/class-dli-publication-manager.php:75
 msgid "Tipo Pubblicazione"
 msgstr "Publication type"
 
@@ -2459,7 +2462,7 @@ msgstr "Place type"
 msgid "Tipologia Persona"
 msgstr "People type"
 
-#: page-templates/pubblicazioni.php:249
+#: single-pubblicazione.php:63 page-templates/pubblicazioni.php:254
 msgid "Tipologia:"
 msgstr "Type:"
 
@@ -2528,13 +2531,13 @@ msgstr "All events"
 msgid "Tutti i settori"
 msgstr "All sectors"
 
+#: inc/classes/class-dli-publication-manager.php:70
 #: inc/classes/class-patentmanager.php:50
-#: inc/classes/class-publicationmanager.php:43
 #: inc/classes/class-technicalresourcemanager.php:42
 msgid "Tutti i tipi"
 msgstr "All types"
 
-#: single-persona.php:242 single-persona.php:384
+#: single-persona.php:242 single-persona.php:392
 msgid "Ulteriori informazioni"
 msgstr "More info"
 
@@ -2645,7 +2648,7 @@ msgstr "Video"
 msgid "Vuoi ricevere notifica al tuo indirizzo email"
 msgstr "Would you like to receive email notification"
 
-#: single-persona.php:466
+#: single-persona.php:474
 msgid "Website Link"
 msgstr "Website Link"
 
