@@ -419,6 +419,27 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	// The background can be chosen only for the sections that support it (key `background` of the catalog);
+	// when none does, the value never matches, so the field stays hidden. The value is sanitized on the server too.
+	$background_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_background() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'background',
+			'name'            => __( 'Sfondo sezione', 'design_laboratori_italia' ),
+			'desc'            => __( 'Se non impostato, resta lo sfondo di default di quella sezione.', 'design_laboratori_italia' ),
+			'type'            => 'radio_inline',
+			'options'         => array(
+				'white' => __( 'Bianco', 'design_laboratori_italia' ),
+				'muted' => __( 'Grigio chiaro', 'design_laboratori_italia' ),
+			),
+			'sanitization_cb' => 'dli_sanitize_hp_background',
+			'attributes'      => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $background_sections ? $background_sections : '__nessuna__',
+			),
+		)
+	);
 
 	/**
 	 * 3 - Registers options page "Home".
@@ -3138,8 +3159,27 @@ function dli_options_assets() {
 	$current_screen = get_current_screen();
 
 	if ( strpos( $current_screen->id, 'configurazione_page_' ) !== false || 'toplevel_page_dli_options' === $current_screen->id ) {
-		wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css', array(), '1.0' );
-		wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog' ), '1.0', true );
+		// The version is the time of the file, not a fixed string: otherwise the browser keeps serving an old
+		// copy of the script after a change, since the address stays the same.
+		$dli_options_css_path = get_stylesheet_directory() . '/inc/admin-css/jquery-ui.css';
+		$dli_options_js_path  = get_stylesheet_directory() . '/inc/admin-js/options.js';
+		$dli_options_css_ver  = file_exists( $dli_options_css_path ) ? (string) filemtime( $dli_options_css_path ) : '1.0';
+		$dli_options_js_ver   = file_exists( $dli_options_js_path ) ? (string) filemtime( $dli_options_js_path ) : '1.0';
+
+		wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css', array(), $dli_options_css_ver );
+		// 'cmb2-scripts' is a dependency, not only 'jquery': options.js must run after cmb.init() of CMB2, because it
+		// moves the arrows that CMB2 has already put in the page. The styles of the arrows are in
+		// inc/admin-css/style-admin.css.
+		wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'cmb2-scripts' ), $dli_options_js_ver, true );
+		// The arrows that CMB2 creates have only an icon: these are the names that a screen reader says.
+		wp_localize_script(
+			'dli_options_dialog',
+			'dliOptionsL10n',
+			array(
+				'moveUp'   => __( 'Sposta la sezione in alto', 'design_laboratori_italia' ),
+				'moveDown' => __( 'Sposta la sezione in basso', 'design_laboratori_italia' ),
+			)
+		);
 	}
 }
 add_action( 'admin_enqueue_scripts', 'dli_options_assets' );

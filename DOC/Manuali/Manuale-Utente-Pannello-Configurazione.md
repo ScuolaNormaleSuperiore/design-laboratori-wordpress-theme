@@ -114,6 +114,11 @@ Campi principali (gruppo ripetibile `site_sections`):
 - `Mostra il titolo della sezione`
   tipo: `radio_inline`
   funzione: mostra/nasconde il titolo della sezione.
+- `Sfondo sezione`
+  tipo: `radio_inline` (`Bianco` / `Grigio chiaro`)
+  funzione: sfondo della sezione. Compare solo per le sezioni che lo prevedono; se non è impostato resta lo sfondo di default di quella sezione.
+
+Ogni riga, anche chiusa, mostra il numero e il nome della sezione scelta (per esempio `Sezione 1 (Pubblicazioni)`). A sinistra della riga ci sono le frecce su e giù per spostarla, poi la `✕` per rimuoverla.
 
 ### 4.4 Tab `Layout HP` (`homepage`)
 Funzione: configura hero, carousel e box contenuti in evidenza della homepage.
@@ -490,7 +495,7 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 
 ### 5.3 `Sezioni HP`
 - Aggiungere una sezione home: nel gruppo `site_sections` cliccare `Aggiungi la sezione`.
-- Ordinare le sezioni: trascinare i blocchi per impostare l'ordine di rendering.
+- Ordinare le sezioni: usare le frecce su e giù a sinistra di ogni riga (anche a riga chiusa) per impostare l'ordine di rendering; il numero e il nome nel titolo si aggiornano. Salvare con `Save Changes`.
 - Disattivare una sezione senza cancellarla: impostare `Abilita la sezione` su `No`.
 - Rimuovere una sezione: cliccare `Rimuovi la sezione` nel blocco.
 

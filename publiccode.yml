@@ -21,6 +21,7 @@ description:
       - Gestione delle news e degli eventi del laboratorio.
       - Gestione dei luoghi del laboratorio.
       - Gestione delle pubblicazioni del laboratorio.
+      - Schede delle pubblicazioni con copertina, autori, collegamenti configurabili e allegati PDF.
       - Gestione degli indirizzi di ricerca.
       - Gestione dei brevetti del laboratorio.
       - Gestione degli spin-off del laboratorio.
@@ -36,6 +37,8 @@ description:
       - Carousel in home page con contenuti selezionabili.
       - Gestione contenuti in evidenza in home page.
       - Gestione sezioni eventi, news e pubblicazioni in home page.
+      - Card delle pubblicazioni in home page con autori, tipologia e anno.
+      - Pagine con riassunto e sottopagine navigabili tramite card configurabili.
       - Gestione banner in home page.
       - Gestione sponsor in home page.
       - Supporto delle lingue italiano ed inglese.

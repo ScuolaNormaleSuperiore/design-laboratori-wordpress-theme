@@ -505,3 +505,51 @@ luogo
     width: 54px;
     text-align: center;
 }
+
+/* ── Configurazione → Sezioni HP: riordino a riga chiusa ──────────────────
+   Le frecce su/giù le crea CMB2 (gruppo 'sortable') dentro il corpo della riga, che da chiusa è nascosto:
+   options.js le sposta nell'intestazione (classe .dli-shift-rows-moved). Qui sono messe a sinistra, prima
+   della "x" di rimozione, che è spostata più a destra con uno spazio dedicato per evitare di cancellare
+   la riga per sbaglio. Il titolo lascia loro il posto con il margine a sinistra. */
+#site_sections_repeat > .cmb-repeatable-grouping {
+	position: relative;
+}
+
+/* Altezza fissa e min-height azzerata (WordPress dà 30-40px ai button-secondary): il bordo delle frecce
+   deve restare dentro la barra del titolo, alta circa 37px, con 3px liberi sopra e sotto. */
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows {
+	position: absolute;
+	top: 3px;
+	width: 1.8em;
+	height: 31px;
+	min-height: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	line-height: 1;
+	margin: 0;
+}
+
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-up {
+	left: 0;
+}
+
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-down {
+	left: 2.2em;
+}
+
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-remove-group-row.dashicons-no-alt {
+	left: 5em !important;
+}
+
+#site_sections_repeat .cmb-group-title {
+	padding-left: 7em;
+}

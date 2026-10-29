@@ -1026,7 +1026,7 @@ class DLI_ContentsManager {
 	/**
 	 * Get the full definition (key, name, template part, ...) of every homepage section.
 	 *
-	 * @return array
+	 * @return array<string, array<string, mixed>> Definition by section id.
 	 */
 	public static function get_hp_sections() {
 		return DLI_HP_SECTIONS;
@@ -1046,21 +1046,47 @@ class DLI_ContentsManager {
 	}
 
 	/**
-	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
+	 * The homepage sections that let the editor choose the background, with their default background.
 	 *
-	 * @param bool $only_active Whether to return only the enabled sections.
-	 * @return array
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `background`, `white` or
+	 * `muted`: its default background when the row says nothing. The field "Sfondo sezione" of Sezioni HP
+	 * is shown only for these sections.
+	 *
+	 * @return array<string, string> Section id => default background.
 	 */
-	public static function get_hp_section_options( $only_active = false ) {
-		$sections = dli_get_option( 'site_sections', 'homepage_sections' );
-		$results  = array();
-		if ( $sections ) {
-			foreach ( $sections as $section ) {
-				if ( ! $only_active || 'true' === $section['enabled'] ) {
-					array_push( $results, $section );
-				}
+	public static function get_hp_sections_with_background() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( isset( $section['background'] ) && '' !== dli_normalize_hp_background( $section['background'] ) ) {
+				$result[ $id ] = $section['background'];
 			}
 		}
-		return $results;
+		return $result;
+	}
+
+	/**
+	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
+	 *
+	 * The saved rows are only read, never rewritten. A row that is not a row, or has no section, is left out;
+	 * `enabled` and `show_title` are `true` or `false`; every row carries `instance`, its position in the saved
+	 * list (see `dli_normalize_hp_section_rows()`).
+	 *
+	 * @param bool $only_active Whether to return only the enabled sections.
+	 * @return array<int, array<string, mixed>>
+	 */
+	public static function get_hp_section_options( $only_active = false ) {
+		$sections = dli_normalize_hp_section_rows( dli_get_option( 'site_sections', 'homepage_sections' ) );
+
+		if ( ! $only_active ) {
+			return $sections;
+		}
+		return array_values(
+			array_filter(
+				$sections,
+				static function ( $section ) {
+					return 'true' === $section['enabled'];
+				}
+			)
+		);
 	}
 }

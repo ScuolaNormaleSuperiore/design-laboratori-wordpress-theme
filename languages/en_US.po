@@ -2751,3 +2751,27 @@ msgstr "Create the example pages"
 #: inc/admin/class-dli-tools-admin.php:967
 msgid "Rimuovi le pagine di esempio"
 msgstr "Remove the example pages"
+
+#: inc/admin/options.php:429
+msgid "Sfondo sezione"
+msgstr "Section background"
+
+#: inc/admin/options.php:430
+msgid "Se non impostato, resta lo sfondo di default di quella sezione."
+msgstr "If not set, the default background of that section is used."
+
+#: inc/admin/options.php:433
+msgid "Bianco"
+msgstr "White"
+
+#: inc/admin/options.php:434
+msgid "Grigio chiaro"
+msgstr "Light gray"
+
+#: inc/admin/options.php:3179
+msgid "Sposta la sezione in alto"
+msgstr "Move the section up"
+
+#: inc/admin/options.php:3180
+msgid "Sposta la sezione in basso"
+msgstr "Move the section down"

@@ -19,15 +19,10 @@ $dli_active_sections = DLI_ContentsManager::get_hp_section_options( true );
 		$dli_section_data = ( $dli_section_id && array_key_exists( $dli_section_id, $dli_all_sections ) ) ? $dli_all_sections[ $dli_section_id ] : null;
 
 		if ( $dli_section_data ) {
-			get_template_part(
-				$dli_section_data['template'],
-				null,
-				array(
-					'id'         => $dli_section['id'],
-					'show_title' => $dli_section['show_title'],
-					'enabled'    => $dli_section['enabled'],
-				)
-			);
+			// The whole row is passed: besides `id`, `show_title` and `enabled` it carries `instance` (its position in
+			// the saved list, to build identifiers that are different for each copy of a section) and the properties
+			// that only some sections use, such as `background`.
+			get_template_part( $dli_section_data['template'], null, $dli_section );
 		}
 	}
 	?>

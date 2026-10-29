@@ -25,8 +25,8 @@ radice del tema.
 | Analisi statica (PHPStan) | `composer run lint:phpstan` | pochi secondi | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
 | Test di integrazione | `composer test:integration` | circa 20 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
-| Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 40 secondi | No | [`e2e/README.md`](e2e/README.md) |
-| Tutti i test | `composer test:all` (unit, integrazione ed E2E, in quest'ordine) | circa 1 minuto e mezzo | No | requisiti di tutte e tre le suite; si ferma alla prima che fallisce |
+| Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 3 minuti | No | [`e2e/README.md`](e2e/README.md) |
+| Tutti i test | `composer test:all` (unit, integrazione ed E2E, in quest'ordine) | circa 4 minuti | No | requisiti di tutte e tre le suite; si ferma alla prima che fallisce. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E cresce con i lotti |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:

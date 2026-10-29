@@ -41,6 +41,7 @@
     "test:e2e:ui": "Functional tests in Playwright UI mode"
   },
   "config": {
+    "process-timeout": 1200,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
