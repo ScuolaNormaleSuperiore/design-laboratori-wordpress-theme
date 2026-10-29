@@ -15,7 +15,7 @@ if ( 'true' === $dli_section_enabled ) {
 			'post_type'      => array( PUBLICATION_POST_TYPE ),
 			'orderby'        => $dli_order_field,
 			'order'          => 'DESC',
-			'posts_per_page' => 4,
+			'posts_per_page' => 3,
 			'meta_query'     => array(
 				array(
 					'key'     => 'promuovi_in_home',
@@ -27,6 +27,7 @@ if ( 'true' === $dli_section_enabled ) {
 	);
 	$dli_num_items = $dli_query->post_count;
 	if ( $dli_num_items > 0 ) {
+		$dli_archive_url = dli_get_translated_page_url_by_slug( SLUG_PUBBLICAZIONI_IT );
 		?>
 	<!-- INIZIO ELENCO PUBBLICAZIONI HP -->
 	<section id="blocco-pubblicazioni" class="section pt-3" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-pubblicazioni-title"' : 'aria-label="' . esc_attr__( 'Pubblicazioni', 'design_laboratori_italia' ) . '"'; ?>>
@@ -35,35 +36,34 @@ if ( 'true' === $dli_section_enabled ) {
 				<?php if ( 'true' === $dli_show_title ) : ?>
 					<h2 id="blocco-pubblicazioni-title" class="h3 pb-2"><?php echo esc_html__( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
 				<?php endif; ?>
-				<div class="row">
-
-				<?php
-				foreach ( $dli_query->posts as $dli_post ) {
-					$dli_postitem = dli_get_post_wrapper( $dli_post );
-					?>
-					<!-- PUBBLICAZIONE -->
-					<div class="col-12 col-lg-3">
-						<article class="it-card rounded">
-							<h3 class="it-card-title h5"><?php echo esc_html( $dli_postitem['title'] ); ?></h3>
-							<div class="it-card-body">
-								<p class="it-card-text"><?php echo esc_html( $dli_postitem['description'] ); ?></p>
-							</div>
-						</article>
+				<ul class="it-card-list row" aria-label="<?php echo esc_attr__( 'Ultime pubblicazioni', 'design_laboratori_italia' ); ?>">
+					<?php foreach ( $dli_query->posts as $dli_post ) : ?>
+						<!-- PUBBLICAZIONE -->
+						<li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+							<article class="it-card it-card-height-full rounded shadow-sm border">
+								<?php
+								get_template_part(
+									'template-parts/common/publication-card-content',
+									null,
+									array(
+										'post_id'     => $dli_post->ID,
+										'archive_url' => $dli_archive_url,
+									)
+								);
+								?>
+							</article>
+						</li>
+						<!-- FINE PUBBLICAZIONE -->
+					<?php endforeach; ?>
+				</ul>
+				<?php if ( '' !== $dli_archive_url ) : ?>
+					<div class="text-center pt-5">
+						<a href="<?php echo esc_url( $dli_archive_url ); ?>" class="btn btn-secondary">
+							<?php echo esc_html__( 'Tutte le pubblicazioni', 'design_laboratori_italia' ); ?>
+						</a>
 					</div>
-					<!-- FINE PUBBLICAZIONE -->
-					<?php
-				}
-				?>
-				</div>
-				<div class="text-center pt-5">
-					<?php
-							$dli_page_url = dli_get_translated_page_url_by_slug( SLUG_PUBBLICAZIONI_IT );
-					?>
-					<a href="<?php echo esc_url( $dli_page_url ); ?>" class="btn btn-secondary">
-						<?php echo esc_html__( 'Tutte le pubblicazioni', 'design_laboratori_italia' ); ?>
-					</a>
-				</div>
-		</div>
+				<?php endif; ?>
+			</div>
 		</div>
 	</section>
 	<!-- FINE ELENCO PUBBLICAZIONI HP -->

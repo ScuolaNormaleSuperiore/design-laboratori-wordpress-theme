@@ -27,6 +27,9 @@ Operational rules for AI assistants working on this codebase.
 - When planning, changing or fixing code, follow `Test-driven workflow` below.
 - Before starting a task, check whether an available WordPress skill covers it; see `Official WordPress Skills` below.
 - During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
+- Before implementing a feature or issue fix, identify every first-party PHP, CSS, or SCSS file expected to change and run its targeted PHPCS check. Until the repository-wide PHPCS remediation is complete, first bring every such file to zero PHPCS errors with behaviour-preserving, scoped changes before adding the functional change. Do not use this rule to trigger unrelated mass remediation: if the necessary cleanup is substantial or changes behaviour, stop and agree its scope with the operator.
+- For `Bug` and `Security` work, preserve test-driven order: write or identify the failing regression test first, then perform the required behaviour-preserving PHPCS cleanup, then apply the functional fix.
+- Treat `phpcs:ignore` as an exceptional last resort, never as a way to make a finding disappear. It is allowed only for a demonstrable false positive or an unavoidable incompatibility with a specific sniff after a standards-compliant code alternative has been considered. Each suppression must be limited to the smallest possible line and sniff, include an English reason, and be recorded for review in the relevant plan or issue. Never add a blanket, file-wide, or unreasoned suppression.
 - **Always present issue lists as numbered lists** so the user can reference an issue by its number (e.g. "fix #3"). This applies everywhere: inline summaries, issue-trigger output, and any ad-hoc issue recap. Summary matrices remain tables.
 
 

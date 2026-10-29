@@ -34,16 +34,17 @@ Regole da conoscere:
 - **Indirizzo:** deriva dal campo `Indirizzo` (slug) della pubblicazione, che WordPress compila dal titolo al primo salvataggio. Se lo si modifica su una pubblicazione già pubblicata, i link salvati altrove (altri siti, segnalibri) possono smettere di funzionare.
 
 ### Dove porta il titolo di una pubblicazione
-Negli elenchi (pagina `Le pubblicazioni`, scheda della persona e del progetto), nella ricerca del sito, nei suggerimenti e nel carousel in home il titolo porta dove indica il campo `Link dettaglio`, come per eventi e notizie:
+Negli elenchi (pagina `Le pubblicazioni`, scheda della persona e del progetto), nella ricerca del sito, nei suggerimenti, nel carousel e nelle card della home (sezione `Pubblicazioni` e box di `Contenuti in evidenza`) il titolo porta dove indica il campo `Link dettaglio`, come per eventi e notizie:
 
 | Scelta | Il titolo porta a | Se manca il link |
 |---|---|---|
-| `Scheda dettaglio` (predefinita) | la scheda della pubblicazione, nella stessa finestra | non può mancare |
+| `Scheda di dettaglio` (predefinita) | la scheda della pubblicazione, nella stessa finestra | non può mancare |
 | `Sito web` | il campo `Url`, in una nuova finestra | il titolo resta testo semplice, senza link |
 | `Link ad allegato` | il file del campo `Allegato`, in una nuova finestra | il titolo resta testo semplice, senza link |
 
 Note:
-- Le pubblicazioni già esistenti hanno la scelta `Scheda dettaglio`: non cambia nulla finché non la si modifica.
+- Le card della home (al massimo tre pubblicazioni con `Promuovi in Home`, le più recenti) mostrano titolo, autori, tipologia e anno. La tipologia porta all'elenco `Le pubblicazioni` filtrato per quella tipologia. Una pubblicazione protetta da password mostra solo titolo e tipologia e porta sempre alla sua scheda. Se la pagina `Le pubblicazioni` non esiste (o non è tradotta nella lingua corrente) il pulsante «Tutte le pubblicazioni» non compare e la tipologia è solo un testo.
+- Le pubblicazioni già esistenti hanno la scelta `Scheda di dettaglio`: non cambia nulla finché non la si modifica.
 - Anche con `Sito web` o `Link ad allegato` la scheda della pubblicazione resta raggiungibile dal suo indirizzo.
 - Una pubblicazione **protetta da password** porta sempre alla sua scheda (dove si inserisce la password), qualunque sia la scelta: il sito esterno e il file sono ciò che la password protegge. Negli elenchi mostra solo titolo, tipologia e anno, senza autori né descrizione.
 - **Allegato e password:** il pulsante di download non compare sulla scheda di una pubblicazione protetta, ma il file resta nella libreria dei media di WordPress e chi ne conosce l'indirizzo lo scarica comunque. Per un file davvero riservato non basta la password della pubblicazione.
@@ -69,6 +70,10 @@ Nel box `Campi Pubblicazione` sono presenti i seguenti campi.
   tipo: `relationship`
   obbligatorio: `No`
   correlazioni: `Persona` (post type `persona`)
+- `Link dettaglio`
+  tipo: `select`
+  obbligatorio: `No`
+  correlazioni: `Nessuna` (sceglie dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel; predefinito `Scheda di dettaglio`)
 - `Url`
   tipo: `url`
   obbligatorio: `No`
@@ -77,10 +82,6 @@ Nel box `Campi Pubblicazione` sono presenti i seguenti campi.
   tipo: `file`
   obbligatorio: `No`
   correlazioni: `Nessuna` (file PDF della pubblicazione: sono ammessi solo file PDF)
-- `Link dettaglio`
-  tipo: `select`
-  obbligatorio: `No`
-  correlazioni: `Nessuna` (sceglie dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel; predefinito `Scheda dettaglio`)
 - `Promuovi in carousel`
   tipo: `true_false`
   obbligatorio: `No`

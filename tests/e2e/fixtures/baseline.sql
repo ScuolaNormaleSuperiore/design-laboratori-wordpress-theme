@@ -272,6 +272,8 @@ INSERT INTO `wp_options` VALUES (277,'tipo-pubblicazione_children','a:0:{}','aut
 INSERT INTO `wp_options` VALUES (278,'menu_check','1','auto');
 INSERT INTO `wp_options` VALUES (279,'dli_has_installed','1','auto');
 INSERT INTO `wp_options` VALUES (313,'dli_publication_rules_version','1','auto');
+INSERT INTO `wp_options` VALUES (344,'homepage_sections','a:1:{s:13:\"site_sections\";a:2:{i:0;a:3:{s:2:\"id\";s:17:\"featured_contents\";s:10:\"show_title\";s:5:\"false\";s:7:\"enabled\";s:4:\"true\";}i:1;a:3:{s:2:\"id\";s:20:\"publications_section\";s:10:\"show_title\";s:4:\"true\";s:7:\"enabled\";s:4:\"true\";}}}','auto');
+INSERT INTO `wp_options` VALUES (345,'homepage','a:1:{s:19:\"featured_contents_1\";a:1:{i:0;a:3:{s:29:\"featured_contents_label_box_1\";s:25:\"Pubblicazioni in evidenza\";s:32:\"featured_contents_template_box_1\";s:18:\"card-pubblicazioni\";s:28:\"featured_contents_type_box_1\";s:13:\"pubblicazione\";}}}','auto');
 /*!40000 ALTER TABLE `wp_options` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wp_postmeta`;

@@ -133,6 +133,8 @@ Tutti inventati, assegnati all'utente `e2e-admin`. Servono alle specifiche sulle
 | «Pubblicazione E2E senza link» | it | «Link dettaglio» = Sito web ma `Url` vuoto: il titolo è testo semplice, senza link |
 | «Pubblicazione E2E con allegato» | it | «Link dettaglio» = Link ad allegato, con una voce di media PDF (`2026/10/e2e-articolo.pdf`, senza il file nel dump: si verifica l'indirizzo, non il download) |
 
+La baseline contiene anche le opzioni della home (`homepage_sections` e `homepage`): sezioni «Contenuti in evidenza» (box 1: pubblicazioni, etichetta «Pubblicazioni in evidenza») e «Pubblicazioni» attive, con il titolo. Nessun box di news o eventi.
+
 Le tipologie di pubblicazione sono quelle create dall'attivazione del tema (non ne esistono altre). Le persone non hanno
 una tipologia, quindi non compaiono nell'elenco `/persone/`: servono solo come autori. Nessun contenuto ha una immagine
 in evidenza: i file dei media non sono nel dump, quindi la copertina si prova con i test di integrazione.
@@ -184,9 +186,10 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
 | `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice) e nella ricerca del sito, autori al posto della descrizione nelle card (e non per una pubblicazione protetta), pulsante «Scarica la pubblicazione» nella scheda, scheda ancora raggiungibile con «Sito web» |
+| `home-publications.spec.js` | pubblicazioni della home (box di «Contenuti in evidenza» e sezione «Pubblicazioni», configurati nella baseline): autori, tipologia e anno nella card, dal titolo alla scheda, dalla tipologia all'elenco filtrato, pulsante «Tutte le pubblicazioni», nessun overflow orizzontale a 320 px |
 | `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
 
-Sono dodici test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
+Sono venticinque test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.
 
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 08:06+0000\n"
+"POT-Creation-Date: 2026-10-29 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -1353,7 +1353,7 @@ msgstr ""
 msgid "Non e stata trovata alcuna risorsa tecnica"
 msgstr ""
 
-#: page-templates/pubblicazioni.php:287
+#: page-templates/pubblicazioni.php:256
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr ""
 
@@ -1972,8 +1972,8 @@ msgstr ""
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
 #: single-progetto.php:268 inc/utils.php:280
-#: template-parts/home/hp-list-publication.php:32
-#: template-parts/home/hp-list-publication.php:36
+#: template-parts/home/hp-list-publication.php:33
+#: template-parts/home/hp-list-publication.php:37
 msgid "Pubblicazioni"
 msgstr ""
 
@@ -2425,7 +2425,9 @@ msgstr ""
 msgid "Tipologia Persona"
 msgstr ""
 
-#: single-pubblicazione.php:63 page-templates/pubblicazioni.php:254
+#: single-pubblicazione.php:63
+#: template-parts/common/publication-card-content.php:59
+#: template-parts/common/publication-card-content.php:64
 msgid "Tipologia:"
 msgstr ""
 
@@ -2459,7 +2461,8 @@ msgstr ""
 msgid "Tutte le notizie"
 msgstr ""
 
-#: template-parts/home/hp-list-publication.php:63
+#: template-parts/home/card-pubblicazioni.php:64
+#: template-parts/home/hp-list-publication.php:62
 msgid "Tutte le pubblicazioni"
 msgstr ""
 
@@ -2502,6 +2505,10 @@ msgstr ""
 
 #: single-persona.php:242 single-persona.php:392
 msgid "Ulteriori informazioni"
+msgstr ""
+
+#: template-parts/home/hp-list-publication.php:39
+msgid "Ultime pubblicazioni"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:564

@@ -268,6 +268,25 @@ guards to model WordPress's dynamic APIs. Do not add a broad baseline or generic
 `ignoreErrors`; any unavoidable exception must be limited to one identifier and
 path, documented with its reason and a review date.
 
+### PHPCS readiness of touched files
+
+The project objective is zero PHPCS errors and PHPStan level 4 for the whole
+theme. Until the PHPCS objective is reached repository-wide, every first-party
+PHP, CSS, or SCSS file selected for a feature or issue fix must first be made
+free of PHPCS errors before its functional change is added. Run the targeted
+check before editing to establish the required cleanup and again after the
+change. Keep that cleanup behaviour-preserving and limited to the selected
+files; propose a separate, agreed activity when it would become a broader
+refactor or alter behaviour.
+
+Do not add a `phpcs:ignore` merely to obtain a clean result. A suppression is
+permitted only for a demonstrated false positive or an unavoidable
+incompatibility with one precise sniff when no standards-compliant code
+alternative exists. It must target the smallest possible line and sniff, state
+an English reason beside the suppression, and be recorded with a review point
+in the relevant plan or issue. Blanket, file-wide, and unreasoned suppressions
+are prohibited.
+
 Pick the checks that match the change, run them, and report which ones could not run and why. Never state that something was verified when the check did not run. The canonical command list is in `AGENTS/ARCHITECTURE.md`. `phpcs.xml.dist` excludes only third-party, generated, and tooling files (see `Third-Party, Generated and Exported Files` in `AGENTS/AI_BEHAVIOR.md`); never add first-party code to its exclusions to silence a finding.
 
 | Change | Check | Notes |

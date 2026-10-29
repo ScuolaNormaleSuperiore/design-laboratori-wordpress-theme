@@ -117,7 +117,7 @@ class DLI_Content_Managers_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertIsArray( $group );
 		$this->assertSame( PUBLICATION_POST_TYPE, $group['location'][0][0]['value'] );
 		$this->assertSame(
-			array( 'anno', 'autori', 'url', 'allegato', 'link_dettaglio', 'promuovi_in_carousel', 'promuovi_in_home' ),
+			array( 'anno', 'autori', 'link_dettaglio', 'url', 'allegato', 'promuovi_in_carousel', 'promuovi_in_home' ),
 			$this->get_field_names( 'group_63ca5c47b914d' )
 		);
 	}

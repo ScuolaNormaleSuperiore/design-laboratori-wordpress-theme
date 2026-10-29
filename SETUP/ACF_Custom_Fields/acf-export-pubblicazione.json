@@ -52,6 +52,36 @@
 							"elements": ""
 					},
 					{
+						"key": "field_6a3c9e0b1d4f2",
+						"label": "Link dettaglio",
+						"name": "link_dettaglio",
+						"aria-label": "",
+						"type": "select",
+						"instructions": "Dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel. Con «Sito web» compila il campo Url; con «Link ad allegato» compila il campo Allegato. La scheda resta comunque raggiungibile dal suo indirizzo.",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"choices": {
+							"scheda": "Scheda di dettaglio",
+							"sitoweb": "Sito web",
+							"allegato": "Link ad allegato"
+						},
+						"default_value": "scheda",
+						"return_format": "value",
+						"multiple": 0,
+						"allow_null": 0,
+						"allow_in_bindings": 0,
+						"ui": 0,
+						"ajax": 0,
+						"placeholder": "",
+						"create_options": 0,
+						"save_options": 0
+					},
+					{
 							"key": "field_63e652c02c893",
 							"label": "Url",
 							"name": "url",
@@ -74,7 +104,7 @@
 						"name": "allegato",
 						"aria-label": "",
 						"type": "file",
-						"instructions": "File PDF della pubblicazione. Il pulsante della scheda lo offre in download; se la scelta qui sotto è «Link ad allegato» il titolo nelle liste porta al file.",
+						"instructions": "File PDF della pubblicazione. Il pulsante della scheda lo offre in download; se la scelta di «Link dettaglio» è «Link ad allegato» il titolo nelle liste porta al file.",
 						"required": 0,
 						"conditional_logic": 0,
 						"wrapper": {
@@ -87,36 +117,6 @@
 						"min_size": "",
 						"max_size": "",
 						"mime_types": "pdf"
-					},
-					{
-						"key": "field_6a3c9e0b1d4f2",
-						"label": "Link dettaglio",
-						"name": "link_dettaglio",
-						"aria-label": "",
-						"type": "select",
-						"instructions": "Dove porta il titolo della pubblicazione negli elenchi, nella ricerca e nel carousel. «Sito web» usa il campo Url; «Link ad allegato» usa il campo Allegato. La scheda resta comunque raggiungibile dal suo indirizzo.",
-						"required": 0,
-						"conditional_logic": 0,
-						"wrapper": {
-							"width": "",
-							"class": "",
-							"id": ""
-						},
-						"choices": {
-							"scheda": "Scheda dettaglio",
-							"sitoweb": "Sito web",
-							"allegato": "Link ad allegato"
-						},
-						"default_value": "scheda",
-						"return_format": "value",
-						"multiple": 0,
-						"allow_null": 0,
-						"allow_in_bindings": 0,
-						"ui": 0,
-						"ajax": 0,
-						"placeholder": "",
-						"create_options": 0,
-						"save_options": 0
 					},
 					{
 							"key": "field_63e6d1ff4bf3c",

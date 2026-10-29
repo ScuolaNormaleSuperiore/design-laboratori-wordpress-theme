@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-10-29 08:07+0000\n"
+"PO-Revision-Date: 2026-10-29 08:48+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -1379,7 +1379,7 @@ msgstr "Name and surname"
 msgid "Non e stata trovata alcuna risorsa tecnica"
 msgstr "No technical resources found"
 
-#: page-templates/pubblicazioni.php:287
+#: page-templates/pubblicazioni.php:256
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr "No publications available"
 
@@ -2003,8 +2003,8 @@ msgstr "Publication"
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
 #: single-progetto.php:268 inc/utils.php:280
-#: template-parts/home/hp-list-publication.php:32
-#: template-parts/home/hp-list-publication.php:36
+#: template-parts/home/hp-list-publication.php:33
+#: template-parts/home/hp-list-publication.php:37
 msgid "Pubblicazioni"
 msgstr "Publications"
 
@@ -2462,7 +2462,9 @@ msgstr "Place type"
 msgid "Tipologia Persona"
 msgstr "People type"
 
-#: single-pubblicazione.php:63 page-templates/pubblicazioni.php:254
+#: single-pubblicazione.php:63
+#: template-parts/common/publication-card-content.php:59
+#: template-parts/common/publication-card-content.php:64
 msgid "Tipologia:"
 msgstr "Type:"
 
@@ -2496,7 +2498,8 @@ msgstr "All other columns are optional."
 msgid "Tutte le notizie"
 msgstr "All news"
 
-#: template-parts/home/hp-list-publication.php:63
+#: template-parts/home/card-pubblicazioni.php:64
+#: template-parts/home/hp-list-publication.php:62
 msgid "Tutte le pubblicazioni"
 msgstr "All publications"
 
@@ -2540,6 +2543,10 @@ msgstr "All types"
 #: single-persona.php:242 single-persona.php:392
 msgid "Ulteriori informazioni"
 msgstr "More info"
+
+#: template-parts/home/hp-list-publication.php:39
+msgid "Ultime pubblicazioni"
+msgstr "Latest publications"
 
 #: inc/admin/class-dli-tools-admin.php:564
 msgid "upsert (crea o aggiorna)"

@@ -212,14 +212,8 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 							while ( $dli_pubblicazioni_query->have_posts() ) {
 								$dli_pubblicazioni_query->the_post();
 								$dli_item_id        = get_the_ID();
-								$dli_item_title     = get_the_title( $dli_item_id );
-								$dli_item_link      = dli_get_publication_link( $dli_item_id );
-								$dli_item_autori    = post_password_required( $dli_item_id ) ? array() : wp_list_pluck( dli_get_publication_authors( $dli_item_id ), 'name' );
-								$dli_item_anno      = dli_get_field( 'anno' );
 								$dli_image_metadata = dli_get_image_metadata( get_post( $dli_item_id ) );
 								$dli_img_url        = ( isset( $dli_image_metadata['image_url'] ) && $dli_image_metadata['image_url'] ) ? $dli_image_metadata['image_url'] : null;
-								$dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
-								$dli_item_terms     = is_array( $dli_item_terms ) ? $dli_item_terms : array();
 								?>
 								<!--start card-->
 								<div class="col-12 mb-4">
@@ -227,41 +221,16 @@ $dli_no_items = ! $dli_num_results && '' === $dli_anno_select && empty( $dli_tip
 										<?php if ( $dli_img_url ) : ?>
 											<div class="it-card-inline-content">
 										<?php endif; ?>
-											<h3 class="it-card-title h5 text-break" style="overflow-wrap: anywhere;">
-												<?php
-												get_template_part(
-													'template-parts/common/linked-title',
-													null,
-													array(
-														'title'    => $dli_item_title,
-														'url'      => $dli_item_link['url'],
-														'external' => $dli_item_link['external'],
-													)
-												);
-												?>
-											</h3>
-											<?php if ( ! empty( $dli_item_autori ) ) : ?>
-												<div class="it-card-body">
-													<p class="it-card-text text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( implode( ', ', $dli_item_autori ) ); ?></p>
-												</div>
-											<?php endif; ?>
-											<?php if ( ! empty( $dli_item_terms ) || $dli_item_anno ) : ?>
-												<footer class="it-card-footer">
-													<?php if ( ! empty( $dli_item_terms ) ) : ?>
-														<div class="it-card-taxonomy">
-															<?php foreach ( $dli_item_terms as $dli_item_term ) : ?>
-																<a class="it-card-category it-card-link" href="<?php echo esc_url( add_query_arg( 'tipologia', array( $dli_item_term->slug ), $dli_page_permalink ) ); ?>">
-																	<span class="visually-hidden"><?php esc_html_e( 'Tipologia:', 'design_laboratori_italia' ); ?></span>
-																	<?php echo esc_html( $dli_item_term->name ); ?>
-																</a>
-															<?php endforeach; ?>
-														</div>
-													<?php endif; ?>
-													<?php if ( $dli_item_anno ) : ?>
-														<time class="it-card-date" datetime="<?php echo esc_attr( $dli_item_anno ); ?>"><?php echo esc_html( $dli_item_anno ); ?></time>
-													<?php endif; ?>
-												</footer>
-											<?php endif; ?>
+											<?php
+											get_template_part(
+												'template-parts/common/publication-card-content',
+												null,
+												array(
+													'post_id'     => $dli_item_id,
+													'archive_url' => $dli_page_permalink,
+												)
+											);
+											?>
 										<?php if ( $dli_img_url ) : ?>
 											</div>
 											<div class="it-card-image-wrapper">
