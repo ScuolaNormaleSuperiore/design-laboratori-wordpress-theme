@@ -409,3 +409,16 @@ html {
 		max-width: none;
 	}
 }
+
+/* Navigation card (template-parts/common/card-nav.php): the body grows so that the
+	"Vai al servizio" link stays at the bottom of the card, whatever the length of the abstract
+	(with it-card-height-full the cards of a row have the same height). The title uses the
+	semantic variable, not the .text-primary utility, which would take the unbranded
+	Bootstrap Italia blue. */
+.card-nav .it-card-body {
+	flex-grow: 1;
+}
+
+.card-nav .it-card-title {
+	color: var(--bsi-color-text-primary);
+}

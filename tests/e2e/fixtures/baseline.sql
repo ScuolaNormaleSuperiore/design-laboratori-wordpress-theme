@@ -3,7 +3,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -116,12 +116,12 @@ CREATE TABLE `wp_options` (
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`),
   KEY `autoload` (`autoload`)
-) ENGINE=InnoDB AUTO_INCREMENT=328 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_options` WRITE;
 /*!40000 ALTER TABLE `wp_options` DISABLE KEYS */;
-INSERT INTO `wp_options` VALUES (1,'cron','a:11:{i:1792663139;a:3:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:41:\"wp_privacy_personal_data_cleanup_requests\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663282;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663285;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663467;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1793181819;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1793188739;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1793224882;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793228338;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793230138;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793231938;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','on');
+INSERT INTO `wp_options` VALUES (1,'cron','a:12:{i:1792663139;a:2:{s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:41:\"wp_privacy_personal_data_cleanup_requests\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663282;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663285;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1792663467;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1793181819;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1793188739;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1793224882;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793228338;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793230138;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793231938;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1793267939;a:1:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}','on');
 INSERT INTO `wp_options` VALUES (2,'siteurl','http://dli-wp-e2e.local','on');
 INSERT INTO `wp_options` VALUES (3,'home','http://dli-wp-e2e.local','on');
 INSERT INTO `wp_options` VALUES (4,'blogname','dli-wp-e2e','on');
@@ -287,7 +287,7 @@ CREATE TABLE `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=433 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=437 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_postmeta` WRITE;
@@ -724,6 +724,10 @@ INSERT INTO `wp_postmeta` VALUES (429,98,'link_dettaglio','allegato');
 INSERT INTO `wp_postmeta` VALUES (430,98,'_link_dettaglio','field_6a3c9e0b1d4f2');
 INSERT INTO `wp_postmeta` VALUES (431,98,'allegato','95');
 INSERT INTO `wp_postmeta` VALUES (432,98,'_allegato','field_6a3c9e0b1d4f3');
+INSERT INTO `wp_postmeta` VALUES (433,99,'mostra_sottopagine_a_card','1');
+INSERT INTO `wp_postmeta` VALUES (434,99,'_mostra_sottopagine_a_card','field_670e717b3bedd');
+INSERT INTO `wp_postmeta` VALUES (435,105,'mostra_sottopagine_a_card','1');
+INSERT INTO `wp_postmeta` VALUES (436,105,'_mostra_sottopagine_a_card','field_670e717b3bedd');
 /*!40000 ALTER TABLE `wp_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wp_posts`;
@@ -759,7 +763,7 @@ CREATE TABLE `wp_posts` (
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`),
   KEY `type_status_author` (`post_type`,`post_status`,`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_posts` WRITE;
@@ -862,6 +866,15 @@ INSERT INTO `wp_posts` VALUES (95,3,'2026-10-28 14:22:57','2026-10-28 14:22:57',
 INSERT INTO `wp_posts` VALUES (96,3,'2026-10-28 14:22:57','2026-10-28 14:22:57','','Pubblicazione E2E sito esterno','','publish','closed','closed','','pubblicazione-e2e-sito-esterno','','','2026-10-28 14:22:57','2026-10-28 14:22:57','',0,'http://dli-wp-e2e.local/pubblicazione/pubblicazione-e2e-sito-esterno/',0,'pubblicazione','',0);
 INSERT INTO `wp_posts` VALUES (97,3,'2026-10-28 14:22:57','2026-10-28 14:22:57','','Pubblicazione E2E senza link','','publish','closed','closed','','pubblicazione-e2e-senza-link','','','2026-10-28 14:22:57','2026-10-28 14:22:57','',0,'http://dli-wp-e2e.local/pubblicazione/pubblicazione-e2e-senza-link/',0,'pubblicazione','',0);
 INSERT INTO `wp_posts` VALUES (98,3,'2026-10-28 14:22:57','2026-10-28 14:22:57','','Pubblicazione E2E con allegato','','publish','closed','closed','','pubblicazione-e2e-con-allegato','','','2026-10-28 14:22:57','2026-10-28 14:22:57','',0,'http://dli-wp-e2e.local/pubblicazione/pubblicazione-e2e-con-allegato/',0,'pubblicazione','',0);
+INSERT INTO `wp_posts` VALUES (99,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo della pagina E2E con sottopagine.</p>','Pagina E2E con sottopagine','','publish','closed','closed','','pagina-e2e-con-sottopagine','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',0,'http://dli-wp-e2e.local/pagina-e2e-con-sottopagine/',0,'page','',0);
+INSERT INTO `wp_posts` VALUES (100,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo della sottopagina uno.</p>','Sottopagina E2E uno','Riassunto della sottopagina uno.','publish','closed','closed','','sottopagina-e2e-uno','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',99,'http://dli-wp-e2e.local/pagina-e2e-con-sottopagine/sottopagina-e2e-uno/',1,'page','',0);
+INSERT INTO `wp_posts` VALUES (101,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>parola1 parola2 parola3 parola4 parola5 parola6 parola7 parola8 parola9 parola10 parola11 parola12 parola13 parola14 parola15 parola16 parola17 parola18 parola19 parola20 parola21 parola22 parola23 parola24 parola25 parola26 parola27 parola28 parola29 parola30 parola31 parola32 parola33 parola34 parola35 parola36 parola37 parola38 parola39 parola40 parola41 parola42 parola43 parola44 parola45</p>','Sottopagina E2E due','','publish','closed','closed','','sottopagina-e2e-due','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',99,'http://dli-wp-e2e.local/pagina-e2e-con-sottopagine/sottopagina-e2e-due/',2,'page','',0);
+INSERT INTO `wp_posts` VALUES (102,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo riservato della sottopagina E2E protetta.</p>','Sottopagina E2E protetta','','publish','closed','closed','e2e-password','sottopagina-e2e-protetta','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',99,'http://dli-wp-e2e.local/pagina-e2e-con-sottopagine/sottopagina-e2e-protetta/',3,'page','',0);
+INSERT INTO `wp_posts` VALUES (103,3,'2026-10-29 09:23:14','0000-00-00 00:00:00','','Sottopagina E2E bozza','','draft','closed','closed','','sottopagina-e2e-bozza','','','2026-10-29 09:23:14','0000-00-00 00:00:00','',99,'http://dli-wp-e2e.local/?page_id=103',4,'page','',0);
+INSERT INTO `wp_posts` VALUES (104,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo del nipote.</p>','Nipote E2E','','publish','closed','closed','','nipote-e2e','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',100,'http://dli-wp-e2e.local/pagina-e2e-con-sottopagine/sottopagina-e2e-uno/nipote-e2e/',0,'page','',0);
+INSERT INTO `wp_posts` VALUES (105,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo della pagina senza sottopagine.</p>','Pagina E2E senza sottopagine','','publish','closed','closed','','pagina-e2e-senza-sottopagine','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',0,'http://dli-wp-e2e.local/pagina-e2e-senza-sottopagine/',0,'page','',0);
+INSERT INTO `wp_posts` VALUES (106,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo della pagina con card spente.</p>','Pagina E2E card spente','','publish','closed','closed','','pagina-e2e-card-spente','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',0,'http://dli-wp-e2e.local/pagina-e2e-card-spente/',0,'page','',0);
+INSERT INTO `wp_posts` VALUES (107,3,'2026-10-29 09:23:14','2026-10-29 09:23:14','<p>Testo.</p>','Sottopagina E2E della pagina spenta','','publish','closed','closed','','sottopagina-e2e-spenta','','','2026-10-29 09:23:14','2026-10-29 09:23:14','',106,'http://dli-wp-e2e.local/pagina-e2e-card-spente/sottopagina-e2e-spenta/',0,'page','',0);
 /*!40000 ALTER TABLE `wp_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wp_term_relationships`;
@@ -1072,6 +1085,15 @@ INSERT INTO `wp_term_relationships` VALUES (97,2,0);
 INSERT INTO `wp_term_relationships` VALUES (97,75,0);
 INSERT INTO `wp_term_relationships` VALUES (98,2,0);
 INSERT INTO `wp_term_relationships` VALUES (98,75,0);
+INSERT INTO `wp_term_relationships` VALUES (99,2,0);
+INSERT INTO `wp_term_relationships` VALUES (100,2,0);
+INSERT INTO `wp_term_relationships` VALUES (101,2,0);
+INSERT INTO `wp_term_relationships` VALUES (102,2,0);
+INSERT INTO `wp_term_relationships` VALUES (103,2,0);
+INSERT INTO `wp_term_relationships` VALUES (104,2,0);
+INSERT INTO `wp_term_relationships` VALUES (105,2,0);
+INSERT INTO `wp_term_relationships` VALUES (106,2,0);
+INSERT INTO `wp_term_relationships` VALUES (107,2,0);
 /*!40000 ALTER TABLE `wp_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wp_term_taxonomy`;
@@ -1093,7 +1115,7 @@ CREATE TABLE `wp_term_taxonomy` (
 LOCK TABLES `wp_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `wp_term_taxonomy` DISABLE KEYS */;
 INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,1);
-INSERT INTO `wp_term_taxonomy` VALUES (2,2,'language','a:3:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";b:0;s:9:\"flag_code\";s:2:\"it\";}',0,30);
+INSERT INTO `wp_term_taxonomy` VALUES (2,2,'language','a:3:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";b:0;s:9:\"flag_code\";s:2:\"it\";}',0,39);
 INSERT INTO `wp_term_taxonomy` VALUES (3,3,'term_language','',0,11);
 INSERT INTO `wp_term_taxonomy` VALUES (5,5,'language','a:3:{s:6:\"locale\";s:5:\"en_US\";s:3:\"rtl\";b:0;s:9:\"flag_code\";s:2:\"us\";}',0,22);
 INSERT INTO `wp_term_taxonomy` VALUES (6,6,'term_language','',0,11);

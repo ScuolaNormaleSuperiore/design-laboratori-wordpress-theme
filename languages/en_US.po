@@ -2548,6 +2548,14 @@ msgstr "More info"
 msgid "Ultime pubblicazioni"
 msgstr "Latest publications"
 
+#: template-parts/common/card-nav.php:35
+msgid "Vai al servizio"
+msgstr "Go to the service"
+
+#: page.php:127
+msgid "In questa sezione"
+msgstr "In this section"
+
 #: inc/admin/class-dli-tools-admin.php:564
 msgid "upsert (crea o aggiorna)"
 msgstr "upsert (create or update)"
@@ -2662,3 +2670,84 @@ msgstr "Website Link"
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
 msgstr "Youtube for video viewing"
+
+#: inc/admin/class-dli-example-content.php:56
+msgid "La lingua richiesta non esiste in questo sito."
+msgstr "The requested language does not exist on this site."
+
+#: inc/admin/class-dli-example-content.php:59
+msgid "ACF e Polylang devono essere attivi."
+msgstr "ACF and Polylang must be active."
+
+#. translators: %s: address of the page
+#: inc/admin/class-dli-example-content.php:143
+msgid "L'indirizzo «%s» è già usato da una pagina in un'altra lingua: non è stato creato nulla. Rimuovi le pagine di esempio di un'esecuzione precedente e riprova."
+msgstr "The address “%s” is already used by a page in another language: nothing was created. Remove the example pages of an earlier run and try again."
+
+#: inc/admin/class-dli-tools-admin.php:836
+msgid "Azione non riconosciuta."
+msgstr "Unknown action."
+
+#. translators: %d: number of pages removed
+#: inc/admin/class-dli-tools-admin.php:890
+msgid "Rimossa %d pagina di esempio."
+msgid_plural "Rimosse %d pagine di esempio."
+msgstr[0] "%d example page removed."
+msgstr[1] "%d example pages removed."
+
+#. translators: 1: pages created, 2: pages already there
+#: inc/admin/class-dli-tools-admin.php:900
+msgid "Pagine create: %1$d. Già presenti: %2$d."
+msgstr "Pages created: %1$d. Already there: %2$d."
+
+#: inc/admin/class-dli-tools-admin.php:911
+msgid "Apri la pagina principale:"
+msgstr "Open the main page:"
+
+#: inc/admin/class-dli-tools-admin.php:930
+msgid "Italiano e inglese"
+msgstr "Italian and English"
+
+#: inc/admin/class-dli-tools-admin.php:933
+msgid "Solo italiano"
+msgstr "Italian only"
+
+#: inc/admin/class-dli-tools-admin.php:936
+msgid "Solo inglese"
+msgstr "English only"
+
+#: inc/admin/class-dli-tools-admin.php:942
+msgid "Pagine di esempio"
+msgstr "Example pages"
+
+#: inc/admin/class-dli-tools-admin.php:944
+msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione."
+msgstr "Creates an example section (“Research Data Management”) with four subpages and their own subpages, each with a sample text (lorem ipsum) of a different length. It is meant to try the subpage cards and the sidebar of the related pages. The content is fake: do not use it on a production site."
+
+#: inc/admin/class-dli-tools-admin.php:945
+msgid "Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
+msgstr "It can be repeated without duplicating anything. “Remove” deletes only the pages created by this tool, never those written by an editor."
+
+#: inc/admin/class-dli-tools-admin.php:947
+msgid "Servono le lingue italiano o inglese di Polylang."
+msgstr "The Italian or English language of Polylang is required."
+
+#: inc/admin/class-dli-tools-admin.php:953
+msgid "Lingue"
+msgstr "Languages"
+
+#: inc/admin/class-dli-tools-admin.php:962
+msgid "Creare le pagine di esempio? Sono contenuti finti, da non usare in produzione."
+msgstr "Create the example pages? The content is fake, not to be used in production."
+
+#: inc/admin/class-dli-tools-admin.php:966
+msgid "Rimuovere le pagine di esempio create da questo strumento?"
+msgstr "Remove the example pages created by this tool?"
+
+#: inc/admin/class-dli-tools-admin.php:963
+msgid "Crea le pagine di esempio"
+msgstr "Create the example pages"
+
+#: inc/admin/class-dli-tools-admin.php:967
+msgid "Rimuovi le pagine di esempio"
+msgstr "Remove the example pages"

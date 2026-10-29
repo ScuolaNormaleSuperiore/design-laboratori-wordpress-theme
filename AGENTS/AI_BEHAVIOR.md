@@ -28,6 +28,7 @@ Operational rules for AI assistants working on this codebase.
 - Before starting a task, check whether an available WordPress skill covers it; see `Official WordPress Skills` below.
 - During PHPCS remediation, never weaken rules in `phpcs.xml.dist` to silence unresolved findings. If a finding cannot be fixed safely in code, report it in the output and ask the user whether to add/update an entry in `AGENTS/ISSUES_TODO.md`.
 - Before implementing a feature or issue fix, identify every first-party PHP, CSS, or SCSS file expected to change and run its targeted PHPCS check. Until the repository-wide PHPCS remediation is complete, first bring every such file to zero PHPCS errors with behaviour-preserving, scoped changes before adding the functional change. Do not use this rule to trigger unrelated mass remediation: if the necessary cleanup is substantial or changes behaviour, stop and agree its scope with the operator.
+- Before implementing a feature or issue fix, assess whether a scoped refactor would avoid duplication, separate confused responsibilities, or make the change easier to test and maintain. When it would, present the operator with evidence, affected files, expected benefit, risk, test impact, and the options to do it now as a separate phase or record and defer it. Do not perform a material refactor implicitly or introduce an abstraction without at least one concrete second consumer.
 - For `Bug` and `Security` work, preserve test-driven order: write or identify the failing regression test first, then perform the required behaviour-preserving PHPCS cleanup, then apply the functional fix.
 - Treat `phpcs:ignore` as an exceptional last resort, never as a way to make a finding disappear. It is allowed only for a demonstrable false positive or an unavoidable incompatibility with a specific sniff after a standards-compliant code alternative has been considered. Each suppression must be limited to the smallest possible line and sniff, include an English reason, and be recorded for review in the relevant plan or issue. Never add a blanket, file-wide, or unreasoned suppression.
 - **Always present issue lists as numbered lists** so the user can reference an issue by its number (e.g. "fix #3"). This applies everywhere: inline summaries, issue-trigger output, and any ad-hoc issue recap. Summary matrices remain tables.
@@ -466,7 +467,7 @@ When an issue is resolved:
 ## Documentation and AGENTS Update Matrix
 After code changes, update documentation with this matrix:
 - Feature implemented:
-  Update `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, and related issue status.
+  Update `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, the affected end-user or administrator documentation, and related issue status.
 - Bug fixed:
   Move/update the issue in `AGENTS/ISSUES_RESOLVED.md` (with the regression test); update `AGENTS/ARCHITECTURE.md` only if runtime behavior changed.
 - Refactor without behavior changes:
@@ -477,6 +478,8 @@ After code changes, update documentation with this matrix:
   Update `AGENTS/AI_BOOTSTRAP.md` file map.
 - Backlog changes:
   Update `AGENTS/ISSUES_TODO.md` and, when closed, move entries to `AGENTS/ISSUES_RESOLVED.md`.
+
+Update all documentation affected by a feature or behaviour change in the same task or lot as the code; do not defer it to a final documentation-only phase.
 
 For security/accessibility/code-quality checks, apply `AGENTS/CODING_STANDARDS.md` checklists.
 If a required check fails and cannot be fixed safely in scope, add/update an issue in `AGENTS/ISSUES_TODO.md`.

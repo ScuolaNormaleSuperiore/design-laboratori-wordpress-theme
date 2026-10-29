@@ -133,6 +133,14 @@ Tutti inventati, assegnati all'utente `e2e-admin`. Servono alle specifiche sulle
 | «Pubblicazione E2E senza link» | it | «Link dettaglio» = Sito web ma `Url` vuoto: il titolo è testo semplice, senza link |
 | «Pubblicazione E2E con allegato» | it | «Link dettaglio» = Link ad allegato, con una voce di media PDF (`2026/10/e2e-articolo.pdf`, senza il file nel dump: si verifica l'indirizzo, non il download) |
 
+Pagine di esempio (italiano, inventate), per le card delle sottopagine:
+
+| Pagina | Cosa la distingue |
+|---|---|
+| «Pagina E2E con sottopagine» | `Mostra le sottopagine come card` attivo; figlie «Sottopagina E2E uno» (riassunto scritto), «Sottopagina E2E due» (nessun riassunto, testo lungo 45 parole), «Sottopagina E2E protetta» (password `e2e-password`), «Sottopagina E2E bozza» (bozza); nipote «Nipote E2E» sotto la prima |
+| «Pagina E2E senza sottopagine» | campo attivo ma nessuna figlia |
+| «Pagina E2E card spente» | una figlia, campo spento |
+
 La baseline contiene anche le opzioni della home (`homepage_sections` e `homepage`): sezioni «Contenuti in evidenza» (box 1: pubblicazioni, etichetta «Pubblicazioni in evidenza») e «Pubblicazioni» attive, con il titolo. Nessun box di news o eventi.
 
 Le tipologie di pubblicazione sono quelle create dall'attivazione del tema (non ne esistono altre). Le persone non hanno
@@ -186,10 +194,12 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
 | `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice) e nella ricerca del sito, autori al posto della descrizione nelle card (e non per una pubblicazione protetta), pulsante «Scarica la pubblicazione» nella scheda, scheda ancora raggiungibile con «Sito web» |
+| `example-pages-tool.spec.js` | Strumenti DLI → Utilità: due box separati; il box «Pagine di esempio» crea la sezione in italiano e inglese (24 pagine, con le 4 card nelle due pagine principali), rilanciato non duplica, «Rimuovi» la cancella (404); rifiutando la conferma non si crea nulla |
+| `page-subpage-cards.spec.js` | pagina base con le card delle sottopagine: ordine, riassunto o testo tagliato a 30 parole, assenza di bozza, sottopagina protetta e nipote, posizione prima del testo con il titolo «In questa sezione», link alla sottopagina, nessun elenco senza sottopagine o con il campo spento, nessun overflow a 320 px |
 | `home-publications.spec.js` | pubblicazioni della home (box di «Contenuti in evidenza» e sezione «Pubblicazioni», configurati nella baseline): autori, tipologia e anno nella card, dal titolo alla scheda, dalla tipologia all'elenco filtrato, pulsante «Tutte le pubblicazioni», nessun overflow orizzontale a 320 px |
 | `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
 
-Sono venticinque test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
+Sono trentuno test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.
 
 

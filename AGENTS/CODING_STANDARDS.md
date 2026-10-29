@@ -144,6 +144,7 @@ introduce barriers.
 - Keep nesting shallow.
 - Extract complex conditions into clearly named variables.
 - Align consecutive assignments when it improves readability.
+- Before extending a component, prefer existing shared code or a scoped refactor over copying logic. A material refactor must be proposed to the operator with its scope, benefit, risk and test impact before implementation; do not create a new abstraction until at least two concrete consumers need it.
 
 ### Security
 

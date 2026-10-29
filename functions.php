@@ -60,6 +60,7 @@ require get_template_directory() . '/inc/admin/options.php';
 
 // Import the code to create the admin section: Strumenti DLI.
 require get_template_directory() . '/inc/admin/class-dli-people-file-importer.php';
+require get_template_directory() . '/inc/admin/class-dli-example-content.php';
 require get_template_directory() . '/inc/admin/class-dli-tools-admin.php';
 
 // Admin menu ordering and visibility.
@@ -94,6 +95,11 @@ require get_template_directory() . '/inc/search-autocomplete.php';
  * Publications — helpers shared by the detail page, the archive and the home cards.
  */
 require get_template_directory() . '/inc/publications.php';
+
+/**
+ * Base pages — helpers shared by the page template and the homepage sections.
+ */
+require get_template_directory() . '/inc/pages.php';
 
 
 /**

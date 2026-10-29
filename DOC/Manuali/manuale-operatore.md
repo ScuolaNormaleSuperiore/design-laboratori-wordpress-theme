@@ -75,6 +75,15 @@ Nota operativa:
 - Le pagine archivio mostrano automaticamente i contenuti dei relativi post type.
 - In caso di risultati inattesi, controlla prima filtri, tassonomie e stato di pubblicazione dei contenuti.
 
+### Card delle sottopagine in una pagina
+Nella modifica di una pagina, il campo `Mostra le sottopagine come card` mostra, prima del testo della pagina e sotto il titolo `In questa sezione`, una card per ciascuna sottopagina diretta (titolo, riassunto e link `Vai al servizio`).
+- Le sottopagine seguono l'ordine della pagina (`Attributi pagina > Ordine`), poi il titolo.
+- Il riassunto è il campo `Riassunto` della sottopagina (ora disponibile anche per le pagine). Se è vuoto, la card usa l'inizio del testo della sottopagina, tagliato a 30 parole.
+- Le sottopagine in bozza o protette da password non compaiono. Se la pagina stessa è protetta, le card compaiono solo dopo aver inserito la password.
+- Se non ci sono sottopagine pubblicate non compare nessun elenco, anche con il campo attivo.
+- Per provare le card senza scrivere pagine a mano: `Strumenti DLI > Utilità > Pagine di esempio` crea la sezione «Research Data Management» (quattro sottopagine e le loro sottopagine, con testi lorem ipsum di lunghezza diversa) in italiano, in inglese o in entrambe le lingue (le due versioni sono collegate come traduzioni). Il pulsante può essere ripetuto senza duplicare nulla; `Rimuovi le pagine di esempio` cancella solo le pagine create dallo strumento, mai quelle scritte da un redattore. Sono contenuti finti: non usarlo su un sito di produzione. Serve il permesso `edit_theme_options` (amministratore).
+- Il campo `Promuovi in Home` serve alle sezioni della home che elencano pagine (in arrivo: `Pagine in evidenza`, `Navigazione per pagine`): da solo non cambia nulla finché quelle sezioni non sono attive.
+
 ## 7. Configurazione del tema (`WP -> Configurazione`)
 Da questa sezione si gestiscono i parametri globali del sito (testi, sezioni home, contatti, ecc.).
 

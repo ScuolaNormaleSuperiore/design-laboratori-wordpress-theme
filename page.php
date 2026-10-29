@@ -11,6 +11,10 @@ global $post;
 get_header();
 $dli_image_metadata = dli_get_image_metadata( $post, 'full' );
 $dli_related_items  = dli_get_field( 'pagine_collegate' );
+
+// Navigation cards of the direct subpages, before the text, only when the editor asks for them.
+// A page still locked by its password lists nothing: the titles of its subpages are part of what it protects.
+$dli_subpage_cards = ( dli_get_field( 'mostra_sottopagine_a_card' ) && ! post_password_required( $post ) ) ? dli_get_subpage_cards( $post ) : array();
 ?>
 
 <main id="main-container" role="main">
@@ -115,6 +119,19 @@ $dli_related_items  = dli_get_field( 'pagine_collegate' );
 								</figcaption>
 							<?php endif; ?>
 						</figure>
+					<?php endif; ?>
+
+					<?php if ( ! empty( $dli_subpage_cards ) ) : ?>
+						<section id="sottosezioni" class="mb-4" aria-labelledby="sottosezioni-title">
+							<h2 id="sottosezioni-title" class="h3 mb-4"><?php echo esc_html__( 'In questa sezione', 'design_laboratori_italia' ); ?></h2>
+							<ul class="row list-unstyled mb-0">
+								<?php foreach ( $dli_subpage_cards as $dli_subpage_card ) : ?>
+									<li class="col-12 col-md-6 mb-4">
+										<?php get_template_part( 'template-parts/common/card-nav', null, $dli_subpage_card ); ?>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</section>
 					<?php endif; ?>
 
 					<?php the_content(); ?>

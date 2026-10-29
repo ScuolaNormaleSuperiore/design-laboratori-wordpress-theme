@@ -96,7 +96,7 @@ class DLI_Content_Managers_Integration_Test extends DLI_Integration_Test_Case {
 
 		$this->assertIsArray( $group );
 		$this->assertSame( 'page', $group['location'][0][0]['value'] );
-		$this->assertSame( array( 'pagine_collegate' ), $this->get_field_names( 'group_670e6f9be1c67' ) );
+		$this->assertSame( array( 'pagine_collegate', 'promuovi_in_home', 'mostra_sottopagine_a_card' ), $this->get_field_names( 'group_670e6f9be1c67' ) );
 	}
 
 	/**

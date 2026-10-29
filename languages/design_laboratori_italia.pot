@@ -2511,6 +2511,14 @@ msgstr ""
 msgid "Ultime pubblicazioni"
 msgstr ""
 
+#: template-parts/common/card-nav.php:35
+msgid "Vai al servizio"
+msgstr ""
+
+#: page.php:127
+msgid "In questa sezione"
+msgstr ""
+
 #: inc/admin/class-dli-tools-admin.php:564
 msgid "upsert (crea o aggiorna)"
 msgstr ""
@@ -2624,4 +2632,85 @@ msgstr ""
 
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
+msgstr ""
+
+#: inc/admin/class-dli-example-content.php:56
+msgid "La lingua richiesta non esiste in questo sito."
+msgstr ""
+
+#: inc/admin/class-dli-example-content.php:59
+msgid "ACF e Polylang devono essere attivi."
+msgstr ""
+
+#. translators: %s: address of the page
+#: inc/admin/class-dli-example-content.php:143
+msgid "L'indirizzo «%s» è già usato da una pagina in un'altra lingua: non è stato creato nulla. Rimuovi le pagine di esempio di un'esecuzione precedente e riprova."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:836
+msgid "Azione non riconosciuta."
+msgstr ""
+
+#. translators: %d: number of pages removed
+#: inc/admin/class-dli-tools-admin.php:890
+msgid "Rimossa %d pagina di esempio."
+msgid_plural "Rimosse %d pagine di esempio."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: pages created, 2: pages already there
+#: inc/admin/class-dli-tools-admin.php:900
+msgid "Pagine create: %1$d. Già presenti: %2$d."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:911
+msgid "Apri la pagina principale:"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:930
+msgid "Italiano e inglese"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:933
+msgid "Solo italiano"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:936
+msgid "Solo inglese"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:942
+msgid "Pagine di esempio"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:944
+msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:945
+msgid "Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:947
+msgid "Servono le lingue italiano o inglese di Polylang."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:953
+msgid "Lingue"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:962
+msgid "Creare le pagine di esempio? Sono contenuti finti, da non usare in produzione."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:966
+msgid "Rimuovere le pagine di esempio create da questo strumento?"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:963
+msgid "Crea le pagine di esempio"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:967
+msgid "Rimuovi le pagine di esempio"
 msgstr ""

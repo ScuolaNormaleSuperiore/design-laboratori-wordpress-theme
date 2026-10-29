@@ -21,6 +21,16 @@ class DLI_Page_Manager {
 	 */
 	public function setup() {
 		add_action( 'init', array( $this, 'add_post_fields' ) );
+		add_action( 'init', array( $this, 'add_excerpt_support' ) );
+	}
+
+	/**
+	 * Let the editor write a summary for a page: it is the abstract of the subpage cards.
+	 *
+	 * @return void
+	 */
+	public function add_excerpt_support() {
+		add_post_type_support( WP_DEFAULT_PAGE, 'excerpt' );
 	}
 
 	/**
@@ -70,6 +80,46 @@ class DLI_Page_Manager {
 						'elements'             => '',
 						'bidirectional'        => 0,
 						'bidirectional_target' => array(),
+					),
+					array(
+						'key'               => 'field_670e717b3bedc',
+						'label'             => 'Promuovi in Home',
+						'name'              => 'promuovi_in_home',
+						'aria-label'        => '',
+						'type'              => 'true_false',
+						'instructions'      => 'Mostra questa pagina nelle sezioni della Home Page che elencano pagine: "Pagine in evidenza" e "Navigazione per pagine".',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => array(
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						),
+						'message'           => '',
+						'default_value'     => 0,
+						'ui'                => 0,
+						'ui_on_text'        => '',
+						'ui_off_text'       => '',
+					),
+					array(
+						'key'               => 'field_670e717b3bedd',
+						'label'             => 'Mostra le sottopagine come card',
+						'name'              => 'mostra_sottopagine_a_card',
+						'aria-label'        => '',
+						'type'              => 'true_false',
+						'instructions'      => 'Mostra, prima del testo di questa pagina e sotto il titolo "In questa sezione", le sue sottopagine dirette come card di navigazione (titolo, riassunto e link "Vai al servizio"). Il riassunto è quello della sottopagina; se manca, si usa il testo iniziale della sottopagina. Le sottopagine in bozza o protette da password non compaiono.',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => array(
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						),
+						'message'           => '',
+						'default_value'     => 0,
+						'ui'                => 0,
+						'ui_on_text'        => '',
+						'ui_off_text'       => '',
 					),
 				),
 				'location'              => array(

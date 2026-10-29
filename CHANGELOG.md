@@ -35,6 +35,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [2.0.4] - 2026-10-28
 ## Aggiunto
+- Pubblicazioni: scheda dedicata con indirizzo leggibile, copertina, autori e allegato PDF.
+- Pubblicazioni: scelta del link del titolo tra scheda, sito esterno e allegato.
+- Home: card delle ultime pubblicazioni con autori, tipologia e anno.
+- Pagine: riassunto e card delle sottopagine; strumento per creare/rimuovere pagine di esempio.
 ## Corretto
 - Verificata compatibilità con PHP 8.4.
 

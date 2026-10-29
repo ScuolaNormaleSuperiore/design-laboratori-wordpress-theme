@@ -35,6 +35,46 @@
                 "elements": "",
                 "bidirectional": 0,
                 "bidirectional_target": []
+            },
+            {
+                "key": "field_670e717b3bedc",
+                "label": "Promuovi in Home",
+                "name": "promuovi_in_home",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Mostra questa pagina nelle sezioni della Home Page che elencano pagine: \"Pagine in evidenza\" e \"Navigazione per pagine\".",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_670e717b3bedd",
+                "label": "Mostra le sottopagine come card",
+                "name": "mostra_sottopagine_a_card",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Mostra, prima del testo di questa pagina e sotto il titolo \"In questa sezione\", le sue sottopagine dirette come card di navigazione (titolo, riassunto e link \"Vai al servizio\"). Il riassunto è quello della sottopagina; se manca, si usa il testo iniziale della sottopagina. Le sottopagine in bozza o protette da password non compaiono.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             }
         ],
         "location": [

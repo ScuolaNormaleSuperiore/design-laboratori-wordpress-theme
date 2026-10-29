@@ -28,6 +28,7 @@ class DLI_Tools_Admin {
 		add_action( 'admin_menu', array( __CLASS__, 'register_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 		add_action( 'admin_init', array( __CLASS__, 'handle_early_actions' ) );
+		add_action( 'admin_post_dli_example_content', array( __CLASS__, 'handle_example_content_post' ) );
 	}
 
 	/**
@@ -753,6 +754,7 @@ class DLI_Tools_Admin {
 		self::render_shell(
 			function () {
 				self::render_reload_tool();
+				self::render_example_content_tool();
 			}
 		);
 	}
@@ -799,6 +801,174 @@ class DLI_Tools_Admin {
 						<?php esc_html_e( 'Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)', 'design_laboratori_italia' ); ?>
 					</a>
 				</p>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Validate and run the request of the example pages tool.
+	 *
+	 * Capability `edit_theme_options` (like the reload tool) and the nonce `dli_example_content`.
+	 *
+	 * @param array<string, mixed> $post The submitted values: dli_example_action (create or remove),
+	 *                                   dli_example_lang (it, en or iten) and _wpnonce.
+	 * @return array<string, mixed>|WP_Error The outcome: `action` plus the counts of `DLI_Example_Content`.
+	 */
+	public static function process_example_content_request( array $post ) {
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			return new WP_Error( 'dli_example_forbidden', __( 'Non hai i permessi per eseguire questa operazione.', 'design_laboratori_italia' ) );
+		}
+
+		$nonce = isset( $post['_wpnonce'] ) ? sanitize_text_field( (string) $post['_wpnonce'] ) : '';
+		if ( ! wp_verify_nonce( $nonce, 'dli_example_content' ) ) {
+			return new WP_Error( 'dli_example_nonce', __( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' ) );
+		}
+
+		$action = isset( $post['dli_example_action'] ) ? sanitize_key( (string) $post['dli_example_action'] ) : '';
+		if ( 'remove' === $action ) {
+			return array(
+				'action'  => 'remove',
+				'removed' => DLI_Example_Content::remove(),
+			);
+		}
+		if ( 'create' !== $action ) {
+			return new WP_Error( 'dli_example_action', __( 'Azione non riconosciuta.', 'design_laboratori_italia' ) );
+		}
+
+		$choice    = isset( $post['dli_example_lang'] ) ? sanitize_key( (string) $post['dli_example_lang'] ) : 'iten';
+		$languages = ( 'iten' === $choice ) ? DLI_Example_Content::languages() : array( $choice );
+
+		$report = DLI_Example_Content::create( $languages, get_current_user_id() );
+		if ( is_wp_error( $report ) ) {
+			return $report;
+		}
+		$report['action'] = 'create';
+		return $report;
+	}
+
+	/**
+	 * Handle the form of the example pages tool, keep the outcome for a minute and go back to the page.
+	 *
+	 * @return void
+	 */
+	public static function handle_example_content_post() {
+		$result = self::process_example_content_request( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in process_example_content_request().
+
+		set_transient(
+			'dli_example_report_' . get_current_user_id(),
+			is_wp_error( $result ) ? array( 'error' => $result->get_error_message() ) : $result,
+			MINUTE_IN_SECONDS
+		);
+
+		wp_safe_redirect( admin_url( 'admin.php?page=' . self::UTILS_SLUG ) );
+		exit;
+	}
+
+	/**
+	 * Render the outcome of the last use of the example pages tool, once.
+	 *
+	 * @return void
+	 */
+	private static function render_example_content_report() {
+		$key    = 'dli_example_report_' . get_current_user_id();
+		$report = get_transient( $key );
+		if ( ! is_array( $report ) ) {
+			return;
+		}
+		delete_transient( $key );
+
+		if ( isset( $report['error'] ) ) {
+			echo '<div class="notice notice-error inline"><p>' . esc_html( (string) $report['error'] ) . '</p></div>';
+			return;
+		}
+
+		if ( 'remove' === ( $report['action'] ?? '' ) ) {
+			echo '<div class="notice notice-success inline"><p>' . esc_html(
+				sprintf(
+					/* translators: %d: number of pages removed */
+					_n( 'Rimossa %d pagina di esempio.', 'Rimosse %d pagine di esempio.', (int) $report['removed'], 'design_laboratori_italia' ),
+					(int) $report['removed']
+				)
+			) . '</p></div>';
+			return;
+		}
+
+		echo '<div class="notice notice-success inline"><p>' . esc_html(
+			sprintf(
+				/* translators: 1: pages created, 2: pages already there */
+				__( 'Pagine create: %1$d. Già presenti: %2$d.', 'design_laboratori_italia' ),
+				(int) $report['created'],
+				(int) $report['skipped']
+			)
+		) . '</p>';
+		if ( ! empty( $report['top'] ) ) {
+			echo '<p>';
+			$links = array();
+			foreach ( (array) $report['top'] as $language => $url ) {
+				$links[] = '<a href="' . esc_url( (string) $url ) . '">' . esc_html( strtoupper( (string) $language ) ) . '</a>';
+			}
+			echo esc_html__( 'Apri la pagina principale:', 'design_laboratori_italia' ) . ' ' . wp_kses( implode( ' · ', $links ), array( 'a' => array( 'href' => array() ) ) );
+			echo '</p>';
+		}
+		echo '</div>';
+	}
+
+	/**
+	 * Render the "Pagine di esempio" tool: create or remove the example section, in Italian, English or both.
+	 *
+	 * @return void
+	 */
+	private static function render_example_content_tool() {
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			return;
+		}
+
+		$languages = DLI_Example_Content::languages();
+		$choices   = array();
+		if ( count( $languages ) > 1 ) {
+			$choices['iten'] = __( 'Italiano e inglese', 'design_laboratori_italia' );
+		}
+		if ( in_array( 'it', $languages, true ) ) {
+			$choices['it'] = __( 'Solo italiano', 'design_laboratori_italia' );
+		}
+		if ( in_array( 'en', $languages, true ) ) {
+			$choices['en'] = __( 'Solo inglese', 'design_laboratori_italia' );
+		}
+		$default = (string) array_key_first( $choices );
+		?>
+		<div class="postbox dli-tool-panel">
+			<div class="inside">
+				<h2><?php esc_html_e( 'Pagine di esempio', 'design_laboratori_italia' ); ?></h2>
+				<?php self::render_example_content_report(); ?>
+				<p class="dli-section-lead"><?php esc_html_e( 'Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-lead"><?php esc_html_e( 'Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore.', 'design_laboratori_italia' ); ?></p>
+				<?php if ( empty( $choices ) ) : ?>
+					<p><?php esc_html_e( 'Servono le lingue italiano o inglese di Polylang.', 'design_laboratori_italia' ); ?></p>
+				<?php else : ?>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+						<input type="hidden" name="action" value="dli_example_content">
+						<?php wp_nonce_field( 'dli_example_content' ); ?>
+						<p>
+							<label for="dli-example-lang"><?php esc_html_e( 'Lingue', 'design_laboratori_italia' ); ?></label>
+							<select id="dli-example-lang" name="dli_example_lang">
+								<?php foreach ( $choices as $value => $label ) : ?>
+									<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $default, $value ); ?>><?php echo esc_html( $label ); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</p>
+						<p class="dli-section-actions">
+							<button type="submit" name="dli_example_action" value="create" class="button button-primary"
+								onclick="return confirm('<?php echo esc_js( __( 'Creare le pagine di esempio? Sono contenuti finti, da non usare in produzione.', 'design_laboratori_italia' ) ); ?>');">
+								<?php esc_html_e( 'Crea le pagine di esempio', 'design_laboratori_italia' ); ?>
+							</button>
+							<button type="submit" name="dli_example_action" value="remove" class="button"
+								onclick="return confirm('<?php echo esc_js( __( 'Rimuovere le pagine di esempio create da questo strumento?', 'design_laboratori_italia' ) ); ?>');">
+								<?php esc_html_e( 'Rimuovi le pagine di esempio', 'design_laboratori_italia' ); ?>
+							</button>
+						</p>
+					</form>
+				<?php endif; ?>
 			</div>
 		</div>
 		<?php

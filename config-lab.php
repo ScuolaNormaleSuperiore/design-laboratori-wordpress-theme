@@ -30,6 +30,8 @@ define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SI
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
+// Words of the abstract of a subpage card, when the page has no summary.
+define( 'DLI_PAGE_CARD_EXCERPT_WORDS', 30 );
 
 // Pagination.
 define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
