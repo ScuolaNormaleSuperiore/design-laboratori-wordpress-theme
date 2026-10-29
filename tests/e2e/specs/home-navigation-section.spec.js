@@ -25,7 +25,7 @@ async function addSection( page, { showTitle, background, maxItems } ) {
 	await page.goto( SECTIONS );
 	await page.locator( '#site_sections_repeat .cmb-add-group-row' ).click();
 	const row = page.locator( ROWS ).last();
-	await row.locator( 'select[name$="[id]"]' ).selectOption( 'navigation_section' );
+	await row.locator( 'select[name$="[id]"]' ).selectOption( 'card_navigation_section' );
 	await row.locator( `input[type="radio"][name$="[enabled]"][value="true"]` ).check();
 	await row.locator( `input[type="radio"][name$="[show_title]"][value="${ showTitle }"]` ).check();
 	if ( background ) {
@@ -56,10 +56,10 @@ test( 'the section goes from the configuration to the home page, with the pages 
 
 	// Layout HP has the fields of the section, in Italian and in English, with the values of the baseline.
 	await page.goto( LAYOUT );
-	await expect( page.locator( 'input[name="home_navigazione_title"]' ) ).toHaveValue( 'Cosa puoi fare' );
-	await expect( page.locator( 'textarea[name="home_navigazione_text"]' ) ).toHaveValue( 'I servizi più richiesti.' );
-	await expect( page.locator( 'input[name="home_navigazione_title_eng"]' ) ).toHaveValue( 'What you can do' );
-	await expect( page.locator( 'textarea[name="home_navigazione_text_eng"]' ) ).toHaveValue( '' );
+	await expect( page.locator( 'input[name="home_card_navigation_title"]' ) ).toHaveValue( 'Cosa puoi fare' );
+	await expect( page.locator( 'textarea[name="home_card_navigation_text"]' ) ).toHaveValue( 'I servizi più richiesti.' );
+	await expect( page.locator( 'input[name="home_card_navigation_title_eng"]' ) ).toHaveValue( 'What you can do' );
+	await expect( page.locator( 'textarea[name="home_card_navigation_text_eng"]' ) ).toHaveValue( '' );
 
 	// Sezioni HP: the background field is there for this section, and the title is shown.
 	await page.goto( SECTIONS );
@@ -68,7 +68,7 @@ test( 'the section goes from the configuration to the home page, with the pages 
 	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'news_section' );
 	await expect( newRow.locator( 'input[type="radio"][name$="[background]"]' ).first() ).toBeHidden();
 	await expect( newRow.locator( 'input[name$="[max_items]"]' ) ).toBeHidden();
-	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'navigation_section' );
+	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'card_navigation_section' );
 	await expect( newRow.locator( 'input[type="radio"][name$="[background]"]' ).first() ).toBeVisible();
 	await expect( newRow.locator( 'input[name$="[max_items]"]' ) ).toBeVisible();
 	await newRow.locator( 'input[type="radio"][name$="[enabled]"][value="true"]' ).check();
@@ -79,7 +79,7 @@ test( 'the section goes from the configuration to the home page, with the pages 
 	try {
 		// The home page: title, subtitle, the three pages in order, not the protected one nor the draft.
 		await page.goto( '/' );
-		const section = page.locator( '#blocco-navigazione-3' );
+		const section = page.locator( '#blocco-card-navigation-3' );
 		await expect( section ).toBeVisible();
 		await expect( section.getByRole( 'heading', { level: 2, name: 'Cosa puoi fare' } ) ).toBeVisible();
 		await expect( section ).toContainText( 'I servizi più richiesti.' );
@@ -98,7 +98,7 @@ test( 'the section goes from the configuration to the home page, with the pages 
 
 		// In English no page is promoted: the section does not appear, not even empty.
 		await page.goto( '/en/' );
-		await expect( page.locator( '#blocco-navigazione-3' ) ).toHaveCount( 0 );
+		await expect( page.locator( '#blocco-card-navigation-3' ) ).toHaveCount( 0 );
 	} finally {
 		await removeLastSection( page );
 	}
@@ -111,7 +111,7 @@ test( 'the section with a limit of two cards on a narrow screen: one card per ro
 	try {
 		await page.setViewportSize( { width: 320, height: 800 } );
 		await page.goto( '/' );
-		const section = page.locator( '#blocco-navigazione-3' );
+		const section = page.locator( '#blocco-card-navigation-3' );
 		await expect( section ).toBeVisible();
 		await expect( section ).not.toHaveClass( /section-muted/ );
 		await expect( section.locator( 'h2' ) ).toHaveCount( 0 );

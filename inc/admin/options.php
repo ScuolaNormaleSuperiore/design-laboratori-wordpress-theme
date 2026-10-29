@@ -861,12 +861,12 @@ function dli_register_main_options_metabox() {
 	// *** SEZIONE "CARD DI NAVIGAZIONE" (HOMEPAGE) ***
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_navigazione',
+			'id'   => $prefix . 'home_card_navigation',
 			'name' => __( 'Sezione "Card di navigazione"', 'design_laboratori_italia' ),
 			'desc' => sprintf(
 				/* translators: %d: the number of pages shown by default */
 				__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
-				DLI_HP_NAVIGATION_DEFAULT_ITEMS
+				DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS
 			),
 			'type' => 'title',
 		)
@@ -874,7 +874,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_navigazione_title',
+			'id'   => $prefix . 'home_card_navigation_title',
 			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
 			'desc' => __( 'Si vede solo se in "Sezioni HP" è attivo "Mostra il titolo della sezione".', 'design_laboratori_italia' ),
 			'type' => 'text',
@@ -883,7 +883,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_navigazione_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'id'   => $prefix . 'home_card_navigation_title' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
 			'type' => 'text',
 		)
@@ -891,7 +891,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_navigazione_text',
+			'id'         => $prefix . 'home_card_navigation_text',
 			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto.', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
@@ -903,7 +903,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_navigazione_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'id'         => $prefix . 'home_card_navigation_text' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
@@ -916,13 +916,13 @@ function dli_register_main_options_metabox() {
 	// *** SEZIONE "NAVIGAZIONE PER PAGINE" (HOMEPAGE) ***
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_fasi',
+			'id'   => $prefix . 'home_page_navigation',
 			'name' => __( 'Sezione "Navigazione per pagine"', 'design_laboratori_italia' ),
 			'desc' => sprintf(
 				/* translators: 1: the number of groups shown by default, 2: the number of subpages of each group shown by default */
 				__( 'Per ogni pagina con il campo "Promuovi in Home" acceso (lo stesso usato da "Card di navigazione") che ha sottopagine pubblicate, mostra il titolo della pagina e un elenco di link alle sue sottopagine. Gruppi e sottopagine seguono il campo "Ordine" della pagina (Attributi pagina) e poi il titolo; le pagine in bozza o protette da password non compaiono. Di default fino a %1$d gruppi con %2$d sottopagine ciascuno: i due numeri si cambiano in "Sezioni HP". La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
-				DLI_HP_FASI_DEFAULT_ITEMS,
-				DLI_HP_FASI_DEFAULT_SUBITEMS
+				DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS,
+				DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS
 			),
 			'type' => 'title',
 		)
@@ -930,7 +930,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_fasi_title',
+			'id'   => $prefix . 'home_page_navigation_title',
 			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
 			'desc' => __( 'Si vede solo se in "Sezioni HP" è attivo "Mostra il titolo della sezione".', 'design_laboratori_italia' ),
 			'type' => 'text',
@@ -939,7 +939,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'   => $prefix . 'home_fasi_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'id'   => $prefix . 'home_page_navigation_title' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
 			'type' => 'text',
 		)
@@ -947,7 +947,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_fasi_text',
+			'id'         => $prefix . 'home_page_navigation_text',
 			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
 			'desc'       => __( 'Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto.', 'design_laboratori_italia' ),
 			'type'       => 'textarea',
@@ -959,7 +959,7 @@ function dli_register_main_options_metabox() {
 
 	$home_options->add_field(
 		array(
-			'id'         => $prefix . 'home_fasi_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'id'         => $prefix . 'home_page_navigation_text' . DLI_ENG_SUFFIX_LANGUAGE,
 			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
 			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
 			'type'       => 'textarea',

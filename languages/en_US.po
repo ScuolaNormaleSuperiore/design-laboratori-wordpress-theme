@@ -2776,7 +2776,7 @@ msgstr "Move the section up"
 msgid "Sposta la sezione in basso"
 msgstr "Move the section down"
 
-#: template-parts/home/hp-navigation-section.php:39
+#: template-parts/home/hp-card-navigation-section.php:39
 msgid "Card di navigazione"
 msgstr "Navigation cards"
 
@@ -2826,7 +2826,7 @@ msgstr "Maximum number of items"
 msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
 msgstr "From %1$d to %2$d. If empty, the default number of that section is used."
 
-#: template-parts/home/hp-fasi-section.php:44
+#: template-parts/home/hp-page-navigation-section.php:44
 msgid "Navigazione per pagine"
 msgstr "Navigation by pages"
 

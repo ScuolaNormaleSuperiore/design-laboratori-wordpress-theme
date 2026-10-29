@@ -24,19 +24,19 @@ if ( 'true' !== $dli_section_enabled ) {
 }
 
 $dli_groups = dli_get_promoted_page_groups(
-	dli_normalize_hp_max_items( $dli_args['max_items'] ?? null, DLI_HP_FASI_DEFAULT_ITEMS ),
-	dli_normalize_hp_max_items( $dli_args['max_subitems'] ?? null, DLI_HP_FASI_DEFAULT_SUBITEMS )
+	dli_normalize_hp_max_items( $dli_args['max_items'] ?? null, DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS ),
+	dli_normalize_hp_max_items( $dli_args['max_subitems'] ?? null, DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS )
 );
 if ( empty( $dli_groups ) ) {
 	return;
 }
 
-$dli_title        = (string) dli_get_configuration_field_by_lang( 'home_fasi_title', 'homepage' );
-$dli_text         = (string) dli_get_configuration_field_by_lang( 'home_fasi_text', 'homepage' );
+$dli_title        = (string) dli_get_configuration_field_by_lang( 'home_page_navigation_title', 'homepage' );
+$dli_text         = (string) dli_get_configuration_field_by_lang( 'home_page_navigation_text', 'homepage' );
 $dli_bg_class     = dli_get_hp_section_background_class( $dli_args, 'muted' );
-$dli_section_id   = 'blocco-fasi-' . $dli_instance;
+$dli_section_id   = 'blocco-page-navigation-' . $dli_instance;
 $dli_title_id     = $dli_section_id . '-title';
-$dli_accordion_id = 'fasi-' . $dli_instance . '-accordion';
+$dli_accordion_id = 'page-navigation-' . $dli_instance . '-accordion';
 $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 ?>
@@ -54,7 +54,7 @@ $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 			<!-- Tablet e desktop: colonne -->
 			<div class="row d-none d-md-flex">
 				<?php foreach ( $dli_groups as $dli_group ) : ?>
-					<?php $dli_group_title_id = 'fasi-' . $dli_instance . '-title-' . $dli_group['id']; ?>
+					<?php $dli_group_title_id = 'page-navigation-' . $dli_instance . '-title-' . $dli_group['id']; ?>
 					<div class="<?php echo esc_attr( $dli_column_class ); ?> mb-4">
 						<h3 id="<?php echo esc_attr( $dli_group_title_id ); ?>" class="h5 fw-bold"><?php echo esc_html( $dli_group['title'] ); ?></h3>
 						<?php
@@ -76,8 +76,8 @@ $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 				<?php foreach ( $dli_groups as $dli_index => $dli_group ) : ?>
 					<?php
 					$dli_is_first = ( 0 === $dli_index );
-					$dli_head_id  = 'fasi-' . $dli_instance . '-head-' . $dli_group['id'];
-					$dli_body_id  = 'fasi-' . $dli_instance . '-body-' . $dli_group['id'];
+					$dli_head_id  = 'page-navigation-' . $dli_instance . '-head-' . $dli_group['id'];
+					$dli_body_id  = 'page-navigation-' . $dli_instance . '-body-' . $dli_group['id'];
 					?>
 					<div class="accordion-item">
 						<h3 class="accordion-header" id="<?php echo esc_attr( $dli_head_id ); ?>">

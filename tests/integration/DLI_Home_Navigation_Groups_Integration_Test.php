@@ -6,7 +6,7 @@
  */
 
 /**
- * `dli_get_promoted_page_groups()` and `template-parts/home/hp-fasi-section.php`.
+ * `dli_get_promoted_page_groups()` and `template-parts/home/hp-page-navigation-section.php`.
  */
 class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -86,11 +86,11 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 	private function render_section( array $row = array() ) {
 		ob_start();
 		get_template_part(
-			'template-parts/home/hp-fasi-section',
+			'template-parts/home/hp-page-navigation-section',
 			null,
 			array_merge(
 				array(
-					'id'         => 'fasi_section',
+					'id'         => 'page_navigation_section',
 					'enabled'    => 'true',
 					'show_title' => 'true',
 					'instance'   => 1,
@@ -236,21 +236,21 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 		$this->set_theme_options(
 			'homepage',
 			array(
-				'home_fasi_title' => 'Le sezioni del sito',
-				'home_fasi_text'  => 'Trova la pagina partendo da ciò che devi fare.',
+				'home_page_navigation_title' => 'Le sezioni del sito',
+				'home_page_navigation_text'  => 'Trova la pagina partendo da ciò che devi fare.',
 			)
 		);
 
 		$html = $this->render_section();
-		$this->assertMatchesRegularExpression( '#<h2 id="blocco-fasi-1-title"[^>]*>Le sezioni del sito</h2>#', $html );
-		$this->assertStringContainsString( 'aria-labelledby="blocco-fasi-1-title"', $html );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-page-navigation-1-title"[^>]*>Le sezioni del sito</h2>#', $html );
+		$this->assertStringContainsString( 'aria-labelledby="blocco-page-navigation-1-title"', $html );
 		$this->assertStringContainsString( 'Trova la pagina partendo da ciò che devi fare.', $html );
 
 		$hidden = $this->render_section( array( 'show_title' => 'false' ) );
 		$this->assertStringNotContainsString( '<h2', $hidden );
 		$this->assertMatchesRegularExpression( '#<section [^>]*aria-label="#', $hidden, 'Without a visible title the section keeps an accessible name.' );
 
-		$this->set_theme_options( 'homepage', array( 'home_fasi_title' => '' ) );
+		$this->set_theme_options( 'homepage', array( 'home_page_navigation_title' => '' ) );
 		$this->assertStringNotContainsString( '<h2', $this->render_section(), 'An empty title is not printed.' );
 	}
 
@@ -264,20 +264,20 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 		$second = $this->render_section( array( 'instance' => 5 ) );
 
 		foreach ( array(
-			'id="blocco-fasi-1"',
-			'id="fasi-1-accordion"',
-			'id="fasi-1-head-' . $parent . '"',
-			'id="fasi-1-body-' . $parent . '"',
-			'id="fasi-1-title-' . $parent . '"',
+			'id="blocco-page-navigation-1"',
+			'id="page-navigation-1-accordion"',
+			'id="page-navigation-1-head-' . $parent . '"',
+			'id="page-navigation-1-body-' . $parent . '"',
+			'id="page-navigation-1-title-' . $parent . '"',
 		) as $needle ) {
 			$this->assertStringContainsString( $needle, $first );
 		}
-		$this->assertStringContainsString( 'id="fasi-5-accordion"', $second );
-		$this->assertStringNotContainsString( 'id="fasi-1-accordion"', $second );
-		$this->assertStringNotContainsString( 'id="fasi-accordion"', $first, 'No fixed identifier.' );
-		$this->assertStringContainsString( 'data-bs-target="#fasi-1-body-' . $parent . '"', $first );
-		$this->assertStringContainsString( 'aria-controls="fasi-1-body-' . $parent . '"', $first );
-		$this->assertStringContainsString( 'aria-labelledby="fasi-1-title-' . $parent . '"', $first, 'The list is named by the title of its group.' );
+		$this->assertStringContainsString( 'id="page-navigation-5-accordion"', $second );
+		$this->assertStringNotContainsString( 'id="page-navigation-1-accordion"', $second );
+		$this->assertStringNotContainsString( 'id="page-navigation-accordion"', $first, 'No fixed identifier.' );
+		$this->assertStringContainsString( 'data-bs-target="#page-navigation-1-body-' . $parent . '"', $first );
+		$this->assertStringContainsString( 'aria-controls="page-navigation-1-body-' . $parent . '"', $first );
+		$this->assertStringContainsString( 'aria-labelledby="page-navigation-1-title-' . $parent . '"', $first, 'The list is named by the title of its group.' );
 	}
 
 	/**
@@ -306,21 +306,21 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 		$custom  = $this->render_section( array( 'max_items' => 2, 'max_subitems' => 3 ) );
 		$wrong   = $this->render_section( array( 'max_items' => 'tanti', 'max_subitems' => '' ) );
 
-		$this->assertSame( DLI_HP_FASI_DEFAULT_ITEMS, substr_count( $default, '<h3 id="fasi-1-title-' ), 'Default number of groups.' );
-		$this->assertSame( DLI_HP_FASI_DEFAULT_ITEMS * DLI_HP_FASI_DEFAULT_SUBITEMS, substr_count( $default, 'class="list-item"' ) / 2, 'Default number of subpages per group (the markup is printed twice).' );
-		$this->assertSame( 2, substr_count( $custom, '<h3 id="fasi-1-title-' ) );
+		$this->assertSame( DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS, substr_count( $default, '<h3 id="page-navigation-1-title-' ), 'Default number of groups.' );
+		$this->assertSame( DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS * DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS, substr_count( $default, 'class="list-item"' ) / 2, 'Default number of subpages per group (the markup is printed twice).' );
+		$this->assertSame( 2, substr_count( $custom, '<h3 id="page-navigation-1-title-' ) );
 		$this->assertSame( 2 * 3, substr_count( $custom, 'class="list-item"' ) / 2 );
-		$this->assertSame( DLI_HP_FASI_DEFAULT_ITEMS, substr_count( $wrong, '<h3 id="fasi-1-title-' ) );
+		$this->assertSame( DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS, substr_count( $wrong, '<h3 id="page-navigation-1-title-' ) );
 	}
 
 	/**
 	 * The section is in the catalog with its default background and the two numbers.
 	 */
 	public function test_the_section_is_in_the_catalog() {
-		$this->assertArrayHasKey( 'fasi_section', DLI_ContentsManager::get_hp_sections() );
-		$this->assertSame( 'Navigazione per pagine', DLI_ContentsManager::get_hp_sections()['fasi_section']['name'] );
-		$this->assertSame( 'muted', DLI_ContentsManager::get_hp_sections_with_background()['fasi_section'] );
-		$this->assertArrayHasKey( 'fasi_section', DLI_ContentsManager::get_hp_sections_with_max_items() );
-		$this->assertArrayHasKey( 'fasi_section', DLI_ContentsManager::get_hp_sections_with_max_subitems() );
+		$this->assertArrayHasKey( 'page_navigation_section', DLI_ContentsManager::get_hp_sections() );
+		$this->assertSame( 'Navigazione per pagine', DLI_ContentsManager::get_hp_sections()['page_navigation_section']['name'] );
+		$this->assertSame( 'muted', DLI_ContentsManager::get_hp_sections_with_background()['page_navigation_section'] );
+		$this->assertArrayHasKey( 'page_navigation_section', DLI_ContentsManager::get_hp_sections_with_max_items() );
+		$this->assertArrayHasKey( 'page_navigation_section', DLI_ContentsManager::get_hp_sections_with_max_subitems() );
 	}
 }

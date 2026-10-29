@@ -2,7 +2,7 @@
 /**
  * Homepage section "Card di navigazione": the pages promoted to the home, as navigation cards.
  *
- * Lists up to `max_items` (the number chosen in the row of Sezioni HP, `DLI_HP_NAVIGATION_DEFAULT_ITEMS` when not
+ * Lists up to `max_items` (the number chosen in the row of Sezioni HP, `DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS` when not
  * chosen) published pages of the current language with the field "Promuovi in Home" on, in the order of their
  * field "Ordine" and then by title (`dli_get_promoted_page_cards()`), each one as the card of `template-parts/common/card-nav.php`. Nothing is printed when no page is promoted.
  * Title and subtitle come from Configurazione → Layout HP, in the language of the page: the title is printed
@@ -22,15 +22,15 @@ if ( 'true' !== $dli_section_enabled ) {
 	return;
 }
 
-$dli_cards = dli_get_promoted_page_cards( dli_normalize_hp_max_items( $dli_args['max_items'] ?? null, DLI_HP_NAVIGATION_DEFAULT_ITEMS ) );
+$dli_cards = dli_get_promoted_page_cards( dli_normalize_hp_max_items( $dli_args['max_items'] ?? null, DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS ) );
 if ( empty( $dli_cards ) ) {
 	return;
 }
 
-$dli_title        = (string) dli_get_configuration_field_by_lang( 'home_navigazione_title', 'homepage' );
-$dli_text         = (string) dli_get_configuration_field_by_lang( 'home_navigazione_text', 'homepage' );
+$dli_title        = (string) dli_get_configuration_field_by_lang( 'home_card_navigation_title', 'homepage' );
+$dli_text         = (string) dli_get_configuration_field_by_lang( 'home_card_navigation_text', 'homepage' );
 $dli_bg_class     = dli_get_hp_section_background_class( $dli_args, 'muted' );
-$dli_section_id   = 'blocco-navigazione-' . $dli_instance;
+$dli_section_id   = 'blocco-card-navigation-' . $dli_instance;
 $dli_title_id     = $dli_section_id . '-title';
 $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_navigation_column_class( count( $dli_cards ) );

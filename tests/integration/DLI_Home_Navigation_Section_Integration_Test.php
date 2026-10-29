@@ -6,7 +6,7 @@
  */
 
 /**
- * `dli_get_promoted_page_cards()` and `template-parts/home/hp-navigation-section.php`.
+ * `dli_get_promoted_page_cards()` and `template-parts/home/hp-card-navigation-section.php`.
  */
 class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -71,11 +71,11 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 	private function render_section( array $row = array() ) {
 		ob_start();
 		get_template_part(
-			'template-parts/home/hp-navigation-section',
+			'template-parts/home/hp-card-navigation-section',
 			null,
 			array_merge(
 				array(
-					'id'         => 'navigation_section',
+					'id'         => 'card_navigation_section',
 					'enabled'    => 'true',
 					'show_title' => 'true',
 					'instance'   => 1,
@@ -110,14 +110,14 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 	 */
 	public function test_cards_stop_at_the_configured_maximum() {
 		$ids = array();
-		for ( $index = 1; $index <= DLI_HP_NAVIGATION_DEFAULT_ITEMS + 2; $index++ ) {
+		for ( $index = 1; $index <= DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS + 2; $index++ ) {
 			$ids[] = $this->create_page( 'Pagina ' . $index, array( 'menu_order' => $index ) );
 		}
 
 		$cards = dli_get_promoted_page_cards();
 
-		$this->assertCount( DLI_HP_NAVIGATION_DEFAULT_ITEMS, $cards );
-		$this->assertSame( array_slice( $ids, 0, DLI_HP_NAVIGATION_DEFAULT_ITEMS ), wp_list_pluck( $cards, 'id' ) );
+		$this->assertCount( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, $cards );
+		$this->assertSame( array_slice( $ids, 0, DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS ), wp_list_pluck( $cards, 'id' ) );
 		$this->assertCount( 2, dli_get_promoted_page_cards( 2 ), 'The limit can be asked for.' );
 	}
 
@@ -132,7 +132,7 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 			$this->create_page( 'Visibile ' . $index, array( 'menu_order' => $index ) );
 		}
 
-		$this->assertCount( DLI_HP_NAVIGATION_DEFAULT_ITEMS, dli_get_promoted_page_cards() );
+		$this->assertCount( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, dli_get_promoted_page_cards() );
 	}
 
 	/**
@@ -198,15 +198,15 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 		$this->set_theme_options(
 			'homepage',
 			array(
-				'home_navigazione_title' => 'Cosa puoi fare',
-				'home_navigazione_text'  => 'I servizi più richiesti.',
+				'home_card_navigation_title' => 'Cosa puoi fare',
+				'home_card_navigation_text'  => 'I servizi più richiesti.',
 			)
 		);
 
 		$html = $this->render_section();
 
-		$this->assertMatchesRegularExpression( '#<h2 id="blocco-navigazione-1-title"[^>]*>Cosa puoi fare</h2>#', $html );
-		$this->assertStringContainsString( 'aria-labelledby="blocco-navigazione-1-title"', $html );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-card-navigation-1-title"[^>]*>Cosa puoi fare</h2>#', $html );
+		$this->assertStringContainsString( 'aria-labelledby="blocco-card-navigation-1-title"', $html );
 		$this->assertStringContainsString( 'I servizi più richiesti.', $html );
 
 		$hidden = $this->render_section( array( 'show_title' => 'false' ) );
@@ -215,7 +215,7 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 		$this->assertMatchesRegularExpression( '#<section [^>]*aria-label="#', $hidden, 'Without a visible title the section keeps an accessible name.' );
 
 		// An empty array would leave the options as they are in memory: the title is emptied explicitly.
-		$this->set_theme_options( 'homepage', array( 'home_navigazione_title' => '' ) );
+		$this->set_theme_options( 'homepage', array( 'home_card_navigation_title' => '' ) );
 		$empty = $this->render_section();
 		$this->assertStringNotContainsString( '<h2', $empty, 'An empty title is not printed, even if it should be shown.' );
 		$this->assertStringContainsString( 'Visibile', $empty );
@@ -226,14 +226,14 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 	 */
 	public function test_identifiers_follow_the_instance() {
 		$this->create_page( 'Visibile' );
-		$this->set_theme_options( 'homepage', array( 'home_navigazione_title' => 'Titolo' ) );
+		$this->set_theme_options( 'homepage', array( 'home_card_navigation_title' => 'Titolo' ) );
 
 		$first  = $this->render_section( array( 'instance' => 1 ) );
 		$second = $this->render_section( array( 'instance' => 4 ) );
 
-		$this->assertStringContainsString( 'id="blocco-navigazione-1"', $first );
-		$this->assertStringContainsString( 'id="blocco-navigazione-4"', $second );
-		$this->assertStringNotContainsString( 'id="blocco-navigazione-1"', $second );
+		$this->assertStringContainsString( 'id="blocco-card-navigation-1"', $first );
+		$this->assertStringContainsString( 'id="blocco-card-navigation-4"', $second );
+		$this->assertStringNotContainsString( 'id="blocco-card-navigation-1"', $second );
 	}
 
 	/**
@@ -270,8 +270,8 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 	 * Promoting is a field of the page, with the same key the home sections read.
 	 */
 	public function test_the_section_is_in_the_catalog_with_a_default_background() {
-		$this->assertArrayHasKey( 'navigation_section', DLI_ContentsManager::get_hp_sections() );
-		$this->assertSame( 'muted', DLI_ContentsManager::get_hp_sections_with_background()['navigation_section'] );
+		$this->assertArrayHasKey( 'card_navigation_section', DLI_ContentsManager::get_hp_sections() );
+		$this->assertSame( 'muted', DLI_ContentsManager::get_hp_sections_with_background()['card_navigation_section'] );
 	}
 
 	/**
@@ -286,7 +286,7 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 		$two     = $this->render_section( array( 'max_items' => 2 ) );
 		$nine    = $this->render_section( array( 'max_items' => 9 ) );
 
-		$this->assertSame( DLI_HP_NAVIGATION_DEFAULT_ITEMS, substr_count( $default, 'class="it-card ' ), 'No choice: the default number.' );
+		$this->assertSame( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, substr_count( $default, 'class="it-card ' ), 'No choice: the default number.' );
 		$this->assertSame( 2, substr_count( $two, 'class="it-card ' ) );
 		$this->assertStringContainsString( 'Pagina 2', $two );
 		$this->assertStringNotContainsString( 'Pagina 3', $two, 'The first ones by order.' );
@@ -306,8 +306,8 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 		$empty = $this->render_section( array( 'max_items' => '' ) );
 		$huge  = $this->render_section( array( 'max_items' => 500 ) );
 
-		$this->assertSame( DLI_HP_NAVIGATION_DEFAULT_ITEMS, substr_count( $text, 'class="it-card ' ) );
-		$this->assertSame( DLI_HP_NAVIGATION_DEFAULT_ITEMS, substr_count( $empty, 'class="it-card ' ) );
+		$this->assertSame( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, substr_count( $text, 'class="it-card ' ) );
+		$this->assertSame( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, substr_count( $empty, 'class="it-card ' ) );
 		$this->assertSame( 8, substr_count( $huge, 'class="it-card ' ), 'Brought to the maximum, which here is more than the pages there are.' );
 	}
 
@@ -317,7 +317,7 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 	public function test_sections_with_a_number_of_items_are_catalog_sections() {
 		$with_items = DLI_ContentsManager::get_hp_sections_with_max_items();
 
-		$this->assertArrayHasKey( 'navigation_section', $with_items );
+		$this->assertArrayHasKey( 'card_navigation_section', $with_items );
 		$this->assertSame( array(), array_diff_key( $with_items, DLI_ContentsManager::get_hp_sections() ) );
 		foreach ( $with_items as $section_id => $default ) {
 			$this->assertGreaterThanOrEqual( DLI_HP_ITEMS_MIN, $default, "Default of {$section_id}." );

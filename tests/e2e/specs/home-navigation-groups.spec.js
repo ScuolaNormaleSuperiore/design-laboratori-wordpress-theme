@@ -9,7 +9,7 @@ const { loginAsAdmin } = require( '../support/auth' );
 
 const SECTIONS = '/wp-admin/admin.php?page=homepage_sections';
 const ROWS = '#site_sections_repeat > .cmb-repeatable-grouping';
-const SECTION = '#blocco-fasi-3';
+const SECTION = '#blocco-page-navigation-3';
 
 /**
  * Add the section as a new row of Sezioni HP and save.
@@ -23,7 +23,7 @@ async function addSection( page, { maxItems, maxSubitems } = {} ) {
 	await page.goto( SECTIONS );
 	await page.locator( '#site_sections_repeat .cmb-add-group-row' ).click();
 	const row = page.locator( ROWS ).last();
-	await row.locator( 'select[name$="[id]"]' ).selectOption( 'fasi_section' );
+	await row.locator( 'select[name$="[id]"]' ).selectOption( 'page_navigation_section' );
 	await row.locator( 'input[type="radio"][name$="[enabled]"][value="true"]' ).check();
 	await row.locator( 'input[type="radio"][name$="[show_title]"][value="true"]' ).check();
 	if ( maxItems ) {
@@ -58,7 +58,7 @@ test( 'the section shows the groups as columns on a desktop, with the title as t
 	const newRow = page.locator( ROWS ).last();
 	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'news_section' );
 	await expect( newRow.locator( 'input[name$="[max_subitems]"]' ) ).toBeHidden();
-	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'fasi_section' );
+	await newRow.locator( 'select[name$="[id]"]' ).selectOption( 'page_navigation_section' );
 	await expect( newRow.locator( 'input[name$="[max_items]"]' ) ).toBeVisible();
 	await expect( newRow.locator( 'input[name$="[max_subitems]"]' ) ).toBeVisible();
 	await expect( newRow.locator( 'input[type="radio"][name$="[background]"]' ).first() ).toBeVisible();

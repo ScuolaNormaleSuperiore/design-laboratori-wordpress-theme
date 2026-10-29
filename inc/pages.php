@@ -94,10 +94,10 @@ if ( ! function_exists( 'dli_get_promoted_page_cards' ) ) {
 	 * field "Ordine" of the page (`menu_order`, Attributi pagina) and then by title; the password-protected ones
 	 * are left out before counting, so they do not take a place. The query does not touch the global post.
 	 *
-	 * @param int $limit The most cards to return; by default `DLI_HP_NAVIGATION_DEFAULT_ITEMS`.
+	 * @param int $limit The most cards to return; by default `DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS`.
 	 * @return array<int, array{id: int, title: string, url: string, abstract: string}> The cards, in order.
 	 */
-	function dli_get_promoted_page_cards( $limit = DLI_HP_NAVIGATION_DEFAULT_ITEMS ) {
+	function dli_get_promoted_page_cards( $limit = DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS ) {
 		$pages = get_posts(
 			array(
 				'post_type'      => WP_DEFAULT_PAGE,

@@ -2739,7 +2739,7 @@ msgstr ""
 msgid "Sposta la sezione in basso"
 msgstr ""
 
-#: template-parts/home/hp-navigation-section.php:39
+#: template-parts/home/hp-card-navigation-section.php:39
 msgid "Card di navigazione"
 msgstr ""
 
@@ -2789,7 +2789,7 @@ msgstr ""
 msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
 msgstr ""
 
-#: template-parts/home/hp-fasi-section.php:44
+#: template-parts/home/hp-page-navigation-section.php:44
 msgid "Navigazione per pagine"
 msgstr ""
 

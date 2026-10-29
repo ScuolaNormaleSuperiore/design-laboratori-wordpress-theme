@@ -208,22 +208,22 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$rows = dli_normalize_hp_section_rows(
 			array(
 				array(
-					'id'        => 'navigation_section',
+					'id'        => 'card_navigation_section',
 					'max_items' => '4',
 				),
 				array(
-					'id'        => 'navigation_section',
+					'id'        => 'card_navigation_section',
 					'max_items' => '900',
 				),
 				array(
-					'id'        => 'navigation_section',
+					'id'        => 'card_navigation_section',
 					'max_items' => 'tanti',
 				),
 				array(
-					'id'        => 'navigation_section',
+					'id'        => 'card_navigation_section',
 					'max_items' => '',
 				),
-				array( 'id' => 'navigation_section' ),
+				array( 'id' => 'card_navigation_section' ),
 			)
 		);
 
@@ -253,22 +253,22 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$rows = dli_normalize_hp_section_rows(
 			array(
 				array(
-					'id'           => 'fasi_section',
+					'id'           => 'page_navigation_section',
 					'max_subitems' => '3',
 				),
 				array(
-					'id'           => 'fasi_section',
+					'id'           => 'page_navigation_section',
 					'max_subitems' => '900',
 				),
 				array(
-					'id'           => 'fasi_section',
+					'id'           => 'page_navigation_section',
 					'max_subitems' => 'tante',
 				),
 				array(
-					'id'           => 'fasi_section',
+					'id'           => 'page_navigation_section',
 					'max_subitems' => '',
 				),
-				array( 'id' => 'fasi_section' ),
+				array( 'id' => 'page_navigation_section' ),
 			)
 		);
 
