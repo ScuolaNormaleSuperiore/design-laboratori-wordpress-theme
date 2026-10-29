@@ -32,6 +32,11 @@ define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );
 // Words of the abstract of a subpage card, when the page has no summary.
 define( 'DLI_PAGE_CARD_EXCERPT_WORDS', 30 );
+// Items shown by default by the homepage section "Card di navigazione"; the editor can change the number for each row of
+// Sezioni HP, between DLI_HP_ITEMS_MIN and DLI_HP_ITEMS_MAX.
+define( 'DLI_HP_NAVIGATION_DEFAULT_ITEMS', 6 );
+define( 'DLI_HP_ITEMS_MIN', 1 );
+define( 'DLI_HP_ITEMS_MAX', 12 );
 
 // Pagination.
 define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
@@ -358,6 +363,14 @@ define(
 				'id'       => 'featured_contents',
 				'name'     => 'Contenuti in evidenza',
 				'template' => 'template-parts/home/featured-contents',
+			),
+		'navigation_section'   =>
+			array(
+				'id'         => 'navigation_section',
+				'name'       => 'Card di navigazione',
+				'template'   => 'template-parts/home/hp-navigation-section',
+				'background' => 'muted',
+				'max_items'  => 6,
 			),
 		'events_section'       =>
 				array(

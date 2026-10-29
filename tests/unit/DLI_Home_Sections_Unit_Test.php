@@ -151,4 +151,86 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertSame( array(), dli_normalize_hp_section_rows( null ) );
 		$this->assertSame( array(), dli_normalize_hp_section_rows( array() ) );
 	}
+
+	/**
+	 * The columns of the cards of "Card di navigazione" follow how many there are, up to six.
+	 */
+	public function test_navigation_columns_follow_the_number_of_cards() {
+		$this->assertSame( 'col-12 col-lg-6', dli_get_hp_navigation_column_class( 1 ) );
+		$this->assertSame( 'col-12 col-md-6', dli_get_hp_navigation_column_class( 2 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-4', dli_get_hp_navigation_column_class( 3 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-3', dli_get_hp_navigation_column_class( 4 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-4', dli_get_hp_navigation_column_class( 5 ), 'Three and two: the last row is centered by the template.' );
+		$this->assertSame( 'col-12 col-md-6 col-lg-4', dli_get_hp_navigation_column_class( 6 ) );
+	}
+
+	/**
+	 * Zero, negative or more than six cards still give a usable class.
+	 */
+	public function test_navigation_columns_for_out_of_range_numbers() {
+		$this->assertSame( 'col-12 col-lg-6', dli_get_hp_navigation_column_class( 0 ) );
+		$this->assertSame( 'col-12 col-lg-6', dli_get_hp_navigation_column_class( -3 ) );
+		$this->assertSame( 'col-12 col-md-6 col-lg-4', dli_get_hp_navigation_column_class( 9 ) );
+	}
+
+	/**
+	 * The number of items is a whole number between the minimum and the maximum, otherwise the default.
+	 */
+	public function test_max_items_is_a_whole_number_in_range() {
+		$this->assertSame( 4, dli_normalize_hp_max_items( 4, 6 ) );
+		$this->assertSame( 4, dli_normalize_hp_max_items( '4', 6 ), 'A number saved as text.' );
+		$this->assertSame( 6, dli_normalize_hp_max_items( '', 6 ), 'Empty gives the default.' );
+		$this->assertSame( 6, dli_normalize_hp_max_items( null, 6 ) );
+		$this->assertSame( 6, dli_normalize_hp_max_items( 'molte', 6 ), 'Not a number gives the default.' );
+		$this->assertSame( 6, dli_normalize_hp_max_items( '3.5', 6 ), 'A number with decimals is not a whole number.' );
+		$this->assertSame( 6, dli_normalize_hp_max_items( array( 3 ), 6 ) );
+		$this->assertSame( DLI_HP_ITEMS_MIN, dli_normalize_hp_max_items( 0, 6 ), 'Below the minimum gives the minimum.' );
+		$this->assertSame( DLI_HP_ITEMS_MIN, dli_normalize_hp_max_items( -5, 6 ) );
+		$this->assertSame( DLI_HP_ITEMS_MAX, dli_normalize_hp_max_items( 500, 6 ), 'Above the maximum gives the maximum.' );
+	}
+
+	/**
+	 * The field of the options page is sanitized to a number in range, or to nothing.
+	 */
+	public function test_sanitization_of_the_max_items_field() {
+		$this->assertSame( 3, dli_sanitize_hp_max_items( '3' ) );
+		$this->assertSame( DLI_HP_ITEMS_MAX, dli_sanitize_hp_max_items( '999' ) );
+		$this->assertSame( DLI_HP_ITEMS_MIN, dli_sanitize_hp_max_items( '0' ) );
+		$this->assertSame( '', dli_sanitize_hp_max_items( '' ), 'Empty stays empty: the section uses its default.' );
+		$this->assertSame( '', dli_sanitize_hp_max_items( 'abc' ) );
+		$this->assertSame( '', dli_sanitize_hp_max_items( null ) );
+	}
+
+	/**
+	 * A row keeps a valid number of items, in range; a wrong one is dropped so that the default applies.
+	 */
+	public function test_rows_keep_a_valid_number_of_items() {
+		$rows = dli_normalize_hp_section_rows(
+			array(
+				array(
+					'id'        => 'navigation_section',
+					'max_items' => '4',
+				),
+				array(
+					'id'        => 'navigation_section',
+					'max_items' => '900',
+				),
+				array(
+					'id'        => 'navigation_section',
+					'max_items' => 'tanti',
+				),
+				array(
+					'id'        => 'navigation_section',
+					'max_items' => '',
+				),
+				array( 'id' => 'navigation_section' ),
+			)
+		);
+
+		$this->assertSame( 4, $rows[0]['max_items'] );
+		$this->assertSame( DLI_HP_ITEMS_MAX, $rows[1]['max_items'] );
+		$this->assertArrayNotHasKey( 'max_items', $rows[2] );
+		$this->assertArrayNotHasKey( 'max_items', $rows[3] );
+		$this->assertArrayNotHasKey( 'max_items', $rows[4], 'A row saved before the field existed is not given one.' );
+	}
 }

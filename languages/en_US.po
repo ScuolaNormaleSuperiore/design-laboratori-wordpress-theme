@@ -2721,12 +2721,12 @@ msgid "Pagine di esempio"
 msgstr "Example pages"
 
 #: inc/admin/class-dli-tools-admin.php:944
-msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione."
-msgstr "Creates an example section (“Research Data Management”) with four subpages and their own subpages, each with a sample text (lorem ipsum) of a different length. It is meant to try the subpage cards and the sidebar of the related pages. The content is fake: do not use it on a production site."
+msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la sidebar delle pagine collegate e la sezione «Card di navigazione» della home: la pagina principale e le sue quattro sottopagine sono promosse alla home (la sezione va aggiunta in «Sezioni HP»). Sono contenuti finti: non usarla su un sito di produzione."
+msgstr "Creates an example section (“Research Data Management”) with four subpages and their own subpages, each with a sample text (lorem ipsum) of a different length. It is meant to try the subpage cards, the sidebar of the related pages and the section “Navigation cards” of the home: the main page and its four subpages are promoted to the home (the section has to be added in “Sezioni HP”). The content is fake: do not use it on a production site."
 
 #: inc/admin/class-dli-tools-admin.php:945
-msgid "Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
-msgstr "It can be repeated without duplicating anything. “Remove” deletes only the pages created by this tool, never those written by an editor."
+msgid "Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo strumento vengono promosse alla home, il resto non cambia. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
+msgstr "It can be repeated without duplicating anything: the pages created earlier by the tool are promoted to the home, nothing else changes. “Remove” deletes only the pages created by this tool, never those written by an editor."
 
 #: inc/admin/class-dli-tools-admin.php:947
 msgid "Servono le lingue italiano o inglese di Polylang."
@@ -2775,3 +2775,53 @@ msgstr "Move the section up"
 #: inc/admin/options.php:3180
 msgid "Sposta la sezione in basso"
 msgstr "Move the section down"
+
+#: template-parts/home/hp-navigation-section.php:39
+msgid "Card di navigazione"
+msgstr "Navigation cards"
+
+#: inc/admin/options.php:814
+msgid "Sezione \"Card di navigazione\""
+msgstr "Section \"Navigation cards\""
+
+#. translators: %d: the number of pages shown by default
+#: inc/admin/options.php:843
+msgid "Mostra fino a %d pagine (modificabile in \"Sezioni HP\") con il campo \"Promuovi in Home\" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo \"Ordine\" della pagina (Attributi pagina) e poi per titolo. Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in \"Sezioni HP\"."
+msgstr "Shows up to %d pages (can be changed in \"Sezioni HP\") with the field \"Promuovi in Home\" on (Page tab), in the current language, by the value of the \"Order\" field of the page (Page attributes) and then by title. Draft or password-protected pages do not appear. The section is activated and ordered in \"Sezioni HP\"."
+
+#: inc/admin/options.php:828
+msgid "Si vede solo se in \"Sezioni HP\" è attivo \"Mostra il titolo della sezione\"."
+msgstr "Shown only if \"Show the title of the section\" is on in \"Sezioni HP\"."
+
+#: inc/admin/options.php:827
+msgid "Titolo sezione"
+msgstr "Section title"
+
+#: inc/admin/options.php:836
+msgid "Titolo sezione ENG"
+msgstr "Section title ENG"
+
+#: inc/admin/options.php:844
+msgid "Sottotitolo sezione"
+msgstr "Section subtitle"
+
+#: inc/admin/options.php:845
+msgid "Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto."
+msgstr "Free text of up to 512 characters. It is always shown, if it is not empty."
+
+#: inc/admin/options.php:856
+msgid "Sottotitolo sezione ENG"
+msgstr "Section subtitle ENG"
+
+#: inc/admin/options.php:321
+msgid "Testo libero di massimo 512 caratteri"
+msgstr "Free text of up to 512 characters"
+
+#: inc/admin/options.php:429
+msgid "Numero massimo di elementi"
+msgstr "Maximum number of items"
+
+#. translators: 1: the least, 2: the most items
+#: inc/admin/options.php:432
+msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
+msgstr "From %1$d to %2$d. If empty, the default number of that section is used."

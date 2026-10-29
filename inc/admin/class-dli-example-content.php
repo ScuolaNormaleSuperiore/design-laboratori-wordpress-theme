@@ -30,6 +30,11 @@ class DLI_Example_Content {
 	const CARDS_FIELD_KEY = 'field_670e717b3bedd';
 
 	/**
+	 * ACF key of the field `promuovi_in_home` of the base page.
+	 */
+	const PROMOTE_FIELD_KEY = 'field_670e717b3bedc';
+
+	/**
 	 * The languages of the example pages that the site has.
 	 *
 	 * @return string[] Slugs, a subset of `it` and `en`.
@@ -198,6 +203,10 @@ class DLI_Example_Content {
 				$ids[ $language ] = $existing->ID;
 				if ( $asked ) {
 					++$context['counts']['skipped'];
+					// A page that an earlier run of the tool created gets the promotion it did not have yet; nothing else of it changes.
+					if ( ! empty( $node['promote'] ) && '' !== (string) get_post_meta( $existing->ID, self::META, true ) && '1' !== (string) get_post_meta( $existing->ID, 'promuovi_in_home', true ) ) {
+						update_field( self::PROMOTE_FIELD_KEY, 1, $existing->ID );
+					}
 				}
 			} elseif ( $asked ) {
 				$id = wp_insert_post(
@@ -221,6 +230,9 @@ class DLI_Example_Content {
 				update_post_meta( $id, self::META, '1' );
 				if ( $is_top ) {
 					update_field( self::CARDS_FIELD_KEY, 1, $id );
+				}
+				if ( ! empty( $node['promote'] ) ) {
+					update_field( self::PROMOTE_FIELD_KEY, 1, $id );
 				}
 				++$context['counts']['created'];
 				$ids[ $language ] = $id;
@@ -273,7 +285,9 @@ class DLI_Example_Content {
 	 * The tree of the pages.
 	 *
 	 * `it` and `en` are the title and the summary of each version; the order of the entries is the order
-	 * of the menu. The top page shows its subpages as cards (field `mostra_sottopagine_a_card`).
+	 * of the menu. The top page shows its subpages as cards (field `mostra_sottopagine_a_card`). The pages with
+	 * `promote` (the top page and its four subpages) are promoted to the home (field `promuovi_in_home`), so that the
+	 * section "Card di navigazione" has something to show.
 	 *
 	 * @return array<string, mixed>
 	 */
@@ -282,16 +296,19 @@ class DLI_Example_Content {
 			'it'       => array( 'Gestione dei dati della ricerca', 'Contenuto di esempio (albero di navigazione a più livelli)' ),
 			'en'       => array( 'Research Data Management', 'Example content (navigation tree with several levels)' ),
 			'lorem'    => array( 0, 1 ),
+			'promote'  => true,
 			'children' => array(
 				array(
 					'it'    => array( 'Perché la gestione dei dati della ricerca è importante', 'Perché la gestione dei dati della ricerca è importante: riproducibilità, requisiti dei finanziatori, riuso e conservazione nel tempo.' ),
 					'en'    => array( 'Why does Research Data Management matter?', 'Why research data management matters: reproducibility, funders requirements, reuse and preservation over time.' ),
-					'lorem' => array( 2, 3 ),
+					'lorem'   => array( 2, 3 ),
+					'promote' => true,
 				),
 				array(
 					'it'       => array( 'Pianificare', 'Le attività di pianificazione: capire quali sono i dati prodotti dalla ricerca e preparare un piano di gestione dei dati.' ),
 					'en'       => array( 'Plan', 'Planning activities: understand which data the research produces and prepare a data management plan.' ),
 					'lorem'    => array( 0 ),
+					'promote'  => true,
 					'children' => array(
 						array(
 							'it'    => array( 'Cosa sono i dati della ricerca?', '' ),
@@ -309,6 +326,7 @@ class DLI_Example_Content {
 					'it'       => array( 'Gestire', 'La gestione dei dati durante il progetto: accesso e riuso, strutturazione e archiviazione dei dati di lavoro.' ),
 					'en'       => array( 'Manage', 'Data management during the project: access and reuse, structure and storage of the working data.' ),
 					'lorem'    => array( 1, 3, 5 ),
+					'promote'  => true,
 					'children' => array(
 						array(
 							'it'    => array( 'Accesso e riuso dei dati della ricerca', '' ),
@@ -331,6 +349,7 @@ class DLI_Example_Content {
 					'it'       => array( 'Condividere', 'Come condividere i dati al termine del progetto: archiviazione a lungo termine e pubblicazione.' ),
 					'en'       => array( 'Sharing', 'How to share the data at the end of the project: long-term archiving and publication.' ),
 					'lorem'    => array( 4 ),
+					'promote'  => true,
 					'children' => array(
 						array(
 							'it'    => array( 'Archiviazione a lungo termine', '' ),

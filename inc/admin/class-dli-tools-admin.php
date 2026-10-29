@@ -941,8 +941,8 @@ class DLI_Tools_Admin {
 			<div class="inside">
 				<h2><?php esc_html_e( 'Pagine di esempio', 'design_laboratori_italia' ); ?></h2>
 				<?php self::render_example_content_report(); ?>
-				<p class="dli-section-lead"><?php esc_html_e( 'Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione.', 'design_laboratori_italia' ); ?></p>
-				<p class="dli-section-lead"><?php esc_html_e( 'Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-lead"><?php esc_html_e( 'Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la sidebar delle pagine collegate e la sezione «Card di navigazione» della home: la pagina principale e le sue quattro sottopagine sono promosse alla home (la sezione va aggiunta in «Sezioni HP»). Sono contenuti finti: non usarla su un sito di produzione.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-lead"><?php esc_html_e( 'Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo strumento vengono promosse alla home, il resto non cambia. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore.', 'design_laboratori_italia' ); ?></p>
 				<?php if ( empty( $choices ) ) : ?>
 					<p><?php esc_html_e( 'Servono le lingue italiano o inglese di Polylang.', 'design_laboratori_italia' ); ?></p>
 				<?php else : ?>

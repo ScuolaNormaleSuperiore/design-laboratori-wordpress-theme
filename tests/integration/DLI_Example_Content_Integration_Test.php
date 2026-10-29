@@ -280,4 +280,74 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertStringNotContainsString( 'value="iten"', $html );
 		$this->assertStringNotContainsString( 'value="en"', $html );
 	}
+
+	/**
+	 * The top page and its four subpages are promoted to the home, in both languages, in the order of the section.
+	 */
+	public function test_top_page_and_its_subpages_are_promoted_to_the_home() {
+		$this->add_english();
+		DLI_Example_Content::create( array( 'it', 'en' ), $this->login_administrator() );
+
+		$promoted = array();
+		foreach ( $this->example_pages() as $page_id ) {
+			if ( '1' === (string) get_post_meta( $page_id, 'promuovi_in_home', true ) ) {
+				$promoted[] = $page_id;
+			}
+		}
+		$this->assertCount( 10, $promoted, 'The top page and the four subpages, in two languages.' );
+
+		PLL()->curlang = PLL()->model->get_language( 'it' );
+		$titles = wp_list_pluck( dli_get_promoted_page_cards(), 'title' );
+		$this->assertSame(
+			array( 'Gestione dei dati della ricerca', 'Perché la gestione dei dati della ricerca è importante', 'Pianificare', 'Gestire', 'Condividere' ),
+			$titles,
+			'The section "Card di navigazione" lists them as the tool built them: the top page first, then the subpages in order.'
+		);
+
+		PLL()->curlang = PLL()->model->get_language( 'en' );
+		$this->assertCount( 5, dli_get_promoted_page_cards() );
+		PLL()->curlang = null;
+	}
+
+	/**
+	 * Running the tool again turns the promotion on for the example pages created before it did, and touches nothing else.
+	 */
+	public function test_running_again_promotes_the_pages_created_before() {
+		$this->add_english();
+		$author = $this->login_administrator();
+		DLI_Example_Content::create( array( 'it' ), $author );
+		$top = get_page_by_path( 'gestione-dei-dati-della-ricerca' );
+		delete_post_meta( $top->ID, 'promuovi_in_home' );
+		wp_update_post(
+			array(
+				'ID'         => $top->ID,
+				'post_title' => 'Titolo cambiato da un redattore',
+			)
+		);
+
+		$report = DLI_Example_Content::create( array( 'it' ), $author );
+
+		$this->assertSame( 0, $report['created'] );
+		$this->assertSame( 12, $report['skipped'] );
+		$this->assertSame( '1', (string) get_post_meta( $top->ID, 'promuovi_in_home', true ), 'The flag is on again.' );
+		$this->assertSame( 'Titolo cambiato da un redattore', get_the_title( $top->ID ), 'The rest of the page is left as it is.' );
+	}
+
+	/**
+	 * A page that an editor wrote is never promoted by the tool, even with the address of an example page.
+	 */
+	public function test_pages_not_created_by_the_tool_are_not_promoted() {
+		$page_id = self::factory()->post->create(
+			array(
+				'post_type'  => 'page',
+				'post_title' => 'Gestione dei dati della ricerca',
+				'post_name'  => 'gestione-dei-dati-della-ricerca',
+			)
+		);
+		dli_set_post_language( $page_id, 'it' );
+
+		DLI_Example_Content::create( array( 'it' ), $this->login_administrator() );
+
+		$this->assertSame( '', (string) get_post_meta( $page_id, 'promuovi_in_home', true ) );
+	}
 }

@@ -2684,11 +2684,11 @@ msgid "Pagine di esempio"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:944
-msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine e la sidebar delle pagine collegate. Sono contenuti finti: non usarla su un sito di produzione."
+msgid "Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la sidebar delle pagine collegate e la sezione «Card di navigazione» della home: la pagina principale e le sue quattro sottopagine sono promosse alla home (la sezione va aggiunta in «Sezioni HP»). Sono contenuti finti: non usarla su un sito di produzione."
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:945
-msgid "Si può ripetere senza duplicare nulla. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
+msgid "Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo strumento vengono promosse alla home, il resto non cambia. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore."
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:947
@@ -2737,4 +2737,54 @@ msgstr ""
 
 #: inc/admin/options.php:3180
 msgid "Sposta la sezione in basso"
+msgstr ""
+
+#: template-parts/home/hp-navigation-section.php:39
+msgid "Card di navigazione"
+msgstr ""
+
+#: inc/admin/options.php:814
+msgid "Sezione \"Card di navigazione\""
+msgstr ""
+
+#. translators: %d: the number of pages shown by default
+#: inc/admin/options.php:843
+msgid "Mostra fino a %d pagine (modificabile in \"Sezioni HP\") con il campo \"Promuovi in Home\" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo \"Ordine\" della pagina (Attributi pagina) e poi per titolo. Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in \"Sezioni HP\"."
+msgstr ""
+
+#: inc/admin/options.php:828
+msgid "Si vede solo se in \"Sezioni HP\" è attivo \"Mostra il titolo della sezione\"."
+msgstr ""
+
+#: inc/admin/options.php:827
+msgid "Titolo sezione"
+msgstr ""
+
+#: inc/admin/options.php:836
+msgid "Titolo sezione ENG"
+msgstr ""
+
+#: inc/admin/options.php:844
+msgid "Sottotitolo sezione"
+msgstr ""
+
+#: inc/admin/options.php:845
+msgid "Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto."
+msgstr ""
+
+#: inc/admin/options.php:856
+msgid "Sottotitolo sezione ENG"
+msgstr ""
+
+#: inc/admin/options.php:321
+msgid "Testo libero di massimo 512 caratteri"
+msgstr ""
+
+#: inc/admin/options.php:429
+msgid "Numero massimo di elementi"
+msgstr ""
+
+#. translators: 1: the least, 2: the most items
+#: inc/admin/options.php:432
+msgid "Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione."
 msgstr ""

@@ -148,6 +148,8 @@ Campi principali:
 - `Selezione articoli`
   tipo: `custom_attached_posts`
   funzione: selezione manuale contenuti carousel (`post`, `notizia`, `evento`, `pubblicazione`).
+- Sezione `Card di navigazione`: `Titolo sezione` / `Titolo sezione ENG` (`text`) e `Sottotitolo sezione` / `Sottotitolo sezione ENG` (`textarea`, max 512 caratteri).
+  funzione: testi della sezione «Card di navigazione» della home, in IT/EN. La sezione mostra fino a 6 pagine (numero modificabile per riga in `Sezioni HP`, da 1 a 12, con `Numero massimo di elementi`) con il campo `Promuovi in Home` acceso (scheda Pagina), nella lingua corrente, nell'ordine del campo `Ordine` della pagina (`Attributi pagina`) e poi per titolo; le pagine in bozza o protette da password non compaiono, e senza pagine promosse la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Card di navigazione`). Il titolo si vede solo con `Mostra il titolo della sezione` attivo e se non è vuoto; il sottotitolo si vede sempre, se non è vuoto. In `Sezioni HP` la voce ha anche `Sfondo sezione` (grigio chiaro di default) e `Numero massimo di elementi` (vuoto = 6; se le pagine promosse sono meno, si mostrano tutte).
 - `featured_contents_*` (Box 1/2/3)
   tipo: `group` con campi `label`, `tipo contenuto`, `template`
   funzione: configura i tre box dei contenuti in evidenza.

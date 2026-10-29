@@ -44,6 +44,7 @@ class DLI_Config_Unit_Test extends TestCase {
 			'site_description',
 			'main_carousel',
 			'featured_contents',
+			'navigation_section',
 			'events_section',
 			'news_section',
 			'publications_section',
@@ -53,6 +54,7 @@ class DLI_Config_Unit_Test extends TestCase {
 			'video_section',
 		);
 		$this->assertSame( $expected, array_keys( DLI_HP_SECTIONS ) );
+		$this->assertSame( 'Card di navigazione', DLI_HP_SECTIONS['navigation_section']['name'] );
 	}
 
 	/**

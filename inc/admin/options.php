@@ -419,6 +419,32 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	// The number of items can be chosen only for the sections that support it (key `max_items` of the catalog), in the
+	// same way as the background; it is checked on the server too and an empty value means the default of the section.
+	$items_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_max_items() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'max_items',
+			'name'            => __( 'Numero massimo di elementi', 'design_laboratori_italia' ),
+			'desc'            => sprintf(
+				/* translators: 1: the least, 2: the most items */
+				__( 'Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione.', 'design_laboratori_italia' ),
+				DLI_HP_ITEMS_MIN,
+				DLI_HP_ITEMS_MAX
+			),
+			'type'            => 'text_small',
+			'sanitization_cb' => 'dli_sanitize_hp_max_items',
+			'attributes'      => array(
+				'type'                   => 'number',
+				'min'                    => (string) DLI_HP_ITEMS_MIN,
+				'max'                    => (string) DLI_HP_ITEMS_MAX,
+				'step'                   => '1',
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $items_sections ? $items_sections : '__nessuna__',
+			),
+		)
+	);
 	// The background can be chosen only for the sections that support it (key `background` of the catalog);
 	// when none does, the value never matches, so the field stays hidden. The value is sanitized on the server too.
 	$background_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_background() ) );
@@ -806,6 +832,61 @@ function dli_register_main_options_metabox() {
 				),
 			)
 		);
+
+	// *** SEZIONE "CARD DI NAVIGAZIONE" (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione',
+			'name' => __( 'Sezione "Card di navigazione"', 'design_laboratori_italia' ),
+			'desc' => sprintf(
+				/* translators: %d: the number of pages shown by default */
+				__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+				DLI_HP_NAVIGATION_DEFAULT_ITEMS
+			),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione_title',
+			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+			'desc' => __( 'Si vede solo se in "Sezioni HP" è attivo "Mostra il titolo della sezione".', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_navigazione_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_navigazione_text',
+			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto.', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_navigazione_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
 
 	/**
 	* 5 - Registers options page "Laboratorio".

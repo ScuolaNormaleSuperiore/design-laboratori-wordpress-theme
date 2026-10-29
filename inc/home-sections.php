@@ -7,6 +7,9 @@
  *  - dli_get_hp_section_background_class() The CSS class of the background of a section.
  *  - dli_sanitize_hp_background()          Sanitization of the background field of the options page.
  *  - dli_normalize_hp_section_rows()       The saved rows of the sections, safe to use.
+ *  - dli_normalize_hp_max_items()          The number of items a section shows, a whole number in range.
+ *  - dli_sanitize_hp_max_items()           Sanitization of the field "Numero massimo di elementi".
+ *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
  *
  * @package Design_Laboratori_Italia
  */
@@ -61,6 +64,43 @@ if ( ! function_exists( 'dli_sanitize_hp_background' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_normalize_hp_max_items' ) ) {
+	/**
+	 * The number of items that a homepage section shows: a whole number between the minimum and the maximum.
+	 *
+	 * @param mixed $value   The value to check, for example the one saved in a row (a number, or a number as text).
+	 * @param int   $default The number to give back when `$value` is empty or is not a whole number.
+	 * @return int A number between `DLI_HP_ITEMS_MIN` and `DLI_HP_ITEMS_MAX`; a number out of range is brought to the nearest limit.
+	 */
+	function dli_normalize_hp_max_items( $value, $default ) {
+		if ( is_string( $value ) ) {
+			$value = trim( $value );
+		}
+		if ( is_int( $value ) || ( is_string( $value ) && 1 === preg_match( '/^-?\d+$/', $value ) ) ) {
+			return max( DLI_HP_ITEMS_MIN, min( DLI_HP_ITEMS_MAX, (int) $value ) );
+		}
+		return max( DLI_HP_ITEMS_MIN, min( DLI_HP_ITEMS_MAX, (int) $default ) );
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_max_items' ) ) {
+	/**
+	 * Sanitization of the field "Numero massimo di elementi": a number in range, or nothing.
+	 *
+	 * An empty value stays empty: the section then uses its default number.
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return int|string The number, or an empty string when there is no usable number.
+	 */
+	function dli_sanitize_hp_max_items( $value ) {
+		$value = is_string( $value ) ? trim( $value ) : $value;
+		if ( ! is_int( $value ) && ! ( is_string( $value ) && 1 === preg_match( '/^-?\d+$/', $value ) ) ) {
+			return '';
+		}
+		return dli_normalize_hp_max_items( $value, DLI_HP_ITEMS_MIN );
+	}
+}
+
 if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	/**
 	 * The rows of the homepage sections as saved in the options, made safe to use.
@@ -68,7 +108,7 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	 * Nothing is rewritten in the database: the saved rows are only read. A row that is not an array, or
 	 * without the id of a section, is left out. `enabled` and `show_title` are `true` only when saved
 	 * as `true`, otherwise `false`. A background that is not white or muted is dropped, so the template uses
-	 * the default of its section. Any other property of the row is kept as it is, in the same order. Every row
+	 * the default of its section. A `max_items` that is not a whole number is dropped and one out of range is brought to the nearest limit. Any other property of the row is kept as it is, in the same order. Every row
 	 * carries `instance`, the position (starting from 1) it has in the saved list, that stays the same when
 	 * other rows are turned off: a section that can be repeated uses it to have its own identifiers.
 	 *
@@ -98,11 +138,46 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 					$row['background'] = $background;
 				}
 			}
+			if ( array_key_exists( 'max_items', $row ) ) {
+				$max_items = dli_sanitize_hp_max_items( $row['max_items'] );
+				if ( '' === $max_items ) {
+					unset( $row['max_items'] );
+				} else {
+					$row['max_items'] = $max_items;
+				}
+			}
 			$row['instance'] = $position;
 
 			$result[] = $row;
 		}
 
 		return $result;
+	}
+}
+
+if ( ! function_exists( 'dli_get_hp_navigation_column_class' ) ) {
+	/**
+	 * The classes of the column of each card of "Card di navigazione", for the number of cards shown.
+	 *
+	 * With four cards there is one row of four on a large screen; with up to three they are fewer and wider;
+	 * with five or six they are three per row, and the template centers the last row when it is not full.
+	 * On a tablet the cards are two per row, on a phone one.
+	 *
+	 * @param int $count The number of cards (the section shows six at most).
+	 * @return string The classes of the column.
+	 */
+	function dli_get_hp_navigation_column_class( $count ) {
+		$count = (int) $count;
+
+		if ( $count <= 1 ) {
+			return 'col-12 col-lg-6';
+		}
+		if ( 2 === $count ) {
+			return 'col-12 col-md-6';
+		}
+		if ( 4 === $count ) {
+			return 'col-12 col-md-6 col-lg-3';
+		}
+		return 'col-12 col-md-6 col-lg-4';
 	}
 }

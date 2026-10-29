@@ -87,7 +87,7 @@ class DLI_Page_Manager {
 						'name'              => 'promuovi_in_home',
 						'aria-label'        => '',
 						'type'              => 'true_false',
-						'instructions'      => 'Mostra questa pagina nelle sezioni della Home Page che elencano pagine: "Pagine in evidenza" e "Navigazione per pagine".',
+						'instructions'      => 'Mostra questa pagina nelle sezioni della Home Page che elencano pagine: "Card di navigazione" e "Navigazione per pagine".',
 						'required'          => 0,
 						'conditional_logic' => 0,
 						'wrapper'           => array(
