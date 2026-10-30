@@ -20,7 +20,8 @@ Run this section only once at session start, unless the user explicitly asks to 
 11. List the available trigger commands from `AGENTS/AI_BEHAVIOR.md` using the format: `Trigger X` (`/slug`) — brief description.
 12. State: `Local issue files ensured: AGENTS/ISSUES_TODO.md, AGENTS/ISSUES_RESOLVED.md (created if missing; never commit them).`
 13. State whether the `design-system-italia` MCP server (Bootstrap Italia components and tokens) is installed and usable in the current session, for example by calling its `ping` tool. If it is not available, say so and notify the human operator.
-14. Ask the human operator which project task they want to work on.
+14. Check whether the Git hooks of the project are active with `git config --get core.hooksPath` (a read-only check). If the value is not `.githooks`, warn the human operator that the hooks are not active in this clone, so commits are not checked for secrets, PHPStan, PHPCS, unit tests and AI trailers, and tell them to activate the hooks with `git config core.hooksPath .githooks`. Do not run the command yourself: it changes the Git configuration of the clone, so it is the operator's decision. If the value is `.githooks`, state that the hooks are active.
+15. Ask the human operator which project task they want to work on.
 
 
 ## Common agent rules
