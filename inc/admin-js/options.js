@@ -45,7 +45,8 @@ $j(function() {
     // (cmb2_add_row, cmb2_shift_rows_start, cmb2_shift_rows_complete) and moves around elements that CMB2
     // has already created, so that the library can be updated by copying the new version over the old one.
     // The arrows themselves come from the option 'sortable' => true of the group (inc/admin/options.php).
-    // This file must run after cmb.init(): see the dependency 'cmb2-scripts' in dli_options_assets().
+    // This file must run after cmb.init(): dli_enqueue_options_script_after_cmb2() queues it from CMB2's
+    // public cmb2_footer_enqueue hook.
 
     // The groups that get the arrows in the header of the row (selector of the repeatable group).
     var dliReorderableGroups = ['#site_sections_repeat'];

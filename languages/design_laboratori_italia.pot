@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 16:08+0000\n"
+"POT-Creation-Date: 2026-10-30 10:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -106,7 +106,7 @@ msgid ""
 "nella "
 msgstr ""
 
-#: inc/admin/class-dli-example-content.php:64
+#: inc/admin/class-dli-example-content.php:65
 msgid "ACF e Polylang devono essere attivi."
 msgstr ""
 
@@ -237,10 +237,6 @@ msgstr ""
 msgid "apr"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:911
-msgid "Apri la pagina principale:"
-msgstr ""
-
 #: inc/utils.php:946
 msgid "aprile"
 msgstr ""
@@ -355,7 +351,7 @@ msgstr ""
 msgid "captcha"
 msgstr ""
 
-#: template-parts/home/hp-card-navigation-section.php:39
+#: template-parts/home/hp-card-navigation-section.php:44
 msgid "Card di navigazione"
 msgstr ""
 
@@ -563,22 +559,25 @@ msgstr ""
 msgid "Costo"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:963
+#: inc/admin/class-dli-tools-admin.php:968
 msgid "Crea le pagine di esempio"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:944
+#: inc/admin/class-dli-tools-admin.php:949
 msgid ""
-"Crea una sezione di esempio («Research Data Management») con quattro "
-"sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem "
-"ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la "
-"sidebar delle pagine collegate e la sezione «Card di navigazione» della home:"
-" la pagina principale e le sue quattro sottopagine sono promosse alla home "
-"(la sezione va aggiunta in «Sezioni HP»). Sono contenuti finti: non usarla "
-"su un sito di produzione."
+"Crea quattro pagine principali (Open Access, «Research Data», Research "
+"Assessment, Monitoring): la seconda ha quattro sottopagine e le loro "
+"sottopagine, le altre non hanno sottopagine. Ogni pagina ha un testo di "
+"prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle "
+"sottopagine, la sidebar delle pagine collegate e le sezioni «Card di "
+"navigazione» e «Navigazione per pagine» della home (vanno aggiunte in "
+"«Sezioni HP»): le quattro pagine principali sono promosse alla home e "
+"compaiono come card; sono promosse anche le sottopagine «Pianificare», "
+"«Gestire» e «Condividere», che con la pagina «Research Data» formano i "
+"quattro gruppi. Sono contenuti finti: non usarla su un sito di produzione."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:962
+#: inc/admin/class-dli-tools-admin.php:967
 msgid ""
 "Creare le pagine di esempio? Sono contenuti finti, da non usare in "
 "produzione."
@@ -1129,7 +1128,7 @@ msgstr ""
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:930
+#: inc/admin/class-dli-tools-admin.php:935
 msgid "Italiano e inglese"
 msgstr ""
 
@@ -1142,7 +1141,7 @@ msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
 #. %s: address of the page
-#: inc/admin/class-dli-example-content.php:148
+#: inc/admin/class-dli-example-content.php:153
 #, php-format
 msgid ""
 "L'indirizzo «%s» è già usato da una pagina in un'altra lingua: non è stato "
@@ -1150,7 +1149,7 @@ msgid ""
 "riprova."
 msgstr ""
 
-#: inc/admin/class-dli-example-content.php:61
+#: inc/admin/class-dli-example-content.php:62
 msgid "La lingua richiesta non esiste in questo sito."
 msgstr ""
 
@@ -1167,7 +1166,7 @@ msgstr ""
 msgid "Leggi di piu"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:953
+#: inc/admin/class-dli-tools-admin.php:958
 msgid "Lingue"
 msgstr ""
 
@@ -1600,8 +1599,14 @@ msgstr ""
 msgid "Pagine create: %1$d. Già presenti: %2$d."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:942
+#: inc/admin/class-dli-tools-admin.php:947
 msgid "Pagine di esempio"
+msgstr ""
+
+#. %s: language code, for example IT
+#: inc/admin/class-dli-tools-admin.php:914
+#, php-format
+msgid "Pagine principali (%s):"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:54
@@ -2143,7 +2148,7 @@ msgid_plural "Rimosse %d pagine di esempio."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/admin/class-dli-tools-admin.php:966
+#: inc/admin/class-dli-tools-admin.php:971
 msgid "Rimuovere le pagine di esempio create da questo strumento?"
 msgstr ""
 
@@ -2175,7 +2180,7 @@ msgstr ""
 msgid "Rimuovi Immagine Sponsor"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:967
+#: inc/admin/class-dli-tools-admin.php:972
 msgid "Rimuovi le pagine di esempio"
 msgstr ""
 
@@ -2298,7 +2303,7 @@ msgstr ""
 msgid "separare con"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:947
+#: inc/admin/class-dli-tools-admin.php:952
 msgid "Servono le lingue italiano o inglese di Polylang."
 msgstr ""
 
@@ -2336,7 +2341,7 @@ msgstr ""
 msgid "si apre in una nuova finestra"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:945
+#: inc/admin/class-dli-tools-admin.php:950
 msgid ""
 "Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo "
 "strumento vengono promosse alla home, il resto non cambia. «Rimuovi» "
@@ -2357,11 +2362,11 @@ msgstr ""
 msgid "Skiplink"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:936
+#: inc/admin/class-dli-tools-admin.php:941
 msgid "Solo inglese"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:933
+#: inc/admin/class-dli-tools-admin.php:938
 msgid "Solo italiano"
 msgstr ""
 

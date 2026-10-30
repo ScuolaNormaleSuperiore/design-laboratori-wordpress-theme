@@ -3349,24 +3349,48 @@ function dli_options_assets() {
 		// The version is the time of the file, not a fixed string: otherwise the browser keeps serving an old
 		// copy of the script after a change, since the address stays the same.
 		$dli_options_css_path = get_stylesheet_directory() . '/inc/admin-css/jquery-ui.css';
-		$dli_options_js_path  = get_stylesheet_directory() . '/inc/admin-js/options.js';
 		$dli_options_css_ver  = file_exists( $dli_options_css_path ) ? (string) filemtime( $dli_options_css_path ) : '1.0';
-		$dli_options_js_ver   = file_exists( $dli_options_js_path ) ? (string) filemtime( $dli_options_js_path ) : '1.0';
 
 		wp_enqueue_style( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-css/jquery-ui.css', array(), $dli_options_css_ver );
-		// 'cmb2-scripts' is a dependency, not only 'jquery': options.js must run after cmb.init() of CMB2, because it
-		// moves the arrows that CMB2 has already put in the page. The styles of the arrows are in
-		// inc/admin-css/style-admin.css.
-		wp_enqueue_script( 'dli_options_dialog', get_stylesheet_directory_uri() . '/inc/admin-js/options.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'cmb2-scripts' ), $dli_options_js_ver, true );
-		// The arrows that CMB2 creates have only an icon: these are the names that a screen reader says.
-		wp_localize_script(
-			'dli_options_dialog',
-			'dliOptionsL10n',
-			array(
-				'moveUp'   => __( 'Sposta la sezione in alto', 'design_laboratori_italia' ),
-				'moveDown' => __( 'Sposta la sezione in basso', 'design_laboratori_italia' ),
-			)
-		);
 	}
 }
 add_action( 'admin_enqueue_scripts', 'dli_options_assets' );
+
+/**
+ * Enqueue the configuration page script after CMB2 has enqueued its own script.
+ *
+ * CMB2 registers its `cmb2-scripts` handle in the admin footer. Declaring it as
+ * a dependency during `admin_enqueue_scripts` therefore triggers a WordPress
+ * notice before CMB2 has registered the handle. Its public footer hook preserves
+ * the required execution order without coupling the theme to CMB2 internals.
+ *
+ * @return void
+ */
+function dli_enqueue_options_script_after_cmb2() {
+	$current_screen = get_current_screen();
+
+	if ( strpos( $current_screen->id, 'configurazione_page_' ) === false && 'toplevel_page_dli_options' !== $current_screen->id ) {
+		return;
+	}
+
+	$dli_options_js_path = get_stylesheet_directory() . '/inc/admin-js/options.js';
+	$dli_options_js_ver  = file_exists( $dli_options_js_path ) ? (string) filemtime( $dli_options_js_path ) : '1.0';
+
+	wp_enqueue_script(
+		'dli_options_dialog',
+		get_stylesheet_directory_uri() . '/inc/admin-js/options.js',
+		array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog' ),
+		$dli_options_js_ver,
+		true
+	);
+	// The arrows that CMB2 creates have only an icon: these are the names that a screen reader says.
+	wp_localize_script(
+		'dli_options_dialog',
+		'dliOptionsL10n',
+		array(
+			'moveUp'   => __( 'Sposta la sezione in alto', 'design_laboratori_italia' ),
+			'moveDown' => __( 'Sposta la sezione in basso', 'design_laboratori_italia' ),
+		)
+	);
+}
+add_action( 'cmb2_footer_enqueue', 'dli_enqueue_options_script_after_cmb2' );
