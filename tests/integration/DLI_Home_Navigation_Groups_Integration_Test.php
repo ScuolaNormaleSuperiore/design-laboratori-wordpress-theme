@@ -123,6 +123,25 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 	}
 
 	/**
+	 * The level of a promoted page does not matter: a promoted subpage with subpages is a group, one without is not.
+	 */
+	public function test_groups_are_promoted_pages_of_any_level_that_have_subpages() {
+		$top = $this->create_group( 'Gestione', array( 'Perché', 'Pianificare' ), 1 );
+		$mid = $this->create_page( 'Gestire', array( 'post_parent' => $top, 'menu_order' => 5 ) );
+		foreach ( array( 'Accesso', 'Strutture' ) as $position => $title ) {
+			$this->create_page( $title, array( 'post_parent' => $mid, 'menu_order' => $position ), false );
+		}
+		$leaf = $this->create_page( 'Condividere', array( 'post_parent' => $top, 'menu_order' => 6 ) );
+
+		$groups = dli_get_promoted_page_groups( 10, 10 );
+
+		$this->assertSame( array( $top, $mid ), wp_list_pluck( $groups, 'id' ), 'The top page and the promoted subpage with children.' );
+		$this->assertNotContains( $leaf, wp_list_pluck( $groups, 'id' ), 'A promoted page without subpages is not a group.' );
+		$this->assertSame( array( 'Accesso', 'Strutture' ), wp_list_pluck( $groups[1]['items'], 'title' ) );
+		$this->assertContains( 'Gestire', wp_list_pluck( $groups[0]['items'], 'title' ), 'The promoted subpage is also a link in the group of its parent.' );
+	}
+
+	/**
 	 * Protected and draft subpages are not listed, and do not take a place among the subpages shown.
 	 */
 	public function test_protected_and_draft_subpages_are_left_out_before_the_limit() {

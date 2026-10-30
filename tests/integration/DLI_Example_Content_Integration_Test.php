@@ -68,7 +68,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
-	 * Both languages: 12 pages each, translations of each other, the top page with the cards on.
+	 * Both languages: 15 pages each, translations of each other, only the page with subpages shows them as cards.
 	 */
 	public function test_create_both_languages_with_linked_translations() {
 		$this->add_english();
@@ -77,25 +77,42 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$report = DLI_Example_Content::create( array( 'it', 'en' ), $author );
 
 		$this->assertNotWPError( $report );
-		$this->assertSame( 24, $report['created'] );
+		$this->assertSame( 30, $report['created'] );
 		$this->assertSame( 0, $report['skipped'] );
-		$this->assertCount( 24, $this->example_pages() );
-		$this->assertSame( array( 'it', 'en' ), array_keys( $report['top'] ), 'The report leads to the top page of each language.' );
+		$this->assertCount( 30, $this->example_pages() );
+		$this->assertSame( array( 'it', 'en' ), array_keys( $report['top'] ), 'The report leads to the main pages of each language.' );
+		$this->assertCount( 4, $report['top']['it'], 'Four main pages in Italian.' );
+		$this->assertCount( 4, $report['top']['en'] );
+		$this->assertSame(
+			array( 'Open Access', 'Dati della ricerca', 'Valutazione della ricerca', 'Monitoraggio' ),
+			wp_list_pluck( $report['top']['it'], 'title' ),
+			'In the order of the menu.'
+		);
+		$this->assertSame(
+			array( 'Open Access', 'Research Data', 'Research Assessment', 'Monitoring' ),
+			wp_list_pluck( $report['top']['en'], 'title' )
+		);
 
-		$top_it = (int) url_to_postid( $report['top']['it'] );
-		$top_en = (int) url_to_postid( $report['top']['en'] );
-		$this->assertSame( 'Gestione dei dati della ricerca', get_the_title( $top_it ) );
-		$this->assertSame( 'Research Data Management', get_the_title( $top_en ) );
-		$this->assertSame( array( 'it' => $top_it, 'en' => $top_en ), pll_get_post_translations( $top_it ) );
-		$this->assertSame( '1', (string) get_post_meta( $top_it, 'mostra_sottopagine_a_card', true ) );
+		$rdm_it = (int) url_to_postid( $report['top']['it'][1]['url'] );
+		$rdm_en = (int) url_to_postid( $report['top']['en'][1]['url'] );
+		$this->assertSame( 'Dati della ricerca', get_the_title( $rdm_it ) );
+		$this->assertSame( 'Research Data', get_the_title( $rdm_en ) );
+		$this->assertSame( array( 'it' => $rdm_it, 'en' => $rdm_en ), pll_get_post_translations( $rdm_it ) );
+		$this->assertSame( '1', (string) get_post_meta( $rdm_it, 'mostra_sottopagine_a_card', true ) );
 
 		foreach ( $this->example_pages() as $page_id ) {
 			$this->assertCount( 2, pll_get_post_translations( $page_id ), 'Every page has its translation.' );
 			$this->assertSame( 'publish', get_post_status( $page_id ) );
+			if ( $page_id !== $rdm_it && $page_id !== $rdm_en ) {
+				$this->assertSame( '', (string) get_post_meta( $page_id, 'mostra_sottopagine_a_card', true ), 'Only the page with subpages shows them as cards.' );
+			}
 		}
 
-		$this->assertCount( 4, dli_get_subpage_cards( $top_it ), 'The top page has the four cards.' );
-		$this->assertCount( 4, dli_get_subpage_cards( $top_en ) );
+		$this->assertCount( 4, dli_get_subpage_cards( $rdm_it ), 'The page with subpages has the four cards.' );
+		$this->assertCount( 4, dli_get_subpage_cards( $rdm_en ) );
+		foreach ( array( 0, 2, 3 ) as $position ) {
+			$this->assertSame( array(), dli_get_subpage_cards( (int) url_to_postid( $report['top']['it'][ $position ]['url'] ) ), 'The other main pages have no subpages.' );
+		}
 	}
 
 	/**
@@ -115,7 +132,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertGreaterThan( 5, count( array_unique( $lengths ) ), 'The texts are not all of the same length.' );
 		$this->assertGreaterThan( 250, max( $lengths ), 'The longest text has the two paragraphs of the example.' );
 
-		$top = pll_get_post_translations( get_page_by_path( 'gestione-dei-dati-della-ricerca' )->ID );
+		$top = pll_get_post_translations( get_page_by_path( 'dati-della-ricerca' )->ID );
 		$this->assertSame( get_post( $top['it'] )->post_content, get_post( $top['en'] )->post_content, 'The two versions have the same text.' );
 	}
 
@@ -130,8 +147,8 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$report = DLI_Example_Content::create( array( 'it', 'en' ), $author );
 
 		$this->assertSame( 0, $report['created'] );
-		$this->assertSame( 24, $report['skipped'] );
-		$this->assertCount( 24, $this->example_pages() );
+		$this->assertSame( 30, $report['skipped'] );
+		$this->assertCount( 30, $this->example_pages() );
 	}
 
 	/**
@@ -142,14 +159,14 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$author = $this->login_administrator();
 
 		$italian = DLI_Example_Content::create( array( 'it' ), $author );
-		$this->assertSame( 12, $italian['created'] );
+		$this->assertSame( 15, $italian['created'] );
 		foreach ( $this->example_pages() as $page_id ) {
 			$this->assertCount( 1, pll_get_post_translations( $page_id ), 'Alone, no translation yet.' );
 		}
 
 		$english = DLI_Example_Content::create( array( 'en' ), $author );
 
-		$this->assertSame( 12, $english['created'] );
+		$this->assertSame( 15, $english['created'] );
 		foreach ( $this->example_pages() as $page_id ) {
 			$this->assertCount( 2, pll_get_post_translations( $page_id ) );
 		}
@@ -171,7 +188,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 
 		$removed = DLI_Example_Content::remove();
 
-		$this->assertSame( 24, $removed );
+		$this->assertSame( 30, $removed );
 		$this->assertSame( array(), $this->example_pages() );
 		$this->assertSame( 'publish', get_post_status( $normal ), 'A page written by an editor is not touched.' );
 		$this->assertSame( 0, DLI_Example_Content::remove(), 'Nothing left to remove.' );
@@ -185,7 +202,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$clash = self::factory()->post->create(
 			array(
 				'post_type'  => 'page',
-				'post_title' => 'Research Data Management',
+				'post_title' => 'Research Data',
 			)
 		);
 		dli_set_post_language( $clash, 'it' );
@@ -229,10 +246,10 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$post['_wpnonce'] = wp_create_nonce( 'dli_example_content' );
 		$report           = DLI_Tools_Admin::process_example_content_request( $post );
 		$this->assertNotWPError( $report );
-		$this->assertSame( 24, $report['created'] );
+		$this->assertSame( 30, $report['created'] );
 
 		$remove = DLI_Tools_Admin::process_example_content_request( array_merge( $post, array( 'dli_example_action' => 'remove' ) ) );
-		$this->assertSame( 24, $remove['removed'] );
+		$this->assertSame( 30, $remove['removed'] );
 		$this->assertWPError( DLI_Tools_Admin::process_example_content_request( array_merge( $post, array( 'dli_example_action' => 'altro' ) ) ), 'Only create and remove are known actions.' );
 	}
 
@@ -282,9 +299,11 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
-	 * The top page and its four subpages are promoted to the home, in both languages, in the order of the section.
+	 * Seven pages per language are promoted: the four main pages and the three subpages that have subpages.
+	 *
+	 * The cards are the four main pages; the groups are the four pages that have subpages.
 	 */
-	public function test_top_page_and_its_subpages_are_promoted_to_the_home() {
+	public function test_main_pages_and_subpages_with_children_are_promoted_to_the_home() {
 		$this->add_english();
 		DLI_Example_Content::create( array( 'it', 'en' ), $this->login_administrator() );
 
@@ -294,18 +313,25 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 				$promoted[] = $page_id;
 			}
 		}
-		$this->assertCount( 10, $promoted, 'The top page and the four subpages, in two languages.' );
+		$this->assertCount( 14, $promoted, 'The four main pages and the three subpages with subpages, in two languages.' );
 
 		PLL()->curlang = PLL()->model->get_language( 'it' );
-		$titles = wp_list_pluck( dli_get_promoted_page_cards(), 'title' );
 		$this->assertSame(
-			array( 'Gestione dei dati della ricerca', 'Perché la gestione dei dati della ricerca è importante', 'Pianificare', 'Gestire', 'Condividere' ),
-			$titles,
-			'The section "Card di navigazione" lists them as the tool built them: the top page first, then the subpages in order.'
+			array( 'Open Access', 'Dati della ricerca', 'Valutazione della ricerca', 'Monitoraggio' ),
+			wp_list_pluck( dli_get_promoted_page_cards(), 'title' ),
+			'The section "Card di navigazione" lists the main pages only, in the order of the menu.'
 		);
+		$groups = dli_get_promoted_page_groups( 12, 12 );
+		$this->assertSame(
+			array( 'Dati della ricerca', 'Pianificare', 'Gestire', 'Condividere' ),
+			wp_list_pluck( $groups, 'title' ),
+			'The section "Navigazione per pagine" has the pages that have subpages: the three new main pages have none.'
+		);
+		$this->assertSame( array( 4, 2, 3, 2 ), array_map( 'count', wp_list_pluck( $groups, 'items' ) ) );
 
 		PLL()->curlang = PLL()->model->get_language( 'en' );
-		$this->assertCount( 5, dli_get_promoted_page_cards() );
+		$this->assertCount( 4, dli_get_promoted_page_cards() );
+		$this->assertCount( 4, dli_get_promoted_page_groups( 12, 12 ) );
 		PLL()->curlang = null;
 	}
 
@@ -316,7 +342,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$this->add_english();
 		$author = $this->login_administrator();
 		DLI_Example_Content::create( array( 'it' ), $author );
-		$top = get_page_by_path( 'gestione-dei-dati-della-ricerca' );
+		$top = get_page_by_path( 'dati-della-ricerca' );
 		delete_post_meta( $top->ID, 'promuovi_in_home' );
 		wp_update_post(
 			array(
@@ -328,7 +354,7 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$report = DLI_Example_Content::create( array( 'it' ), $author );
 
 		$this->assertSame( 0, $report['created'] );
-		$this->assertSame( 12, $report['skipped'] );
+		$this->assertSame( 15, $report['skipped'] );
 		$this->assertSame( '1', (string) get_post_meta( $top->ID, 'promuovi_in_home', true ), 'The flag is on again.' );
 		$this->assertSame( 'Titolo cambiato da un redattore', get_the_title( $top->ID ), 'The rest of the page is left as it is.' );
 	}
@@ -340,8 +366,8 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 		$page_id = self::factory()->post->create(
 			array(
 				'post_type'  => 'page',
-				'post_title' => 'Gestione dei dati della ricerca',
-				'post_name'  => 'gestione-dei-dati-della-ricerca',
+				'post_title' => 'Dati della ricerca',
+				'post_name'  => 'dati-della-ricerca',
 			)
 		);
 		dli_set_post_language( $page_id, 'it' );

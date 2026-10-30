@@ -1101,6 +1101,24 @@ class DLI_ContentsManager {
 	}
 
 	/**
+	 * The homepage sections that let the editor choose the level of the pages they list, with their default level.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `max_level`: its default level
+	 * when the row says nothing. The field "Livello delle pagine" of Sezioni HP is shown only for these sections.
+	 *
+	 * @return array<string, int> Section id => default level (1, 2, 3, or 0 for all the levels).
+	 */
+	public static function get_hp_sections_with_max_level() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( isset( $section['max_level'] ) && null !== dli_parse_hp_page_level( $section['max_level'] ) ) {
+				$result[ $id ] = dli_normalize_hp_page_level( $section['max_level'] );
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
 	 *
 	 * The saved rows are only read, never rewritten. A row that is not a row, or has no section, is left out;

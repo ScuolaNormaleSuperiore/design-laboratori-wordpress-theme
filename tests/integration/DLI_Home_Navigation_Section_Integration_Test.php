@@ -324,5 +324,157 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 			$this->assertLessThanOrEqual( DLI_HP_ITEMS_MAX, $default, "Default of {$section_id}." );
 		}
 	}
+
+	/**
+	 * A tree of promoted pages: a first level page, a second level one under it and a third level one under that.
+	 *
+	 * @return array{first: int, second: int, third: int, other: int}
+	 */
+	private function create_promoted_tree() {
+		$first  = $this->create_page( 'Primo livello', array( 'menu_order' => 1 ) );
+		$second = $this->create_page(
+			'Secondo livello',
+			array(
+				'post_parent' => $first,
+				'menu_order'  => 0,
+			)
+		);
+		$third  = $this->create_page(
+			'Terzo livello',
+			array(
+				'post_parent' => $second,
+				'menu_order'  => 0,
+			)
+		);
+		$other  = $this->create_page( 'Altro primo livello', array( 'menu_order' => 2 ) );
+		return array(
+			'first'  => $first,
+			'second' => $second,
+			'third'  => $third,
+			'other'  => $other,
+		);
+	}
+
+	/**
+	 * By default only the promoted pages of the first level are cards: a promoted subpage is not.
+	 */
+	public function test_cards_are_the_first_level_pages_by_default() {
+		$tree = $this->create_promoted_tree();
+
+		$cards = dli_get_promoted_page_cards();
+
+		$this->assertSame( array( $tree['first'], $tree['other'] ), wp_list_pluck( $cards, 'id' ), 'The subpages are promoted too, but they are not first level.' );
+		$this->assertSame(
+			wp_list_pluck( $cards, 'id' ),
+			wp_list_pluck( dli_get_promoted_page_cards( DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, 1 ), 'id' ),
+			'The first level is the default one.'
+		);
+	}
+
+	/**
+	 * The level is chosen: up to the second, up to the third, or all of them; the order does not change.
+	 */
+	public function test_the_level_can_be_widened() {
+		$tree = $this->create_promoted_tree();
+
+		$second = wp_list_pluck( dli_get_promoted_page_cards( 12, 2 ), 'id' );
+		$third  = wp_list_pluck( dli_get_promoted_page_cards( 12, 3 ), 'id' );
+		$all    = wp_list_pluck( dli_get_promoted_page_cards( 12, 0 ), 'id' );
+
+		$this->assertSame( array( $tree['second'], $tree['first'], $tree['other'] ), $second, 'Up to the second level: all by the field Ordine (0, 1, 2), whatever the level.' );
+		$this->assertContains( $tree['third'], $third, 'Up to the third level.' );
+		$this->assertCount( 4, $third );
+		$this->assertCount( 4, $all, 'All the levels.' );
+		$this->assertNotContains( $tree['third'], $second, 'The third level is not in the second.' );
+	}
+
+	/**
+	 * The limit comes after the level: subpages never take the place of a first level page.
+	 */
+	public function test_the_limit_is_applied_after_the_level() {
+		$first_level = array();
+		for ( $index = 1; $index <= 3; $index++ ) {
+			$first_level[] = $this->create_page( 'Primo ' . $index, array( 'menu_order' => 10 + $index ) );
+		}
+		$parent = $first_level[2];
+		for ( $index = 1; $index <= 4; $index++ ) {
+			$this->create_page(
+				'Figlia ' . $index,
+				array(
+					'post_parent' => $parent,
+					'menu_order'  => $index,
+				)
+			);
+		}
+
+		$cards = dli_get_promoted_page_cards( 3 );
+
+		$this->assertSame( $first_level, wp_list_pluck( $cards, 'id' ), 'The subpages have a lower order number but are not first level.' );
+		$this->assertCount( 2, dli_get_promoted_page_cards( 2 ) );
+		$this->assertCount( 3, dli_get_promoted_page_cards( 3, 2 ), 'With the second level the three are the first by order.' );
+	}
+
+	/**
+	 * Protected pages and drafts are left out whatever the level, and do not take a place.
+	 */
+	public function test_protected_and_draft_pages_do_not_count_at_any_level() {
+		$first = $this->create_page( 'Primo', array( 'menu_order' => 1 ) );
+		$this->create_page(
+			'Figlia protetta',
+			array(
+				'post_parent'   => $first,
+				'menu_order'    => 0,
+				'post_password' => 'segreto',
+			)
+		);
+		$this->create_page(
+			'Figlia bozza',
+			array(
+				'post_parent' => $first,
+				'menu_order'  => 1,
+				'post_status' => 'draft',
+			)
+		);
+		$visible = $this->create_page(
+			'Figlia visibile',
+			array(
+				'post_parent' => $first,
+				'menu_order'  => 2,
+			)
+		);
+
+		$this->assertSame( array( $first, $visible ), wp_list_pluck( dli_get_promoted_page_cards( 12, 2 ), 'id' ) );
+		$this->assertSame( array( $first, $visible ), wp_list_pluck( dli_get_promoted_page_cards( 12, 0 ), 'id' ) );
+	}
+
+	/**
+	 * The page level is a choice of the row: the template follows it, and a wrong value means the first level.
+	 */
+	public function test_the_section_follows_the_level_of_the_row() {
+		$this->create_promoted_tree();
+
+		$default = $this->render_section();
+		$second  = $this->render_section( array( 'max_level' => 2 ) );
+		$all     = $this->render_section( array( 'max_level' => 0 ) );
+		$wrong   = $this->render_section( array( 'max_level' => 'tutti' ) );
+
+		$this->assertSame( 2, substr_count( $default, 'class="it-card ' ), 'No choice: the first level.' );
+		$this->assertStringNotContainsString( 'Secondo livello', $default );
+		$this->assertSame( 3, substr_count( $second, 'class="it-card ' ) );
+		$this->assertStringContainsString( 'Secondo livello', $second );
+		$this->assertSame( 4, substr_count( $all, 'class="it-card ' ), 'All the levels, a value that is not empty.' );
+		$this->assertStringContainsString( 'Terzo livello', $all );
+		$this->assertSame( 2, substr_count( $wrong, 'class="it-card ' ), 'A wrong value is the first level.' );
+	}
+
+	/**
+	 * Only "Card di navigazione" lets the editor choose the level, and its default is one of the choices.
+	 */
+	public function test_only_the_card_section_has_a_page_level() {
+		$with_level = DLI_ContentsManager::get_hp_sections_with_max_level();
+
+		$this->assertSame( array( 'card_navigation_section' => 1 ), $with_level );
+		$this->assertSame( array(), array_diff_key( $with_level, DLI_ContentsManager::get_hp_sections() ) );
+	}
 }
 

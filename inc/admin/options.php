@@ -470,6 +470,31 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	// The level of the pages can be chosen only for the sections that list pages by level (key `max_level` of the
+	// catalog), in the same way as the number of items; the choice is checked on the server too and a value that
+	// is not one of the four choices means the default level of the section.
+	$level_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_max_level() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'max_level',
+			'name'            => __( 'Livello delle pagine', 'design_laboratori_italia' ),
+			'desc'            => __( 'Quali pagine promosse sono mostrate in base alla loro posizione nell\'albero: il primo livello sono le pagine senza una pagina genitore.', 'design_laboratori_italia' ),
+			'type'            => 'select',
+			'default'         => (string) DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL,
+			'options'         => array(
+				1 => __( 'Solo primo livello', 'design_laboratori_italia' ),
+				2 => __( 'Fino al secondo livello', 'design_laboratori_italia' ),
+				3 => __( 'Fino al terzo livello', 'design_laboratori_italia' ),
+				0 => __( 'Tutti i livelli', 'design_laboratori_italia' ),
+			),
+			'sanitization_cb' => 'dli_sanitize_hp_page_level',
+			'attributes'      => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $level_sections ? $level_sections : '__nessuna__',
+			),
+		)
+	);
 	// The background can be chosen only for the sections that support it (key `background` of the catalog);
 	// when none does, the value never matches, so the field stays hidden. The value is sanitized on the server too.
 	$background_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_background() ) );
@@ -865,7 +890,7 @@ function dli_register_main_options_metabox() {
 			'name' => __( 'Sezione "Card di navigazione"', 'design_laboratori_italia' ),
 			'desc' => sprintf(
 				/* translators: %d: the number of pages shown by default */
-				__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+				__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Di default sono mostrate solo le pagine di primo livello, cioè senza pagina genitore: una sottopagina promossa non è una card, a meno che in "Sezioni HP" si scelga un livello più ampio (il numero massimo si applica dopo la scelta del livello). Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
 				DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS
 			),
 			'type' => 'title',
@@ -920,7 +945,7 @@ function dli_register_main_options_metabox() {
 			'name' => __( 'Sezione "Navigazione per pagine"', 'design_laboratori_italia' ),
 			'desc' => sprintf(
 				/* translators: 1: the number of groups shown by default, 2: the number of subpages of each group shown by default */
-				__( 'Per ogni pagina con il campo "Promuovi in Home" acceso (lo stesso usato da "Card di navigazione") che ha sottopagine pubblicate, mostra il titolo della pagina e un elenco di link alle sue sottopagine. Gruppi e sottopagine seguono il campo "Ordine" della pagina (Attributi pagina) e poi il titolo; le pagine in bozza o protette da password non compaiono. Di default fino a %1$d gruppi con %2$d sottopagine ciascuno: i due numeri si cambiano in "Sezioni HP". La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+				__( 'Per ogni pagina con il campo "Promuovi in Home" acceso (lo stesso usato da "Card di navigazione") che ha sottopagine pubblicate (a qualsiasi livello: anche una sottopagina promossa che ha a sua volta sottopagine fa gruppo), mostra il titolo della pagina e un elenco di link alle sue sottopagine. Gruppi e sottopagine seguono il campo "Ordine" della pagina (Attributi pagina) e poi il titolo; le pagine in bozza o protette da password non compaiono. Di default fino a %1$d gruppi con %2$d sottopagine ciascuno: i due numeri si cambiano in "Sezioni HP". La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
 				DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS,
 				DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS
 			),

@@ -149,12 +149,52 @@ Campi principali:
   tipo: `custom_attached_posts`
   funzione: selezione manuale contenuti carousel (`post`, `notizia`, `evento`, `pubblicazione`).
 - Sezione `Navigazione per pagine`: `Titolo sezione` / `Titolo sezione ENG` (`text`) e `Sottotitolo sezione` / `Sottotitolo sezione ENG` (`textarea`, max 512 caratteri).
-  funzione: testi della sezione «Navigazione per pagine» della home, in IT/EN. Per ogni pagina con il campo `Promuovi in Home` acceso (lo stesso di `Card di navigazione`) che ha sottopagine pubblicate, la sezione mostra il titolo della pagina (come testo, senza link) e l'elenco dei link alle sue sottopagine: in colonne su tablet e desktop, in un accordion (primo pannello aperto) su telefono. Gruppi e sottopagine seguono il campo `Ordine` della pagina (`Attributi pagina`) e poi il titolo; le pagine in bozza o protette da password non compaiono, e una pagina promossa senza sottopagine non fa gruppo. Senza gruppi la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Navigazione per pagine`), dove ogni riga ha `Sfondo sezione` (grigio chiaro di default), `Numero massimo di elementi` (gruppi, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12.
+  funzione: testi della sezione «Navigazione per pagine» della home, in IT/EN. Per ogni pagina con il campo `Promuovi in Home` acceso (lo stesso di `Card di navigazione`) che ha sottopagine pubblicate, la sezione mostra il titolo della pagina (come testo, senza link) e l'elenco dei link alle sue sottopagine: in colonne su tablet e desktop, in un accordion (primo pannello aperto) su telefono. Gruppi e sottopagine seguono il campo `Ordine` della pagina (`Attributi pagina`) e poi il titolo; le pagine in bozza o protette da password non compaiono, e una pagina promossa senza sottopagine non fa gruppo. Il livello della pagina non conta: una sottopagina promossa che ha a sua volta sottopagine fa gruppo, e compare anche come link nel gruppo della sua pagina genitore. Senza gruppi la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Navigazione per pagine`), dove ogni riga ha `Sfondo sezione` (grigio chiaro di default), `Numero massimo di elementi` (gruppi, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12.
 - Sezione `Card di navigazione`: `Titolo sezione` / `Titolo sezione ENG` (`text`) e `Sottotitolo sezione` / `Sottotitolo sezione ENG` (`textarea`, max 512 caratteri).
-  funzione: testi della sezione «Card di navigazione» della home, in IT/EN. La sezione mostra fino a 6 pagine (numero modificabile per riga in `Sezioni HP`, da 1 a 12, con `Numero massimo di elementi`) con il campo `Promuovi in Home` acceso (scheda Pagina), nella lingua corrente, nell'ordine del campo `Ordine` della pagina (`Attributi pagina`) e poi per titolo; le pagine in bozza o protette da password non compaiono, e senza pagine promosse la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Card di navigazione`). Il titolo si vede solo con `Mostra il titolo della sezione` attivo e se non è vuoto; il sottotitolo si vede sempre, se non è vuoto. In `Sezioni HP` la voce ha anche `Sfondo sezione` (grigio chiaro di default) e `Numero massimo di elementi` (vuoto = 6; se le pagine promosse sono meno, si mostrano tutte).
+  funzione: testi della sezione «Card di navigazione» della home, in IT/EN. La sezione mostra fino a 6 pagine (numero modificabile per riga in `Sezioni HP`, da 1 a 12, con `Numero massimo di elementi`) con il campo `Promuovi in Home` acceso (scheda Pagina), nella lingua corrente, nell'ordine del campo `Ordine` della pagina (`Attributi pagina`) e poi per titolo; le pagine in bozza o protette da password non compaiono, e senza pagine promosse la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Card di navigazione`). Il titolo si vede solo con `Mostra il titolo della sezione` attivo e se non è vuoto; il sottotitolo si vede sempre, se non è vuoto. In `Sezioni HP` la voce ha anche `Sfondo sezione` (grigio chiaro di default) e `Numero massimo di elementi` (vuoto = 6; se le pagine promosse sono meno, si mostrano tutte) e `Livello delle pagine`: `Solo primo livello` (predefinito), `Fino al secondo livello`, `Fino al terzo livello` o `Tutti i livelli`. Il primo livello sono le pagine senza pagina genitore: con la scelta predefinita una sottopagina promossa non è una card (compare invece come gruppo in `Navigazione per pagine`, se ha sottopagine), a meno di scegliere un livello più ampio. Il numero massimo si applica dopo la scelta del livello, quindi le pagine escluse non occupano un posto.
 - `featured_contents_*` (Box 1/2/3)
   tipo: `group` con campi `label`, `tipo contenuto`, `template`
   funzione: configura i tre box dei contenuti in evidenza.
+
+Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di navigazione` e `Navigazione per pagine`):
+
+| Criterio | `Card di navigazione` | `Navigazione per pagine` |
+|---|---|---|
+| Campo `Promuovi in Home` acceso | sì, obbligatorio | sì, obbligatorio (è lo stesso campo) |
+| Pagina pubblicata | sì (le bozze non compaiono) | sì (anche le sottopagine devono essere pubblicate) |
+| Senza password | sì (le pagine protette non compaiono e non occupano un posto) | sì (vale anche per le sottopagine) |
+| Lingua | solo la lingua corrente | solo la lingua corrente |
+| Livello della pagina | scelto per riga in `Sezioni HP` con `Livello delle pagine`: di default solo il primo livello (senza pagina genitore) | qualsiasi livello |
+| Sottopagine pubblicate | non servono | sì, almeno una: senza sottopagine la pagina non fa gruppo |
+| Cosa mostra | una card per pagina (titolo, riassunto, link) | un gruppo per pagina: il titolo e i link alle sue sottopagine dirette |
+| Ordine | campo `Ordine` della pagina (`Attributi pagina`), poi titolo | come le card, sia per i gruppi sia per le sottopagine di ogni gruppo |
+| Numero massimo | `Numero massimo di elementi` (vuoto = 6), applicato dopo il livello | `Numero massimo di elementi` per i gruppi (vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12 |
+
+Esempio, con le pagine create da `Strumenti DLI > Utilità > Pagine di esempio` (in italiano; `*` = `Promuovi in Home` acceso):
+
+```
+Open Access *
+Dati della ricerca *
+├─ Perché la gestione dei dati della ricerca è importante
+├─ Pianificare *
+│  ├─ Cosa sono i dati della ricerca?
+│  └─ Piano di gestione dei dati
+├─ Gestire *
+│  ├─ Accesso e riuso dei dati della ricerca
+│  ├─ Strutturare i dati
+│  └─ Archiviare i dati di lavoro
+└─ Condividere *
+   ├─ Archiviazione a lungo termine
+   └─ Pubblicare i dati della ricerca
+Valutazione della ricerca *
+Monitoraggio *
+```
+
+| Sezione | Risultato per l'albero qui sopra |
+|---|---|
+| `Card di navigazione` (livello predefinito) | 4 card: `Open Access`, `Dati della ricerca`, `Valutazione della ricerca`, `Monitoraggio`. Le tre sottopagine promosse non sono card. |
+| `Card di navigazione` con `Tutti i livelli` | 7 card: le 4 precedenti più `Pianificare`, `Gestire` e `Condividere`, nell'ordine del campo `Ordine`. |
+| `Navigazione per pagine` | 4 gruppi: `Dati della ricerca` (4 link), `Pianificare` (2), `Gestire` (3), `Condividere` (2). Le pagine `Open Access`, `Valutazione della ricerca` e `Monitoraggio` sono promosse ma non hanno sottopagine, quindi non fanno gruppo. |
 
 ### 4.5 Tab `Laboratorio` (`il_laboratorio`)
 Funzione: testi della pagina panoramica "Il laboratorio".

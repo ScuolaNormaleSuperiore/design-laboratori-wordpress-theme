@@ -1,10 +1,11 @@
 <?php
 /**
- * Example pages: a section "Research Data Management" with subpages, in Italian and in English.
+ * Example pages: four main pages, one of them the section "Research Data" with subpages, in Italian and in English.
  *
- * Used by the tool of Strumenti DLI → Utilità, to try the navigation cards of the subpages and the
- * sidebar of the related pages. Every page has a lorem ipsum text of a different length. The pages are
- * marked with a meta, so that the tool can remove them without touching the pages written by editors.
+ * Used by the tool of Strumenti DLI → Utilità, to try the navigation cards of the subpages, the
+ * sidebar of the related pages and the homepage sections that list pages. Every page has a lorem ipsum
+ * text of a different length. The pages are marked with a meta, so that the tool can remove them without
+ * touching the pages written by editors.
  *
  * @package Design_Laboratori_Italia
  */
@@ -53,7 +54,7 @@ class DLI_Example_Content {
 	 *
 	 * @param string[] $languages Slugs of the languages to create.
 	 * @param int      $author    The author of the pages.
-	 * @return array{created: int, skipped: int, top: array<string, string>}|WP_Error Counts, and the address of the top page by language.
+	 * @return array{created: int, skipped: int, top: array<string, array<int, array{title: string, url: string}>>}|WP_Error Counts, and the main pages (title and address, in the order of the menu) by language.
 	 */
 	public static function create( array $languages, $author ) {
 		$languages = array_values( array_intersect( self::LANGUAGES, $languages ) );
@@ -78,14 +79,18 @@ class DLI_Example_Content {
 		$tree = self::tree();
 
 		// First pass, writing nothing: an address used by another language stops everything.
-		$conflict = self::find_conflict( $tree, array() );
-		if ( is_wp_error( $conflict ) ) {
-			return $conflict;
+		foreach ( $tree as $node ) {
+			$conflict = self::find_conflict( $node, array() );
+			if ( is_wp_error( $conflict ) ) {
+				return $conflict;
+			}
 		}
 
-		$result = self::create_page( $tree, array(), array(), 0, true, $context );
-		if ( is_wp_error( $result ) ) {
-			return $result;
+		foreach ( $tree as $position => $node ) {
+			$result = self::create_page( $node, array(), array(), $position, true, $context );
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
 		}
 
 		return array(
@@ -161,6 +166,20 @@ class DLI_Example_Content {
 	}
 
 	/**
+	 * The address of a page in a language, without its parents: the one of its title, unless the page names another.
+	 *
+	 * A page whose title is the same in two languages names an address for one of them, because two pages
+	 * cannot have the same address.
+	 *
+	 * @param array<string, mixed> $node     The page.
+	 * @param string               $language Language slug.
+	 * @return string
+	 */
+	private static function slug( array $node, $language ) {
+		return sanitize_title( $node['slug'][ $language ] ?? $node[ $language ][0] );
+	}
+
+	/**
 	 * The path of a page in a language.
 	 *
 	 * @param array<string, mixed>  $node         The page.
@@ -170,17 +189,17 @@ class DLI_Example_Content {
 	 */
 	private static function path( array $node, $language, array $parent_paths ) {
 		$prefix = empty( $parent_paths[ $language ] ) ? '' : $parent_paths[ $language ] . '/';
-		return $prefix . sanitize_title( $node[ $language ][0] );
+		return $prefix . self::slug( $node, $language );
 	}
 
 	/**
 	 * Create a page in every language asked for, then its subpages.
 	 *
 	 * @param array<string, mixed>  $node         The page: it and en (title, summary), lorem, children.
-	 * @param array<string, int>    $parent_ids   Parent page by language, empty for the top page.
-	 * @param array<string, string> $parent_paths Path of the parent by language, empty for the top page.
+	 * @param array<string, int>    $parent_ids   Parent page by language, empty for a main page.
+	 * @param array<string, string> $parent_paths Path of the parent by language, empty for a main page.
 	 * @param int                   $order        Position among the siblings.
-	 * @param bool                  $is_top       Whether it is the top page of the section.
+	 * @param bool                  $is_top       Whether it is a main page, that is a page without a parent.
 	 * @param array<string, mixed>  $context      author, languages, lorem, counts and top, by reference through the array copy.
 	 * @return true|WP_Error
 	 */
@@ -215,7 +234,7 @@ class DLI_Example_Content {
 						'post_status'  => 'publish',
 						'post_author'  => $context['author'],
 						'post_title'   => $title,
-						'post_name'    => sanitize_title( $title ),
+						'post_name'    => self::slug( $node, $language ),
 						'post_parent'  => $parent_ids[ $language ] ?? 0,
 						'menu_order'   => $order,
 						'post_excerpt' => $summary,
@@ -228,7 +247,7 @@ class DLI_Example_Content {
 				}
 				dli_set_post_language( $id, $language );
 				update_post_meta( $id, self::META, '1' );
-				if ( $is_top ) {
+				if ( ! empty( $node['cards'] ) ) {
 					update_field( self::CARDS_FIELD_KEY, 1, $id );
 				}
 				if ( ! empty( $node['promote'] ) ) {
@@ -239,7 +258,10 @@ class DLI_Example_Content {
 			}
 
 			if ( $is_top && $asked && isset( $ids[ $language ] ) ) {
-				$context['top'][ $language ] = (string) get_permalink( $ids[ $language ] );
+				$context['top'][ $language ][] = array(
+					'title' => $title,
+					'url'   => (string) get_permalink( $ids[ $language ] ),
+				);
 			}
 		}
 
@@ -282,27 +304,61 @@ class DLI_Example_Content {
 	}
 
 	/**
-	 * The tree of the pages.
+	 * The tree of the pages: the main pages, that is the pages without a parent, in the order of the menu.
 	 *
 	 * `it` and `en` are the title and the summary of each version; the order of the entries is the order
-	 * of the menu. The top page shows its subpages as cards (field `mostra_sottopagine_a_card`). The pages with
-	 * `promote` (the top page and its four subpages) are promoted to the home (field `promuovi_in_home`), so that the
-	 * section "Card di navigazione" has something to show.
+	 * of the menu. `slug` names the address of a version, only when the title would give the same address
+	 * as the other language. The page with `cards` shows its subpages as cards (field `mostra_sottopagine_a_card`).
+	 * The pages with `promote` are promoted to the home (field `promuovi_in_home`): the four main pages, so that
+	 * the section "Card di navigazione" has four cards, and the three subpages that have subpages of their own,
+	 * so that the section "Navigazione per pagine" has four groups (the main page with subpages and these three).
 	 *
-	 * @return array<string, mixed>
+	 * @return array<int, array<string, mixed>>
 	 */
 	private static function tree() {
 		return array(
-			'it'       => array( 'Gestione dei dati della ricerca', 'Contenuto di esempio (albero di navigazione a più livelli)' ),
-			'en'       => array( 'Research Data Management', 'Example content (navigation tree with several levels)' ),
+			array(
+				'it'      => array( 'Open Access', 'Il movimento per l\'accesso libero e gratuito ai risultati della ricerca.' ),
+				'en'      => array( 'Open Access', 'The movement for free and open access to research results.' ),
+				'slug'    => array( 'en' => 'open-access-en' ),
+				'lorem'   => array( 2, 3 ),
+				'promote' => true,
+			),
+			self::research_data(),
+			array(
+				'it'      => array( 'Valutazione della ricerca', 'Come si valuta la ricerca: criteri, indicatori e buone pratiche.' ),
+				'en'      => array( 'Research Assessment', 'How research is assessed: criteria, indicators and good practice.' ),
+				'lorem'   => array( 4, 5 ),
+				'promote' => true,
+			),
+			array(
+				'it'      => array( 'Monitoraggio', 'Il monitoraggio delle attività e dei risultati della ricerca.' ),
+				'en'      => array( 'Monitoring', 'The monitoring of the activities and of the results of the research.' ),
+				'lorem'   => array( 1, 2 ),
+				'promote' => true,
+			),
+		);
+	}
+
+	/**
+	 * The main page «Research Data» with its four subpages and their own subpages.
+	 *
+	 * It is the only page that shows its subpages as cards, and the only one with subpages.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private static function research_data() {
+		return array(
+			'it'       => array( 'Dati della ricerca', 'Contenuto di esempio (albero di navigazione a più livelli)' ),
+			'en'       => array( 'Research Data', 'Example content (navigation tree with several levels)' ),
 			'lorem'    => array( 0, 1 ),
 			'promote'  => true,
+			'cards'    => true,
 			'children' => array(
 				array(
 					'it'    => array( 'Perché la gestione dei dati della ricerca è importante', 'Perché la gestione dei dati della ricerca è importante: riproducibilità, requisiti dei finanziatori, riuso e conservazione nel tempo.' ),
 					'en'    => array( 'Why does Research Data Management matter?', 'Why research data management matters: reproducibility, funders requirements, reuse and preservation over time.' ),
-					'lorem'   => array( 2, 3 ),
-					'promote' => true,
+					'lorem' => array( 2, 3 ),
 				),
 				array(
 					'it'       => array( 'Pianificare', 'Le attività di pianificazione: capire quali sono i dati prodotti dalla ricerca e preparare un piano di gestione dei dati.' ),

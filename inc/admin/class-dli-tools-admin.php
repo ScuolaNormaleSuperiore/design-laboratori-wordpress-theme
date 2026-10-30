@@ -902,14 +902,19 @@ class DLI_Tools_Admin {
 				(int) $report['skipped']
 			)
 		) . '</p>';
-		if ( ! empty( $report['top'] ) ) {
-			echo '<p>';
+		// One line for each language, with a link to each of the main pages.
+		foreach ( (array) ( $report['top'] ?? array() ) as $language => $pages ) {
 			$links = array();
-			foreach ( (array) $report['top'] as $language => $url ) {
-				$links[] = '<a href="' . esc_url( (string) $url ) . '">' . esc_html( strtoupper( (string) $language ) ) . '</a>';
+			foreach ( (array) $pages as $page ) {
+				$links[] = '<a href="' . esc_url( (string) ( $page['url'] ?? '' ) ) . '">' . esc_html( (string) ( $page['title'] ?? '' ) ) . '</a>';
 			}
-			echo esc_html__( 'Apri la pagina principale:', 'design_laboratori_italia' ) . ' ' . wp_kses( implode( ' · ', $links ), array( 'a' => array( 'href' => array() ) ) );
-			echo '</p>';
+			echo '<p>' . esc_html(
+				sprintf(
+					/* translators: %s: language code, for example IT */
+					__( 'Pagine principali (%s):', 'design_laboratori_italia' ),
+					strtoupper( (string) $language )
+				)
+			) . ' ' . wp_kses( implode( ' · ', $links ), array( 'a' => array( 'href' => array() ) ) ) . '</p>';
 		}
 		echo '</div>';
 	}
@@ -941,7 +946,7 @@ class DLI_Tools_Admin {
 			<div class="inside">
 				<h2><?php esc_html_e( 'Pagine di esempio', 'design_laboratori_italia' ); ?></h2>
 				<?php self::render_example_content_report(); ?>
-				<p class="dli-section-lead"><?php esc_html_e( 'Crea una sezione di esempio («Research Data Management») con quattro sottopagine e le loro sottopagine, ciascuna con un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la sidebar delle pagine collegate e la sezione «Card di navigazione» della home: la pagina principale e le sue quattro sottopagine sono promosse alla home (la sezione va aggiunta in «Sezioni HP»). Sono contenuti finti: non usarla su un sito di produzione.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-lead"><?php esc_html_e( 'Crea quattro pagine principali (Open Access, «Research Data», Research Assessment, Monitoring): la seconda ha quattro sottopagine e le loro sottopagine, le altre non hanno sottopagine. Ogni pagina ha un testo di prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle sottopagine, la sidebar delle pagine collegate e le sezioni «Card di navigazione» e «Navigazione per pagine» della home (vanno aggiunte in «Sezioni HP»): le quattro pagine principali sono promosse alla home e compaiono come card; sono promosse anche le sottopagine «Pianificare», «Gestire» e «Condividere», che con la pagina «Research Data» formano i quattro gruppi. Sono contenuti finti: non usarla su un sito di produzione.', 'design_laboratori_italia' ); ?></p>
 				<p class="dli-section-lead"><?php esc_html_e( 'Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo strumento vengono promosse alla home, il resto non cambia. «Rimuovi» cancella solo le pagine create da questo strumento, mai quelle scritte da un redattore.', 'design_laboratori_italia' ); ?></p>
 				<?php if ( empty( $choices ) ) : ?>
 					<p><?php esc_html_e( 'Servono le lingue italiano o inglese di Polylang.', 'design_laboratori_italia' ); ?></p>

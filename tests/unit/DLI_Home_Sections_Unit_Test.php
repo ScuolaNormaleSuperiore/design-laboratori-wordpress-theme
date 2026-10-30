@@ -278,4 +278,72 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertArrayNotHasKey( 'max_subitems', $rows[3] );
 		$this->assertArrayNotHasKey( 'max_subitems', $rows[4] );
 	}
+
+	/**
+	 * The level of the pages is one of the four known choices: 1, 2, 3, or 0 for all the levels.
+	 */
+	public function test_page_level_is_one_of_the_known_choices() {
+		$this->assertSame( 1, dli_normalize_hp_page_level( 1 ) );
+		$this->assertSame( 2, dli_normalize_hp_page_level( 2 ) );
+		$this->assertSame( 3, dli_normalize_hp_page_level( 3 ) );
+		$this->assertSame( 0, dli_normalize_hp_page_level( 0 ), 'Zero means all the levels.' );
+		$this->assertSame( 2, dli_normalize_hp_page_level( '2' ), 'A choice saved as text.' );
+		$this->assertSame( 0, dli_normalize_hp_page_level( '0' ), 'All the levels, saved as text, is not an empty value.' );
+		$this->assertSame( 1, dli_normalize_hp_page_level( '' ), 'Empty gives the default.' );
+		$this->assertSame( 1, dli_normalize_hp_page_level( null ) );
+		$this->assertSame( 1, dli_normalize_hp_page_level( 4 ), 'A level that is not offered gives the default.' );
+		$this->assertSame( 1, dli_normalize_hp_page_level( -1 ) );
+		$this->assertSame( 1, dli_normalize_hp_page_level( '2.5' ) );
+		$this->assertSame( 1, dli_normalize_hp_page_level( '02' ), 'Only the exact values are accepted.' );
+		$this->assertSame( 1, dli_normalize_hp_page_level( 'tutti' ) );
+		$this->assertSame( 1, dli_normalize_hp_page_level( array( 2 ) ) );
+		$this->assertSame( 3, dli_normalize_hp_page_level( 'x', 3 ), 'The default can be asked for.' );
+		$this->assertSame( 1, dli_normalize_hp_page_level( 'x', 7 ), 'A default that is not a choice is the first level.' );
+	}
+
+	/**
+	 * The field of the options page keeps a known choice, or nothing.
+	 */
+	public function test_sanitization_of_the_page_level_field() {
+		$this->assertSame( 2, dli_sanitize_hp_page_level( '2' ) );
+		$this->assertSame( 0, dli_sanitize_hp_page_level( '0' ), 'All the levels is a value, not an empty one.' );
+		$this->assertSame( 1, dli_sanitize_hp_page_level( 1 ) );
+		$this->assertSame( '', dli_sanitize_hp_page_level( '' ), 'Empty stays empty: the section uses its default.' );
+		$this->assertSame( '', dli_sanitize_hp_page_level( '9' ) );
+		$this->assertSame( '', dli_sanitize_hp_page_level( '<script>' ) );
+		$this->assertSame( '', dli_sanitize_hp_page_level( null ) );
+	}
+
+	/**
+	 * A row keeps a valid level of the pages (also "all the levels") and drops any other value.
+	 */
+	public function test_rows_keep_a_valid_page_level() {
+		$rows = dli_normalize_hp_section_rows(
+			array(
+				array(
+					'id'        => 'card_navigation_section',
+					'max_level' => '2',
+				),
+				array(
+					'id'        => 'card_navigation_section',
+					'max_level' => '0',
+				),
+				array(
+					'id'        => 'card_navigation_section',
+					'max_level' => '7',
+				),
+				array(
+					'id'        => 'card_navigation_section',
+					'max_level' => '',
+				),
+				array( 'id' => 'card_navigation_section' ),
+			)
+		);
+
+		$this->assertSame( 2, $rows[0]['max_level'] );
+		$this->assertSame( 0, $rows[1]['max_level'], 'All the levels is kept.' );
+		$this->assertArrayNotHasKey( 'max_level', $rows[2] );
+		$this->assertArrayNotHasKey( 'max_level', $rows[3] );
+		$this->assertArrayNotHasKey( 'max_level', $rows[4], 'A row saved before the field existed is not given one.' );
+	}
 }

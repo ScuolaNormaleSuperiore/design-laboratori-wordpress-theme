@@ -9,6 +9,9 @@
  *  - dli_normalize_hp_section_rows()       The saved rows of the sections, safe to use.
  *  - dli_normalize_hp_max_items()          The number of items a section shows, a whole number in range.
  *  - dli_sanitize_hp_max_items()           Sanitization of the field "Numero massimo di elementi".
+ *  - dli_parse_hp_page_level()             The level of the pages if it is one of the choices, otherwise null.
+ *  - dli_normalize_hp_page_level()         The level of the pages a section lists, one of the choices or a default.
+ *  - dli_sanitize_hp_page_level()          Sanitization of the field "Livello delle pagine".
  *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
  *  - dli_get_hp_groups_column_class()      The columns of the groups of "Navigazione per pagine".
  *
@@ -102,6 +105,58 @@ if ( ! function_exists( 'dli_sanitize_hp_max_items' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_parse_hp_page_level' ) ) {
+	/**
+	 * The level of the pages, if the value is one of the choices of `DLI_HP_PAGE_LEVELS`.
+	 *
+	 * Only the exact values are accepted: a number or the text of a number, without spaces or decimals.
+	 *
+	 * @param mixed $value The value to check.
+	 * @return int|null 1, 2, 3 or 0 (all the levels), or null when the value is not one of them.
+	 */
+	function dli_parse_hp_page_level( $value ) {
+		if ( is_string( $value ) && 1 === preg_match( '/^\d$/', $value ) ) {
+			$value = (int) $value;
+		}
+		return ( is_int( $value ) && in_array( $value, DLI_HP_PAGE_LEVELS, true ) ) ? $value : null;
+	}
+}
+
+if ( ! function_exists( 'dli_normalize_hp_page_level' ) ) {
+	/**
+	 * The level of the pages that a homepage section lists: 1, 2, 3, or 0 for all the levels.
+	 *
+	 * @param mixed $value   The value to check, for example the one saved in a row (a number, or a number as text).
+	 * @param int   $default_level The level to give back when `$value` is not one of the choices; when it is not
+	 *                             one either, the first level.
+	 * @return int One of the choices of `DLI_HP_PAGE_LEVELS`.
+	 */
+	function dli_normalize_hp_page_level( $value, $default_level = DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL ) {
+		$level = dli_parse_hp_page_level( $value );
+		if ( null !== $level ) {
+			return $level;
+		}
+		$fallback = dli_parse_hp_page_level( $default_level );
+		return null !== $fallback ? $fallback : 1;
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_page_level' ) ) {
+	/**
+	 * Sanitization of the field "Livello delle pagine": one of the choices, or nothing.
+	 *
+	 * An empty value stays empty: the section then uses its default level. "All the levels" is the number 0, not
+	 * an empty value.
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return int|string The level, or an empty string when the value is not one of the choices.
+	 */
+	function dli_sanitize_hp_page_level( $value ) {
+		$level = dli_parse_hp_page_level( $value );
+		return null !== $level ? $level : '';
+	}
+}
+
 if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	/**
 	 * The rows of the homepage sections as saved in the options, made safe to use.
@@ -109,7 +164,7 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	 * Nothing is rewritten in the database: the saved rows are only read. A row that is not an array, or
 	 * without the id of a section, is left out. `enabled` and `show_title` are `true` only when saved
 	 * as `true`, otherwise `false`. A background that is not white or muted is dropped, so the template uses
-	 * the default of its section. A `max_items` or `max_subitems` that is not a whole number is dropped and one out of range is brought to the nearest limit. Any other property of the row is kept as it is, in the same order. Every row
+	 * the default of its section. A `max_items` or `max_subitems` that is not a whole number is dropped and one out of range is brought to the nearest limit. A `max_level` that is not one of the choices is dropped. Any other property of the row is kept as it is, in the same order. Every row
 	 * carries `instance`, the position (starting from 1) it has in the saved list, that stays the same when
 	 * other rows are turned off: a section that can be repeated uses it to have its own identifiers.
 	 *
@@ -147,6 +202,14 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 					} else {
 						$row[ $number_key ] = $number;
 					}
+				}
+			}
+			if ( array_key_exists( 'max_level', $row ) ) {
+				$level = dli_sanitize_hp_page_level( $row['max_level'] );
+				if ( '' === $level ) {
+					unset( $row['max_level'] );
+				} else {
+					$row['max_level'] = $level;
 				}
 			}
 			$row['instance'] = $position;

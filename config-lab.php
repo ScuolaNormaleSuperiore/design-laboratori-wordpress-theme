@@ -35,6 +35,10 @@ define( 'DLI_PAGE_CARD_EXCERPT_WORDS', 30 );
 // Items shown by default by the homepage section "Card di navigazione"; the editor can change the number for each row of
 // Sezioni HP, between DLI_HP_ITEMS_MIN and DLI_HP_ITEMS_MAX.
 define( 'DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS', 6 );
+// "Card di navigazione": the level of the promoted pages it lists. 1 = the pages of the first level only (the default),
+// 2 and 3 = up to that level, 0 = all the levels. The editor chooses it in each row of Sezioni HP among DLI_HP_PAGE_LEVELS.
+define( 'DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL', 1 );
+define( 'DLI_HP_PAGE_LEVELS', array( 1, 2, 3, 0 ) );
 // "Navigazione per pagine": groups (promoted pages with subpages) and subpages per group shown by default.
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS', 4 );
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS', 4 );
@@ -374,6 +378,7 @@ define(
 				'template'   => 'template-parts/home/hp-card-navigation-section',
 				'background' => 'muted',
 				'max_items'  => 6,
+				'max_level'  => DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL,
 			),
 		'page_navigation_section'         =>
 			array(

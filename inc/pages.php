@@ -4,7 +4,7 @@
  *
  * Provides:
  *  - dli_get_subpage_cards()        The direct subpages of a page that can be listed as navigation cards.
- *  - dli_get_promoted_page_cards()  The pages promoted to the home that "Card di navigazione" lists as cards.
+ *  - dli_get_promoted_page_cards()  The pages promoted to the home that "Card di navigazione" lists as cards, by level.
  *  - dli_get_promoted_page_groups() The promoted pages with their subpages, for "Navigazione per pagine".
  *
  * @package Design_Laboratori_Italia
@@ -94,35 +94,55 @@ if ( ! function_exists( 'dli_get_promoted_page_cards' ) ) {
 	 * field "Ordine" of the page (`menu_order`, Attributi pagina) and then by title; the password-protected ones
 	 * are left out before counting, so they do not take a place. The query does not touch the global post.
 	 *
-	 * @param int $limit The most cards to return; by default `DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS`.
+	 * The level of a page is its depth in the tree: 1 for a page without a parent, 2 for its subpages, and so on.
+	 * By default only the pages of the first level are listed, so a promoted subpage is not a card; a wider level
+	 * lists the pages up to it, and 0 lists all of them. The limit is applied after the level, so the pages that
+	 * are left out never take a place.
+	 *
+	 * @param int $limit     The most cards to return; by default `DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS`.
+	 * @param int $max_level The deepest level listed: 1, 2, 3, or 0 for all the levels; by default
+	 *                       `DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL`. A value that is not one of them is the default.
 	 * @return array<int, array{id: int, title: string, url: string, abstract: string}> The cards, in order.
 	 */
-	function dli_get_promoted_page_cards( $limit = DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS ) {
-		$pages = get_posts(
-			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'publish',
-				'has_password'   => false,
-				'orderby'        => array(
-					'menu_order' => 'ASC',
-					'title'      => 'ASC',
+	function dli_get_promoted_page_cards( $limit = DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS, $max_level = DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL ) {
+		$limit     = max( 1, (int) $limit );
+		$max_level = dli_normalize_hp_page_level( $max_level );
+		$args      = array(
+			'post_type'      => WP_DEFAULT_PAGE,
+			'post_status'    => 'publish',
+			'has_password'   => false,
+			'orderby'        => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'posts_per_page' => $limit,
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
+				array(
+					'key'     => 'promuovi_in_home',
+					'compare' => '=',
+					'value'   => 1,
 				),
-				'posts_per_page' => max( 1, (int) $limit ),
-				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
-					array(
-						'key'     => 'promuovi_in_home',
-						'compare' => '=',
-						'value'   => 1,
-					),
-				),
-			)
+			),
 		);
+		if ( 1 === $max_level ) {
+			// The first level is a condition of the query, so that the limit is applied to the right pages.
+			$args['post_parent'] = 0;
+		} elseif ( 0 !== $max_level ) {
+			// A deeper level is counted from the ancestors of each page, so all the promoted pages are read first.
+			$args['posts_per_page'] = -1;
+		}
 
 		$cards = array();
-		foreach ( $pages as $page ) {
+		foreach ( get_posts( $args ) as $page ) {
+			if ( $max_level > 1 && count( get_post_ancestors( $page ) ) >= $max_level ) {
+				continue;
+			}
 			$card = dli_get_page_card( $page );
 			if ( null !== $card ) {
 				$cards[] = $card;
+			}
+			if ( count( $cards ) >= $limit ) {
+				break;
 			}
 		}
 
