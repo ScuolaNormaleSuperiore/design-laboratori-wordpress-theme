@@ -5,6 +5,7 @@ const { loginAsAdmin } = require( '../support/auth' );
 test( 'the administrator logs in', async ( { page } ) => {
 	await loginAsAdmin( page );
 
+	await expect( page.locator( 'html' ) ).toHaveAttribute( 'lang', 'it-IT' );
 	await expect( page.locator( '#wpadminbar' ) ).toBeVisible();
 	await expect( page.locator( '#adminmenu' ) ).toBeVisible();
 } );

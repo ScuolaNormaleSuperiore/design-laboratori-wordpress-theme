@@ -153,7 +153,7 @@ in evidenza: i file dei media non sono nel dump, quindi la copertina si prova co
 `composer test:e2e` ripristina la baseline **prima e dopo** la corsa ([`global-setup.js`](global-setup.js) e [`global-teardown.js`](global-teardown.js),
 che chiamano [`support/reset.js`](support/reset.js), che lancia [`support/reset-baseline.php`](support/reset-baseline.php)). Lo script PHP legge i dati di
 connessione dal `wp-config.php` del sito (`DLI_E2E_SITE_PATH`), esegue il dump con `mysqli` e cancella e
-ricrea ogni tabella. Non serve altro che PHP.
+ricrea ogni tabella. Dopo ogni ripristino forza italiano (`it_IT`) come lingua WordPress, lingua predefinita Polylang e lingua dei tre utenti E2E: le specifiche amministrative usano quindi stringhe italiane. I casi multilingua visitano esplicitamente `/en/`; non cambiano la lingua di base della suite. Non serve altro che PHP.
 
 Per sicurezza rifiuta di importare se il database non appartiene al sito della baseline: l'host di `siteurl`
 nel database deve essere quello del dump (`dli-wp-e2e.local`) e il prefisso delle tabelle lo stesso. Quindi

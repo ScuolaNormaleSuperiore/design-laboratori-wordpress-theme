@@ -182,7 +182,7 @@ test( 'swapping rows keeps every description with its tab, also after saving twi
 		// The arrows are in the header of the row and have a name that a screen reader can say.
 		const rows = page.locator( ROWS );
 		await expect( rows.nth( 0 ).locator( TITLE ) ).toContainText( 'Alfa' );
-		await expect( rows.nth( 1 ).getByRole( 'link', { name: /Sposta il tab in alto|Move the tab up/ } ) ).toBeVisible();
+		await expect( rows.nth( 1 ).getByRole( 'link', { name: 'Sposta il tab in alto' } ) ).toBeVisible();
 
 		// The second goes up: the descriptions follow their labels, before saving…
 		await rows.nth( 1 ).locator( '> .cmb-shift-rows.move-up' ).click();

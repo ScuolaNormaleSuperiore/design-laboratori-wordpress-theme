@@ -76,8 +76,8 @@ test( 'the rows show the name of the section and the arrows in the header, with 
 	}
 
 	// The arrows are links with a name that a screen reader can say (in the language of the admin).
-	await expect( rows.nth( 0 ).getByRole( 'link', { name: /Sposta la sezione in alto|Move the section up/ } ) ).toBeVisible();
-	await expect( rows.nth( 0 ).getByRole( 'link', { name: /Sposta la sezione in basso|Move the section down/ } ) ).toBeVisible();
+	await expect( rows.nth( 0 ).getByRole( 'link', { name: 'Sposta la sezione in alto' } ) ).toBeVisible();
+	await expect( rows.nth( 0 ).getByRole( 'link', { name: 'Sposta la sezione in basso' } ) ).toBeVisible();
 
 	// Arrows on the left, then the "x": no overlap, so a click on an arrow cannot remove the row.
 	const up = await rows.nth( 0 ).locator( '> .cmb-shift-rows.move-up' ).boundingBox();

@@ -41,6 +41,50 @@ function dli_config_value( $config, $name ) {
 	return strtr( $match[1], array( '\\\\' => '\\', "\\'" => "'" ) );
 }
 
+/**
+ * Make Italian the deterministic locale of the E2E site and its test users.
+ *
+ * Polylang stores its default-language slug in its option array. The baseline
+ * has both Italian and English content so translation scenarios can still
+ * navigate explicitly to /en/, but ordinary browser and admin scenarios start
+ * in Italian.
+ *
+ * @param mysqli  $db     Database connection.
+ * @param string  $prefix WordPress table prefix.
+ * @return void
+ */
+function dli_force_italian_e2e_locale( $db, $prefix ) {
+	$options_table = $prefix . 'options';
+	$users_table   = $prefix . 'users';
+	$meta_table    = $prefix . 'usermeta';
+
+	if ( ! $db->query( "INSERT INTO `{$options_table}` (option_name, option_value, autoload) VALUES ('WPLANG', 'it_IT', 'yes') ON DUPLICATE KEY UPDATE option_value = 'it_IT'" ) ) {
+		dli_fail( 'cannot set the Italian WordPress locale: ' . $db->error );
+	}
+
+	$result = $db->query( "SELECT option_value FROM `{$options_table}` WHERE option_name = 'polylang'" );
+	$row    = $result ? $result->fetch_row() : null;
+	if ( ! $row ) {
+		dli_fail( 'the baseline has no Polylang configuration' );
+	}
+	$options = unserialize( $row[0], array( 'allowed_classes' => false ) );
+	if ( ! is_array( $options ) || ! array_key_exists( 'default_lang', $options ) ) {
+		dli_fail( 'the Polylang configuration has no default language' );
+	}
+	$options['default_lang'] = 'it';
+	$serialized              = $db->real_escape_string( serialize( $options ) );
+	if ( ! $db->query( "UPDATE `{$options_table}` SET option_value = '{$serialized}' WHERE option_name = 'polylang'" ) ) {
+		dli_fail( 'cannot set Italian as the Polylang default: ' . $db->error );
+	}
+
+	if ( ! $db->query( "DELETE meta FROM `{$meta_table}` AS meta INNER JOIN `{$users_table}` AS users ON users.ID = meta.user_id WHERE meta.meta_key = 'locale' AND users.user_login IN ('e2e-admin', 'e2e-super-editor', 'e2e-editor')" ) ) {
+		dli_fail( 'cannot clear the E2E user locales: ' . $db->error );
+	}
+	if ( ! $db->query( "INSERT INTO `{$meta_table}` (user_id, meta_key, meta_value) SELECT ID, 'locale', 'it_IT' FROM `{$users_table}` WHERE user_login IN ('e2e-admin', 'e2e-super-editor', 'e2e-editor')" ) ) {
+		dli_fail( 'cannot set the E2E user locales: ' . $db->error );
+	}
+}
+
 if ( $argc < 3 ) {
 	dli_fail( 'usage: php reset-baseline.php <site folder> <baseline.sql>' );
 }
@@ -116,6 +160,8 @@ if ( $db->errno ) {
 	dli_fail( 'import failed: ' . $db->error );
 }
 
+dli_force_italian_e2e_locale( $db, $prefix );
+
 $tables = $db->query( 'SHOW TABLES' );
-echo 'baseline restored (' . ( $tables ? $tables->num_rows : '?' ) . " tables) on $current_host\n";
+echo 'baseline restored in Italian (' . ( $tables ? $tables->num_rows : '?' ) . " tables) on $current_host\n";
 exit( 0 );

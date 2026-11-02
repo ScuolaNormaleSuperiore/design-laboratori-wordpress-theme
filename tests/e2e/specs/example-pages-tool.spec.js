@@ -13,13 +13,13 @@ test( 'the tool creates the example section in both languages and removes it', a
 	// Two separate boxes, the example pages under the reload tool.
 	const boxes = page.locator( '.postbox.dli-tool-panel' );
 	await expect( boxes ).toHaveCount( 2 );
-	await expect( boxes.nth( 1 ).getByRole( 'heading', { name: 'Example pages' } ) ).toBeVisible();
+	await expect( boxes.nth( 1 ).getByRole( 'heading', { name: 'Pagine di esempio' } ) ).toBeVisible();
 	await expect( page.locator( '#dli-example-lang' ) ).toHaveValue( 'iten' );
 
 	// Create: the browser asks for confirmation.
 	page.once( 'dialog', ( dialog ) => dialog.accept() );
-	await page.getByRole( 'button', { name: 'Create the example pages' } ).click();
-	await expect( page.locator( '.notice-success' ) ).toContainText( 'Pages created: 30' );
+	await page.getByRole( 'button', { name: 'Crea le pagine di esempio' } ).click();
+	await expect( page.locator( '.notice-success' ) ).toContainText( 'Pagine create: 30. Già presenti: 0.' );
 	// The outcome leads to the four main pages of each language.
 	await expect( page.locator( '.notice-success a' ) ).toHaveCount( 8 );
 
@@ -33,13 +33,13 @@ test( 'the tool creates the example section in both languages and removes it', a
 	// Again: nothing is duplicated.
 	await page.goto( UTILS );
 	page.once( 'dialog', ( dialog ) => dialog.accept() );
-	await page.getByRole( 'button', { name: 'Create the example pages' } ).click();
-	await expect( page.locator( '.notice-success' ) ).toContainText( 'Pages created: 0. Already there: 30' );
+	await page.getByRole( 'button', { name: 'Crea le pagine di esempio' } ).click();
+	await expect( page.locator( '.notice-success' ) ).toContainText( 'Pagine create: 0. Già presenti: 30.' );
 
 	// Remove.
 	page.once( 'dialog', ( dialog ) => dialog.accept() );
-	await page.getByRole( 'button', { name: 'Remove the example pages' } ).click();
-	await expect( page.locator( '.notice-success' ) ).toContainText( '30 example pages removed' );
+	await page.getByRole( 'button', { name: 'Rimuovi le pagine di esempio' } ).click();
+	await expect( page.locator( '.notice-success' ) ).toContainText( 'Rimosse 30 pagine di esempio.' );
 	const gone = await page.goto( '/dati-della-ricerca/' );
 	expect( gone.status() ).toBe( 404 );
 } );
@@ -49,7 +49,7 @@ test( 'declining the confirmation creates nothing', async ( { page } ) => {
 	await page.goto( UTILS );
 
 	page.once( 'dialog', ( dialog ) => dialog.dismiss() );
-	await page.getByRole( 'button', { name: 'Create the example pages' } ).click();
+	await page.getByRole( 'button', { name: 'Crea le pagine di esempio' } ).click();
 
 	await expect( page.locator( '.notice-success' ) ).toHaveCount( 0 );
 	const response = await page.goto( '/dati-della-ricerca/' );
