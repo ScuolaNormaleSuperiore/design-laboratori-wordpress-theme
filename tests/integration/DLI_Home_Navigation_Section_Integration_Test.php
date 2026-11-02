@@ -209,15 +209,18 @@ class DLI_Home_Navigation_Section_Integration_Test extends DLI_Integration_Test_
 		$this->assertStringContainsString( 'aria-labelledby="blocco-card-navigation-1-title"', $html );
 		$this->assertStringContainsString( 'I servizi più richiesti.', $html );
 
+		// The h2 is always printed, so that the cards (h3) have a heading above them: hidden when the title is not shown.
 		$hidden = $this->render_section( array( 'show_title' => 'false' ) );
-		$this->assertStringNotContainsString( '<h2', $hidden );
-		$this->assertStringNotContainsString( 'aria-labelledby', $hidden );
-		$this->assertMatchesRegularExpression( '#<section [^>]*aria-label="#', $hidden, 'Without a visible title the section keeps an accessible name.' );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-card-navigation-1-title" class="visually-hidden">Cosa puoi fare</h2>#', $hidden, 'A title that is not shown is still the visually hidden h2.' );
+		$this->assertStringContainsString( 'aria-labelledby="blocco-card-navigation-1-title"', $hidden );
+		$this->assertStringNotContainsString( 'aria-label="', $hidden, 'The section is named by its h2, not by an aria-label.' );
 
 		// An empty array would leave the options as they are in memory: the title is emptied explicitly.
 		$this->set_theme_options( 'homepage', array( 'home_card_navigation_title' => '' ) );
 		$empty = $this->render_section();
-		$this->assertStringNotContainsString( '<h2', $empty, 'An empty title is not printed, even if it should be shown.' );
+		$label = esc_html__( 'Card di navigazione', 'design_laboratori_italia' );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-card-navigation-1-title" class="visually-hidden">' . preg_quote( $label, '#' ) . '</h2>#', $empty, 'An empty title is not shown, even if it should be: the hidden h2 has the name of the section.' );
+		$this->assertStringContainsString( 'aria-labelledby="blocco-card-navigation-1-title"', $empty );
 		$this->assertStringContainsString( 'Visibile', $empty );
 	}
 

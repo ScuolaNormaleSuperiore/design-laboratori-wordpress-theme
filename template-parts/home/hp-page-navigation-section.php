@@ -7,7 +7,7 @@
  * then by title, and so are the subpages; the numbers shown (`max_items` groups, `max_subitems` per group) are
  * chosen in the row of Sezioni HP, with defaults (`dli_get_promoted_page_groups()`). The same content is printed
  * twice: columns on a tablet and a desktop, an accordion with the first panel open on a phone, the way the
- * layout prototype does. Nothing is printed without groups. Title and subtitle come from Configurazione → Layout HP.
+ * layout prototype does. Nothing is printed without groups. Title and subtitle come from Configurazione → Layout HP. The h2 is always printed, so that the headings of the groups (h3) have one above them: when the title is not shown (or is empty) it is visually hidden, with the title or the name of the section, and it names the section (`aria-labelledby`).
  * The identifiers use the position of the row (`instance`) and the page of the group, so the section can be repeated,
  * and the hidden copy is not reachable from the keyboard (it is `display: none`).
  *
@@ -40,12 +40,10 @@ $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 ?>
 <!-- INIZIO SEZIONE "NAVIGAZIONE PER PAGINE" -->
-<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section page-navigation-section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Navigazione per pagine', 'design_laboratori_italia' ) . '"'; ?>>
+<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section page-navigation-section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" aria-labelledby="<?php echo esc_attr( $dli_title_id ); ?>">
 	<div class="section-content">
 		<div class="container">
-			<?php if ( $dli_title_shown ) : ?>
-				<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="h3 pb-2"><?php echo esc_html( $dli_title ); ?></h2>
-			<?php endif; ?>
+			<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="<?php echo $dli_title_shown ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html( '' !== $dli_title ? $dli_title : __( 'Navigazione per pagine', 'design_laboratori_italia' ) ); ?></h2>
 			<?php if ( '' !== $dli_text ) : ?>
 				<p class="pb-3"><?php echo esc_html( $dli_text ); ?></p>
 			<?php endif; ?>

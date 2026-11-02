@@ -265,12 +265,15 @@ class DLI_Home_Navigation_Groups_Integration_Test extends DLI_Integration_Test_C
 		$this->assertStringContainsString( 'aria-labelledby="blocco-page-navigation-1-title"', $html );
 		$this->assertStringContainsString( 'Trova la pagina partendo da ciò che devi fare.', $html );
 
+		// The h2 is always printed, so that the headings of the groups (h3) have one above them: hidden when the title is not shown.
 		$hidden = $this->render_section( array( 'show_title' => 'false' ) );
-		$this->assertStringNotContainsString( '<h2', $hidden );
-		$this->assertMatchesRegularExpression( '#<section [^>]*aria-label="#', $hidden, 'Without a visible title the section keeps an accessible name.' );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-page-navigation-1-title" class="visually-hidden">Le sezioni del sito</h2>#', $hidden, 'A title that is not shown is still the visually hidden h2.' );
+		$this->assertStringContainsString( 'aria-labelledby="blocco-page-navigation-1-title"', $hidden );
+		$this->assertStringNotContainsString( 'aria-label="', $hidden, 'The section is named by its h2, not by an aria-label.' );
 
 		$this->set_theme_options( 'homepage', array( 'home_page_navigation_title' => '' ) );
-		$this->assertStringNotContainsString( '<h2', $this->render_section(), 'An empty title is not printed.' );
+		$label = esc_html__( 'Navigazione per pagine', 'design_laboratori_italia' );
+		$this->assertMatchesRegularExpression( '#<h2 id="blocco-page-navigation-1-title" class="visually-hidden">' . preg_quote( $label, '#' ) . '</h2>#', $this->render_section(), 'An empty title is not shown: the hidden h2 has the name of the section.' );
 	}
 
 	/**

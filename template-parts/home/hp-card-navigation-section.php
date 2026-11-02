@@ -7,9 +7,10 @@
  * field "Ordine" and then by title (`dli_get_promoted_page_cards()`), each one as the card of `template-parts/common/card-nav.php`.
  * Only the pages of the first level are listed, unless the row chooses `max_level` (2, 3, or 0 for all the levels).
  * Nothing is printed when no page is promoted.
- * Title and subtitle come from Configurazione → Layout HP, in the language of the page: the title is printed
- * only when the row asks for it and the title is not empty; the subtitle, when it is not empty. Without a
- * visible title the section has an accessible name. The identifiers use the position of the row (`instance`),
+ * Title and subtitle come from Configurazione → Layout HP, in the language of the page: the title is shown
+ * only when the row asks for it and the title is not empty; the subtitle is printed when it is not empty. The h2 is
+ * always printed, so that the cards (h3) have a heading above them: when the title is not shown it is visually hidden
+ * and it is the title or, when empty, the name of the section; it names the section (`aria-labelledby`). The identifiers use the position of the row (`instance`),
  * so the section can be repeated.
  *
  * @package Design_Laboratori_Italia
@@ -41,12 +42,10 @@ $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_navigation_column_class( count( $dli_cards ) );
 ?>
 <!-- INIZIO SEZIONE "CARD DI NAVIGAZIONE" -->
-<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-4" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Card di navigazione', 'design_laboratori_italia' ) . '"'; ?>>
+<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-4" aria-labelledby="<?php echo esc_attr( $dli_title_id ); ?>">
 	<div class="section-content">
 		<div class="container">
-			<?php if ( $dli_title_shown ) : ?>
-				<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="h3 pb-2"><?php echo esc_html( $dli_title ); ?></h2>
-			<?php endif; ?>
+			<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="<?php echo $dli_title_shown ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html( '' !== $dli_title ? $dli_title : __( 'Card di navigazione', 'design_laboratori_italia' ) ); ?></h2>
 			<?php if ( '' !== $dli_text ) : ?>
 				<p class="pb-3"><?php echo esc_html( $dli_text ); ?></p>
 			<?php endif; ?>

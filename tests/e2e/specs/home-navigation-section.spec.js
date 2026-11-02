@@ -126,8 +126,9 @@ test( 'the section with a limit of two cards on a narrow screen: one card per ro
 		const section = page.locator( '#blocco-card-navigation-3' );
 		await expect( section ).toBeVisible();
 		await expect( section ).not.toHaveClass( /section-muted/ );
-		await expect( section.locator( 'h2' ) ).toHaveCount( 0 );
-		await expect( section ).toHaveAttribute( 'aria-label', /.+/ );
+		// The title is not shown, but the heading is there for the headings of the cards (h3), hidden from sight.
+		await expect( section.locator( 'h2.visually-hidden' ) ).toHaveCount( 1 );
+		await expect( section ).toHaveAttribute( 'aria-labelledby', 'blocco-card-navigation-3-title' );
 		await expect( section.locator( 'article.card-nav' ) ).toHaveCount( 2 );
 
 		const boxes = await section.locator( 'li' ).evaluateAll( ( items ) => items.map( ( item ) => item.getBoundingClientRect().left ) );
