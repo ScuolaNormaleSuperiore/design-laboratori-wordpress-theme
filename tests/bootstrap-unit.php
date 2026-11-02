@@ -107,3 +107,4 @@ require_once DLI_TEST_THEME_DIR . '/inc/utils.php';
 require_once DLI_TEST_THEME_DIR . '/inc/captcha.php';
 require_once DLI_TEST_THEME_DIR . '/inc/home-sections.php';
 require_once DLI_TEST_THEME_DIR . '/inc/pagination.php';
+require_once DLI_TEST_THEME_DIR . '/inc/menus.php';

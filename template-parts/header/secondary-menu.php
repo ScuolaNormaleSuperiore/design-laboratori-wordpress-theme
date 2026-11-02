@@ -22,44 +22,15 @@ $dli_locations = ( isset( $args['locations'] ) && is_array( $args['locations'] )
 		<ul id="secondary-menu" class="navbar-nav">
 			<?php
 			foreach ( $dli_menuitems as $dli_item ) {
-				$dli_active_class = '';
-				if ( get_permalink() === $dli_item['element']->url ) {
-					$dli_active_class = 'active';
-				}
-				if ( count( $dli_item['children'] ) > 0 ) {
-					?>
-				<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle <?php echo esc_attr( $dli_active_class ); ?>" href="#" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown1">
-							<span><?php echo esc_html( $dli_item['element']->title ); ?></span>
-						<svg class="icon icon-xs" role="img">
-							<title><?php echo esc_html__( 'Expand', 'design_laboratori_italia' ); ?></title>
-								<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
-						</svg>
-					</a>
-					<div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown1">
-						<div class="link-list-wrapper">
-							<ul class="link-list">
-									<li><a class="dropdown-item list-item" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_html( $dli_item['element']->title ); ?></span></a></li>
-								<li><span class="divider"></span></li>
-							<?php
-							foreach ( $dli_item['children'] as $dli_subitem ) {
-								?>
-									<li><a class="dropdown-item list-item" href="<?php echo esc_url( $dli_subitem->url ); ?>"><span><?php echo esc_html( $dli_subitem->title ); ?></span></a></li>
-								<?php
-							} // foreach
-							?>
-							</ul>
-						</div>
-					</div>
-				</li>
-					<?php
-				} else {
-					?>
-				<li class="nav-item">
-							<a class="nav-link <?php echo esc_attr( $dli_active_class ); ?>" href="<?php echo esc_url( $dli_item['element']->url ); ?>"><span><?php echo esc_html( $dli_item['element']->title ); ?></span></a>
-				</li>
-					<?php
-				} // else
+				get_template_part(
+					'template-parts/header/menu-nav-item',
+					null,
+					array(
+						'item'      => $dli_item['element'],
+						'children'  => $dli_item['children'],
+						'id_prefix' => 'secondary-nav',
+					)
+				);
 			} // foreach
 			?>
 		</ul> <!-- secondary-menu -->

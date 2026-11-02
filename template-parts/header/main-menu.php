@@ -22,7 +22,7 @@ $dli_locations = $dli_args['locations'] ?? array();
 					'container'       => '',
 					'list_item_class' => 'nav-item',
 					'link_class'      => 'nav-link',
-					'walker'          => new Main_Menu_Walker(),
+					'walker'          => new DLI_Main_Menu_Walker(),
 				)
 			);
 		}

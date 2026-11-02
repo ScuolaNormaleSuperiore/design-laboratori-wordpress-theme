@@ -41,11 +41,6 @@ require get_template_directory() . '/inc/wrappers_acf.php';
 require get_template_directory() . '/inc/theme-dependencies.php';
 
 /**
- * Header menu walker.
- */
-require get_template_directory() . '/inc/walkers/header-walker.php';
-
-/**
  * Footer menu walker.
  */
 require get_template_directory() . '/inc/walkers/footer-walker.php';
@@ -112,6 +107,11 @@ require get_template_directory() . '/inc/featured-contents.php';
  * Pagination — helpers that read the page size asked for in the address.
  */
 require get_template_directory() . '/inc/pagination.php';
+
+/**
+ * Header menus — helpers of the main and the secondary menu.
+ */
+require get_template_directory() . '/inc/menus.php';
 
 
 /**

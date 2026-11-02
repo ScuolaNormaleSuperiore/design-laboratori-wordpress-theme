@@ -13,8 +13,7 @@
 
 dli_check_mandatory_plugins();
 
-require_once get_template_directory() . '/inc/walkers/main-menu-walker.php';
-require_once get_template_directory() . '/inc/walkers/menu-right-walker.php';
+require_once get_template_directory() . '/inc/walkers/class-dli-main-menu-walker.php';
 
 $dli_locations    = get_nav_menu_locations();
 $dli_current_lang = dli_current_language();

@@ -26,7 +26,7 @@ html {
 	riga anche quando è più lungo della larghezza del dropdown, facendolo
 	uscire dal riquadro. Una regola ufficiale corregge questo a "normal", ma
 	solo dentro un megamenu (.megamenu ... .list-item{white-space:normal}) —
-	il nostro dropdown (inc/walkers/main-menu-walker.php) non usa .megamenu,
+	il nostro dropdown (inc/walkers/class-dli-main-menu-walker.php) non usa .megamenu,
 	quindi non la riceve. Corretto qui con una regola di specificità
 	maggiore (tre classi) sullo stesso contenitore. */
 .it-header-navbar-wrapper .dropdown-menu .list-item {
@@ -63,14 +63,21 @@ html {
 }
 
 /* Indentazione crescente per livello nella sidebar "Pagine collegate". La
-	regola ufficiale BI3 (.sidebar-linklist-wrapper ... ul.link-sublist li
-	a{padding-inline-start:var(--bsi-sidebar-link-sublist-indent)}) applica lo
-	stesso rientro fisso a qualunque <a> dentro un .link-sublist,
-	indipendentemente dalla profondità: una voce di terzo livello risultava
-	così allo stesso livello visivo delle voci di secondo livello. Qui si
-	aggiunge un rientro supplementare quando il link-sublist è annidato in un
-	altro link-sublist. */
-.sidebar-linklist-wrapper .link-list-wrapper .link-sublist .link-sublist li a {
+	regola ufficiale BI3 (.sidebar-wrapper .sidebar-linklist-wrapper
+	.link-list-wrapper ul.link-sublist li a {padding-inline-start:
+	var(--bsi-sidebar-link-sublist-indent)}) applica lo stesso rientro fisso a
+	qualunque <a> dentro un .link-sublist, indipendentemente dalla profondita:
+	un terzo livello risultava allo stesso livello visivo del secondo. Qui si
+	aggiunge il doppio del rientro quando il link-sublist e annidato in un altro.
+	Il selettore deve avere almeno la specificita di quello BI3 (prefissato da
+	.sidebar-wrapper): con uno piu corto la regola era ignorata. Il valore di
+	default del rientro (spacing-m) lasciava il secondo livello rientrato di soli
+	8px: sulla variabile di componente si imposta 2rem, come nel playground. */
+.sidebar-wrapper {
+	--bsi-sidebar-link-sublist-indent: 2rem;
+}
+
+.sidebar-wrapper .sidebar-linklist-wrapper .link-list-wrapper ul.link-sublist ul.link-sublist li a {
 	padding-inline-start: calc(var(--bsi-sidebar-link-sublist-indent) * 2);
 }
 
@@ -85,6 +92,22 @@ html {
 	margin: 0 12px 0 0;
 	border-radius: 50%;
 	overflow: hidden;
+}
+
+/* Secondary text of an avatar card (for example the structure and the cycle of a person in the list of people):
+	Bootstrap Italia colors it with --bsi-color-text-secondary, with no variable of the component, which is the dark
+	blue of the site; it takes the color of the standard text, as in the playground. It applies to the <p> of the
+	text only, not to a <span>. */
+.avatar-extra-text .extra-text p {
+	color: var(--bsi-color-text-base);
+}
+
+/* Text of a card (body, abstract and the like): Bootstrap Italia colors it with --bsi-card-text-color, which is
+	--bsi-color-text-secondary (the dark blue of the site); it takes the color of the standard text, as in the
+	playground. It is a variable, not a fixed color, so it follows the palette. The titles stay on the color of the
+	links and the categories on the one of the card links; the signature has its own color. */
+.it-card {
+	--bsi-card-text-color: var(--bsi-color-text-base);
 }
 
 .color-invert {
@@ -134,6 +157,24 @@ html {
 
 
 /** Accessibilità */
+
+/* Links: underlined only when pointed at or reached with the keyboard (Bootstrap Italia does the opposite). The color
+	of the links in a text has a contrast of about 3.8:1 with the text around it, which is above the minimum of WCAG
+	1.4.1 (technique G183) to leave out the underline at rest, provided that it is shown on hover and on focus. */
+a {
+	text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+	text-decoration: underline;
+}
+
+/* Exception: a link in a text with the same color as the paragraph (for example the white "cookie policy" in the
+	video overlay of the home) could not be told apart without the underline. */
+p a.text-white {
+	text-decoration: underline;
+}
 
 .it-footer a {
 	text-decoration: none;
@@ -205,8 +246,10 @@ html {
 	text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* Overlay of the hero with a photo: 0.12 as in the playground (it was 0.2). The readability of the white text on the
+	photo is carried by this overlay and by the text shadow above, so it is worth checking with a light photo. */
 .it-hero-wrapper.it-overlay.it-dark .img-responsive-wrapper:after {
-	background: rgba(0, 64, 89, 0.2);
+	background: rgba(0, 64, 89, 0.12);
 }
 
 .it-hero-wrapper.it-overlay.it-primary .img-responsive-wrapper:after {
@@ -516,6 +559,41 @@ ul.it-card-list.row {
 .tabs-section .it-list a.list-item:hover {
 	background-color: transparent;
 	box-shadow: none;
+}
+
+/* The header (position: relative; z-index: 5 in Bootstrap Italia) makes a stacking context: the mobile menu and the
+	dropdowns stay under any sticky element of the page (.sticky-top, z-index 1020, used by the filter sidebars and by
+	the tree of "Pagine collegate"), which could show over an open menu. With z-index 1030 the header is above the
+	sticky elements and under the modals (1055), as in the playground. */
+.it-header-wrapper {
+	z-index: 1030;
+}
+
+/* Between lg and xl (992-1199px) the navigation bar has more items than fit (some with a long label): the items went
+	to a second line and the page scrolled sideways (124px at 992px with nine items). The padding and the size of the
+	text of the links are reduced only in this range, as in the playground. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.it-header-navbar-wrapper .navbar .navbar-nav .nav-link {
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		font-size: 0.875rem;
+	}
+}
+
+/* Dropdown of the header with a long item: the panel does not grow past a reasonable width (22rem) and the items
+	wrap (white-space: normal, set above for the dropdown of the main menu), so the text is not cut at the right edge.
+	It has no effect while the panel is narrower than that; it is the limit of the playground. A megamenu keeps its
+	own width. */
+.navbar .dropdown-menu:not(.megamenu .dropdown-menu) {
+	max-width: 22rem;
+}
+
+/* Mobile menu: Bootstrap Italia copies the brand of the header into the top of the menu, on the primary background.
+	The logo is a colored image (not an SVG icon that takes its fill from the text), so it was teal on teal and almost
+	invisible: it is made white, as the logo of the footer already is (.color-invert). A logo with a solid background
+	would become a white box. */
+.navbar-collapsable .menu-wrapper .it-brand-wrapper.it-brand-mobile img {
+	filter: brightness(0) invert(1);
 }
 
 /* Header on a narrow screen: Bootstrap Italia puts the block with the logo and the name (it-header-center-wrapper) and the
