@@ -58,5 +58,13 @@ if ( ! class_exists( 'ReallySimpleCaptcha' ) ) {
 		public function check( $prefix, $response ) {
 			return false;
 		}
+
+		/**
+		 * @param string $prefix Challenge prefix.
+		 * @return bool
+		 */
+		public function remove( $prefix ) {
+			return true;
+		}
 	}
 }

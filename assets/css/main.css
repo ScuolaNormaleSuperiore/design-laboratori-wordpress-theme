@@ -465,3 +465,20 @@ ul.it-card-list.row {
 #events .it-card .it-card-body .it-card-subtitle {
 	font-size: var(--bsi-label-font-size);
 }
+
+/* Homepage section "Navigazione per pagine": match the list interaction of the
+	"Le sezioni del sito" prototype. Bootstrap Italia otherwise underlines links at rest
+	and adds a white background and shadow on hover, which is unwanted on this muted section. */
+.page-navigation-section .it-list .list-item .text {
+	text-decoration: none;
+}
+
+.page-navigation-section .it-list .list-item:hover .text,
+.page-navigation-section .it-list .list-item:focus-visible .text {
+	text-decoration: underline;
+}
+
+.page-navigation-section .it-list a.list-item:hover {
+	background-color: transparent;
+	box-shadow: none;
+}

@@ -62,6 +62,12 @@ if ( ! function_exists( 'dli_validate_captcha' ) ) {
 	/**
 	 * Validate a user response against a generated CAPTCHA challenge.
 	 *
+	 * A challenge is used once: it is consumed by the check whatever the answer is, so the same image can be tried
+	 * only one time and a right answer cannot be sent again. The page creates a new challenge each time it is
+	 * loaded, so a refused form comes back with a new image. A prefix that is not made of letters, digits, hyphens
+	 * and underscores (the ones issued are digits) is refused without reaching the plugin, so that no value that
+	 * was not issued can name a file.
+	 *
 	 * @param array{enabled: bool, instance: ReallySimpleCaptcha|null, image_src: string, image_width: int, image_height: int, prefix: string} $captcha_data CAPTCHA challenge data.
 	 * @param string                                                                                                                           $prefix       Submitted challenge prefix.
 	 * @param string                                                                                                                           $response     Submitted user response.
@@ -74,6 +80,16 @@ if ( ! function_exists( 'dli_validate_captcha' ) ) {
 			return false;
 		}
 
-		return $dli_captcha_instance->check( $prefix, $response );
+		// The prefix is what `dli_get_captcha_data()` issues, digits from wp_rand(). It comes back from the visitor and
+		// the plugin builds the names of files from it, so anything that could name a file elsewhere (a dot, a slash,
+		// a space, a control character) is refused before it reaches the plugin, which then removes nothing for it.
+		if ( 1 !== preg_match( '/^[A-Za-z0-9_-]+$/D', (string) $prefix ) ) {
+			return false;
+		}
+
+		$dli_captcha_valid = (bool) $dli_captcha_instance->check( $prefix, $response );
+		$dli_captcha_instance->remove( $prefix );
+
+		return $dli_captcha_valid;
 	}
 }

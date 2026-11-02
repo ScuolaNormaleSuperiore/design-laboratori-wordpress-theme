@@ -108,3 +108,4 @@ tests_add_filter( 'muplugins_loaded', 'dli_tests_load_plugins_and_theme' );
 require $dli_tests_dir . '/includes/bootstrap.php';
 
 require_once __DIR__ . '/integration/support/class-dli-integration-test-case.php';
+require_once __DIR__ . '/integration/support/class-really-simple-captcha-double.php';

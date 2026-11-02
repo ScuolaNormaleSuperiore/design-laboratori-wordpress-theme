@@ -59,7 +59,11 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 
 	$dli_tb_r_disable = dli_get_field( 'disattiva_pagina_dettaglio', $dli_tb_pid );
 	$dli_tb_r_direct  = dli_get_field( 'abilita_link_diretto_pagina_persona', $dli_tb_pid );
-	$dli_tb_r_sito    = (string) dli_get_field( 'sito_web', $dli_tb_pid );
+	// The site of the person is a link only when it is a web address (http or https), as in the cards view: an
+	// address written without a scheme gets http://, and any other scheme, such as javascript:, is removed by
+	// esc_url_raw() and leaves no web address, so the link falls back to the page of the person.
+	$dli_tb_r_sito = esc_url_raw( trim( (string) dli_get_field( 'sito_web', $dli_tb_pid ) ) );
+	$dli_tb_r_sito = preg_match( '#^https?://#i', $dli_tb_r_sito ) ? $dli_tb_r_sito : '';
 
 	if ( $dli_tb_r_disable ) {
 		$dli_tb_r_link   = '';
@@ -96,7 +100,11 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 	if ( ! $dli_tb_hide_email ) {
 		$dli_tb_r_email = antispambot( sanitize_email( (string) dli_get_field( 'email', $dli_tb_pid ) ) );
 	}
-	$dli_tb_r_phone      = (string) dli_get_field( 'telefono', $dli_tb_pid );
+	// With the column hidden the number is not even read: it is never in the page, nor in the data of the script.
+	$dli_tb_r_phone = '';
+	if ( ! $dli_tb_hide_phone ) {
+		$dli_tb_r_phone = (string) dli_get_field( 'telefono', $dli_tb_pid );
+	}
 	$dli_tb_r_phone_href = preg_replace( '/[^+\d]/', '', $dli_tb_r_phone );
 
 	$dli_tb_json_rows[] = array(

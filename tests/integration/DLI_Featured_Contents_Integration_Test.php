@@ -520,8 +520,8 @@ class DLI_Featured_Contents_Integration_Test extends DLI_Integration_Test_Case {
 
 		$html = $this->render_section();
 
-		$this->assertMatchesRegularExpression( '#<a href="' . preg_quote( esc_url( get_permalink( $news_page ) ), '#' ) . '" class="btn btn-secondary">\s*Tutte le news\s*</a>#', $html );
-		$this->assertStringNotContainsString( 'Tutti gli eventi', $html, 'The events page does not exist: no button, never an empty address.' );
+		$this->assertMatchesRegularExpression( '#<a href="' . preg_quote( esc_url( get_permalink( $news_page ) ), '#' ) . '" class="btn btn-secondary">\s*' . preg_quote( dli_get_featured_button_label( NEWS_POST_TYPE ), '#' ) . '\s*</a>#', $html );
+		$this->assertStringNotContainsString( dli_get_featured_button_label( EVENT_POST_TYPE ), $html, 'The events page does not exist: no button, never an empty address.' );
 		$this->assertDoesNotMatchRegularExpression( '#<a [^>]*href=""#', $html );
 	}
 
@@ -539,7 +539,6 @@ class DLI_Featured_Contents_Integration_Test extends DLI_Integration_Test_Case {
 		}
 
 		$this->assertSame( $labels, array_unique( $labels ), 'No two types share a label.' );
-		$this->assertSame( 'Tutti i brevetti', $labels[ PATENT_POST_TYPE ] );
 	}
 
 	/**

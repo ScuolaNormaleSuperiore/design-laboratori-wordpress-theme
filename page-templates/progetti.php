@@ -16,10 +16,8 @@ $dli_per_page           = $dli_per_page > 0 ? $dli_per_page : DLI_POSTS_PER_PAGE
 $dli_per_page_values    = DLI_POST_PER_PAGE_VALUES;
 $dli_today              = gmdate( 'Ymd' );
 
-$dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
-if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
-	$dli_per_page = absint( $dli_per_page_input );
-}
+// The size asked for in the address is kept in range: never a huge, negative or non numeric value (inc/pagination.php).
+$dli_per_page = dli_clamp_per_page( filter_input( INPUT_GET, 'per_page' ), $dli_per_page, $dli_per_page_values );
 
 $dli_selected_level_raw = filter_input( INPUT_GET, 'level', FILTER_DEFAULT );
 $dli_selected_level     = is_string( $dli_selected_level_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_level_raw ) ) : '';

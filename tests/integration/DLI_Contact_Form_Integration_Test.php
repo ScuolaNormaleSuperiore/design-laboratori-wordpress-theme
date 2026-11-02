@@ -5,34 +5,6 @@
  * @package Design_Laboratori_Italia
  */
 
-if ( ! class_exists( 'ReallySimpleCaptcha' ) ) {
-	/**
-	 * Minimal in-memory CAPTCHA replacement used only by this test process.
-	 */
-	class ReallySimpleCaptcha {
-		public $chars;
-		public $char_length;
-		public $img_size;
-		public $fg;
-		public $bg;
-		public $font_size;
-		public $font_char_width;
-		public $img_type;
-
-		public function generate_random_word() {
-			return 'ABCD';
-		}
-
-		public function generate_image( $prefix, $word ) {
-			return 'test-captcha.png';
-		}
-
-		public function check( $prefix, $response ) {
-			return 'test-prefix' === $prefix && 'ABCD' === $response;
-		}
-	}
-}
-
 /**
  * The form is rendered with a valid CAPTCHA and wp_mail() is intercepted
  * before WordPress can reach a mail transport.
@@ -62,6 +34,7 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 	 */
 	public function set_up() {
 		parent::set_up();
+		ReallySimpleCaptcha::reset();
 
 		$this->set_theme_options(
 			'dli_options',
@@ -337,5 +310,70 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 		$this->capture_mail();
 
 		$this->assert_refused_without_mail( $this->render_contact_form( $this->valid_form_data() ) );
+	}
+
+	/**
+	 * Submit a form and return how many mails were sent so far.
+	 *
+	 * @param array<string, string> $overrides Fields to replace.
+	 * @return string Rendered page HTML.
+	 */
+	private function submit( array $overrides = array() ) {
+		return $this->render_contact_form( $this->valid_form_data( $overrides ) );
+	}
+
+	/**
+	 * A CAPTCHA is used once: the same challenge and answer, sent again, are refused.
+	 */
+	public function test_a_captcha_can_be_used_only_once() {
+		$this->capture_mail();
+
+		$first = $this->submit();
+		$this->assertStringContainsString( 'alert-success', $first );
+		$this->assertCount( 1, $this->mail_calls );
+		$this->assertContains( 'test-prefix', ReallySimpleCaptcha::$removed, 'The challenge is consumed by its first use.' );
+
+		$replay = $this->submit();
+		$this->assertStringContainsString( 'alert-danger', $replay );
+		$this->assertStringNotContainsString( 'alert-success', $replay );
+		$this->assertCount( 1, $this->mail_calls, 'The replay sends nothing.' );
+	}
+
+	/**
+	 * A wrong answer consumes the challenge too: guessing the answer to the same image again is not possible.
+	 */
+	public function test_a_wrong_answer_consumes_the_challenge() {
+		$this->capture_mail();
+
+		$this->assert_refused_without_mail( $this->submit( array( 'captcha-field' => 'WRONG' ) ) );
+		$this->assertContains( 'test-prefix', ReallySimpleCaptcha::$removed, 'A wrong answer consumes the challenge.' );
+
+		$this->assert_refused_without_mail( $this->submit() );
+	}
+
+	/**
+	 * After a refused submission the form comes back with a new challenge that can be answered.
+	 */
+	public function test_a_refused_form_comes_back_with_a_new_challenge() {
+		$this->capture_mail();
+
+		$html = $this->submit( array( 'captcha-field' => 'WRONG' ) );
+
+		$this->assertSame( 1, preg_match( '#name="captcha-prefix"[^>]*value="([^"]*)"#', $html, $found ), 'The form carries a challenge.' );
+		$this->assertNotSame( '', $found[1] );
+		$this->assertNotSame( 'test-prefix', $found[1], 'It is a new one, not the one that was just consumed.' );
+		$this->assertArrayHasKey( $found[1], ReallySimpleCaptcha::$challenges, 'The new image can be answered.' );
+	}
+
+	/**
+	 * A prefix that was never issued consumes nothing that exists, and is refused.
+	 */
+	public function test_an_unknown_prefix_is_refused_and_leaves_the_other_challenges_alone() {
+		$this->capture_mail();
+		ReallySimpleCaptcha::$challenges['other'] = 'ZZZZ';
+
+		$this->assert_refused_without_mail( $this->submit( array( 'captcha-prefix' => 'unknown' ) ) );
+
+		$this->assertArrayHasKey( 'other', ReallySimpleCaptcha::$challenges, 'A challenge nobody used is not touched.' );
 	}
 }

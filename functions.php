@@ -108,6 +108,11 @@ require get_template_directory() . '/inc/home-sections.php';
 require get_template_directory() . '/inc/home-tabs.php';
 require get_template_directory() . '/inc/featured-contents.php';
 
+/**
+ * Pagination — helpers that read the page size asked for in the address.
+ */
+require get_template_directory() . '/inc/pagination.php';
+
 
 /**
  * Activation Hooks.

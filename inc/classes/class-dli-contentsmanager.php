@@ -959,22 +959,32 @@ class DLI_ContentsManager {
 			)
 		);
 
-		$params = array(
-			'post_type'      => $content_types,
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'fields'         => 'all',
-			'no_found_rows'  => true,
-		);
+		// The question is only whether a type has a match, not which ones: one query for each type that stops at the
+		// first match and loads no post. The value 'id=>post_type' of `fields`, which would give the type of every match
+		// with one query, is not supported by WP_Query: it falls back to loading every post.
+		$has_search_string = '' !== trim( $search_string );
+		$matched_types     = array();
+		foreach ( $content_types as $content_type ) {
+			$params = array(
+				'post_type'              => $content_type,
+				'post_status'            => 'publish',
+				'posts_per_page'         => 1,
+				'fields'                 => 'ids',
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			);
+			if ( $has_search_string ) {
+				$params['s'] = $search_string;
+			}
 
-		if ( '' !== trim( $search_string ) ) {
-			$params['s'] = $search_string;
+			$query = new WP_Query( $params );
+			if ( ! empty( $query->posts ) ) {
+				$matched_types[] = $content_type;
+			}
 		}
 
-		$query         = new WP_Query( $params );
-		$matched_types = wp_list_pluck( $query->posts, 'post_type' );
-
-		return array_values( array_intersect( $content_types, array_unique( $matched_types ) ) );
+		return $matched_types;
 	}
 
 	// SITE SEARCH.

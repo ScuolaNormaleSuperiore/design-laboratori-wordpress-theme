@@ -20,10 +20,8 @@ $dli_query             = null;
 $dli_per_page          = SITESEARCH_CELLS_PER_PAGE;
 $dli_per_page_values   = DLI_PER_PAGE_VALUES;
 
-$dli_per_page_input = filter_input( INPUT_GET, 'per_page', FILTER_VALIDATE_INT );
-if ( false !== $dli_per_page_input && null !== $dli_per_page_input && $dli_per_page_input > 0 ) {
-	$dli_per_page = absint( $dli_per_page_input );
-}
+// The size asked for in the address is kept in range: never a huge, negative or non numeric value (inc/pagination.php).
+$dli_per_page = dli_clamp_per_page( filter_input( INPUT_GET, 'per_page' ), $dli_per_page, $dli_per_page_values );
 
 if ( isset( $_GET['isreset'] ) ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only reset flag for the search form.

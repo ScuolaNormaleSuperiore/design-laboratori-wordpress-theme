@@ -41,7 +41,7 @@ $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 ?>
 <!-- INIZIO SEZIONE "NAVIGAZIONE PER PAGINE" -->
-<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Navigazione per pagine', 'design_laboratori_italia' ) . '"'; ?>>
+<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section page-navigation-section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Navigazione per pagine', 'design_laboratori_italia' ) . '"'; ?>>
 	<div class="section-content">
 		<div class="container">
 			<?php if ( $dli_title_shown ) : ?>
