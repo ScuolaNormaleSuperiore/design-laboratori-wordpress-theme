@@ -13,10 +13,41 @@ test( 'the featured box and the list show the promoted publication with authors,
 		await expect( card ).toHaveCount( 1 );
 		await expect( card ).toContainText( 'Autore Uno E2E, Autore Due E2E' );
 		await expect( card ).toContainText( 'Articolo in rivista' );
-		await expect( card.locator( 'time' ) ).toHaveText( '2024' );
+		// The list section shows the year; the box of the featured contents does not, like the playground.
+		if ( 'blocco-pubblicazioni' === await scope.getAttribute( 'id' ) ) {
+			await expect( card.locator( 'time' ) ).toHaveText( '2024' );
+		} else {
+			await expect( card.locator( 'time' ) ).toHaveCount( 0 );
+		}
 		await expect( card ).not.toContainText( 'Descrizione di prova della pubblicazione E2E completa.' );
 	}
-	await expect( page.getByRole( 'heading', { level: 2, name: 'Pubblicazioni in evidenza' } ) ).toBeVisible();
+	await expect( page.getByRole( 'heading', { level: 3, name: 'Pubblicazioni in evidenza' } ) ).toBeVisible();
+} );
+
+test( 'the type of a publication is underlined only when pointed at or reached with the keyboard', async ( { page } ) => {
+	await page.goto( '/' );
+	const link = page.locator( '#blocco-pubblicazioni' ).getByRole( 'link', { name: /Articolo in rivista/ } );
+	const underline = () => link.evaluate( ( element ) => getComputedStyle( element ).textDecorationLine );
+
+	await expect( link ).toBeVisible();
+	expect( await underline(), 'at rest the link is not underlined' ).toBe( 'none' );
+
+	await link.hover();
+	expect( await underline(), 'pointed at, it is underlined' ).toBe( 'underline' );
+	await page.mouse.move( 0, 0 );
+	expect( await underline() ).toBe( 'none' );
+
+	// Reached with the keyboard it is underlined too: the change does not depend on the color.
+	await page.keyboard.press( 'Tab' );
+	await link.focus();
+	await expect( link ).toBeFocused();
+	expect( await underline(), 'with the focus, it is underlined' ).toBe( 'underline' );
+
+	// The same in the box of the featured contents, not only in the list section.
+	const boxLink = page.locator( '#blocco-card' ).getByRole( 'link', { name: /Articolo in rivista/ } );
+	await page.mouse.move( 0, 0 );
+	await boxLink.evaluate( ( element ) => element.blur() );
+	expect( await boxLink.evaluate( ( element ) => getComputedStyle( element ).textDecorationLine ) ).toBe( 'none' );
 } );
 
 test( 'from the home the title leads to the detail page', async ( { page } ) => {

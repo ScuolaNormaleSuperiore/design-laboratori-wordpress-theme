@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 09:45+0000\n"
+"POT-Creation-Date: 2026-11-02 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -333,7 +333,7 @@ msgid "Blog"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:281 page-templates/brevetti.php:2
+#: inc/featured-contents.php:37 inc/utils.php:281 page-templates/brevetti.php:2
 msgid "Brevetti"
 msgstr ""
 
@@ -373,6 +373,10 @@ msgstr ""
 #: template-parts/home/carousel.php:74
 #: template-parts/home/hp-list-article.php:68
 #: template-parts/home/hp-list-news.php:69
+#: template-parts/home/featured-contents/card-evento.php:65
+#: template-parts/home/featured-contents/card-evento.php:70
+#: template-parts/home/featured-contents/card-notizia.php:53
+#: template-parts/home/featured-contents/card-notizia.php:58
 msgid "Categoria correlata:"
 msgstr ""
 
@@ -535,7 +539,7 @@ msgstr ""
 msgid "Contatti"
 msgstr ""
 
-#: template-parts/home/featured-contents.php:17
+#: template-parts/home/featured-contents.php:33
 msgid "Contenuti in evidenza"
 msgstr ""
 
@@ -623,6 +627,10 @@ msgstr ""
 
 #: single-brevetto.php:225 single-brevetto.php:237
 msgid "Data deposito"
+msgstr ""
+
+#: template-parts/home/featured-contents/card-evento.php:53
+msgid "Data evento:"
 msgstr ""
 
 #: single-evento.php:133 single-evento.php:198
@@ -849,7 +857,7 @@ msgid "Esporta"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:274 page-templates/eventi.php:2
+#: inc/featured-contents.php:34 inc/utils.php:274 page-templates/eventi.php:2
 #: template-parts/home/hp-list-event.php:40
 #: template-parts/home/hp-list-event.php:42
 msgid "Eventi"
@@ -1216,13 +1224,17 @@ msgstr ""
 msgid "luglio"
 msgstr ""
 
-#: inc/utils.php:275
+#: inc/featured-contents.php:39 inc/utils.php:275
 msgid "Luoghi"
 msgstr ""
 
 #: single-evento.php:142 single-evento.php:251
 #: inc/classes/class-placemanager.php:91
 msgid "Luogo"
+msgstr ""
+
+#: template-parts/home/featured-contents/card-evento.php:56
+msgid "Luogo:"
 msgstr ""
 
 #: inc/utils.php:1116
@@ -1258,7 +1270,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:180
+#: functions.php:181
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1266,19 +1278,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:178
+#: functions.php:179
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:179
+#: functions.php:180
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:176
+#: functions.php:177
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:177
+#: functions.php:178
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1497,7 +1509,7 @@ msgid "Notizia"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:276 page-templates/notizie.php:2
+#: inc/featured-contents.php:33 inc/utils.php:276 page-templates/notizie.php:2
 #: template-parts/home/hp-list-news.php:33
 #: template-parts/home/hp-list-news.php:37
 msgid "Notizie"
@@ -1664,7 +1676,7 @@ msgid "persona trovata"
 msgstr ""
 
 #. Name of the template
-#: inc/utils.php:277 page-templates/persone.php:2
+#: inc/featured-contents.php:38 inc/utils.php:277 page-templates/persone.php:2
 #: inc/admin/class-dli-tools-admin.php:249
 msgid "Persone"
 msgstr ""
@@ -1678,7 +1690,7 @@ msgstr ""
 msgid "Posizione"
 msgstr ""
 
-#: inc/utils.php:278
+#: inc/featured-contents.php:40 inc/utils.php:278
 msgid "Post"
 msgstr ""
 
@@ -2051,7 +2063,8 @@ msgstr ""
 
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:203
 #: single-persona.php:197 single-persona.php:274 single-risorsa-tecnica.php:244
-#: single-risorsa-tecnica.php:356 inc/utils.php:279
+#: single-risorsa-tecnica.php:356 inc/featured-contents.php:36
+#: inc/utils.php:279
 msgid "Progetti"
 msgstr ""
 
@@ -2064,7 +2077,7 @@ msgid "Pubblicazione"
 msgstr ""
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
-#: single-progetto.php:268 inc/utils.php:280
+#: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:280
 #: template-parts/home/hp-list-publication.php:33
 #: template-parts/home/hp-list-publication.php:37
 msgid "Pubblicazioni"
@@ -2555,8 +2568,8 @@ msgid "Tipologia Persona"
 msgstr ""
 
 #: single-pubblicazione.php:63
-#: template-parts/common/publication-card-content.php:59
-#: template-parts/common/publication-card-content.php:64
+#: template-parts/common/publication-card-content.php:63
+#: template-parts/common/publication-card-content.php:68
 msgid "Tipologia:"
 msgstr ""
 
@@ -2586,12 +2599,19 @@ msgstr ""
 msgid "Tutte le altre colonne sono facoltative."
 msgstr ""
 
+#: inc/featured-contents.php:57
+msgid "Tutte le news"
+msgstr ""
+
 #: template-parts/home/hp-list-news.php:93
 msgid "Tutte le notizie"
 msgstr ""
 
-#: template-parts/home/card-pubblicazioni.php:64
-#: template-parts/home/hp-list-publication.php:62
+#: inc/featured-contents.php:62
+msgid "Tutte le persone"
+msgstr ""
+
+#: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:62
 msgid "Tutte le pubblicazioni"
 msgstr ""
 
@@ -2618,8 +2638,24 @@ msgstr ""
 msgid "Tutti gli articoli"
 msgstr ""
 
-#: template-parts/home/hp-list-event.php:100
+#: inc/featured-contents.php:58 template-parts/home/hp-list-event.php:100
 msgid "Tutti gli eventi"
+msgstr ""
+
+#: inc/featured-contents.php:61
+msgid "Tutti i brevetti"
+msgstr ""
+
+#: inc/featured-contents.php:63
+msgid "Tutti i luoghi"
+msgstr ""
+
+#: inc/featured-contents.php:64
+msgid "Tutti i post"
+msgstr ""
+
+#: inc/featured-contents.php:60
+msgid "Tutti i progetti"
 msgstr ""
 
 #: inc/classes/class-spinoffmanager.php:61
@@ -2738,6 +2774,10 @@ msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:534
 msgid "Valori multipli"
+msgstr ""
+
+#: inc/featured-contents.php:67
+msgid "Vedi tutti"
 msgstr ""
 
 #: single-brevetto.php:189 single-brevetto.php:272 single-evento.php:169

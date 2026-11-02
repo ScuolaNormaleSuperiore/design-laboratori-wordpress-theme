@@ -422,3 +422,46 @@ html {
 .card-nav .it-card-title {
 	color: var(--bsi-color-text-primary);
 }
+
+/* The link of a navigation card ("Vai al servizio") is underlined only when it is pointed at or reached with the
+	keyboard, like the type of a card: the underline on focus is kept on purpose, a visible change that does not
+	depend on color. */
+.card-nav .it-card-footer a {
+	text-decoration: none;
+}
+
+.card-nav .it-card-footer a:hover,
+.card-nav .it-card-footer a:focus-visible {
+	text-decoration: underline;
+}
+
+/* "Card list" of Bootstrap Italia (ul.it-card-list.row, for example the boxes of "Contenuti in evidenza"
+	and the publications section of the home): the rule ul.it-card-list { margin: 0 } of the library cancels
+	the negative margins of .row, and the cards would sit half a gutter inside the title of the section.
+	The margins of .row are restored. */
+ul.it-card-list.row {
+	margin-right: calc(-0.5 * var(--bsi-gutter-x));
+	margin-left: calc(-0.5 * var(--bsi-gutter-x));
+}
+
+/* Type of a card (the link of the type of a publication, for example "Tipologia: Articolo in rivista"):
+	Bootstrap Italia underlines every link, but the type is already set apart by its color and by being
+	in capitals in the footer of the card, so it is underlined only when it is pointed at or reached with
+	the keyboard. The underline on focus is kept on purpose: it is a visible change that does not depend on color. */
+.it-card-category.it-card-link {
+	text-decoration: none;
+}
+
+.it-card-category.it-card-link:hover,
+.it-card-category.it-card-link:focus-visible {
+	text-decoration: underline;
+}
+
+/* Date of an event on a card (the box of "Contenuti in evidenza" of the home and the events archive): it is an
+	it-card-subtitle, which in Bootstrap Italia 3 has the size and weight of a heading (24px/600, like h5), so it
+	was as large as the title of the card. The size goes down to the one of a label (16px); the weight stays the
+	standard one (600). */
+#blocco-card .it-card .it-card-body .it-card-subtitle,
+#events .it-card .it-card-body .it-card-subtitle {
+	font-size: var(--bsi-label-font-size);
+}

@@ -19,6 +19,9 @@
  *  - dli_sanitize_hp_tab_page_ids()        The pages linked to a tab: whole positive numbers, no repeats.
  *  - dli_normalize_hp_tab_rows()           The saved tabs of "Pannello tab", safe to use.
  *  - dli_get_hp_tabs_for_language()        The tabs of "Pannello tab" shown in a language.
+ *  - dli_get_featured_renderer()           The partial that prints the items of a box of "Contenuti in evidenza".
+ *  - dli_get_featured_column_class()       The columns of the boxes of "Contenuti in evidenza".
+ *  - dli_normalize_featured_box()          A saved box of "Contenuti in evidenza": content type and title.
  *
  * @package Design_Laboratori_Italia
  */
@@ -426,5 +429,81 @@ if ( ! function_exists( 'dli_get_hp_tabs_for_language' ) ) {
 		}
 
 		return $tabs;
+	}
+}
+
+if ( ! function_exists( 'dli_get_featured_renderer' ) ) {
+	/**
+	 * The partial that prints the items of a box of "Contenuti in evidenza", chosen by its content type.
+	 *
+	 * News, events and publications have a renderer of their own (`template-parts/home/featured-contents/`); any
+	 * other type has the essential fallback, which shows only a title, an image, an abstract and a link. The type
+	 * decides the layout: the editor does not choose a template.
+	 *
+	 * @param mixed $post_type The content type of the box.
+	 * @return string The name of the partial, without folder and extension.
+	 */
+	function dli_get_featured_renderer( $post_type ) {
+		$renderers = array(
+			NEWS_POST_TYPE        => 'card-notizia',
+			EVENT_POST_TYPE       => 'card-evento',
+			PUBLICATION_POST_TYPE => 'card-pubblicazione',
+		);
+
+		return is_string( $post_type ) && isset( $renderers[ $post_type ] ) ? $renderers[ $post_type ] : 'card-fallback';
+	}
+}
+
+if ( ! function_exists( 'dli_get_featured_column_class' ) ) {
+	/**
+	 * The classes of the column of each box of "Contenuti in evidenza", for the number of boxes shown.
+	 *
+	 * One box takes the whole row, two take half each, three or more are three per row; on a smaller screen each
+	 * box takes the whole row. Only the boxes that have something to show are counted, so there is never an empty column.
+	 *
+	 * @param int $count The number of boxes shown.
+	 * @return string The classes of the column.
+	 */
+	function dli_get_featured_column_class( $count ) {
+		$count = (int) $count;
+
+		if ( 2 === $count ) {
+			return 'col-12 col-lg-6';
+		}
+		return $count >= 3 ? 'col-12 col-lg-4' : 'col-12';
+	}
+}
+
+if ( ! function_exists( 'dli_normalize_featured_box' ) ) {
+	/**
+	 * A box of "Contenuti in evidenza" as saved in Layout HP: its content type and its title.
+	 *
+	 * The option of a box (`featured_contents_<n>`) is a group with one row, whose keys end with the number of the
+	 * box. The title is the one of the language of the page; a missing English title is the Italian one, and an
+	 * empty title stays empty (the section then gives the default of the type). A box without a content type is not
+	 * a box. The old key `featured_contents_template_box_<n>` is not read: the layout follows the type.
+	 *
+	 * @param mixed $option    The saved option of the box.
+	 * @param int   $number    The number of the box, from 1.
+	 * @param bool  $is_italian True for an Italian page.
+	 * @return array{type: string, title: string}|null The box, or null when it has no content type.
+	 */
+	function dli_normalize_featured_box( $option, $number, $is_italian ) {
+		$row = is_array( $option ) && isset( $option[0] ) && is_array( $option[0] ) ? $option[0] : null;
+		if ( null === $row ) {
+			return null;
+		}
+
+		$type_key  = 'featured_contents_type_box_' . (int) $number;
+		$label_key = 'featured_contents_label_box_' . (int) $number;
+		$type      = is_string( $row[ $type_key ] ?? null ) ? trim( $row[ $type_key ] ) : '';
+		if ( '' === $type ) {
+			return null;
+		}
+
+		return array(
+			'type'  => $type,
+			'title' => trim( dli_pick_lang_value( $row[ $label_key ] ?? '', $row[ $label_key . DLI_ENG_SUFFIX_LANGUAGE ] ?? '', $is_italian ) ),
+		);
 	}
 }

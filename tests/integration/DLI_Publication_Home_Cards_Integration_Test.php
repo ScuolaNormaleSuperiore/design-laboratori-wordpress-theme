@@ -6,7 +6,7 @@
  */
 
 /**
- * Rendering of `template-parts/home/hp-list-publication.php` and `template-parts/home/card-pubblicazioni.php`.
+ * Rendering of `template-parts/home/hp-list-publication.php` and the publications box of `template-parts/home/featured-contents.php`.
  */
 class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -78,13 +78,24 @@ class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_C
 	 * @return string
 	 */
 	private function render_box() {
-		return $this->render_part(
-			'template-parts/home/card-pubblicazioni',
+		$this->set_theme_options(
+			'homepage',
 			array(
-				'box_number'    => 1,
-				'box_label'     => 'Box pubblicazioni',
-				'box_template'  => 'card-pubblicazioni',
-				'box_post_type' => PUBLICATION_POST_TYPE,
+				'featured_contents_1' => array(
+					0 => array(
+						'featured_contents_type_box_1'  => PUBLICATION_POST_TYPE,
+						'featured_contents_label_box_1' => 'Box pubblicazioni',
+					),
+				),
+				'featured_contents_2' => array(),
+				'featured_contents_3' => array(),
+			)
+		);
+		return $this->render_part(
+			'template-parts/home/featured-contents',
+			array(
+				'enabled'  => 'true',
+				'instance' => 1,
 			)
 		);
 	}
@@ -133,7 +144,8 @@ class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_C
 	}
 
 	/**
-	 * Authors (by display name) and year are shown; the description is not.
+	 * Authors (by display name) are shown, and the year in the list section; the description is not. The box of the
+	 * featured contents shows no year, like the playground.
 	 */
 	public function test_authors_and_year_are_shown_instead_of_the_description() {
 		$person = $this->create_post( PEOPLE_POST_TYPE, 'Persona home' );
@@ -147,11 +159,16 @@ class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_C
 			array( 'post_content' => 'Descrizione da non mostrare.' )
 		);
 
-		foreach ( array( $this->render_list(), $this->render_box() ) as $html ) {
+		$list = $this->render_list();
+		$box  = $this->render_box();
+
+		foreach ( array( $list, $box ) as $html ) {
 			$this->assertStringContainsString( 'Grace Hopper', $html );
-			$this->assertStringContainsString( '2023', $html );
 			$this->assertStringNotContainsString( 'Descrizione da non mostrare.', $html );
 		}
+		$this->assertStringContainsString( '2023', $list, 'The list section shows the year.' );
+		$this->assertStringNotContainsString( '2023', $box, 'The box of the featured contents shows no year.' );
+		$this->assertStringNotContainsString( '<time', $box );
 	}
 
 	/**
@@ -188,16 +205,16 @@ class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_C
 	}
 
 	/**
-	 * The box keeps its contract: it stays a column of the featured contents with its heading.
+	 * The box is a column of the featured contents with its heading; alone, it takes the whole row.
 	 */
-	public function test_box_keeps_its_column_and_heading() {
+	public function test_box_is_a_column_with_its_heading() {
 		$archive = $this->create_archive_page();
 		$this->create_promoted_publication( 'Home colonna' );
 
 		$html = $this->render_box();
 
-		$this->assertStringContainsString( 'col-lg-4', $html );
-		$this->assertMatchesRegularExpression( '#<h2 id="evidenza-pubblicazioni-title-1" class="h3 pb-2">Box pubblicazioni</h2>#', $html );
+		$this->assertStringContainsString( 'class="col-12 pb-5"', $html, 'A single box takes the whole row.' );
+		$this->assertMatchesRegularExpression( '#<h3 id="evidenza-1-box-1-title" class="h3 pb-2">Box pubblicazioni</h3>#', $html );
 		$this->assertStringContainsString( '<a href="' . esc_url( $archive ) . '" class="btn btn-secondary">', $html, 'The button leads to the publications page.' );
 	}
 

@@ -56,3 +56,23 @@ test( 'on a narrow screen the cards do not overflow horizontally', async ( { pag
 	const overflow = await page.evaluate( () => document.documentElement.scrollWidth - document.documentElement.clientWidth );
 	expect( overflow ).toBeLessThanOrEqual( 0 );
 } );
+
+test( 'the link of a navigation card is underlined only when pointed at or reached with the keyboard', async ( { page } ) => {
+	await page.goto( '/pagina-e2e-con-sottopagine/' );
+	const link = page.locator( '#sottosezioni article.card-nav' ).first().getByRole( 'link' );
+	const underline = () => link.evaluate( ( element ) => getComputedStyle( element ).textDecorationLine );
+
+	await expect( link ).toBeVisible();
+	expect( await underline(), 'at rest the link is not underlined' ).toBe( 'none' );
+
+	await link.hover();
+	expect( await underline(), 'pointed at, it is underlined' ).toBe( 'underline' );
+	await page.mouse.move( 0, 0 );
+	expect( await underline() ).toBe( 'none' );
+
+	// Reached with the keyboard it is underlined too: the change does not depend on the color.
+	await page.keyboard.press( 'Tab' );
+	await link.focus();
+	await expect( link ).toBeFocused();
+	expect( await underline(), 'with the focus, it is underlined' ).toBe( 'underline' );
+} );

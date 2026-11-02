@@ -725,177 +725,85 @@ function dli_register_main_options_metabox() {
 			array(
 				'id'   => $prefix . 'home_featured_contents',
 				'name' => __( 'Sezione contenuti in evidenza', 'design_laboratori_italia' ),
-				'desc' => __( 'Gestione della sezione dei contenuti in evidenza in Home Page', 'design_laboratori_italia' ) . '.',
+				'desc' => sprintf(
+					/* translators: %d: the number of items shown in each box */
+					__( 'Fino a tre box, ognuno con un tipo di contenuto e un titolo in italiano e in inglese. Ogni box mostra fino a %d contenuti con il campo "Promuovi in Home" acceso, nella lingua corrente, dal più recente: notizie ed eventi in un elenco senza immagini, pubblicazioni con autori, tipologia e anno; gli altri tipi in modo essenziale (titolo, immagine, riassunto). Un box senza contenuti non compare e gli altri si dividono la riga. Il pulsante sotto il box porta alla pagina elenco del tipo, se esiste. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+					DLI_HP_FEATURED_ITEMS
+				),
 				'type' => 'title',
 			)
 		);
 
-		// Definizione del BOX 1.
-		$featured_contents_group_id = $home_options->add_field(
+		// The three boxes: a content type and a title in Italian and English. The layout of the items is decided by the type.
+		$featured_default_types = array(
+			1 => NEWS_POST_TYPE,
+			2 => EVENT_POST_TYPE,
+			3 => PUBLICATION_POST_TYPE,
+		);
+		foreach ( $featured_default_types as $featured_number => $featured_default_type ) {
+			$featured_contents_group_id = $home_options->add_field(
+				array(
+					'id'         => $prefix . 'featured_contents_' . $featured_number,
+					'type'       => 'group',
+					'repeatable' => false,
+					'options'    => array(
+						'group_title' => sprintf(
+							/* translators: %d: the number of the box, from 1 to 3 */
+							__( 'Box %d dei contenuti in evidenza', 'design_laboratori_italia' ),
+							$featured_number
+						),
+						'closed'      => true,
+					),
+				)
+			);
+
+			$home_options->add_group_field(
+				$featured_contents_group_id,
+				array(
+					'id'   => $prefix . 'featured_contents_label_box_' . $featured_number,
+					'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+					'desc' => __( 'Il titolo del box. Se è vuoto si usa il nome del tipo di contenuto.', 'design_laboratori_italia' ),
+					'type' => 'text',
+				)
+			);
+
+			$home_options->add_group_field(
+				$featured_contents_group_id,
+				array(
+					'id'   => $prefix . 'featured_contents_label_box_' . $featured_number . DLI_ENG_SUFFIX_LANGUAGE,
+					'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+					'desc' => __( 'Se è vuoto, nelle altre lingue si usa il titolo italiano.', 'design_laboratori_italia' ),
+					'type' => 'text',
+				)
+			);
+
+			$home_options->add_group_field(
+				$featured_contents_group_id,
+				array(
+					'id'               => $prefix . 'featured_contents_type_box_' . $featured_number,
+					'name'             => __( 'Contenuto del box', 'design_laboratori_italia' ),
+					'desc'             => __( 'Seleziona un tipo di contenuto: il layout del box dipende dal tipo.', 'design_laboratori_italia' ),
+					'type'             => 'select',
+					'default'          => $featured_default_type,
+					'show_option_none' => false,
+					'options_cb'       => 'dli_get_featured_content_types',
+				)
+			);
+		}
+
+		// *** SEZIONE "CARD DI NAVIGAZIONE" (HOMEPAGE) ***
+		$home_options->add_field(
 			array(
-				'id'         => $prefix . 'featured_contents_1',
-				'type'       => 'group',
-				'repeatable' => false,
-				'options'    => array(
-					'group_title' => __( 'Box 1 dei contenuti in evidenza', 'design_laboratori_italia' ),
-					'closed'      => true,
+				'id'   => $prefix . 'home_card_navigation',
+				'name' => __( 'Sezione "Card di navigazione"', 'design_laboratori_italia' ),
+				'desc' => sprintf(
+					/* translators: %d: the number of pages shown by default */
+					__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Di default sono mostrate solo le pagine di primo livello, cioè senza pagina genitore: una sottopagina promossa non è una card, a meno che in "Sezioni HP" si scelga un livello più ampio (il numero massimo si applica dopo la scelta del livello). Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+					DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS
 				),
+				'type' => 'title',
 			)
 		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'   => $prefix . 'featured_contents_label_box_1',
-				'name' => __( 'Label bottone', 'design_laboratori_italia' ),
-				'type' => 'text',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'         => $prefix . 'featured_contents_type_box_1',
-				'name'       => __( 'Contenuto del box', 'design_laboratori_italia' ),
-				'desc'       => __( 'Seleziona un tipo di contenuto', 'design_laboratori_italia' ),
-				'type'       => 'select',
-				'default'    => NEWS_POST_TYPE,
-				'options_cb' => 'dli_get_boxes_post_types',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'               => $prefix . 'featured_contents_template_box_1',
-				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
-				'desc'             => __( 'Seleziona uno di questi template', 'design_laboratori_italia' ),
-				'type'             => 'select',
-				'default'          => 'card-news',
-				'show_option_none' => false,
-				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
-				),
-			)
-		);
-
-		// Definizione del BOX 2.
-		$featured_contents_group_id = $home_options->add_field(
-			array(
-				'id'         => $prefix . 'featured_contents_2',
-				'type'       => 'group',
-				'repeatable' => false,
-				'options'    => array(
-					'group_title' => __( 'Box 2 dei contenuti in evidenza', 'design_laboratori_italia' ),
-					'closed'      => true,
-				),
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'   => $prefix . 'featured_contents_label_box_2',
-				'name' => __( 'Label bottone', 'design_laboratori_italia' ),
-				'type' => 'text',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'         => $prefix . 'featured_contents_type_box_2',
-				'name'       => __( 'Contenuto del box', 'design_laboratori_italia' ),
-				'desc'       => __( 'Seleziona un tipo di contenuto', 'design_laboratori_italia' ),
-				'type'       => 'select',
-				'default'    => EVENT_POST_TYPE,
-				'options_cb' => 'dli_get_boxes_post_types',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'               => $prefix . 'featured_contents_template_box_2',
-				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
-				'desc'             => __( 'Seleziona uno di questi template', 'design_laboratori_italia' ),
-				'type'             => 'select',
-				'default'          => 'card-eventi',
-				'show_option_none' => false,
-				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
-				),
-			)
-		);
-
-		// Definizione del BOX 3.
-		$featured_contents_group_id = $home_options->add_field(
-			array(
-				'id'         => $prefix . 'featured_contents_3',
-				'type'       => 'group',
-				'repeatable' => false,
-				'options'    => array(
-					'group_title' => __( 'Box 3 dei contenuti in evidenza', 'design_laboratori_italia' ),
-					'closed'      => true,
-				),
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'   => $prefix . 'featured_contents_label_box_3',
-				'name' => __( 'Label bottone', 'design_laboratori_italia' ),
-				'type' => 'text',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'         => $prefix . 'featured_contents_type_box_3',
-				'name'       => __( 'Contenuto del box', 'design_laboratori_italia' ),
-				'desc'       => __( 'Seleziona un tipo di contenuto', 'design_laboratori_italia' ),
-				'type'       => 'select',
-				'default'    => PUBLICATION_POST_TYPE,
-				'options_cb' => 'dli_get_boxes_post_types',
-			)
-		);
-
-		$home_options->add_group_field(
-			$featured_contents_group_id,
-			array(
-				'id'               => $prefix . 'featured_contents_template_box_3',
-				'name'             => __( 'Template del box', 'design_laboratori_italia' ),
-				'desc'             => __( 'Seleziona uno di questi template', 'design_laboratori_italia' ),
-				'type'             => 'select',
-				'default'          => 'card-pubblicazioni',
-				'show_option_none' => false,
-				'options'          => array(
-					'card-news'          => __( 'News singola', 'design_laboratori_italia' ),
-					'card-pubblicazioni' => __( '2 Pubblicazioni', 'design_laboratori_italia' ),
-					'card-eventi'        => __( 'Evento singolo', 'design_laboratori_italia' ),
-				),
-			)
-		);
-
-	// *** SEZIONE "CARD DI NAVIGAZIONE" (HOMEPAGE) ***
-	$home_options->add_field(
-		array(
-			'id'   => $prefix . 'home_card_navigation',
-			'name' => __( 'Sezione "Card di navigazione"', 'design_laboratori_italia' ),
-			'desc' => sprintf(
-				/* translators: %d: the number of pages shown by default */
-				__( 'Mostra fino a %d pagine (modificabile in "Sezioni HP") con il campo "Promuovi in Home" acceso (scheda Pagina), nella lingua corrente, secondo il valore del campo "Ordine" della pagina (Attributi pagina) e poi per titolo. Di default sono mostrate solo le pagine di primo livello, cioè senza pagina genitore: una sottopagina promossa non è una card, a meno che in "Sezioni HP" si scelga un livello più ampio (il numero massimo si applica dopo la scelta del livello). Le pagine in bozza o protette da password non compaiono. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
-				DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS
-			),
-			'type' => 'title',
-		)
-	);
 
 	$home_options->add_field(
 		array(

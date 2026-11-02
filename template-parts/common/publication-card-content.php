@@ -11,6 +11,8 @@
  *  - `post_id`     (int)    The publication.
  *  - `archive_url` (string) Address of the publications page, used by the links of the types.
  *  - `heading`     (string) Tag of the title, `h3` by default.
+ *  - `compact`     (bool)   Authors without a bottom margin, as in the box of the featured contents. Default false.
+ *  - `show_year`   (bool)   Whether the year is printed. Default true; the box of the featured contents turns it off.
  *
  * @package Design_Laboratori_Italia
  */
@@ -19,6 +21,8 @@ $dli_args        = isset( $args ) && is_array( $args ) ? $args : array();
 $dli_item_id     = isset( $dli_args['post_id'] ) ? (int) $dli_args['post_id'] : 0;
 $dli_archive_url = isset( $dli_args['archive_url'] ) ? (string) $dli_args['archive_url'] : '';
 $dli_heading     = isset( $dli_args['heading'] ) && in_array( $dli_args['heading'], array( 'h2', 'h3', 'h4', 'h5' ), true ) ? $dli_args['heading'] : 'h3';
+$dli_compact     = ! empty( $dli_args['compact'] );
+$dli_show_year   = ! isset( $dli_args['show_year'] ) || ! empty( $dli_args['show_year'] );
 
 if ( ! $dli_item_id ) {
 	return;
@@ -27,7 +31,7 @@ if ( ! $dli_item_id ) {
 $dli_item_link      = dli_get_publication_link( $dli_item_id );
 $dli_item_protected = post_password_required( $dli_item_id );
 $dli_item_autori    = $dli_item_protected ? array() : wp_list_pluck( dli_get_publication_authors( $dli_item_id ), 'name' );
-$dli_item_anno      = $dli_item_protected ? '' : (string) dli_get_field( 'anno', $dli_item_id );
+$dli_item_anno      = ( $dli_item_protected || ! $dli_show_year ) ? '' : (string) dli_get_field( 'anno', $dli_item_id );
 $dli_item_terms     = get_the_terms( $dli_item_id, PUBLICATION_TYPE_TAXONOMY );
 $dli_item_terms     = is_array( $dli_item_terms ) ? $dli_item_terms : array();
 ?>
@@ -46,7 +50,7 @@ $dli_item_terms     = is_array( $dli_item_terms ) ? $dli_item_terms : array();
 </<?php echo esc_attr( $dli_heading ); ?>>
 <?php if ( ! empty( $dli_item_autori ) ) : ?>
 	<div class="it-card-body">
-		<p class="it-card-text text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( implode( ', ', $dli_item_autori ) ); ?></p>
+		<p class="it-card-text<?php echo $dli_compact ? ' mb-0' : ''; ?> text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( implode( ', ', $dli_item_autori ) ); ?></p>
 	</div>
 <?php endif; ?>
 <?php if ( ! empty( $dli_item_terms ) || '' !== $dli_item_anno ) : ?>

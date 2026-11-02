@@ -38,6 +38,9 @@ define( 'DLI_HP_CARD_NAVIGATION_DEFAULT_ITEMS', 6 );
 // "Card di navigazione": the level of the promoted pages it lists. 1 = the pages of the first level only (the default),
 // 2 and 3 = up to that level, 0 = all the levels. The editor chooses it in each row of Sezioni HP among DLI_HP_PAGE_LEVELS.
 define( 'DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL', 1 );
+
+// Items of each box of the homepage section "Contenuti in evidenza".
+define( 'DLI_HP_FEATURED_ITEMS', 3 );
 define( 'DLI_HP_PAGE_LEVELS', array( 1, 2, 3, 0 ) );
 // "Navigazione per pagine": groups (promoted pages with subpages) and subpages per group shown by default.
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS', 4 );

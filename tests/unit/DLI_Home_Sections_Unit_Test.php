@@ -473,4 +473,70 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertSame( '<p>Testo due</p>', $english[1]['text'], 'A missing English text is the Italian one.' );
 		$this->assertSame( array( 8 ), $english[2]['page_ids'] );
 	}
+
+	/**
+	 * The renderer of a box follows its content type; a type without a dedicated one has the essential fallback.
+	 */
+	public function test_featured_renderer_follows_the_content_type() {
+		$this->assertSame( 'card-notizia', dli_get_featured_renderer( 'notizia' ) );
+		$this->assertSame( 'card-evento', dli_get_featured_renderer( 'evento' ) );
+		$this->assertSame( 'card-pubblicazione', dli_get_featured_renderer( 'pubblicazione' ) );
+		$this->assertSame( 'card-fallback', dli_get_featured_renderer( 'progetto' ), 'A type without a renderer has the fallback.' );
+		$this->assertSame( 'card-fallback', dli_get_featured_renderer( '' ) );
+		$this->assertSame( 'card-fallback', dli_get_featured_renderer( null ) );
+		$this->assertSame( 'card-fallback', dli_get_featured_renderer( array( 'notizia' ) ), 'A value that is not text has the fallback.' );
+	}
+
+	/**
+	 * The boxes share the row: one is full width, two take half each, three a third; never an empty column.
+	 */
+	public function test_featured_columns_follow_the_number_of_boxes() {
+		$this->assertSame( 'col-12', dli_get_featured_column_class( 1 ) );
+		$this->assertSame( 'col-12 col-lg-6', dli_get_featured_column_class( 2 ) );
+		$this->assertSame( 'col-12 col-lg-4', dli_get_featured_column_class( 3 ) );
+		$this->assertSame( 'col-12', dli_get_featured_column_class( 0 ), 'No box is the full width, for safety.' );
+		$this->assertSame( 'col-12 col-lg-4', dli_get_featured_column_class( 7 ), 'More than three boxes are three per row.' );
+	}
+
+	/**
+	 * A saved box: the content type and the title in the language of the page, English falling back to Italian.
+	 */
+	public function test_featured_box_is_read_from_the_saved_group() {
+		$option = array(
+			0 => array(
+				'featured_contents_label_box_2'                              => 'Eventi',
+				'featured_contents_label_box_2' . DLI_ENG_SUFFIX_LANGUAGE    => 'Events',
+				'featured_contents_type_box_2'                               => 'evento',
+				'featured_contents_template_box_2'                           => 'card-notizia',
+			),
+		);
+
+		$this->assertSame(
+			array(
+				'type'  => 'evento',
+				'title' => 'Eventi',
+			),
+			dli_normalize_featured_box( $option, 2, true )
+		);
+		$this->assertSame( 'Events', dli_normalize_featured_box( $option, 2, false )['title'] );
+
+		unset( $option[0][ 'featured_contents_label_box_2' . DLI_ENG_SUFFIX_LANGUAGE ] );
+		$this->assertSame( 'Eventi', dli_normalize_featured_box( $option, 2, false )['title'], 'A missing English title is the Italian one.' );
+
+		$option[0]['featured_contents_label_box_2'] = '';
+		$this->assertSame( '', dli_normalize_featured_box( $option, 2, true )['title'], 'An empty title stays empty: the section gives the default.' );
+	}
+
+	/**
+	 * A box without a usable content type is not a box.
+	 */
+	public function test_featured_box_needs_a_content_type() {
+		$this->assertNull( dli_normalize_featured_box( false, 1, true ), 'An option never saved.' );
+		$this->assertNull( dli_normalize_featured_box( array(), 1, true ) );
+		$this->assertNull( dli_normalize_featured_box( array( 'not a row' ), 1, true ) );
+		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_label_box_1' => 'Solo titolo' ) ), 1, true ), 'No type.' );
+		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_1' => '' ) ), 1, true ), 'An empty type.' );
+		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_1' => array( 'notizia' ) ) ), 1, true ), 'A type that is not text.' );
+		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_2' => 'notizia' ) ), 1, true ), 'The keys of another box are not read.' );
+	}
 }

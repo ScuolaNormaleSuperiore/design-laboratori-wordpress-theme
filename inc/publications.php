@@ -77,20 +77,6 @@ if ( ! function_exists( 'dli_get_publication_link' ) ) {
 	 *                                            site or to a file: it opens in a new window).
 	 */
 	function dli_get_publication_link( $publication ) {
-		$publication = get_post( $publication );
-		if ( ! $publication instanceof WP_Post ) {
-			return array(
-				'url'      => '',
-				'external' => false,
-			);
-		}
-
-		$permalink = get_permalink( $publication );
-		$url       = post_password_required( $publication ) ? $permalink : (string) dli_manage_item_link( $publication );
-
-		return array(
-			'url'      => $url,
-			'external' => '' !== $url && $url !== $permalink,
-		);
+		return dli_get_content_link( $publication );
 	}
 }
