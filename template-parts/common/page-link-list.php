@@ -2,7 +2,8 @@
 /**
  * A list of links to pages, in the style "Azioni, con freccia" of Bootstrap Italia.
  *
- * Used by the homepage section "Navigazione per pagine", which prints the same list twice (columns and accordion).
+ * Used by `template-parts/common/page-groups.php`, so by the homepage sections "Navigazione per pagine" and "Indice di
+ * una pagina", which print the same list twice (columns and accordion).
  *
  * Arguments (`$args`):
  *  - `items`         (array)  The pages: each with `title` and `url`.

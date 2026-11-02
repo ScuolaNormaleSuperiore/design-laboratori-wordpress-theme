@@ -108,6 +108,9 @@ Campi principali (gruppo ripetibile `site_sections`):
 - `Sezione`
   tipo: `select`
   funzione: identificativo della sezione da mostrare.
+- `Pagina` (solo per `Indice di una pagina`)
+  tipo: `select`
+  funzione: la pagina di cui la sezione mostra l'indice. Si sceglie fra le pagine pubblicate in italiano e senza password, con le sottopagine rientrate; una pagina già scelta che diventa bozza o protetta resta fra le scelte con l'indicazione «(non visibile)», così salvando non si perde. Con `Numero massimo di elementi` (colonne, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (link per colonna, vuoto = 6) la sezione si può ripetere, ogni volta con una pagina diversa, anche con la stessa.
 - `Abilita la sezione`
   tipo: `radio_inline`
   funzione: attiva/disattiva la sezione in home.
@@ -158,21 +161,21 @@ Campi principali:
   tipo: `group` con i campi `Titolo sezione` / `Titolo sezione ENG` (`text`) e `Contenuto del box` (`select`)
   funzione: configura i tre box della sezione «Contenuti in evidenza» della home. Ogni box ha un tipo di contenuto e un titolo in italiano e in inglese: il layout lo decide il tipo e non si sceglie (il vecchio campo `Template del box` non c'è più; il valore salvato dai siti esistenti resta nel database ma non viene letto). Ogni box mostra fino a 3 contenuti con il campo `Promuovi in Home` acceso, nella lingua corrente, dal più recente: le notizie e gli eventi sono un elenco senza immagini (la notizia: titolo, poi in fondo la categoria, che porta alla pagina delle notizie filtrata per quella categoria se la pagina esiste, e la data scritta giorno/mese/anno (per esempio 15/01/2026); l'evento, come nel playground: titolo, poi nel corpo la propria data e ora, non la data di pubblicazione, e il luogo, poi in fondo la categoria, che porta alla pagina degli eventi filtrata per quella categoria se la pagina esiste; una riga che l'evento non ha non compare), le pubblicazioni mostrano titolo, autori e tipologia, senza l'anno (che invece compare nella sezione «Pubblicazioni» della home e nell'elenco), gli altri tipi (progetti, brevetti, persone, luoghi, post) un layout essenziale con titolo, immagine, riassunto e link. Il titolo di un contenuto porta dove ha scelto l'editor (pagina, sito esterno o file); senza indirizzo è solo testo. Il titolo del box in inglese, se vuoto, è quello italiano; un titolo vuoto in italiano è il nome del tipo. Un box senza contenuti non compare e gli altri si dividono la riga: uno occupa tutta la riga, due metà ciascuno, tre un terzo ciascuno. Sotto ogni box il pulsante («Tutte le news», «Tutti gli eventi», «Tutte le pubblicazioni», «Vedi tutti» per gli altri tipi) porta alla pagina elenco del tipo, solo se quella pagina esiste, è pubblicata e ha la traduzione nella lingua corrente. La sezione si attiva e si ordina in `Sezioni HP`.
 
-Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di navigazione`, `Navigazione per pagine` e le pagine collegate di `Pannello tab`):
+Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di navigazione`, `Navigazione per pagine`, le pagine collegate di `Pannello tab` e `Indice di una pagina`):
 
-| Criterio | `Card di navigazione` | `Navigazione per pagine` | `Pannello tab` (pagine collegate) |
-|---|---|---|---|
-| Campo `Promuovi in Home` acceso | sì, obbligatorio | sì, obbligatorio (è lo stesso campo) | no: le pagine si scelgono a mano in ogni tab |
-| Pagina pubblicata | sì (le bozze non compaiono) | sì (anche le sottopagine devono essere pubblicate) | sì (le bozze non compaiono) |
-| Senza password | sì (le pagine protette non compaiono e non occupano un posto) | sì (vale anche per le sottopagine) | sì (le pagine protette non compaiono) |
-| Lingua | solo la lingua corrente | solo la lingua corrente | si sceglie la pagina in italiano; sul sito inglese compare la sua traduzione, e senza traduzione la pagina non compare |
-| Livello della pagina | scelto per riga in `Sezioni HP` con `Livello delle pagine`: di default solo il primo livello (senza pagina genitore) | qualsiasi livello | qualsiasi livello |
-| Sottopagine pubblicate | non servono | sì, almeno una: senza sottopagine la pagina non fa gruppo | non servono |
-| Cosa mostra | una card per pagina (titolo, riassunto, link) | un gruppo per pagina: il titolo e i link alle sue sottopagine dirette | un elenco di link in fondo al pannello del tab, dopo la descrizione |
-| Ordine | campo `Ordine` della pagina (`Attributi pagina`), poi titolo | come le card, sia per i gruppi sia per le sottopagine di ogni gruppo | quello della scelta nel campo `Pagine collegate` |
-| Numero massimo | `Numero massimo di elementi` (vuoto = 6), applicato dopo il livello | `Numero massimo di elementi` per i gruppi (vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12 | nessun limite |
+| Criterio | `Card di navigazione` | `Navigazione per pagine` | `Pannello tab` (pagine collegate) | `Indice di una pagina` |
+|---|---|---|---|---|
+| Campo `Promuovi in Home` acceso | sì, obbligatorio | sì, obbligatorio (è lo stesso campo) | no: le pagine si scelgono a mano in ogni tab | no: la pagina si sceglie a mano nella riga |
+| Pagina pubblicata | sì (le bozze non compaiono) | sì (anche le sottopagine devono essere pubblicate) | sì (le bozze non compaiono) | sì, la pagina scelta e le sottopagine (le bozze non compaiono) |
+| Senza password | sì (le pagine protette non compaiono e non occupano un posto) | sì (vale anche per le sottopagine) | sì (le pagine protette non compaiono) | sì, la pagina scelta e le sottopagine |
+| Lingua | solo la lingua corrente | solo la lingua corrente | si sceglie la pagina in italiano; sul sito inglese compare la sua traduzione, e senza traduzione la pagina non compare | si sceglie la pagina in italiano; sul sito inglese compare la sua traduzione con le sue sottopagine, e senza traduzione la sezione non compare |
+| Livello della pagina | scelto per riga in `Sezioni HP` con `Livello delle pagine`: di default solo il primo livello (senza pagina genitore) | qualsiasi livello | qualsiasi livello | la pagina scelta, le sue sottopagine dirette (colonne) e le loro sottopagine dirette (link) |
+| Sottopagine pubblicate | non servono | sì, almeno una: senza sottopagine la pagina non fa gruppo | non servono | sì, almeno una per ogni colonna: una sottopagina senza figli non è una colonna; senza colonne la sezione non compare |
+| Cosa mostra | una card per pagina (titolo, riassunto, link) | un gruppo per pagina: il titolo e i link alle sue sottopagine dirette | un elenco di link in fondo al pannello del tab, dopo la descrizione | il titolo della pagina scelta (se `Mostra il titolo della sezione` è attivo), una colonna per sottopagina con i link ai suoi figli |
+| Ordine | campo `Ordine` della pagina (`Attributi pagina`), poi titolo | come le card, sia per i gruppi sia per le sottopagine di ogni gruppo | quello della scelta nel campo `Pagine collegate` | campo `Ordine` della pagina, poi titolo, sia per le colonne sia per i link |
+| Numero massimo | `Numero massimo di elementi` (vuoto = 6), applicato dopo il livello | `Numero massimo di elementi` per i gruppi (vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12 | nessun limite | `Numero massimo di elementi` per le colonne (vuoto = 4) e `Numero massimo di sottopagine per gruppo` per i link di ogni colonna (vuoto = 6), da 1 a 12 |
 
-Le pagine collegate di `Pannello tab` non dipendono dall'albero né dal campo `Promuovi in Home`: sono quelle scelte tab per tab.
+Le pagine collegate di `Pannello tab` non dipendono dall'albero né dal campo `Promuovi in Home`: sono quelle scelte tab per tab. `Indice di una pagina` dipende dall'albero della pagina scelta nella riga, non dal campo `Promuovi in Home`.
 
 Esempio, con le pagine create da `Strumenti DLI > Utilità > Pagine di esempio` (in italiano; `*` = `Promuovi in Home` acceso):
 

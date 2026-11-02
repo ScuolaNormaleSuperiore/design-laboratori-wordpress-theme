@@ -94,30 +94,6 @@ if ( ! function_exists( 'dli_get_tab_pages_for_select' ) ) {
 		foreach ( dli_normalize_hp_tab_rows( dli_get_option( 'home_tabs_items', 'homepage' ) ) as $row ) {
 			$chosen = array_merge( $chosen, $row['page_ids'] );
 		}
-		$missing = array_diff( array_unique( $chosen ), array_keys( $options ) );
-		if ( empty( $missing ) ) {
-			return $options;
-		}
-
-		$pages = get_posts(
-			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'any',
-				'post__in'       => $missing,
-				'orderby'        => 'post__in',
-				'posts_per_page' => -1,
-			)
-		);
-		foreach ( $pages as $page ) {
-			$can_be_shown         = ( 'publish' === $page->post_status && '' === $page->post_password );
-			$title                = get_the_title( $page );
-			$options[ $page->ID ] = $can_be_shown ? $title : sprintf(
-				/* translators: %s: the title of a page that is a draft, private or protected by a password */
-				__( '%s (non visibile)', 'design_laboratori_italia' ),
-				$title
-			);
-		}
-
-		return $options;
+		return dli_add_chosen_pages_to_select( $options, $chosen );
 	}
 }

@@ -36,7 +36,6 @@ $dli_text         = (string) dli_get_configuration_field_by_lang( 'home_page_nav
 $dli_bg_class     = dli_get_hp_section_background_class( $dli_args, 'muted' );
 $dli_section_id   = 'blocco-page-navigation-' . $dli_instance;
 $dli_title_id     = $dli_section_id . '-title';
-$dli_accordion_id = 'page-navigation-' . $dli_instance . '-accordion';
 $dli_title_shown  = ( 'true' === $dli_show_title && '' !== $dli_title );
 $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 ?>
@@ -51,55 +50,18 @@ $dli_column_class = dli_get_hp_groups_column_class( count( $dli_groups ) );
 				<p class="pb-3"><?php echo esc_html( $dli_text ); ?></p>
 			<?php endif; ?>
 
-			<!-- Tablet e desktop: colonne -->
-			<div class="row d-none d-md-flex">
-				<?php foreach ( $dli_groups as $dli_group ) : ?>
-					<?php $dli_group_title_id = 'page-navigation-' . $dli_instance . '-title-' . $dli_group['id']; ?>
-					<div class="<?php echo esc_attr( $dli_column_class ); ?> mb-4">
-						<h3 id="<?php echo esc_attr( $dli_group_title_id ); ?>" class="h5 fw-bold"><?php echo esc_html( $dli_group['title'] ); ?></h3>
-						<?php
-						get_template_part(
-							'template-parts/common/page-link-list',
-							null,
-							array(
-								'items'       => $dli_group['items'],
-								'labelled_by' => $dli_group_title_id,
-							)
-						);
-						?>
-					</div>
-				<?php endforeach; ?>
-			</div>
-
-			<!-- Telefono: accordion, il primo pannello aperto -->
-			<div class="accordion d-md-none" id="<?php echo esc_attr( $dli_accordion_id ); ?>">
-				<?php foreach ( $dli_groups as $dli_index => $dli_group ) : ?>
-					<?php
-					$dli_is_first = ( 0 === $dli_index );
-					$dli_head_id  = 'page-navigation-' . $dli_instance . '-head-' . $dli_group['id'];
-					$dli_body_id  = 'page-navigation-' . $dli_instance . '-body-' . $dli_group['id'];
-					?>
-					<div class="accordion-item">
-						<h3 class="accordion-header" id="<?php echo esc_attr( $dli_head_id ); ?>">
-							<button
-								class="accordion-button<?php echo $dli_is_first ? '' : ' collapsed'; ?>"
-								type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#<?php echo esc_attr( $dli_body_id ); ?>"
-								aria-expanded="<?php echo $dli_is_first ? 'true' : 'false'; ?>"
-								aria-controls="<?php echo esc_attr( $dli_body_id ); ?>"
-							>
-								<?php echo esc_html( $dli_group['title'] ); ?>
-							</button>
-						</h3>
-						<div id="<?php echo esc_attr( $dli_body_id ); ?>" class="accordion-collapse collapse<?php echo $dli_is_first ? ' show' : ''; ?>" role="region" aria-labelledby="<?php echo esc_attr( $dli_head_id ); ?>" data-bs-parent="#<?php echo esc_attr( $dli_accordion_id ); ?>">
-							<div class="accordion-body">
-								<?php get_template_part( 'template-parts/common/page-link-list', null, array( 'items' => $dli_group['items'] ) ); ?>
-							</div>
-						</div>
-					</div>
-				<?php endforeach; ?>
-			</div>
+			<?php
+			get_template_part(
+				'template-parts/common/page-groups',
+				null,
+				array(
+					'groups'       => $dli_groups,
+					'instance'     => $dli_instance,
+					'prefix'       => 'page-navigation',
+					'column_class' => $dli_column_class,
+				)
+			);
+			?>
 		</div>
 	</div>
 </section>

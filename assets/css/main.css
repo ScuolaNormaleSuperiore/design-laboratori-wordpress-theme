@@ -466,19 +466,29 @@ ul.it-card-list.row {
 	font-size: var(--bsi-label-font-size);
 }
 
-/* Homepage section "Navigazione per pagine": match the list interaction of the
-	"Le sezioni del sito" prototype. Bootstrap Italia otherwise underlines links at rest
-	and adds a white background and shadow on hover, which is unwanted on this muted section. */
-.page-navigation-section .it-list .list-item .text {
+/* Homepage sections that print a list of page links ("Navigazione per pagine", "Indice di una pagina" and the
+	pages of "Pannello tab"): match the list interaction of the playground. Bootstrap Italia otherwise underlines the
+	links at rest and adds a white background and shadow on hover (a box that shows on a grey section). The links
+	are not underlined at rest and are underlined when pointed at or reached with the keyboard: the underline on focus
+	is kept on purpose, a visible change that does not depend on color. */
+.page-navigation-section .it-list .list-item .text,
+.page-index-section .it-list .list-item .text,
+.tabs-section .it-list .list-item .text {
 	text-decoration: none;
 }
 
 .page-navigation-section .it-list .list-item:hover .text,
-.page-navigation-section .it-list .list-item:focus-visible .text {
+.page-navigation-section .it-list .list-item:focus-visible .text,
+.page-index-section .it-list .list-item:hover .text,
+.page-index-section .it-list .list-item:focus-visible .text,
+.tabs-section .it-list .list-item:hover .text,
+.tabs-section .it-list .list-item:focus-visible .text {
 	text-decoration: underline;
 }
 
-.page-navigation-section .it-list a.list-item:hover {
+.page-navigation-section .it-list a.list-item:hover,
+.page-index-section .it-list a.list-item:hover,
+.tabs-section .it-list a.list-item:hover {
 	background-color: transparent;
 	box-shadow: none;
 }

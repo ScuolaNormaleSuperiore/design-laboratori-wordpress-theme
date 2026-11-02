@@ -37,7 +37,7 @@ $dli_tabs_id     = 'tabs-' . $dli_instance;
 $dli_icons       = get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg';
 ?>
 <!-- INIZIO SEZIONE "PANNELLO TAB" -->
-<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Pannello tab', 'design_laboratori_italia' ) . '"'; ?>>
+<section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section tabs-section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" <?php echo $dli_title_shown ? 'aria-labelledby="' . esc_attr( $dli_title_id ) . '"' : 'aria-label="' . esc_attr__( 'Pannello tab', 'design_laboratori_italia' ) . '"'; ?>>
 	<div class="section-content">
 		<div class="container">
 			<?php if ( $dli_title_shown ) : ?>

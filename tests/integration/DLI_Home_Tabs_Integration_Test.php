@@ -399,6 +399,23 @@ class DLI_Home_Tabs_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The section carries the class that its list of links is styled by (no underline at rest, see assets/css/main.css).
+	 */
+	public function test_the_section_carries_the_class_of_the_list_style() {
+		$this->add_english();
+		$this->set_tabs(
+			array(
+				array(
+					'etichetta'   => 'Uno',
+					'descrizione' => '<p>Testo</p>',
+				),
+			)
+		);
+
+		$this->assertMatchesRegularExpression( '#<section [^>]*class="section tabs-section[ "]#', $this->render_section() );
+	}
+
+	/**
 	 * The linked pages are printed as a list of links in the language of the page.
 	 */
 	public function test_linked_pages_are_printed_as_links() {

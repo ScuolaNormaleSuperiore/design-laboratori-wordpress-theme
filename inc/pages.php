@@ -6,8 +6,12 @@
  *  - dli_get_subpage_cards()        The direct subpages of a page that can be listed as navigation cards.
  *  - dli_get_promoted_page_cards()  The pages promoted to the home that "Card di navigazione" lists as cards, by level.
  *  - dli_get_promoted_page_groups() The promoted pages with their subpages, for "Navigazione per pagine".
+ *  - dli_get_page_link_group()      A page with the links to its direct subpages: a group of a homepage section.
+ *  - dli_get_page_index()           The index of a page: its subpages as columns, their subpages as links.
  *  - dli_get_page_in_current_language() A page, or its translation, in the current language, when it can be shown.
  *  - dli_get_pages_for_select()      The pages of the default language that an editor can choose in an options field.
+ *  - dli_add_chosen_pages_to_select() The choices of a page field plus the pages already chosen that can no longer be shown.
+ *  - dli_get_index_pages_for_select() The pages to choose for "Indice di una pagina", with the ones already chosen.
  *
  * @package Design_Laboratori_Italia
  */
@@ -152,6 +156,121 @@ if ( ! function_exists( 'dli_get_promoted_page_cards' ) ) {
 	}
 }
 
+if ( ! function_exists( 'dli_get_page_link_group' ) ) {
+	/**
+	 * A page with the links to its direct subpages, as a group of a homepage section.
+	 *
+	 * The links are the published subpages without a password, ordered by the field "Ordine" of the page
+	 * (`menu_order`) and then by title, up to the limit. A page that has none is no group.
+	 *
+	 * @param WP_Post|int $parent    The page.
+	 * @param int         $max_items The most links to return.
+	 * @return array{id: int, title: string, items: array<int, array{id: int, title: string, url: string}>}|null The group, or null.
+	 */
+	function dli_get_page_link_group( $parent, $max_items ) {
+		$parent = get_post( $parent );
+		if ( ! $parent instanceof WP_Post ) {
+			return null;
+		}
+
+		$children = get_posts(
+			array(
+				'post_type'      => WP_DEFAULT_PAGE,
+				'post_status'    => 'publish',
+				'has_password'   => false,
+				'post_parent'    => $parent->ID,
+				'orderby'        => array(
+					'menu_order' => 'ASC',
+					'title'      => 'ASC',
+				),
+				'posts_per_page' => max( 1, (int) $max_items ),
+			)
+		);
+		if ( empty( $children ) ) {
+			return null;
+		}
+
+		$items = array();
+		foreach ( $children as $child ) {
+			$items[] = array(
+				'id'    => $child->ID,
+				'title' => get_the_title( $child ),
+				'url'   => (string) get_permalink( $child ),
+			);
+		}
+
+		return array(
+			'id'    => $parent->ID,
+			'title' => get_the_title( $parent ),
+			'items' => $items,
+		);
+	}
+}
+
+if ( ! function_exists( 'dli_get_page_index' ) ) {
+	/**
+	 * The index of a page, for the section "Indice di una pagina": its subpages as columns, their subpages as links.
+	 *
+	 * The page is the one chosen in the row, shown in the current language (`dli_get_page_in_current_language()`: a
+	 * draft, a protected page, a page that is gone or has no translation gives no index). The columns are the
+	 * published subpages without a password that have at least one subpage of their own, in order, up to the limit;
+	 * a subpage without children of its own is not a column. Without any column there is no index.
+	 *
+	 * @param int $page_id    The page chosen in the row.
+	 * @param int $max_groups The most columns to return.
+	 * @param int $max_items  The most links to return in each column.
+	 * @return array{id: int, title: string, groups: array<int, array{id: int, title: string, items: array<int, array{id: int, title: string, url: string}>}>}|null The index, or null.
+	 */
+	function dli_get_page_index( $page_id, $max_groups, $max_items ) {
+		if ( (int) $page_id <= 0 ) {
+			return null;
+		}
+
+		$page = dli_get_page_in_current_language( $page_id );
+		if ( null === $page ) {
+			return null;
+		}
+
+		$max_groups = max( 1, (int) $max_groups );
+		$children   = get_posts(
+			array(
+				'post_type'      => WP_DEFAULT_PAGE,
+				'post_status'    => 'publish',
+				'has_password'   => false,
+				'post_parent'    => $page->ID,
+				'orderby'        => array(
+					'menu_order' => 'ASC',
+					'title'      => 'ASC',
+				),
+				'posts_per_page' => -1,
+			)
+		);
+
+		$groups = array();
+		foreach ( $children as $child ) {
+			$group = dli_get_page_link_group( $child, $max_items );
+			if ( null === $group ) {
+				continue;
+			}
+
+			$groups[] = $group;
+			if ( count( $groups ) >= $max_groups ) {
+				break;
+			}
+		}
+
+		if ( empty( $groups ) ) {
+			return null;
+		}
+
+		return array(
+			'id'     => $page->ID,
+			'title'  => get_the_title( $page ),
+			'groups' => $groups,
+		);
+	}
+}
+
 if ( ! function_exists( 'dli_get_promoted_page_groups' ) ) {
 	/**
 	 * The promoted pages with their subpages, as groups, for the section "Navigazione per pagine".
@@ -192,37 +311,12 @@ if ( ! function_exists( 'dli_get_promoted_page_groups' ) ) {
 
 		$groups = array();
 		foreach ( $parents as $parent ) {
-			$children = get_posts(
-				array(
-					'post_type'      => WP_DEFAULT_PAGE,
-					'post_status'    => 'publish',
-					'has_password'   => false,
-					'post_parent'    => $parent->ID,
-					'orderby'        => array(
-						'menu_order' => 'ASC',
-						'title'      => 'ASC',
-					),
-					'posts_per_page' => $max_items,
-				)
-			);
-			if ( empty( $children ) ) {
+			$group = dli_get_page_link_group( $parent, $max_items );
+			if ( null === $group ) {
 				continue;
 			}
 
-			$items = array();
-			foreach ( $children as $child ) {
-				$items[] = array(
-					'id'    => $child->ID,
-					'title' => get_the_title( $child ),
-					'url'   => (string) get_permalink( $child ),
-				);
-			}
-
-			$groups[] = array(
-				'id'    => $parent->ID,
-				'title' => get_the_title( $parent ),
-				'items' => $items,
-			);
+			$groups[] = $group;
 			if ( count( $groups ) >= $max_groups ) {
 				break;
 			}
@@ -263,6 +357,72 @@ if ( ! function_exists( 'dli_get_page_in_current_language' ) ) {
 		}
 
 		return $page;
+	}
+}
+
+if ( ! function_exists( 'dli_add_chosen_pages_to_select' ) ) {
+	/**
+	 * The choices of a page field, with the pages already chosen that can no longer be shown added to them.
+	 *
+	 * A choice field drops from the saved value what it does not list, so without this saving the form for any
+	 * reason would lose the page of a draft or a protected page for good. A page that cannot be shown says so in its
+	 * label; a page that no longer exists is not listed. The pages are looked for in every language (`lang` empty):
+	 * the filter of Polylang by the language of the screen must not hide a page already chosen.
+	 *
+	 * @param array<int, string> $options The choices, from `dli_get_pages_for_select()`.
+	 * @param int[]              $chosen  The IDs of the pages already chosen.
+	 * @return array<int, string> The choices.
+	 */
+	function dli_add_chosen_pages_to_select( $options, $chosen ) {
+		$missing = array_diff( array_unique( array_map( 'intval', $chosen ) ), array_keys( $options ) );
+		if ( empty( $missing ) ) {
+			return $options;
+		}
+
+		$pages = get_posts(
+			array(
+				'post_type'      => WP_DEFAULT_PAGE,
+				'post_status'    => 'any',
+				'lang'           => '',
+				'post__in'       => $missing,
+				'orderby'        => 'post__in',
+				'posts_per_page' => -1,
+			)
+		);
+		foreach ( $pages as $page ) {
+			$can_be_shown         = ( 'publish' === $page->post_status && '' === $page->post_password );
+			$title                = get_the_title( $page );
+			$options[ $page->ID ] = $can_be_shown ? $title : sprintf(
+				/* translators: %s: the title of a page that is a draft, private or protected by a password */
+				__( '%s (non visibile)', 'design_laboratori_italia' ),
+				$title
+			);
+		}
+
+		return $options;
+	}
+}
+
+if ( ! function_exists( 'dli_get_index_pages_for_select' ) ) {
+	/**
+	 * The pages an editor can choose for the section "Indice di una pagina", for the `options_cb` of the field "Pagina".
+	 *
+	 * The pages of `dli_get_pages_for_select()` plus the ones already chosen in a row of Sezioni HP that can no
+	 * longer be shown (`dli_add_chosen_pages_to_select()`).
+	 *
+	 * @return array<int, string> The titles of the pages, by page ID.
+	 */
+	function dli_get_index_pages_for_select() {
+		$chosen = array();
+		$rows   = dli_get_option( 'site_sections', 'homepage_sections' );
+		foreach ( is_array( $rows ) ? $rows : array() as $row ) {
+			$page_id = is_array( $row ) ? dli_sanitize_hp_page_id( $row['page_id'] ?? '' ) : '';
+			if ( '' !== $page_id ) {
+				$chosen[] = $page_id;
+			}
+		}
+
+		return dli_add_chosen_pages_to_select( dli_get_pages_for_select(), $chosen );
 	}
 }
 

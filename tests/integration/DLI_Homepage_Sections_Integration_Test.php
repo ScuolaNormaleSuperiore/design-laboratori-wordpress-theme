@@ -140,7 +140,7 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 					'enabled'    => 'true',
 					'show_title' => 'true',
 					'background' => 'muted',
-					'page_id'    => '42',
+					'extra'      => '42',
 				),
 				array(
 					'id'         => 'events_section',
@@ -155,7 +155,7 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 
 		$this->assertArrayNotHasKey( 'background', $rows[0] );
 		$this->assertSame( 'muted', $rows[1]['background'] );
-		$this->assertSame( '42', $rows[1]['page_id'], 'Extra properties reach the template.' );
+		$this->assertSame( '42', $rows[1]['extra'], 'Extra properties reach the template.' );
 		$this->assertArrayNotHasKey( 'background', $rows[2], 'A wrong background is not passed on.' );
 	}
 

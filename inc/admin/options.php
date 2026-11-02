@@ -495,6 +495,26 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	// The page of the section "Indice di una pagina", chosen in the row, only for the sections that have the key
+	// `page_id` in the catalog. The choices are the pages of the default language; a page already chosen that can no
+	// longer be shown stays among them, so that saving does not drop it. The value is a page ID, checked on the server.
+	$page_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_page_id() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'               => 'page_id',
+			'name'             => __( 'Pagina', 'design_laboratori_italia' ),
+			'desc'             => __( 'La pagina scelta: le sue sottopagine dirette sono le colonne della sezione e le loro sottopagine i link (una sottopagina senza figli non compare). Si sceglie fra le pagine pubblicate in italiano, con le sottopagine rientrate; sul sito inglese compare la traduzione, e senza traduzione la sezione non compare.', 'design_laboratori_italia' ),
+			'type'             => 'select',
+			'show_option_none' => __( 'Scegli una pagina', 'design_laboratori_italia' ),
+			'options_cb'       => 'dli_get_index_pages_for_select',
+			'sanitization_cb'  => 'dli_sanitize_hp_page_id',
+			'attributes'       => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $page_sections ? $page_sections : '__nessuna__',
+			),
+		)
+	);
 	// The background can be chosen only for the sections that support it (key `background` of the catalog);
 	// when none does, the value never matches, so the field stays hidden. The value is sanitized on the server too.
 	$background_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_background() ) );

@@ -45,6 +45,10 @@ define( 'DLI_HP_PAGE_LEVELS', array( 1, 2, 3, 0 ) );
 // "Navigazione per pagine": groups (promoted pages with subpages) and subpages per group shown by default.
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS', 4 );
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_SUBITEMS', 4 );
+
+// "Indice di una pagina": the most columns and the most links of a column, when the row says nothing.
+define( 'DLI_HP_PAGE_INDEX_DEFAULT_ITEMS', 4 );
+define( 'DLI_HP_PAGE_INDEX_DEFAULT_SUBITEMS', 6 );
 define( 'DLI_HP_ITEMS_MIN', 1 );
 define( 'DLI_HP_ITEMS_MAX', 12 );
 
@@ -391,6 +395,16 @@ define(
 				'background'   => 'muted',
 				'max_items'    => 4,
 				'max_subitems' => 4,
+			),
+		'page_index_section'       =>
+			array(
+				'id'           => 'page_index_section',
+				'name'         => 'Indice di una pagina',
+				'template'     => 'template-parts/home/hp-page-index-section',
+				'background'   => 'white',
+				'max_items'    => DLI_HP_PAGE_INDEX_DEFAULT_ITEMS,
+				'max_subitems' => DLI_HP_PAGE_INDEX_DEFAULT_SUBITEMS,
+				'page_id'      => true,
 			),
 		'tabs_section'            =>
 			array(

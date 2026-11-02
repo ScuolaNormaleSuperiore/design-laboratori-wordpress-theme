@@ -12,6 +12,7 @@
  *  - dli_parse_hp_page_level()             The level of the pages if it is one of the choices, otherwise null.
  *  - dli_normalize_hp_page_level()         The level of the pages a section lists, one of the choices or a default.
  *  - dli_sanitize_hp_page_level()          Sanitization of the field "Livello delle pagine".
+ *  - dli_sanitize_hp_page_id()            Sanitization of the field "Pagina": the ID of a page, or nothing.
  *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
  *  - dli_get_hp_groups_column_class()      The columns of the groups of "Navigazione per pagine".
  *  - dli_is_blank_text()                   Whether a text has nothing to show (empty, spaces, tags, non-breaking spaces).
@@ -172,7 +173,7 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 	 * Nothing is rewritten in the database: the saved rows are only read. A row that is not an array, or
 	 * without the id of a section, is left out. `enabled` and `show_title` are `true` only when saved
 	 * as `true`, otherwise `false`. A background that is not white or muted is dropped, so the template uses
-	 * the default of its section. A `max_items` or `max_subitems` that is not a whole number is dropped and one out of range is brought to the nearest limit. A `max_level` that is not one of the choices is dropped. Any other property of the row is kept as it is, in the same order. Every row
+	 * the default of its section. A `max_items` or `max_subitems` that is not a whole number is dropped and one out of range is brought to the nearest limit. A `max_level` that is not one of the choices is dropped. A `page_id` that is not the ID of a page (a whole positive number) is dropped and a valid one is kept as an integer (`dli_sanitize_hp_page_id()`). Any other property of the row is kept as it is, in the same order. Every row
 	 * carries `instance`, the position (starting from 1) it has in the saved list, that stays the same when
 	 * other rows are turned off: a section that can be repeated uses it to have its own identifiers.
 	 *
@@ -220,12 +221,45 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 					$row['max_level'] = $level;
 				}
 			}
+			if ( array_key_exists( 'page_id', $row ) ) {
+				$page_id = dli_sanitize_hp_page_id( $row['page_id'] );
+				if ( '' === $page_id ) {
+					unset( $row['page_id'] );
+				} else {
+					$row['page_id'] = $page_id;
+				}
+			}
 			$row['instance'] = $position;
 
 			$result[] = $row;
 		}
 
 		return $result;
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_page_id' ) ) {
+	/**
+	 * Sanitization of the field "Pagina" of a row of Sezioni HP: the ID of a page, or nothing.
+	 *
+	 * Only a whole positive number is an ID: spaces around it and leading zeros are the same number; a sign, a
+	 * decimal point, an exponent, text, a list or a boolean is not, and gives an empty string (no page chosen).
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return int|string The page ID, or an empty string when there is no usable ID.
+	 */
+	function dli_sanitize_hp_page_id( $value ) {
+		$value = is_string( $value ) ? trim( $value ) : $value;
+
+		if ( is_int( $value ) ) {
+			$number = $value;
+		} elseif ( is_string( $value ) && ctype_digit( $value ) ) {
+			$number = (int) $value;
+		} else {
+			return '';
+		}
+
+		return $number > 0 ? $number : '';
 	}
 }
 
@@ -333,7 +367,8 @@ if ( ! function_exists( 'dli_sanitize_hp_tab_page_ids' ) ) {
 	 * The pages linked to a tab, as a list of whole positive numbers without repeats, in the saved order.
 	 *
 	 * Used when the group of the tabs is saved and again when it is read: a value that is not a list, and any item
-	 * that is not a whole positive number (text with letters, negative numbers, zero, booleans, lists), are left out.
+	 * that is not a whole positive number (text with letters, negative numbers, zero, booleans, lists), are left out;
+	 * each item is checked by `dli_sanitize_hp_page_id()`, so a page ID is parsed in one place only.
 	 *
 	 * @param mixed $value The saved value, normally a list of page IDs written as text.
 	 * @return int[] The page IDs.
@@ -345,11 +380,9 @@ if ( ! function_exists( 'dli_sanitize_hp_tab_page_ids' ) ) {
 
 		$ids = array();
 		foreach ( $value as $item ) {
-			if ( is_string( $item ) && ctype_digit( $item ) ) {
-				$item = (int) $item;
-			}
-			if ( is_int( $item ) && $item > 0 && ! in_array( $item, $ids, true ) ) {
-				$ids[] = $item;
+			$id = dli_sanitize_hp_page_id( $item );
+			if ( '' !== $id && ! in_array( $id, $ids, true ) ) {
+				$ids[] = $id;
 			}
 		}
 

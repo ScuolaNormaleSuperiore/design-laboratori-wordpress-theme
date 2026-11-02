@@ -1129,6 +1129,24 @@ class DLI_ContentsManager {
 	}
 
 	/**
+	 * The homepage sections that let the editor choose a page in their row of Sezioni HP.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `page_id` set to true. The field "Pagina"
+	 * of Sezioni HP is shown only for these sections.
+	 *
+	 * @return array<string, true> Section id => true.
+	 */
+	public static function get_hp_sections_with_page_id() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( ! empty( $section['page_id'] ) ) {
+				$result[ $id ] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the homepage sections configuration (order/enabled state), as saved in the options.
 	 *
 	 * The saved rows are only read, never rewritten. A row that is not a row, or has no section, is left out;

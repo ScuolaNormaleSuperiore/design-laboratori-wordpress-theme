@@ -126,7 +126,7 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 					'enabled'    => 'true',
 					'show_title' => 'true',
 					'background' => 'muted',
-					'page_id'    => '42',
+					'extra'      => '42',
 				),
 				array(
 					'id'         => 'news_section',
@@ -138,7 +138,7 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		);
 
 		$this->assertSame( 'muted', $rows[0]['background'] );
-		$this->assertSame( '42', $rows[0]['page_id'] );
+		$this->assertSame( '42', $rows[0]['extra'], 'A property that is not a known field is passed as it is.' );
 		$this->assertArrayNotHasKey( 'background', $rows[1], 'A wrong background is not passed to the template.' );
 	}
 
@@ -538,5 +538,46 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_1' => '' ) ), 1, true ), 'An empty type.' );
 		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_1' => array( 'notizia' ) ) ), 1, true ), 'A type that is not text.' );
 		$this->assertNull( dli_normalize_featured_box( array( array( 'featured_contents_type_box_2' => 'notizia' ) ), 1, true ), 'The keys of another box are not read.' );
+	}
+
+	/**
+	 * The page chosen in a row of Sezioni HP is a whole positive number, or nothing.
+	 */
+	public function test_page_id_is_a_positive_whole_number_or_nothing() {
+		$this->assertSame( 42, dli_sanitize_hp_page_id( '42' ) );
+		$this->assertSame( 42, dli_sanitize_hp_page_id( 42 ) );
+		$this->assertSame( 42, dli_sanitize_hp_page_id( ' 042 ' ), 'Spaces and leading zeros are the same number.' );
+
+		foreach ( array( '', '0', 0, '-3', -3, '4.5', 4.5, 'abc', '12abc', '1e3', array( 42 ), null, false, true ) as $value ) {
+			$this->assertSame( '', dli_sanitize_hp_page_id( $value ), 'No page: ' . var_export( $value, true ) );
+		}
+	}
+
+	/**
+	 * A row keeps a valid page, drops a wrong one, and a row saved before the field existed is not given one.
+	 */
+	public function test_rows_keep_a_valid_page_id_and_drop_the_others() {
+		$rows = dli_normalize_hp_section_rows(
+			array(
+				array(
+					'id'      => 'page_index_section',
+					'page_id' => '17',
+				),
+				array(
+					'id'      => 'page_index_section',
+					'page_id' => 'abc',
+				),
+				array(
+					'id'      => 'page_index_section',
+					'page_id' => '',
+				),
+				array( 'id' => 'page_index_section' ),
+			)
+		);
+
+		$this->assertSame( 17, $rows[0]['page_id'], 'A valid page is kept, as a number.' );
+		$this->assertArrayNotHasKey( 'page_id', $rows[1] );
+		$this->assertArrayNotHasKey( 'page_id', $rows[2] );
+		$this->assertArrayNotHasKey( 'page_id', $rows[3], 'A row saved before the field existed is not given one.' );
 	}
 }
