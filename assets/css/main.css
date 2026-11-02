@@ -247,6 +247,31 @@ html {
 	text-decoration: underline;
 }
 
+/* Breadcrumb in the hero: with a long title (a publication, a deep tree of pages) the last item, wider than the space
+	left, used to wrap alone under "Home > ..." with its separator hanging at the end of the line. It stays on one
+	line like in the playground: the earlier items (short) do not shrink or wrap, the current item is cut with an
+	ellipsis. The whole text stays in the DOM, so screen readers read it in full, and the title of the hero repeats it
+	just below. The color of the current item is set on the li because the dots of the ellipsis take the color of the
+	li, not of the inner span; overflow hidden on the list keeps the page from scrolling sideways when the earlier items
+	alone do not fit the line. */
+.it-hero-wrapper .breadcrumb {
+	flex-wrap: nowrap;
+	overflow: hidden;
+}
+
+.it-hero-wrapper .breadcrumb-item:not(.active) {
+	flex-shrink: 0;
+	white-space: nowrap;
+}
+
+.it-hero-wrapper .breadcrumb-item.active {
+	min-width: 0;
+	overflow: hidden;
+	color: var(--bsi-color-text-inverse);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 /* Icona disallineata nel form di ricerca dell'hero (page-templates/cerca.php):
 	BI3 applica margin-bottom:var(--bsi-spacing-m) (24px) a QUALSIASI span
 	dentro .it-hero-text-wrapper (pensato per span di testo tipo it-category),
@@ -491,4 +516,21 @@ ul.it-card-list.row {
 .tabs-section .it-list a.list-item:hover {
 	background-color: transparent;
 	box-shadow: none;
+}
+
+/* Header on a narrow screen: Bootstrap Italia puts the block with the logo and the name (it-header-center-wrapper) and the
+	block with the menu button (it-header-navbar-wrapper) side by side in a row that does not wrap and runs from the right
+	(row-reverse). When the first one needs more than the width left (the logo, the name and the search button, 312px at
+	320px of screen) the second one is pushed past the left edge of the screen: the button that opens the menu is not
+	seen and cannot be reached. The row wraps, so that the button goes to a second row, inside the screen, only when the two
+	blocks do not fit side by side: the first block has no base width (flex-basis 0), so the line breaks on the least width
+	it needs and not on the width of its whole content, and it takes the room that is left, as it did before. */
+@media (max-width: 991.98px) {
+	.it-nav-wrapper {
+		flex-wrap: wrap;
+	}
+
+	.it-nav-wrapper .it-header-center-wrapper {
+		flex: 1 1 0%;
+	}
 }
