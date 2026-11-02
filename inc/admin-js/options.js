@@ -39,7 +39,7 @@ $j(function() {
         $j( "body" ).append('<div id="spinner-overlayer"></div>');
     });
 
-    // ---- Repeatable groups that can be reordered (Configurazione -> Sezioni HP) ----
+    // ---- Repeatable groups that can be reordered (Configurazione -> Sezioni HP, and the tabs of Layout HP) ----
     //
     // Everything here works from the outside of CMB2: it listens to the public events of the library
     // (cmb2_add_row, cmb2_shift_rows_start, cmb2_shift_rows_complete) and moves around elements that CMB2
@@ -49,26 +49,35 @@ $j(function() {
     // public cmb2_footer_enqueue hook.
 
     // The groups that get the arrows in the header of the row (selector of the repeatable group).
-    var dliReorderableGroups = ['#site_sections_repeat'];
+    var dliReorderableGroups = ['#site_sections_repeat', '#home_tabs_items_repeat'];
 
-    // The row of a group of sections shows the name of the chosen section after its title,
-    // for example "Sezione 1 (Hero principale)". The label is a span of its own, so that the language
-    // of the admin does not matter: nothing is read back from the title of CMB2, which rewrites the
-    // title from scratch (cmb.resetGroupTitles) every time two rows are swapped.
-    function dliUpdateSectionRowTitles() {
-        $j('#site_sections_repeat > .cmb-repeatable-grouping').each(function() {
-            var $row = $j(this);
-            var $select = $row.find('select[name$="[id]"]').first();
-            var $title = $row.find('h3.cmb-group-title').first();
-            if (!$select.length || !$title.length) {
-                return;
-            }
-            $title.find('.dli-section-label').remove();
-            var label = $j.trim($select.find('option:selected').text());
-            if (label) {
-                $title.append($j('<span class="dli-section-label"></span>').text(' (' + label + ')'));
-            }
-        });
+    // The row of a group shows a label after its title: the name of the chosen section ("Sezione 1 (Hero
+    // principale)") or the label of a tab ("Tab 1 (Aree)"). The label is a span of its own, so that the language
+    // of the admin does not matter: nothing is read back from the title of CMB2, which writes the title again from
+    // scratch (cmb.resetGroupTitles) every time two rows are swapped and every time a row is removed, so the label
+    // is added again after each of them. readLabel gets the row and gives the text, or null when the row has not
+    // got its field yet; changeEvents are the events of the field that change the label.
+    function dliShowRowLabels(groupSelector, readLabel, fieldSelector, changeEvents) {
+        function update() {
+            $j(groupSelector + ' > .cmb-repeatable-grouping').each(function() {
+                var $row = $j(this);
+                var $title = $row.find('h3.cmb-group-title').first();
+                var label = readLabel($row);
+                if (null === label || !$title.length) {
+                    return;
+                }
+                $title.find('.dli-section-label').remove();
+                label = $j.trim(label);
+                if (label) {
+                    $title.append($j('<span class="dli-section-label"></span>').text(' (' + label + ')'));
+                }
+            });
+        }
+
+        update();
+        $j(document).on(changeEvents, groupSelector + ' ' + fieldSelector, update);
+        $j('.cmb2-wrap > .cmb2-metabox').on('cmb2_add_row', update);
+        $j(document).on('cmb2_shift_rows_complete cmb2_remove_row', groupSelector, update);
     }
 
     // cmb.shiftRows renames the fields of the two rows in two separate steps. For radio buttons this makes
@@ -116,8 +125,11 @@ $j(function() {
             $arrows.insertBefore($remove);
             // The arrows of CMB2 have only an icon: give them a name for screen readers (and a tooltip).
             var l10n = window.dliOptionsL10n || {};
-            $arrows.filter('.move-up').attr({ 'aria-label': l10n.moveUp || 'Move up', title: l10n.moveUp || 'Move up' });
-            $arrows.filter('.move-down').attr({ 'aria-label': l10n.moveDown || 'Move down', title: l10n.moveDown || 'Move down' });
+            var isTabs = $group.is('#home_tabs_items_repeat');
+            var moveUp = (isTabs ? l10n.moveTabUp : l10n.moveUp) || 'Move up';
+            var moveDown = (isTabs ? l10n.moveTabDown : l10n.moveDown) || 'Move down';
+            $arrows.filter('.move-up').attr({ 'aria-label': moveUp, title: moveUp });
+            $arrows.filter('.move-down').attr({ 'aria-label': moveDown, title: moveDown });
         });
     }
 
@@ -130,6 +142,13 @@ $j(function() {
         $j(document).on('cmb2_shift_rows_start', selector, function(evt, $link, $from, $goto) {
             var fromIterator = $from.attr('data-iterator');
             var toIterator = $goto.attr('data-iterator');
+            // cmb.shiftRows renames the rows by changing only the attribute data-iterator, while jQuery keeps in
+            // its cache the number it read (or set) earlier, for example when the row was added in the page. The
+            // rich text editors of the rows (cmb2-wysiwyg.js) are built again after the swap from that cached
+            // number, so the second swap of a row put its description under the wrong tab. Forgetting the cached
+            // number makes jQuery read the attribute again. If CMB2 fixes this, the two lines can be removed.
+            $from.removeData('iterator');
+            $goto.removeData('iterator');
             dliShiftRowsRadioSnapshot = {
                 from: { radios: dliCaptureRadioStates($from), oldIterator: fromIterator, newIterator: toIterator },
                 goto: { radios: dliCaptureRadioStates($goto), oldIterator: toIterator, newIterator: fromIterator }
@@ -151,10 +170,16 @@ $j(function() {
     });
 
     if ($j('#site_sections_repeat').length) {
-        dliUpdateSectionRowTitles();
-        $j(document).on('change', '#site_sections_repeat select[name$="[id]"]', dliUpdateSectionRowTitles);
-        $j('.cmb2-wrap > .cmb2-metabox').on('cmb2_add_row', dliUpdateSectionRowTitles);
-        // After a swap CMB2 has rewritten the title of both rows, without the label.
-        $j(document).on('cmb2_shift_rows_complete', '#site_sections_repeat', dliUpdateSectionRowTitles);
+        dliShowRowLabels('#site_sections_repeat', function($row) {
+            var $select = $row.find('select[name$="[id]"]').first();
+            return $select.length ? $select.find('option:selected').text() : null;
+        }, 'select[name$="[id]"]', 'change');
+    }
+
+    if ($j('#home_tabs_items_repeat').length) {
+        dliShowRowLabels('#home_tabs_items_repeat', function($row) {
+            var $input = $row.find('input[name$="[etichetta]"]').first();
+            return $input.length ? $input.val() : null;
+        }, 'input[name$="[etichetta]"]', 'input change');
     }
 });

@@ -6,6 +6,8 @@
  *  - dli_get_subpage_cards()        The direct subpages of a page that can be listed as navigation cards.
  *  - dli_get_promoted_page_cards()  The pages promoted to the home that "Card di navigazione" lists as cards, by level.
  *  - dli_get_promoted_page_groups() The promoted pages with their subpages, for "Navigazione per pagine".
+ *  - dli_get_page_in_current_language() A page, or its translation, in the current language, when it can be shown.
+ *  - dli_get_pages_for_select()      The pages of the default language that an editor can choose in an options field.
  *
  * @package Design_Laboratori_Italia
  */
@@ -227,5 +229,86 @@ if ( ! function_exists( 'dli_get_promoted_page_groups' ) ) {
 		}
 
 		return $groups;
+	}
+}
+
+if ( ! function_exists( 'dli_get_page_in_current_language' ) ) {
+	/**
+	 * A page in the current language, when it can be shown.
+	 *
+	 * The page is the one that is already in the current language or, for a page in another language, its
+	 * translation. A page without a translation in the current language is not shown: Italian pages are never
+	 * printed in an English site. Only a published page, of the type page, without a password, is given back.
+	 *
+	 * @param int $page_id The ID of a page, in any language.
+	 * @return WP_Post|null The page to show, or null.
+	 */
+	function dli_get_page_in_current_language( $page_id ) {
+		$page = get_post( (int) $page_id );
+		if ( ! $page instanceof WP_Post || WP_DEFAULT_PAGE !== $page->post_type ) {
+			return null;
+		}
+
+		$translations = dli_get_post_translations( $page->ID );
+		$current      = dli_current_language();
+		if ( ! empty( $translations ) ) {
+			if ( empty( $translations[ $current ] ) ) {
+				return null;
+			}
+			$page = get_post( (int) $translations[ $current ] );
+		}
+
+		if ( ! $page instanceof WP_Post || WP_DEFAULT_PAGE !== $page->post_type || 'publish' !== $page->post_status || '' !== $page->post_password ) {
+			return null;
+		}
+
+		return $page;
+	}
+}
+
+if ( ! function_exists( 'dli_get_pages_for_select' ) ) {
+	/**
+	 * The pages that an editor can choose in a field of the options pages, for `options_cb`.
+	 *
+	 * They are the published pages without a password in the default language, in the order of the tree: each
+	 * subpage follows its parent and is indented with dashes; a page whose parent is not listed (a draft, a
+	 * protected page) starts a subtree at the first level. The pages of the other languages are not listed:
+	 * the choice is made once, and the translation is shown on the site (`dli_get_page_in_current_language()`).
+	 *
+	 * @return array<int, string> The titles of the pages, by page ID.
+	 */
+	function dli_get_pages_for_select() {
+		$pages = get_posts(
+			array(
+				'post_type'      => WP_DEFAULT_PAGE,
+				'post_status'    => 'publish',
+				'has_password'   => false,
+				'lang'           => dli_default_language(),
+				'orderby'        => array(
+					'menu_order' => 'ASC',
+					'title'      => 'ASC',
+				),
+				'posts_per_page' => -1,
+			)
+		);
+
+		// A page whose parent is not in the list (a draft, a protected page) starts a subtree at the first level.
+		$listed   = wp_list_pluck( $pages, 'ID' );
+		$children = array();
+		foreach ( $pages as $page ) {
+			$parent_id                = in_array( (int) $page->post_parent, $listed, true ) ? (int) $page->post_parent : 0;
+			$children[ $parent_id ][] = $page;
+		}
+
+		$options = array();
+		$walk    = static function ( $parent_id, $depth ) use ( &$walk, &$children, &$options ) {
+			foreach ( $children[ $parent_id ] ?? array() as $page ) {
+				$options[ $page->ID ] = str_repeat( '— ', $depth ) . get_the_title( $page );
+				$walk( (int) $page->ID, $depth + 1 );
+			}
+		};
+		$walk( 0, 0 );
+
+		return $options;
 	}
 }

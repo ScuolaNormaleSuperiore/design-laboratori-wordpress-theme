@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-30 10:21+0000\n"
+"POT-Creation-Date: 2026-11-02 09:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -38,6 +38,12 @@ msgstr ""
 #. %d: number of results.
 #: inc/search-autocomplete.php:330
 msgid "%d risultato disponibile."
+msgstr ""
+
+#. %s: the title of a page that is a draft, private or protected by a password
+#: inc/home-tabs.php:116
+#, php-format
+msgid "%s (non visibile)"
 msgstr ""
 
 #. %s: video title.
@@ -1252,7 +1258,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:179
+#: functions.php:180
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1260,19 +1266,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:177
+#: functions.php:178
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:178
+#: functions.php:179
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:175
+#: functions.php:176
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:176
+#: functions.php:177
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1607,6 +1613,10 @@ msgstr ""
 #: inc/admin/class-dli-tools-admin.php:914
 #, php-format
 msgid "Pagine principali (%s):"
+msgstr ""
+
+#: template-parts/home/hp-tabs-section.php:40
+msgid "Pannello tab"
 msgstr ""
 
 #: inc/admin/class-dli-tools-admin.php:54

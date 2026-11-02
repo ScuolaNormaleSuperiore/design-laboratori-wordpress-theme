@@ -105,6 +105,7 @@ require get_template_directory() . '/inc/pages.php';
  * Homepage sections — helpers of the configuration of Sezioni HP.
  */
 require get_template_directory() . '/inc/home-sections.php';
+require get_template_directory() . '/inc/home-tabs.php';
 
 
 /**

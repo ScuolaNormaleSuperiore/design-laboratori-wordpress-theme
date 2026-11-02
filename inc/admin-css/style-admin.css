@@ -511,13 +511,15 @@ luogo
    options.js le sposta nell'intestazione (classe .dli-shift-rows-moved). Qui sono messe a sinistra, prima
    della "x" di rimozione, che è spostata più a destra con uno spazio dedicato per evitare di cancellare
    la riga per sbaglio. Il titolo lascia loro il posto con il margine a sinistra. */
-#site_sections_repeat > .cmb-repeatable-grouping {
+#site_sections_repeat > .cmb-repeatable-grouping,
+#home_tabs_items_repeat > .cmb-repeatable-grouping {
 	position: relative;
 }
 
 /* Altezza fissa e min-height azzerata (WordPress dà 30-40px ai button-secondary): il bordo delle frecce
    deve restare dentro la barra del titolo, alta circa 37px, con 3px liberi sopra e sotto. */
-#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows {
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows,
+#home_tabs_items_repeat > .cmb-repeatable-grouping > .cmb-shift-rows {
 	position: absolute;
 	top: 3px;
 	width: 1.8em;
@@ -530,7 +532,8 @@ luogo
 	box-sizing: border-box;
 }
 
-#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows .dashicons {
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows .dashicons,
+#home_tabs_items_repeat > .cmb-repeatable-grouping > .cmb-shift-rows .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
@@ -538,18 +541,22 @@ luogo
 	margin: 0;
 }
 
-#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-up {
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-up,
+#home_tabs_items_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-up {
 	left: 0;
 }
 
-#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-down {
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-down,
+#home_tabs_items_repeat > .cmb-repeatable-grouping > .cmb-shift-rows.move-down {
 	left: 2.2em;
 }
 
-#site_sections_repeat > .cmb-repeatable-grouping > .cmb-remove-group-row.dashicons-no-alt {
+#site_sections_repeat > .cmb-repeatable-grouping > .cmb-remove-group-row.dashicons-no-alt,
+#home_tabs_items_repeat > .cmb-repeatable-grouping > .cmb-remove-group-row.dashicons-no-alt {
 	left: 5em !important;
 }
 
-#site_sections_repeat .cmb-group-title {
+#site_sections_repeat .cmb-group-title,
+#home_tabs_items_repeat .cmb-group-title {
 	padding-left: 7em;
 }

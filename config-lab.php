@@ -347,31 +347,31 @@ define(
 define(
 	'DLI_HP_SECTIONS',
 	array(
-		'main_hero'            =>
+		'main_hero'               =>
 			array(
 				'id'       => 'main_hero',
 				'name'     => 'Hero principale',
 				'template' => 'template-parts/home/main-hero',
 			),
-		'site_description'     =>
+		'site_description'        =>
 				array(
 					'id'       => 'site_description',
 					'name'     => 'Descrizione del sito',
 					'template' => 'template-parts/home/site-presentation',
 				),
-		'main_carousel'        =>
+		'main_carousel'           =>
 			array(
 				'id'       => 'main_carousel',
 				'name'     => 'Carousel principale',
 				'template' => 'template-parts/home/carousel',
 			),
-		'featured_contents'    =>
+		'featured_contents'       =>
 			array(
 				'id'       => 'featured_contents',
 				'name'     => 'Contenuti in evidenza',
 				'template' => 'template-parts/home/featured-contents',
 			),
-		'card_navigation_section'   =>
+		'card_navigation_section' =>
 			array(
 				'id'         => 'card_navigation_section',
 				'name'       => 'Card di navigazione',
@@ -380,7 +380,7 @@ define(
 				'max_items'  => 6,
 				'max_level'  => DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL,
 			),
-		'page_navigation_section'         =>
+		'page_navigation_section' =>
 			array(
 				'id'           => 'page_navigation_section',
 				'name'         => 'Navigazione per pagine',
@@ -389,43 +389,50 @@ define(
 				'max_items'    => 4,
 				'max_subitems' => 4,
 			),
-		'events_section'       =>
+		'tabs_section'            =>
+			array(
+				'id'         => 'tabs_section',
+				'name'       => 'Pannello tab',
+				'template'   => 'template-parts/home/hp-tabs-section',
+				'background' => 'white',
+			),
+		'events_section'          =>
 				array(
 					'id'       => 'events_section',
 					'name'     => 'Eventi',
 					'template' => 'template-parts/home/hp-list-event',
 				),
-		'news_section'         =>
+		'news_section'            =>
 				array(
 					'id'       => 'news_section',
 					'name'     => 'Notizie',
 					'template' => 'template-parts/home/hp-list-news',
 				),
-		'publications_section' =>
+		'publications_section'    =>
 				array(
 					'id'       => 'publications_section',
 					'name'     => 'Pubblicazioni',
 					'template' => 'template-parts/home/hp-list-publication',
 				),
-		'articles_section'     =>
+		'articles_section'        =>
 				array(
 					'id'       => 'articles_section',
 					'name'     => 'Articoli',
 					'template' => 'template-parts/home/hp-list-article',
 				),
-		'banners_section'      =>
+		'banners_section'         =>
 				array(
 					'id'       => 'banners_section',
 					'name'     => 'Banner',
 					'template' => 'template-parts/home/hp-banners-section',
 				),
-		'sponsors_section'     =>
+		'sponsors_section'        =>
 				array(
 					'id'       => 'sponsors_section',
 					'name'     => 'Sponsor',
 					'template' => 'template-parts/home/hp-sponsor-section',
 				),
-		'video_section'        =>
+		'video_section'           =>
 			array(
 				'id'       => 'video_section',
 				'name'     => 'Video',

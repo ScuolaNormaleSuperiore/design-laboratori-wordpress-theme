@@ -994,6 +994,141 @@ function dli_register_main_options_metabox() {
 		)
 	);
 
+	// *** SEZIONE "PANNELLO TAB" (HOMEPAGE) ***
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tabs',
+			'name' => __( 'Sezione "Pannello tab"', 'design_laboratori_italia' ),
+			'desc' => __( 'Una serie di tab: per ognuno un\'etichetta, un testo e, facoltativamente, un elenco di pagine collegate mostrato in fondo al pannello. L\'insieme dei tab è unico: ogni copia della sezione in "Sezioni HP" mostra gli stessi tab. Il primo tab è quello aperto. Un tab senza etichetta non compare; senza testo e senza pagine collegate che si possano mostrare non compare nemmeno. In inglese, se l\'etichetta o il testo inglese mancano si usano quelli italiani. La sezione si attiva e si ordina in "Sezioni HP".', 'design_laboratori_italia' ),
+			'type' => 'title',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tabs_title',
+			'name' => __( 'Titolo sezione', 'design_laboratori_italia' ),
+			'desc' => __( 'Si vede solo se in "Sezioni HP" è attivo "Mostra il titolo della sezione".', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'   => $prefix . 'home_tabs_title' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name' => __( 'Titolo sezione ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_tabs_text',
+			'name'       => __( 'Sottotitolo sezione', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri. Si vede sempre, se non è vuoto.', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	$home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_tabs_text' . DLI_ENG_SUFFIX_LANGUAGE,
+			'name'       => __( 'Sottotitolo sezione ENG', 'design_laboratori_italia' ),
+			'desc'       => __( 'Testo libero di massimo 512 caratteri', 'design_laboratori_italia' ),
+			'type'       => 'textarea',
+			'attributes' => array(
+				'maxlength' => '512',
+			),
+		)
+	);
+
+	$home_tabs_group_id = $home_options->add_field(
+		array(
+			'id'         => $prefix . 'home_tabs_items',
+			'type'       => 'group',
+			'desc'       => __( 'Elenco dei tab (consigliati almeno due):', 'design_laboratori_italia' ),
+			'repeatable' => true,
+			'options'    => array(
+				'group_title'    => __( 'Tab', 'design_laboratori_italia' ) . ' {#}',
+				'add_button'     => __( 'Aggiungi un tab', 'design_laboratori_italia' ),
+				'remove_button'  => __( 'Rimuovi il tab', 'design_laboratori_italia' ),
+				'sortable'       => true,
+				'closed'         => true,
+				'remove_confirm' => esc_html__( 'Sei sicuro di voler rimuovere il tab?', 'design_laboratori_italia' ),
+			),
+		)
+	);
+	$home_options->add_group_field(
+		$home_tabs_group_id,
+		array(
+			'id'   => 'etichetta',
+			'name' => __( 'Etichetta', 'design_laboratori_italia' ),
+			'desc' => __( 'Testo breve del tab (una o due parole). Senza etichetta il tab non compare.', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+	$home_options->add_group_field(
+		$home_tabs_group_id,
+		array(
+			'id'   => 'etichetta_eng',
+			'name' => __( 'Etichetta ENG', 'design_laboratori_italia' ),
+			'type' => 'text',
+		)
+	);
+	// The two descriptions, in Italian and in English, are the same editor: only the id and the name change.
+	$home_tabs_description = array(
+		'type'            => 'wysiwyg',
+		'sanitization_cb' => 'wp_kses_post',
+		'options'         => array(
+			'textarea_rows' => 4,
+			'media_buttons' => false,
+			'teeny'         => true,
+			'quicktags'     => false,
+			'tinymce'       => array(
+				'toolbar1'       => 'bold,italic,link,unlink,undo,redo',
+				'valid_elements' => 'a[href],strong,em,p,br',
+			),
+		),
+	);
+	$home_options->add_group_field(
+		$home_tabs_group_id,
+		array_merge(
+			$home_tabs_description,
+			array(
+				'id'   => 'descrizione',
+				'name' => __( 'Descrizione', 'design_laboratori_italia' ),
+				'desc' => __( 'Testo del pannello (uno o più paragrafi).', 'design_laboratori_italia' ),
+			)
+		)
+	);
+	$home_options->add_group_field(
+		$home_tabs_group_id,
+		array_merge(
+			$home_tabs_description,
+			array(
+				'id'   => 'descrizione_eng',
+				'name' => __( 'Descrizione ENG', 'design_laboratori_italia' ),
+			)
+		)
+	);
+	$home_options->add_group_field(
+		$home_tabs_group_id,
+		array(
+			'id'              => 'pagine',
+			'name'            => __( 'Pagine collegate', 'design_laboratori_italia' ),
+			'desc'            => __( 'Facoltativo: pagine mostrate come elenco di link in fondo al pannello. Si sceglie fra le pagine in italiano; sul sito inglese compare la traduzione, e una pagina senza traduzione non compare. Bozze e pagine protette da password non compaiono.', 'design_laboratori_italia' ),
+			'type'            => 'pw_multiselect',
+			'options_cb'      => 'dli_get_tab_pages_for_select',
+			'attributes'      => array(
+				'placeholder' => __( 'Scegli le pagine', 'design_laboratori_italia' ),
+			),
+			'sanitization_cb' => 'dli_sanitize_hp_tab_page_ids',
+		)
+	);
+
 	/**
 	* 5 - Registers options page "Laboratorio".
 	*/
@@ -3388,8 +3523,10 @@ function dli_enqueue_options_script_after_cmb2() {
 		'dli_options_dialog',
 		'dliOptionsL10n',
 		array(
-			'moveUp'   => __( 'Sposta la sezione in alto', 'design_laboratori_italia' ),
-			'moveDown' => __( 'Sposta la sezione in basso', 'design_laboratori_italia' ),
+			'moveUp'      => __( 'Sposta la sezione in alto', 'design_laboratori_italia' ),
+			'moveDown'    => __( 'Sposta la sezione in basso', 'design_laboratori_italia' ),
+			'moveTabUp'   => __( 'Sposta il tab in alto', 'design_laboratori_italia' ),
+			'moveTabDown' => __( 'Sposta il tab in basso', 'design_laboratori_italia' ),
 		)
 	);
 }

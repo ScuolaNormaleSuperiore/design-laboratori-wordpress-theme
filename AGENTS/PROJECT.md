@@ -39,6 +39,7 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Home page carousel with selectable contents
 - Management of featured contents on the home page
 - Management of events, news, and publications sections on the home page
+- Home page tab panel with configurable tabs (text and linked pages, Italian and English)
 - Home page banner management
 - Management of home page sponsors
 - Support for Italian and English languages

@@ -152,23 +152,27 @@ Campi principali:
   funzione: testi della sezione «Navigazione per pagine» della home, in IT/EN. Per ogni pagina con il campo `Promuovi in Home` acceso (lo stesso di `Card di navigazione`) che ha sottopagine pubblicate, la sezione mostra il titolo della pagina (come testo, senza link) e l'elenco dei link alle sue sottopagine: in colonne su tablet e desktop, in un accordion (primo pannello aperto) su telefono. Gruppi e sottopagine seguono il campo `Ordine` della pagina (`Attributi pagina`) e poi il titolo; le pagine in bozza o protette da password non compaiono, e una pagina promossa senza sottopagine non fa gruppo. Il livello della pagina non conta: una sottopagina promossa che ha a sua volta sottopagine fa gruppo, e compare anche come link nel gruppo della sua pagina genitore. Senza gruppi la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Navigazione per pagine`), dove ogni riga ha `Sfondo sezione` (grigio chiaro di default), `Numero massimo di elementi` (gruppi, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12.
 - Sezione `Card di navigazione`: `Titolo sezione` / `Titolo sezione ENG` (`text`) e `Sottotitolo sezione` / `Sottotitolo sezione ENG` (`textarea`, max 512 caratteri).
   funzione: testi della sezione «Card di navigazione» della home, in IT/EN. La sezione mostra fino a 6 pagine (numero modificabile per riga in `Sezioni HP`, da 1 a 12, con `Numero massimo di elementi`) con il campo `Promuovi in Home` acceso (scheda Pagina), nella lingua corrente, nell'ordine del campo `Ordine` della pagina (`Attributi pagina`) e poi per titolo; le pagine in bozza o protette da password non compaiono, e senza pagine promosse la sezione non compare. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Card di navigazione`). Il titolo si vede solo con `Mostra il titolo della sezione` attivo e se non è vuoto; il sottotitolo si vede sempre, se non è vuoto. In `Sezioni HP` la voce ha anche `Sfondo sezione` (grigio chiaro di default) e `Numero massimo di elementi` (vuoto = 6; se le pagine promosse sono meno, si mostrano tutte) e `Livello delle pagine`: `Solo primo livello` (predefinito), `Fino al secondo livello`, `Fino al terzo livello` o `Tutti i livelli`. Il primo livello sono le pagine senza pagina genitore: con la scelta predefinita una sottopagina promossa non è una card (compare invece come gruppo in `Navigazione per pagine`, se ha sottopagine), a meno di scegliere un livello più ampio. Il numero massimo si applica dopo la scelta del livello, quindi le pagine escluse non occupano un posto.
+- Sezione `Pannello tab`: `Titolo sezione` / `Titolo sezione ENG` (`text`), `Sottotitolo sezione` / `Sottotitolo sezione ENG` (`textarea`, max 512 caratteri) e il gruppo ripetibile `Tab` (`home_tabs_items`).
+  funzione: testi e contenuti della sezione «Pannello tab» della home, in IT/EN. I tab sono un insieme unico, scritto qui: ogni copia della sezione aggiunta in `Sezioni HP` mostra gli stessi tab. Ogni tab del gruppo ha `Etichetta` e `Etichetta ENG` (testo breve del tab), `Descrizione` e `Descrizione ENG` (testo con grassetto, corsivo e link) e `Pagine collegate` (facoltative). Il primo tab è quello aperto; si riordinano con le frecce nell'intestazione di ogni riga. Un tab senza etichetta non compare; senza descrizione e senza pagine collegate che si possano mostrare non compare nemmeno, così non ci sono pannelli vuoti; un solo tab è un pannello valido. In inglese, se l'etichetta o la descrizione inglese mancano, si usano quelle italiane. Le `Pagine collegate` si scelgono fra le pagine in italiano pubblicate e senza password (le sottopagine sono rientrate): sul sito inglese compare la traduzione di ogni pagina e una pagina senza traduzione non compare; una pagina già scelta che diventa bozza o protetta resta nell'elenco di scelta con l'indicazione «(non visibile)», così salvando non si perde il collegamento; l'elenco è in fondo al pannello, nell'ordine scelto. Il titolo si vede solo con `Mostra il titolo della sezione` attivo e se non è vuoto; il sottotitolo si vede sempre, se non è vuoto. La sezione si aggiunge e si ordina in `Sezioni HP` (voce `Pannello tab`, sfondo bianco di default). Con la tastiera, le frecce spostano il focus da un tab all'altro e `Invio` o `Spazio` aprono il pannello.
 - `featured_contents_*` (Box 1/2/3)
   tipo: `group` con campi `label`, `tipo contenuto`, `template`
   funzione: configura i tre box dei contenuti in evidenza.
 
-Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di navigazione` e `Navigazione per pagine`):
+Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di navigazione`, `Navigazione per pagine` e le pagine collegate di `Pannello tab`):
 
-| Criterio | `Card di navigazione` | `Navigazione per pagine` |
-|---|---|---|
-| Campo `Promuovi in Home` acceso | sì, obbligatorio | sì, obbligatorio (è lo stesso campo) |
-| Pagina pubblicata | sì (le bozze non compaiono) | sì (anche le sottopagine devono essere pubblicate) |
-| Senza password | sì (le pagine protette non compaiono e non occupano un posto) | sì (vale anche per le sottopagine) |
-| Lingua | solo la lingua corrente | solo la lingua corrente |
-| Livello della pagina | scelto per riga in `Sezioni HP` con `Livello delle pagine`: di default solo il primo livello (senza pagina genitore) | qualsiasi livello |
-| Sottopagine pubblicate | non servono | sì, almeno una: senza sottopagine la pagina non fa gruppo |
-| Cosa mostra | una card per pagina (titolo, riassunto, link) | un gruppo per pagina: il titolo e i link alle sue sottopagine dirette |
-| Ordine | campo `Ordine` della pagina (`Attributi pagina`), poi titolo | come le card, sia per i gruppi sia per le sottopagine di ogni gruppo |
-| Numero massimo | `Numero massimo di elementi` (vuoto = 6), applicato dopo il livello | `Numero massimo di elementi` per i gruppi (vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12 |
+| Criterio | `Card di navigazione` | `Navigazione per pagine` | `Pannello tab` (pagine collegate) |
+|---|---|---|---|
+| Campo `Promuovi in Home` acceso | sì, obbligatorio | sì, obbligatorio (è lo stesso campo) | no: le pagine si scelgono a mano in ogni tab |
+| Pagina pubblicata | sì (le bozze non compaiono) | sì (anche le sottopagine devono essere pubblicate) | sì (le bozze non compaiono) |
+| Senza password | sì (le pagine protette non compaiono e non occupano un posto) | sì (vale anche per le sottopagine) | sì (le pagine protette non compaiono) |
+| Lingua | solo la lingua corrente | solo la lingua corrente | si sceglie la pagina in italiano; sul sito inglese compare la sua traduzione, e senza traduzione la pagina non compare |
+| Livello della pagina | scelto per riga in `Sezioni HP` con `Livello delle pagine`: di default solo il primo livello (senza pagina genitore) | qualsiasi livello | qualsiasi livello |
+| Sottopagine pubblicate | non servono | sì, almeno una: senza sottopagine la pagina non fa gruppo | non servono |
+| Cosa mostra | una card per pagina (titolo, riassunto, link) | un gruppo per pagina: il titolo e i link alle sue sottopagine dirette | un elenco di link in fondo al pannello del tab, dopo la descrizione |
+| Ordine | campo `Ordine` della pagina (`Attributi pagina`), poi titolo | come le card, sia per i gruppi sia per le sottopagine di ogni gruppo | quello della scelta nel campo `Pagine collegate` |
+| Numero massimo | `Numero massimo di elementi` (vuoto = 6), applicato dopo il livello | `Numero massimo di elementi` per i gruppi (vuoto = 4) e `Numero massimo di sottopagine per gruppo` (vuoto = 4), da 1 a 12 | nessun limite |
+
+Le pagine collegate di `Pannello tab` non dipendono dall'albero né dal campo `Promuovi in Home`: sono quelle scelte tab per tab.
 
 Esempio, con le pagine create da `Strumenti DLI > Utilità > Pagine di esempio` (in italiano; `*` = `Promuovi in Home` acceso):
 

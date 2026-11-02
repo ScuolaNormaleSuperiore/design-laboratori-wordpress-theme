@@ -346,4 +346,131 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertArrayNotHasKey( 'max_level', $rows[3] );
 		$this->assertArrayNotHasKey( 'max_level', $rows[4], 'A row saved before the field existed is not given one.' );
 	}
+
+	/**
+	 * The value of the language of the page, English falling back to Italian only when it is blank.
+	 */
+	public function test_pick_lang_value_falls_back_from_english_to_italian() {
+		$this->assertSame( 'Ciao', dli_pick_lang_value( 'Ciao', 'Hello', true ), 'An Italian page uses the Italian value.' );
+		$this->assertSame( 'Hello', dli_pick_lang_value( 'Ciao', 'Hello', false ), 'An English page uses the English value.' );
+		$this->assertSame( 'Ciao', dli_pick_lang_value( 'Ciao', '', false ), 'A missing English value gives the Italian one.' );
+		$this->assertSame( 'Ciao', dli_pick_lang_value( 'Ciao', "  \n", false ), 'A blank English value gives the Italian one.' );
+		$this->assertSame( 'Ciao', dli_pick_lang_value( 'Ciao', '<p>&nbsp;</p>', false ), 'An empty paragraph is a missing value.' );
+		$this->assertSame( '', dli_pick_lang_value( '', 'Hello', true ), 'English never replaces a missing Italian value.' );
+		$this->assertSame( '', dli_pick_lang_value( null, null, false ) );
+		$this->assertSame( '', dli_pick_lang_value( array( 'x' ), 'Hello', true ), 'A value that is not text is empty.' );
+	}
+
+	/**
+	 * Text without visible content, however it is written.
+	 */
+	public function test_blank_text_has_no_visible_content() {
+		$this->assertTrue( dli_is_blank_text( '' ) );
+		$this->assertTrue( dli_is_blank_text( null ) );
+		$this->assertTrue( dli_is_blank_text( "  \n\t" ) );
+		$this->assertTrue( dli_is_blank_text( '<p></p>' ) );
+		$this->assertTrue( dli_is_blank_text( '<p>&nbsp;</p><br />' ) );
+		$this->assertTrue( dli_is_blank_text( array( 'x' ) ), 'A value that is not text is blank.' );
+		$this->assertFalse( dli_is_blank_text( 'Testo' ) );
+		$this->assertFalse( dli_is_blank_text( '<p>Testo</p>' ) );
+		$this->assertFalse( dli_is_blank_text( '0' ), 'The text "0" is text.' );
+	}
+
+	/**
+	 * The pages linked to a tab: whole positive numbers, no repeats, the saved order.
+	 */
+	public function test_tab_page_ids_are_positive_unique_numbers() {
+		$this->assertSame( array( 12, 7, 30 ), dli_sanitize_hp_tab_page_ids( array( '12', 7, '12', 30 ) ) );
+		$this->assertSame( array( 5 ), dli_sanitize_hp_tab_page_ids( array( 0, '-3', 'abc', 5, 'x7', 5.0 ) ), 'Zero, negative and non numeric values are dropped.' );
+		$this->assertSame( array(), dli_sanitize_hp_tab_page_ids( array() ) );
+		$this->assertSame( array(), dli_sanitize_hp_tab_page_ids( '12' ), 'A single value that is not a list is no page.' );
+		$this->assertSame( array(), dli_sanitize_hp_tab_page_ids( null ) );
+		$this->assertSame( array(), dli_sanitize_hp_tab_page_ids( array( array( 3 ), true ) ), 'Nested and boolean values are dropped.' );
+	}
+
+	/**
+	 * The saved tabs, safe to use: rows that are not rows are left out, the others keep their order.
+	 */
+	public function test_tab_rows_are_safe_and_keep_their_order() {
+		$rows = dli_normalize_hp_tab_rows(
+			array(
+				'not a row',
+				array(
+					'etichetta'       => 'Aree',
+					'etichetta_eng'   => 'Areas',
+					'descrizione'     => '<p>Testo</p>',
+					'descrizione_eng' => '<p>Text</p>',
+					'pagine'          => array( '4', 4, '9' ),
+				),
+				array( 'etichetta' => 'Solo etichetta' ),
+				array(
+					'etichetta'   => array( 'x' ),
+					'descrizione' => 12,
+					'pagine'      => 'non una lista',
+				),
+			)
+		);
+
+		$this->assertCount( 3, $rows, 'The value that is not a row is left out.' );
+		$this->assertSame(
+			array(
+				'label'       => 'Aree',
+				'label_eng'   => 'Areas',
+				'text'        => '<p>Testo</p>',
+				'text_eng'    => '<p>Text</p>',
+				'page_ids'    => array( 4, 9 ),
+			),
+			$rows[0]
+		);
+		$this->assertSame( 'Solo etichetta', $rows[1]['label'] );
+		$this->assertSame( '', $rows[1]['label_eng'], 'A missing value is an empty string.' );
+		$this->assertSame( array(), $rows[1]['page_ids'] );
+		$this->assertSame( '', $rows[2]['label'], 'A value that is not text is empty.' );
+		$this->assertSame( '', $rows[2]['text'] );
+		$this->assertSame( array(), $rows[2]['page_ids'] );
+		$this->assertSame( array(), dli_normalize_hp_tab_rows( 'non una lista' ) );
+		$this->assertSame( array(), dli_normalize_hp_tab_rows( false ), 'An option never saved gives no tab.' );
+	}
+
+	/**
+	 * Which tabs are shown in a language: the label is what makes a tab, the text or the pages are what keep it.
+	 */
+	public function test_tabs_for_a_language_follow_the_rules_of_the_section() {
+		$rows = dli_normalize_hp_tab_rows(
+			array(
+				array(
+					'etichetta'       => 'Uno',
+					'etichetta_eng'   => 'One',
+					'descrizione'     => '<p>Testo uno</p>',
+					'descrizione_eng' => '<p>Text one</p>',
+				),
+				array(
+					'etichetta'   => 'Due',
+					'descrizione' => '<p>Testo due</p>',
+				),
+				array(
+					'etichetta'   => '',
+					'descrizione' => '<p>Senza etichetta</p>',
+				),
+				array(
+					'etichetta'   => 'Vuoto',
+					'descrizione' => '<p>&nbsp;</p>',
+				),
+				array(
+					'etichetta' => 'Con pagine',
+					'pagine'    => array( 8 ),
+				),
+			)
+		);
+
+		$italian = dli_get_hp_tabs_for_language( $rows, true );
+		$this->assertSame( array( 'Uno', 'Due', 'Con pagine' ), array_column( $italian, 'label' ), 'A row without a label is not a tab, and a tab without text and without pages is left out.' );
+		$this->assertSame( '<p>Testo uno</p>', $italian[0]['text'] );
+
+		$english = dli_get_hp_tabs_for_language( $rows, false );
+		$this->assertSame( array( 'One', 'Due', 'Con pagine' ), array_column( $english, 'label' ), 'A missing English label is the Italian one.' );
+		$this->assertSame( '<p>Text one</p>', $english[0]['text'] );
+		$this->assertSame( '<p>Testo due</p>', $english[1]['text'], 'A missing English text is the Italian one.' );
+		$this->assertSame( array( 8 ), $english[2]['page_ids'] );
+	}
 }

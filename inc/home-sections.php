@@ -14,6 +14,11 @@
  *  - dli_sanitize_hp_page_level()          Sanitization of the field "Livello delle pagine".
  *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
  *  - dli_get_hp_groups_column_class()      The columns of the groups of "Navigazione per pagine".
+ *  - dli_is_blank_text()                   Whether a text has nothing to show (empty, spaces, tags, non-breaking spaces).
+ *  - dli_pick_lang_value()                 The Italian or English value of a pair of fields, English falling back to Italian.
+ *  - dli_sanitize_hp_tab_page_ids()        The pages linked to a tab: whole positive numbers, no repeats.
+ *  - dli_normalize_hp_tab_rows()           The saved tabs of "Pannello tab", safe to use.
+ *  - dli_get_hp_tabs_for_language()        The tabs of "Pannello tab" shown in a language.
  *
  * @package Design_Laboratori_Italia
  */
@@ -271,5 +276,155 @@ if ( ! function_exists( 'dli_get_hp_groups_column_class' ) ) {
 			return 'col-12 col-md-6 col-lg-4';
 		}
 		return 'col-12 col-md-6 col-lg-3';
+	}
+}
+
+if ( ! function_exists( 'dli_is_blank_text' ) ) {
+	/**
+	 * Whether a text has nothing to show: empty, only spaces, or only tags and non-breaking spaces.
+	 *
+	 * The editor of a description leaves `<p>&nbsp;</p>` behind when its text is deleted. A value that is not text
+	 * is blank, and the text "0" is text.
+	 *
+	 * @param mixed $value The value to check.
+	 * @return bool True when there is nothing visible.
+	 */
+	function dli_is_blank_text( $value ) {
+		if ( ! is_string( $value ) ) {
+			return true;
+		}
+
+		$text = preg_replace( '/<[^>]*>/', '', $value );
+		$text = html_entity_decode( (string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$text = preg_replace( '/[\s\x{00A0}]+/u', '', $text );
+
+		return null === $text || '' === $text;
+	}
+}
+
+if ( ! function_exists( 'dli_pick_lang_value' ) ) {
+	/**
+	 * The value of a pair of fields, Italian and English, for the language of the page.
+	 *
+	 * An English page uses the English value; when it is missing or blank, the Italian one. An Italian page always
+	 * uses the Italian value: English never takes its place. A value that is not text is empty.
+	 *
+	 * @param mixed $italian    The Italian value.
+	 * @param mixed $english    The English value.
+	 * @param bool  $is_italian True when the page is in Italian, false for any other language.
+	 * @return string The value to show.
+	 */
+	function dli_pick_lang_value( $italian, $english, $is_italian ) {
+		$italian = is_string( $italian ) ? $italian : '';
+		$english = is_string( $english ) ? $english : '';
+
+		if ( $is_italian || dli_is_blank_text( $english ) ) {
+			return $italian;
+		}
+		return $english;
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_tab_page_ids' ) ) {
+	/**
+	 * The pages linked to a tab, as a list of whole positive numbers without repeats, in the saved order.
+	 *
+	 * Used when the group of the tabs is saved and again when it is read: a value that is not a list, and any item
+	 * that is not a whole positive number (text with letters, negative numbers, zero, booleans, lists), are left out.
+	 *
+	 * @param mixed $value The saved value, normally a list of page IDs written as text.
+	 * @return int[] The page IDs.
+	 */
+	function dli_sanitize_hp_tab_page_ids( $value ) {
+		if ( ! is_array( $value ) ) {
+			return array();
+		}
+
+		$ids = array();
+		foreach ( $value as $item ) {
+			if ( is_string( $item ) && ctype_digit( $item ) ) {
+				$item = (int) $item;
+			}
+			if ( is_int( $item ) && $item > 0 && ! in_array( $item, $ids, true ) ) {
+				$ids[] = $item;
+			}
+		}
+
+		return $ids;
+	}
+}
+
+if ( ! function_exists( 'dli_normalize_hp_tab_rows' ) ) {
+	/**
+	 * The saved tabs of the section "Pannello tab", safe to use.
+	 *
+	 * A value that is not a row is left out; in the others every text is a string (empty when it is missing or is
+	 * not text) and the linked pages are checked by `dli_sanitize_hp_tab_page_ids()`. The order is the saved one.
+	 * Whether a tab is shown is decided later, for the language of the page (`dli_get_hp_tabs_for_language()`).
+	 *
+	 * @param mixed $rows The saved rows of the group `home_tabs_items`.
+	 * @return array<int, array{label: string, label_eng: string, text: string, text_eng: string, page_ids: int[]}> The rows.
+	 */
+	function dli_normalize_hp_tab_rows( $rows ) {
+		if ( ! is_array( $rows ) ) {
+			return array();
+		}
+
+		$result = array();
+		foreach ( $rows as $row ) {
+			if ( ! is_array( $row ) ) {
+				continue;
+			}
+
+			$result[] = array(
+				'label'     => is_string( $row['etichetta'] ?? null ) ? trim( $row['etichetta'] ) : '',
+				'label_eng' => is_string( $row['etichetta_eng'] ?? null ) ? trim( $row['etichetta_eng'] ) : '',
+				'text'      => is_string( $row['descrizione'] ?? null ) ? $row['descrizione'] : '',
+				'text_eng'  => is_string( $row['descrizione_eng'] ?? null ) ? $row['descrizione_eng'] : '',
+				'page_ids'  => dli_sanitize_hp_tab_page_ids( $row['pagine'] ?? null ),
+			);
+		}
+
+		return $result;
+	}
+}
+
+if ( ! function_exists( 'dli_get_hp_tabs_for_language' ) ) {
+	/**
+	 * The tabs of the section "Pannello tab" that are shown in a language.
+	 *
+	 * The label makes a tab: a row whose label, in the language of the page, is blank is not shown. A tab is kept
+	 * while it has a text or at least one linked page; a tab with neither is left out. A missing English label or
+	 * text is the Italian one (`dli_pick_lang_value()`). Whether the linked pages can actually be shown (published,
+	 * without password, translated) is decided by `dli_get_home_tabs()`, which reads them.
+	 *
+	 * @param array<int, array{label: string, label_eng: string, text: string, text_eng: string, page_ids: int[]}> $rows The rows from `dli_normalize_hp_tab_rows()`.
+	 * @param bool                                                                                                 $is_italian True for an Italian page.
+	 * @return array<int, array{label: string, text: string, page_ids: int[]}> The tabs, in order.
+	 */
+	function dli_get_hp_tabs_for_language( $rows, $is_italian ) {
+		$tabs = array();
+		foreach ( $rows as $row ) {
+			$label = dli_pick_lang_value( $row['label'], $row['label_eng'], $is_italian );
+			if ( dli_is_blank_text( $label ) ) {
+				continue;
+			}
+
+			$text = dli_pick_lang_value( $row['text'], $row['text_eng'], $is_italian );
+			if ( dli_is_blank_text( $text ) ) {
+				$text = '';
+			}
+			if ( '' === $text && empty( $row['page_ids'] ) ) {
+				continue;
+			}
+
+			$tabs[] = array(
+				'label'    => $label,
+				'text'     => $text,
+				'page_ids' => $row['page_ids'],
+			);
+		}
+
+		return $tabs;
 	}
 }
