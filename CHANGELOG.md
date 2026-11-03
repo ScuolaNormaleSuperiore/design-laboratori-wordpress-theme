@@ -41,6 +41,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Estensione CMB2 Leaflet Geocoder, non usata dal tema (le mappe dei Luoghi usano ACF OpenStreetMap Field).
 ## Corretto
 - Campo «Articoli collegati» (Attached Posts): il link di modifica non diventa più «1».
+- Carousel Eventi in home: frecce dentro lo schermo su telefono e tablet, senza scorrimento orizzontale a 320 px.
 ## Sicurezza
 - Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente anche per le richieste che non passano dalla pagina.
 

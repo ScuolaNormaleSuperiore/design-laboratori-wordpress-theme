@@ -12,6 +12,15 @@ html {
 
 /* STILI PERSONALIZZATI */
 
+/* The visible-arrow carousel places its controls 24px outside the wrapper.
+	Below the desktop breakpoint the container gutters can be narrower, which
+	pushes the controls beyond the viewport. Keep them inside the wrapper. */
+@media (max-width: 1199.98px) {
+	.it-carousel-wrapper.it-carousel-landscape-abstract-three-cols-arrow-visible {
+		--bsi-carousel-arrow-offset: 0px;
+	}
+}
+
 /* Keep the desktop navigation bar visually separate from the page hero in
 	both site styles. The inner navbar already uses the light variant; this
 	sets the matching background on its full-width wrapper. */

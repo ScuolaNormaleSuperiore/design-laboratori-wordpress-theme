@@ -187,6 +187,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | File | Test |
 |---|---|
 | `home.spec.js` | la home si carica (stato inferiore a 400, attributo `lang`) |
+| `home-carousel-reflow.spec.js` | carousel con frecce visibili sulle home IT/EN: controlli dentro lo schermo e nessuno scorrimento orizzontale da 320 a 1280 px, avanzamento con click e ritorno con tastiera. La baseline non ha eventi: il test inserisce nella sola risposta del browser una fixture con lo stesso contenitore/variante del template Eventi, usando CSS e JavaScript reali del tema, senza modificare il database |
 | `admin-login.spec.js` | l'amministratore entra in `wp-admin` |
 | `config-permissions.spec.js` | amministratore e Super Editor aprono la pagina Configurazione, l'Editor riceve 403 |
 | `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato; un invio forzato con campi vuoti mostra i tre messaggi di validazione in ordine; un invio con un nonce sbagliato viene rifiutato |
