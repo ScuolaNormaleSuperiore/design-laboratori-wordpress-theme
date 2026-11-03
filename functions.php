@@ -27,12 +27,12 @@ require get_template_directory() . '/config-menu.php';
 /**
  * Warappers functions fo Polylang.
  */
-require get_template_directory() . '/inc/wrappers_polylang.php';
+require get_template_directory() . '/inc/wrappers-polylang.php';
 
 /**
  * Warappers functions for ACF.
  */
-require get_template_directory() . '/inc/wrappers_acf.php';
+require get_template_directory() . '/inc/wrappers-acf.php';
 
 
 /**

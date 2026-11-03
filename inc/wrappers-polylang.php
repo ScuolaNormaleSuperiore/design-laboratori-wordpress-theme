@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- Historical file name, required by functions.php and named in AGENTS/.
+<?php
 /**
  * Wrapper functions for POLYLANG.
  *

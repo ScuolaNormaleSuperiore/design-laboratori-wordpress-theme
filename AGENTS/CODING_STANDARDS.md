@@ -175,7 +175,7 @@ introduce barriers.
 ACF and Polylang are required plugins (`SUGGESTED_PLUGINS` in `config-lab.php`); the
 theme does not activate without Polylang. Their functions are reached through the
 project wrappers: `dli_get_field()` / `dli_update_field()` and the `dli_*` Polylang
-wrappers in `inc/wrappers_polylang.php`.
+wrappers in `inc/wrappers-polylang.php`.
 
 - In new code, do not call `get_field()`, `update_field()`, or `pll_*()` directly:
   use the wrappers.

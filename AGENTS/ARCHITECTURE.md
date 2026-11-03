@@ -29,7 +29,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 
 - `functions.php`: theme bootstrap and runtime wiring entrypoint.
   - Loads configuration files: `config-lab.php`, `config-pages.php`, `config-menu.php`.
-  - Loads wrappers/utilities/modules: `inc/wrappers_polylang.php`, `inc/wrappers_acf.php`, `inc/utils.php`, `inc/actions.php`, `inc/activation.php`.
+  - Loads wrappers/utilities/modules: `inc/wrappers-polylang.php`, `inc/wrappers-acf.php`, `inc/utils.php`, `inc/actions.php`, `inc/activation.php`.
   - Loads dependencies/admin tooling: `inc/theme-dependencies.php`, `inc/cmb2.php`, `inc/admin/options.php`.
   - Loads and instantiates runtime managers: `inc/classes/class-dli-contentsmanager.php` (with `class-dli-og-wrapper.php`, the Open Graph value object), `inc/classes/class-dli-labmanager.php` (`DLI_LabManager::plugin_setup()`).
 - `config-lab.php`: theme constants.
@@ -110,11 +110,11 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 
 ## Conventions and Intentional Patterns
 
-- Polylang wrappers (`inc/wrappers_polylang.php`): always call `dli_*` wrappers,
+- Polylang wrappers (`inc/wrappers-polylang.php`): always call `dli_*` wrappers,
   never `pll_*` directly. Each is guarded by `function_exists()`; without Polylang
   readers fall back to `DLI_DEFAULT_LANGUAGE` and writers do nothing. The theme
   does not activate without Polylang.
-- ACF wrappers (`inc/wrappers_acf.php`): use `dli_get_field()` / `dli_update_field()`.
+- ACF wrappers (`inc/wrappers-acf.php`): use `dli_get_field()` / `dli_update_field()`.
 - Options: `dli_get_option( $field, $option_key )` (CMB2 options page
   "Configurazione", base key `dli_options`); booleans are the strings `'true'` /
   `'false'`; `dli_get_option_by_lang()` appends `_eng` for non-Italian.
