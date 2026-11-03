@@ -10,7 +10,6 @@ html {
 	background-color: white;
 }
 
-
 /* STILI PERSONALIZZATI */
 
 /* Keep the desktop navigation bar visually separate from the page hero in
@@ -81,19 +80,6 @@ html {
 	padding-inline-start: calc(var(--bsi-sidebar-link-sublist-indent) * 2);
 }
 
-.bg-banner-persone {
-	background-color: #f5f5f5;
-}
-
-.card.card-avatar .card-avatar-img {
-	width: 40px;
-	height: 40px;
-	flex-shrink: 0;
-	margin: 0 12px 0 0;
-	border-radius: 50%;
-	overflow: hidden;
-}
-
 /* Secondary text of an avatar card (for example the structure and the cycle of a person in the list of people):
 	Bootstrap Italia colors it with --bsi-color-text-secondary, with no variable of the component, which is the dark
 	blue of the site; it takes the color of the standard text, as in the playground. It applies to the <p> of the
@@ -114,16 +100,6 @@ html {
 	filter: brightness(0%) invert(100%);
 }
 
-.chip-selected {
-	background: var(--bsi-color-background-primary) !important;
-	border-color: var(--bsi-color-background-primary) !important;
-	color: #ffffff;
-}
-
-.chip-selected a {
-	color: #ffffff;
-}
-
 .chip-label a {
 	text-decoration: none !important;
 }
@@ -135,7 +111,6 @@ html {
 	margin-top: 20px;
 }
 
-
 .it-brand-tagline {
 	font-size: 1rem !important;
 
@@ -144,7 +119,6 @@ html {
 .display_block {
 	display: block !important;
 }
-
 
 /** Accessibilità */
 
@@ -184,19 +158,6 @@ p a.text-white {
 	text-decoration: underline !important;
 }
 
-#button-newsletter-iscriviti {
-	background-color: inherit !important;
-}
-
-#button-newsletter-iscriviti:hover {
-	background-color: var(--bsi-color-background-primary) !important;
-}
-
-.customSpacingDiv {
-	display: flex;
-	gap: 4px;
-}
-
 .customSpacing {
 	height: 24px !important;
 	transform: translateY(-2px) !important;
@@ -211,23 +172,6 @@ p a.text-white {
 .cardTitlecustomSpacing a {
 	display: inline-block !important;
 	min-height: 24px !important;
-}
-
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
-}
-
-/** CHIPS */
-.hover-text-white:hover {
-	color: white !important;
 }
 
 /* modifiche visibilità  hero e banner */
@@ -358,22 +302,6 @@ p a.text-white {
 .card .card-body .card-text,
 .card .card-body .card-text a {
 	font-family: var(--bsi-font-sans);
-}
-
-
-/* card progetti */
-.dli_card_progetti .head-tags {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px; /* Spazio tra i bottoni */
-}
-
-.dli_card_progetti .card-tag {
-	/* flex: 1 1 100%;  Occupa l'intera larghezza disponibile */
-}
-
-.dli_card_progetti a {
-	text-align: center;
 }
 
 /* Tabella persone: bottoni ordinamento colonne */
