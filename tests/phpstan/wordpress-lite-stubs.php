@@ -75,7 +75,7 @@ if ( ! class_exists( 'CMB2_Options_Hookup' ) ) {
 }
 
 if ( ! defined( 'CMB2_VERSION' ) ) {
-	define( 'CMB2_VERSION', '2.11.0' );
+	define( 'CMB2_VERSION', '2.13.5' );
 }
 
 if ( ! function_exists( 'new_cmb2_box' ) ) {

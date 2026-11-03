@@ -3,6 +3,15 @@ CMB2 Attached Posts Field
 
 Custom field for [CMB2](https://github.com/WebDevStudios/CMB2).
 
+## Theme-local maintenance
+
+This bundled 1.2.7 copy includes theme-specific changes; do not replace it
+without reviewing the diff. In `init.php`, the edit-link template casts
+`get_edit_post_link()` to a string: the former local `|| ''` expression
+converted a valid URL to `true` and JavaScript received `"1"`. The cast also
+keeps an absent link as an empty string. Regression coverage:
+`tests/integration/DLI_Attached_Posts_Integration_Test.php` in the theme.
+
 The post IDs are saved in an array, which can be rearranged by dragging and dropping posts in the attached posts column. Now incorporates the same search field as the [CMB2 Post Search field](https://github.com/WebDevStudios/CMB2-Post-Search-field).
 
 ## Installation

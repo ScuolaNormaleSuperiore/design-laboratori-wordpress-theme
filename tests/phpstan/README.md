@@ -65,4 +65,5 @@ controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../REA
 - Il livello non scende sotto il 4 e ogni file PHP del tema deve essere nei percorsi analizzati: lo verifica
   [`../unit/DLI_PHPStan_Config_Unit_Test.php`](../unit/DLI_PHPStan_Config_Unit_Test.php).
 - Quando si aggiorna ACF, Polylang, CMB2 o Really Simple CAPTCHA, controllare che le firme dichiarate qui siano ancora
-  quelle vere.
+  quelle vere. La versione di `CMB2_VERSION` in `wordpress-lite-stubs.php` deve essere quella della libreria in
+  `inc/vendor/CMB2`: lo verifica `DLI_Cmb2_Loader_Unit_Test`.

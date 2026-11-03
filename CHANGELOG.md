@@ -34,8 +34,15 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.0.5] - 2026-11-03
+## Modificato
+- Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (correzioni di sicurezza e di salvataggio, compatibilità con PHP 8.2-8.4).
+## Rimosso
+- Estensione CMB2 Leaflet Geocoder, non usata dal tema (le mappe dei Luoghi usano ACF OpenStreetMap Field).
+## Corretto
+- Campo «Articoli collegati» (Attached Posts): il link di modifica non diventa più «1».
 ## Sicurezza
 - Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente anche per le richieste che non passano dalla pagina.
+
 
 
 ## [2.0.4] - 2026-11-03

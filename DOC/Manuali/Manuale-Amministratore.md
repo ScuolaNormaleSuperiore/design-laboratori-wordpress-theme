@@ -121,3 +121,10 @@ La descrizione completa è in `AGENTS/ARCHITECTURE.md`. In breve:
 | Plugin Better Aria Label Support | Non è più richiesto. |
 
 Per i contenuti del sito di sviluppo Laboratorio1 (rinomina interna di «Card di navigazione») è stato usato uno script monouso, non necessario sugli altri siti: la sezione non era mai stata rilasciata.
+
+### 10.1 Dalla versione 2.0.4 alla 2.0.5
+Anche qui **nessuna migrazione dei dati**: i valori salvati restano com'erano.
+
+- **Libreria dei campi (CMB2):** aggiornata da 2.11.0 a 2.13.5, con correzioni di sicurezza e di salvataggio (campi ripetibili, caselle con valore `0`, editor di testo dentro i gruppi) e la compatibilità con PHP 8.2–8.4. Dopo l'aggiornamento conviene aprire una volta **Configurazione**, controllare che i campi si vedano e si salvino, e svuotare la cache del browser se l'amministrazione appare con stili o comportamenti vecchi.
+- **Salvataggio della configurazione:** una pagina di **Configurazione** si può salvare soltanto con il permesso della pagina (Super Editor e Amministratore; `manage_options` per le schede riservate), anche per una richiesta che non passa dalla pagina. Non cambia nulla per chi usa il pannello normalmente.
+

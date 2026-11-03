@@ -4,6 +4,94 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 *
 
+## [2.13.5 - 2026-10-26](https://github.com/CMB2/CMB2/releases/tag/v2.13.5)
+
+### Enhancements
+
+* [Development] Fixed the PHPUnit CI legs that test against the latest WordPress: they now use the test suite tagged for the latest stable release instead of wordpress-develop trunk, which can require core APIs a stable release does not have yet.
+
+### Bug Fixes
+
+* Fixed `multicheck` and `multicheck_inline` fields (including inside a group) not saving when the only checked option has the value `0`. Non-repeatable array values that hold only `0` or `'0'`, such as from custom field types, are no longer treated as empty and deleted on save. Such a field now stores `array( '0' )`, so `metadata_exists()` returns true, `cmb2_save_field` reports `updated` instead of `removed`, and a field with a `default` no longer falls back to that default when only `0` is checked. Props [@faisalahammad](https://github.com/faisalahammad). Fixes [#1535](https://github.com/CMB2/CMB2/issues/1535) ([#1572](https://github.com/CMB2/CMB2/pull/1572)).
+* Fixed repeatable fields (including repeatable fields in a group) dropping a `0` or `'0'` entry on save and not showing a saved `0` row on the edit screen, so the next save removed it. A `0` entry is now kept and passed to the field type's sanitizer like any other entry: repeatable `text_url` stores the field `default` (or `false`), `text_email` stores `''`, `text_date_timestamp` stores timestamp `0`, and a `text_datetime_timestamp` row that parses to epoch `0` is kept (the edit screen still shows a `0` timestamp as empty, so re-saving the form removes that row). Custom `sanitization_cb` callbacks and `cmb2_sanitize_{$type}` filters now receive `'0'` entries in repeatable arrays, and `sanitization_cb => false` stores them. A repeatable `text_money` entry of `0` now saves as `0.00` instead of being removed. Props [@faisalahammad](https://github.com/faisalahammad) ([#1574](https://github.com/CMB2/CMB2/pull/1574)).
+* Fixed a repeatable field saving its hidden "empty row" template as an extra row on every save. This happened when the template had a value, such as a repeatable `select` without `show_option_none` (its first option was saved) or a field with a `default`. The template row's inputs are now rendered with `disabled` and a `data-cmb2-template` attribute, so the browser does not submit them, and the Add Row button enables them. Custom JavaScript that copies `.empty-row` itself, instead of using the Add Row button, must remove `disabled` from inputs that have `data-cmb2-template`. Props [@faisalahammad](https://github.com/faisalahammad) ([#1574](https://github.com/CMB2/CMB2/pull/1574)).
+* Fixed `wysiwyg` fields inside a group not escaping their saved value in the editor. The editor now loads the content exactly as saved: entities such as `&amp;` are no longer decoded on load (and then saved decoded), and saved markup such as a `</textarea>` tag stays inside the editor. Props Jakub Herman (via Wordfence).
+* Fixed removing the only row of a repeatable field inside a group adding an empty row to the other repeatable fields in that group and its other entries. The reset now fires `cmb2_add_row` once, on the clicked field's table, instead of once per repeatable table in the group, and removing the last row while the field's Add Row button is `disabled` now does nothing instead of throwing `Maximum call stack size exceeded`. Props [@faisalahammad](https://github.com/faisalahammad). Fixes [#1515](https://github.com/CMB2/CMB2/issues/1515) ([#1573](https://github.com/CMB2/CMB2/pull/1573)).
+
+## [2.13.4 - 2026-10-08](https://github.com/CMB2/CMB2/releases/tag/v2.13.4)
+
+### Enhancements
+
+* Added the `rest_enforce_user_read_permissions` box property and the `cmb2_rest_enforce_user_read_permissions` filter (off by default). When enabled, REST field reads of a user that core does not show (a user with no published posts, read by someone other than that user or a holder of `edit_user`/`list_users`) are denied. While neither declares an explicit `true` or `false` (the filter defaults to `null`), such a read stays allowed and emits a deprecation notice (an `X-WP-DeprecatedParam` header and a debug-log line when `WP_DEBUG` / `WP_DEBUG_LOG` are on), since the default will change in a future version. Set the property or filter to `false` to keep the current behavior.
+* Updated the alpha color picker script (`wp-color-picker-alpha`) to 3.0.4. Alpha `colorpicker` fields now output `data-alpha-enabled` instead of `data-alpha`; if you set `data-alpha` yourself through a field's `attributes`, rename it to `data-alpha-enabled`. Props [Sajib Talukder (@stalukder03)](https://github.com/stalukder03) ([#1542](https://github.com/CMB2/CMB2/pull/1542)).
+* [Development] Added Dependabot version updates for npm and GitHub Actions (monthly, one grouped PR per ecosystem), and applied its first round of dev-tooling and workflow action updates ([#1567](https://github.com/CMB2/CMB2/pull/1567), [#1568](https://github.com/CMB2/CMB2/pull/1568)).
+* [Development] Restricted the GitHub Actions `GITHUB_TOKEN` to read-only in all workflows, and moved the Playwright workflow to Node 22.
+* [Development] Expanded `SECURITY.md` with an email fallback for reports, CVE handling and scope.
+
+### Bug Fixes
+
+* Object IDs that CMB2 reads from the request (`user_id`, `c`, `tag_ID` and `post`, used when a box has no object ID set) are now cast to integers, the way WordPress reads them on its own edit screens, and the `oembed` field escapes its `data-objectid` and `data-objecttype` attributes. Core save hooks pass explicit IDs and are unaffected. A front-end `save_fields()` call with no ID now resolves a non-numeric `user_id` to the current user, as core's profile screen does, rather than to a string ID that matched no user. `cmb2_set_object_id` filter callbacks and custom `cmb2_override_meta_*` storage now receive an integer for these keys. Props [T3pp31 (@T3pp31)](https://github.com/T3pp31) (via GitHub security advisory).
+* The CMB2 REST field endpoints (`/cmb2/v1/boxes/{box}/fields` and `/fields/{field}`) now follow WordPress core's REST read permissions for the requested object. Reads of a post in a non-public status (draft, pending, private, future, trash); of a post, or an attachment's parent, whose type is not shown in REST and is not one of the box's own post types; or of a comment core does not show (unapproved, on a post the requester cannot read, or on a password-protected post the requester cannot edit) return a 401/403 unless the requester can read that object. For anonymous requests this matches core's own routes. Published and password-protected posts, terms, options pages and custom object types are unchanged, and the `cmb2_api_get_field_permissions_check` / `cmb2_api_get_fields_permissions_check` filters (and box `*_permissions_check_cb` properties) still have the final say. The fields collection now returns a 401/403 for such an object. Props [T3pp31 (@T3pp31)](https://github.com/T3pp31).
+* A REST field read in the same PHP process as an earlier read of a different object now returns the requested object's value rather than the earlier object's.
+
+## [2.13.3 - 2026-10-03](https://github.com/CMB2/CMB2/releases/tag/v2.13.3)
+
+### Bug Fixes
+
+* The CMB2 REST boxes/fields endpoints now validate the `object_type` and `object_id` parameters against the box's registered object types. A request naming an object type the box is not registered for (a post-type box stores as `post`), or, for an options-page box, an option key other than the box's own, returns a 400 error instead of reading or writing that object. Stored data is unchanged. Props [Avinash Hanwate (@ahanwate)](https://github.com/ahanwate) (via GitHub security advisory).
+
+## [2.13.2 - 2026-09-30](https://github.com/CMB2/CMB2/releases/tag/v2.13.2)
+
+### Bug Fixes
+
+* Escaped stored values in default field displays, including admin columns and front-end `display_cb` output. Stored HTML in default `text` and `text_money` displays now appears as text. `textarea_code` preserves visible source and uses `<pre class="cmb2-code">` in place of `<xmp class="cmb2-code">`; integrations selecting the old element should update their selector. Valid source remains unchanged in storage, while unexpected non-scalar values are discarded on save to avoid PHP errors. Props Kuba (via Wordfence).
+
+## [2.13.1 - 2026-09-24](https://github.com/CMB2/CMB2/releases/tag/v2.13.1)
+
+### Enhancements
+
+* Tested up to WordPress 7.1.
+
+### Bug Fixes
+
+* Sanitized and escaped `file_list` field values, which were previously stored and rendered verbatim. Array keys must now be positive-integer attachment IDs, and URLs are sanitized with the field's `protocols` on save and on render. Entries with a malformed key (including `0` and positional-list keys) or a URL that sanitizes to empty are dropped the next time the field is saved. Props Ivaylo (via Wordfence).
+* Fixed a PHP 8 `TypeError` when displaying a `file_list` field containing a non-scalar value.
+* Gave the options-page setting CMB2 registers a `sanitize_callback`, which wp.org's Plugin Check requires of every `register_setting()` call. It is a passthrough by design: values are already sanitized per field type before the option is saved. Props [@rubengc](https://github.com/rubengc) ([#1533](https://github.com/CMB2/CMB2/issues/1533)).
+* Removed the `en@pirate` translation files, whose `@` in the filename fails wp.org's plugin submission checks for any plugin bundling CMB2. Props [@rubengc](https://github.com/rubengc) ([#1533](https://github.com/CMB2/CMB2/issues/1533)).
+
+## [2.13.0 - 2026-09-20](https://github.com/CMB2/CMB2/releases/tag/v2.13.0)
+
+### Enhancements
+
+* Added a `rest_read_capability` box property (also accepted as a field parameter) which declares who may read a box, or a single field on it, through the CMB2 REST API. The values read as plain English: `false` means no one, `true` means everyone (logged-out visitors included), `'box-capability'` means holders of the box's own `capability` parameter, and any other capability string means holders of that capability, e.g. `'edit_posts'`. It cascades field → box → default the same way `show_in_rest` does, and the existing `cmb2_api_get_box_permissions_check`/`cmb2_api_get_field_permissions_check` filters still run afterward and have the final say. See [REST API Read Permissions](https://cmb2.io/docs/REST-API-Read-Permissions) ([#1563](https://github.com/CMB2/CMB2/pull/1563)).
+* Added a site-wide `cmb2_rest_enforce_options_page_read_permissions` filter which aligns REST reads of options-page boxes with WordPress core's settings/options convention, gating them behind the box `capability` rather than serving them publicly. It defaults to `false`, preserving CMB2's current behavior, and is only consulted for boxes which have not declared a `rest_read_capability`. See [REST API Read Permissions](https://cmb2.io/docs/REST-API-Read-Permissions) ([#1563](https://github.com/CMB2/CMB2/pull/1563)).
+* Added a dismissible admin notice for sites which register a REST-readable options-page box and have neither declared a `rest_read_capability` on it nor enabled the filter above. It links the [REST API Read Permissions](https://cmb2.io/docs/REST-API-Read-Permissions) guide so those sites can pick the setting they want ahead of a later default change ([#1563](https://github.com/CMB2/CMB2/pull/1563)).
+* [Development] Added a `SECURITY.md` security policy and enabled GitHub private vulnerability reporting, giving researchers a private channel that does not depend on email delivery.
+
+### Bug Fixes
+
+* Aligned the oEmbed AJAX handler's permission checks with CMB2's other write paths: the handler now requires the caller to hold rights over the object the embed result is cached against (`edit_post`, `edit_user`, `edit_comment`, the taxonomy's `edit_terms`, or, for an options-page target, the `capability` of the box that declared that option key) instead of relying on the nonce alone, and sanitizes the requested object type. Props Mutantgun ([#1563](https://github.com/CMB2/CMB2/pull/1563)).
+* Fixed `CMB2_Base::maybe_hook_parameter()` turning a caller's default value into a declared box/field parameter. It passed the default through to `prop()`, which caches a truthy fallback on the object, so one request's default persisted as a real parameter for every later call. Only a declared parameter is consulted now ([#1563](https://github.com/CMB2/CMB2/pull/1563)).
+* Sanitized the `field_id` input (with an `isset()` guard) and escaped the `rel` attribute in the oEmbed AJAX handler, addressing a reflected XSS vector flagged by WordPress Plugin Check. Props [@thisismyurl](https://github.com/thisismyurl) ([#1559](https://github.com/CMB2/CMB2/pull/1559)).
+* Escaped the metabox ID output in the options-page form and the field ID output in the repeatable-field wrapper (`id` and `data-selector` attributes) with `esc_attr()`, resolving unescaped HTML attribute output flagged by WordPress Coding Standards. Props [@thisismyurl](https://github.com/thisismyurl) ([#1560](https://github.com/CMB2/CMB2/pull/1560)).
+
+## [2.12.0 - 2026-05-30](https://github.com/CMB2/CMB2/releases/tag/v2.12.0)
+
+### Enhancements
+
+* Confirmed compatibility with PHP 8.2 and 8.3, and tested up to WordPress 7.0.
+* [Development] Migrated end-to-end testing from Cypress to Playwright and replaced Grunt with npm scripts for the asset build pipeline. ([#1550](https://github.com/CMB2/CMB2/pull/1550)).
+* [Development] Moved the local development and test environment to `@wordpress/env` (wp-env) on pinned ports, running both PHPUnit and Playwright through it. ([#1554](https://github.com/CMB2/CMB2/pull/1554), [#1558](https://github.com/CMB2/CMB2/pull/1558)).
+* [Development] Replaced Travis CI with GitHub Actions, added a PHPCompatibility check (PHP 7.4+) and a PHPCS/WPCS lint gate, and overhauled `install-wp-tests.sh` for modern WordPress. ([#1555](https://github.com/CMB2/CMB2/pull/1555)).
+
+### Bug Fixes
+
+* Fixed a PHP 8.1+ deprecation when sanitizing an empty `textarea`-based field (passing `null` to `wp_kses_post()`). Props [@baljindersingh88](https://github.com/baljindersingh88) ([#1537](https://github.com/CMB2/CMB2/pull/1537)).
+* Fixed row iterator value desync between the data attribute and jQuery data when reordering repeatable group rows. Props [@angryaxi](https://github.com/angryaxi) ([#1518](https://github.com/CMB2/CMB2/pull/1518)).
+* Fixed a PHP 8.3 `ltrim()` deprecation in the taxonomy field display.
+* Hardened against PHP 8.2+ dynamic property deprecations by widening `#[AllowDynamicProperties]` to the class roots.
+* Removed a focus-background rule on `.cmb2-wrap` inputs that caused unexpected input styling. Fixes [#1556](https://github.com/CMB2/CMB2/issues/1556)/[wordpress.org/support/topic/weird-checkbox-behaviour-on-wp-7](https://wordpress.org/support/topic/weird-checkbox-behaviour-on-wp-7/) ([#1557](https://github.com/CMB2/CMB2/pull/1557)).
+
 ## [2.11.0 - 2024-04-02](https://github.com/CMB2/CMB2/releases/tag/v2.11.0)
 
 * Officially moved to PHP 7.4+ support!

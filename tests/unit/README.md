@@ -61,6 +61,7 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 | File | Cosa verifica |
 |---|---|
 | `DLI_Utils_Unit_Test.php` | Funzioni pure di `inc/utils.php`: nome visualizzato delle persone, ricerca in array annidati, nomi dei mesi, creazione e formattazione di date |
+| `DLI_Cmb2_Loader_Unit_Test.php` | Come il tema carica CMB2: percorsi di `inc/cmb2.php` ancorati su `__DIR__`, versione dello stub di PHPStan uguale a quella della libreria, nessun `package*.json` o file di lock dentro `inc/vendor/CMB2` |
 | `DLI_Config_Unit_Test.php` | Costanti di `config-lab.php`: lingue, plugin richiesti (ACF e Polylang), sezioni della home, contenuti con pagina di elenco |
 | `DLI_Release_Version_Unit_Test.php` | La versione è la stessa in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml` e nella prima voce di `CHANGELOG.md` |
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` coincide con la data della prima voce di `CHANGELOG.md` |

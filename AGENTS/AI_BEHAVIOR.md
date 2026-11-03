@@ -358,7 +358,7 @@ The AGENTS documents link to resources outside the repository (the official Word
 | Path | Nature | How to intervene |
 |---|---|---|
 | `vendor/`, `node_modules/` | Dependencies (Composer, npm) | Never edit, never review |
-| `inc/vendor/` (CMB2 and its extensions, TGM Plugin Activation) | Bundled third-party libraries | Read-only unless the operator asks for a direct patch |
+| `inc/vendor/` (CMB2 and its extensions, TGM Plugin Activation) | Bundled third-party libraries | Read-only unless the operator asks for a direct patch; update CMB2 by replacing the whole folder with the official package (never patch it) |
 | `assets/bootstrap-italia/` | Bootstrap Italia bundle | Read-only; update by replacing it (`DOC/HowTo/HowTo Aggiornare Bootstrap Italia.md`) |
 | `assets/js/components/` | Vendored JavaScript libraries (Leaflet, CLNDR, FitVids, ...) | Read-only; update by replacing the files |
 | `assets/css/owl.carousel.min.css`, `splide.min.css`, `italia-icon-font.css` | Vendored library styles | Read-only |

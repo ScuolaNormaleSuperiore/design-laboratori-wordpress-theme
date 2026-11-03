@@ -717,6 +717,8 @@ window.CMB2 = window.CMB2 || {};
 
 		cmb.newRowHousekeeping( $emptyrow ).cleanRow( $emptyrow, prevNum );
 
+		// The template row's inputs are disabled so they are not submitted. Enable them now that the row is real.
+		$row.find( '[data-cmb2-template]' ).prop( 'disabled', false ).removeAttr( 'data-cmb2-template' );
 		$row.removeClass('empty-row hidden').addClass('cmb-repeat-row');
 		$row.after( $emptyrow );
 
@@ -761,12 +763,21 @@ window.CMB2 = window.CMB2 || {};
 			return;
 		}
 
-		var $parent = $this.parents('.cmb-row');
+		var $parent = $this.closest( '.cmb-row' );
 		var $table  = $this.parents('.cmb-repeat-table');
 		var number  = $table.find('.cmb-row').length;
 
 		if ( number <= 2 ) {
-			return cmb.resetRow( $parent.find( '.cmb-add-row-button' ), $this );
+			// Only use this field's add button. Group rows are .cmb-row too.
+			var tableId = $table.attr( 'id' );
+			var $addBtn = $table.siblings( '.cmb-add-row' ).find( '.cmb-add-row-button' );
+			if ( ! $addBtn.length ) {
+				// Markup was changed, so find the button that targets this table.
+				$addBtn = $( '.cmb-add-row-button' ).filter( function() {
+					return this.getAttribute( 'data-selector' ) === tableId;
+				} ).first();
+			}
+			return cmb.resetRow( $addBtn, $this );
 		}
 
 		if ( $parent.hasClass('empty-row') ) {
@@ -780,6 +791,11 @@ window.CMB2 = window.CMB2 || {};
 	};
 
 	cmb.resetRow = function( $addNewBtn, $removeBtn ) {
+		// Without a usable add button, the remove click would call this again forever.
+		if ( ! $addNewBtn.length || $addNewBtn.prop( 'disabled' ) ) {
+			return;
+		}
+
 		cmb.resetRow.resetting = true;
 		// Click the "add new" button followed by the "remove this" button
 		// in order to reset the repeat row to empty values.
@@ -811,10 +827,10 @@ window.CMB2 = window.CMB2 || {};
 		var toIterator   = $goto.attr('data-iterator');
 
 		// Replace name attributes in both groups.
-		$from.attr( 'data-iterator', toIterator ).find( cmb.repeatEls ).each( function() {
+		$from.find( cmb.repeatEls ).each( function() {
 			cmb.updateNameAttr( $( this ), fromIterator, toIterator );
 		});
-		$goto.attr( 'data-iterator', fromIterator ).find( cmb.repeatEls ).each( function() {
+		$goto.find( cmb.repeatEls ).each( function() {
 			cmb.updateNameAttr( $( this ), toIterator, fromIterator );
 		});
 
@@ -824,6 +840,12 @@ window.CMB2 = window.CMB2 || {};
 			cmb.resetGroupTitles( $from, toIterator, groupTitle );
 			cmb.resetGroupTitles( $goto, fromIterator, groupTitle );
 		}
+
+		// Update the iterators
+		$from.data( 'iterator', toIterator );
+		$from.attr( 'data-iterator', toIterator );
+		$goto.data( 'iterator', fromIterator );
+		$goto.attr( 'data-iterator', fromIterator );
 
 		// Now move the group to it's destination.
 		$goto[moveUp ? 'before' : 'after']( $from );
