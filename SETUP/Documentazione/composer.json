@@ -1,0 +1,16 @@
+{
+  "name": "sns/design-laboratori-documentation",
+  "description": "Isolated static documentation generator (not a theme dependency)",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "php": ">=8.4",
+    "ext-mbstring": "*",
+    "ext-xml": "*",
+    "daux/daux.io": "0.26.1"
+  },
+  "config": {
+    "allow-plugins": false,
+    "sort-packages": true
+  }
+}

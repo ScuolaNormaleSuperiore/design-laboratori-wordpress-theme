@@ -95,27 +95,178 @@ Suggerimenti:
 - Evita di incollare codice HTML/JS non necessario nei campi testuali.
 
 ## 8. Home page: cosa puo' gestire l'operatore
-La home è composta dalle sezioni che aggiungi, ordini e attivi in `Configurazione > Sezioni HP`. I testi e i contenuti di ogni sezione sono nelle schede `Layout HP`, `Laboratorio` e `Avvisi in Home`; i campi di ogni scheda sono nel [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md).
 
-| Sezione | Come si popola |
-|---|---|
-| `Hero principale` | Testi e immagine in `Layout HP` |
-| `Descrizione del sito` (`Il laboratorio`) | Testo in `Laboratorio` |
-| `Carousel principale` | Contenuti con `Promuovi in carousel` acceso (selezione automatica o manuale) |
-| `Contenuti in evidenza` | Fino a tre box, ognuno con un tipo di contenuto; mostrano fino a 3 contenuti con `Promuovi in Home` acceso |
-| `Card di navigazione` | Pagine con `Promuovi in Home` acceso, come card (vedi §6) |
-| `Navigazione per pagine` | Per ogni pagina promossa che ha sottopagine, un gruppo con i link alle sottopagine (vedi §6) |
-| `Indice di una pagina` | Una pagina scelta nella riga: colonne e link dalle sue sottopagine (vedi §6) |
-| `Pannello tab` | Tab scritti in `Layout HP`, con pagine collegate facoltative (vedi §6) |
-| `Eventi`, `Notizie`, `Pubblicazioni`, `Articoli` | Contenuti del tipo con `Promuovi in Home` acceso |
-| `Banner`, `Sponsor`, `Video` | Banner e Sponsor sono tipi di contenuto; il video è un indirizzo in `Layout HP` |
+Questo capitolo è la guida pratica per scegliere e comporre le sezioni della home. Per modificare `Configurazione` serve il ruolo **Super Editor** o **Amministratore**; chi gestisce soltanto i contenuti può preparare pagine, notizie e altri elementi, secondo i propri permessi.
 
-In ogni riga di `Sezioni HP` puoi attivare la sezione, mostrare o nascondere il titolo e, per le sezioni che lo prevedono, scegliere lo sfondo (bianco o grigio chiaro). Le frecce di ogni riga, visibili anche a riga chiusa, ne cambiano l'ordine.
+### 8.1 Scegliere le sezioni
 
-Procedura consigliata:
-1. Aggiorna contenuti sorgente (post/pagine/campi opzione).
-2. Controlla l'ordine e l'attivazione delle sezioni in `Sezioni HP`.
-3. Verifica la resa finale in home, in italiano e in inglese.
+Non occorre usarle tutte: scegli quelle utili al visitatore ed evita di ripetere lo stesso contenuto in troppi blocchi.
+
+| Sezione | Quando usarla | Da dove arrivano i contenuti |
+|---|---|---|
+| Hero principale | Presentare un messaggio con immagine e un invito all'azione | Testi e immagine in `Layout HP` |
+| Descrizione del sito | Spiegare brevemente identità e attività del laboratorio | Scheda `Laboratorio` |
+| Carousel principale | Mettere in primo piano più contenuti a scorrimento | Selezione automatica o manuale in `Layout HP` |
+| Contenuti in evidenza | Affiancare fino a tre gruppi di contenuti di tipi diversi | Box in `Layout HP` e contenuti promossi in home |
+| Card di navigazione | Offrire accessi sintetici alle pagine principali | Pagine con `Promuovi in Home` |
+| Navigazione per pagine | Mostrare più gruppi di pagine con le relative sottopagine | Pagine promosse che hanno sottopagine |
+| Indice di una pagina | Mostrare l'albero di una pagina scelta, anche in più punti della home | Pagina scelta nella singola riga di `Sezioni HP` |
+| Pannello tab | Organizzare testi e link per argomenti, mostrando un pannello alla volta | Tab compilati in `Layout HP` |
+| Eventi | Dare visibilità agli eventi selezionati dalla redazione | Eventi con `Promuovi in Home` |
+| Notizie | Evidenziare le notizie selezionate dalla redazione | Notizie con `Promuovi in Home` |
+| Pubblicazioni | Presentare una selezione di pubblicazioni | Pubblicazioni con `Promuovi in Home` |
+| Articoli | Valorizzare i contributi del blog | Articoli WordPress con `Promuovi in Home` |
+| Banner | Promuovere iniziative con un richiamo grafico e un collegamento | Contenuti di tipo Banner |
+| Sponsor | Mostrare loghi di partner e collaborazioni | Contenuti di tipo Sponsor |
+| Video | Inserire un video di presentazione | URL in `Layout HP` |
+
+Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano nella scheda omonima e non si aggiungono né si riordinano in `Sezioni HP` (vedi §8.18).
+
+### 8.2 Aggiungere, ordinare e configurare
+
+1. Prepara i contenuti necessari e pubblicali, se sono pagine o altri contenuti editoriali.
+2. Apri `Configurazione > Sezioni HP`, aggiungi una riga e scegli la sezione.
+3. Attiva `Abilita la sezione` e compila le opzioni che compaiono per quella sezione. Le frecce nell'intestazione della riga ne cambiano l'ordine; la `✕` elimina la riga dalla home, non i contenuti originali.
+4. Completa testi e contenuti nelle schede indicate sotto e salva ogni scheda modificata: `Sezioni HP` e `Layout HP` sono configurazioni distinte.
+5. Controlla la home in italiano e in inglese, su desktop e su telefono; prova anche i collegamenti.
+
+`Mostra il titolo della sezione` è disponibile nelle righe, ma il suo effetto dipende dal modello: non nasconde il titolo della Hero, della descrizione del sito o dei singoli Banner; alcuni blocchi usano un titolo solo per le tecnologie assistive. Sfondo e limiti numerici compaiono soltanto nelle sezioni che li supportano. Il dettaglio dei campi resta nel [Manuale del pannello Configurazione, §§4.3–4.4](Manuale-Utente-Pannello-Configurazione.md).
+
+**Ripetere una sezione non significa ottenere contenuti indipendenti.** L'Indice di una pagina consente una pagina diversa per ogni riga. Pannello tab e Video leggono invece un'unica configurazione in `Layout HP`; Banner legge la stessa selezione automatica. Per questi ultimi usa una sola riga: la possibilità di configurarli come istanze autonome non fa parte del comportamento qui documentato.
+
+### 8.3 Hero principale
+
+È un grande richiamo con immagine di sfondo, titolo, testo e pulsante. È adatta, per esempio, a presentare il laboratorio e rimandare alla pagina «Chi siamo».
+
+In `Configurazione > Layout HP` scegli la dimensione grande o piccola, compila titolo e testo IT/EN, seleziona l'immagine e indica etichetta e URL del pulsante. Aggiungi e abilita `Hero principale` in `Sezioni HP`.
+
+La Hero è mostrata quando è abilitata, anche se alcuni campi sono vuoti: non lasciare un blocco privo di messaggio. Senza URL il pulsante non compare. Il testo descrittivo è nascosto sugli schermi più piccoli: metti le informazioni indispensabili nel titolo e nella pagina di destinazione, non soltanto nella descrizione.
+
+### 8.4 Descrizione del sito
+
+Mostra il testo di presentazione del laboratorio, senza dover creare un articolo. Usala per una breve introduzione a missione e attività.
+
+Compila etichetta e descrizione in `Configurazione > Laboratorio`, nelle lingue previste, e abilita `Descrizione del sito` in `Sezioni HP`. Senza descrizione da mostrare il blocco non compare. L'etichetta è il titolo visibile del blocco; non si controlla da `Mostra il titolo della sezione`.
+
+### 8.5 Carousel principale
+
+Mostra schede a scorrimento con immagine, titolo e sintesi. È distinto dal carousel della sezione Eventi. La selezione manuale propone articoli del blog, notizie, eventi e pubblicazioni; quella automatica può includere anche brevetti, progetti, spin-off e risorse tecniche con `Promuovi in carousel`.
+
+In `Configurazione > Layout HP` scegli la selezione automatica, basata sul campo `Promuovi in carousel` dei contenuti, oppure disattivala e scegli manualmente gli elementi. Imposta anche il criterio di ordinamento disponibile: selezione manuale non significa ordine libero, perché il tema riordina comunque per il criterio di data scelto, dal più recente.
+
+Abilita `Carousel principale` in `Sezioni HP`. Senza elementi non viene semplicemente nascosto: appare un messaggio che invita a configurarlo; disabilitalo se non intendi usarlo. Nei siti multilingua verifica le traduzioni dei contenuti scelti. Esempio: metti in primo piano una notizia, un evento e una pubblicazione, con immagini coerenti e titoli brevi.
+
+### 8.6 Contenuti in evidenza
+
+Affianca fino a tre box, ciascuno dedicato a un tipo di contenuto. Usalo, per esempio, per accostare «Notizie», «Eventi» e «Pubblicazioni» senza tre sezioni estese consecutive.
+
+Configura in `Layout HP` il tipo e il titolo IT/EN di ogni box; pubblica i contenuti e attiva il loro campo `Promuovi in Home`. Ogni box mostra fino a 3 elementi, dai più recenti per pubblicazione. Il tipo decide l'aspetto: non c'è un template da scegliere per ciascun box.
+
+Attiva la sezione in `Sezioni HP`. I box vuoti non compaiono e quelli rimasti si dividono lo spazio; se sono tutti vuoti non compare la sezione. Il collegamento all'elenco completo compare quando esiste la pagina elenco pubblicata nella lingua corrente. Per i dettagli dei contenuti consulta i rispettivi manuali, per esempio quello delle [Pubblicazioni](Manuale-Gestione-Contenuti-Pubblicazioni.md).
+
+### 8.7 Card di navigazione
+
+Mostra pagine come card di accesso, per esempio «Ricerca», «Servizi» e «Contatti». La scelta non è un elenco manuale dentro la sezione: dipende dal campo `Promuovi in Home` delle pagine.
+
+Pubblica le pagine, attiva il campo e imposta `Ordine` in `Attributi pagina`; a parità di ordine si usa il titolo. In `Layout HP` scrivi titolo e sottotitolo della sezione. In `Sezioni HP` aggiungi `Card di navigazione`, scegli sfondo, numero massimo e livello delle pagine.
+
+Di default compaiono fino a 6 pagine di primo livello, cioè senza genitore. Puoi scegliere fino al secondo o terzo livello, oppure tutti i livelli, e un limite da 1 a 12. Bozze e pagine protette non compaiono; senza pagine idonee il blocco è nascosto. Il titolo configurato compare soltanto se ne abiliti la visualizzazione; il sottotitolo non vuoto rimane visibile. Ripetere la sezione non permette di scegliere due elenchi manuali indipendenti.
+
+### 8.8 Navigazione per pagine
+
+Mostra gruppi di link: il nome di una pagina e sotto le sue sottopagine dirette. È utile per presentare, per esempio, i servizi organizzati in «Dati», «Valutazione» e «Supporto».
+
+Attiva `Promuovi in Home` nelle pagine che devono diventare gruppi e assegna loro sottopagine pubblicate. Scrivi titolo e sottotitolo in `Layout HP`; aggiungi la sezione in `Sezioni HP`, scegliendo sfondo, numero massimo di gruppi e link per gruppo (da 1 a 12; valori iniziali 4 e 4).
+
+Le pagine possono essere a qualsiasi livello dell'albero; una pagina promossa senza sottopagine non forma un gruppo. Gruppi e link seguono `Ordine`, poi titolo; bozze e pagine protette sono escluse. Il titolo del gruppo non è un collegamento. Sul telefono i gruppi diventano un accordion, con il primo aperto; senza gruppi il blocco non compare. Non usa i menu del sito né una scelta manuale di pagine nella riga.
+
+### 8.9 Indice di una pagina
+
+Mostra l'albero di una pagina scelta: le sue sottopagine dirette diventano colonne e le sottopagine di queste diventano link. Non dipende da `Promuovi in Home` e non elenca semplicemente tutte le pagine del sito.
+
+In `Sezioni HP` aggiungi `Indice di una pagina` e scegli la `Pagina` fra quelle italiane pubblicate e senza password. Nella stessa riga imposta titolo visibile, sfondo, numero massimo di colonne e link per colonna (da 1 a 12; valori iniziali 4 e 6). Non ci sono testi da compilare in `Layout HP`: il titolo è quello della pagina scelta.
+
+Esempio di gerarchia, costruita tramite il campo `Pagina genitore`:
+
+```text
+Ricerca                         ← pagina scelta
+├── Progetti                    ← colonna
+│   ├── Progetti attivi          ← link
+│   └── Progetti conclusi        ← link
+├── Pubblicazioni               ← colonna
+│   └── Rapporti                 ← link
+└── Contatti                    ← senza figli: non forma una colonna
+```
+
+Una pagina non pubblicata, protetta o senza gruppi utilizzabili non produce la sezione. Sul sito inglese si usa la traduzione: senza traduzione della pagina scelta non compare l'indice. Sul telefono i gruppi diventano un accordion.
+
+Puoi aggiungere più indici, anche della stessa pagina: per esempio «Ricerca» con 4 colonne e «Servizi» con 2. Ogni riga conserva pagina, limiti e sfondo propri; a riga chiusa la pagina scelta compare nel nome, così distingui le copie. Una scelta diventata non visibile resta riconoscibile nel pannello, ma non rende nuovamente pubblica la pagina.
+
+### 8.10 Pannello tab
+
+Organizza informazioni in pannelli selezionabili, per esempio «Studiare», «Collaborare» e «Visitare». È una scelta editoriale manuale, non una vista automatica dell'albero delle pagine.
+
+In `Layout HP` compila titolo e sottotitolo e aggiungi le righe del gruppo `Tab`: etichetta, descrizione e pagine collegate facoltative, con le versioni inglesi dei testi. Riordina i tab tramite le frecce. Aggiungi e abilita `Pannello tab` in `Sezioni HP`, scegliendo lo sfondo.
+
+Il primo tab è aperto. Un tab senza etichetta, oppure senza descrizione e senza pagine visibili, non compare; senza tab validi non compare la sezione. Le pagine si scelgono in italiano: sul sito inglese si usano le traduzioni e si omettono quelle mancanti; etichetta e descrizione inglesi vuote riprendono il testo italiano. Con la tastiera le frecce spostano il focus, `Invio` o `Spazio` attivano il tab. Tutte le eventuali copie della sezione leggono lo stesso insieme di tab, non insiemi indipendenti.
+
+### 8.11 Eventi
+
+Mostra un carousel di massimo 6 eventi pubblicati con `Promuovi in Home` attivo, ordinati per data di inizio decrescente. È una selezione editoriale: non equivale automaticamente ai soli eventi futuri.
+
+Prepara gli eventi con date, immagine e descrizione, poi abilita `Eventi` in `Sezioni HP`; puoi scegliere se mostrarne il titolo. Senza eventi promossi la sezione non compare. Esempio: evidenzia le conferenze del laboratorio; togli la promozione agli eventi che non vuoi più in home. Per i campi consulta il [manuale Eventi](Manuale-Gestione-Contenuti-Eventi.md).
+
+### 8.12 Notizie
+
+Mostra fino a 3 notizie promosse, dalla più recente per data di pubblicazione, con titolo, immagine e sintesi. Usala per le comunicazioni che meritano visibilità immediata.
+
+Pubblica le notizie e attiva `Promuovi in Home`, poi abilita `Notizie` in `Sezioni HP`, con o senza titolo. Senza notizie idonee il blocco non compare. La selezione non coincide con tutti i contenuti del sito e non si ordina trascinando le righe di `Sezioni HP`: quelle frecce spostano l'intero blocco. Vedi il [manuale Notizie](Manuale-Gestione-Contenuti-Notizie.md).
+
+### 8.13 Pubblicazioni
+
+Presenta fino a 3 pubblicazioni promosse, dalla più recente per data di pubblicazione su WordPress, non per anno bibliografico. Le schede mostrano i dati bibliografici disponibili, compreso l'anno.
+
+Compila i contenuti e attiva `Promuovi in Home`, poi abilita `Pubblicazioni` in `Sezioni HP`, scegliendo se mostrarne il titolo. Senza pubblicazioni idonee la sezione non compare; il pulsante all'elenco completo richiede la pagina elenco nella lingua corrente. Esempio: seleziona i risultati di ricerca che vuoi valorizzare, senza modificare l'anno bibliografico per cambiarne l'ordine. Per campi, file e destinazioni dei link usa il [manuale Pubblicazioni](Manuale-Gestione-Contenuti-Pubblicazioni.md).
+
+### 8.14 Articoli
+
+Mostra fino a 3 articoli del blog con `Promuovi in Home`, dai più recenti per pubblicazione. Non legge i contenuti di tipo Notizia: usa gli articoli WordPress standard.
+
+Pubblica e promuovi gli articoli, poi abilita `Articoli` in `Sezioni HP`; sul sito il titolo del blocco è «Blog», se visibile. Senza articoli idonei la sezione non compare. Esempio: usa il blog per approfondimenti e racconti delle attività, lasciando le comunicazioni brevi alla sezione Notizie. Vedi il [manuale Blog](Manuale-Gestione-Contenuti-Blog.md).
+
+### 8.15 Banner
+
+Mostra fino a 3 richiami grafici, ordinati per `Priorità` crescente. Può servire a promuovere un bando o un'iniziativa; non è la scheda pubblica di un contenuto navigabile autonomamente.
+
+Crea e pubblica i contenuti di tipo Banner con titolo, testo, immagine in evidenza, priorità ed eventuali etichetta e link del pulsante. Abilita `Banner` in `Sezioni HP`: non serve il campo `Promuovi in Home`. Senza Banner selezionati dalla query il blocco non compare; senza link non compare il pulsante. Il testo descrittivo è nascosto sugli schermi più piccoli: il messaggio essenziale deve essere chiaro anche nel titolo.
+
+La riga non permette di scegliere Banner diversi per ogni copia: ripeterla ripropone la stessa selezione. Per i campi consulta il [manuale Banner](Manuale-Gestione-Contenuti-Banner.md).
+
+### 8.16 Sponsor
+
+Mostra una griglia di loghi, per esempio partner e collaborazioni, ordinati per `Priorità` crescente. Pubblica i contenuti Sponsor con immagine in evidenza, priorità e collegamento esterno, se disponibile.
+
+Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazione > Sponsors`. Non si selezionano con `Promuovi in Home`: il modello legge fino a 30 Sponsor pubblicati. Senza risultati la sezione non compare; senza collegamento un logo non è cliccabile. La voce di visualizzazione del titolo non produce un'intestazione visibile sopra i loghi.
+
+### 8.17 Video
+
+Mostra un video di presentazione con il player condiviso del tema, predisposto per YouTube. Inserisci l'indirizzo in `Configurazione > Layout HP > Home Page Video URL`, poi abilita `Video` in `Sezioni HP`, con o senza titolo.
+
+Senza URL la sezione non compare. L'indirizzo è unico, condiviso da tutte le eventuali copie e dalle due lingue: non è previsto qui un video diverso per ogni riga. Il player presenta il consenso ai cookie YouTube: la sola presenza del riquadro non significa che la riproduzione sia già attiva. Controlla avvio e consenso sul sito finale. Esempio: inserisci il video istituzionale del laboratorio; non presumere che qualsiasi URL video sia supportato.
+
+### 8.18 Avvisi e controlli finali
+
+Per un messaggio breve, come una chiusura temporanea, usa `Configurazione > Avvisi in Home`: aggiungi testo, colore e collegamento facoltativo. Non è una sezione del catalogo `Sezioni HP` e non si sposta con le sue frecce. La configurazione attuale non offre una scadenza automatica: rimuovi manualmente gli avvisi non più validi.
+
+Se un blocco manca, controlla nell'ordine:
+
+1. Hai aggiunto la riga, abilitato la sezione e salvato?
+2. Hai salvato anche i testi o le selezioni nella scheda separata?
+3. Esistono contenuti che rispettano i criteri specifici: promozione, pagina scelta, gerarchia, stato pubblicato, lingua e limiti?
+4. Sul sito inglese esistono le traduzioni necessarie? Le sezioni che elencano pagine escludono bozze e pagine protette.
+5. I pulsanti portano alla destinazione corretta e le pagine elenco esistono nella lingua corrente?
+
+Controlla infine la home anche sul telefono e con la tastiera. Per confrontare in dettaglio i criteri delle quattro sezioni che mostrano pagine, usa la tabella e l'esempio nel [manuale di configurazione, §4.4](Manuale-Utente-Pannello-Configurazione.md).
 
 ## 9. Menu e struttura di navigazione
 Percorso: `WP -> Aspetto -> Menu`

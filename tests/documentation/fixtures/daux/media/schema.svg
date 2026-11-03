@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80" viewBox="0 0 240 80" role="img" aria-labelledby="title">
+  <title id="title">Sorgenti Markdown trasformati in HTML statico</title>
+  <rect x="1" y="1" width="238" height="78" rx="8" fill="#eef4fa" stroke="#245c86"/>
+  <text x="120" y="46" text-anchor="middle" font-size="18" fill="#173a55">Markdown → HTML</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "title": "Design Laboratori Italia — pilota tecnico",
+  "tagline": "Anteprima tecnica, non documentazione della release stabile",
+  "language": "it",
+  "timezone": "Europe/Rome",
+  "html": {
+    "theme": "daux-blue",
+    "search": true,
+    "auto_toc": true,
+    "date_modified": false,
+    "repo": "ScuolaNormaleSuperiore/design-laboratori-wordpress-theme",
+    "links": {
+      "Segnala un problema": "https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues"
+    },
+    "google_analytics": false,
+    "piwik_analytics": false
+  }
+}
