@@ -137,6 +137,81 @@ class DLI_Example_Content_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The shape of the tree, fixed here so that the CSV files that will take its place can be checked against it: the
+	 * parent and the order of each page, the summaries, and the address that differs in the two languages.
+	 */
+	public function test_tree_has_the_parents_the_order_the_summaries_and_the_addresses_of_the_example() {
+		$this->add_english();
+		DLI_Example_Content::create( array( 'it', 'en' ), $this->login_administrator() );
+
+		$by_title = static function ( $title ) {
+			$found = get_posts(
+				array(
+					'post_type'   => 'page',
+					'post_status' => 'publish',
+					'title'       => $title,
+					'numberposts' => 1,
+					'lang'        => '',
+				)
+			);
+			return $found ? $found[0] : null;
+		};
+		// Titles of the children of a page, in the order of the menu.
+		$children_of = function ( $parent_id ) {
+			$children = get_posts(
+				array(
+					'post_type'   => 'page',
+					'post_status' => 'publish',
+					'post_parent' => $parent_id,
+					'orderby'     => 'menu_order',
+					'order'       => 'ASC',
+					'numberposts' => -1,
+					'lang'        => '',
+				)
+			);
+			return wp_list_pluck( $children, 'post_title' );
+		};
+
+		$root_it = $by_title( 'Dati della ricerca' );
+		$root_en = $by_title( 'Research Data' );
+		$this->assertSame( 0, $root_it->post_parent );
+		$this->assertSame(
+			array( 'Perché la gestione dei dati della ricerca è importante', 'Pianificare', 'Gestire', 'Condividere' ),
+			$children_of( $root_it->ID )
+		);
+		$this->assertSame(
+			array( 'Why does Research Data Management matter?', 'Plan', 'Manage', 'Sharing' ),
+			$children_of( $root_en->ID )
+		);
+
+		$plan = $by_title( 'Pianificare' );
+		$this->assertSame( array( 'Cosa sono i dati della ricerca?', 'Piano di gestione dei dati' ), $children_of( $plan->ID ) );
+		$this->assertSame( array( 'Accesso e riuso dei dati della ricerca', 'Strutturare i dati', 'Archiviare i dati di lavoro' ), $children_of( $by_title( 'Gestire' )->ID ) );
+		$this->assertSame( array( 'Archiviazione a lungo termine', 'Pubblicare i dati della ricerca' ), $children_of( $by_title( 'Condividere' )->ID ) );
+
+		// Summaries: the main pages and the second level have one, the third level has none.
+		$this->assertSame( 'Contenuto di esempio (albero di navigazione a più livelli)', $root_it->post_excerpt );
+		$this->assertSame( 'Example content (navigation tree with several levels)', $root_en->post_excerpt );
+		$this->assertSame( 'Il monitoraggio delle attività e dei risultati della ricerca.', $by_title( 'Monitoraggio' )->post_excerpt );
+		$this->assertSame( '', $by_title( 'Cosa sono i dati della ricerca?' )->post_excerpt );
+		$this->assertSame( '', $by_title( 'Pubblicare i dati della ricerca' )->post_excerpt );
+
+		// Addresses: the title gives them, except where the two languages would have the same one.
+		$open_access = get_posts(
+			array(
+				'post_type'   => 'page',
+				'post_status' => 'publish',
+				'title'       => 'Open Access',
+				'numberposts' => -1,
+				'lang'        => '',
+				'orderby'     => 'ID',
+				'order'       => 'ASC',
+			)
+		);
+		$this->assertSame( array( 'open-access', 'open-access-en' ), wp_list_pluck( $open_access, 'post_name' ), 'The Italian page has the address of its title, the English one `open-access-en`.' );
+	}
+
+	/**
 	 * A second run changes nothing.
 	 */
 	public function test_running_again_creates_nothing() {
