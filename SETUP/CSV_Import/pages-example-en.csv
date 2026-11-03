@@ -1,0 +1,16 @@
+﻿level_1;level_2;level_3;menu_order;promote_in_home;show_subpages_as_cards;page_key;excerpt;slug
+"Open Access";;;1;1;0;open-access;"The movement for free and open access to research results.";open-access-en
+"Research Data";;;2;1;1;research-data;"Example content (navigation tree with several levels)";
+;"Why does Research Data Management matter?";;1;0;0;why-does-research-data-management-matter;"Why research data management matters: reproducibility, funders requirements, reuse and preservation over time.";
+;Plan;;2;1;0;plan;"Planning activities: understand which data the research produces and prepare a data management plan.";
+;;"What are research data?";1;0;0;what-are-research-data;;
+;;"Data Management plan";2;0;0;data-management-plan;;
+;Manage;;3;1;0;manage;"Data management during the project: access and reuse, structure and storage of the working data.";
+;;"Access and grant access to Research Data (Re-use)";1;0;0;access-and-grant-access-to-research-data-re-use;;
+;;"Data structuring";2;0;0;data-structuring;;
+;;"Storage research data";3;0;0;storage-research-data;;
+;Sharing;;4;1;0;sharing;"How to share the data at the end of the project: long-term archiving and publication.";
+;;"Archiving research data";1;0;0;archiving-research-data;;
+;;"Publishing research data";2;0;0;publishing-research-data;;
+"Research Assessment";;;3;1;0;research-assessment;"How research is assessed: criteria, indicators and good practice.";
+Monitoring;;;4;1;0;monitoring;"The monitoring of the activities and of the results of the research.";

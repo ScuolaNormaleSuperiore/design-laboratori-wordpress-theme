@@ -55,6 +55,9 @@ require get_template_directory() . '/inc/admin/options.php';
 
 // Import the code to create the admin section: Strumenti DLI.
 require get_template_directory() . '/inc/admin/class-dli-people-file-importer.php';
+require get_template_directory() . '/inc/admin/class-dli-csv-reader.php';
+require get_template_directory() . '/inc/admin/class-dli-page-file-importer.php';
+require get_template_directory() . '/inc/admin/class-dli-page-import-admin.php';
 require get_template_directory() . '/inc/admin/class-dli-example-content.php';
 require get_template_directory() . '/inc/admin/class-dli-tools-admin.php';
 

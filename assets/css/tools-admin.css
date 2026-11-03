@@ -335,3 +335,47 @@
 		padding: 8px 12px;
 	}
 }
+
+/* ── Importa → Pagine: titoli rientrati per livello e elenco degli errori ───── */
+
+.dli-import-indent-2 {
+	padding-left: 1.5em;
+}
+
+.dli-import-indent-3 {
+	padding-left: 3em;
+}
+
+.dli-import-errors {
+	list-style: disc;
+	margin: 0 0 0.5em 1.5em;
+}
+
+.dli-import-downloads {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.dli-import-downloads .button {
+	white-space: normal;
+	text-align: left;
+}
+
+@media (max-width: 600px) {
+	.dli-import-form-table,
+	.dli-import-form-table tbody,
+	.dli-import-form-table tr,
+	.dli-import-form-table th,
+	.dli-import-form-table td {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.dli-import-form-table select,
+	.dli-import-form-table input[type="file"] {
+		min-width: 0;
+		width: 100%;
+	}
+}

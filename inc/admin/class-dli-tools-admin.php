@@ -20,6 +20,15 @@ class DLI_Tools_Admin {
 	const MENU_POSITION = 3;
 
 	/**
+	 * Hook suffixes that WordPress gives to the pages of the menu.
+	 *
+	 * The suffix of a submenu page is made from the title of the menu, which is translated, so it cannot be built from the slug.
+	 *
+	 * @var string[]
+	 */
+	private static $page_hooks = array();
+
+	/**
 	 * Wire hooks.
 	 *
 	 * @return void
@@ -37,7 +46,7 @@ class DLI_Tools_Admin {
 	 * @return void
 	 */
 	public static function register_menu() {
-		add_menu_page(
+		self::$page_hooks[] = add_menu_page(
 			esc_html__( 'Strumenti DLI', 'design_laboratori_italia' ),
 			esc_html__( 'Strumenti DLI', 'design_laboratori_italia' ),
 			DLI_EDIT_CONFIG_PERMISSION,
@@ -48,7 +57,7 @@ class DLI_Tools_Admin {
 		);
 
 		// Rename the auto-created first submenu item to "Panoramica".
-		add_submenu_page(
+		self::$page_hooks[] = add_submenu_page(
 			self::MENU_SLUG,
 			esc_html__( 'Panoramica — Strumenti DLI', 'design_laboratori_italia' ),
 			esc_html__( 'Panoramica', 'design_laboratori_italia' ),
@@ -57,7 +66,7 @@ class DLI_Tools_Admin {
 			array( __CLASS__, 'render_panoramica' )
 		);
 
-		add_submenu_page(
+		self::$page_hooks[] = add_submenu_page(
 			self::MENU_SLUG,
 			esc_html__( 'Importa — Strumenti DLI', 'design_laboratori_italia' ),
 			esc_html__( 'Importa', 'design_laboratori_italia' ),
@@ -66,7 +75,7 @@ class DLI_Tools_Admin {
 			array( __CLASS__, 'render_importa' )
 		);
 
-		add_submenu_page(
+		self::$page_hooks[] = add_submenu_page(
 			self::MENU_SLUG,
 			esc_html__( 'Utilità — Strumenti DLI', 'design_laboratori_italia' ),
 			esc_html__( 'Utilità', 'design_laboratori_italia' ),
@@ -83,13 +92,7 @@ class DLI_Tools_Admin {
 	 * @return void
 	 */
 	public static function enqueue_assets( $hook_suffix ) {
-		$tools_hooks = array(
-			'toplevel_page_' . self::MENU_SLUG,
-			self::MENU_SLUG . '_page_' . self::IMPORT_SLUG,
-			self::MENU_SLUG . '_page_' . self::UTILS_SLUG,
-		);
-
-		if ( ! in_array( $hook_suffix, $tools_hooks, true ) ) {
+		if ( ! in_array( $hook_suffix, self::$page_hooks, true ) ) {
 			return;
 		}
 
@@ -115,6 +118,11 @@ class DLI_Tools_Admin {
 		$page   = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 		$action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+		if ( self::IMPORT_SLUG === $page && 'download-pagine' === $action ) {
+			DLI_Page_Import_Admin::handle_download();
+			return;
+		}
 
 		if ( self::IMPORT_SLUG !== $page || 'download-sample-persone' !== $action ) {
 			return;
@@ -233,6 +241,8 @@ class DLI_Tools_Admin {
 
 				if ( 'persone' === $import_type ) {
 					self::render_import_persone();
+				} elseif ( 'pagine' === $import_type ) {
+					DLI_Page_Import_Admin::render();
 				}
 			}
 		);
@@ -247,6 +257,7 @@ class DLI_Tools_Admin {
 	private static function render_import_subnav( $current_type ) {
 		$types = array(
 			'persone' => __( 'Persone', 'design_laboratori_italia' ),
+			'pagine'  => __( 'Pagine', 'design_laboratori_italia' ),
 		);
 
 		echo '<nav class="dli-import-subnav" aria-label="' . esc_attr__( 'Tipi di importazione', 'design_laboratori_italia' ) . '">';

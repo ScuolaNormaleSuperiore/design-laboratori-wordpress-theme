@@ -1,0 +1,16 @@
+﻿level_1;level_2;level_3;menu_order;promote_in_home;show_subpages_as_cards;page_key;excerpt;slug
+"Open Access";;;1;1;0;open-access;"Il movimento per l'accesso libero e gratuito ai risultati della ricerca.";
+"Dati della ricerca";;;2;1;1;research-data;"Contenuto di esempio (albero di navigazione a più livelli)";
+;"Perché la gestione dei dati della ricerca è importante";;1;0;0;why-does-research-data-management-matter;"Perché la gestione dei dati della ricerca è importante: riproducibilità, requisiti dei finanziatori, riuso e conservazione nel tempo.";
+;Pianificare;;2;1;0;plan;"Le attività di pianificazione: capire quali sono i dati prodotti dalla ricerca e preparare un piano di gestione dei dati.";
+;;"Cosa sono i dati della ricerca?";1;0;0;what-are-research-data;;
+;;"Piano di gestione dei dati";2;0;0;data-management-plan;;
+;Gestire;;3;1;0;manage;"La gestione dei dati durante il progetto: accesso e riuso, strutturazione e archiviazione dei dati di lavoro.";
+;;"Accesso e riuso dei dati della ricerca";1;0;0;access-and-grant-access-to-research-data-re-use;;
+;;"Strutturare i dati";2;0;0;data-structuring;;
+;;"Archiviare i dati di lavoro";3;0;0;storage-research-data;;
+;Condividere;;4;1;0;sharing;"Come condividere i dati al termine del progetto: archiviazione a lungo termine e pubblicazione.";
+;;"Archiviazione a lungo termine";1;0;0;archiving-research-data;;
+;;"Pubblicare i dati della ricerca";2;0;0;publishing-research-data;;
+"Valutazione della ricerca";;;3;1;0;research-assessment;"Come si valuta la ricerca: criteri, indicatori e buone pratiche.";
+Monitoraggio;;;4;1;0;monitoring;"Il monitoraggio delle attività e dei risultati della ricerca.";

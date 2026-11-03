@@ -83,6 +83,27 @@ if ( ! function_exists( 'pll_get_post_translations' ) ) {
     }
 }
 
+if ( ! function_exists( 'pll_get_post_language' ) ) {
+    /**
+     * @param int    $post_id Post ID.
+     * @param string $field   Requested language field.
+     * @return string|false
+     */
+    function pll_get_post_language( $post_id, $field = 'slug' ) {
+        return '';
+    }
+}
+
+if ( ! function_exists( 'pll_home_url' ) ) {
+    /**
+     * @param string $lang Language slug.
+     * @return string
+     */
+    function pll_home_url( $lang = '' ) {
+        return '';
+    }
+}
+
 if ( ! function_exists( 'pll_get_term_translations' ) ) {
     /**
      * @param int $term_id Term ID.

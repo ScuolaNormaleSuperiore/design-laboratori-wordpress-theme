@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- Historical file name, required by functions.php and named in AGENTS/.
 /**
  * Wrapper functions for POLYLANG.
  *
@@ -155,6 +155,36 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 			return array();
 		}
 		return pll_get_post_translations( $post_id );
+	}
+}
+
+if ( ! function_exists( 'dli_get_post_language' ) ) {
+	/**
+	 * Recupera lo slug della lingua di un post.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return string Slug della lingua, vuoto se il post non ne ha o Polylang non è attivo.
+	 */
+	function dli_get_post_language( $post_id ): string {
+		if ( ! function_exists( 'pll_get_post_language' ) ) {
+			return '';
+		}
+		return (string) pll_get_post_language( $post_id );
+	}
+}
+
+if ( ! function_exists( 'dli_get_language_home_url' ) ) {
+	/**
+	 * Recupera l'URL della home page in una lingua.
+	 *
+	 * @param string $lang Slug della lingua.
+	 * @return string
+	 */
+	function dli_get_language_home_url( $lang ): string {
+		if ( ! function_exists( 'pll_home_url' ) ) {
+			return home_url( '/' );
+		}
+		return (string) pll_home_url( $lang );
 	}
 }
 
