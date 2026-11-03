@@ -1,7 +1,7 @@
 # Manuale Operatore
 
-Versione: 1.0  
-Data: 2026-02-17  
+Versione: 1.1  
+Data: 2026-11-03  
 Tema: `design-laboratori-wordpress-theme`
 
 ## 1. Scopo del manuale
@@ -22,7 +22,7 @@ Nel progetto e' presente il ruolo `Super Editor`, equivalente a un Editor con pe
 Indicazione pratica:
 - `Redattore/Editor`: lavora su contenuti.
 - `Super Editor`: oltre ai contenuti, gestisce configurazione funzionale del tema.
-- `Amministratore`: gestione completa del sito e plugin.
+- `Amministratore`: gestione completa del sito e plugin; solo lui vede le schede `Indico`, `Iris` e `Altro` della configurazione. Vedi il [Manuale Amministratore](Manuale-Amministratore.md).
 
 ## 4. Tipi di contenuto principali
 Nel menu di amministrazione puoi trovare (nomi variabili in base alla lingua):
@@ -95,21 +95,37 @@ Suggerimenti:
 - Evita di incollare codice HTML/JS non necessario nei campi testuali.
 
 ## 8. Home page: cosa puo' gestire l'operatore
-In base alla configurazione del sito, puoi intervenire su:
-- hero principale
-- blocchi in evidenza
-- sezioni eventi/news/pubblicazioni
-- carousel
-- banner
-- avvisi
+La home è composta dalle sezioni che aggiungi, ordini e attivi in `Configurazione > Sezioni HP`. I testi e i contenuti di ogni sezione sono nelle schede `Layout HP`, `Laboratorio` e `Avvisi in Home`; i campi di ogni scheda sono nel [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md).
+
+| Sezione | Come si popola |
+|---|---|
+| `Hero principale` | Testi e immagine in `Layout HP` |
+| `Descrizione del sito` (`Il laboratorio`) | Testo in `Laboratorio` |
+| `Carousel principale` | Contenuti con `Promuovi in carousel` acceso (selezione automatica o manuale) |
+| `Contenuti in evidenza` | Fino a tre box, ognuno con un tipo di contenuto; mostrano fino a 3 contenuti con `Promuovi in Home` acceso |
+| `Card di navigazione` | Pagine con `Promuovi in Home` acceso, come card (vedi §6) |
+| `Navigazione per pagine` | Per ogni pagina promossa che ha sottopagine, un gruppo con i link alle sottopagine (vedi §6) |
+| `Indice di una pagina` | Una pagina scelta nella riga: colonne e link dalle sue sottopagine (vedi §6) |
+| `Pannello tab` | Tab scritti in `Layout HP`, con pagine collegate facoltative (vedi §6) |
+| `Eventi`, `Notizie`, `Pubblicazioni`, `Articoli` | Contenuti del tipo con `Promuovi in Home` acceso |
+| `Banner`, `Sponsor`, `Video` | Banner e Sponsor sono tipi di contenuto; il video è un indirizzo in `Layout HP` |
+
+In ogni riga di `Sezioni HP` puoi attivare la sezione, mostrare o nascondere il titolo e, per le sezioni che lo prevedono, scegliere lo sfondo (bianco o grigio chiaro). Le frecce di ogni riga, visibili anche a riga chiusa, ne cambiano l'ordine.
 
 Procedura consigliata:
 1. Aggiorna contenuti sorgente (post/pagine/campi opzione).
-2. Controlla l'ordine delle sezioni configurate.
-3. Verifica la resa finale in home.
+2. Controlla l'ordine e l'attivazione delle sezioni in `Sezioni HP`.
+3. Verifica la resa finale in home, in italiano e in inglese.
 
 ## 9. Menu e struttura di navigazione
 Percorso: `WP -> Aspetto -> Menu`
+
+Le posizioni sono cinque, ognuna con la propria variante in inglese (gestita separatamente con Polylang):
+- `Menu principale di link a sinistra`: la barra di navigazione, con voci semplici o con sottovoci.
+- `Menu secondario multilevel a destra`: pensato per le pagine base.
+- `Menu header di link in alto a destra`, `Menu link utili - footer` e `Menu a piè di pagina di link - footer`: link semplici.
+
+Una voce con sottovoci diventa un menu a tendina. Se la voce ha un indirizzo proprio, il menu a tendina comincia con un link alla voce stessa. Una voce senza indirizzo (`#` o vuoto) e senza sottovoci raggiungibili non viene mostrata, e una sottovoce senza indirizzo neppure.
 
 Buone pratiche:
 - Mantieni etichette brevi e chiare.
@@ -173,6 +189,8 @@ Controlla: ordine sezioni in configurazione e presenza dei contenuti sorgente.
 ## 15. Contatti e documenti correlati
 Documentazione tecnica/progetto:
 - `README.md`
+- [Manuale Amministratore](Manuale-Amministratore.md)
+- [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md)
 - `DOC/HowTo Aggiornare Bootstrap Italia.md`
 - `DOC/Migrazione da 14x a 15x.md`
 - `DOC/Migrazione da 16x a 17x.md`

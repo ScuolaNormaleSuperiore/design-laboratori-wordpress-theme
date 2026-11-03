@@ -34,6 +34,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Carousel in home page con contenuti selezionabili.
 - Gestione contenuti in evidenza in home page.
 - Gestione sezioni eventi, news e pubblicazioni in home page.
+- Sezioni della home che elencano pagine: card di navigazione, navigazione per pagine, indice di una pagina e pannello a tab (italiano e inglese).
 - Gestione banner in home page.
 - Gestione sponsor in home page.
 - Manifest PWA installabile (senza service worker).
@@ -99,19 +100,13 @@ Dopo aver installato WordPress su un server, per installare e configurare il tem
 ## Ruoli e permessi
 Installando il tema viene aggiunto un ruolo chiamato **Super Editor** che ha gli stessi permessi di un Editor, con in più il permesso di configurare il tema (WP->Configurazione) e quello di modificare il menu del tema (WP->Aspetto).
 
-## Personalizzazione dello stile (colori e font)
-In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere tra:
-* **Stile Bootstrap Italia standard**: colori e font predefiniti della libreria Bootstrap Italia.
-* **Stile personalizzato**: il CSS base [bootstrap-italia-custom.min.css](assets/css/bootstrap-italia-custom.min.css) con gli override del brand in [custom-colors.css](assets/css/custom-colors.css).
-
-Bootstrap Italia 3 gestisce la tematizzazione tramite custom property CSS `--bsi-*`. Per modificare colori e font del brand intervenire in [custom-colors.css](assets/css/custom-colors.css). Il file Sass [bootstrap-italia-custom.scss](assets/scss/bootstrap-italia-custom.scss) serve a rigenerare il CSS base, ma non sostituisce gli override del brand.
-
-Per preparare l'ambiente locale eseguire `npm ci`, quindi usare `npm run update_layout_win` su Windows oppure `npm run update_layout_linux` su Linux quando si deve rigenerare il CSS compilato. Per aggiornare Bootstrap Italia vedere la guida indicata nella sezione [Documentazione](#documentazione).
-
-Altre risorse utili:
-* [Personalizzazione della libreria](https://italia.github.io/bootstrap-italia/docs/come-iniziare/personalizzazione-della-libreria).
-* [Tool per codifica colori](https://rgb.to/).
-* [Google Fonts](https://fonts.google.com).
+## Stile del sito
+In *WP->Configurazione->Altro->Stile del sito* è possibile scegliere lo stile
+Bootstrap Italia standard oppure quello personalizzato del tema. Lo stile
+personalizzato applica i colori del brand del tema; i font restano quelli
+predefiniti di Bootstrap Italia salvo personalizzazioni CSS esplicite. Per
+modificare colori, font o CSS compilato seguire la [guida alla
+personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 
 ## Documentazione
 
@@ -119,6 +114,7 @@ Altre risorse utili:
 - [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
 - [Manuale operatore: persone](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore-persone.md)
 - [Pannello di configurazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md)
+- [Manuale amministratore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Amministratore.md) — permessi, schede riservate, plugin e note di architettura.
 
 ### Manuali di gestione dei contenuti
 - [Attività di ricerca](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md)
@@ -150,30 +146,9 @@ Altre risorse utili:
 Un sito di test, che mostra le principali funzionalità del sistema, è disponibile qui: [Sito Federato DEV](https://sitofederato.sns.it).
 
 ### Docker
-È possibile provare il tema usando un container *Docker* che contiene tutte le componenti software richieste (WordPress + tema + plugins + contenuti d'esempio).
-Il Dockerfile da usare è: [Dockerfile](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tree/main/SETUP/Docker/Dockerfile).
-
-Il sito di prova fa riferimento a un laboratorio di esempio chiamato **Demo Lab**, che è già configurato e popolato con contenuti di prova. Lo scopo di Demo Lab è mostrare le funzionalità del sistema e poterle provare velocemente; non deve essere usato in ambienti di produzione.
-
-I comandi da eseguire per creare ed eseguire il container sono:
-- docker build -t demolab-img -f SETUP/Docker/Dockerfile SETUP/Docker
-- docker run -p 80:80 -p 127.0.0.1:3306:3306 --name=demolab -d demolab-img
-
-Per collegarsi alla shell del container, eseguire il comando:
-- docker exec -it demolab /bin/bash
-
-L'URL del sito appena creato è: http://localhost/ .
-
-Per autenticarsi come amministratore del sito l'URL è http://localhost/wp-admin/ e l'account per accedere è: manager / password
-
-Sul container è installato il tool *Adminer* per gestire le tabelle del database.
-L'URL di *Adminer* è: http://localhost/adminer.php
-Per configurarlo i parametri sono:
-- System: Mysql
-- Server: 127.0.0.1
-- Utente: admin
-- Password: admin
-- Database: demolabdb
+È possibile provare facilmente il tema in locale con Docker, in un ambiente
+completo di WordPress, plugin e contenuti dimostrativi. Seguire la [guida alla
+demo Docker](SETUP/Docker/README.md).
 
 ## Siti in produzione
 Alcuni siti in produzione realizzati con questo tema:
@@ -184,9 +159,6 @@ Alcuni siti in produzione realizzati con questo tema:
 * [Il PNRR alla Normale](https://pnrr.sns.it)
 * [FROID (Corso di dottorato in Filologia Romanza e Italiana Digitale)](https://froid.sns.it)
 * [Centro di ricerca Matematica Ennio De Giorgi](https://crmdegiorgi.sns.it)
-
-## Repository
-[Questo](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme) è il repository che contiene il codice sorgente del progetto.
 
 ## Catalogo del riuso
 Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home page del progetto è [questa](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a).
@@ -233,7 +205,7 @@ publiccode-parser -path . publiccode.yml
 ```
 
 ## Contesto di progetto per l'AI
-Chiedere all'assistente di codifica di "leggere il contesto del progetto". Legge prima `AGENTS.md` (Codex) o `CLAUDE.md` (Claude Code), poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/code-review`. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
+Chiedere all'assistente di codifica di "leggere il contesto del progetto". ChatGPT/Codex legge prima `AGENTS.md`, mentre Claude Code legge prima `CLAUDE.md`; entrambi seguono poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Il bootstrap garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/code-review`. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
@@ -244,9 +216,8 @@ Per segnalare una **vulnerabilità di sicurezza** non aprire una issue pubblica:
 I contributi sono benvenuti. Prima di aprire una issue o una pull request leggere [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Sviluppi futuri
-Queste sono le principali funzionalità previste per le prossime versioni del sistema:
-* Autenticazione degli operatori tramite LDAP.
-* Autenticazione degli operatori tramite Shibboleth.
+Gli sviluppi previsti per le prossime versioni sono elencati nella sezione
+[TODO del changelog](CHANGELOG.md#todo).
 
 ## Licenza
 Il progetto è distribuito con licenza **GNU General Public License v3.0 or later** (`GPL-3.0-or-later`).

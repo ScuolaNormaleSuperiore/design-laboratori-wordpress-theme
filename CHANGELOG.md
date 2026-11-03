@@ -33,15 +33,21 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.4] - 2026-10-28
+## [2.0.4] - 2026-11-03
 ## Aggiunto
 - Pubblicazioni: scheda dedicata con indirizzo leggibile, copertina, autori e allegato PDF.
 - Pubblicazioni: scelta del link del titolo tra scheda, sito esterno e allegato.
-- Home: card delle ultime pubblicazioni con autori, tipologia e anno.
 - Pagine: riassunto e card delle sottopagine; strumento per creare/rimuovere pagine di esempio.
+- Home: nuove sezioni «Card di navigazione», «Navigazione per pagine», «Indice di una pagina» e «Pannello tab».
+- Home: «Contenuti in evidenza» ridisegnati per tipo di contenuto (notizie, eventi, pubblicazioni) e card delle ultime pubblicazioni con autori, tipologia e anno.
+- Configurazione Sezioni HP: riordino con le frecce, sfondo e numero di elementi per ogni sezione.
+## Modificato
+- Intestazione e menu: pulsante del menu visibile a 320 px, identificatori univoci dei menu a tendina, breadcrumb su una sola riga.
 ## Corretto
 - Verificata compatibilità con PHP 8.4.
-
+- Footer: gerarchia delle intestazioni corretta e link vuoti rimossi.
+## Sicurezza
+- Paginazione, CAPTCHA e tabella delle persone con controlli e limiti più rigorosi.
 
 
 

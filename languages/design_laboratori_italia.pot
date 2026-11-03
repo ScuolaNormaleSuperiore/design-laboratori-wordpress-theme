@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 11:32+0000\n"
+"POT-Creation-Date: 2026-11-03 08:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Domain: design_laboratori_italia"
 
 #. 1: number of results, 2: search query
-#: page-templates/cerca.php:206
+#: page-templates/cerca.php:204
 #, php-format
 msgid "%1$d risultato per «%2$s»"
 msgid_plural "%1$d risultati per «%2$s»"
@@ -41,7 +41,7 @@ msgid "%d risultato disponibile."
 msgstr ""
 
 #. %s: the title of a page that is a draft, private or protected by a password
-#: inc/home-tabs.php:116
+#: inc/pages.php:397
 #, php-format
 msgid "%s (non visibile)"
 msgstr ""
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Abstract del brevetto"
 msgstr ""
 
-#: header.php:140
+#: header.php:139
 msgid "Accedi"
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Annulla"
 msgstr ""
 
-#: page-templates/cerca.php:150
+#: page-templates/cerca.php:148
 msgid "Annulla ricerca"
 msgstr ""
 
@@ -278,12 +278,12 @@ msgstr ""
 msgid "Argomenti correlati"
 msgstr ""
 
-#: page-templates/archive-progetti.php:132 page-templates/progetti.php:138
+#: page-templates/archive-progetti.php:129 page-templates/progetti.php:136
 #: page-templates/ricerca.php:116
 msgid "Argomenti correlati:"
 msgstr ""
 
-#: page-templates/archive-progetti.php:139 page-templates/progetti.php:145
+#: page-templates/archive-progetti.php:136 page-templates/progetti.php:143
 #: page-templates/ricerca.php:121
 msgid "Argomento:"
 msgstr ""
@@ -357,16 +357,17 @@ msgstr ""
 msgid "captcha"
 msgstr ""
 
-#: template-parts/home/hp-card-navigation-section.php:44
+#: template-parts/home/hp-card-navigation-section.php:48
+#: tests/integration/DLI_Home_Navigation_Section_Integration_Test.php:221
 msgid "Card di navigazione"
 msgstr ""
 
-#: page-templates/blog.php:76 page-templates/eventi.php:85
+#: page-templates/blog.php:74 page-templates/eventi.php:85
 #: page-templates/notizie.php:85
 msgid "Categoria"
 msgstr ""
 
-#: page-templates/blog.php:116 page-templates/blog.php:121
+#: page-templates/blog.php:114 page-templates/blog.php:119
 #: page-templates/eventi.php:147 page-templates/eventi.php:152
 #: page-templates/notizie.php:127 page-templates/notizie.php:132
 #: template-parts/common/sezione-box-notizia.php:23
@@ -380,7 +381,7 @@ msgstr ""
 msgid "Categoria correlata:"
 msgstr ""
 
-#: header.php:177 page-templates/cerca.php:88 page-templates/cerca.php:147
+#: header.php:176 page-templates/cerca.php:86 page-templates/cerca.php:145
 msgid "Cerca"
 msgstr ""
 
@@ -395,7 +396,7 @@ msgstr ""
 msgid "Cerca contenuto"
 msgstr ""
 
-#: header.php:181 header.php:182 header.php:183
+#: header.php:180 header.php:181 header.php:182
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -403,7 +404,7 @@ msgstr ""
 msgid "Cerca per cognome"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:136
+#: template-parts/persone/view-tabella.php:144
 msgid "Cerca per nome, cognome, tipologia o struttura"
 msgstr ""
 
@@ -415,7 +416,7 @@ msgstr ""
 msgid "Cerca Struttura"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:128
+#: template-parts/persone/view-tabella.php:136
 msgid "Cerca testo"
 msgstr ""
 
@@ -560,8 +561,8 @@ msgstr ""
 msgid "Copia del messaggio non inviata."
 msgstr ""
 
-#: page-templates/cerca.php:121 page-templates/cerca.php:126
-#: page-templates/cerca.php:138
+#: page-templates/cerca.php:119 page-templates/cerca.php:124
+#: page-templates/cerca.php:136
 msgid "Cosa stai cercando?"
 msgstr ""
 
@@ -801,12 +802,12 @@ msgstr ""
 msgid "Elenco delle pagine del sito"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:233
+#: template-parts/persone/view-tabella.php:241
 msgid "Elenco persone"
 msgstr ""
 
 #: single-luogo.php:219 inc/admin/class-dli-tools-admin.php:721
-#: template-parts/persone/view-tabella.php:247
+#: template-parts/persone/view-tabella.php:255
 msgid "Email"
 msgstr ""
 
@@ -832,7 +833,7 @@ msgstr ""
 msgid "Es. Rossi"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:135
+#: template-parts/persone/view-tabella.php:143
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
@@ -872,7 +873,7 @@ msgstr ""
 msgid "Evento"
 msgstr ""
 
-#: header.php:99 template-parts/header/secondary-menu.php:35
+#: header.php:98 template-parts/header/menu-nav-item.php:54
 #: template-parts/header/top-menu.php:16
 msgid "Expand"
 msgstr ""
@@ -910,7 +911,7 @@ msgstr ""
 msgid "Filtra"
 msgstr ""
 
-#: page-templates/cerca.php:181
+#: page-templates/cerca.php:179
 msgid "Filtra per"
 msgstr ""
 
@@ -1176,7 +1177,7 @@ msgstr ""
 msgid "Le pubblicazioni"
 msgstr ""
 
-#: archive.php:98 archive.php:100
+#: archive.php:96 archive.php:98
 msgid "Leggi di piu"
 msgstr ""
 
@@ -1270,7 +1271,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:181
+#: functions.php:186
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1278,19 +1279,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:179
+#: functions.php:184
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:180
+#: functions.php:185
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:177
+#: functions.php:182
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:178
+#: functions.php:183
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1352,7 +1353,7 @@ msgstr ""
 msgid "Modifica tipo risorsa"
 msgstr ""
 
-#: header.php:208 header.php:210
+#: header.php:207 header.php:209
 msgid "Mostra/Nascondi la navigazione"
 msgstr ""
 
@@ -1366,7 +1367,7 @@ msgstr ""
 msgid "N/D"
 msgstr ""
 
-#: header.php:218 header.php:219 header.php:220
+#: header.php:217 header.php:218 header.php:219
 msgid "Nascondi la navigazione"
 msgstr ""
 
@@ -1378,15 +1379,16 @@ msgstr ""
 msgid "Navigazione pagine"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:261
+#: template-parts/persone/view-tabella.php:269
 msgid "Navigazione pagine persone"
 msgstr ""
 
-#: template-parts/home/hp-page-navigation-section.php:44
+#: template-parts/home/hp-page-navigation-section.php:46
+#: tests/integration/DLI_Home_Navigation_Groups_Integration_Test.php:275
 msgid "Navigazione per pagine"
 msgstr ""
 
-#: header.php:206
+#: header.php:205
 msgid "Navigazione principale"
 msgstr ""
 
@@ -1402,7 +1404,7 @@ msgstr ""
 msgid "Nessun risultato di ricerca"
 msgstr ""
 
-#: page-templates/cerca.php:257
+#: page-templates/cerca.php:255
 msgid "Nessun risultato per i filtri selezionati."
 msgstr ""
 
@@ -1410,7 +1412,7 @@ msgstr ""
 msgid "Nessun risultato trovato"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:288
+#: template-parts/persone/view-tabella.php:296
 msgid "Nessuna persona trovata"
 msgstr ""
 
@@ -1424,8 +1426,8 @@ msgstr ""
 msgid "Nome"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:216
-#: template-parts/persone/view-tabella.php:236
+#: template-parts/persone/view-tabella.php:224
+#: template-parts/persone/view-tabella.php:244
 msgid "Nome / Cognome"
 msgstr ""
 
@@ -1488,15 +1490,15 @@ msgstr ""
 msgid "Non è stato trovato alcun evento"
 msgstr ""
 
-#: archive.php:126 page-templates/blog.php:138
+#: archive.php:124 page-templates/blog.php:136
 msgid "Non è stato trovato nessun articolo"
 msgstr ""
 
-#: page-templates/luoghi.php:159
+#: page-templates/luoghi.php:157
 msgid "Non è stato trovato nessun luogo"
 msgstr ""
 
-#: page-templates/archive-progetti.php:167 page-templates/progetti.php:169
+#: page-templates/archive-progetti.php:164 page-templates/progetti.php:167
 msgid "Non è stato trovato nessun progetto"
 msgstr ""
 
@@ -1572,7 +1574,7 @@ msgstr ""
 msgid "Orari"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:210
+#: template-parts/persone/view-tabella.php:218
 msgid "Ordina per"
 msgstr ""
 
@@ -1598,12 +1600,12 @@ msgid "Pagina non trovata"
 msgstr ""
 
 #: template-parts/common/paginazione.php:63
-#: template-parts/persone/view-tabella.php:284
+#: template-parts/persone/view-tabella.php:292
 msgid "Pagina precedente"
 msgstr ""
 
 #: template-parts/common/paginazione.php:104
-#: template-parts/persone/view-tabella.php:285
+#: template-parts/persone/view-tabella.php:293
 msgid "Pagina successiva"
 msgstr ""
 
@@ -1671,7 +1673,7 @@ msgstr ""
 msgid "Persona creata."
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:286
+#: template-parts/persone/view-tabella.php:294
 msgid "persona trovata"
 msgstr ""
 
@@ -1681,7 +1683,7 @@ msgstr ""
 msgid "Persone"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:287
+#: template-parts/persone/view-tabella.php:295
 msgid "persone trovate"
 msgstr ""
 
@@ -2119,7 +2121,7 @@ msgstr ""
 msgid "Ricerca"
 msgstr ""
 
-#: page-templates/cerca.php:112
+#: page-templates/cerca.php:110
 msgid "Ricerca dei suggerimenti in corso…"
 msgstr ""
 
@@ -2133,7 +2135,7 @@ msgid "Ricevi via email la nostra newsletter"
 msgstr ""
 
 #: page-templates/contatti.php:87
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:317
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:290
 msgid "Ricevuta"
 msgstr ""
 
@@ -2224,7 +2226,7 @@ msgstr ""
 msgid "Risorse-Tecniche"
 msgstr ""
 
-#: page-templates/cerca.php:215
+#: page-templates/cerca.php:213
 msgid "Risultati di ricerca"
 msgstr ""
 
@@ -2270,7 +2272,7 @@ msgid "Scopri di più su: %s"
 msgstr ""
 
 #. %d: minimum number of characters.
-#: page-templates/cerca.php:99
+#: page-templates/cerca.php:97
 msgid "Scrivi almeno %d carattere per vedere i suggerimenti"
 msgid_plural "Scrivi almeno %d caratteri per vedere i suggerimenti"
 msgstr[0] ""
@@ -2318,7 +2320,7 @@ msgstr ""
 msgid "Seleziona Immagine Sponsor"
 msgstr ""
 
-#: header.php:96
+#: header.php:95
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
@@ -2359,7 +2361,7 @@ msgid "Sezioni Strumenti DLI"
 msgstr ""
 
 #: single-pubblicazione.php:142 single-pubblicazione.php:154
-#: page-templates/cerca.php:233 template-parts/common/linked-title.php:32
+#: page-templates/cerca.php:231 template-parts/common/linked-title.php:32
 #: tests/integration/DLI_Publication_Archive_Integration_Test.php:62
 msgid "si apre in una nuova finestra"
 msgstr ""
@@ -2431,9 +2433,9 @@ msgid "Strumenti DLI"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:48 template-parts/persone/filters.php:76
-#: template-parts/persone/view-tabella.php:144
-#: template-parts/persone/view-tabella.php:218
-#: template-parts/persone/view-tabella.php:241
+#: template-parts/persone/view-tabella.php:152
+#: template-parts/persone/view-tabella.php:226
+#: template-parts/persone/view-tabella.php:249
 msgid "Struttura"
 msgstr ""
 
@@ -2441,8 +2443,8 @@ msgstr ""
 msgid "Tabella"
 msgstr ""
 
-#: template-parts/persone/view-tabella.php:221
-#: template-parts/persone/view-tabella.php:244
+#: template-parts/persone/view-tabella.php:229
+#: template-parts/persone/view-tabella.php:252
 msgid "TAG"
 msgstr ""
 
@@ -2507,7 +2509,7 @@ msgid "Tipologia luogo"
 msgstr ""
 
 #: footer.php:92 footer.php:93 single-luogo.php:206
-#: page-templates/contatti.php:275 template-parts/persone/view-tabella.php:250
+#: page-templates/contatti.php:275 template-parts/persone/view-tabella.php:258
 msgid "Telefono"
 msgstr ""
 
@@ -2523,7 +2525,7 @@ msgstr ""
 msgid "Tipi di importazione"
 msgstr ""
 
-#: page-templates/cerca.php:238
+#: page-templates/cerca.php:236
 msgid "Tipo di contenuto:"
 msgstr ""
 
@@ -2551,11 +2553,11 @@ msgstr ""
 msgid "Tipo risorsa"
 msgstr ""
 
-#: page-templates/luoghi.php:101 page-templates/pubblicazioni.php:183
+#: page-templates/luoghi.php:99 page-templates/pubblicazioni.php:183
 #: template-parts/persone/filters.php:93
-#: template-parts/persone/view-tabella.php:163
-#: template-parts/persone/view-tabella.php:214
-#: template-parts/persone/view-tabella.php:238
+#: template-parts/persone/view-tabella.php:171
+#: template-parts/persone/view-tabella.php:222
+#: template-parts/persone/view-tabella.php:246
 msgid "Tipologia"
 msgstr ""
 
@@ -2591,7 +2593,7 @@ msgstr ""
 msgid "Trascrizione"
 msgstr ""
 
-#: page-templates/cerca.php:89
+#: page-templates/cerca.php:87
 msgid "Trova persone, progetti, notizie e altri contenuti del sito."
 msgstr ""
 
@@ -2616,12 +2618,12 @@ msgid "Tutte le pubblicazioni"
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:43 template-parts/persone/filters.php:79
-#: template-parts/persone/view-tabella.php:148
+#: template-parts/persone/view-tabella.php:156
 msgid "Tutte le strutture"
 msgstr ""
 
 #: template-parts/persone/filters.php:96
-#: template-parts/persone/view-tabella.php:167
+#: template-parts/persone/view-tabella.php:175
 msgid "Tutte le tipologie"
 msgstr ""
 

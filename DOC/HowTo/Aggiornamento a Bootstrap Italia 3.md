@@ -1,5 +1,7 @@
 # Aggiornamento del tema a Bootstrap Italia 3 (3.0.0-beta.7)
 
+> **Nota del 2026-11-03 — storia e stato finale.** Questo documento è la **storia** del passaggio a Bootstrap Italia 3 (ottobre 2026): descrive come si è lavorato e che cosa si è trovato in quel momento, e alcune regole CSS o alcuni file citati sono poi cambiati. Il comportamento **finale** del tema è descritto in `AGENTS/ARCHITECTURE.md`, nel [Manuale Amministratore](../Manuali/Manuale-Amministratore.md) e nei manuali di `DOC/Manuali/`; per il CSS vale `assets/css/main.css`. In caso di differenza fra questo documento e il codice, vale il codice.
+
 Documento di lavoro che raccoglie l'attività di allineamento del tema **Design Laboratori Italia** alla versione 3 di Bootstrap Italia (era sulla 2.18.3), avviata perché la libreria è ancora in **beta** e introduce cambi strutturali rilevanti (temizzazione tramite CSS custom properties `--bsi-*` al posto delle variabili Sass, markup nuovo per diversi componenti). Il porting è partito dalla `3.0.0-beta.5`; dipendenza e asset sono ora allineati alla `3.0.0-beta.7`.
 
 **Stato:** in corso. Lavoro svolto direttamente sul branch `main` di una copia locale del repository (non un fork/branch dedicato), con commit **solo locali**: nessun push è stato fatto né va fatto verso il repository ufficiale (`https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme`). La copia locale serve esclusivamente per analisi e test live sul container Docker della demo (`SETUP/Docker`).

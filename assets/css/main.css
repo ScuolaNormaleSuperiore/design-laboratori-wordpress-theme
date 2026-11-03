@@ -140,6 +140,34 @@ p a.text-white {
 	text-decoration: underline;
 }
 
+/* Brand of the footer: the name of the laboratory is an h3 and the tagline a paragraph (the tagline is a sentence, and an
+	h3 that exists only on wide screens would add a level of heading to some screens only). Bootstrap Italia styles the
+	brand by tag: the h2 as the title (size of a heading 5, light weight) and the h3 as the tagline (size of the text), so
+	the two would swap looks. The same rules are set on the new tags, so that the name and the tagline look as before. */
+.it-footer-main .it-brand-wrapper .it-brand-text h3 {
+	margin-bottom: var(--bsi-spacing-3xs);
+	font-size: var(--bsi-heading-5-font-size);
+	font-weight: var(--bsi-heading-font-weight-weak);
+}
+
+.it-footer-main .it-brand-wrapper .it-brand-text p {
+	margin-bottom: 0;
+	padding-top: 0;
+	font-size: var(--bsi-body-font-size);
+	font-weight: var(--bsi-body-font-weight);
+	line-height: var(--bsi-heading-leading);
+}
+
+/* Titles of the columns of the footer: Bootstrap Italia gives the size of a label, in capitals, to the h4 of the
+	footer only. The h3 of Newsletter, which is a sibling of the h4 of the other columns, looks the same. The title
+	of the brand is not a column and keeps its size. */
+.it-footer-main h3:not(.it-brand-wrapper h3) {
+	margin-bottom: var(--bsi-spacing-s);
+	font-size: var(--bsi-label-font-size);
+	font-weight: var(--bsi-heading-font-weight-weak);
+	text-transform: uppercase;
+}
+
 .it-footer a {
 	text-decoration: none;
 }

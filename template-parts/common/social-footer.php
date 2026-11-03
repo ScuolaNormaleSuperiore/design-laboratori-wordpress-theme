@@ -56,11 +56,7 @@ if ( 'true' === $dli_show_socials ) {
 		),
 	);
 	?>
-	<h4>
-		<a href="#" title="<?php echo esc_attr__( 'Seguici su', 'design_laboratori_italia' ); ?>">
-			<?php echo esc_html__( 'Seguici su', 'design_laboratori_italia' ); ?>
-		</a>
-	</h4>
+	<h4 class="h4"><?php echo esc_html__( 'Seguici su', 'design_laboratori_italia' ); ?></h4>
 	<ul class="list-inline text-left social">
 		<?php
 		foreach ( $dli_socials as $dli_social ) {

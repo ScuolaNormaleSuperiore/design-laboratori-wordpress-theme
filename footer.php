@@ -31,8 +31,9 @@
 								<!-- footer logo -->
 								<?php get_template_part( 'template-parts/common/logo-footer' ); ?>
 								<div class="it-brand-text ms-4">
-										<h2 class="no_toc h2"><?php echo esc_html( $dli_label_contact ); ?></h2>
-										<h3 class="no_toc d-none d-md-block"><?php echo esc_html( $dli_tagline ); ?></h3>
+										<h3 class="no_toc h3"><?php echo esc_html( $dli_label_contact ); ?></h3>
+										<?php // The tagline is a sentence, not a heading: a paragraph with the classes of the title looks the same and adds no level of heading that exists only on some screens. ?>
+										<p class="no_toc h3 d-none d-md-block"><?php echo esc_html( $dli_tagline ); ?></p>
 								</div>
 							</a>
 						</div>
@@ -43,12 +44,7 @@
 			<section class="py-4 border-white border-top">
 				<div class="row">
 		<div class="col-lg-4 col-md-4 pb-2">
-				<h4><a href="#" title="
-				<?php
-					/* translators: %s: destination page name. */
-					echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Contatti', 'design_laboratori_italia' ) ) );
-				?>
-				"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></a></h4>
+				<h4 class="h4"><?php echo esc_html__( 'Contatti', 'design_laboratori_italia' ); ?></h4>
 				<p>
 					<strong><?php echo esc_html( dli_get_option( 'nome_laboratorio' ) ); ?></strong><br />
 					<?php echo esc_html( dli_get_option( 'indirizzo_laboratorio' ) ); ?>
@@ -109,16 +105,7 @@
 						$dli_menu_items = is_array( $dli_menu_items ) ? $dli_menu_items : array();
 			if ( count( $dli_menu_items ) > 0 ) {
 				?>
-				<h4>
-					<a href="#" title="
-					<?php
-						/* translators: %s: destination page name. */
-						echo esc_attr( sprintf( __( 'Vai alla pagina: %s', 'design_laboratori_italia' ), esc_html__( 'Link utili', 'design_laboratori_italia' ) ) );
-					?>
-					">
-					<?php echo esc_html__( 'Link utili', 'design_laboratori_italia' ); ?>
-					</a>
-				</h4>
+				<h4 class="h4"><?php echo esc_html__( 'Link utili', 'design_laboratori_italia' ); ?></h4>
 				<?php
 			}
 			?>

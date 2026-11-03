@@ -19,8 +19,7 @@
     "test": "phpunit",
     "test:all": [
       "@test:unit",
-      "@test:integration",
-      "@test:e2e"
+      "@test:integration"
     ],
     "test:unit": "phpunit --testsuite unit",
     "test:integration": [
@@ -33,7 +32,7 @@
   },
   "scripts-descriptions": {
     "lint:phpstan:level5": "Non-blocking PHPStan level-5 progress check for the whole theme",
-    "test:all": "All the tests in order: unit, integration, E2E (stops at the first failing suite; needs the integration and E2E setup)",
+    "test:all": "Unit and integration tests in order (stops at the first failing suite; needs the integration setup). The E2E suite is long and is run separately with test:e2e",
     "test:unit": "Unit tests (PHPUnit, no WordPress)",
     "test:integration": "Integration tests (PHPUnit on a real WordPress, dedicated database)",
     "test:e2e": "Functional tests (Playwright on the E2E site; needs DLI_E2E_SITE_PATH). Extra options after --",

@@ -26,7 +26,7 @@ radice del tema.
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
 | Test di integrazione | `composer test:integration` | circa 20 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
 | Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 3 minuti | No | [`e2e/README.md`](e2e/README.md) |
-| Tutti i test | `composer test:all` (unit, integrazione ed E2E, in quest'ordine) | circa 4 minuti | No | requisiti di tutte e tre le suite; si ferma alla prima che fallisce. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E cresce con i lotti |
+| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | circa 2 minuti | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E è lunga (circa 10 minuti) e si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E supera i 300 secondi |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:

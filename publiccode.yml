@@ -15,7 +15,7 @@ description:
     features:
       - Popolamento automatico del sito (pagine e menu).
       - Sezione per la configurazione del tema e dei contenuti.
-      - Personalizzazione del layout della home page.
+      - Home page configurabile con sezioni ordinabili, sfondi e numero massimo di elementi per sezione.
       - Gestione delle persone del laboratorio.
       - Gestione dei progetti del laboratorio.
       - Gestione delle news e degli eventi del laboratorio.
@@ -35,9 +35,8 @@ description:
       - Mappa del sito in HTML e XML.
       - Gestione hero in home page.
       - Carousel in home page con contenuti selezionabili.
-      - Gestione contenuti in evidenza in home page.
-      - Gestione sezioni eventi, news e pubblicazioni in home page.
-      - Card delle pubblicazioni in home page con autori, tipologia e anno.
+      - Sezioni di navigazione delle pagine in home: card di navigazione, navigazione per pagine, indice di una pagina e pannello tab multilingue.
+      - Contenuti in evidenza in home per notizie, eventi e pubblicazioni, incluse card delle pubblicazioni con autori, tipologia e anno.
       - Pagine con riassunto e sottopagine navigabili tramite card configurabili.
       - Gestione banner in home page.
       - Gestione sponsor in home page.
@@ -135,7 +134,7 @@ name: Design Laboratori Italia
 landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-10-28'
+releaseDate: '2026-11-03'
 roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
