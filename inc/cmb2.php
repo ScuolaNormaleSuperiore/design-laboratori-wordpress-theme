@@ -41,3 +41,26 @@ function dli_update_cmb2_meta_box_url( $url ) {
 	return get_stylesheet_directory_uri() . '/inc/vendor/CMB2/';
 }
 add_filter( 'cmb2_meta_box_url', 'dli_update_cmb2_meta_box_url' );
+
+/**
+ * Lets a user save an options page of the theme only when the user has the capability of the page.
+ *
+ * CMB2 saves an options page through `admin-post.php`, where `CMB2_Options_Hookup::save_options()` checks the nonce of
+ * the form but not the capability of the user: the capability of the page only shows it in the menu. A nonce says that
+ * a form was sent on purpose, not that the user may send it, so a request that does not come from the page is refused
+ * here when the user has no right to it. The boxes of the other objects (posts, terms, users) are not touched.
+ *
+ * @param bool $can_save Whether CMB2 allows the box to save.
+ * @param CMB2 $cmb      The box that is saving.
+ * @return bool Whether the box can save.
+ */
+function dli_options_can_save_by_capability( $can_save, $cmb ) {
+	if ( ! $can_save || ! in_array( 'options-page', $cmb->box_types(), true ) ) {
+		return $can_save;
+	}
+
+	$capability = $cmb->prop( 'capability' );
+
+	return $capability ? current_user_can( $capability ) : $can_save;
+}
+add_filter( 'cmb2_can_save', 'dli_options_can_save_by_capability', 10, 2 );

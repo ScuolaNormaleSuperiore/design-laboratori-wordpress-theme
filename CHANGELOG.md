@@ -33,6 +33,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.5] - 2026-11-03
+## Sicurezza
+- Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente anche per le richieste che non passano dalla pagina.
+
+
 ## [2.0.4] - 2026-11-03
 ## Aggiunto
 - Pubblicazioni: scheda dedicata con indirizzo leggibile, copertina, autori e allegato PDF.

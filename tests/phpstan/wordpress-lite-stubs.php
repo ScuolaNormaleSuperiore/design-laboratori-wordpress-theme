@@ -34,6 +34,13 @@ if ( ! class_exists( 'CMB2' ) ) {
 		}
 
 		/**
+		 * @return array<int, string> The types of object the box is for (`post`, `options-page`, ...).
+		 */
+		public function box_types() {
+			return array();
+		}
+
+		/**
 		 * @param array<string, mixed> $field    Field configuration.
 		 * @param int                  $position Field position.
 		 * @return string|false
