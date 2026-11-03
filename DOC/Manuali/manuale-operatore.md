@@ -84,7 +84,7 @@ Nella modifica di una pagina, il campo `Mostra le sottopagine come card` mostra,
 - Per provare le card senza scrivere pagine a mano: `Strumenti DLI > Utilità > Pagine di esempio` crea quattro pagine principali (`Open Access`, `Research Data`, `Research Assessment`, `Monitoring`; solo la seconda ha sottopagine: quattro, con le loro sottopagine, per 15 pagine per lingua), con testi lorem ipsum di lunghezza diversa. Le quattro pagine principali e le sottopagine `Pianificare`, `Gestire` e `Condividere` sono anche promosse alla home, per provare le sezioni `Card di navigazione` (4 card) e `Navigazione per pagine` (4 gruppi); le pagine si creano in italiano, in inglese o in entrambe le lingue (le due versioni sono collegate come traduzioni). Il pulsante può essere ripetuto senza duplicare nulla; `Rimuovi le pagine di esempio` cancella solo le pagine create dallo strumento, mai quelle scritte da un redattore. Sono contenuti finti: non usarlo su un sito di produzione. Serve il permesso `edit_theme_options` (amministratore).
 - Il campo `Promuovi in Home` fa comparire la pagina nella sezione `Card di navigazione` della home (fino a 6 pagine, numero modificabile in `Sezioni HP`; nell'ordine del campo `Ordine` della pagina e poi per titolo; non compaiono le pagine in bozza o protette da password). Per default la sezione mostra solo le pagine di primo livello, cioè senza pagina genitore: una sottopagina promossa non diventa una card, a meno che nella riga di `Sezioni HP` si scelga un livello più ampio (`Livello delle pagine`). La stessa pagina promossa compare anche nella sezione `Navigazione per pagine` se ha sottopagine pubblicate, a qualsiasi livello. Le sezioni vanno aggiunte in `Configurazione > Sezioni HP` e i loro testi si scrivono in `Layout HP`; finché non sono attive il campo non cambia nulla. La tabella dei criteri con un esempio è nel manuale di configurazione, tab `Layout HP`.
 - La sezione `Pannello tab` della home mostra una serie di tab, ognuno con un'etichetta, un testo e, se vuoi, un elenco di pagine collegate. I tab si scrivono in `Configurazione > Layout HP` (gruppo `Tab`: `Etichetta`, `Etichetta ENG`, `Descrizione`, `Descrizione ENG`, `Pagine collegate`) e si riordinano con le frecce di ogni riga; la sezione si aggiunge e si ordina in `Configurazione > Sezioni HP`. Il primo tab è quello aperto. Un tab senza etichetta, o senza testo e senza pagine da mostrare, non compare. In inglese, ciò che manca in inglese si legge in italiano; le pagine collegate si scelgono in italiano e sul sito inglese compare la traduzione. Il dettaglio dei criteri è nel manuale di configurazione, tab `Layout HP`.
-- La sezione `Indice di una pagina` della home mostra l'indice di una pagina che scegli tu nella riga di `Configurazione > Sezioni HP` (campo `Pagina`): le sue sottopagine dirette sono le colonne, con il titolo, e le loro sottopagine sono i link. Una sottopagina senza figli non compare. Si può aggiungere più volte, anche con la stessa pagina. Sul sito inglese compare la traduzione della pagina, e senza traduzione la sezione non compare. Il dettaglio dei criteri è nel manuale di configurazione, tab `Layout HP`.
+- La sezione `Indice di una pagina` della home mostra l'indice di una pagina che scegli tu nella riga di `Configurazione > Sezioni HP` (campo `Pagina`): le sue sottopagine dirette sono le colonne, con il titolo, e le loro sottopagine sono i link. Una sottopagina senza figli non compare. Si può aggiungere più volte, anche con la stessa pagina: a riga chiusa ogni copia mostra la pagina scelta (`Indice di una pagina — Ricerca`) e ha i suoi numeri e il suo sfondo. Sul sito inglese compare la traduzione della pagina, e senza traduzione la sezione non compare. Il dettaglio dei criteri è nel manuale di configurazione, tab `Layout HP`.
 
 ## 7. Configurazione del tema (`WP -> Configurazione`)
 Da questa sezione si gestiscono i parametri globali del sito (testi, sezioni home, contatti, ecc.).
@@ -151,8 +151,8 @@ Uso consigliato:
 3. In caso di anomalie, sospendi nuovi import e segnala al team tecnico.
 
 Riferimenti utili:
-- `DOC/Import brevettiI da RIS.md`
-- `DOC/Schema-Import-Eventi.drawio.pdf`
+- [Importazione dei brevetti da IRIS](../HowTo/Import%20brevettiI%20da%20RIS.md)
+- [Schema di importazione degli eventi](../Schemi/Schema-Import-Eventi.drawio.pdf)
 
 ## 12. Controlli periodici consigliati
 Frequenza settimanale:
@@ -188,11 +188,11 @@ Controlla: ordine sezioni in configurazione e presenza dei contenuti sorgente.
 
 ## 15. Contatti e documenti correlati
 Documentazione tecnica/progetto:
-- `README.md`
+- [README del progetto](../../README.md)
 - [Manuale Amministratore](Manuale-Amministratore.md)
 - [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md)
-- `DOC/HowTo Aggiornare Bootstrap Italia.md`
-- `DOC/Migrazione da 14x a 15x.md`
-- `DOC/Migrazione da 16x a 17x.md`
+- [Aggiornare Bootstrap Italia](../HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
+- [Migrazione storica da 1.4.x a 1.5.x](../HowTo/Migrazione%20da%2014x%20a%2015x.md)
+- [Migrazione storica da 1.6.x a 1.7.x](../HowTo/Migrazione%20da%2016x%20a%2017x.md)
 
 Per segnalare bug o anomalie funzionali: usare il canale interno del team tecnico o la issue tracker di progetto.

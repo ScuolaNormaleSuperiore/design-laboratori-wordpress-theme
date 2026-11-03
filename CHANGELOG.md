@@ -36,6 +36,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.0.5] - 2026-11-03
 ## Modificato
 - Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (correzioni di sicurezza e di salvataggio, compatibilità con PHP 8.2-8.4).
+- Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta e i due limiti spiegano che cosa contano.
 ## Rimosso
 - Estensione CMB2 Leaflet Geocoder, non usata dal tema (le mappe dei Luoghi usano ACF OpenStreetMap Field).
 ## Corretto

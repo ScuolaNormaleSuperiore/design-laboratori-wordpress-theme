@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 08:40+0000\n"
+"POT-Creation-Date: 2026-11-03 13:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -359,6 +359,8 @@ msgstr ""
 
 #: template-parts/home/hp-card-navigation-section.php:48
 #: tests/integration/DLI_Home_Navigation_Section_Integration_Test.php:221
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:66
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:80
 msgid "Card di navigazione"
 msgstr ""
 
@@ -532,11 +534,12 @@ msgid "Consulta la pubblicazione"
 msgstr ""
 
 #. Name of the template
-#: footer.php:49 footer.php:51 single-evento.php:151 single-evento.php:257
+#: footer.php:47 single-evento.php:151 single-evento.php:257
 #: single-indirizzo-di-ricerca.php:133 single-indirizzo-di-ricerca.php:220
 #: single-persona.php:251 single-persona.php:436 single-spinoff.php:138
 #: single-spinoff.php:194 page-templates/contatti.php:2
 #: page-templates/contatti.php:122 page-templates/contatti.php:179
+#: tests/integration/DLI_Footer_Headings_Integration_Test.php:126
 msgid "Contatti"
 msgstr ""
 
@@ -785,7 +788,7 @@ msgstr ""
 msgid "dry_run (simulazione)"
 msgstr ""
 
-#: footer.php:83 footer.php:84 page-templates/contatti.php:264
+#: footer.php:79 footer.php:80 page-templates/contatti.php:264
 #: page-templates/newsletter.php:202
 msgid "E-mail"
 msgstr ""
@@ -1059,6 +1062,11 @@ msgstr ""
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:68
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:79
+msgid "Indice di una pagina"
+msgstr ""
+
 #: single-brevetto.php:99 single-brevetto.php:102 single-evento.php:106
 #: single-evento.php:110 single-indirizzo-di-ricerca.php:99
 #: single-luogo.php:113 single-persona.php:167 single-progetto.php:116
@@ -1189,7 +1197,8 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: footer.php:116 footer.php:119
+#: footer.php:108
+#: tests/integration/DLI_Footer_Headings_Integration_Test.php:127
 msgid "Link utili"
 msgstr ""
 
@@ -1385,6 +1394,8 @@ msgstr ""
 
 #: template-parts/home/hp-page-navigation-section.php:46
 #: tests/integration/DLI_Home_Navigation_Groups_Integration_Test.php:275
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:67
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:78
 msgid "Navigazione per pagine"
 msgstr ""
 
@@ -1419,6 +1430,7 @@ msgstr ""
 #. Name of the template
 #: page-templates/newsletter.php:8 page-templates/newsletter.php:96
 #: template-parts/common/newsletter.php:16
+#: tests/integration/DLI_Footer_Headings_Integration_Test.php:144
 msgid "Newsletter"
 msgstr ""
 
@@ -2046,7 +2058,7 @@ msgctxt "Post Type Singular Name"
 msgid "Visualizza lo Sponsor"
 msgstr ""
 
-#: footer.php:72 footer.php:75
+#: footer.php:68 footer.php:71
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
@@ -2286,9 +2298,9 @@ msgstr ""
 msgid "Secondaria"
 msgstr ""
 
-#: template-parts/common/social-footer.php:60
-#: template-parts/common/social-footer.php:61
+#: template-parts/common/social-footer.php:59
 #: template-parts/common/social.php:64
+#: tests/integration/DLI_Footer_Headings_Integration_Test.php:128
 msgid "Seguici su"
 msgstr ""
 
@@ -2352,7 +2364,7 @@ msgstr ""
 msgid "Settore:"
 msgstr ""
 
-#: footer.php:154
+#: footer.php:141
 msgid "Sezione Link Utili"
 msgstr ""
 
@@ -2508,7 +2520,7 @@ msgctxt "taxonomy singular name"
 msgid "Tipologia luogo"
 msgstr ""
 
-#: footer.php:92 footer.php:93 single-luogo.php:206
+#: footer.php:88 footer.php:89 single-luogo.php:206
 #: page-templates/contatti.php:275 template-parts/persone/view-tabella.php:258
 msgid "Telefono"
 msgstr ""
@@ -2752,7 +2764,7 @@ msgid "Vai al servizio"
 msgstr ""
 
 #. %s: destination page name.
-#: footer.php:49 footer.php:72 footer.php:116
+#: footer.php:68
 #, php-format
 msgid "Vai alla pagina: %s"
 msgstr ""

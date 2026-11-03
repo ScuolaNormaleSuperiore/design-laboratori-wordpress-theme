@@ -8,7 +8,7 @@ Il content type `Banner` rappresenta un elemento promozionale/istituzionale most
 
 Caratteristiche principali:
 - slug tecnico post type: `banner`
-- contenuto pubblico
+- contenuto gestito nel backoffice e mostrato nella home; il post type non è pubblico e non ha una scheda pubblica dedicata
 - non gerarchico (`hierarchical = false`)
 - campi nativi WordPress supportati:
 1. `Titolo`
@@ -77,7 +77,7 @@ Nella scheda `Banner` non sono presenti campi ACF di relazione verso altri conte
 
 ## 10. Configurazioni backoffice
 La visualizzazione dei banner in homepage dipende dalla configurazione delle sezioni home:
-- in `dli_options > Homepage sections` va abilitata la sezione `Banner` (`banners_section`).
+- in `Configurazione > Sezioni HP` va abilitata la sezione `Banner` (`banners_section`).
 - i banner pubblicati vengono mostrati in home ordinati per campo `Priorita` (ascendente), con limite ai primi 3 elementi.
 
 ## 11. Check-list rapida prima della pubblicazione

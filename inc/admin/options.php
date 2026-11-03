@@ -432,6 +432,12 @@ function dli_register_main_options_metabox() {
 				__( 'Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione.', 'design_laboratori_italia' ),
 				DLI_HP_ITEMS_MIN,
 				DLI_HP_ITEMS_MAX
+			) . ' ' . sprintf(
+				/* translators: 1: name of the section of the cards, 2: of the groups, 3: of the columns */
+				__( 'Sono le card di «%1$s», i gruppi di «%2$s» e le colonne di «%3$s».', 'design_laboratori_italia' ),
+				__( 'Card di navigazione', 'design_laboratori_italia' ),
+				__( 'Navigazione per pagine', 'design_laboratori_italia' ),
+				__( 'Indice di una pagina', 'design_laboratori_italia' )
 			),
 			'type'            => 'text_small',
 			'sanitization_cb' => 'dli_sanitize_hp_max_items',
@@ -457,6 +463,11 @@ function dli_register_main_options_metabox() {
 				__( 'Da %1$d a %2$d. Se vuoto, resta il numero di default di quella sezione.', 'design_laboratori_italia' ),
 				DLI_HP_ITEMS_MIN,
 				DLI_HP_ITEMS_MAX
+			) . ' ' . sprintf(
+				/* translators: 1: name of the section of the groups, 2: of the columns */
+				__( 'Sono i link di ogni gruppo di «%1$s» e di ogni colonna di «%2$s».', 'design_laboratori_italia' ),
+				__( 'Navigazione per pagine', 'design_laboratori_italia' ),
+				__( 'Indice di una pagina', 'design_laboratori_italia' )
 			),
 			'type'            => 'text_small',
 			'sanitization_cb' => 'dli_sanitize_hp_max_items',

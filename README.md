@@ -110,13 +110,15 @@ personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 
 ## Documentazione
 
-### Manuali operatore
+### Manuali d'uso e amministrazione
+
 - [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
 - [Manuale operatore: persone](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore-persone.md)
 - [Pannello di configurazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md)
 - [Manuale amministratore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Amministratore.md) — permessi, schede riservate, plugin e note di architettura.
 
 ### Manuali di gestione dei contenuti
+
 - [Attività di ricerca](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md)
 - [Banner](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Banner.md)
 - [Blog](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Blog.md)
@@ -131,15 +133,18 @@ personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 - [Spin-off](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Spin-off.md)
 
 ### Schemi
+
 - [Schema dei contenuti e delle tassonomie](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Contenuti-SitoFederato.pdf)
 - [Schema di importazione degli eventi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Import-Eventi.drawio.pdf)
 - [Schema di integrazione con Brevo](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Integrazione-Brevo.pdf)
 
-### Guide tecniche
+### Guide tecniche correnti
+
 - [Aggiornare la libreria Bootstrap Italia](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
-- [Aggiornamento a Bootstrap Italia 3](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Aggiornamento%20a%20Bootstrap%20Italia%203.md)
+- [Personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md)
 - [REST API del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/REST-API.md)
 - [Importazione dei brevetti da IRIS](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Import%20brevettiI%20da%20RIS.md)
+- [Transient e caching nel tema](DOC/HowTo/Transient%20e%20caching%20nel%20tema.md)
 
 ## Demo
 ### Sito di prova online

@@ -110,7 +110,7 @@ Nelle opzioni tema (`dli_options > Brevetti`) sono presenti i campi:
 
 Configurazioni aggiuntive:
 - in `dli_options > IRIS` e' disponibile la sezione di integrazione/import `IRIS AP Brevetti` (abilitazione, endpoint, credenziali, schedulazione, modalita' import e gestione elementi esistenti).
-- l'import puo' essere eseguito anche manualmente tramite endpoint REST protetto da autenticazione: `/wp-json/custom/v1/iris-ap-brevetti-import`.
+- l'import può essere eseguito anche tramite `POST /wp-json/custom/v1/iris-patent-import`, quando `Abilita REST API` è attivo, con autenticazione HTTP Basic di un utente con `manage_options`. Vedi [REST API del tema](../HowTo/REST-API.md).
 
 ## 11. Check-list rapida prima della pubblicazione
 - `Titolo` valorizzato

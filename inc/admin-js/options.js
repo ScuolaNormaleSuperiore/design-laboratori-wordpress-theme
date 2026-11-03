@@ -75,7 +75,12 @@ $j(function() {
         }
 
         update();
-        $j(document).on(changeEvents, groupSelector + ' ' + fieldSelector, update);
+        // The label may depend on more than one field of the row: fieldSelector can be a list, and each selector of the
+        // list is searched inside the group (a list put after the group would apply the group to its first item only).
+        var delegated = $j.map(fieldSelector.split(','), function(selector) {
+            return groupSelector + ' ' + $j.trim(selector);
+        }).join(', ');
+        $j(document).on(changeEvents, delegated, update);
         $j('.cmb2-wrap > .cmb2-metabox').on('cmb2_add_row', update);
         $j(document).on('cmb2_shift_rows_complete cmb2_remove_row', groupSelector, update);
     }
@@ -172,8 +177,21 @@ $j(function() {
     if ($j('#site_sections_repeat').length) {
         dliShowRowLabels('#site_sections_repeat', function($row) {
             var $select = $row.find('select[name$="[id]"]').first();
-            return $select.length ? $select.find('option:selected').text() : null;
-        }, 'select[name$="[id]"]', 'change');
+            if (!$select.length) {
+                return null;
+            }
+            var label = $select.find('option:selected').text();
+            // Several indexes of a page can be in the home: each is told apart by the page it shows. The choices of the
+            // pages indent the subpages with dashes, which are not part of the name. Without a page there is only the name.
+            var $page = $row.find('select[name$="[page_id]"]').first();
+            if ('page_index_section' === $select.val() && $page.length && $page.val()) {
+                var pageName = $j.trim($page.find('option:selected').text()).replace(/^(?:\u2014\s*)+/, '');
+                if (pageName) {
+                    label = $j.trim(label) + ' \u2014 ' + pageName;
+                }
+            }
+            return label;
+        }, 'select[name$="[id]"], select[name$="[page_id]"]', 'change');
     }
 
     if ($j('#home_tabs_items_repeat').length) {

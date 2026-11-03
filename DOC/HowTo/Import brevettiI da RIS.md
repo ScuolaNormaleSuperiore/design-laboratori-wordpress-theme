@@ -3,26 +3,31 @@
 ## Descrizione
 Il sistema SitoFederato permette di importare i brevetti dal software di CINECA IRIS.
 Per farlo è necessario attivare il servizio e configurarlo da back-office nella sezione: *Configurazione-->Iris*.
-Si puà invocare il servizio messo a disposizione da CINECA o un servizio che faccia da wrapper ad esso, ma che ritorni i dati nello stesso formato.
+Si può invocare il servizio messo a disposizione da CINECA o un servizio che faccia da wrapper ad esso, ma che restituisca i dati nello stesso formato.
 
 
 ## Attivazione e configurazione
 Si può configurare il servizio da back-office nella sezione: *Configurazione-->Iris*.
 
 ## Import da Web Service
-Dopo aver attivato e configurato ilo servizio, lo si può invocare utilizzando la REST api di WordPress e l'end-point:
-E' richiesta la basic authentication con un account da amministratore.
-Url da invocare: wp-json/custom/v1/iris-patent-import
+Dopo aver attivato e configurato il servizio, abilitare `Abilita REST API` in
+`Configurazione → Altro` e inviare una richiesta `POST` a
+`/wp-json/custom/v1/iris-patent-import`.
+È richiesta l'autenticazione HTTP Basic di un utente con il permesso
+`manage_options`. Usare HTTPS e non salvare le credenziali nei documenti.
+Vedi [REST API del tema](REST-API.md).
 
 ## Import schedulato
-L'impoirtazione può essere eseguita, attivando la registrazione del cronjob associato all'import nella maschera di configurazione del servizio.
+L'importazione può essere eseguita anche tramite WP-Cron, configurando la
+schedulazione nella scheda del servizio. L'opzione `Abilita REST API` riguarda
+l'avvio via HTTP, non la schedulazione.
 
 ## Descrizione del codice
 
  - **class-patentmanager.php**: Qui c'è il codice per la gestione del post type personalizzato Patent e delle tassonomie associate.
  
- - **class-irispatent-importer.php**: Qui è presente il codice che si occupa dell'importazione dei brevetti da ***web service*** o da ***cronjob***.
+ - **class-patentimporter.php**: contiene `DLI_IrisPatentImporter`, che importa i brevetti tramite web service o WP-Cron.
 
- - **class-dli-labmanager.php**: qui c'è il codice per importare gli oggetti Patent_Manager e DLI_IrisPatentImporter e per inizializzarli (con il metodo **setup**).
+ - **class-dli-labmanager.php**: inizializza il manager dei brevetti `Patent_Manager` e l'importatore `DLI_IrisPatentImporter`.
   
  - **options.php**: in questo file ci sono le opzioni di configurazione dell'importer dei brevetti e i dati di connessione al web service per il recupero dei dati da importare.

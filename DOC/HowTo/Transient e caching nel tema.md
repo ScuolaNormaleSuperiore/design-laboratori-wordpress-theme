@@ -41,9 +41,10 @@ cui il dato sottostante cambia (tipicamente agganciandosi a un hook come
 
 ### Come si aggiorna in pratica: la sequenza
 
-Il punto spesso poco chiaro è **quando** la cache viene effettivamente
-ricalcolata. Non appena si salva il contenuto: la cache viene solo *svuotata*,
-il ricalcolo avviene alla richiesta successiva. Sequenza completa:
+Quando una funzione prevede un hook di invalidazione al salvataggio, salvare
+il contenuto *svuota* la cache e il ricalcolo avviene alla richiesta successiva.
+È il caso delle due funzioni per i filtri descritte sotto; i suggerimenti di
+ricerca usano invece la sola scadenza. Sequenza del primo caso:
 
 1. **Prima visita alla pagina** → `get_transient()` non trova nulla (`false`)
    → si esegue la query/calcolo pesante → il risultato viene salvato con
@@ -62,27 +63,30 @@ il ricalcolo avviene alla richiesta successiva. Sequenza completa:
 
 In altre parole: **salvare un contenuto invalida la cache, ma è la richiesta
 successiva alla pagina a farla ricalcolare**, non l'operazione di salvataggio
-in sé. Se nessuno visita più quella pagina, il dato resta "vuoto" (da
-ricalcolare) finché non arriva una richiesta, oppure finché non scade da solo
-al termine del TTL (che quindi funge anche da rete di sicurezza se l'hook di
-invalidazione, per qualche motivo, non dovesse scattare).
+in sé. Dopo l'invalidazione il dato rimane da ricalcolare finché non arriva
+una richiesta. Se l'hook non scatta, il TTL limita la durata del dato vecchio:
+la prima richiesta dopo la scadenza lo ricalcola comunque.
 
 ## Come li usiamo in questo progetto
 
-Ad oggi il tema usa i transient in due punti, entrambi introdotti per
-correggere pattern di query N+1/non necessarie segnalati durante la code
-review (vedi `DEV/CODE_REVIEW/ISSUES_RESOLVED.md`):
+Usi nei file del tema, verificati il 2026-11-03 (esclusi quelli interni alle
+librerie vendor):
 
 | Funzione | File | Cosa cachea | Chiave | Invalidata su |
 |---|---|---|---|---|
 | `dli_get_all_place_types_with_results()` | `inc/utils.php` | Tipi di luogo con almeno un contenuto pubblicato | `dli_place_types_with_results` | `save_post_{PLACE_POST_TYPE}` |
 | `dli_get_all_categories_by_ct()` | `inc/utils.php` | Categorie/termini con almeno un contenuto pubblicato, per tassonomia + post type | hash di tassonomia+post type+stato (`dli_get_categories_by_ct_cache_key()`) | `save_post` generico, filtrato per post type tramite la mappa `DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE` in `inc/actions.php` |
+| `dli_search_autocomplete_suggest()` | `inc/search-autocomplete.php` | Suggerimenti per lingua, testo cercato, limite e tipi di contenuto | `dli_suggest_` + hash dei parametri | Scadenza configurabile; nessuna invalidazione al salvataggio dei contenuti |
+| `DLI_Tools_Admin::handle_example_content_post()` / `render_example_content_report()` | `inc/admin/class-dli-tools-admin.php` | Esito della creazione/rimozione delle pagine di esempio, fra invio del form e pagina di ritorno | `dli_example_report_` + ID utente | Eliminato dopo la lettura; scadenza di un minuto |
 
-Entrambe usano un TTL di 24 ore (`DAY_IN_SECONDS`) come rete di sicurezza,
+Le prime due usano un TTL di 24 ore (`DAY_IN_SECONDS`) come rete di sicurezza,
 oltre all'invalidazione esplicita al salvataggio dei contenuti interessati.
-Non esiste al momento un layer di caching generale nel tema: è un intervento
-puntuale sulle due funzioni segnalate come costose, non un'infrastruttura
-riusabile per altri scopi.
+La cache dei suggerimenti dura 10 minuti di default, configurabili da 0 a
+1440 in `Configurazione → Altro`; `0` la disattiva. Una modifica ai contenuti
+può quindi riflettersi nei suggerimenti solo alla scadenza della cache.
+Il report delle pagine di esempio è invece un messaggio temporaneo per il
+singolo utente, non una cache di query. Non esiste un layer di caching
+generale condiviso da queste funzioni.
 
 ### Cosa succede quando si aggiunge un nuovo contenuto: `dli_get_all_place_types_with_results()`
 
@@ -153,8 +157,8 @@ effetti.
   cache potrebbe restituire un valore leggermente vecchio (mitigato qui
   dall'invalidazione su `save_post`, ma resta un rischio se il dato cambia
   per vie diverse dal salvataggio di un post, es. modifica diretta a DB).
-- **Costo nascosto su `wp_options`**: senza un object cache esterno, ogni
-  transient è una riga in `wp_options`; un uso massiccio o TTL troppo lunghi
+- **Costo nascosto su `wp_options`**: senza un object cache esterno, un
+  transient con scadenza usa due opzioni (valore e scadenza); un uso massiccio o TTL troppo lunghi
   su tabelle già grandi può degradare le performance invece di migliorarle.
 - **Debug meno immediato**: un valore "sbagliato" mostrato in pagina può
   essere un dato di cache non invalidato correttamente, non un bug nella

@@ -2,7 +2,7 @@
 
 Versione: 1.0  
 Data: 2026-11-03  
-Tema: `design-laboratori-wordpress-theme` (2.0.4)
+Tema: `design-laboratori-wordpress-theme` (2.0.5)
 
 ## 1. Scopo del manuale
 Guida di riferimento per l'**Amministratore** di WordPress: permessi, schede riservate del pannello di configurazione, strumenti, plugin richiesti e note di architettura per chi valuta il tema in ottica di riuso. Per l'uso quotidiano dei contenuti vedi il [Manuale Operatore](manuale-operatore.md); per ogni campo del pannello di configurazione vedi il [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md).
@@ -50,8 +50,13 @@ Una sezione che dovrebbe comparire e non compare: controlla che sia attiva in Se
 ## 4. Stile del sito (solo Amministratore)
 In **WP → Configurazione → Altro**:
 
-- **Stile Bootstrap Italia standard:** nessun colore di brand e nessuna immagine decorativa negli hero, solo il tema di fabbrica.
-- **Stile personalizzato:** applica i colori del brand (`assets/css/custom-colors.css`) e mostra le immagini decorative negli hero privi di foto.
+- **Stile Bootstrap Italia standard:** usa i colori e i font predefiniti della libreria, insieme alle regole grafiche specifiche del tema.
+- **Stile personalizzato:** applica anche i colori del brand definiti in `assets/css/custom-colors.css`.
+
+Le immagini decorative degli hero restano presenti in entrambi gli stili,
+secondo il template della pagina; le foto reali dei contenuti mantengono la
+precedenza dove previste. La guida [Personalizzazione dello stile](../HowTo/Personalizzazione-stile.md)
+spiega come modificare colori e font.
 
 Il cambio è immediato e vale per tutto il sito, senza ricostruire nulla.
 
@@ -112,7 +117,7 @@ La descrizione completa è in `AGENTS/ARCHITECTURE.md`. In breve:
 | Le quattro sezioni nuove (`Card di navigazione`, `Navigazione per pagine`, `Indice di una pagina`, `Pannello tab`) | Non compaiono finché non aggiungi la riga in `Sezioni HP`. |
 | Campi nuovi della scheda Pagina (`Promuovi in Home`, `Mostra le sottopagine come card`) | Spenti per tutte le pagine esistenti. Il riassunto delle pagine è ora disponibile, ma resta vuoto. |
 | Testi in inglese mancanti (titoli, sottotitoli, tab, box) | Si usa il testo italiano: per i tab, l'etichetta e la descrizione; per il titolo di un box, il titolo italiano o, se vuoto, il nome del tipo. |
-| Pagina scelta in una riga o in un tab che diventa bozza, protetta da password, cancellata o senza traduzione inglese | Non compare nel sito (se è la pagina di `Indice di una pagina`, non compare la sezione). Nell'elenco di scelta resta con l'indicazione «(non visibile)», così salvando non si perde il collegamento. |
+| Pagina scelta in una riga o in un tab che diventa bozza, protetta da password, cancellata o senza traduzione inglese | Non compare nel sito nella lingua in cui non è visibile (se è la pagina di `Indice di una pagina`, non compare la sezione). Una pagina esistente che diventa bozza o protetta resta nel selettore con l'indicazione «(non visibile)»; una pagina eliminata definitivamente non è più elencata. La sola mancanza della traduzione inglese non cambia la scelta italiana. |
 | Box di `Contenuti in evidenza` con il vecchio campo `Template del box` | Il valore resta nel database ma non viene più letto: il layout lo decide il tipo di contenuto. |
 | Pubblicazioni esistenti | Ottengono la scheda dedicata, all'indirizzo `/pubblicazione/<nome>/`: le regole degli indirizzi si aggiornano da sole alla prima visita, senza salvare i permalink. Il campo `Link dettaglio` vale «scheda» per tutte finché non lo cambi. Una descrizione vuota o `.` non mostra il blocco. |
 | Pubblicazioni e API REST | Le pubblicazioni sono ora leggibili da `/wp-json/wp/v2/pubblicazione`, come gli altri contenuti, a meno che l'opzione «Abilita REST API» sia spenta (vale per chi non ha fatto l'accesso). |

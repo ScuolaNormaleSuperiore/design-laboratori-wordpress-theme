@@ -110,7 +110,7 @@ Campi principali (gruppo ripetibile `site_sections`):
   funzione: identificativo della sezione da mostrare.
 - `Pagina` (solo per `Indice di una pagina`)
   tipo: `select`
-  funzione: la pagina di cui la sezione mostra l'indice. Si sceglie fra le pagine pubblicate in italiano e senza password, con le sottopagine rientrate; una pagina già scelta che diventa bozza o protetta resta fra le scelte con l'indicazione «(non visibile)», così salvando non si perde. Con `Numero massimo di elementi` (colonne, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (link per colonna, vuoto = 6) la sezione si può ripetere, ogni volta con una pagina diversa, anche con la stessa.
+  funzione: la pagina di cui la sezione mostra l'indice. Si sceglie fra le pagine pubblicate in italiano e senza password, con le sottopagine rientrate; una pagina già scelta che diventa bozza o protetta resta fra le scelte con l'indicazione «(non visibile)», così salvando non si perde. Con `Numero massimo di elementi` (colonne, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (link per colonna, vuoto = 6) la sezione si può ripetere, ogni volta con una pagina diversa, anche con la stessa. I due campi sono gli stessi di altre sezioni (card, gruppi): sotto ciascuno una frase dice che cosa conta per ogni sezione. **Esempio con due indici:** aggiungere due righe `Indice di una pagina`, la prima con la pagina `Ricerca` (4 colonne, sfondo bianco) e la seconda con la pagina `Progetti` (2 colonne, 3 link per colonna, sfondo grigio chiaro): ogni riga ha i suoi valori e non cambia l'altra; a riga chiusa sono riconoscibili come `Sezione 3 (Indice di una pagina — Ricerca)` e `Sezione 4 (Indice di una pagina — Progetti)`, e si riordinano o si tolgono ciascuna per conto suo.
 - `Abilita la sezione`
   tipo: `radio_inline`
   funzione: attiva/disattiva la sezione in home.
@@ -121,7 +121,7 @@ Campi principali (gruppo ripetibile `site_sections`):
   tipo: `radio_inline` (`Bianco` / `Grigio chiaro`)
   funzione: sfondo della sezione. Compare solo per le sezioni che lo prevedono; se non è impostato resta lo sfondo di default di quella sezione.
 
-Ogni riga, anche chiusa, mostra il numero e il nome della sezione scelta (per esempio `Sezione 1 (Pubblicazioni)`). A sinistra della riga ci sono le frecce su e giù per spostarla, poi la `✕` per rimuoverla.
+Ogni riga, anche chiusa, mostra il numero e il nome della sezione scelta (per esempio `Sezione 1 (Pubblicazioni)`); per `Indice di una pagina` mostra anche la pagina scelta (per esempio `Sezione 3 (Indice di una pagina — Ricerca)`), così si distinguono più indici nella stessa home. A sinistra della riga ci sono le frecce su e giù per spostarla, poi la `✕` per rimuoverla.
 
 ### 4.4 Tab `Layout HP` (`homepage`)
 Funzione: configura hero, carousel e box contenuti in evidenza della homepage.
@@ -232,10 +232,13 @@ Campi principali:
   funzione: mostra/nasconde la struttura della persona nella visualizzazione a chip (insieme al livello, sotto il nome) e nella pagina di dettaglio della persona; valore predefinito `Si` (la struttura viene mostrata). Nella visualizzazione a tabella si usa `Nascondi struttura`.
 - `Modalita' scelta struttura`
   tipo: `select`
-  funzione: filtro struttura con chip/select/disabilitato.
-- `Filtra per TAG`
+  funzione: campo legacy ancora presente nel pannello; il frontend attuale mostra il filtro struttura come select e non usa questa scelta per cambiare componente.
+- `Nascondi filtro struttura`
   tipo: `radio_inline`
-  funzione: abilita filtro per tag.
+  funzione: nasconde il filtro per struttura in entrambe le visualizzazioni.
+- `Nascondi filtro tag`
+  tipo: `radio_inline`
+  funzione: nasconde il filtro per tag.
 - `Etichetta 'Seleziona TAG'` (+ ENG)
   tipo: `text`
   funzione: personalizza etichetta filtro.
@@ -554,7 +557,7 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 - Hero: aggiornare titolo/testo/immagine e salvare.
 - Carousel automatico: impostare `Selezione Automatica` su `Si`.
 - Carousel manuale: impostare `Selezione Automatica` su `No` e compilare `Selezione articoli`.
-- Box contenuti in evidenza: aprire `Box 1/2/3`, impostare tipo/template/label e salvare.
+- Box contenuti in evidenza: aprire `Box 1/2/3`, impostare il tipo di contenuto e i titoli IT/EN e salvare. Il layout dipende dal tipo scelto.
 
 ### 5.5 `Laboratorio`
 - Aggiornare i testi di pagina: modificare `Etichetta` e `Descrizione` (IT/EN).
@@ -571,8 +574,8 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 - Aggiornare descrizioni sezione eventi: modificare i campi IT/EN.
 
 ### 5.9 `Persone`
-- Configurare filtri: impostare modalita' filtro (`chip`, `combobox`, `disabled`).
-- Attivare/disattivare filtro tag: usare `Filtra per TAG`.
+- Configurare filtri: usare `Nascondi filtro struttura`, `Nascondi filtro tipologia` e `Nascondi filtro tag`. Il filtro struttura attuale è una select; il campo legacy `Modalità scelta struttura` non cambia la sua resa.
+- Scegliere la vista: usare `Tipo visualizzazione` (`Chip`, `Tabella` o `Entrambe`). Le colonne e la paginazione della tabella hanno controlli dedicati.
 - Personalizzare etichette filtro: aggiornare etichette IT/EN.
 - Gestire visibilita' elementi UI: usare `Nascondi icona` e `Visualizza etichetta Dettagli`.
 
