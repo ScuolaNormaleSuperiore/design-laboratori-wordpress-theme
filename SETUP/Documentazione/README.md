@@ -9,8 +9,8 @@ Il progetto adotterà Jekyll e il layout della documentazione ufficiale
 Bootstrap Italia. I manuali originali restano in `DOC/`; questa cartella
 contiene soltanto gli strumenti tecnici. Il `Gemfile` usa Ruby >= 3.3 e
 Jekyll 4.4.1; il lock e' stato generato e la build minima verificata su
-Windows con Ruby 4.0.9 e Bundler 4.0.23. La piattaforma Linux sara' aggiunta
-al lock e verificata con la futura CI, prima di considerare il runtime
+Windows con Ruby 4.0.9 e Bundler 4.0.23. La piattaforma Linux e' registrata
+nel lock e sara' verificata con la futura CI, prima di considerare il runtime
 completo su entrambe le piattaforme.
 `UPSTREAM.md` fissa tag, commit, licenza e perimetro del layout Bootstrap
 Italia da derivare.
