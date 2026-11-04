@@ -444,6 +444,35 @@ class DLI_Page_Import_Admin_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * After a request the form keeps the language and the run mode, but the lorem and the confirmation are always off:
+	 * both are asked again at every submit, the file too.
+	 */
+	public function test_after_a_request_the_lorem_and_the_confirmation_are_asked_again() {
+		$this->add_english();
+		$this->login( 'administrator' );
+		$_POST = $this->post(
+			array(
+				'dli_pages_language' => 'en',
+				'dli_pages_exec'     => 'commit',
+				'dli_pages_lorem'    => '1',
+				'dli_pages_confirm'  => '1',
+			)
+		);
+
+		ob_start();
+		DLI_Page_Import_Admin::render();
+		$html = (string) ob_get_clean();
+		$_POST = array();
+
+		$this->assertSame( 1, preg_match( '#<option value="en"[^>]*selected#', $html ), 'The language is kept.' );
+		$this->assertSame( 1, preg_match( '#<option value="commit"[^>]*selected#', $html ), 'The run mode is kept.' );
+		$this->assertSame( 1, preg_match( '#<input[^>]*id="dli-pages-lorem"[^>]*>#', $html, $lorem ) );
+		$this->assertStringNotContainsString( 'checked', $lorem[0], 'The lorem is asked again.' );
+		$this->assertSame( 1, preg_match( '#<input[^>]*id="dli-pages-confirm"[^>]*>#', $html, $confirm ) );
+		$this->assertStringNotContainsString( 'checked', $confirm[0], 'The confirmation is asked again.' );
+	}
+
+	/**
 	 * The stylesheet of the tools is loaded on every page of the tools, whatever the language of the menu title: the
 	 * suffix of the page is made by WordPress from the title, which is translated.
 	 */

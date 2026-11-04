@@ -423,7 +423,6 @@ class DLI_Page_Import_Admin {
 		$languages = array_combine( $slugs, array_slice( array_pad( $names, count( $slugs ), '' ), 0, count( $slugs ) ) );
 		$language  = null !== $report && '' !== $report['language'] ? $report['language'] : (string) dli_default_language( 'slug' );
 		$exec      = null !== $report ? $report['exec'] : 'dry_run';
-		$lorem     = null !== $report && $report['lorem'];
 		?>
 		<div class="postbox dli-tool-panel">
 			<div class="inside">
@@ -476,7 +475,7 @@ class DLI_Page_Import_Admin {
 								<th scope="row"><?php esc_html_e( 'Testo di riempimento', 'design_laboratori_italia' ); ?></th>
 								<td>
 									<label for="dli-pages-lorem">
-										<input type="checkbox" id="dli-pages-lorem" name="dli_pages_lorem" value="1"<?php checked( $lorem ); ?> aria-describedby="dli-pages-lorem-note">
+										<input type="checkbox" id="dli-pages-lorem" name="dli_pages_lorem" value="1" aria-describedby="dli-pages-lorem-note">
 										<?php esc_html_e( 'Inserisci testo Lorem ipsum nelle nuove pagine', 'design_laboratori_italia' ); ?>
 									</label>
 									<p id="dli-pages-lorem-note" class="dli-form-note"><?php esc_html_e( 'Solo per le pagine nuove, mai per quelle già presenti. Le pagine sono pubbliche: usalo solo su siti di prova o di dimostrazione.', 'design_laboratori_italia' ); ?></p>
