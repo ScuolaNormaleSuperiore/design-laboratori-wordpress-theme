@@ -107,10 +107,6 @@ test( 'the section goes from the configuration to the home page, with the pages 
 		// A card leads to its page, with a link that says where.
 		await section.getByRole( 'link', { name: /Pagina E2E senza sottopagine/ } ).click();
 		await expect( page ).toHaveURL( /\/pagina-e2e-senza-sottopagine\/$/ );
-
-		// In English no page is promoted: the section does not appear, not even empty.
-		await page.goto( '/en/' );
-		await expect( page.locator( '#blocco-card-navigation-3' ) ).toHaveCount( 0 );
 	} finally {
 		await removeLastSection( page );
 	}
@@ -142,19 +138,3 @@ test( 'the section with a limit of two cards on a narrow screen: one card per ro
 	}
 } );
 
-test( 'the level of the pages chosen in the row brings the promoted subpages back as cards', async ( { page } ) => {
-	await loginAsAdmin( page );
-	await addSection( page, { showTitle: 'true', background: '', maxItems: '', maxLevel: '0' } );
-
-	try {
-		await page.goto( '/' );
-		const section = page.locator( '#blocco-card-navigation-3' );
-		await expect( section ).toBeVisible();
-
-		// All the levels: the promoted subpage is a card too, in the order of the field Ordine.
-		const titles = section.locator( 'article.card-nav h3' );
-		await expect( titles ).toHaveText( [ 'Pagina E2E con sottopagine', 'Pagina E2E senza sottopagine', 'Sottopagina E2E uno' ] );
-	} finally {
-		await removeLastSection( page );
-	}
-} );

@@ -313,6 +313,52 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The text of the error box of a rendered page.
+	 *
+	 * @param string $html Rendered page HTML.
+	 * @return string Inner HTML of the box, or an empty string when there is none.
+	 */
+	private function error_box( $html ) {
+		return 1 === preg_match( '#<div id="contatti_messaggi">.*?<div class="alert alert-danger[^>]*>(.*?)</div>#s', $html, $found ) ? $found[1] : '';
+	}
+
+	/**
+	 * A refused form lists every message once, in a fixed order, separated by a line break.
+	 */
+	public function test_the_messages_of_a_refused_form_come_in_order() {
+		$this->capture_mail();
+
+		$box = $this->error_box( $this->submit( array( 'nomecognome' => '', 'indirizzoemail' => '' ) ) );
+		$required = strpos( $box, esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' ) );
+		$email    = strpos( $box, esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' ) );
+		$this->assertNotFalse( $required );
+		$this->assertGreaterThan( $required, $email, 'The email message comes after the required fields message.' );
+		$this->assertSame( 1, substr_count( $box, '<br />' ), 'One line break between two messages, none before the first.' );
+
+		// Without the CAPTCHA plugin the message of the service comes first: three messages, two line breaks.
+		remove_filter( 'pre_option_active_plugins', array( $this, 'enable_test_captcha_plugin' ), 20 );
+		$box         = $this->error_box( $this->submit( array( 'nomecognome' => '', 'indirizzoemail' => '' ) ) );
+		$unavailable = strpos( $box, esc_html__( 'Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi.', 'design_laboratori_italia' ) );
+		$required    = strpos( $box, esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' ) );
+		$this->assertNotFalse( $unavailable );
+		$this->assertGreaterThan( $unavailable, $required, 'The service message comes before the required fields one.' );
+		$this->assertSame( 2, substr_count( $box, '<br />' ) );
+	}
+
+	/**
+	 * A wrong nonce is the only message: nothing else is validated and nothing is sent.
+	 */
+	public function test_a_wrong_nonce_is_the_only_message() {
+		$this->capture_mail();
+
+		$box = $this->error_box( $this->submit( array( 'contatti_nonce_field' => 'wrong', 'nomecognome' => '', 'testomessaggio' => '' ) ) );
+
+		$this->assertStringContainsString( esc_html__( 'Valore di Nonce errato.', 'design_laboratori_italia' ), $box );
+		$this->assertStringNotContainsString( esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' ), $box );
+		$this->assertCount( 0, $this->mail_calls );
+	}
+
+	/**
 	 * Submit a form and return how many mails were sent so far.
 	 *
 	 * @param array<string, string> $overrides Fields to replace.

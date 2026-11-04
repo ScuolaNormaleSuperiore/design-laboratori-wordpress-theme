@@ -1,135 +1,86 @@
-# Generatore della documentazione — pilota tecnico
+# Strumenti della documentazione — migrazione a Jekyll
 
-Stato: pilota Daux funzionante su fixture; **non è ancora il sito documentale**.
-Le fixture sotto `tests/documentation/` non vanno pubblicate. Nessun deploy
-GitHub Pages è configurato o autorizzato da questi comandi.
+Stato: generatore precedente rimosso; **Jekyll e il nuovo layout non sono
+ancora configurati in questo repository**. La build HTML, la ricerca e
+l'anteprima del sito documentale non sono attualmente disponibili.
+Nessun deploy GitHub Pages è configurato da questi strumenti.
 
-## Requisiti isolati
+Il progetto adotterà Jekyll e il layout della documentazione ufficiale
+Bootstrap Italia. I manuali originali restano in `DOC/`; questa cartella
+contiene soltanto gli strumenti tecnici. Versioni Ruby/Jekyll/Bundler,
+Gemfile, lock e comandi di build saranno introdotti nella fase successiva.
+La prova temporanea Windows riferita dall'operatore non sostituisce la
+verifica del futuro sito del progetto.
 
-- PHP >= 8.4, estensioni XML e mbstring; intl consigliata.
-- Composer; usare il lock presente, senza aggiornamenti automatici.
-- Node.js >= 20 per validatore, anteprima e test.
-- Playwright/Chromium già presenti nel normale ambiente di sviluppo per i
-  soli test browser. Non occorre WordPress o un database.
+## Strumenti riutilizzabili
 
-Verificato il 2026-11-03 con PHP Windows 8.4.25, Composer 2.8.10,
-Node 24.13.1 e Daux **0.26.1**. Il requisito PHP riguarda soltanto la
-generazione delle guide, non il tema installato sui siti.
+- `site-manifest.json`: selezione tecnica provvisoria di due guide esistenti,
+  REST API e Personalizzazione dello stile. Non è il menu definitivo né
+  un elenco di contenuti già approvati per la pubblicazione.
+- `scripts/manifest.mjs`: verifica selezione esplicita, file versionati in
+  DOC, destinazioni e rifiuto di percorsi privati, traversal e symlink.
+- `scripts/prepare.mjs`: copia Markdown e asset selezionati in un input
+  temporaneo. Riceve l'elenco dei file DOC da Git e riscrive link semplici.
+- `scripts/preview.mjs`: server HTTP locale riutilizzabile per HTML statico.
+  Non genera pagine e non ha una cartella di anteprima predefinita.
 
-I comandi seguenti partono dalla radice del repository. Su Windows usare
-PowerShell con PHP 8.4, Composer e Node nel PATH della sessione. Se serve,
-aggiungere soltanto alla sessione la cartella del PHP disponibile:
+I moduli Node richiedono Node.js >= 20; il comando dei test riportato sotto
+usa Node.js >= 22. I test non richiedono WordPress, database o browser.
 
-```powershell
-$env:Path = 'C:\SPAZIODATI\PORTABLES\php84;' + $env:Path
-```
+## Controlli mirati disponibili
 
-## Installazione riproducibile
-
-```sh
-composer --working-dir=SETUP/Documentazione install --no-interaction --prefer-dist
-composer --working-dir=SETUP/Documentazione check-platform-reqs
-```
-
-Il lock documentale è separato da quello del tema. `vendor/` e `.build/`
-di questa cartella sono ignorati; le regole locali di export escludono il
-tooling dagli archivi del tema. Non vengono modificate le dipendenze in radice.
-
-Nel primo avvio Windows il bundle CA del PHP locale non validava Packagist.
-La verifica è riuscita usando il bundle già installato con Git, solo per
-la sessione/comando. Se si incontra lo stesso problema e Git è installato
-in quel percorso, in PowerShell:
-
-```powershell
-$env:COMPOSER_CAFILE = 'C:\Program Files\Git\mingw64\etc\ssl\certs\ca-bundle.crt'
-```
-
-Non disabilitare TLS o la verifica dei certificati. Il percorso dipende
-dalla macchina; non è un requisito generale del progetto.
-
-## Generare e controllare il pilota
+Dalla radice del tema:
 
 ```sh
-node --test tests/documentation/manifest.test.mjs
-php SETUP/Documentazione/vendor/bin/daux generate --source=tests/documentation/fixtures/daux --destination=SETUP/Documentazione/.build/pilot --configuration=SETUP/Documentazione/config.json --no-cache
-node --test tests/documentation/pilot.test.mjs
+node --test --test-isolation=none tests/documentation/manifest.test.mjs tests/documentation/prepare.test.mjs
 ```
 
-I test del manifest verificano selezione esplicita, sorgenti DOC versionate,
-spazi/accenti, PDF selezionati, esclusione di percorsi privati, symlink,
-traversal e destinazioni duplicate/non ammesse. Il validatore è una funzione
-isolata: il preparatore deve ancora collegarla all'elenco Git dei file reali.
+La modalità senza isolamento dei processi evita i limiti di avvio di
+sottoprocessi presenti in alcuni ambienti WSL/sandbox e mostra tutti i
+singoli casi eseguiti. Non modifica i contratti verificati.
 
-## Preparare le guide reali selezionate
+## Limiti da risolvere prima della build Jekyll
 
-Il manifest `site-manifest.json` seleziona al momento due guide correnti,
-esclusivamente per verificare il preparatore: non è ancora la navigazione
-pubblica della documentazione. Il comando legge i soli file `DOC/` versionati
-ed elencati, crea una copia temporanea e riscrive i link alle risorse non
-incluse come collegamenti GitHub al ref dichiarato nel manifest:
+Il preparatore è una base da adattare, non una pipeline pronta per
+pubblicare. Mancano front matter e permalink Jekyll, navigazione dal
+manifest, controllo completo di link/ancore e rinvii autorizzati a GitHub,
+versione/ref nelle pagine, ricerca e packaging.
 
-```sh
-node SETUP/Documentazione/scripts/prepare.mjs --manifest=SETUP/Documentazione/site-manifest.json --destination=SETUP/Documentazione/.build/real-source
-```
+La riscrittura corrente usa una regex per link semplici, non un parser
+Markdown completo; i link non selezionati diventano attualmente URL GitHub
+senza applicare la lista `github_documents`. Anche la validazione della
+directory di output va rafforzata prima di usare lo script su percorsi
+arbitrari: il preparatore sostituisce ricorsivamente la destinazione.
+La fase di adattamento deve risolvere questi limiti prima dell'uso ordinario.
 
-Il risultato sotto `.build/real-source/` è rigenerabile e non va modificato
-a mano. I test mirati del preparatore si eseguono con:
+## Anteprima statica
 
-```sh
-node --test tests/documentation/manifest.test.mjs tests/documentation/prepare.test.mjs
-```
+Dopo che sarà disponibile una build HTML, il server potrà ricevere
+`DLI_DOCS_OUTPUT`, nome semplice della cartella sotto
+`SETUP/Documentazione/.build/` che contiene `index.html`.
+Se la variabile o la pagina iniziale mancano, termina con un messaggio
+esplicito. Nessun comando di build o di avvio del sito viene promesso in
+questa fase di migrazione.
 
-La trasformazione di questa copia in HTML Daux, i comandi `docs:*` e la
-navigazione pubblica restano attività successive del Lotto 1.
-Daux 0.26.1 normalizza gli URL dei file convertendo i trattini in underscore:
-questa regola è già riflessa nei `target` del manifest tecnico.
+Le impostazioni generiche conservate sono:
 
-I due test browser servono l'HTML generato su una porta temporanea di
-localhost: radice e sottopercorso Pages. Verificano navigazione, ancora,
-immagine e ricerca con risultato atteso; rifiutano risorse esterne e rilevano
-errori HTTP/JavaScript. Non usano la configurazione Playwright WordPress,
-non effettuano login e non ripristinano database.
+| Variabile | Significato |
+| --- | --- |
+| `DLI_DOCS_OUTPUT` | Cartella HTML da servire; obbligatoria, senza default. |
+| `DLI_DOCS_PORT` | Porta localhost, predefinita 8085. |
+| `DLI_DOCS_BASE_PATH` | Percorso URL, predefinito `/`; supporta il sottopercorso Pages. |
 
-## Anteprima manuale
+Il server si arresta con Ctrl+C e richiede rigenerazione esplicita dopo le
+modifiche. Serve file statici via HTTP e gestisce il MIME `.mjs`.
+Non promette funzionamento completo aprendo le pagine con `file://`.
 
-Per il pilota su fixture (predefinito):
+## Dipendenze e distribuzione
 
-```sh
-node SETUP/Documentazione/scripts/preview.mjs
-```
+`vendor/` e `.build/` sono ignorati localmente; non vi sono dipendenze
+Composer documentali da installare. Il Composer e il PHP del tema rimangono
+indipendenti da questi strumenti.
 
-Per l'output delle guide reali selezionate:
-
-```powershell
-$env:DLI_DOCS_OUTPUT = 'real'
-node SETUP/Documentazione/scripts/preview.mjs
-```
-
-Aprire <http://127.0.0.1:8085/>. Arrestare con Ctrl+C. Rigenerare dopo
-ogni modifica: non c'è hot reload. `DLI_DOCS_PORT` permette di scegliere
-una porta libera; con `DLI_DOCS_BASE_PATH=/design-laboratori-wordpress-theme/`
-il sito è disponibile sotto quel percorso, non alla radice. Le variabili
-sono di sessione: PowerShell usa `$env:DLI_DOCS_PORT = '8086'`, Linux
-`DLI_DOCS_PORT=8086 node SETUP/Documentazione/scripts/preview.mjs`.
-`DLI_DOCS_OUTPUT` accetta solo il nome di una cartella sotto `.build/` e vale
-`pilot` quando non è impostata.
-
-Il server serve soltanto l'output statico e gestisce il MIME `.mjs`.
-Non promette la ricerca aprendo i file con `file://`.
-
-## Cosa manca nel Lotto 1
-
-1. Manifest delle guide approvate e preparatore: mapping di nomi con
-   spazi/accenti, immagini/PDF, link/ancore, rinvii espliciti a GitHub per
-   sorgenti non pubblicate e link di modifica verso il file originale.
-2. Versione/ref e avviso di anteprima su tutte le pagine; selezione ed
-   esclusioni verificate sull'output reale, non soltanto sulle fixture.
-3. Controllo completo di link e ancore, ripetibilità della build e download PDF.
-4. Comandi finali `docs:*`, output `build/documentazione*/` e packaging
-   verificato su un archivio reale, dopo coordinamento dei file in radice.
-
-L'output del primo esperimento è volutamente confinato in `.build/pilot/`
-per non toccare gli ignore condivisi mentre è in corso il piano import CSV.
-L'esecuzione è stata verificata su Windows; i comandi sono portabili, ma
-il runtime PHP/Node WSL di questa macchina non era utilizzabile e non si
-dichiara una verifica Linux già eseguita.
+Le regole locali `.gitattributes` escludono il tooling dagli archivi del
+tema generati con Git. La futura fase di packaging dovrà verificare anche
+lo script ZIP effettivo, introdurre ignore mirati per Ruby/Jekyll e produrre
+un archivio separato delle sole pagine statiche pubbliche.

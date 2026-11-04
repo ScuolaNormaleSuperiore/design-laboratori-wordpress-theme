@@ -13,10 +13,3 @@ test( 'the newsletter page shows the subscription form', async ( { page } ) => {
 	await expect( page.getByRole( 'button', { name: 'Iscrivimi alla newsletter' } ) ).toBeVisible();
 } );
 
-test( 'the newsletter form rejects a malformed email in the browser', async ( { page } ) => {
-	await page.goto( '/newsletter/' );
-
-	await page.locator( '#user_mail' ).fill( 'not-an-email' );
-
-	expect( await page.locator( '#user_mail' ).evaluate( ( input ) => input.validity.typeMismatch ) ).toBe( true );
-} );

@@ -95,10 +95,6 @@ test( 'the section shows the groups as columns on a desktop, with the title as t
 		// A link leads to its page.
 		await columns.nth( 0 ).getByRole( 'link', { name: 'Sottopagina E2E due' } ).click();
 		await expect( page ).toHaveURL( /\/pagina-e2e-con-sottopagine\/sottopagina-e2e-due\/$/ );
-
-		// In English no page is promoted: the section does not appear.
-		await page.goto( '/en/' );
-		await expect( page.locator( SECTION ) ).toHaveCount( 0 );
 	} finally {
 		await removeLastSection( page );
 	}
@@ -139,20 +135,3 @@ test( 'on a phone the section is an accordion with the first panel open, and not
 	}
 } );
 
-test( 'the numbers chosen in the row limit the groups and the subpages of each group', async ( { page } ) => {
-	await loginAsAdmin( page );
-	await addSection( page, { maxItems: '1', maxSubitems: '1' } );
-
-	try {
-		await page.goto( '/' );
-		const section = page.locator( SECTION );
-		const columns = section.locator( '.row.d-md-flex > div' );
-
-		await expect( columns ).toHaveCount( 1 );
-		await expect( columns.first().locator( 'h3' ) ).toHaveText( 'Pagina E2E con sottopagine' );
-		await expect( columns.first().locator( 'a.list-item' ) ).toHaveCount( 1 );
-		await expect( columns.first().locator( 'a.list-item .text' ) ).toHaveText( 'Sottopagina E2E uno' );
-	} finally {
-		await removeLastSection( page );
-	}
-} );

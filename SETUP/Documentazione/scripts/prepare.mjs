@@ -68,7 +68,7 @@ function safeDestination(destination, target) {
 	return absolute;
 }
 
-/** Build the temporary Daux input from an explicit, validated manifest. */
+/** Copy the selected documentation into a temporary, generator-independent input. */
 export function prepareDocumentation({ root, manifest, tracked, destination }) {
 	const selection = validateManifest(manifest, root, tracked);
 	if (!manifest.repository || typeof manifest.repository.name !== 'string' || typeof manifest.repository.ref !== 'string') {

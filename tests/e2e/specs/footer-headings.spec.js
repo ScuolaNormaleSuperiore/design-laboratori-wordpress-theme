@@ -6,7 +6,7 @@
 const { test, expect } = require( '@playwright/test' );
 
 const PAGES = [ '/', '/en/' ];
-const WIDTHS = [ 1280, 320 ];
+const WIDTHS = [ 1280 ]; // The markup of the footer is the same at every width: the 320 px runs added nothing.
 
 for ( const path of PAGES ) {
 	for ( const width of WIDTHS ) {

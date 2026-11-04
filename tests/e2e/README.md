@@ -68,17 +68,17 @@ Ha senso, per esempio per riprovare un test segnalato come «flaky» o per svilu
 va a Playwright. Dalla radice del tema:
 
 ```sh
-composer test:e2e -- tests/e2e/specs/admin-login.spec.js                  # un solo file (qui contiene un solo test)
-composer test:e2e -- admin-login                                          # lo stesso: un frammento del nome del file
-composer test:e2e -- tests/e2e/specs/contact-form.spec.js:44              # il test che inizia alla riga 44
-composer test:e2e -- -g "wrong nonce"                                     # per titolo (espressione regolare sul titolo)
+composer test:e2e -- tests/e2e/specs/site-search.spec.js                  # un solo file (qui contiene un solo test)
+composer test:e2e -- site-search                                          # lo stesso: un frammento del nome del file
+composer test:e2e -- tests/e2e/specs/contact-form.spec.js:10              # il test che inizia alla riga 10
+composer test:e2e -- -g "password-protected"                                     # per titolo (espressione regolare sul titolo)
 composer test:e2e -- --list                                               # elenca i test senza eseguirli
-composer test:e2e -- tests/e2e/specs/admin-login.spec.js --repeat-each=5  # lo ripete 5 volte (per capire se è instabile)
-composer test:e2e:headed -- admin-login                                   # con il browser visibile
+composer test:e2e -- tests/e2e/specs/site-search.spec.js --repeat-each=5  # lo ripete 5 volte (per capire se è instabile)
+composer test:e2e:headed -- site-search                                   # con il browser visibile
 ```
 
 - `--list` non esegue nulla e non ripristina la baseline: è il modo sicuro per controllare che il filtro scelga i test voluti
-  (`--list -g "wrong nonce"`, `--list admin-login`). Se non trova nulla scrive `Total: 0 tests` ed esce con codice `1`.
+  (`--list -g "password-protected"`, `--list site-search`). Se non trova nulla scrive `Total: 0 tests` ed esce con codice `1`.
 - Il numero di riga (`:44`) è quello che compare nell'errore, ma cambia quando si modifica il file: per un riferimento stabile
   usare il filtro per titolo `-g`.
 - **Anche per un solo test la suite ripristina la baseline prima e dopo** ([`global-setup.js`](global-setup.js) e
@@ -87,10 +87,10 @@ composer test:e2e:headed -- admin-login                                   # con 
   il test lo lascia: prima di una corsa vera ripristinarlo (vedi sotto) o lanciare la suite senza la variabile.
 
   ```sh
-  DLI_E2E_SKIP_RESET=1 composer test:e2e -- admin-login      # Git Bash
+  DLI_E2E_SKIP_RESET=1 composer test:e2e -- site-search      # Git Bash
   ```
   ```powershell
-  $env:DLI_E2E_SKIP_RESET = '1'; composer test:e2e -- admin-login   # PowerShell
+  $env:DLI_E2E_SKIP_RESET = '1'; composer test:e2e -- site-search   # PowerShell
   ```
 - Un test E2E isolato non sostituisce la suite: due test possono influenzarsi se uno lascia dati, e solo la corsa completa lo mostra.
 
@@ -188,27 +188,26 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 |---|---|
 | `home.spec.js` | la home si carica (stato inferiore a 400, attributo `lang`) |
 | `home-carousel-reflow.spec.js` | carousel con frecce visibili sulle home IT/EN: controlli dentro lo schermo e nessuno scorrimento orizzontale da 320 a 1280 px, avanzamento con click e ritorno con tastiera. La baseline non ha eventi: il test inserisce nella sola risposta del browser una fixture con lo stesso contenitore/variante del template Eventi, usando CSS e JavaScript reali del tema, senza modificare il database |
-| `admin-login.spec.js` | l'amministratore entra in `wp-admin` |
 | `config-permissions.spec.js` | amministratore e Super Editor aprono la pagina Configurazione, l'Editor riceve 403 |
-| `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato; un invio forzato con campi vuoti mostra i tre messaggi di validazione in ordine; un invio con un nonce sbagliato viene rifiutato |
-| `newsletter.spec.js` | pagina newsletter, campi del form e validazione browser dell'email non valida |
+| `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato (i messaggi di un invio forzato, il loro ordine e il nonce controllato per primo sono in `DLI_Contact_Form_Integration_Test`) |
+| `newsletter.spec.js` | pagina newsletter e campi del form |
 | `site-search.spec.js` | ricerca pubblica: invio di una query senza risultati, messaggio di stato e annullamento della ricerca |
 | `people-filters.spec.js` | archivio Persone: filtro per cognome senza risultati, mantenimento del valore e aggiornamento dell'URL |
-| `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice) e nella ricerca del sito, autori al posto della descrizione nelle card (e non per una pubblicazione protetta), pulsante «Scarica la pubblicazione» nella scheda, scheda ancora raggiungibile con «Sito web» |
-| `home-navigation-groups.spec.js` | sezione «Navigazione per pagine»: campi della riga solo per questa sezione, due gruppi in ordine con il titolo come testo e le sottopagine come link (né protetta né bozza, né pagina senza figli), accordion nascosto su desktop, link alla pagina, assente in inglese; su telefono accordion con il primo pannello aperto e i link dei pannelli chiusi non visibili, nessun overflow; tetti di gruppi e sottopagine scelti nella riga |
+| `publication-links.spec.js` | dove porta il titolo di una pubblicazione nell'elenco (scheda, sito esterno con avviso, file, testo semplice); il resto (ricerca, autori nelle card, pulsante «Scarica la pubblicazione») è in `DLI_Publication_Archive_Integration_Test`, `DLI_Publication_Detail_Integration_Test` e `DLI_Publication_Link_Integration_Test` |
+| `home-navigation-groups.spec.js` | sezione «Navigazione per pagine»: campi della riga solo per questa sezione, due gruppi in ordine con il titolo come testo e le sottopagine come link (né protetta né bozza, né pagina senza figli), accordion nascosto su desktop, link alla pagina; su telefono accordion con il primo pannello aperto e i link dei pannelli chiusi non visibili, nessun overflow (assenza in inglese e tetti sono in `DLI_Home_Navigation_Groups_Integration_Test`) |
 | `home-tabs.spec.js` | sezione «Pannello tab»: scambio di righe del gruppo dei tab con l'editor di testo (ogni descrizione resta col suo tab, anche con righe aggiunte nella pagina, due scambi di fila e due salvataggi; l'etichetta nel titolo della riga resta dopo la cancellazione di una riga); home con titolo, primo tab aperto, tastiera (freccia sposta il focus, Invio apre il pannello), inglese con ripiego sull'italiano; su telefono nessun overflow |
-| `home-page-index.spec.js` | sezione «Indice di una pagina»: il campo «Pagina» e i due numeri solo per questa sezione, scelte rientrate e senza la bozza né la protetta, scelta mantenuta dopo il salvataggio; la riga chiusa nomina la pagina scelta e il nome segue la scelta, una riga nuova, il riordino e il ricaricamento (non per le altre sezioni); home con il titolo della pagina, una colonna («Sottopagina E2E uno», titolo come testo) con il link al nipote, senza la sottopagina senza figli, protetta e bozza; assente in inglese (pagina non tradotta); link senza sottolineatura a riposo e con sottolineatura su hover e focus; senza titolo visibile la sezione ha un `h2` nascosto che la nomina; due copie della stessa pagina senza ID ripetuti; su telefono accordion con il primo pannello aperto, nessun overflow; due indici con scelte opposte (sfondo, titolo, limiti) salvati, ricaricati e resi come scelto; due riordini prima del salvataggio con righe appena aggiunte e due salvataggi senza che un valore cambi riga; copia disattivata e poi rimossa, l'altra conserva dati e sezione; su telefono pannello dell'accordion chiuso e riaperto con Invio e Spazio |
+| `home-page-index.spec.js` | sezione «Indice di una pagina»: il campo «Pagina» e i due numeri solo per questa sezione, scelte rientrate e senza la bozza né la protetta, scelta mantenuta dopo il salvataggio; la riga chiusa nomina la pagina scelta e il nome segue la scelta, una riga nuova, il riordino e il ricaricamento (non per le altre sezioni); home con il titolo della pagina, una colonna («Sottopagina E2E uno», titolo come testo) con il link al nipote, senza la sottopagina senza figli, protetta e bozza; link senza sottolineatura a riposo e con sottolineatura su hover e focus; due indici con scelte opposte (sfondo, titolo, limiti) salvati, ricaricati e resi come scelto; copia disattivata e poi rimossa, l'altra conserva dati e sezione; su telefono pannello dell'accordion chiuso e riaperto con Invio e Spazio |
 | `breadcrumb.spec.js` | breadcrumb dell'hero: su una pagina a tre livelli, a 320 px resta su una riga (voci precedenti senza ritorno a capo né riduzione), la voce corrente è tagliata con i puntini e il testo intero resta nella pagina, nessun overflow orizzontale; a 1280 px non è tagliato |
 | `header-menu-mobile.spec.js` | pulsante del menu principale su schermo stretto (320, 360, 400 px): dentro lo schermo, apre il menu con il mouse, le voci del menu aperto restano dentro lo schermo, si chiude con Esc; raggiungibile e azionabile con la tastiera. Controlla l'invariante, che vale per qualunque logo e nome del sito: sul sito di prova (logo e nome corti) potrebbe passare anche senza la correzione |
-| `pagination-per-page.spec.js` | la dimensione della pagina chiesta nell'indirizzo (`per_page`) negli archivi che accettano ogni misura fino al massimo (progetti, blog, luoghi, archivio per autore) e in quello che accetta solo i valori offerti (archivio progetti): un valore enorme, anche più grande di un intero, è portato a 96 (o al valore predefinito); negativo, zero, testo, testo con numero, esponente e lista tornano al valore predefinito; un valore offerto si usa; una misura vecchia nell'intervallo si tiene solo dove prevista |
+| `pagination-per-page.spec.js` | la dimensione della pagina chiesta nell'indirizzo (`per_page`). Progetti (accetta ogni misura fino al massimo) e archivio progetti (accetta solo i valori offerti) hanno la serie completa: un valore enorme, anche più grande di un intero, è portato a 96 (o al valore predefinito); negativo, zero, testo, testo con numero, esponente e lista tornano al valore predefinito; un valore offerto si usa; una misura vecchia nell'intervallo si tiene solo dove prevista. Blog, luoghi e archivio per autore hanno solo un valore enorme e un testo, per provare che il template usa lo stesso controllo (il resto è in `DLI_Pagination_Unit_Test`) |
 | `home-featured-contents.spec.js` | sezione «Contenuti in evidenza»: ogni box ha tipo e titolo IT/EN e nessun template da scegliere (i tipi offerti includono notizie, eventi e pubblicazioni, non le attività di ricerca); due box con contenuti si dividono la riga e il terzo, senza contenuti, non compare; titoli h3 e h4 senza salti, pulsante verso la pagina delle pubblicazioni, titolo inglese con ripiego sull'italiano; su telefono i box sono uno sotto l'altro, nessun overflow. I box tornano a quelli della baseline alla fine |
-| `home-navigation-section.spec.js` | sezione «Card di navigazione»: da Layout HP e Sezioni HP alla home (titolo e sottotitolo, tre pagine promosse nell'ordine atteso, né la protetta né la bozza, sfondo grigio di default, link alla pagina, assente in inglese senza pagine promosse) e a 320 px (una card per riga, sfondo bianco, nessun overflow) |
+| `home-navigation-section.spec.js` | sezione «Card di navigazione»: da Layout HP e Sezioni HP alla home (campi della riga e livello a quattro scelte, titolo e sottotitolo, tre pagine promosse nell'ordine atteso, né la protetta né la bozza, sfondo grigio di default, link alla pagina) e a 320 px (una card per riga, sfondo bianco, nessun overflow). Lingua e livelli sono in `DLI_Home_Navigation_Section_Integration_Test` |
 | `home-sections-admin.spec.js` | Configurazione → Sezioni HP: nome della sezione e frecce nell'intestazione di ogni riga anche chiusa (senza sovrapposizioni con la ✕), riga nuova con le sue frecce, scambio di due righe con valori opposti dei radio (valori conservati dopo lo scambio, il salvataggio e il ricaricamento), accesso negato a un Editor |
 | `pages-import-tool.spec.js` | Strumenti DLI → Importa → Pagine: modulo e tastiera, download dell'esempio, 320 px senza overflow; simulazione che non scrive; conferma richiesta e importazione (pagina con 4 card, riesecuzione tutta saltata); italiano con Lorem ed inglese senza, collegate come traduzioni; file con errori e file non CSV |
 | `people-import-tool.spec.js` | Strumenti DLI → Importa → Persone: simulazione che non scrive, creazione, le modalità «solo nuovi», «ignora esistenti» e «upsert», righe con email mancante o non valida, file rifiutati (estensione, intestazione, dimensione) |
-| `page-subpage-cards.spec.js` | pagina base con le card delle sottopagine: ordine, riassunto o testo tagliato a 30 parole, assenza di bozza, sottopagina protetta e nipote, posizione prima del testo con il titolo «In questa sezione», link alla sottopagina, nessun elenco senza sottopagine o con il campo spento, nessun overflow a 320 px |
-| `home-publications.spec.js` | pubblicazioni della home (box di «Contenuti in evidenza» e sezione «Pubblicazioni», configurati nella baseline): autori, tipologia e anno nella card, dal titolo alla scheda, dalla tipologia all'elenco filtrato, pulsante «Tutte le pubblicazioni», nessun overflow orizzontale a 320 px |
-| `publication-detail.spec.js` | scheda di una pubblicazione: completa (tipologia, anno, autori con e senza link, descrizione, link esterno in una nuova finestra), minima (segnaposto della copertina, nessun blocco vuoto), protetta da password (solo modulo, poi contenuto dopo la password), traduzione inglese |
+| `page-subpage-cards.spec.js` | pagina base con le card delle sottopagine: link alla sottopagina e link senza sottolineatura a riposo (ordine, riassunto, esclusioni e posizione sono in `DLI_Page_Subpage_Cards_Integration_Test`) |
+| `home-publications.spec.js` | pubblicazioni della home (configurate nella baseline): il tipo è sottolineato solo su hover e focus; dalla tipologia all'elenco filtrato e pulsante «Tutte le pubblicazioni» (il contenuto delle card è in `DLI_Publication_Home_Cards_Integration_Test`) |
+| `publication-detail.spec.js` | scheda di una pubblicazione: protetta da password (solo modulo, poi contenuto dopo la password) e traduzione inglese (le schede completa e minima sono in `DLI_Publication_Detail_Integration_Test`) |
 
 Sono quaranta test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.

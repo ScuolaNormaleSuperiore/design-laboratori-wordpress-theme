@@ -48,11 +48,16 @@ export function createPreviewServer(directory, basePath = '/') {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-	const outputName = process.env.DLI_DOCS_OUTPUT || 'pilot';
-	if (!/^[a-zA-Z0-9_-]+$/.test(outputName)) {
-		throw new Error('DLI_DOCS_OUTPUT deve essere il nome semplice di una directory sotto .build');
+	const outputName = process.env.DLI_DOCS_OUTPUT;
+	if (!outputName || !/^[a-zA-Z0-9_-]+$/.test(outputName)) {
+		console.error('Impostare DLI_DOCS_OUTPUT con il nome semplice di una directory HTML sotto SETUP/Documentazione/.build. Il generatore Jekyll non è ancora configurato.');
+		process.exit(1);
 	}
 	const output = fileURLToPath(new URL(`../.build/${outputName}/`, import.meta.url));
+	if (!fs.existsSync(path.join(output, 'index.html'))) {
+		console.error(`Anteprima non disponibile: manca index.html in ${output}. Generare prima il sito statico; il generatore Jekyll non è ancora configurato.`);
+		process.exit(1);
+	}
 	const port = Number(process.env.DLI_DOCS_PORT || 8085);
 	if (!Number.isInteger(port) || port < 1024 || port > 65535) {
 		throw new Error('DLI_DOCS_PORT deve essere una porta fra 1024 e 65535');

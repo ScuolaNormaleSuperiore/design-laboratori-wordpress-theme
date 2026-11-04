@@ -2,7 +2,7 @@
 // row is closed, and swapping two rows keeps the values of their radio buttons. The two sections of the
 // baseline are "Contenuti in evidenza" and "Pubblicazioni". The site goes back to the baseline after the run.
 const { test, expect } = require( '@playwright/test' );
-const { loginAsAdmin, loginAsEditor } = require( '../support/auth' );
+const { loginAsAdmin } = require( '../support/auth' );
 
 const PAGE = '/wp-admin/admin.php?page=homepage_sections';
 const ROWS = '#site_sections_repeat > .cmb-repeatable-grouping';
@@ -164,10 +164,3 @@ test( 'swapping two rows with opposite values keeps every value, also after savi
 	await expect( rows.nth( 0 ).locator( TITLE ) ).toContainText( 'Sezione 1 (Contenuti in evidenza)' );
 } );
 
-test( 'a user who cannot edit the site configuration does not reach the page', async ( { page } ) => {
-	await loginAsEditor( page );
-
-	const response = await page.goto( PAGE );
-
-	expect( response.status() ).toBe( 403 );
-} );

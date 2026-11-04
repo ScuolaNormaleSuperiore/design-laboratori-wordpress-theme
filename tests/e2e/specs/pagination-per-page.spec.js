@@ -5,12 +5,14 @@
 // The default is 6 in all of them on the baseline.
 const { test, expect } = require( '@playwright/test' );
 
+// `full` pages run the whole set of sizes. The parsing itself is checked by DLI_Pagination_Unit_Test: the other pages
+// only need to show that their template reaches the helper, with a huge and a non numeric size.
 const PAGES = [
-	{ name: 'projects', path: '/progetti/', clamped: true },
-	{ name: 'blog', path: '/il-blog/', clamped: true },
-	{ name: 'places', path: '/luoghi/', clamped: true },
-	{ name: 'author archive', path: '/author/e2e-admin/', clamped: true },
-	{ name: 'archive of the projects', path: '/archivio-progetti/', clamped: false },
+	{ name: 'projects', path: '/progetti/', clamped: true, full: true },
+	{ name: 'blog', path: '/il-blog/', clamped: true, full: false },
+	{ name: 'places', path: '/luoghi/', clamped: true, full: false },
+	{ name: 'author archive', path: '/author/e2e-admin/', clamped: true, full: false },
+	{ name: 'archive of the projects', path: '/archivio-progetti/', clamped: false, full: true },
 ];
 
 /**
@@ -27,7 +29,15 @@ async function usedSize( page, path, query ) {
 	return ( await page.locator( '#pagerChanger' ).innerText() ).replace( /\s+/g, '' );
 }
 
-for ( const { name, path, clamped } of PAGES ) {
+for ( const { name, path, clamped, full } of PAGES ) {
+	if ( ! full ) {
+		test( `${ name }: a huge or non numeric size is never used`, async ( { page } ) => {
+			expect( await usedSize( page, path, 'per_page=99999999' ), 'a huge size' ).toMatch( /^96\// );
+			expect( await usedSize( page, path, 'per_page=abc' ), 'text' ).toMatch( /^6\// );
+		} );
+		continue;
+	}
+
 	test( `${ name }: a huge, negative or non numeric size is never used`, async ( { page } ) => {
 		const largest = clamped ? '96/' : '6/';
 		expect( await usedSize( page, path, 'per_page=99999999' ), 'a huge size' ).toMatch( new RegExp( `^${ largest }` ) );

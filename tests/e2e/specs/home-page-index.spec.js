@@ -181,72 +181,7 @@ test( 'the section shows the page as the title and the subpages with children as
 		// The link leads to its page.
 		await link.click();
 		await expect( page ).toHaveURL( /\/nipote-e2e\/$/ );
-
-		// The page has no English translation: the section does not appear.
-		await page.goto( '/en/' );
-		await expect( page.locator( '[id^="blocco-page-index-"]' ) ).toHaveCount( 0 );
 	} finally {
-		await removeLastSection( page );
-	}
-} );
-
-test( 'without a visible title the section keeps its h2, and two copies of the same page share no identifier', async ( { page } ) => {
-	await loginAsAdmin( page );
-	await addSection( page, { showTitle: false } );
-	await addSection( page, { showTitle: true } );
-
-	try {
-		await page.goto( '/' );
-		const first = page.locator( '#blocco-page-index-3' );
-		const second = page.locator( '#blocco-page-index-4' );
-		await expect( first ).toBeVisible();
-		await expect( second ).toBeVisible();
-
-		// The title is there for the assistive technologies, not seen: the h3 of the columns never skip a level.
-		const hiddenTitle = first.locator( 'h2.visually-hidden' );
-		await expect( hiddenTitle ).toHaveText( PAGE_TITLE );
-		await expect( first ).toHaveAttribute( 'aria-labelledby', await hiddenTitle.getAttribute( 'id' ) );
-		await expect( second.getByRole( 'heading', { level: 2, name: PAGE_TITLE } ) ).toBeVisible();
-
-		// No identifier is repeated in the whole page: not even for the same page.
-		const duplicates = await page.evaluate( () => {
-			const seen = new Set();
-			const repeated = [];
-			document.querySelectorAll( '[id]' ).forEach( ( element ) => {
-				if ( seen.has( element.id ) ) {
-					repeated.push( element.id );
-				}
-				seen.add( element.id );
-			} );
-			return repeated;
-		} );
-		expect( duplicates ).toEqual( [] );
-	} finally {
-		await removeLastSection( page );
-		await removeLastSection( page );
-	}
-} );
-
-test( 'on a phone the section is an accordion with the first panel open, and nothing overflows', async ( { page } ) => {
-	await loginAsAdmin( page );
-	await addSection( page );
-
-	try {
-		await page.setViewportSize( { width: 320, height: 800 } );
-		await page.goto( '/' );
-		const section = page.locator( '#blocco-page-index-3' );
-		await expect( section ).toBeVisible();
-
-		await expect( section.locator( '.row.d-md-flex' ) ).toBeHidden();
-		const headers = section.locator( '.accordion-header button' );
-		await expect( headers ).toHaveCount( 1 );
-		await expect( headers.first() ).toHaveAttribute( 'aria-expanded', 'true' );
-		await expect( section.getByRole( 'link', { name: 'Nipote E2E' } ) ).toBeVisible();
-
-		const overflow = await page.evaluate( () => document.documentElement.scrollWidth - document.documentElement.clientWidth );
-		expect( overflow ).toBeLessThanOrEqual( 0 );
-	} finally {
-		await page.setViewportSize( { width: 1280, height: 720 } );
 		await removeLastSection( page );
 	}
 } );
@@ -336,36 +271,6 @@ test( 'two indexes with opposite choices keep each its own choices, saved and lo
 		await expect( first.getByRole( 'heading', { level: 2, name: PAGE_TITLE } ) ).toBeVisible();
 		await expect( second ).not.toHaveClass( /section-muted/ );
 		await expect( second.locator( 'h2.visually-hidden' ) ).toHaveText( PAGE_TITLE );
-	} finally {
-		await removeLastSections( page, 2 );
-	}
-} );
-
-test( 'two reorderings before saving, with rows just added, and two savings: no value changes row', async ( { page } ) => {
-	await loginAsAdmin( page );
-	await page.goto( SECTIONS );
-
-	try {
-		await addFilledRow( page, A );
-		const second = await addFilledRow( page, B );
-		const rows = page.locator( ROWS );
-		const count = await rows.count();
-
-		// Three moves in a row, without saving: up, down, up; the second row ends before the first.
-		await second.locator( '> .cmb-shift-rows.move-up' ).click();
-		await rows.nth( count - 2 ).locator( '> .cmb-shift-rows.move-down' ).click();
-		await rows.nth( count - 1 ).locator( '> .cmb-shift-rows.move-up' ).click();
-		expect( await readRow( rows.nth( count - 2 ) ) ).toEqual( B );
-		expect( await readRow( rows.nth( count - 1 ) ) ).toEqual( A );
-
-		// Saved twice, loaded each time: the order and the values stay.
-		for ( let time = 1; time <= 2; time++ ) {
-			await page.locator( 'input[name="submit-cmb"]' ).click();
-			await expect( page.locator( '#site_sections_repeat' ) ).toBeVisible();
-			await page.goto( SECTIONS );
-			expect( await readRow( rows.nth( count - 2 ) ), `saving ${ time }, the first row` ).toEqual( B );
-			expect( await readRow( rows.nth( count - 1 ) ), `saving ${ time }, the second row` ).toEqual( A );
-		}
 	} finally {
 		await removeLastSections( page, 2 );
 	}

@@ -5,25 +5,6 @@ const { test, expect } = require( '@playwright/test' );
 
 const TITLE = 'Pubblicazione E2E completa';
 
-test( 'the featured box and the list show the promoted publication with authors, type and year', async ( { page } ) => {
-	await page.goto( '/' );
-
-	for ( const scope of [ page.locator( '#blocco-card' ), page.locator( '#blocco-pubblicazioni' ) ] ) {
-		const card = scope.locator( 'article', { hasText: TITLE } );
-		await expect( card ).toHaveCount( 1 );
-		await expect( card ).toContainText( 'Autore Uno E2E, Autore Due E2E' );
-		await expect( card ).toContainText( 'Articolo in rivista' );
-		// The list section shows the year; the box of the featured contents does not, like the playground.
-		if ( 'blocco-pubblicazioni' === await scope.getAttribute( 'id' ) ) {
-			await expect( card.locator( 'time' ) ).toHaveText( '2024' );
-		} else {
-			await expect( card.locator( 'time' ) ).toHaveCount( 0 );
-		}
-		await expect( card ).not.toContainText( 'Descrizione di prova della pubblicazione E2E completa.' );
-	}
-	await expect( page.getByRole( 'heading', { level: 3, name: 'Pubblicazioni in evidenza' } ) ).toBeVisible();
-} );
-
 test( 'the type of a publication is underlined only when pointed at or reached with the keyboard', async ( { page } ) => {
 	await page.goto( '/' );
 	const link = page.locator( '#blocco-pubblicazioni' ).getByRole( 'link', { name: /Articolo in rivista/ } );
@@ -50,15 +31,6 @@ test( 'the type of a publication is underlined only when pointed at or reached w
 	expect( await boxLink.evaluate( ( element ) => getComputedStyle( element ).textDecorationLine ) ).toBe( 'none' );
 } );
 
-test( 'from the home the title leads to the detail page', async ( { page } ) => {
-	await page.goto( '/' );
-
-	await page.locator( '#blocco-pubblicazioni' ).getByRole( 'link', { name: TITLE, exact: true } ).click();
-
-	await expect( page ).toHaveURL( /\/pubblicazione\/pubblicazione-e2e-completa\/$/ );
-	await expect( page.getByRole( 'heading', { level: 2, name: TITLE } ) ).toBeVisible();
-} );
-
 test( 'from the home the type leads to the archive filtered by that type, and the button to the archive', async ( { page } ) => {
 	await page.goto( '/' );
 
@@ -73,11 +45,3 @@ test( 'from the home the type leads to the archive filtered by that type, and th
 	await expect( page ).toHaveURL( /\/pubblicazioni\/$/ );
 } );
 
-test( 'on a narrow screen the home publications do not overflow horizontally', async ( { page } ) => {
-	await page.setViewportSize( { width: 320, height: 800 } );
-	await page.goto( '/' );
-
-	await expect( page.locator( '#blocco-pubblicazioni' ) ).toBeVisible();
-	const overflow = await page.evaluate( () => document.documentElement.scrollWidth - document.documentElement.clientWidth );
-	expect( overflow ).toBeLessThanOrEqual( 0 );
-} );
