@@ -132,6 +132,8 @@ class DLI_People_File_Importer_Integration_Test extends DLI_Integration_Test_Cas
 		foreach ( $this->people() as $person_id ) {
 			$statuses[ get_post_meta( $person_id, 'email', true ) ] = get_post_status( $person_id );
 		}
+		// The people created in the same second come back in no fixed order: compare by email.
+		ksort( $statuses );
 		$this->assertSame(
 			array(
 				'ada.lovelace@example.org' => 'draft',
