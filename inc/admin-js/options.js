@@ -57,6 +57,77 @@ $j(function() {
     // scratch (cmb.resetGroupTitles) every time two rows are swapped and every time a row is removed, so the label
     // is added again after each of them. readLabel gets the row and gives the text, or null when the row has not
     // got its field yet; changeEvents are the events of the field that change the label.
+    // The code of a video in its address (watch?v=CODE, youtu.be/CODE, /embed/CODE, /shorts/CODE, /live/CODE), or an
+    // empty string when the address is empty, not complete yet or has no code.
+    function dliVideoCode(address) {
+        if (!address) {
+            return '';
+        }
+        try {
+            var url = new URL(address);
+            var fromQuery = url.searchParams.get('v');
+            if (fromQuery) {
+                return fromQuery;
+            }
+            var parts = url.pathname.split('/').filter(Boolean);
+            if (/(^|\.)youtu\.be$/.test(url.hostname)) {
+                return parts[0] || '';
+            }
+            var known = ['embed', 'shorts', 'live', 'v'];
+            return parts.length > 1 && known.indexOf(parts[0]) !== -1 ? parts[1] : '';
+        } catch (error) {
+            return '';
+        }
+    }
+
+    // A section that can be in the home only once (the list comes from the server: window.dliHpSections.single, built
+    // from the catalog) is not offered again in the other rows of Sezioni HP: its option is disabled in the menu of every
+    // row that has not chosen it. The option a row has chosen is never disabled, so that a row saved before this rule
+    // (one single section twice) keeps its value: the browser does not send a disabled option. A row that is added
+    // starts from the first section that is still available. The rows already saved are never changed.
+    function dliLimitSectionChoices(groupSelector) {
+        var single = (window.dliHpSections && window.dliHpSections.single) || [];
+        if (!single.length || !$j(groupSelector).length) {
+            return;
+        }
+        var selectSelector = groupSelector + ' > .cmb-repeatable-grouping select[name$="[id]"]';
+
+        function takenValues($except) {
+            return $j(selectSelector).not($except).map(function() {
+                return $j(this).val();
+            }).get();
+        }
+
+        function update() {
+            $j(selectSelector).each(function() {
+                var $select = $j(this);
+                var own = $select.val();
+                var taken = takenValues($select);
+                $select.find('option').each(function() {
+                    this.disabled = this.value !== own && -1 !== single.indexOf(this.value) && -1 !== taken.indexOf(this.value);
+                });
+            });
+        }
+
+        function startFromFirstAvailable() {
+            var $select = $j(selectSelector).last();
+            var taken = takenValues($select);
+            var $first = $select.find('option').filter(function() {
+                return -1 === single.indexOf(this.value) || -1 === taken.indexOf(this.value);
+            }).first();
+            if ($first.length && $first.val() !== $select.val()) {
+                // The change updates the fields that depend on the section, as if the editor had chosen it.
+                $select.val($first.val()).trigger('change');
+            }
+            update();
+        }
+
+        update();
+        $j(document).on('change', selectSelector, update);
+        $j('.cmb2-wrap > .cmb2-metabox').on('cmb2_add_row', startFromFirstAvailable);
+        $j(document).on('cmb2_remove_row', groupSelector, update);
+    }
+
     function dliShowRowLabels(groupSelector, readLabel, fieldSelector, changeEvents) {
         function update() {
             $j(groupSelector + ' > .cmb-repeatable-grouping').each(function() {
@@ -175,6 +246,7 @@ $j(function() {
     });
 
     if ($j('#site_sections_repeat').length) {
+        dliLimitSectionChoices('#site_sections_repeat');
         dliShowRowLabels('#site_sections_repeat', function($row) {
             var $select = $row.find('select[name$="[id]"]').first();
             if (!$select.length) {
@@ -190,8 +262,31 @@ $j(function() {
                     label = $j.trim(label) + ' \u2014 ' + pageName;
                 }
             }
+            // Several banner sections can be in the home: each is told apart by its mode and, in the automatic one, the
+            // number of banners when the row says it.
+            if ('banners_section' === $select.val()) {
+                var $mode = $row.find('input[type="radio"][name$="[banner_mode]"]:checked').first();
+                var detail = $mode.length ? $j.trim($row.find('label[for="' + $mode.attr('id') + '"]').text()) : '';
+                var count = $j.trim($row.find('input[name$="[max_items]"]').val());
+                if (count && 'manual' !== $mode.val()) {
+                    detail = $j.trim(detail + ' ' + count);
+                }
+                if (detail) {
+                    label = $j.trim(label) + ' \u2014 ' + detail;
+                }
+            }
+            // Several videos can be in the home, all of them on the same site: each is told apart by its title in Italian
+            // when it has one, otherwise by the code of the video in its address.
+            var $video = $row.find('input[name$="[video_url]"]').first();
+            if ('video_section' === $select.val() && $video.length) {
+                var videoTitle = $j.trim($row.find('input[name$="[title]"]').first().val());
+                var videoName = videoTitle || dliVideoCode($j.trim($video.val()));
+                if (videoName) {
+                    label = $j.trim(label) + ' \u2014 ' + videoName;
+                }
+            }
             return label;
-        }, 'select[name$="[id]"], select[name$="[page_id]"]', 'change');
+        }, 'select[name$="[id]"], select[name$="[page_id]"], input[name$="[video_url]"], input[name$="[title]"], input[name$="[banner_mode]"], input[name$="[max_items]"]', 'change input');
     }
 
     if ($j('#home_tabs_items_repeat').length) {

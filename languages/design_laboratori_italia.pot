@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 09:52+0000\n"
+"POT-Creation-Date: 2026-11-04 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -40,21 +40,23 @@ msgstr ""
 msgid "%d risultato disponibile."
 msgstr ""
 
+#. %s: the title of a banner that is a draft, private or in the trash
 #. %s: the title of a page that is a draft, private or protected by a password
-#: inc/pages.php:397
+#: inc/home-banners.php:158 inc/pages.php:397
+#: tests/integration/DLI_Home_Banners_Integration_Test.php:369
 #, php-format
 msgid "%s (non visibile)"
 msgstr ""
 
 #. %s: video title.
-#: template-parts/common/sezione-video.php:50
-#: template-parts/common/sezione-video.php:56
+#: template-parts/common/sezione-video.php:59
+#: template-parts/common/sezione-video.php:65
 #, php-format
 msgid "%s Video"
 msgstr ""
 
 #. %d: level of the page, from 1
-#: inc/admin/class-dli-page-import-admin.php:598
+#: inc/admin/class-dli-page-import-admin.php:597
 msgid "(livello %d)"
 msgstr ""
 
@@ -107,11 +109,11 @@ msgstr ""
 msgid "Accedi"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:36
+#: template-parts/common/sezione-video.php:45
 msgid "Accetta"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:30
+#: template-parts/common/sezione-video.php:39
 msgid ""
 "Accetta i cookie di YouTube per vedere il video. Puoi gestire le preferenze "
 "nella "
@@ -314,6 +316,7 @@ msgid "Autori"
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:51
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:69
 msgid "Banner"
 msgstr ""
 
@@ -358,14 +361,14 @@ msgstr ""
 msgid "captcha"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:585
+#: inc/admin/class-dli-page-import-admin.php:584
 msgid "Card"
 msgstr ""
 
 #: template-parts/home/hp-card-navigation-section.php:48
 #: tests/integration/DLI_Home_Navigation_Section_Integration_Test.php:221
 #: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:66
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:80
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:82
 msgid "Card di navigazione"
 msgstr ""
 
@@ -513,6 +516,9 @@ msgid ""
 msgstr ""
 
 #: page-templates/contatti.php:70 inc/classes/class-newslettermanager.php:172
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:332
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:342
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:357
 msgid "Compilare tutti i campi obbligatori."
 msgstr ""
 
@@ -542,11 +548,11 @@ msgid "Condivido con piacere questo post"
 msgstr ""
 
 #: page-templates/contatti.php:341 page-templates/contatti.php:343
-#: inc/admin/class-dli-page-import-admin.php:486
+#: inc/admin/class-dli-page-import-admin.php:485
 msgid "Conferma"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:490
+#: inc/admin/class-dli-page-import-admin.php:489
 msgid ""
 "Confermo la pubblicazione immediata delle pagine nuove nella lingua scelta"
 msgstr ""
@@ -573,7 +579,7 @@ msgstr ""
 msgid "Contenuti in primo piano"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:31
+#: template-parts/common/sezione-video.php:40
 msgid "cookie policy"
 msgstr ""
 
@@ -606,11 +612,11 @@ msgid ""
 "salvato in UTF-8, con separatore punto e virgola (;)."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:641
+#: inc/admin/class-dli-page-import-admin.php:640
 msgid "Creata"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:559
+#: inc/admin/class-dli-page-import-admin.php:558
 msgid "Create"
 msgstr ""
 
@@ -790,7 +796,7 @@ msgid ""
 msgstr ""
 
 #. %d: the most pages of a file
-#: inc/admin/class-dli-page-import-admin.php:447
+#: inc/admin/class-dli-page-import-admin.php:446
 msgid ""
 "Dimensione massima: 2 MB, al massimo %d pagine. Separatore: punto e virgola "
 "(;)."
@@ -852,7 +858,7 @@ msgstr ""
 msgid "Errore nonce rilevato durante l'invio del form."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:561
+#: inc/admin/class-dli-page-import-admin.php:560
 #: inc/admin/class-dli-tools-admin.php:707
 msgid "Errori"
 msgstr ""
@@ -865,12 +871,12 @@ msgstr ""
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:514
+#: inc/admin/class-dli-page-import-admin.php:513
 #: inc/admin/class-dli-tools-admin.php:666
 msgid "esecuzione reale"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:514
+#: inc/admin/class-dli-page-import-admin.php:513
 #: inc/admin/class-dli-tools-admin.php:665
 msgid "esecuzione simulata"
 msgstr ""
@@ -879,16 +885,16 @@ msgstr ""
 msgid "Esegui import persone"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:430
+#: inc/admin/class-dli-page-import-admin.php:429
 #: inc/admin/class-dli-tools-admin.php:593
 msgid "Esegui importazione"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:498
+#: inc/admin/class-dli-page-import-admin.php:497
 msgid "Esegui importazione pagine"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:586
+#: inc/admin/class-dli-page-import-admin.php:585
 msgid "Esito"
 msgstr ""
 
@@ -929,7 +935,7 @@ msgstr ""
 msgid "febbraio"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:439
+#: inc/admin/class-dli-page-import-admin.php:438
 #: inc/admin/class-dli-tools-admin.php:603
 msgid "File CSV"
 msgstr ""
@@ -1057,7 +1063,7 @@ msgstr ""
 msgid "Il file non è in UTF-8: salvalo come «CSV UTF-8»."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:545
+#: inc/admin/class-dli-page-import-admin.php:544
 msgid "Il file non è stato importato: correggi gli errori e invialo di nuovo."
 msgstr ""
 
@@ -1072,6 +1078,7 @@ msgstr ""
 
 #: page-templates/contatti.php:60 page-templates/contatti.php:332
 #: page-templates/newsletter.php:57 page-templates/newsletter.php:224
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:341
 msgid ""
 "Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi."
 msgstr ""
@@ -1093,7 +1100,7 @@ msgstr ""
 msgid "Importa"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:471
+#: inc/admin/class-dli-page-import-admin.php:470
 msgid "Importa (crea le pagine)"
 msgstr ""
 
@@ -1116,7 +1123,7 @@ msgstr ""
 msgid "In attività"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:584
+#: inc/admin/class-dli-page-import-admin.php:583
 msgid "In home"
 msgstr ""
 
@@ -1130,11 +1137,12 @@ msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr ""
 
 #: page-templates/contatti.php:75 inc/classes/class-newslettermanager.php:176
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:333
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
 #: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:68
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:79
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:81
 msgid "Indice di una pagina"
 msgstr ""
 
@@ -1146,7 +1154,7 @@ msgstr ""
 msgid "Indietro"
 msgstr ""
 
-#: single-luogo.php:180 inc/admin/class-dli-page-import-admin.php:582
+#: single-luogo.php:180 inc/admin/class-dli-page-import-admin.php:581
 msgid "Indirizzo"
 msgstr ""
 
@@ -1192,7 +1200,7 @@ msgstr ""
 msgid "Inserisci il tuo numero di telefono"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:480
+#: inc/admin/class-dli-page-import-admin.php:479
 msgid "Inserisci testo Lorem ipsum nelle nuove pagine"
 msgstr ""
 
@@ -1264,7 +1272,7 @@ msgstr ""
 msgid "La Newslettere è disabilitata"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:577
+#: inc/admin/class-dli-page-import-admin.php:576
 msgid "Le pagine del file, con l'indirizzo e l'esito"
 msgstr ""
 
@@ -1287,12 +1295,12 @@ msgstr ""
 msgid "Leggi di piu"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:456
+#: inc/admin/class-dli-page-import-admin.php:455
 msgid "Lingua delle pagine"
 msgstr ""
 
 #. 1: language, 2: lorem ipsum yes/no, 3: file name
-#: inc/admin/class-dli-page-import-admin.php:528
+#: inc/admin/class-dli-page-import-admin.php:527
 #, php-format
 msgid "Lingua: %1$s | Testo Lorem ipsum: %2$s | File: %3$s"
 msgstr ""
@@ -1384,7 +1392,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:188
+#: functions.php:189
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1392,19 +1400,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:186
+#: functions.php:187
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:187
+#: functions.php:188
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:184
+#: functions.php:185
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:185
+#: functions.php:186
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1424,7 +1432,7 @@ msgstr ""
 msgid "Metodo non consentito. Usare POST."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:467
+#: inc/admin/class-dli-page-import-admin.php:466
 #: inc/admin/class-dli-tools-admin.php:629
 msgid "Modalità di esecuzione"
 msgstr ""
@@ -1500,7 +1508,7 @@ msgstr ""
 #: template-parts/home/hp-page-navigation-section.php:46
 #: tests/integration/DLI_Home_Navigation_Groups_Integration_Test.php:275
 #: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:67
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:78
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:80
 msgid "Navigazione per pagine"
 msgstr ""
 
@@ -1540,9 +1548,9 @@ msgstr ""
 msgid "Newsletter"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:530
+#: inc/admin/class-dli-page-import-admin.php:529
+#: inc/admin/class-dli-page-import-admin.php:603
 #: inc/admin/class-dli-page-import-admin.php:604
-#: inc/admin/class-dli-page-import-admin.php:605
 msgid "no"
 msgstr ""
 
@@ -1559,7 +1567,7 @@ msgstr ""
 msgid "Nome e cognome"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:645
+#: inc/admin/class-dli-page-import-admin.php:644
 msgid "Non creata"
 msgstr ""
 
@@ -1714,7 +1722,7 @@ msgstr ""
 msgid "Ordina per"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:583
+#: inc/admin/class-dli-page-import-admin.php:582
 msgid "Ordine"
 msgstr ""
 
@@ -1726,7 +1734,7 @@ msgstr ""
 msgid "ottobre"
 msgstr ""
 
-#: inc/utils.php:1255 inc/admin/class-dli-page-import-admin.php:581
+#: inc/utils.php:1255 inc/admin/class-dli-page-import-admin.php:580
 #: template-parts/common/paginazione.php:93
 msgid "Pagina"
 msgstr ""
@@ -1750,8 +1758,8 @@ msgstr ""
 msgid "Pagina successiva"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:558
-#: inc/admin/class-dli-page-import-admin.php:575
+#: inc/admin/class-dli-page-import-admin.php:557
+#: inc/admin/class-dli-page-import-admin.php:574
 #: inc/admin/class-dli-tools-admin.php:259
 msgid "Pagine"
 msgstr ""
@@ -2233,7 +2241,7 @@ msgid ""
 "Questa sezione contiene gli strumenti di gestione dei contenuti del sito."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:519
+#: inc/admin/class-dli-page-import-admin.php:518
 #: inc/admin/class-dli-tools-admin.php:673
 msgid "Report importazione"
 msgstr ""
@@ -2293,7 +2301,7 @@ msgstr ""
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr ""
 
-#: template-parts/common/sezione-video.php:40
+#: template-parts/common/sezione-video.php:49
 msgid "Ricorda per tutti i video"
 msgstr ""
 
@@ -2304,7 +2312,7 @@ msgid ""
 "aggiornamento."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:580
+#: inc/admin/class-dli-page-import-admin.php:579
 #: inc/admin/class-dli-tools-admin.php:729
 msgid "Riga"
 msgstr ""
@@ -2479,7 +2487,7 @@ msgstr ""
 msgid "Salta alla pagina"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:643
+#: inc/admin/class-dli-page-import-admin.php:642
 msgid "Saltata: già importata"
 msgstr ""
 
@@ -2491,7 +2499,7 @@ msgstr ""
 msgid "Saltata: persona non trovata."
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:560
+#: inc/admin/class-dli-page-import-admin.php:559
 msgid "Saltate"
 msgstr ""
 
@@ -2531,7 +2539,7 @@ msgid "Schede"
 msgstr ""
 
 #. %s: banner title
-#: template-parts/home/hp-banners-section.php:89
+#: template-parts/home/hp-banners-section.php:72
 #, php-format
 msgid "Scopri di più su: %s"
 msgstr ""
@@ -2593,7 +2601,7 @@ msgstr ""
 msgid "separare con"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:492
+#: inc/admin/class-dli-page-import-admin.php:491
 msgid "Serve solo per importare davvero; la simulazione non la richiede."
 msgstr ""
 
@@ -2631,7 +2639,7 @@ msgstr ""
 msgid "si apre in una nuova finestra"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:470
+#: inc/admin/class-dli-page-import-admin.php:469
 msgid "Simulazione (non scrive nulla)"
 msgstr ""
 
@@ -2648,11 +2656,15 @@ msgstr ""
 msgid "Skiplink"
 msgstr ""
 
+#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:70
+msgid "solo in modalità automatica"
+msgstr ""
+
 #: inc/admin/class-dli-tools-admin.php:576
 msgid "solo nuovi (salta se esiste)"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:482
+#: inc/admin/class-dli-page-import-admin.php:481
 msgid ""
 "Solo per le pagine nuove, mai per quelle già presenti. Le pagine sono "
 "pubbliche: usalo solo su siti di prova o di dimostrazione."
@@ -2698,9 +2710,9 @@ msgstr ""
 msgid "Struttura"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:530
+#: inc/admin/class-dli-page-import-admin.php:529
+#: inc/admin/class-dli-page-import-admin.php:603
 #: inc/admin/class-dli-page-import-admin.php:604
-#: inc/admin/class-dli-page-import-admin.php:605
 msgid "sì"
 msgstr ""
 
@@ -2786,7 +2798,7 @@ msgstr ""
 msgid "Testo del messaggio"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:476
+#: inc/admin/class-dli-page-import-admin.php:475
 msgid "Testo di riempimento"
 msgstr ""
 
@@ -2862,7 +2874,7 @@ msgstr ""
 msgid "Toggle navigation"
 msgstr ""
 
-#: template-parts/common/sezione-video.php:73
+#: template-parts/common/sezione-video.php:82
 msgid "Trascrizione"
 msgstr ""
 
@@ -2890,7 +2902,7 @@ msgstr ""
 msgid "Tutte le pubblicazioni"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:463
+#: inc/admin/class-dli-page-import-admin.php:462
 msgid ""
 "Tutte le righe del file sono nella lingua scelta. Per un sito in più lingue "
 "invia un file per lingua, con le stesse page_key."
@@ -2998,6 +3010,7 @@ msgid "Usa i tab per navigare tra le sezioni operative dell'area."
 msgstr ""
 
 #: inc/classes/class-base-importer.php:281
+#: tests/integration/DLI_Import_Rest_Integration_Test.php:195
 msgid "Utente non autorizzato"
 msgstr ""
 
@@ -3045,6 +3058,7 @@ msgid "Vai alla pagina: Newsletter"
 msgstr ""
 
 #: page-templates/contatti.php:106 page-templates/newsletter.php:51
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:356
 msgid "Valore di Nonce errato."
 msgstr ""
 
@@ -3061,14 +3075,12 @@ msgstr ""
 msgid "Vedi tutti"
 msgstr ""
 
-#: inc/admin/class-dli-page-import-admin.php:641
+#: inc/admin/class-dli-page-import-admin.php:640
 msgid "Verrà creata"
 msgstr ""
 
 #: single-brevetto.php:189 single-brevetto.php:272 single-evento.php:169
 #: single-evento.php:316 single-spinoff.php:156 single-spinoff.php:243
-#: template-parts/home/hp-video-section.php:23
-#: template-parts/home/hp-video-section.php:27
 msgid "Video"
 msgstr ""
 

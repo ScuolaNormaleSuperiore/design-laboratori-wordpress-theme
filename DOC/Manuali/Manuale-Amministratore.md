@@ -43,7 +43,7 @@ La home è composta dalle sezioni scelte in **Sezioni HP** (gruppo ripetibile: a
 | Indice di una pagina | bianco | sfondo, pagina, numero massimo di elementi e di sottopagine |
 | Pannello tab | bianco | sfondo |
 
-Le altre sezioni della home (eventi, notizie, pubblicazioni, articoli, banner, sponsor, video) hanno la stessa riga di attivazione, ordine e titolo. Ogni riga, anche chiusa, mostra il nome della sezione scelta e le frecce per spostarla. I campi di una sezione che dipendono dalla riga (pagina, limiti, sfondo) sono salvati nella riga; i testi e i contenuti (titolo, sottotitolo, tab, box) sono in **Layout HP**. L'elenco che fa vedere «quali pagine compaiono in quale sezione», con un esempio, è nel manuale di configurazione, scheda Layout HP.
+Le altre sezioni della home (eventi, notizie, pubblicazioni, articoli, banner, sponsor, video) hanno la stessa riga di attivazione, ordine e titolo. Ogni riga, anche chiusa, mostra il nome della sezione scelta e le frecce per spostarla. I campi di una sezione che dipendono dalla riga (pagina, indirizzo del video, limiti, sfondo) sono salvati nella riga; i testi e i contenuti (titolo, sottotitolo, tab, box) sono in **Layout HP**. L'elenco che fa vedere «quali pagine compaiono in quale sezione», con un esempio, è nel manuale di configurazione, scheda Layout HP.
 
 Una sezione che dovrebbe comparire e non compare: controlla che sia attiva in Sezioni HP, che ci siano pagine o contenuti che rispettano i criteri della tabella (pubblicati, senza password, nella lingua corrente, con `Promuovi in Home` dove serve) e che la sezione non sia vuota.
 

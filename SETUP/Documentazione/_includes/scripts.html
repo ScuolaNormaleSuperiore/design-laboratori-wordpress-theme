@@ -17,3 +17,33 @@
     headings.forEach((heading) => observer.observe(heading));
   })();
 </script>
+<script>
+  (() => {
+    const toggle = document.querySelector('[data-dli-search-toggle]');
+    const panel = document.getElementById('dli-search-panel');
+    const input = document.getElementById('dli-search-input');
+    const results = document.getElementById('dli-search-results');
+    if (!toggle || !panel || !input || !results) return;
+    let index = null;
+    const searchUrl = '{{ "/assets/search-index.json" | relative_url }}';
+    toggle.addEventListener('click', async () => {
+      panel.hidden = !panel.hidden;
+      toggle.setAttribute('aria-expanded', String(!panel.hidden));
+      if (!panel.hidden) {
+        if (!index) index = await fetch(searchUrl).then((response) => response.ok ? response.json() : []);
+        input.focus();
+      }
+    });
+    input.addEventListener('input', () => {
+      const query = input.value.trim().toLocaleLowerCase('it');
+      if (query.length < 2) { results.replaceChildren(); return; }
+      const matches = (index || []).filter((entry) => `${entry.title} ${entry.description} ${entry.text}`.toLocaleLowerCase('it').includes(query)).slice(0, 8);
+      results.replaceChildren(...matches.map((entry) => {
+        const link = document.createElement('a');
+        link.className = 'd-block py-2'; link.href = entry.url; link.textContent = entry.title;
+        return link;
+      }));
+      if (!matches.length) results.textContent = 'Nessun risultato.';
+    });
+  })();
+</script>

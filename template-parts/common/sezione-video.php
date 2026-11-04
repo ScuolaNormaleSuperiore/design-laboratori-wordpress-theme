@@ -11,14 +11,23 @@ $dli_video          = $dli_args['video'] ?? '';
 $dli_video_text     = $dli_args['video_text'] ?? '';
 $dli_video_title    = $dli_args['video_title'] ?? '';
 $dli_video_track    = $dli_args['video_track'] ?? '';
+// Without an instance (the detail pages of events, patents and spin-offs, one video each) the identifiers are the
+// ones this component has always had. With one (a row of Sezioni HP, the same video section can be repeated) every
+// identifier carries it, so that two players in a page share none.
+$dli_instance   = isset( $dli_args['instance'] ) && '' !== (string) $dli_args['instance'] ? absint( $dli_args['instance'] ) : 0;
+$dli_player_id  = $dli_instance ? 'vid-' . $dli_instance : 'vid1';
+$dli_remember   = $dli_instance ? 'chk-remember-' . $dli_instance : 'chk-remember';
+$dli_trans_head = $dli_instance ? 'transcription-head-' . $dli_instance : 'transcription-head9';
+$dli_trans_body = $dli_instance ? 'transcription-' . $dli_instance : 'transcription9';
 ?>
 
 	<script>
-		const loadYouTubeVideo = function(videoUrl) {
-			const videoEl = document.getElementById("vid1");
+		// One function for every player of the page: a second copy of this script leaves it as it is.
+		window.dliLoadYouTubeVideo = window.dliLoadYouTubeVideo || function(playerId, videoUrl) {
+			const videoEl = document.getElementById(playerId);
 			const video = bootstrap.VideoPlayer.getOrCreateInstance(videoEl);
 			video.setYouTubeVideo(videoUrl);
-		}
+		};
 	</script>
 	<div class="acceptoverlayable">
 		<div class="acceptoverlay acceptoverlay-primary fade show">
@@ -32,18 +41,18 @@ $dli_video_track    = $dli_args['video_track'] ?? '';
 					</p>
 				<div class="acceptoverlay-buttons bg-dark">
 					<button type="button" class="btn btn-primary" data-bs-accept-from="youtube.com"
-						onclick="loadYouTubeVideo('<?php echo esc_js( esc_url_raw( $dli_video ) ); ?>')">
+						onclick="dliLoadYouTubeVideo('<?php echo esc_js( $dli_player_id ); ?>', '<?php echo esc_js( esc_url_raw( $dli_video ) ); ?>')">
 						<?php echo esc_html__( 'Accetta', 'design_laboratori_italia' ); ?>
 					</button>
 					<div class="form-check">
-						<input id="chk-remember" type="checkbox" data-bs-accept-remember>
-						<label for="chk-remember"><?php echo esc_html__( 'Ricorda per tutti i video', 'design_laboratori_italia' ); ?></label>
+						<input id="<?php echo esc_attr( $dli_remember ); ?>" type="checkbox" data-bs-accept-remember>
+						<label for="<?php echo esc_attr( $dli_remember ); ?>"><?php echo esc_html__( 'Ricorda per tutti i video', 'design_laboratori_italia' ); ?></label>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div>
-			<video controls data-bs-video id="vid1"
+			<video controls data-bs-video id="<?php echo esc_attr( $dli_player_id ); ?>"
 				title="
 				<?php
 					/* translators: %s: video title. */
@@ -68,12 +77,12 @@ $dli_video_track    = $dli_args['video_track'] ?? '';
 				?>
 			<div class="vjs-transcription accordion">
 				<div class="accordion-item">
-					<h2 class="accordion-header " id="transcription-head9">
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transcription9" aria-expanded="true" aria-controls="transcription">
+					<h2 class="accordion-header " id="<?php echo esc_attr( $dli_trans_head ); ?>">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( $dli_trans_body ); ?>" aria-expanded="true" aria-controls="<?php echo esc_attr( $dli_trans_body ); ?>">
 					<?php echo esc_html__( 'Trascrizione', 'design_laboratori_italia' ); ?>
 						</button>
 					</h2>
-					<div id="transcription9" class="accordion-collapse collapse" role="region" aria-labelledby="transcription-head9">
+					<div id="<?php echo esc_attr( $dli_trans_body ); ?>" class="accordion-collapse collapse" role="region" aria-labelledby="<?php echo esc_attr( $dli_trans_head ); ?>">
 						<div class="accordion-body">
 						<?php echo esc_html( $dli_video_text ); ?>
 						</div>

@@ -13,6 +13,11 @@
  *  - dli_normalize_hp_page_level()         The level of the pages a section lists, one of the choices or a default.
  *  - dli_sanitize_hp_page_level()          Sanitization of the field "Livello delle pagine".
  *  - dli_sanitize_hp_page_id()            Sanitization of the field "Pagina": the ID of a page, or nothing.
+ *  - dli_sanitize_hp_video_url()          Sanitization of the field "URL del video": a web address, or nothing.
+ *  - dli_sanitize_hp_row_title()          Sanitization of the fields "Titolo della sezione": plain text, or nothing.
+ *  - dli_get_hp_row_title()               The title of a row in the language of the page, or nothing.
+ *  - dli_sanitize_hp_banner_mode()        Sanitization of the field "Modalità" of the section Banner: manual, automatic or nothing.
+ *  - dli_sanitize_hp_id_list()            A list of IDs: whole positive numbers, once each, in the order chosen.
  *  - dli_get_hp_navigation_column_class()  The columns of the cards of "Card di navigazione".
  *  - dli_get_hp_groups_column_class()      The columns of the groups of "Navigazione per pagine".
  *  - dli_is_blank_text()                   Whether a text has nothing to show (empty, spaces, tags, non-breaking spaces).
@@ -229,12 +234,121 @@ if ( ! function_exists( 'dli_normalize_hp_section_rows' ) ) {
 					$row['page_id'] = $page_id;
 				}
 			}
+			if ( array_key_exists( 'video_url', $row ) ) {
+				$video_url = dli_sanitize_hp_video_url( $row['video_url'] );
+				if ( '' === $video_url ) {
+					unset( $row['video_url'] );
+				} else {
+					$row['video_url'] = $video_url;
+				}
+			}
+			if ( array_key_exists( 'banner_mode', $row ) ) {
+				$banner_mode = dli_sanitize_hp_banner_mode( $row['banner_mode'] );
+				if ( '' === $banner_mode ) {
+					unset( $row['banner_mode'] );
+				} else {
+					$row['banner_mode'] = $banner_mode;
+				}
+			}
+			if ( array_key_exists( 'banner_ids', $row ) ) {
+				$row['banner_ids'] = dli_sanitize_hp_id_list( $row['banner_ids'] );
+			}
+			foreach ( array( 'title', 'title_eng' ) as $title_key ) {
+				if ( array_key_exists( $title_key, $row ) ) {
+					$title = dli_sanitize_hp_row_title( $row[ $title_key ] );
+					if ( '' === $title ) {
+						unset( $row[ $title_key ] );
+					} else {
+						$row[ $title_key ] = $title;
+					}
+				}
+			}
 			$row['instance'] = $position;
 
 			$result[] = $row;
 		}
 
 		return $result;
+	}
+}
+
+if ( ! function_exists( 'dli_get_hp_row_title' ) ) {
+	/**
+	 * The title of a row of Sezioni HP (the sections Video and Banner) in the language of the page.
+	 *
+	 * An Italian page uses `title`, any other page `title_eng`. There is no other: a title missing in the language of
+	 * the page is nothing, so the section has no title; it does not take the one of the other language and it has no
+	 * name of its own.
+	 *
+	 * @param array<string, mixed> $row         The row.
+	 * @param bool                 $is_italian  True when the page is in Italian, false for any other language.
+	 * @return string The title, trimmed, or an empty string.
+	 */
+	function dli_get_hp_row_title( array $row, $is_italian ) {
+		$value = $row[ $is_italian ? 'title' : 'title_eng' ] ?? '';
+
+		return is_string( $value ) ? trim( $value ) : '';
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_banner_mode' ) ) {
+	/**
+	 * Sanitize the mode of the section Banner: `automatic` (the banners by priority) or `manual` (the ones chosen).
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return string `automatic`, `manual`, or an empty string for anything else (the section is then automatic).
+	 */
+	function dli_sanitize_hp_banner_mode( $value ) {
+		$value = is_string( $value ) ? trim( $value ) : '';
+
+		return in_array( $value, array( 'automatic', 'manual' ), true ) ? $value : '';
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_row_title' ) ) {
+	/**
+	 * Sanitize the title of a row of Sezioni HP.
+	 *
+	 * The title is plain text: tags are taken out, any run of spaces and line breaks becomes one space, the ends are
+	 * trimmed and the text is cut at `DLI_HP_ROW_TITLE_MAX` characters. A value that is not text, or empty once cleaned,
+	 * gives an empty string (no title: the section keeps its own name).
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return string The title, or an empty string.
+	 */
+	function dli_sanitize_hp_row_title( $value ) {
+		if ( ! is_string( $value ) ) {
+			return '';
+		}
+
+		$value = trim( (string) preg_replace( '/\s+/u', ' ', strip_tags( $value ) ) );
+
+		return mb_substr( $value, 0, DLI_HP_ROW_TITLE_MAX );
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_video_url' ) ) {
+	/**
+	 * Sanitize the address of the video of a row of Sezioni HP.
+	 *
+	 * Only a web address is an address: text with spaces around it is trimmed; anything that is not a string, an
+	 * address with another scheme (`javascript:`, `data:`, `ftp:`) or text that is not an address gives an empty string
+	 * (no video).
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return string The address, or an empty string when there is no usable address.
+	 */
+	function dli_sanitize_hp_video_url( $value ) {
+		if ( ! is_string( $value ) ) {
+			return '';
+		}
+
+		$value = trim( $value );
+		if ( 1 !== preg_match( '#^https?://[^\s<>"\x27]+$#i', $value ) || false === filter_var( $value, FILTER_VALIDATE_URL ) ) {
+			return '';
+		}
+
+		return $value;
 	}
 }
 
@@ -374,6 +488,21 @@ if ( ! function_exists( 'dli_sanitize_hp_tab_page_ids' ) ) {
 	 * @return int[] The page IDs.
 	 */
 	function dli_sanitize_hp_tab_page_ids( $value ) {
+		return dli_sanitize_hp_id_list( $value );
+	}
+}
+
+if ( ! function_exists( 'dli_sanitize_hp_id_list' ) ) {
+	/**
+	 * A list of IDs of a field that lets the editor choose several items (the pages of a tab, the banners of a row).
+	 *
+	 * Each item is checked by `dli_sanitize_hp_page_id()`, so an ID is parsed in one place only. An item that is not a
+	 * whole positive number is dropped, an ID that is already in the list is kept once, and the order is the saved one.
+	 *
+	 * @param mixed $value The submitted value.
+	 * @return int[] The IDs, in order; an empty list when the value is not a list.
+	 */
+	function dli_sanitize_hp_id_list( $value ) {
 		if ( ! is_array( $value ) ) {
 			return array();
 		}

@@ -65,4 +65,21 @@ class DLI_Options_Assets_Integration_Test extends DLI_Integration_Test_Case {
 			array_search( 'cmb2-scripts', $scripts->queue, true )
 		);
 	}
+
+	/**
+	 * The script of the page knows which sections can be in the home only once, to keep them out of the other rows.
+	 */
+	public function test_the_script_receives_the_sections_that_can_be_added_once() {
+		wp_register_script( 'cmb2-scripts', 'https://example.org/cmb2.js', array(), '1.0', true );
+		wp_enqueue_script( 'cmb2-scripts' );
+		do_action( 'cmb2_footer_enqueue' );
+
+		$data = (string) wp_scripts()->get_data( 'dli_options_dialog', 'data' );
+
+		$this->assertStringContainsString( 'dliHpSections', $data );
+		$this->assertSame( 1, preg_match( '#dliHpSections = (\{.*?\});#s', $data, $found ) );
+		$decoded = json_decode( $found[1], true );
+		$this->assertEqualsCanonicalizing( DLI_ContentsManager::get_hp_sections_single(), $decoded['single'] );
+		$this->assertNotContains( 'video_section', $decoded['single'], 'A section that can be repeated is not in the list.' );
+	}
 }

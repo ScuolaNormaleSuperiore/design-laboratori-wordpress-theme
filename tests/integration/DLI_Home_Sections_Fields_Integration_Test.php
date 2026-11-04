@@ -66,6 +66,8 @@ class DLI_Home_Sections_Fields_Integration_Test extends DLI_Integration_Test_Cas
 		$this->assertStringContainsString( __( 'Card di navigazione', 'design_laboratori_italia' ), $description );
 		$this->assertStringContainsString( __( 'Navigazione per pagine', 'design_laboratori_italia' ), $description );
 		$this->assertStringContainsString( __( 'Indice di una pagina', 'design_laboratori_italia' ), $description );
+		$this->assertStringContainsString( __( 'Banner', 'design_laboratori_italia' ), $description );
+		$this->assertStringContainsString( 'solo in modalità automatica', $description, 'The number of the banners counts in one mode only, and the description says it.' );
 	}
 
 	/**

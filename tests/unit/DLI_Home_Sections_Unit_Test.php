@@ -580,4 +580,72 @@ class DLI_Home_Sections_Unit_Test extends TestCase {
 		$this->assertArrayNotHasKey( 'page_id', $rows[2] );
 		$this->assertArrayNotHasKey( 'page_id', $rows[3], 'A row saved before the field existed is not given one.' );
 	}
+
+	/**
+	 * The mode of the section Banner is manual or automatic; anything else is nothing, and the section is automatic.
+	 */
+	public function test_banner_mode_is_manual_or_automatic() {
+		$this->assertSame( 'manual', dli_sanitize_hp_banner_mode( 'manual' ) );
+		$this->assertSame( 'automatic', dli_sanitize_hp_banner_mode( 'automatic' ) );
+		$this->assertSame( 'manual', dli_sanitize_hp_banner_mode( ' manual ' ) );
+		foreach ( array( '', 'Manual', 'auto', 'random', null, 1, array( 'manual' ) ) as $value ) {
+			$this->assertSame( '', dli_sanitize_hp_banner_mode( $value ), 'Not a mode: ' . var_export( $value, true ) );
+		}
+	}
+
+	/**
+	 * A list of IDs keeps the whole positive numbers, once each, in the order they were chosen.
+	 */
+	public function test_an_id_list_keeps_whole_positive_numbers_in_order() {
+		$this->assertSame( array( 5, 3, 7 ), dli_sanitize_hp_id_list( array( '5', 3, '5', 0, 'x', -1, '3', ' 7 ', 2.5, null ) ) );
+		$this->assertSame( array(), dli_sanitize_hp_id_list( 'not a list' ) );
+		$this->assertSame( array(), dli_sanitize_hp_id_list( null ) );
+		$this->assertSame( dli_sanitize_hp_tab_page_ids( array( '4', '4', 'x', '9' ) ), dli_sanitize_hp_id_list( array( '4', '4', 'x', '9' ) ), 'The tabs use the same rule.' );
+	}
+
+	/**
+	 * A row of the section Banner keeps a known mode and a list of IDs, and drops the rest.
+	 */
+	public function test_rows_keep_a_valid_banner_mode_and_ids() {
+		$rows = dli_normalize_hp_section_rows(
+			array(
+				array(
+					'id'         => 'banners_section',
+					'banner_mode' => 'manual',
+					'banner_ids' => array( '8', '8', 'x', '3' ),
+				),
+				array(
+					'id'          => 'banners_section',
+					'banner_mode' => 'random',
+					'banner_ids'  => 'x',
+				),
+				array( 'id' => 'banners_section' ),
+			)
+		);
+
+		$this->assertSame( 'manual', $rows[0]['banner_mode'] );
+		$this->assertSame( array( 8, 3 ), $rows[0]['banner_ids'] );
+		$this->assertArrayNotHasKey( 'banner_mode', $rows[1] );
+		$this->assertSame( array(), $rows[1]['banner_ids'], 'A list that is not a list is an empty one.' );
+		$this->assertArrayNotHasKey( 'banner_mode', $rows[2], 'A row saved before the fields existed is not given them.' );
+		$this->assertArrayNotHasKey( 'banner_ids', $rows[2] );
+	}
+
+	/**
+	 * The title of a row is the one written in the language of the page, trimmed; there is no other: a missing
+	 * title is nothing, not the title of the other language and not a name of the section.
+	 */
+	public function test_the_title_of_a_row_is_the_one_in_the_language_of_the_page_or_nothing() {
+		$row = array(
+			'title'     => '  In evidenza  ',
+			'title_eng' => 'Highlights',
+		);
+
+		$this->assertSame( 'In evidenza', dli_get_hp_row_title( $row, true ) );
+		$this->assertSame( 'Highlights', dli_get_hp_row_title( $row, false ) );
+		$this->assertSame( '', dli_get_hp_row_title( array_merge( $row, array( 'title_eng' => '  ' ) ), false ), 'No English title: nothing, not the Italian one.' );
+		$this->assertSame( '', dli_get_hp_row_title( array( 'title_eng' => 'Only English' ), true ), 'An Italian page never takes the English title.' );
+		$this->assertSame( '', dli_get_hp_row_title( array(), true ) );
+		$this->assertSame( '', dli_get_hp_row_title( array( 'title' => array( 'x' ) ), true ), 'A title that is not text is nothing.' );
+	}
 }

@@ -118,7 +118,7 @@ Non occorre usarle tutte: scegli quelle utili al visitatore ed evita di ripetere
 | Articoli | Valorizzare i contributi del blog | Articoli WordPress con `Promuovi in Home` |
 | Banner | Promuovere iniziative con un richiamo grafico e un collegamento | Contenuti di tipo Banner |
 | Sponsor | Mostrare loghi di partner e collaborazioni | Contenuti di tipo Sponsor |
-| Video | Inserire un video di presentazione | URL in `Layout HP` |
+| Video | Inserire un video di presentazione | URL nella riga di `Sezioni HP` |
 
 Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano nella scheda omonima e non si aggiungono né si riordinano in `Sezioni HP` (vedi §8.18).
 
@@ -130,9 +130,9 @@ Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano n
 4. Completa testi e contenuti nelle schede indicate sotto e salva ogni scheda modificata: `Sezioni HP` e `Layout HP` sono configurazioni distinte.
 5. Controlla la home in italiano e in inglese, su desktop e su telefono; prova anche i collegamenti.
 
-`Mostra il titolo della sezione` è disponibile nelle righe, ma il suo effetto dipende dal modello: non nasconde il titolo della Hero, della descrizione del sito o dei singoli Banner; alcuni blocchi usano un titolo solo per le tecnologie assistive. Sfondo e limiti numerici compaiono soltanto nelle sezioni che li supportano. Il dettaglio dei campi resta nel [Manuale del pannello Configurazione, §§4.3–4.4](Manuale-Utente-Pannello-Configurazione.md).
+`Mostra il titolo della sezione` è disponibile nelle righe, ma il suo effetto dipende dal modello: non nasconde il titolo della Hero, della descrizione del sito o dei singoli Banner (la sezione Banner ha il titolo scritto nella riga, che si vede solo se il campo è su Sì); alcuni blocchi usano un titolo solo per le tecnologie assistive. Sfondo e limiti numerici compaiono soltanto nelle sezioni che li supportano. Il dettaglio dei campi resta nel [Manuale del pannello Configurazione, §§4.3–4.4](Manuale-Utente-Pannello-Configurazione.md).
 
-**Ripetere una sezione non significa ottenere contenuti indipendenti.** L'Indice di una pagina consente una pagina diversa per ogni riga. Pannello tab e Video leggono invece un'unica configurazione in `Layout HP`; Banner legge la stessa selezione automatica. Per questi ultimi usa una sola riga: la possibilità di configurarli come istanze autonome non fa parte del comportamento qui documentato.
+**Si possono ripetere solo alcune sezioni.** Nel menu `Sezione` di una riga, una sezione che può stare in home una volta sola (Hero, Descrizione del sito, Carousel, Contenuti in evidenza, Card di navigazione, Navigazione per pagine, Pannello tab, Eventi, Notizie, Pubblicazioni, Articoli, Sponsor) compare disattivata se è già in un'altra riga; si riattiva quando togli quella riga. Indice di una pagina, Video e Banner si possono ripetere. Le righe già salvate non vengono cambiate. **Ripetere una sezione non significa ottenere contenuti indipendenti.** L'Indice di una pagina consente una pagina diversa per ogni riga. Il Video ha invece un indirizzo per ogni riga, scritto nella riga stessa. Anche il Banner è autonomo per ogni riga: modalità, numero (in automatico), banner scelti (in manuale) e titolo si scrivono nella riga. Il Pannello tab legge invece un'unica configurazione in `Layout HP`: usa una sola riga, perché ripeterlo mostra gli stessi tab.
 
 ### 8.3 Hero principale
 
@@ -236,11 +236,11 @@ Pubblica e promuovi gli articoli, poi abilita `Articoli` in `Sezioni HP`; sul si
 
 ### 8.15 Banner
 
-Mostra fino a 3 richiami grafici, ordinati per `Priorità` crescente. Può servire a promuovere un bando o un'iniziativa; non è la scheda pubblica di un contenuto navigabile autonomamente.
+Mostra richiami grafici ordinati per `Priorità` crescente (3 se non scegli un numero) oppure quelli che scegli a mano (fino a 12). Può servire a promuovere un bando o un'iniziativa; non è la scheda pubblica di un contenuto navigabile autonomamente.
 
-Crea e pubblica i contenuti di tipo Banner con titolo, testo, immagine in evidenza, priorità ed eventuali etichetta e link del pulsante. Abilita `Banner` in `Sezioni HP`: non serve il campo `Promuovi in Home`. Senza Banner selezionati dalla query il blocco non compare; senza link non compare il pulsante. Il testo descrittivo è nascosto sugli schermi più piccoli: il messaggio essenziale deve essere chiaro anche nel titolo.
+Crea e pubblica i contenuti di tipo Banner con titolo, testo, immagine in evidenza, priorità ed eventuali etichetta e link del pulsante. Abilita `Banner` in `Sezioni HP`: non serve il campo `Promuovi in Home`. Senza Banner da mostrare il blocco non compare; senza link non compare il pulsante. Il testo descrittivo è nascosto sugli schermi più piccoli: il messaggio essenziale deve essere chiaro anche nel titolo.
 
-La riga non permette di scegliere Banner diversi per ogni copia: ripeterla ripropone la stessa selezione. Per i campi consulta il [manuale Banner](Manuale-Gestione-Contenuti-Banner.md).
+Ogni riga ha il campo `Come scegliere i banner`: **Automatico** (i banner pubblicati per `Priorità` crescente, come è sempre stato) oppure **Manuale** (i banner che scegli in `Banner scelti`, nell'ordine in cui li scegli). In manuale, senza banner scelti la sezione non compare; un banner in bozza, nel cestino o senza la traduzione nella lingua della pagina non compare; si può scegliere lo stesso banner in due sezioni. `Numero massimo di elementi` (da 1 a 12; se vuoto, 3) vale **solo in modalità automatica**: in manuale compaiono tutti i banner scelti. La riga ha anche, se vuoi, un titolo in italiano e in inglese (`Titolo della sezione` e `Titolo della sezione ENG`, come il Video): compare solo se esiste nella lingua della pagina e se `Mostra il titolo della sezione` è su Sì; senza titolo i banner sono come sono sempre stati. Per i campi consulta il [manuale Banner](Manuale-Gestione-Contenuti-Banner.md).
 
 ### 8.16 Sponsor
 
@@ -250,9 +250,9 @@ Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazi
 
 ### 8.17 Video
 
-Mostra un video di presentazione con il player condiviso del tema, predisposto per YouTube. Inserisci l'indirizzo in `Configurazione > Layout HP > Home Page Video URL`, poi abilita `Video` in `Sezioni HP`, con o senza titolo.
+Mostra un video di presentazione con il player condiviso del tema, predisposto per YouTube. In `Configurazione > Sezioni HP` scegli `Video` e scrivi l'indirizzo nel campo `URL del video` della riga, poi abilita la sezione, con o senza titolo. Puoi scegliere lo sfondo della sezione, bianco o grigio chiaro (se non scegli, resta il grigio chiaro di prima). Quando la riga è chiusa il nome mostra il titolo italiano, se c'è, altrimenti il codice del video (per esempio `Video — Intervista` o `Video — aaaaaaaaaaa`), così le sezioni Video si distinguono.
 
-Senza URL la sezione non compare. L'indirizzo è unico, condiviso da tutte le eventuali copie e dalle due lingue: non è previsto qui un video diverso per ogni riga. Il player presenta il consenso ai cookie YouTube: la sola presenza del riquadro non significa che la riproduzione sia già attiva. Controlla avvio e consenso sul sito finale. Esempio: inserisci il video istituzionale del laboratorio; non presumere che qualsiasi URL video sia supportato.
+Ogni riga ha il suo video e, se vuoi, il suo titolo, in italiano e in inglese (`Titolo della sezione` e `Titolo della sezione ENG`, al massimo 120 caratteri): il titolo compare solo se esiste nella lingua della pagina (un titolo inglese mancante non viene sostituito da quello italiano) e solo se `Mostra il titolo della sezione` è su Sì; altrimenti la sezione non ha titolo. Puoi aggiungere più sezioni `Video` con indirizzi e titoli diversi. Senza URL la sezione non compare. L'indirizzo è lo stesso per le due lingue. Il campo `Home Page Video URL` che era in `Layout HP` non c'è più: dopo l'aggiornamento il video della home non si vede finché non scrivi l'indirizzo nella riga (il vecchio valore non viene copiato). Il player presenta il consenso ai cookie YouTube: la sola presenza del riquadro non significa che la riproduzione sia già attiva. Controlla avvio e consenso sul sito finale. Esempio: inserisci il video istituzionale del laboratorio; non presumere che qualsiasi URL video sia supportato.
 
 ### 8.18 Avvisi e controlli finali
 

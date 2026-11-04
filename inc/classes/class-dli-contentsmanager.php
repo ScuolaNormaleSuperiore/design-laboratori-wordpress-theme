@@ -1129,6 +1129,90 @@ class DLI_ContentsManager {
 	}
 
 	/**
+	 * The homepage sections that can be in the home more than once.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `repeatable` set to true: its copies
+	 * have their own data (a page, a video, a list of banners) and their own identifiers. A section without the key is
+	 * single, so a section added to the catalog and not declared is the safe one.
+	 *
+	 * @return array<string, true> Section id => true.
+	 */
+	public static function get_hp_sections_repeatable() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( ! empty( $section['repeatable'] ) ) {
+				$result[ $id ] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * The homepage sections that can be in the home only once: all those that are not repeatable.
+	 *
+	 * In Sezioni HP a single section that is already in another row is not offered again.
+	 *
+	 * @return string[] The ids of the sections.
+	 */
+	public static function get_hp_sections_single() {
+		return array_values( array_diff( array_keys( self::get_hp_sections() ), array_keys( self::get_hp_sections_repeatable() ) ) );
+	}
+
+	/**
+	 * The homepage sections that choose between the automatic banners and a list of banners, in their row of Sezioni HP.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `banner_mode` set to true. The fields
+	 * "Modalità" and "Banner scelti" of Sezioni HP are shown only for these sections.
+	 *
+	 * @return array<string, true> Section id => true.
+	 */
+	public static function get_hp_sections_with_banner_mode() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( ! empty( $section['banner_mode'] ) ) {
+				$result[ $id ] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * The homepage sections that have their own title, in Italian and in English, in their row of Sezioni HP.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `title` set to true. The fields
+	 * "Titolo della sezione" of Sezioni HP are shown only for these sections.
+	 *
+	 * @return array<string, true> Section id => true.
+	 */
+	public static function get_hp_sections_with_title() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( ! empty( $section['title'] ) ) {
+				$result[ $id ] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * The homepage sections that have their own video address in their row of Sezioni HP.
+	 *
+	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `video_url` set to true. The field
+	 * "URL del video" of Sezioni HP is shown only for these sections.
+	 *
+	 * @return array<string, true> Section id => true.
+	 */
+	public static function get_hp_sections_with_video_url() {
+		$result = array();
+		foreach ( self::get_hp_sections() as $id => $section ) {
+			if ( ! empty( $section['video_url'] ) ) {
+				$result[ $id ] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * The homepage sections that let the editor choose a page in their row of Sezioni HP.
 	 *
 	 * A section of the catalog (`DLI_HP_SECTIONS`) takes part by having the key `page_id` set to true. The field "Pagina"

@@ -103,6 +103,7 @@ require get_template_directory() . '/inc/pages.php';
  */
 require get_template_directory() . '/inc/home-sections.php';
 require get_template_directory() . '/inc/home-tabs.php';
+require get_template_directory() . '/inc/home-banners.php';
 require get_template_directory() . '/inc/featured-contents.php';
 
 /**

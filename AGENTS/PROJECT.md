@@ -41,7 +41,8 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Management of events, news, and publications sections on the home page
 - Home page tab panel with configurable tabs (text and linked pages, Italian and English)
 - Home page index of a chosen page (its subpages as columns, theirs as links), repeatable with different pages
-- Home page banner management
+- Home page banners, picked by priority or chosen by hand in each row of Sezioni HP, with an optional title in two languages
+- Home page video sections, each with its own YouTube address, title and background
 - Management of home page sponsors
 - Support for Italian and English languages
 - Integration with the Brevo newsletter management software

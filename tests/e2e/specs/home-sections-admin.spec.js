@@ -117,6 +117,43 @@ test( 'a new row has its arrows in the header and takes part in the reordering',
 	await expect( rows.nth( 2 ).locator( TITLE ) ).toContainText( 'Sezione 3 (Pubblicazioni)' );
 } );
 
+test( 'a section that can be in the home only once is not offered again, one that can be repeated always is', async ( { page } ) => {
+	await loginAsAdmin( page );
+	await page.goto( PAGE );
+	const rows = page.locator( ROWS );
+	const option = ( row, value ) => row.locator( `select[name$="[id]"] option[value="${ value }"]` );
+
+	// The baseline has "Contenuti in evidenza" and "Pubblicazioni": a new row does not offer them, and starts from the
+	// first section that is still available.
+	await page.locator( '#site_sections_repeat .cmb-add-group-row' ).click();
+	await expect( rows ).toHaveCount( 3 );
+	await expect( option( rows.nth( 2 ), 'featured_contents' ) ).toBeDisabled();
+	await expect( option( rows.nth( 2 ), 'publications_section' ) ).toBeDisabled();
+	await expect( option( rows.nth( 2 ), 'news_section' ) ).toBeEnabled();
+	const selected = await rows.nth( 2 ).locator( 'select[name$="[id]"]' ).inputValue();
+	await expect( option( rows.nth( 2 ), selected ) ).toBeEnabled();
+
+	// The section that a row has chosen stays available in that row, and the other rows do not offer it.
+	await expect( option( rows.nth( 0 ), 'featured_contents' ) ).toBeEnabled();
+	await rows.nth( 2 ).locator( 'select[name$="[id]"]' ).selectOption( 'news_section' );
+	await page.locator( '#site_sections_repeat .cmb-add-group-row' ).click();
+	await expect( option( rows.nth( 3 ), 'news_section' ) ).toBeDisabled();
+	await expect( option( rows.nth( 0 ), 'news_section' ) ).toBeDisabled();
+	await expect( option( rows.nth( 2 ), 'news_section' ) ).toBeEnabled();
+
+	// A section that can be repeated is always offered, also after it is chosen.
+	await rows.nth( 3 ).locator( 'select[name$="[id]"]' ).selectOption( 'video_section' );
+	await page.locator( '#site_sections_repeat .cmb-add-group-row' ).click();
+	await expect( option( rows.nth( 4 ), 'video_section' ) ).toBeEnabled();
+
+	// Taking a row away gives its section back to the others. Nothing is saved: the page is only reloaded.
+	page.once( 'dialog', ( dialog ) => dialog.accept() );
+	await rows.nth( 2 ).locator( '> .cmb-remove-group-row' ).click();
+	await expect( rows ).toHaveCount( 4 );
+	await expect( option( rows.nth( 0 ), 'news_section' ) ).toBeEnabled();
+	await page.goto( PAGE );
+} );
+
 test( 'swapping two rows with opposite values keeps every value, also after saving and reloading', async ( { page } ) => {
 	await loginAsAdmin( page );
 	await page.goto( PAGE );

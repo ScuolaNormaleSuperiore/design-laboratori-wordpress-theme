@@ -10,6 +10,7 @@
         <span class="d-block dli-brand-subtitle">Documentazione tecnica e operativa</span>
       </a>
       <div class="d-none d-md-flex align-items-center gap-2">
+        <button class="btn btn-sm dli-header-link" type="button" aria-expanded="false" aria-controls="dli-search-panel" data-dli-search-toggle>Cerca</button>
         <a class="btn btn-sm dli-header-link" href="https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a class="btn btn-sm dli-header-link" href="https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a" target="_blank" rel="noopener noreferrer">Catalogo riuso</a>
         <a class="btn btn-sm dli-header-link" href="https://sitofederato.sns.it" target="_blank" rel="noopener noreferrer">Demo</a>
@@ -17,3 +18,10 @@
     </div>
   </div>
 </header>
+<section id="dli-search-panel" class="dli-search-panel" hidden aria-label="Cerca nella documentazione">
+  <div class="container-fluid py-3">
+    <label class="visually-hidden" for="dli-search-input">Cerca nella documentazione</label>
+    <input id="dli-search-input" class="form-control" type="search" autocomplete="off" placeholder="Cerca nella documentazione">
+    <div id="dli-search-results" class="mt-3" aria-live="polite"></div>
+  </div>
+</section>

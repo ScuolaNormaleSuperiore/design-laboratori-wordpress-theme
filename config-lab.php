@@ -51,6 +51,10 @@ define( 'DLI_HP_PAGE_INDEX_DEFAULT_ITEMS', 4 );
 define( 'DLI_HP_PAGE_INDEX_DEFAULT_SUBITEMS', 6 );
 define( 'DLI_HP_ITEMS_MIN', 1 );
 define( 'DLI_HP_ITEMS_MAX', 12 );
+// The most characters of the title that a row of Sezioni HP can have (the section Video), in each language.
+define( 'DLI_HP_ROW_TITLE_MAX', 120 );
+// "Banner": the number of banners of the automatic mode when the row does not say (the manual mode gives all those chosen, at most DLI_HP_ITEMS_MAX).
+define( 'DLI_HP_BANNERS_DEFAULT_ITEMS', 3 );
 
 // Pagination.
 define( 'TECHNICAL_RESOURCES_PER_ROW', 2 );
@@ -405,6 +409,7 @@ define(
 				'max_items'    => DLI_HP_PAGE_INDEX_DEFAULT_ITEMS,
 				'max_subitems' => DLI_HP_PAGE_INDEX_DEFAULT_SUBITEMS,
 				'page_id'      => true,
+				'repeatable'   => true,
 			),
 		'tabs_section'            =>
 			array(
@@ -439,9 +444,13 @@ define(
 				),
 		'banners_section'         =>
 				array(
-					'id'       => 'banners_section',
-					'name'     => 'Banner',
-					'template' => 'template-parts/home/hp-banners-section',
+					'id'          => 'banners_section',
+					'name'        => 'Banner',
+					'template'    => 'template-parts/home/hp-banners-section',
+					'max_items'   => DLI_HP_BANNERS_DEFAULT_ITEMS,
+					'banner_mode' => true,
+					'title'       => true,
+					'repeatable'  => true,
 				),
 		'sponsors_section'        =>
 				array(
@@ -451,9 +460,13 @@ define(
 				),
 		'video_section'           =>
 			array(
-				'id'       => 'video_section',
-				'name'     => 'Video',
-				'template' => 'template-parts/home/hp-video-section',
+				'id'         => 'video_section',
+				'name'       => 'Video',
+				'template'   => 'template-parts/home/hp-video-section',
+				'background' => 'muted',
+				'video_url'  => true,
+				'title'      => true,
+				'repeatable' => true,
 			),
 	)
 );

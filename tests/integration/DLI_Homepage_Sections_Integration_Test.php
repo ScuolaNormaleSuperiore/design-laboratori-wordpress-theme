@@ -153,4 +153,29 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 			$this->assertContains( $default, array( 'white', 'muted' ), "Default background of {$section_id}." );
 		}
 	}
+
+	/**
+	 * Only the sections whose copies have their own data and identifiers can be in the home more than once.
+	 */
+	public function test_three_sections_can_be_repeated() {
+		$repeatable = array_keys( DLI_ContentsManager::get_hp_sections_repeatable() );
+		sort( $repeatable );
+
+		$this->assertSame( array( 'banners_section', 'page_index_section', 'video_section' ), $repeatable );
+	}
+
+	/**
+	 * Every other section is single, and a section nobody declared as repeatable is single too.
+	 */
+	public function test_the_other_sections_are_single() {
+		$all        = array_keys( DLI_HP_SECTIONS );
+		$repeatable = array_keys( DLI_ContentsManager::get_hp_sections_repeatable() );
+		$single     = DLI_ContentsManager::get_hp_sections_single();
+
+		$this->assertSame( array(), array_values( array_intersect( $single, $repeatable ) ), 'No section is both.' );
+		$this->assertEqualsCanonicalizing( $all, array_merge( $single, $repeatable ), 'Every section is one or the other.' );
+		foreach ( array( 'main_hero', 'site_description', 'main_carousel', 'featured_contents', 'card_navigation_section', 'page_navigation_section', 'tabs_section', 'events_section', 'news_section', 'publications_section', 'articles_section', 'sponsors_section' ) as $id ) {
+			$this->assertContains( $id, $single, "$id is single." );
+		}
+	}
 }

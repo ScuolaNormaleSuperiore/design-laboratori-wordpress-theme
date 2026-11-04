@@ -5,50 +5,33 @@
  * @package Design_Laboratori_Italia
  */
 
-$dli_section_enabled = $args['enabled'] ?? false;
-$dli_show_title      = $args['show_title'] ?? false;
+$dli_args            = isset( $args ) && is_array( $args ) ? $args : array();
+$dli_section_enabled = $dli_args['enabled'] ?? false;
+$dli_show_title      = ( 'true' === ( $dli_args['show_title'] ?? '' ) );
+$dli_instance        = isset( $dli_args['instance'] ) ? absint( $dli_args['instance'] ) : 1;
+$dli_block_id        = 'blocco-banner-' . $dli_instance;
+// The title is the one of the row in the language of the page, and is printed only when the row asks to show it: a
+// title missing in this language, or not to be shown, leaves the section without a title and without a name, as the
+// banners have always been.
+$dli_title      = dli_get_hp_row_title( $dli_args, dli_current_language() === DLI_IT_SLUG );
+$dli_show_title = $dli_show_title && '' !== $dli_title;
 
 if ( 'true' === $dli_section_enabled ) {
-	$dli_banners_query = new WP_Query(
-		array(
-			'post_type'              => array( BANNER_POST_TYPE ),
-			'post_status'            => 'publish',
-			'posts_per_page'         => 3,
-			'orderby'                => 'meta_value_num',
-			'meta_key'               => 'priorita',
-			'order'                  => 'ASC',
-			'no_found_rows'          => true,
-			'update_post_meta_cache' => true,
-			'update_post_term_cache' => false,
-		)
-	);
+	// The banners of the row: by priority or chosen by hand (see `dli_get_home_banners()`).
+	$dli_banners = dli_get_home_banners( $dli_args );
 
-	$dli_num_items = $dli_banners_query->post_count;
-	if ( $dli_num_items > 0 ) {
-		$dli_banner_ids = wp_list_pluck( $dli_banners_query->posts, 'ID' );
-		$dli_thumb_ids  = array_filter( array_map( 'get_post_thumbnail_id', $dli_banner_ids ) );
-		if ( ! empty( $dli_thumb_ids ) ) {
-			$dli_thumb_ids = array_map( 'absint', array_unique( $dli_thumb_ids ) );
-			update_meta_cache( 'post', $dli_thumb_ids );
-			get_posts(
-				array(
-					'post_type'              => 'attachment',
-					'post_status'            => 'inherit',
-					'post__in'               => $dli_thumb_ids,
-					'posts_per_page'         => count( $dli_thumb_ids ),
-					'orderby'                => 'post__in',
-					'no_found_rows'          => true,
-					'update_post_meta_cache' => true,
-					'update_post_term_cache' => false,
-				)
-			);
-		}
-
+	if ( ! empty( $dli_banners ) ) {
 		?>
+		<section id="<?php echo esc_attr( $dli_block_id ); ?>"<?php echo ( $dli_show_title ) ? ' aria-labelledby="' . esc_attr( $dli_block_id ) . '-title"' : ''; ?>>
+			<?php if ( $dli_show_title ) : ?>
+				<div class="container">
+					<h2 id="<?php echo esc_attr( $dli_block_id ); ?>-title" class="h3 pb-2"><?php echo esc_html( $dli_title ); ?></h2>
+				</div>
+			<?php endif; ?>
 		<div class="container-banner-home">
 			<?php
 			$dli_banner_index = 0;
-			foreach ( $dli_banners_query->posts as $dli_banner_post ) {
+			foreach ( $dli_banners as $dli_banner_post ) {
 				$dli_image_metadata = dli_get_image_metadata( $dli_banner_post, 'full', '/assets/img/yourimage.png' );
 				$dli_post_id        = $dli_banner_post->ID;
 				$dli_banner_meta    = get_post_meta( $dli_post_id );
@@ -56,7 +39,7 @@ if ( 'true' === $dli_section_enabled ) {
 				$dli_button_label   = isset( $dli_banner_meta['label_pulsante'][0] ) ? maybe_unserialize( $dli_banner_meta['label_pulsante'][0] ) : '';
 				$dli_button_link    = isset( $dli_banner_meta['link_pulsante'][0] ) ? maybe_unserialize( $dli_banner_meta['link_pulsante'][0] ) : '';
 				$dli_is_external    = ! empty( $dli_banner_meta['apri_in_nuova_finestra'][0] );
-				$dli_heading_id     = 'hero-school-title-' . absint( $dli_post_id );
+				$dli_heading_id     = 'hero-school-title-' . $dli_instance . '-' . absint( $dli_post_id );
 				$dli_banner_class   = 'it-hero-wrapper it-hero-small-size it-primary it-overlay' . ( $dli_banner_index > 0 ? ' mt-5' : '' );
 				++$dli_banner_index;
 				?>
@@ -104,6 +87,7 @@ if ( 'true' === $dli_section_enabled ) {
 			}
 			?>
 		</div>
+		</section>
 		<?php
 
 	}

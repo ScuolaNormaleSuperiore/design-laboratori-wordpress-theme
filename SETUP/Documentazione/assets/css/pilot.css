@@ -16,6 +16,8 @@
 .dli-brand-subtitle { margin-top: .2rem; font-size: .9rem; }
 .dli-navbar .dli-header-link { border: 1px solid #fff; color: #fff; font-weight: 600; }
 .dli-navbar .dli-header-link:hover, .dli-navbar .dli-header-link:focus { background: #fff; color: #004b85; }
+.dli-search-panel { background: #e8f1f8; border-bottom: 1px solid #b9c9d8; }
+.dli-search-panel .form-control { max-width: 48rem; }
 .dli-sidebar { border-right: 1px solid #d9e2ec; }
 .dli-links { padding: 2rem 1rem 2rem 0; }
 .dli-links .list-item { border-radius: 0; color: #17324d; font-weight: 600; }

@@ -107,10 +107,22 @@ Funzione: controlla quali sezioni homepage sono attive e il loro ordine.
 Campi principali (gruppo ripetibile `site_sections`):
 - `Sezione`
   tipo: `select`
-  funzione: identificativo della sezione da mostrare.
+  funzione: identificativo della sezione da mostrare. Una sezione che può stare in home una sola volta compare disattivata nelle altre righe quando è già scelta; Indice di una pagina, Video e Banner si possono ripetere. Una riga nuova parte dalla prima sezione ancora disponibile.
 - `Pagina` (solo per `Indice di una pagina`)
   tipo: `select`
   funzione: la pagina di cui la sezione mostra l'indice. Si sceglie fra le pagine pubblicate in italiano e senza password, con le sottopagine rientrate; una pagina già scelta che diventa bozza o protetta resta fra le scelte con l'indicazione «(non visibile)», così salvando non si perde. Con `Numero massimo di elementi` (colonne, vuoto = 4) e `Numero massimo di sottopagine per gruppo` (link per colonna, vuoto = 6) la sezione si può ripetere, ogni volta con una pagina diversa, anche con la stessa. I due campi sono gli stessi di altre sezioni (card, gruppi): sotto ciascuno una frase dice che cosa conta per ogni sezione. **Esempio con due indici:** aggiungere due righe `Indice di una pagina`, la prima con la pagina `Ricerca` (4 colonne, sfondo bianco) e la seconda con la pagina `Progetti` (2 colonne, 3 link per colonna, sfondo grigio chiaro): ogni riga ha i suoi valori e non cambia l'altra; a riga chiusa sono riconoscibili come `Sezione 3 (Indice di una pagina — Ricerca)` e `Sezione 4 (Indice di una pagina — Progetti)`, e si riordinano o si tolgono ciascuna per conto suo.
+- `URL del video` (solo per `Video`)
+  tipo: `text_url`
+  funzione: l'indirizzo (http o https) del video di YouTube di questa sezione. Ogni riga ha il suo. Senza indirizzo la sezione non compare. Sostituisce il campo `Home Page Video URL` di `Layout HP`, che non c'è più: il vecchio valore non viene copiato.
+- `Titolo della sezione` e `Titolo della sezione ENG` (solo per `Video` e `Banner`)
+  tipo: `text` (al massimo 120 caratteri)
+  funzione: titolo facoltativo della sezione, in italiano e in inglese. Compare solo se esiste nella lingua della pagina e se `Mostra il titolo della sezione` è su `Sì`; non c'è un titolo di ripiego e, quando non compare, la sezione non ha titolo nemmeno nascosto.
+- `Come scegliere i banner` (solo per `Banner`)
+  tipo: `radio_inline` (`Automatico` / `Manuale`)
+  funzione: `Automatico` mostra i banner pubblicati per `Priorità` crescente, `Manuale` quelli scelti in `Banner scelti`, nell'ordine in cui sono scelti.
+- `Banner scelti` (solo per `Banner`)
+  tipo: `pw_multiselect`
+  funzione: i banner della modalità manuale. Si scelgono fra i banner in italiano; sul sito inglese compare la traduzione e un banner senza traduzione non compare. Un banner già scelto che diventa bozza resta nell'elenco, segnato `(non visibile)`.
 - `Abilita la sezione`
   tipo: `radio_inline`
   funzione: attiva/disattiva la sezione in home.
@@ -119,7 +131,7 @@ Campi principali (gruppo ripetibile `site_sections`):
   funzione: mostra/nasconde il titolo della sezione.
 - `Sfondo sezione`
   tipo: `radio_inline` (`Bianco` / `Grigio chiaro`)
-  funzione: sfondo della sezione. Compare solo per le sezioni che lo prevedono; se non è impostato resta lo sfondo di default di quella sezione.
+  funzione: sfondo della sezione. Compare solo per le sezioni che lo prevedono (tra queste il `Video`); se non è impostato resta lo sfondo di default di quella sezione.
 
 Ogni riga, anche chiusa, mostra il numero e il nome della sezione scelta (per esempio `Sezione 1 (Pubblicazioni)`); per `Indice di una pagina` mostra anche la pagina scelta (per esempio `Sezione 3 (Indice di una pagina — Ricerca)`), così si distinguono più indici nella stessa home. A sinistra della riga ci sono le frecce su e giù per spostarla, poi la `✕` per rimuoverla.
 

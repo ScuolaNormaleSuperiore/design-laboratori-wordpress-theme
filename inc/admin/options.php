@@ -433,11 +433,12 @@ function dli_register_main_options_metabox() {
 				DLI_HP_ITEMS_MIN,
 				DLI_HP_ITEMS_MAX
 			) . ' ' . sprintf(
-				/* translators: 1: name of the section of the cards, 2: of the groups, 3: of the columns */
-				__( 'Sono le card di «%1$s», i gruppi di «%2$s» e le colonne di «%3$s».', 'design_laboratori_italia' ),
+				/* translators: 1: name of the section of the cards, 2: of the groups, 3: of the columns, 4: of the banners */
+				__( 'Sono le card di «%1$s», i gruppi di «%2$s», le colonne di «%3$s» e i banner di «%4$s» (solo in modalità automatica).', 'design_laboratori_italia' ),
 				__( 'Card di navigazione', 'design_laboratori_italia' ),
 				__( 'Navigazione per pagine', 'design_laboratori_italia' ),
-				__( 'Indice di una pagina', 'design_laboratori_italia' )
+				__( 'Indice di una pagina', 'design_laboratori_italia' ),
+				__( 'Banner', 'design_laboratori_italia' )
 			),
 			'type'            => 'text_small',
 			'sanitization_cb' => 'dli_sanitize_hp_max_items',
@@ -526,6 +527,92 @@ function dli_register_main_options_metabox() {
 			),
 		)
 	);
+	// The title of the section "Video", in Italian and in English, in its row, only for the sections that have the key
+	// `title` in the catalog. Both are optional: without a title the section keeps its own name, and a missing English
+	// title is the Italian one. The text is plain and cut at a fixed length, checked on the server too.
+	$title_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_title() ) );
+	foreach ( array(
+		'title'     => __( 'Titolo della sezione', 'design_laboratori_italia' ),
+		'title_eng' => __( 'Titolo della sezione ENG', 'design_laboratori_italia' ),
+	) as $title_field_id => $title_field_name ) {
+		$section_options->add_group_field(
+			$section_group_id,
+			array(
+				'id'              => $title_field_id,
+				'name'            => $title_field_name,
+				'desc'            => sprintf(
+					/* translators: %d: the most characters of the title */
+					__( 'Facoltativo, al massimo %d caratteri. Se è vuoto, o se manca nella lingua della pagina, la sezione non ha titolo. Si vede solo se «Mostra il titolo della sezione» è su Sì.', 'design_laboratori_italia' ),
+					DLI_HP_ROW_TITLE_MAX
+				),
+				'type'            => 'text',
+				'sanitization_cb' => 'dli_sanitize_hp_row_title',
+				'attributes'      => array(
+					'maxlength'              => (string) DLI_HP_ROW_TITLE_MAX,
+					'data-conditional-id'    => 'id',
+					'data-conditional-value' => '' !== $title_sections ? $title_sections : '__nessuna__',
+				),
+			)
+		);
+	}
+	// The section "Banner" picks its banners by priority (the way it has always been) or from a list chosen by hand, in
+	// order. Both fields are shown only for the sections that have the key `banner_mode` in the catalog; the mode and
+	// the list are checked on the server too, and the number of banners is the field "Numero massimo di elementi".
+	$banner_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_banner_mode() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'banner_mode',
+			'name'            => __( 'Come scegliere i banner', 'design_laboratori_italia' ),
+			'desc'            => __( 'Automatico: i banner pubblicati, nell\'ordine del campo «Priorità». Manuale: i banner che scegli qui sotto, nell\'ordine in cui li scegli.', 'design_laboratori_italia' ),
+			'type'            => 'radio_inline',
+			'default'         => 'automatic',
+			'options'         => array(
+				'automatic' => __( 'Automatico', 'design_laboratori_italia' ),
+				'manual'    => __( 'Manuale', 'design_laboratori_italia' ),
+			),
+			'sanitization_cb' => 'dli_sanitize_hp_banner_mode',
+			'attributes'      => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $banner_sections ? $banner_sections : '__nessuna__',
+			),
+		)
+	);
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'banner_ids',
+			'name'            => __( 'Banner scelti', 'design_laboratori_italia' ),
+			'desc'            => __( 'Usati solo nella modalità manuale. Si scelgono fra i banner in italiano; sul sito inglese compare la traduzione, e un banner senza traduzione non compare.', 'design_laboratori_italia' ),
+			'type'            => 'pw_multiselect',
+			'options_cb'      => 'dli_get_banners_for_select',
+			'sanitization_cb' => 'dli_sanitize_hp_id_list',
+			'attributes'      => array(
+				'placeholder'            => __( 'Scegli i banner', 'design_laboratori_italia' ),
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $banner_sections ? $banner_sections : '__nessuna__',
+			),
+		)
+	);
+	// The address of the video of the section "Video", in its row, only for the sections that have the key `video_url`
+	// in the catalog. Each copy of the section has its own video; an empty address means no section. The value is a
+	// web address, checked on the server too.
+	$video_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_video_url() ) );
+	$section_options->add_group_field(
+		$section_group_id,
+		array(
+			'id'              => 'video_url',
+			'name'            => __( 'URL del video', 'design_laboratori_italia' ),
+			'desc'            => __( 'L\'indirizzo del video di YouTube (http o https) da mostrare in questa sezione. Senza indirizzo la sezione non compare.', 'design_laboratori_italia' ),
+			'type'            => 'text_url',
+			'protocols'       => array( 'http', 'https' ),
+			'sanitization_cb' => 'dli_sanitize_hp_video_url',
+			'attributes'      => array(
+				'data-conditional-id'    => 'id',
+				'data-conditional-value' => '' !== $video_sections ? $video_sections : '__nessuna__',
+			),
+		)
+	);
 	// The background can be chosen only for the sections that support it (key `background` of the catalog);
 	// when none does, the value never matches, so the field stays hidden. The value is sanitized on the server too.
 	$background_sections = implode( ',', array_keys( DLI_ContentsManager::get_hp_sections_with_background() ) );
@@ -573,22 +660,8 @@ function dli_register_main_options_metabox() {
 	/**
 	* 4 - Registers options page "Home".
 	*/
-	// *** SEZIONE VIDEO (HOMEPAGE) ***
-	$home_options->add_field(
-		array(
-			'id'   => $prefix . 'home_page_video',
-			'name' => __( 'Video in Home Page', 'design_laboratori_italia' ),
-			'type' => 'title',
-		)
-	);
-	$home_options->add_field(
-		array(
-			'id'   => $prefix . 'home_page_video_url',
-			'name' => 'Home Page Video URL',
-			'desc' => __( 'URL del video da mostrare nella Home Page', 'design_laboratori_italia' ),
-			'type' => 'text_url',
-		)
-	);
+	// The video of the home is in the row of the section "Video" of Sezioni HP (field `video_url`). The old option
+	// `home_page_video_url` of this page stays in the saved options, unread, so that nothing is deleted.
 
 	// *** SEZIONE MAIN HERO (HOMEPAGE) ***
 	$home_options->add_field(
@@ -3467,6 +3540,12 @@ function dli_enqueue_options_script_after_cmb2() {
 			'moveTabUp'   => __( 'Sposta il tab in alto', 'design_laboratori_italia' ),
 			'moveTabDown' => __( 'Sposta il tab in basso', 'design_laboratori_italia' ),
 		)
+	);
+	// The sections that can be in the home only once: a row of Sezioni HP does not offer the ones already in another row.
+	wp_localize_script(
+		'dli_options_dialog',
+		'dliHpSections',
+		array( 'single' => DLI_ContentsManager::get_hp_sections_single() )
 	);
 }
 add_action( 'cmb2_footer_enqueue', 'dli_enqueue_options_script_after_cmb2' );

@@ -36,6 +36,16 @@ function navigation( pages ) {
 	} ) );
 }
 
+function searchText( markdown ) {
+	return markdown
+		.replace( /^---[\s\S]*?---\s*/u, '' )
+		.replace( /```[\s\S]*?```/gu, ' ' )
+		.replace( /!?(\[[^\]]*\])\([^)]*\)/gu, '$1' )
+		.replace( /[`*_#>|]/gu, ' ' )
+		.replace( /\s+/gu, ' ' )
+		.trim();
+}
+
 function buildSource() {
 	if ( ! fs.existsSync( bootstrapDirectory ) ) {
 		throw new Error( 'Bootstrap Italia non e\' disponibile in node_modules. Eseguire npm ci dalla radice del tema.' );
@@ -50,6 +60,15 @@ function buildSource() {
 	copy( path.join( toolingDirectory, '_layouts' ), path.join( sourceDirectory, '_layouts' ) );
 	copy( path.join( toolingDirectory, '_includes' ), path.join( sourceDirectory, '_includes' ) );
 	copy( path.join( toolingDirectory, 'assets' ), path.join( sourceDirectory, 'assets' ) );
+	fs.writeFileSync(
+		path.join( sourceDirectory, 'assets', 'search-index.json' ),
+		JSON.stringify( selection.pages.map( ( page ) => ( {
+			title: page.title,
+			description: page.description,
+			url: page.url === '/' ? '/' : `${page.url}/`,
+			text: searchText( fs.readFileSync( page.absolute, 'utf8' ) ),
+		} ) ), null, 2 ) + '\n'
+	);
 	for ( const directory of [ 'css', 'js', 'fonts', 'svg' ] ) {
 		copy( path.join( bootstrapDirectory, directory ), path.join( sourceDirectory, 'assets', 'vendor', 'bootstrap-italia', directory ) );
 	}

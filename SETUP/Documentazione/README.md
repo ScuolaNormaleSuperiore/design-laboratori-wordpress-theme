@@ -15,6 +15,8 @@ completo su entrambe le piattaforme.
 `UPSTREAM.md` fissa tag, commit, licenza e perimetro del layout Bootstrap
 Italia da derivare.
 
+In breve: Node prepara e controlla i materiali; Jekyll/Ruby rende il sito HTML.
+
 ## Strumenti riutilizzabili
 
 - `site-manifest.json`: selezione tecnica provvisoria di due guide esistenti,
