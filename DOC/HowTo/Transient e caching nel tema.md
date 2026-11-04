@@ -77,16 +77,13 @@ librerie vendor):
 | `dli_get_all_place_types_with_results()` | `inc/utils.php` | Tipi di luogo con almeno un contenuto pubblicato | `dli_place_types_with_results` | `save_post_{PLACE_POST_TYPE}` |
 | `dli_get_all_categories_by_ct()` | `inc/utils.php` | Categorie/termini con almeno un contenuto pubblicato, per tassonomia + post type | hash di tassonomia+post type+stato (`dli_get_categories_by_ct_cache_key()`) | `save_post` generico, filtrato per post type tramite la mappa `DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE` in `inc/actions.php` |
 | `dli_search_autocomplete_suggest()` | `inc/search-autocomplete.php` | Suggerimenti per lingua, testo cercato, limite e tipi di contenuto | `dli_suggest_` + hash dei parametri | Scadenza configurabile; nessuna invalidazione al salvataggio dei contenuti |
-| `DLI_Tools_Admin::handle_example_content_post()` / `render_example_content_report()` | `inc/admin/class-dli-tools-admin.php` | Esito della creazione/rimozione delle pagine di esempio, fra invio del form e pagina di ritorno | `dli_example_report_` + ID utente | Eliminato dopo la lettura; scadenza di un minuto |
 
 Le prime due usano un TTL di 24 ore (`DAY_IN_SECONDS`) come rete di sicurezza,
 oltre all'invalidazione esplicita al salvataggio dei contenuti interessati.
 La cache dei suggerimenti dura 10 minuti di default, configurabili da 0 a
 1440 in `Configurazione → Altro`; `0` la disattiva. Una modifica ai contenuti
 può quindi riflettersi nei suggerimenti solo alla scadenza della cache.
-Il report delle pagine di esempio è invece un messaggio temporaneo per il
-singolo utente, non una cache di query. Non esiste un layer di caching
-generale condiviso da queste funzioni.
+Non esiste un layer di caching generale condiviso da queste funzioni.
 
 ### Cosa succede quando si aggiunge un nuovo contenuto: `dli_get_all_place_types_with_results()`
 

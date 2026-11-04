@@ -596,61 +596,29 @@ class DLI_Page_File_Importer_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
-	 * The two example files make the same pages as the old example tool: same addresses, titles, summaries, order,
-	 * parents, flags and translations. This test goes with the old tool when it is removed.
+	 * The two example files make the example: 15 pages per language, 4 main pages, 7 promoted to the home, one with the cards.
 	 */
-	public function test_the_example_files_make_the_pages_of_the_old_example_tool() {
+	public function test_the_example_files_make_the_example_site() {
 		$this->add_english();
 		$author = $this->login_administrator();
-
-		$snapshot = function () {
-			$pages = array();
-			foreach ( get_posts(
-				array(
-					'post_type'        => 'page',
-					'post_status'      => 'any',
-					'numberposts'      => -1,
-					'suppress_filters' => true,
-				)
-			) as $page ) {
-				$translations = pll_get_post_translations( $page->ID );
-				$pages[ pll_get_post_language( $page->ID ) . ':' . get_page_uri( $page->ID ) ] = array(
-					'title'        => $page->post_title,
-					'excerpt'      => $page->post_excerpt,
-					'order'        => $page->menu_order,
-					'status'       => $page->post_status,
-					'parent'       => $page->post_parent ? get_page_uri( $page->post_parent ) : '',
-					'promote'      => (string) get_post_meta( $page->ID, 'promuovi_in_home', true ),
-					'cards'        => (string) get_post_meta( $page->ID, 'mostra_sottopagine_a_card', true ),
-					'translations' => array_map( 'get_page_uri', $translations ),
-				);
-			}
-			ksort( $pages );
-
-			// The order counts among the siblings: the old tool numbers from 0 and the files from 1, so the position is compared.
-			$groups = array();
-			foreach ( $pages as $key => $page ) {
-				$groups[ substr( $key, 0, 3 ) . $page['parent'] ][ $key ] = $page['order'];
-			}
-			foreach ( $groups as $siblings ) {
-				asort( $siblings );
-				foreach ( array_keys( $siblings ) as $position => $key ) {
-					$pages[ $key ]['order'] = $position;
-				}
-			}
-			return $pages;
-		};
-
-		DLI_Example_Content::create( array( 'it', 'en' ), $author );
-		$old = $snapshot();
-		DLI_Example_Content::remove();
-		$this->assertSame( array(), $snapshot(), 'The old pages are gone.' );
 
 		DLI_Page_File_Importer::import( $this->pages_of( 'pages-example-it.csv' ), 'it', false, $author );
 		DLI_Page_File_Importer::import( $this->pages_of( 'pages-example-en.csv' ), 'en', false, $author );
 
-		$this->assertCount( 30, $old );
-		$this->assertSame( $old, $snapshot() );
+		$pages = $this->imported_pages();
+		$this->assertCount( 30, $pages );
+
+		$roots    = 0;
+		$promoted = 0;
+		$cards    = 0;
+		foreach ( $pages as $page_id ) {
+			$roots    += get_post( $page_id )->post_parent ? 0 : 1;
+			$promoted += '1' === (string) get_post_meta( $page_id, 'promuovi_in_home', true ) ? 1 : 0;
+			$cards    += '1' === (string) get_post_meta( $page_id, 'mostra_sottopagine_a_card', true ) ? 1 : 0;
+		}
+		$this->assertSame( 8, $roots, 'Four main pages per language.' );
+		$this->assertSame( 14, $promoted, 'Seven pages per language are promoted to the home.' );
+		$this->assertSame( 2, $cards, 'One page per language shows its subpages as cards.' );
 	}
 
 	/**

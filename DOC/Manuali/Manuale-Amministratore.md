@@ -81,8 +81,8 @@ La libreria dei campi di configurazione (CMB2) è inclusa nel tema in `inc/vendo
 I passi (copia del tema, attivazione, plugin, Polylang, dati di attivazione, menu, configurazione) sono nel capitolo «Installazione e configurazione del tema» del `README.md`. Strumenti utili in **WP → Strumenti DLI**:
 
 - **Utilità → Ricarica i dati di attivazione:** crea pagine, menu e tassonomie predefinite;
-- **Utilità → Pagine di esempio:** crea (e rimuove) pagine finte per provare le sezioni della home che elencano pagine. Non usarlo su un sito di produzione;
-- **Importa:** avvio manuale degli import.
+- **Importa → Pagine:** crea l'albero delle pagine del sito (fino a tre livelli e 200 pagine) da un file CSV, con simulazione e conferma prima della scrittura. Dalla stessa pagina si scaricano un modello vuoto e due esempi dimostrativi (italiano e inglese), che servono anche a provare le sezioni della home che elencano pagine: non importarli su un sito di produzione. Le pagine create sono pubblicate subito, e non si modificano né si cancellano pagine già esistenti: un indirizzo già usato blocca l'importazione. Prima di importare su un sito reale conviene fare un backup;
+- **Importa → Persone, Indico, Iris:** avvio manuale degli altri import.
 
 ## 8. Note di architettura (per chi valuta il riuso)
 La descrizione completa è in `AGENTS/ARCHITECTURE.md`. In breve:

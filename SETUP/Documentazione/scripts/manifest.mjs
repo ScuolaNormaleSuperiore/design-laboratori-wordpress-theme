@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /** Validate a repository-relative, explicitly selected documentation source. */
-function sourceFile(source, root, tracked) {
+export function sourceFile(source, root, tracked) {
 	if (typeof source !== 'string' || !source.startsWith('DOC/') || /[\\:%\x00-\x1f]/.test(source) || source.split('/').some((part) => !part || part === '.' || part === '..')) {
 		throw new Error(`Sorgente non ammessa: ${source}`);
 	}

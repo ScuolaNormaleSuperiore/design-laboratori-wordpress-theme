@@ -177,7 +177,7 @@ Quali pagine compaiono nelle sezioni della home che elencano pagine (`Card di na
 
 Le pagine collegate di `Pannello tab` non dipendono dall'albero né dal campo `Promuovi in Home`: sono quelle scelte tab per tab. `Indice di una pagina` dipende dall'albero della pagina scelta nella riga, non dal campo `Promuovi in Home`.
 
-Esempio, con le pagine create da `Strumenti DLI > Utilità > Pagine di esempio` (in italiano; `*` = `Promuovi in Home` acceso):
+Esempio, con le pagine create dall'esempio italiano di `Strumenti DLI > Importa > Pagine` (in italiano; `*` = `Promuovi in Home` acceso):
 
 ```
 Open Access *

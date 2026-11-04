@@ -45,6 +45,7 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Management of home page sponsors
 - Support for Italian and English languages
 - Integration with the Brevo newsletter management software
+- Import of a hierarchical tree of pages from a CSV file (Strumenti DLI → Importa → Pagine), with simulation and confirmation
 - Import of events from Indico
 - Import of patents from IRIS
 - PWA manifest (installable name/icon, no service worker)
