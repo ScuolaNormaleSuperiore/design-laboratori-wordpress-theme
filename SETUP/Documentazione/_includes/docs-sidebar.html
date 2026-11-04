@@ -1,0 +1,15 @@
+<nav class="collapse d-md-block dli-links" id="dli-docs-nav" aria-label="Documentazione">
+  <div class="sidebar-wrapper it-line-right-side">
+    <h2 class="h4">Documentazione</h2>
+    <div class="link-list-wrapper">
+      <ul class="link-list">
+        {% for item in site.data.pilot-nav %}
+          {% assign item_url = item.target | replace: '.md', '/' | replace: 'index/', '' %}
+          <li><a class="list-item{% if page.pilot_target == item.target %} active{% endif %}"{% if page.pilot_target == item.target %} aria-current="page"{% endif %} href="{{ item_url | relative_url }}"><span>{{ item.title }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <hr>
+    <p class="small mb-0">Menu temporaneo generato dalle guide selezionate per il pilota.</p>
+  </div>
+</nav>

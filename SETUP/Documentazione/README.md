@@ -77,6 +77,28 @@ Il server si arresta con Ctrl+C e richiede rigenerazione esplicita dopo le
 modifiche. Serve file statici via HTTP e gestisce il MIME `.mjs`.
 Non promette funzionamento completo aprendo le pagine con `file://`.
 
+## Pilota visivo temporaneo
+
+Il pilota della Fase 3 genera un input temporaneo dalle due guide gia'
+selezionate nel manifest. Non e' il comando definitivo della documentazione:
+non aggiunge ricerca, non stabilisce URL pubblici e non sostituisce la futura
+preparazione della Fase 4.
+
+Da PowerShell, nella radice del tema:
+
+```powershell
+node SETUP/Documentazione/scripts/build-pilot.mjs
+Push-Location SETUP/Documentazione
+bundle exec jekyll build --config _config.yml --source .build/pilot-source --destination .build/pilot
+Pop-Location
+$env:DLI_DOCS_OUTPUT = 'pilot'
+node SETUP/Documentazione/scripts/preview.mjs
+```
+
+Aprire `http://127.0.0.1:8085/` e arrestare il server con `Ctrl+C`.
+Il generatore copia nell'output i file locali della distribuzione npm
+Bootstrap Italia fissata; non carica CDN, analytics o ricerca esterna.
+
 ## Dipendenze e distribuzione
 
 `vendor/`, `.bundle/`, cache Jekyll e `.build/` sono ignorati localmente; non

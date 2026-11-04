@@ -1,0 +1,47 @@
+/*
+ * Pilot documentation layout derived from the structure of Bootstrap Italia
+ * v3.0.0-beta.7 (_layouts/docs.html and docs SCSS components).
+ * Upstream attribution and the exact ref are recorded in UPSTREAM.md.
+ */
+
+.dli-docs {
+  --bsi-font-sans: 'Titillium Web', 'Titillium Sans Pro', sans-serif;
+  background: #fff;
+  color: #17324d;
+  font-family: var(--bsi-font-sans);
+}
+.dli-skiplink { position: absolute; z-index: 1100; left: 1rem; top: 1rem; padding: .75rem 1rem; background: #fff; color: #17324d; }
+.dli-navbar { min-height: 5.75rem; background: #005a9c; }
+.dli-brand-title { font-size: 1.45rem; font-weight: 700; line-height: 1.1; }
+.dli-brand-subtitle { margin-top: .2rem; font-size: .9rem; }
+.dli-sidebar { border-right: 1px solid #d9e2ec; }
+.dli-links { padding: 2rem 1rem 2rem 0; }
+.dli-links .list-item { border-radius: 0; color: #17324d; font-weight: 600; }
+.dli-links .list-item.active { background: #e8f1f8; border-left: .25rem solid #005a9c; color: #004b85; }
+.dli-content { max-width: 56rem; }
+.dli-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.12; margin-bottom: 2rem; }
+.dli-content h2 { border-top: 1px solid #d9e2ec; font-size: 1.65rem; margin-top: 3rem; padding-top: 1.25rem; }
+.dli-content h3 { font-size: 1.3rem; margin-top: 2rem; }
+.dli-content p, .dli-content li { font-size: 1.08rem; line-height: 1.65; }
+.dli-content table { display: table; margin: 1.5rem 0; width: 100%; }
+.dli-content th { background: #e8f1f8; }
+.dli-content th, .dli-content td { border: 1px solid #b9c9d8; padding: .8rem; vertical-align: top; }
+.dli-content pre { background: #17324d; border-radius: .25rem; color: #fff; padding: 1rem; }
+.dli-content code { color: #842029; }
+.dli-content pre code { color: inherit; }
+.dli-toc { border-left: 1px solid #d9e2ec; padding-top: 2rem; }
+.dli-toc .sidebar-wrapper { position: sticky; top: 1rem; }
+.dli-toc ul { list-style: none; margin: 0; padding-left: 0; }
+.dli-toc li { margin-bottom: .55rem; }
+.dli-toc a { color: #005a9c; text-decoration: none; }
+.dli-footer { background: #17324d; color: #fff; font-size: .9rem; }
+
+@media (max-width: 767.98px) {
+  .dli-navbar { min-height: 4.75rem; }
+  .dli-brand-title { font-size: 1.1rem; }
+  .dli-brand-subtitle { font-size: .75rem; }
+  .dli-sidebar { border-bottom: 1px solid #d9e2ec; border-right: 0; }
+  .dli-links { padding: 1rem 0; }
+  .dli-content { padding-left: 1rem; padding-right: 1rem; }
+  .dli-content table { display: block; overflow-x: auto; white-space: normal; }
+}

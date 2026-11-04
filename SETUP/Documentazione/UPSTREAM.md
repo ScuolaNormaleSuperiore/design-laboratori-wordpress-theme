@@ -34,6 +34,24 @@ Per il pilota si importeranno solo i file effettivamente necessari, con nomi
 e identita' del progetto sostituiti. Ogni file importato sara' aggiunto qui
 con percorso upstream, hash e modifica locale.
 
+### Pilota Fase 3
+
+Il pilota implementa in locale, adattandola al progetto, la gerarchia del
+layout upstream `docs.html`: skiplink, header, menu mobile, sidebar, contenuto,
+indice e footer. I template locali sono `_layouts/docs.html` e gli include
+`docs-*.html`, `head.html`, `footer.html`, `scripts.html`; non sono copie
+letterali dell'identita' o dei link Bootstrap Italia.
+
+`assets/css/pilot.css` deriva le regole essenziali di navigazione, contenuto,
+sidebar, indice e skiplink dai componenti SCSS della documentazione upstream.
+Il suo entrypoint upstream e' `docs/assets/src/scss/docs.scss`, SHA-256
+`50058caeb994071aa1b730235d590eee3090784e2dc11131389d11c477560b59`.
+
+`scripts/build-pilot.mjs` copia **solo nell'output ignorato** `.build/pilot-source`
+la distribuzione npm locale corrispondente: `dist/css`, `dist/js`, `dist/fonts`
+e `dist/svg`. Nessun asset della libreria viene duplicato o versionato sotto
+questo tooling. La fonte effettiva e' `node_modules/bootstrap-italia` 3.0.0-beta.7.
+
 ## Esclusioni deliberate
 
 Non riusare nel sito del progetto: topbar con identita' del Dipartimento/AgID,

@@ -13,6 +13,10 @@ kramdown:
 permalink: pretty
 encoding: UTF-8
 
+# The pilot source is regenerated for every build. Keeping Jekyll's cache out
+# of it avoids Windows filesystem failures without changing generated HTML.
+disable_disk_cache: true
+
 plugins:
   - jekyll-toc
 

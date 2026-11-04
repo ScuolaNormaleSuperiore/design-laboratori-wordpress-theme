@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'it' }}">
+  <head>{% include head.html %}</head>
+  <body class="dli-docs">
+    <a class="visually-hidden-focusable dli-skiplink" href="#content">Vai al contenuto principale</a>
+    {% include docs-navbar.html %}
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+        <aside class="col-12 col-md-3 col-xl-2 dli-sidebar">{% include docs-sidebar.html %}</aside>
+        {% if page.toc %}{% include docs-toc.html %}{% endif %}
+        <main id="content" class="col-12 col-md-9 col-xl-8 py-4 px-md-4 dli-content">
+          <span class="badge bg-secondary mb-3">Anteprima</span>
+          <h1 class="dli-title">{{ page.title | smartify }}</h1>
+          {{ content }}
+        </main>
+      </div>
+    </div>
+    {% include footer.html %}
+    {% include scripts.html %}
+  </body>
+</html>
