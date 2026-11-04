@@ -33,22 +33,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [Non rilasciato]
+## [2.0.5] - 2026-11-04
 ## Aggiunto
 - Strumenti DLI → Importa → Pagine: importazione di un albero di pagine (fino a tre livelli e 200 pagine) da un file CSV, con simulazione, conferma, report e riesecuzione senza duplicati; lingua scelta nel modulo, traduzioni collegate tramite `page_key`, testo Lorem ipsum facoltativo, modello e due esempi scaricabili.
-## Rimosso
-- Strumenti DLI → Utilità: lo strumento «Pagine di esempio», sostituito dagli esempi scaricabili di Importa → Pagine. Le pagine create in precedenza non vengono toccate.
-## Corretto
-- Gli stili di Strumenti DLI si caricano ora anche nelle pagine Importa e Utilità quando il menu ha il titolo italiano; il modulo di Persone non sborda più a 320 px.
-
-
-## [2.0.5] - 2026-11-03
 ## Modificato
 - Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (correzioni di sicurezza e di salvataggio, compatibilità con PHP 8.2-8.4).
 - Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta e i due limiti spiegano che cosa contano.
 ## Rimosso
+- Strumenti DLI → Utilità: lo strumento «Pagine di esempio», sostituito dagli esempi scaricabili di Importa → Pagine (le pagine create in precedenza non vengono toccate).
 - Estensione CMB2 Leaflet Geocoder, non usata dal tema (le mappe dei Luoghi usano ACF OpenStreetMap Field).
 ## Corretto
+- Gli stili di Strumenti DLI si caricano anche nelle pagine Importa e Utilità quando il menu ha il titolo italiano; il modulo di Persone non sborda più a 320 px.
 - Campo «Articoli collegati» (Attached Posts): il link di modifica non diventa più «1».
 - Carousel Eventi in home: frecce dentro lo schermo su telefono e tablet, senza scorrimento orizzontale a 320 px.
 ## Sicurezza

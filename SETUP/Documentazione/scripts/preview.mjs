@@ -48,7 +48,11 @@ export function createPreviewServer(directory, basePath = '/') {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-	const output = fileURLToPath(new URL('../.build/pilot/', import.meta.url));
+	const outputName = process.env.DLI_DOCS_OUTPUT || 'pilot';
+	if (!/^[a-zA-Z0-9_-]+$/.test(outputName)) {
+		throw new Error('DLI_DOCS_OUTPUT deve essere il nome semplice di una directory sotto .build');
+	}
+	const output = fileURLToPath(new URL(`../.build/${outputName}/`, import.meta.url));
 	const port = Number(process.env.DLI_DOCS_PORT || 8085);
 	if (!Number.isInteger(port) || port < 1024 || port > 65535) {
 		throw new Error('DLI_DOCS_PORT deve essere una porta fra 1024 e 65535');
@@ -59,5 +63,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
 		console.error(`Anteprima non avviabile sulla porta ${port}: ${error.message}`);
 		process.exitCode = 1;
 	});
-	server.listen(port, '127.0.0.1', () => console.log(`Pilota tecnico: http://127.0.0.1:${port}${basePath} — Ctrl+C per arrestare; rigenerare dopo le modifiche.`));
+	server.listen(port, '127.0.0.1', () => console.log(`Anteprima ${outputName}: http://127.0.0.1:${port}${basePath} — Ctrl+C per arrestare; rigenerare dopo le modifiche.`));
 }

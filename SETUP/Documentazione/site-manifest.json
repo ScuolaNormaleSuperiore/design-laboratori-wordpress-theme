@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"repository": {
+		"name": "ScuolaNormaleSuperiore/design-laboratori-wordpress-theme",
+		"ref": "dev"
+	},
+	"pages": [
+		{
+			"source": "DOC/HowTo/REST-API.md",
+			"target": "index.md",
+			"title": "Web service esposti nel tema"
+		},
+		{
+			"source": "DOC/HowTo/Personalizzazione-stile.md",
+			"target": "personalizzazione_stile.md",
+			"title": "Personalizzazione dello stile"
+		}
+	],
+	"assets": [],
+	"github_documents": []
+}

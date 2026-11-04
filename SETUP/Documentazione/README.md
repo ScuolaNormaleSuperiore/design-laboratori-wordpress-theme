@@ -84,50 +84,6 @@ navigazione pubblica restano attività successive del Lotto 1.
 Daux 0.26.1 normalizza gli URL dei file convertendo i trattini in underscore:
 questa regola è già riflessa nei `target` del manifest tecnico.
 
-## Preparare le guide reali selezionate
-
-Il manifest `site-manifest.json` seleziona al momento due guide correnti,
-esclusivamente per verificare il preparatore: non è ancora la navigazione
-pubblica della documentazione. Il comando legge i soli file `DOC/` versionati
-ed elencati, crea una copia temporanea e riscrive i link alle risorse non
-incluse come collegamenti GitHub al ref dichiarato nel manifest:
-
-```sh
-node SETUP/Documentazione/scripts/prepare.mjs --manifest=SETUP/Documentazione/site-manifest.json --destination=SETUP/Documentazione/.build/real-source
-```
-
-Il risultato sotto `.build/real-source/` è rigenerabile e non va modificato
-a mano. I test mirati del preparatore si eseguono con:
-
-```sh
-node --test tests/documentation/manifest.test.mjs tests/documentation/prepare.test.mjs
-```
-
-La trasformazione di questa copia in HTML Daux, i comandi `docs:*` e la
-navigazione pubblica restano attività successive del Lotto 1.
-
-## Preparare le guide reali selezionate
-
-Il manifest `site-manifest.json` seleziona al momento due guide correnti,
-esclusivamente per verificare il preparatore: non è ancora la navigazione
-pubblica della documentazione. Il comando legge i soli file `DOC/` versionati
-ed elencati, crea una copia temporanea e riscrive i link alle risorse non
-incluse come collegamenti GitHub al ref dichiarato nel manifest:
-
-```sh
-node SETUP/Documentazione/scripts/prepare.mjs --manifest=SETUP/Documentazione/site-manifest.json --destination=SETUP/Documentazione/.build/real-source
-```
-
-Il risultato sotto `.build/real-source/` è rigenerabile e non va modificato
-a mano. I test mirati del preparatore si eseguono con:
-
-```sh
-node --test tests/documentation/manifest.test.mjs tests/documentation/prepare.test.mjs
-```
-
-La trasformazione di questa copia in HTML Daux, i comandi `docs:*` e la
-navigazione pubblica restano attività successive del Lotto 1.
-
 I due test browser servono l'HTML generato su una porta temporanea di
 localhost: radice e sottopercorso Pages. Verificano navigazione, ancora,
 immagine e ricerca con risultato atteso; rifiutano risorse esterne e rilevano
@@ -136,9 +92,16 @@ non effettuano login e non ripristinano database.
 
 ## Anteprima manuale
 
-Dopo la generazione:
+Per il pilota su fixture (predefinito):
 
 ```sh
+node SETUP/Documentazione/scripts/preview.mjs
+```
+
+Per l'output delle guide reali selezionate:
+
+```powershell
+$env:DLI_DOCS_OUTPUT = 'real'
 node SETUP/Documentazione/scripts/preview.mjs
 ```
 
@@ -148,6 +111,8 @@ una porta libera; con `DLI_DOCS_BASE_PATH=/design-laboratori-wordpress-theme/`
 il sito è disponibile sotto quel percorso, non alla radice. Le variabili
 sono di sessione: PowerShell usa `$env:DLI_DOCS_PORT = '8086'`, Linux
 `DLI_DOCS_PORT=8086 node SETUP/Documentazione/scripts/preview.mjs`.
+`DLI_DOCS_OUTPUT` accetta solo il nome di una cartella sotto `.build/` e vale
+`pilot` quando non è impostata.
 
 Il server serve soltanto l'output statico e gestisce il MIME `.mjs`.
 Non promette la ricerca aprendo i file con `file://`.

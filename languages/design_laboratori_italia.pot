@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:18+0000\n"
+"POT-Creation-Date: 2026-11-04 09:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -51,6 +51,11 @@ msgstr ""
 #: template-parts/common/sezione-video.php:56
 #, php-format
 msgid "%s Video"
+msgstr ""
+
+#. %d: level of the page, from 1
+#: inc/admin/class-dli-page-import-admin.php:598
+msgid "(livello %d)"
 msgstr ""
 
 #. 1: total items, 2: discarded, 3: processed, 4: updated, 5: ignored, 6: errors.
@@ -112,7 +117,7 @@ msgid ""
 "nella "
 msgstr ""
 
-#: inc/admin/class-dli-example-content.php:65
+#: inc/admin/class-dli-page-import-admin.php:292
 msgid "ACF e Polylang devono essere attivi."
 msgstr ""
 
@@ -120,7 +125,7 @@ msgstr ""
 msgid "Aggiorna area tematica"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:567
+#: inc/admin/class-dli-tools-admin.php:577
 msgid "aggiorna esistenti (salta se non esiste)"
 msgstr ""
 
@@ -144,7 +149,7 @@ msgstr ""
 msgid "Aggiorna tipo risorsa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:695
+#: inc/admin/class-dli-tools-admin.php:705
 msgid "Aggiornati"
 msgstr ""
 
@@ -300,16 +305,12 @@ msgstr ""
 msgid "Attività di ricerca"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:530
+#: inc/admin/class-dli-tools-admin.php:540
 msgid "attivo"
 msgstr ""
 
 #: single-pubblicazione.php:115
 msgid "Autori"
-msgstr ""
-
-#: inc/admin/class-dli-tools-admin.php:836
-msgid "Azione non riconosciuta."
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:51
@@ -341,7 +342,7 @@ msgstr ""
 msgid "Brevetto"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:529
+#: inc/admin/class-dli-tools-admin.php:539
 msgid "Campi booleani"
 msgstr ""
 
@@ -355,6 +356,10 @@ msgstr ""
 
 #: page-templates/contatti.php:305
 msgid "captcha"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:585
+msgid "Card"
 msgstr ""
 
 #: template-parts/home/hp-card-navigation-section.php:48
@@ -443,6 +448,12 @@ msgstr ""
 msgid "Chevron Left"
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:383
+msgid ""
+"chiave che collega le traduzioni (la stessa in due file di lingue diverse); "
+"consigliata nei siti con più lingue."
+msgstr ""
+
 #: page-templates/contatti.php:141 page-templates/contatti.php:143
 #: page-templates/contatti.php:155 page-templates/contatti.php:157
 #: page-templates/newsletter.php:120 page-templates/newsletter.php:122
@@ -474,11 +485,16 @@ msgstr ""
 msgid "Cognome"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:506
+#: inc/admin/class-dli-page-import-admin.php:381
+msgid "Colonne facoltative"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:516
 msgid "Colonne obbligatorie"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:492
+#: inc/admin/class-dli-page-import-admin.php:371
+#: inc/admin/class-dli-tools-admin.php:502
 msgid "Come funziona"
 msgstr ""
 
@@ -486,7 +502,7 @@ msgstr ""
 msgid "Come raggiungerci"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:573
+#: inc/admin/class-dli-tools-admin.php:583
 msgid "commit (esecuzione reale)"
 msgstr ""
 
@@ -526,7 +542,13 @@ msgid "Condivido con piacere questo post"
 msgstr ""
 
 #: page-templates/contatti.php:341 page-templates/contatti.php:343
+#: inc/admin/class-dli-page-import-admin.php:486
 msgid "Conferma"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:490
+msgid ""
+"Confermo la pubblicazione immediata delle pagine nuove nella lingua scelta"
 msgstr ""
 
 #: single-pubblicazione.php:141
@@ -564,6 +586,10 @@ msgstr ""
 msgid "Copia del messaggio non inviata."
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:389
+msgid "Cosa fa"
+msgstr ""
+
 #: page-templates/cerca.php:119 page-templates/cerca.php:124
 #: page-templates/cerca.php:136
 msgid "Cosa stai cercando?"
@@ -573,31 +599,22 @@ msgstr ""
 msgid "Costo"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:968
-msgid "Crea le pagine di esempio"
-msgstr ""
-
-#: inc/admin/class-dli-tools-admin.php:949
+#: inc/admin/class-dli-page-import-admin.php:372
 msgid ""
-"Crea quattro pagine principali (Open Access, «Research Data», Research "
-"Assessment, Monitoring): la seconda ha quattro sottopagine e le loro "
-"sottopagine, le altre non hanno sottopagine. Ogni pagina ha un testo di "
-"prova (lorem ipsum) di lunghezza diversa. Serve a provare le card delle "
-"sottopagine, la sidebar delle pagine collegate e le sezioni «Card di "
-"navigazione» e «Navigazione per pagine» della home (vanno aggiunte in "
-"«Sezioni HP»): le quattro pagine principali sono promosse alla home e "
-"compaiono come card; sono promosse anche le sottopagine «Pianificare», "
-"«Gestire» e «Condividere», che con la pagina «Research Data» formano i "
-"quattro gruppi. Sono contenuti finti: non usarla su un sito di produzione."
+"Crea le pagine del sito da un file CSV: una pagina per riga, su tre livelli "
+"(pagina principale, sottopagina, sottopagina della sottopagina). Il file va "
+"salvato in UTF-8, con separatore punto e virgola (;)."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:967
-msgid ""
-"Creare le pagine di esempio? Sono contenuti finti, da non usare in "
-"produzione."
+#: inc/admin/class-dli-page-import-admin.php:641
+msgid "Creata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:694
+#: inc/admin/class-dli-page-import-admin.php:559
+msgid "Create"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:704
 msgid "Creati"
 msgstr ""
 
@@ -641,7 +658,7 @@ msgstr ""
 msgid "Date e orari"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:795
+#: inc/admin/class-dli-tools-admin.php:804
 msgid "Dati di attivazione ricaricati con successo."
 msgstr ""
 
@@ -713,7 +730,7 @@ msgid ""
 "Bootstrap Italia. Basato sul tema Design Scuole WordPress."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:503
+#: inc/admin/class-dli-tools-admin.php:513
 msgid "Dettagli campi e valori supportati"
 msgstr ""
 
@@ -749,7 +766,7 @@ msgstr ""
 msgid "Dettagli dello spin-off"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:716
+#: inc/admin/class-dli-tools-admin.php:726
 msgid "Dettaglio righe elaborate"
 msgstr ""
 
@@ -772,7 +789,14 @@ msgid ""
 "PNG, GIF, WebP) 1 MB."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:598
+#. %d: the most pages of a file
+#: inc/admin/class-dli-page-import-admin.php:447
+msgid ""
+"Dimensione massima: 2 MB, al massimo %d pagine. Separatore: punto e virgola "
+"(;)."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:608
 msgid "Dimensione massima: 2 MB. Separatore: punto e virgola (;)."
 msgstr ""
 
@@ -784,7 +808,7 @@ msgstr ""
 msgid "Domanda di priorità"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:572
+#: inc/admin/class-dli-tools-admin.php:582
 msgid "dry_run (simulazione)"
 msgstr ""
 
@@ -793,7 +817,7 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:693
+#: inc/admin/class-dli-tools-admin.php:703
 msgid "Elaborati"
 msgstr ""
 
@@ -809,7 +833,7 @@ msgstr ""
 msgid "Elenco persone"
 msgstr ""
 
-#: single-luogo.php:219 inc/admin/class-dli-tools-admin.php:721
+#: single-luogo.php:219 inc/admin/class-dli-tools-admin.php:731
 #: template-parts/persone/view-tabella.php:255
 msgid "Email"
 msgstr ""
@@ -828,7 +852,8 @@ msgstr ""
 msgid "Errore nonce rilevato durante l'invio del form."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:697
+#: inc/admin/class-dli-page-import-admin.php:561
+#: inc/admin/class-dli-tools-admin.php:707
 msgid "Errori"
 msgstr ""
 
@@ -840,23 +865,34 @@ msgstr ""
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:656
+#: inc/admin/class-dli-page-import-admin.php:514
+#: inc/admin/class-dli-tools-admin.php:666
 msgid "esecuzione reale"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:655
+#: inc/admin/class-dli-page-import-admin.php:514
+#: inc/admin/class-dli-tools-admin.php:665
 msgid "esecuzione simulata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:637
+#: inc/admin/class-dli-tools-admin.php:647
 msgid "Esegui import persone"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:583
+#: inc/admin/class-dli-page-import-admin.php:430
+#: inc/admin/class-dli-tools-admin.php:593
 msgid "Esegui importazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:172
+#: inc/admin/class-dli-page-import-admin.php:498
+msgid "Esegui importazione pagine"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:586
+msgid "Esito"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:179
 msgid "Esporta"
 msgstr ""
 
@@ -893,19 +929,27 @@ msgstr ""
 msgid "febbraio"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:593
+#: inc/admin/class-dli-page-import-admin.php:439
+#: inc/admin/class-dli-tools-admin.php:603
 msgid "File CSV"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:343
+#: inc/admin/class-dli-page-import-admin.php:80
+msgid "File non trovato."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:226
+#: inc/admin/class-dli-tools-admin.php:353
 msgid "File non valido."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:357
+#: inc/admin/class-dli-page-import-admin.php:230
+#: inc/admin/class-dli-tools-admin.php:367
 msgid "File troppo grande. Dimensione massima: 2 MB."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:392
+#: inc/admin/class-dli-page-import-admin.php:242
+#: inc/admin/class-dli-tools-admin.php:402
 msgid "File vuoto o intestazione non leggibile."
 msgstr ""
 
@@ -930,7 +974,8 @@ msgstr ""
 msgid "Fino alle ore"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:351
+#: inc/admin/class-dli-page-import-admin.php:228
+#: inc/admin/class-dli-tools-admin.php:361
 msgid "Formato non valido: è richiesto un file .csv."
 msgstr ""
 
@@ -985,11 +1030,11 @@ msgstr ""
 msgid "ICT SNS"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:568
+#: inc/admin/class-dli-tools-admin.php:578
 msgid "ignora esistenti (non aggiorna)"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:541
+#: inc/admin/class-dli-tools-admin.php:551
 msgid ""
 "Il campo body accetta testo semplice o HTML base (corsivo, grassetto, "
 "paragrafi)."
@@ -997,6 +1042,23 @@ msgstr ""
 
 #: page-templates/contatti.php:64 page-templates/newsletter.php:61
 msgid "Il codice di controllo non è valido."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:238
+msgid "Il file contiene caratteri non validi."
+msgstr ""
+
+#. %d: the most pages of a file
+#: inc/admin/class-dli-page-import-admin.php:257
+msgid "Il file ha troppe pagine: il massimo è %d."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:240
+msgid "Il file non è in UTF-8: salvalo come «CSV UTF-8»."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:545
+msgid "Il file non è stato importato: correggi gli errori e invialo di nuovo."
 msgstr ""
 
 #: inc/classes/class-dli-labmanager.php:313
@@ -1026,27 +1088,36 @@ msgstr ""
 msgid "Immagine principale della Persona"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:63
-#: inc/admin/class-dli-tools-admin.php:171
+#: inc/admin/class-dli-tools-admin.php:71
+#: inc/admin/class-dli-tools-admin.php:178
 msgid "Importa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:493
+#: inc/admin/class-dli-page-import-admin.php:471
+msgid "Importa (crea le pagine)"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:503
 msgid ""
 "Importa persone da un file CSV con separatore punto e virgola (;). "
 "L'intestazione deve corrispondere esattamente a quella richiesta."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:62
+#: inc/admin/class-dli-tools-admin.php:70
 msgid "Importa — Strumenti DLI"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:378
+#: inc/admin/class-dli-page-import-admin.php:236
+#: inc/admin/class-dli-tools-admin.php:388
 msgid "Impossibile leggere il file caricato."
 msgstr ""
 
 #: inc/classes/class-spinoffmanager.php:18
 msgid "In attività"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:584
+msgid "In home"
 msgstr ""
 
 #: page.php:126
@@ -1075,12 +1146,16 @@ msgstr ""
 msgid "Indietro"
 msgstr ""
 
-#: single-luogo.php:180
+#: single-luogo.php:180 inc/admin/class-dli-page-import-admin.php:582
 msgid "Indirizzo"
 msgstr ""
 
 #: inc/classes/class-researchactivitiesmanager.php:45
 msgid "Indirizzo di ricerca"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:385
+msgid "indirizzo, se diverso da quello del titolo."
 msgstr ""
 
 #: single-evento.php:222
@@ -1117,14 +1192,36 @@ msgstr ""
 msgid "Inserisci il tuo numero di telefono"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:497
+#: inc/admin/class-dli-page-import-admin.php:480
+msgid "Inserisci testo Lorem ipsum nelle nuove pagine"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:507
 msgid "Intestazione CSV richiesta"
 msgstr ""
 
+#. %s: name of the column
 #. %s: missing column name
-#: inc/admin/class-dli-tools-admin.php:405
+#: inc/admin/class-dli-page-import-admin.php:248
+#: inc/admin/class-dli-tools-admin.php:415
 #, php-format
 msgid "Intestazione non valida: colonna obbligatoria \"%s\" non trovata."
+msgstr ""
+
+#. %s: name of the column
+#: inc/admin/class-dli-page-import-admin.php:254
+#, php-format
+msgid "Intestazione non valida: colonna sconosciuta \"%s\"."
+msgstr ""
+
+#. %s: name of the column
+#: inc/admin/class-dli-page-import-admin.php:251
+#, php-format
+msgid "Intestazione non valida: la colonna \"%s\" è ripetuta."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:376
+msgid "Intestazione richiesta"
 msgstr ""
 
 #: inc/classes/class-dli-labmanager.php:357
@@ -1151,10 +1248,6 @@ msgstr ""
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:935
-msgid "Italiano e inglese"
-msgstr ""
-
 #: inc/classes/class-dli-labmanager.php:288
 msgid "L'API REST di WordPress è disabilitata."
 msgstr ""
@@ -1163,21 +1256,26 @@ msgstr ""
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr ""
 
-#. %s: address of the page
-#: inc/admin/class-dli-example-content.php:153
-#, php-format
-msgid ""
-"L'indirizzo «%s» è già usato da una pagina in un'altra lingua: non è stato "
-"creato nulla. Rimuovi le pagine di esempio di un'esecuzione precedente e "
-"riprova."
-msgstr ""
-
-#: inc/admin/class-dli-example-content.php:62
+#: inc/admin/class-dli-page-import-admin.php:294
 msgid "La lingua richiesta non esiste in questo sito."
 msgstr ""
 
 #: inc/classes/class-newslettermanager.php:258
 msgid "La Newslettere è disabilitata"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:577
+msgid "Le pagine del file, con l'indirizzo e l'esito"
+msgstr ""
+
+#. %d: the most pages of a file
+#: inc/admin/class-dli-page-import-admin.php:395
+msgid ""
+"Le pagine nuove vengono pubblicate subito, nella lingua scelta. Le pagine "
+"già importate vengono saltate: puoi inviare di nuovo lo stesso file senza "
+"creare duplicati. Se una pagina del sito ha lo stesso indirizzo, non viene "
+"creato nulla. Massimo %d pagine per file. Prima di importare esegui sempre "
+"una simulazione."
 msgstr ""
 
 #. Name of the template
@@ -1189,8 +1287,14 @@ msgstr ""
 msgid "Leggi di piu"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:958
-msgid "Lingue"
+#: inc/admin/class-dli-page-import-admin.php:456
+msgid "Lingua delle pagine"
+msgstr ""
+
+#. 1: language, 2: lorem ipsum yes/no, 3: file name
+#: inc/admin/class-dli-page-import-admin.php:528
+#, php-format
+msgid "Lingua: %1$s | Testo Lorem ipsum: %2$s | File: %3$s"
 msgstr ""
 
 #: single-pubblicazione.php:138 template-parts/common/sezione-contatti.php:64
@@ -1206,7 +1310,7 @@ msgstr ""
 msgid "Localizzazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:714
+#: inc/admin/class-dli-tools-admin.php:724
 msgid "Log importazione"
 msgstr ""
 
@@ -1280,7 +1384,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:186
+#: functions.php:188
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1288,23 +1392,23 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:184
+#: functions.php:186
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:185
+#: functions.php:187
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:182
+#: functions.php:184
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:183
+#: functions.php:185
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:723
+#: inc/admin/class-dli-tools-admin.php:733
 msgid "Messaggio"
 msgstr ""
 
@@ -1320,7 +1424,8 @@ msgstr ""
 msgid "Metodo non consentito. Usare POST."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:619
+#: inc/admin/class-dli-page-import-admin.php:467
+#: inc/admin/class-dli-tools-admin.php:629
 msgid "Modalità di esecuzione"
 msgstr ""
 
@@ -1329,12 +1434,12 @@ msgid "Modalità di visualizzazione dell'elenco"
 msgstr ""
 
 #. 1: exec mode 2: import mode 3: filename
-#: inc/admin/class-dli-tools-admin.php:674
+#: inc/admin/class-dli-tools-admin.php:684
 #, php-format
 msgid "Modalità esecuzione: %1$s | Modalità importazione: %2$s | File: %3$s"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:604
+#: inc/admin/class-dli-tools-admin.php:614
 msgid "Modalità importazione"
 msgstr ""
 
@@ -1407,7 +1512,8 @@ msgstr ""
 msgid "Nazione deposito"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:332
+#: inc/admin/class-dli-page-import-admin.php:224
+#: inc/admin/class-dli-tools-admin.php:342
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr ""
 
@@ -1434,6 +1540,12 @@ msgstr ""
 msgid "Newsletter"
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:530
+#: inc/admin/class-dli-page-import-admin.php:604
+#: inc/admin/class-dli-page-import-admin.php:605
+msgid "no"
+msgstr ""
+
 #: page-templates/newsletter.php:188
 msgid "Nome"
 msgstr ""
@@ -1443,8 +1555,12 @@ msgstr ""
 msgid "Nome / Cognome"
 msgstr ""
 
-#: page-templates/contatti.php:238 inc/admin/class-dli-tools-admin.php:720
+#: page-templates/contatti.php:238 inc/admin/class-dli-tools-admin.php:730
 msgid "Nome e cognome"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:645
+msgid "Non creata"
 msgstr ""
 
 #: page-templates/risorse-tecniche.php:211
@@ -1455,14 +1571,15 @@ msgstr ""
 msgid "Non e stata trovata nessuna pubblicazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:156
+#: inc/admin/class-dli-tools-admin.php:163
 msgid "Non hai i permessi per accedere a questa pagina."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:124
-#: inc/admin/class-dli-tools-admin.php:297
-#: inc/admin/class-dli-tools-admin.php:772
-#: inc/admin/class-dli-tools-admin.php:820
+#: inc/admin/class-dli-page-import-admin.php:74
+#: inc/admin/class-dli-page-import-admin.php:220
+#: inc/admin/class-dli-tools-admin.php:131
+#: inc/admin/class-dli-tools-admin.php:307
+#: inc/admin/class-dli-tools-admin.php:781
 msgid "Non hai i permessi per eseguire questa operazione."
 msgstr ""
 
@@ -1514,7 +1631,7 @@ msgstr ""
 msgid "Non è stato trovato nessun progetto"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:539
+#: inc/admin/class-dli-tools-admin.php:549
 msgid "Note operative"
 msgstr ""
 
@@ -1569,8 +1686,15 @@ msgstr ""
 msgid "Nuovo tipo risorsa"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:530
+#: inc/admin/class-dli-tools-admin.php:540
 msgid "o vuoto = disattivo (predefinito)."
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:378
+msgid ""
+"Ogni riga ha un solo titolo, in una delle tre colonne dei livelli. "
+"menu_order è l'ordine tra le pagine dello stesso livello; gli altri due "
+"campi valgono 1 (sì) o 0 (no)."
 msgstr ""
 
 #. %1$s is the fallback URL for the "go back" link.
@@ -1590,6 +1714,10 @@ msgstr ""
 msgid "Ordina per"
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:583
+msgid "Ordine"
+msgstr ""
+
 #: inc/utils.php:1121
 msgid "ott"
 msgstr ""
@@ -1598,7 +1726,8 @@ msgstr ""
 msgid "ottobre"
 msgstr ""
 
-#: inc/utils.php:1255 template-parts/common/paginazione.php:93
+#: inc/utils.php:1255 inc/admin/class-dli-page-import-admin.php:581
+#: template-parts/common/paginazione.php:93
 msgid "Pagina"
 msgstr ""
 
@@ -1621,36 +1750,26 @@ msgstr ""
 msgid "Pagina successiva"
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:558
+#: inc/admin/class-dli-page-import-admin.php:575
+#: inc/admin/class-dli-tools-admin.php:259
+msgid "Pagine"
+msgstr ""
+
 #: page.php:87 page-templates/privacy.php:130
 msgid "Pagine collegate"
-msgstr ""
-
-#. 1: pages created, 2: pages already there
-#: inc/admin/class-dli-tools-admin.php:900
-#, php-format
-msgid "Pagine create: %1$d. Già presenti: %2$d."
-msgstr ""
-
-#: inc/admin/class-dli-tools-admin.php:947
-msgid "Pagine di esempio"
-msgstr ""
-
-#. %s: language code, for example IT
-#: inc/admin/class-dli-tools-admin.php:914
-#, php-format
-msgid "Pagine principali (%s):"
 msgstr ""
 
 #: template-parts/home/hp-tabs-section.php:40
 msgid "Pannello tab"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:54
-#: inc/admin/class-dli-tools-admin.php:170
+#: inc/admin/class-dli-tools-admin.php:62
+#: inc/admin/class-dli-tools-admin.php:177
 msgid "Panoramica"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:53
+#: inc/admin/class-dli-tools-admin.php:61
 msgid "Panoramica — Strumenti DLI"
 msgstr ""
 
@@ -1662,7 +1781,13 @@ msgstr ""
 msgid "PEC"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:540
+#: inc/admin/class-dli-page-import-admin.php:234
+msgid ""
+"Per importare serve la conferma della pubblicazione: non è stato scritto "
+"nulla."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:550
 msgid ""
 "Per tipologia_persona e struttura: inserire lo slug della voce già esistente."
 " Le voci non trovate vengono ignorate."
@@ -1691,7 +1816,7 @@ msgstr ""
 
 #. Name of the template
 #: inc/featured-contents.php:38 inc/utils.php:277 page-templates/persone.php:2
-#: inc/admin/class-dli-tools-admin.php:249
+#: inc/admin/class-dli-tools-admin.php:258
 msgid "Persone"
 msgstr ""
 
@@ -2062,7 +2187,7 @@ msgstr ""
 msgid "Posta Elettronica Certificata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:524
+#: inc/admin/class-dli-tools-admin.php:534
 msgid "Predefinito: publish."
 msgstr ""
 
@@ -2103,12 +2228,13 @@ msgid ""
 "Invio per selezionare."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:212
+#: inc/admin/class-dli-tools-admin.php:219
 msgid ""
 "Questa sezione contiene gli strumenti di gestione dei contenuti del sito."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:663
+#: inc/admin/class-dli-page-import-admin.php:519
+#: inc/admin/class-dli-tools-admin.php:673
 msgid "Report importazione"
 msgstr ""
 
@@ -2120,11 +2246,15 @@ msgstr ""
 msgid "Revoca"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:801
+#: inc/admin/class-dli-page-import-admin.php:384
+msgid "riassunto."
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:810
 msgid "Ricarica i dati di attivazione (menu, pagine, tassonomie, etc)"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:786
+#: inc/admin/class-dli-tools-admin.php:795
 msgid "Ricarica i dati di attivazione del tema"
 msgstr ""
 
@@ -2157,9 +2287,9 @@ msgid ""
 "completare la procedura."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:301
-#: inc/admin/class-dli-tools-admin.php:790
-#: inc/admin/class-dli-tools-admin.php:825
+#: inc/admin/class-dli-page-import-admin.php:222
+#: inc/admin/class-dli-tools-admin.php:311
+#: inc/admin/class-dli-tools-admin.php:799
 msgid "Richiesta non valida: nonce mancante o non valido."
 msgstr ""
 
@@ -2167,26 +2297,133 @@ msgstr ""
 msgid "Ricorda per tutti i video"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:798
+#: inc/admin/class-dli-tools-admin.php:807
 msgid ""
 "Ricrea menu, pagine e tassonomie predefiniti del tema. Usa questa funzione "
 "se la struttura del sito risulta incompleta dopo l'installazione o un "
 "aggiornamento."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:719
+#: inc/admin/class-dli-page-import-admin.php:580
+#: inc/admin/class-dli-tools-admin.php:729
 msgid "Riga"
 msgstr ""
 
-#. %d: number of pages removed
-#: inc/admin/class-dli-tools-admin.php:890
-msgid "Rimossa %d pagina di esempio."
-msgid_plural "Rimosse %d pagine di esempio."
-msgstr[0] ""
-msgstr[1] ""
+#. 1: line of the file, 2: message of WordPress
+#: inc/admin/class-dli-page-import-admin.php:312
+#, php-format
+msgid ""
+"Riga %1$d: creazione non riuscita (%2$s). Le pagine già create restano: "
+"correggi e invia di nuovo il file per continuare."
+msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:971
-msgid "Rimuovere le pagine di esempio create da questo strumento?"
+#. 1: line of the file, 2: name of the field
+#: inc/admin/class-dli-page-import-admin.php:272
+#, php-format
+msgid ""
+"Riga %1$d: il campo «%2$s» deve essere testo semplice, senza i simboli < e >."
+msgstr ""
+
+#. 1: line of the file, 2: ID of the page
+#: inc/admin/class-dli-page-import-admin.php:306
+#, php-format
+msgid "Riga %1$d: l'indirizzo è già usato dalla pagina con ID %2$s."
+msgstr ""
+
+#. 1: line of the file, 2: ID of the page
+#: inc/admin/class-dli-page-import-admin.php:309
+#, php-format
+msgid ""
+"Riga %1$d: la pagina con ID %2$s, in un'altra lingua, ha già una traduzione "
+"in questa lingua."
+msgstr ""
+
+#. 1: line of the file, 2: ID of the page
+#: inc/admin/class-dli-page-import-admin.php:303
+#, php-format
+msgid ""
+"Riga %1$d: la pagina era già stata importata ed è nel cestino (ID %2$s): "
+"ripristinala o eliminala."
+msgstr ""
+
+#. 1: line of the file, 2: title of the page
+#: inc/admin/class-dli-page-import-admin.php:290
+#, php-format
+msgid "Riga %1$d: la pagina «%2$s» è ripetuta sotto lo stesso genitore."
+msgstr ""
+
+#. 1: line of the file, 2: the key
+#: inc/admin/class-dli-page-import-admin.php:281
+#, php-format
+msgid ""
+"Riga %1$d: page_key «%2$s» non valida (minuscole, numeri, trattini e "
+"underscore, fino a 64 caratteri)."
+msgstr ""
+
+#. 1: line of the file, 2: the key
+#: inc/admin/class-dli-page-import-admin.php:284
+#, php-format
+msgid "Riga %1$d: page_key «%2$s» ripetuta."
+msgstr ""
+
+#. 1: line of the file, 2: the slug
+#: inc/admin/class-dli-page-import-admin.php:287
+#, php-format
+msgid "Riga %1$d: slug «%2$s» non valido (minuscole, numeri e trattini)."
+msgstr ""
+
+#. 1: line of the file, 2: the address WordPress gave
+#: inc/admin/class-dli-page-import-admin.php:315
+#, php-format
+msgid "Riga %1$d: WordPress ha cambiato l'indirizzo in «%2$s»."
+msgstr ""
+
+#. 1: line of the file, 2: name of the column
+#: inc/admin/class-dli-page-import-admin.php:278
+#, php-format
+msgid "Riga %1$d: «%2$s» deve valere 0 oppure 1."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:297
+msgid "Riga %d: dal titolo non si ricava un indirizzo."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:269
+msgid "Riga %d: il livello salta quello superiore (manca la pagina genitore)."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:260
+msgid "Riga %d: il numero di colonne non corrisponde all'intestazione."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:263
+msgid "Riga %d: manca il titolo."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:275
+msgid "Riga %d: menu_order deve essere un numero intero da 0 in su."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:300
+msgid ""
+"Riga %d: più pagine hanno la stessa identità di importazione: va risolto a "
+"mano."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:266
+msgid "Riga %d: un solo titolo per riga, in un solo livello."
+msgstr ""
+
+#. %d: line of the file
+#: inc/admin/class-dli-page-import-admin.php:245
+msgid "Riga %d: virgolette aperte e mai chiuse."
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:80 inc/classes/class-placemanager.php:86
@@ -2217,10 +2454,6 @@ msgstr ""
 msgid "Rimuovi Immagine Sponsor"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:972
-msgid "Rimuovi le pagine di esempio"
-msgstr ""
-
 #: page-templates/contatti.php:319 page-templates/newsletter.php:218
 msgid "Riscrivi qui il codice di conferma"
 msgstr ""
@@ -2246,6 +2479,10 @@ msgstr ""
 msgid "Salta alla pagina"
 msgstr ""
 
+#: inc/admin/class-dli-page-import-admin.php:643
+msgid "Saltata: già importata"
+msgstr ""
+
 #: inc/admin/class-dli-people-file-importer.php:98
 msgid "Saltata: persona già esistente."
 msgstr ""
@@ -2254,12 +2491,28 @@ msgstr ""
 msgid "Saltata: persona non trovata."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:696
+#: inc/admin/class-dli-page-import-admin.php:560
+msgid "Saltate"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:706
 msgid "Saltati"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:550
+#: inc/admin/class-dli-tools-admin.php:560
 msgid "Scarica CSV di esempio"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:407
+msgid "Scarica il modello vuoto"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:406
+msgid "Scarica l'esempio in inglese (dimostrativo)"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:405
+msgid "Scarica l'esempio in italiano (dimostrativo)"
 msgstr ""
 
 #: single-pubblicazione.php:150
@@ -2336,12 +2589,12 @@ msgstr ""
 msgid "Selezione lingua: lingua selezionata"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:535
+#: inc/admin/class-dli-tools-admin.php:545
 msgid "separare con"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:952
-msgid "Servono le lingue italiano o inglese di Polylang."
+#: inc/admin/class-dli-page-import-admin.php:492
+msgid "Serve solo per importare davvero; la simulazione non la richiede."
 msgstr ""
 
 #: inc/utils.php:1120
@@ -2368,7 +2621,7 @@ msgstr ""
 msgid "Sezione Link Utili"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:180
+#: inc/admin/class-dli-tools-admin.php:187
 msgid "Sezioni Strumenti DLI"
 msgstr ""
 
@@ -2378,12 +2631,8 @@ msgstr ""
 msgid "si apre in una nuova finestra"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:950
-msgid ""
-"Si può ripetere senza duplicare nulla: le pagine create in precedenza dallo "
-"strumento vengono promosse alla home, il resto non cambia. «Rimuovi» "
-"cancella solo le pagine create da questo strumento, mai quelle scritte da un "
-"redattore."
+#: inc/admin/class-dli-page-import-admin.php:470
+msgid "Simulazione (non scrive nulla)"
 msgstr ""
 
 #: page-templates/mappasito.php:63
@@ -2399,16 +2648,14 @@ msgstr ""
 msgid "Skiplink"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:941
-msgid "Solo inglese"
-msgstr ""
-
-#: inc/admin/class-dli-tools-admin.php:938
-msgid "Solo italiano"
-msgstr ""
-
-#: inc/admin/class-dli-tools-admin.php:566
+#: inc/admin/class-dli-tools-admin.php:576
 msgid "solo nuovi (salta se esiste)"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:482
+msgid ""
+"Solo per le pagine nuove, mai per quelle già presenti. Le pagine sono "
+"pubbliche: usalo solo su siti di prova o di dimostrazione."
 msgstr ""
 
 #: inc/classes/class-spinoffmanager.php:101
@@ -2426,7 +2673,7 @@ msgstr ""
 
 #: single-risorsa-tecnica.php:199 single-risorsa-tecnica.php:313
 #: single-spinoff.php:129 single-spinoff.php:189
-#: inc/admin/class-dli-tools-admin.php:722
+#: inc/admin/class-dli-tools-admin.php:732
 msgid "Stato"
 msgstr ""
 
@@ -2434,13 +2681,13 @@ msgstr ""
 msgid "Stato legale"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:230
+#: inc/admin/class-dli-tools-admin.php:237
 msgid "Strumenti di importazione"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:41
-#: inc/admin/class-dli-tools-admin.php:42
-#: inc/admin/class-dli-tools-admin.php:178
+#: inc/admin/class-dli-tools-admin.php:49
+#: inc/admin/class-dli-tools-admin.php:50
+#: inc/admin/class-dli-tools-admin.php:185
 msgid "Strumenti DLI"
 msgstr ""
 
@@ -2449,6 +2696,12 @@ msgstr ""
 #: template-parts/persone/view-tabella.php:226
 #: template-parts/persone/view-tabella.php:249
 msgid "Struttura"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:530
+#: inc/admin/class-dli-page-import-admin.php:604
+#: inc/admin/class-dli-page-import-admin.php:605
+msgid "sì"
 msgstr ""
 
 #: template-parts/persone/view-toggle.php:44
@@ -2533,12 +2786,20 @@ msgstr ""
 msgid "Testo del messaggio"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:252
+#: inc/admin/class-dli-page-import-admin.php:476
+msgid "Testo di riempimento"
+msgstr ""
+
+#: inc/admin/class-dli-tools-admin.php:262
 msgid "Tipi di importazione"
 msgstr ""
 
 #: page-templates/cerca.php:236
 msgid "Tipo di contenuto:"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:232
+msgid "Tipo di file non valido: è richiesto un file CSV."
 msgstr ""
 
 #: page-templates/risorse-tecniche.php:104
@@ -2551,7 +2812,7 @@ msgid "Tipo di risorsa:"
 msgstr ""
 
 #. %s: detected MIME type
-#: inc/admin/class-dli-tools-admin.php:368
+#: inc/admin/class-dli-tools-admin.php:378
 #, php-format
 msgid "Tipo file non valido (%s). È richiesto un file CSV."
 msgstr ""
@@ -2609,7 +2870,7 @@ msgstr ""
 msgid "Trova persone, progetti, notizie e altri contenuti del sito."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:507
+#: inc/admin/class-dli-tools-admin.php:517
 msgid "Tutte le altre colonne sono facoltative."
 msgstr ""
 
@@ -2627,6 +2888,12 @@ msgstr ""
 
 #: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:62
 msgid "Tutte le pubblicazioni"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:463
+msgid ""
+"Tutte le righe del file sono nella lingua scelta. Per un sito in più lingue "
+"invia un file per lingua, con le stesse page_key."
 msgstr ""
 
 #: inc/classes/class-peoplemanager.php:43 template-parts/persone/filters.php:79
@@ -2690,7 +2957,7 @@ msgstr ""
 msgid "Ultime pubblicazioni"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:565
+#: inc/admin/class-dli-tools-admin.php:575
 msgid "upsert (crea o aggiorna)"
 msgstr ""
 
@@ -2726,7 +2993,7 @@ msgstr ""
 msgid "Usa come Immagine Sponsor"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:213
+#: inc/admin/class-dli-tools-admin.php:220
 msgid "Usa i tab per navigare tra le sezioni operative dell'area."
 msgstr ""
 
@@ -2734,12 +3001,12 @@ msgstr ""
 msgid "Utente non autorizzato"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:72
-#: inc/admin/class-dli-tools-admin.php:173
+#: inc/admin/class-dli-tools-admin.php:80
+#: inc/admin/class-dli-tools-admin.php:180
 msgid "Utilità"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:71
+#: inc/admin/class-dli-tools-admin.php:79
 msgid "Utilità — Strumenti DLI"
 msgstr ""
 
@@ -2781,17 +3048,21 @@ msgstr ""
 msgid "Valore di Nonce errato."
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:511
-#: inc/admin/class-dli-tools-admin.php:520
+#: inc/admin/class-dli-tools-admin.php:521
+#: inc/admin/class-dli-tools-admin.php:530
 msgid "Valori consentiti per"
 msgstr ""
 
-#: inc/admin/class-dli-tools-admin.php:534
+#: inc/admin/class-dli-tools-admin.php:544
 msgid "Valori multipli"
 msgstr ""
 
 #: inc/featured-contents.php:67
 msgid "Vedi tutti"
+msgstr ""
+
+#: inc/admin/class-dli-page-import-admin.php:641
+msgid "Verrà creata"
 msgstr ""
 
 #: single-brevetto.php:189 single-brevetto.php:272 single-evento.php:169
