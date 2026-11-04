@@ -9,11 +9,12 @@ function fixture(t) {
 	const root = fs.mkdtempSync(path.join(os.tmpdir(), 'dli-documentation-'));
 	fs.mkdirSync(path.join(root, 'DOC', 'Guide'), { recursive: true });
 	fs.writeFileSync(path.join(root, 'DOC', 'Guide', 'Guida con accènti.md'), '# Titolo\n');
+	fs.writeFileSync(path.join(root, 'DOC', 'Guide', 'indice.md'), '# Indice\n');
 	fs.writeFileSync(path.join(root, 'DOC', 'Guide', 'schema.pdf'), '%PDF-1.7\n');
-	const tracked = new Set(['DOC/Guide/Guida con accènti.md', 'DOC/Guide/schema.pdf']);
+	const tracked = new Set(['DOC/Guide/Guida con accènti.md', 'DOC/Guide/indice.md', 'DOC/Guide/schema.pdf']);
 	const manifest = {
-		version: 1,
-		pages: [{ source: 'DOC/Guide/Guida con accènti.md', target: 'index.md', title: 'Guida' }],
+		version: 2,
+		pages: [{ source: 'DOC/Guide/Guida con accènti.md', target: 'index.md', title: 'Guida', description: 'Descrizione della guida.', group: 'Guide', order: 10 }],
 		assets: [{ source: 'DOC/Guide/schema.pdf', target: 'media/schema.pdf' }],
 		github_documents: [],
 	};
@@ -73,7 +74,7 @@ test('requires an explicit home page and a supported manifest version', (t) => {
 	const { root, tracked, manifest } = fixture(t);
 	manifest.pages[0].target = 'guida.md';
 	assert.throws(() => validateManifest(manifest, root, tracked), /index/i);
-	manifest.version = 2;
+	manifest.version = 1;
 	assert.throws(() => validateManifest(manifest, root, tracked), /version/i);
 });
 
@@ -81,4 +82,18 @@ test('permits only tracked Markdown DOC files as GitHub-only documents', (t) => 
 	const { root, tracked, manifest } = fixture(t);
 	manifest.github_documents = ['DEV/plan.md'];
 	assert.throws(() => validateManifest(manifest, root, tracked), /sorgente/i);
+});
+
+test('requires navigation metadata for every published page', (t) => {
+	const { root, tracked, manifest } = fixture(t);
+	delete manifest.pages[0].group;
+	assert.throws(() => validateManifest(manifest, root, tracked), /metadati/i);
+});
+
+test('derives a clean Jekyll URL from the declared target', (t) => {
+	const { root, tracked, manifest } = fixture(t);
+	manifest.pages[0].target = 'guide/guida.md';
+	manifest.pages[0].order = 20;
+	manifest.pages.push({ source: 'DOC/Guide/indice.md', target: 'index.md', title: 'Indice', description: 'Pagina iniziale.', group: 'Guide', order: 10 });
+	assert.equal(validateManifest(manifest, root, tracked).pages[0].url, '/guide/guida');
 });

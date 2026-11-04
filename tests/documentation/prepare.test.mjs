@@ -14,11 +14,11 @@ function fixture(t) {
 	fs.writeFileSync(path.join(root, 'DOC', 'Guide', 'guida.md'), '# Guida\n[Codice](../../assets/file.css)\n![Immagine](../Immagini/schema.svg)\n');
 	fs.writeFileSync(path.join(root, 'DOC', 'Immagini', 'schema.svg'), '<svg/>\n');
 	const manifest = {
-		version: 1,
+		version: 2,
 		repository: { name: 'owner/repository', ref: 'dev' },
 		pages: [
-			{ source: 'DOC/Guide/indice.md', target: 'index.md', title: 'Indice' },
-			{ source: 'DOC/Guide/guida.md', target: 'guide/guida.md', title: 'Guida' },
+			{ source: 'DOC/Guide/indice.md', target: 'index.md', title: 'Indice', description: 'Pagina iniziale.', group: 'Guide', order: 10 },
+			{ source: 'DOC/Guide/guida.md', target: 'guide/guida.md', title: 'Guida', description: 'Guida di prova.', group: 'Guide', order: 20 },
 		],
 		assets: [{ source: 'DOC/Immagini/schema.svg', target: 'media/schema.svg' }],
 		github_documents: [],
@@ -31,8 +31,10 @@ function fixture(t) {
 test('prepares only manifest-selected files and rewrites selected and GitHub links', (t) => {
 	const { root, destination, manifest, tracked } = fixture(t);
 	prepareDocumentation({ root, destination, manifest, tracked });
-	assert.equal(fs.readFileSync(path.join(destination, 'index.md'), 'utf8'), '# Indice\n[Guida](guide/guida.md#capitolo)\n');
+	assert.match(fs.readFileSync(path.join(destination, 'index.md'), 'utf8'), /^---\nlayout: docs\n[\s\S]*permalink: \/\n[\s\S]*\[Guida\]\(guide\/guida\.md#capitolo\)/);
 	const guide = fs.readFileSync(path.join(destination, 'guide', 'guida.md'), 'utf8');
+	assert.match(guide, /permalink: \/guide\/guida\//);
+	assert.doesNotMatch(guide, /^# Guida/m);
 	assert.match(guide, /https:\/\/github\.com\/owner\/repository\/blob\/dev\/assets\/file\.css/);
 	assert.match(guide, /!\[Immagine\]\(\.\.\/media\/schema\.svg\)/);
 	assert.equal(fs.readFileSync(path.join(destination, 'media', 'schema.svg'), 'utf8'), '<svg/>\n');

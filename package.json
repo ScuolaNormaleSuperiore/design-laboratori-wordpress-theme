@@ -15,6 +15,8 @@
     "minify:css": "node SETUP/npm_scripts/minify-css.js",
     "minify:js": "node SETUP/npm_scripts/minify-js.js",
     "assets:sync": "node SETUP/npm_scripts/sync-bootstrap-italia.mjs",
+    "docs:source": "node SETUP/Documentazione/scripts/build.mjs",
+    "docs:build": "node SETUP/Documentazione/scripts/build-site.mjs",
     "create_layout": "npx sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
     "update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\css\\ /Y",
     "update_layout_linux": "npm run create_layout && cp -f ./assets/css/compiled/bootstrap-italia-custom.min.* ./assets/css/",

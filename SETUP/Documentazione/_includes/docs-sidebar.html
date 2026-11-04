@@ -2,12 +2,14 @@
   <div class="sidebar-wrapper it-line-right-side">
     <h2 class="h4">Documentazione</h2>
     <div class="link-list-wrapper">
-      <ul class="link-list">
-        {% for item in site.data.pilot-nav %}
-          {% assign item_url = item.target | replace: '.md', '/' | replace: 'index/', '' %}
-          <li><a class="list-item{% if page.pilot_target == item.target %} active{% endif %}"{% if page.pilot_target == item.target %} aria-current="page"{% endif %} href="{{ item_url | relative_url }}"><span>{{ item.title }}</span></a></li>
-        {% endfor %}
-      </ul>
+      {% for group in site.data.navigation %}
+        <h3 class="h5 mt-4">{{ group.title }}</h3>
+        <ul class="link-list">
+          {% for item in group.pages %}
+            <li><a class="list-item{% if page.pilot_target == item.target %} active{% endif %}"{% if page.pilot_target == item.target %} aria-current="page"{% endif %} href="{{ item.url | relative_url }}"><span>{{ item.title }}</span></a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
     </div>
     <hr>
     <p class="small mb-0">Menu temporaneo generato dalle guide selezionate per il pilota.</p>

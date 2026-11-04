@@ -52,6 +52,11 @@ tests/report/pa11y-report/pa11yci.urls.local.json
 assets/css/compiled
 assets/bootstrap-italia/css/bootstrap-italia-custom.min.css
 
+# Generated static documentation
+/build/documentazione-source/
+/build/documentazione/
+/build/documentazione-package/
+
 # Node
 node_modules
 

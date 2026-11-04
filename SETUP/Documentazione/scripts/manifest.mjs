@@ -27,7 +27,7 @@ export function sourceFile(source, root, tracked) {
 
 /** Produce a validated selection without scanning or copying unlisted files. */
 export function validateManifest(manifest, root, tracked) {
-	if (!manifest || manifest.version !== 1) {
+	if (!manifest || manifest.version !== 2) {
 		throw new Error('Versione del manifest non supportata');
 	}
 	for (const key of ['pages', 'assets', 'github_documents']) {
@@ -50,8 +50,8 @@ export function validateManifest(manifest, root, tracked) {
 			if (typeof entry.target !== 'string' || !pattern.test(entry.target)) {
 				throw new Error(`Destinazione non ammessa: ${entry.target}`);
 			}
-			if (kind === 'pages' && (!entry.source.endsWith('.md') || typeof entry.title !== 'string' || !entry.title.trim())) {
-				throw new Error(`Pagina senza titolo o sorgente Markdown: ${entry.source}`);
+			if (kind === 'pages' && (!entry.source.endsWith('.md') || typeof entry.title !== 'string' || !entry.title.trim() || typeof entry.description !== 'string' || !entry.description.trim() || typeof entry.group !== 'string' || !entry.group.trim() || !Number.isSafeInteger(entry.order) || entry.order < 0)) {
+				throw new Error(`Pagina senza metadati o sorgente Markdown: ${entry.source}`);
 			}
 			if (kind === 'assets' && path.posix.extname(entry.source).toLowerCase() !== path.posix.extname(entry.target)) {
 				throw new Error(`Estensione asset diversa nella destinazione: ${entry.target}`);
@@ -62,7 +62,7 @@ export function validateManifest(manifest, root, tracked) {
 			}
 			outputs.add(url);
 			sources.add(entry.source);
-			selection[kind].push({ ...entry, absolute });
+			selection[kind].push({ ...entry, absolute, url: `/${entry.target.replace(/\.md$/, '').replace(/index$/, '')}`.replace(/\/+/g, '/') });
 		}
 	}
 	if (!selection.pages.some((entry) => entry.target === 'index.md')) {

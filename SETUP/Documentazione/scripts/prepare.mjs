@@ -68,6 +68,50 @@ function safeDestination(destination, target) {
 	return absolute;
 }
 
+function removeInitialHeading(markdown, source) {
+	const heading = /^# [^\r\n]+\r?\n+/;
+	if (!heading.test(markdown)) {
+		throw new Error(`La guida richiede un H1 iniziale: ${source}`);
+	}
+	return markdown.replace(heading, '');
+}
+
+function frontMatter(page) {
+	const permalink = page.url === '/' ? '/' : `${page.url}/`;
+	return [
+		'---',
+		'layout: docs',
+		`title: ${JSON.stringify(page.title)}`,
+		`description: ${JSON.stringify(page.description)}`,
+		`permalink: ${permalink}`,
+		`source_document: ${JSON.stringify(page.source)}`,
+		'toc: true',
+		'---',
+		'',
+	].join('\n');
+}
+
+function replaceDirectory(destination, populate) {
+	const temporary = `${destination}.next-${process.pid}-${Date.now()}`;
+	const backup = `${destination}.previous-${process.pid}-${Date.now()}`;
+	fs.rmSync(temporary, { recursive: true, force: true });
+	fs.mkdirSync(temporary, { recursive: true });
+	try {
+		populate(temporary);
+		if (fs.existsSync(destination)) {
+			fs.renameSync(destination, backup);
+		}
+		fs.renameSync(temporary, destination);
+		fs.rmSync(backup, { recursive: true, force: true });
+	} catch (error) {
+		fs.rmSync(temporary, { recursive: true, force: true });
+		if (fs.existsSync(backup) && !fs.existsSync(destination)) {
+			fs.renameSync(backup, destination);
+		}
+		throw error;
+	}
+}
+
 /** Copy the selected documentation into a temporary, generator-independent input. */
 export function prepareDocumentation({ root, manifest, tracked, destination }) {
 	const selection = validateManifest(manifest, root, tracked);
@@ -75,19 +119,20 @@ export function prepareDocumentation({ root, manifest, tracked, destination }) {
 		throw new Error('Repository o ref del manifest mancanti');
 	}
 	const output = path.resolve(destination);
-	fs.rmSync(output, { recursive: true, force: true });
-	fs.mkdirSync(output, { recursive: true });
-	for (const page of selection.pages) {
-		const content = fs.readFileSync(page.absolute, 'utf8');
-		const target = safeDestination(output, page.target);
-		fs.mkdirSync(path.dirname(target), { recursive: true });
-		fs.writeFileSync(target, rewriteLinks(content, page, selection, manifest.repository.name, manifest.repository.ref));
-	}
-	for (const asset of selection.assets) {
-		const target = safeDestination(output, asset.target);
-		fs.mkdirSync(path.dirname(target), { recursive: true });
-		fs.copyFileSync(asset.absolute, target);
-	}
+	replaceDirectory(output, (temporary) => {
+		for (const page of selection.pages) {
+			const content = fs.readFileSync(page.absolute, 'utf8');
+			const target = safeDestination(temporary, page.target);
+			fs.mkdirSync(path.dirname(target), { recursive: true });
+			const body = removeInitialHeading(rewriteLinks(content, page, selection, manifest.repository.name, manifest.repository.ref), page.source);
+			fs.writeFileSync(target, frontMatter(page) + body);
+		}
+		for (const asset of selection.assets) {
+			const target = safeDestination(temporary, asset.target);
+			fs.mkdirSync(path.dirname(target), { recursive: true });
+			fs.copyFileSync(asset.absolute, target);
+		}
+	});
 	return selection;
 }
 

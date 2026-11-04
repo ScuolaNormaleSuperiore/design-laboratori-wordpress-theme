@@ -1,6 +1,8 @@
+import childProcess from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { validateManifest } from './manifest.mjs';
 
 const scriptDirectory = path.dirname( fileURLToPath( import.meta.url ) );
 const toolingDirectory = path.resolve( scriptDirectory, '..' );
@@ -32,9 +34,30 @@ function pageBody( source, title, target ) {
 	].join( '\n' );
 }
 
+function trackedDocuments() {
+	const result = childProcess.spawnSync( 'git', [ '-C', root, 'ls-files', '-z', '--', 'DOC' ], { encoding: 'utf8' } );
+	if ( result.status !== 0 || typeof result.stdout !== 'string' ) {
+		throw new Error( 'Impossibile leggere le guide versionate per il pilota.' );
+	}
+	return new Set( result.stdout.split( '\0' ).filter( Boolean ) );
+}
+
+function navigation( pages ) {
+	const groups = new Map();
+	for ( const page of pages ) {
+		if ( ! groups.has( page.group ) ) groups.set( page.group, [] );
+		groups.get( page.group ).push( { title: page.title, target: page.target, url: page.url, order: page.order } );
+	}
+	return Array.from( groups, ( [ title, pagesInGroup ] ) => ( {
+		title,
+		pages: pagesInGroup.sort( ( first, second ) => first.order - second.order ),
+	} ) );
+}
+
 function buildPilot() {
 	const manifest = JSON.parse( fs.readFileSync( path.join( toolingDirectory, 'site-manifest.json' ), 'utf8' ) );
-	if ( ! Array.isArray( manifest.pages ) || manifest.pages.length < 2 ) {
+	const selection = validateManifest( manifest, root, trackedDocuments() );
+	if ( selection.pages.length < 2 ) {
 		throw new Error( 'Il pilota richiede almeno due pagine nel manifest.' );
 	}
 	if ( ! fs.existsSync( bootstrapDirectory ) ) {
@@ -44,11 +67,8 @@ function buildPilot() {
 	fs.rmSync( sourceDirectory, { recursive: true, force: true } );
 	fs.mkdirSync( sourceDirectory, { recursive: true } );
 
-	for ( const page of manifest.pages ) {
-		if ( ! page.source.startsWith( 'DOC/' ) || ! /^[a-z0-9-]+\.md$/i.test( page.target ) && page.target !== 'index.md' ) {
-			throw new Error( `Pagina del manifest non ammessa nel pilota: ${ page.source }` );
-		}
-		const source = path.resolve( root, page.source );
+	for ( const page of selection.pages ) {
+		const source = page.absolute;
 		const destination = path.join( sourceDirectory, page.target );
 		fs.mkdirSync( path.dirname( destination ), { recursive: true } );
 		fs.writeFileSync( destination, pageBody( source, page.title, page.target ) );
@@ -56,8 +76,8 @@ function buildPilot() {
 
 	fs.mkdirSync( path.join( sourceDirectory, '_data' ), { recursive: true } );
 	fs.writeFileSync(
-		path.join( sourceDirectory, '_data', 'pilot-nav.json' ),
-		JSON.stringify( manifest.pages.map( ( page ) => ( { title: page.title, target: page.target } ) ), null, 2 ) + '\n'
+		path.join( sourceDirectory, '_data', 'navigation.json' ),
+		JSON.stringify( navigation( selection.pages ), null, 2 ) + '\n'
 	);
 
 	copy( path.join( toolingDirectory, '_layouts' ), path.join( sourceDirectory, '_layouts' ) );

@@ -1,5 +1,5 @@
 {
-	"version": 1,
+	"version": 2,
 	"repository": {
 		"name": "ScuolaNormaleSuperiore/design-laboratori-wordpress-theme",
 		"ref": "dev"
@@ -8,12 +8,18 @@
 		{
 			"source": "DOC/HowTo/REST-API.md",
 			"target": "index.md",
-			"title": "Web service esposti nel tema"
+			"title": "Web service esposti nel tema",
+			"description": "Endpoint REST disponibili nel tema e relative condizioni d'uso.",
+			"group": "Guide tecniche",
+			"order": 10
 		},
 		{
 			"source": "DOC/HowTo/Personalizzazione-stile.md",
 			"target": "personalizzazione-stile.md",
-			"title": "Personalizzazione dello stile"
+			"title": "Personalizzazione dello stile",
+			"description": "Colori, font e rigenerazione del CSS Bootstrap Italia.",
+			"group": "Guide tecniche",
+			"order": 20
 		}
 	],
 	"assets": [],

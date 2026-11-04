@@ -56,7 +56,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
 		console.error('Impostare DLI_DOCS_OUTPUT con il nome semplice di una directory HTML sotto SETUP/Documentazione/.build.');
 		process.exit(1);
 	}
-	const output = fileURLToPath(new URL(`../.build/${outputName}/`, import.meta.url));
+	const output = outputName === 'documentazione'
+		? path.resolve(fileURLToPath(new URL('../../../', import.meta.url)), 'build', 'documentazione')
+		: fileURLToPath(new URL(`../.build/${outputName}/`, import.meta.url));
 	if (!fs.existsSync(path.join(output, 'index.html'))) {
 		console.error(`Anteprima non disponibile: manca index.html in ${output}. Generare prima il sito statico.`);
 		process.exit(1);
