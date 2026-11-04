@@ -33,7 +33,10 @@ export function createPreviewServer(directory, basePath = '/') {
 				response.writeHead(403).end();
 				return;
 			}
-			const target = path.resolve(root, relative || 'index.html');
+			let target = path.resolve(root, relative || 'index.html');
+			if (fs.statSync(target).isDirectory()) {
+				target = path.join(target, 'index.html');
+			}
 			const actual = fs.realpathSync(target);
 			if (!actual.startsWith(root + path.sep) || !fs.statSync(actual).isFile()) {
 				response.writeHead(403).end();
@@ -50,12 +53,12 @@ export function createPreviewServer(directory, basePath = '/') {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
 	const outputName = process.env.DLI_DOCS_OUTPUT;
 	if (!outputName || !/^[a-zA-Z0-9_-]+$/.test(outputName)) {
-		console.error('Impostare DLI_DOCS_OUTPUT con il nome semplice di una directory HTML sotto SETUP/Documentazione/.build. Il generatore Jekyll non è ancora configurato.');
+		console.error('Impostare DLI_DOCS_OUTPUT con il nome semplice di una directory HTML sotto SETUP/Documentazione/.build.');
 		process.exit(1);
 	}
 	const output = fileURLToPath(new URL(`../.build/${outputName}/`, import.meta.url));
 	if (!fs.existsSync(path.join(output, 'index.html'))) {
-		console.error(`Anteprima non disponibile: manca index.html in ${output}. Generare prima il sito statico; il generatore Jekyll non è ancora configurato.`);
+		console.error(`Anteprima non disponibile: manca index.html in ${output}. Generare prima il sito statico.`);
 		process.exit(1);
 	}
 	const port = Number(process.env.DLI_DOCS_PORT || 8085);

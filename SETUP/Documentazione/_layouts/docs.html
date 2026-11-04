@@ -11,6 +11,12 @@
         <main id="content" class="col-12 col-md-9 col-xl-8 py-4 px-md-4 dli-content">
           <span class="badge bg-secondary mb-3">Anteprima</span>
           <h1 class="dli-title">{{ page.title | smartify }}</h1>
+          {% if page.toc %}
+          <details class="d-xl-none dli-mobile-toc">
+            <summary>In questa pagina</summary>
+            {{ content | toc_only }}
+          </details>
+          {% endif %}
           {{ content }}
         </main>
       </div>
