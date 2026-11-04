@@ -1,0 +1,30 @@
+title: 'Documentazione Design Laboratori Italia'
+description: 'Guide tecniche e operative di Design Laboratori Italia'
+lang: it
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  auto_ids: true
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+permalink: pretty
+encoding: UTF-8
+
+plugins:
+  - jekyll-toc
+
+toc:
+  max_level: 3
+
+# Source and destination are supplied by the future build script.  Keeping
+# them out of this file prevents an invocation from silently writing elsewhere.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - .jekyll-cache/
+  - .sass-cache/

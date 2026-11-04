@@ -1,16 +1,19 @@
 # Strumenti della documentazione — migrazione a Jekyll
 
-Stato: generatore precedente rimosso; **Jekyll e il nuovo layout non sono
-ancora configurati in questo repository**. La build HTML, la ricerca e
-l'anteprima del sito documentale non sono attualmente disponibili.
+Stato: generatore precedente rimosso; il runtime Jekyll minimo e il suo
+contratto sono presenti, ma il layout, la build HTML, la ricerca e
+l'anteprima del sito documentale non sono ancora disponibili.
 Nessun deploy GitHub Pages è configurato da questi strumenti.
 
 Il progetto adotterà Jekyll e il layout della documentazione ufficiale
 Bootstrap Italia. I manuali originali restano in `DOC/`; questa cartella
-contiene soltanto gli strumenti tecnici. Versioni Ruby/Jekyll/Bundler,
-Gemfile, lock e comandi di build saranno introdotti nella fase successiva.
-La prova temporanea Windows riferita dall'operatore non sostituisce la
-verifica del futuro sito del progetto.
+contiene soltanto gli strumenti tecnici. Il `Gemfile` usa Ruby >= 3.3 e
+Jekyll 4.4.1; il lock e' stato generato e la build minima verificata su
+Windows con Ruby 4.0.9 e Bundler 4.0.23. La piattaforma Linux sara' aggiunta
+al lock e verificata con la futura CI, prima di considerare il runtime
+completo su entrambe le piattaforme.
+`UPSTREAM.md` fissa tag, commit, licenza e perimetro del layout Bootstrap
+Italia da derivare.
 
 ## Strumenti riutilizzabili
 
@@ -76,9 +79,9 @@ Non promette funzionamento completo aprendo le pagine con `file://`.
 
 ## Dipendenze e distribuzione
 
-`vendor/` e `.build/` sono ignorati localmente; non vi sono dipendenze
-Composer documentali da installare. Il Composer e il PHP del tema rimangono
-indipendenti da questi strumenti.
+`vendor/`, `.bundle/`, cache Jekyll e `.build/` sono ignorati localmente; non
+vi sono dipendenze Composer documentali da installare. Il Composer e il PHP
+del tema rimangono indipendenti da questi strumenti.
 
 Le regole locali `.gitattributes` escludono il tooling dagli archivi del
 tema generati con Git. La futura fase di packaging dovrà verificare anche
