@@ -60,6 +60,7 @@
 .dli-mobile-toc ul { border-top: 1px solid #b9c9d8; padding: .7rem 1rem 1rem; }
 .dli-mobile-toc li { margin-bottom: .4rem; }
 .dli-mobile-toc li ul { margin: .35rem 0; padding-left: .75rem; }
+.dli-page-meta { border-top: 1px solid #d9e2ec; color: #5c6f82; font-size: .95rem; }
 .dli-footer { background: #17324d; color: #fff; font-size: .9rem; }
 
 @media (max-width: 767.98px) {

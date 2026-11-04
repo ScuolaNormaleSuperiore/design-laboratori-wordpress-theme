@@ -18,6 +18,10 @@
           </details>
           {% endif %}
           {{ content }}
+          <footer class="dli-page-meta mt-5 pt-3">
+            <p class="mb-2">Tema {{ site.theme_version }} · Ref {{ site.source_ref }} · <span class="badge bg-secondary">Anteprima</span></p>
+            <a href="https://github.com/{{ site.repository }}/blob/{{ site.source_ref }}/{{ page.source_document | replace: ' ', '%20' }}" target="_blank" rel="noopener noreferrer">Modifica su GitHub</a>
+          </footer>
         </main>
       </div>
     </div>

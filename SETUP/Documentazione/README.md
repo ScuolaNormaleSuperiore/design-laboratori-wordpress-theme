@@ -101,6 +101,21 @@ Aprire `http://127.0.0.1:8085/` e arrestare il server con `Ctrl+C`.
 Il generatore copia nell'output i file locali della distribuzione npm
 Bootstrap Italia fissata; non carica CDN, analytics o ricerca esterna.
 
+## Comandi npm
+
+Dalla radice del tema:
+
+| Comando | Cosa fa |
+| --- | --- |
+| `npm run docs:source` | Valida il manifest e prepara Markdown, menu e asset in `build/documentazione-source`. |
+| `npm run docs:build` | Esegue `docs:source`, poi Jekyll e genera l'HTML in `build/documentazione`. |
+| `npm run docs:check` | Controlla link e ancore interni dell'HTML gia' generato. Richiede prima `docs:build`. |
+| `npm run docs:preview` | Rigenera l'HTML e avvia localhost su `http://127.0.0.1:8085/`; arrestare con `Ctrl+C`. |
+| `npm run docs:package` | Rigenera l'HTML e produce `build/documentazione-package/design-laboratori-documentazione.zip`. |
+
+L'output e lo ZIP sono generati e ignorati da Git. Lo ZIP contiene soltanto
+HTML e asset statici pubblici; non contiene sorgenti, test, Gemfile o cache.
+
 ## Dipendenze e distribuzione
 
 `vendor/`, `.bundle/`, cache Jekyll e `.build/` sono ignorati localmente; non
