@@ -63,45 +63,11 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
-	 * Rows that are not rows, or without a section, are ignored without warnings.
+	 * Only the rows that are on are active: a row without the flag is not, and each row keeps the position it has in the
+	 * saved list, also when only the active ones are asked for. The normalization of the rows is in
+	 * DLI_Home_Sections_Unit_Test.
 	 */
-	public function test_malformed_rows_are_ignored() {
-		$this->save_sections(
-			array(
-				array(
-					'id'         => 'main_hero',
-					'enabled'    => 'true',
-					'show_title' => 'true',
-				),
-				'non una riga',
-				array( 'enabled' => 'true' ),
-				array(
-					'id'      => 'news_section',
-					'enabled' => 'true',
-				),
-			)
-		);
-
-		$rows = DLI_ContentsManager::get_hp_section_options( true );
-
-		$this->assertSame( array( 'main_hero', 'news_section' ), wp_list_pluck( $rows, 'id' ) );
-		$this->assertSame( 'false', $rows[1]['show_title'], 'A row saved without the flag does not show the title.' );
-	}
-
-	/**
-	 * A row missing `enabled` is not shown, as it was before: nothing is guessed to be on.
-	 */
-	public function test_a_row_without_the_enabled_flag_is_not_active() {
-		$this->save_sections( array( array( 'id' => 'main_hero' ) ) );
-
-		$this->assertSame( array(), DLI_ContentsManager::get_hp_section_options( true ) );
-		$this->assertCount( 1, DLI_ContentsManager::get_hp_section_options() );
-	}
-
-	/**
-	 * Each row has the position it has in the saved list, also when only the active ones are asked for.
-	 */
-	public function test_instance_is_the_position_in_the_saved_list() {
+	public function test_only_the_rows_that_are_on_are_active_and_keep_their_saved_position() {
 		$this->save_sections(
 			array(
 				array(
@@ -112,6 +78,7 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 					'id'      => 'news_section',
 					'enabled' => 'true',
 				),
+				array( 'id' => 'site_description' ),
 				array(
 					'id'      => 'events_section',
 					'enabled' => 'true',
@@ -121,42 +88,9 @@ class DLI_Homepage_Sections_Integration_Test extends DLI_Integration_Test_Case {
 
 		$active = DLI_ContentsManager::get_hp_section_options( true );
 
-		$this->assertSame( array( 2, 3 ), wp_list_pluck( $active, 'instance' ) );
-	}
-
-	/**
-	 * Old rows (without background) keep their data and their order; the background is checked.
-	 */
-	public function test_old_rows_are_kept_and_background_is_checked() {
-		$this->save_sections(
-			array(
-				array(
-					'id'         => 'main_hero',
-					'enabled'    => 'true',
-					'show_title' => 'false',
-				),
-				array(
-					'id'         => 'news_section',
-					'enabled'    => 'true',
-					'show_title' => 'true',
-					'background' => 'muted',
-					'extra'      => '42',
-				),
-				array(
-					'id'         => 'events_section',
-					'enabled'    => 'true',
-					'show_title' => 'true',
-					'background' => 'rosso',
-				),
-			)
-		);
-
-		$rows = DLI_ContentsManager::get_hp_section_options();
-
-		$this->assertArrayNotHasKey( 'background', $rows[0] );
-		$this->assertSame( 'muted', $rows[1]['background'] );
-		$this->assertSame( '42', $rows[1]['extra'], 'Extra properties reach the template.' );
-		$this->assertArrayNotHasKey( 'background', $rows[2], 'A wrong background is not passed on.' );
+		$this->assertSame( array( 'news_section', 'events_section' ), wp_list_pluck( $active, 'id' ), 'A row without the flag is not active.' );
+		$this->assertSame( array( 2, 4 ), wp_list_pluck( $active, 'instance' ) );
+		$this->assertCount( 4, DLI_ContentsManager::get_hp_section_options() );
 	}
 
 	/**

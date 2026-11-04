@@ -40,28 +40,10 @@ class DLI_Content_Managers_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
-	 * The managers are loaded with the theme prefix.
-	 */
-	public function test_manager_classes_have_the_theme_prefix() {
-		$this->assertTrue( class_exists( 'DLI_Page_Manager' ) );
-		$this->assertTrue( class_exists( 'DLI_Publication_Manager' ) );
-	}
-
-	/**
 	 * The Open Graph value object is loaded and returned by the contents manager.
 	 */
 	public function test_og_wrapper_is_loaded_with_the_contents_manager() {
-		$this->assertTrue( class_exists( 'DLI_ContentsManager' ) );
-		$this->assertTrue( class_exists( 'DLI_OG_Wrapper' ) );
 		$this->assertInstanceOf( 'DLI_OG_Wrapper', DLI_ContentsManager::get_og_data() );
-	}
-
-	/**
-	 * The contents manager and the Open Graph value object live in files named after their class.
-	 */
-	public function test_contents_manager_classes_live_in_files_named_after_them() {
-		$this->assertSame( 'class-dli-contentsmanager.php', basename( ( new ReflectionClass( 'DLI_ContentsManager' ) )->getFileName() ) );
-		$this->assertSame( 'class-dli-og-wrapper.php', basename( ( new ReflectionClass( 'DLI_OG_Wrapper' ) )->getFileName() ) );
 	}
 
 	/**

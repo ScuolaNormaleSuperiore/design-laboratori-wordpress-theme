@@ -321,7 +321,7 @@ class DLI_Page_File_Importer_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
-	 * The two languages imported one after the other are linked as translations, in whichever order.
+	 * The two example files make the example site (four main pages, seven promoted, one with the cards, per language), and the two languages imported one after the other are linked as translations.
 	 */
 	public function test_languages_imported_apart_are_linked_by_key() {
 		$this->add_english();
@@ -332,6 +332,20 @@ class DLI_Page_File_Importer_Integration_Test extends DLI_Integration_Test_Case 
 
 		$this->assertSame( array( 'created' => 15, 'skipped' => 0, 'errors' => 0 ), $english['counts'] );
 		$this->assertCount( 30, $this->imported_pages() );
+
+		// The example site: four main pages, seven promoted to the home and one with the cards, in each language.
+		$roots    = 0;
+		$promoted = 0;
+		$cards    = 0;
+		foreach ( $this->imported_pages() as $page_id ) {
+			$roots    += get_post( $page_id )->post_parent ? 0 : 1;
+			$promoted += '1' === (string) get_post_meta( $page_id, 'promuovi_in_home', true ) ? 1 : 0;
+			$cards    += '1' === (string) get_post_meta( $page_id, 'mostra_sottopagine_a_card', true ) ? 1 : 0;
+		}
+		$this->assertSame( 8, $roots, 'Four main pages per language.' );
+		$this->assertSame( 14, $promoted, 'Seven pages per language are promoted to the home.' );
+		$this->assertSame( 2, $cards, 'One page per language shows its subpages as cards.' );
+
 		$italian_root = $this->page( 'Dati della ricerca', 'it' );
 		$english_root = $this->page( 'Research Data', 'en' );
 		$this->assertSame(
@@ -593,32 +607,6 @@ class DLI_Page_File_Importer_Integration_Test extends DLI_Integration_Test_Case 
 
 		$this->assertSame( array( 'created' => 12, 'skipped' => 3, 'errors' => 0 ), $again['counts'] );
 		$this->assertCount( 15, $this->imported_pages() );
-	}
-
-	/**
-	 * The two example files make the example: 15 pages per language, 4 main pages, 7 promoted to the home, one with the cards.
-	 */
-	public function test_the_example_files_make_the_example_site() {
-		$this->add_english();
-		$author = $this->login_administrator();
-
-		DLI_Page_File_Importer::import( $this->pages_of( 'pages-example-it.csv' ), 'it', false, $author );
-		DLI_Page_File_Importer::import( $this->pages_of( 'pages-example-en.csv' ), 'en', false, $author );
-
-		$pages = $this->imported_pages();
-		$this->assertCount( 30, $pages );
-
-		$roots    = 0;
-		$promoted = 0;
-		$cards    = 0;
-		foreach ( $pages as $page_id ) {
-			$roots    += get_post( $page_id )->post_parent ? 0 : 1;
-			$promoted += '1' === (string) get_post_meta( $page_id, 'promuovi_in_home', true ) ? 1 : 0;
-			$cards    += '1' === (string) get_post_meta( $page_id, 'mostra_sottopagine_a_card', true ) ? 1 : 0;
-		}
-		$this->assertSame( 8, $roots, 'Four main pages per language.' );
-		$this->assertSame( 14, $promoted, 'Seven pages per language are promoted to the home.' );
-		$this->assertSame( 2, $cards, 'One page per language shows its subpages as cards.' );
 	}
 
 	/**

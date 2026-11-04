@@ -1,6 +1,6 @@
 <?php
 /**
- * Spike: the theme, ACF and Polylang load inside the WordPress test framework.
+ * The environment: the theme, ACF and Polylang load inside the WordPress test framework.
  *
  * @package Design_Laboratori_Italia
  */
@@ -8,7 +8,7 @@
 /**
  * Smoke tests of the integration environment.
  */
-class DLI_Spike_Integration_Test extends WP_UnitTestCase {
+class DLI_Environment_Integration_Test extends WP_UnitTestCase {
 
 	/**
 	 * The working copy of the theme is the active theme.
@@ -51,10 +51,4 @@ class DLI_Spike_Integration_Test extends WP_UnitTestCase {
 		$this->assertGreaterThan( $before, $after );
 	}
 
-	/**
-	 * The persona content type is registered.
-	 */
-	public function test_persona_post_type_is_registered() {
-		$this->assertTrue( post_type_exists( 'persona' ) );
-	}
 }

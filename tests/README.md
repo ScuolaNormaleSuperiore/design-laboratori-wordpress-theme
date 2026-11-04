@@ -45,7 +45,7 @@ o di una release. I comandi, tutti da lanciare dalla radice del tema, sono stati
 | Suite | Un solo file | Un solo test | Elencare i test disponibili |
 |---|---|---|---|
 | Unit | `composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php` | `composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name` | `composer test:unit -- --list-tests` |
-| Integrazione | `composer test:integration -- tests/integration/DLI_Spike_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `vendor/bin/phpunit -c phpunit-integration.xml --list-tests` |
+| Integrazione | `composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `vendor/bin/phpunit -c phpunit-integration.xml --list-tests` |
 | E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:44` oppure `composer test:e2e -- -g "wrong nonce"` | `composer test:e2e -- --list` |
 
 Regole utili:
