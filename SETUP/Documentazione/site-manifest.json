@@ -2,7 +2,7 @@
 	"version": 2,
 	"repository": {
 		"name": "ScuolaNormaleSuperiore/design-laboratori-wordpress-theme",
-		"ref": "dev"
+		"ref": "main"
 	},
 	"pages": [
 		{

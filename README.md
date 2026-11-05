@@ -113,47 +113,9 @@ personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 
 ## Documentazione
 
-### Per iniziare
-
-- [Indice della documentazione](DOC/index.md) — dove trovare le guide per valutare, installare, configurare e gestire il tema.
-- [Primo avvio](DOC/Avvio/Primo-avvio.md) — requisiti, attivazione, configurazione iniziale e controlli di un sito nuovo.
-
-### Manuali d'uso e amministrazione
-
-- [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
-- [Manuale operatore: persone](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore-persone.md)
-- [Pannello di configurazione](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md)
-- [Manuale amministratore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Amministratore.md) — permessi, schede riservate, plugin e note di architettura.
-
-### Manuali di gestione dei contenuti
-
-- [Attività di ricerca](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md)
-- [Banner](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Banner.md)
-- [Blog](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Blog.md)
-- [Brevetti](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Brevetti.md)
-- [Eventi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Eventi.md)
-- [Lingue](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Lingue.md)
-- [Luoghi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Luoghi.md)
-- [Notizie](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Notizie.md)
-- [Progetti](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Progetti.md)
-- [Pubblicazioni](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Pubblicazioni.md)
-- [Risorse tecniche](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Risorse-Tecniche.md)
-- [Spin-off](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/Manuale-Gestione-Contenuti-Spin-off.md)
-
-### Schemi
-
-- [Schema dei contenuti e delle tassonomie](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Contenuti-SitoFederato.pdf)
-- [Schema di importazione degli eventi](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Import-Eventi.drawio.pdf)
-- [Schema di integrazione con Brevo](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Schemi/Schema-Integrazione-Brevo.pdf)
-
-### Guide tecniche correnti
-
-- [Aggiornare la libreria Bootstrap Italia](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
-- [Gestire la documentazione](DOC/HowTo/Gestire-la-documentazione.md)
-- [Personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md)
-- [REST API del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/REST-API.md)
-- [Importazione dei brevetti da IRIS](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Import%20brevettiI%20da%20RIS.md)
-- [Transient e caching nel tema](DOC/HowTo/Transient%20e%20caching%20nel%20tema.md)
+Le guide di installazione, configurazione, gestione e sviluppo sono pubblicate
+nel sito della [documentazione di Design Laboratori Italia](https://scuolanormalesuperiore.github.io/design-laboratori-wordpress-theme/).
+Le sorgenti Markdown restano disponibili nella cartella [`DOC/`](DOC/).
 
 ## Demo
 ### Sito di prova online

@@ -4,6 +4,13 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const output = path.join(root, 'build', 'documentazione');
+const baseurl = (process.env.DOCS_BASEURL || '').replace(/\/+$/u, '');
+
+function withoutBaseurl(pathname) {
+	if (!baseurl || !pathname.startsWith('/')) return pathname;
+	if (pathname === baseurl) return '/';
+	return pathname.startsWith(`${baseurl}/`) ? pathname.slice(baseurl.length) : pathname;
+}
 
 function htmlFiles(directory) {
 	return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -27,7 +34,8 @@ for (const page of pages) {
 	for (const match of html.matchAll(/\s(?:href|src)=["']([^"']+)["']/gu)) {
 		const href = match[1];
 		if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/iu.test(href)) continue;
-		const [pathname, anchor] = href.split('#', 2);
+		const [rawPathname, anchor] = href.split('#', 2);
+		const pathname = withoutBaseurl(rawPathname);
 		const target = pathname.startsWith('/') ? pageFor(path.join(output, pathname)) : pageFor(path.resolve(path.dirname(page), pathname || '.'));
 		if (!fs.existsSync(target)) { problems.push(`${path.relative(output, page)} → ${href}: destinazione mancante`); continue; }
 		if (anchor && path.extname(target) === '.html' && !ids.get(target)?.has(anchor)) problems.push(`${path.relative(output, page)} → ${href}: ancora mancante`);

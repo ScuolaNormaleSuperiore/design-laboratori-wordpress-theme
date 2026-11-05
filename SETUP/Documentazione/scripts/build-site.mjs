@@ -17,6 +17,7 @@ function run(command, argumentsList, options = {}) {
 
 run(process.execPath, [path.join(scriptDirectory, 'build.mjs')]);
 const bundlerArguments = ['exec', 'jekyll', 'build', '--config', path.join(toolingDirectory, '_config.yml'), '--source', source, '--destination', destination];
+if (process.env.DOCS_BASEURL) bundlerArguments.push('--baseurl', process.env.DOCS_BASEURL);
 if (process.platform === 'win32') {
 	const quote = (argument) => `'${argument.replace(/'/g, "''")}'`;
 	const command = ['& bundle', ...bundlerArguments.map(quote)].join(' ');
