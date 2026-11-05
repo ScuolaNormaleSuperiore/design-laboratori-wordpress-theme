@@ -164,6 +164,23 @@ class DLI_Publication_Link_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The wrapper content belongs to its source post, not to the current global post.
+	 */
+	public function test_wrapper_full_content_belongs_to_the_source_post() {
+		$global_post_id = self::factory()->post->create( array( 'post_content' => 'Contenuto del post globale.' ) );
+		$publ_id        = $this->create_publication( array( 'post_title' => 'Contenuto del wrapper', 'post_content' => 'Contenuto della pubblicazione.' ) );
+		$previous_post  = $GLOBALS['post'] ?? null;
+		$GLOBALS['post'] = get_post( $global_post_id );
+
+		try {
+			$wrapper = dli_get_post_wrapper( get_post( $publ_id ) );
+			$this->assertSame( 'Contenuto della pubblicazione.', $wrapper['full_content'] );
+		} finally {
+			$GLOBALS['post'] = $previous_post;
+		}
+	}
+
+	/**
 	 * The wrapper of a protected publication has neither the description nor the content, and leads to the detail page.
 	 */
 	public function test_wrapper_of_a_protected_publication_hides_what_the_password_protects() {

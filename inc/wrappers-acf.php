@@ -14,9 +14,9 @@ if ( ! function_exists( 'dli_get_field' ) ) {
 	/**
 	 * Wrapper around ACF's get_field().
 	 *
-	 * @param string   $selector     Field name or key.
-	 * @param int|bool $post_id      Post ID to get the field value for, or false for the current post.
-	 * @param bool     $format_value Whether to apply ACF's formatting logic to the value.
+	 * @param string            $selector     Field name or key.
+	 * @param false|int|WP_Post $post_id      Post ID, source post, or false for the current post.
+	 * @param bool              $format_value Whether to apply ACF's formatting logic to the value.
 	 *
 	 * @return mixed
 	 */
