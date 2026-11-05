@@ -150,6 +150,14 @@
 			"order": 10
 		},
 		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Sponsor.md",
+			"target": "gestisci/sponsor.md",
+			"title": "Gestire gli sponsor",
+			"description": "Loghi, priorità, collegamenti e griglia Sponsor nella home page.",
+			"group": "Gestisci la home",
+			"order": 15
+		},
+		{
 			"source": "DOC/HowTo/REST-API.md",
 			"target": "tecnica/rest-api.md",
 			"title": "Web service esposti nel tema",
@@ -174,6 +182,23 @@
 			"order": 30
 		}
 	],
-	"assets": [],
+	"assets": [
+		{
+			"source": "DOC/Immagini/home/home-hero-configurazione.png",
+			"target": "media/home/home-hero-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-hero-risultato.png",
+			"target": "media/home/home-hero-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-card-navigazione-configurazione.png",
+			"target": "media/home/home-card-navigazione-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-card-navigazione-risultato.png",
+			"target": "media/home/home-card-navigazione-risultato.png"
+		}
+	],
 	"github_documents": []
 }

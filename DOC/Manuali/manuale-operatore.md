@@ -140,7 +140,15 @@ Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano n
 
 In `Configurazione > Layout HP` scegli la dimensione grande o piccola, compila titolo e testo IT/EN, seleziona l'immagine e indica etichetta e URL del pulsante. Aggiungi e abilita `Hero principale` in `Sezioni HP`.
 
+![Configurazione dei campi dell'hero principale, con dimensione, titoli, testi, pulsante e immagine di sfondo.](../Immagini/home/home-hero-configurazione.png)
+
+*Configurazione dell'hero principale in Layout HP.*
+
 La Hero è mostrata quando è abilitata, anche se alcuni campi sono vuoti: non lasciare un blocco privo di messaggio. Senza URL il pulsante non compare. Il testo descrittivo è nascosto sugli schermi più piccoli: metti le informazioni indispensabili nel titolo e nella pagina di destinazione, non soltanto nella descrizione.
+
+![Hero principale pubblicato nella home, con titolo, testo, pulsante e immagine di sfondo.](../Immagini/home/home-hero-risultato.png)
+
+*Risultato dell'hero principale nella home.*
 
 ### 8.4 Descrizione del sito
 
@@ -170,7 +178,15 @@ Mostra pagine come card di accesso, per esempio «Ricerca», «Servizi» e «Con
 
 Pubblica le pagine, attiva il campo e imposta `Ordine` in `Attributi pagina`; a parità di ordine si usa il titolo. In `Layout HP` scrivi titolo e sottotitolo della sezione. In `Sezioni HP` aggiungi `Card di navigazione`, scegli sfondo, numero massimo e livello delle pagine.
 
+![Riga Card di navigazione in Sezioni HP, con attivazione, titolo, limite, livello e sfondo.](../Immagini/home/home-card-navigazione-configurazione.png)
+
+*Configurazione della sezione Card di navigazione.*
+
 Di default compaiono fino a 6 pagine di primo livello, cioè senza genitore. Puoi scegliere fino al secondo o terzo livello, oppure tutti i livelli, e un limite da 1 a 12. Bozze e pagine protette non compaiono; senza pagine idonee il blocco è nascosto. Il titolo configurato compare soltanto se ne abiliti la visualizzazione; il sottotitolo non vuoto rimane visibile. Ripetere la sezione non permette di scegliere due elenchi manuali indipendenti.
+
+![Sezione Card di navigazione pubblicata nella home, con quattro pagine di primo livello.](../Immagini/home/home-card-navigazione-risultato.png)
+
+*Risultato della sezione Card di navigazione nella home.*
 
 ### 8.8 Navigazione per pagine
 
@@ -246,7 +262,7 @@ Ogni riga ha il campo `Come scegliere i banner`: **Automatico** (i banner pubbli
 
 Mostra una griglia di loghi, per esempio partner e collaborazioni, ordinati per `Priorità` crescente. Pubblica i contenuti Sponsor con immagine in evidenza, priorità e collegamento esterno, se disponibile.
 
-Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazione > Sponsors`. Non si selezionano con `Promuovi in Home`: il modello legge fino a 30 Sponsor pubblicati. Senza risultati la sezione non compare; senza collegamento un logo non è cliccabile. La voce di visualizzazione del titolo non produce un'intestazione visibile sopra i loghi.
+Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazione > Sponsors`. Non si selezionano con `Promuovi in Home`: il modello legge fino a 30 Sponsor pubblicati. Senza risultati la sezione non compare; senza collegamento un logo non è cliccabile. La voce di visualizzazione del titolo non produce un'intestazione visibile sopra i loghi. Per creare i loghi, l'ordine e i collegamenti consulta il [manuale Sponsor](Manuale-Gestione-Contenuti-Sponsor.md).
 
 ### 8.17 Video
 

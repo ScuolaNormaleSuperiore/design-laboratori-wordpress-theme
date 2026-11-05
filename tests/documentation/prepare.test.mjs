@@ -31,12 +31,12 @@ function fixture(t) {
 test('prepares only manifest-selected files and rewrites selected and GitHub links', (t) => {
 	const { root, destination, manifest, tracked } = fixture(t);
 	prepareDocumentation({ root, destination, manifest, tracked });
-	assert.match(fs.readFileSync(path.join(destination, 'index.md'), 'utf8'), /^---\nlayout: docs\n[\s\S]*permalink: \/\n[\s\S]*\[Guida\]\(guide\/guida\.md#capitolo\)/);
+	assert.match(fs.readFileSync(path.join(destination, 'index.md'), 'utf8'), /^---\nlayout: docs\n[\s\S]*permalink: \/\n[\s\S]*\[Guida\]\(guide\/guida\/#capitolo\)/);
 	const guide = fs.readFileSync(path.join(destination, 'guide', 'guida.md'), 'utf8');
 	assert.match(guide, /permalink: \/guide\/guida\//);
 	assert.doesNotMatch(guide, /^# Guida/m);
 	assert.match(guide, /https:\/\/github\.com\/owner\/repository\/blob\/dev\/assets\/file\.css/);
-	assert.match(guide, /!\[Immagine\]\(\.\.\/media\/schema\.svg\)/);
+	assert.match(guide, /!\[Immagine\]\(\.\.\/\.\.\/media\/schema\.svg\)/);
 	assert.equal(fs.readFileSync(path.join(destination, 'media', 'schema.svg'), 'utf8'), '<svg/>\n');
 });
 

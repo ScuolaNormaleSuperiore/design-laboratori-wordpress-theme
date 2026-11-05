@@ -12,7 +12,7 @@ Per preparare un sito nuovo segui la guida [Primo avvio](Avvio/Primo-avvio.md). 
 
 ## Gestisci
 
-Il [Manuale operatore](Manuali/manuale-operatore.md) descrive la gestione quotidiana del sito e delle sezioni della home. Per i campi del pannello **Configurazione** usa il [Manuale del pannello di configurazione](Manuali/Manuale-Utente-Pannello-Configurazione.md). La guida alle [Pubblicazioni](Manuali/Manuale-Gestione-Contenuti-Pubblicazioni.md) approfondisce una delle tipologie di contenuto principali.
+Il [Manuale operatore](Manuali/manuale-operatore.md) descrive la gestione quotidiana del sito e delle sezioni della home. Per i campi del pannello **Configurazione** usa il [Manuale del pannello di configurazione](Manuali/Manuale-Utente-Pannello-Configurazione.md). Le guide alle [Pubblicazioni](Manuali/Manuale-Gestione-Contenuti-Pubblicazioni.md) e agli [Sponsor](Manuali/Manuale-Gestione-Contenuti-Sponsor.md) approfondiscono contenuti usati nella home.
 
 ## Personalizza e integra
 

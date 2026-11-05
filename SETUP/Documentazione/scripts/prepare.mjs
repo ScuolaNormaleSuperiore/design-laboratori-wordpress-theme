@@ -31,16 +31,35 @@ function sourceFromLink(source, link_path) {
 	return resolved.startsWith('../') || resolved === '..' ? null : resolved;
 }
 
-function relativeTarget(from_target, to_target) {
-	const relative = path.posix.relative(path.posix.dirname(from_target), to_target);
-	return relative || path.posix.basename(to_target);
+function outputPath(target, is_page) {
+	if (!is_page) {
+		return target;
+	}
+	if (target === 'index.md') {
+		return 'index.html';
+	}
+	return target.replace(/\.md$/, '/index.html');
+}
+
+function relativeTarget(from_target, to_target, is_page) {
+	const destination = is_page
+		? to_target.replace(/\.md$/, '/').replace(/^index\/$/, '') || '.'
+		: to_target;
+	const relative = path.posix.relative(path.posix.dirname(outputPath(from_target, true)), destination);
+	if (is_page) {
+		return relative ? `${relative}/` : './';
+	}
+	return relative || path.posix.basename(destination);
 }
 
 /** Rewrite selected document links and safely point all other local files to GitHub. */
 export function rewriteLinks(markdown, page, selection, repository, ref) {
 	const selected = new Map();
-	for (const entry of [...selection.pages, ...selection.assets]) {
-		selected.set(entry.source, entry.target);
+	for (const entry of selection.pages) {
+		selected.set(entry.source, { target: entry.target, is_page: true });
+	}
+	for (const entry of selection.assets) {
+		selected.set(entry.source, { target: entry.target, is_page: false });
 	}
 	return markdown.replace(MARKDOWN_LINK, (match, label, target, title = '') => {
 		if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(target)) {
@@ -53,7 +72,7 @@ export function rewriteLinks(markdown, page, selection, repository, ref) {
 		}
 		const selected_target = selected.get(source);
 		if (selected_target) {
-			return `${label}(${relativeTarget(page.target, selected_target)}${suffix}${title})`;
+			return `${label}(${relativeTarget(page.target, selected_target.target, selected_target.is_page)}${suffix}${title})`;
 		}
 		return `${label}(${githubUrl(repository, ref, source, suffix)}${title})`;
 	});

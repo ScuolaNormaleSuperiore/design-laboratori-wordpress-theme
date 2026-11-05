@@ -24,7 +24,7 @@ const problems = [];
 
 for (const page of pages) {
 	const html = fs.readFileSync(page, 'utf8');
-	for (const match of html.matchAll(/\shref=["']([^"']+)["']/gu)) {
+	for (const match of html.matchAll(/\s(?:href|src)=["']([^"']+)["']/gu)) {
 		const href = match[1];
 		if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/iu.test(href)) continue;
 		const [pathname, anchor] = href.split('#', 2);
