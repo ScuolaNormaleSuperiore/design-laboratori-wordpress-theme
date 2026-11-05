@@ -70,6 +70,9 @@ define( 'DLI_PER_PAGE_VALUES', array( '4', '10', '20', '30', '40', '50' ) );
 // Define roles and permissions.
 define( 'DLI_SUPER_EDITOR_ROLE_SLUG', 'dli_super_editor' );
 define( 'DLI_SUPER_EDITOR_ROLE_NAME', 'Super Editor' );
+// Role of a user who is authenticated and can do nothing (for example a user just created by a single sign-on).
+define( 'DLI_PENDING_USER_ROLE_SLUG', 'dli_pending_user' );
+define( 'DLI_PENDING_USER_ROLE_NAME', 'Utente in attesa' );
 define( 'DLI_EDIT_CONFIG_PERMISSION', 'dli_edit_site_configuration' );
 define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 

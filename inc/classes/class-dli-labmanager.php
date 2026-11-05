@@ -6,7 +6,7 @@
  */
 
 if ( ! class_exists( 'DLI_AuthorizationManager' ) ) {
-	include_once 'class-authmanager.php';
+	include_once 'class-dli-authorizationmanager.php';
 }
 
 if ( ! class_exists( 'PeopleManager' ) ) {

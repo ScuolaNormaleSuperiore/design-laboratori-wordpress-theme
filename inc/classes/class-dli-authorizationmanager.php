@@ -6,7 +6,7 @@
  */
 
 /**
- * The manager that creates and configures the Super Editor role.
+ * The manager that creates and configures the custom roles: Super Editor and the pending user.
  */
 class DLI_AuthorizationManager {
 	/**
@@ -22,6 +22,46 @@ class DLI_AuthorizationManager {
 	public function setup() {
 		// Register the custom roles.
 		add_action( 'init', array( $this, 'add_super_editor' ) );
+		add_action( 'init', array( $this, 'add_pending_user_role' ) );
+		add_filter( 'map_meta_cap', array( $this, 'deny_profile_editing_to_pending_user' ), 10, 3 );
+	}
+
+	/**
+	 * Refuse editing a user to someone with the pending user role, the own profile included.
+	 *
+	 * WordPress lets everybody edit the own profile whatever the capabilities are, for example with the REST route
+	 * `POST /wp/v2/users/me`; this closes it for the pending user role.
+	 *
+	 * @param string[] $caps    Primitive capabilities that the check requires.
+	 * @param string   $cap     Capability being checked.
+	 * @param int      $user_id ID of the user the check is for.
+	 * @return string[] The capabilities required, or `do_not_allow`.
+	 */
+	public function deny_profile_editing_to_pending_user( $caps, $cap, $user_id ) {
+		if ( 'edit_user' !== $cap ) {
+			return $caps;
+		}
+
+		$user = get_userdata( (int) $user_id );
+		if ( $user && in_array( DLI_PENDING_USER_ROLE_SLUG, (array) $user->roles, true ) ) {
+			return array( 'do_not_allow' );
+		}
+
+		return $caps;
+	}
+
+	/**
+	 * Create the pending user role: a user who is authenticated and can do nothing.
+	 *
+	 * The role has no capability at all, not even `read`. It is created only when it does not exist and is never
+	 * rewritten, so a capability decided later is not lost. The theme does not assign it to anybody.
+	 *
+	 * @return void
+	 */
+	public function add_pending_user_role() {
+		if ( ! get_role( DLI_PENDING_USER_ROLE_SLUG ) ) {
+			add_role( DLI_PENDING_USER_ROLE_SLUG, DLI_PENDING_USER_ROLE_NAME, array() );
+		}
 	}
 
 	/**
