@@ -26,7 +26,7 @@
 			"target": "gestisci/amministrazione.md",
 			"title": "Manuale amministratore",
 			"description": "Permessi, configurazione riservata, plugin e strumenti del tema.",
-			"group": "Gestisci",
+			"group": "Amministra",
 			"order": 10
 		},
 		{
@@ -34,7 +34,7 @@
 			"target": "gestisci/homepage.md",
 			"title": "Manuale operatore",
 			"description": "Gestione dei contenuti e delle sezioni della home page.",
-			"group": "Gestisci",
+			"group": "Gestisci la home",
 			"order": 20
 		},
 		{
@@ -42,7 +42,7 @@
 			"target": "gestisci/configurazione.md",
 			"title": "Pannello di configurazione",
 			"description": "Guida alle schede e ai campi di Configurazione.",
-			"group": "Gestisci",
+			"group": "Configura",
 			"order": 30
 		},
 		{
@@ -50,8 +50,104 @@
 			"target": "gestisci/pubblicazioni.md",
 			"title": "Gestire le pubblicazioni",
 			"description": "Campi, relazioni e pubblicazione dei contenuti bibliografici.",
-			"group": "Gestisci",
+			"group": "Gestisci contenuti",
+			"order": 70
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Lingue.md",
+			"target": "configura/lingue.md",
+			"title": "Gestire le lingue",
+			"description": "Traduzioni italiane e inglesi di contenuti, tassonomie, pagine e menu.",
+			"group": "Configura",
+			"order": 20
+		},
+		{
+			"source": "DOC/Manuali/manuale-operatore-persone.md",
+			"target": "contenuti/persone.md",
+			"title": "Gestire le persone",
+			"description": "Schede persona, strutture, tipologie, visibilità e collegamenti.",
+			"group": "Gestisci contenuti",
+			"order": 10
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Attivita-di-Ricerca.md",
+			"target": "contenuti/attivita-ricerca.md",
+			"title": "Gestire le attività di ricerca",
+			"description": "Creazione, relazioni e pubblicazione delle attività di ricerca.",
+			"group": "Gestisci contenuti",
+			"order": 20
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Progetti.md",
+			"target": "contenuti/progetti.md",
+			"title": "Gestire i progetti",
+			"description": "Campi, relazioni e pubblicazione dei progetti di ricerca.",
+			"group": "Gestisci contenuti",
+			"order": 30
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Eventi.md",
+			"target": "contenuti/eventi.md",
+			"title": "Gestire gli eventi",
+			"description": "Creazione, date, categorie e pubblicazione degli eventi.",
+			"group": "Gestisci contenuti",
 			"order": 40
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Notizie.md",
+			"target": "contenuti/notizie.md",
+			"title": "Gestire le notizie",
+			"description": "Campi, categorie e pubblicazione delle notizie.",
+			"group": "Gestisci contenuti",
+			"order": 50
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Blog.md",
+			"target": "contenuti/blog.md",
+			"title": "Gestire il blog",
+			"description": "Articoli, categorie e pubblicazione dei contenuti del blog.",
+			"group": "Gestisci contenuti",
+			"order": 60
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Brevetti.md",
+			"target": "contenuti/brevetti.md",
+			"title": "Gestire i brevetti",
+			"description": "Schede brevetto, tassonomie e importazione da IRIS.",
+			"group": "Gestisci contenuti",
+			"order": 80
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Luoghi.md",
+			"target": "contenuti/luoghi.md",
+			"title": "Gestire i luoghi",
+			"description": "Sedi, informazioni di contatto e mappe dei luoghi.",
+			"group": "Gestisci contenuti",
+			"order": 90
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Spin-off.md",
+			"target": "contenuti/spin-off.md",
+			"title": "Gestire gli spin-off",
+			"description": "Schede, relazioni e pubblicazione degli spin-off.",
+			"group": "Gestisci contenuti",
+			"order": 100
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Risorse-Tecniche.md",
+			"target": "contenuti/risorse-tecniche.md",
+			"title": "Gestire le risorse tecniche",
+			"description": "Schede, caratteristiche e pubblicazione delle risorse tecniche.",
+			"group": "Gestisci contenuti",
+			"order": 110
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Banner.md",
+			"target": "contenuti/banner.md",
+			"title": "Gestire i banner",
+			"description": "Creazione, priorità e visualizzazione dei banner in home page.",
+			"group": "Gestisci la home",
+			"order": 10
 		},
 		{
 			"source": "DOC/HowTo/REST-API.md",
@@ -68,6 +164,14 @@
 			"description": "Colori, font e rigenerazione del CSS Bootstrap Italia.",
 			"group": "Guide tecniche",
 			"order": 20
+		},
+		{
+			"source": "DOC/HowTo/Gestire-la-documentazione.md",
+			"target": "tecnica/gestire-documentazione.md",
+			"title": "Gestire la documentazione web",
+			"description": "Sorgenti, manifest, immagini, build, controlli e anteprima locale.",
+			"group": "Guide tecniche",
+			"order": 30
 		}
 	],
 	"assets": [],
