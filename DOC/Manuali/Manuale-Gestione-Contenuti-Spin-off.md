@@ -94,7 +94,7 @@ Uso pratico:
 Nella scheda `Spin-off` non sono presenti campi ACF di relazione verso altri content type.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Spin-off`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Spin-off`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 

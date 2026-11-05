@@ -146,7 +146,7 @@ Da questo momento (e per sempre: non esiste più un interruttore per tornare all
 contenuti pubblici delle altre tipologie, a meno che l'API REST sia disattivata nelle opzioni del tema.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Pubblicazioni`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Pubblicazioni`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 
@@ -163,3 +163,9 @@ Queste opzioni governano la pagina panoramica delle pubblicazioni, non la singol
 - `Tag` coerenti (se usati)
 - eventuali relazioni con `Progetti` verificate
 - flag `Promuovi in Home` / `Promuovi in carousel` coerenti con la visibilita' desiderata
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-pubblicazioni-promozione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-pubblicazioni-risultato.png)

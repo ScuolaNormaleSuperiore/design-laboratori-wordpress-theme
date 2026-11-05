@@ -110,7 +110,7 @@ Flusso consigliato:
 4. Verificare in frontend le sezioni collegate (es. dettaglio progetto con blocco "Eventi e notizie").
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Eventi`) sono presenti i campi di configurazione della pagina panoramica:
+Nelle opzioni tema (`WP → Configurazione → Eventi`) sono presenti i campi di configurazione della pagina panoramica:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 
@@ -126,3 +126,9 @@ Queste opzioni governano la pagina lista `Gli eventi`, non i campi della singola
 - immagine in evidenza presente
 - relazioni (`Progetto`/`Indirizzo di ricerca`) valorizzate se pertinenti
 - flag `Promuovi in home` / `Promuovi in carousel` coerenti con la visibilita' desiderata
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-eventi-promozione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-eventi-risultato.png)

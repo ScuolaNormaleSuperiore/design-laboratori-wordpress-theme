@@ -137,7 +137,7 @@ Flusso consigliato:
 3. verificare nel frontend della risorsa la sezione `Progetti` collegati.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Risorse tecniche`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Risorse tecniche`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 

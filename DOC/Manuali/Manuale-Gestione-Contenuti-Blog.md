@@ -67,7 +67,7 @@ Uso pratico:
 Nella scheda `Post` non sono presenti campi ACF di relazione verso altri content type.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Blog`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Blog`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 
@@ -80,3 +80,9 @@ Queste opzioni governano il testo introduttivo della pagina blog (`page-template
 - `Tag` coerenti (se usati)
 - immagine in evidenza presente e corretta
 - flag ACF (`Promuovi in home`, `Promuovi in carousel`) coerenti con la visibilita' desiderata
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-articoli-promozione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-articoli-risultato.png)

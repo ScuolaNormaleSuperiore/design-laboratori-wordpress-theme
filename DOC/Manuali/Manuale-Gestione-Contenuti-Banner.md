@@ -89,3 +89,11 @@ La visualizzazione dei banner in homepage dipende dalla configurazione delle sez
 - se presente il pulsante: `Label pulsante` e `Link pulsante` coerenti
 - impostazione `Apri in nuova finestra` coerente con il tipo di link
 - sezione `Banner` abilitata in homepage (se si vuole visualizzarlo subito)
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-banner-contenuto-configurazione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-banner-risultato.png)
+
+![Configurazione della sezione Banner in Sezioni HP.](../Immagini/home/home-banner-sezione-configurazione.png)

@@ -95,7 +95,7 @@ Flusso consigliato:
 3. Verifica in frontend le sezioni collegate (es. dettaglio progetto con blocco "Eventi e notizie").
 
 ## 10. Configurazioni backoffice della sezione "Le Novita'"
-Nelle opzioni tema (`dli_options > Novita`) sono presenti campi che governano la pagina lista:
+Nelle opzioni tema (`WP → Configurazione → Novita`) sono presenti campi che governano la pagina lista:
 - descrizione sezione (IT/EN)
 - `Numero pagine collegate` (numero massimo di notizie/eventi associabili a una pagina)
 
@@ -108,3 +108,9 @@ Nelle opzioni tema (`dli_options > Novita`) sono presenti campi che governano la
 - `Tag` coerenti (se usati)
 - immagine in evidenza presente
 - relazioni (`Progetto`/`Indirizzo di ricerca`) valorizzate se pertinenti
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-notizie-promozione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-notizie-risultato.png)

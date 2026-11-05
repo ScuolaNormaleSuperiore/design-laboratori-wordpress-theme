@@ -99,7 +99,7 @@ Flusso consigliato:
 3. Verifica in frontend che la sezione "Eventi e notizie" del progetto sia valorizzata.
 
 ## 10. Configurazioni backoffice della sezione "I Progetti"
-Nelle opzioni tema (`dli_options > Progetti`) sono presenti campi che governano la pagina lista, non la singola scheda:
+Nelle opzioni tema (`WP → Configurazione → Progetti`) sono presenti campi che governano la pagina lista, non la singola scheda:
 - descrizione sezione (IT/EN)
 - modalita' paginazione (`Mostra tutti` / `Attiva paginazione`)
 - numero elementi per pagina

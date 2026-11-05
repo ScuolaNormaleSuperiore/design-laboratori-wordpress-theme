@@ -91,7 +91,7 @@ Flusso consigliato:
 3. verificare in frontend le sezioni correlate (`Progetti`, `Eventi e notizie`).
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Indirizzi di ricerca`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Indirizzi di ricerca`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 

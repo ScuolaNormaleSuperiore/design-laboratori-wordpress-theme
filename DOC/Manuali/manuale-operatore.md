@@ -100,6 +100,8 @@ Questo capitolo è la guida pratica per scegliere e comporre le sezioni della ho
 
 ### 8.1 Scegliere le sezioni
 
+![Panoramica di Sezioni HP, con ordine e attivazione delle righe.](../Immagini/home/home-sezioni-hp-panoramica.png)
+
 Non occorre usarle tutte: scegli quelle utili al visitatore ed evita di ripetere lo stesso contenuto in troppi blocchi.
 
 | Sezione | Quando usarla | Da dove arrivano i contenuti |
@@ -152,11 +154,19 @@ La Hero è mostrata quando è abilitata, anche se alcuni campi sono vuoti: non l
 
 ### 8.4 Descrizione del sito
 
+![Configurazione della descrizione del sito.](../Immagini/home/home-descrizione-configurazione.png)
+
+![Descrizione del sito pubblicata nella home.](../Immagini/home/home-descrizione-risultato.png)
+
 Mostra il testo di presentazione del laboratorio, senza dover creare un articolo. Usala per una breve introduzione a missione e attività.
 
 Compila etichetta e descrizione in `Configurazione > Laboratorio`, nelle lingue previste, e abilita `Descrizione del sito` in `Sezioni HP`. Senza descrizione da mostrare il blocco non compare. L'etichetta è il titolo visibile del blocco; non si controlla da `Mostra il titolo della sezione`.
 
 ### 8.5 Carousel principale
+
+![Configurazione del Carousel principale in Layout HP.](../Immagini/home/home-carousel-configurazione.png)
+
+![Carousel principale pubblicato nella home.](../Immagini/home/home-carousel-risultato.png)
 
 Mostra schede a scorrimento con immagine, titolo e sintesi. È distinto dal carousel della sezione Eventi. La selezione manuale propone articoli del blog, notizie, eventi e pubblicazioni; quella automatica può includere anche brevetti, progetti, spin-off e risorse tecniche con `Promuovi in carousel`.
 
@@ -165,6 +175,10 @@ In `Configurazione > Layout HP` scegli la selezione automatica, basata sul campo
 Abilita `Carousel principale` in `Sezioni HP`. Senza elementi non viene semplicemente nascosto: appare un messaggio che invita a configurarlo; disabilitalo se non intendi usarlo. Nei siti multilingua verifica le traduzioni dei contenuti scelti. Esempio: metti in primo piano una notizia, un evento e una pubblicazione, con immagini coerenti e titoli brevi.
 
 ### 8.6 Contenuti in evidenza
+
+![Configurazione dei Contenuti in evidenza.](../Immagini/home/home-contenuti-evidenza-configurazione.png)
+
+![Contenuti in evidenza pubblicati nella home.](../Immagini/home/home-contenuti-evidenza-risultato.png)
 
 Affianca fino a tre box, ciascuno dedicato a un tipo di contenuto. Usalo, per esempio, per accostare «Notizie», «Eventi» e «Pubblicazioni» senza tre sezioni estese consecutive.
 
@@ -190,6 +204,12 @@ Di default compaiono fino a 6 pagine di primo livello, cioè senza genitore. Puo
 
 ### 8.8 Navigazione per pagine
 
+![Configurazione della Navigazione per pagine.](../Immagini/home/home-navigazione-pagine-configurazione.png)
+
+![Navigazione per pagine su desktop.](../Immagini/home/home-navigazione-pagine-risultato.png)
+
+![Navigazione per pagine su telefono.](../Immagini/home/home-navigazione-pagine-mobile.png)
+
 Mostra gruppi di link: il nome di una pagina e sotto le sue sottopagine dirette. È utile per presentare, per esempio, i servizi organizzati in «Dati», «Valutazione» e «Supporto».
 
 Attiva `Promuovi in Home` nelle pagine che devono diventare gruppi e assegna loro sottopagine pubblicate. Scrivi titolo e sottotitolo in `Layout HP`; aggiungi la sezione in `Sezioni HP`, scegliendo sfondo, numero massimo di gruppi e link per gruppo (da 1 a 12; valori iniziali 4 e 4).
@@ -197,6 +217,12 @@ Attiva `Promuovi in Home` nelle pagine che devono diventare gruppi e assegna lor
 Le pagine possono essere a qualsiasi livello dell'albero; una pagina promossa senza sottopagine non forma un gruppo. Gruppi e link seguono `Ordine`, poi titolo; bozze e pagine protette sono escluse. Il titolo del gruppo non è un collegamento. Sul telefono i gruppi diventano un accordion, con il primo aperto; senza gruppi il blocco non compare. Non usa i menu del sito né una scelta manuale di pagine nella riga.
 
 ### 8.9 Indice di una pagina
+
+![Configurazione dell’Indice di una pagina.](../Immagini/home/home-indice-pagina-configurazione.png)
+
+![Indice di una pagina su desktop.](../Immagini/home/home-indice-pagina-risultato.png)
+
+![Indice di una pagina su telefono.](../Immagini/home/home-indice-pagina-mobile.png)
 
 Mostra l'albero di una pagina scelta: le sue sottopagine dirette diventano colonne e le sottopagine di queste diventano link. Non dipende da `Promuovi in Home` e non elenca semplicemente tutte le pagine del sito.
 
@@ -219,6 +245,12 @@ Una pagina non pubblicata, protetta o senza gruppi utilizzabili non produce la s
 Puoi aggiungere più indici, anche della stessa pagina: per esempio «Ricerca» con 4 colonne e «Servizi» con 2. Ogni riga conserva pagina, limiti e sfondo propri; a riga chiusa la pagina scelta compare nel nome, così distingui le copie. Una scelta diventata non visibile resta riconoscibile nel pannello, ma non rende nuovamente pubblica la pagina.
 
 ### 8.10 Pannello tab
+
+![Configurazione dei tab in Layout HP.](../Immagini/home/home-tab-configurazione.png)
+
+![Configurazione della riga Pannello tab in Sezioni HP.](../Immagini/home/home-tab-sezione-configurazione.png)
+
+![Pannello tab pubblicato nella home.](../Immagini/home/home-tab-risultato.png)
 
 Organizza informazioni in pannelli selezionabili, per esempio «Studiare», «Collaborare» e «Visitare». È una scelta editoriale manuale, non una vista automatica dell'albero delle pagine.
 
@@ -268,11 +300,27 @@ Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazi
 
 Mostra un video di presentazione con il player condiviso del tema, predisposto per YouTube. In `Configurazione > Sezioni HP` scegli `Video` e scrivi l'indirizzo nel campo `URL del video` della riga, poi abilita la sezione, con o senza titolo. Puoi scegliere lo sfondo della sezione, bianco o grigio chiaro (se non scegli, resta il grigio chiaro di prima). Quando la riga è chiusa il nome mostra il titolo italiano, se c'è, altrimenti il codice del video (per esempio `Video — Intervista` o `Video — aaaaaaaaaaa`), così le sezioni Video si distinguono.
 
+![Configurazione della sezione Video, con URL, titolo, sfondo e attivazione.](../Immagini/home/home-video-configurazione.png)
+
+*Configurazione della sezione Video in Sezioni HP.*
+
 Ogni riga ha il suo video e, se vuoi, il suo titolo, in italiano e in inglese (`Titolo della sezione` e `Titolo della sezione ENG`, al massimo 120 caratteri): il titolo compare solo se esiste nella lingua della pagina (un titolo inglese mancante non viene sostituito da quello italiano) e solo se `Mostra il titolo della sezione` è su Sì; altrimenti la sezione non ha titolo. Puoi aggiungere più sezioni `Video` con indirizzi e titoli diversi. Senza URL la sezione non compare. L'indirizzo è lo stesso per le due lingue. Il campo `Home Page Video URL` che era in `Layout HP` non c'è più: dopo l'aggiornamento il video della home non si vede finché non scrivi l'indirizzo nella riga (il vecchio valore non viene copiato). Il player presenta il consenso ai cookie YouTube: la sola presenza del riquadro non significa che la riproduzione sia già attiva. Controlla avvio e consenso sul sito finale. Esempio: inserisci il video istituzionale del laboratorio; non presumere che qualsiasi URL video sia supportato.
+
+![Video pubblicato nella home, con il consenso necessario prima della riproduzione.](../Immagini/home/home-video-risultato.png)
+
+*Risultato della sezione Video nella home.*
 
 ### 8.18 Avvisi e controlli finali
 
 Per un messaggio breve, come una chiusura temporanea, usa `Configurazione > Avvisi in Home`: aggiungi testo, colore e collegamento facoltativo. Non è una sezione del catalogo `Sezioni HP` e non si sposta con le sue frecce. La configurazione attuale non offre una scadenza automatica: rimuovi manualmente gli avvisi non più validi.
+
+![Configurazione di un Avviso in Home, con testo, colore e collegamento facoltativo.](../Immagini/home/home-avviso-configurazione.png)
+
+*Configurazione dell'Avviso in Home.*
+
+![Avviso pubblicato nella home.](../Immagini/home/home-avviso-risultato.png)
+
+*Risultato dell'Avviso in Home.*
 
 Se un blocco manca, controlla nell'ordine:
 

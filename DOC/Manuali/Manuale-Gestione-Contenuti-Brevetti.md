@@ -104,12 +104,12 @@ Uso pratico:
 Nella scheda `Brevetto` non sono presenti campi ACF di relazione verso altri content type.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Brevetti`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Brevetti`) sono presenti i campi:
 - `Descrizione Sezione` (IT)
 - `Descrizione Sezione ENG` (EN)
 
 Configurazioni aggiuntive:
-- in `dli_options > IRIS` e' disponibile la sezione di integrazione/import `IRIS AP Brevetti` (abilitazione, endpoint, credenziali, schedulazione, modalita' import e gestione elementi esistenti).
+- in `WP → Configurazione → IRIS` e' disponibile la sezione di integrazione/import `IRIS AP Brevetti` (abilitazione, endpoint, credenziali, schedulazione, modalita' import e gestione elementi esistenti).
 - l'import può essere eseguito anche tramite `POST /wp-json/custom/v1/iris-patent-import`, quando `Abilita REST API` è attivo, con autenticazione HTTP Basic di un utente con `manage_options`. Vedi [REST API del tema](../HowTo/REST-API.md).
 
 ## 11. Check-list rapida prima della pubblicazione

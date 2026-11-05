@@ -180,9 +180,93 @@
 			"description": "Sorgenti, manifest, immagini, build, controlli e anteprima locale.",
 			"group": "Guide tecniche",
 			"order": 30
+		},
+		{
+			"source": "DOC/HowTo/Contatti-e-newsletter.md",
+			"target": "gestisci/contatti-newsletter.md",
+			"title": "Contatti e newsletter",
+			"description": "Configurazione, prove e problemi frequenti dei moduli Contatti e Newsletter.",
+			"group": "Amministra",
+			"order": 20
+		},
+		{
+			"source": "DOC/HowTo/Importare-pagine-da-CSV.md",
+			"target": "amministra/importare-pagine-csv.md",
+			"title": "Importare pagine da CSV",
+			"description": "Modello CSV, simulazione, lingue, limiti e verifica dell'importazione.",
+			"group": "Amministra",
+			"order": 30
 		}
 	],
 	"assets": [
+		{
+			"source": "DOC/Immagini/home/home-articoli-promozione.png",
+			"target": "media/home/home-articoli-promozione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-articoli-risultato.png",
+			"target": "media/home/home-articoli-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-avviso-configurazione.png",
+			"target": "media/home/home-avviso-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-avviso-risultato.png",
+			"target": "media/home/home-avviso-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-banner-contenuto-configurazione.png",
+			"target": "media/home/home-banner-contenuto-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-banner-risultato.png",
+			"target": "media/home/home-banner-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-banner-sezione-configurazione.png",
+			"target": "media/home/home-banner-sezione-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-card-navigazione-configurazione.png",
+			"target": "media/home/home-card-navigazione-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-card-navigazione-risultato.png",
+			"target": "media/home/home-card-navigazione-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-carousel-configurazione.png",
+			"target": "media/home/home-carousel-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-carousel-risultato.png",
+			"target": "media/home/home-carousel-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-contenuti-evidenza-configurazione.png",
+			"target": "media/home/home-contenuti-evidenza-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-contenuti-evidenza-risultato.png",
+			"target": "media/home/home-contenuti-evidenza-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-descrizione-configurazione.png",
+			"target": "media/home/home-descrizione-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-descrizione-risultato.png",
+			"target": "media/home/home-descrizione-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-eventi-promozione.png",
+			"target": "media/home/home-eventi-promozione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-eventi-risultato.png",
+			"target": "media/home/home-eventi-risultato.png"
+		},
 		{
 			"source": "DOC/Immagini/home/home-hero-configurazione.png",
 			"target": "media/home/home-hero-configurazione.png"
@@ -192,12 +276,76 @@
 			"target": "media/home/home-hero-risultato.png"
 		},
 		{
-			"source": "DOC/Immagini/home/home-card-navigazione-configurazione.png",
-			"target": "media/home/home-card-navigazione-configurazione.png"
+			"source": "DOC/Immagini/home/home-indice-pagina-configurazione.png",
+			"target": "media/home/home-indice-pagina-configurazione.png"
 		},
 		{
-			"source": "DOC/Immagini/home/home-card-navigazione-risultato.png",
-			"target": "media/home/home-card-navigazione-risultato.png"
+			"source": "DOC/Immagini/home/home-indice-pagina-mobile.png",
+			"target": "media/home/home-indice-pagina-mobile.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-indice-pagina-risultato.png",
+			"target": "media/home/home-indice-pagina-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-navigazione-pagine-configurazione.png",
+			"target": "media/home/home-navigazione-pagine-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-navigazione-pagine-mobile.png",
+			"target": "media/home/home-navigazione-pagine-mobile.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-navigazione-pagine-risultato.png",
+			"target": "media/home/home-navigazione-pagine-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-notizie-promozione.png",
+			"target": "media/home/home-notizie-promozione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-notizie-risultato.png",
+			"target": "media/home/home-notizie-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-pubblicazioni-promozione.png",
+			"target": "media/home/home-pubblicazioni-promozione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-pubblicazioni-risultato.png",
+			"target": "media/home/home-pubblicazioni-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-sezioni-hp-panoramica.png",
+			"target": "media/home/home-sezioni-hp-panoramica.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-sponsor-configurazione.png",
+			"target": "media/home/home-sponsor-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-sponsor-risultato.png",
+			"target": "media/home/home-sponsor-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-tab-configurazione.png",
+			"target": "media/home/home-tab-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-tab-risultato.png",
+			"target": "media/home/home-tab-risultato.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-tab-sezione-configurazione.png",
+			"target": "media/home/home-tab-sezione-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-video-configurazione.png",
+			"target": "media/home/home-video-configurazione.png"
+		},
+		{
+			"source": "DOC/Immagini/home/home-video-risultato.png",
+			"target": "media/home/home-video-risultato.png"
 		}
 	],
 	"github_documents": []

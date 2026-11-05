@@ -94,7 +94,7 @@ Flusso consigliato:
 4. verificare in frontend la coerenza delle informazioni di localizzazione.
 
 ## 10. Configurazioni backoffice
-Nelle opzioni tema (`dli_options > Luoghi`) sono presenti i campi:
+Nelle opzioni tema (`WP → Configurazione → Luoghi`) sono presenti i campi:
 - `Descrizione Sezione Luoghi` (IT)
 - `Descrizione Sezione Luoghi ENG` (EN)
 - `Visualizza mappa` (si/no)

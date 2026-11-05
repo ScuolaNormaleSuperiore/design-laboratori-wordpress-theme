@@ -37,3 +37,9 @@ L'opzione `Mostra il titolo della sezione` aggiunge un'intestazione per le tecno
 - Collegamento esterno completo e verificato, se presente.
 - Sponsor pubblicato e sezione `Sponsor` abilitata nella home.
 - Griglia controllata su desktop e telefono.
+
+## 12. Esempio nella home
+
+![Configurazione o promozione del contenuto.](../Immagini/home/home-sponsor-configurazione.png)
+
+![Risultato del contenuto nella home.](../Immagini/home/home-sponsor-risultato.png)
