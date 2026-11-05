@@ -19,6 +19,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `SETUP/npm_scripts/`: project JavaScript scripts.
 - `AGENTS/`: AI collaboration documentation.
 - `.github/workflows/scorecard.yml`: GitHub Action settimanale che osserva la postura di sicurezza della supply chain del repository e pubblica il report in GitHub Code Scanning.
+- `.github/workflows/ci.yml`: continuous integration (see *CI (GitHub Actions)* under *Quality checks*); `.github/scripts/` holds the scripts it calls.
 - `tests/report/`: Report modules that produce results to read, without assertions (status, html, pa11y); `issues-report/` only stores issue snapshots.
 - `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/phpstan/` holds local runtime and optional-plugin stubs.
 - `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang; its `support/` folder prepares the required plugins.
@@ -203,6 +204,32 @@ three families: static checks and tests (run with Composer) and Reports (run wit
   `*:compare` variant (compares the two most recent reports); `pa11y:scan:gate`
   exits with code 2 when WCAG errors exceed the threshold. Options and report
   formats are documented in `tests/report/*/README.md`.
+
+
+### CI (GitHub Actions)
+
+`.github/workflows/ci.yml` is the source of truth of what runs; this table summarises it and
+is updated in the same change that adds or alters a check. The CI is the safety net of the
+`pre-commit` hook: the same checks on a clean machine, plus PHP 8.0 (the declared minimum), for
+whoever has not activated the hooks and for pull requests. It is **observational**: a failure
+turns the run red but blocks nothing, and the push is never refused. It runs on push to `dev`,
+`main` and the prefixed branches (`features/**`, `bugfix/**`, `refactor/**`, `docs/**`), on pull
+requests to `dev` and `main`, and on demand. The secret scan, the l10n guard and the check on
+commit-message trailers exist only in the local hooks.
+
+| Check | Command | Scope | PHP | Job |
+|---|---|---|---|---|
+| PHP syntax | `php -l` | all first-party PHP files | 8.0, 8.4 | `checks` |
+| Conflict markers | `git grep` for `<<<<<<<` and `>>>>>>>` | PHP, JS, CSS and SCSS files | 8.4 | `checks` |
+| Whitespace errors | `git diff --check` | changed PHP, JS, CSS and SCSS files | 8.4 | `checks` |
+| Unit tests | `composer test:unit` | whole suite | 8.0, 8.4 | `checks` |
+| PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
+| PHPStan level 4 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
+
+`composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
+and 8.4 alike. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
+the push or the tip of the target branch of a pull request, and without a valid base the files
+of the last commit are checked. Integration tests are not in the CI yet.
 
 
 ## References

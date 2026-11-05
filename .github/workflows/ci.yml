@@ -1,0 +1,87 @@
+name: CI
+
+# Safety net of the local pre-commit hook: the same checks on a clean machine, plus PHP 8.0, the
+# declared minimum. Observational: a failure turns the run red but blocks nothing.
+# Checks and triggers are described in AGENTS/ARCHITECTURE.md (CI, GitHub Actions).
+
+on:
+  push:
+    branches: [dev, main, 'features/**', 'bugfix/**', 'refactor/**', 'docs/**']
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Checks (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.0', '8.4']
+    env:
+      # A push gives the commit before the push, a pull request the tip of its target branch;
+      # a manual run gives neither, and the scripts then look at the last commit.
+      BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      # Check 6: sanity. The syntax check runs on both PHP versions, the declared minimum included.
+      - name: PHP syntax
+        run: |
+          git ls-files '*.php' | grep -v -E '^(inc/vendor|vendor|node_modules)/' \
+            | xargs -n1 -P4 php -l > "$RUNNER_TEMP/php-lint.log" 2>&1 \
+            || { grep -v '^No syntax errors' "$RUNNER_TEMP/php-lint.log"; exit 1; }
+
+      - name: Conflict markers
+        if: matrix.php == '8.4'
+        run: "! git grep -n -E '^(<<<<<<< |>>>>>>> )' -- '*.php' '*.js' '*.css' '*.scss' ':!inc/vendor' ':!assets/js/components'"
+
+      - name: Whitespace errors in the changed code
+        if: matrix.php == '8.4'
+        run: |
+          base="$BASE_SHA"
+          if [ -z "$base" ] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+            base="$(git rev-parse --verify --quiet 'HEAD~1' || true)"
+          fi
+          if [ -z "$base" ]; then
+            echo "No base commit: nothing to compare."
+            exit 0
+          fi
+          git diff --check "${base}...HEAD" -- '*.php' '*.js' '*.css' '*.scss' ':!inc/vendor' ':!assets/js/components'
+
+      # Check 7: unit tests (PHPUnit, no WordPress), on both PHP versions.
+      - name: Unit tests
+        run: composer test:unit
+
+      # Check 8: PHPCS, errors only, on the PHP, CSS and SCSS files changed.
+      - name: PHPCS on the changed files
+        if: matrix.php == '8.4'
+        run: bash .github/scripts/phpcs-changed.sh "$BASE_SHA"
+
+      # Check 9: PHPStan level 4 on the whole theme.
+      - name: PHPStan level 4
+        if: matrix.php == '8.4'
+        run: composer run lint:phpstan
