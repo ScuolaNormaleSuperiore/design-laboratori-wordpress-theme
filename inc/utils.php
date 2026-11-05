@@ -652,7 +652,8 @@ if ( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 				'title'         => $post_title,
 				'description'   => wp_trim_words( $item->post_content, DLI_ACF_SHORT_DESC_LENGTH ),
 				'full_content'  => get_the_content( $item ),
-				'link'          => get_the_permalink( $item ),
+				// A person without a detail page has no link: the lists and the search show the name only.
+				'link'          => dli_is_detail_page_disabled( $item ) ? '' : get_the_permalink( $item ),
 				'image_url'     => $image_metadata['image_url'],
 				'image_alt'     => $image_metadata['image_alt'],
 				'image_title'   => $image_metadata['image_title'],
@@ -1439,7 +1440,7 @@ if ( ! function_exists( 'dli_get_site_tree' ) ) {
 								$post_el['name'] = $r->post_title;
 								$post_el['slug'] = $r->post_name;
 
-								if ( PEOPLE_POST_TYPE === $post_tpye && dli_get_field( 'disattiva_pagina_dettaglio', $r->ID ) ) {
+								if ( dli_is_detail_page_disabled( $r ) ) {
 									$post_el['link'] = '';
 								} else {
 									$post_el['link'] = get_permalink( $r->ID );

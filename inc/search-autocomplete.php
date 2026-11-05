@@ -238,15 +238,10 @@ if ( ! function_exists( 'dli_search_autocomplete_suggest' ) ) {
 
 			$url = $wrapper['link'];
 
-			if ( PEOPLE_POST_TYPE === $result_post->post_type ) {
-				if ( dli_get_field( 'escludi_da_elenco', $result_post->ID ) ) {
-					continue;
-				}
-				if ( dli_get_field( 'disattiva_pagina_dettaglio', $result_post->ID ) ) {
-					// The person's own page is not reachable: fall back to the
-					// full search instead of linking a disabled detail page.
-					$url = '';
-				}
+			// A person without a detail page has no link in the wrapper: the
+			// suggestion falls back to the full search instead of linking it.
+			if ( PEOPLE_POST_TYPE === $result_post->post_type && dli_get_field( 'escludi_da_elenco', $result_post->ID ) ) {
+				continue;
 			}
 
 			$title = html_entity_decode( (string) $wrapper['title'], ENT_QUOTES, 'UTF-8' );

@@ -107,6 +107,11 @@ require get_template_directory() . '/inc/home-banners.php';
 require get_template_directory() . '/inc/featured-contents.php';
 
 /**
+ * Detail pages switched off by the editor — the rule and the 404.
+ */
+require get_template_directory() . '/inc/detail-pages.php';
+
+/**
  * Pagination — helpers that read the page size asked for in the address.
  */
 require get_template_directory() . '/inc/pagination.php';

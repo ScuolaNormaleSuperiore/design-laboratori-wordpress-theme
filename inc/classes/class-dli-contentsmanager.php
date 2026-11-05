@@ -1017,6 +1017,19 @@ class DLI_ContentsManager {
 			'posts_per_page' => $page_size,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
+			// The people that the editor left out of the lists are left out of the search too.
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few people are left out of the lists.
+				'relation' => 'OR',
+				array(
+					'key'     => 'escludi_da_elenco',
+					'compare' => 'NOT EXISTS',
+				),
+				array(
+					'key'     => 'escludi_da_elenco',
+					'value'   => '1',
+					'compare' => '!=',
+				),
+			),
 		);
 
 		if ( $has_search_string ) {
