@@ -111,6 +111,7 @@ Dalla radice del tema:
 | `npm run docs:build` | Esegue `docs:source`, poi Jekyll e genera l'HTML in `build/documentazione`. |
 | `npm run docs:check` | Controlla link e ancore interni dell'HTML gia' generato. Richiede prima `docs:build`. |
 | `npm run docs:preview` | Rigenera l'HTML e avvia localhost su `http://127.0.0.1:8085/`; arrestare con `Ctrl+C`. |
+| `npm run docs:watch` | Avvia localhost e rigenera l'HTML quando cambiano `DOC/` o il tooling documentale; ricaricare poi la pagina nel browser. |
 | `npm run docs:package` | Rigenera l'HTML e produce `build/documentazione-package/design-laboratori-documentazione.zip`. |
 
 L'output e lo ZIP sono generati e ignorati da Git. Lo ZIP contiene soltanto

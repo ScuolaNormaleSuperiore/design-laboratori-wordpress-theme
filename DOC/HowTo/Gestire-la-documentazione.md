@@ -84,6 +84,11 @@ i link e le ancore interne dell'output; `docs:preview` rigenera il sito e
 avvia il server locale su `http://127.0.0.1:8085/`. Arresta il server con
 `Ctrl+C`.
 
+Durante la scrittura delle guide usa invece `npm run docs:watch`: avvia lo
+stesso server e rigenera la documentazione dopo ogni modifica a `DOC/` o al
+tooling in `SETUP/Documentazione/`. Dopo il messaggio di aggiornamento basta
+ricaricare la pagina nel browser.
+
 Prima di proporre una modifica, verifica almeno la home, una pagina profonda,
 i menu a schermo stretto e la ricerca. Controlla inoltre tastiera, focus,
 titoli, testi alternativi e leggibilità di tabelle e blocchi di codice.

@@ -19,6 +19,7 @@
     "docs:build": "node SETUP/Documentazione/scripts/build-site.mjs",
     "docs:check": "node SETUP/Documentazione/scripts/check.mjs",
     "docs:preview": "node SETUP/Documentazione/scripts/preview-site.mjs",
+    "docs:watch": "node SETUP/Documentazione/scripts/watch-site.mjs",
     "docs:package": "node SETUP/Documentazione/scripts/package-site.mjs",
     "create_layout": "npx sass --load-path=node_modules assets/scss/bootstrap-italia-custom.scss:assets/css/compiled/bootstrap-italia-custom.min.css --style=compressed",
     "update_layout_win": "npm run create_layout && xcopy .\\assets\\css\\compiled\\bootstrap-italia-custom.min.* .\\assets\\css\\ /Y",
