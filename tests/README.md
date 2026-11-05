@@ -31,6 +31,7 @@ radice del tema.
 
 Quando eseguirli:
 - **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 4, intero tema), PHPCS sui file in staging e i test unit, e blocca il commit se uno fallisce. Per PHPCS bloccano solo gli **errori** (gli avvisi non vengono mostrati) e conta ciò che è in staging, non il file su disco.
+- **Dopo ogni push:** GitHub Actions (workflow `CI`) ripete su una macchina pulita sintassi, test unit, PHPCS sui file modificati e PHPStan; sintassi e test unit girano anche su PHP 8.0. Vedi [Controlli in CI](#controlli-in-ci-github-actions).
 - **Dopo una modifica che dipende da WordPress** (ruoli, permessi, rotte REST, query, tipi di contenuto): i test di integrazione.
 - **Dopo una modifica a ciò che l'utente vede o a un flusso dell'amministrazione:** i test E2E.
 - **Prima di una release, o dopo modifiche ai template e agli stili:** i Report, su un sito vero o su `laboratorio1`.
@@ -75,6 +76,23 @@ Cinque controlli su sei bloccano; i controlli 1-5 sono nel `pre-commit` e il 6 n
 - PHPCS blocca anche per gli errori già presenti in un file che tocchi: chi modifica un file con errori deve correggerli.
 - `git commit --no-verify` salta **tutti** i controlli, segreti compresi: non si usa.
 - Non partono nel commit: integrazione, E2E, Report, `composer audit` e `composer run lint:phpstan:level5`.
+
+## Controlli in CI (GitHub Actions)
+
+Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete di sicurezza dell'hook: gli stessi controlli su una macchina pulita, per chi non ha attivato gli hook e per le pull request, più PHP 8.0 (il minimo dichiarato). È **osservativo**: una corsa rossa non rifiuta il push e non blocca il merge. Parte a ogni push su `dev`, `main` e sui rami `features/**`, `bugfix/**`, `refactor/**`, `docs/**`, a ogni pull request verso `dev` e `main`, e a mano dalla scheda *Actions*.
+
+| Controllo | Comando | PHP |
+|---|---|---|
+| Sintassi PHP | `php -l` su tutti i file | 8.0 e 8.4 |
+| Marcatori di conflitto e spazi finali | `git grep`, `git diff --check` | 8.4 |
+| Test unit | `composer test:unit` | 8.0 e 8.4 |
+| PHPCS (solo errori) | `.github/scripts/phpcs-changed.sh`, sui file PHP, CSS e SCSS modificati | 8.4 |
+| PHPStan livello 4 | `composer run lint:phpstan`, sull'intero tema | 8.4 |
+
+La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione non sono ancora in CI.
+
+Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
+
 
 ## Controlli statici
 

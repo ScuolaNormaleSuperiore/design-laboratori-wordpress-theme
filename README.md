@@ -1,5 +1,7 @@
 # ![developers.italia](https://avatars1.githubusercontent.com/u/15377824?s=36&v=4 "developers.italia") Design Laboratori Italia
 
+[![CI](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/badge)](https://scorecard.dev/viewer/?uri=github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme)
 
 **Design laboratori e centri di ricerca** è un tema WordPress basato sul modello di siti per le scuole italiane e sviluppato dalla ***Scuola Normale Superiore*** con l'obiettivo di creare un modello di sito per le strutture di ricerca (centri e laboratori). Una volta installato, l'ambiente offre una serie di contenuti predefiniti che rendono semplice e veloce l'allestimento del sito. Questo tema permette di pubblicare tutte le informazioni relative a una struttura di ricerca: personale afferente organizzato per struttura, pubblicazioni, progetti di ricerca, attività di ricerca (aggregazione di progetti) oltre a news ed eventi correlati alle attività.
 Il progetto si pone l'obiettivo di dare evidenza e valore alle attività e al personale di ricerca delle strutture.
@@ -162,15 +164,9 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | | `npm run html:scan -- <url>` | [Validità dell'HTML (Nu Html Checker)](tests/report/html-report/README.md) |
 | | `npm run pa11y:scan -- <url>` | [Accessibilità WCAG 2 AA a 1280 px e a 320 px](tests/report/pa11y-report/README.md) |
 
-I controlli che scattano a ogni commit (segreti, PHPStan, PHPCS sui file in staging, test unit, testo del messaggio) sono elencati in [Cosa controlla il commit](tests/README.md#cosa-controlla-il-commit).
+I controlli che scattano a ogni commit (segreti, PHPStan, PHPCS sui file in staging, test unit, testo del messaggio) sono elencati in [Cosa controlla il commit](tests/README.md#cosa-controlla-il-commit). A ogni push su GitHub il workflow *CI* ripete su una macchina pulita i controlli principali, anche su PHP 8.0, il minimo richiesto dal tema: segnala i problemi ma non blocca né i push né i merge (vedi [Controlli in CI](tests/README.md#controlli-in-ci-github-actions)).
 
 Requisiti, preparazione, opzioni e varianti `:gate` e `:compare` sono descritti nel [punto di ingresso dei controlli](tests/README.md), che rimanda ai README di [test unit](tests/unit/README.md), [integrazione](tests/integration/README.md), [E2E](tests/e2e/README.md), [PHPStan](tests/phpstan/README.md) e [Report](tests/report/README.md). [Test e Report](tests/) sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in [.gitattributes](.gitattributes)).
-
-## Controlli automatici
-
-![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/badge)
-
-OpenSSF Scorecard esegue su GitHub un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali descritti sopra.
 
 ## Verifica file publiccode.yml
 Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.
