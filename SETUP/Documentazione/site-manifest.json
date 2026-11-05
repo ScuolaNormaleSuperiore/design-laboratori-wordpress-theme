@@ -6,8 +6,56 @@
 	},
 	"pages": [
 		{
-			"source": "DOC/HowTo/REST-API.md",
+			"source": "DOC/index.md",
 			"target": "index.md",
+			"title": "Documentazione di Design Laboratori Italia",
+			"description": "Percorsi per valutare, installare, gestire e personalizzare il tema.",
+			"group": "Inizia qui",
+			"order": 10
+		},
+		{
+			"source": "DOC/Avvio/Primo-avvio.md",
+			"target": "avvio/primo-avvio.md",
+			"title": "Primo avvio",
+			"description": "Requisiti, attivazione, configurazione iniziale e verifiche prima della pubblicazione.",
+			"group": "Installa e configura",
+			"order": 10
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Amministratore.md",
+			"target": "gestisci/amministrazione.md",
+			"title": "Manuale amministratore",
+			"description": "Permessi, configurazione riservata, plugin e strumenti del tema.",
+			"group": "Gestisci",
+			"order": 10
+		},
+		{
+			"source": "DOC/Manuali/manuale-operatore.md",
+			"target": "gestisci/homepage.md",
+			"title": "Manuale operatore",
+			"description": "Gestione dei contenuti e delle sezioni della home page.",
+			"group": "Gestisci",
+			"order": 20
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Utente-Pannello-Configurazione.md",
+			"target": "gestisci/configurazione.md",
+			"title": "Pannello di configurazione",
+			"description": "Guida alle schede e ai campi di Configurazione.",
+			"group": "Gestisci",
+			"order": 30
+		},
+		{
+			"source": "DOC/Manuali/Manuale-Gestione-Contenuti-Pubblicazioni.md",
+			"target": "gestisci/pubblicazioni.md",
+			"title": "Gestire le pubblicazioni",
+			"description": "Campi, relazioni e pubblicazione dei contenuti bibliografici.",
+			"group": "Gestisci",
+			"order": 40
+		},
+		{
+			"source": "DOC/HowTo/REST-API.md",
+			"target": "tecnica/rest-api.md",
 			"title": "Web service esposti nel tema",
 			"description": "Endpoint REST disponibili nel tema e relative condizioni d'uso.",
 			"group": "Guide tecniche",
@@ -15,7 +63,7 @@
 		},
 		{
 			"source": "DOC/HowTo/Personalizzazione-stile.md",
-			"target": "personalizzazione-stile.md",
+			"target": "tecnica/personalizzazione-stile.md",
 			"title": "Personalizzazione dello stile",
 			"description": "Colori, font e rigenerazione del CSS Bootstrap Italia.",
 			"group": "Guide tecniche",
