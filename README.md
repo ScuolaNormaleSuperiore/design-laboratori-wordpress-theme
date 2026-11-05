@@ -44,6 +44,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Importazione degli eventi da Indico.
 - Importazione dei brevetti da IRIS.
 - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
+- Importazione delle persone da file CSV, con simulazione.
 
 ## Galleria
 
@@ -112,6 +113,11 @@ personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 
 ## Documentazione
 
+### Per iniziare
+
+- [Indice della documentazione](DOC/index.md) — dove trovare le guide per valutare, installare, configurare e gestire il tema.
+- [Primo avvio](DOC/Avvio/Primo-avvio.md) — requisiti, attivazione, configurazione iniziale e controlli di un sito nuovo.
+
 ### Manuali d'uso e amministrazione
 
 - [Manuale operatore](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md) — guida generale alla gestione del sito.
@@ -143,6 +149,7 @@ personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md).
 ### Guide tecniche correnti
 
 - [Aggiornare la libreria Bootstrap Italia](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
+- [Gestire la documentazione](DOC/HowTo/Gestire-la-documentazione.md)
 - [Personalizzazione dello stile](DOC/HowTo/Personalizzazione-stile.md)
 - [REST API del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/REST-API.md)
 - [Importazione dei brevetti da IRIS](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/HowTo/Import%20brevettiI%20da%20RIS.md)

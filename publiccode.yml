@@ -46,6 +46,7 @@ description:
       - Importazione degli eventi da Indico.
       - Importazione dei brevetti da IRIS.
       - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
+      - Importazione delle persone da file CSV, con simulazione.
       - Manifest PWA installabile (senza service worker).
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
