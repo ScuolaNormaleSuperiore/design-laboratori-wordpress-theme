@@ -33,6 +33,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.6] - 2026-11-05
+## Modificato
+- Versione in sviluppo: nessuna modifica ancora registrata rispetto alla 2.0.5.
+
 ## [2.0.5] - 2026-11-05
 ## Aggiunto
 - Strumenti DLI → Importa → Pagine: importazione di un albero di pagine (3 livelli, 200 pagine) da CSV, con simulazione e conferma.
