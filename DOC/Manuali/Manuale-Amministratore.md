@@ -8,7 +8,7 @@ Tema: `design-laboratori-wordpress-theme` (2.0.5)
 Guida di riferimento per l'**Amministratore** di WordPress: permessi, schede riservate del pannello di configurazione, strumenti, plugin richiesti e note di architettura per chi valuta il tema in ottica di riuso. Per l'uso quotidiano dei contenuti vedi il [Manuale Operatore](manuale-operatore.md); per ogni campo del pannello di configurazione vedi il [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md).
 
 ## 2. Ruoli e permessi
-Il tema aggiunge il ruolo **Super Editor** (`dli_super_editor`), basato su Editor, con due permessi in più (`inc/classes/class-authmanager.php`):
+Il tema aggiunge il ruolo **Super Editor** (`dli_super_editor`), basato su Editor, con due permessi in più (`inc/classes/class-dli-authorizationmanager.php`):
 
 - `edit_theme_options`: la voce **Aspetto** del backoffice, necessaria per gestire i menu;
 - `dli_edit_site_configuration`: l'accesso a **WP → Configurazione** (quasi tutte le sue schede). Lo riceve anche l'Amministratore.

@@ -95,8 +95,14 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 - `DLI_LabManager` (`class-dli-labmanager.php`): singleton; instantiates every manager
   and importer, sets languages, image sizes, upload limits and permalinks, filters
   REST access (`setup_rest_api`) and applies security tweaks (no generator, no XML-RPC).
-- `DLI_AuthorizationManager`: role `dli_super_editor` (Editor plus
-  `edit_theme_options` and `dli_edit_site_configuration`).
+- `DLI_AuthorizationManager` (`class-dli-authorizationmanager.php`): role `dli_super_editor` (Editor plus
+  `edit_theme_options` and `dli_edit_site_configuration`) and role `dli_pending_user` ("Utente in attesa"):
+  no capability at all, not even `read`, created only when missing and never rewritten, and assigned to
+  nobody by the theme (for example the initial role of a user created by a single sign-on). WordPress lets
+  everybody edit the own profile, also through `POST /wp/v2/users/me`, so a `map_meta_cap` filter
+  (`deny_profile_editing_to_pending_user()`) answers `do_not_allow` to `edit_user` for this role.
+  The admin bar, the redirect from `wp-admin` and the password reset are not handled yet. Covered by
+  `DLI_Pending_User_Role_Integration_Test`.
 - `DLI_PolylangManager`: which post types and taxonomies Polylang translates.
 - One manager per content type (events, news, patents, people, people types,
   places, projects, publications, research activities, spin-offs, sponsors,

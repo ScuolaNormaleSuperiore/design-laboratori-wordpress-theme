@@ -39,6 +39,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezioni HP → Video: ogni sezione ha il proprio indirizzo YouTube, titolo in italiano e inglese e sfondo; più video nella stessa home.
 - Sezioni HP → Banner: ogni sezione sceglie i banner in automatico (per priorità) o a mano, con titolo facoltativo in italiano e inglese.
 - Sezioni HP: il menu non offre di nuovo una sezione unica già presente in un'altra riga.
+- Ruolo «Utente in attesa» (`dli_pending_user`): utente autenticato senza permessi, che non può nemmeno modificare il proprio profilo; il tema non lo assegna a nessuno.
 ## Modificato
 - Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (con correzioni di sicurezza).
 - Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta.
