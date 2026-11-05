@@ -35,24 +35,26 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [2.0.5] - 2026-11-05
 ## Aggiunto
-- Strumenti DLI → Importa → Pagine: importazione di un albero di pagine (fino a tre livelli e 200 pagine) da un file CSV, con simulazione, conferma, report e riesecuzione senza duplicati; lingua scelta nel modulo, traduzioni collegate tramite `page_key`, testo Lorem ipsum facoltativo, modello e due esempi scaricabili.
-- Sezioni HP → Video: ogni sezione Video ha il proprio indirizzo YouTube, il proprio titolo in italiano e in inglese (facoltativo: compare solo se esiste nella lingua della pagina e se «Mostra il titolo della sezione» è su Sì) e la scelta dello sfondo (bianco o grigio chiaro). Si possono quindi avere più video nella stessa home; a riga chiusa ogni sezione si riconosce dal titolo o dal codice del video.
-- Sezioni HP → Banner: ogni sezione Banner sceglie i suoi banner in modo automatico (per priorità, come prima) o manuale (elenco scelto, nell'ordine scelto, con la traduzione nella lingua della pagina; in automatico il numero di banner si sceglie da 1 a 12, 3 se non indicato; in manuale compaiono tutti quelli scelti, fino a 12). Ha anche un titolo facoltativo in italiano e in inglese, con le stesse regole del Video: senza titolo, i banner sono come sono sempre stati.
-- Sezioni HP: il menu «Sezione» di una riga non offre di nuovo una sezione che può stare in home una sola volta e che è già in un'altra riga (la voce è disattivata); Indice di una pagina, Video e Banner si possono ripetere. Le righe già salvate non cambiano.
+- Strumenti DLI → Importa → Pagine: importazione di un albero di pagine (3 livelli, 200 pagine) da CSV, con simulazione e conferma.
+- Sezioni HP → Video: ogni sezione ha il proprio indirizzo YouTube, titolo in italiano e inglese e sfondo; più video nella stessa home.
+- Sezioni HP → Banner: ogni sezione sceglie i banner in automatico (per priorità) o a mano, con titolo facoltativo in italiano e inglese.
+- Sezioni HP: il menu non offre di nuovo una sezione unica già presente in un'altra riga.
 ## Modificato
-- Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (correzioni di sicurezza e di salvataggio, compatibilità con PHP 8.2-8.4).
-- Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta e i due limiti spiegano che cosa contano.
-- Layout HP: il campo «Home Page Video URL» è sostituito dal campo «URL del video» della riga Video di Sezioni HP. Dopo l'aggiornamento l'indirizzo va reinserito nella riga (il vecchio valore non viene copiato) e finché non lo si fa la sezione non compare.
+- Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (con correzioni di sicurezza).
+- Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta.
+- Layout HP: il campo «Home Page Video URL» è sostituito da «URL del video» nella riga Video; l'indirizzo va reinserito.
 ## Rimosso
-- Strumenti DLI → Utilità: lo strumento «Pagine di esempio», sostituito dagli esempi scaricabili di Importa → Pagine (le pagine create in precedenza non vengono toccate).
-- Estensione CMB2 Leaflet Geocoder, non usata dal tema (le mappe dei Luoghi usano ACF OpenStreetMap Field).
+- Strumenti DLI → Utilità: strumento «Pagine di esempio», sostituito da Importa → Pagine.
+- Estensione CMB2 Leaflet Geocoder, non usata.
 ## Corretto
-- Player video condiviso: con più di un video nella stessa pagina non si ripetono più identificatori e funzione JavaScript; le schede di evento, brevetto e spin-off non cambiano.
-- Gli stili di Strumenti DLI si caricano anche nelle pagine Importa e Utilità quando il menu ha il titolo italiano; il modulo di Persone non sborda più a 320 px.
+- Player video: con più video nella stessa pagina non si ripetono più gli identificatori.
+- Strumenti DLI: stili caricati anche con il menu in italiano; il modulo Persone non sborda più a 320 px.
 - Campo «Articoli collegati» (Attached Posts): il link di modifica non diventa più «1».
-- Carousel Eventi in home: frecce dentro lo schermo su telefono e tablet, senza scorrimento orizzontale a 320 px.
+- Carousel Eventi: frecce dentro lo schermo su telefono e tablet.
+- Le schede di dettaglio disattivate (persone, eventi, notizie, pubblicazioni) rispondono ora 404 ai visitatori.
+- Ricerca del sito: non mostra più le persone escluse dall'elenco.
 ## Sicurezza
-- Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente anche per le richieste che non passano dalla pagina.
+- Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente.
 
 
 

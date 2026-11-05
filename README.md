@@ -36,12 +36,14 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione sezioni eventi, news e pubblicazioni in home page.
 - Sezioni della home che elencano pagine: card di navigazione, navigazione per pagine, indice di una pagina e pannello a tab (italiano e inglese).
 - Gestione banner in home page.
+- Sezioni video in home page, ciascuna con il proprio indirizzo YouTube.
 - Gestione sponsor in home page.
 - Manifest PWA installabile (senza service worker).
 - Supporto delle lingue italiano e inglese.
 - Integrazione con il software di gestione delle newsletter Brevo.
 - Importazione degli eventi da Indico.
 - Importazione dei brevetti da IRIS.
+- Importazione di un albero di pagine da file CSV, con simulazione e conferma.
 
 ## Galleria
 

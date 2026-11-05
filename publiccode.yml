@@ -35,7 +35,8 @@ description:
       - Mappa del sito in HTML e XML.
       - Gestione hero in home page.
       - Carousel in home page con contenuti selezionabili.
-      - Sezioni di navigazione delle pagine in home: card di navigazione, navigazione per pagine, indice di una pagina e pannello tab multilingue.
+      - Sezioni della home che elencano pagine, cioè card di navigazione, navigazione per pagine, indice di una pagina e pannello tab multilingue.
+      - Sezioni video in home page, ciascuna con il proprio indirizzo YouTube.
       - Contenuti in evidenza in home per notizie, eventi e pubblicazioni, incluse card delle pubblicazioni con autori, tipologia e anno.
       - Pagine con riassunto e sottopagine navigabili tramite card configurabili.
       - Gestione banner in home page.
@@ -44,6 +45,7 @@ description:
       - Integrazione con il software di gestione delle newsletter Brevo.
       - Importazione degli eventi da Indico.
       - Importazione dei brevetti da IRIS.
+      - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
       - Manifest PWA installabile (senza service worker).
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
