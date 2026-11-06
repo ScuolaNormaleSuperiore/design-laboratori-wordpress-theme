@@ -21,7 +21,9 @@ Run this section only once at session start, unless the user explicitly asks to 
 12. State: `Local issue files ensured: AGENTS/ISSUES_TODO.md, AGENTS/ISSUES_RESOLVED.md (created if missing; never commit them).`
 13. State whether the `design-system-italia` MCP server (Bootstrap Italia components and tokens) is installed and usable in the current session, for example by calling its `ping` tool. If it is not available, say so and notify the human operator.
 14. Check whether the Git hooks of the project are active with `git config --get core.hooksPath` (a read-only check). If the value is not `.githooks`, warn the human operator that the hooks are not active in this clone, so commits are not checked for secrets, PHPStan, PHPCS, unit tests and AI trailers, and tell them to activate the hooks with `git config core.hooksPath .githooks`. Do not run the command yourself: it changes the Git configuration of the clone, so it is the operator's decision. If the value is `.githooks`, state that the hooks are active.
-15. Ask the human operator which project task they want to work on.
+15. After the versioned instructions above, first check whether the `DEV/TODO/` directory exists and is readable without emitting an error. Only when that check succeeds, read `DEV/TODO/README.md` as the private operational-plan index. Do not read linked plan documents or files under `DEV/TODO/Archived/` during bootstrap. If the directory or its index is missing, unreadable, or a dangling link, state exactly: `Non è stato possibile leggere la cartella DEV/TODO.` Then continue the bootstrap without presenting the plans table.
+16. When the index was read successfully, present a compact table of its unarchived plans, preserving its execution flag, priority, plan name, status, and next action. Before the table, explicitly identify the plans marked as in progress and their priorities; if none are in progress, state that explicitly. Treat all `DEV/` content as private local working material: never stage, commit, or copy it into public documentation.
+17. Ask the human operator in Italian: `Su cosa vuoi lavorare: una nuova funzionalità, un bug, uno dei piani elencati o altro?`
 
 
 ## Common agent rules
@@ -40,6 +42,9 @@ Run this section only once at session start, unless the user explicitly asks to 
 - `ISSUES_RESOLVED.md`: ignored local archive, ensured during bootstrap and searched only when required.
 - `GIT_WORKFLOW.md`: branch, commit, and PR conventions; read during bootstrap
   and apply only when the task includes VCS work.
+- `../DEV/TODO/README.md`: optional private operational-plan index; read only
+  after confirming that `DEV/TODO/` is accessible, without loading individual
+  plans.
 
 
 ## Reload trigger
