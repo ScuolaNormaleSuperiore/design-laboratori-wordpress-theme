@@ -34,8 +34,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.0.6] - 2026-11-06
+## Aggiunto
+- CI GitHub Actions: controlli su ambiente pulito e test di integrazione con WordPress, ACF, Polylang e MariaDB.
 ## Modificato
-- Versione in sviluppo: nessuna modifica ancora registrata rispetto alla 2.0.5.
+- PHPStan: livello minimo portato a 5 nei controlli locali e in CI.
+- Test di integrazione: versioni di WordPress, ACF e Polylang fissate per esecuzioni ripetibili.
 
 ## [2.0.5] - 2026-11-05
 ## Aggiunto

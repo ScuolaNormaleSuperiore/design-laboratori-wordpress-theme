@@ -89,9 +89,26 @@ Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete
 | PHPCS (solo errori) | `.github/scripts/phpcs-changed.sh`, sui file PHP, CSS e SCSS modificati | 8.4 |
 | PHPStan livello 5 | `composer run lint:phpstan`, sull'intero tema | 8.4 |
 
-La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), con WordPress, ACF e Polylang a versioni fissate; il job è nuovo e in osservazione.
+La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), con WordPress, ACF e Polylang a versioni fissate; le corse restano osservate nel tempo.
 
 Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
+
+### Cosa gira e quando
+
+Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.githooks/) e i workflow in [`../.github/workflows/`](../.github/workflows/), e questa tabella si aggiorna nello stesso lavoro che li cambia. Salvo dove indicato, in CI un controllo rosso non blocca nulla.
+
+| Momento | Cosa gira | Blocca? |
+|---|---|---|
+| **Commit** (hook locale, se attivo) | Segreti, guardia l10n (corregge da sola), PHPStan livello 5 sull'intero tema, PHPCS sui file PHP, CSS e SCSS in staging (solo errori), test unit; controllo del messaggio (trailer AI) | Sì, tranne la guardia l10n; `--no-verify` salta tutto |
+| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 5) e job `integration` (333 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
+| **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | Solo `checks` (e `documentation-check` su `docs/**`) | No |
+| **Pull request verso `dev`** (per esempio Dependabot) | `checks` | No |
+| **Pull request verso `main`** (rilascio da `dev`) | `checks` e `integration`; `documentation-check` se cambia la documentazione | No |
+| **Merge su `main`** (push) | `checks` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
+| **Programmati** | Scorecard ogni lunedì e al cambio di una regola di protezione dei rami; Dependabot, PR mensili verso `dev` (GitHub Actions, Composer, npm, Docker) | No |
+| **Solo a mano** | Test E2E, Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev`, `composer run lint:phpstan:level6`, e l'avvio manuale di `CI` dalla scheda *Actions* | — |
+
+Non esiste una protezione dei rami (decisione D3): nessun controllo impedisce un push o un merge.
 
 
 ## Controlli statici
