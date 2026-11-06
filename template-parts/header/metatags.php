@@ -5,10 +5,9 @@
  * @package Design_Laboratori_Italia
  */
 
-$dli_locale_str = pll_current_language( 'locale' );
-$dli_nome_lab   = dli_get_option_by_lang( 'nome_laboratorio' );
-$dli_tagline    = dli_get_option_by_lang( 'tagline_laboratorio' );
-$dli_wrapper    = dli_get_post_wrapper( get_post() );
+$dli_nome_lab = dli_get_option_by_lang( 'nome_laboratorio' );
+$dli_tagline  = dli_get_option_by_lang( 'tagline_laboratorio' );
+$dli_wrapper  = dli_get_post_wrapper( get_post() );
 
 $dli_copyright     = $dli_nome_lab;
 $dli_resource_type = 'document';
@@ -24,5 +23,3 @@ $dli_keywords      = is_string( $dli_keywords ) ? $dli_keywords : '';
 <meta name="description" content="<?php echo esc_attr( $dli_page_desc ); ?>" />
 <meta name="copyright" content="<?php echo esc_attr( $dli_copyright ); ?>" />
 <meta name="keywords" content="<?php echo esc_attr( $dli_keywords ); ?>"/>
-
-<meta http-equiv="content-language" content="<?php echo esc_attr( $dli_locale_str ); ?>" />

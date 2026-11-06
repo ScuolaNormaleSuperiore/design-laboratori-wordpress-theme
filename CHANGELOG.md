@@ -33,6 +33,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.7] - 2026-11-06
+## Corretto
+- HTML: tolto il meta `http-equiv="content-language"` (obsoleto, con un valore come `it_IT` che non è una lingua valida); la lingua della pagina resta dichiarata dall'attributo `lang` di `<html>`.
+
 ## [2.0.6] - 2026-11-06
 ## Aggiunto
 - CI GitHub Actions: controlli su ambiente pulito e test di integrazione con WordPress, ACF, Polylang e MariaDB.
