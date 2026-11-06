@@ -260,10 +260,10 @@ Write testable code (small units, clear dependencies) and add tests for non-triv
 
 ### PHPStan quality gate
 
-PHPStan level 4 is the minimum for the whole theme: `phpstan.neon` is set to it and
+PHPStan level 5 is the minimum for the whole theme: `phpstan.neon` is set to it and
 analyzes every first-party PHP file (`DLI_PHPStan_Config_Unit_Test` fails when a PHP
 file or directory is added without being listed there, or when the level is lowered).
-`composer run lint:phpstan:level5` measures the remaining work toward level 5 but does
+`composer run lint:phpstan:level6` measures the remaining work toward level 6 but does
 not block commits. Use precise PHPDoc, stubs and runtime
 guards to model WordPress's dynamic APIs. Do not add a broad baseline or generic
 `ignoreErrors`; any unavoidable exception must be limited to one identifier and
@@ -271,7 +271,7 @@ path, documented with its reason and a review date.
 
 ### PHPCS readiness of touched files
 
-The project objective is zero PHPCS errors and PHPStan level 4 for the whole
+The project objective is zero PHPCS errors and PHPStan level 5 for the whole
 theme. Until the PHPCS objective is reached repository-wide, every first-party
 PHP, CSS, or SCSS file selected for a feature or issue fix must first be made
 free of PHPCS errors before its functional change is added. Run the targeted
@@ -297,7 +297,7 @@ Pick the checks that match the change, run them, and report which ones could not
 | Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
 | Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`; needs `wordpress-develop` and `wp-tests-config.php`; see `tests/integration/README.md` |
 | What the user sees or admin flows that need a browser | `composer test:e2e` | Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |
-| PHP static analysis | `composer run lint:phpstan`; `composer run lint:phpstan:level5` | The whole-theme gate is level 4 and blocks the commit (`.githooks/pre-commit`); level 5 is a non-blocking progress check. Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local runtime and optional-plugin stubs: `tests/phpstan/` |
+| PHP static analysis | `composer run lint:phpstan`; `composer run lint:phpstan:level6` | The whole-theme gate is level 5 and blocks the commit (`.githooks/pre-commit`); level 6 is a non-blocking progress check. Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local runtime and optional-plugin stubs: `tests/phpstan/` |
 | Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
 | Changed rendered HTML | `npm run html:scan -- <baseUrl>` (`html:scan:gate` fails on errors) | Needs a reachable site, Java 8+, `vnu-jar` and Playwright |

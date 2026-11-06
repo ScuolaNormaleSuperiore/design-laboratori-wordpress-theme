@@ -5,8 +5,8 @@ repo_root="$(git rev-parse --show-toplevel)"
 "$repo_root/.githooks/check-staged-secrets.sh"
 "$repo_root/.githooks/check-staged-l10n.sh"
 
-# Static analysis: the whole theme must pass PHPStan level 4 (phpstan.neon).
-"$repo_root/.githooks/check-phpstan-level4.sh"
+# Static analysis: the whole theme must pass PHPStan at the level set in phpstan.neon.
+"$repo_root/.githooks/check-phpstan.sh"
 
 # Coding standards: PHPCS errors (not warnings) in the staged PHP, CSS and SCSS files block the commit.
 "$repo_root/.githooks/check-staged-phpcs.sh"

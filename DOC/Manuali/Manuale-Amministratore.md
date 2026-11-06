@@ -93,7 +93,7 @@ La descrizione completa è in `AGENTS/ARCHITECTURE.md`. In breve:
 - **Menu:** cinque posizioni (`menu-lab`, `menu-right`, `menu-header-right`, `menu-links`, `menu-footer`) in **Aspetto → Menu**, ciascuna con la propria variante in inglese. Una voce con sottovoci diventa un menu a tendina; il markup è condiviso da `template-parts/header/menu-nav-item.php`.
 - **Lingue:** Polylang, con l'italiano come lingua predefinita. Il codice usa i wrapper `dli_*`, non le funzioni di Polylang.
 - **Permessi:** due livelli, `dli_edit_site_configuration` (Super Editor e Amministratore) e `manage_options` (le tre schede riservate), in `inc/admin/options.php`.
-- **Test e controlli:** unit, integrazione ed E2E (`tests/`), PHPCS e PHPStan di livello 4; i comandi sono in `AGENTS/ARCHITECTURE.md`.
+- **Test e controlli:** unit, integrazione ed E2E (`tests/`), PHPCS e PHPStan di livello 5; i comandi sono in `AGENTS/ARCHITECTURE.md`.
 
 ## 9. Troubleshooting rapido
 

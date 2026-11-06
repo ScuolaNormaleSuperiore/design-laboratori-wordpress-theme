@@ -1,7 +1,8 @@
 name: CI
 
 # Safety net of the local pre-commit hook: the same checks on a clean machine, plus PHP 8.0, the
-# declared minimum. Observational: a failure turns the run red but blocks nothing.
+# declared minimum, and the integration tests, which the hook does not run. Observational: a failure
+# turns the run red but blocks nothing.
 # Checks and triggers are described in AGENTS/ARCHITECTURE.md (CI, GitHub Actions).
 
 on:
@@ -81,7 +82,78 @@ jobs:
         if: matrix.php == '8.4'
         run: bash .github/scripts/phpcs-changed.sh "$BASE_SHA"
 
-      # Check 9: PHPStan level 4 on the whole theme.
-      - name: PHPStan level 4
+      # Check 9: PHPStan on the whole theme, at the level set in phpstan.neon (5).
+      - name: PHPStan level 5
         if: matrix.php == '8.4'
         run: composer run lint:phpstan
+
+  # Check 10: integration tests, on a real WordPress with ACF and Polylang and a throwaway database.
+  # The slowest and noisiest job, so it does not run on the prefixed branches nor on pull requests
+  # to dev (the ones of Dependabot); a manual run can start it on any branch.
+  integration:
+    name: Integration tests (PHP 8.4)
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'))
+      || (github.event_name == 'pull_request' && github.base_ref == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      # Throwaway database of this job only, with no password and not reachable from outside the runner.
+      # The test suite refuses any database name other than dli_wordpress_test.
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
+          MARIADB_DATABASE: dli_wordpress_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      # Versions are pinned so that a run can be repeated: change them here, on purpose, to update.
+      WP_TESTS_REF: '7.1.4'
+      WP_TESTS_SHA: '0afb74de8c3fe4c1869e44b62b0418d67b11aa4c'
+      DLI_ACF_VERSION: '6.8.10'
+      DLI_POLYLANG_VERSION: '3.9.1'
+      WP_TESTS_DIR: ${{ runner.temp }}/wordpress-develop/tests/phpunit
+      WP_TESTS_CONFIG_FILE_PATH: ${{ runner.temp }}/wordpress-develop/wp-tests-config.php
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          extensions: mysqli, zip, gd, intl, mbstring
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      # The WordPress test framework, at a tag whose commit is checked: a moved tag stops the run.
+      - name: Prepare the WordPress test suite
+        run: |
+          git clone --depth 1 --branch "$WP_TESTS_REF" https://github.com/WordPress/wordpress-develop.git "$RUNNER_TEMP/wordpress-develop"
+          actual="$(git -C "$RUNNER_TEMP/wordpress-develop" rev-parse HEAD)"
+          if [ "$actual" != "$WP_TESTS_SHA" ]; then
+            echo "wordpress-develop $WP_TESTS_REF is at $actual, expected $WP_TESTS_SHA."
+            exit 1
+          fi
+          sed -e "s/youremptytestdbnamehere/dli_wordpress_test/" \
+              -e "s/yourusernamehere/root/" \
+              -e "s/yourpasswordhere//" \
+              -e "s/'localhost'/'127.0.0.1:3306'/" \
+              "$RUNNER_TEMP/wordpress-develop/wp-tests-config-sample.php" > "$WP_TESTS_CONFIG_FILE_PATH"
+          grep -E "DB_(NAME|USER|HOST)'" "$WP_TESTS_CONFIG_FILE_PATH"
+
+      # Downloads ACF and Polylang at the pinned versions (support/fetch-test-plugins.php), then runs PHPUnit.
+      - name: Integration tests
+        run: composer test:integration

@@ -30,7 +30,7 @@ radice del tema.
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
-- **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 4, intero tema), PHPCS sui file in staging e i test unit, e blocca il commit se uno fallisce. Per PHPCS bloccano solo gli **errori** (gli avvisi non vengono mostrati) e conta ciò che è in staging, non il file su disco.
+- **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 5, intero tema), PHPCS sui file in staging e i test unit, e blocca il commit se uno fallisce. Per PHPCS bloccano solo gli **errori** (gli avvisi non vengono mostrati) e conta ciò che è in staging, non il file su disco.
 - **Dopo ogni push:** GitHub Actions (workflow `CI`) ripete su una macchina pulita sintassi, test unit, PHPCS sui file modificati e PHPStan; sintassi e test unit girano anche su PHP 8.0. Vedi [Controlli in CI](#controlli-in-ci-github-actions).
 - **Dopo una modifica che dipende da WordPress** (ruoli, permessi, rotte REST, query, tipi di contenuto): i test di integrazione.
 - **Dopo una modifica a ciò che l'utente vede o a un flusso dell'amministrazione:** i test E2E.
@@ -65,7 +65,7 @@ Gli hook di Git stanno in `.githooks/` e si attivano una volta per clone con `gi
 |---|---|---|---|
 | 1 | Segreti (`check-staged-secrets.sh`) | Le righe aggiunte: chiavi private, token (AWS, GitHub, Slack), `sk-…`, URL con utente e password, `password = "…"` | Sì |
 | 2 | Guardia l10n (`check-staged-l10n.sh`) | I file `languages/*.l10n.php`: rimette la riga `defined( 'ABSPATH' ) \|\| exit;` che Loco Translate toglie a ogni esportazione | No: corregge da sola e rimette il file in staging |
-| 3 | PHPStan livello 4 (`check-phpstan-level4.sh`) | L'intero tema, non solo i file del commit | Sì, a qualunque errore |
+| 3 | PHPStan livello 5 (`check-phpstan.sh`) | L'intero tema, non solo i file del commit | Sì, a qualunque errore |
 | 4 | PHPCS (`check-staged-phpcs.sh`) | I file PHP, CSS e SCSS in staging, sul contenuto in staging | Sì, solo per gli **errori**; gli avvisi non bloccano |
 | 5 | Test unit | La suite unit (`composer test:unit`) | Sì |
 | 6 | Testo del commit (`commit-msg`) | Un trailer `Co-Authored-By:` che attribuisce il commit a un assistente AI | Sì |
@@ -75,7 +75,7 @@ Cinque controlli su sei bloccano; i controlli 1-5 sono nel `pre-commit` e il 6 n
 - Il primo controllo che fallisce ferma gli altri: i controlli seguenti non partono finché non lo risolvi.
 - PHPCS blocca anche per gli errori già presenti in un file che tocchi: chi modifica un file con errori deve correggerli.
 - `git commit --no-verify` salta **tutti** i controlli, segreti compresi: non si usa.
-- Non partono nel commit: integrazione, E2E, Report, `composer audit` e `composer run lint:phpstan:level5`.
+- Non partono nel commit: integrazione, E2E, Report, `composer audit` e `composer run lint:phpstan:level6`.
 
 ## Controlli in CI (GitHub Actions)
 
@@ -87,9 +87,9 @@ Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete
 | Marcatori di conflitto e spazi finali | `git grep`, `git diff --check` | 8.4 |
 | Test unit | `composer test:unit` | 8.0 e 8.4 |
 | PHPCS (solo errori) | `.github/scripts/phpcs-changed.sh`, sui file PHP, CSS e SCSS modificati | 8.4 |
-| PHPStan livello 4 | `composer run lint:phpstan`, sull'intero tema | 8.4 |
+| PHPStan livello 5 | `composer run lint:phpstan`, sull'intero tema | 8.4 |
 
-La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione non sono ancora in CI.
+La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), con WordPress, ACF e Polylang a versioni fissate; il job è nuovo e in osservazione.
 
 Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
 
@@ -100,9 +100,9 @@ Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scoreca
 - `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in [`../phpstan.neon`](../phpstan.neon)).
 - `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
 
-La soglia del tema è PHPStan livello 4 sull'intero tema ed è un controllo bloccante
-nell'hook `pre-commit`. `composer run lint:phpstan:level5`
-misura invece il lavoro residuo verso il livello 5 e non blocca i commit; gli
+La soglia del tema è PHPStan livello 5 sull'intero tema ed è un controllo bloccante
+nell'hook `pre-commit`. `composer run lint:phpstan:level6`
+misura invece il lavoro residuo verso il livello 6 e non blocca i commit; gli
 errori non vanno nascosti con baseline generiche o `ignoreErrors` generici.
 
 PHPStan non conosce WordPress da solo: gli [stub locali](phpstan/README.md) gli dicono

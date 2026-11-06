@@ -15,7 +15,7 @@
     "lint:php": "phpcs --standard=phpcs.xml.dist",
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
     "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
-    "lint:phpstan:level5": "phpstan analyse --configuration=phpstan.neon --level=5 --no-progress --memory-limit=2G",
+    "lint:phpstan:level6": "phpstan analyse --configuration=phpstan.neon --level=6 --no-progress --memory-limit=2G",
     "test": "phpunit",
     "test:all": [
       "@test:unit",
@@ -31,7 +31,7 @@
     "test:e2e:ui": "npm run test:e2e:ui --"
   },
   "scripts-descriptions": {
-    "lint:phpstan:level5": "Non-blocking PHPStan level-5 progress check for the whole theme",
+    "lint:phpstan:level6": "Non-blocking PHPStan level-6 progress check for the whole theme",
     "test:all": "Unit and integration tests in order (stops at the first failing suite; needs the integration setup). The E2E suite is long and is run separately with test:e2e",
     "test:unit": "Unit tests (PHPUnit, no WordPress)",
     "test:integration": "Integration tests (PHPUnit on a real WordPress, dedicated database)",

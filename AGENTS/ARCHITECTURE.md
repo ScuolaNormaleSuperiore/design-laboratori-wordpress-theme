@@ -185,10 +185,10 @@ three families: static checks and tests (run with Composer) and Reports (run wit
   CSS and SCSS files (`.githooks/check-staged-phpcs.sh`, errors only, staged content) and
   blocks the commit on any error, including errors that were already in the file.
 - Static analysis: `composer run lint:phpstan` runs the whole theme at the required
-  level 4 (`phpstan.neon`). It is also the commit gate: `.githooks/pre-commit` runs it
-  through `.githooks/check-phpstan-level4.sh` and blocks the commit on any error.
-  `composer run lint:phpstan:level5` is the non-blocking whole-theme progress check
-  toward level 5.
+  level 5, set in `phpstan.neon` (the only place where the level is written). It is also
+  the commit gate: `.githooks/pre-commit` runs it through `.githooks/check-phpstan.sh` and
+  blocks the commit on any error. `composer run lint:phpstan:level6` is the non-blocking
+  whole-theme progress check toward level 6.
 - Unit tests: `composer test:unit` (PHPUnit, no WordPress; also run by `.githooks/pre-commit`).
 - Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook).
@@ -224,12 +224,13 @@ commit-message trailers exist only in the local hooks.
 | Whitespace errors | `git diff --check` | changed PHP, JS, CSS and SCSS files | 8.4 | `checks` |
 | Unit tests | `composer test:unit` | whole suite | 8.0, 8.4 | `checks` |
 | PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
-| PHPStan level 4 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
+| PHPStan level 5 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
+| Integration tests | `composer test:integration` | whole suite, on WordPress 7.1.4 with ACF 6.8.10 and Polylang 3.9.1 and a throwaway MariaDB service | 8.4 | `integration` |
 
 `composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
 and 8.4 alike. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
 the push or the tip of the target branch of a pull request, and without a valid base the files
-of the last commit are checked. Integration tests are not in the CI yet.
+of the last commit are checked. The `integration` job runs only on push to `dev` and `main`, on pull requests to `main` and on demand (not on the prefixed branches nor on pull requests to `dev`). WordPress (`wordpress-develop`, tag and commit checked), ACF and Polylang are pinned in the `env` of the job (the plugins through `DLI_ACF_VERSION` and `DLI_POLYLANG_VERSION`, see `tests/integration/README.md`); to update them, change those values on purpose. The job is new: its times and its false failures are being recorded in the private plan before it is considered stable.
 
 
 ## References
