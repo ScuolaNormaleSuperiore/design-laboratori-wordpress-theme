@@ -2,11 +2,15 @@
 /**
  * Downloads the plugins needed by the integration tests.
  *
- * Fetches the latest stable release of each plugin from downloads.wordpress.org
- * (HTTPS) into the cache folder, only when the plugin is missing from it. The
+ * Fetches each plugin from downloads.wordpress.org (HTTPS) into the cache
+ * folder, only when the plugin is missing from it. By default it is the latest
+ * stable release. A version can be pinned with `DLI_ACF_VERSION` and
+ * `DLI_POLYLANG_VERSION` (a dotted number such as `6.8.10`): then exactly that
+ * release is downloaded, and a cached copy of another version is replaced. The
  * version and the SHA-256 of what was downloaded are written to
  * `.versions.json` in the cache folder, so a failing run can be traced to the
- * plugin versions it used. To refresh a plugin, delete its folder in the cache.
+ * plugin versions it used. Without a pinned version, to refresh a plugin,
+ * delete its folder in the cache.
  *
  * The cache folder is `DLI_TEST_PLUGINS_DIR` or, by default,
  * `tests/integration/.cache/plugins/` (ignored by Git).
@@ -15,6 +19,8 @@
  *
  * @package Design_Laboratori_Italia
  */
+
+require_once __DIR__ . '/plugin-versions.php';
 
 $dli_plugins = array(
 	'advanced-custom-fields' => 'acf.php',
@@ -42,12 +48,36 @@ if ( is_readable( $dli_versions_file ) ) {
 }
 
 foreach ( $dli_plugins as $dli_slug => $dli_main_file ) {
-	if ( is_file( "$dli_cache_dir/$dli_slug/$dli_main_file" ) ) {
-		echo "[cached] $dli_slug\n";
-		continue;
+	$dli_variable = dli_test_plugin_version_variable( $dli_slug );
+	$dli_pinned   = (string) getenv( $dli_variable );
+	if ( '' !== $dli_pinned && ! dli_test_plugin_is_valid_version( $dli_pinned ) ) {
+		fwrite( STDERR, "$dli_variable is not a version (use a dotted number such as 6.8.10).\n" );
+		exit( 1 );
 	}
 
-	$dli_url = "https://downloads.wordpress.org/plugin/$dli_slug.latest-stable.zip";
+	$dli_cached_file = "$dli_cache_dir/$dli_slug/$dli_main_file";
+	if ( is_file( $dli_cached_file ) ) {
+		$dli_cached_version = dli_test_plugin_header_version( (string) file_get_contents( $dli_cached_file, false, null, 0, 8192 ) );
+		if ( dli_test_plugin_cache_is_usable( $dli_pinned, $dli_cached_version ) ) {
+			echo "[cached] $dli_slug\n";
+			continue;
+		}
+		echo "[replace] $dli_slug: cached version '$dli_cached_version', pinned $dli_pinned\n";
+		$dli_old = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator( "$dli_cache_dir/$dli_slug", FilesystemIterator::SKIP_DOTS ),
+			RecursiveIteratorIterator::CHILD_FIRST
+		);
+		foreach ( $dli_old as $dli_entry ) {
+			if ( $dli_entry->isDir() ) {
+				rmdir( $dli_entry->getPathname() );
+			} else {
+				unlink( $dli_entry->getPathname() );
+			}
+		}
+		rmdir( "$dli_cache_dir/$dli_slug" );
+	}
+
+	$dli_url = dli_test_plugin_zip_url( $dli_slug, $dli_pinned );
 	echo "[download] $dli_url\n";
 
 	$dli_context = stream_context_create(
@@ -89,11 +119,14 @@ foreach ( $dli_plugins as $dli_slug => $dli_main_file ) {
 		exit( 1 );
 	}
 
-	$dli_header = (string) file_get_contents( "$dli_cache_dir/$dli_slug/$dli_main_file", false, null, 0, 8192 );
-	preg_match( '/^[ \t\/*#@]*Version:\s*(.+)$/mi', $dli_header, $dli_match );
+	$dli_installed = dli_test_plugin_header_version( (string) file_get_contents( "$dli_cache_dir/$dli_slug/$dli_main_file", false, null, 0, 8192 ) );
+	if ( '' !== $dli_pinned && $dli_installed !== $dli_pinned ) {
+		fwrite( STDERR, "Asked for $dli_slug $dli_pinned but the archive holds '$dli_installed'.\n" );
+		exit( 1 );
+	}
 
 	$dli_versions[ $dli_slug ] = array(
-		'version'    => isset( $dli_match[1] ) ? trim( $dli_match[1] ) : 'unknown',
+		'version'    => '' !== $dli_installed ? $dli_installed : 'unknown',
 		'sha256'     => hash( 'sha256', $dli_zip ),
 		'downloaded' => gmdate( 'c' ),
 	);

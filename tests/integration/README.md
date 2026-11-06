@@ -97,6 +97,19 @@ se mancano, in `tests/integration/.cache/plugins/` (ignorata da Git, mai nel pac
 scarica l'ultima versione stabile; la versione e l'impronta SHA-256 sono registrate in `.versions.json`
 nella stessa cartella. Per aggiornare un plugin si cancella la sua cartella dalla cache.
 
+Per usare una versione precisa (la CI lo fa, per avere corse ripetibili) si fissa con una variabile
+d'ambiente, un numero a punti di due-quattro parti: `DLI_ACF_VERSION` e `DLI_POLYLANG_VERSION`.
+
+```sh
+DLI_ACF_VERSION=6.8.10 DLI_POLYLANG_VERSION=3.9.1 composer test:integration
+```
+
+Con una versione fissata si scarica proprio quella, e una copia in cache di un'altra versione viene
+sostituita; un valore che non è un numero di versione ferma lo script con un errore. Senza variabili
+non cambia nulla. Le funzioni che scelgono l'indirizzo e controllano la cache sono in
+[`support/plugin-versions.php`](support/plugin-versions.php) e sono provate dal test unit
+`DLI_Test_Plugin_Versions_Unit_Test`.
+
 Se PHP non riesce a verificare il certificato (succede se manca il file `cacert.pem` indicato in `php.ini`),
 lo script ripiega sul comando `curl` del sistema.
 
