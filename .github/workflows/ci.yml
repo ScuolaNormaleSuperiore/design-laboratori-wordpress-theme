@@ -119,8 +119,6 @@ jobs:
       WP_TESTS_SHA: '0afb74de8c3fe4c1869e44b62b0418d67b11aa4c'
       DLI_ACF_VERSION: '6.8.10'
       DLI_POLYLANG_VERSION: '3.9.1'
-      WP_TESTS_DIR: ${{ runner.temp }}/wordpress-develop/tests/phpunit
-      WP_TESTS_CONFIG_FILE_PATH: ${{ runner.temp }}/wordpress-develop/wp-tests-config.php
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -141,6 +139,10 @@ jobs:
       # The WordPress test framework, at a tag whose commit is checked: a moved tag stops the run.
       - name: Prepare the WordPress test suite
         run: |
+          # The runner context is not available in the env of a job, so the paths are set here for the next steps.
+          echo "WP_TESTS_DIR=$RUNNER_TEMP/wordpress-develop/tests/phpunit" >> "$GITHUB_ENV"
+          echo "WP_TESTS_CONFIG_FILE_PATH=$RUNNER_TEMP/wordpress-develop/wp-tests-config.php" >> "$GITHUB_ENV"
+          WP_TESTS_CONFIG_FILE_PATH="$RUNNER_TEMP/wordpress-develop/wp-tests-config.php"
           git clone --depth 1 --branch "$WP_TESTS_REF" https://github.com/WordPress/wordpress-develop.git "$RUNNER_TEMP/wordpress-develop"
           actual="$(git -C "$RUNNER_TEMP/wordpress-develop" rev-parse HEAD)"
           if [ "$actual" != "$WP_TESTS_SHA" ]; then
