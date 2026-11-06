@@ -70,7 +70,7 @@ $dli_current_lang = dli_current_language();
 						<?php
 								get_template_part(
 									'template-parts/header/top-menu',
-									false,
+									null,
 									array(
 										'locations' => $dli_locations,
 									)
@@ -226,7 +226,7 @@ $dli_current_lang = dli_current_language();
 						<?php
 								get_template_part(
 									'template-parts/header/main-menu',
-									false,
+									null,
 									array(
 										'locations' => $dli_locations,
 									)
@@ -236,7 +236,7 @@ $dli_current_lang = dli_current_language();
 						<?php
 								get_template_part(
 									'template-parts/header/secondary-menu',
-									false,
+									null,
 									array(
 										'locations' => $dli_locations,
 									)

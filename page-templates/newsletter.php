@@ -211,10 +211,10 @@ if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
 									<div class="row" style="margin-top: 20px;">
 										<div class="form-group col-md-6" style="text-align: center">
 											<img src="<?php echo esc_url( $dli_captcha['image_src'] ); ?>" alt="<?php echo esc_attr__( 'Captcha', 'design_laboratori_italia' ); ?>"
-												width="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>" height="<?php echo esc_attr( $dli_captcha['image_height'] ); ?>">
+											width="<?php echo esc_attr( (string) $dli_captcha['image_width'] ); ?>" height="<?php echo esc_attr( (string) $dli_captcha['image_height'] ); ?>">
 										</div>
 										<div class="form-group col-md-6">
-											<input name="captcha-field" id="captcha-field" size="<?php echo esc_attr( $dli_captcha['image_width'] ); ?>" type="text"
+											<input name="captcha-field" id="captcha-field" size="<?php echo esc_attr( (string) $dli_captcha['image_width'] ); ?>" type="text"
 												placeholder="<?php echo esc_attr__( 'Riscrivi qui il codice di conferma', 'design_laboratori_italia' ); ?>">
 											<input name="captcha-prefix" id="captcha-prefix" class="form-control" type="hidden" value="<?php echo esc_attr( $dli_captcha['prefix'] ); ?>">
 										</div>

@@ -115,7 +115,7 @@ $dli_paginazione_page_url = static function ( $dli_page_number ) use ( $dli_per_
 			<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger"
 				data-bs-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false" aria-label="<?php echo esc_attr__( 'Salta alla pagina', 'design_laboratori_italia' ); ?>">
-				<?php echo esc_html( $dli_per_page ); ?>/<?php echo esc_html__( 'pagina', 'design_laboratori_italia' ); ?>
+				<?php echo esc_html( (string) $dli_per_page ); ?>/<?php echo esc_html__( 'pagina', 'design_laboratori_italia' ); ?>
 				<svg class="icon icon-primary icon-sm" aria-hidden="true" focusable="false">
 					<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-expand' ); ?>"></use>
 				</svg>
@@ -127,8 +127,8 @@ $dli_paginazione_page_url = static function ( $dli_page_number ) use ( $dli_per_
 							<?php $dli_is_active = ( $dli_pvalue === $dli_per_page ); ?>
 							<li>
 								<a class="dropdown-item list-item<?php echo $dli_is_active ? ' active' : ''; ?>"
-									href="#" data-perpage="<?php echo esc_attr( $dli_pvalue ); ?>">
-									<span><?php echo esc_html( $dli_pvalue ); ?>/<?php echo esc_html__( 'pagina', 'design_laboratori_italia' ); ?></span>
+									href="#" data-perpage="<?php echo esc_attr( (string) $dli_pvalue ); ?>">
+									<span><?php echo esc_html( (string) $dli_pvalue ); ?>/<?php echo esc_html__( 'pagina', 'design_laboratori_italia' ); ?></span>
 								</a>
 							</li>
 						<?php endforeach; ?>

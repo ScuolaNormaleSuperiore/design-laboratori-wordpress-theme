@@ -93,7 +93,7 @@ function dli_get_template_page_url( $template_name ) {
 		array(
 			'meta_key'     => '_wp_page_template',
 			'meta_value'   => $template_name,
-			'hierarchical' => 0,
+			'hierarchical' => false,
 			'sort_column'  => 'menu_order',
 		)
 	);
@@ -824,7 +824,7 @@ if ( ! function_exists( 'dli_get_all_categories' ) ) {
 		 * @return array
 		 */
 	function dli_get_all_categories( $taxonomy, $exclude_uncategorized = true ) {
-		$terms      = get_terms( $taxonomy );
+		$terms      = get_terms( array( 'taxonomy' => $taxonomy ) );
 		$categories = array();
 		if ( $terms ) {
 			foreach ( $terms as $term ) {

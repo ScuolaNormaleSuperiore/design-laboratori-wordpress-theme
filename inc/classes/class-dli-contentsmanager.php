@@ -725,9 +725,9 @@ class DLI_ContentsManager {
 	/**
 	 * Get the posts of a related content type whose ACF relation field references the given post.
 	 *
-	 * @param WP_Post $post       Post being referenced.
-	 * @param string  $field_name ACF field name storing the relation on the related post type.
-	 * @param string  $related_ct Related post type to query.
+	 * @param WP_Post                   $post       Post being referenced.
+	 * @param string                    $field_name ACF field name storing the relation on the related post type.
+	 * @param string|array<int, string> $related_ct Related post type or types to query.
 	 * @return WP_Post[]
 	 */
 	public static function get_related_items( $post, $field_name, $related_ct ) {

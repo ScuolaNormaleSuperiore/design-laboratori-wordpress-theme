@@ -112,7 +112,7 @@ $dli_num_results = $dli_query->found_posts;
 											?>
 											<?php if ( $dli_type_id > 0 && '' !== $dli_type_slug ) { ?>
 												<div class="form-check">
-													<input type="checkbox" name="type_technical_resource[]" id="<?php echo esc_attr( $dli_type_slug ); ?>" value="<?php echo esc_attr( $dli_type_id ); ?>" <?php checked( true, $dli_type_check ); ?>>
+											<input type="checkbox" name="type_technical_resource[]" id="<?php echo esc_attr( $dli_type_slug ); ?>" value="<?php echo esc_attr( (string) $dli_type_id ); ?>" <?php checked( true, $dli_type_check ); ?>>
 													<label for="<?php echo esc_attr( $dli_type_slug ); ?>"><?php echo esc_html( $dli_type_name ); ?></label>
 												</div>
 											<?php } ?>
