@@ -33,7 +33,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.6] - 2026-11-05
+## [2.0.6] - 2026-11-06
 ## Modificato
 - Versione in sviluppo: nessuna modifica ancora registrata rispetto alla 2.0.5.
 
