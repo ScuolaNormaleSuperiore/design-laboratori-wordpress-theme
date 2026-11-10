@@ -324,13 +324,14 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 
 		wp_set_current_user( $this->user( DLI_PENDING_USER_ROLE_SLUG )->ID );
 		$html = $this->render_box();
-		$this->assertStringContainsString( 'in attesa di approvazione', $html );
+		$pending_message = esc_html__( 'La tua richiesta di accesso è in attesa di approvazione: vedrai i contenuti riservati quando un amministratore ti avrà inserito in un gruppo.', 'design_laboratori_italia' );
+		$this->assertStringContainsString( $pending_message, $html );
 		$this->assertStringContainsString( 'action=logout', $html );
 		$this->assertStringNotContainsString( 'btn btn-primary', $html );
 
 		wp_set_current_user( $this->user( DLI_RESERVED_AREA_USER_ROLE_SLUG )->ID );
 		$html = $this->render_box();
-		$this->assertStringNotContainsString( 'in attesa di approvazione', $html );
+		$this->assertStringNotContainsString( $pending_message, $html );
 		$this->assertStringContainsString( 'action=logout', $html );
 	}
 
