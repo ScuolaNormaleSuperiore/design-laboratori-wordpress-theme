@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-11-04 14:32+0000\n"
+"PO-Revision-Date: 2026-11-10 13:56+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -24,24 +24,24 @@ msgstr[0] "%1$d result for «%2$s»"
 msgstr[1] "%1$d results for «%2$s»"
 
 #. 1: selected option label, 2: total number of results, 3: position of the selected option.
-#: inc/search-autocomplete.php:334
+#: inc/search-autocomplete.php:350
 #, php-format
 msgid "%1$s, risultato %3$d di %2$d"
 msgstr "%1$s, result %3$d of %2$d"
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:332
+#: inc/search-autocomplete.php:348
 msgid "%d risultati disponibili."
 msgstr "%d results available."
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:330
+#: inc/search-autocomplete.php:346
 msgid "%d risultato disponibile."
 msgstr "%d result available."
 
 #. %s: the title of a banner that is a draft, private or in the trash
 #. %s: the title of a page that is a draft, private or protected by a password
-#: inc/home-banners.php:158 inc/pages.php:397
+#: inc/home-banners.php:158 inc/pages.php:402
 #: tests/integration/DLI_Home_Banners_Integration_Test.php:369
 #, php-format
 msgid "%s (non visibile)"
@@ -108,9 +108,29 @@ msgstr "Patent abstract"
 msgid "Abstract del brevetto"
 msgstr "Patent abstract"
 
-#: header.php:139
+#: header.php:139 template-parts/common/reserved-area-access.php:25
 msgid "Accedi"
 msgstr "Login"
+
+#: template-parts/common/reserved-area-access.php:24
+msgid ""
+"Accedi con le credenziali del tuo istituto per vedere i contenuti riservati "
+"ai tuoi gruppi."
+msgstr "Log in with your institution's credentials to see the contents reserved to your groups."
+
+#: inc/reserved-area.php:44
+msgid ""
+"Accesso ai contenuti riservati con il single sign-on (WP SAML Auth) e i "
+"gruppi (Groups). Chi vede un contenuto lo decide il plugin Groups."
+msgstr "Access to reserved contents with single sign-on (WP SAML Auth) and groups (Groups). Who sees a content is decided by the Groups plugin."
+
+#: template-parts/common/reserved-area-access.php:22
+msgid "Accesso all'area riservata"
+msgstr "Access to the reserved area"
+
+#: inc/reserved-area.php:79
+msgid "Accesso solo tramite SAML"
+msgstr "SAML-only access"
 
 #: template-parts/common/sezione-video.php:45
 msgid "Accetta"
@@ -269,6 +289,10 @@ msgstr "Archive."
 msgid "Archivio progetti"
 msgstr "Project archive"
 
+#: inc/reserved-area.php:28 inc/reserved-area.php:34 inc/reserved-area.php:43
+msgid "Area riservata"
+msgstr "Reserved area"
+
 #: inc/classes/class-patentmanager.php:55
 msgid "Area Tematica"
 msgstr "Thematic Area"
@@ -306,8 +330,14 @@ msgid ""
 "obbligatoriamente: "
 msgstr "ATTENTION: The following plugins must be installed and activated:"
 
+#: inc/reserved-area.php:53
+msgid ""
+"Attiva le funzioni del tema per gli utenti dell'area riservata (ruoli "
+"«Utente in attesa» e «Utente area riservata»)."
+msgstr "Enables the theme features for the users of the reserved area (roles «Utente in attesa» and «Utente area riservata»)."
+
 #. Name of the template
-#: single-persona.php:220 single-persona.php:316 inc/utils.php:273
+#: single-persona.php:220 single-persona.php:316 inc/utils.php:272
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr "Research activities"
@@ -342,7 +372,7 @@ msgid "Blog"
 msgstr "Blog"
 
 #. Name of the template
-#: inc/featured-contents.php:37 inc/utils.php:281 page-templates/brevetti.php:2
+#: inc/featured-contents.php:37 inc/utils.php:280 page-templates/brevetti.php:2
 msgid "Brevetti"
 msgstr "Patents"
 
@@ -802,7 +832,7 @@ msgid "dicembre"
 msgstr "december"
 
 #. %d: minimum number of characters.
-#: inc/search-autocomplete.php:328
+#: inc/search-autocomplete.php:344
 msgid "Digita almeno %d caratteri per vedere i suggerimenti"
 msgstr "Type at least %d characters to see suggestions"
 
@@ -892,6 +922,10 @@ msgstr "E.g. Rossi"
 msgid "Es. Rossi, Professore…"
 msgstr "E.g. Rossi, Professor..."
 
+#: template-parts/common/reserved-area-access.php:38
+msgid "Esci"
+msgstr "Logout"
+
 #: inc/admin/class-dli-page-import-admin.php:513
 #: inc/admin/class-dli-tools-admin.php:666
 msgid "esecuzione reale"
@@ -924,7 +958,7 @@ msgid "Esporta"
 msgstr "Export"
 
 #. Name of the template
-#: inc/featured-contents.php:34 inc/utils.php:274 page-templates/eventi.php:2
+#: inc/featured-contents.php:34 inc/utils.php:273 page-templates/eventi.php:2
 #: template-parts/home/hp-list-event.php:40
 #: template-parts/home/hp-list-event.php:42
 msgid "Eventi"
@@ -1014,6 +1048,10 @@ msgstr "jan"
 msgid "gennaio"
 msgstr "january"
 
+#: inc/reserved-area.php:52
+msgid "Gestione area riservata"
+msgstr "Reserved area management"
+
 #: page-templates/privacy.php:172
 msgid "Gestione cookies"
 msgstr "Cookies management"
@@ -1025,6 +1063,13 @@ msgstr "jun"
 #: inc/utils.php:948
 msgid "giugno"
 msgstr "june"
+
+#: inc/reserved-area.php:80
+msgid ""
+"Gli utenti con i ruoli dell'area riservata possono entrare solo con il "
+"single sign-on: il login con password e il recupero della password sono "
+"disattivati. Gli altri utenti non sono interessati."
+msgstr "Users with the reserved area roles can log in only with single sign-on: password login and password recovery are disabled. Other users are not affected."
 
 #: page-templates/privacy.php:181
 msgid "Hai installato i seguenti cookies di terze parti:"
@@ -1302,6 +1347,12 @@ msgstr "The requested language does not exist on this site."
 msgid "La Newslettere è disabilitata"
 msgstr "The Newsletter is disabled"
 
+#: template-parts/common/reserved-area-access.php:35
+msgid ""
+"La tua richiesta di accesso è in attesa di approvazione: vedrai i contenuti "
+"riservati quando un amministratore ti avrà inserito in un gruppo."
+msgstr "Your access request is awaiting approval: you will see the reserved contents once an administrator has added you to a group."
+
 #: inc/admin/class-dli-page-import-admin.php:576
 msgid "Le pagine del file, con l'indirizzo e l'esito"
 msgstr "The pages of the file, with their address and result"
@@ -1381,7 +1432,7 @@ msgstr "jul"
 msgid "luglio"
 msgstr "july"
 
-#: inc/featured-contents.php:39 inc/utils.php:275
+#: inc/featured-contents.php:39 inc/utils.php:274
 msgid "Luoghi"
 msgstr "Places"
 
@@ -1427,7 +1478,7 @@ msgstr "Brand and model"
 msgid "marzo"
 msgstr "march"
 
-#: functions.php:189
+#: functions.php:199
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
@@ -1435,19 +1486,19 @@ msgstr "Footer link menu - footer"
 msgid "Menu contatti"
 msgstr "Contacts menu"
 
-#: functions.php:187
+#: functions.php:197
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:188
+#: functions.php:198
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:185
+#: functions.php:195
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:186
+#: functions.php:196
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -1561,7 +1612,7 @@ msgstr "Deposit country"
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr "No file uploaded or upload error."
 
-#: inc/search-autocomplete.php:326
+#: inc/search-autocomplete.php:342
 msgid "Nessun risultato di ricerca"
 msgstr "No search results"
 
@@ -1569,9 +1620,13 @@ msgstr "No search results"
 msgid "Nessun risultato per i filtri selezionati."
 msgstr "No results for the selected filters."
 
-#: inc/search-autocomplete.php:325
+#: inc/search-autocomplete.php:341
 msgid "Nessun risultato trovato"
 msgstr "No results found"
+
+#: inc/reserved-area.php:69
+msgid "Nessuna (home del sito)"
+msgstr "None (site home page)"
 
 #: template-parts/persone/view-tabella.php:296
 msgid "Nessuna persona trovata"
@@ -1583,6 +1638,10 @@ msgstr "No people found"
 #: tests/integration/DLI_Footer_Headings_Integration_Test.php:144
 msgid "Newsletter"
 msgstr "Newsletter"
+
+#: inc/reserved-area.php:58 inc/reserved-area.php:85
+msgid "No"
+msgstr "No"
 
 #: inc/admin/class-dli-page-import-admin.php:529
 #: inc/admin/class-dli-page-import-admin.php:603
@@ -1684,7 +1743,7 @@ msgid "Notizia"
 msgstr "News"
 
 #. Name of the template
-#: inc/featured-contents.php:33 inc/utils.php:276 page-templates/notizie.php:2
+#: inc/featured-contents.php:33 inc/utils.php:275 page-templates/notizie.php:2
 #: template-parts/home/hp-list-news.php:33
 #: template-parts/home/hp-list-news.php:37
 msgid "Notizie"
@@ -1786,6 +1845,10 @@ msgstr "Page"
 msgid "pagina"
 msgstr "page"
 
+#: inc/reserved-area.php:66
+msgid "Pagina Area riservata"
+msgstr "Reserved area page"
+
 #: 404.php:31
 msgid "Pagina non trovata"
 msgstr "Page not found"
@@ -1794,6 +1857,13 @@ msgstr "Page not found"
 #: template-parts/persone/view-tabella.php:292
 msgid "Pagina precedente"
 msgstr "Previous page"
+
+#: inc/reserved-area.php:67
+msgid ""
+"Pagina pubblica da cui si accede all'area riservata: riceve il pulsante di "
+"accesso ed è la pagina in cui arrivano gli utenti dell'area riservata dopo "
+"il login."
+msgstr "Public page from which the reserved area is accessed: it shows the login button and is the page where the reserved area users land after logging in."
 
 #: template-parts/common/paginazione.php:104
 #: template-parts/persone/view-tabella.php:293
@@ -1837,6 +1907,12 @@ msgid ""
 "nulla."
 msgstr "To import you must confirm the publication: nothing was written."
 
+#: inc/reserved-area.php:326
+msgid ""
+"Per questo account l'accesso è possibile solo con il single sign-on "
+"dell'istituto."
+msgstr "For this account, access is possible only with your institution's single sign-on."
+
 #: inc/admin/class-dli-tools-admin.php:550
 msgid ""
 "Per tipologia_persona e struttura: inserire lo slug della voce già esistente."
@@ -1867,7 +1943,7 @@ msgid "persona trovata"
 msgstr "person found"
 
 #. Name of the template
-#: inc/featured-contents.php:38 inc/utils.php:277 page-templates/persone.php:2
+#: inc/featured-contents.php:38 inc/utils.php:276 page-templates/persone.php:2
 #: inc/admin/class-dli-tools-admin.php:258
 msgid "Persone"
 msgstr "People"
@@ -1881,7 +1957,7 @@ msgstr "people found"
 msgid "Posizione"
 msgstr "Location"
 
-#: inc/featured-contents.php:40 inc/utils.php:278
+#: inc/featured-contents.php:40 inc/utils.php:277
 msgid "Post"
 msgstr "Post"
 
@@ -2255,7 +2331,7 @@ msgstr "Privacy"
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:203
 #: single-persona.php:197 single-persona.php:274 single-risorsa-tecnica.php:244
 #: single-risorsa-tecnica.php:356 inc/featured-contents.php:36
-#: inc/utils.php:279
+#: inc/utils.php:278
 msgid "Progetti"
 msgstr "Projects"
 
@@ -2268,13 +2344,13 @@ msgid "Pubblicazione"
 msgstr "Publication"
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
-#: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:280
+#: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:279
 #: template-parts/home/hp-list-publication.php:33
 #: template-parts/home/hp-list-publication.php:37
 msgid "Pubblicazioni"
 msgstr "Publications"
 
-#: inc/search-autocomplete.php:324
+#: inc/search-autocomplete.php:340
 msgid ""
 "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e "
 "Invio per selezionare."
@@ -2627,6 +2703,12 @@ msgstr "Secondary"
 msgid "Seguici su"
 msgstr "Follow us on"
 
+#. %s: name of the logged-in user.
+#: template-parts/common/reserved-area-access.php:30
+#, php-format
+msgid "Sei collegato come %s."
+msgstr "You are logged in as %s."
+
 #: inc/classes/class-peoplemanager.php:79 inc/classes/class-placemanager.php:85
 msgid "Seleziona Immagine"
 msgstr "Select Image"
@@ -2719,10 +2801,6 @@ msgstr "Website"
 msgid "Skiplink"
 msgstr "Skip links"
 
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:70
-msgid "solo in modalità automatica"
-msgstr "only in auto mode"
-
 #: inc/admin/class-dli-tools-admin.php:576
 msgid "solo nuovi (salta se esiste)"
 msgstr "new only (skip if it exists)"
@@ -2774,6 +2852,10 @@ msgstr "DLI Tools"
 #: template-parts/persone/view-tabella.php:249
 msgid "Struttura"
 msgstr "Structure"
+
+#: inc/reserved-area.php:57 inc/reserved-area.php:84
+msgid "Sì"
+msgstr "Yes"
 
 #: inc/admin/class-dli-page-import-admin.php:529
 #: inc/admin/class-dli-page-import-admin.php:603

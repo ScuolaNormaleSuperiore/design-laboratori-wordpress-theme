@@ -645,6 +645,12 @@ Di seguito le operazioni pratiche supportate nei singoli tab.
 - API/SEO: attivare o disattivare `REST API` e gestione SEO interna.
 - Ricerca nel sito: attivare `Abilita i suggerimenti durante la digitazione` e regolare soglia caratteri, numero massimo, attesa, tipologie incluse e comportamento alla scelta di un suggerimento.
 
+### 5.22 `Area riservata` (solo admin)
+- `Gestione area riservata`: `No` per default; con `Sì` il tema gestisce gli utenti dell'area riservata (redirect dopo il login e dalla bacheca, barra admin nascosta, promozione all'ingresso in un gruppo). Con `No` gli altri due campi sono disabilitati.
+- `Pagina Area riservata` (consigliata): la pagina pubblica di atterraggio in cui arrivano gli utenti dell'area riservata subito dopo il login, con il pulsante Accedi. *Strumenti DLI → Utilità → Ricarica i dati di attivazione* crea la pagina «Area riservata» se manca e, solo in quel momento, la sceglie qui se il campo è vuoto; in alternativa creala a mano e sceglila qui. Si può sempre scegliere «Nessuna (home del sito)»: i ricaricamenti successivi non cambiano il campo. Se il campo resta vuoto, dopo il login si arriva alla home e il pulsante Accedi non compare in nessuna pagina.
+- `Accesso solo tramite SAML`: gli utenti con il ruolo Utente in attesa o Utente area riservata possono entrare solo con il single sign-on. Il login con password e il recupero della password sono disattivati e nel loro profilo non compaiono i campi della password. Non impedisce di creare questi utenti a mano e non tocca gli altri ruoli. Dettagli in [Accesso solo tramite SAML](../HowTo/Area-riservata.md#accesso-solo-tramite-saml).
+- Configurazione completa (WP SAML Auth, Groups, pagine, approvazione): vedi [Area riservata](../HowTo/Area-riservata.md).
+
 ## 6. Campi obbligatori (riepilogo rapido)
 Campi marcati obbligatori nel codice:
 - Tab `Opzioni di base`: `Tipologia`, `Nome Laboratorio`, `Citta'`, `Indirizzo`, `Email`, `Telefono`, `Ente padre`, `Url ente padre`

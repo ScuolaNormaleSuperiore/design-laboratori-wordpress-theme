@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 14:31+0000\n"
+"POT-Creation-Date: 2026-11-10 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -25,24 +25,24 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. 1: selected option label, 2: total number of results, 3: position of the selected option.
-#: inc/search-autocomplete.php:334
+#: inc/search-autocomplete.php:350
 #, php-format
 msgid "%1$s, risultato %3$d di %2$d"
 msgstr ""
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:332
+#: inc/search-autocomplete.php:348
 msgid "%d risultati disponibili."
 msgstr ""
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:330
+#: inc/search-autocomplete.php:346
 msgid "%d risultato disponibile."
 msgstr ""
 
 #. %s: the title of a banner that is a draft, private or in the trash
 #. %s: the title of a page that is a draft, private or protected by a password
-#: inc/home-banners.php:158 inc/pages.php:397
+#: inc/home-banners.php:158 inc/pages.php:402
 #: tests/integration/DLI_Home_Banners_Integration_Test.php:369
 #, php-format
 msgid "%s (non visibile)"
@@ -105,8 +105,28 @@ msgstr ""
 msgid "Abstract del brevetto"
 msgstr ""
 
-#: header.php:139
+#: header.php:139 template-parts/common/reserved-area-access.php:25
 msgid "Accedi"
+msgstr ""
+
+#: template-parts/common/reserved-area-access.php:24
+msgid ""
+"Accedi con le credenziali del tuo istituto per vedere i contenuti riservati "
+"ai tuoi gruppi."
+msgstr ""
+
+#: inc/reserved-area.php:44
+msgid ""
+"Accesso ai contenuti riservati con il single sign-on (WP SAML Auth) e i "
+"gruppi (Groups). Chi vede un contenuto lo decide il plugin Groups."
+msgstr ""
+
+#: template-parts/common/reserved-area-access.php:22
+msgid "Accesso all'area riservata"
+msgstr ""
+
+#: inc/reserved-area.php:79
+msgid "Accesso solo tramite SAML"
 msgstr ""
 
 #: template-parts/common/sezione-video.php:45
@@ -264,6 +284,10 @@ msgstr ""
 msgid "Archivio progetti"
 msgstr ""
 
+#: inc/reserved-area.php:28 inc/reserved-area.php:34 inc/reserved-area.php:43
+msgid "Area riservata"
+msgstr ""
+
 #: inc/classes/class-patentmanager.php:55
 msgid "Area Tematica"
 msgstr ""
@@ -301,8 +325,14 @@ msgid ""
 "obbligatoriamente: "
 msgstr ""
 
+#: inc/reserved-area.php:53
+msgid ""
+"Attiva le funzioni del tema per gli utenti dell'area riservata (ruoli "
+"«Utente in attesa» e «Utente area riservata»)."
+msgstr ""
+
 #. Name of the template
-#: single-persona.php:220 single-persona.php:316 inc/utils.php:273
+#: single-persona.php:220 single-persona.php:316 inc/utils.php:272
 #: page-templates/ricerca.php:2
 msgid "Attività di ricerca"
 msgstr ""
@@ -337,7 +367,7 @@ msgid "Blog"
 msgstr ""
 
 #. Name of the template
-#: inc/featured-contents.php:37 inc/utils.php:281 page-templates/brevetti.php:2
+#: inc/featured-contents.php:37 inc/utils.php:280 page-templates/brevetti.php:2
 msgid "Brevetti"
 msgstr ""
 
@@ -785,7 +815,7 @@ msgid "dicembre"
 msgstr ""
 
 #. %d: minimum number of characters.
-#: inc/search-autocomplete.php:328
+#: inc/search-autocomplete.php:344
 msgid "Digita almeno %d caratteri per vedere i suggerimenti"
 msgstr ""
 
@@ -871,6 +901,10 @@ msgstr ""
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
+#: template-parts/common/reserved-area-access.php:38
+msgid "Esci"
+msgstr ""
+
 #: inc/admin/class-dli-page-import-admin.php:513
 #: inc/admin/class-dli-tools-admin.php:666
 msgid "esecuzione reale"
@@ -903,7 +937,7 @@ msgid "Esporta"
 msgstr ""
 
 #. Name of the template
-#: inc/featured-contents.php:34 inc/utils.php:274 page-templates/eventi.php:2
+#: inc/featured-contents.php:34 inc/utils.php:273 page-templates/eventi.php:2
 #: template-parts/home/hp-list-event.php:40
 #: template-parts/home/hp-list-event.php:42
 msgid "Eventi"
@@ -993,6 +1027,10 @@ msgstr ""
 msgid "gennaio"
 msgstr ""
 
+#: inc/reserved-area.php:52
+msgid "Gestione area riservata"
+msgstr ""
+
 #: page-templates/privacy.php:172
 msgid "Gestione cookies"
 msgstr ""
@@ -1003,6 +1041,13 @@ msgstr ""
 
 #: inc/utils.php:948
 msgid "giugno"
+msgstr ""
+
+#: inc/reserved-area.php:80
+msgid ""
+"Gli utenti con i ruoli dell'area riservata possono entrare solo con il "
+"single sign-on: il login con password e il recupero della password sono "
+"disattivati. Gli altri utenti non sono interessati."
 msgstr ""
 
 #: page-templates/privacy.php:181
@@ -1272,6 +1317,12 @@ msgstr ""
 msgid "La Newslettere è disabilitata"
 msgstr ""
 
+#: template-parts/common/reserved-area-access.php:35
+msgid ""
+"La tua richiesta di accesso è in attesa di approvazione: vedrai i contenuti "
+"riservati quando un amministratore ti avrà inserito in un gruppo."
+msgstr ""
+
 #: inc/admin/class-dli-page-import-admin.php:576
 msgid "Le pagine del file, con l'indirizzo e l'esito"
 msgstr ""
@@ -1346,7 +1397,7 @@ msgstr ""
 msgid "luglio"
 msgstr ""
 
-#: inc/featured-contents.php:39 inc/utils.php:275
+#: inc/featured-contents.php:39 inc/utils.php:274
 msgid "Luoghi"
 msgstr ""
 
@@ -1392,7 +1443,7 @@ msgstr ""
 msgid "marzo"
 msgstr ""
 
-#: functions.php:189
+#: functions.php:199
 msgid "Menu a piè di pagina di link - footer"
 msgstr ""
 
@@ -1400,19 +1451,19 @@ msgstr ""
 msgid "Menu contatti"
 msgstr ""
 
-#: functions.php:187
+#: functions.php:197
 msgid "Menu header di link in alto a destra"
 msgstr ""
 
-#: functions.php:188
+#: functions.php:198
 msgid "Menu link utili - footer"
 msgstr ""
 
-#: functions.php:185
+#: functions.php:195
 msgid "Menu principale di link a sinistra"
 msgstr ""
 
-#: functions.php:186
+#: functions.php:196
 msgid "Menu secondario multilevel a destra"
 msgstr ""
 
@@ -1525,7 +1576,7 @@ msgstr ""
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr ""
 
-#: inc/search-autocomplete.php:326
+#: inc/search-autocomplete.php:342
 msgid "Nessun risultato di ricerca"
 msgstr ""
 
@@ -1533,8 +1584,12 @@ msgstr ""
 msgid "Nessun risultato per i filtri selezionati."
 msgstr ""
 
-#: inc/search-autocomplete.php:325
+#: inc/search-autocomplete.php:341
 msgid "Nessun risultato trovato"
+msgstr ""
+
+#: inc/reserved-area.php:69
+msgid "Nessuna (home del sito)"
 msgstr ""
 
 #: template-parts/persone/view-tabella.php:296
@@ -1546,6 +1601,10 @@ msgstr ""
 #: template-parts/common/newsletter.php:16
 #: tests/integration/DLI_Footer_Headings_Integration_Test.php:144
 msgid "Newsletter"
+msgstr ""
+
+#: inc/reserved-area.php:58 inc/reserved-area.php:85
+msgid "No"
 msgstr ""
 
 #: inc/admin/class-dli-page-import-admin.php:529
@@ -1648,7 +1707,7 @@ msgid "Notizia"
 msgstr ""
 
 #. Name of the template
-#: inc/featured-contents.php:33 inc/utils.php:276 page-templates/notizie.php:2
+#: inc/featured-contents.php:33 inc/utils.php:275 page-templates/notizie.php:2
 #: template-parts/home/hp-list-news.php:33
 #: template-parts/home/hp-list-news.php:37
 msgid "Notizie"
@@ -1744,6 +1803,10 @@ msgstr ""
 msgid "pagina"
 msgstr ""
 
+#: inc/reserved-area.php:66
+msgid "Pagina Area riservata"
+msgstr ""
+
 #: 404.php:31
 msgid "Pagina non trovata"
 msgstr ""
@@ -1751,6 +1814,13 @@ msgstr ""
 #: template-parts/common/paginazione.php:63
 #: template-parts/persone/view-tabella.php:292
 msgid "Pagina precedente"
+msgstr ""
+
+#: inc/reserved-area.php:67
+msgid ""
+"Pagina pubblica da cui si accede all'area riservata: riceve il pulsante di "
+"accesso ed è la pagina in cui arrivano gli utenti dell'area riservata dopo "
+"il login."
 msgstr ""
 
 #: template-parts/common/paginazione.php:104
@@ -1795,6 +1865,12 @@ msgid ""
 "nulla."
 msgstr ""
 
+#: inc/reserved-area.php:326
+msgid ""
+"Per questo account l'accesso è possibile solo con il single sign-on "
+"dell'istituto."
+msgstr ""
+
 #: inc/admin/class-dli-tools-admin.php:550
 msgid ""
 "Per tipologia_persona e struttura: inserire lo slug della voce già esistente."
@@ -1823,7 +1899,7 @@ msgid "persona trovata"
 msgstr ""
 
 #. Name of the template
-#: inc/featured-contents.php:38 inc/utils.php:277 page-templates/persone.php:2
+#: inc/featured-contents.php:38 inc/utils.php:276 page-templates/persone.php:2
 #: inc/admin/class-dli-tools-admin.php:258
 msgid "Persone"
 msgstr ""
@@ -1837,7 +1913,7 @@ msgstr ""
 msgid "Posizione"
 msgstr ""
 
-#: inc/featured-contents.php:40 inc/utils.php:278
+#: inc/featured-contents.php:40 inc/utils.php:277
 msgid "Post"
 msgstr ""
 
@@ -2211,7 +2287,7 @@ msgstr ""
 #: single-indirizzo-di-ricerca.php:126 single-indirizzo-di-ricerca.php:203
 #: single-persona.php:197 single-persona.php:274 single-risorsa-tecnica.php:244
 #: single-risorsa-tecnica.php:356 inc/featured-contents.php:36
-#: inc/utils.php:279
+#: inc/utils.php:278
 msgid "Progetti"
 msgstr ""
 
@@ -2224,13 +2300,13 @@ msgid "Pubblicazione"
 msgstr ""
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
-#: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:280
+#: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:279
 #: template-parts/home/hp-list-publication.php:33
 #: template-parts/home/hp-list-publication.php:37
 msgid "Pubblicazioni"
 msgstr ""
 
-#: inc/search-autocomplete.php:324
+#: inc/search-autocomplete.php:340
 msgid ""
 "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e "
 "Invio per selezionare."
@@ -2565,6 +2641,12 @@ msgstr ""
 msgid "Seguici su"
 msgstr ""
 
+#. %s: name of the logged-in user.
+#: template-parts/common/reserved-area-access.php:30
+#, php-format
+msgid "Sei collegato come %s."
+msgstr ""
+
 #: inc/classes/class-peoplemanager.php:79 inc/classes/class-placemanager.php:85
 msgid "Seleziona Immagine"
 msgstr ""
@@ -2656,10 +2738,6 @@ msgstr ""
 msgid "Skiplink"
 msgstr ""
 
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:70
-msgid "solo in modalità automatica"
-msgstr ""
-
 #: inc/admin/class-dli-tools-admin.php:576
 msgid "solo nuovi (salta se esiste)"
 msgstr ""
@@ -2708,6 +2786,10 @@ msgstr ""
 #: template-parts/persone/view-tabella.php:226
 #: template-parts/persone/view-tabella.php:249
 msgid "Struttura"
+msgstr ""
+
+#: inc/reserved-area.php:57 inc/reserved-area.php:84
+msgid "Sì"
 msgstr ""
 
 #: inc/admin/class-dli-page-import-admin.php:529

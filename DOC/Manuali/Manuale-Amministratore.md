@@ -20,8 +20,11 @@ L'**Amministratore** (permesso nativo `manage_options`) ha accesso a tutto, comp
 | **Altro** | Contiene lo «Stile del sito» (standard o personalizzato): cambia colori e identità visiva di tutto il sito |
 | **Indico** | Importazione degli eventi da un endpoint esterno |
 | **Iris** | Importazione dei brevetti da un endpoint esterno |
+| **Area riservata** | Accesso con single sign-on e regole sulle password degli utenti dell'area riservata |
 
 Un Redattore o un Editor «semplice» lavora solo sui contenuti, senza accesso alla configurazione né ai menu.
+
+Per l'area riservata il tema aggiunge due ruoli senza permessi di WordPress: **Utente in attesa** (`dli_pending_user`), chi si è registrato con il single sign-on e non è ancora stato approvato, e **Utente area riservata** (`dli_reserved_area_user`), chi è stato approvato. Nessuno dei due entra nella bacheca o modifica il proprio profilo. Chi vede le pagine riservate lo decide il plugin Groups: vedi [Area riservata](../HowTo/Area-riservata.md).
 
 ## 3. Pannello di configurazione (`WP → Configurazione`)
 Tutte le schede, campo per campo, sono nel [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md). In sintesi:
@@ -80,7 +83,7 @@ La libreria dei campi di configurazione (CMB2) è inclusa nel tema in `inc/vendo
 ## 7. Installazione e primo avvio
 I passi (copia del tema, attivazione, plugin, Polylang, dati di attivazione, menu, configurazione) sono nel capitolo «Installazione e configurazione del tema» del `README.md`. Strumenti utili in **WP → Strumenti DLI**:
 
-- **Utilità → Ricarica i dati di attivazione:** crea pagine, menu e tassonomie predefinite;
+- **Utilità → Ricarica i dati di attivazione:** crea pagine, menu e tassonomie predefinite che mancano, compresa la pagina «Area riservata» (vedi [Area riservata](../HowTo/Area-riservata.md)). Non modifica le pagine e i menu che esistono già;
 - **Importa → Pagine:** crea l'albero delle pagine del sito (fino a tre livelli e 200 pagine) da un file CSV, con simulazione e conferma prima della scrittura. Dalla stessa pagina si scaricano un modello vuoto e due esempi dimostrativi (italiano e inglese), che servono anche a provare le sezioni della home che elencano pagine: non importarli su un sito di produzione. Le pagine create sono pubblicate subito, e non si modificano né si cancellano pagine già esistenti: un indirizzo già usato blocca l'importazione. Prima di importare su un sito reale conviene fare un backup;
 - **Importa → Persone, Indico, Iris:** avvio manuale degli altri import.
 

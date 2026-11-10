@@ -98,7 +98,13 @@
 
 			var url = cfg.endpoint + '?q=' + encodeURIComponent( query ) + '&lang=' + encodeURIComponent( cfg.lang );
 
-			fetch( url, { signal: abortController.signal } )
+			// A logged-in user sends the REST nonce, so that the server answers with the contents that user may read.
+			var options = { signal: abortController.signal, credentials: 'same-origin' };
+			if ( cfg.nonce ) {
+				options.headers = { 'X-WP-Nonce': cfg.nonce };
+			}
+
+			fetch( url, options )
 				.then( function ( response ) {
 					return response.ok ? response.json() : [];
 				} )

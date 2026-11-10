@@ -121,6 +121,11 @@ require get_template_directory() . '/inc/pagination.php';
  */
 require get_template_directory() . '/inc/menus.php';
 
+/**
+ * Reserved area — settings, roles behaviour and promotion on group join.
+ */
+require get_template_directory() . '/inc/reserved-area.php';
+
 
 /**
  * Activation Hooks.

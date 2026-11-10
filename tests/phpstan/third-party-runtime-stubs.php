@@ -34,3 +34,35 @@ if ( ! function_exists( 'cmb2_get_option' ) ) {
 		return $default;
 	}
 }
+
+if ( ! function_exists( 'cmb2_update_option' ) ) {
+	/**
+	 * Update a value in a CMB2 option group.
+	 *
+	 * @param string $option_key Option group key.
+	 * @param string $field_id   Option key.
+	 * @param mixed  $value      New value.
+	 * @param bool   $single     Whether the value is not an array.
+	 * @return bool Success.
+	 */
+	function cmb2_update_option( $option_key, $field_id, $value, $single = true ) {
+		return true;
+	}
+}
+
+if ( ! class_exists( 'Groups_Group' ) ) {
+	/**
+	 * Group class of the optional Groups plugin (itthinx), used by the reserved area.
+	 */
+	class Groups_Group {
+		/**
+		 * Read a group by ID.
+		 *
+		 * @param int $group_id Group ID.
+		 * @return object{group_id: int, name: string}|false The group, or false when it does not exist.
+		 */
+		public static function read( $group_id ) {
+			return false;
+		}
+	}
+}

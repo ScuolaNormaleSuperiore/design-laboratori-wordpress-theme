@@ -69,14 +69,15 @@ if ( ! function_exists( 'dli_get_subpage_cards' ) ) {
 
 		$children = get_posts(
 			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'publish',
-				'post_parent'    => $page->ID,
-				'orderby'        => array(
+				'suppress_filters' => false, // Let a restriction plugin (such as Groups) hide pages.
+				'post_type'        => WP_DEFAULT_PAGE,
+				'post_status'      => 'publish',
+				'post_parent'      => $page->ID,
+				'orderby'          => array(
 					'menu_order' => 'ASC',
 					'title'      => 'ASC',
 				),
-				'posts_per_page' => -1,
+				'posts_per_page'   => -1,
 			)
 		);
 
@@ -114,15 +115,16 @@ if ( ! function_exists( 'dli_get_promoted_page_cards' ) ) {
 		$limit     = max( 1, (int) $limit );
 		$max_level = dli_normalize_hp_page_level( $max_level );
 		$args      = array(
-			'post_type'      => WP_DEFAULT_PAGE,
-			'post_status'    => 'publish',
-			'has_password'   => false,
-			'orderby'        => array(
+			'suppress_filters' => false, // Let a restriction plugin (such as Groups) hide pages.
+			'post_type'        => WP_DEFAULT_PAGE,
+			'post_status'      => 'publish',
+			'has_password'     => false,
+			'orderby'          => array(
 				'menu_order' => 'ASC',
 				'title'      => 'ASC',
 			),
-			'posts_per_page' => $limit,
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
+			'posts_per_page'   => $limit,
+			'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
 				array(
 					'key'     => 'promuovi_in_home',
 					'compare' => '=',
@@ -175,15 +177,16 @@ if ( ! function_exists( 'dli_get_page_link_group' ) ) {
 
 		$children = get_posts(
 			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'publish',
-				'has_password'   => false,
-				'post_parent'    => $parent->ID,
-				'orderby'        => array(
+				'suppress_filters' => false, // Let a restriction plugin (such as Groups) hide pages.
+				'post_type'        => WP_DEFAULT_PAGE,
+				'post_status'      => 'publish',
+				'has_password'     => false,
+				'post_parent'      => $parent->ID,
+				'orderby'          => array(
 					'menu_order' => 'ASC',
 					'title'      => 'ASC',
 				),
-				'posts_per_page' => max( 1, (int) $max_items ),
+				'posts_per_page'   => max( 1, (int) $max_items ),
 			)
 		);
 		if ( empty( $children ) ) {
@@ -234,15 +237,16 @@ if ( ! function_exists( 'dli_get_page_index' ) ) {
 		$max_groups = max( 1, (int) $max_groups );
 		$children   = get_posts(
 			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'publish',
-				'has_password'   => false,
-				'post_parent'    => $page->ID,
-				'orderby'        => array(
+				'suppress_filters' => false, // Let a restriction plugin (such as Groups) hide pages.
+				'post_type'        => WP_DEFAULT_PAGE,
+				'post_status'      => 'publish',
+				'has_password'     => false,
+				'post_parent'      => $page->ID,
+				'orderby'          => array(
 					'menu_order' => 'ASC',
 					'title'      => 'ASC',
 				),
-				'posts_per_page' => -1,
+				'posts_per_page'   => -1,
 			)
 		);
 
@@ -291,15 +295,16 @@ if ( ! function_exists( 'dli_get_promoted_page_groups' ) ) {
 
 		$parents = get_posts(
 			array(
-				'post_type'      => WP_DEFAULT_PAGE,
-				'post_status'    => 'publish',
-				'has_password'   => false,
-				'orderby'        => array(
+				'suppress_filters' => false, // Let a restriction plugin (such as Groups) hide pages.
+				'post_type'        => WP_DEFAULT_PAGE,
+				'post_status'      => 'publish',
+				'has_password'     => false,
+				'orderby'          => array(
 					'menu_order' => 'ASC',
 					'title'      => 'ASC',
 				),
-				'posts_per_page' => -1,
-				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
+				'posts_per_page'   => -1,
+				'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Few pages are promoted.
 					array(
 						'key'     => 'promuovi_in_home',
 						'compare' => '=',

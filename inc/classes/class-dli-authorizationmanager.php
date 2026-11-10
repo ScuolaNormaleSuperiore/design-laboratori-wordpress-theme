@@ -6,7 +6,7 @@
  */
 
 /**
- * The manager that creates and configures the custom roles: Super Editor and the pending user.
+ * The manager that creates and configures the custom roles: Super Editor, the pending user and the reserved area user.
  */
 class DLI_AuthorizationManager {
 	/**
@@ -23,14 +23,25 @@ class DLI_AuthorizationManager {
 		// Register the custom roles.
 		add_action( 'init', array( $this, 'add_super_editor' ) );
 		add_action( 'init', array( $this, 'add_pending_user_role' ) );
+		add_action( 'init', array( $this, 'add_reserved_area_user_role' ) );
 		add_filter( 'map_meta_cap', array( $this, 'deny_profile_editing_to_pending_user' ), 10, 3 );
 	}
 
 	/**
-	 * Refuse editing a user to someone with the pending user role, the own profile included.
+	 * Slugs of the roles of the reserved area: the pending user and the approved user.
+	 *
+	 * @return string[] Role slugs.
+	 */
+	public static function get_reserved_area_roles() {
+		return array( DLI_PENDING_USER_ROLE_SLUG, DLI_RESERVED_AREA_USER_ROLE_SLUG );
+	}
+
+	/**
+	 * Refuse editing a user to someone with a role of the reserved area, the own profile included.
 	 *
 	 * WordPress lets everybody edit the own profile whatever the capabilities are, for example with the REST route
-	 * `POST /wp/v2/users/me`; this closes it for the pending user role.
+	 * `POST /wp/v2/users/me`; this closes it for the pending user and the reserved area user, so that neither can
+	 * change the email, which is the key of the user.
 	 *
 	 * @param string[] $caps    Primitive capabilities that the check requires.
 	 * @param string   $cap     Capability being checked.
@@ -43,11 +54,26 @@ class DLI_AuthorizationManager {
 		}
 
 		$user = get_userdata( (int) $user_id );
-		if ( $user && in_array( DLI_PENDING_USER_ROLE_SLUG, (array) $user->roles, true ) ) {
+		if ( $user && array_intersect( self::get_reserved_area_roles(), (array) $user->roles ) ) {
 			return array( 'do_not_allow' );
 		}
 
 		return $caps;
+	}
+
+	/**
+	 * Create the reserved area user role: an approved user who can do nothing in WordPress.
+	 *
+	 * The role has only the theme capability `DLI_RESERVED_AREA_ACCESS_CAP`, which WordPress ignores: no dashboard,
+	 * no profile. It is created only when it does not exist and is never rewritten, so a capability decided later
+	 * is not lost.
+	 *
+	 * @return void
+	 */
+	public function add_reserved_area_user_role() {
+		if ( ! get_role( DLI_RESERVED_AREA_USER_ROLE_SLUG ) ) {
+			add_role( DLI_RESERVED_AREA_USER_ROLE_SLUG, DLI_RESERVED_AREA_USER_ROLE_NAME, array( DLI_RESERVED_AREA_ACCESS_CAP => true ) );
+		}
 	}
 
 	/**

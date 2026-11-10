@@ -134,6 +134,8 @@ $dli_subpage_cards = ( dli_get_field( 'mostra_sottopagine_a_card' ) && ! post_pa
 						</section>
 					<?php endif; ?>
 
+					<?php dli_render_reserved_area_access( $post ); ?>
+
 					<?php the_content(); ?>
 
 					<!-- NEWS ED EVENTI (pagine_collegate) -->

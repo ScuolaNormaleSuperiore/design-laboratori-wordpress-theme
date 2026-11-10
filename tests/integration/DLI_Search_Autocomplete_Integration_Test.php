@@ -129,4 +129,112 @@ class DLI_Search_Autocomplete_Integration_Test extends DLI_Integration_Test_Case
 
 		$this->assertCount( 2, $data );
 	}
+
+	/**
+	 * The user who may read the restricted content of the restriction stand-in.
+	 *
+	 * @var int
+	 */
+	private $reader_id = 0;
+
+	/**
+	 * The content hidden by the restriction stand-in.
+	 *
+	 * @var int
+	 */
+	private $restricted_id = 0;
+
+	/**
+	 * Stand-in for a restriction plugin such as Groups, which hides from a query the contents the current user
+	 * may not read.
+	 *
+	 * @param WP_Post[] $posts Posts found by a query.
+	 * @return WP_Post[]
+	 */
+	public function hide_restricted( $posts ) {
+		if ( get_current_user_id() === $this->reader_id ) {
+			return $posts;
+		}
+		return array_values(
+			array_filter(
+				$posts,
+				function ( $post ) {
+					return (int) $post->ID !== $this->restricted_id;
+				}
+			)
+		);
+	}
+
+	/**
+	 * A public and a restricted content, the reader, and the restriction stand-in, with the cache on.
+	 */
+	private function set_up_restricted_content() {
+		$this->create_news( 'Zafferano pubblica' );
+		$this->restricted_id = $this->create_news( 'Zafferano riservata' );
+		$this->reader_id     = self::factory()->user->create( array( 'role' => DLI_RESERVED_AREA_USER_ROLE_SLUG ) );
+		add_filter( 'the_posts', array( $this, 'hide_restricted' ) );
+		$this->enable_autocomplete( array( 'search_autocomplete_cache_minutes' => 10 ) );
+	}
+
+	/**
+	 * The titles of the suggestions of a query.
+	 *
+	 * @param string $query Search text.
+	 * @return string[]
+	 */
+	private function suggested_titles( $query ) {
+		$titles = wp_list_pluck( $this->suggest( $query )->get_data(), 'title' );
+		sort( $titles );
+		return $titles;
+	}
+
+	/**
+	 * A logged-in user is not served the suggestions cached for a visitor: the reader finds the restricted content.
+	 */
+	public function test_logged_in_user_is_not_served_the_cache_of_the_visitors() {
+		$this->set_up_restricted_content();
+
+		wp_set_current_user( 0 );
+		$this->assertSame( array( 'Zafferano pubblica' ), $this->suggested_titles( 'Zafferano' ) );
+
+		wp_set_current_user( $this->reader_id );
+		$this->assertSame( array( 'Zafferano pubblica', 'Zafferano riservata' ), $this->suggested_titles( 'Zafferano' ) );
+
+		remove_filter( 'the_posts', array( $this, 'hide_restricted' ) );
+		wp_set_current_user( 0 );
+	}
+
+	/**
+	 * The suggestions of a logged-in user are never cached: a visitor after the reader does not see the restricted
+	 * content.
+	 */
+	public function test_suggestions_of_a_logged_in_user_are_not_cached() {
+		$this->set_up_restricted_content();
+
+		wp_set_current_user( $this->reader_id );
+		$this->assertSame( array( 'Zafferano pubblica', 'Zafferano riservata' ), $this->suggested_titles( 'Zafferano' ) );
+
+		wp_set_current_user( 0 );
+		$this->assertSame( array( 'Zafferano pubblica' ), $this->suggested_titles( 'Zafferano' ) );
+
+		remove_filter( 'the_posts', array( $this, 'hide_restricted' ) );
+	}
+
+	/**
+	 * The script receives the REST nonce for a logged-in user, so that the server knows who asks; a visitor gets
+	 * none.
+	 */
+	public function test_script_config_carries_the_nonce_only_for_a_logged_in_user() {
+		$this->enable_autocomplete();
+
+		wp_set_current_user( 0 );
+		$this->assertArrayNotHasKey( 'nonce', dli_search_autocomplete_config() );
+
+		wp_set_current_user( self::factory()->user->create( array( 'role' => DLI_RESERVED_AREA_USER_ROLE_SLUG ) ) );
+		$config = dli_search_autocomplete_config();
+		$this->assertArrayHasKey( 'nonce', $config );
+		$this->assertSame( 1, wp_verify_nonce( $config['nonce'], 'wp_rest' ) );
+
+		wp_set_current_user( 0 );
+	}
 }

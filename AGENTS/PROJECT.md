@@ -51,6 +51,7 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Import of events from Indico
 - Import of patents from IRIS
 - PWA manifest (installable name/icon, no service worker)
+- Reserved area: single sign-on with WP SAML Auth, contents restricted by group with Groups, two roles without WordPress capabilities (pending user, reserved area user), configured in Configurazione → Area riservata
 
 
 ## Documentation

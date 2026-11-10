@@ -73,6 +73,13 @@ define( 'DLI_SUPER_EDITOR_ROLE_NAME', 'Super Editor' );
 // Role of a user who is authenticated and can do nothing (for example a user just created by a single sign-on).
 define( 'DLI_PENDING_USER_ROLE_SLUG', 'dli_pending_user' );
 define( 'DLI_PENDING_USER_ROLE_NAME', 'Utente in attesa' );
+// Role of an approved user of the reserved area: no WordPress capability, only the theme capability below.
+define( 'DLI_RESERVED_AREA_USER_ROLE_SLUG', 'dli_reserved_area_user' );
+define( 'DLI_RESERVED_AREA_USER_ROLE_NAME', 'Utente area riservata' );
+// Theme capability that marks an approved user of the reserved area; it has no meaning for WordPress.
+define( 'DLI_RESERVED_AREA_ACCESS_CAP', 'dli_reserved_area_access' );
+// Option group of the tab "Area riservata" of the configuration.
+define( 'DLI_RESERVED_AREA_OPTION_KEY', 'area_riservata' );
 define( 'DLI_EDIT_CONFIG_PERMISSION', 'dli_edit_site_configuration' );
 define( 'DLI_ADMIN_EDIT_CONFIG_PERMISSION', 'manage_options' );
 
@@ -160,6 +167,8 @@ define( 'SLUG_MAPPA_SITO_IT', 'mappa-sito' );
 define( 'SLUG_MAPPA_SITO_EN', 'site-map' );
 define( 'SLUG_NEWSLETTER_IT', 'newsletter' );
 define( 'SLUG_NEWSLETTER_EN', 'newsletter-en' );
+define( 'SLUG_AREA_RISERVATA_IT', 'area-riservata' );
+define( 'SLUG_AREA_RISERVATA_EN', 'reserved-area' );
 
 // Archive page slug by post type.
 define(

@@ -395,6 +395,10 @@ function dli_create_the_pages() {
 			$new_page_it_id = wp_insert_post( $new_page, true );
 			if ( ! is_wp_error( $new_page_it_id ) ) {
 				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
+				if ( SLUG_AREA_RISERVATA_IT === $page['content_slug_it'] ) {
+					// Just made: choose it in Configurazione → Area riservata, unless another page is chosen.
+					dli_select_reserved_area_page( $new_page_it_id );
+				}
 			} else {
 				$new_page_it_id = 0;
 			}

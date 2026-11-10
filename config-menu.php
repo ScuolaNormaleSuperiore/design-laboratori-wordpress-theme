@@ -179,6 +179,15 @@ define(
 				'link'         => '',
 			),
 			array(
+				'slug'         => SLUG_AREA_RISERVATA_IT,
+				'title'        => 'Area riservata',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
 				'slug'         => '',
 				'title'        => 'Riuso',
 				'content_type' => '',
@@ -436,6 +445,15 @@ define(
 			array(
 				'slug'         => SLUG_BLOG_EN,
 				'title'        => 'Blog',
+				'content_type' => 'page',
+				'post_type'    => 'post_type',
+				'status'       => 'publish',
+				'classes'      => 'footer-link',
+				'link'         => '',
+			),
+			array(
+				'slug'         => SLUG_AREA_RISERVATA_EN,
+				'title'        => 'Reserved area',
 				'content_type' => 'page',
 				'post_type'    => 'post_type',
 				'status'       => 'publish',

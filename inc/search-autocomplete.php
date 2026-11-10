@@ -202,7 +202,9 @@ if ( ! function_exists( 'dli_search_autocomplete_suggest' ) ) {
 		$max       = $settings['max_results'];
 		$cache_key = 'dli_suggest_' . md5( $lang . '|' . mb_strtolower( $q ) . '|' . $max . '|' . implode( ',', $settings['post_types'] ) );
 		$cache_ttl = $settings['cache_minutes'] * MINUTE_IN_SECONDS;
-		$use_cache = $cache_ttl > 0;
+		// The cache is shared by everybody, so it is used only for visitors: a logged-in user may read contents
+		// that a restriction plugin (such as Groups) hides from others, and must neither be served nor fill it.
+		$use_cache = $cache_ttl > 0 && ! is_user_logged_in();
 
 		if ( $use_cache ) {
 			$cached = get_transient( $cache_key );
@@ -290,7 +292,6 @@ if ( ! function_exists( 'dli_search_autocomplete_enqueue' ) ) {
 			return;
 		}
 
-		$settings       = dli_search_autocomplete_settings();
 		$theme_version  = wp_get_theme()->get( 'Version' );
 		$script_path    = get_template_directory() . '/assets/js/search-autocomplete.js';
 		$script_version = file_exists( $script_path ) ? (string) filemtime( $script_path ) : $theme_version;
@@ -303,6 +304,26 @@ if ( ! function_exists( 'dli_search_autocomplete_enqueue' ) ) {
 			true
 		);
 
+		wp_add_inline_script(
+			'dli-search-autocomplete',
+			'window.DLI_SEARCH_AUTOCOMPLETE = ' . wp_json_encode( dli_search_autocomplete_config(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . ';',
+			'before'
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'dli_search_autocomplete_enqueue' );
+
+if ( ! function_exists( 'dli_search_autocomplete_config' ) ) {
+	/**
+	 * The configuration of the autocomplete script.
+	 *
+	 * A logged-in user also gets the REST nonce: without it the REST API treats the request as a visitor's, and the
+	 * suggestions would leave out the contents that a restriction plugin (such as Groups) lets that user read.
+	 *
+	 * @return array<string, mixed>
+	 */
+	function dli_search_autocomplete_config() {
+		$settings    = dli_search_autocomplete_settings();
 		$type_labels = array();
 		foreach ( $settings['post_types'] as $post_type ) {
 			$type_labels[ $post_type ] = dli_get_post_type_label( $post_type );
@@ -330,11 +351,10 @@ if ( ! function_exists( 'dli_search_autocomplete_enqueue' ) ) {
 			),
 		);
 
-		wp_add_inline_script(
-			'dli-search-autocomplete',
-			'window.DLI_SEARCH_AUTOCOMPLETE = ' . wp_json_encode( $config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . ';',
-			'before'
-		);
+		if ( is_user_logged_in() ) {
+			$config['nonce'] = wp_create_nonce( 'wp_rest' );
+		}
+
+		return $config;
 	}
 }
-add_action( 'wp_enqueue_scripts', 'dli_search_autocomplete_enqueue' );

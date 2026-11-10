@@ -360,5 +360,22 @@ define(
 			'content_parent'   => null,
 			'content_category' => DLI_ARCHIVE_PAGE_CAT,
 		),
+		// Landing page of the reserved area: the theme adds the access box (see inc/reserved-area.php).
+		array(
+			'content_slug_it'  => SLUG_AREA_RISERVATA_IT,
+			'content_slug_en'  => SLUG_AREA_RISERVATA_EN,
+			'content_file_it'  => '',
+			'content_file_en'  => '',
+			'content_title_it' => 'Area riservata',
+			'content_title_en' => 'Reserved area',
+			'content_it'       => 'Descrizione dell\'area riservata e di chi può accedervi...',
+			'content_en'       => 'Description of the reserved area and of who can access it...',
+			'content_status'   => 'publish',
+			'content_author'   => 1,
+			'content_template' => '',
+			'content_type'     => 'page',
+			'content_parent'   => null,
+			'content_category' => DLI_STATIC_PAGE_CAT,
+		),
 	)
 );

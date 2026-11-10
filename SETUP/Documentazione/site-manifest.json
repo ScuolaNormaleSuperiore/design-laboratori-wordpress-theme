@@ -196,6 +196,14 @@
 			"description": "Modello CSV, simulazione, lingue, limiti e verifica dell'importazione.",
 			"group": "Amministra",
 			"order": 30
+		},
+		{
+			"source": "DOC/HowTo/Area-riservata.md",
+			"target": "amministra/area-riservata.md",
+			"title": "Area riservata",
+			"description": "Single sign-on SAML, gruppi, pagine riservate e approvazione degli utenti.",
+			"group": "Amministra",
+			"order": 40
 		}
 	],
 	"assets": [

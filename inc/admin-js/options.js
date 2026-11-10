@@ -296,3 +296,44 @@ $j(function() {
         }, 'input[name$="[etichetta]"]', 'input change');
     }
 });
+
+// ---- Configurazione -> Area riservata ----
+//
+// While "Gestione area riservata" is No, the settings that depend on it (rows with the class
+// dli-reserved-area-dependent, set in inc/reserved-area.php) are disabled; the server ignores them anyway.
+// A disabled field is not sent with the form and CMB2 would save it as empty, so the fields are enabled
+// again just before the form is sent: their saved values are kept.
+( function() {
+	const switches = document.querySelectorAll( 'input[name="reserved_area_enabled"]' );
+	if ( ! switches.length ) {
+		return;
+	}
+	const dependentFields = document.querySelectorAll( '.dli-reserved-area-dependent input, .dli-reserved-area-dependent select' );
+
+	const isEnabled = function() {
+		const checked = document.querySelector( 'input[name="reserved_area_enabled"]:checked' );
+		return null !== checked && 'true' === checked.value;
+	};
+
+	const update = function() {
+		const disabled = ! isEnabled();
+		dependentFields.forEach( function( field ) {
+			field.disabled = disabled;
+		} );
+	};
+
+	switches.forEach( function( input ) {
+		input.addEventListener( 'change', update );
+	} );
+
+	const formElement = switches[ 0 ].form;
+	if ( formElement ) {
+		formElement.addEventListener( 'submit', function() {
+			dependentFields.forEach( function( field ) {
+				field.disabled = false;
+			} );
+		} );
+	}
+
+	update();
+}() );
