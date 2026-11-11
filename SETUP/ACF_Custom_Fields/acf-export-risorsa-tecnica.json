@@ -9,7 +9,7 @@
                 "name": "foto",
                 "aria-label": "",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Formato consigliato: libero (minimo 560 px di larghezza). La foto non viene tagliata: è mostrata nelle sue proporzioni, in uno spazio largo al massimo 280 px. Un file largo almeno 560 px resta nitido sugli schermi ad alta densità. Se manca, la scheda usa l'immagine in evidenza. Le dimensioni sono indicative: il ritaglio dipende dallo schermo. Formati: JPG, PNG, WebP, peso massimo 1 MB.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {

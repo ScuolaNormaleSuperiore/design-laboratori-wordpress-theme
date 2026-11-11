@@ -199,7 +199,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'logo_laboratorio',
 			'name'       => __( 'Logo header', 'design_laboratori_italia' ),
-			'desc'       => __( 'Il logo del laboratorio. Si raccomanda di caricare un\'immagine in formato svg', 'design_laboratori_italia' ),
+			'desc'       => __( 'Il logo del laboratorio.', 'design_laboratori_italia' ) . ' ' . esc_html( dli_get_image_guideline_text( 'logo_header' ) ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
@@ -227,7 +227,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'logo_laboratorio_footer',
 			'name'       => __( 'Logo footer', 'design_laboratori_italia' ),
-			'desc'       => __( 'Il logo mostrato nel footer. Se non è presente, ma è abilitata la visualizzazione del logo nel footer, viene mostrato quello dello header con colori invertiti. Si raccomanda di caricare un\'immagine in formato svg', 'design_laboratori_italia' ),
+			'desc'       => __( 'Il logo mostrato nel footer. Se non è presente, ma è abilitata la visualizzazione del logo nel footer, viene mostrato quello dello header con colori invertiti.', 'design_laboratori_italia' ) . ' ' . esc_html( dli_get_image_guideline_text( 'logo_footer' ) ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
@@ -241,7 +241,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'logo_laboratorio_mobile',
 			'name'       => __( 'Logo per mobile', 'design_laboratori_italia' ),
-			'desc'       => __( 'Utilizzare questo campo per caricare un\'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile). Si raccomanda di caricare un\'immagine in formato svg', 'design_laboratori_italia' ),
+			'desc'       => __( 'Utilizzare questo campo per caricare un\'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile).', 'design_laboratori_italia' ) . ' ' . esc_html( dli_get_image_guideline_text( 'logo_mobile' ) ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(
@@ -755,7 +755,7 @@ function dli_register_main_options_metabox() {
 		array(
 			'id'         => $prefix . 'home_main_hero_image',
 			'name'       => __( 'Immagine di sfondo', 'design_laboratori_italia' ),
-			'desc'       => __( 'Immagine in formato png o jpg', 'design_laboratori_italia' ),
+			'desc'       => esc_html( dli_get_image_guideline_text( 'hero_home' ) ),
 			'type'       => 'file',
 			'query_args' => array(
 				'type' => array(

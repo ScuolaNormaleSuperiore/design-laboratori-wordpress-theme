@@ -84,8 +84,13 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
   Events, news and posts use the core `category`. `HOLDER_TAXONOMY` is defined in
   `config-lab.php` but not registered.
 - ACF field groups are defined in PHP (`acf_add_local_field_group()` in each
-  manager). The JSON files in `SETUP/ACF_Custom_Fields/` are exports only and are
-  not loaded by code.
+  manager). The JSON files in `SETUP/ACF_Custom_Fields/` are exports of those
+  groups, used to import the fields again into ACF; the code does not load them.
+  Every export must describe the same fields as the PHP group: when a group changes
+  in PHP, update its export in the same change. `DLI_Acf_Exports_Integration_Test`
+  compares every export with the registered group (properties of each field and of
+  the group, missing and extra fields) and checks that every registered group has an
+  export.
 - Unified item shape for listings: `DLI_POST_WRAPPER` (`config-lab.php`).
 - Place maps (`posizione_gps` in `class-placemanager.php`) use the ACF
   `open_street_map` field provided by ACF OpenStreetMap Field, with the `leaflet`

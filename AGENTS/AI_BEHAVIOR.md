@@ -148,7 +148,7 @@ The AGENTS documents link to resources outside the repository (the official Word
 | `assets/css/bootstrap-italia-custom.min.css` (+ `.map`, `assets/css/compiled/`) | Generated | Never edit; edit `assets/scss/bootstrap-italia-custom.scss` and run `npm run create_layout`, then `update_layout_win` or `update_layout_linux` |
 | `languages/*.mo`, `*.l10n.php` | Generated translation catalogues | Never edit; edit the `.po` and recompile |
 | `languages/*.orig`, `*.po~`, `*.pot~` | Local backup files | Ignore |
-| `SETUP/ACF_Custom_Fields/*.json` | Exports of the ACF field groups registered in PHP | Not loaded at runtime; update only to mirror a PHP change |
+| `SETUP/ACF_Custom_Fields/*.json` | Exports of the ACF field groups registered in PHP, used to import the fields again into ACF | Not loaded at runtime. When a field group changes in PHP, update its export in the same change: `DLI_Acf_Exports_Integration_Test` fails when an export differs from the registered group |
 | `SETUP/Docker/` | Demo environment assets | Edit only when the task concerns the demo |
 | `tests/report/*/reports/` | Generated Report output (git-ignored) | Never edit by hand |
 

@@ -104,6 +104,7 @@ if ( ! function_exists( '_x' ) ) {
 
 require_once DLI_TEST_THEME_DIR . '/config-lab.php';
 require_once DLI_TEST_THEME_DIR . '/inc/utils.php';
+require_once DLI_TEST_THEME_DIR . '/inc/image-guidelines.php';
 require_once DLI_TEST_THEME_DIR . '/inc/captcha.php';
 require_once DLI_TEST_THEME_DIR . '/inc/home-sections.php';
 require_once DLI_TEST_THEME_DIR . '/inc/pagination.php';

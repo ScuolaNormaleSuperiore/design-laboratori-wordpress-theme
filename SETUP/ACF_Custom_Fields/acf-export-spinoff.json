@@ -82,7 +82,7 @@
                 "name": "logo",
                 "aria-label": "",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Formato consigliato: quasi 3:2, 800 × 500 px (minimo 600 px di larghezza). Il logo si vede solo nell'elenco degli spin-off, non nella scheda. Nell'elenco riempie un riquadro quasi 3:2 la cui altezza cambia con il testo della scheda, e un logo molto largo viene tagliato ai lati. Zona sicura: metti il logo al centro di un'immagine di proporzioni simili, con un margine di almeno il 15% su ogni lato. Le dimensioni sono indicative: il ritaglio dipende dallo schermo. Formati: PNG, JPG, peso massimo 1 MB.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {

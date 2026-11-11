@@ -290,7 +290,7 @@ F. Repository hygiene
 22. No leftover debug code (`var_dump`, `print_r` outside tests, `error_log`, `console.log`, `dd(`, `die(`), no new `TODO`, `FIXME` or `XXX` since the baseline tag, no `phpcs:ignore` without an English reason (`AVVISO`).
 23. No private or generated file tracked by Git: `DEV/`, `AGENTS/ISSUES_*`, `AGENTS/CODE_REVIEW_PROGRESS.md`, `*.orig`, `*.po~`, `*.pot~`, `node_modules/`, `vendor/`, report folders (BLOCKING). Use `git ls-files`.
 24. Translations: the new translatable strings are in the catalogue and the `.po` files agree with the generated `.mo` and `.l10n.php` files (`AVVISO`; only when `languages/` changed).
-25. The ACF exports in `SETUP/ACF_Custom_Fields/` mirror the field groups registered in PHP, when the PHP field groups changed since the baseline (`AVVISO`).
+25. The ACF exports in `SETUP/ACF_Custom_Fields/` mirror the field groups registered in PHP (`ERRORE` when `DLI_Acf_Exports_Integration_Test` fails, which check 18 already runs; `AVVISO` when the PHP field groups changed since the baseline and no export file changed with them).
 26. `composer.lock` and `package-lock.json` agree with `composer.json` and `package.json` (BLOCKING when `composer validate --no-check-publish` fails).
 27. `publiccode.yml` validates with `publiccode-parser -path . publiccode.yml` (BLOCKING if it fails, `NON ESEGUITO` if the tool is missing).
 

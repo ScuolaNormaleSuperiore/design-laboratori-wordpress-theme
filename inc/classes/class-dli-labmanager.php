@@ -248,6 +248,8 @@ class DLI_LabManager {
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'item-card-list', 416, 232, false );
 			add_image_size( 'item-carousel', 592, 334, false );
+			// Photo of a person: shown in a circle at most 112 px wide, so 250 px is enough for the dense screens.
+			add_image_size( 'item-thumb', 250, 250, true );
 		}
 	}
 

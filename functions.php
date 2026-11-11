@@ -50,6 +50,11 @@ require get_template_directory() . '/inc/walkers/footer-walker.php';
  */
 require get_template_directory() . '/inc/cmb2.php';
 
+/**
+ * Recommended image formats: the list and the texts of the upload fields.
+ */
+require get_template_directory() . '/inc/image-guidelines.php';
+
 // Import the code to create the admin section: Configurazione.
 require get_template_directory() . '/inc/admin/options.php';
 
