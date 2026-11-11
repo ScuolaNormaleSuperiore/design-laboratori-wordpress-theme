@@ -132,16 +132,16 @@ Shared issue rules:
 
 | Trigger | Slug | Scope | Frasi di attivazione (EN / IT) |
 |---|---|---|---|
-| **A** | `/audit-url <URL>` | Singola URL — audit runtime (HTML, JS, performance, accessibilità) | "Check URL X" / "Controlla l'URL X", "Audit page X" / "Verifica la pagina X" |
-| **B** | `/issues` | `AGENTS/ISSUES_TODO.md` — individua le issue aperte e suggerisce da dove partire | "Check if there are new issues" / "Ci sono issue da risolvere?", "Check if there are issues to fix" / "Da dove parto con le issue?" |
-| **C** | `/issues-table` | `AGENTS/ISSUES_TODO.md` — tabella numerica per categoria × severità | "I want a tabular issue summary" / "Fammi un riepilogo tabellare delle issue" |
-| **D** | `/issues-snapshot` | `AGENTS/ISSUES_TODO.md` — tabella a video + snapshot JSON in `tests/report/issues-report/reports/` | "Fammi uno snapshot delle issue" / "Genera il report JSON delle issue" |
-| **E** | `/issues-triage` | `AGENTS/ISSUES_TODO.md` — triage interattivo, una issue alla volta (correggere / trascurare / abbassare priorità) | "Scodiamo le issue" / "Triage interattivo delle issue", "Let's triage the issues one by one" / "Facciamo il dequeue delle issue" |
-| **F** | `/code-review [scope]` | Qualsiasi code review del codice — strutturata, multi-sessione, guidata da `AGENTS/CODE_REVIEW.md`: riprende da dove era arrivata e propone la fase successiva | "Avvia la code review" / "Start the code review", "Riprendi la code review" / "Resume the code review", "A che punto è la code review?" / "Code review status", "Mi fai una code review del codice?", "Fai una review completa del file/cartella X" |
-| **G** | `/release-check` | Controlli di coerenza in sola lettura su tutto il repository prima di un rilascio, con verdetto GO / NO-GO | "Check the release" / "Controlla la release", "Pre-release check" / "Verifica prima del rilascio", "Can we release?" / "Siamo pronti per il rilascio?" |
+| **A** | `/trigger-audit-url <URL>` | Singola URL — audit runtime (HTML, JS, performance, accessibilità) | "Check URL X" / "Controlla l'URL X", "Audit page X" / "Verifica la pagina X" |
+| **B** | `/trigger-issues` | `AGENTS/ISSUES_TODO.md` — individua le issue aperte e suggerisce da dove partire | "Check if there are new issues" / "Ci sono issue da risolvere?", "Check if there are issues to fix" / "Da dove parto con le issue?" |
+| **C** | `/trigger-issues-table` | `AGENTS/ISSUES_TODO.md` — tabella numerica per categoria × severità | "I want a tabular issue summary" / "Fammi un riepilogo tabellare delle issue" |
+| **D** | `/trigger-issues-snapshot` | `AGENTS/ISSUES_TODO.md` — tabella a video + snapshot JSON in `tests/report/issues-report/reports/` | "Fammi uno snapshot delle issue" / "Genera il report JSON delle issue" |
+| **E** | `/trigger-issues-triage` | `AGENTS/ISSUES_TODO.md` — triage interattivo, una issue alla volta (correggere / trascurare / abbassare priorità) | "Scodiamo le issue" / "Triage interattivo delle issue", "Let's triage the issues one by one" / "Facciamo il dequeue delle issue" |
+| **F** | `/trigger-code-review [scope]` | Qualsiasi code review del codice — strutturata, multi-sessione, guidata da `AGENTS/CODE_REVIEW.md`: riprende da dove era arrivata e propone la fase successiva | "Avvia la code review" / "Start the code review", "Riprendi la code review" / "Resume the code review", "A che punto è la code review?" / "Code review status", "Mi fai una code review del codice?", "Fai una review completa del file/cartella X" |
+| **G** | `/trigger-release-check` | Controlli di coerenza in sola lettura su tutto il repository prima di un rilascio, con verdetto GO / NO-GO | "Check the release" / "Controlla la release", "Pre-release check" / "Verifica prima del rilascio", "Can we release?" / "Siamo pronti per il rilascio?" |
 
 ### Trigger A: URL quality audit (page-level runtime check)
-Slash alias: `/audit-url <URL>`
+Slash alias: `/trigger-audit-url <URL>`
 
 Trigger phrases (or equivalent wording):
 - "Check URL X"
@@ -168,7 +168,7 @@ Expected output:
 - after listing issues, explicitly ask whether to add them to `AGENTS/ISSUES_TODO.md`.
 
 ### Trigger B: Check for new issues to fix
-Slash alias: `/issues`
+Slash alias: `/trigger-issues`
 
 Trigger phrases (or equivalent wording):
 - "Check if there are new issues"
@@ -189,7 +189,7 @@ Expected output:
 - after each completed fix, explicit note of updates applied to `AGENTS/ISSUES_TODO.md` and `AGENTS/ISSUES_RESOLVED.md`.
 
 ### Trigger C: Tabular issue summary and start recommendations
-Slash alias: `/issues-table`
+Slash alias: `/trigger-issues-table`
 
 Trigger phrases (or equivalent wording):
 - "I want a tabular issue summary"
@@ -218,7 +218,7 @@ Expected output:
 - a numbered shortlist (max 5) of recommended starting issues with a short rationale for each.
 
 ### Trigger D: Issues snapshot (tabular report + JSON export)
-Slash alias: `/issues-snapshot`
+Slash alias: `/trigger-issues-snapshot`
 
 Trigger phrases (or equivalent wording):
 - "Fammi uno snapshot delle issue"
@@ -255,7 +255,7 @@ Expected output:
 - Confirmation line: `JSON saved: tests/report/issues-report/reports/issues_report_<ts>.json`
 
 ### Trigger E: Interactive issue triage (dequeue one by one)
-Slash alias: `/issues-triage`
+Slash alias: `/trigger-issues-triage`
 
 Trigger phrases (or equivalent wording):
 - "Scodiamo le issue" / "Let's triage the issues one by one"
@@ -307,7 +307,7 @@ Expected output:
 
 
 ### Trigger F: Structured codebase review (status, scoped review, and resume)
-Slash alias: `/code-review [scope]`
+Slash alias: `/trigger-code-review [scope]`
 
 Trigger phrases (or equivalent wording):
 - "Avvia la code review" / "Start the code review"
@@ -339,7 +339,7 @@ local, ignored by Git, and must never be committed.
 
 
 ### Trigger G: Pre-release consistency check
-Slash alias: `/release-check`
+Slash alias: `/trigger-release-check`
 
 Trigger phrases (or equivalent wording):
 - "Check the release" / "Controlla la release"

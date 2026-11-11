@@ -14,7 +14,7 @@ Run this section only once at session start, unless the user explicitly asks to 
 5. `AGENTS/CODING_STANDARDS.md`.
 6. `AGENTS/GIT_WORKFLOW.md`.
 7. Ensure `AGENTS/ISSUES_TODO.md` and `AGENTS/ISSUES_RESOLVED.md` exist. If missing, create local Markdown files containing only `# ISSUES TODO` and `# ISSUES RESOLVED`, respectively. These files are ignored by Git and must never be committed. Do not read either file during bootstrap. On the operator's machine they may be symlinks to a private folder outside the repository: treat them as normal files and write through the link; if a tool refuses to write through the symlink, write to the real target path it reports. If a symlink is dangling (its target is unreachable), do not recreate or replace it; report it to the operator and continue the bootstrap.
-8. Do not read `AGENTS/CODE_REVIEW.md` during bootstrap; read it only when Trigger F (`/code-review`) runs.
+8. Do not read `AGENTS/CODE_REVIEW.md` during bootstrap; read it only when Trigger F (`/trigger-code-review`) runs.
 9. Report exactly: `Bootstrap completed` + the full list of files read, including the applicable root entry point.
 10. List the skills available in the current session. Explicitly state whether applicable official WordPress skills are loaded; if they are not, notify the human operator.
 11. List the available trigger commands from `AGENTS/AI_BEHAVIOR.md` using the format: `Trigger X` (`/slug`) — brief description.
