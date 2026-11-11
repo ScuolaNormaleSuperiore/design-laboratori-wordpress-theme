@@ -32,7 +32,7 @@ if ( isset( $_GET['isreset'] ) ) {
 
 if ( 'yes' !== $dli_is_reset ) {
 	if ( isset( $_GET['selected_contents'] ) && is_array( $_GET['selected_contents'] ) ) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter, actual search is still nonce-gated below.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filter parameter: the search is a read and no nonce is checked, see the form marker below.
 		$dli_selected_contents = array_values(
 			array_filter(
 				array_map(
@@ -44,7 +44,7 @@ if ( 'yes' !== $dli_is_reset ) {
 	}
 
 	if ( isset( $_GET['searchstring'] ) ) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only form input, actual query is still nonce-gated below.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only form input: the search is a read and no nonce is checked, see the form marker below.
 		$dli_search_string = sanitize_text_field( wp_unslash( $_GET['searchstring'] ) );
 	}
 }

@@ -41,6 +41,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Elenchi di pagine e suggerimenti della ricerca: non mostrano più le pagine riservate a chi non può vederle.
 - Utenti creati dal single sign-on: indirizzo pubblico neutro, non più ricavato dall'email.
 - HTML: tolto il meta obsoleto `content-language`.
+- Ricerca nativa di WordPress (`/?s=…`): porta alla pagina «Ricerca nel sito» con il termine già scritto, invece di mostrare una pagina bianca. Le richieste per cui il tema non ha una pagina (per esempio le pagine degli allegati) rispondono 404 con la pagina 404 del tema, senza più l'avviso «Constant WP_USE_THEMES already defined».
 
 ## [2.0.6] - 2026-11-06
 ## Aggiunto

@@ -168,10 +168,71 @@ function dli_promote_pending_user_on_group_join( $user_id, $group_id ) {
 		return;
 	}
 
+	// From the profile of the user, Groups reports the membership while the profile is being saved, and WordPress
+	// then saves the role that the form still shows: the promotion waits for the end of that save.
+	if ( doing_action( 'edit_user_profile_update' ) ) {
+		dli_reserved_area_promotion_queue( 'add', (int) $user_id );
+		return;
+	}
+
+	dli_promote_pending_user( $user );
+}
+add_action( 'groups_created_user_group', 'dli_promote_pending_user_on_group_join', 10, 2 );
+
+/**
+ * Replace the pending role of a user with the reserved area role. Any other role of the user is kept.
+ *
+ * @param WP_User $user User.
+ * @return void
+ */
+function dli_promote_pending_user( $user ) {
+	if ( ! in_array( DLI_PENDING_USER_ROLE_SLUG, (array) $user->roles, true ) ) {
+		return;
+	}
+
 	$user->remove_role( DLI_PENDING_USER_ROLE_SLUG );
 	$user->add_role( DLI_RESERVED_AREA_USER_ROLE_SLUG );
 }
-add_action( 'groups_created_user_group', 'dli_promote_pending_user_on_group_join', 10, 2 );
+
+/**
+ * The users whose promotion waits for the end of the save of their profile.
+ *
+ * @param string $operation `add` to put a user in the queue, `take` to remove a user and learn whether it was there.
+ * @param int    $user_id   User ID.
+ * @return bool For `take`, whether the user was in the queue; always false for `add`.
+ */
+function dli_reserved_area_promotion_queue( $operation, $user_id ) {
+	static $queue = array();
+
+	if ( 'add' === $operation ) {
+		$queue[ $user_id ] = true;
+		return false;
+	}
+
+	$was_queued = isset( $queue[ $user_id ] );
+	unset( $queue[ $user_id ] );
+	return $was_queued;
+}
+
+/**
+ * Promote the user who entered a group while the administrator was saving the profile, once the save is complete.
+ *
+ * Runs on `profile_update`, after `edit_user()` has saved the role of the form, so the promotion is the last word.
+ *
+ * @param int $user_id User ID.
+ * @return void
+ */
+function dli_promote_pending_user_after_profile_save( $user_id ) {
+	if ( ! dli_reserved_area_promotion_queue( 'take', (int) $user_id ) || ! dli_is_reserved_area_enabled() ) {
+		return;
+	}
+
+	$user = get_userdata( (int) $user_id );
+	if ( $user ) {
+		dli_promote_pending_user( $user );
+	}
+}
+add_action( 'profile_update', 'dli_promote_pending_user_after_profile_save', 999 );
 
 /**
  * Give a neutral slug (`utente-<ID>`) to a user created by WP SAML Auth.

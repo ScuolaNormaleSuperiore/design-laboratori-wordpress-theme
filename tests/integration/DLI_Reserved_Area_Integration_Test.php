@@ -186,6 +186,53 @@ class DLI_Reserved_Area_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The administrator gives the first group from the profile of the user.
+	 *
+	 * Groups reports the membership while the profile is being saved (`edit_user_profile_update`), and WordPress then
+	 * saves the role that the form still shows, which is the pending one: the promotion must survive that save.
+	 */
+	public function test_the_promotion_survives_the_save_of_the_profile() {
+		$this->configure( array( 'reserved_area_enabled' => 'true' ) );
+		$user_id = self::factory()->user->create( array( 'role' => DLI_PENDING_USER_ROLE_SLUG ) );
+		$report  = function ( $id ) {
+			do_action( 'groups_created_user_group', $id, self::GROUP_AREA_A );
+		};
+		add_action( 'edit_user_profile_update', $report );
+
+		// What edit_user() does: the action first, then the save with the role of the form.
+		do_action( 'edit_user_profile_update', $user_id );
+		wp_update_user(
+			array(
+				'ID'   => $user_id,
+				'role' => DLI_PENDING_USER_ROLE_SLUG,
+			)
+		);
+		remove_action( 'edit_user_profile_update', $report );
+
+		$roles = get_userdata( $user_id )->roles;
+		$this->assertContains( DLI_RESERVED_AREA_USER_ROLE_SLUG, $roles );
+		$this->assertNotContains( DLI_PENDING_USER_ROLE_SLUG, $roles );
+	}
+
+	/**
+	 * Control: saving the profile of a pending user who is in no group leaves the user pending.
+	 */
+	public function test_saving_the_profile_without_a_group_does_not_promote() {
+		$this->configure( array( 'reserved_area_enabled' => 'true' ) );
+		$user_id = self::factory()->user->create( array( 'role' => DLI_PENDING_USER_ROLE_SLUG ) );
+
+		do_action( 'edit_user_profile_update', $user_id );
+		wp_update_user(
+			array(
+				'ID'   => $user_id,
+				'role' => DLI_PENDING_USER_ROLE_SLUG,
+			)
+		);
+
+		$this->assertSame( array( DLI_PENDING_USER_ROLE_SLUG ), array_values( get_userdata( $user_id )->roles ) );
+	}
+
+	/**
 	 * The group Registered, which Groups gives to every new user, does not promote anybody.
 	 */
 	public function test_entering_the_registered_group_does_not_promote() {
