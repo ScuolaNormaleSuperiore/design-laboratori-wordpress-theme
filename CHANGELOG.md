@@ -33,7 +33,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.7] - 2026-11-06
+## [2.0.7] - 2026-11-11
 ## Aggiunto
 - Area riservata con single sign-on SAML e gruppi (Groups): scheda Configurazione → Area riservata, ruolo «Utente area riservata», pagina di accesso. Guida in `DOC/HowTo/Area-riservata.md`.
 - Pagina predefinita «Area riservata», creata da Ricarica i dati di attivazione.
