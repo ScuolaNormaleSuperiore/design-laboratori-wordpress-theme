@@ -11,19 +11,20 @@ Run this section only once at session start, unless the user explicitly asks to 
 2. `AGENTS/PROJECT.md`.
 3. `AGENTS/ARCHITECTURE.md`.
 4. `AGENTS/AI_BEHAVIOR.md`.
-5. `AGENTS/CODING_STANDARDS.md`.
-6. `AGENTS/GIT_WORKFLOW.md`.
-7. Ensure `AGENTS/ISSUES_TODO.md` and `AGENTS/ISSUES_RESOLVED.md` exist. If missing, create local Markdown files containing only `# ISSUES TODO` and `# ISSUES RESOLVED`, respectively. These files are ignored by Git and must never be committed. Do not read either file during bootstrap. On the operator's machine they may be symlinks to a private folder outside the repository: treat them as normal files and write through the link; if a tool refuses to write through the symlink, write to the real target path it reports. If a symlink is dangling (its target is unreachable), do not recreate or replace it; report it to the operator and continue the bootstrap.
-8. Do not read `AGENTS/CODE_REVIEW.md` during bootstrap; read it only when Trigger F (`/trigger-code-review`) runs.
-9. Report exactly: `Bootstrap completed` + the full list of files read, including the applicable root entry point.
-10. List the skills available in the current session. Explicitly state whether applicable official WordPress skills are loaded; if they are not, notify the human operator.
-11. List the available trigger commands from `AGENTS/AI_BEHAVIOR.md` using the format: `Trigger X` (`/slug`) — brief description.
-12. State: `Local issue files ensured: AGENTS/ISSUES_TODO.md, AGENTS/ISSUES_RESOLVED.md (created if missing; never commit them).`
-13. State whether the `design-system-italia` MCP server (Bootstrap Italia components and tokens) is installed and usable in the current session, for example by calling its `ping` tool. If it is not available, say so and notify the human operator.
-14. Check whether the Git hooks of the project are active with `git config --get core.hooksPath` (a read-only check). If the value is not `.githooks`, warn the human operator that the hooks are not active in this clone, so commits are not checked for secrets, PHPStan, PHPCS, unit tests and AI trailers, and tell them to activate the hooks with `git config core.hooksPath .githooks`. Do not run the command yourself: it changes the Git configuration of the clone, so it is the operator's decision. If the value is `.githooks`, state that the hooks are active.
-15. After the versioned instructions above, first check whether the `DEV/TODO/` directory exists and is readable without emitting an error. Only when that check succeeds, read `DEV/TODO/README.md` as the private operational-plan index. Do not read linked plan documents or files under `DEV/TODO/Archived/` during bootstrap. If the directory or its index is missing, unreadable, or a dangling link, state exactly: `Non è stato possibile leggere la cartella DEV/TODO.` Then continue the bootstrap without presenting the plans table.
-16. When the index was read successfully, present a compact table of its unarchived plans, preserving its execution flag, priority, plan name, status, and next action. Before the table, explicitly identify the plans marked as in progress and their priorities; if none are in progress, state that explicitly. Treat all `DEV/` content as private local working material: never stage, commit, or copy it into public documentation.
-17. Ask the human operator in Italian: `Su cosa vuoi lavorare: una nuova funzionalità, un bug, uno dei piani elencati o altro?`
+5. `AGENTS/TRIGGERS.md`.
+6. `AGENTS/CODING_STANDARDS.md`.
+7. `AGENTS/GIT_WORKFLOW.md`.
+8. Ensure `AGENTS/ISSUES_TODO.md` and `AGENTS/ISSUES_RESOLVED.md` exist. If missing, create local Markdown files containing only `# ISSUES TODO` and `# ISSUES RESOLVED`, respectively. These files are ignored by Git and must never be committed. Do not read either file during bootstrap. On the operator's machine they may be symlinks to a private folder outside the repository: treat them as normal files and write through the link; if a tool refuses to write through the symlink, write to the real target path it reports. If a symlink is dangling (its target is unreachable), do not recreate or replace it; report it to the operator and continue the bootstrap.
+9. Do not read `AGENTS/CODE_REVIEW.md` during bootstrap; read it only when Trigger F (`/trigger-code-review`) runs.
+10. Report exactly: `Bootstrap completed` + the full list of files read, including the applicable root entry point.
+11. List the skills available in the current session. Explicitly state whether applicable official WordPress skills are loaded; if they are not, notify the human operator.
+12. List the available trigger commands from `AGENTS/TRIGGERS.md` using the format: `Trigger X` (`/slug`) — brief description.
+13. State: `Local issue files ensured: AGENTS/ISSUES_TODO.md, AGENTS/ISSUES_RESOLVED.md (created if missing; never commit them).`
+14. State whether the `design-system-italia` MCP server (Bootstrap Italia components and tokens) is installed and usable in the current session, for example by calling its `ping` tool. If it is not available, say so and notify the human operator.
+15. Check whether the Git hooks of the project are active with `git config --get core.hooksPath` (a read-only check). If the value is not `.githooks`, warn the human operator that the hooks are not active in this clone, so commits are not checked for secrets, PHPStan, PHPCS, unit tests and AI trailers, and tell them to activate the hooks with `git config core.hooksPath .githooks`. Do not run the command yourself: it changes the Git configuration of the clone, so it is the operator's decision. If the value is `.githooks`, state that the hooks are active.
+16. After the versioned instructions above, first check whether the `DEV/TODO/` directory exists and is readable without emitting an error. Only when that check succeeds, read `DEV/TODO/README.md` as the private operational-plan index. Do not read linked plan documents or files under `DEV/TODO/Archived/` during bootstrap. If the directory or its index is missing, unreadable, or a dangling link, state exactly: `Non è stato possibile leggere la cartella DEV/TODO.` Then continue the bootstrap without presenting the plans table.
+17. When the index was read successfully, present a compact table of its unarchived plans, preserving its execution flag, priority, plan name, status, and next action. Before the table, explicitly identify the plans marked as in progress and their priorities; if none are in progress, state that explicitly. Treat all `DEV/` content as private local working material: never stage, commit, or copy it into public documentation.
+18. Ask the human operator in Italian: `Su cosa vuoi lavorare: una nuova funzionalità, un bug, uno dei piani elencati o altro?`
 
 
 ## Common agent rules
@@ -36,6 +37,7 @@ Run this section only once at session start, unless the user explicitly asks to 
 - `ARCHITECTURE.md`: architecture overview: key directories and main files, data/content model, runtime components, conventions and intentional patterns, public endpoints and hooks, configuration, technology stack, canonical quality-check commands, references.
 - `CODING_STANDARDS.md`: coding constraints and quality standards.
 - `AI_BEHAVIOR.md`: workflow rules and issue management.
+- `TRIGGERS.md`: canonical trigger aliases and workflows; read during bootstrap.
 - `CODE_REVIEW.md`: public review method, evidence, coverage and project plan; read only by Trigger F.
 - `CODE_REVIEW_PROGRESS.md`: ignored local state of a full code-review run; created and read only by Trigger F, never at bootstrap; never committed.
 - `ISSUES_TODO.md`: ignored local backlog, ensured during bootstrap and read by issue workflows.

@@ -323,6 +323,19 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * How many line break tags an HTML fragment holds, whether WordPress writes them as `<br />` or as `<br>`.
+	 *
+	 * The filter `wp_kses_post()` of WordPress 7.2 writes the void tags without the closing slash, the older
+	 * versions keep it: the test must not depend on which one it is.
+	 *
+	 * @param string $html HTML fragment.
+	 * @return int Number of line break tags.
+	 */
+	private function count_line_breaks( $html ) {
+		return preg_match_all( '#<br\s*/?>#i', $html );
+	}
+
+	/**
 	 * A refused form lists every message once, in a fixed order, separated by a line break.
 	 */
 	public function test_the_messages_of_a_refused_form_come_in_order() {
@@ -333,7 +346,7 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 		$email    = strpos( $box, esc_html__( 'Indicare un indirizzo email valido.', 'design_laboratori_italia' ) );
 		$this->assertNotFalse( $required );
 		$this->assertGreaterThan( $required, $email, 'The email message comes after the required fields message.' );
-		$this->assertSame( 1, substr_count( $box, '<br />' ), 'One line break between two messages, none before the first.' );
+		$this->assertSame( 1, $this->count_line_breaks( $box ), 'One line break between two messages, none before the first.' );
 
 		// Without the CAPTCHA plugin the message of the service comes first: three messages, two line breaks.
 		remove_filter( 'pre_option_active_plugins', array( $this, 'enable_test_captcha_plugin' ), 20 );
@@ -342,7 +355,7 @@ class DLI_Contact_Form_Integration_Test extends DLI_Integration_Test_Case {
 		$required    = strpos( $box, esc_html__( 'Compilare tutti i campi obbligatori.', 'design_laboratori_italia' ) );
 		$this->assertNotFalse( $unavailable );
 		$this->assertGreaterThan( $unavailable, $required, 'The service message comes before the required fields one.' );
-		$this->assertSame( 2, substr_count( $box, '<br />' ) );
+		$this->assertSame( 2, $this->count_line_breaks( $box ) );
 	}
 
 	/**

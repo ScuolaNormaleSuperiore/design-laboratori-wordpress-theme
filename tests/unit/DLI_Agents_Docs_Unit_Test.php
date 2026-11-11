@@ -34,6 +34,7 @@ class DLI_Agents_Docs_Unit_Test extends TestCase {
 			'AGENTS/PROJECT.md',
 			'AGENTS/ARCHITECTURE.md',
 			'AGENTS/AI_BEHAVIOR.md',
+			'AGENTS/TRIGGERS.md',
 			'AGENTS/CODING_STANDARDS.md',
 			'AGENTS/GIT_WORKFLOW.md',
 			'AGENTS/CODE_REVIEW.md',

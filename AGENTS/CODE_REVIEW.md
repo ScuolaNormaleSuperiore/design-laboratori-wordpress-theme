@@ -2,7 +2,7 @@
 
 ## Purpose and authority
 
-Public review rules for Trigger F in `AGENTS/AI_BEHAVIOR.md`. Read this file
+Public review rules for Trigger F in `AGENTS/TRIGGERS.md`. Read this file
 with `AGENTS/ARCHITECTURE.md` and `AGENTS/CODING_STANDARDS.md`.
 Use applicable official WordPress skills. If these documents or a skill
 conflict, stop the affected work, explain the practical pros and cons, and ask
@@ -77,7 +77,7 @@ expected and observed behavior, impact, and a practical correction proposal.
 Identify who controls sensitive input and the actual execution path. Neither
 an unescaped value nor a search hit alone proves an exploitable vulnerability.
 Honor intentional patterns documented in the project standards.
-Use conservative severity levels from `AGENTS/AI_BEHAVIOR.md`.
+Use conservative severity levels from `AGENTS/AI_BEHAVIOR.md` (`Priority levels`).
 Keep unverified hypotheses in a separate "Assumptions and open questions"
 section; never file them as confirmed defects.
 Deduplicate against findings from this run and `AGENTS/ISSUES_TODO.md`. Extend an existing root cause rather than creating duplicates.
@@ -138,7 +138,7 @@ committed.
 After each phase, report files read versus inspected, confirmed findings,
 unverified questions, checks and limitations, and the next proposed phase.
 Number issue lists. Each confirmed finding uses the issue template in
-`AGENTS/AI_BEHAVIOR.md` (including `Files affected` with file and line), and is
+`AGENTS/AI_BEHAVIOR.md` (`Issue template`, including `Files affected` with file and line), and is
 appended to `AGENTS/ISSUES_TODO.md`.
 Unverified questions are reported in chat only and never filed.
 For the final report, include category/severity counts for findings of this

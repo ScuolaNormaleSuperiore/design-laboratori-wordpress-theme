@@ -12,7 +12,7 @@ sono Test né Controlli statici: la panoramica delle tre famiglie è nel
 | `pa11y-report` | Accessibilità WCAG 2 AA a 1280 px e a 320 px | `pa11y:scan`, `pa11y:scan:gate` | [`pa11y-report/README.md`](pa11y-report/README.md) |
 
 La cartella [`issues-report/`](issues-report/) non contiene un Report: raccoglie gli snapshot delle issue
-prodotti dal trigger `/trigger-issues-snapshot` (vedi [`../../AGENTS/AI_BEHAVIOR.md`](../../AGENTS/AI_BEHAVIOR.md)).
+prodotti dal trigger `/trigger-issues-snapshot` (vedi [`../../AGENTS/TRIGGERS.md`](../../AGENTS/TRIGGERS.md)).
 
 
 ## Requisiti comuni
