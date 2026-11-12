@@ -3430,3 +3430,19 @@ msgstr "Youtube for video viewing"
 #, php-format
 msgid "Zona sicura: %s"
 msgstr "Safe zone: %s"
+
+#: inc/restricted-content.php:149 restricted-content.php:32
+msgid "Non hai i permessi per vedere questo contenuto"
+msgstr "You do not have permission to view this content"
+
+#: inc/restricted-content.php:150 restricted-content.php:33
+msgid "Contenuto riservato"
+msgstr "Restricted content"
+
+#: restricted-content.php:50
+msgid "Il tuo account non è abilitato a vedere questo contenuto. Se pensi che sia un errore, contatta l'amministratore del sito."
+msgstr "Your account is not allowed to view this content. If you think this is a mistake, contact the site administrator."
+
+#: restricted-content.php:51
+msgid "Per vedere questo contenuto devi accedere."
+msgstr "You must log in to view this content."

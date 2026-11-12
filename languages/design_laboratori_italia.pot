@@ -3326,3 +3326,19 @@ msgstr ""
 #, php-format
 msgid "Zona sicura: %s"
 msgstr ""
+
+#: inc/restricted-content.php:149 restricted-content.php:32
+msgid "Non hai i permessi per vedere questo contenuto"
+msgstr ""
+
+#: inc/restricted-content.php:150 restricted-content.php:33
+msgid "Contenuto riservato"
+msgstr ""
+
+#: restricted-content.php:50
+msgid "Il tuo account non è abilitato a vedere questo contenuto. Se pensi che sia un errore, contatta l'amministratore del sito."
+msgstr ""
+
+#: restricted-content.php:51
+msgid "Per vedere questo contenuto devi accedere."
+msgstr ""

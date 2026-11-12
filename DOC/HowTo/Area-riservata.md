@@ -27,7 +27,18 @@ Esempio con il gruppo padre «Area riservata» e i figli «Area A» e «Area B»
 | Utente solo nel gruppo padre | Sì | No | No | Sì |
 | Amministratore | Sì | Sì | Sì | Sì |
 
-Chi non ha accesso non vede le pagine riservate nei menu, nella ricerca, nei suggerimenti, nella mappa del sito o nelle sezioni della home. L'indirizzo diretto restituisce una pagina 404.
+Chi non ha accesso non vede i contenuti riservati nei menu, nella ricerca, nei suggerimenti, nella mappa del sito o nelle sezioni della home. L'indirizzo diretto non restituisce più un 404, perché un contenuto riservato esiste: risponde con una pagina del tema che non mostra il titolo né il testo, e dipende da chi chiede.
+
+| Chi apre l'indirizzo | Risposta |
+| --- | --- |
+| Un visitatore non collegato | **401**: «Contenuto riservato», con il pulsante **Accedi**, che porta al single sign-on e poi torna al contenuto richiesto |
+| Un utente collegato senza permessi | **403**: «Non hai i permessi per vedere questo contenuto»; l'utente in attesa legge che la richiesta è in attesa di approvazione |
+| Un utente con i permessi | Il contenuto |
+| Un indirizzo che non esiste | 404, come prima |
+
+La regola vale per tutti i contenuti pubblici che Groups riserva (pagine, articoli, notizie, eventi, persone, pubblicazioni e così via) e solo con la gestione dell'area riservata attiva e Groups installato; con la gestione spenta resta il 404. Le bozze e i contenuti non pubblicati non vengono mai rivelati. Una scheda che il tema disattiva apposta (per esempio una persona con la pagina di dettaglio spenta) resta un 404. La pagina di risposta non è indicizzata né messa in cache.
+
+**Cosa si rivela.** Chi vede il 401 o il 403 capisce che a quell'indirizzo c'è un contenuto riservato, anche se non ne vede il titolo né il testo: con il 404 non lo avrebbe saputo. È una scelta voluta, per non far passare per inesistente un contenuto a cui si ha diritto e per dare un modo di accedere.
 
 ## Configurazione
 
@@ -36,7 +47,7 @@ Chi non ha accesso non vede le pagine riservate nei menu, nella ricerca, nei sug
 - Fai un backup del database.
 - Fai registrare il sito come Service Provider presso il gestore dell'IdP (Cineca per la Scuola Normale). Comunica l'Entity ID del sito, per esempio `urn:<dominio-del-sito>`, e l'indirizzo di ritorno `https://<dominio-del-sito>/wp-login.php`.
 - Chiedi al gestore gli indirizzi dell'IdP, la mappatura degli attributi e il certificato pubblico di firma in formato PEM; verifica con lui l'impronta SHA-256. Chiedi anche quali utenti possono autenticarsi: con Auto Provision attivo tutti loro possono creare un account in attesa.
-- Se usi una cache di pagina, escludi le pagine riservate e gli utenti collegati.
+- Se usi una cache di pagina, escludi le pagine riservate e gli utenti collegati; le risposte 401 e 403 del tema inviano già le intestazioni di non-cache, ma una cache di pagina non deve servirle ad altri.
 - Se usi Wordfence, concorda l'accesso durante la configurazione: login SAML falliti possono far scattare il blocco. L'elenco degli IP consentiti è in *Firewall → All Firewall Options → Allowlisted IPs*.
 
 ### 1. WP SAML Auth e ruolo predefinito
@@ -141,6 +152,6 @@ Il sito conserva nome ed email ricevuti dall'IdP e appartenenze ai gruppi gestit
 
 ## Verifiche dopo la configurazione
 
-1. **Visitatore:** la pagina pubblica mostra Accedi; le pagine riservate restituiscono 404 e non compaiono in ricerca, menu, home e mappa del sito.
+1. **Visitatore:** la pagina pubblica mostra Accedi; i contenuti riservati restituiscono 401 con il pulsante Accedi (e tornano al contenuto dopo il login) e non compaiono in ricerca, menu, home e mappa del sito; un utente collegato senza permessi riceve 403.
 2. **Utente:** un nuovo account resta in attesa finché non viene assegnato a un gruppo; dopo l'approvazione vede solo i contenuti autorizzati. Se abiliti l'accesso solo SAML, verifica che password e recupero password siano bloccati con il plugin WP SAML Auth attivo, e che tornino utilizzabili se lo disattivi.
 3. **Amministratore:** l'account locale continua a entrare con la password e può gestire utenti e gruppi.

@@ -35,6 +35,7 @@ parameters:
     - home.php
     - index.php
     - page.php
+    - restricted-content.php
     - search.php
     - single-brevetto.php
     - single-evento.php

@@ -131,6 +131,11 @@ require get_template_directory() . '/inc/menus.php';
  */
 require get_template_directory() . '/inc/reserved-area.php';
 
+/**
+ * Restricted content — 401 or 403 in place of 404 for a content that Groups reserved.
+ */
+require get_template_directory() . '/inc/restricted-content.php';
+
 
 /**
  * Activation Hooks.
