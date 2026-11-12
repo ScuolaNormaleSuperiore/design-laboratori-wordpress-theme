@@ -10,7 +10,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [TODO]
-- Rivedere il campo descrizione dei campi del backoffice in modo che si capisca meglio cosa fa quella configurazione. Aggiungere formato consigliato immagini.
 - Inserire sezione di configurazione colori nel backoffice.
 - Refactoring procedure di import.
 - Import eventi da feed RSS o REST API di Drupal.
@@ -28,7 +27,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Controlli periodici di integrità dei dati con avvisi amministrativi (relazioni orfane, date e tassonomie non valide).
 - Import di pubblicazioni da Iris.
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
-- PHPStan: raggiungere livello 8.
+- PHPStan: raggiungere livello 6.
 
 
 
