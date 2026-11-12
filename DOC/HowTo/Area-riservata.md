@@ -100,6 +100,15 @@ Con la gestione attiva, i due ruoli vengono indirizzati alla pagina scelta dopo 
 
 Se la pagina non è scelta o non è pubblicata, la destinazione è la home e il riquadro di accesso non compare. Aggiungi allora un collegamento al login SSO, per esempio `/wp-login.php?action=wp-saml-auth`.
 
+### Schermata di login
+
+Con la gestione attiva, la schermata di accesso di WordPress (`/wp-login.php`) si presenta con l'identità del sito:
+
+- il **logo** è quello di «Logo header» in Configurazione → Opzioni di base, oppure il logo predefinito del tema se non ne hai scelto uno, al posto del logo WordPress; cliccandolo si va alla home e il suo nome accessibile è il nome del sito;
+- i **testi** di WP SAML Auth sono in italiano: «Autenticati con le credenziali istituzionali:», il pulsante «Accedi» e, sotto, «Oppure accedi con le credenziali di WordPress:» (compare solo se Permit WordPress login è attivo). In inglese: «Sign in with your institutional credentials:», «Login» (come gli altri pulsanti di accesso del tema) e «Or sign in with your WordPress credentials:».
+
+Con la gestione spenta il login resta quello di WordPress, senza modifiche. La modifica dei testi usa il filtro `wp_saml_auth_login_strings` del plugin: se una versione molto vecchia non lo avesse, i testi resterebbero in inglese ma il login funzionerebbe.
+
 ### Accesso solo tramite SAML
 
 Con l'opzione attiva, **Utente in attesa** e **Utente area riservata** possono entrare soltanto con il single sign-on: login e recupero tramite password sono bloccati e i campi password sono nascosti anche all'amministratore che modifica questi utenti. Gli altri ruoli mantengono le modalità di accesso abituali.

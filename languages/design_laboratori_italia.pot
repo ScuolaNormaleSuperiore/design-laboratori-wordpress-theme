@@ -3377,3 +3377,11 @@ msgstr ""
 #, php-format
 msgid "Zona sicura: %s"
 msgstr ""
+
+#: inc/reserved-area.php:464
+msgid "Autenticati con le credenziali istituzionali:"
+msgstr ""
+
+#: inc/reserved-area.php:466
+msgid "Oppure accedi con le credenziali di WordPress:"
+msgstr ""

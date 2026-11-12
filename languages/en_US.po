@@ -3490,3 +3490,11 @@ msgstr "Youtube for video viewing"
 #, php-format
 msgid "Zona sicura: %s"
 msgstr "Safe zone: %s"
+
+#: inc/reserved-area.php:464
+msgid "Autenticati con le credenziali istituzionali:"
+msgstr "Sign in with your institutional credentials:"
+
+#: inc/reserved-area.php:466
+msgid "Oppure accedi con le credenziali di WordPress:"
+msgstr "Or sign in with your WordPress credentials:"

@@ -443,3 +443,87 @@ function dli_render_reserved_area_access( $post ) {
 		)
 	);
 }
+
+/**
+ * The texts of the login screen of WP SAML Auth, in Italian.
+ *
+ * The plugin gives its three texts in English (`title`, `button`, `alt_title`) to the filter
+ * `wp_saml_auth_login_strings`; a text that a version of the plugin adds and that is not here is kept. Nothing changes
+ * while the reserved area is off.
+ *
+ * @param array<string, string> $strings The texts of the plugin.
+ * @return array<string, string>
+ */
+function dli_reserved_area_login_strings( $strings ) {
+	if ( ! dli_is_reserved_area_enabled() ) {
+		return $strings;
+	}
+	return array_merge(
+		(array) $strings,
+		array(
+			'title'     => __( 'Autenticati con le credenziali istituzionali:', 'design_laboratori_italia' ),
+			'button'    => __( 'Accedi', 'design_laboratori_italia' ),
+			'alt_title' => __( 'Oppure accedi con le credenziali di WordPress:', 'design_laboratori_italia' ),
+		)
+	);
+}
+add_filter( 'wp_saml_auth_login_strings', 'dli_reserved_area_login_strings' );
+
+/**
+ * The address of the logo shown on the login screen: the logo of the header, or the default logo of the theme.
+ *
+ * It is the same choice that the header of the site makes, so the login screen never shows the WordPress logo.
+ *
+ * @return string URL.
+ */
+function dli_get_login_logo_url() {
+	$logo = esc_url_raw( (string) dli_get_option( 'logo_laboratorio' ) );
+	return '' !== $logo ? $logo : dli_get_default_logo();
+}
+
+/**
+ * Put the logo of the site in place of the WordPress one on the login screens.
+ *
+ * The address goes into a quoted `url()`: quotes, backslashes, angle brackets and line breaks are removed from it, so it
+ * cannot close the rule or the style. Nothing changes while the reserved area is off.
+ *
+ * @return void
+ */
+function dli_reserved_area_login_logo_style() {
+	if ( ! dli_is_reserved_area_enabled() ) {
+		return;
+	}
+	$url = str_replace( array( '"', '\\', '<', '>', "\r", "\n" ), '', dli_get_login_logo_url() );
+	wp_add_inline_style(
+		'login',
+		sprintf(
+			'.login h1 a { background-image: url("%s"); background-size: contain; background-position: center; background-repeat: no-repeat; width: 100%%; height: 80px; }',
+			$url
+		)
+	);
+}
+add_action( 'login_enqueue_scripts', 'dli_reserved_area_login_logo_style' );
+
+/**
+ * The logo of the login screen leads to the home of the site, not to wordpress.org.
+ *
+ * @param string $url The address that WordPress would use.
+ * @return string
+ */
+function dli_reserved_area_login_header_url( $url ) {
+	return dli_is_reserved_area_enabled() ? home_url( '/' ) : $url;
+}
+add_filter( 'login_headerurl', 'dli_reserved_area_login_header_url' );
+
+/**
+ * The name of the logo of the login screen is the name of the site, not «Powered by WordPress».
+ *
+ * `wp-login.php` prints this text as it is, so it is escaped here.
+ *
+ * @param string $text The text that WordPress would use.
+ * @return string
+ */
+function dli_reserved_area_login_header_text( $text ) {
+	return dli_is_reserved_area_enabled() ? esc_html( get_bloginfo( 'name' ) ) : $text;
+}
+add_filter( 'login_headertext', 'dli_reserved_area_login_header_text' );
