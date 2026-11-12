@@ -34,9 +34,11 @@ Chi non ha accesso non vede i contenuti riservati nei menu, nella ricerca, nei s
 | Un visitatore non collegato | **401**: «Contenuto riservato», con il pulsante **Accedi**, che porta al single sign-on e poi torna al contenuto richiesto |
 | Un utente collegato senza permessi | **403**: «Non hai i permessi per vedere questo contenuto»; l'utente in attesa legge che la richiesta è in attesa di approvazione |
 | Un utente con i permessi | Il contenuto |
-| Un indirizzo che non esiste | 404, come prima |
+| Un indirizzo che non esiste, o che termina soltanto con lo slug di un contenuto riservato (per esempio una data sbagliata) | 404, come prima |
 
 La regola vale per tutti i contenuti pubblici che Groups riserva (pagine, articoli, notizie, eventi, persone, pubblicazioni e così via) e solo con la gestione dell'area riservata attiva e Groups installato; con la gestione spenta resta il 404. Le bozze e i contenuti non pubblicati non vengono mai rivelati. Una scheda che il tema disattiva apposta (per esempio una persona con la pagina di dettaglio spenta) resta un 404. La pagina di risposta non è indicizzata né messa in cache.
+
+**Header `WWW-Authenticate`.** Lo standard HTTP chiede una challenge su ogni risposta 401. Il login dell'area riservata è un redirect SAML, che nessuno schema standard descrive, quindi il tema ne dichiara uno proprio: `WWW-Authenticate: DLI-SSO realm="Area riservata", login_uri="<indirizzo di login>"`, dove `login_uri` è lo stesso indirizzo del pulsante **Accedi**. Non è Basic né Bearer, quindi il browser non mostra nessuna finestra di credenziali e nessun client lo scambia per un token. Serve a proxy, strumenti di monitoraggio e script, che trovano così l'indirizzo da cui accedere; ai visitatori non cambia nulla. Il 403 non lo invia, perché l'utente è già collegato.
 
 **Cosa si rivela.** Chi vede il 401 o il 403 capisce che a quell'indirizzo c'è un contenuto riservato, anche se non ne vede il titolo né il testo: con il 404 non lo avrebbe saputo. È una scelta voluta, per non far passare per inesistente un contenuto a cui si ha diritto e per dare un modo di accedere.
 

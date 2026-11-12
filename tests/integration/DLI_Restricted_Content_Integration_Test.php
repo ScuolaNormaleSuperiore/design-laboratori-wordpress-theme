@@ -201,6 +201,33 @@ class DLI_Restricted_Content_Integration_Test extends DLI_Integration_Test_Case 
 	}
 
 	/**
+	 * The 401 carries a challenge with its own scheme that names the login address; it is not Basic, so the browser
+	 * shows no credentials dialog.
+	 */
+	public function test_the_401_sends_a_challenge_with_the_login_address() {
+		$post_id = $this->reserved_post( 'page' );
+
+		$this->visit( $post_id );
+
+		$state     = dli_restricted_content_state();
+		$login_url = dli_get_reserved_area_login_url( get_permalink( $post_id ) );
+		$this->assertSame( 'DLI-SSO realm="Area riservata", login_uri="' . $login_url . '"', $state['challenge'] );
+		$this->assertStringNotContainsString( 'Basic', $state['challenge'] );
+	}
+
+	/**
+	 * The challenge is for the 401 only: a logged-in user who gets 403 is not asked to authenticate.
+	 */
+	public function test_the_403_sends_no_challenge() {
+		$post_id = $this->reserved_post( 'page' );
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'subscriber' ) ) );
+
+		$this->visit( $post_id );
+
+		$this->assertSame( '', dli_restricted_content_state()['challenge'] );
+	}
+
+	/**
 	 * Every public type that Groups can reserve is covered, not only the pages.
 	 *
 	 * @dataProvider public_types
@@ -243,6 +270,61 @@ class DLI_Restricted_Content_Integration_Test extends DLI_Integration_Test_Case 
 
 		$this->assertSame( 401, end( $this->status_codes ) );
 		$this->assertSame( 'restricted-content.php', basename( apply_filters( 'template_include', 'index.php' ) ) );
+	}
+
+	/**
+	 * With the date in the address, the right address gets 401.
+	 */
+	public function test_the_right_dated_address_of_a_reserved_post_gets_401() {
+		$this->set_permalink_structure( '/%year%/%monthnum%/%postname%/' );
+		$post_id = $this->reserved_post( 'post', array( 'post_name' => 'verbale', 'post_date' => '2026-05-10 10:00:00' ) );
+
+		$this->visit( $post_id );
+
+		$this->assertSame( 401, end( $this->status_codes ) );
+	}
+
+	/**
+	 * An address that only ends with the slug of a reserved post does not identify it: it stays a 404.
+	 */
+	public function test_a_wrong_path_that_ends_with_the_slug_of_a_reserved_post_stays_a_404() {
+		$this->set_permalink_structure( '/%year%/%monthnum%/%postname%/' );
+		$this->reserved_post( 'post', array( 'post_name' => 'verbale', 'post_date' => '2026-05-10 10:00:00' ) );
+
+		$this->go_to( home_url( '/1999/01/verbale/' ) );
+		dli_handle_restricted_content();
+
+		$this->assertTrue( is_404() );
+		$this->assertNull( dli_restricted_content_state() );
+		$this->assertNotContains( 401, $this->status_codes );
+	}
+
+	/**
+	 * Two contents of the same hierarchical type with the same slug under different parents: the one asked for is
+	 * the one found, even when the other, public, comes first.
+	 */
+	public function test_the_same_slug_under_different_parents_finds_the_reserved_one() {
+		register_post_type( 'dli_hier', array( 'public' => true, 'hierarchical' => true, 'rewrite' => array( 'slug' => 'dli-hier' ) ) );
+		$this->set_permalink_structure( '/%postname%/' );
+		$parent_a = self::factory()->post->create( array( 'post_type' => 'dli_hier', 'post_name' => 'aaa' ) );
+		$parent_b = self::factory()->post->create( array( 'post_type' => 'dli_hier', 'post_name' => 'bbb' ) );
+		self::factory()->post->create( array( 'post_type' => 'dli_hier', 'post_name' => 'verbale', 'post_parent' => $parent_a ) );
+		$reserved = $this->reserved_post( 'dli_hier', array( 'post_name' => 'verbale', 'post_parent' => $parent_b ) );
+
+		$this->visit( $reserved );
+
+		$this->assertSame( 401, end( $this->status_codes ) );
+		unregister_post_type( 'dli_hier' );
+	}
+
+	/**
+	 * The handler is on the real hook, and runs before the canonical redirect of WordPress, which would otherwise send
+	 * a request for a reserved content somewhere else before the theme answers.
+	 */
+	public function test_the_handler_runs_on_template_redirect_before_the_canonical_redirect() {
+		$priority = has_action( 'template_redirect', 'dli_handle_restricted_content' );
+		$this->assertIsInt( $priority );
+		$this->assertLessThan( (int) has_action( 'template_redirect', 'redirect_canonical' ), $priority );
 	}
 
 	/**

@@ -31,6 +31,31 @@ function dli_restricted_content_state( $value = null ) {
 }
 
 /**
+ * Whether the path of the current request is the address of a content.
+ *
+ * With pretty addresses the path of the request must be the path of the content. With plain ones the query string names
+ * the content, and a hierarchical type puts its whole path in `name`: that path must be the path of the content.
+ *
+ * @param WP_Post $post The content.
+ * @return bool
+ */
+function dli_request_is_address_of( $post ) {
+	global $wp, $wp_query;
+	$permalink = (string) get_permalink( $post );
+	if ( false !== strpos( $permalink, '?' ) ) {
+		$requested = (array) $wp_query->query;
+		$name      = trim( isset( $requested['name'] ) ? (string) $requested['name'] : '', '/' );
+		return false === strpos( $name, '/' ) || get_page_uri( $post ) === $name;
+	}
+	$home    = trim( (string) wp_parse_url( home_url(), PHP_URL_PATH ), '/' );
+	$address = trim( (string) wp_parse_url( $permalink, PHP_URL_PATH ), '/' );
+	if ( '' !== $home && 0 === strpos( $address, $home . '/' ) ) {
+		$address = substr( $address, strlen( $home ) + 1 );
+	}
+	return trim( (string) $wp->request, '/' ) === $address;
+}
+
+/**
  * The reserved content that the current request asked for, or null.
  *
  * The checks go from the cheapest to the dearest and stop at the first that fails: the request is already a 404, the
@@ -54,7 +79,7 @@ function dli_find_restricted_post_for_request() {
 	// copies the name of a content of any type into it, so the original request is the one to read.
 	$requested = (array) $wp_query->query;
 	$page_path = isset( $requested['pagename'] ) ? (string) $requested['pagename'] : '';
-	$name      = (string) $wp_query->get( 'name' );
+	$name      = isset( $requested['name'] ) ? (string) $requested['name'] : (string) $wp_query->get( 'name' );
 
 	$post = null;
 	if ( $post_id > 0 ) {
@@ -67,16 +92,24 @@ function dli_find_restricted_post_for_request() {
 		$post_type = $wp_query->get( 'post_type' );
 		$found     = get_posts(
 			array(
-				'name'             => $name,
+				// The last part of the path: a hierarchical type puts the whole path in the name, the slug is the last part.
+				'name'             => wp_basename( $name ),
 				'post_type'        => $post_type ? $post_type : 'post',
 				'post_status'      => 'publish',
-				'posts_per_page'   => 1,
+				'posts_per_page'   => 20,
 				'no_found_rows'    => true,
 				'suppress_filters' => true,
 				'lang'             => dli_current_language( 'slug' ),
 			)
 		);
-		$post      = $found ? $found[0] : null;
+		// Several contents can have the same slug (under other parents, or with another date): the one asked for is the one
+		// whose address is the address of the request. An address that only ends with the slug of a content identifies none.
+		foreach ( $found as $candidate ) {
+			if ( dli_request_is_address_of( $candidate ) ) {
+				$post = $candidate;
+				break;
+			}
+		}
 	}
 
 	if ( ! $post instanceof WP_Post || 'publish' !== $post->post_status ) {
@@ -90,6 +123,24 @@ function dli_find_restricted_post_for_request() {
 		return null;
 	}
 	return $post;
+}
+
+/**
+ * The `WWW-Authenticate` challenge of a response.
+ *
+ * HTTP asks every 401 to carry a challenge. The login of the reserved area is a SAML redirect, which no standard scheme
+ * describes, so the theme names its own, `DLI-SSO`, with the login address. It is not Basic or Bearer, so the browser
+ * shows no credentials dialog and no client mistakes it for a token. A 403 carries none: the user is already logged in.
+ *
+ * @param int    $status    The status of the response.
+ * @param string $login_url The address that starts the login and comes back to the content.
+ * @return string The value of the header, or an empty string when the response has no challenge.
+ */
+function dli_restricted_content_challenge( $status, $login_url ) {
+	if ( 401 !== (int) $status ) {
+		return '';
+	}
+	return 'DLI-SSO realm="Area riservata", login_uri="' . str_replace( array( '\\', '"' ), array( '\\\\', '\\"' ), $login_url ) . '"';
 }
 
 /**
@@ -109,14 +160,20 @@ function dli_handle_restricted_content() {
 
 	global $wp_query;
 	$status           = is_user_logged_in() ? 403 : 401;
+	$url              = (string) get_permalink( $post );
+	$challenge        = dli_restricted_content_challenge( $status, dli_get_reserved_area_login_url( $url ) );
 	$wp_query->is_404 = false;
 	dli_restricted_content_state(
 		array(
-			'status' => $status,
-			'url'    => (string) get_permalink( $post ),
+			'status'    => $status,
+			'url'       => $url,
+			'challenge' => $challenge,
 		)
 	);
 	status_header( $status );
+	if ( '' !== $challenge && ! headers_sent() ) {
+		header( 'WWW-Authenticate: ' . $challenge );
+	}
 	nocache_headers();
 	add_filter( 'template_include', 'dli_restricted_content_template', 99 );
 	add_filter( 'wp_robots', 'wp_robots_no_robots' );

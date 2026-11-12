@@ -35,14 +35,14 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [2.0.8] - 2026-11-12
 ## Aggiunto
-- Indicazioni sul formato delle immagini nell'amministrazione: sotto i campi di caricamento (hero della home, loghi, logo di uno spin-off, foto di una risorsa tecnica), sotto l'immagine in evidenza di Banner e Sponsor e nel messaggio della finestra dei media. Guida «Gestione delle immagini» in `DOC/HowTo/Gestione-delle-immagini.md`, con la tabella dei formati e il motivo per cui le dimensioni sono indicative.
-- Dimensione `item-thumb` (250 × 250, ritagliata) per le foto delle Persone. Per le foto già caricate la miniatura va rigenerata (`wp media regenerate --image_size=item-thumb`): fino ad allora si usa il file originale.
+- Indicazioni sul formato delle immagini nell'amministrazione e guida «Gestione delle immagini» (`DOC/HowTo/Gestione-delle-immagini.md`).
+- Dimensione `item-thumb` (250 × 250) per le foto delle Persone; per quelle già caricate rigenera la miniatura con `wp media regenerate --image_size=item-thumb`.
 ## Modificato
-- Contenuti riservati da Groups: l'indirizzo diretto non risponde più 404. Un visitatore non collegato riceve 401, con il pulsante «Accedi» che porta al single sign-on e torna al contenuto; un utente collegato senza permessi riceve 403 (l'utente in attesa legge il messaggio di attesa dell'approvazione). Vale per tutti i contenuti pubblici, solo con l'area riservata attiva; la risposta non mostra il titolo né il testo, non è indicizzata né messa in cache. Un indirizzo inesistente resta un 404.
-- «Accesso solo tramite SAML»: la regola vale solo se il plugin WP SAML Auth è attivo (senza il plugin l'accesso con password resta possibile e la scheda lo segnala) e il valore predefinito è **Sì**. La descrizione dell'opzione dice per quali ruoli vale e quando si applica.
+- Contenuti riservati da Groups: 401 con il pulsante «Accedi» per il visitatore, 403 per l'utente collegato senza permessi, invece di un 404. Un indirizzo che termina soltanto con lo slug di un contenuto riservato resta 404. Il 401 invia la challenge `WWW-Authenticate: DLI-SSO` con l'indirizzo di login (nessun dialogo del browser). Solo con l'area riservata attiva; un indirizzo inesistente resta 404.
+- «Accesso solo tramite SAML»: vale solo con WP SAML Auth attivo; predefinito **Sì**.
 ## Corretto
-- Schermata di login con l'area riservata attiva: i testi di WP SAML Auth sono in italiano («Autenticati con le credenziali istituzionali:», «Accedi») e il logo del sito (o il logo predefinito del tema) prende il posto del logo WordPress, con collegamento alla home e nome accessibile.
-- Export ACF del Banner (`SETUP/ACF_Custom_Fields/acf-export-banner.json`): il campo «Apri in nuova finestra» ora coincide con quello registrato dal tema (facoltativo e acceso di default). Un test confronta ogni export con i campi registrati.
+- Login con l'area riservata attiva: testi di WP SAML Auth in italiano e logo del sito al posto di quello WordPress.
+- Export ACF del Banner allineato ai campi del tema («Apri in nuova finestra»).
 
 ## [2.0.7] - 2026-11-11
 ## Aggiunto

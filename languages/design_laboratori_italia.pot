@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 11:21+0000\n"
+"POT-Creation-Date: 2026-11-12 13:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -3336,7 +3336,9 @@ msgid "Contenuto riservato"
 msgstr ""
 
 #: restricted-content.php:50
-msgid "Il tuo account non è abilitato a vedere questo contenuto. Se pensi che sia un errore, contatta l'amministratore del sito."
+msgid ""
+"Il tuo account non è abilitato a vedere questo contenuto. Se pensi che sia "
+"un errore, contatta l'amministratore del sito."
 msgstr ""
 
 #: restricted-content.php:51
