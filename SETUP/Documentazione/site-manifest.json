@@ -204,6 +204,14 @@
 			"description": "Single sign-on SAML, gruppi, pagine riservate e approvazione degli utenti.",
 			"group": "Amministra",
 			"order": 40
+		},
+		{
+			"source": "DOC/HowTo/Immagini.md",
+			"target": "amministra/immagini.md",
+			"title": "Immagini: formati consigliati",
+			"description": "Formato e dimensioni delle immagini per hero, banner, elenchi, schede e loghi, e perché possono risultare tagliate.",
+			"group": "Amministra",
+			"order": 50
 		}
 	],
 	"assets": [

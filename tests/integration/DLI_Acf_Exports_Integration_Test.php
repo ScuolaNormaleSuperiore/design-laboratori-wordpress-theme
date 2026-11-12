@@ -14,6 +14,23 @@
 class DLI_Acf_Exports_Integration_Test extends DLI_Integration_Test_Case {
 
 	/**
+	 * The texts of the theme are written in Italian, and the test site is in English: run every test with the
+	 * Italian texts, so that the checks do not depend on the English catalogue.
+	 */
+	public function set_up() {
+		parent::set_up();
+		$this->use_italian_texts();
+	}
+
+	/**
+	 * Load the translations of the theme again.
+	 */
+	public function tear_down() {
+		$this->restore_theme_translations();
+		parent::tear_down();
+	}
+
+	/**
 	 * Properties of an export that do not describe the field.
 	 *
 	 * @var string[]

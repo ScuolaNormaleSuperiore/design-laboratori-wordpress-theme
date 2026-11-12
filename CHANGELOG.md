@@ -34,6 +34,11 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.0.8] - 2026-11-12
+## Aggiunto
+- Indicazioni sul formato delle immagini nell'amministrazione: sotto i campi di caricamento (hero della home, loghi, logo di uno spin-off, foto di una risorsa tecnica), sotto l'immagine in evidenza di Banner e Sponsor e nel messaggio della finestra dei media. Guida «Immagini: formati consigliati» in `DOC/HowTo/Immagini.md`, con la tabella dei formati e il motivo per cui le dimensioni sono indicative.
+- Dimensione `item-thumb` (250 × 250, ritagliata) per le foto delle Persone. Per le foto già caricate la miniatura va rigenerata (`wp media regenerate --image_size=item-thumb`): fino ad allora si usa il file originale.
+## Corretto
+- Export ACF del Banner (`SETUP/ACF_Custom_Fields/acf-export-banner.json`): il campo «Apri in nuova finestra» ora coincide con quello registrato dal tema (facoltativo e acceso di default). Un test confronta ogni export con i campi registrati.
 
 ## [2.0.7] - 2026-11-11
 ## Aggiunto

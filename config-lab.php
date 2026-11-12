@@ -27,6 +27,10 @@ define( 'DLI_MAX_IMG_FILE_SIZE_MB', 1 );
 // @phpstan-ignore greater.alwaysTrue (Both limits are configuration values that can be edited: this keeps the larger one.)
 define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SIZE_MB ) ? DLI_MAX_PDF_FILE_SIZE_MB : DLI_MAX_IMG_FILE_SIZE_MB );
 
+// Address of the published guide to the images (DOC/HowTo/Immagini.md), linked from the media window. Empty until the
+// documentation site is published: then no link is shown.
+define( 'DLI_IMAGE_GUIDE_URL', '' );
+
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );
 define( 'DLI_ACF_SHORT_DESC_LENGTH', 50 );

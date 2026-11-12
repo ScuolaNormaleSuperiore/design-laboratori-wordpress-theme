@@ -55,6 +55,24 @@ abstract class DLI_Integration_Test_Case extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Make the texts of the theme come out in Italian, the language they are written in.
+	 *
+	 * The test site is in English and the theme has an English catalogue, so `__()` gives the English text of a string
+	 * that is already translated. `switch_to_locale()` does not change that here: unloading the text domain does. Call
+	 * `restore_theme_translations()` in `tear_down()`.
+	 */
+	protected function use_italian_texts() {
+		unload_textdomain( 'design_laboratori_italia' );
+	}
+
+	/**
+	 * Load the translations of the theme again, after `use_italian_texts()`.
+	 */
+	protected function restore_theme_translations() {
+		load_theme_textdomain( 'design_laboratori_italia', get_template_directory() . '/languages' );
+	}
+
+	/**
 	 * Replace a theme option group (for example `setup`).
 	 *
 	 * CMB2 keeps the options it has read in memory for the whole process, so

@@ -324,8 +324,9 @@ class DLI_LabManager {
 	 */
 	public function enqueue_upload_limits_script() {
 		$notice = sprintf(
-			'<b style="color: #00728D;">%s</b>',
-			__( 'Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, PNG, GIF, WebP) 1 MB.', 'design_laboratori_italia' )
+			'<b style="color: #00728D;">%s</b><br>%s',
+			__( 'Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, PNG, GIF, WebP) 1 MB.', 'design_laboratori_italia' ),
+			dli_get_media_window_guideline_html()
 		);
 		wp_add_inline_script(
 			'media-views',

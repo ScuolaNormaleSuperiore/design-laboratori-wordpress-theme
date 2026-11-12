@@ -66,6 +66,9 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 | `DLI_Release_Version_Unit_Test.php` | La versione è la stessa in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml` e nella prima voce di `CHANGELOG.md` |
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` coincide con la data della prima voce di `CHANGELOG.md` |
 | `DLI_Agents_Docs_Unit_Test.php` | I documenti citati da `AGENTS/AI_BOOTSTRAP.md` esistono (esclusi i file locali ignorati da Git) |
+| `DLI_Image_Guidelines_Unit_Test.php` | L'elenco dei formati delle immagini (`inc/image-guidelines.php`): ogni posizione ha i suoi campi, il minimo non supera il consigliato, le misure seguono il rapporto, il testo dice «consigliato» e «indicative», dà la zona sicura di hero e banner e il peso massimo letto da `DLI_MAX_IMG_FILE_SIZE_MB` |
+| `DLI_Image_Guide_Unit_Test.php` | La guida `DOC/HowTo/Immagini.md`: esiste, è nel manifest della documentazione, riporta ogni misura e il nome di ogni posizione dell'elenco, dà il peso massimo e non ha riferimenti privati |
+| `DLI_Image_Coverage_Unit_Test.php` | Ogni file del tema che carica o mostra un'immagine (dimensioni, immagine in evidenza, allegati, campi ACF e CMB2) è nell'elenco dei file noti, legato a una posizione dell'elenco dei formati o con un'eccezione motivata; segnala anche i file noti che non mostrano più immagini |
 | `DLI_Captcha_Unit_Test.php` | L’helper CAPTCHA fallisce in modo sicuro quando il plugin opzionale Really Simple CAPTCHA non è disponibile |
 | `DLI_PHPStan_Config_Unit_Test.php` | `phpstan.neon`: ogni file PHP della radice è nei percorsi analizzati, ogni cartella con codice PHP è analizzata o esclusa in modo esplicito e il livello non scende sotto il 4 |
 
@@ -78,7 +81,7 @@ stata aggiornata in un file e dimenticata in un altro: va allineata, non il test
 - [`phpunit.xml`](../../phpunit.xml) (radice del tema) definisce la suite `unit` su questa [cartella](./).
 - [`../bootstrap-unit.php`](../bootstrap-unit.php) carica l'autoloader di Composer, definisce `ABSPATH` e pochi
   *stub* di funzioni di WordPress (`__`, `_x`, `add_action`, `plugin_dir_path`, ...), poi
-  include `config-lab.php`, `inc/utils.php` e `inc/captcha.php`. Gli stub servono solo per poter caricare
+  include `config-lab.php`, `inc/utils.php`, `inc/image-guidelines.php` e `inc/captcha.php`. Gli stub servono solo per poter caricare
   questi file: non riproducono il comportamento di WordPress.
 - Le classi di test si chiamano `DLI_<Nome>_Unit_Test`, un file per area, con il nome
   del file uguale a quello della classe.

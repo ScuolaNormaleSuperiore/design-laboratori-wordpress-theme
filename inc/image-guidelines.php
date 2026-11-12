@@ -258,3 +258,51 @@ if ( ! function_exists( 'dli_set_acf_image_field_instructions' ) ) {
 	}
 }
 add_filter( 'acf/load_field', 'dli_set_acf_image_field_instructions' );
+
+if ( ! function_exists( 'dli_add_featured_image_guideline' ) ) {
+	/**
+	 * Add the advice on the format under the box "Immagine in evidenza" of the banners and of the sponsors.
+	 *
+	 * Only these two types: they use the classic editor, where this filter acts. The other content types have the block
+	 * editor, which draws the box with JavaScript, so they get the general line of the media window and the guide.
+	 * The text is plain: it is escaped here and only one paragraph is added, after the box of WordPress.
+	 *
+	 * @param string   $content The box of WordPress.
+	 * @param int|null $post_id The post that the box belongs to.
+	 * @return string The box, with the advice for a banner or a sponsor.
+	 */
+	function dli_add_featured_image_guideline( $content, $post_id = null ) {
+		$places = array(
+			BANNER_POST_TYPE  => 'banner_home',
+			SPONSOR_POST_TYPE => 'sponsor',
+		);
+		$type   = $post_id ? get_post_type( $post_id ) : false;
+		if ( ! $type || ! isset( $places[ $type ] ) ) {
+			return $content;
+		}
+		return $content . '<p class="description dli-image-guideline">' . esc_html( dli_get_image_guideline_text( $places[ $type ] ) ) . '</p>';
+	}
+}
+add_filter( 'admin_post_thumbnail_html', 'dli_add_featured_image_guideline', 10, 2 );
+
+if ( ! function_exists( 'dli_get_media_window_guideline_html' ) ) {
+	/**
+	 * The general advice on the format of the images, for the notice of the media window.
+	 *
+	 * It is the line that is true for most places (16:9, enough width, the subject at the centre) and it sends the
+	 * reader to the text under each field. The link to the guide is added only when its address is known and is an
+	 * http or https one. The result is HTML, already escaped.
+	 *
+	 * @param string $guide_url Address of the published guide, or an empty string.
+	 * @return string
+	 */
+	function dli_get_media_window_guideline_html( $guide_url = DLI_IMAGE_GUIDE_URL ) {
+		$html = esc_html__( 'Immagini: di norma formato 16:9, almeno 1200 px di larghezza e soggetto al centro. Le dimensioni sono indicative: il formato di ogni posizione è scritto sotto il campo.', 'design_laboratori_italia' );
+
+		$url = '' === $guide_url ? '' : esc_url( $guide_url, array( 'http', 'https' ) );
+		if ( '' !== $url ) {
+			$html .= ' <a href="' . $url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Guida alle immagini', 'design_laboratori_italia' ) . '</a>';
+		}
+		return $html;
+	}
+}

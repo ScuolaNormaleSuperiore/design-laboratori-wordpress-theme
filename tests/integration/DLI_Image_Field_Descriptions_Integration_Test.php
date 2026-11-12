@@ -24,6 +24,7 @@ class DLI_Image_Field_Descriptions_Integration_Test extends DLI_Integration_Test
 	 */
 	public function set_up() {
 		parent::set_up();
+		$this->use_italian_texts();
 		$before = array_keys( CMB2_Boxes::get_all() );
 		dli_register_main_options_metabox();
 		$this->registered_boxes = array_values( array_diff( array_keys( CMB2_Boxes::get_all() ), $before ) );
@@ -33,6 +34,7 @@ class DLI_Image_Field_Descriptions_Integration_Test extends DLI_Integration_Test
 	 * Remove the boxes that the test registered.
 	 */
 	public function tear_down() {
+		$this->restore_theme_translations();
 		foreach ( $this->registered_boxes as $box_id ) {
 			CMB2_Boxes::remove( $box_id );
 		}

@@ -64,6 +64,12 @@ resetting history.
   work performed on every request. Explain workload and measurable impact.
 - Maintainability: duplicated or dead logic, complexity, project naming,
   internationalization, source/output consistency and dependency integration.
+- Images: every template, field or image size that shows or uploads an image has
+  its place in the list of formats (`dli_get_image_guidelines()` in
+  `inc/image-guidelines.php`), the guide `DOC/HowTo/Immagini.md` agrees with the
+  list, and the file is in `DLI_Image_Coverage_Unit_Test`; a new image shown in a
+  box that crops it is judged against the crop of that box, not only against the
+  size of the file.
 - Tooling: meaningful assertions, exit codes, failure propagation, safe writes,
   deterministic comparisons, version consistency, Report and test blind spots.
 - Report style/documentation findings only with concrete impact. Do not create

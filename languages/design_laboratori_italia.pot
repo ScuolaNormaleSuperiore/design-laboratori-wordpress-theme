@@ -3177,3 +3177,183 @@ msgstr ""
 #: page-templates/privacy.php:183
 msgid "Youtube per la visualizzazione di video"
 msgstr ""
+
+#: inc/image-guidelines.php:27
+msgid "tieni il soggetto nel rettangolo centrale, circa il 55% della larghezza e il 65% dell'altezza: sul telefono e con titoli lunghi i bordi vengono tagliati."
+msgstr ""
+
+#: inc/image-guidelines.php:28
+msgid "tieni il soggetto nel rettangolo centrale, circa il 40% della larghezza e il 60% dell'altezza: l'altezza della fascia cambia con il testo e con lo schermo."
+msgstr ""
+
+#: inc/image-guidelines.php:29
+msgid "Il riquadro è 16:9: un'immagine con un'altra proporzione viene tagliata al centro."
+msgstr ""
+
+#: inc/image-guidelines.php:30
+msgid "SVG, oppure PNG con fondo trasparente"
+msgstr ""
+
+#: inc/image-guidelines.php:31
+msgid "Il logo non viene tagliato: è mostrato alto circa 80 px; un PNG deve essere alto almeno 160 px."
+msgstr ""
+
+#: inc/image-guidelines.php:35
+msgid "Hero della home"
+msgstr ""
+
+#: inc/image-guidelines.php:36 inc/image-guidelines.php:46
+msgid "panoramico"
+msgstr ""
+
+#: inc/image-guidelines.php:41 inc/image-guidelines.php:51
+msgid "L'immagine riempie una fascia a tutta larghezza e viene tagliata sopra, sotto e ai lati."
+msgstr ""
+
+#: inc/image-guidelines.php:45
+msgid "Banner della home"
+msgstr ""
+
+#: inc/image-guidelines.php:55
+msgid "Elenchi di contenuti (progetti, eventi, brevetti, ricerca, spin-off)"
+msgstr ""
+
+#: inc/image-guidelines.php:65
+msgid "Carousel e contenuti correlati"
+msgstr ""
+
+#: inc/image-guidelines.php:76
+msgid "Pagine di dettaglio (notizie, luoghi, risorse tecniche, pagine)"
+msgstr ""
+
+#: inc/image-guidelines.php:77 inc/image-guidelines.php:165
+msgid "libero"
+msgstr ""
+
+#: inc/image-guidelines.php:82
+msgid "L'immagine non viene tagliata: è mostrata nelle sue proporzioni, in una colonna larga circa 530 px. Un file largo almeno 1200 px resta nitido sugli schermi ad alta densità."
+msgstr ""
+
+#: inc/image-guidelines.php:88
+msgid "logo orizzontale su fondo trasparente"
+msgstr ""
+
+#: inc/image-guidelines.php:93
+msgid "Il logo viene mostrato alto al massimo 64 px: un'altezza di almeno 128 px resta nitida sugli schermi ad alta densità."
+msgstr ""
+
+#: inc/image-guidelines.php:99
+msgid "quadrato"
+msgstr ""
+
+#: inc/image-guidelines.php:104
+msgid "La foto viene mostrata in un cerchio, al massimo di 112 px: inquadra il volto al centro, perché gli angoli vengono tagliati."
+msgstr ""
+
+#: inc/image-guidelines.php:109
+msgid "Copertina di una pubblicazione"
+msgstr ""
+
+#: inc/image-guidelines.php:110
+msgid "verticale"
+msgstr ""
+
+#: inc/image-guidelines.php:115
+msgid "La copertina non viene tagliata: è mostrata nel suo formato, in una colonna larga circa 305 px (sul telefono al massimo 192 px). Un file largo almeno 610 px resta nitido sugli schermi ad alta densità."
+msgstr ""
+
+#: inc/image-guidelines.php:119
+msgid "Logo dell'intestazione"
+msgstr ""
+
+#: inc/image-guidelines.php:129
+msgid "Logo del piè di pagina"
+msgstr ""
+
+#: inc/image-guidelines.php:139
+msgid "Logo per il menu del telefono"
+msgstr ""
+
+#: inc/image-guidelines.php:152
+msgid "Logo di uno spin-off (elenco degli spin-off)"
+msgstr ""
+
+#: inc/image-guidelines.php:153
+msgid "quasi 3:2"
+msgstr ""
+
+#: inc/image-guidelines.php:158
+msgid "Il logo si vede solo nell'elenco degli spin-off, non nella scheda. Nell'elenco riempie un riquadro quasi 3:2 la cui altezza cambia con il testo della scheda, e un logo molto largo viene tagliato ai lati."
+msgstr ""
+
+#: inc/image-guidelines.php:159
+msgid "metti il logo al centro di un'immagine di proporzioni simili, con un margine di almeno il 15% su ogni lato."
+msgstr ""
+
+#: inc/image-guidelines.php:164
+msgid "Foto di una risorsa tecnica"
+msgstr ""
+
+#: inc/image-guidelines.php:170
+msgid "La foto non viene tagliata: è mostrata nelle sue proporzioni, in uno spazio largo al massimo 280 px. Un file largo almeno 560 px resta nitido sugli schermi ad alta densità. Se manca, la scheda usa l'immagine in evidenza."
+msgstr ""
+
+#. 1: ratio of the image (for example 16:9), 2: width in pixels, 3: height in pixels.
+#: inc/image-guidelines.php:207
+#, php-format
+msgid "Formato consigliato: %1$s, %2$d × %3$d px"
+msgstr ""
+
+#. %s: ratio of the image, in words.
+#: inc/image-guidelines.php:210
+#, php-format
+msgid "Formato consigliato: %s"
+msgstr ""
+
+#. %d: minimum width in pixels.
+#: inc/image-guidelines.php:216
+#, php-format
+msgid "minimo %d px di larghezza"
+msgstr ""
+
+#. 1: minimum width in pixels, 2: minimum height in pixels.
+#: inc/image-guidelines.php:219
+#, php-format
+msgid "minimo %1$d × %2$d px"
+msgstr ""
+
+#. %s: where to keep the subject of the image.
+#: inc/image-guidelines.php:227
+#, php-format
+msgid "Zona sicura: %s"
+msgstr ""
+
+#: inc/image-guidelines.php:229
+msgid "Le dimensioni sono indicative: il ritaglio dipende dallo schermo."
+msgstr ""
+
+#. 1: file formats, 2: maximum weight in megabytes.
+#: inc/image-guidelines.php:231
+#, php-format
+msgid "Formati: %1$s, peso massimo %2$d MB."
+msgstr ""
+
+#: inc/image-guidelines.php:300
+msgid "Immagini: di norma formato 16:9, almeno 1200 px di larghezza e soggetto al centro. Le dimensioni sono indicative: il formato di ogni posizione è scritto sotto il campo."
+msgstr ""
+
+#: inc/image-guidelines.php:304
+msgid "Guida alle immagini"
+msgstr ""
+
+#: inc/admin/options.php:202
+msgid "Il logo del laboratorio."
+msgstr ""
+
+#: inc/admin/options.php:230
+msgid "Il logo mostrato nel footer. Se non è presente, ma è abilitata la visualizzazione del logo nel footer, viene mostrato quello dello header con colori invertiti."
+msgstr ""
+
+#: inc/admin/options.php:244
+msgid "Utilizzare questo campo per caricare un'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile)."
+msgstr ""
