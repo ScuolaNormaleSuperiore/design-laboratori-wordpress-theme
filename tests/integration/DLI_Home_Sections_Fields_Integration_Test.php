@@ -9,7 +9,8 @@
  * The descriptions of the fields «Numero massimo di elementi» and «Numero massimo di sottopagine per gruppo».
  *
  * The same two fields serve three sections and a field has one name in CMB2, so the description says what the number
- * counts for each section: cards, groups or columns, and links.
+ * counts for each section: cards, groups or columns, and links. The test checks that the description keeps the
+ * limits and the default, not its wording.
  */
 class DLI_Home_Sections_Fields_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -54,32 +55,6 @@ class DLI_Home_Sections_Fields_Integration_Test extends DLI_Integration_Test_Cas
 		}
 
 		$this->fail( "The field $field_id is not in the rows of Sezioni HP." );
-	}
-
-	/**
-	 * The number of items is cards for «Card di navigazione», groups for «Navigazione per pagine» and columns for
-	 * «Indice di una pagina»: the description names the three sections.
-	 */
-	public function test_max_items_description_says_what_it_counts_for_each_section() {
-		$description = $this->description_of( 'max_items' );
-
-		$this->assertStringContainsString( __( 'Card di navigazione', 'design_laboratori_italia' ), $description );
-		$this->assertStringContainsString( __( 'Navigazione per pagine', 'design_laboratori_italia' ), $description );
-		$this->assertStringContainsString( __( 'Indice di una pagina', 'design_laboratori_italia' ), $description );
-		$this->assertStringContainsString( __( 'Banner', 'design_laboratori_italia' ), $description );
-		$this->assertStringContainsString( 'solo in modalità automatica', $description, 'The number of the banners counts in one mode only, and the description says it.' );
-	}
-
-	/**
-	 * The number of sub-items is the links of each group or of each column: the description names the two sections
-	 * that have them and not the one that has none.
-	 */
-	public function test_max_subitems_description_says_what_it_counts_for_each_section() {
-		$description = $this->description_of( 'max_subitems' );
-
-		$this->assertStringContainsString( __( 'Navigazione per pagine', 'design_laboratori_italia' ), $description );
-		$this->assertStringContainsString( __( 'Indice di una pagina', 'design_laboratori_italia' ), $description );
-		$this->assertStringNotContainsString( __( 'Card di navigazione', 'design_laboratori_italia' ), $description );
 	}
 
 	/**

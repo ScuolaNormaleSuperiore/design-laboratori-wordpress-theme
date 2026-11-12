@@ -1,6 +1,6 @@
 <?php
 /**
- * Unit tests of the guide to the images, DOC/HowTo/Immagini.md: it exists, it is in the documentation manifest and it
+ * Unit tests of the guide to the images, DOC/HowTo/Gestione-delle-immagini.md: it exists, it is in the documentation manifest and it
  * gives the same sizes as the list of formats in inc/image-guidelines.php.
  *
  * A failing test means the list and the guide were not updated together: fix the guide, or the list.
@@ -18,7 +18,7 @@ class DLI_Image_Guide_Unit_Test extends TestCase {
 	/**
 	 * Path of the guide, relative to the theme.
 	 */
-	const GUIDE = 'DOC/HowTo/Immagini.md';
+	const GUIDE = 'DOC/HowTo/Gestione-delle-immagini.md';
 
 	/**
 	 * The text of the guide.
@@ -35,7 +35,7 @@ class DLI_Image_Guide_Unit_Test extends TestCase {
 	 * The guide starts with its title and says what it is for.
 	 */
 	public function test_the_guide_has_a_title() {
-		$this->assertStringStartsWith( '# Immagini', $this->guide() );
+		$this->assertStringStartsWith( '# Gestione delle immagini', $this->guide() );
 	}
 
 	/**
@@ -96,6 +96,28 @@ class DLI_Image_Guide_Unit_Test extends TestCase {
 		$this->assertSame( 'Amministra', $entries[0]['group'] );
 		$this->assertNotSame( '', $entries[0]['title'] );
 		$this->assertNotSame( '', $entries[0]['description'] );
+	}
+
+	/**
+	 * The address that the media window links is the page of the guide in the documentation site: the address of the
+	 * site in the README plus the target of the guide in the manifest, as the generator makes it (pretty addresses).
+	 * It is deduced, so the page may not exist yet: if the published address differs, correct `DLI_IMAGE_GUIDE_URL`.
+	 */
+	public function test_the_address_of_the_guide_follows_the_manifest_and_the_documentation_site() {
+		$readme = (string) file_get_contents( DLI_TEST_THEME_DIR . '/README.md' );
+		$this->assertSame( 1, preg_match( '#\[documentazione di Design Laboratori Italia\]\((https://[a-z0-9.-]+\.github\.io/[a-z0-9-]+/)\)#', $readme, $site ), 'The README gives no address of the documentation site.' );
+
+		$manifest = json_decode( (string) file_get_contents( DLI_TEST_THEME_DIR . '/SETUP/Documentazione/site-manifest.json' ), true );
+		$targets  = array();
+		foreach ( $manifest['pages'] ?? array() as $page ) {
+			if ( self::GUIDE === ( $page['source'] ?? '' ) ) {
+				$targets[] = $page['target'];
+			}
+		}
+		$this->assertCount( 1, $targets, 'The guide must be in the manifest exactly once.' );
+
+		$this->assertSame( $site[1] . preg_replace( '/\.md$/', '/', $targets[0] ), DLI_IMAGE_GUIDE_URL );
+		$this->assertStringStartsWith( 'https://', DLI_IMAGE_GUIDE_URL );
 	}
 
 	/**

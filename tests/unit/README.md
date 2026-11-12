@@ -62,12 +62,12 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 |---|---|
 | `DLI_Utils_Unit_Test.php` | Funzioni pure di `inc/utils.php`: nome visualizzato delle persone, ricerca in array annidati, nomi dei mesi, creazione e formattazione di date |
 | `DLI_Cmb2_Loader_Unit_Test.php` | Come il tema carica CMB2: percorsi di `inc/cmb2.php` ancorati su `__DIR__`, versione dello stub di PHPStan uguale a quella della libreria, nessun `package*.json` o file di lock dentro `inc/vendor/CMB2` |
-| `DLI_Config_Unit_Test.php` | Costanti di `config-lab.php`: lingue, plugin richiesti (ACF e Polylang), sezioni della home, contenuti con pagina di elenco |
+| `DLI_Config_Unit_Test.php` | Costanti di `config-lab.php`: lingue, plugin richiesti (ACF e Polylang), contenuti con pagina di elenco |
 | `DLI_Release_Version_Unit_Test.php` | La versione è la stessa in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml` e nella prima voce di `CHANGELOG.md` |
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` coincide con la data della prima voce di `CHANGELOG.md` |
 | `DLI_Agents_Docs_Unit_Test.php` | I documenti citati da `AGENTS/AI_BOOTSTRAP.md` esistono (esclusi i file locali ignorati da Git) |
 | `DLI_Image_Guidelines_Unit_Test.php` | L'elenco dei formati delle immagini (`inc/image-guidelines.php`): ogni posizione ha i suoi campi, il minimo non supera il consigliato, le misure seguono il rapporto, il testo dice «consigliato» e «indicative», dà la zona sicura di hero e banner e il peso massimo letto da `DLI_MAX_IMG_FILE_SIZE_MB` |
-| `DLI_Image_Guide_Unit_Test.php` | La guida `DOC/HowTo/Immagini.md`: esiste, è nel manifest della documentazione, riporta ogni misura e il nome di ogni posizione dell'elenco, dà il peso massimo e non ha riferimenti privati |
+| `DLI_Image_Guide_Unit_Test.php` | La guida `DOC/HowTo/Gestione-delle-immagini.md`: esiste, è nel manifest della documentazione, riporta ogni misura e il nome di ogni posizione dell'elenco, dà il peso massimo e non ha riferimenti privati |
 | `DLI_Image_Coverage_Unit_Test.php` | Ogni file del tema che carica o mostra un'immagine (dimensioni, immagine in evidenza, allegati, campi ACF e CMB2) è nell'elenco dei file noti, legato a una posizione dell'elenco dei formati o con un'eccezione motivata; segnala anche i file noti che non mostrano più immagini |
 | `DLI_Captcha_Unit_Test.php` | L’helper CAPTCHA fallisce in modo sicuro quando il plugin opzionale Really Simple CAPTCHA non è disponibile |
 | `DLI_PHPStan_Config_Unit_Test.php` | `phpstan.neon`: ogni file PHP della radice è nei percorsi analizzati, ogni cartella con codice PHP è analizzata o esclusa in modo esplicito e il livello non scende sotto il 4 |

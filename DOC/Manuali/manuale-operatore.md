@@ -142,7 +142,7 @@ Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano n
 
 In `Configurazione > Layout HP` scegli la dimensione grande o piccola, compila titolo e testo IT/EN, seleziona l'immagine e indica etichetta e URL del pulsante. Aggiungi e abilita `Hero principale` in `Sezioni HP`.
 
-L'immagine di sfondo è una fascia larga e bassa: carica un'immagine panoramica di 1920 × 600 px, con il soggetto al centro. Sotto il campo trovi l'indicazione del formato; tutte le posizioni sono nella guida [Immagini: formati consigliati](../HowTo/Immagini.md).
+L'immagine di sfondo è una fascia larga e bassa: carica un'immagine panoramica di 1920 × 600 px, con il soggetto al centro. Sotto il campo trovi l'indicazione del formato; tutte le posizioni sono nella guida [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md).
 
 ![Configurazione dei campi dell'hero principale, con dimensione, titoli, testi, pulsante e immagine di sfondo.](../Immagini/home/home-hero-configurazione.png)
 
@@ -288,13 +288,13 @@ Pubblica e promuovi gli articoli, poi abilita `Articoli` in `Sezioni HP`; sul si
 
 Mostra richiami grafici ordinati per `Priorità` crescente (3 se non scegli un numero) oppure quelli che scegli a mano (fino a 12). Può servire a promuovere un bando o un'iniziativa; non è la scheda pubblica di un contenuto navigabile autonomamente.
 
-Crea e pubblica i contenuti di tipo Banner con titolo, testo, immagine in evidenza, priorità ed eventuali etichetta e link del pulsante. L'immagine è una fascia larga e bassa che cresce con il testo: usa un'immagine panoramica di 1920 × 480 px con il soggetto al centro (vedi [Immagini: formati consigliati](../HowTo/Immagini.md)). Abilita `Banner` in `Sezioni HP`: non serve il campo `Promuovi in Home`. Senza Banner da mostrare il blocco non compare; senza link non compare il pulsante. Il testo descrittivo è nascosto sugli schermi più piccoli: il messaggio essenziale deve essere chiaro anche nel titolo.
+Crea e pubblica i contenuti di tipo Banner con titolo, testo, immagine in evidenza, priorità ed eventuali etichetta e link del pulsante. L'immagine è una fascia larga e bassa che cresce con il testo: usa un'immagine panoramica di 1920 × 480 px con il soggetto al centro (vedi [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md)). Abilita `Banner` in `Sezioni HP`: non serve il campo `Promuovi in Home`. Senza Banner da mostrare il blocco non compare; senza link non compare il pulsante. Il testo descrittivo è nascosto sugli schermi più piccoli: il messaggio essenziale deve essere chiaro anche nel titolo.
 
 Ogni riga ha il campo `Come scegliere i banner`: **Automatico** (i banner pubblicati per `Priorità` crescente, come è sempre stato) oppure **Manuale** (i banner che scegli in `Banner scelti`, nell'ordine in cui li scegli). In manuale, senza banner scelti la sezione non compare; un banner in bozza, nel cestino o senza la traduzione nella lingua della pagina non compare; si può scegliere lo stesso banner in due sezioni. `Numero massimo di elementi` (da 1 a 12; se vuoto, 3) vale **solo in modalità automatica**: in manuale compaiono tutti i banner scelti. La riga ha anche, se vuoi, un titolo in italiano e in inglese (`Titolo della sezione` e `Titolo della sezione ENG`, come il Video): compare solo se esiste nella lingua della pagina e se `Mostra il titolo della sezione` è su Sì; senza titolo i banner sono come sono sempre stati. Per i campi consulta il [manuale Banner](Manuale-Gestione-Contenuti-Banner.md).
 
 ### 8.16 Sponsor
 
-Mostra una griglia di loghi, per esempio partner e collaborazioni, ordinati per `Priorità` crescente. Pubblica i contenuti Sponsor con immagine in evidenza, priorità e collegamento esterno, se disponibile. Il logo viene mostrato alto al massimo 64 px: usa un logo orizzontale su fondo trasparente, alto almeno 128 px (vedi [Immagini: formati consigliati](../HowTo/Immagini.md)).
+Mostra una griglia di loghi, per esempio partner e collaborazioni, ordinati per `Priorità` crescente. Pubblica i contenuti Sponsor con immagine in evidenza, priorità e collegamento esterno, se disponibile. Il logo viene mostrato alto al massimo 64 px: usa un logo orizzontale su fondo trasparente, alto almeno 128 px (vedi [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md)).
 
 Abilita `Sponsor` in `Sezioni HP` e scegli gli elementi per riga in `Configurazione > Sponsors`. Non si selezionano con `Promuovi in Home`: il modello legge fino a 30 Sponsor pubblicati. Senza risultati la sezione non compare; senza collegamento un logo non è cliccabile. La voce di visualizzazione del titolo non produce un'intestazione visibile sopra i loghi. Per creare i loghi, l'ordine e i collegamenti consulta il [manuale Sponsor](Manuale-Gestione-Contenuti-Sponsor.md).
 
@@ -401,7 +401,7 @@ Controlla: ordine sezioni in configurazione e presenza dei contenuti sorgente.
 - Evita copia/incolla da Word/Google Docs senza pulizia.
 - Usa titoli coerenti con lo stile editoriale del sito.
 - Mantieni immagini leggere (al massimo 1 MB) e con nome file descrittivo.
-- Per ogni immagine segui il formato consigliato sotto il campo di caricamento; le misure sono indicative, perché il ritaglio cambia con lo schermo e con la lunghezza del testo. Per hero e banner guarda il risultato sul computer e sul telefono prima di pubblicare. Tutte le posizioni sono nella guida [Immagini: formati consigliati](../HowTo/Immagini.md).
+- Per ogni immagine segui il formato consigliato sotto il campo di caricamento; le misure sono indicative, perché il ritaglio cambia con lo schermo e con la lunghezza del testo. Per hero e banner guarda il risultato sul computer e sul telefono prima di pubblicare. Tutte le posizioni sono nella guida [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md).
 - Registra le modifiche rilevanti (chi, cosa, quando).
 
 ## 15. Contatti e documenti correlati
@@ -409,7 +409,7 @@ Documentazione tecnica/progetto:
 - [README del progetto](../../README.md)
 - [Manuale Amministratore](Manuale-Amministratore.md)
 - [Manuale Utente del Pannello Configurazione](Manuale-Utente-Pannello-Configurazione.md)
-- [Immagini: formati consigliati](../HowTo/Immagini.md)
+- [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md)
 - [Aggiornare Bootstrap Italia](../HowTo/HowTo%20Aggiornare%20Bootstrap%20Italia.md)
 - [Migrazione storica da 1.4.x a 1.5.x](../HowTo/Migrazione%20da%2014x%20a%2015x.md)
 - [Migrazione storica da 1.6.x a 1.7.x](../HowTo/Migrazione%20da%2016x%20a%2017x.md)

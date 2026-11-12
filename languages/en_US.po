@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-11-10 13:56+0000\n"
+"PO-Revision-Date: 2026-11-12 08:38+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -116,13 +116,17 @@ msgstr "Login"
 msgid ""
 "Accedi con le credenziali del tuo istituto per vedere i contenuti riservati "
 "ai tuoi gruppi."
-msgstr "Log in with your institution's credentials to see the contents reserved to your groups."
+msgstr ""
+"Log in with your institution's credentials to see the contents reserved to "
+"your groups."
 
 #: inc/reserved-area.php:44
 msgid ""
 "Accesso ai contenuti riservati con il single sign-on (WP SAML Auth) e i "
 "gruppi (Groups). Chi vede un contenuto lo decide il plugin Groups."
-msgstr "Access to reserved contents with single sign-on (WP SAML Auth) and groups (Groups). Who sees a content is decided by the Groups plugin."
+msgstr ""
+"Access to reserved contents with single sign-on (WP SAML Auth) and groups "
+"(Groups). Who sees a content is decided by the Groups plugin."
 
 #: template-parts/common/reserved-area-access.php:22
 msgid "Accesso all'area riservata"
@@ -334,7 +338,9 @@ msgstr "ATTENTION: The following plugins must be installed and activated:"
 msgid ""
 "Attiva le funzioni del tema per gli utenti dell'area riservata (ruoli "
 "«Utente in attesa» e «Utente area riservata»)."
-msgstr "Enables the theme features for the users of the reserved area (roles «Utente in attesa» and «Utente area riservata»)."
+msgstr ""
+"Enables the theme features for the users of the reserved area (roles «Utente "
+"in attesa» and «Utente area riservata»)."
 
 #. Name of the template
 #: single-persona.php:220 single-persona.php:316 inc/utils.php:272
@@ -354,6 +360,10 @@ msgstr "Authors"
 #: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:69
 msgid "Banner"
 msgstr "Banner"
+
+#: inc/image-guidelines.php:45
+msgid "Banner della home"
+msgstr "Home page banner"
 
 #: single-persona.php:188 single-persona.php:268
 #: inc/classes/class-peoplemanager.php:114
@@ -406,6 +416,10 @@ msgstr "Cards"
 #: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:82
 msgid "Card di navigazione"
 msgstr "Navigation cards"
+
+#: inc/image-guidelines.php:65
+msgid "Carousel e contenuti correlati"
+msgstr "Carousel and related contents"
 
 #: page-templates/blog.php:74 page-templates/eventi.php:85
 #: page-templates/notizie.php:85
@@ -555,9 +569,9 @@ msgstr ""
 "an email to confirm your subscription"
 
 #: page-templates/contatti.php:70 inc/classes/class-newslettermanager.php:172
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:332
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:342
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:357
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:345
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:355
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:370
 msgid "Compilare tutti i campi obbligatori."
 msgstr "Fill in all mandatory fields."
 
@@ -627,6 +641,10 @@ msgstr "cookie policy"
 #: tests/integration/DLI_Publication_Detail_Integration_Test.php:290
 msgid "Copertina della pubblicazione"
 msgstr "Publication cover"
+
+#: inc/image-guidelines.php:109
+msgid "Copertina di una pubblicazione"
+msgstr "Cover of a publication"
 
 #: page-templates/contatti.php:91
 msgid "Copia del messaggio non inviata."
@@ -836,7 +854,7 @@ msgstr "december"
 msgid "Digita almeno %d caratteri per vedere i suggerimenti"
 msgstr "Type at least %d characters to see suggestions"
 
-#: inc/classes/class-dli-labmanager.php:326
+#: inc/classes/class-dli-labmanager.php:328
 msgid ""
 "Dimensione massima consentita sul Sito Federato: PDF 2 MB, Immagini (JPEG, "
 "PNG, GIF, WebP) 1 MB."
@@ -875,6 +893,10 @@ msgstr "E-mail"
 #: inc/admin/class-dli-tools-admin.php:703
 msgid "Elaborati"
 msgstr "Processed"
+
+#: inc/image-guidelines.php:55
+msgid "Elenchi di contenuti (progetti, eventi, brevetti, ricerca, spin-off)"
+msgstr "Content lists (projects, events, patents, research, spin-offs)"
 
 #: template-parts/hero/progetti-archive.php:24
 msgid "Elenco dei progetti archiviati"
@@ -1035,10 +1057,32 @@ msgstr "End of event, at"
 msgid "Fino alle ore"
 msgstr "Until"
 
+#. 1: file formats, 2: maximum weight in megabytes.
+#: inc/image-guidelines.php:231
+#, php-format
+msgid "Formati: %1$s, peso massimo %2$d MB."
+msgstr "Formats: %1$s, maximum weight %2$d MB."
+
+#. 1: ratio of the image (for example 16:9), 2: width in pixels, 3: height in pixels.
+#: inc/image-guidelines.php:207
+#, php-format
+msgid "Formato consigliato: %1$s, %2$d × %3$d px"
+msgstr "Recommended format: %1$s, %2$d × %3$d px"
+
+#. %s: ratio of the image, in words.
+#: inc/image-guidelines.php:210
+#, php-format
+msgid "Formato consigliato: %s"
+msgstr "Recommended format: %s"
+
 #: inc/admin/class-dli-page-import-admin.php:228
 #: inc/admin/class-dli-tools-admin.php:361
 msgid "Formato non valido: è richiesto un file .csv."
 msgstr "Invalid format: a .csv file is required."
+
+#: inc/image-guidelines.php:164
+msgid "Foto di una risorsa tecnica"
+msgstr "Photo of a technical resource"
 
 #: inc/utils.php:1112
 msgid "gen"
@@ -1069,11 +1113,22 @@ msgid ""
 "Gli utenti con i ruoli dell'area riservata possono entrare solo con il "
 "single sign-on: il login con password e il recupero della password sono "
 "disattivati. Gli altri utenti non sono interessati."
-msgstr "Users with the reserved area roles can log in only with single sign-on: password login and password recovery are disabled. Other users are not affected."
+msgstr ""
+"Users with the reserved area roles can log in only with single sign-on: "
+"password login and password recovery are disabled. Other users are not "
+"affected."
+
+#: inc/image-guidelines.php:304
+msgid "Guida alle immagini"
+msgstr "Guide to the images"
 
 #: page-templates/privacy.php:181
 msgid "Hai installato i seguenti cookies di terze parti:"
 msgstr "You have installed the following third-party cookies:"
+
+#: inc/image-guidelines.php:35
+msgid "Hero della home"
+msgstr "Home page hero"
 
 #: inc/utils.php:693 inc/classes/class-dli-contentsmanager.php:156
 msgid "Home"
@@ -1135,7 +1190,7 @@ msgstr "The file is not in UTF-8: save it as “CSV UTF-8”."
 msgid "Il file non è stato importato: correggi gli errori e invialo di nuovo."
 msgstr "The file was not imported: fix the errors and submit it again."
 
-#: inc/classes/class-dli-labmanager.php:313
+#: inc/classes/class-dli-labmanager.php:315
 msgid "Il file PDF è troppo grande. Massimo consentito: 2MB."
 msgstr "PDF file is too large. Maximum allowed: 2MB."
 
@@ -1144,9 +1199,42 @@ msgstr "PDF file is too large. Maximum allowed: 2MB."
 msgid "Il Laboratorio"
 msgstr "The Lab"
 
+#: inc/image-guidelines.php:31
+msgid ""
+"Il logo non viene tagliato: è mostrato alto circa 80 px; un PNG deve essere "
+"alto almeno 160 px."
+msgstr ""
+"The logo is not cropped: it is shown about 80 px high; a PNG must be at "
+"least 160 px high."
+
+#: inc/image-guidelines.php:158
+msgid ""
+"Il logo si vede solo nell'elenco degli spin-off, non nella scheda. "
+"Nell'elenco riempie un riquadro quasi 3:2 la cui altezza cambia con il testo "
+"della scheda, e un logo molto largo viene tagliato ai lati."
+msgstr ""
+"The logo is seen only in the list of spin-offs, not on the detail page. In "
+"the list it fills an almost 3:2 box whose height changes with the text of "
+"the card, and a very wide logo is cropped at the sides."
+
+#: inc/image-guidelines.php:93
+msgid ""
+"Il logo viene mostrato alto al massimo 64 px: un'altezza di almeno 128 px "
+"resta nitida sugli schermi ad alta densità."
+msgstr ""
+"The logo is shown at most 64 px high: a height of at least 128 px stays "
+"sharp on high-density screens."
+
+#: inc/image-guidelines.php:29
+msgid ""
+"Il riquadro è 16:9: un'immagine con un'altra proporzione viene tagliata al "
+"centro."
+msgstr ""
+"The box is 16:9: an image with another ratio is cropped around the centre."
+
 #: page-templates/contatti.php:60 page-templates/contatti.php:332
 #: page-templates/newsletter.php:57 page-templates/newsletter.php:224
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:341
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:354
 msgid ""
 "Il servizio di verifica non è temporaneamente disponibile. Riprova più tardi."
 msgstr ""
@@ -1163,6 +1251,16 @@ msgstr "Place main image"
 #: inc/classes/class-peoplemanager.php:78
 msgid "Immagine principale della Persona"
 msgstr "Person main image"
+
+#: inc/image-guidelines.php:300
+msgid ""
+"Immagini: di norma formato 16:9, almeno 1200 px di larghezza e soggetto al "
+"centro. Le dimensioni sono indicative: il formato di ogni posizione è "
+"scritto sotto il campo."
+msgstr ""
+"Images: usually 16:9 format, at least 1200 px wide and with the subject in "
+"the centre. The sizes are indicative: the format of each place is written "
+"under the field."
 
 #: inc/admin/class-dli-tools-admin.php:71
 #: inc/admin/class-dli-tools-admin.php:178
@@ -1210,7 +1308,7 @@ msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr "In Admin->Configure set the articles to show in the carousel"
 
 #: page-templates/contatti.php:75 inc/classes/class-newslettermanager.php:176
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:333
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:346
 msgid "Indicare un indirizzo email valido."
 msgstr "Please provide a valid email address."
 
@@ -1307,7 +1405,7 @@ msgstr "Invalid header: the column \"%s\" is repeated."
 msgid "Intestazione richiesta"
 msgstr "Required header"
 
-#: inc/classes/class-dli-labmanager.php:357
+#: inc/classes/class-dli-labmanager.php:360
 msgid "Invalid username or password"
 msgstr "Invalid username or password"
 
@@ -1331,13 +1429,59 @@ msgstr "Subscription"
 msgid "Iscrizione alla newsletter avvenuta con successo."
 msgstr "Newsletter subscription successful."
 
-#: inc/classes/class-dli-labmanager.php:288
+#: inc/classes/class-dli-labmanager.php:290
 msgid "L'API REST di WordPress è disabilitata."
 msgstr "WordPress REST API is disabled."
 
-#: inc/classes/class-dli-labmanager.php:309
+#: inc/image-guidelines.php:82
+msgid ""
+"L'immagine non viene tagliata: è mostrata nelle sue proporzioni, in una "
+"colonna larga circa 530 px. Un file largo almeno 1200 px resta nitido sugli "
+"schermi ad alta densità."
+msgstr ""
+"The image is not cropped: it is shown in its own proportions, in a column "
+"about 530 px wide. A file at least 1200 px wide stays sharp on high-density "
+"screens."
+
+#: inc/image-guidelines.php:41 inc/image-guidelines.php:51
+msgid ""
+"L'immagine riempie una fascia a tutta larghezza e viene tagliata sopra, "
+"sotto e ai lati."
+msgstr ""
+"The image fills a full-width strip and is cropped above, below and at the "
+"sides."
+
+#: inc/classes/class-dli-labmanager.php:311
 msgid "L'immagine è troppo grande. Massimo consentito: 1MB."
 msgstr "Image is too large. Maximum allowed: 1MB."
+
+#: inc/image-guidelines.php:115
+msgid ""
+"La copertina non viene tagliata: è mostrata nel suo formato, in una colonna "
+"larga circa 305 px (sul telefono al massimo 192 px). Un file largo almeno "
+"610 px resta nitido sugli schermi ad alta densità."
+msgstr ""
+"The cover is not cropped: it is shown in its own format, in a column about "
+"305 px wide (on a phone at most 192 px). A file at least 610 px wide stays "
+"sharp on high-density screens."
+
+#: inc/image-guidelines.php:170
+msgid ""
+"La foto non viene tagliata: è mostrata nelle sue proporzioni, in uno spazio "
+"largo al massimo 280 px. Un file largo almeno 560 px resta nitido sugli "
+"schermi ad alta densità. Se manca, la scheda usa l'immagine in evidenza."
+msgstr ""
+"The photo is not cropped: it is shown in its own proportions, in a space at "
+"most 280 px wide. A file at least 560 px wide stays sharp on high-density "
+"screens. If it is missing, the page uses the featured image."
+
+#: inc/image-guidelines.php:104
+msgid ""
+"La foto viene mostrata in un cerchio, al massimo di 112 px: inquadra il "
+"volto al centro, perché gli angoli vengono tagliati."
+msgstr ""
+"The photo is shown in a circle, at most 112 px wide: frame the face in the "
+"centre, because the corners are cropped."
 
 #: inc/admin/class-dli-page-import-admin.php:294
 msgid "La lingua richiesta non esiste in questo sito."
@@ -1348,10 +1492,17 @@ msgid "La Newslettere è disabilitata"
 msgstr "The Newsletter is disabled"
 
 #: template-parts/common/reserved-area-access.php:35
+#: tests/integration/DLI_Reserved_Area_Access_Integration_Test.php:327
 msgid ""
 "La tua richiesta di accesso è in attesa di approvazione: vedrai i contenuti "
 "riservati quando un amministratore ti avrà inserito in un gruppo."
-msgstr "Your access request is awaiting approval: you will see the reserved contents once an administrator has added you to a group."
+msgstr ""
+"Your access request is awaiting approval: you will see the reserved contents "
+"once an administrator has added you to a group."
+
+#: inc/image-guidelines.php:229
+msgid "Le dimensioni sono indicative: il ritaglio dipende dallo schermo."
+msgstr "The sizes are indicative: the crop depends on the screen."
 
 #: inc/admin/class-dli-page-import-admin.php:576
 msgid "Le pagine del file, con l'indirizzo e l'esito"
@@ -1380,6 +1531,10 @@ msgstr "Publications"
 msgid "Leggi di piu"
 msgstr "Read more"
 
+#: inc/image-guidelines.php:77 inc/image-guidelines.php:165
+msgid "libero"
+msgstr "free"
+
 #: inc/admin/class-dli-page-import-admin.php:455
 msgid "Lingua delle pagine"
 msgstr "Language of the pages"
@@ -1407,6 +1562,18 @@ msgstr "Location"
 msgid "Log importazione"
 msgstr "Import log"
 
+#: inc/image-guidelines.php:129
+msgid "Logo del piè di pagina"
+msgstr "Footer logo"
+
+#: inc/image-guidelines.php:119
+msgid "Logo dell'intestazione"
+msgstr "Header logo"
+
+#: inc/image-guidelines.php:152
+msgid "Logo di uno spin-off (elenco degli spin-off)"
+msgstr "Spin-off logo (list of spin-offs)"
+
 #: inc/classes/class-patentmanager.php:83
 msgid "Logo Identificativo dell'Brevetto"
 msgstr "Patent Identification Logo"
@@ -1423,6 +1590,14 @@ msgstr "News identification logo"
 #: inc/classes/class-sponsormanager.php:44
 msgid "Logo Identificativo dello Sponsor"
 msgstr "Sponsor Identification Logo"
+
+#: inc/image-guidelines.php:88
+msgid "logo orizzontale su fondo trasparente"
+msgstr "horizontal logo on a transparent background"
+
+#: inc/image-guidelines.php:139
+msgid "Logo per il menu del telefono"
+msgstr "Logo for the phone menu"
 
 #: inc/utils.php:1118
 msgid "lug"
@@ -1478,7 +1653,7 @@ msgstr "Brand and model"
 msgid "marzo"
 msgstr "march"
 
-#: functions.php:199
+#: functions.php:204
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
@@ -1486,19 +1661,19 @@ msgstr "Footer link menu - footer"
 msgid "Menu contatti"
 msgstr "Contacts menu"
 
-#: functions.php:197
+#: functions.php:202
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:198
+#: functions.php:203
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:195
+#: functions.php:200
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:196
+#: functions.php:201
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -1518,6 +1693,25 @@ msgstr "Message not sent"
 #: inc/classes/class-base-importer.php:231
 msgid "Metodo non consentito. Usare POST."
 msgstr "This method is not allowed. Use POST."
+
+#: inc/image-guidelines.php:159
+msgid ""
+"metti il logo al centro di un'immagine di proporzioni simili, con un margine "
+"di almeno il 15% su ogni lato."
+msgstr ""
+"put the logo in the centre of an image with similar proportions, with a "
+"margin of at least 15% on every side."
+
+#. 1: minimum width in pixels, 2: minimum height in pixels.
+#: inc/image-guidelines.php:219
+#, php-format
+msgid "minimo %1$d × %2$d px"
+msgstr "minimum %1$d × %2$d px"
+
+#. %d: minimum width in pixels.
+#: inc/image-guidelines.php:216
+msgid "minimo %d px di larghezza"
+msgstr "minimum %d px wide"
 
 #: inc/admin/class-dli-page-import-admin.php:466
 #: inc/admin/class-dli-tools-admin.php:629
@@ -1863,7 +2057,9 @@ msgid ""
 "Pagina pubblica da cui si accede all'area riservata: riceve il pulsante di "
 "accesso ed è la pagina in cui arrivano gli utenti dell'area riservata dopo "
 "il login."
-msgstr "Public page from which the reserved area is accessed: it shows the login button and is the page where the reserved area users land after logging in."
+msgstr ""
+"Public page from which the reserved area is accessed: it shows the login "
+"button and is the page where the reserved area users land after logging in."
 
 #: template-parts/common/paginazione.php:104
 #: template-parts/persone/view-tabella.php:293
@@ -1880,6 +2076,10 @@ msgstr "Pages"
 msgid "Pagine collegate"
 msgstr "Linked pages"
 
+#: inc/image-guidelines.php:76
+msgid "Pagine di dettaglio (notizie, luoghi, risorse tecniche, pagine)"
+msgstr "Detail pages (news, places, technical resources, pages)"
+
 #: template-parts/home/hp-tabs-section.php:40
 msgid "Pannello tab"
 msgstr "Tabs panel"
@@ -1892,6 +2092,10 @@ msgstr "Overview"
 #: inc/admin/class-dli-tools-admin.php:61
 msgid "Panoramica — Strumenti DLI"
 msgstr "Overview - DLI Tools"
+
+#: inc/image-guidelines.php:36 inc/image-guidelines.php:46
+msgid "panoramico"
+msgstr "panoramic"
 
 #: template-parts/home/hp-sponsor-section.php:58
 msgid "Partner e collaborazioni"
@@ -1907,11 +2111,13 @@ msgid ""
 "nulla."
 msgstr "To import you must confirm the publication: nothing was written."
 
-#: inc/reserved-area.php:326
+#: inc/reserved-area.php:387
 msgid ""
 "Per questo account l'accesso è possibile solo con il single sign-on "
 "dell'istituto."
-msgstr "For this account, access is possible only with your institution's single sign-on."
+msgstr ""
+"For this account, access is possible only with your institution's single "
+"sign-on."
 
 #: inc/admin/class-dli-tools-admin.php:550
 msgid ""
@@ -1943,8 +2149,8 @@ msgid "persona trovata"
 msgstr "person found"
 
 #. Name of the template
-#: inc/featured-contents.php:38 inc/utils.php:276 page-templates/persone.php:2
-#: inc/admin/class-dli-tools-admin.php:258
+#: inc/featured-contents.php:38 inc/image-guidelines.php:98 inc/utils.php:276
+#: page-templates/persone.php:2 inc/admin/class-dli-tools-admin.php:258
 msgid "Persone"
 msgstr "People"
 
@@ -2350,6 +2556,10 @@ msgstr "Publication"
 msgid "Pubblicazioni"
 msgstr "Publications"
 
+#: inc/image-guidelines.php:99
+msgid "quadrato"
+msgstr "square"
+
 #: inc/search-autocomplete.php:340
 msgid ""
 "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e "
@@ -2357,6 +2567,10 @@ msgid ""
 msgstr ""
 "When results are available, use the up and down arrows to review them and "
 "Enter to select."
+
+#: inc/image-guidelines.php:153
+msgid "quasi 3:2"
+msgstr "almost 3:2"
 
 #: inc/admin/class-dli-tools-admin.php:219
 msgid ""
@@ -2822,7 +3036,7 @@ msgstr "Spin-off"
 msgid "Spinoff"
 msgstr "Spinoff"
 
-#: inc/classes/class-sponsormanager.php:51
+#: inc/image-guidelines.php:87 inc/classes/class-sponsormanager.php:51
 msgid "Sponsor"
 msgstr "Sponsor"
 
@@ -2852,6 +3066,10 @@ msgstr "DLI Tools"
 #: template-parts/persone/view-tabella.php:249
 msgid "Struttura"
 msgstr "Structure"
+
+#: inc/image-guidelines.php:30
+msgid "SVG, oppure PNG con fondo trasparente"
+msgstr "SVG, or PNG with a transparent background"
 
 #: inc/reserved-area.php:57 inc/reserved-area.php:84
 msgid "Sì"
@@ -2948,6 +3166,24 @@ msgstr "Message text"
 #: inc/admin/class-dli-page-import-admin.php:475
 msgid "Testo di riempimento"
 msgstr "Placeholder text"
+
+#: inc/image-guidelines.php:28
+msgid ""
+"tieni il soggetto nel rettangolo centrale, circa il 40% della larghezza e il "
+"60% dell'altezza: l'altezza della fascia cambia con il testo e con lo "
+"schermo."
+msgstr ""
+"keep the subject in the central rectangle, about 40% of the width and 60% of "
+"the height: the height of the strip changes with the text and with the "
+"screen."
+
+#: inc/image-guidelines.php:27
+msgid ""
+"tieni il soggetto nel rettangolo centrale, circa il 55% della larghezza e il "
+"65% dell'altezza: sul telefono e con titoli lunghi i bordi vengono tagliati."
+msgstr ""
+"keep the subject in the central rectangle, about 55% of the width and 65% of "
+"the height: on a phone and with long titles the edges are cropped."
 
 #: inc/admin/class-dli-tools-admin.php:262
 msgid "Tipi di importazione"
@@ -3207,7 +3443,7 @@ msgid "Vai alla pagina: Newsletter"
 msgstr "Go to Newsletter"
 
 #: page-templates/contatti.php:106 page-templates/newsletter.php:51
-#: tests/integration/DLI_Contact_Form_Integration_Test.php:356
+#: tests/integration/DLI_Contact_Form_Integration_Test.php:369
 msgid "Valore di Nonce errato."
 msgstr "Incorrect Nonce value."
 
@@ -3228,6 +3464,10 @@ msgstr "See all"
 msgid "Verrà creata"
 msgstr "Will be created"
 
+#: inc/image-guidelines.php:110
+msgid "verticale"
+msgstr "vertical"
+
 #: single-brevetto.php:189 single-brevetto.php:272 single-evento.php:169
 #: single-evento.php:316 single-spinoff.php:156 single-spinoff.php:243
 msgid "Video"
@@ -3245,182 +3485,8 @@ msgstr "Website Link"
 msgid "Youtube per la visualizzazione di video"
 msgstr "Youtube for video viewing"
 
-#: inc/image-guidelines.php:27
-msgid "tieni il soggetto nel rettangolo centrale, circa il 55% della larghezza e il 65% dell'altezza: sul telefono e con titoli lunghi i bordi vengono tagliati."
-msgstr "keep the subject in the central rectangle, about 55% of the width and 65% of the height: on a phone and with long titles the edges are cropped."
-
-#: inc/image-guidelines.php:28
-msgid "tieni il soggetto nel rettangolo centrale, circa il 40% della larghezza e il 60% dell'altezza: l'altezza della fascia cambia con il testo e con lo schermo."
-msgstr "keep the subject in the central rectangle, about 40% of the width and 60% of the height: the height of the strip changes with the text and with the screen."
-
-#: inc/image-guidelines.php:29
-msgid "Il riquadro è 16:9: un'immagine con un'altra proporzione viene tagliata al centro."
-msgstr "The box is 16:9: an image with another ratio is cropped around the centre."
-
-#: inc/image-guidelines.php:30
-msgid "SVG, oppure PNG con fondo trasparente"
-msgstr "SVG, or PNG with a transparent background"
-
-#: inc/image-guidelines.php:31
-msgid "Il logo non viene tagliato: è mostrato alto circa 80 px; un PNG deve essere alto almeno 160 px."
-msgstr "The logo is not cropped: it is shown about 80 px high; a PNG must be at least 160 px high."
-
-#: inc/image-guidelines.php:35
-msgid "Hero della home"
-msgstr "Home page hero"
-
-#: inc/image-guidelines.php:36 inc/image-guidelines.php:46
-msgid "panoramico"
-msgstr "panoramic"
-
-#: inc/image-guidelines.php:41 inc/image-guidelines.php:51
-msgid "L'immagine riempie una fascia a tutta larghezza e viene tagliata sopra, sotto e ai lati."
-msgstr "The image fills a full-width strip and is cropped above, below and at the sides."
-
-#: inc/image-guidelines.php:45
-msgid "Banner della home"
-msgstr "Home page banner"
-
-#: inc/image-guidelines.php:55
-msgid "Elenchi di contenuti (progetti, eventi, brevetti, ricerca, spin-off)"
-msgstr "Content lists (projects, events, patents, research, spin-offs)"
-
-#: inc/image-guidelines.php:65
-msgid "Carousel e contenuti correlati"
-msgstr "Carousel and related contents"
-
-#: inc/image-guidelines.php:76
-msgid "Pagine di dettaglio (notizie, luoghi, risorse tecniche, pagine)"
-msgstr "Detail pages (news, places, technical resources, pages)"
-
-#: inc/image-guidelines.php:77 inc/image-guidelines.php:165
-msgid "libero"
-msgstr "free"
-
-#: inc/image-guidelines.php:82
-msgid "L'immagine non viene tagliata: è mostrata nelle sue proporzioni, in una colonna larga circa 530 px. Un file largo almeno 1200 px resta nitido sugli schermi ad alta densità."
-msgstr "The image is not cropped: it is shown in its own proportions, in a column about 530 px wide. A file at least 1200 px wide stays sharp on high-density screens."
-
-#: inc/image-guidelines.php:88
-msgid "logo orizzontale su fondo trasparente"
-msgstr "horizontal logo on a transparent background"
-
-#: inc/image-guidelines.php:93
-msgid "Il logo viene mostrato alto al massimo 64 px: un'altezza di almeno 128 px resta nitida sugli schermi ad alta densità."
-msgstr "The logo is shown at most 64 px high: a height of at least 128 px stays sharp on high-density screens."
-
-#: inc/image-guidelines.php:99
-msgid "quadrato"
-msgstr "square"
-
-#: inc/image-guidelines.php:104
-msgid "La foto viene mostrata in un cerchio, al massimo di 112 px: inquadra il volto al centro, perché gli angoli vengono tagliati."
-msgstr "The photo is shown in a circle, at most 112 px wide: frame the face in the centre, because the corners are cropped."
-
-#: inc/image-guidelines.php:109
-msgid "Copertina di una pubblicazione"
-msgstr "Cover of a publication"
-
-#: inc/image-guidelines.php:110
-msgid "verticale"
-msgstr "vertical"
-
-#: inc/image-guidelines.php:115
-msgid "La copertina non viene tagliata: è mostrata nel suo formato, in una colonna larga circa 305 px (sul telefono al massimo 192 px). Un file largo almeno 610 px resta nitido sugli schermi ad alta densità."
-msgstr "The cover is not cropped: it is shown in its own format, in a column about 305 px wide (on a phone at most 192 px). A file at least 610 px wide stays sharp on high-density screens."
-
-#: inc/image-guidelines.php:119
-msgid "Logo dell'intestazione"
-msgstr "Header logo"
-
-#: inc/image-guidelines.php:129
-msgid "Logo del piè di pagina"
-msgstr "Footer logo"
-
-#: inc/image-guidelines.php:139
-msgid "Logo per il menu del telefono"
-msgstr "Logo for the phone menu"
-
-#: inc/image-guidelines.php:152
-msgid "Logo di uno spin-off (elenco degli spin-off)"
-msgstr "Spin-off logo (list of spin-offs)"
-
-#: inc/image-guidelines.php:153
-msgid "quasi 3:2"
-msgstr "almost 3:2"
-
-#: inc/image-guidelines.php:158
-msgid "Il logo si vede solo nell'elenco degli spin-off, non nella scheda. Nell'elenco riempie un riquadro quasi 3:2 la cui altezza cambia con il testo della scheda, e un logo molto largo viene tagliato ai lati."
-msgstr "The logo is seen only in the list of spin-offs, not on the detail page. In the list it fills an almost 3:2 box whose height changes with the text of the card, and a very wide logo is cropped at the sides."
-
-#: inc/image-guidelines.php:159
-msgid "metti il logo al centro di un'immagine di proporzioni simili, con un margine di almeno il 15% su ogni lato."
-msgstr "put the logo in the centre of an image with similar proportions, with a margin of at least 15% on every side."
-
-#: inc/image-guidelines.php:164
-msgid "Foto di una risorsa tecnica"
-msgstr "Photo of a technical resource"
-
-#: inc/image-guidelines.php:170
-msgid "La foto non viene tagliata: è mostrata nelle sue proporzioni, in uno spazio largo al massimo 280 px. Un file largo almeno 560 px resta nitido sugli schermi ad alta densità. Se manca, la scheda usa l'immagine in evidenza."
-msgstr "The photo is not cropped: it is shown in its own proportions, in a space at most 280 px wide. A file at least 560 px wide stays sharp on high-density screens. If it is missing, the page uses the featured image."
-
-#. 1: ratio of the image (for example 16:9), 2: width in pixels, 3: height in pixels.
-#: inc/image-guidelines.php:207
-#, php-format
-msgid "Formato consigliato: %1$s, %2$d × %3$d px"
-msgstr "Recommended format: %1$s, %2$d × %3$d px"
-
-#. %s: ratio of the image, in words.
-#: inc/image-guidelines.php:210
-#, php-format
-msgid "Formato consigliato: %s"
-msgstr "Recommended format: %s"
-
-#. %d: minimum width in pixels.
-#: inc/image-guidelines.php:216
-#, php-format
-msgid "minimo %d px di larghezza"
-msgstr "minimum %d px wide"
-
-#. 1: minimum width in pixels, 2: minimum height in pixels.
-#: inc/image-guidelines.php:219
-#, php-format
-msgid "minimo %1$d × %2$d px"
-msgstr "minimum %1$d × %2$d px"
-
 #. %s: where to keep the subject of the image.
 #: inc/image-guidelines.php:227
 #, php-format
 msgid "Zona sicura: %s"
 msgstr "Safe zone: %s"
-
-#: inc/image-guidelines.php:229
-msgid "Le dimensioni sono indicative: il ritaglio dipende dallo schermo."
-msgstr "The sizes are indicative: the crop depends on the screen."
-
-#. 1: file formats, 2: maximum weight in megabytes.
-#: inc/image-guidelines.php:231
-#, php-format
-msgid "Formati: %1$s, peso massimo %2$d MB."
-msgstr "Formats: %1$s, maximum weight %2$d MB."
-
-#: inc/image-guidelines.php:300
-msgid "Immagini: di norma formato 16:9, almeno 1200 px di larghezza e soggetto al centro. Le dimensioni sono indicative: il formato di ogni posizione è scritto sotto il campo."
-msgstr "Images: usually 16:9 format, at least 1200 px wide and with the subject in the centre. The sizes are indicative: the format of each place is written under the field."
-
-#: inc/image-guidelines.php:304
-msgid "Guida alle immagini"
-msgstr "Guide to the images"
-
-#: inc/admin/options.php:202
-msgid "Il logo del laboratorio."
-msgstr "The logo of the laboratory."
-
-#: inc/admin/options.php:230
-msgid "Il logo mostrato nel footer. Se non è presente, ma è abilitata la visualizzazione del logo nel footer, viene mostrato quello dello header con colori invertiti."
-msgstr "The logo shown in the footer. If it is missing, but the display of the logo in the footer is enabled, the header logo is shown with inverted colours."
-
-#: inc/admin/options.php:244
-msgid "Utilizzare questo campo per caricare un'immagine alternativa del logo del laboratorio visibile dal menu hamburger (mobile)."
-msgstr "Use this field to upload an alternative image of the laboratory logo, visible from the hamburger menu (mobile)."

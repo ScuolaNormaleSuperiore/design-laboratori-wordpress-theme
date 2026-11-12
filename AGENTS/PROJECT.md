@@ -44,6 +44,7 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Home page banners, picked by priority or chosen by hand in each row of Sezioni HP, with an optional title in two languages
 - Home page video sections, each with its own YouTube address, title and background
 - Management of home page sponsors
+- Advice on the format of the images where they are uploaded, and the guide "Gestione delle immagini"
 - Support for Italian and English languages
 - Integration with the Brevo newsletter management software
 - Import of a hierarchical tree of pages from a CSV file (Strumenti DLI → Importa → Pagine), with simulation and confirmation

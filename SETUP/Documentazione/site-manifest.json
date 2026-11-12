@@ -206,9 +206,9 @@
 			"order": 40
 		},
 		{
-			"source": "DOC/HowTo/Immagini.md",
-			"target": "amministra/immagini.md",
-			"title": "Immagini: formati consigliati",
+			"source": "DOC/HowTo/Gestione-delle-immagini.md",
+			"target": "amministra/gestione-delle-immagini.md",
+			"title": "Gestione delle immagini",
 			"description": "Formato e dimensioni delle immagini per hero, banner, elenchi, schede e loghi, e perché possono risultare tagliate.",
 			"group": "Amministra",
 			"order": 50

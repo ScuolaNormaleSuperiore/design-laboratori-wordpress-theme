@@ -50,6 +50,11 @@ Le altre sezioni della home (eventi, notizie, pubblicazioni, articoli, banner, s
 
 Una sezione che dovrebbe comparire e non compare: controlla che sia attiva in Sezioni HP, che ci siano pagine o contenuti che rispettano i criteri della tabella (pubblicati, senza password, nella lingua corrente, con `Promuovi in Home` dove serve) e che la sezione non sia vuota.
 
+### 3.2 Formato delle immagini
+Sotto ogni campo in cui si carica un'immagine (hero della home, loghi, logo di uno spin-off, foto di una risorsa tecnica), sotto l'immagine in evidenza di Banner e Sponsor e nella finestra della Libreria media, il tema indica il formato consigliato per quella posizione. Le misure sono indicative: il sito mostra l'immagine in un riquadro che la taglia intorno al centro e che cambia forma con lo schermo. La guida [Gestione delle immagini](../HowTo/Gestione-delle-immagini.md) riporta tutte le posizioni, la zona sicura di hero e banner e come controllare il risultato.
+
+Dalla versione 2.0.8 il tema ricava dalla foto di una persona una miniatura quadrata di 250 × 250 px. Per le foto caricate prima, la miniatura non esiste ancora e il sito usa il file originale: l'amministratore può crearla con `wp media regenerate --image_size=item-thumb`, ma non è necessario.
+
 ## 4. Stile del sito (solo Amministratore)
 In **WP → Configurazione → Altro**:
 

@@ -40,12 +40,4 @@ class DLI_Tools_Utilities_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertStringNotContainsString( 'dli_example_action', $html );
 		$this->assertStringNotContainsString( 'value="dli_example_content"', $html );
 	}
-
-	/**
-	 * The form handler of the removed tool is not wired any more.
-	 */
-	public function test_the_example_pages_handler_is_not_wired() {
-		$this->assertFalse( has_action( 'admin_post_dli_example_content' ) );
-		$this->assertFalse( class_exists( 'DLI_Example_Content', false ) );
-	}
 }

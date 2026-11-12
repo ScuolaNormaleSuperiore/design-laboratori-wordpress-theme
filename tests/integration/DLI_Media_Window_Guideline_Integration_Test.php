@@ -75,11 +75,21 @@ class DLI_Media_Window_Guideline_Integration_Test extends DLI_Integration_Test_C
 	}
 
 	/**
-	 * While the address of the guide is not known the notice has no link.
+	 * The notice links the guide, with the address of the configuration, in a new window.
 	 */
-	public function test_there_is_no_link_while_the_guide_has_no_address() {
-		$this->assertSame( '', DLI_IMAGE_GUIDE_URL, 'The address of the guide is empty until the guide is published.' );
-		$this->assertStringNotContainsString( '<a ', $this->notice_html() );
+	public function test_the_notice_links_the_guide() {
+		$notice = $this->notice_html();
+
+		$this->assertStringContainsString( '<a href="' . esc_url( DLI_IMAGE_GUIDE_URL ) . '"', $notice );
+		$this->assertStringContainsString( 'Guida alle immagini', $notice );
+		$this->assertStringContainsString( 'target="_blank"', $notice );
+	}
+
+	/**
+	 * Without an address (an empty configuration) the notice has no link.
+	 */
+	public function test_there_is_no_link_without_an_address() {
+		$this->assertStringNotContainsString( '<a ', dli_get_media_window_guideline_html( '' ) );
 	}
 
 	/**

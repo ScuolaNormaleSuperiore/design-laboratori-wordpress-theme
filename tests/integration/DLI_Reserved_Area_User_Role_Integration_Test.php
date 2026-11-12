@@ -2,11 +2,14 @@
 /**
  * The role "Utente area riservata": an approved user of the reserved area, with only the theme capability.
  *
+ * What it shares with the role "Utente in attesa" (the role exists, the own profile is closed, also through REST, the
+ * role is created again without losing a capability) is in `DLI_Reserved_Area_Roles_Integration_Test`.
+ *
  * @package Design_Laboratori_Italia
  */
 
 /**
- * `DLI_AuthorizationManager::add_reserved_area_user_role()` and the rule that closes the own profile.
+ * `DLI_AuthorizationManager::add_reserved_area_user_role()`.
  */
 class DLI_Reserved_Area_User_Role_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -38,16 +41,6 @@ class DLI_Reserved_Area_User_Role_Integration_Test extends DLI_Integration_Test_
 		$user_id = self::factory()->user->create( array( 'role' => $role ) );
 		wp_set_current_user( $user_id );
 		return $user_id;
-	}
-
-	/**
-	 * The role exists and has the theme capability only.
-	 */
-	public function test_role_exists_with_only_the_theme_capability() {
-		$role = get_role( self::ROLE );
-
-		$this->assertNotNull( $role, 'The role must be registered by the theme.' );
-		$this->assertSame( array( self::ACCESS_CAP => true ), $role->capabilities );
 	}
 
 	/**
@@ -83,30 +76,6 @@ class DLI_Reserved_Area_User_Role_Integration_Test extends DLI_Integration_Test_
 	}
 
 	/**
-	 * The user cannot edit the own profile, which WordPress otherwise allows to everybody.
-	 */
-	public function test_user_with_the_role_cannot_edit_the_own_profile() {
-		$this->assertNotNull( get_role( self::ROLE ) );
-		$user_id = $this->login_as( self::ROLE );
-
-		$this->assertFalse( current_user_can( 'edit_user', $user_id ) );
-	}
-
-	/**
-	 * The REST route that updates the own user answers 403 to the role.
-	 */
-	public function test_rest_update_of_the_own_user_is_refused() {
-		$this->assertNotNull( get_role( self::ROLE ) );
-		$this->login_as( self::ROLE );
-
-		$request = new WP_REST_Request( 'POST', '/wp/v2/users/me' );
-		$request->set_param( 'email', 'altro@example.org' );
-		$response = rest_do_request( $request );
-
-		$this->assertSame( 403, $response->get_status() );
-	}
-
-	/**
 	 * An administrator can still edit a user with the role.
 	 */
 	public function test_administrator_can_edit_a_user_with_the_role() {
@@ -118,18 +87,5 @@ class DLI_Reserved_Area_User_Role_Integration_Test extends DLI_Integration_Test_
 		}
 
 		$this->assertTrue( current_user_can( 'edit_user', $target_id ) );
-	}
-
-	/**
-	 * Creating the role again does not rewrite a capability added to it in the meantime.
-	 */
-	public function test_creating_the_role_again_keeps_the_capabilities_added_later() {
-		$role = get_role( self::ROLE );
-		$this->assertNotNull( $role );
-		$role->add_cap( 'dli_test_added_capability' );
-
-		( new DLI_AuthorizationManager() )->add_reserved_area_user_role();
-
-		$this->assertTrue( get_role( self::ROLE )->has_cap( 'dli_test_added_capability' ) );
 	}
 }

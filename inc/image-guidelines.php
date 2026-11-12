@@ -3,7 +3,7 @@
  * Recommended image formats: the list of the places where an image is uploaded, with the ratio, the sizes and the
  * advice on the crop, and the short text that the upload fields show to the editor.
  *
- * The list is the single source of the sizes written in the administration. The guide `DOC/HowTo/Immagini.md` repeats
+ * The list is the single source of the sizes written in the administration. The guide `DOC/HowTo/Gestione-delle-immagini.md` repeats
  * them for the readers of the documentation, and a unit test checks that every place of the theme that shows an
  * image is in the list. When a template, a field or an image size is created or changed, update the list and the guide.
  *

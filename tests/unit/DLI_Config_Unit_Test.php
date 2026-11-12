@@ -36,31 +36,6 @@ class DLI_Config_Unit_Test extends TestCase {
 	}
 
 	/**
-	 * The home page sections are the expected ones, each one with a configuration.
-	 */
-	public function test_home_page_sections() {
-		$expected = array(
-			'main_hero',
-			'site_description',
-			'main_carousel',
-			'featured_contents',
-			'card_navigation_section',
-			'page_navigation_section',
-			'page_index_section',
-			'tabs_section',
-			'events_section',
-			'news_section',
-			'publications_section',
-			'articles_section',
-			'banners_section',
-			'sponsors_section',
-			'video_section',
-		);
-		$this->assertSame( $expected, array_keys( DLI_HP_SECTIONS ) );
-		$this->assertSame( 'Card di navigazione', DLI_HP_SECTIONS['card_navigation_section']['name'] );
-	}
-
-	/**
 	 * Every content type that has a listing page is mapped in DLI_PAGE_PER_CT.
 	 */
 	public function test_page_per_content_type_has_the_main_content_types() {

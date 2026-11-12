@@ -43,6 +43,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Gestione banner in home page.
 - Sezioni video in home page, ciascuna con il proprio indirizzo YouTube.
 - Gestione sponsor in home page.
+- Indicazioni sul formato delle immagini nei punti di caricamento e guida «Gestione delle immagini».
 - Manifest PWA installabile (senza service worker).
 - Supporto delle lingue italiano e inglese.
 - Integrazione con il software di gestione delle newsletter Brevo.

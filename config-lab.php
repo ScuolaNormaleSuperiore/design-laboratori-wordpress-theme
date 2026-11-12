@@ -27,9 +27,12 @@ define( 'DLI_MAX_IMG_FILE_SIZE_MB', 1 );
 // @phpstan-ignore greater.alwaysTrue (Both limits are configuration values that can be edited: this keeps the larger one.)
 define( 'DLI_MAX_FILE_SIZE_MB', ( DLI_MAX_PDF_FILE_SIZE_MB > DLI_MAX_IMG_FILE_SIZE_MB ) ? DLI_MAX_PDF_FILE_SIZE_MB : DLI_MAX_IMG_FILE_SIZE_MB );
 
-// Address of the published guide to the images (DOC/HowTo/Immagini.md), linked from the media window. Empty until the
-// documentation site is published: then no link is shown.
-define( 'DLI_IMAGE_GUIDE_URL', '' );
+// Address of the guide to the images (DOC/HowTo/Gestione-delle-immagini.md) in the documentation site, linked from the media
+// window. It is deduced: the address of the documentation site (GitHub Pages, as in README.md) plus the target of the guide in
+// SETUP/Documentazione/site-manifest.json, with the pretty addresses of the generator. The page exists only after the
+// documentation is published from the main branch: if the published address differs, correct it here (a unit test checks that
+// it follows the manifest). An empty value shows no link.
+define( 'DLI_IMAGE_GUIDE_URL', 'https://scuolanormalesuperiore.github.io/design-laboratori-wordpress-theme/amministra/gestione-delle-immagini/' );
 
 // Define global lab data format.
 define( 'DLI_ACF_DATE_FORMAT', 'd/m/Y' );

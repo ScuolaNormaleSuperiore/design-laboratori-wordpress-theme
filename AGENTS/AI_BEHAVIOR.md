@@ -256,7 +256,7 @@ After code changes, update documentation with this matrix:
   Update docs only if architecture/conventions changed; otherwise update issue tracking only.
 - Template, field or image size that shows or uploads an image (new or changed):
   Check the list of formats in `inc/image-guidelines.php` and add or correct the place; update the guide
-  `DOC/HowTo/Immagini.md` (`DLI_Image_Guide_Unit_Test` checks that its sizes match the list); add the file to
+  `DOC/HowTo/Gestione-delle-immagini.md` (`DLI_Image_Guide_Unit_Test` checks that its sizes match the list); add the file to
   `KNOWN_FILES` in `DLI_Image_Coverage_Unit_Test`, which fails for a file that shows an image and is not there.
   When an ACF image field changes, also update its export in `SETUP/ACF_Custom_Fields/`.
 - Coding rule/tooling/process change:

@@ -66,7 +66,7 @@ resetting history.
   internationalization, source/output consistency and dependency integration.
 - Images: every template, field or image size that shows or uploads an image has
   its place in the list of formats (`dli_get_image_guidelines()` in
-  `inc/image-guidelines.php`), the guide `DOC/HowTo/Immagini.md` agrees with the
+  `inc/image-guidelines.php`), the guide `DOC/HowTo/Gestione-delle-immagini.md` agrees with the
   list, and the file is in `DLI_Image_Coverage_Unit_Test`; a new image shown in a
   box that crops it is judged against the crop of that box, not only against the
   size of the file.

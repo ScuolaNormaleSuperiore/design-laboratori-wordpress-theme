@@ -5,7 +5,7 @@
  *
  * When this test fails after you add or change a template, a field or an image size:
  * 1. add or check the place in `dli_get_image_guidelines()` (inc/image-guidelines.php);
- * 2. update the guide DOC/HowTo/Immagini.md (DLI_Image_Guide_Unit_Test checks that its sizes match the list);
+ * 2. update the guide DOC/HowTo/Gestione-delle-immagini.md (DLI_Image_Guide_Unit_Test checks that its sizes match the list);
  * 3. add the file to KNOWN_FILES below, with the places it shows (or the reason why it is left out).
  *
  * The check is by file: it finds a new file that shows an image, not a new call inside a file that is already known.

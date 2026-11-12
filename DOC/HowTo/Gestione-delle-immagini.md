@@ -1,4 +1,4 @@
-# Immagini: formati consigliati
+# Gestione delle immagini
 
 Guida per chi carica immagini nel sito: quale formato e quali dimensioni scegliere per ogni posizione (hero, banner, elenchi, schede, loghi) e perché un'immagine può risultare tagliata.
 

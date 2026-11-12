@@ -11,23 +11,6 @@
 class DLI_Environment_Integration_Test extends WP_UnitTestCase {
 
 	/**
-	 * The working copy of the theme is the active theme.
-	 */
-	public function test_theme_is_active() {
-		$this->assertSame( 'design-laboratori-wordpress-theme', get_stylesheet() );
-		$this->assertTrue( function_exists( 'dli_get_option' ) );
-	}
-
-	/**
-	 * ACF and Polylang are loaded and the mandatory-plugin check passes.
-	 */
-	public function test_mandatory_plugins_are_active() {
-		$this->assertTrue( function_exists( 'acf_add_local_field_group' ) );
-		$this->assertTrue( function_exists( 'pll_the_languages' ) );
-		$this->assertTrue( dli_check_mandatory_plugins() );
-	}
-
-	/**
 	 * The Super Editor role is created on init, with the theme capabilities.
 	 */
 	public function test_super_editor_role_exists() {

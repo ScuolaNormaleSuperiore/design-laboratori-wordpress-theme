@@ -128,18 +128,27 @@ $dli_current_lang = dli_current_language();
 						}
 								$dli_login_visible = dli_get_option( 'login_button_visible', 'setup' );
 						if ( 'true' === $dli_login_visible ) {
-							?>
-						<div class="it-access-top-wrapper">
-						<a class="btn btn-primary btn-icon btn-full" href="<?php echo esc_url( admin_url() ); ?>">
-							<span class="rounded-icon">
-								<svg class="icon icon-primary" aria-hidden="true" focusable="false">
-									<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-user' ); ?>"></use>
-								</svg>
-							</span>
-							<span class="d-none d-lg-block"><?php echo esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></span>
-						</a>
-						</div>
-							<?php
+							$dli_header_user         = wp_get_current_user();
+							$dli_reserved_area_user  = dli_is_reserved_area_enabled() && dli_user_has_reserved_area_role( $dli_header_user );
+							$dli_show_access_control = ! is_user_logged_in() || $dli_reserved_area_user;
+							if ( $dli_show_access_control ) {
+								?>
+								<div class="it-access-top-wrapper">
+									<?php if ( $dli_reserved_area_user ) : ?>
+										<a class="btn btn-primary btn-icon btn-full" href="<?php echo esc_url( wp_logout_url( dli_get_language_home_url( dli_current_language() ) ) ); ?>" aria-label="<?php echo esc_attr__( 'Esci dal sito', 'design_laboratori_italia' ); ?>">
+									<?php else : ?>
+										<a class="btn btn-primary btn-icon btn-full" href="<?php echo esc_url( admin_url() ); ?>">
+									<?php endif; ?>
+									<span class="rounded-icon"<?php echo $dli_reserved_area_user ? ' title="' . esc_attr( $dli_header_user->display_name ) . '"' : ''; ?>>
+										<svg class="icon icon-primary" aria-hidden="true" focusable="false">
+											<use href="<?php echo esc_url( get_template_directory_uri() . '/assets/bootstrap-italia/svg/sprites.svg#it-user' ); ?>"></use>
+										</svg>
+									</span>
+									<span class="d-none d-lg-block"><?php echo $dli_reserved_area_user ? esc_html__( 'Esci', 'design_laboratori_italia' ) : esc_html__( 'Accedi', 'design_laboratori_italia' ); ?></span>
+									</a>
+								</div>
+								<?php
+							}
 						}
 						?>
 					</div>

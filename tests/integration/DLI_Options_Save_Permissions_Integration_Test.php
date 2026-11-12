@@ -101,6 +101,7 @@ class DLI_Options_Save_Permissions_Integration_Test extends DLI_Integration_Test
 	private function register_boxes_as( $user_id ) {
 		wp_set_current_user( $user_id );
 		dli_register_main_options_metabox();
+		dli_register_setup_options();
 		foreach ( array( 'dli_options_socials', 'dli_options_indico', 'dli_options_iris', 'dli_setup_menu' ) as $box_id ) {
 			if ( CMB2_Boxes::get( $box_id ) ) {
 				$this->registered_boxes[] = $box_id;
