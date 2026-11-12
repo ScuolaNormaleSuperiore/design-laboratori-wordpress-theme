@@ -32,6 +32,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
+## [2.0.9] - 2026-11-12
+
 ## [2.0.8] - 2026-11-12
 ## Aggiunto
 - Indicazioni sul formato delle immagini nell'amministrazione e guida «Gestione delle immagini» (`DOC/HowTo/Gestione-delle-immagini.md`).
