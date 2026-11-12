@@ -142,5 +142,5 @@ Il sito conserva nome ed email ricevuti dall'IdP e appartenenze ai gruppi gestit
 ## Verifiche dopo la configurazione
 
 1. **Visitatore:** la pagina pubblica mostra Accedi; le pagine riservate restituiscono 404 e non compaiono in ricerca, menu, home e mappa del sito.
-2. **Utente:** un nuovo account resta in attesa finché non viene assegnato a un gruppo; dopo l'approvazione vede solo i contenuti autorizzati. Se abiliti l'accesso solo SAML, verifica che password e recupero password siano bloccati.
+2. **Utente:** un nuovo account resta in attesa finché non viene assegnato a un gruppo; dopo l'approvazione vede solo i contenuti autorizzati. Se abiliti l'accesso solo SAML, verifica che password e recupero password siano bloccati con il plugin WP SAML Auth attivo, e che tornino utilizzabili se lo disattivi.
 3. **Amministratore:** l'account locale continua a entrare con la password e può gestire utenti e gruppi.
