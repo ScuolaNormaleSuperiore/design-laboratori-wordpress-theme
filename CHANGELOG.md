@@ -37,6 +37,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## Aggiunto
 - Indicazioni sul formato delle immagini nell'amministrazione: sotto i campi di caricamento (hero della home, loghi, logo di uno spin-off, foto di una risorsa tecnica), sotto l'immagine in evidenza di Banner e Sponsor e nel messaggio della finestra dei media. Guida «Gestione delle immagini» in `DOC/HowTo/Gestione-delle-immagini.md`, con la tabella dei formati e il motivo per cui le dimensioni sono indicative.
 - Dimensione `item-thumb` (250 × 250, ritagliata) per le foto delle Persone. Per le foto già caricate la miniatura va rigenerata (`wp media regenerate --image_size=item-thumb`): fino ad allora si usa il file originale.
+## Modificato
+- «Accesso solo tramite SAML»: la regola vale solo se il plugin WP SAML Auth è attivo (senza il plugin l'accesso con password resta possibile e la scheda lo segnala) e il valore predefinito è **Sì**. La descrizione dell'opzione dice per quali ruoli vale e quando si applica.
 ## Corretto
 - Schermata di login con l'area riservata attiva: i testi di WP SAML Auth sono in italiano («Autenticati con le credenziali istituzionali:», «Accedi») e il logo del sito (o il logo predefinito del tema) prende il posto del logo WordPress, con collegamento alla home e nome accessibile.
 - Export ACF del Banner (`SETUP/ACF_Custom_Fields/acf-export-banner.json`): il campo «Apri in nuova finestra» ora coincide con quello registrato dal tema (facoltativo e acceso di default). Un test confronta ogni export con i campi registrati.

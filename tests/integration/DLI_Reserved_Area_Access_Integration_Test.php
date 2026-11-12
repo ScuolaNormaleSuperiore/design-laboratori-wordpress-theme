@@ -79,6 +79,14 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 		return array( DLI_PENDING_USER_ROLE_SLUG, DLI_RESERVED_AREA_USER_ROLE_SLUG );
 	}
 
+	/**
+	 * Make WP SAML Auth look active: the plugin is not installed in the suite, and the rule of the access only through
+	 * SAML applies only when it is there.
+	 */
+	private function with_saml_plugin() {
+		add_filter( 'dli_reserved_area_saml_available', '__return_true' );
+	}
+
 	// ---- Where the users land (L3) ----
 
 	/**
@@ -189,6 +197,7 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 	 * with a password.
 	 */
 	public function test_saml_only_closes_the_password_ways() {
+		$this->with_saml_plugin();
 		$this->configure( 'true', 'true' );
 		foreach ( $this->reserved_roles() as $role ) {
 			$user = $this->user( $role );
@@ -204,6 +213,7 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 	 * single sign-on.
 	 */
 	public function test_saml_only_refuses_wp_authenticate() {
+		$this->with_saml_plugin();
 		$this->configure( 'true', 'true' );
 		$user_id = self::factory()->user->create(
 			array(
@@ -224,6 +234,7 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 	 * The REST API cannot give a password to a user of the reserved area, not even an administrator's request.
 	 */
 	public function test_saml_only_refuses_a_password_through_rest() {
+		$this->with_saml_plugin();
 		$this->configure( 'true', 'true' );
 		$target = $this->user( DLI_RESERVED_AREA_USER_ROLE_SLUG );
 		$admin  = $this->user( 'administrator' );
@@ -247,6 +258,7 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 	 * Other users, and the users of the reserved area while the setting is off, keep the passwords.
 	 */
 	public function test_saml_only_leaves_the_others_alone() {
+		$this->with_saml_plugin();
 		$this->configure( 'true', 'true' );
 		foreach ( array( 'editor', DLI_SUPER_EDITOR_ROLE_SLUG, 'administrator' ) as $role ) {
 			$user = $this->user( $role );
@@ -262,6 +274,74 @@ class DLI_Reserved_Area_Access_Integration_Test extends DLI_Integration_Test_Cas
 			$this->assertTrue( apply_filters( 'allow_password_reset', true, $user->ID ) );
 			$this->assertSame( $user, apply_filters( 'wp_authenticate_user', $user, 'secret' ) );
 		}
+	}
+
+	/**
+	 * Without WP SAML Auth there is no single sign-on to send the users to: the rule does not apply, even with the
+	 * setting on, and the users of the reserved area keep the password ways.
+	 */
+	public function test_saml_only_does_not_apply_without_the_plugin() {
+		$this->assertFalse( dli_is_saml_available(), 'The plugin is not installed in the suite.' );
+		$this->configure( 'true', 'true' );
+
+		$this->assertFalse( dli_is_reserved_area_saml_only() );
+		foreach ( $this->reserved_roles() as $role ) {
+			$user = $this->user( $role );
+
+			$this->assertTrue( apply_filters( 'show_password_fields', true, $user ), "$role: the password field stays." );
+			$this->assertTrue( apply_filters( 'allow_password_reset', true, $user->ID ), "$role: the password reset stays." );
+			$this->assertSame( $user, apply_filters( 'wp_authenticate_user', $user, 'secret' ), "$role: the login with a password stays." );
+		}
+	}
+
+	/**
+	 * Without the plugin a password can still be given to a user of the reserved area through the REST API.
+	 */
+	public function test_saml_only_does_not_refuse_a_password_through_rest_without_the_plugin() {
+		$this->configure( 'true', 'true' );
+		$target = $this->user( DLI_RESERVED_AREA_USER_ROLE_SLUG );
+		$admin  = $this->user( 'administrator' );
+		if ( is_multisite() ) {
+			grant_super_admin( $admin->ID );
+		}
+		wp_set_current_user( $admin->ID );
+
+		$request = new WP_REST_Request( 'POST', '/wp/v2/users/' . $target->ID );
+		$request->set_param( 'password', 'Nuova-password-1' );
+
+		$this->assertSame( 200, rest_do_request( $request )->get_status() );
+	}
+
+	/**
+	 * With the plugin and the setting never saved the access is only through SAML: the default is the restrictive one.
+	 */
+	public function test_saml_only_is_on_by_default_with_the_plugin() {
+		$this->with_saml_plugin();
+		$this->set_theme_options( DLI_RESERVED_AREA_OPTION_KEY, array( 'reserved_area_enabled' => 'true' ) );
+
+		$this->assertTrue( dli_is_reserved_area_saml_only() );
+	}
+
+	/**
+	 * A setting saved as No keeps the passwords, also with the plugin.
+	 */
+	public function test_saml_only_saved_as_no_keeps_the_passwords_with_the_plugin() {
+		$this->with_saml_plugin();
+		$this->configure( 'true', 'false' );
+
+		$this->assertFalse( dli_is_reserved_area_saml_only() );
+		$user = $this->user( DLI_RESERVED_AREA_USER_ROLE_SLUG );
+		$this->assertSame( $user, apply_filters( 'wp_authenticate_user', $user, 'secret' ) );
+	}
+
+	/**
+	 * The plugin counts as there when its class exists or when the filter of the theme says so.
+	 */
+	public function test_the_plugin_is_there_when_the_class_exists_or_the_filter_says_so() {
+		$this->assertSame( class_exists( 'WP_SAML_Auth' ), dli_is_saml_available() );
+
+		$this->with_saml_plugin();
+		$this->assertTrue( dli_is_saml_available() );
 	}
 
 	// ---- Access box of the page "Area riservata" (L4) ----

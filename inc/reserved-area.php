@@ -19,13 +19,30 @@ function dli_is_reserved_area_enabled() {
 }
 
 /**
+ * Whether WP SAML Auth is there, that is whether there is a single sign-on to send the users to.
+ *
+ * It is the presence of the plugin, not a proof that it works: a plugin that is active but badly configured counts as
+ * there. The filter `dli_reserved_area_saml_available` lets a site or a test say otherwise.
+ *
+ * @return bool
+ */
+function dli_is_saml_available() {
+	return (bool) apply_filters( 'dli_reserved_area_saml_available', class_exists( 'WP_SAML_Auth' ) );
+}
+
+/**
  * Whether the users of the reserved area can log in only through single sign-on.
  *
- * @return bool False when the reserved area is switched off.
+ * The rule applies only while the reserved area is on and WP SAML Auth is there: without a single sign-on, closing the
+ * password ways would leave the two roles with no way in. The setting is Yes unless it was saved as No, so a site that
+ * never saved it is on the restrictive side.
+ *
+ * @return bool False when the reserved area is switched off or WP SAML Auth is not there.
  */
 function dli_is_reserved_area_saml_only() {
 	return dli_is_reserved_area_enabled()
-		&& 'true' === dli_get_option( 'reserved_area_saml_only', DLI_RESERVED_AREA_OPTION_KEY );
+		&& dli_is_saml_available()
+		&& 'false' !== dli_get_option( 'reserved_area_saml_only', DLI_RESERVED_AREA_OPTION_KEY, 'true' );
 }
 
 /**
@@ -409,7 +426,7 @@ function dli_is_reserved_area_page( $post ) {
  */
 function dli_get_reserved_area_login_url( $redirect ) {
 	$url = wp_login_url( $redirect );
-	if ( apply_filters( 'dli_reserved_area_saml_available', class_exists( 'WP_SAML_Auth' ) ) ) {
+	if ( dli_is_saml_available() ) {
 		$url = add_query_arg( 'action', 'wp-saml-auth', $url );
 	}
 	return $url;

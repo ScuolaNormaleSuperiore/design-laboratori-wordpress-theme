@@ -3494,13 +3494,18 @@ function dli_register_reserved_area_options() {
 		)
 	);
 
+	$saml_only_desc = __( 'Gli utenti con i ruoli «Utente area riservata» e «Utente in attesa» possono autenticarsi solo con il single sign-on SAML: il login con password e il recupero della password sono disattivati. La regola vale solo se il plugin WP SAML Auth è attivo; altrimenti l\'accesso con password resta possibile. Gli altri utenti non sono interessati.', 'design_laboratori_italia' );
+	if ( ! dli_is_saml_available() ) {
+		$saml_only_desc .= ' ' . __( 'WP SAML Auth non è attivo: la regola non è applicata.', 'design_laboratori_italia' );
+	}
+
 	$box->add_field(
 		array(
 			'id'      => 'reserved_area_saml_only',
 			'name'    => __( 'Accesso solo tramite SAML', 'design_laboratori_italia' ),
-			'desc'    => __( 'Gli utenti con i ruoli dell\'area riservata possono entrare solo con il single sign-on: il login con password e il recupero della password sono disattivati. Gli altri utenti non sono interessati.', 'design_laboratori_italia' ),
+			'desc'    => $saml_only_desc,
 			'type'    => 'radio_inline',
-			'default' => 'false',
+			'default' => 'true',
 			'options' => array(
 				'true'  => __( 'Sì', 'design_laboratori_italia' ),
 				'false' => __( 'No', 'design_laboratori_italia' ),

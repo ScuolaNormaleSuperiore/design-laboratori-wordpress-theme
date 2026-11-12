@@ -79,6 +79,7 @@ class DLI_Reserved_Area_Integration_Test extends DLI_Integration_Test_Case {
 	public function tear_down() {
 		CMB2_Boxes::remove( self::BOX_ID );
 		wp_set_current_user( 0 );
+		$this->restore_theme_translations();
 		parent::tear_down();
 	}
 
@@ -125,6 +126,49 @@ class DLI_Reserved_Area_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The field of the access only through SAML as an administrator sees it in the tab.
+	 *
+	 * @return CMB2_Field
+	 */
+	private function saml_only_field() {
+		$this->use_italian_texts();
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'administrator' ) ) );
+		dli_register_reserved_area_options();
+		$field = CMB2_Boxes::get( self::BOX_ID )->get_field( 'reserved_area_saml_only' );
+		$this->assertNotFalse( $field );
+		return $field;
+	}
+
+	/**
+	 * The access only through SAML starts as Yes, and the description says for whom the rule is and when it applies.
+	 */
+	public function test_saml_only_field_is_on_by_default_and_says_when_it_applies() {
+		$field = $this->saml_only_field();
+		$desc  = (string) $field->args( 'desc' );
+
+		$this->assertSame( 'true', $field->args( 'default' ) );
+		$this->assertStringContainsString( 'Utente area riservata', $desc );
+		$this->assertStringContainsString( 'Utente in attesa', $desc );
+		$this->assertStringContainsString( 'WP SAML Auth è attivo', $desc, 'The description says that the rule needs the plugin.' );
+	}
+
+	/**
+	 * Without WP SAML Auth the description adds a warning: the rule is not applied.
+	 */
+	public function test_saml_only_description_warns_when_the_plugin_is_not_active() {
+		$this->assertStringContainsString( 'WP SAML Auth non è attivo: la regola non è applicata.', (string) $this->saml_only_field()->args( 'desc' ) );
+	}
+
+	/**
+	 * With WP SAML Auth active there is no warning.
+	 */
+	public function test_saml_only_description_has_no_warning_when_the_plugin_is_active() {
+		add_filter( 'dli_reserved_area_saml_available', '__return_true' );
+
+		$this->assertStringNotContainsString( 'non è attivo', (string) $this->saml_only_field()->args( 'desc' ) );
+	}
+
+	/**
 	 * By default the reserved area is switched off and so are its settings.
 	 */
 	public function test_reserved_area_is_off_by_default() {
@@ -140,6 +184,7 @@ class DLI_Reserved_Area_Integration_Test extends DLI_Integration_Test_Case {
 	 * With the main switch on, the settings are read.
 	 */
 	public function test_settings_are_read_when_the_reserved_area_is_on() {
+		add_filter( 'dli_reserved_area_saml_available', '__return_true' );
 		$page_id = self::factory()->post->create( array( 'post_type' => 'page' ) );
 		$this->configure(
 			array(

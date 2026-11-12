@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 08:38+0000\n"
+"POT-Creation-Date: 2026-11-12 11:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -105,7 +105,8 @@ msgstr ""
 msgid "Abstract del brevetto"
 msgstr ""
 
-#: header.php:139 template-parts/common/reserved-area-access.php:25
+#: header.php:147 inc/reserved-area.php:482
+#: template-parts/common/reserved-area-access.php:25
 msgid "Accedi"
 msgstr ""
 
@@ -115,18 +116,8 @@ msgid ""
 "ai tuoi gruppi."
 msgstr ""
 
-#: inc/reserved-area.php:44
-msgid ""
-"Accesso ai contenuti riservati con il single sign-on (WP SAML Auth) e i "
-"gruppi (Groups). Chi vede un contenuto lo decide il plugin Groups."
-msgstr ""
-
 #: template-parts/common/reserved-area-access.php:22
 msgid "Accesso all'area riservata"
-msgstr ""
-
-#: inc/reserved-area.php:79
-msgid "Accesso solo tramite SAML"
 msgstr ""
 
 #: template-parts/common/sezione-video.php:45
@@ -284,10 +275,6 @@ msgstr ""
 msgid "Archivio progetti"
 msgstr ""
 
-#: inc/reserved-area.php:28 inc/reserved-area.php:34 inc/reserved-area.php:43
-msgid "Area riservata"
-msgstr ""
-
 #: inc/classes/class-patentmanager.php:55
 msgid "Area Tematica"
 msgstr ""
@@ -325,12 +312,6 @@ msgid ""
 "obbligatoriamente: "
 msgstr ""
 
-#: inc/reserved-area.php:53
-msgid ""
-"Attiva le funzioni del tema per gli utenti dell'area riservata (ruoli "
-"«Utente in attesa» e «Utente area riservata»)."
-msgstr ""
-
 #. Name of the template
 #: single-persona.php:220 single-persona.php:316 inc/utils.php:272
 #: page-templates/ricerca.php:2
@@ -341,12 +322,15 @@ msgstr ""
 msgid "attivo"
 msgstr ""
 
+#: inc/reserved-area.php:481
+msgid "Autenticati con le credenziali istituzionali:"
+msgstr ""
+
 #: single-pubblicazione.php:115
 msgid "Autori"
 msgstr ""
 
 #: inc/classes/class-bannermanager.php:51
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:69
 msgid "Banner"
 msgstr ""
 
@@ -401,8 +385,6 @@ msgstr ""
 
 #: template-parts/home/hp-card-navigation-section.php:48
 #: tests/integration/DLI_Home_Navigation_Section_Integration_Test.php:221
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:66
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:82
 msgid "Card di navigazione"
 msgstr ""
 
@@ -429,7 +411,7 @@ msgstr ""
 msgid "Categoria correlata:"
 msgstr ""
 
-#: header.php:176 page-templates/cerca.php:86 page-templates/cerca.php:145
+#: header.php:185 page-templates/cerca.php:86 page-templates/cerca.php:145
 msgid "Cerca"
 msgstr ""
 
@@ -444,7 +426,7 @@ msgstr ""
 msgid "Cerca contenuto"
 msgstr ""
 
-#: header.php:180 header.php:181 header.php:182
+#: header.php:189 header.php:190 header.php:191
 msgid "Cerca nel sito"
 msgstr ""
 
@@ -917,8 +899,12 @@ msgstr ""
 msgid "Es. Rossi, Professore…"
 msgstr ""
 
-#: template-parts/common/reserved-area-access.php:38
+#: header.php:147 template-parts/common/reserved-area-access.php:38
 msgid "Esci"
+msgstr ""
+
+#: header.php:138
+msgid "Esci dal sito"
 msgstr ""
 
 #: inc/admin/class-dli-page-import-admin.php:513
@@ -1065,10 +1051,6 @@ msgstr ""
 msgid "gennaio"
 msgstr ""
 
-#: inc/reserved-area.php:52
-msgid "Gestione area riservata"
-msgstr ""
-
 #: page-templates/privacy.php:172
 msgid "Gestione cookies"
 msgstr ""
@@ -1079,13 +1061,6 @@ msgstr ""
 
 #: inc/utils.php:948
 msgid "giugno"
-msgstr ""
-
-#: inc/reserved-area.php:80
-msgid ""
-"Gli utenti con i ruoli dell'area riservata possono entrare solo con il "
-"single sign-on: il login con password e il recupero della password sono "
-"disattivati. Gli altri utenti non sono interessati."
 msgstr ""
 
 #: inc/image-guidelines.php:304
@@ -1264,11 +1239,6 @@ msgstr ""
 msgid "Indicare un indirizzo email valido."
 msgstr ""
 
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:68
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:81
-msgid "Indice di una pagina"
-msgstr ""
-
 #: single-brevetto.php:99 single-brevetto.php:102 single-evento.php:106
 #: single-evento.php:110 single-indirizzo-di-ricerca.php:99
 #: single-luogo.php:113 single-persona.php:167 single-progetto.php:116
@@ -1429,7 +1399,7 @@ msgid "La Newslettere è disabilitata"
 msgstr ""
 
 #: template-parts/common/reserved-area-access.php:35
-#: tests/integration/DLI_Reserved_Area_Access_Integration_Test.php:327
+#: tests/integration/DLI_Reserved_Area_Access_Integration_Test.php:407
 msgid ""
 "La tua richiesta di accesso è in attesa di approvazione: vedrai i contenuti "
 "riservati quando un amministratore ti avrà inserito in un gruppo."
@@ -1683,7 +1653,7 @@ msgstr ""
 msgid "Modifica tipo risorsa"
 msgstr ""
 
-#: header.php:207 header.php:209
+#: header.php:216 header.php:218
 msgid "Mostra/Nascondi la navigazione"
 msgstr ""
 
@@ -1697,7 +1667,7 @@ msgstr ""
 msgid "N/D"
 msgstr ""
 
-#: header.php:217 header.php:218 header.php:219
+#: header.php:226 header.php:227 header.php:228
 msgid "Nascondi la navigazione"
 msgstr ""
 
@@ -1715,12 +1685,10 @@ msgstr ""
 
 #: template-parts/home/hp-page-navigation-section.php:46
 #: tests/integration/DLI_Home_Navigation_Groups_Integration_Test.php:275
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:67
-#: tests/integration/DLI_Home_Sections_Fields_Integration_Test.php:80
 msgid "Navigazione per pagine"
 msgstr ""
 
-#: header.php:205
+#: header.php:214
 msgid "Navigazione principale"
 msgstr ""
 
@@ -1745,10 +1713,6 @@ msgstr ""
 msgid "Nessun risultato trovato"
 msgstr ""
 
-#: inc/reserved-area.php:69
-msgid "Nessuna (home del sito)"
-msgstr ""
-
 #: template-parts/persone/view-tabella.php:296
 msgid "Nessuna persona trovata"
 msgstr ""
@@ -1758,10 +1722,6 @@ msgstr ""
 #: template-parts/common/newsletter.php:16
 #: tests/integration/DLI_Footer_Headings_Integration_Test.php:144
 msgid "Newsletter"
-msgstr ""
-
-#: inc/reserved-area.php:58 inc/reserved-area.php:85
-msgid "No"
 msgstr ""
 
 #: inc/admin/class-dli-page-import-admin.php:529
@@ -1930,6 +1890,10 @@ msgid ""
 "per continuare la navigazione."
 msgstr ""
 
+#: inc/reserved-area.php:483
+msgid "Oppure accedi con le credenziali di WordPress:"
+msgstr ""
+
 #: single-luogo.php:193
 msgid "Orari"
 msgstr ""
@@ -1960,10 +1924,6 @@ msgstr ""
 msgid "pagina"
 msgstr ""
 
-#: inc/reserved-area.php:66
-msgid "Pagina Area riservata"
-msgstr ""
-
 #: 404.php:31
 msgid "Pagina non trovata"
 msgstr ""
@@ -1971,13 +1931,6 @@ msgstr ""
 #: template-parts/common/paginazione.php:63
 #: template-parts/persone/view-tabella.php:292
 msgid "Pagina precedente"
-msgstr ""
-
-#: inc/reserved-area.php:67
-msgid ""
-"Pagina pubblica da cui si accede all'area riservata: riceve il pulsante di "
-"accesso ed è la pagina in cui arrivano gli utenti dell'area riservata dopo "
-"il login."
 msgstr ""
 
 #: template-parts/common/paginazione.php:104
@@ -2030,7 +1983,7 @@ msgid ""
 "nulla."
 msgstr ""
 
-#: inc/reserved-area.php:387
+#: inc/reserved-area.php:323
 msgid ""
 "Per questo account l'accesso è possibile solo con il single sign-on "
 "dell'istituto."
@@ -2965,10 +2918,6 @@ msgstr ""
 msgid "SVG, oppure PNG con fondo trasparente"
 msgstr ""
 
-#: inc/reserved-area.php:57 inc/reserved-area.php:84
-msgid "Sì"
-msgstr ""
-
 #: inc/admin/class-dli-page-import-admin.php:529
 #: inc/admin/class-dli-page-import-admin.php:603
 #: inc/admin/class-dli-page-import-admin.php:604
@@ -3376,12 +3325,4 @@ msgstr ""
 #: inc/image-guidelines.php:227
 #, php-format
 msgid "Zona sicura: %s"
-msgstr ""
-
-#: inc/reserved-area.php:464
-msgid "Autenticati con le credenziali istituzionali:"
-msgstr ""
-
-#: inc/reserved-area.php:466
-msgid "Oppure accedi con le credenziali di WordPress:"
 msgstr ""

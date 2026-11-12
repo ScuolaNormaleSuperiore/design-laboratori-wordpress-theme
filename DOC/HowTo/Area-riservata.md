@@ -94,7 +94,7 @@ Apri **Configurazione → Area riservata**, disponibile soltanto all'Amministrat
 | --- | --- |
 | Gestione area riservata | Scegli **Sì** per attivare le funzioni del tema. Il default è **No**; con la gestione spenta gli altri campi sono disabilitati e ignorati |
 | Pagina Area riservata | Seleziona la pagina pubblica preparata prima. Il tema vi mostra **Accedi**, oppure il nome dell'utente e **Esci**, nella lingua corrente |
-| Accesso solo tramite SAML | Scegli se impedire l'accesso con password ai due ruoli dell'area riservata. Il default è **No** |
+| Accesso solo tramite SAML | Scegli se impedire l'accesso con password ai due ruoli dell'area riservata. Il default è **Sì**; la regola vale solo se il plugin WP SAML Auth è attivo |
 
 Con la gestione attiva, i due ruoli vengono indirizzati alla pagina scelta dopo il login e quando aprono `/wp-admin`; la barra di amministrazione è nascosta. Chi avvia il login da un'altra pagina del sito torna a quella pagina.
 
@@ -111,9 +111,15 @@ Con la gestione spenta il login resta quello di WordPress, senza modifiche. La m
 
 ### Accesso solo tramite SAML
 
-Con l'opzione attiva, **Utente in attesa** e **Utente area riservata** possono entrare soltanto con il single sign-on: login e recupero tramite password sono bloccati e i campi password sono nascosti anche all'amministratore che modifica questi utenti. Gli altri ruoli mantengono le modalità di accesso abituali.
+Con l'opzione su **Sì**, **Utente in attesa** e **Utente area riservata** possono autenticarsi soltanto con il single sign-on SAML: login e recupero tramite password sono bloccati, una password non può essere data a questi utenti tramite la REST API e i campi password sono nascosti anche all'amministratore che modifica questi utenti. Gli altri ruoli mantengono le modalità di accesso abituali.
 
-L'opzione vale anche per gli utenti creati a mano e non cambia Auto Provision. Le password esistenti restano salvate e tornano utilizzabili disattivando l'opzione o la gestione dell'area riservata.
+**La regola vale solo se il plugin WP SAML Auth è attivo.** Se il plugin non è attivo non c'è un single sign-on a cui mandare gli utenti, e bloccare la password li lascerebbe senza alcun modo di entrare: in quel caso la regola non si applica e l'accesso con password resta possibile. La scheda lo segnala con l'avviso «WP SAML Auth non è attivo: la regola non è applicata». Attenzione: il tema riconosce la **presenza** del plugin, non che il single sign-on **funzioni**. Con il plugin attivo ma configurato male (per esempio con un certificato mancante) e l'opzione su **Sì**, i due ruoli restano senza modo di entrare: l'uscita è mettere l'opzione su **No**; gli amministratori non sono toccati dalla regola.
+
+**Il default è Sì.** Se la scheda non è mai stata salvata l'opzione conta come **Sì**; un valore salvato come **No** resta tale. Un utente creato a mano con una password può quindi accedere con la password solo se l'opzione è su **No** (o se il plugin non è attivo).
+
+L'opzione vale anche per gli utenti creati a mano e non cambia Auto Provision. Le password esistenti restano salvate e tornano utilizzabili disattivando l'opzione, la gestione dell'area riservata o il plugin.
+
+L'opzione non cambia ciò che i due ruoli possono fare in WordPress: in nessun caso possono modificare il proprio profilo (e quindi la propria password), perché non hanno permessi di WordPress. Non copre invece le application password, un link di reimpostazione della password già emesso e l'email «imposta la password» inviata a un utente creato a mano.
 
 ## Gestire gli utenti
 
