@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
-softwareVersion: 2.0.9
+softwareVersion: 2.1.0
 categories:
   - website-builder
   - content-management
