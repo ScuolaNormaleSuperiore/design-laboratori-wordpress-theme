@@ -32,7 +32,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.0.9] - 2026-11-12
+## [2.0.9] - 2026-11-16
+## Corretto
+- Bug-fixing: Corretta gestione del logo per farlo visualizzare nel Catalogo del riuso.
+- Refactoring: Tolte immagini e icone non più utilizzate.
 
 ## [2.0.8] - 2026-11-12
 ## Aggiunto

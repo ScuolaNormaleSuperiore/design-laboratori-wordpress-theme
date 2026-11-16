@@ -61,6 +61,9 @@ description:
       di ricerca delle strutture. È possibile provare in modo semplice il sistema in locale utilizzando il
       Dockerfile presente nel sorgente del progetto oppure il sito dimostrativo https://sitofederato.sns.it.
     screenshots:
+      # The catalogue shows the first image in its list of projects and does not resolve a relative path there,
+      # so the first one is an absolute URL and it is the logo; the others are shown in the detail page.
+      - https://raw.githubusercontent.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/main/assets/img/logo_sito_federato.png
       - assets/screenshots/homepage.png
       - assets/screenshots/homepage2.png
       - assets/screenshots/configurazione1.png
@@ -137,7 +140,7 @@ name: Design Laboratori Italia
 landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-11-12'
+releaseDate: '2026-11-16'
 roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
