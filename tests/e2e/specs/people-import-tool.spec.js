@@ -1,5 +1,5 @@
 // The tool Strumenti DLI → Importa → Persone, as it is: the form, the simulation that writes nothing, the real import,
-// the modes that skip people that exist, the errors of a row and the refusals of a file (wrong extension, header
+// the errors of a row and the refusals of a file (wrong extension, header
 // without the email, too large). These checks describe the behaviour before the code that reads the file is shared
 // with other tools. The person created by the test is taken away at the end: the site is shared by the whole run.
 const { test, expect } = require( '@playwright/test' );
@@ -77,36 +77,20 @@ test( 'the form has the file, the two modes with the simulation as the default, 
 	await expect( page.getByRole( 'link', { name: 'Scarica CSV di esempio' } ) ).toBeVisible();
 } );
 
-test( 'the simulation writes nothing, the import creates the person, and the modes that skip leave it as it is', async ( { page } ) => {
+// The decisions of each mode (new only, ignore existing, upsert) are checked by DLI_People_File_Importer_Integration_Test:
+// here only the way through the browser is checked, with one submission, so the test stays far from its time limit.
+// That a simulation writes nothing is checked by the integration test and, in the browser, by the test of the rows with errors.
+test( 'the import creates the person', async ( { page } ) => {
 	await loginAsAdmin( page );
 	const file = `${ HEADER }\nProva;${ SURNAME };prova.import.e2e@example.org;publish\n`;
 
 	try {
-		// Simulation: the report says what would happen and no person is created.
-		await sendFile( page, { content: file } );
-		await expect( page.locator( '.dli-report-mode' ) ).toContainText( 'esecuzione simulata' );
-		expect( await counters( page ) ).toEqual( [ '1', '1', '0', '0', '0' ] );
-		await expect( page.locator( '.dli-log-table tbody tr' ) ).toHaveCount( 1 );
-		await expect( page.locator( '.dli-log-table' ) ).toContainText( 'prova.import.e2e@example.org' );
-		expect( await peopleOfTheTest( page ), 'the simulation created nobody' ).toBe( 0 );
-
-		// Real import: one person is created.
 		await sendFile( page, { content: file, exec: 'commit' } );
 		await expect( page.locator( '.dli-report-mode' ) ).toContainText( 'esecuzione reale' );
 		expect( await counters( page ) ).toEqual( [ '1', '1', '0', '0', '0' ] );
+		await expect( page.locator( '.dli-log-table tbody tr' ) ).toHaveCount( 1 );
+		await expect( page.locator( '.dli-log-table' ) ).toContainText( 'prova.import.e2e@example.org' );
 		await expect( page.locator( '.dli-log-status-ok' ) ).toHaveCount( 1 );
-		expect( await peopleOfTheTest( page ) ).toBe( 1 );
-
-		// The same file again, in the two modes that do not update a person who exists: skipped, still one person.
-		for ( const mode of [ 'solo_nuovi', 'ignora_esistenti' ] ) {
-			await sendFile( page, { content: file, mode, exec: 'commit' } );
-			expect( await counters( page ), mode ).toEqual( [ '1', '0', '0', '1', '0' ] );
-		}
-		expect( await peopleOfTheTest( page ) ).toBe( 1 );
-
-		// Upsert updates the person who exists.
-		await sendFile( page, { content: file, mode: 'upsert', exec: 'commit' } );
-		expect( await counters( page ) ).toEqual( [ '1', '0', '1', '0', '0' ] );
 		expect( await peopleOfTheTest( page ) ).toBe( 1 );
 	} finally {
 		await removePeopleOfTheTest( page );
@@ -118,6 +102,8 @@ test( 'a row without the email is an error of that row, and the others are proce
 
 	await sendFile( page, { content: `${ HEADER }\nProva;${ SURNAME };;publish\nAltra;${ SURNAME };non-una-email;publish\n` } );
 
+	// The default is the simulation: the report says so and no person is created.
+	await expect( page.locator( '.dli-report-mode' ) ).toContainText( 'esecuzione simulata' );
 	expect( await counters( page ) ).toEqual( [ '2', '0', '0', '0', '2' ] );
 	await expect( page.locator( '.dli-log-status-errore' ) ).toHaveCount( 2 );
 	expect( await peopleOfTheTest( page ) ).toBe( 0 );
