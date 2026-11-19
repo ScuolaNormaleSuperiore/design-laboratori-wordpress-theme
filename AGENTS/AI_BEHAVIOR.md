@@ -46,6 +46,14 @@ Automated tests are part of planning, changing and fixing code in this project.
 
 A level counts only when its suite exists and can run in the current environment. When it cannot, say so in the report: never write "verified" for a check that did not run. When a suite is added, update this table and `Verification` in `AGENTS/CODING_STANDARDS.md`. The Reports in `tests/report/` produce results to read, they are not tests.
 
+Prefer the least expensive level that can prove the behavior: unit tests first,
+integration tests when WordPress or real components are needed, and E2E only
+when a real browser and complete user flow are indispensable. Do not add or run
+an E2E test merely because a change affects an interface; explain what lower
+levels cannot verify when an E2E test is needed. Reduce redundant E2E coverage
+when equivalent meaningful coverage exists at a lower level; do not discard
+unique coverage without replacing it.
+
 ### Test rules
 1. **Planning.** A plan for a feature, a change or a bug fix states which tests will be written or run and at which level. If the right level is not available yet, the plan says so.
 2. **Baseline.** Before a non-trivial change, run the pertinent suites to know what is already failing, and run them again afterwards.
@@ -276,7 +284,7 @@ If a required check fails and cannot be fixed safely in scope, add/update an iss
 Before marking work complete:
 - Run the checks listed in `Verification` in `AGENTS/CODING_STANDARDS.md` that match the change (at minimum `composer run lint:php` when environment/dependencies are available).
 - For PHP changes, meet the PHPStan quality gate in `AGENTS/CODING_STANDARDS.md`.
-- Run the test suites that match the change (`Test-driven workflow`): `composer test:unit` always; integration and E2E when the area touched needs them and the suite exists. State which suites were not run and why.
+- Run the test suites that match the change (`Test-driven workflow`): `composer test:unit` always; integration when needed, and E2E only when indispensable. State which suites were not run and why.
 - For `Bug` and `Security` fixes, check that the regression test exists and passes.
 - Re-check changed templates/components for escaping and structural validity.
 - Update issue tracking (`AGENTS/ISSUES_TODO.md` / `AGENTS/ISSUES_RESOLVED.md`) when applicable.

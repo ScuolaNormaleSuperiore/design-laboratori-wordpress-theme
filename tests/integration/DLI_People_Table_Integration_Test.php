@@ -28,9 +28,10 @@ class DLI_People_Table_Integration_Test extends DLI_Integration_Test_Case {
 	 *
 	 * @param int[]                $person_ids People to list.
 	 * @param array<string, mixed> $options    Options of the people page (`persone`), such as the hidden columns.
+	 * @param array<string, mixed> $page_data  Additional data for the table.
 	 * @return array{html: string, data: array<string, mixed>} The page and the decoded data.
 	 */
-	private function render_table( array $person_ids, array $options = array() ) {
+	private function render_table( array $person_ids, array $options = array(), array $page_data = array() ) {
 		$this->set_theme_options(
 			'persone',
 			array_merge(
@@ -55,11 +56,14 @@ class DLI_People_Table_Integration_Test extends DLI_Integration_Test_Case {
 			'template-parts/persone/view-tabella',
 			null,
 			array(
-				'page_data' => array(
-					'people_rows' => $rows,
-					'categories'  => array(),
-					'structures'  => array(),
-					'tags'        => array(),
+				'page_data' => array_merge(
+					array(
+						'people_rows' => $rows,
+						'categories'  => array(),
+						'structures'  => array(),
+						'tags'        => array(),
+					),
+					$page_data
 				),
 			)
 		);
@@ -73,6 +77,20 @@ class DLI_People_Table_Integration_Test extends DLI_Integration_Test_Case {
 			'html' => $html,
 			'data' => $data,
 		);
+	}
+
+	/** The requested type is selected in the table filter. */
+	public function test_table_selects_the_requested_people_type() {
+		$category = $this->create_post( PEOPLE_TYPE_POST_TYPE, 'Ricercatore' );
+		$page = $this->render_table(
+			array(),
+			array(),
+			array(
+				'categories'    => array( get_post( $category ) ),
+				'selected_type' => (string) $category,
+			)
+		);
+		$this->assertMatchesRegularExpression( '#<option value="' . $category . '"\s+selected=[\'"]selected[\'"]#', $page['html'] );
 	}
 
 	/**

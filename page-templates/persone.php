@@ -44,6 +44,7 @@ if ( 'tabella' === $dli_view_type ) {
 	$dli_page_data                       = DLI_ContentsManager::get_people_page_data( array() );
 	$dli_page_data['selected_structure'] = $dli_selected_structure;
 	$dli_page_data['selected_level']     = $dli_selected_level;
+	$dli_page_data['selected_type']      = $dli_selected_type;
 	$dli_page_data['selected_cognome']   = $dli_selected_cognome;
 } else {
 	$dli_page_data = DLI_ContentsManager::get_people_page_data(

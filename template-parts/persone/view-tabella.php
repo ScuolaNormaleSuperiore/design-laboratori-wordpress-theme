@@ -23,6 +23,7 @@ $dli_tb_structures         = isset( $dli_tb_page_data['structures'] ) ? $dli_tb_
 $dli_tb_tags               = isset( $dli_tb_page_data['tags'] ) ? $dli_tb_page_data['tags'] : array();
 $dli_tb_selected_structure = isset( $dli_tb_page_data['selected_structure'] ) ? $dli_tb_page_data['selected_structure'] : '';
 $dli_tb_selected_level     = isset( $dli_tb_page_data['selected_level'] ) ? $dli_tb_page_data['selected_level'] : '';
+$dli_tb_selected_type      = isset( $dli_tb_page_data['selected_type'] ) ? (string) $dli_tb_page_data['selected_type'] : '';
 $dli_tb_selected_cognome   = isset( $dli_tb_page_data['selected_cognome'] ) ? $dli_tb_page_data['selected_cognome'] : '';
 
 $dli_tb_hide_email           = ( 'true' === dli_get_option( 'hide_people_table_email', 'persone' ) );
@@ -175,7 +176,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 						<?php echo esc_html__( 'Tutte le tipologie', 'design_laboratori_italia' ); ?>
 					</option>
 					<?php foreach ( $dli_tb_categories as $dli_tb_cat ) : ?>
-						<option value="<?php echo esc_attr( $dli_tb_cat->ID ); ?>">
+						<option value="<?php echo esc_attr( $dli_tb_cat->ID ); ?>" <?php selected( $dli_tb_selected_type, (string) $dli_tb_cat->ID ); ?>>
 							<?php echo esc_html( $dli_tb_category_map[ $dli_tb_cat->ID ] ); ?>
 						</option>
 					<?php endforeach; ?>
@@ -518,6 +519,23 @@ echo wp_json_encode(
 	if ( selType ) {
 		selType.addEventListener( 'change', function () {
 			state.type = selType.value;
+			var currentUrl = new URL( window.location.href );
+			if ( state.type ) {
+				currentUrl.searchParams.set( 'tipologia', state.type );
+			} else {
+				currentUrl.searchParams.delete( 'tipologia' );
+			}
+			window.history.replaceState( window.history.state, '', currentUrl.toString() );
+			document.querySelectorAll( '#personeform .btn-group a[href]' ).forEach( function ( link ) {
+				var url = new URL( link.href, currentUrl );
+				if ( url.searchParams.get( 'vista' ) !== 'chip' && url.searchParams.get( 'vista' ) !== 'tabella' ) { return; }
+				if ( state.type ) {
+					url.searchParams.set( 'tipologia', state.type );
+				} else {
+					url.searchParams.delete( 'tipologia' );
+				}
+				link.href = url.toString();
+			} );
 			state.page = 1;
 			render();
 		} );
