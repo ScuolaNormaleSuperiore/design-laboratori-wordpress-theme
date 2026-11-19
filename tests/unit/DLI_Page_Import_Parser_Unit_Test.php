@@ -55,10 +55,11 @@ class DLI_Page_Import_Parser_Unit_Test extends TestCase {
 	}
 
 	/**
-	 * A file has at most 200 pages: an import of more takes too long for a request, and the reader refuses the 201st.
+	 * A file has at most 200 pages (`DLI_CSV_Reader::MAX_ROWS`, the limit of every import from a file): an import of
+	 * more takes too long for a request (about 45 ms a page), and the reader refuses the 201st.
 	 */
 	public function test_a_file_has_at_most_two_hundred_pages() {
-		$this->assertSame( 200, DLI_Page_File_Importer::MAX_PAGES );
+		$this->assertSame( 200, DLI_CSV_Reader::MAX_ROWS );
 
 		$header = "level_1;level_2;level_3;menu_order;promote_in_home;show_subpages_as_cards\n";
 		$page   = static function ( $number ) {
@@ -68,7 +69,7 @@ class DLI_Page_Import_Parser_Unit_Test extends TestCase {
 		for ( $number = 1; $number <= 200; $number++ ) {
 			$rows .= $page( $number );
 		}
-		$options = array( 'max_rows' => DLI_Page_File_Importer::MAX_PAGES );
+		$options = array( 'required' => array( 'level_1', 'level_2', 'level_3', 'menu_order', 'promote_in_home', 'show_subpages_as_cards' ) );
 
 		$enough = DLI_CSV_Reader::read_string( $header . $rows, $options );
 		$this->assertSame( array(), $enough['errors'] );

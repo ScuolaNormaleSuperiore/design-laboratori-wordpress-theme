@@ -112,6 +112,7 @@ class DLI_Page_Import_Admin {
 			'filename' => '',
 			'error'    => '',
 			'errors'   => array(),
+			'ignored'  => array(),
 			'rows'     => array(),
 			'counts'   => array(
 				'created' => 0,
@@ -145,13 +146,14 @@ class DLI_Page_Import_Admin {
 			array(
 				'required' => array( 'level_1', 'level_2', 'level_3', 'menu_order', 'promote_in_home', 'show_subpages_as_cards' ),
 				'optional' => array( 'page_key', 'excerpt', 'slug' ),
-				'max_rows' => DLI_Page_File_Importer::MAX_PAGES,
 			)
 		);
 		if ( ! empty( $read['errors'] ) ) {
 			$report['errors'] = $read['errors'];
 			return $report;
 		}
+		$report['ignored'] = $read['ignored'];
+
 		$parsed = DLI_Page_File_Importer::parse_rows( $read['rows'] );
 		if ( ! empty( $parsed['errors'] ) ) {
 			$report['errors'] = $parsed['errors'];
@@ -249,12 +251,9 @@ class DLI_Page_Import_Admin {
 			case 'duplicate_header':
 				/* translators: %s: name of the column */
 				return sprintf( __( 'Intestazione non valida: la colonna "%s" è ripetuta.', 'design_laboratori_italia' ), $detail );
-			case 'unknown_header':
-				/* translators: %s: name of the column */
-				return sprintf( __( 'Intestazione non valida: colonna sconosciuta "%s".', 'design_laboratori_italia' ), $detail );
 			case 'too_many_rows':
-				/* translators: %d: the most pages of a file */
-				return sprintf( __( 'Il file ha troppe pagine: il massimo è %d.', 'design_laboratori_italia' ), DLI_Page_File_Importer::MAX_PAGES );
+				/* translators: %d: the most rows of a file */
+				return sprintf( __( 'Il file ha troppe righe: il massimo è %d.', 'design_laboratori_italia' ), DLI_CSV_Reader::MAX_ROWS );
 			case 'columns_count':
 				/* translators: %d: line of the file */
 				return sprintf( __( 'Riga %d: il numero di colonne non corrisponde all\'intestazione.', 'design_laboratori_italia' ), $line );
@@ -384,6 +383,7 @@ class DLI_Page_Import_Admin {
 							<code>excerpt</code>: <?php esc_html_e( 'riassunto.', 'design_laboratori_italia' ); ?>
 							<code>slug</code>: <?php esc_html_e( 'indirizzo, se diverso da quello del titolo.', 'design_laboratori_italia' ); ?>
 						</p>
+						<p><?php esc_html_e( 'I nomi delle colonne si possono scrivere anche in maiuscolo. Le altre colonne e le righe vuote vengono ignorate; le colonne ignorate sono elencate nel report.', 'design_laboratori_italia' ); ?></p>
 					</div>
 					<div class="dli-info-row">
 						<h3><?php esc_html_e( 'Cosa fa', 'design_laboratori_italia' ); ?></h3>
@@ -393,7 +393,7 @@ class DLI_Page_Import_Admin {
 								sprintf(
 									/* translators: %d: the most pages of a file */
 									__( 'Le pagine nuove vengono pubblicate subito, nella lingua scelta. Le pagine già importate vengono saltate: puoi inviare di nuovo lo stesso file senza creare duplicati. Se una pagina del sito ha lo stesso indirizzo, non viene creato nulla. Massimo %d pagine per file. Prima di importare esegui sempre una simulazione.', 'design_laboratori_italia' ),
-									DLI_Page_File_Importer::MAX_PAGES
+									DLI_CSV_Reader::MAX_ROWS
 								)
 							);
 							?>
@@ -444,7 +444,7 @@ class DLI_Page_Import_Admin {
 											sprintf(
 												/* translators: %d: the most pages of a file */
 												__( 'Dimensione massima: 2 MB, al massimo %d pagine. Separatore: punto e virgola (;).', 'design_laboratori_italia' ),
-												DLI_Page_File_Importer::MAX_PAGES
+												DLI_CSV_Reader::MAX_ROWS
 											)
 										);
 										?>
@@ -503,12 +503,12 @@ class DLI_Page_Import_Admin {
 	}
 
 	/**
-	 * The report of the request: the errors, the counters and the pages one by one.
+	 * The report of the request: the errors, the columns that were ignored, the counters and the pages one by one.
 	 *
-	 * @param array<string, mixed> $report The report.
+	 * @param array<string, mixed> $report The report given by `process_request()`.
 	 * @return void
 	 */
-	private static function render_report( array $report ) {
+	public static function render_report( array $report ) {
 		$is_dry_run = ! $report['applied'];
 		$mode_label = $is_dry_run ? __( 'esecuzione simulata', 'design_laboratori_italia' ) : __( 'esecuzione reale', 'design_laboratori_italia' );
 		?>
@@ -550,6 +550,17 @@ class DLI_Page_Import_Admin {
 					</div>
 				<?php endif; ?>
 
+				<?php if ( ! empty( $report['ignored'] ) ) : ?>
+					<div class="notice notice-warning inline">
+						<p>
+							<?php
+							/* translators: %s: names of the columns, separated by commas */
+							echo esc_html( sprintf( __( 'Colonne ignorate: %s.', 'design_laboratori_italia' ), implode( ', ', $report['ignored'] ) ) );
+							?>
+						</p>
+					</div>
+				<?php endif; ?>
+
 				<?php if ( ! empty( $report['rows'] ) ) : ?>
 					<table class="widefat striped fixed dli-report-summary">
 						<thead>
@@ -579,6 +590,7 @@ class DLI_Page_Import_Admin {
 									<th scope="col"><?php esc_html_e( 'Riga', 'design_laboratori_italia' ); ?></th>
 									<th scope="col"><?php esc_html_e( 'Pagina', 'design_laboratori_italia' ); ?></th>
 									<th scope="col"><?php esc_html_e( 'Indirizzo', 'design_laboratori_italia' ); ?></th>
+									<th scope="col">page_key</th>
 									<th scope="col"><?php esc_html_e( 'Ordine', 'design_laboratori_italia' ); ?></th>
 									<th scope="col"><?php esc_html_e( 'In home', 'design_laboratori_italia' ); ?></th>
 									<th scope="col"><?php esc_html_e( 'Card', 'design_laboratori_italia' ); ?></th>
@@ -599,6 +611,7 @@ class DLI_Page_Import_Admin {
 											</span>
 										</td>
 										<td><?php echo esc_html( (string) wp_parse_url( $row['url'], PHP_URL_PATH ) ); ?></td>
+										<td><?php echo esc_html( (string) $row['key'] ); ?></td>
 										<td><?php echo esc_html( (string) $row['order'] ); ?></td>
 										<td><?php echo esc_html( $row['promote'] ? __( 'sì', 'design_laboratori_italia' ) : __( 'no', 'design_laboratori_italia' ) ); ?></td>
 										<td><?php echo esc_html( $row['cards'] ? __( 'sì', 'design_laboratori_italia' ) : __( 'no', 'design_laboratori_italia' ) ); ?></td>

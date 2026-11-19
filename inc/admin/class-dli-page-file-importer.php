@@ -15,11 +15,6 @@
 class DLI_Page_File_Importer {
 
 	/**
-	 * The most pages of a file: the import of more takes too long for one request (about 45 ms a page).
-	 */
-	const MAX_PAGES = 200;
-
-	/**
 	 * Meta where a page created by the import keeps its identity (the key of the file, or the path of the titles).
 	 */
 	const META_KEY = '_dli_page_import_key';
@@ -202,7 +197,7 @@ class DLI_Page_File_Importer {
 	 * in a group that has a page in this language; the detail is the ID of that page). A page that is in the bin
 	 * because it was moved there has already given its address back, so it does not block.
 	 *
-	 * Each row of the plan has: `line`, `title`, `level`, `parent` (index), `order`, `promote`, `cards`, `slug`, `url`,
+	 * Each row of the plan has: `line`, `title`, `level`, `parent` (index), `order`, `promote`, `cards`, `key`, `slug`, `url`,
 	 * `action`, `id` (of the page that exists), `message` (the code of the error), `detail` and `translations` (the pages
 	 * of other languages with the same key, by language, that the new page is linked to).
 	 *
@@ -245,6 +240,7 @@ class DLI_Page_File_Importer {
 				'order'        => $page['order'],
 				'promote'      => $page['promote'],
 				'cards'        => $page['cards'],
+				'key'          => $page['key'],
 				'slug'         => $slug,
 				'url'          => $home . $slug_path . '/',
 				'action'       => 'created',

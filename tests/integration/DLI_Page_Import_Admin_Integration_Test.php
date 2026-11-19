@@ -372,11 +372,51 @@ class DLI_Page_Import_Admin_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertSame( array( 'invalid_utf8' ), $this->codes( $latin ) );
 
 		$rows = '';
-		for ( $number = 1; $number <= DLI_Page_File_Importer::MAX_PAGES + 1; $number++ ) {
+		for ( $number = 1; $number <= DLI_CSV_Reader::MAX_ROWS + 1; $number++ ) {
 			$rows .= "Pagina $number;;;1;0;0\n";
 		}
 		$many = $this->send( $this->post(), $this->upload( "level_1;level_2;level_3;menu_order;promote_in_home;show_subpages_as_cards\n" . $rows ) );
 		$this->assertSame( array( 'too_many_rows' ), $this->codes( $many ) );
+	}
+
+	/**
+	 * Names of the columns in any case, a column that is not of the format (with values) and empty rows do not stop
+	 * the import: the column is left out and listed in the report.
+	 */
+	public function test_other_columns_and_empty_rows_do_not_stop_the_import() {
+		$this->login( 'administrator' );
+		$content = "Level_1;LEVEL_2;level_3;Menu_Order;promote_in_home;show_subpages_as_cards;Note;Page_Key\n"
+			. "Ricerca;;;1;0;0;da rivedere;research\n"
+			. ";;;;;;;\n"
+			. ";;;;;;solo una nota;\n"
+			. "\n"
+			. ";Progetti;;1;0;0;;\n";
+
+		$report = $this->send( $this->post( array( 'dli_pages_exec' => 'commit', 'dli_pages_confirm' => '1' ) ), $this->upload( $content ) );
+
+		$this->assertSame( array(), $report['errors'] );
+		$this->assertSame( array( 'Note' ), $report['ignored'] );
+		$this->assertSame( array( 'created' => 2, 'skipped' => 0, 'errors' => 0 ), $report['counts'] );
+		$this->assertSame( array( 2, 6 ), array_column( $report['rows'], 'line' ), 'The lines are those of the file.' );
+		$this->assertSame( array( 'research', '' ), array_column( $report['rows'], 'key' ) );
+		$this->assertNotNull( get_page_by_path( 'ricerca/progetti' ) );
+	}
+
+	/**
+	 * The report lists the columns that were left out and shows the key of each page.
+	 */
+	public function test_the_report_shows_the_ignored_columns_and_the_keys() {
+		$this->login( 'administrator' );
+		$content = "level_1;level_2;level_3;menu_order;promote_in_home;show_subpages_as_cards;page_key;Note;Colore\n"
+			. "Ricerca;;;1;0;0;research;x;rosso\n";
+
+		ob_start();
+		DLI_Page_Import_Admin::render_report( $this->send( $this->post(), $this->upload( $content ) ) );
+		$html = (string) ob_get_clean();
+
+		$this->assertStringContainsString( 'Note, Colore', $html );
+		$this->assertSame( 1, preg_match( '#<th scope="col">page_key</th>#', $html ), 'The table has the column of the key.' );
+		$this->assertSame( 1, preg_match( '#<td[^>]*>research</td>#', $html ), 'The key of the page is in its row.' );
 	}
 
 	/**
