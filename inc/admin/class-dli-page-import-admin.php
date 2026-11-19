@@ -3,8 +3,8 @@
  * Strumenti DLI → Importa → Pagine: the form, the request, the report and the downloads of the examples.
  *
  * Like the import of the people, the page handles its own form: the file is sent again at each step and nothing is kept
- * on the server between the simulation and the import. The reading of the file is done by `DLI_CSV_Reader`, the pages
- * by `DLI_Page_File_Importer`.
+ * on the server between the simulation and the import. The upload is checked by `DLI_CSV_File`, the file is read by
+ * `DLI_CSV_Reader`, the pages are made by `DLI_Page_File_Importer`.
  *
  * @package Design_Laboratori_Italia
  */
@@ -134,7 +134,7 @@ class DLI_Page_Import_Admin {
 		}
 
 		$file  = isset( $files[ self::FIELD_FILE ] ) && is_array( $files[ self::FIELD_FILE ] ) ? $files[ self::FIELD_FILE ] : array();
-		$check = self::check_upload( $file, $require_upload );
+		$check = DLI_CSV_File::check( $file, $require_upload );
 		if ( '' !== $check ) {
 			$report['error'] = $check;
 			return $report;
@@ -180,41 +180,13 @@ class DLI_Page_Import_Admin {
 	}
 
 	/**
-	 * Check the file that was sent: sent, from an upload, a CSV, of the size allowed and of a type of text.
-	 *
-	 * @param array<string, mixed> $file           The entry of `$_FILES`.
-	 * @param bool                 $require_upload Whether the file must come from an upload through HTTP.
-	 * @return string The code of what is wrong, empty when the file is fine.
-	 */
-	private static function check_upload( array $file, $require_upload ) {
-		if ( empty( $file['tmp_name'] ) || ! isset( $file['error'], $file['name'], $file['size'] ) || UPLOAD_ERR_OK !== (int) $file['error'] ) {
-			return 'no_file';
-		}
-		if ( $require_upload && ! is_uploaded_file( (string) $file['tmp_name'] ) ) {
-			return 'not_uploaded';
-		}
-		if ( 'csv' !== strtolower( pathinfo( sanitize_file_name( (string) $file['name'] ), PATHINFO_EXTENSION ) ) ) {
-			return 'extension';
-		}
-		if ( (int) $file['size'] > DLI_CSV_Reader::MAX_BYTES ) {
-			return 'too_large';
-		}
-		if ( function_exists( 'mime_content_type' ) ) {
-			$mime = mime_content_type( (string) $file['tmp_name'] );
-			if ( $mime && ! in_array( $mime, array( 'text/csv', 'text/plain', 'application/csv', 'application/vnd.ms-excel' ), true ) ) {
-				return 'mime';
-			}
-		}
-		return '';
-	}
-
-	/**
-	 * The message for the operator of an error.
+	 * The message for the operator of an error: the codes of the pages here, those of the upload and of the reader from
+	 * `DLI_CSV_File::message()`.
 	 *
 	 * @param string $code   Code of the error.
 	 * @param int    $line   Line of the file, 0 when the error is not about a line.
 	 * @param string $detail Detail of the error: the column, the key, the title, the ID of a page.
-	 * @return string The message.
+	 * @return string The message; the code itself when it is not known.
 	 */
 	public static function message( $code, $line = 0, $detail = '' ) {
 		switch ( $code ) {
@@ -222,41 +194,8 @@ class DLI_Page_Import_Admin {
 				return __( 'Non hai i permessi per eseguire questa operazione.', 'design_laboratori_italia' );
 			case 'nonce':
 				return __( 'Richiesta non valida: nonce mancante o non valido.', 'design_laboratori_italia' );
-			case 'no_file':
-				return __( 'Nessun file caricato o errore nel caricamento.', 'design_laboratori_italia' );
-			case 'not_uploaded':
-				return __( 'File non valido.', 'design_laboratori_italia' );
-			case 'extension':
-				return __( 'Formato non valido: è richiesto un file .csv.', 'design_laboratori_italia' );
-			case 'too_large':
-				return __( 'File troppo grande. Dimensione massima: 2 MB.', 'design_laboratori_italia' );
-			case 'mime':
-				return __( 'Tipo di file non valido: è richiesto un file CSV.', 'design_laboratori_italia' );
 			case 'not_confirmed':
 				return __( 'Per importare serve la conferma della pubblicazione: non è stato scritto nulla.', 'design_laboratori_italia' );
-			case 'unreadable':
-				return __( 'Impossibile leggere il file caricato.', 'design_laboratori_italia' );
-			case 'nul_byte':
-				return __( 'Il file contiene caratteri non validi.', 'design_laboratori_italia' );
-			case 'invalid_utf8':
-				return __( 'Il file non è in UTF-8: salvalo come «CSV UTF-8».', 'design_laboratori_italia' );
-			case 'empty':
-				return __( 'File vuoto o intestazione non leggibile.', 'design_laboratori_italia' );
-			case 'malformed':
-				/* translators: %d: line of the file */
-				return sprintf( __( 'Riga %d: virgolette aperte e mai chiuse.', 'design_laboratori_italia' ), $line );
-			case 'missing_header':
-				/* translators: %s: name of the column */
-				return sprintf( __( 'Intestazione non valida: colonna obbligatoria "%s" non trovata.', 'design_laboratori_italia' ), $detail );
-			case 'duplicate_header':
-				/* translators: %s: name of the column */
-				return sprintf( __( 'Intestazione non valida: la colonna "%s" è ripetuta.', 'design_laboratori_italia' ), $detail );
-			case 'too_many_rows':
-				/* translators: %d: the most rows of a file */
-				return sprintf( __( 'Il file ha troppe righe: il massimo è %d.', 'design_laboratori_italia' ), DLI_CSV_Reader::MAX_ROWS );
-			case 'columns_count':
-				/* translators: %d: line of the file */
-				return sprintf( __( 'Riga %d: il numero di colonne non corrisponde all\'intestazione.', 'design_laboratori_italia' ), $line );
 			case 'no_title':
 				/* translators: %d: line of the file */
 				return sprintf( __( 'Riga %d: manca il titolo.', 'design_laboratori_italia' ), $line );
@@ -313,7 +252,8 @@ class DLI_Page_Import_Admin {
 				/* translators: 1: line of the file, 2: the address WordPress gave */
 				return sprintf( __( 'Riga %1$d: WordPress ha cambiato l\'indirizzo in «%2$s».', 'design_laboratori_italia' ), $line, $detail );
 		}
-		return $code;
+		$shared = DLI_CSV_File::message( $code, $line, $detail );
+		return '' !== $shared ? $shared : $code;
 	}
 
 	/**
@@ -552,12 +492,7 @@ class DLI_Page_Import_Admin {
 
 				<?php if ( ! empty( $report['ignored'] ) ) : ?>
 					<div class="notice notice-warning inline">
-						<p>
-							<?php
-							/* translators: %s: names of the columns, separated by commas */
-							echo esc_html( sprintf( __( 'Colonne ignorate: %s.', 'design_laboratori_italia' ), implode( ', ', $report['ignored'] ) ) );
-							?>
-						</p>
+						<p><?php echo esc_html( DLI_CSV_File::ignored_message( $report['ignored'] ) ); ?></p>
 					</div>
 				<?php endif; ?>
 

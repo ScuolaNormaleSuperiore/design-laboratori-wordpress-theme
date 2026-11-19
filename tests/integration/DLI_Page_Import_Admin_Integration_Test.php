@@ -6,6 +6,7 @@
  */
 
 require_once dirname( __DIR__, 2 ) . '/inc/admin/class-dli-csv-reader.php';
+require_once dirname( __DIR__, 2 ) . '/inc/admin/class-dli-csv-file.php';
 require_once dirname( __DIR__, 2 ) . '/inc/admin/class-dli-page-file-importer.php';
 require_once dirname( __DIR__, 2 ) . '/inc/admin/class-dli-page-import-admin.php';
 
