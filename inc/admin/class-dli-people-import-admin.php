@@ -44,14 +44,32 @@ class DLI_People_Import_Admin {
 	const IMPORT_MODES = array( 'upsert', 'solo_nuovi', 'aggiorna_esistenti', 'ignora_esistenti' );
 
 	/**
-	 * The columns of the file, in the order of the example.
-	 */
-	const COLUMNS = array( 'nome', 'cognome', 'email', 'titolo', 'telefono', 'tipologia_persona', 'struttura', 'stato', 'sito_web', 'body', 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
-
-	/**
 	 * The columns that the header must have.
 	 */
 	const REQUIRED_COLUMNS = array( 'nome', 'cognome', 'email' );
+
+	/**
+	 * The columns that the header may have.
+	 */
+	const OPTIONAL_COLUMNS = array( 'titolo', 'telefono', 'tipologia_persona', 'struttura', 'stato', 'sito_web', 'body', 'escludi_da_elenco', 'disattiva_pagina_dettaglio' );
+
+	/**
+	 * The value of a column that is not in the file.
+	 */
+	const DEFAULTS = array(
+		'stato'                      => 'publish',
+		'escludi_da_elenco'          => '0',
+		'disattiva_pagina_dettaglio' => '0',
+	);
+
+	/**
+	 * The path of the example file, in `SETUP/CSV_Import/`.
+	 *
+	 * @return string The path.
+	 */
+	public static function example_path() {
+		return dirname( __DIR__, 2 ) . '/SETUP/CSV_Import/people-example.csv';
+	}
 
 	/**
 	 * Send the example file and stop: only for who can use the tools, with the nonce of the link.
@@ -62,25 +80,17 @@ class DLI_People_Import_Admin {
 		if ( ! current_user_can( DLI_EDIT_CONFIG_PERMISSION ) ) {
 			wp_die( esc_html__( 'Non hai i permessi per eseguire questa operazione.', 'design_laboratori_italia' ) );
 		}
-
 		check_admin_referer( self::DOWNLOAD_NONCE );
 
-		$rows = array(
-			array( 'Mario', 'Rossi', 'mario.rossi@example.com', 'Prof.', '050-123456', 'tipologia1', 'prima-struttura', 'publish', 'https://example.com', 'Breve biografia di Mario Rossi.', '0', '0' ),
-			array( 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'Dott.ssa', '', 'tipologia2', 'prima-struttura|seconda-struttura', 'draft', '', '', '1', '0' ),
-		);
+		$path = self::example_path();
+		if ( ! is_readable( $path ) ) {
+			wp_die( esc_html__( 'File non trovato.', 'design_laboratori_italia' ), '', array( 'response' => 404 ) );
+		}
 
 		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="persone-esempio.csv"' );
+		header( 'Content-Disposition: attachment; filename="' . basename( $path ) . '"' );
 		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
-
-		$output = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
-		fwrite( $output, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- UTF-8 BOM for correct Excel rendering.
-		fputcsv( $output, self::COLUMNS, ';' );
-		foreach ( $rows as $row ) {
-			fputcsv( $output, $row, ';' );
-		}
-		fclose( $output ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		readfile( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_readfile -- A file of the theme, with a fixed path.
 		exit;
 	}
 
@@ -88,9 +98,10 @@ class DLI_People_Import_Admin {
 	 * Check the request and import the file, or simulate the import.
 	 *
 	 * Without `DLI_EDIT_CONFIG_PERMISSION` or with a wrong nonce the request stops with `wp_die()`. A mode that is not
-	 * known is `upsert`, a run mode that is not known is `dry_run`. A file that cannot be used, or whose header misses a
-	 * required column, gives a notice and nothing is processed; otherwise each row is processed on its own and an error
-	 * stops only its row.
+	 * known is `upsert`, a run mode that is not known is `dry_run`. The file is read by `DLI_CSV_Reader` with the
+	 * columns of the people: a file that cannot be used or read, or whose header misses a required column, gives a
+	 * notice and nothing is processed. Otherwise each row is processed on its own, in the order of the file, and an
+	 * error (also a row too short) stops only its row; the columns that are not of the format are listed in `ignored`.
 	 *
 	 * @param array<string, mixed> $post           The values of the form, without slashes.
 	 * @param array<string, mixed> $files          The uploaded files, as in `$_FILES`.
@@ -126,6 +137,7 @@ class DLI_People_Import_Admin {
 			'saltati'      => 0,
 			'errori_count' => 0,
 			'log'          => array(),
+			'ignored'      => array(),
 			'notice'       => '',
 			'notice_type'  => 'info',
 		);
@@ -141,61 +153,77 @@ class DLI_People_Import_Admin {
 			return $report;
 		}
 
-		$handle = fopen( (string) $file['tmp_name'], 'r' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
-		if ( ! $handle ) {
-			$report['notice']      = __( 'Impossibile leggere il file caricato.', 'design_laboratori_italia' );
+		$read = DLI_CSV_Reader::read(
+			(string) $file['tmp_name'],
+			array(
+				'required' => self::REQUIRED_COLUMNS,
+				'optional' => self::OPTIONAL_COLUMNS,
+			)
+		);
+
+		$file_errors = array();
+		$short_rows  = array();
+		foreach ( $read['errors'] as $error ) {
+			if ( 'columns_count' === $error['code'] ) {
+				$short_rows[] = $error['line'];
+			} else {
+				$file_errors[] = DLI_CSV_File::message( $error['code'], $error['line'], $error['detail'] );
+			}
+		}
+		if ( ! empty( $file_errors ) ) {
+			$report['notice']      = implode( ' ', $file_errors );
 			$report['notice_type'] = 'error';
 			return $report;
 		}
+		$report['ignored'] = $read['ignored'];
 
-		// Skip UTF-8 BOM if present.
-		$bom = fread( $handle, 3 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fread
-		if ( "\xEF\xBB\xBF" !== $bom ) {
-			rewind( $handle );
-		}
-
-		$header_row = fgetcsv( $handle, 0, ';' );
-		if ( ! $header_row ) {
-			fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-			$report['notice']      = __( 'File vuoto o intestazione non leggibile.', 'design_laboratori_italia' );
-			$report['notice_type'] = 'error';
-			return $report;
-		}
-
-		$header_row = array_map( 'trim', $header_row );
-		foreach ( self::REQUIRED_COLUMNS as $required ) {
-			if ( ! in_array( $required, $header_row, true ) ) {
-				fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-				$report['notice'] = sprintf(
-					/* translators: %s: missing column name */
-					__( 'Intestazione non valida: colonna obbligatoria "%s" non trovata.', 'design_laboratori_italia' ),
-					$required
-				);
-				$report['notice_type'] = 'error';
-				return $report;
-			}
-		}
-
-		// Map column names to their index for easy lookup.
-		$col     = array_flip( $header_row );
-		$row_num = 1;
-
-		while ( true ) {
-			$row = fgetcsv( $handle, 0, ';' );
-			if ( false === $row ) {
-				break;
-			}
-			++$row_num;
+		foreach ( self::rows_by_line( $read['rows'], $short_rows ) as $line => $cells ) {
 			++$report['elaborati'];
+			if ( null === $cells ) {
+				$report['log'][] = self::short_row_entry( $line );
+				$report          = self::count( $report, 'error' );
+				continue;
+			}
 
-			$result          = DLI_People_File_Importer::process_row( self::parse_csv_row( $row, $col ), $import_mode, $exec_mode, $row_num );
+			$data            = array_merge( array_fill_keys( self::OPTIONAL_COLUMNS, '' ), self::DEFAULTS, $cells );
+			$result          = DLI_People_File_Importer::process_row( $data, $import_mode, $exec_mode, $line );
 			$report['log'][] = $result['log_entry'];
 			$report          = self::count( $report, $result['action'] );
 		}
 
-		fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
-
 		return $report;
+	}
+
+	/**
+	 * The rows that were read and the rows too short, in the order of the file.
+	 *
+	 * @param array<int, array{line: int, cells: array<string, string>}> $rows       The rows of the reader.
+	 * @param int[]                                                      $short_rows The lines of the rows too short.
+	 * @return array<int, array<string, string>|null> The cells by line; null for a row too short.
+	 */
+	private static function rows_by_line( array $rows, array $short_rows ) {
+		$by_line = array_fill_keys( $short_rows, null );
+		foreach ( $rows as $row ) {
+			$by_line[ $row['line'] ] = $row['cells'];
+		}
+		ksort( $by_line );
+		return $by_line;
+	}
+
+	/**
+	 * The line of the log of a row too short to be read.
+	 *
+	 * @param int $line Line of the file.
+	 * @return array<string, mixed> The line of the log.
+	 */
+	private static function short_row_entry( $line ) {
+		return array(
+			'row'     => $line,
+			'name'    => '',
+			'email'   => '',
+			'status'  => 'ERRORE',
+			'message' => DLI_CSV_File::message( 'columns_count', $line ),
+		);
 	}
 
 	/**
@@ -216,33 +244,6 @@ class DLI_People_Import_Admin {
 			++$report[ $counters[ $action ] ];
 		}
 		return $report;
-	}
-
-	/**
-	 * Build a field-keyed data array from one parsed CSV row.
-	 *
-	 * @param array<int, string|null> $row Numeric-indexed values from fgetcsv().
-	 * @param array<string, int>      $col Column-name → index map built from the header row.
-	 * @return array<string, string>
-	 */
-	private static function parse_csv_row( array $row, array $col ) {
-		$get = static function ( $key, $fallback = '' ) use ( $row, $col ) {
-			return trim( isset( $col[ $key ] ) ? $row[ $col[ $key ] ] : $fallback );
-		};
-		return array(
-			'nome'                       => $get( 'nome' ),
-			'cognome'                    => $get( 'cognome' ),
-			'email'                      => $get( 'email' ),
-			'titolo'                     => $get( 'titolo' ),
-			'telefono'                   => $get( 'telefono' ),
-			'tipologia_persona'          => $get( 'tipologia_persona' ),
-			'struttura'                  => $get( 'struttura' ),
-			'stato'                      => $get( 'stato', 'publish' ),
-			'sito_web'                   => $get( 'sito_web' ),
-			'body'                       => $get( 'body' ),
-			'escludi_da_elenco'          => $get( 'escludi_da_elenco', '0' ),
-			'disattiva_pagina_dettaglio' => $get( 'disattiva_pagina_dettaglio', '0' ),
-		);
 	}
 
 	/**
@@ -289,7 +290,7 @@ class DLI_People_Import_Admin {
 		<div class="postbox dli-tool-panel dli-tool-panel-intro">
 			<div class="inside">
 				<h2><?php esc_html_e( 'Come funziona', 'design_laboratori_italia' ); ?></h2>
-				<p class="dli-section-lead"><?php esc_html_e( 'Importa persone da un file CSV con separatore punto e virgola (;). L\'intestazione deve corrispondere esattamente a quella richiesta.', 'design_laboratori_italia' ); ?></p>
+				<p class="dli-section-lead"><?php esc_html_e( 'Importa persone da un file CSV in UTF-8, con separatore punto e virgola (;). I nomi delle colonne si possono scrivere anche in maiuscolo; le altre colonne e le righe vuote vengono ignorate, e le colonne ignorate sono elencate nel report.', 'design_laboratori_italia' ); ?></p>
 
 				<div class="dli-info-list">
 					<div class="dli-info-row">
@@ -394,7 +395,17 @@ class DLI_People_Import_Admin {
 								<td>
 									<input type="file" id="dli-csv-file" name="<?php echo esc_attr( self::FIELD_FILE ); ?>" accept=".csv"
 											required aria-describedby="dli-csv-file-note">
-									<p id="dli-csv-file-note" class="dli-form-note"><?php esc_html_e( 'Dimensione massima: 2 MB. Separatore: punto e virgola (;).', 'design_laboratori_italia' ); ?></p>
+									<p id="dli-csv-file-note" class="dli-form-note">
+									<?php
+									echo esc_html(
+										sprintf(
+											/* translators: %d: the most rows of a file */
+											__( 'Dimensione massima: 2 MB, al massimo %d righe. Separatore: punto e virgola (;).', 'design_laboratori_italia' ),
+											DLI_CSV_Reader::MAX_ROWS
+										)
+									);
+									?>
+								</p>
 								</td>
 							</tr>
 
@@ -482,6 +493,12 @@ class DLI_People_Import_Admin {
 				<?php if ( $report['notice'] ) : ?>
 					<div class="notice <?php echo esc_attr( $notice_class ); ?> inline" role="alert">
 						<p><?php echo esc_html( $report['notice'] ); ?></p>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $report['ignored'] ) ) : ?>
+					<div class="notice notice-warning inline">
+						<p><?php echo esc_html( DLI_CSV_File::ignored_message( $report['ignored'] ) ); ?></p>
 					</div>
 				<?php endif; ?>
 

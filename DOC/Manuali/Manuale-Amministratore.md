@@ -90,7 +90,8 @@ I passi (copia del tema, attivazione, plugin, Polylang, dati di attivazione, men
 
 - **Utilità → Ricarica i dati di attivazione:** crea pagine, menu e tassonomie predefinite che mancano, compresa la pagina «Area riservata» (vedi [Area riservata](../HowTo/Area-riservata.md)). Non modifica le pagine e i menu che esistono già;
 - **Importa → Pagine:** crea l'albero delle pagine del sito (fino a tre livelli e 200 pagine) da un file CSV, con simulazione e conferma prima della scrittura. Dalla stessa pagina si scaricano un modello vuoto e due esempi dimostrativi (italiano e inglese), che servono anche a provare le sezioni della home che elencano pagine: non importarli su un sito di produzione. Le pagine create sono pubblicate subito, e non si modificano né si cancellano pagine già esistenti: un indirizzo già usato blocca l'importazione. Prima di importare su un sito reale conviene fare un backup. Formato del file e procedura sono nella guida [Importare da file CSV](../HowTo/Importare-da-CSV.md);
-- **Importa → Persone, Indico, Iris:** avvio manuale degli altri import.
+- **Importa → Persone:** crea o aggiorna le schede delle persone da un file CSV, riconoscendole dall'email, con simulazione prima della scrittura. Formato del file, colonne e modalità sono nella guida [Importare da file CSV](../HowTo/Importare-da-CSV.md);
+- **Importa → Indico, Iris:** avvio manuale degli altri import.
 
 ## 8. Note di architettura (per chi valuta il riuso)
 La descrizione completa è in `AGENTS/ARCHITECTURE.md`. In breve:

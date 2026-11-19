@@ -193,7 +193,7 @@
 			"source": "DOC/HowTo/Importare-da-CSV.md",
 			"target": "amministra/importare-da-csv.md",
 			"title": "Importare da file CSV",
-			"description": "Formato comune dei file CSV; importazione delle pagine: modello, simulazione, lingue, limiti e verifica.",
+			"description": "Formato comune dei file CSV; importazione delle pagine e delle persone: colonne, simulazione, lingue, limiti e verifica.",
 			"group": "Amministra",
 			"order": 30
 		},

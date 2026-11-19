@@ -4,7 +4,7 @@ In `Strumenti DLI -> Importa` alcuni contenuti si creano da un file CSV preparat
 
 ## Formato del file
 
-Le regole di questa sezione valgono per l'importazione delle pagine.
+Le regole di questa sezione valgono per tutte le importazioni da file: pagine e persone.
 
 - **Codifica UTF-8.** Un file in un'altra codifica viene rifiutato. In Excel scegli *Salva con nome → CSV UTF-8 (delimitato da virgole)* e poi controlla il separatore; in LibreOffice scegli il set di caratteri *Unicode (UTF-8)*.
 - **Separatore punto e virgola (`;`).** La virgola non separa le colonne: fa parte del testo della cella.
@@ -69,3 +69,41 @@ La chiave resta salvata nella pagina creata, in un campo nascosto: per questo co
 L'importatore accetta al massimo 200 pagine. Crea solo pagine nuove: non aggiorna, adotta o cancella pagine esistenti. Un indirizzo già usato blocca l'intera importazione. Se ripeti un file già importato, le pagine riconosciute vengono ignorate e non duplicate.
 
 Controlla che ogni sottopagina segua una pagina del livello superiore. Dopo l'importazione, verifica che `Promuovi in Home` e `Mostra sottopagine come card` producano il risultato desiderato nelle sezioni della home.
+
+## Persone
+
+`Strumenti DLI -> Importa -> Persone` crea o aggiorna le schede delle persone. Lo strumento è destinato a chi ha i permessi di configurazione del sito.
+
+### Prima di iniziare
+
+Scarica dalla schermata il CSV di esempio: contiene tutte le colonne e due persone dimostrative. Fai un backup prima dell'importazione reale.
+
+Le colonne obbligatorie sono `nome`, `cognome` ed `email`. Le colonne facoltative sono:
+
+| Colonna | Contenuto | Se manca o è vuota |
+|---|---|---|
+| `titolo` | Titolo della persona: `Cav.`, `Comm.`, `Dott.`, `Dott.ssa`, `Dr.`, `Prof.`, `Prof.ssa`, `Ing.`, `Avv.`, `Rag.`, `Sig.`, `Sig.ra` | Nessun titolo |
+| `telefono` | Numero di telefono | Vuoto |
+| `tipologia_persona` | Slug di una o più tipologie già esistenti (vedi sotto) | Nessuna tipologia |
+| `struttura` | Slug di una o più strutture già esistenti (vedi sotto) | Nessuna struttura |
+| `stato` | `publish` (pubblicata) o `draft` (bozza) | `publish` |
+| `sito_web` | Indirizzo del sito personale | Vuoto |
+| `body` | Testo della scheda: testo semplice o HTML di base (paragrafi, grassetto, corsivo) | Vuoto |
+| `escludi_da_elenco` | `1` per non mostrare la persona negli elenchi, `0` altrimenti | `0` |
+| `disattiva_pagina_dettaglio` | `1` per disattivare la pagina della persona, `0` altrimenti | `0` |
+
+In `tipologia_persona` e `struttura` più valori si separano con la barra verticale, per esempio `prima-struttura|seconda-struttura`. Le tipologie e le strutture che non esistono vengono ignorate. Un testo con punti e virgola o su più righe, come spesso il `body`, va tra virgolette (Excel e LibreOffice lo fanno da soli).
+
+### Procedura
+
+1. Seleziona il file CSV.
+2. Scegli la modalità di importazione. La persona viene riconosciuta dalla sua `email`:
+   - `upsert`: crea le persone nuove e aggiorna quelle esistenti;
+   - `solo nuovi` e `ignora esistenti`: crea solo le persone nuove e salta quelle esistenti;
+   - `aggiorna esistenti`: aggiorna solo le persone esistenti e salta quelle nuove.
+3. Lascia la modalità di esecuzione su `dry_run` (simulazione) e leggi il report, comprese le eventuali colonne ignorate.
+4. Correggi le righe con errori, poi esegui con `commit`.
+
+### Errori
+
+Un file che non rispetta il formato (codifica, colonne obbligatorie, dimensione, numero di righe) viene rifiutato prima di iniziare e nessuna persona viene creata. Gli errori di una riga invece riguardano solo quella riga: una riga senza nome, cognome o email valida, una riga troppo corta o un'email che appartiene a più persone vengono segnalate nel report con il loro numero, e le altre righe vengono elaborate.

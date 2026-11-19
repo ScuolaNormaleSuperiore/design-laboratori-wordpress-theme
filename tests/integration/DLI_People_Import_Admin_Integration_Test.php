@@ -300,6 +300,116 @@ class DLI_People_Import_Admin_Integration_Test extends DLI_Integration_Test_Case
 	}
 
 	/**
+	 * Names of the columns in any case and columns that are not of the format, also with values, do not stop the
+	 * import: they are left out and listed in the report.
+	 */
+	public function test_other_columns_are_ignored_and_listed() {
+		$this->login();
+
+		$report = $this->send( $this->post( array( 'dli_exec_mode' => 'commit' ) ), $this->upload( "Nome;COGNOME;Email;Note;Reparto\nAda;Lovelace;ada@example.org;da rivedere;calcolo\n" ) );
+
+		$this->assertSame( '', $report['notice'] );
+		$this->assertSame( array( 'Note', 'Reparto' ), $report['ignored'] );
+		$this->assertSame( array( 1, 1, 0, 0, 0 ), $this->counters( $report ) );
+		$this->assertSame( 'Ada Lovelace', $this->person( 'ada@example.org' )->post_title );
+	}
+
+	/**
+	 * The report lists the columns that were left out.
+	 */
+	public function test_the_report_lists_the_ignored_columns() {
+		$this->login();
+
+		ob_start();
+		DLI_People_Import_Admin::render_report( $this->send( $this->post(), $this->upload( "nome;cognome;email;Note;Reparto\nAda;Lovelace;ada@example.org;x;y\n" ) ) );
+		$html = (string) ob_get_clean();
+
+		$this->assertStringContainsString( esc_html( DLI_CSV_File::ignored_message( array( 'Note', 'Reparto' ) ) ), $html );
+	}
+
+	/**
+	 * Rows without values in the columns of the format are left out and not counted; the others keep their lines.
+	 */
+	public function test_empty_rows_are_skipped_and_not_counted() {
+		$this->login();
+		$content = "nome;cognome;email;stato;nota\n"
+			. "\n"
+			. ";;;;\n"
+			. ";;;;solo una nota\n"
+			. "Ada;Lovelace;ada@example.org;publish;\n"
+			. ";;;\n";
+
+		$report = $this->send( $this->post(), $this->upload( $content ) );
+
+		$this->assertSame( array( 1, 1, 0, 0, 0 ), $this->counters( $report ) );
+		$this->assertSame( array( 5 ), array_column( $report['log'], 'row' ), 'The line is the one of the file.' );
+	}
+
+	/**
+	 * A row too short to reach the last column of the format is an error of its line; the other rows are processed.
+	 */
+	public function test_a_short_row_is_an_error_of_its_line() {
+		$this->login();
+
+		$report = $this->send( $this->post( array( 'dli_exec_mode' => 'commit' ) ), $this->upload( self::HEADER . "Ada;Lovelace\nAlan;Turing;alan@example.org;publish\n" ) );
+
+		$this->assertSame( array( 2, 1, 0, 0, 1 ), $this->counters( $report ) );
+		$this->assertSame( array( 2, 3 ), array_column( $report['log'], 'row' ) );
+		$this->assertSame( array( 'ERRORE', 'OK' ), array_column( $report['log'], 'status' ) );
+		$this->assertSame( DLI_CSV_File::message( 'columns_count', 2 ), $report['log'][0]['message'] );
+		$this->assertNotNull( $this->person( 'alan@example.org' ) );
+	}
+
+	/**
+	 * A quoted cell keeps its semicolons and its new lines, and the next row has the line of the file.
+	 */
+	public function test_a_quoted_body_is_read_whole() {
+		$this->login();
+		$content = "nome;cognome;email;body\n"
+			. "Ada;Lovelace;ada@example.org;\"<p>Uno; due</p>\n<p>tre</p>\"\n"
+			. "Alan;Turing;alan@example.org;\n";
+
+		$report = $this->send( $this->post( array( 'dli_exec_mode' => 'commit' ) ), $this->upload( $content ) );
+
+		$this->assertSame( array( 2, 4 ), array_column( $report['log'], 'row' ) );
+		$this->assertSame( "<p>Uno; due</p>\n<p>tre</p>", $this->person( 'ada@example.org' )->post_content );
+	}
+
+	/**
+	 * A file that is not UTF-8, a header without the required columns and a file with too many rows are refused
+	 * before any row is processed, with every reason.
+	 */
+	public function test_the_file_is_refused_for_its_encoding_its_header_and_its_size() {
+		$this->login();
+
+		$latin = $this->send( $this->post(), $this->upload( self::HEADER . "Nicol\xF2;Rossi;n@example.org;publish\n" ) );
+		$this->assertSame( array( 'error', DLI_CSV_File::message( 'invalid_utf8' ) ), array( $latin['notice_type'], $latin['notice'] ) );
+		$this->assertSame( array( 0, 0, 0, 0, 0 ), $this->counters( $latin ) );
+
+		$header = $this->send( $this->post(), $this->upload( "titolo;telefono\nDott.;050\n" ) );
+		foreach ( array( 'nome', 'cognome', 'email' ) as $column ) {
+			$this->assertStringContainsString( DLI_CSV_File::message( 'missing_header', 1, $column ), $header['notice'] );
+		}
+		$this->assertSame( array( 0, 0, 0, 0, 0 ), $this->counters( $header ) );
+
+		$rows = '';
+		for ( $number = 1; $number <= DLI_CSV_Reader::MAX_ROWS + 1; $number++ ) {
+			$rows .= "Persona;Numero $number;p$number@example.org;publish\n";
+		}
+		$many = $this->send( $this->post( array( 'dli_exec_mode' => 'commit' ) ), $this->upload( self::HEADER . $rows ) );
+		$this->assertSame( DLI_CSV_File::message( 'too_many_rows' ), $many['notice'] );
+		$this->assertSame( array(), $this->people() );
+	}
+
+	/**
+	 * The example that is downloaded is the file of the theme.
+	 */
+	public function test_the_example_is_the_file_of_the_theme() {
+		$this->assertSame( dirname( __DIR__, 2 ) . '/SETUP/CSV_Import/people-example.csv', DLI_People_Import_Admin::example_path() );
+		$this->assertFileExists( DLI_People_Import_Admin::example_path() );
+	}
+
+	/**
 	 * The example is downloaded only by who can use the tools.
 	 */
 	public function test_the_example_needs_the_right_to_the_tools() {
