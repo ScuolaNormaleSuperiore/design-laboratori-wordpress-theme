@@ -3,7 +3,8 @@
  * Vista tabellare della pagina Persone.
  *
  * Riceve i dati via $args (terzo parametro di get_template_part).
- * Filtro, ordinamento e paginazione sono gestiti interamente lato client via JS.
+ * Filtro, ordinamento e paginazione sono gestiti lato client da assets/js/people-filters.js: il template stampa solo i
+ * controlli e passa i dati allo script (wp_add_inline_script).
  * Non va confusa con template-parts/common/sezione-persone.php, che è un widget
  * per pagine di dettaglio (progetti, indirizzi di ricerca, risorse tecniche).
  *
@@ -24,7 +25,7 @@ $dli_tb_tags               = isset( $dli_tb_page_data['tags'] ) ? $dli_tb_page_d
 $dli_tb_selected_structure = isset( $dli_tb_page_data['selected_structure'] ) ? $dli_tb_page_data['selected_structure'] : '';
 $dli_tb_selected_level     = isset( $dli_tb_page_data['selected_level'] ) ? $dli_tb_page_data['selected_level'] : '';
 $dli_tb_selected_type      = isset( $dli_tb_page_data['selected_type'] ) ? (string) $dli_tb_page_data['selected_type'] : '';
-$dli_tb_selected_cognome   = isset( $dli_tb_page_data['selected_cognome'] ) ? $dli_tb_page_data['selected_cognome'] : '';
+$dli_tb_selected_search    = isset( $dli_tb_page_data['selected_search'] ) ? $dli_tb_page_data['selected_search'] : '';
 
 $dli_tb_hide_email           = ( 'true' === dli_get_option( 'hide_people_table_email', 'persone' ) );
 $dli_tb_hide_phone           = ( 'true' === dli_get_option( 'hide_people_table_phone', 'persone' ) );
@@ -48,6 +49,21 @@ $dli_tb_sprites_url     = get_template_directory_uri() . '/assets/bootstrap-ital
 $dli_tb_has_structures  = ! empty( $dli_tb_structures ) && ! $dli_tb_hide_filter_structure;
 $dli_tb_has_tags        = $dli_tb_filter_level_enabled && ! empty( $dli_tb_tags );
 $dli_tb_has_type_filter = ! empty( $dli_tb_categories ) && ! $dli_tb_hide_filter_type;
+
+// Each structure of the filter with its substructures: choosing a structure finds the people of its substructures too,
+// as in the cards view (where the taxonomy query includes the children).
+$dli_tb_slug_by_id            = wp_list_pluck( $dli_tb_structures, 'slug', 'term_id' );
+$dli_tb_structure_descendants = array();
+foreach ( $dli_tb_structures as $dli_tb_struttura ) {
+	$dli_tb_children = get_term_children( $dli_tb_struttura->term_id, STRUCTURE_TAXONOMY );
+	$dli_tb_slugs    = array( $dli_tb_struttura->slug );
+	foreach ( is_array( $dli_tb_children ) ? $dli_tb_children : array() as $dli_tb_child_id ) {
+		if ( isset( $dli_tb_slug_by_id[ $dli_tb_child_id ] ) ) {
+			$dli_tb_slugs[] = $dli_tb_slug_by_id[ $dli_tb_child_id ];
+		}
+	}
+	$dli_tb_structure_descendants[ $dli_tb_struttura->slug ] = $dli_tb_slugs;
+}
 
 // --- Build JSON rows for client-side rendering ---
 $dli_tb_json_rows = array();
@@ -83,9 +99,11 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 
 	$dli_tb_r_struct_terms = get_the_terms( $dli_tb_pid, STRUCTURE_TAXONOMY );
 	$dli_tb_r_struct_names = '';
+	$dli_tb_r_struct_list  = array();
 	$dli_tb_r_struct_slugs = array();
 	if ( ! is_wp_error( $dli_tb_r_struct_terms ) && ! empty( $dli_tb_r_struct_terms ) ) {
-		$dli_tb_r_struct_names = implode( ', ', wp_list_pluck( $dli_tb_r_struct_terms, 'name' ) );
+		$dli_tb_r_struct_list  = wp_list_pluck( $dli_tb_r_struct_terms, 'name' );
+		$dli_tb_r_struct_names = implode( ', ', $dli_tb_r_struct_list );
 		$dli_tb_r_struct_slugs = wp_list_pluck( $dli_tb_r_struct_terms, 'slug' );
 	}
 
@@ -120,6 +138,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 		'structure'      => $dli_tb_r_struct_names,
 		'structureSort'  => mb_strtolower( $dli_tb_r_struct_names ),
 		'structureSlugs' => $dli_tb_r_struct_slugs,
+		'structureNames' => $dli_tb_r_struct_list,
 		'tag'            => $dli_tb_r_tag_names,
 		'tagSort'        => mb_strtolower( $dli_tb_r_tag_names ),
 		'tagSlugs'       => $dli_tb_r_tag_slugs,
@@ -140,7 +159,7 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 				type="search"
 				id="dliPeopleSearch"
 				class="form-control"
-				value="<?php echo esc_attr( $dli_tb_selected_cognome ); ?>"
+				value="<?php echo esc_attr( $dli_tb_selected_search ); ?>"
 				placeholder="<?php echo esc_attr__( 'Es. Rossi, Professore…', 'design_laboratori_italia' ); ?>"
 				aria-label="<?php echo esc_attr__( 'Cerca per nome, cognome, tipologia o struttura', 'design_laboratori_italia' ); ?>"
 			>
@@ -272,288 +291,33 @@ foreach ( $dli_tb_people_rows as $dli_tb_row ) {
 	</div>
 </div>
 
-<script>
-// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-var DLI_PEOPLE_TABLE = 
 <?php
-echo wp_json_encode(
-	array(
-		'rows'              => $dli_tb_json_rows,
-		'perPage'           => PEOPLE_TABLE_PER_PAGE,
-		'paginationEnabled' => $dli_tb_pagination_enabled,
-		'cols'              => array(
-			'type'      => ! $dli_tb_hide_type,
-			'structure' => ! $dli_tb_hide_structure,
-			'tag'       => ! $dli_tb_hide_tag,
-			'email'     => ! $dli_tb_hide_email,
-			'phone'     => ! $dli_tb_hide_phone,
+// The data of the table for assets/js/people-filters.js, which filters, sorts and pages it in the browser.
+wp_add_inline_script(
+	dli_enqueue_people_filters_script(),
+	'window.DLI_PEOPLE_TABLE = ' . wp_json_encode(
+		array(
+			'rows'                 => $dli_tb_json_rows,
+			'structureDescendants' => $dli_tb_structure_descendants,
+			'perPage'              => PEOPLE_TABLE_PER_PAGE,
+			'paginationEnabled'    => $dli_tb_pagination_enabled,
+			'cols'                 => array(
+				'type'      => ! $dli_tb_hide_type,
+				'structure' => ! $dli_tb_hide_structure,
+				'tag'       => ! $dli_tb_hide_tag,
+				'email'     => ! $dli_tb_hide_email,
+				'phone'     => ! $dli_tb_hide_phone,
+			),
+			'spritesUrl'           => $dli_tb_sprites_url,
+			'i18n'                 => array(
+				'prevPage'       => __( 'Pagina precedente', 'design_laboratori_italia' ),
+				'nextPage'       => __( 'Pagina successiva', 'design_laboratori_italia' ),
+				'resultSingular' => __( 'persona trovata', 'design_laboratori_italia' ),
+				'resultPlural'   => __( 'persone trovate', 'design_laboratori_italia' ),
+				'noResults'      => __( 'Nessuna persona trovata', 'design_laboratori_italia' ),
+			),
 		),
-		'spritesUrl'        => $dli_tb_sprites_url,
-		'i18n'              => array(
-			'prevPage'       => __( 'Pagina precedente', 'design_laboratori_italia' ),
-			'nextPage'       => __( 'Pagina successiva', 'design_laboratori_italia' ),
-			'resultSingular' => __( 'persona trovata', 'design_laboratori_italia' ),
-			'resultPlural'   => __( 'persone trovate', 'design_laboratori_italia' ),
-			'noResults'      => __( 'Nessuna persona trovata', 'design_laboratori_italia' ),
-		),
-	),
-	JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+		JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+	) . ';',
+	'before'
 );
-?>
-;
-// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-( function () {
-	var cfg     = DLI_PEOPLE_TABLE;
-	var allRows = cfg.rows;
-	var tbody    = document.getElementById( 'people-tbody' );
-	var countEl  = document.getElementById( 'dliPeopleCount' );
-	var paginEl  = document.getElementById( 'people-pagination' );
-	var selSort      = document.getElementById( 'dliPeopleSort' );
-	var selStruttura = document.getElementById( 'selectTableStructure' );
-	var selLevel     = document.getElementById( 'selectTableLevel' );
-	var selType      = document.getElementById( 'selectTableType' );
-	var inputSearch  = document.getElementById( 'dliPeopleSearch' );
-
-	var state = {
-		search:    inputSearch ? inputSearch.value.trim() : '',
-		struttura: selStruttura ? selStruttura.value : '',
-		level:     selLevel ? selLevel.value : '',
-		type:      selType ? selType.value : '',
-		sortCol:   selSort ? selSort.value : 'sortKey',
-		sortAsc:   true,
-		page:      1,
-	};
-
-	function escHtml( s ) {
-		return String( s )
-			.replace( /&/g, '&amp;' )
-			.replace( /</g, '&lt;' )
-			.replace( />/g, '&gt;' )
-			.replace( /"/g, '&quot;' )
-			.replace( /'/g, '&#39;' );
-	}
-
-	function applyFilters() {
-		return allRows.filter( function ( row ) {
-			if ( state.struttura && row.structureSlugs.indexOf( state.struttura ) === -1 ) {
-				return false;
-			}
-			if ( state.level && row.tagSlugs.indexOf( state.level ) === -1 ) {
-				return false;
-			}
-			if ( state.type && row.typeId !== state.type ) {
-				return false;
-			}
-			if ( state.search ) {
-				var q = state.search.toLowerCase();
-				if (
-					row.sortKey.indexOf( q ) === -1 &&
-					row.typeSort.indexOf( q ) === -1 &&
-					row.structureSort.indexOf( q ) === -1
-				) {
-					return false;
-				}
-			}
-			return true;
-		} );
-	}
-
-	function applySort( rows ) {
-		return rows.slice().sort( function ( a, b ) {
-			var av  = String( a[ state.sortCol ] || '' );
-			var bv  = String( b[ state.sortCol ] || '' );
-			var cmp = av.localeCompare( bv, 'it', { sensitivity: 'base', numeric: true } );
-			return state.sortAsc ? cmp : -cmp;
-		} );
-	}
-
-	function renderTbody( pageRows ) {
-		var html = '';
-		if ( ! pageRows.length ) {
-			var colCount = 2
-				+ ( cfg.cols.type ? 1 : 0 )
-				+ ( cfg.cols.structure ? 1 : 0 )
-				+ ( cfg.cols.tag ? 1 : 0 )
-				+ ( cfg.cols.email ? 1 : 0 )
-				+ ( cfg.cols.phone ? 1 : 0 );
-			html = '<tr><td colspan="' + colCount + '" class="text-center py-4">'
-				+ escHtml( cfg.i18n.noResults ) + '</td></tr>';
-		} else {
-			pageRows.forEach( function ( row ) {
-				html += '<tr>';
-				var nameText = escHtml( row.name + ' ' + row.surname );
-				if ( row.link ) {
-					var rel    = '_blank' === row.linkTarget ? ' rel="noopener noreferrer"' : '';
-					var target = row.linkTarget ? ' target="' + escHtml( row.linkTarget ) + '"' : '';
-					html += '<td><a href="'
-						+ escHtml( row.link ) + '"' + target + rel + '>' + nameText + '</a></td>';
-				} else {
-					html += '<td>' + nameText + '</td>';
-				}
-				if ( cfg.cols.type )      { html += '<td>' + escHtml( row.type ) + '</td>'; }
-				if ( cfg.cols.structure ) { html += '<td class="d-none d-md-table-cell">' + escHtml( row.structure ) + '</td>'; }
-				if ( cfg.cols.tag )       { html += '<td class="d-none d-md-table-cell">' + escHtml( row.tag )       + '</td>'; }
-				if ( cfg.cols.email ) {
-					html += '<td class="d-none d-md-table-cell">';
-					if ( row.email ) {
-						html += '<a href="mailto:' + row.email + '">' + row.email + '</a>';
-					}
-					html += '</td>';
-				}
-				if ( cfg.cols.phone ) {
-					html += '<td class="d-none d-md-table-cell">';
-					if ( row.phone ) {
-						html += '<a href="tel:' + escHtml( row.phoneHref ) + '">' + escHtml( row.phone ) + '</a>';
-					}
-					html += '</td>';
-				}
-				html += '</tr>';
-			} );
-		}
-		tbody.innerHTML = html;
-	}
-
-	function updateFilterIndicators() {
-		var pairs = [
-			[ selStruttura, state.struttura ],
-			[ selType,      state.type      ],
-			[ selLevel,     state.level     ],
-		];
-		pairs.forEach( function ( pair ) {
-			var el = pair[ 0 ];
-			var active = '' !== pair[ 1 ];
-			if ( ! el ) { return; }
-			var wrapper = el.closest( '.select-wrapper' );
-			if ( wrapper ) {
-				if ( active ) {
-					wrapper.classList.add( 'dli-filter-active' );
-				} else {
-					wrapper.classList.remove( 'dli-filter-active' );
-				}
-			}
-		} );
-	}
-
-	function renderCount( total ) {
-		if ( ! countEl ) { return; }
-		countEl.textContent = total + ' '
-			+ ( 1 === total ? cfg.i18n.resultSingular : cfg.i18n.resultPlural );
-	}
-
-	function renderPagination( totalPages ) {
-		if ( ! paginEl ) { return; }
-		if ( ! cfg.paginationEnabled || totalPages <= 1 ) {
-			paginEl.innerHTML = '';
-			return;
-		}
-		var html = '<ul class="pagination">';
-		if ( state.page > 1 ) {
-			html += '<li class="page-item"><button class="page-link" data-page="' + ( state.page - 1 ) + '"'
-				+ ' aria-label="' + escHtml( cfg.i18n.prevPage ) + '">'
-				+ '<svg class="icon icon-primary" aria-hidden="true"><use href="' + escHtml( cfg.spritesUrl ) + '#it-chevron-left"></use></svg>'
-				+ '</button></li>';
-		}
-		for ( var p = 1; p <= totalPages; p++ ) {
-			var isCurrent = ( p === state.page );
-			html += '<li class="page-item' + ( isCurrent ? ' active' : '' ) + '">'
-				+ '<button class="page-link" data-page="' + p + '"'
-				+ ( isCurrent ? ' aria-current="page"' : '' ) + '>'
-				+ p + '</button></li>';
-		}
-		if ( state.page < totalPages ) {
-			html += '<li class="page-item"><button class="page-link" data-page="' + ( state.page + 1 ) + '"'
-				+ ' aria-label="' + escHtml( cfg.i18n.nextPage ) + '">'
-				+ '<svg class="icon icon-primary" aria-hidden="true"><use href="' + escHtml( cfg.spritesUrl ) + '#it-chevron-right"></use></svg>'
-				+ '</button></li>';
-		}
-		html += '</ul>';
-		paginEl.innerHTML = html;
-		paginEl.querySelectorAll( 'button[data-page]' ).forEach( function ( btn ) {
-			btn.addEventListener( 'click', function () {
-				state.page = parseInt( btn.getAttribute( 'data-page' ), 10 );
-				render();
-				document.getElementById( 'people-table' ).scrollIntoView( { behavior: 'smooth', block: 'start' } );
-			} );
-		} );
-	}
-
-	function render() {
-		var filtered   = applyFilters();
-		var sorted     = applySort( filtered );
-		var total      = sorted.length;
-		var perPage    = cfg.paginationEnabled ? cfg.perPage : total;
-		var totalPages = cfg.paginationEnabled ? Math.max( 1, Math.ceil( total / perPage ) ) : 1;
-		if ( state.page > totalPages ) { state.page = Math.max( 1, totalPages ); }
-		var offset   = ( state.page - 1 ) * perPage;
-		var pageRows = cfg.paginationEnabled ? sorted.slice( offset, offset + perPage ) : sorted;
-		renderTbody( pageRows );
-		renderCount( total );
-		renderPagination( totalPages );
-		updateFilterIndicators();
-	}
-
-	if ( selSort ) {
-		selSort.addEventListener( 'change', function () {
-			state.sortCol = selSort.value;
-			state.page = 1;
-			render();
-		} );
-	}
-
-	if ( selStruttura ) {
-		selStruttura.addEventListener( 'change', function () {
-			state.struttura = selStruttura.value;
-			state.page = 1;
-			render();
-		} );
-	}
-
-	if ( selLevel ) {
-		selLevel.addEventListener( 'change', function () {
-			state.level = selLevel.value;
-			state.page = 1;
-			render();
-		} );
-	}
-
-	if ( selType ) {
-		selType.addEventListener( 'change', function () {
-			state.type = selType.value;
-			var currentUrl = new URL( window.location.href );
-			if ( state.type ) {
-				currentUrl.searchParams.set( 'tipologia', state.type );
-			} else {
-				currentUrl.searchParams.delete( 'tipologia' );
-			}
-			window.history.replaceState( window.history.state, '', currentUrl.toString() );
-			document.querySelectorAll( '#personeform .btn-group a[href]' ).forEach( function ( link ) {
-				var url = new URL( link.href, currentUrl );
-				if ( url.searchParams.get( 'vista' ) !== 'chip' && url.searchParams.get( 'vista' ) !== 'tabella' ) { return; }
-				if ( state.type ) {
-					url.searchParams.set( 'tipologia', state.type );
-				} else {
-					url.searchParams.delete( 'tipologia' );
-				}
-				link.href = url.toString();
-			} );
-			state.page = 1;
-			render();
-		} );
-	}
-
-	if ( inputSearch ) {
-		inputSearch.addEventListener( 'input', function () {
-			state.search = inputSearch.value.trim();
-			state.page = 1;
-			render();
-		} );
-		inputSearch.addEventListener( 'keydown', function ( e ) {
-			if ( 'Enter' === e.key ) {
-				e.preventDefault();
-			}
-		} );
-	}
-
-	render();
-}() );
-</script>

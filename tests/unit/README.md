@@ -1,6 +1,6 @@
-# Test unit (PHPUnit senza WordPress)
+# Test unit (PHPUnit e Node, senza WordPress)
 
-I test unit controllano la logica che **non dipende da WordPress**: funzioni pure,
+I test unit controllano la logica che **non dipende da WordPress**: funzioni pure in PHP e in JavaScript,
 tabelle di configurazione e "test di contratto" sui file del repository (versioni,
 date di rilascio, documentazione per gli agenti AI). Girano in meno di un secondo e non
 richiedono database, sito o plugin. Il hook `pre-commit` li esegue a ogni commit e blocca il commit
@@ -13,6 +13,7 @@ suite di integrazione, non a questa.
 ## Requisiti
 
 - PHP 8.0 o superiore (provato su 8.4) e Composer
+- Node sul `PATH`, per i test JavaScript: usano solo `node:test` e `node:assert`, nessun pacchetto npm. Su Windows serve **Node 22 o superiore**: Composer lancia i comandi con `cmd`, che non espande `tests/unit/*.test.js`, e solo Node 21 e successivi espandono il pattern da soli. Su Linux e macOS (anche nella CI) lo espande la shell e basta Node 18
 - Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6 e `yoast/phpunit-polyfills`, tra le altre)
 
 
@@ -29,7 +30,9 @@ Dalla radice del tema:
 composer test:unit
 ```
 
-`composer test` lancia PHPUnit con [`../../phpunit.xml`](../../phpunit.xml), cioè la stessa suite `unit`; i test di integrazione hanno un
+Il comando esegue prima PHPUnit con [`../../phpunit.xml`](../../phpunit.xml), poi i test JavaScript con
+`node --test tests/unit/*.test.js`; `composer test` è un altro nome dello stesso comando. Gli argomenti dopo `--`
+(per esempio `--filter`) arrivano solo a PHPUnit; un solo file JavaScript si lancia con `node --test tests/unit/<file>.test.js`; i test di integrazione hanno un
 comando a parte (vedi i [test di integrazione](../integration/README.md)).
 Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
 
@@ -80,7 +83,9 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 | `DLI_Page_Import_Lorem_Unit_Test.php` | Il Lorem ipsum delle pagine nuove dell'import: da uno a tre paragrafi della raccolta, stesso testo per la stessa chiave e testi diversi per chiavi diverse, un `<p>` per paragrafo |
 | `DLI_Example_Pages_Csv_Unit_Test.php` | Test di contratto dei file di esempio delle pagine in `SETUP/CSV_Import/`: dimensione dell'esempio, stesse `page_key` nei file italiano e inglese, modello fatto della sola intestazione |
 | `DLI_Example_People_Csv_Unit_Test.php` | Test di contratto del file di esempio delle persone (`SETUP/CSV_Import/people-example.csv`): letto dal lettore comune con tutte le colonne delle persone, nessuna ignorata, due persone, una cella con `;` tra virgolette |
-| `people-table-filter.test.js` | Test di unità JavaScript (`node --test`, senza browser) dello script della tabella delle persone: il filtro per tipologia aggiorna i risultati, l'indirizzo e i link di cambio vista. Oggi si lancia a mano con `node --test tests/unit/`; non è ancora nella suite di `composer test:unit` |
+| `DLI_People_Search_Unit_Test.php` | La ricerca testuale della pagina Persone (`inc/people-filters.php`): testo normalizzato (spazi, spazi non divisibili, minuscole, accenti conservati) e corrispondenza con nome e cognome nei due ordini, tipologia della riga o una delle strutture. I casi sono in `fixtures/people-search-cases.json`, condiviso con `people-search.test.js`. Anche la ricerca chiesta nell'indirizzo (`cerca`, o il vecchio `cognome` quando `cerca` manca) e i parametri dei link tra le viste (solo i filtri attivi, mai `cognome`) |
+| `people-search.test.js` | La stessa ricerca nella versione JavaScript (`assets/js/people-filters.js`), sugli stessi casi di `fixtures/people-search-cases.json`: le due versioni devono dare la stessa risposta |
+| `people-filters.test.js` | I filtri della tabella delle persone (`assets/js/people-filters.js`), senza browser: struttura con le sue sottostrutture, tutti i filtri insieme, indirizzo (filtri attivi impostati, vuoti tolti, `cognome` tolto, altri parametri conservati); la tabella su una pagina finta parte dai filtri dell'indirizzo e a ogni cambio di struttura, TAG, tipologia o ricerca aggiorna subito righe e link di cambio vista, mentre indirizzo e cronologia seguono dopo 200 ms di pausa; verifica una sola scrittura dopo più battute, la conservazione dello stato della cronologia e il funzionamento di risultati e link anche quando `replaceState()` viene rifiutato (oltre alla regressione del filtro per tipologia); il campo di ricerca della vista Schede ricarica con `cerca` dalla prima pagina con Invio (senza inviare il modulo) e con la ×, togliendo `cognome` e conservando gli altri filtri |
 
 Se un test di contratto fallisce, di solito significa che una versione o una data è
 stata aggiornata in un file e dimenticata in un altro: va allineata, non il test.
@@ -103,3 +108,8 @@ stata aggiornata in un file e dimenticata in un altro: va allineata, non il test
 Creare un file nella [cartella dei test unit](./) chiamato `DLI_<Nome>_Unit_Test.php` con una classe che
 estende `PHPUnit\Framework\TestCase`. Se la funzione da provare dipende da WordPress,
 non è un test unit.
+
+Per il codice JavaScript creare un file `<area>.test.js` nella stessa cartella, con `node:test` e
+`node:assert` e nessun'altra dipendenza; il file del tema espone le sue funzioni pure a Node (per esempio con
+`module.exports` quando `module` esiste), così il test le carica con `require()` senza browser. Non estrarre lo
+script dal testo di un template PHP.

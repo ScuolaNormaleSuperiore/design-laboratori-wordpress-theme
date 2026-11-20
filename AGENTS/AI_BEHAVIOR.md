@@ -40,7 +40,7 @@ Automated tests are part of planning, changing and fixing code in this project.
 ### Test levels
 | Level | Command | Status |
 |---|---|---|
-| Unit (PHPUnit, no WordPress) | `composer test:unit` | Available; also run by the `pre-commit` hook |
+| Unit (PHPUnit for PHP and `node --test` for JavaScript, no WordPress, no browser) | `composer test:unit` | Available; also run by the `pre-commit` hook |
 | Integration (real WordPress, ACF and Polylang) | `composer test:integration` | Available on the maintainer machine (needs the dedicated database `dli_wordpress_test` and `wordpress-develop`, see `tests/integration/README.md`); not run by the `pre-commit` hook |
 | E2E (browser on a dedicated site) | `composer test:e2e` | Available on the maintainer machine (needs the Local site `dli-wp-e2e` and `DLI_E2E_SITE_PATH`, see `tests/e2e/README.md`); not run by the `pre-commit` hook |
 

@@ -162,7 +162,7 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress). Il hook `pre-commit` lo esegue sui file in staging e blocca il commit se ci sono errori |
 | | `composer run lint:phpstan` | Analisi statica con [PHPStan](tests/phpstan/README.md), livello 5 |
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
-| Test | `composer test:unit` | [Funzioni pure, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
+| Test | `composer test:unit` | [Funzioni pure in PHP e JavaScript, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
 | | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test con ACF e Polylang reali e un database dedicato |
 | | `composer test:e2e` | [Browser (Playwright) su un sito Local dedicato](tests/e2e/README.md) |
 | Report | `npm run status:scan -- <url>` | [Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px](tests/report/status-report/README.md) |

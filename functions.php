@@ -124,6 +124,11 @@ require get_template_directory() . '/inc/detail-pages.php';
 require get_template_directory() . '/inc/pagination.php';
 
 /**
+ * People — the rules of the filters of the People page, shared by its two views.
+ */
+require get_template_directory() . '/inc/people-filters.php';
+
+/**
  * Header menus — helpers of the main and the secondary menu.
  */
 require get_template_directory() . '/inc/menus.php';
@@ -260,6 +265,25 @@ function dli_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'dli_scripts' );
+
+/**
+ * Load the script of the filters of the People page, in the footer: called by its templates, so that it is loaded only
+ * on that page. The version is the date of the file, so a change reaches the browsers at once.
+ *
+ * @return string The handle of the script.
+ */
+function dli_enqueue_people_filters_script() {
+	$relative_path = '/assets/js/people-filters.js';
+	$mtime         = filemtime( get_template_directory() . $relative_path );
+	wp_enqueue_script(
+		'dli-people-filters',
+		get_template_directory_uri() . $relative_path,
+		array(),
+		$mtime ? (string) $mtime : wp_get_theme()->get( 'Version' ),
+		true
+	);
+	return 'dli-people-filters';
+}
 
 /**
  * Add CSS classes to menu links when provided by menu args.

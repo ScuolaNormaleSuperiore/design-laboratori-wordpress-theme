@@ -16,12 +16,15 @@
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
     "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
     "lint:phpstan:level6": "phpstan analyse --configuration=phpstan.neon --level=6 --no-progress --memory-limit=2G",
-    "test": "phpunit",
+    "test": "@test:unit",
     "test:all": [
       "@test:unit",
       "@test:integration"
     ],
-    "test:unit": "phpunit --testsuite unit",
+    "test:unit": [
+      "phpunit --testsuite unit",
+      "node --test tests/unit/*.test.js"
+    ],
     "test:integration": [
       "@php tests/integration/support/fetch-test-plugins.php",
       "phpunit -c phpunit-integration.xml"
@@ -33,7 +36,7 @@
   "scripts-descriptions": {
     "lint:phpstan:level6": "Non-blocking PHPStan level-6 progress check for the whole theme",
     "test:all": "Unit and integration tests in order (stops at the first failing suite; needs the integration setup). The E2E suite is long and is run separately with test:e2e",
-    "test:unit": "Unit tests (PHPUnit, no WordPress)",
+    "test:unit": "Unit tests, no WordPress: PHPUnit, then the JavaScript tests with node --test (needs Node on the PATH)",
     "test:integration": "Integration tests (PHPUnit on a real WordPress, dedicated database)",
     "test:e2e": "Functional tests (Playwright on the E2E site; needs DLI_E2E_SITE_PATH). Extra options after --",
     "test:e2e:headed": "Functional tests with a visible browser",

@@ -5,13 +5,11 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 Il formato è basato su [Keep a Changelog](http://keepachangelog.com/)
 e questo progetto segue [Semantic Versioning](http://semver.org/).
 
-
 TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (Removed), Corretto (Fixed), Sicurezza (Security).
-
 
 ## [TODO]
 - Inserire sezione di configurazione colori nel backoffice.
-- Refactoring procedure di import.
+- Refactoring degli import Indico e IRIS (gli import da CSV usano già un lettore comune).
 - Import eventi da feed RSS o REST API di Drupal.
 - Import eventi da feed RSS o REST API di WordPress.
 - Contenuto "Posizioni aperte".
@@ -29,147 +27,139 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
 - PHPStan: raggiungere livello 6.
 
-
-
-
 ## [2.1.0] - 2026-11-20
-## Modificato
-- Import CSV di Pagine e Persone unificato: UTF-8, separatore punto e virgola, nomi delle colonne senza distinzione tra maiuscole e minuscole, massimo 200 righe e 2 MB.
-- Report degli import migliorati: colonne ignorate elencate, `page_key` visibile per le Pagine e segnalazione di tutte le colonne obbligatorie mancanti per le Persone.
+### Modificato
+- Import CSV di Pagine e Persone con un formato comune (UTF-8, separatore punto e virgola, nomi delle colonne senza distinzione tra maiuscole e minuscole, massimo 200 righe e 2 MB); i report elencano le colonne ignorate, mostrano la `page_key` delle Pagine e tutte le colonne obbligatorie mancanti delle Persone.
 - Nuova guida «Importare da file CSV», comune a Pagine e Persone, ed esempio CSV delle Persone incluso nel tema.
-## Corretto
+- Pagina Persone: la ricerca trova per nome, cognome, tipologia o struttura in entrambe le viste e usa il parametro `cerca` (i vecchi link con `cognome` continuano a funzionare).
+- Test: i test di unità JavaScript (`node --test`) fanno parte di `composer test:unit`, quindi anche del hook di pre-commit e della CI.
+- PHPStan: prime correzioni verso il livello 6.
+### Corretto
 - Import CSV: accettate le colonne aggiuntive e saltate le righe vuote; file non UTF-8 e righe incomplete segnalati con messaggi chiari, senza avvisi PHP.
-- Conservato il filtro per tipologia delle Persone nel passaggio tra le viste.
-
+- Pagina Persone: tutti i filtri (tipologia, struttura, TAG, ricerca) restano nell'indirizzo e nel passaggio tra le viste; il filtro di una struttura include le sottostrutture anche nella tabella; in Firefox la ricerca della vista Schede non azzera più gli altri filtri.
 
 ## [2.0.9] - 2026-11-16
-## Corretto
-- Bug-fixing: Corretta gestione del logo per farlo visualizzare nel Catalogo del riuso.
-- Refactoring: Tolte immagini e icone non più utilizzate.
+### Corretto
+- Logo visualizzato correttamente nel Catalogo del riuso.
+### Rimosso
+- Immagini e icone non più utilizzate.
 
 ## [2.0.8] - 2026-11-12
-## Aggiunto
+### Aggiunto
 - Indicazioni sul formato delle immagini nell'amministrazione e guida «Gestione delle immagini» (`DOC/HowTo/Gestione-delle-immagini.md`).
 - Dimensione `item-thumb` (250 × 250) per le foto delle Persone; per quelle già caricate rigenera la miniatura con `wp media regenerate --image_size=item-thumb`.
-## Modificato
+### Modificato
 - Contenuti riservati da Groups: 401 con il pulsante «Accedi» per il visitatore, 403 per l'utente collegato senza permessi, invece di un 404. Un indirizzo che termina soltanto con lo slug di un contenuto riservato resta 404. Il 401 invia la challenge `WWW-Authenticate: DLI-SSO` con l'indirizzo di login (nessun dialogo del browser). Solo con l'area riservata attiva; un indirizzo inesistente resta 404.
 - «Accesso solo tramite SAML»: vale solo con WP SAML Auth attivo; predefinito **Sì**.
-## Corretto
+### Corretto
 - Login con l'area riservata attiva: testi di WP SAML Auth in italiano e logo del sito al posto di quello WordPress.
 - Export ACF del Banner allineato ai campi del tema («Apri in nuova finestra»).
 
 ## [2.0.7] - 2026-11-11
-## Aggiunto
+### Aggiunto
 - Area riservata con single sign-on SAML e gruppi (Groups): scheda Configurazione → Area riservata, ruolo «Utente area riservata», pagina di accesso. Guida in `DOC/HowTo/Area-riservata.md`.
 - Pagina predefinita «Area riservata», creata da Ricarica i dati di attivazione.
-## Corretto
+### Corretto
 - Elenchi di pagine e suggerimenti della ricerca: non mostrano più le pagine riservate a chi non può vederle.
 - Utenti creati dal single sign-on: indirizzo pubblico neutro, non più ricavato dall'email.
 - HTML: tolto il meta obsoleto `content-language`.
 - Ricerca nativa di WordPress (`/?s=…`): porta alla pagina «Ricerca nel sito» con il termine già scritto, invece di mostrare una pagina bianca. Le richieste per cui il tema non ha una pagina (per esempio le pagine degli allegati) rispondono 404 con la pagina 404 del tema, senza più l'avviso «Constant WP_USE_THEMES already defined».
 
 ## [2.0.6] - 2026-11-06
-## Aggiunto
+### Aggiunto
 - CI GitHub Actions: controlli su ambiente pulito e test di integrazione con WordPress, ACF, Polylang e MariaDB.
-## Modificato
+### Modificato
 - PHPStan: livello minimo portato a 5 nei controlli locali e in CI.
 - Test di integrazione: versioni di WordPress, ACF e Polylang fissate per esecuzioni ripetibili.
 
 ## [2.0.5] - 2026-11-05
-## Aggiunto
+### Aggiunto
 - Strumenti DLI → Importa → Pagine: importazione di un albero di pagine (3 livelli, 200 pagine) da CSV, con simulazione e conferma.
 - Sezioni HP → Video: ogni sezione ha il proprio indirizzo YouTube, titolo in italiano e inglese e sfondo; più video nella stessa home.
 - Sezioni HP → Banner: ogni sezione sceglie i banner in automatico (per priorità) o a mano, con titolo facoltativo in italiano e inglese.
 - Sezioni HP: il menu non offre di nuovo una sezione unica già presente in un'altra riga.
 - Ruolo «Utente in attesa» (`dli_pending_user`): utente autenticato senza permessi, che non può nemmeno modificare il proprio profilo; il tema non lo assegna a nessuno.
-## Modificato
+### Modificato
 - Libreria CMB2 aggiornata da 2.11.0 a 2.13.5 (con correzioni di sicurezza).
 - Sezioni HP: a riga chiusa «Indice di una pagina» mostra la pagina scelta.
 - Layout HP: il campo «Home Page Video URL» è sostituito da «URL del video» nella riga Video; l'indirizzo va reinserito.
-## Rimosso
+### Rimosso
 - Strumenti DLI → Utilità: strumento «Pagine di esempio», sostituito da Importa → Pagine.
 - Estensione CMB2 Leaflet Geocoder, non usata.
-## Corretto
+### Corretto
 - Player video: con più video nella stessa pagina non si ripetono più gli identificatori.
 - Strumenti DLI: stili caricati anche con il menu in italiano; il modulo Persone non sborda più a 320 px.
 - Campo «Articoli collegati» (Attached Posts): il link di modifica non diventa più «1».
 - Carousel Eventi: frecce dentro lo schermo su telefono e tablet.
 - Le schede di dettaglio disattivate (persone, eventi, notizie, pubblicazioni) rispondono ora 404 ai visitatori.
 - Ricerca del sito: non mostra più le persone escluse dall'elenco.
-## Sicurezza
+### Sicurezza
 - Salvataggio delle pagine di Configurazione: controllo della capacità dell'utente.
 
-
-
 ## [2.0.4] - 2026-11-03
-## Aggiunto
+### Aggiunto
 - Pubblicazioni: scheda dedicata con indirizzo leggibile, copertina, autori e allegato PDF.
 - Pubblicazioni: scelta del link del titolo tra scheda, sito esterno e allegato.
 - Pagine: riassunto e card delle sottopagine; strumento per creare/rimuovere pagine di esempio.
 - Home: nuove sezioni «Card di navigazione», «Navigazione per pagine», «Indice di una pagina» e «Pannello tab».
 - Home: «Contenuti in evidenza» ridisegnati per tipo di contenuto (notizie, eventi, pubblicazioni) e card delle ultime pubblicazioni con autori, tipologia e anno.
 - Configurazione Sezioni HP: riordino con le frecce, sfondo e numero di elementi per ogni sezione.
-## Modificato
+### Modificato
 - Intestazione e menu: pulsante del menu visibile a 320 px, identificatori univoci dei menu a tendina, breadcrumb su una sola riga.
-## Corretto
 - Verificata compatibilità con PHP 8.4.
+### Corretto
 - Footer: gerarchia delle intestazioni corretta e link vuoti rimossi.
-## Sicurezza
+### Sicurezza
 - Paginazione, CAPTCHA e tabella delle persone con controlli e limiti più rigorosi.
 
-
-
 ## [2.0.3] - 2026-10-26
-## Aggiunto
-- Introdotti test di unità, integrazione ed e2e.
-- Aggiunti test e2e nei form principali del sito: contatti, newsletter e ricerca.
+### Aggiunto
+- Test di unità, integrazione ed E2E, compresi i form contatti, newsletter e ricerca.
+- Analisi statica con PHPStan (livello 4).
 - Introduzione nel progetto di OpenSSF Scorecard.
 - Controllo PHPCS (solo errori) sui file in staging nel gancio di commit.
-## Corretto
-- Refactoring: Introdotti test phpstan. Livello raggiunto: 4.
-- Bug-fixing: Corretti vari bug rilevati dalla AI.
+### Corretto
+- Correzioni varie segnalate dall'analisi con l'AI.
 
 ## [2.0.2] - 2026-10-20
-## Corretto
-- Bug-fixing
+### Corretto
+- Correzioni varie.
 
 ## [2.0.1] - 2026-10-16
-## Corretto
-- Bug-fixing
+### Corretto
+- Correzioni varie.
 - Elenchi senza contenuti: messaggio di elenco vuoto e filtri nascosti.
-## Modificato
+### Modificato
 - Persone: il tipo di visualizzazione può essere Chip, Tabella o Entrambe (default).
 
 ## [2.0.0] - 2026-10-15
-## Corretto
+### Corretto
 - Uniformata la visualizzazione della barra di navigazione principale tra stile standard e personalizzato.
 - Le immagini configurate e decorative degli hero sono ora visualizzate indipendentemente dallo stile scelto.
 - Corretta la gestione dei colori nello stile personalizzato e nello stile standard.
-## Aggiunto
-- Aggiunto autocomplete nella ricerca del sito
-- Aggiunta procedura di bootstrap per gli agenti AI
-## Modificato
-- Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7
-- Bug-fixing: corrette segnalazioni degli utenti
-- Aggiornato Dockerfile
-- Aggiornati i file delle traduzioni
-- Corretto il file publiccode.yml
+- Correzioni segnalate dagli utenti.
+- Corretto il file publiccode.yml.
+### Aggiunto
+- Aggiunto autocomplete nella ricerca del sito.
+- Aggiunta procedura di bootstrap per gli agenti AI.
+### Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 3.0.0-beta.7.
 
 ## [1.8.2] - 2026-09-10
-## Modificato
-- Aggiornata la versione di Bootstrap Italia alla versione 2.18.3
-- Corretta la documentazione
+### Modificato
+- Aggiornata la versione di Bootstrap Italia alla versione 2.18.3.
+- Corretta la documentazione.
 - Uniformato l'ordinamento del Carousel in Home Page anche in selezione manuale per data pubblicazione, ultima modifica e data evento.
 - Uniformata la versione del tema al formato numerico (`1.8.2`), rimosso il prefisso `REL-`.
 - Licenza dichiarata come GNU General Public License v3.0 or later (`GPL-3.0-or-later`) in modo coerente in `LICENSE`, `style.css`, `package.json` e `publiccode.yml`.
-## Corretto
+### Corretto
 - Corretto il carousel della Home Page: l'ordinamento per data evento ora viene applicato correttamente.
 - Corretta la ricerca sito: senza filtri espliciti cerca ora in tutti i content type disponibili, non solo nei `post`.
 - Resa sicura la gestione del menu footer quando `wp_get_nav_menu_items()` restituisce `false`.
 - Resi difensivi i wrapper Polylang: se il plugin non è attivo il tema degrada a monolingua invece di generare un fatal error.
 - Import Indico più robusto: un singolo evento malformato nel feed non interrompe più l'intera importazione.
 - Corretta la sidebar privacy: il riconoscimento delle pagine figlie ora confronta gli ID e non l'identità degli oggetti `WP_Post`.
-## Sicurezza
+### Sicurezza
 - Corretti i permessi della REST API importer: ora il controllo usa la capability `manage_options` invece del ruolo `administrator`.
 - Resa sicura l'iniezione del messaggio informativo sui limiti upload nel modal Media di WordPress.
 - Aggiunta whitelist esplicita per i valori ammessi della sitemap XML.
@@ -178,274 +168,226 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Corrette le query dei filtri "anno": rimossi gli apici manuali attorno ai placeholder `%s` in `$wpdb->prepare()`.
 
 ## [REL-1.8.1] - 2026-07-17
-## Corretto
-- Vari bug fixing.
+### Corretto
+- Correzioni varie.
 - Modificato funzionamento della ricerca del sito, cerca anche per stringa vuota.
 - Corretta gestione del multilingua nel Carousel in HP.
 
 ## [REL-1.8.0] - 2026-05-30
-## Aggiunto
+### Aggiunto
 - Aggiunto parametro di configurazione per scegliere tipo di visualizzazione delle persone.
 - Aggiunta visualizzazione tabellare delle persone alternativa a quella a chip.
 - Aggiunto import delle persone da CSV.
-## Corretto
+### Corretto
 - Corretto funzionamento dei filtri nella visualizzazione a chip delle persone.
 - Corretto bug in visualizzazione Carousel in Home Page in modalità manuale.
-## Modificato
-- Aggiornati i file delle traduzioni.
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.1.
-- Ordinate alfabeticamente le voci dei cotenuti personalizzati nel menu del backoffice.
+- Ordinate alfabeticamente le voci dei contenuti personalizzati nel menu del backoffice.
 - Disabilitati i commenti per tutti i post type.
 
 ## [REL-1.7.9] - 2026-04-30
-## Corretto
+### Corretto
 - Corretto ordine di visualizzazione degli eventi nella striscia in HP.
 
 ## [REL-1.7.8] - 2026-03-24
-## Aggiunto
+### Aggiunto
 - Aggiunta site-map in formato XML.
-## Corretto
+### Corretto
 - Bug fixing nella gestione dei captcha.
 - Fix su variabili rinominate male in release precedente.
 
 ## [REL-1.7.7] - 2026-03-20
-## Corretto
-- Correggere formattazione del codice in inc.
+### Corretto
+- Corretta formattazione del codice in inc.
 - Corretto bug in elenco pubblicazioni.
-## Modificato
-## Sicurezza
 
 ## [REL-1.7.6] - 2026-03-19
-## Corretto
+### Corretto
 - Corretta formattazione di gran parte dei template.
 - Corretti vari bug segnalati dalla AI.
-- Correttto il titolo del menu dei contatti.
-## Modificato
-- Aggiornato Dockerfile per sito demo.
-## Sicurezza
+- Corretto il titolo del menu dei contatti.
+### Sicurezza
 - Corrette possibili anomalie di sicurezza.
 
 ## [REL-1.7.5] - 2026-03-09
-## Aggiunto
-- Disabilitato invio email di notifica all'aggiornamento di temi e plugin.
-- Aggiunti script "npm run scan" e "npm run compare" per produrre report sul funzionamento delle pagine e per il confronto tra report.
-- Aggiunti script "quality:scan" e "quality:compare" per produrre report sulla qualità del codice e confrontare due report diversi.
-- Aggiunti script "ux:scan" e "ux:compare" per produrre report per produrre un report su problematiche relative ad accessibilità e usabilità.
-## Corretto
+### Aggiunto
+- Script npm di report e di confronto tra report: funzionamento delle pagine (`scan`, `compare`), qualità del codice (`quality:scan`, `quality:compare`), accessibilità e usabilità (`ux:scan`, `ux:compare`).
+### Corretto
 - Adeguamento massivo dei file alle "WordPress Coding Rules" - parte 2.
 - Refactoring: tolti file inutilizzati.
 - Primo refactoring delle procedure di import.
-## Modificato
-- Aggiornati i file delle traduzioni.
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.18.0.
-## Sicurezza
+- Disabilitato l'invio delle email di notifica all'aggiornamento di temi e plugin.
+### Sicurezza
 - Eseguito escaping massivo dell'output.
 - Risolti possibili problemi XSS segnalati dalla AI.
 
 ## [REL-1.7.4] - 2026-02-15
-## Aggiunto
+### Aggiunto
 - Aggiunta sezione Video attivabile in Home Page.
 - Aggiunta nel Carousel possibilità di specificare la data di ordinamento: creazione, modifica, evento.
 - Pubblicazioni: Aggiunta possibilità di inserire una immagine e di ordinare l'elenco in vari modi.
-## Corretto
-- Bug-fixing: Corretto import Indico.
-- Aggiunta cartella AGENTS con i file che danno indicazioni alla AI usata come copilota nella manutenzione e nella gestione del progetto.
-- Bug-fixing: Varie correzioni suggerite dalla AI.
-## Sicurezza
-- Security: Varie correzioni suggerite dalla AI.
-## Modificato
-- Aggiornati i file delle traduzioni.
+- Aggiunta cartella AGENTS con le indicazioni per l'AI usata come copilota nella manutenzione e nella gestione del progetto.
+### Corretto
+- Corretto import Indico.
+- Varie correzioni suggerite dall'AI.
+### Sicurezza
+- Varie correzioni suggerite dall'AI.
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.4.
 - Iniziata la correzione dei file per aderire in modo più stretto alle WordPress coding Rules (modifiche di stile).
 - Correzione del layout delle seguenti sezioni in HP: banner, sponsor, newsletter e menu principale.
-- Aggiornato Dockerfile per sito demo.
 
 ## [REL-1.7.3] - 2025-11-19
-## Modificato
-Aggiunto link social per Mastodon.
+### Aggiunto
+- Link social per Mastodon.
 
 ## [REL-1.7.2] - 2025-11-19
-## Modificato
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.17.0.
-- Aggiornato Dockerfile per demo.
-ok
 
 ## [REL-1.7.1] - 2025-09-11
-## Corretto
-- Bug-fixing: Modifiche per migliorare accessibilità
-
+### Corretto
+- Modifiche per migliorare l'accessibilità.
 
 ## [REL-1.7.0] - 2025-08-07
-## Aggiunto
+### Aggiunto
 - Aggiunto ordinamento delle sezioni della Home Page.
-## Modificato
-- Aggiornato Dockerfile per sito demo.
-## Corretto
+### Corretto
 - Corretta visualizzazione archivio progetti.
 - Corretto filtro per stato dei contenuti.
 - Corretta visualizzazione immagine banner nei CT, se non specificato l'immagine usata è quella nel formato full.
 - Corretta visualizzazione banner HP.
 
-
 ## [REL-1.6.7] - 2025-08-01
-## Corretto
+### Corretto
 - Corretta visualizzazione eventi e news in HP (ora presenti se promuovi_in_home settato).
 - Corretta visualizzazione archivio eventi e news.
 
-
 ## [REL-1.6.6] - 2025-07-22
-## Modificato
-- Minor changes
-
+### Modificato
+- Modifiche minori.
 
 ## [1.6.5] - 2025-07-02
-## Corretto
+### Corretto
 - Corretto layout del dettaglio di una Risorsa Tecnica.
-## Modificato
+### Modificato
 - Estesa visualizzazione senza foto delle persone anche a progetti e attività di ricerca (hide_person_icon).
 - Parametrizzata gestione della sezione degli Sponsor in Home Page.
 
-
 ## [1.6.4] - 2025-06-30
-## Modificato
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.16.0.
 
-
 ## [1.6.3] - 2025-05-23
-## Aggiunto
+### Aggiunto
 - Aggiunto campo Priorità nei progetti e negli indirizzi di ricerca.
 - Aggiunto contenuto Risorsa Tecnica.
 - Aggiunta possibilità di pubblicare Spin-off e Risorse Tecniche nel Carousel in HP.
 - Possibilità di collegare le notizie a progetti e indirizzi di ricerca.
 - Collegamento tra Progetti e Risorse tecniche.
 - Aggiunta possibilità di non mostrare l'icona/foto di una persona nell'elenco delle persone.
-## Corretto
+### Corretto
 - Corretto funzionamento filtro dei tipi di contenuto nella ricerca del sito.
-## Modificato
-- Aggiornati i file delle traduzioni.
+### Modificato
 - Rifattorizzata gestione wrapper contenuti in ricerca e carousel.
 
-
 ## [1.6.2] - 2025-04-17
-## Modificato
-- Aggiornati i file delle traduzioni.
-- Aggiornato Dockerfile per sito demo.
-## Corretto
+### Corretto
 - Corretto bug nella visualizzazione del carousel in Home Page.
-
 
 ## [1.6.1] - 2025-04-15
 ### Aggiunto
 - Aggiunto limite di 1MB per le immagini e di 2MB per i PDF.
-## Modificato
+### Corretto
 - Corretto bug nell'import delle immagini di Indico.
+### Modificato
 - Tolte da functions.php e portate nel Theme Manager le funzioni per la gestione delle immagini.
 
-
 ## [1.6.0] - 2025-04-09
-## Modificato
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.14.0.
-
 
 ## [1.5.9] - 2025-03-07
 ### Aggiunto
 - Aggiunto campo libero per lo stato nei brevetti.
-## Corretto
+### Corretto
 - Corretto import dei brevetti.
-
 
 ## [1.5.8] - 2025-03-05
 ### Aggiunto
 - Il link alla scheda di dettaglio di eventi e notizie può puntare a un sito web o a un allegato.
-## Modificato
-- Aggiornato Dockerfile per sito demo.
-## Corretto
+### Corretto
 - Corretto funzionamento import eventi da Indico.
 - Corretto il formato dei risultati della ricerca.
 
-
 ## [1.5.7] - 2025-02-28
-## Corretto
+### Corretto
 - Corretta visualizzazione dei mesi in inglese negli eventi.
 - Corretto l'ordinamento del menu contestuale di pagine e post.
-
 
 ## [1.5.6] - 2025-02-20
 ### Aggiunto
 - Aggiunto parametro di configurazione per scegliere il numero di elementi collegabili a una pagina.
-## Corretto
+### Corretto
 - Corretta visualizzazione del titolo nelle pagine degli elenchi degli oggetti.
 
-
 ## [1.5.5] - 2025-02-12
-## Modificato
+### Corretto
 - Corretto bug visualizzazione sezione Sponsor.
 
-
 ## [1.5.4] - 2025-02-11
-## Modificato
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.4.
-
 
 ## [1.5.3] - 2025-02-10
 ### Aggiunto
 - Aggiunto contenuto Sponsor.
 - Introdotto logo nelle Spin-off.
-## Corretto
+### Corretto
 - Corretta visualizzazione titolo su dispositivi mobili.
-
 
 ## [1.5.2] - 2025-02-07
 ### Aggiunto
 - Gestione di etichette personalizzate nella tabella wp_dli_custom_translations.
 - Aggiunto testo pagina accessibilità.
-## Corretto
+### Corretto
 - Corretta gestione dei tag dei progetti.
-## Modificato
-- Aggiornato sito demo.
+### Modificato
 - Modificata procedura di attivazione di un nuovo sito.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.3.
 
-
 ## [1.5.1] - 2025-01-31
-## Aggiunto
+### Aggiunto
 - Aggiunto contenuto Spin-Off.
-## Corretto
+### Corretto
 - Corretti bug nell'attivazione di un nuovo sito.
-## Modificato
-- Aggiornati i file delle traduzioni.
+### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.13.1.
-- Aggiornato Dockerfile per sito demo.
-
 
 ## [1.5.0] - 2025-01-22
-## Corretto
-- Corretto import degli eventi da Indico: aggiunta immagine in modifica
-## Modificato
+### Corretto
+- Corretto import degli eventi da Indico: aggiunta immagine in modifica.
+### Modificato
 - Tolta radice del sito: il-laboratorio.
-- Aggiornato Dockerfile per sito demo.
 - Modificata procedura di attivazione di un nuovo sito.
-- Aggiornati i file delle traduzioni.
 ### Aggiunto
 - Aggiunta procedura di migrazione da 1.4.x a 1.5.x.
 
-
 ## [1.4.2] - 2025-01-15
-## Modificato
+### Modificato
 - Nuova gestione dei cookies.
 - Aggiornato template per pagina dei cookies e pagina delle note legali.
 - Aggiunta gestione delle categorie nell'import da Indico.
-- Aggiornato Dockerfile per sito demo.
-
 
 ## [1.4.1] - 2024-12-12
-## Corretto
+### Corretto
 - Corretta visualizzazione sezione "Seguici su".
-## Modificato
+### Modificato
 - Modificata visualizzazione della data di un evento, negli eventi di un solo giorno.
 - Brevetti: gestita importazione in italiano e inglese.
-- Aggiornato Dockerfile per sito demo.
-
 
 ## [1.4.0] - 2024-12-10
 ### Aggiunto
@@ -456,9 +398,7 @@ ok
 ### Modificato
 - Portata configurazione lingue nel LabManager.
 - Il campo Tagline, nella configurazione del sito, non è più obbligatorio.
-- Aggiornati i file delle traduzioni.
-- Aggiornato Dockerfile per sito demo.
-- Refactoring sezione filtri nelle'elenco delle persone.
+- Refactoring sezione filtri nell'elenco delle persone.
 - Corretto overlay nella visualizzazione di banner e hero.
 - Visualizzazione dei contenuti correlati come carousel nelle pagine del sito.
 ### Corretto
@@ -466,13 +406,11 @@ ok
 - Corretta visualizzazione chips persone.
 - Refactoring nella gestione logo nello header e nel footer.
 
-
 ## [1.3.9] - 2024-12-05
 ### Corretto
 - Corretti dei bug riguardanti la sezione dei brevetti.
 ### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.12.1.
-
 
 ## [1.3.8] - 2024-11-27
 ### Aggiunto
@@ -480,31 +418,25 @@ ok
 ### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.12.0.
 
-
 ## [1.3.7] - 2024-11-22
 ### Modificato
-- Aggiornati file delle traduzioni.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.11.2.
-
 
 ## [1.3.6] - 2024-11-18
 ### Corretto
-- corretto bug in cambio lingua.
-
+- Corretto bug in cambio lingua.
 
 ## [1.3.5] - 2024-11-15
 ### Modificato
 - Aggiunto campo video al contenuto brevetto.
 - Aggiornata libreria BootstrapItalia alla versione 2.11.0.
 
-
 ## [1.3.4] - 2024-11-13
 ### Corretto
 - Corretti bug: brevetti, visualizzazione eventi nelle pagine.
 - Correzioni per l'accessibilità.
 ### Modificato
-- Modificata visualizzazione brevetti
-
+- Modificata visualizzazione brevetti.
 
 ## [1.3.3] - 2024-10-25
 ### Corretto
@@ -518,43 +450,33 @@ ok
 - Disabilitato XMLRPC.
 ### Modificato
 - Aggiornata libreria BootstrapItalia alla versione 2.10.0.
-- Aggiornati file delle traduzioni.
-- Aggiornato Dockerfile per sito demo.
-### Refactoring
 - Rifattorizzazione della creazione dei menu tramite file di configurazione dedicato.
 - Rifattorizzazione della gestione degli import da Indico e IRIS.
 - Introdotto DLI_ContentsManager per la gestione delle query dei contenuti e delle tassonomie.
-
 
 ## [1.3.2] - 2024-09-04
 ### Corretto
 - Corretto bug paginazione ricerca.
 - Corretto bug visualizzazione data eventi e notizie.
 ### Modificato
-- Aggiornato Dockerfile per sito demo.
 - Aggiornata la versione di Bootstrap Italia alla versione 2.9.0.
-
 
 ## [1.3.1] - 2024-07-26
 ### Corretto
 - Spostato codice analytics in template a parte.
 - Corretta visualizzazione data blog.
 - Corretto bug visualizzazione biografia nella scheda di una persona.
-- Corretto file publicode.yml.
-
+- Corretto file publiccode.yml.
 
 ## [1.3.0] - 2024-06-12
 ### Corretto
 - Corretta associazione dei template alle pagine.
 ### Modificato
 - Aggiornata la versione di Bootstrap Italia alla versione 2.8.8.
-- Aggiornato Dockerfile per sito demo.
-
 
 ## [1.2.9] - 2024-06-05
 ### Corretto
 - Corretto bug visualizzazione orario eventi.
-
 
 ## [1.2.8] - 2024-06-04
 ### Aggiunto
@@ -573,9 +495,7 @@ ok
 - Corretta visualizzazione dell'elenco delle persone nella pagina di dettaglio di un progetto.
 - Corretta gestione dei filtri per categorie nelle pagine: eventi e news.
 - Corretta visualizzazione dei chip delle categorie nelle pagine di dettaglio di eventi e notizie.
-- Aggiornato Dockerfile per sito demo.
 - Corretto l'ordine di visualizzazione degli eventi nella sezione eventi in HP.
-
 
 ## [1.2.7] - 2024-04-30
 ### Aggiunto
@@ -583,10 +503,6 @@ ok
 - Aggiunta della sezione "Elenco contenuti" con le strisce "News", "Eventi" e "Pubblicazioni".
 ### Modificato
 - Aggiornata libreria Bootstrap Italia alla versione 2.8.4.
-- Aggiornati file delle traduzioni.
-### Corretto
-- Aggiornato sito demo.
-
 
 ## [1.2.6] - 2024-03-07
 ### Aggiunto
@@ -595,8 +511,7 @@ ok
 ### Sicurezza
 - Corretto escaping dei dati delle form: contatti, ricerca e newsletter.
 ### Corretto
-- Tolta gestione del numero di telefono nell'anagarafica di Brevo.
-
+- Tolta gestione del numero di telefono nell'anagrafica di Brevo.
 
 ## [1.2.5] - 2024-03-04
 ### Aggiunto

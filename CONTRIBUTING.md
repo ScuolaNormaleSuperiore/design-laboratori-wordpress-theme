@@ -58,7 +58,7 @@ static checks (`composer`), tests (`composer`) and reports (`npm`):
 
 - `composer run lint:php` and `composer run lint:phpstan` for PHP coding standards and
   static analysis;
-- `composer test:unit` for the unit tests (also run by the `pre-commit` hook, which blocks
+- `composer test:unit` for the unit tests, PHP and JavaScript (Node is needed, 22 or later on Windows; also run by the `pre-commit` hook, which blocks
   the commit when one fails);
 - `composer test:integration` when the change depends on WordPress (roles and permissions,
   REST routes, queries, content types), and `composer test:e2e` for what the user sees or

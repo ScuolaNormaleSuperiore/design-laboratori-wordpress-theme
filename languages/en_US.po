@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-11-20 08:52+0000\n"
+"PO-Revision-Date: 2026-11-20 10:51+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -24,18 +24,18 @@ msgstr[0] "%1$d result for «%2$s»"
 msgstr[1] "%1$d results for «%2$s»"
 
 #. 1: selected option label, 2: total number of results, 3: position of the selected option.
-#: inc/search-autocomplete.php:350
+#: inc/search-autocomplete.php:352
 #, php-format
 msgid "%1$s, risultato %3$d di %2$d"
 msgstr "%1$s, result %3$d of %2$d"
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:348
+#: inc/search-autocomplete.php:350
 msgid "%d risultati disponibili."
 msgstr "%d results available."
 
 #. %d: number of results.
-#: inc/search-autocomplete.php:346
+#: inc/search-autocomplete.php:348
 msgid "%d risultato disponibile."
 msgstr "%d result available."
 
@@ -108,7 +108,7 @@ msgstr "Patent abstract"
 msgid "Abstract del brevetto"
 msgstr "Patent abstract"
 
-#: header.php:147 inc/reserved-area.php:482
+#: header.php:147 inc/reserved-area.php:483
 #: template-parts/common/reserved-area-access.php:25
 msgid "Accedi"
 msgstr "Login"
@@ -329,7 +329,7 @@ msgstr "Research activities"
 msgid "attivo"
 msgstr "active"
 
-#: inc/reserved-area.php:481
+#: inc/reserved-area.php:482
 msgid "Autenticati con le credenziali istituzionali:"
 msgstr "Sign in with your institutional credentials:"
 
@@ -419,6 +419,7 @@ msgid "Categoria correlata:"
 msgstr "Related category:"
 
 #: header.php:185 page-templates/cerca.php:86 page-templates/cerca.php:145
+#: template-parts/persone/filters.php:64
 msgid "Cerca"
 msgstr "Search"
 
@@ -437,11 +438,8 @@ msgstr "Search content"
 msgid "Cerca nel sito"
 msgstr "Search this site"
 
-#: template-parts/persone/filters.php:61
-msgid "Cerca per cognome"
-msgstr "Search by surname"
-
-#: template-parts/persone/view-tabella.php:145
+#: template-parts/persone/filters.php:71
+#: template-parts/persone/view-tabella.php:164
 msgid "Cerca per nome, cognome, tipologia o struttura"
 msgstr "Search by first name, last name, type, or structure"
 
@@ -453,7 +451,7 @@ msgstr "Search business sector"
 msgid "Cerca Struttura"
 msgstr "Search structure"
 
-#: template-parts/persone/view-tabella.php:137
+#: template-parts/persone/view-tabella.php:156
 msgid "Cerca testo"
 msgstr "Search text"
 
@@ -838,7 +836,7 @@ msgid "dicembre"
 msgstr "december"
 
 #. %d: minimum number of characters.
-#: inc/search-autocomplete.php:344
+#: inc/search-autocomplete.php:346
 msgid "Digita almeno %d caratteri per vedere i suggerimenti"
 msgstr "Type at least %d characters to see suggestions"
 
@@ -897,12 +895,12 @@ msgstr "List of archived projects"
 msgid "Elenco delle pagine del sito"
 msgstr "List of site pages"
 
-#: template-parts/persone/view-tabella.php:242
+#: template-parts/persone/view-tabella.php:261
 msgid "Elenco persone"
 msgstr "People list"
 
 #: single-luogo.php:219 inc/admin/class-dli-people-import-admin.php:537
-#: template-parts/persone/view-tabella.php:256
+#: template-parts/persone/view-tabella.php:275
 msgid "Email"
 msgstr "Email"
 
@@ -927,11 +925,8 @@ msgstr "Nonce error detected while submitting the form."
 msgid "Errori"
 msgstr "Errors"
 
-#: template-parts/persone/filters.php:67
-msgid "Es. Rossi"
-msgstr "E.g. Rossi"
-
-#: template-parts/persone/view-tabella.php:144
+#: template-parts/persone/filters.php:70
+#: template-parts/persone/view-tabella.php:163
 msgid "Es. Rossi, Professore…"
 msgstr "E.g. Rossi, Professor..."
 
@@ -1643,7 +1638,7 @@ msgstr "Brand and model"
 msgid "marzo"
 msgstr "march"
 
-#: functions.php:211
+#: functions.php:216
 msgid "Menu a piè di pagina di link - footer"
 msgstr "Footer link menu - footer"
 
@@ -1651,19 +1646,19 @@ msgstr "Footer link menu - footer"
 msgid "Menu contatti"
 msgstr "Contacts menu"
 
-#: functions.php:209
+#: functions.php:214
 msgid "Menu header di link in alto a destra"
 msgstr "Header link menu - top right"
 
-#: functions.php:210
+#: functions.php:215
 msgid "Menu link utili - footer"
 msgstr "Useful link menu - footer"
 
-#: functions.php:207
+#: functions.php:212
 msgid "Menu principale di link a sinistra"
 msgstr "Main link menu - top left"
 
-#: functions.php:208
+#: functions.php:213
 msgid "Menu secondario multilevel a destra"
 msgstr "Multilevel secondary right menu"
 
@@ -1772,7 +1767,7 @@ msgstr "Secondary navigation"
 msgid "Navigazione pagine"
 msgstr "Page navigation"
 
-#: template-parts/persone/view-tabella.php:270
+#: template-parts/persone/view-tabella.php:289
 msgid "Navigazione pagine persone"
 msgstr "People pages navigation"
 
@@ -1793,7 +1788,7 @@ msgstr "Deposit country"
 msgid "Nessun file caricato o errore nel caricamento."
 msgstr "No file uploaded or upload error."
 
-#: inc/search-autocomplete.php:342
+#: inc/search-autocomplete.php:344
 msgid "Nessun risultato di ricerca"
 msgstr "No search results"
 
@@ -1801,11 +1796,11 @@ msgstr "No search results"
 msgid "Nessun risultato per i filtri selezionati."
 msgstr "No results for the selected filters."
 
-#: inc/search-autocomplete.php:341
+#: inc/search-autocomplete.php:343
 msgid "Nessun risultato trovato"
 msgstr "No results found"
 
-#: template-parts/persone/view-tabella.php:297
+#: template-parts/persone/view-tabella.php:317
 msgid "Nessuna persona trovata"
 msgstr "No people found"
 
@@ -1826,8 +1821,8 @@ msgstr "no"
 msgid "Nome"
 msgstr "Name"
 
-#: template-parts/persone/view-tabella.php:225
-#: template-parts/persone/view-tabella.php:245
+#: template-parts/persone/view-tabella.php:244
+#: template-parts/persone/view-tabella.php:264
 msgid "Nome / Cognome"
 msgstr "First name / Last name"
 
@@ -1864,7 +1859,7 @@ msgstr "You do not have permission to perform this operation."
 msgid "Non hai i permessi per vedere questo contenuto"
 msgstr "You do not have permission to view this content"
 
-#: inc/actions.php:83 inc/actions.php:86
+#: inc/actions.php:91 inc/actions.php:94
 msgid "Non hai il permesso di modificare questo utente."
 msgstr "You do not have permission to edit this user."
 
@@ -1888,7 +1883,7 @@ msgstr "No research activities available"
 msgid "Non è stata trovata nessuna notizia"
 msgstr "No news available"
 
-#: page-templates/persone.php:167
+#: page-templates/persone.php:163
 msgid "Non è stata trovata nessuna persona"
 msgstr "No people available"
 
@@ -1993,7 +1988,7 @@ msgstr ""
 "title=\"Return to previous page\">Go back</a> or use the menu to continue "
 "browsing."
 
-#: inc/reserved-area.php:483
+#: inc/reserved-area.php:484
 msgid "Oppure accedi con le credenziali di WordPress:"
 msgstr "Or sign in with your WordPress credentials:"
 
@@ -2001,7 +1996,7 @@ msgstr "Or sign in with your WordPress credentials:"
 msgid "Orari"
 msgstr "Opening hours"
 
-#: template-parts/persone/view-tabella.php:219
+#: template-parts/persone/view-tabella.php:238
 msgid "Ordina per"
 msgstr "Sort by"
 
@@ -2032,12 +2027,12 @@ msgid "Pagina non trovata"
 msgstr "Page not found"
 
 #: template-parts/common/paginazione.php:63
-#: template-parts/persone/view-tabella.php:293
+#: template-parts/persone/view-tabella.php:313
 msgid "Pagina precedente"
 msgstr "Previous page"
 
 #: template-parts/common/paginazione.php:104
-#: template-parts/persone/view-tabella.php:294
+#: template-parts/persone/view-tabella.php:314
 msgid "Pagina successiva"
 msgstr "Next page"
 
@@ -2123,7 +2118,7 @@ msgstr "Person updated."
 msgid "Persona creata."
 msgstr "Person created."
 
-#: template-parts/persone/view-tabella.php:295
+#: template-parts/persone/view-tabella.php:315
 msgid "persona trovata"
 msgstr "person found"
 
@@ -2133,7 +2128,7 @@ msgstr "person found"
 msgid "Persone"
 msgstr "People"
 
-#: template-parts/persone/view-tabella.php:296
+#: template-parts/persone/view-tabella.php:316
 msgid "persone trovate"
 msgstr "people found"
 
@@ -2539,7 +2534,7 @@ msgstr "Publications"
 msgid "quadrato"
 msgstr "square"
 
-#: inc/search-autocomplete.php:340
+#: inc/search-autocomplete.php:342
 msgid ""
 "Quando i risultati sono disponibili, usa le frecce su e giù per scorrerli e "
 "Invio per selezionare."
@@ -3039,10 +3034,10 @@ msgstr "Import tools"
 msgid "Strumenti DLI"
 msgstr "DLI Tools"
 
-#: inc/classes/class-peoplemanager.php:48 template-parts/persone/filters.php:76
-#: template-parts/persone/view-tabella.php:153
-#: template-parts/persone/view-tabella.php:227
-#: template-parts/persone/view-tabella.php:250
+#: inc/classes/class-peoplemanager.php:48 template-parts/persone/filters.php:80
+#: template-parts/persone/view-tabella.php:172
+#: template-parts/persone/view-tabella.php:246
+#: template-parts/persone/view-tabella.php:269
 msgid "Struttura"
 msgstr "Structure"
 
@@ -3060,8 +3055,8 @@ msgstr "yes"
 msgid "Tabella"
 msgstr "Table"
 
-#: template-parts/persone/view-tabella.php:230
-#: template-parts/persone/view-tabella.php:253
+#: template-parts/persone/view-tabella.php:249
+#: template-parts/persone/view-tabella.php:272
 msgid "TAG"
 msgstr "TAG"
 
@@ -3126,7 +3121,7 @@ msgid "Tipologia luogo"
 msgstr "Place type"
 
 #: footer.php:88 footer.php:89 single-luogo.php:206
-#: page-templates/contatti.php:275 template-parts/persone/view-tabella.php:259
+#: page-templates/contatti.php:275 template-parts/persone/view-tabella.php:278
 msgid "Telefono"
 msgstr "Phone"
 
@@ -3191,10 +3186,10 @@ msgid "Tipo risorsa"
 msgstr "Resource type"
 
 #: page-templates/luoghi.php:99 page-templates/pubblicazioni.php:183
-#: template-parts/persone/filters.php:93
-#: template-parts/persone/view-tabella.php:172
-#: template-parts/persone/view-tabella.php:223
-#: template-parts/persone/view-tabella.php:247
+#: template-parts/persone/filters.php:97
+#: template-parts/persone/view-tabella.php:191
+#: template-parts/persone/view-tabella.php:242
+#: template-parts/persone/view-tabella.php:266
 msgid "Tipologia"
 msgstr "Type"
 
@@ -3262,13 +3257,13 @@ msgstr ""
 "All the rows of the file are in the chosen language. For a site in more than "
 "one language submit one file per language, with the same page_key."
 
-#: inc/classes/class-peoplemanager.php:43 template-parts/persone/filters.php:79
-#: template-parts/persone/view-tabella.php:157
+#: inc/classes/class-peoplemanager.php:43 template-parts/persone/filters.php:83
+#: template-parts/persone/view-tabella.php:176
 msgid "Tutte le strutture"
 msgstr "All structures"
 
-#: template-parts/persone/filters.php:96
-#: template-parts/persone/view-tabella.php:176
+#: template-parts/persone/filters.php:100
+#: template-parts/persone/view-tabella.php:195
 msgid "Tutte le tipologie"
 msgstr "All types"
 

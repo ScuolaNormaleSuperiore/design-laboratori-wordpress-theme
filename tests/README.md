@@ -67,7 +67,7 @@ Gli hook di Git stanno in `.githooks/` e si attivano una volta per clone con `gi
 | 2 | Guardia l10n (`check-staged-l10n.sh`) | I file `languages/*.l10n.php`: rimette la riga `defined( 'ABSPATH' ) \|\| exit;` che Loco Translate toglie a ogni esportazione | No: corregge da sola e rimette il file in staging |
 | 3 | PHPStan livello 5 (`check-phpstan.sh`) | L'intero tema, non solo i file del commit | Sì, a qualunque errore |
 | 4 | PHPCS (`check-staged-phpcs.sh`) | I file PHP, CSS e SCSS in staging, sul contenuto in staging | Sì, solo per gli **errori**; gli avvisi non bloccano |
-| 5 | Test unit | La suite unit (`composer test:unit`) | Sì |
+| 5 | Test unit | La suite unit (`composer test:unit`): PHPUnit, poi i test JavaScript con `node --test` (serve Node) | Sì |
 | 6 | Testo del commit (`commit-msg`) | Un trailer `Co-Authored-By:` che attribuisce il commit a un assistente AI | Sì |
 
 Cinque controlli su sei bloccano; i controlli 1-5 sono nel `pre-commit` e il 6 nel `commit-msg`.

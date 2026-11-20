@@ -1,23 +1,23 @@
-// People archive: the surname filter preserves a query and reloads with a new one.
+// People archive: the search field preserves a query and reloads with a new one on Enter.
 const { test, expect } = require( '@playwright/test' );
 
 const PEOPLE_PAGE = '/persone/';
-const INITIAL_SURNAME = 'dli-e2e-no-person-9c1a';
-const UPDATED_SURNAME = 'dli-e2e-no-person-9c1b';
+const INITIAL_SEARCH = 'dli-e2e-no-person-9c1a';
+const UPDATED_SEARCH = 'dli-e2e-no-person-9c1b';
 
-test( 'the people surname filter keeps its value and updates the archive URL', async ( { page } ) => {
-	const response = await page.goto( `${ PEOPLE_PAGE }?cognome=${ INITIAL_SURNAME }` );
+test( 'the people search keeps its value and updates the archive URL on Enter', async ( { page } ) => {
+	const response = await page.goto( `${ PEOPLE_PAGE }?vista=chip&cerca=${ INITIAL_SEARCH }` );
 
 	expect( response.status() ).toBe( 200 );
 	await expect( page.locator( '#personeform' ) ).toBeVisible();
-	await expect( page.locator( '#searchPeopleCognome' ) ).toHaveValue( INITIAL_SURNAME );
+	await expect( page.locator( '#searchPeople' ) ).toHaveValue( INITIAL_SEARCH );
 	await expect( page.locator( '#personeform' ) ).toContainText( 'Non è stata trovata nessuna persona' );
 
-	await page.locator( '#searchPeopleCognome' ).fill( UPDATED_SURNAME );
+	await page.locator( '#searchPeople' ).fill( UPDATED_SEARCH );
 	await Promise.all( [
-		page.waitForURL( ( url ) => url.searchParams.get( 'cognome' ) === UPDATED_SURNAME ),
-		page.locator( '#searchPeopleCognome' ).evaluate( ( input ) => input.dispatchEvent( new Event( 'search' ) ) ),
+		page.waitForURL( ( url ) => url.searchParams.get( 'cerca' ) === UPDATED_SEARCH ),
+		page.locator( '#searchPeople' ).press( 'Enter' ),
 	] );
-	await expect( page.locator( '#searchPeopleCognome' ) ).toHaveValue( UPDATED_SURNAME );
+	await expect( page.locator( '#searchPeople' ) ).toHaveValue( UPDATED_SEARCH );
 	await expect( page.locator( '#personeform' ) ).toContainText( 'Non è stata trovata nessuna persona' );
 } );
