@@ -402,6 +402,27 @@ class DLI_People_Import_Admin_Integration_Test extends DLI_Integration_Test_Case
 	}
 
 	/**
+	 * The form: the CSV file, the four modes with `upsert` as the default, the simulation as the default run mode, and
+	 * the link to the example with its nonce. Moved here from the E2E spec, which keeps only the path in the browser.
+	 */
+	public function test_the_form_has_its_fields_and_the_example() {
+		$this->login();
+
+		ob_start();
+		DLI_People_Import_Admin::render();
+		$html = (string) ob_get_clean();
+
+		$this->assertSame( 1, preg_match( '#<input[^>]*type="file"[^>]*name="dli_csv_file"[^>]*accept="\.csv"#', $html ), 'The file field takes a CSV.' );
+		$this->assertStringContainsString( 'name="dli_import_persone_nonce"', $html );
+		$this->assertSame( 1, preg_match( '#<select id="dli-import-mode" name="dli_import_mode">(.*?)</select>#s', $html, $modes ) );
+		$this->assertSame( 4, preg_match_all( '#<option value="#', $modes[1] ), 'The four modes of the import.' );
+		$this->assertSame( 1, preg_match( '#<option value="upsert"\s+selected#', $modes[1] ), 'upsert is the default mode.' );
+		$this->assertSame( 1, preg_match( '#<select id="dli-exec-mode" name="dli_exec_mode">(.*?)</select>#s', $html, $exec ) );
+		$this->assertSame( 1, preg_match( '#<option value="dry_run"\s+selected#', $exec[1] ), 'The simulation is the default run mode.' );
+		$this->assertSame( 1, preg_match( '#href="[^"]*action=download-sample-persone[^"]*_wpnonce=[a-z0-9]+#', $html ), 'The example has its link with a nonce.' );
+	}
+
+	/**
 	 * The example that is downloaded is the file of the theme.
 	 */
 	public function test_the_example_is_the_file_of_the_theme() {
