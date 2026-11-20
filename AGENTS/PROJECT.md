@@ -49,6 +49,7 @@ It is possible to easily test the system locally by using the Dockerfile provide
 - Integration with the Brevo newsletter management software
 - Import of a hierarchical tree of pages from a CSV file (Strumenti DLI → Importa → Pagine), with simulation and confirmation
 - Import of people from a CSV file (Strumenti DLI → Importa → Persone), with simulation
+- One format for every CSV import: UTF-8, semicolon separator, column names in any case, at most 200 rows; other columns and empty rows are ignored and the ignored columns are listed in the report
 - Import of events from Indico
 - Import of patents from IRIS
 - PWA manifest (installable name/icon, no service worker)

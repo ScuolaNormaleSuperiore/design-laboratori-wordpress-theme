@@ -51,6 +51,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Importazione dei brevetti da IRIS.
 - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
 - Importazione delle persone da file CSV, con simulazione.
+- Un solo formato per tutti gli import da CSV: UTF-8, separatore punto e virgola, nomi delle colonne anche in maiuscolo, al massimo 200 righe; le altre colonne e le righe vuote vengono ignorate e le colonne ignorate sono elencate nel report.
 
 ## Galleria
 

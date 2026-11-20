@@ -104,6 +104,8 @@ In `tipologia_persona` e `struttura` più valori si separano con la barra vertic
 3. Lascia la modalità di esecuzione su `dry_run` (simulazione) e leggi il report, comprese le eventuali colonne ignorate.
 4. Correggi le righe con errori, poi esegui con `commit`.
 
+**Attenzione agli aggiornamenti.** Quando una persona esiste già, l'importazione riscrive tutti i suoi campi con i valori del file: una colonna facoltativa assente o una cella vuota cancella il valore presente sul sito (per esempio il telefono, le strutture o il testo della scheda). Per `stato` vale questo: se la colonna manca, la persona viene pubblicata (`publish`); se c'è ma la cella è vuota o ha un valore diverso da `publish` e `draft`, lo stato attuale non cambia. Per aggiornare solo alcune persone, metti nel file tutte le loro colonne con i valori completi.
+
 ### Errori
 
 Un file che non rispetta il formato (codifica, colonne obbligatorie, dimensione, numero di righe) viene rifiutato prima di iniziare e nessuna persona viene creata. Gli errori di una riga invece riguardano solo quella riga: una riga senza nome, cognome o email valida, una riga troppo corta o un'email che appartiene a più persone vengono segnalate nel report con il loro numero, e le altre righe vengono elaborate.

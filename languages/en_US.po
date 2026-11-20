@@ -847,10 +847,6 @@ msgid ""
 "(;)."
 msgstr "Maximum size: 2 MB, at most %d pages. Separator: semicolon (;)."
 
-#: inc/admin/class-dli-tools-admin.php:608
-msgid "Dimensione massima: 2 MB. Separatore: punto e virgola (;)."
-msgstr "Maximum size: 2 MB. Separator: semicolon (;)."
-
 #: single-risorsa-tecnica.php:217 single-risorsa-tecnica.php:323
 msgid "Dimensioni e peso"
 msgstr "Dimensions and weight"
@@ -1145,11 +1141,6 @@ msgstr "The check code is invalid."
 msgid "Il file contiene caratteri non validi."
 msgstr "The file contains invalid characters."
 
-#. %d: the most pages of a file
-#: inc/admin/class-dli-page-import-admin.php:257
-msgid "Il file ha troppe pagine: il massimo è %d."
-msgstr "The file has too many pages: the maximum is %d."
-
 #: inc/admin/class-dli-page-import-admin.php:240
 msgid "Il file non è in UTF-8: salvalo come «CSV UTF-8»."
 msgstr "The file is not in UTF-8: save it as “CSV UTF-8”."
@@ -1238,14 +1229,6 @@ msgstr "Import"
 #: inc/admin/class-dli-page-import-admin.php:470
 msgid "Importa (crea le pagine)"
 msgstr "Import (create the pages)"
-
-#: inc/admin/class-dli-tools-admin.php:503
-msgid ""
-"Importa persone da un file CSV con separatore punto e virgola (;). "
-"L'intestazione deve corrispondere esattamente a quella richiesta."
-msgstr ""
-"Import people from a CSV file with a semicolon (;) separator. The header "
-"must match the requested header exactly."
 
 #: inc/admin/class-dli-tools-admin.php:70
 msgid "Importa — Strumenti DLI"
@@ -1351,12 +1334,6 @@ msgstr "Required CSV header"
 #, php-format
 msgid "Intestazione non valida: colonna obbligatoria \"%s\" non trovata."
 msgstr "Invalid header: Required column \"%s\" not found."
-
-#. %s: name of the column
-#: inc/admin/class-dli-page-import-admin.php:254
-#, php-format
-msgid "Intestazione non valida: colonna sconosciuta \"%s\"."
-msgstr "Invalid header: unknown column \"%s\"."
 
 #. %s: name of the column
 #: inc/admin/class-dli-page-import-admin.php:251
@@ -2697,11 +2674,6 @@ msgid "Riga %d: il livello salta quello superiore (manca la pagina genitore)."
 msgstr "Row %d: the level skips the one above (the parent page is missing)."
 
 #. %d: line of the file
-#: inc/admin/class-dli-page-import-admin.php:260
-msgid "Riga %d: il numero di colonne non corrisponde all'intestazione."
-msgstr "Row %d: the number of columns does not match the header."
-
-#. %d: line of the file
 #: inc/admin/class-dli-page-import-admin.php:263
 msgid "Riga %d: manca il titolo."
 msgstr "Row %d: the title is missing."
@@ -3146,12 +3118,6 @@ msgstr "Resource type"
 msgid "Tipo di risorsa:"
 msgstr "Resource type:"
 
-#. %s: detected MIME type
-#: inc/admin/class-dli-tools-admin.php:378
-#, php-format
-msgid "Tipo file non valido (%s). È richiesto un file CSV."
-msgstr "Invalid file type (%s). A CSV file is required."
-
 #: inc/classes/class-dli-publication-manager.php:75
 msgid "Tipo Pubblicazione"
 msgstr "Publication type"
@@ -3450,3 +3416,41 @@ msgstr ""
 #: restricted-content.php:51
 msgid "Per vedere questo contenuto devi accedere."
 msgstr "You must log in to view this content."
+
+#. %s: names of the columns, separated by commas
+#: inc/admin/class-dli-csv-file.php
+#, php-format
+msgid "Colonne ignorate: %s."
+msgstr "Ignored columns: %s."
+
+#. %d: the most rows of a file
+#: inc/admin/class-dli-people-import-admin.php
+#, php-format
+msgid "Dimensione massima: 2 MB, al massimo %d righe. Separatore: punto e virgola (;)."
+msgstr "Maximum size: 2 MB, at most %d rows. Separator: semicolon (;)."
+
+#: inc/admin/class-dli-page-import-admin.php
+msgid "I nomi delle colonne si possono scrivere anche in maiuscolo. Le altre colonne e le righe vuote vengono ignorate; le colonne ignorate sono elencate nel report."
+msgstr "Column names can also be written in upper case. Other columns and empty rows are ignored; the ignored columns are listed in the report."
+
+#. %d: the most rows of a file
+#: inc/admin/class-dli-csv-file.php
+#, php-format
+msgid "Il file ha troppe righe: il massimo è %d."
+msgstr "The file has too many rows: the maximum is %d."
+
+#: inc/admin/class-dli-people-import-admin.php
+msgid "Importa persone da un file CSV in UTF-8, con separatore punto e virgola (;). I nomi delle colonne si possono scrivere anche in maiuscolo; le altre colonne e le righe vuote vengono ignorate, e le colonne ignorate sono elencate nel report."
+msgstr "Import people from a UTF-8 CSV file with a semicolon (;) separator. Column names can also be written in upper case; other columns and empty rows are ignored, and the ignored columns are listed in the report."
+
+#. %s: position of the column, from 1
+#: inc/admin/class-dli-csv-file.php
+#, php-format
+msgid "Intestazione non valida: la colonna %s non ha un nome."
+msgstr "Invalid header: column %s has no name."
+
+#. %d: line of the file
+#: inc/admin/class-dli-csv-file.php
+#, php-format
+msgid "Riga %d: la riga ha meno colonne di quelle previste dall'intestazione."
+msgstr "Row %d: the row has fewer columns than the header."

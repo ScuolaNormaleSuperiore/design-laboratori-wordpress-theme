@@ -32,9 +32,17 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 
-## [2.1.0] - 2026-11-16
+## [2.1.0] - 2026-11-20
+## Modificato
 - Refactoring: Rifattorizzato import da file con reader comune.
+- Formato comune per tutti gli import da file CSV (Pagine e Persone): codifica UTF-8, separatore punto e virgola, virgolette solo dove servono, nomi delle colonne senza distinzione tra maiuscole e minuscole, al massimo 200 righe e 2 MB. Le colonne non previste vengono ignorate ed elencate nel report. Un file non UTF-8 viene rifiutato con l'indicazione di salvarlo come «CSV UTF-8».
+- Importa → Pagine: il report mostra la `page_key` di ogni pagina.
+- Importa → Persone: il CSV di esempio è un file del tema (`SETUP/CSV_Import/people-example.csv`); se mancano più colonne obbligatorie vengono segnalate tutte.
+- Nuova guida «Importare da file CSV» (`DOC/HowTo/Importare-da-CSV.md`), con il formato comune e le sezioni Pagine e Persone; sostituisce «Importare pagine da CSV».
+## Corretto
 - Bug-fixing: Corretto bug nella gestione dei filtri delle persone.
+- Import da file CSV: una colonna in più non fa più rifiutare il file delle pagine, e le righe vuote (anche di soli `;`) vengono saltate anche nel file delle persone, dove prima risultavano errori.
+- Importa → Persone: una riga con meno colonne del previsto è segnalata come errore di quella riga, senza avvisi PHP.
 
 
 ## [2.0.9] - 2026-11-16
