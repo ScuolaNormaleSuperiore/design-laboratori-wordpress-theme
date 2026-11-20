@@ -73,7 +73,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Requisiti software
 1. Il CMS WordPress (versione >= 6.6.2).
 2. PHP >= 8.0.
-3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm.
+3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore.
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
@@ -182,7 +182,7 @@ publiccode-parser -path . publiccode.yml
 ```
 
 ## Contesto di progetto per l'AI
-Chiedere all'assistente di codifica di "leggere il contesto del progetto". ChatGPT/Codex legge prima `AGENTS.md`, mentre Claude Code legge prima `CLAUDE.md`; entrambi seguono poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/TRIGGERS.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Il bootstrap garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/trigger-code-review`. Se disponibile, legge anche l'indice privato `DEV/TODO/README.md` e mostra i piani in esecuzione; se `DEV/TODO` non è accessibile, prosegue senza errore. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
+Chiedere all'assistente di codifica di "leggere il contesto del progetto". ChatGPT/Codex legge prima `AGENTS.md`, mentre Claude Code legge prima `CLAUDE.md`; entrambi seguono poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/TRIGGERS.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Il bootstrap garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/trigger-code-review`. Se disponibili, consulta anche i piani di lavoro locali, che non fanno parte del repository pubblico. La loro assenza non interrompe il bootstrap. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.
