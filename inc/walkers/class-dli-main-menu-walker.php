@@ -18,7 +18,7 @@ class DLI_Main_Menu_Walker extends Walker_Nav_Menu {
 	/**
 	 * In-request cache for menu trees, keyed by menu term ID.
 	 *
-	 * @var array<int, array>
+	 * @var array<int, array<int, array{element: WP_Post, children: list<WP_Post>}>>
 	 */
 	protected $dli_menu_tree_cache = array();
 
@@ -26,7 +26,7 @@ class DLI_Main_Menu_Walker extends Walker_Nav_Menu {
 	 * Get the menu tree for the current walker args, cached per request.
 	 *
 	 * @param object $args Walker arguments.
-	 * @return array
+	 * @return array<int, array{element: WP_Post, children: list<WP_Post>}>
 	 */
 	protected function dli_get_menu_tree( $args ) {
 		if ( ! isset( $args->menu ) || ! isset( $args->menu->term_id ) ) {

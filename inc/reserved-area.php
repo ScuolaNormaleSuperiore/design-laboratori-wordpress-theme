@@ -372,6 +372,7 @@ add_filter( 'wp_authenticate_user', 'dli_reserved_area_refuse_password_login' );
  * @param WP_REST_Response|WP_HTTP_Response|WP_Error|mixed $response The response so far.
  * @param array<string, mixed>                             $handler  The route handler.
  * @param WP_REST_Request                                  $request  The request.
+ * @phpstan-param WP_REST_Request<array<string, mixed>> $request
  * @return WP_REST_Response|WP_HTTP_Response|WP_Error|mixed
  */
 function dli_reserved_area_refuse_rest_password( $response, $handler, $request ) {

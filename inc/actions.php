@@ -8,6 +8,8 @@
 
 /**
  * Disable all comments
+ *
+ * @return void
  */
 function dli_disable_all_comments() {
 	if ( '' !== get_option( 'default_comment_status' ) ) {
@@ -20,6 +22,8 @@ add_action( 'after_setup_theme', 'dli_disable_all_comments' );
 
 /**
  * Add css admin style: TAB di Configurazione laterale.
+ *
+ * @return void
  */
 function dli_admin_css_load() {
 	wp_enqueue_style( 'style-admin-css', get_stylesheet_directory_uri() . '/inc/admin-css/style-admin.css' );
@@ -59,6 +63,8 @@ add_action(
 add_action( 'wp_before_admin_bar_render', 'dli_before_admin_bar_render' );
 /**
  * Remove the "Customize" entry from the admin bar.
+ *
+ * @return void
  */
 function dli_before_admin_bar_render() {
 	global $wp_admin_bar;
@@ -71,6 +77,8 @@ add_filter( 'enable_edit_any_user_configuration', '__return_true' );
 /**
  * Checks that both the editing user and the user being edited are
  * members of the blog and prevents the super admin being edited.
+ *
+ * @return void
  */
 function dli_edit_permission_check() {
 	global $profileuser;
@@ -109,6 +117,7 @@ const DLI_CATEGORIES_BY_CT_TAXONOMY_PER_POST_TYPE = array(
  * post's type, if that post type is one of the cached ones.
  *
  * @param int $post_id Saved post ID.
+ * @return void
  */
 function dli_invalidate_categories_by_ct_cache( $post_id ) {
 	$post_type = get_post_type( $post_id );

@@ -39,6 +39,8 @@ add_action( 'tgmpa_register', 'dli_register_required_plugins' );
  * In that case, the TGMPA default settings will be used.
  *
  * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
+ *
+ * @return void
  */
 function dli_register_required_plugins() {
 	/*

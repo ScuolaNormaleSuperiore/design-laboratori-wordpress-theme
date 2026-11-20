@@ -28,8 +28,8 @@ add_filter( 'custom_menu_order', '__return_true' );
  *
  * Items not listed are appended after in their default order.
  *
- * @param array $menu_order Current menu order.
- * @return array Reordered menu.
+ * @param string[] $menu_order Current menu order.
+ * @return string[] Reordered menu.
  */
 function dli_custom_menu_order( $menu_order ) {
 	$custom_order = array(

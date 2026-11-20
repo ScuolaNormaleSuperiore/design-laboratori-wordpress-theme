@@ -29,7 +29,7 @@ if ( ! function_exists( 'dli_search_autocomplete_default_post_types' ) ) {
 	 * search's own content-type filter, minus the people-type taxonomy
 	 * marker (not a real content type).
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
 	function dli_search_autocomplete_default_post_types() {
 		return array_values(
@@ -48,7 +48,7 @@ if ( ! function_exists( 'dli_search_autocomplete_post_type_options' ) ) {
 	 * Build the post type => translated label options for the multicheck
 	 * field on the options page.
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	function dli_search_autocomplete_post_type_options() {
 		$options = array();
@@ -70,10 +70,11 @@ if ( ! function_exists( 'dli_search_autocomplete_settings' ) ) {
 	 *     @type int    $min_chars     Minimum characters before suggesting (1-10).
 	 *     @type int    $max_results   Maximum number of suggestions (1-20).
 	 *     @type int    $delay         Debounce delay in milliseconds (0-2000).
-	 *     @type array  $post_types    Enabled post types (subset of the default list).
+	 *     @type string[] $post_types  Enabled post types (subset of the default list).
 	 *     @type int    $cache_minutes Suggestion cache TTL in minutes (0 = no cache).
 	 *     @type string $on_select     'open' or 'search'.
 	 * }
+	 * @phpstan-return array{enabled: bool, min_chars: int, max_results: int, delay: int, post_types: list<string>, cache_minutes: int, on_select: 'open'|'search'}
 	 */
 	function dli_search_autocomplete_settings() {
 		// dli_get_option()'s own $default argument already covers "option
@@ -187,6 +188,7 @@ if ( ! function_exists( 'dli_search_autocomplete_suggest' ) ) {
 	 * the query, for the enabled post types, in the requested language.
 	 *
 	 * @param WP_REST_Request $request Incoming REST request.
+	 * @phpstan-param WP_REST_Request<array{q?: string, lang?: string}> $request
 	 * @return WP_REST_Response
 	 */
 	function dli_search_autocomplete_suggest( WP_REST_Request $request ) {
