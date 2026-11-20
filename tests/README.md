@@ -24,9 +24,9 @@ radice del tema.
 | Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | l'intero tema, qualche minuto; l'hook controlla solo i file in staging, meno di un secondo ciascuno | **Sì, solo gli errori** dei file PHP, CSS e SCSS in staging | — |
 | Analisi statica (PHPStan) | `composer run lint:phpstan` | pochi secondi | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
-| Test di integrazione | `composer test:integration` | circa 20 secondi (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
+| Test di integrazione | `composer test:integration` | 3–4 minuti, circa 490 test a novembre 2026 (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
 | Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 10 minuti per l'intera suite (una sola specifica, pochi secondi) | No | [`e2e/README.md`](e2e/README.md) |
-| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | circa 2 minuti | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E è lunga (circa 10 minuti) e si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E supera i 300 secondi |
+| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | circa 4 minuti | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E è lunga (circa 10 minuti) e si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E supera i 300 secondi |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:

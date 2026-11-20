@@ -34,15 +34,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 ## [2.1.0] - 2026-11-20
 ## Modificato
-- Refactoring: Rifattorizzato import da file con reader comune.
-- Formato comune per tutti gli import da file CSV (Pagine e Persone): codifica UTF-8, separatore punto e virgola, virgolette solo dove servono, nomi delle colonne senza distinzione tra maiuscole e minuscole, al massimo 200 righe e 2 MB. Le colonne non previste vengono ignorate ed elencate nel report. Un file non UTF-8 viene rifiutato con l'indicazione di salvarlo come «CSV UTF-8».
-- Importa → Pagine: il report mostra la `page_key` di ogni pagina.
-- Importa → Persone: il CSV di esempio è un file del tema (`SETUP/CSV_Import/people-example.csv`); se mancano più colonne obbligatorie vengono segnalate tutte.
-- Nuova guida «Importare da file CSV» (`DOC/HowTo/Importare-da-CSV.md`), con il formato comune e le sezioni Pagine e Persone; sostituisce «Importare pagine da CSV».
+- Import CSV di Pagine e Persone unificato: UTF-8, separatore punto e virgola, nomi delle colonne senza distinzione tra maiuscole e minuscole, massimo 200 righe e 2 MB.
+- Report degli import migliorati: colonne ignorate elencate, `page_key` visibile per le Pagine e segnalazione di tutte le colonne obbligatorie mancanti per le Persone.
+- Nuova guida «Importare da file CSV», comune a Pagine e Persone, ed esempio CSV delle Persone incluso nel tema.
 ## Corretto
-- Bug-fixing: Corretto bug nella gestione dei filtri delle persone.
-- Import da file CSV: una colonna in più non fa più rifiutare il file delle pagine, e le righe vuote (anche di soli `;`) vengono saltate anche nel file delle persone, dove prima risultavano errori.
-- Importa → Persone: una riga con meno colonne del previsto è segnalata come errore di quella riga, senza avvisi PHP.
+- Import CSV: accettate le colonne aggiuntive e saltate le righe vuote; file non UTF-8 e righe incomplete segnalati con messaggi chiari, senza avvisi PHP.
+- Conservato il filtro per tipologia delle Persone nel passaggio tra le viste.
 
 
 ## [2.0.9] - 2026-11-16
