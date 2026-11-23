@@ -28,6 +28,10 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - PHPStan: raggiungere livello 6.
 
 ## [2.1.1] - 2026-11-23
+### Modificato
+- Home: titoli delle sezioni uniformi; «Contenuti in evidenza» mostra il proprio titolo e ha box tutti nello stesso stile.
+### Corretto
+- Home: i titoli di Sponsor e Carousel rispettano «Mostra il titolo della sezione».
 
 ## [2.1.0] - 2026-11-20
 ### Modificato

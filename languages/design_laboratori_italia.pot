@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-20 10:51+0000\n"
+"POT-Creation-Date: 2026-11-23 11:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -349,8 +349,7 @@ msgstr ""
 
 #. Name of the template
 #: page-templates/blog.php:2 inc/classes/class-dli-contentsmanager.php:203
-#: template-parts/home/hp-list-article.php:32
-#: template-parts/home/hp-list-article.php:36
+#: template-parts/home/hp-list-article.php:35
 msgid "Blog"
 msgstr ""
 
@@ -401,9 +400,9 @@ msgstr ""
 #: page-templates/eventi.php:147 page-templates/eventi.php:152
 #: page-templates/notizie.php:127 page-templates/notizie.php:132
 #: template-parts/common/sezione-box-notizia.php:23
-#: template-parts/home/carousel.php:74
-#: template-parts/home/hp-list-article.php:68
-#: template-parts/home/hp-list-news.php:69
+#: template-parts/home/carousel.php:79
+#: template-parts/home/hp-list-article.php:66
+#: template-parts/home/hp-list-news.php:67
 #: template-parts/home/featured-contents/card-evento.php:65
 #: template-parts/home/featured-contents/card-evento.php:70
 #: template-parts/home/featured-contents/card-notizia.php:53
@@ -595,11 +594,12 @@ msgstr ""
 msgid "Contatti"
 msgstr ""
 
-#: template-parts/home/featured-contents.php:33
+#: template-parts/home/featured-contents.php:35
+#: tests/integration/DLI_Featured_Contents_Integration_Test.php:384
 msgid "Contenuti in evidenza"
 msgstr ""
 
-#: template-parts/home/carousel.php:15
+#: template-parts/home/carousel.php:19
 msgid "Contenuti in primo piano"
 msgstr ""
 
@@ -948,8 +948,7 @@ msgstr ""
 
 #. Name of the template
 #: inc/featured-contents.php:34 inc/utils.php:273 page-templates/eventi.php:2
-#: template-parts/home/hp-list-event.php:40
-#: template-parts/home/hp-list-event.php:42
+#: template-parts/home/hp-list-event.php:39
 msgid "Eventi"
 msgstr ""
 
@@ -1249,7 +1248,7 @@ msgstr ""
 msgid "In questa sezione"
 msgstr ""
 
-#: template-parts/home/carousel.php:24
+#: template-parts/home/carousel.php:29
 msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
 msgstr ""
 
@@ -1846,8 +1845,7 @@ msgstr ""
 
 #. Name of the template
 #: inc/featured-contents.php:33 inc/utils.php:275 page-templates/notizie.php:2
-#: template-parts/home/hp-list-news.php:33
-#: template-parts/home/hp-list-news.php:37
+#: template-parts/home/hp-list-news.php:36
 msgid "Notizie"
 msgstr ""
 
@@ -1990,7 +1988,7 @@ msgstr ""
 msgid "panoramico"
 msgstr ""
 
-#: template-parts/home/hp-sponsor-section.php:58
+#: template-parts/home/hp-sponsor-section.php:59
 msgid "Partner e collaborazioni"
 msgstr ""
 
@@ -2444,8 +2442,7 @@ msgstr ""
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
 #: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:279
-#: template-parts/home/hp-list-publication.php:33
-#: template-parts/home/hp-list-publication.php:37
+#: template-parts/home/hp-list-publication.php:36
 msgid "Pubblicazioni"
 msgstr ""
 
@@ -3130,7 +3127,7 @@ msgstr ""
 msgid "Tutte le news"
 msgstr ""
 
-#: template-parts/home/hp-list-news.php:93
+#: template-parts/home/hp-list-news.php:91
 msgid "Tutte le notizie"
 msgstr ""
 
@@ -3138,7 +3135,7 @@ msgstr ""
 msgid "Tutte le persone"
 msgstr ""
 
-#: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:62
+#: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:60
 msgid "Tutte le pubblicazioni"
 msgstr ""
 
@@ -3167,11 +3164,11 @@ msgstr ""
 msgid "Tutti gli anni"
 msgstr ""
 
-#: template-parts/home/hp-list-article.php:92
+#: template-parts/home/hp-list-article.php:90
 msgid "Tutti gli articoli"
 msgstr ""
 
-#: inc/featured-contents.php:58 template-parts/home/hp-list-event.php:100
+#: inc/featured-contents.php:58 template-parts/home/hp-list-event.php:98
 msgid "Tutti gli eventi"
 msgstr ""
 
@@ -3205,7 +3202,7 @@ msgstr ""
 msgid "Ulteriori informazioni"
 msgstr ""
 
-#: template-parts/home/hp-list-publication.php:39
+#: template-parts/home/hp-list-publication.php:37
 msgid "Ultime pubblicazioni"
 msgstr ""
 

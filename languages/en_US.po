@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Design Laboratori Italia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 07:40+0000\n"
-"PO-Revision-Date: 2026-11-20 10:51+0000\n"
+"PO-Revision-Date: 2026-11-23 11:35+0000\n"
 "Last-Translator: Claudio Bat\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -356,8 +356,7 @@ msgstr "Biography of the person"
 
 #. Name of the template
 #: page-templates/blog.php:2 inc/classes/class-dli-contentsmanager.php:203
-#: template-parts/home/hp-list-article.php:32
-#: template-parts/home/hp-list-article.php:36
+#: template-parts/home/hp-list-article.php:35
 msgid "Blog"
 msgstr "Blog"
 
@@ -408,9 +407,9 @@ msgstr "Category"
 #: page-templates/eventi.php:147 page-templates/eventi.php:152
 #: page-templates/notizie.php:127 page-templates/notizie.php:132
 #: template-parts/common/sezione-box-notizia.php:23
-#: template-parts/home/carousel.php:74
-#: template-parts/home/hp-list-article.php:68
-#: template-parts/home/hp-list-news.php:69
+#: template-parts/home/carousel.php:79
+#: template-parts/home/hp-list-article.php:66
+#: template-parts/home/hp-list-news.php:67
 #: template-parts/home/featured-contents/card-evento.php:65
 #: template-parts/home/featured-contents/card-evento.php:70
 #: template-parts/home/featured-contents/card-notizia.php:53
@@ -607,11 +606,12 @@ msgstr "View the publication"
 msgid "Contatti"
 msgstr "Contacts"
 
-#: template-parts/home/featured-contents.php:33
+#: template-parts/home/featured-contents.php:35
+#: tests/integration/DLI_Featured_Contents_Integration_Test.php:384
 msgid "Contenuti in evidenza"
 msgstr "Featured content"
 
-#: template-parts/home/carousel.php:15
+#: template-parts/home/carousel.php:19
 msgid "Contenuti in primo piano"
 msgstr "Featured content"
 
@@ -971,8 +971,7 @@ msgstr "Export"
 
 #. Name of the template
 #: inc/featured-contents.php:34 inc/utils.php:273 page-templates/eventi.php:2
-#: template-parts/home/hp-list-event.php:40
-#: template-parts/home/hp-list-event.php:42
+#: template-parts/home/hp-list-event.php:39
 msgid "Eventi"
 msgstr "Events"
 
@@ -1293,7 +1292,7 @@ msgstr "On the home"
 msgid "In questa sezione"
 msgstr "In this section"
 
-#: template-parts/home/carousel.php:24
+#: template-parts/home/carousel.php:29
 #| msgid ""
 #| "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel."
 msgid "Indicare in Admin->Configurazione gli articoli da mostrare nel carousel"
@@ -1917,8 +1916,7 @@ msgstr "News"
 
 #. Name of the template
 #: inc/featured-contents.php:33 inc/utils.php:275 page-templates/notizie.php:2
-#: template-parts/home/hp-list-news.php:33
-#: template-parts/home/hp-list-news.php:37
+#: template-parts/home/hp-list-news.php:36
 msgid "Notizie"
 msgstr "News"
 
@@ -2067,7 +2065,7 @@ msgstr "Overview - DLI Tools"
 msgid "panoramico"
 msgstr "panoramic"
 
-#: template-parts/home/hp-sponsor-section.php:58
+#: template-parts/home/hp-sponsor-section.php:59
 msgid "Partner e collaborazioni"
 msgstr "Partners and collaborations."
 
@@ -2525,8 +2523,7 @@ msgstr "Publication"
 
 #: single-persona.php:231 single-persona.php:348 single-progetto.php:172
 #: single-progetto.php:268 inc/featured-contents.php:35 inc/utils.php:279
-#: template-parts/home/hp-list-publication.php:33
-#: template-parts/home/hp-list-publication.php:37
+#: template-parts/home/hp-list-publication.php:36
 msgid "Pubblicazioni"
 msgstr "Publications"
 
@@ -3237,7 +3234,7 @@ msgstr "All other columns are optional."
 msgid "Tutte le news"
 msgstr "all the news"
 
-#: template-parts/home/hp-list-news.php:93
+#: template-parts/home/hp-list-news.php:91
 msgid "Tutte le notizie"
 msgstr "All news"
 
@@ -3245,7 +3242,7 @@ msgstr "All news"
 msgid "Tutte le persone"
 msgstr "All people"
 
-#: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:62
+#: inc/featured-contents.php:59 template-parts/home/hp-list-publication.php:60
 msgid "Tutte le pubblicazioni"
 msgstr "All publications"
 
@@ -3276,11 +3273,11 @@ msgstr "All Place types"
 msgid "Tutti gli anni"
 msgstr "All years"
 
-#: template-parts/home/hp-list-article.php:92
+#: template-parts/home/hp-list-article.php:90
 msgid "Tutti gli articoli"
 msgstr "All articles"
 
-#: inc/featured-contents.php:58 template-parts/home/hp-list-event.php:100
+#: inc/featured-contents.php:58 template-parts/home/hp-list-event.php:98
 msgid "Tutti gli eventi"
 msgstr "All events"
 
@@ -3314,7 +3311,7 @@ msgstr "All types"
 msgid "Ulteriori informazioni"
 msgstr "More info"
 
-#: template-parts/home/hp-list-publication.php:39
+#: template-parts/home/hp-list-publication.php:37
 msgid "Ultime pubblicazioni"
 msgstr "Latest publications"
 

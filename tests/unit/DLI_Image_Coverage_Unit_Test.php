@@ -69,7 +69,6 @@ class DLI_Image_Coverage_Unit_Test extends TestCase {
 		'template-parts/home/main-hero.php'                       => array( array( 'hero_home' ), 'Background of the hero of the home.' ),
 		'template-parts/home/hp-banners-section.php'              => array( array( 'banner_home' ), 'Banners of the home.' ),
 		'template-parts/home/hp-sponsor-section.php'              => array( array( 'sponsor' ), 'Sponsors of the home.' ),
-		'template-parts/home/featured-contents/card-fallback.php' => array( array( 'card_elenco' ), 'Card of a featured content of another type.' ),
 		'page-templates/archive-progetti.php'                     => array( array( 'card_elenco' ), 'List of the projects.' ),
 		'page-templates/brevetti.php'                             => array( array( 'card_elenco' ), 'List of the patents.' ),
 		'page-templates/eventi.php'                               => array( array( 'card_elenco' ), 'List of the events.' ),

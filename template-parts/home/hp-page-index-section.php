@@ -43,13 +43,7 @@ $dli_title_shown = ( 'true' === $dli_show_title );
 <section id="<?php echo esc_attr( $dli_section_id ); ?>" class="section page-index-section<?php echo esc_attr( $dli_bg_class ); ?> pt-5 pb-5" aria-labelledby="<?php echo esc_attr( $dli_title_id ); ?>">
 	<div class="section-content">
 		<div class="container">
-			<?php if ( $dli_title_shown ) : ?>
-				<div class="pb-3">
-					<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="mb-0"><?php echo esc_html( $dli_index['title'] ); ?></h2>
-				</div>
-			<?php else : ?>
-				<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="visually-hidden"><?php echo esc_html( $dli_index['title'] ); ?></h2>
-			<?php endif; ?>
+			<h2 id="<?php echo esc_attr( $dli_title_id ); ?>" class="<?php echo $dli_title_shown ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html( $dli_index['title'] ); ?></h2>
 			<?php
 			get_template_part(
 				'template-parts/common/page-groups',

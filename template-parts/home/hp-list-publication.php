@@ -30,12 +30,10 @@ if ( 'true' === $dli_section_enabled ) {
 		$dli_archive_url = dli_get_translated_page_url_by_slug( SLUG_PUBBLICAZIONI_IT );
 		?>
 	<!-- INIZIO ELENCO PUBBLICAZIONI HP -->
-	<section id="blocco-pubblicazioni" class="section pt-3" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-pubblicazioni-title"' : 'aria-label="' . esc_attr__( 'Pubblicazioni', 'design_laboratori_italia' ) . '"'; ?>>
+	<section id="blocco-pubblicazioni" class="section pt-3" aria-labelledby="blocco-pubblicazioni-title">
 		<div class="section-content">
 			<div class="container">
-				<?php if ( 'true' === $dli_show_title ) : ?>
-					<h2 id="blocco-pubblicazioni-title" class="h3 pb-2"><?php echo esc_html__( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
-				<?php endif; ?>
+				<h2 id="blocco-pubblicazioni-title" class="<?php echo ( 'true' === $dli_show_title ) ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html__( 'Pubblicazioni', 'design_laboratori_italia' ); ?></h2>
 				<ul class="it-card-list row" aria-label="<?php echo esc_attr__( 'Ultime pubblicazioni', 'design_laboratori_italia' ); ?>">
 					<?php foreach ( $dli_query->posts as $dli_post ) : ?>
 						<!-- PUBBLICAZIONE -->

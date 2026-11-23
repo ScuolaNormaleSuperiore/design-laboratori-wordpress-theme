@@ -369,6 +369,36 @@ class DLI_Featured_Contents_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
+	 * The title of the section is seen only when the row asks for it; otherwise it is there, but visually hidden.
+	 */
+	public function test_section_title_is_visible_only_when_the_row_asks_for_it() {
+		$this->create_content( NEWS_POST_TYPE, 'Una notizia' );
+		$this->set_boxes(
+			array(
+				1 => array(
+					'type'  => NEWS_POST_TYPE,
+					'title' => 'Notizie',
+				),
+			)
+		);
+		$title = '#<h2 id="blocco-card-title"( class="[^"]*")?>' . preg_quote( esc_html__( 'Contenuti in evidenza', 'design_laboratori_italia' ), '#' ) . '</h2>#';
+
+		foreach ( array( 'true', 'false' ) as $show_title ) {
+			$html = $this->render_section( array( 'show_title' => $show_title ) );
+			$this->assertSame( 1, preg_match( $title, $html, $match ), "One h2 names the section (show_title {$show_title})." );
+			$this->assertSame( 1, substr_count( $html, '<h2' ), "No other h2 (show_title {$show_title})." );
+			$this->assertStringContainsString( 'aria-labelledby="blocco-card-title"', $html );
+			if ( 'true' === $show_title ) {
+				$this->assertStringNotContainsString( 'visually-hidden', $match[0], 'The row asks for the title: it is seen.' );
+			} else {
+				$this->assertStringContainsString( 'visually-hidden', $match[0], 'The row does not ask for the title: it is hidden.' );
+			}
+		}
+
+		$this->assertStringContainsString( 'visually-hidden', $this->render_section(), 'A row saved without the choice keeps the title hidden.' );
+	}
+
+	/**
 	 * The boxes share the row, with no empty column, and the headings are in order.
 	 */
 	public function test_columns_follow_the_number_of_boxes_and_headings_are_in_order() {
@@ -473,6 +503,36 @@ class DLI_Featured_Contents_Integration_Test extends DLI_Integration_Test_Case {
 		$this->assertStringContainsString( 'Un brevetto', $html );
 		$this->assertStringContainsString( 'Riassunto del brevetto.', $html );
 		$this->assertMatchesRegularExpression( '#<a href="[^"]+">\s*Un brevetto#', $html );
+	}
+
+	/**
+	 * The essential layout looks like the news and the events: a line under the item, no frame, no image, a short abstract.
+	 */
+	public function test_essential_layout_looks_like_the_other_boxes() {
+		$words      = array_map(
+			static function ( $n ) {
+				return 'parola' . $n;
+			},
+			range( 1, DLI_HP_FEATURED_EXCERPT_WORDS + 10 )
+		);
+		$project_id = $this->create_content( PROGETTO_POST_TYPE, 'Un progetto', array(), array( 'post_excerpt' => implode( ' ', $words ) ) );
+		set_post_thumbnail( $project_id, self::factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/canola.jpg', $project_id ) );
+		$this->set_boxes(
+			array(
+				1 => array(
+					'type'  => PROGETTO_POST_TYPE,
+					'title' => 'Progetti',
+				),
+			)
+		);
+
+		$html = $this->render_section();
+
+		$this->assertStringContainsString( '<article class="it-card border-bottom">', $html, 'A line under the item, like the news and the events.' );
+		$this->assertStringNotContainsString( 'rounded border', $html, 'No frame around the item.' );
+		$this->assertStringNotContainsString( '<img', $html, 'No image, also when the content has a featured image.' );
+		$this->assertStringContainsString( 'parola' . DLI_HP_FEATURED_EXCERPT_WORDS . '&hellip;', $html, 'The abstract is cut, also when it is written by the editor.' );
+		$this->assertStringNotContainsString( 'parola' . ( DLI_HP_FEATURED_EXCERPT_WORDS + 1 ), $html );
 	}
 
 	/**

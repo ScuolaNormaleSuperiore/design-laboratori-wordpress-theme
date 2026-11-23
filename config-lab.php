@@ -48,6 +48,9 @@ define( 'DLI_HP_CARD_NAVIGATION_DEFAULT_LEVEL', 1 );
 
 // Items of each box of the homepage section "Contenuti in evidenza".
 define( 'DLI_HP_FEATURED_ITEMS', 3 );
+// Words of the abstract of an item of "Contenuti in evidenza" whose type has no layout of its own: also a summary
+// written by the editor is cut, so that the item is about as tall as a news or an event.
+define( 'DLI_HP_FEATURED_EXCERPT_WORDS', 20 );
 define( 'DLI_HP_PAGE_LEVELS', array( 1, 2, 3, 0 ) );
 // "Navigazione per pagine": groups (promoted pages with subpages) and subpages per group shown by default.
 define( 'DLI_HP_PAGE_NAVIGATION_DEFAULT_ITEMS', 4 );

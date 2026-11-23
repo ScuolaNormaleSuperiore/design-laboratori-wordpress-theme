@@ -30,12 +30,10 @@ if ( 'true' === $dli_section_enabled ) {
 	if ( $dli_num_items > 0 ) {
 		?>
 	<!-- INIZIO ELENCO NOTIZIE HP -->
-	<section id="blocco-news" class="section pt-3 pb-3" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-news-title"' : 'aria-label="' . esc_attr__( 'Notizie', 'design_laboratori_italia' ) . '"'; ?>>
+	<section id="blocco-news" class="section pt-3 pb-3" aria-labelledby="blocco-news-title">
 		<div class="section-content">
 			<div class="container">
-				<?php if ( 'true' === $dli_show_title ) : ?>
-					<h2 id="blocco-news-title" class="h3 pb-2"><?php echo esc_html__( 'Notizie', 'design_laboratori_italia' ); ?></h2>
-				<?php endif; ?>
+				<h2 id="blocco-news-title" class="<?php echo ( 'true' === $dli_show_title ) ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html__( 'Notizie', 'design_laboratori_italia' ); ?></h2>
 				<div class="row">
 				<?php
 				foreach ( $dli_query->posts as $dli_post ) {

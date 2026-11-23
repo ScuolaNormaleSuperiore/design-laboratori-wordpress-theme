@@ -214,7 +214,7 @@ class DLI_Publication_Home_Cards_Integration_Test extends DLI_Integration_Test_C
 		$html = $this->render_box();
 
 		$this->assertStringContainsString( 'class="col-12 pb-5"', $html, 'A single box takes the whole row.' );
-		$this->assertMatchesRegularExpression( '#<h3 id="evidenza-1-box-1-title" class="h3 pb-2">Box pubblicazioni</h3>#', $html );
+		$this->assertMatchesRegularExpression( '#<h3 id="evidenza-1-box-1-title" class="h4 pb-2">Box pubblicazioni</h3>#', $html );
 		$this->assertStringContainsString( '<a href="' . esc_url( $archive ) . '" class="btn btn-secondary">', $html, 'The button leads to the publications page.' );
 	}
 

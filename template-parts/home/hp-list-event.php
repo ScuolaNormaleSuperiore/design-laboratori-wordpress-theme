@@ -36,10 +36,8 @@ if ( 'true' === $dli_section_enabled ) {
 	<section id="blocco-eventi-slide" class="section pt-5 pb-3">
 		<div class="section-content">
 			<div class="container">
-				<?php if ( 'true' === $dli_show_title ) : ?>
-					<h2 id="blocco-eventi-slide-title" class="h3 pb-2"><?php echo esc_html__( 'Eventi', 'design_laboratori_italia' ); ?></h2>
-				<?php endif; ?>
-				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide role="region" <?php echo ( 'true' === $dli_show_title ) ? 'aria-labelledby="blocco-eventi-slide-title"' : 'aria-label="' . esc_attr__( 'Eventi', 'design_laboratori_italia' ) . '"'; ?>>
+				<h2 id="blocco-eventi-slide-title" class="<?php echo ( 'true' === $dli_show_title ) ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php echo esc_html__( 'Eventi', 'design_laboratori_italia' ); ?></h2>
+				<div class="it-carousel-wrapper splide it-carousel-landscape-abstract-three-cols-arrow-visible" data-bs-carousel-splide role="region" aria-labelledby="blocco-eventi-slide-title">
 					<div class="splide__track">
 						<ul class="splide__list">
 
