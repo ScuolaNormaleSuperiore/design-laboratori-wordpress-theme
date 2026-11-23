@@ -27,6 +27,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
 - PHPStan: raggiungere livello 6.
 
+## [2.1.1] - 2026-11-23
+
 ## [2.1.0] - 2026-11-20
 ### Modificato
 - Import CSV di Pagine e Persone con un formato comune (UTF-8, separatore punto e virgola, nomi delle colonne senza distinzione tra maiuscole e minuscole, massimo 200 righe e 2 MB); i report elencano le colonne ignorate, mostrano la `page_key` delle Pagine e tutte le colonne obbligatorie mancanti delle Persone.
