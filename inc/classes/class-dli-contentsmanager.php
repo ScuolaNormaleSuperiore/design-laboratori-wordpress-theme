@@ -540,34 +540,42 @@ class DLI_ContentsManager {
 	}
 
 	/**
-	 * Restituisce tutti i dati necessari alla pagina Persone.
+	 * Return all the data needed by the People page.
+	 *
+	 * Structure and tag filter the query (a structure includes its descendants). Type and text search filter the rows
+	 * (a person with one of their types), using the same rule as the table view (`dli_people_row_matches_search()` in
+	 * `inc/people-filters.php`): a person with two types searched by one of them appears only under that type.
+	 * The cards template receives the filtered rows and does not apply the type filter again.
 	 *
 	 * @param array $args {
-	 *     Argomenti opzionali.
-	 *     @type string $selected_structure Slug struttura selezionata ('' = nessuna).
-	 *     @type string $selected_level     Slug tag selezionato ('' = nessuno).
-	 *     @type string $selected_cognome   Testo di ricerca sul cognome ('' = nessuno).
-	 *     @type int    $posts_per_page     Persone per pagina (-1 = tutte).
-	 *     @type int    $paged              Pagina corrente.
+	 *     Optional arguments.
+	 *     @type string $selected_structure Selected structure slug ('' for none).
+	 *     @type string $selected_level     Selected tag slug ('' for none).
+	 *     @type string $selected_type      Selected people-type ID ('' for none).
+	 *     @type string $selected_search    Search text for name, surname, type and structure ('' for none).
+	 *     @type int    $posts_per_page     People per page (-1 for all).
+	 *     @type int    $paged              Current page.
 	 * }
 	 * @return array {
-	 *     @type array     $people_by_category  Persone indicizzate per ID categoria (usato dalla vista chip).
-	 *     @type array     $people_rows         Lista flat di righe {person: WP_Post, category_id: int}, una per coppia (persona, tipologia) (usato dalla vista tabella).
-	 *     @type WP_Post[] $categories          Categorie ordinate per priorità.
-	 *     @type WP_Term[] $structures          Strutture disponibili.
-	 *     @type WP_Term[] $tags                Tag disponibili.
-	 *     @type string    $selected_structure  Slug struttura filtrata.
-	 *     @type string    $selected_level      Slug tag filtrato.
-	 *     @type string    $selected_cognome    Testo di ricerca sul cognome filtrato.
-	 *     @type int       $result_count        Numero persone uniche renderizzabili.
-	 *     @type int       $current_page        Pagina corrente.
-	 *     @type int       $total_pages         Numero totale di pagine.
+	 *     @type array     $people_by_category  People indexed by type ID, for the cards view.
+	 *     @type array     $people_rows         Flat rows {person: WP_Post, category_id: int}, one per person/type pair, for the table view.
+	 *     @type WP_Post[] $categories          Types ordered by priority.
+	 *     @type WP_Term[] $structures          Available structures.
+	 *     @type WP_Term[] $tags                Available tags.
+	 *     @type string    $selected_structure  Applied structure slug.
+	 *     @type string    $selected_level      Applied tag slug.
+	 *     @type string    $selected_type       Applied people-type ID.
+	 *     @type string    $selected_search     Applied search text.
+	 *     @type int       $result_count        Number of unique people that can be rendered.
+	 *     @type int       $current_page        Current page.
+	 *     @type int       $total_pages         Total number of pages.
 	 * }
 	 */
 	public static function get_people_page_data( $args = array() ) {
 		$selected_structure = isset( $args['selected_structure'] ) ? (string) $args['selected_structure'] : '';
 		$selected_level     = isset( $args['selected_level'] ) ? (string) $args['selected_level'] : '';
-		$selected_cognome   = isset( $args['selected_cognome'] ) ? (string) $args['selected_cognome'] : '';
+		$selected_type      = isset( $args['selected_type'] ) ? (string) $args['selected_type'] : '';
+		$selected_search    = isset( $args['selected_search'] ) ? (string) $args['selected_search'] : '';
 		$posts_per_page     = isset( $args['posts_per_page'] ) ? (int) $args['posts_per_page'] : -1;
 		$paged              = isset( $args['paged'] ) ? (int) $args['paged'] : 1;
 
@@ -581,6 +589,10 @@ class DLI_ContentsManager {
 			)
 		);
 		$categories       = $categories_query->posts;
+		$category_names   = array();
+		foreach ( $categories as $category ) {
+			$category_names[ $category->ID ] = (string) dli_get_field( 'nome', $category->ID );
+		}
 
 		$people_args = array(
 			'posts_per_page' => $posts_per_page,
@@ -613,17 +625,6 @@ class DLI_ContentsManager {
 			$people_args['tax_query'] = $tax_query;
 		}
 
-		if ( '' !== $selected_cognome ) {
-				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Ricerca testuale sul cognome, nessuna alternativa indicizzata disponibile.
-			$people_args['meta_query'] = array(
-				array(
-					'key'     => 'cognome',
-					'value'   => $selected_cognome,
-					'compare' => 'LIKE',
-				),
-			);
-		}
-
 		$people_query       = new WP_Query( $people_args );
 		$people_by_category = array();
 		$people_rows        = array();
@@ -653,9 +654,25 @@ class DLI_ContentsManager {
 					continue;
 				}
 
-				$unique_person_ids[] = $person_id;
+				$search_row = array(
+					'name'       => (string) dli_get_field( 'nome', $person_id ),
+					'surname'    => (string) dli_get_field( 'cognome', $person_id ),
+					'structures' => self::get_person_structure_names( $person_id ),
+				);
 
 				foreach ( array_unique( $category_ids ) as $cat_id ) {
+					// Only the published types are listed: a row of another type would be counted and never shown.
+					if ( ! isset( $category_names[ $cat_id ] ) ) {
+						continue;
+					}
+					if ( '' !== $selected_type && (string) $cat_id !== $selected_type ) {
+						continue;
+					}
+					$search_row['type'] = $category_names[ $cat_id ];
+					if ( ! dli_people_row_matches_search( $selected_search, $search_row ) ) {
+						continue;
+					}
+					$unique_person_ids[] = $person_id;
 					if ( ! isset( $people_by_category[ $cat_id ] ) ) {
 						$people_by_category[ $cat_id ] = array();
 					}
@@ -689,10 +706,30 @@ class DLI_ContentsManager {
 			'tags'               => $tags,
 			'selected_structure' => $selected_structure,
 			'selected_level'     => $selected_level,
-			'selected_cognome'   => $selected_cognome,
+			'selected_type'      => $selected_type,
+			'selected_search'    => $selected_search,
 			'result_count'       => count( array_unique( $unique_person_ids ) ),
 			'current_page'       => $paged,
 			'total_pages'        => $total_pages,
+		);
+	}
+
+	/**
+	 * The names of the structures of a person, for the text search.
+	 *
+	 * @param int $person_id ID of the person.
+	 * @return string[] The names.
+	 */
+	private static function get_person_structure_names( $person_id ) {
+		$terms = get_the_terms( $person_id, STRUCTURE_TAXONOMY );
+		if ( ! is_array( $terms ) ) {
+			return array();
+		}
+		return array_map(
+			static function ( $term ) {
+				return (string) $term->name;
+			},
+			$terms
 		);
 	}
 

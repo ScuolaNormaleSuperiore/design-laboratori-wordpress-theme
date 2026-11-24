@@ -11,7 +11,10 @@
  */
 
 /**
- * Reads a CSV text: BOM, UTF-8, separator (`;` or `,`), quoting, new lines inside a cell, empty and incomplete rows.
+ * Reads a CSV text: BOM, UTF-8, the `;` separator, quoting, new lines inside a cell, empty and incomplete rows, and
+ * the columns of a schema.
+ *
+ * @phpstan-type DLI_CSV_Result array{headers: string[], ignored: string[], rows: array<int, array{line: int, cells: array<string, string>}>, errors: array<int, array{code: string, line: int, detail: string}>}
  */
 class DLI_CSV_Reader {
 
@@ -21,11 +24,21 @@ class DLI_CSV_Reader {
 	const MAX_BYTES = 2097152;
 
 	/**
+	 * The most rows of a file with a value in the columns that are read.
+	 */
+	const MAX_ROWS = 200;
+
+	/**
+	 * The separator of the cells.
+	 */
+	const DELIMITER = ';';
+
+	/**
 	 * Read a file from its path.
 	 *
 	 * @param string               $path    Path of the file.
 	 * @param array<string, mixed> $options See `read_string()`.
-	 * @return array{delimiter: string, headers: string[], rows: array<int, array{line: int, cells: array<string, string>}>, errors: array<int, array{code: string, line: int, detail: string}>} The result.
+	 * @return DLI_CSV_Result The result.
 	 */
 	public static function read( $path, array $options = array() ) {
 		$max_bytes = isset( $options['max_bytes'] ) ? (int) $options['max_bytes'] : self::MAX_BYTES;
@@ -49,19 +62,26 @@ class DLI_CSV_Reader {
 	 *
 	 * Options:
 	 * - `required`: names of the columns that the header must have.
-	 * - `optional`: names of the columns that the header may have. When `required` or `optional` are given, any
-	 *   other column is an error; the names are case sensitive.
+	 * - `optional`: names of the columns that the header may have.
 	 * - `max_bytes`: the most bytes of the text (default `MAX_BYTES`).
-	 * - `max_rows`: the most rows with at least a value; 0 for no limit.
+	 *
+	 * The names of the columns are compared in lower case and without the spaces around them; the cells of a row are
+	 * given back by the name in lower case. `required` and `optional` are the schema: a column that is not in it is
+	 * ignored, also with values, and its name, as written, is listed in `ignored`. Without a schema every column is read.
+	 *
+	 * The cells are trimmed. A row is left out when the columns that are read are empty in it (values in ignored
+	 * columns or after the last column of the header do not count); the others count for `MAX_ROWS`. A row that is
+	 * too short to reach the last column that is read is an error of its line; the cells after the last column of the
+	 * header are left out. Lines are those of the file, also after a cell on more lines.
 	 *
 	 * The codes of the errors are: `unreadable`, `too_large`, `nul_byte`, `invalid_utf8`, `empty`, `malformed`,
-	 * `missing_header`, `duplicate_header`, `unknown_header` (the name is in `detail`), `too_many_rows` and
-	 * `columns_count` (a row with more or fewer cells than the header, on `line`). All of them but the last refuse the
-	 * whole file: no row is given back. The cells are trimmed and the rows without any value are left out.
+	 * `missing_header` and `duplicate_header` (the name is in `detail`), `empty_header` (only without a schema; the
+	 * position of the column is in `detail`), `too_many_rows` and `columns_count` (a row too short, on `line`). All of
+	 * them but the last refuse the whole file: no row is given back.
 	 *
 	 * @param string               $content Text of the file.
 	 * @param array<string, mixed> $options Options.
-	 * @return array{delimiter: string, headers: string[], rows: array<int, array{line: int, cells: array<string, string>}>, errors: array<int, array{code: string, line: int, detail: string}>} The result.
+	 * @return DLI_CSV_Result The result.
 	 */
 	public static function read_string( $content, array $options = array() ) {
 		$options = array_merge(
@@ -69,7 +89,6 @@ class DLI_CSV_Reader {
 				'required'  => array(),
 				'optional'  => array(),
 				'max_bytes' => self::MAX_BYTES,
-				'max_rows'  => 0,
 			),
 			$options
 		);
@@ -90,75 +109,49 @@ class DLI_CSV_Reader {
 			return self::failure( 'empty' );
 		}
 
-		$delimiter = self::delimiter_of( $content );
-		$parsed    = self::parse( $content, $delimiter );
+		$parsed = self::parse( $content, self::DELIMITER );
 		if ( null !== $parsed['unclosed_quote_line'] ) {
 			return self::failure( 'malformed', $parsed['unclosed_quote_line'] );
 		}
 
 		$records = $parsed['records'];
-		$headers = array_map( 'trim', $records[0]['cells'] );
+		$columns = self::columns( $records[0]['cells'], (array) $options['required'], (array) $options['optional'] );
 		$result  = array(
-			'delimiter' => $delimiter,
-			'headers'   => $headers,
-			'rows'      => array(),
-			'errors'    => self::header_errors( $headers, (array) $options['required'], (array) $options['optional'] ),
+			'headers' => array_values( $columns['names'] ),
+			'ignored' => $columns['ignored'],
+			'rows'    => array(),
+			'errors'  => $columns['errors'],
 		);
 		if ( ! empty( $result['errors'] ) ) {
 			return $result;
 		}
 
-		$header_count = count( $headers );
-		$counted      = 0;
+		$last    = empty( $columns['names'] ) ? -1 : max( array_keys( $columns['names'] ) );
+		$counted = 0;
 		foreach ( array_slice( $records, 1 ) as $record ) {
-			$cells = array_map( 'trim', $record['cells'] );
+			$cells = array();
+			foreach ( $columns['names'] as $position => $name ) {
+				$cells[ $name ] = isset( $record['cells'][ $position ] ) ? trim( $record['cells'][ $position ] ) : '';
+			}
 			if ( '' === implode( '', $cells ) ) {
 				continue;
 			}
 			++$counted;
-			if ( count( $cells ) !== $header_count ) {
+			if ( count( $record['cells'] ) <= $last ) {
 				$result['errors'][] = self::error( 'columns_count', $record['line'] );
 				continue;
 			}
 			$result['rows'][] = array(
 				'line'  => $record['line'],
-				'cells' => array_combine( $headers, $cells ),
+				'cells' => $cells,
 			);
 		}
 
-		if ( $options['max_rows'] > 0 && $counted > (int) $options['max_rows'] ) {
+		if ( $counted > self::MAX_ROWS ) {
 			return self::failure( 'too_many_rows' );
 		}
 
 		return $result;
-	}
-
-	/**
-	 * The separator: the comma when the first line has more of them than semicolons (outside quotes), else the semicolon.
-	 *
-	 * @param string $content Text.
-	 * @return string `;` or `,`.
-	 */
-	private static function delimiter_of( $content ) {
-		$semicolons = 0;
-		$commas     = 0;
-		$in_quotes  = false;
-		$length     = strlen( $content );
-
-		for ( $i = 0; $i < $length; $i++ ) {
-			$char = $content[ $i ];
-			if ( '"' === $char ) {
-				$in_quotes = ! $in_quotes;
-			} elseif ( ! $in_quotes && ( "\n" === $char || "\r" === $char ) ) {
-				break;
-			} elseif ( ! $in_quotes && ';' === $char ) {
-				++$semicolons;
-			} elseif ( ! $in_quotes && ',' === $char ) {
-				++$commas;
-			}
-		}
-
-		return $commas > $semicolons ? ',' : ';';
 	}
 
 	/**
@@ -252,35 +245,66 @@ class DLI_CSV_Reader {
 	}
 
 	/**
-	 * Errors of the header: repeated, missing and unknown columns.
+	 * The columns that are read, by their position in the header, the columns that are ignored and the errors.
 	 *
-	 * @param string[] $headers  Names in the file.
+	 * With a schema (`required` or `optional` not empty) only its columns are read: the others are ignored and listed
+	 * once, as written (an empty name is not listed); a column of the schema that is there twice and a required column
+	 * that is missing are errors. Without a schema every column is read, and an empty or repeated name is an error.
+	 *
+	 * @param string[] $header   Cells of the first line of the file.
 	 * @param string[] $required Names that must be there.
 	 * @param string[] $optional Names that may be there.
-	 * @return array<int, array{code: string, line: int, detail: string}> The errors.
+	 * @return array{names: array<int, string>, ignored: string[], errors: array<int, array{code: string, line: int, detail: string}>} The columns.
 	 */
-	private static function header_errors( array $headers, array $required, array $optional ) {
-		$errors = array();
+	private static function columns( array $header, array $required, array $optional ) {
+		$schema  = array_map( array( __CLASS__, 'normalize' ), array_merge( $required, $optional ) );
+		$columns = array(
+			'names'   => array(),
+			'ignored' => array(),
+			'errors'  => array(),
+		);
+		$seen    = array();
 
-		foreach ( array_count_values( $headers ) as $name => $count ) {
-			if ( $count > 1 ) {
-				$errors[] = self::error( 'duplicate_header', 1, (string) $name );
-			}
-		}
-		foreach ( $required as $name ) {
-			if ( ! in_array( $name, $headers, true ) ) {
-				$errors[] = self::error( 'missing_header', 1, $name );
-			}
-		}
-		if ( ! empty( $required ) || ! empty( $optional ) ) {
-			foreach ( array_unique( $headers ) as $name ) {
-				if ( ! in_array( $name, $required, true ) && ! in_array( $name, $optional, true ) ) {
-					$errors[] = self::error( 'unknown_header', 1, $name );
+		foreach ( $header as $position => $written ) {
+			$written = trim( $written );
+			$name    = self::normalize( $written );
+
+			if ( ! empty( $schema ) && ! in_array( $name, $schema, true ) ) {
+				if ( '' !== $written && ! isset( $seen[ $name ] ) ) {
+					$columns['ignored'][] = $written;
 				}
+				$seen[ $name ] = true;
+				continue;
+			}
+			if ( '' === $name ) {
+				$columns['errors'][] = self::error( 'empty_header', 1, (string) ( $position + 1 ) );
+				continue;
+			}
+			if ( isset( $seen[ $name ] ) ) {
+				$columns['errors'][] = self::error( 'duplicate_header', 1, $name );
+				continue;
+			}
+			$seen[ $name ]                 = true;
+			$columns['names'][ $position ] = $name;
+		}
+
+		foreach ( array_map( array( __CLASS__, 'normalize' ), $required ) as $name ) {
+			if ( ! in_array( $name, $columns['names'], true ) ) {
+				$columns['errors'][] = self::error( 'missing_header', 1, $name );
 			}
 		}
 
-		return $errors;
+		return $columns;
+	}
+
+	/**
+	 * The name of a column as it is compared: without the spaces around and in lower case.
+	 *
+	 * @param string $name Name of the column.
+	 * @return string The name.
+	 */
+	private static function normalize( $name ) {
+		return strtolower( trim( $name ) );
 	}
 
 	/**
@@ -304,14 +328,14 @@ class DLI_CSV_Reader {
 	 *
 	 * @param string $code Code of the error.
 	 * @param int    $line Line of the file.
-	 * @return array{delimiter: string, headers: string[], rows: array<int, array{line: int, cells: array<string, string>}>, errors: array<int, array{code: string, line: int, detail: string}>} The result.
+	 * @return DLI_CSV_Result The result.
 	 */
 	private static function failure( $code, $line = 0 ) {
 		return array(
-			'delimiter' => ';',
-			'headers'   => array(),
-			'rows'      => array(),
-			'errors'    => array( self::error( $code, $line ) ),
+			'headers' => array(),
+			'ignored' => array(),
+			'rows'    => array(),
+			'errors'  => array( self::error( $code, $line ) ),
 		);
 	}
 }

@@ -1,0 +1,67 @@
+{
+	"description": "Cases of the text search of the People page. Read by DLI_People_Search_Unit_Test (PHP) and by people-search.test.js (JavaScript): the two implementations must give the same answer to every case.",
+	"rows": {
+		"mario": {
+			"name": "Mario",
+			"surname": "Rossi",
+			"type": "Professore ordinario",
+			"structures": [ "Laboratorio di Fisica", "Centro Dati" ]
+		},
+		"niccolo": {
+			"name": "Niccolò",
+			"surname": "D'Amico",
+			"type": "Ricercatrice",
+			"structures": []
+		},
+		"nicolo": {
+			"name": "Anna",
+			"surname": "Nicolò",
+			"type": "",
+			"structures": []
+		},
+		"letters": {
+			"name": "ÀÁÂÃÄÅĀĂĄÇĆČĎĐÈÉÊËĒĖĘĚÌÍÎÏĪĮĽĹŁÑŃŇÒÓÔÕÖØŌŐŔŘŚŠŞŤŢÙÚÛÜŪŮŰŲÝŸŹŻŽ",
+			"surname": "",
+			"type": "",
+			"structures": []
+		},
+		"empty": {
+			"name": "",
+			"surname": "",
+			"type": "",
+			"structures": []
+		}
+	},
+	"cases": [
+		{ "description": "an empty text is no filter", "search": "", "row": "mario", "matches": true },
+		{ "description": "a text of spaces only is no filter", "search": "   ", "row": "mario", "matches": true },
+		{ "description": "the surname", "search": "rossi", "row": "mario", "matches": true },
+		{ "description": "the name, in upper case", "search": "MARIO", "row": "mario", "matches": true },
+		{ "description": "part of the surname", "search": "ross", "row": "mario", "matches": true },
+		{ "description": "name and surname", "search": "mario rossi", "row": "mario", "matches": true },
+		{ "description": "surname and name", "search": "Rossi Mario", "row": "mario", "matches": true },
+		{ "description": "spaces around the text are not part of it", "search": "  Rossi  ", "row": "mario", "matches": true },
+		{ "description": "more spaces between the words count as one", "search": "mario   rossi", "row": "mario", "matches": true },
+		{ "description": "a no-break space counts as a space", "search": "mario rossi", "row": "mario", "matches": true },
+		{ "description": "the type of the row", "search": "ordinario", "row": "mario", "matches": true },
+		{ "description": "one of the structures", "search": "centro dati", "row": "mario", "matches": true },
+		{ "description": "part of the other structure", "search": "FISICA", "row": "mario", "matches": true },
+		{ "description": "another person", "search": "bianchi", "row": "mario", "matches": false },
+		{ "description": "words of two different fields do not match together", "search": "rossi fisica", "row": "mario", "matches": false },
+		{ "description": "the text does not run across two structures", "search": "fisica, centro", "row": "mario", "matches": false },
+		{ "description": "characters of regular expressions are plain text", "search": "r.ssi", "row": "mario", "matches": false },
+		{ "description": "an open bracket is plain text", "search": "(", "row": "mario", "matches": false },
+		{ "description": "an accented name", "search": "niccolò", "row": "niccolo", "matches": true },
+		{ "description": "an accented letter in upper case", "search": "NICCOLÒ", "row": "niccolo", "matches": true },
+		{ "description": "accents do not count: a name without them finds the accented one", "search": "niccolo", "row": "niccolo", "matches": true },
+		{ "description": "accents do not count in the text either", "search": "nìccolò", "row": "niccolo", "matches": true },
+		{ "description": "an accented surname is found without its accent", "search": "Nicolo", "row": "nicolo", "matches": true },
+		{ "description": "a different letter is not an accent", "search": "niccala", "row": "niccolo", "matches": false },
+		{ "description": "every accented letter of the table, in upper case, is its plain letter (the PHP and JavaScript tables are the same)", "search": "aaaaaaaaacccddeeeeeeeeiiiiiilllnnnoooooooorrsssttuuuuuuuuyyzzz", "row": "letters", "matches": true },
+		{ "description": "an apostrophe", "search": "d'amico", "row": "niccolo", "matches": true },
+		{ "description": "part of the type, in a row without structures", "search": "ricerca", "row": "niccolo", "matches": true },
+		{ "description": "a row without structures does not match a structure", "search": "fisica", "row": "niccolo", "matches": false },
+		{ "description": "a row with nothing to search", "search": "a", "row": "empty", "matches": false },
+		{ "description": "a row with nothing to search and no text", "search": "", "row": "empty", "matches": true }
+	]
+}

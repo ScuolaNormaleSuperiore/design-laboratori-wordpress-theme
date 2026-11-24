@@ -2,10 +2,12 @@
 /**
  * Item of a box of "Contenuti in evidenza" for a type without a layout of its own: the essential one.
  *
- * Shows only the title, the featured image when there is one, an abstract and the link, and never simulates the
- * layout of events or publications. Receives the content already read and prints only its markup. The title leads
- * where the editor chose (`dli_get_content_link()`). A password-protected content shows its title only: its text
- * and image are what the password protects.
+ * Shows only the title, with its link, and a short abstract, and never simulates the layout of events or
+ * publications. It looks like the items of the news and of the events (a line under the item, no frame and no
+ * image), so that the boxes of a row look alike. The abstract is the summary of the content or, without it, the
+ * beginning of its text, cut at `DLI_HP_FEATURED_EXCERPT_WORDS` words in both cases. Receives the content already
+ * read and prints only its markup. The title leads where the editor chose (`dli_get_content_link()`). A
+ * password-protected content shows its title only: its text is what the password protects.
  *
  * Arguments (`$args`):
  *  - `post`        (WP_Post) The content.
@@ -23,26 +25,17 @@ if ( null === $dli_item ) {
 	return;
 }
 
-$dli_link      = dli_get_content_link( $dli_item );
-$dli_protected = post_password_required( $dli_item );
-$dli_abstract  = '';
-$dli_image_url = '';
-if ( ! $dli_protected ) {
+$dli_link     = dli_get_content_link( $dli_item );
+$dli_abstract = '';
+if ( ! post_password_required( $dli_item ) ) {
 	$dli_abstract = trim( $dli_item->post_excerpt );
 	if ( '' === $dli_abstract ) {
-		$dli_abstract = wp_trim_words( wp_strip_all_tags( strip_shortcodes( excerpt_remove_blocks( $dli_item->post_content ) ) ), DLI_ACF_SHORT_DESC_LENGTH );
+		$dli_abstract = strip_shortcodes( excerpt_remove_blocks( $dli_item->post_content ) );
 	}
-	$dli_image_url = (string) get_the_post_thumbnail_url( $dli_item, 'medium' );
+	$dli_abstract = wp_trim_words( wp_strip_all_tags( $dli_abstract ), DLI_HP_FEATURED_EXCERPT_WORDS );
 }
 ?>
-<article class="it-card rounded border">
-	<?php if ( '' !== $dli_image_url ) : ?>
-		<div class="it-card-image-wrapper">
-			<div class="ratio ratio-16x9">
-				<img src="<?php echo esc_url( $dli_image_url ); ?>" alt="" class="img-full">
-			</div>
-		</div>
-	<?php endif; ?>
+<article class="it-card border-bottom">
 	<<?php echo esc_attr( $dli_heading ); ?> class="it-card-title h5 text-break" style="overflow-wrap: anywhere;">
 		<?php
 		get_template_part(
@@ -58,7 +51,7 @@ if ( ! $dli_protected ) {
 	</<?php echo esc_attr( $dli_heading ); ?>>
 	<?php if ( '' !== $dli_abstract ) : ?>
 		<div class="it-card-body">
-			<p class="it-card-text text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( $dli_abstract ); ?></p>
+			<p class="it-card-text mb-0 text-break" style="overflow-wrap: anywhere;"><?php echo esc_html( $dli_abstract ); ?></p>
 		</div>
 	<?php endif; ?>
 </article>

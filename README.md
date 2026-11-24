@@ -51,6 +51,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 - Importazione dei brevetti da IRIS.
 - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
 - Importazione delle persone da file CSV, con simulazione.
+- Un solo formato per tutti gli import da CSV: UTF-8, separatore punto e virgola, nomi delle colonne anche in maiuscolo, al massimo 200 righe; le altre colonne e le righe vuote vengono ignorate e le colonne ignorate sono elencate nel report.
 
 ## Galleria
 
@@ -72,7 +73,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Requisiti software
 1. Il CMS WordPress (versione >= 6.6.2).
 2. PHP >= 8.0.
-3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm.
+3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore.
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
@@ -161,7 +162,7 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress). Il hook `pre-commit` lo esegue sui file in staging e blocca il commit se ci sono errori |
 | | `composer run lint:phpstan` | Analisi statica con [PHPStan](tests/phpstan/README.md), livello 5 |
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
-| Test | `composer test:unit` | [Funzioni pure, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
+| Test | `composer test:unit` | [Funzioni pure in PHP e JavaScript, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
 | | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test con ACF e Polylang reali e un database dedicato |
 | | `composer test:e2e` | [Browser (Playwright) su un sito Local dedicato](tests/e2e/README.md) |
 | Report | `npm run status:scan -- <url>` | [Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px](tests/report/status-report/README.md) |
@@ -181,7 +182,7 @@ publiccode-parser -path . publiccode.yml
 ```
 
 ## Contesto di progetto per l'AI
-Chiedere all'assistente di codifica di "leggere il contesto del progetto". ChatGPT/Codex legge prima `AGENTS.md`, mentre Claude Code legge prima `CLAUDE.md`; entrambi seguono poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/TRIGGERS.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Il bootstrap garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/trigger-code-review`. Se disponibile, legge anche l'indice privato `DEV/TODO/README.md` e mostra i piani in esecuzione; se `DEV/TODO` non è accessibile, prosegue senza errore. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
+Chiedere all'assistente di codifica di "leggere il contesto del progetto". ChatGPT/Codex legge prima `AGENTS.md`, mentre Claude Code legge prima `CLAUDE.md`; entrambi seguono poi, nell'ordine, `AGENTS/AI_BOOTSTRAP.md`, `AGENTS/PROJECT.md`, `AGENTS/ARCHITECTURE.md`, `AGENTS/AI_BEHAVIOR.md`, `AGENTS/TRIGGERS.md`, `AGENTS/CODING_STANDARDS.md` e `AGENTS/GIT_WORKFLOW.md`. Il bootstrap garantisce l'esistenza dei file issue locali senza leggerli; `AGENTS/CODE_REVIEW.md` viene letto solo da `/trigger-code-review`. Se disponibili, consulta anche i piani di lavoro locali, che non fanno parte del repository pubblico. La loro assenza non interrompe il bootstrap. Infine conferma il bootstrap, elenca le skill disponibili, indica se il server MCP `design-system-italia` è installato e utilizzabile e chiede su cosa lavorare.
 
 ## Tickets e bug-fixing
 Per segnalare dei bug utilizzare la sezione [Issues](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/issues) del repository del progetto.

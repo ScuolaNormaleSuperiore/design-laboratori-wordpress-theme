@@ -23,7 +23,17 @@ if ( ! function_exists( 'dli_pwa_manifest_data' ) ) {
 	/**
 	 * Build the web app manifest data.
 	 *
-	 * @return array
+	 * @return array{
+	 *     name: string,
+	 *     short_name: string,
+	 *     start_url: string,
+	 *     scope: string,
+	 *     display: string,
+	 *     background_color: string,
+	 *     theme_color: string,
+	 *     lang: string,
+	 *     icons: list<array{src: string, sizes: string, type: string}>
+	 * } Manifest fields and icon metadata.
 	 */
 	function dli_pwa_manifest_data() {
 		$site_name = get_bloginfo( 'name' );
@@ -72,8 +82,8 @@ if ( ! function_exists( 'dli_pwa_query_vars' ) ) {
 	/**
 	 * Register the dli_pwa query variable.
 	 *
-	 * @param array $vars Existing public query variables.
-	 * @return array
+	 * @param string[] $vars Existing public query variables.
+	 * @return string[] Public query variables including the manifest endpoint.
 	 */
 	function dli_pwa_query_vars( $vars ) {
 		$vars[] = 'dli_pwa';

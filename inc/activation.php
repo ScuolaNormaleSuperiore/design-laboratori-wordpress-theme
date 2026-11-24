@@ -124,8 +124,8 @@ function dli_create_the_taxonomies() {
 /**
  * Build the taxonomies.
  *
- * @param string $taxonomy Taxonomy slug.
- * @param array  $terms    List of term label pairs by language.
+ * @param string                              $taxonomy Taxonomy slug.
+ * @param list<array{it: string, en: string}> $terms    List of term label pairs by language.
  *
  * @return void
  */
@@ -247,7 +247,7 @@ function dli_create_the_it_menus() {
 /**
  * Create the site menus.
  *
- * @param array $custom_menu Menu configuration.
+ * @param array{name: string, lang: string, location: string, items: list<array<string, string>>} $custom_menu Menu configuration and item fields.
  *
  * @return void
  */

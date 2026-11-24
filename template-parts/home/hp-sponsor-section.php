@@ -2,6 +2,9 @@
 /**
  * Homepage sponsor section.
  *
+ * The section is always named by its `h2`, "Partner e collaborazioni": seen when the row of Sezioni HP asks to show
+ * the title, visually hidden otherwise.
+ *
  * @package Design_Laboratori_Italia
  */
 
@@ -53,11 +56,7 @@ if ( 'true' === $dli_section_enabled ) {
 		?>
 		<section id="sponsor" class="section pt-3 pb-3" aria-labelledby="sponsor-title">
 			<div class="container my-12">
-				<?php if ( $dli_show_title ) { ?>
-				<h2 id="sponsor-title" class="visually-hidden">
-					<?php echo esc_html__( 'Partner e collaborazioni', 'design_laboratori_italia' ); ?>
-				</h2>
-				<?php } ?>
+				<h2 id="sponsor-title" class="<?php echo ( 'true' === $dli_show_title ) ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php esc_html_e( 'Partner e collaborazioni', 'design_laboratori_italia' ); ?></h2>
 
 				<div class="it-grid-list-wrapper it-image-label-grid">
 					<div class="grid-row">

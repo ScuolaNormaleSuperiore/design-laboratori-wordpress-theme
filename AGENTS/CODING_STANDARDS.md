@@ -294,9 +294,9 @@ Pick the checks that match the change, run them, and report which ones could not
 |---|---|---|
 | Any PHP file | `php -l <file>` | Syntax only |
 | Any PHP, CSS or SCSS file | `composer run lint:php` (whole theme) or `npm run lint:php:file -- <file>` | PHPCS with `phpcs.xml.dist`; fix with `composer run lint:php:fix`; never weaken the ruleset. The `pre-commit` hook runs it on the staged files and blocks the commit on errors (warnings do not block), also for errors that were already in the file |
-| Any change to PHP, configuration or release files | `composer test:unit` | PHPUnit unit suite, no WordPress needed; also run by the `pre-commit` hook |
+| Any change to PHP, JavaScript, configuration or release files | `composer test:unit` | Unit suite, no WordPress needed: PHPUnit, then the JavaScript tests with `node --test`; also run by the `pre-commit` hook |
 | Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`; needs `wordpress-develop` and `wp-tests-config.php`; see `tests/integration/README.md` |
-| What the user sees or admin flows that need a browser | `composer test:e2e` | Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |
+| Behavior that cannot be adequately verified at unit or integration level | `composer test:e2e` | Use only when a real browser and complete flow are indispensable. Playwright on the Local site `dli-wp-e2e`, restored to a baseline before and after the run; needs `DLI_E2E_SITE_PATH`; see `tests/e2e/README.md` |
 | PHP static analysis | `composer run lint:phpstan`; `composer run lint:phpstan:level6` | The whole-theme gate is level 5 and blocks the commit (`.githooks/pre-commit`); level 6 is a non-blocking progress check. Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local runtime and optional-plugin stubs: `tests/phpstan/` |
 | Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
@@ -309,6 +309,7 @@ Reports write into git-ignored `reports/` folders. The unit, integration and E2E
 ### Tests
 
 - Unit tests live in `tests/unit/`, one file per area, named `DLI_<Name>_Unit_Test.php` with a class of the same name. They run without WordPress: if the code under test needs WordPress, it is not a unit test.
+- Unit tests of JavaScript code are in the same folder, named `<area>.test.js`, written with `node:test` and `node:assert` and no other dependency, and run without a browser. The code under test exposes its pure functions to Node (for example with `module.exports` when `module` exists); a test does not cut the script out of a PHP template.
 - Every `Bug` or `Security` fix comes with a regression test, written first and seen failing (`Test-driven workflow`).
 - `tests/` is excluded from PHPCS: the style of test code is not checked automatically, so follow the surrounding test files and `.editorconfig`.
 - A failing contract test (versions, release date, AGENTS documents) means a file was updated and another one forgotten: fix the data, not the test.

@@ -2,6 +2,9 @@
 /**
  * Homepage carousel section.
  *
+ * The section is named by its `h2`, "Contenuti in primo piano": seen when the row of Sezioni HP asks to show the
+ * title, visually hidden otherwise.
+ *
  * @package Design_Laboratori_Italia
  */
 
@@ -11,8 +14,10 @@ $dli_show_title      = $args['show_title'] ?? false;
 if ( 'true' === $dli_section_enabled ) {
 		$dli_items = DLI_ContentsManager::get_carousel_items();
 	?>
-	<section id="carousel-principale" class="section pt-5 pb-5">
-		<h2 id="carousel-principale-title" class="visually-hidden"><?php esc_html_e( 'Contenuti in primo piano', 'design_laboratori_italia' ); ?></h2>
+	<section id="carousel-principale" class="section pt-5 pb-5" aria-labelledby="carousel-principale-title">
+		<div class="container">
+			<h2 id="carousel-principale-title" class="<?php echo ( 'true' === $dli_show_title ) ? 'h3 pb-2' : 'visually-hidden'; ?>"><?php esc_html_e( 'Contenuti in primo piano', 'design_laboratori_italia' ); ?></h2>
+		</div>
 		<div class="it-carousel-wrapper it-carousel-landscape-abstract splide" data-bs-carousel-splide role="region" aria-labelledby="carousel-principale-title">
 			<div class="splide__track">
 				<!-- SLIDES -->

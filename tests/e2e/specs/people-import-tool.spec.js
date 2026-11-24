@@ -1,43 +1,17 @@
-// The tool Strumenti DLI → Importa → Persone, as it is: the form, the simulation that writes nothing, the real import,
-// the errors of a row and the refusals of a file (wrong extension, header
-// without the email, too large). These checks describe the behaviour before the code that reads the file is shared
-// with other tools. The person created by the test is taken away at the end: the site is shared by the whole run.
+// The tool Strumenti DLI → Importa → Persone in a real browser: the file is chosen, the form is sent and the report is
+// shown. This is the only check that needs a browser; everything else is covered at a lower level:
+// - the form (file field, the four modes, the defaults, the link to the example), the simulation that writes nothing,
+//   a row with an error, the files that are refused, the reading of the file and the report:
+//   DLI_People_Import_Admin_Integration_Test;
+// - what one row does in each mode: DLI_People_File_Importer_Integration_Test;
+// - the example file: DLI_Example_People_Csv_Unit_Test.
+// The person created by the test is taken away at the end: the site is shared by the whole run.
 const { test, expect } = require( '@playwright/test' );
 const { loginAsAdmin } = require( '../support/auth' );
 
 const IMPORT = '/wp-admin/admin.php?page=dli-tools-import';
 const PEOPLE = '/wp-admin/edit.php?post_type=persona';
 const SURNAME = 'ImportE2E';
-const HEADER = 'nome;cognome;email;stato';
-
-/**
- * Send the form of the import with a file made on the spot.
- *
- * @param {import('@playwright/test').Page} page    Page.
- * @param {Object}                          options Choices of the form.
- * @param {string}                          options.content Content of the file.
- * @param {string}                          options.name    Name of the file.
- * @param {string}                          options.mode    Mode of the import.
- * @param {string}                          options.exec    `dry_run` or `commit`.
- */
-async function sendFile( page, { content, name = 'persone.csv', mode = 'upsert', exec = 'dry_run' } ) {
-	await page.goto( IMPORT );
-	await page.locator( '#dli-csv-file' ).setInputFiles( { name, mimeType: 'text/csv', buffer: Buffer.from( content, 'utf8' ) } );
-	await page.locator( '#dli-import-mode' ).selectOption( mode );
-	await page.locator( '#dli-exec-mode' ).selectOption( exec );
-	await page.getByRole( 'button', { name: 'Esegui import persone' } ).click();
-	await expect( page.locator( '#dli-report-section' ) ).toBeVisible();
-}
-
-/**
- * The counters of the report: processed, created, updated, skipped, errors.
- *
- * @param {import('@playwright/test').Page} page Page.
- * @return {Promise<string[]>} The five numbers as text.
- */
-async function counters( page ) {
-	return page.locator( '.dli-report-summary tbody td' ).allTextContents();
-}
 
 /**
  * How many people with the surname of the test are in the list.
@@ -66,62 +40,22 @@ async function removePeopleOfTheTest( page ) {
 	await page.locator( '#delete_all' ).first().click();
 }
 
-test( 'the form has the file, the two modes with the simulation as the default, and the sample file', async ( { page } ) => {
+test( 'a file chosen in the browser is imported and the report is shown', async ( { page } ) => {
 	await loginAsAdmin( page );
-	await page.goto( IMPORT );
-
-	await expect( page.locator( '#dli-csv-file' ) ).toHaveAttribute( 'accept', '.csv' );
-	await expect( page.locator( '#dli-import-mode option' ) ).toHaveCount( 4 );
-	await expect( page.locator( '#dli-import-mode' ) ).toHaveValue( 'upsert' );
-	await expect( page.locator( '#dli-exec-mode' ) ).toHaveValue( 'dry_run' );
-	await expect( page.getByRole( 'link', { name: 'Scarica CSV di esempio' } ) ).toBeVisible();
-} );
-
-// The decisions of each mode (new only, ignore existing, upsert) are checked by DLI_People_File_Importer_Integration_Test:
-// here only the way through the browser is checked, with one submission, so the test stays far from its time limit.
-// That a simulation writes nothing is checked by the integration test and, in the browser, by the test of the rows with errors.
-test( 'the import creates the person', async ( { page } ) => {
-	await loginAsAdmin( page );
-	const file = `${ HEADER }\nProva;${ SURNAME };prova.import.e2e@example.org;publish\n`;
+	const file = `nome;cognome;email;stato\nProva;${ SURNAME };prova.import.e2e@example.org;publish\n`;
 
 	try {
-		await sendFile( page, { content: file, exec: 'commit' } );
+		await page.goto( IMPORT );
+		await page.locator( '#dli-csv-file' ).setInputFiles( { name: 'persone.csv', mimeType: 'text/csv', buffer: Buffer.from( file, 'utf8' ) } );
+		await page.locator( '#dli-exec-mode' ).selectOption( 'commit' );
+		await page.getByRole( 'button', { name: 'Esegui import persone' } ).click();
+
+		await expect( page.locator( '#dli-report-section' ) ).toBeVisible();
 		await expect( page.locator( '.dli-report-mode' ) ).toContainText( 'esecuzione reale' );
-		expect( await counters( page ) ).toEqual( [ '1', '1', '0', '0', '0' ] );
-		await expect( page.locator( '.dli-log-table tbody tr' ) ).toHaveCount( 1 );
+		expect( await page.locator( '.dli-report-summary tbody td' ).allTextContents() ).toEqual( [ '1', '1', '0', '0', '0' ] );
 		await expect( page.locator( '.dli-log-table' ) ).toContainText( 'prova.import.e2e@example.org' );
-		await expect( page.locator( '.dli-log-status-ok' ) ).toHaveCount( 1 );
 		expect( await peopleOfTheTest( page ) ).toBe( 1 );
 	} finally {
 		await removePeopleOfTheTest( page );
 	}
-} );
-
-test( 'a row without the email is an error of that row, and the others are processed', async ( { page } ) => {
-	await loginAsAdmin( page );
-
-	await sendFile( page, { content: `${ HEADER }\nProva;${ SURNAME };;publish\nAltra;${ SURNAME };non-una-email;publish\n` } );
-
-	// The default is the simulation: the report says so and no person is created.
-	await expect( page.locator( '.dli-report-mode' ) ).toContainText( 'esecuzione simulata' );
-	expect( await counters( page ) ).toEqual( [ '2', '0', '0', '0', '2' ] );
-	await expect( page.locator( '.dli-log-status-errore' ) ).toHaveCount( 2 );
-	expect( await peopleOfTheTest( page ) ).toBe( 0 );
-} );
-
-test( 'a file that cannot be used is refused with a message and nothing is processed', async ( { page } ) => {
-	await loginAsAdmin( page );
-
-	// A file that is not a .csv.
-	await sendFile( page, { content: `${ HEADER }\n`, name: 'persone.txt' } );
-	await expect( page.locator( '.notice-error' ) ).toContainText( 'Formato non valido: è richiesto un file .csv.' );
-
-	// A header without a required column.
-	await sendFile( page, { content: 'nome;cognome\nProva;Prova\n' } );
-	await expect( page.locator( '.notice-error' ) ).toContainText( 'colonna obbligatoria "email" non trovata' );
-	await expect( page.locator( '.dli-report-summary tbody td' ).first() ).toHaveText( '0' );
-
-	// A file over 2 MB.
-	await sendFile( page, { content: `${ HEADER }\n${ 'a'.repeat( 2 * 1024 * 1024 + 1024 ) }\n` } );
-	await expect( page.locator( '.notice-error' ) ).toContainText( 'File troppo grande. Dimensione massima: 2 MB.' );
 } );

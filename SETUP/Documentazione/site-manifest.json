@@ -190,10 +190,10 @@
 			"order": 20
 		},
 		{
-			"source": "DOC/HowTo/Importare-pagine-da-CSV.md",
-			"target": "amministra/importare-pagine-csv.md",
-			"title": "Importare pagine da CSV",
-			"description": "Modello CSV, simulazione, lingue, limiti e verifica dell'importazione.",
+			"source": "DOC/HowTo/Importare-da-CSV.md",
+			"target": "amministra/importare-da-csv.md",
+			"title": "Importare da file CSV",
+			"description": "Formato comune dei file CSV; importazione delle pagine e delle persone: colonne, simulazione, lingue, limiti e verifica.",
 			"group": "Amministra",
 			"order": 30
 		},

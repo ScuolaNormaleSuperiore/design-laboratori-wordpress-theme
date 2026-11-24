@@ -1,7 +1,7 @@
 # Manuale Operatore
 
 Versione: 1.1<br>
-Data: 2026-11-16<br>
+Data: 2026-11-23<br>
 Tema: `design-laboratori-wordpress-theme`
 
 ## 1. Scopo del manuale
@@ -132,7 +132,7 @@ Gli **Avvisi in Home** sono messaggi separati da questo elenco: si configurano n
 4. Completa testi e contenuti nelle schede indicate sotto e salva ogni scheda modificata: `Sezioni HP` e `Layout HP` sono configurazioni distinte.
 5. Controlla la home in italiano e in inglese, su desktop e su telefono; prova anche i collegamenti.
 
-`Mostra il titolo della sezione` è disponibile nelle righe, ma il suo effetto dipende dal modello: non nasconde il titolo della Hero, della descrizione del sito o dei singoli Banner (la sezione Banner ha il titolo scritto nella riga, che si vede solo se il campo è su Sì); alcuni blocchi usano un titolo solo per le tecnologie assistive. Sfondo e limiti numerici compaiono soltanto nelle sezioni che li supportano. Il dettaglio dei campi resta nel [Manuale del pannello Configurazione, §§4.3–4.4](Manuale-Utente-Pannello-Configurazione.md).
+`Mostra il titolo della sezione` è disponibile nelle righe, ma il suo effetto dipende dal modello: non nasconde il titolo della Hero, della descrizione del sito o dei singoli Banner (la sezione Banner ha il titolo scritto nella riga, che si vede solo se il campo è su Sì). Nelle altre sezioni, con il campo su Sì, il titolo compare con lo stesso stile e la stessa dimensione in tutte (per esempio «Contenuti in primo piano» nel Carousel, «Contenuti in evidenza», «Partner e collaborazioni» negli Sponsor); con il campo su No resta leggibile solo dalle tecnologie assistive. Sfondo e limiti numerici compaiono soltanto nelle sezioni che li supportano. Il dettaglio dei campi resta nel [Manuale del pannello Configurazione, §§4.3–4.4](Manuale-Utente-Pannello-Configurazione.md).
 
 **Si possono ripetere solo alcune sezioni.** Nel menu `Sezione` di una riga, una sezione che può stare in home una volta sola (Hero, Descrizione del sito, Carousel, Contenuti in evidenza, Card di navigazione, Navigazione per pagine, Pannello tab, Eventi, Notizie, Pubblicazioni, Articoli, Sponsor) compare disattivata se è già in un'altra riga; si riattiva quando togli quella riga. Indice di una pagina, Video e Banner si possono ripetere. Le righe già salvate non vengono cambiate. **Ripetere una sezione non significa ottenere contenuti indipendenti.** L'Indice di una pagina consente una pagina diversa per ogni riga. Il Video ha invece un indirizzo per ogni riga, scritto nella riga stessa. Anche il Banner è autonomo per ogni riga: modalità, numero (in automatico), banner scelti (in manuale) e titolo si scrivono nella riga. Il Pannello tab legge invece un'unica configurazione in `Layout HP`: usa una sola riga, perché ripeterlo mostra gli stessi tab.
 

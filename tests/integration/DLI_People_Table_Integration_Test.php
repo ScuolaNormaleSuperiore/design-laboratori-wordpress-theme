@@ -28,9 +28,10 @@ class DLI_People_Table_Integration_Test extends DLI_Integration_Test_Case {
 	 *
 	 * @param int[]                $person_ids People to list.
 	 * @param array<string, mixed> $options    Options of the people page (`persone`), such as the hidden columns.
+	 * @param array<string, mixed> $page_data  Additional data for the table.
 	 * @return array{html: string, data: array<string, mixed>} The page and the decoded data.
 	 */
-	private function render_table( array $person_ids, array $options = array() ) {
+	private function render_table( array $person_ids, array $options = array(), array $page_data = array() ) {
 		$this->set_theme_options(
 			'persone',
 			array_merge(
@@ -50,29 +51,107 @@ class DLI_People_Table_Integration_Test extends DLI_Integration_Test_Case {
 			);
 		}
 
+		// The script keeps its data from one test to the next: each table starts from a script without data.
+		wp_deregister_script( 'dli-people-filters' );
+
 		ob_start();
 		get_template_part(
 			'template-parts/persone/view-tabella',
 			null,
 			array(
-				'page_data' => array(
-					'people_rows' => $rows,
-					'categories'  => array(),
-					'structures'  => array(),
-					'tags'        => array(),
+				'page_data' => array_merge(
+					array(
+						'people_rows' => $rows,
+						'categories'  => array(),
+						'structures'  => array(),
+						'tags'        => array(),
+					),
+					$page_data
 				),
 			)
 		);
 		$html = (string) ob_get_clean();
 
-		$this->assertSame( 1, preg_match( '#var DLI_PEOPLE_TABLE =\s*(\{.*?\})\s*;\s*\n#s', $html, $found ), 'The page carries the data of the table.' );
+		$this->assertTrue( wp_script_is( 'dli-people-filters', 'enqueued' ), 'The table loads the script of the filters.' );
+		$this->assertStringNotContainsString( '<script', $html, 'The template prints no script of its own.' );
+		// WordPress adds a `//# sourceURL=` line after the data, for the tools of the browser.
+		$inline = (string) wp_scripts()->get_inline_script_data( 'dli-people-filters', 'before' );
+		$this->assertSame( 1, preg_match( '#^window\.DLI_PEOPLE_TABLE = (\{.*\});$#m', $inline, $found ), 'The script receives the data of the table.' );
 		$data = json_decode( $found[1], true );
 		$this->assertIsArray( $data );
+		$html .= "\n" . $inline;
 
 		return array(
 			'html' => $html,
 			'data' => $data,
 		);
+	}
+
+	/**
+	 * Each structure of the filter comes with its substructures, so that the table finds the people of a substructure
+	 * by its parent as the cards view does; each row carries the names of its structures for the text search.
+	 */
+	public function test_the_structures_come_with_their_substructures_and_names() {
+		$parent = wp_insert_term( 'Dipartimento di Scienze', STRUCTURE_TAXONOMY, array( 'slug' => 'scienze' ) );
+		$child  = wp_insert_term( 'Laboratorio di Fisica', STRUCTURE_TAXONOMY, array( 'slug' => 'fisica', 'parent' => $parent['term_id'] ) );
+		$other  = wp_insert_term( 'Centro Dati', STRUCTURE_TAXONOMY, array( 'slug' => 'centro-dati' ) );
+		$person = $this->create_person( 'Rossi' );
+		wp_set_object_terms( $person, array( 'fisica', 'centro-dati' ), STRUCTURE_TAXONOMY );
+
+		$page = $this->render_table(
+			array( $person ),
+			array(),
+			array( 'structures' => array( get_term( $parent['term_id'] ), get_term( $child['term_id'] ), get_term( $other['term_id'] ) ) )
+		);
+
+		$this->assertSame(
+			array(
+				'scienze'     => array( 'scienze', 'fisica' ),
+				'fisica'      => array( 'fisica' ),
+				'centro-dati' => array( 'centro-dati' ),
+			),
+			$page['data']['structureDescendants']
+		);
+		$names = $page['data']['rows'][0]['structureNames'];
+		sort( $names );
+		$this->assertSame( array( 'Centro Dati', 'Laboratorio di Fisica' ), $names );
+	}
+
+	/** The filters asked for in the address are selected in the controls of the table. */
+	public function test_the_table_starts_from_the_filters_of_the_address() {
+		$structure = wp_insert_term( 'Laboratorio di Fisica', STRUCTURE_TAXONOMY, array( 'slug' => 'fisica' ) );
+		$tag       = wp_insert_term( 'Senior', WP_DEFAULT_TAGS, array( 'slug' => 'senior' ) );
+
+		$page = $this->render_table(
+			array(),
+			array( 'hide_filter_tag' => 'false' ),
+			array(
+				'structures'         => array( get_term( $structure['term_id'] ) ),
+				'tags'               => array( get_term( $tag['term_id'] ) ),
+				'selected_structure' => 'fisica',
+				'selected_level'     => 'senior',
+				'selected_search'    => 'Rossi Mario',
+			)
+		);
+
+		$this->assertMatchesRegularExpression( '#<option value="fisica"\s+selected=[\'"]selected[\'"]#', $page['html'] );
+		$this->assertMatchesRegularExpression( '#<option value="senior"\s+selected=[\'"]selected[\'"]#', $page['html'] );
+		$this->assertSame( 1, preg_match( '#<input[^>]*id="dliPeopleSearch"[^>]*>#', $page['html'], $input ) );
+		$this->assertStringContainsString( 'value="Rossi Mario"', $input[0] );
+	}
+
+	/** The requested type is selected in the table filter. */
+	public function test_table_selects_the_requested_people_type() {
+		$category = $this->create_post( PEOPLE_TYPE_POST_TYPE, 'Ricercatore' );
+		$page = $this->render_table(
+			array(),
+			array(),
+			array(
+				'categories'    => array( get_post( $category ) ),
+				'selected_type' => (string) $category,
+			)
+		);
+		$this->assertMatchesRegularExpression( '#<option value="' . $category . '"\s+selected=[\'"]selected[\'"]#', $page['html'] );
 	}
 
 	/**

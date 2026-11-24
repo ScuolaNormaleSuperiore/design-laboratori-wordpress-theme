@@ -1,0 +1,3 @@
+﻿nome;cognome;email;titolo;telefono;tipologia_persona;struttura;stato;sito_web;body;escludi_da_elenco;disattiva_pagina_dettaglio
+Mario;Rossi;mario.rossi@example.com;Prof.;050-123456;tipologia1;prima-struttura;publish;https://example.com;"Breve biografia di Mario Rossi; professore di fisica.";0;0
+Anna;Bianchi;anna.bianchi@example.com;Dott.ssa;;tipologia2;prima-struttura|seconda-struttura;draft;;;1;0

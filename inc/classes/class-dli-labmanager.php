@@ -297,8 +297,8 @@ class DLI_LabManager {
 	/**
 	 * Validate upload size limits by file type.
 	 *
-	 * @param array $file Upload metadata array.
-	 * @return array
+	 * @param array{name: string, type: string, tmp_name: string, error: int|string, size: int, full_path?: string} $file Upload metadata array.
+	 * @return array{name: string, type: string, tmp_name: string, error: int|string, size: int, full_path?: string} Upload metadata with any size validation error.
 	 */
 	public function setup_upload_limits( $file ) {
 		$image_max_size = DLI_MAX_IMG_FILE_SIZE_MB * 1024 * 1024;  // 1MB per immagini.

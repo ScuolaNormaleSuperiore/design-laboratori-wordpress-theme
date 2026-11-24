@@ -112,11 +112,17 @@ Suggerimenti:
 - usare il campo `Priorita` (in Tipologia Persona) per ordinare le sezioni
 
 ### 10.2 Struttura
-E' la tassonomia usata per i filtri nella pagina Persone.
+E' la tassonomia usata per i filtri nella pagina Persone. Il filtro di una struttura mostra anche le persone delle sue sottostrutture, in entrambe le viste (Schede e Tabella).
 
 Suggerimenti:
 - evitare termini duplicati/simili
 - usare naming coerente tra IT/EN
+
+### 10.3 Filtri della pagina Persone
+I filtri (ricerca, struttura, tipologia e TAG) funzionano allo stesso modo nella vista Schede e nella vista Tabella, da soli o insieme:
+- la ricerca trova le persone per nome, cognome (anche «Mario Rossi» o «Rossi Mario»), tipologia o struttura, senza distinguere maiuscole e minuscole; una persona con due tipologie cercata per una di esse compare solo sotto quella;
+- i filtri scelti restano nell'indirizzo della pagina: passando da una vista all'altra, ricaricando o condividendo il link si ritrovano gli stessi risultati;
+- la ricerca usa il parametro `cerca` dell'indirizzo; i vecchi link con `cognome` continuano a funzionare.
 
 ## 11. Checklist rapida prima della pubblicazione
 - Nome e Cognome compilati

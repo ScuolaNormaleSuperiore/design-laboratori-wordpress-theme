@@ -11,14 +11,20 @@ get_header();
 $dli_selected_structure_raw = filter_input( INPUT_GET, 'struttura', FILTER_UNSAFE_RAW );
 $dli_selected_level_raw     = filter_input( INPUT_GET, 'level', FILTER_UNSAFE_RAW );
 $dli_selected_type_raw      = filter_input( INPUT_GET, 'tipologia', FILTER_UNSAFE_RAW );
-$dli_selected_cognome_raw   = filter_input( INPUT_GET, 'cognome', FILTER_UNSAFE_RAW );
+$dli_search_raw             = filter_input( INPUT_GET, 'cerca', FILTER_UNSAFE_RAW );
+$dli_old_search_raw         = filter_input( INPUT_GET, 'cognome', FILTER_UNSAFE_RAW );
 $dli_vista_raw              = filter_input( INPUT_GET, 'vista', FILTER_UNSAFE_RAW );
 
 $dli_selected_structure = is_string( $dli_selected_structure_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_structure_raw ) ) : '';
 $dli_selected_level     = is_string( $dli_selected_level_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_level_raw ) ) : '';
 $dli_selected_type      = is_string( $dli_selected_type_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_type_raw ) ) : '';
-$dli_selected_cognome   = is_string( $dli_selected_cognome_raw ) ? sanitize_text_field( wp_unslash( $dli_selected_cognome_raw ) ) : '';
 $dli_vista              = is_string( $dli_vista_raw ) ? sanitize_text_field( wp_unslash( $dli_vista_raw ) ) : '';
+
+// The search is `cerca`; an old link with `cognome` (when the search was on the surname only) still works.
+$dli_selected_search = dli_people_search_from_request(
+	is_string( $dli_search_raw ) ? sanitize_text_field( wp_unslash( $dli_search_raw ) ) : '',
+	is_string( $dli_old_search_raw ) ? sanitize_text_field( wp_unslash( $dli_old_search_raw ) ) : ''
+);
 
 /*
  * La vista è scelta in configurazione (people_view_type): 'chip', 'tabella' o
@@ -44,13 +50,15 @@ if ( 'tabella' === $dli_view_type ) {
 	$dli_page_data                       = DLI_ContentsManager::get_people_page_data( array() );
 	$dli_page_data['selected_structure'] = $dli_selected_structure;
 	$dli_page_data['selected_level']     = $dli_selected_level;
-	$dli_page_data['selected_cognome']   = $dli_selected_cognome;
+	$dli_page_data['selected_type']      = $dli_selected_type;
+	$dli_page_data['selected_search']    = $dli_selected_search;
 } else {
 	$dli_page_data = DLI_ContentsManager::get_people_page_data(
 		array(
 			'selected_structure' => $dli_selected_structure,
 			'selected_level'     => $dli_selected_level,
-			'selected_cognome'   => $dli_selected_cognome,
+			'selected_type'      => $dli_selected_type,
+			'selected_search'    => $dli_selected_search,
 		)
 	);
 }
@@ -71,23 +79,13 @@ $dli_show_filters = $dli_page_data['result_count']
 	|| '' !== $dli_selected_structure
 	|| '' !== $dli_selected_level
 	|| '' !== $dli_selected_type
-	|| '' !== $dli_selected_cognome;
+	|| '' !== $dli_selected_search;
 
-// In the cards view the type filter is applied by the view itself: a type without people leaves nothing to show.
+// In the cards view type and search are applied to the data: the count is the one of the people shown.
 $dli_has_results = (bool) $dli_page_data['result_count'];
-if ( $dli_has_results && 'tabella' !== $dli_view_type && '' !== $dli_selected_type ) {
-	$dli_has_results = ! empty( $dli_page_data['people_by_category'][ (int) $dli_selected_type ] );
-}
 
 // URL dei bottoni Schede/Tabella: preservano i filtri attualmente attivi, cambiano solo "vista".
-$dli_view_query_args = array_filter(
-	array(
-		'struttura' => $dli_selected_structure,
-		'level'     => $dli_selected_level,
-		'tipologia' => $dli_selected_type,
-		'cognome'   => $dli_selected_cognome,
-	)
-);
+$dli_view_query_args = dli_people_filter_query_args( $dli_selected_structure, $dli_selected_level, $dli_selected_type, $dli_selected_search );
 $dli_view_toggle     = array(
 	'active'      => $dli_view_type,
 	'chip_url'    => add_query_arg( array_merge( $dli_view_query_args, array( 'vista' => 'chip' ) ), get_permalink() ),
@@ -120,7 +118,7 @@ if ( ! $dli_has_both ) {
 								'selected_structure'      => $dli_page_data['selected_structure'],
 								'selected_level'          => $dli_page_data['selected_level'],
 								'selected_type'           => $dli_selected_type,
-								'selected_cognome'        => $dli_page_data['selected_cognome'],
+								'selected_search'         => $dli_selected_search,
 								'filter_level_enabled'    => $dli_filter_level_enabled,
 								'filter_structure_hidden' => $dli_filter_structure_hidden,
 								'filter_type_hidden'      => $dli_filter_type_hidden,
@@ -153,7 +151,6 @@ if ( ! $dli_has_both ) {
 								array(
 									'people_by_category' => $dli_page_data['people_by_category'],
 									'categories'         => $dli_page_data['categories'],
-									'selected_type'      => $dli_selected_type,
 									'hide_icon'          => $dli_hide_icon,
 									'show_structure'     => $dli_show_structure,
 								)

@@ -70,9 +70,11 @@ if ( ! function_exists( 'dli_flatten_site_tree' ) ) {
 	 *
 	 * External links and nodes without a URL are excluded.
 	 *
-	 * @param array $tree  Sitemap tree (as returned by dli_get_site_tree()).
-	 * @param array $urls  Accumulator — pass by reference.
-	 * @return array Flat list of URL strings.
+	 * Child entries are checked at runtime before recursion.
+	 *
+	 * @param array<array{link?: string, external?: bool|string, children?: mixed}> $tree Sitemap tree (as returned by dli_get_site_tree()).
+	 * @param string[]                                                            $urls Accumulator — pass by reference.
+	 * @return string[] Flat list of URL strings.
 	 */
 	function dli_flatten_site_tree( $tree, &$urls = array() ) {
 		foreach ( $tree as $node ) {
@@ -169,8 +171,8 @@ add_action( 'init', 'dli_sitemap_rewrite_rules' );
 /**
  * Register the dli_sitemap query variable.
  *
- * @param array $vars Existing public query variables.
- * @return array
+ * @param string[] $vars Existing public query variables.
+ * @return string[] Public query variables including the sitemap endpoint.
  */
 function dli_sitemap_query_vars( $vars ) {
 	$vars[] = 'dli_sitemap';

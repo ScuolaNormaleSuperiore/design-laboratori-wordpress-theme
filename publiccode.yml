@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
-softwareVersion: 2.1.0
+softwareVersion: 2.1.1
 categories:
   - website-builder
   - content-management
@@ -47,6 +47,7 @@ description:
       - Importazione dei brevetti da IRIS.
       - Importazione di un albero di pagine da file CSV, con simulazione e conferma.
       - Importazione delle persone da file CSV, con simulazione.
+      - Un solo formato per gli import da CSV (UTF-8, punto e virgola, massimo 200 righe).
       - Manifest PWA installabile (senza service worker).
     localisedName: Design laboratori e centri di ricerca
     longDescription: >
@@ -140,7 +141,7 @@ name: Design Laboratori Italia
 landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-11-16'
+releaseDate: '2026-11-23'
 roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'

@@ -15,7 +15,7 @@
  *     @type string    $selected_structure    Slug struttura selezionata ('' = nessuna).
  *     @type string    $selected_level        Slug tag selezionato ('' = nessuno).
  *     @type string    $selected_type         ID categoria selezionata ('' = nessuna).
- *     @type string    $selected_cognome      Testo di ricerca sul cognome ('' = nessuno).
+ *     @type string    $selected_search       Testo della ricerca su nome, cognome, tipologia e struttura ('' = nessuno).
  *     @type bool      $filter_level_enabled  Filtro per TAG abilitato.
  *     @type bool      $filter_structure_hidden Filtro struttura nascosto da configurazione.
  *     @type bool      $filter_type_hidden    Filtro tipologia nascosto da configurazione.
@@ -32,7 +32,7 @@ $dli_f_categories              = isset( $args['categories'] ) ? $args['categorie
 $dli_f_selected_structure      = isset( $args['selected_structure'] ) ? $args['selected_structure'] : '';
 $dli_f_selected_level          = isset( $args['selected_level'] ) ? $args['selected_level'] : '';
 $dli_f_selected_type           = isset( $args['selected_type'] ) ? (string) $args['selected_type'] : '';
-$dli_f_selected_cognome        = isset( $args['selected_cognome'] ) ? (string) $args['selected_cognome'] : '';
+$dli_f_selected_search         = isset( $args['selected_search'] ) ? (string) $args['selected_search'] : '';
 $dli_f_filter_level_enabled    = isset( $args['filter_level_enabled'] ) ? (bool) $args['filter_level_enabled'] : false;
 $dli_f_filter_structure_hidden = isset( $args['filter_structure_hidden'] ) ? (bool) $args['filter_structure_hidden'] : false;
 $dli_f_filter_type_hidden      = isset( $args['filter_type_hidden'] ) ? (bool) $args['filter_type_hidden'] : false;
@@ -43,12 +43,15 @@ $dli_f_view_toggle             = isset( $args['view_toggle'] ) ? $args['view_tog
 
 $dli_f_has_structures = count( $dli_f_structures ) >= 1;
 
+// The search field is handled by assets/js/people-filters.js: Enter and the clear button reload the page with `cerca`.
+dli_enqueue_people_filters_script();
+
 /*
  * Ogni filtro resta visibile anche quando la combinazione attuale produce 0
  * risultati (a patto di essere lui stesso il filtro attivo), altrimenti
  * l'utente resterebbe intrappolato senza un modo per correggere la ricerca.
  */
-$dli_f_show_search    = $dli_f_result_count || '' !== $dli_f_selected_cognome;
+$dli_f_show_search    = $dli_f_result_count || '' !== $dli_f_selected_search;
 $dli_f_show_structure = $dli_f_has_structures && ! $dli_f_filter_structure_hidden && ( $dli_f_result_count || '' !== $dli_f_selected_structure );
 $dli_f_show_type      = ! $dli_f_filter_type_hidden && ! empty( $dli_f_categories ) && ( $dli_f_result_count || '' !== $dli_f_selected_type );
 $dli_f_show_level     = $dli_f_filter_level_enabled && count( $dli_f_tags ) > 0 && ( $dli_f_result_count || '' !== $dli_f_selected_level );
@@ -58,14 +61,15 @@ $dli_f_show_level     = $dli_f_filter_level_enabled && count( $dli_f_tags ) > 0 
 		<?php if ( $dli_f_show_search ) : ?>
 			<div class="col-12 col-md-6 col-lg">
 				<div class="form-group mb-0">
-					<label for="searchPeopleCognome"><?php echo esc_html__( 'Cerca per cognome', 'design_laboratori_italia' ); ?></label>
+					<label for="searchPeople"><?php echo esc_html__( 'Cerca', 'design_laboratori_italia' ); ?></label>
 					<input
 						type="search"
-						id="searchPeopleCognome"
+						id="searchPeople"
 						class="form-control"
-						value="<?php echo esc_attr( $dli_f_selected_cognome ); ?>"
-						placeholder="<?php echo esc_attr__( 'Es. Rossi', 'design_laboratori_italia' ); ?>"
-						onsearch="reloadWithSelectedItem('searchPeopleCognome', 'cognome')"
+						value="<?php echo esc_attr( $dli_f_selected_search ); ?>"
+						placeholder="<?php echo esc_attr__( 'Es. Rossi, Professore…', 'design_laboratori_italia' ); ?>"
+						aria-label="<?php echo esc_attr__( 'Cerca per nome, cognome, tipologia o struttura', 'design_laboratori_italia' ); ?>"
+						data-dli-people-search="cerca"
 					>
 				</div>
 			</div>
