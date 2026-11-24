@@ -31,6 +31,18 @@ function dli_is_saml_available() {
 }
 
 /**
+ * Whether the login screen takes the identity of the site: its logo, its name and the texts in Italian.
+ *
+ * That is the case when the reserved area is on or there is a single sign-on, which can be used without the reserved
+ * area. Without either, the screen stays the one of WordPress.
+ *
+ * @return bool
+ */
+function dli_is_login_screen_branded() {
+	return dli_is_reserved_area_enabled() || dli_is_saml_available();
+}
+
+/**
  * Whether the users of the reserved area can log in only through single sign-on.
  *
  * The rule applies only while the reserved area is on and WP SAML Auth is there: without a single sign-on, closing the
@@ -466,13 +478,13 @@ function dli_render_reserved_area_access( $post ) {
  *
  * The plugin gives its three texts in English (`title`, `button`, `alt_title`) to the filter
  * `wp_saml_auth_login_strings`; a text that a version of the plugin adds and that is not here is kept. Nothing changes
- * while the reserved area is off.
+ * while neither the reserved area nor the single sign-on is there (`dli_is_login_screen_branded()`).
  *
  * @param array<string, string> $strings The texts of the plugin.
  * @return array<string, string>
  */
 function dli_reserved_area_login_strings( $strings ) {
-	if ( ! dli_is_reserved_area_enabled() ) {
+	if ( ! dli_is_login_screen_branded() ) {
 		return $strings;
 	}
 	return array_merge(
@@ -502,12 +514,13 @@ function dli_get_login_logo_url() {
  * Put the logo of the site in place of the WordPress one on the login screens.
  *
  * The address goes into a quoted `url()`: quotes, backslashes, angle brackets and line breaks are removed from it, so it
- * cannot close the rule or the style. Nothing changes while the reserved area is off.
+ * cannot close the rule or the style. Nothing changes while neither the reserved area nor the single sign-on is there
+ * (`dli_is_login_screen_branded()`).
  *
  * @return void
  */
 function dli_reserved_area_login_logo_style() {
-	if ( ! dli_is_reserved_area_enabled() ) {
+	if ( ! dli_is_login_screen_branded() ) {
 		return;
 	}
 	$url = str_replace( array( '"', '\\', '<', '>', "\r", "\n" ), '', dli_get_login_logo_url() );
@@ -528,7 +541,7 @@ add_action( 'login_enqueue_scripts', 'dli_reserved_area_login_logo_style' );
  * @return string
  */
 function dli_reserved_area_login_header_url( $url ) {
-	return dli_is_reserved_area_enabled() ? home_url( '/' ) : $url;
+	return dli_is_login_screen_branded() ? home_url( '/' ) : $url;
 }
 add_filter( 'login_headerurl', 'dli_reserved_area_login_header_url' );
 
@@ -541,6 +554,6 @@ add_filter( 'login_headerurl', 'dli_reserved_area_login_header_url' );
  * @return string
  */
 function dli_reserved_area_login_header_text( $text ) {
-	return dli_is_reserved_area_enabled() ? esc_html( get_bloginfo( 'name' ) ) : $text;
+	return dli_is_login_screen_branded() ? esc_html( get_bloginfo( 'name' ) ) : $text;
 }
 add_filter( 'login_headertext', 'dli_reserved_area_login_header_text' );

@@ -33,6 +33,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.1.0] - 2026-11-16
+## Corretto
+- Login con WP SAML Auth attivo e area riservata spenta: testi in italiano e logo del sito al posto di quello WordPress, come con l'area riservata attiva.
 
 ## [2.0.9] - 2026-11-16
 ## Corretto

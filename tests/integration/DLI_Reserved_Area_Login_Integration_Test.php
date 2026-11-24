@@ -159,4 +159,42 @@ class DLI_Reserved_Area_Login_Integration_Test extends DLI_Integration_Test_Case
 		$this->assertSame( 'Powered by WordPress', apply_filters( 'login_headertext', 'Powered by WordPress' ) );
 		$this->assertSame( '', $this->login_css() );
 	}
+
+	/**
+	 * Tell the theme that WP SAML Auth is there, which the suite does not install.
+	 */
+	private function make_saml_available() {
+		add_filter( 'dli_reserved_area_saml_available', '__return_true' );
+	}
+
+	/**
+	 * With the single sign-on there the screen takes the identity of the site even if the reserved area is off: the
+	 * single sign-on can be used without it.
+	 */
+	public function test_the_login_screen_is_the_one_of_the_site_with_the_sso_and_the_reserved_area_off() {
+		$this->configure_area( 'false' );
+		$this->configure_logo( 'https://example.org/wp-content/uploads/logo.svg' );
+		$this->make_saml_available();
+		update_option( 'blogname', 'Laboratorio Prova' );
+
+		$strings = apply_filters( 'wp_saml_auth_login_strings', self::PLUGIN_STRINGS );
+
+		$this->assertSame( 'Accedi', $strings['button'] );
+		$this->assertStringContainsString( 'url("https://example.org/wp-content/uploads/logo.svg")', $this->login_css() );
+		$this->assertSame( home_url( '/' ), apply_filters( 'login_headerurl', 'https://wordpress.org/' ) );
+		$this->assertSame( 'Laboratorio Prova', apply_filters( 'login_headertext', 'Powered by WordPress' ) );
+	}
+
+	/**
+	 * Without the single sign-on and with the reserved area off there is nothing to take the identity for: the screen
+	 * is the one of WordPress (the test above, in the same state but for the plugin, shows the difference).
+	 */
+	public function test_the_login_screen_is_not_changed_without_the_sso_and_the_reserved_area() {
+		$this->configure_area( 'false' );
+		$this->configure_logo( 'https://example.org/wp-content/uploads/logo.svg' );
+		add_filter( 'dli_reserved_area_saml_available', '__return_false' );
+
+		$this->assertSame( 'https://wordpress.org/', apply_filters( 'login_headerurl', 'https://wordpress.org/' ) );
+		$this->assertSame( '', $this->login_css() );
+	}
 }
