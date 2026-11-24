@@ -142,9 +142,9 @@ if ( ! function_exists( 'dli_multi_array_search' ) ) {
 	/**
 	 * Search for a value in a nested array and return parent key.
 	 *
-	 * @param string $search_for Value to search.
-	 * @param array  $search_in Array where to search.
-	 * @param mixed  $okey Previous key.
+	 * @param string                  $search_for Value to search.
+	 * @param array<array-key, mixed> $search_in Array where to search.
+	 * @param mixed                   $okey Previous key.
 	 * @return mixed
 	 */
 	function dli_multi_array_search( $search_for, $search_in, $okey = false ) {
@@ -171,7 +171,7 @@ if ( ! function_exists( 'dli_get_post_wrapper' ) ) {
 	 *
 	 * @param WP_Post|null $result Source post object, or null when there is none (for example get_post() outside the loop).
 	 * @param string       $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_get_post_wrapper( $result, $image_format = 'item-carousel' ) {
 		$item = array();
@@ -265,7 +265,7 @@ if ( ! function_exists( 'dli_get_boxes_post_types' ) ) {
 	 * Return localized post type labels for content boxes.
 	 *
 	 * @param mixed $item Unused parameter kept for backward compatibility.
-	 * @return array
+	 * @return array<string, string>
 	 */
 	function dli_get_boxes_post_types( $item ) {
 		return array(
@@ -322,7 +322,7 @@ if ( ! function_exists( 'dli_from_event_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_event_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
@@ -361,7 +361,7 @@ if ( ! function_exists( 'dli_from_news_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_news_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
@@ -400,7 +400,7 @@ if ( ! function_exists( 'dli_from_publication_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_publication_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
@@ -442,7 +442,7 @@ if ( ! function_exists( 'dli_from_patent_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_patent_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
@@ -483,7 +483,7 @@ if ( ! function_exists( 'dli_from_technical_resource_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_technical_resource_to_wrapped_item( $item, $image_format ) {
 		$result     = DLI_POST_WRAPPER;
@@ -537,7 +537,7 @@ if ( ! function_exists( 'dli_from_spinoff_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_spinoff_to_wrapped_item( $item, $image_format ) {
 		$result     = DLI_POST_WRAPPER;
@@ -589,7 +589,7 @@ if ( ! function_exists( 'dli_from_progetto_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_progetto_to_wrapped_item( $item, $image_format ) {
 		$result         = DLI_POST_WRAPPER;
@@ -627,7 +627,7 @@ if ( ! function_exists( 'dli_from_post_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_post_to_wrapped_item( $item, $image_format ) {
 		$post_type      = get_post_type( $item );
@@ -668,7 +668,7 @@ if ( ! function_exists( 'dli_from_page_to_wrapped_item' ) ) {
 	 *
 	 * @param WP_Post $item Source post object.
 	 * @param string  $image_format Target image size key.
-	 * @return array
+	 * @return array<string, string|int|bool|null>
 	 */
 	function dli_from_page_to_wrapped_item( $item, $image_format ) {
 		$post_type      = get_post_type( $item );
@@ -714,7 +714,7 @@ if ( ! function_exists( 'dli_get_image_metadata' ) ) {
 	 * @param WP_Post     $item Source post object.
 	 * @param string      $image_size Requested image size key.
 	 * @param string|null $partial_default_img_url Default image partial URL.
-	 * @return array
+	 * @return array<string, string|false>
 	 */
 	function dli_get_image_metadata( $item, $image_size = 'full', $partial_default_img_url = null ) {
 		$result        = DLI_POST_WRAPPER;
@@ -753,7 +753,7 @@ if ( ! function_exists( 'dli_get_post_main_category' ) ) {
 	 *
 	 * @param WP_Post $post Source post object.
 	 * @param string  $taxonomy Taxonomy slug.
-	 * @return array
+	 * @return array<string, string|int|false|WP_Error|null>
 	 */
 	function dli_get_post_main_category( $post, $taxonomy ) {
 		$terms = get_the_terms( $post, $taxonomy );
@@ -781,7 +781,7 @@ if ( ! function_exists( 'dli_get_post_categories' ) ) {
 	 *
 	 * @param WP_Post $post Source post object.
 	 * @param string  $taxonomy Taxonomy slug.
-	 * @return array
+	 * @return list<array<string, string|int|false|WP_Error|null>>
 	 */
 	function dli_get_post_categories( $post, $taxonomy ) {
 		$categories = array();
@@ -821,7 +821,7 @@ if ( ! function_exists( 'dli_get_all_categories' ) ) {
 		 *
 		 * @param string $taxonomy Taxonomy slug.
 		 * @param bool   $exclude_uncategorized Whether to exclude uncategorized term.
-		 * @return array
+		 * @return list<array<string, string|int|WP_Error>>
 		 */
 	function dli_get_all_categories( $taxonomy, $exclude_uncategorized = true ) {
 		$terms      = get_terms( array( 'taxonomy' => $taxonomy ) );
@@ -871,7 +871,7 @@ if ( ! function_exists( 'dli_get_all_categories_by_ct' ) ) {
 		 * @param string $taxonomy Taxonomy slug.
 		 * @param string $post_type Post type slug.
 		 * @param string $content_status Post status.
-		 * @return array
+		 * @return list<array<string, string|int|WP_Error>>
 		 */
 	function dli_get_all_categories_by_ct( $taxonomy, $post_type, $content_status = 'publish' ) {
 		$cache_key  = dli_get_categories_by_ct_cache_key( $taxonomy, $post_type, $content_status );
@@ -1267,7 +1267,7 @@ if ( ! function_exists( 'dli_get_all_contenttypes' ) ) {
 	/**
 	 * Return all translatable content types excluding people type marker.
 	 *
-	 * @return array
+	 * @return array<int, string>
 	 */
 	function dli_get_all_contenttypes() {
 		$arr = DLI_POST_TYPES_TO_TRANSLATE;
@@ -1287,7 +1287,7 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 	 * one WP_Query per term, and caches the result in a transient invalidated
 	 * on place save (see dli_invalidate_place_types_with_results_cache()).
 	 *
-	 * @return array
+	 * @return list<WP_Term>
 	 */
 	function dli_get_all_place_types_with_results() {
 		$cache_key                = 'dli_place_types_with_results';
@@ -1312,6 +1312,8 @@ if ( ! function_exists( 'dli_get_all_place_types_with_results' ) ) {
 if ( ! function_exists( 'dli_invalidate_place_types_with_results_cache' ) ) {
 	/**
 	 * Invalidate the place-types-with-results transient when a place is saved.
+	 *
+	 * @return void
 	 */
 	function dli_invalidate_place_types_with_results_cache() {
 		delete_transient( 'dli_place_types_with_results' );
@@ -1335,8 +1337,8 @@ if ( ! function_exists( 'dli_menu_tree_by_items' ) ) {
 	/**
 	 * Build a two-level menu tree from menu items.
 	 *
-	 * @param array $menuitems Menu items list.
-	 * @return array
+	 * @param array<WP_Post&object{menu_item_parent: string}> $menuitems Menu items enriched by WordPress.
+	 * @return array<int, array{element: WP_Post, children: list<WP_Post>}>
 	 */
 	function dli_menu_tree_by_items( $menuitems ) {
 		$menu_tree = array();
@@ -1362,7 +1364,7 @@ if ( ! function_exists( 'dli_get_site_tree' ) ) {
 	 * Build the sitemap tree for the given language (or the current one if omitted).
 	 *
 	 * @param string|null $lang Language slug ('it', 'en', …). Defaults to current language.
-	 * @return array
+	 * @return array<string, mixed> Nodes contain strings, flags and recursively nested children.
 	 */
 	function dli_get_site_tree( $lang = null ) {
 		$pt                = array(); // Page Tree.
@@ -1460,7 +1462,7 @@ if ( ! function_exists( 'dli_get_tree_item' ) ) {
 	/**
 	 * Return an empty tree item template.
 	 *
-	 * @return array
+	 * @return array{name: string, slug: string, link: string, external: bool, children: array<string, mixed>}
 	 */
 	function dli_get_tree_item() {
 		$item = array(
@@ -1478,8 +1480,8 @@ if ( ! function_exists( 'dli_get_sitemap_posts' ) ) {
 	/**
 	 * Return the list of the post of a certain type to show in the sitemap.
 	 *
-	 * @param array|string $post_type Post type slug or list.
-	 * @return array of slugs (strings)
+	 * @param string|array<string> $post_type Post type slug or list.
+	 * @return array<WP_Post>
 	 */
 	function dli_get_sitemap_posts( $post_type ) {
 		$query = new WP_Query(
@@ -1522,8 +1524,8 @@ if ( ! function_exists( 'dli_get_sluglist_by_category' ) ) {
 	 * Return the slugs of all the page that are archives of posts.
 	 * Ritorna un array di slug
 	 *
-	 * @param array $categories Categories list.
-	 * @return array
+	 * @param array<string> $categories Categories list.
+	 * @return list<string>
 	 */
 	function dli_get_sluglist_by_category( $categories ) {
 		$pt_slugs = dli_get_slugs_by_category( $categories );
@@ -1542,7 +1544,7 @@ if ( ! function_exists( 'dli_get_slugs_by_category' ) ) {
 	 * Return the slugs of the categories passed as parameter.
 	 * Ritorna un array di coppie: <categoria> => <array_di_slug>
 	 *
-	 * @param array $categories Categories to map.
+	 * @param array<string> $categories Categories to map.
 	 * @return array<string, array<int, string>>
 	 */
 	function dli_get_slugs_by_category( $categories ) {
@@ -1585,7 +1587,7 @@ if ( ! function_exists( 'dli_get_page_slug_anchestors' ) ) {
 	 * Return the slug anchestors of given page.
 	 *
 	 * @param WP_Post $page Page object.
-	 * @return array
+	 * @return list<string>
 	 */
 	function dli_get_page_slug_anchestors( $page ) {
 		$slugs = array();

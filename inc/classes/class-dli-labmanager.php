@@ -78,7 +78,7 @@ if ( ! class_exists( 'DLI_IndicoImporter' ) ) {
 }
 
 if ( ! class_exists( 'DLI_IrisPatentImporter' ) ) {
-	include_once 'class-patentimporter.php';
+		include_once 'class-dli-irispatentimporter.php';
 }
 
 /**

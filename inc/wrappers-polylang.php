@@ -70,8 +70,8 @@ if ( ! function_exists( 'dli_languages_list' ) ) {
 	/**
 	 * Recupera l'elenco delle lingue supportate dal sito.
 	 *
-	 * @param array $args Arguments forwarded to Polylang's pll_languages_list().
-	 * @return array
+	 * @param array<string, mixed> $args Arguments forwarded to Polylang's pll_languages_list().
+	 * @return array<int, string|int>
 	 */
 	function dli_languages_list( $args ) {
 		if ( ! function_exists( 'pll_languages_list' ) ) {
@@ -101,7 +101,7 @@ if ( ! function_exists( 'dli_save_term_translations' ) ) {
 	/**
 	 * Definisce un termine come la traduzione di un altro.
 	 *
-	 * @param array $related_taxonomies Array of term IDs, keyed by language slug.
+	 * @param array<string, int> $related_taxonomies Term IDs keyed by language slug.
 	 * @return void
 	 */
 	function dli_save_term_translations( $related_taxonomies ) {
@@ -132,7 +132,7 @@ if ( ! function_exists( 'dli_save_post_translations' ) ) {
 	/**
 	 * Definisce un post come la traduzione di un altro.
 	 *
-	 * @param array $related_posts Array of post IDs, keyed by language slug.
+	 * @param array<string, int> $related_posts Post IDs keyed by language slug.
 	 * @return void
 	 */
 	function dli_save_post_translations( $related_posts ) {
@@ -148,7 +148,7 @@ if ( ! function_exists( 'dli_get_post_translations' ) ) {
 	 * Recupera le traduzioni di un post nelle lingue del sito, se presenti.
 	 *
 	 * @param int $post_id Post ID.
-	 * @return array
+	 * @return array<string, int>
 	 */
 	function dli_get_post_translations( $post_id ): array {
 		if ( ! function_exists( 'pll_get_post_translations' ) ) {
@@ -193,7 +193,7 @@ if ( ! function_exists( 'dli_get_term_translations' ) ) {
 	 * Recupera le traduzioni di un termine nelle lingue del sito, se presenti.
 	 *
 	 * @param int $term_id Term ID.
-	 * @return array
+	 * @return array<string, int>
 	 */
 	function dli_get_term_translations( $term_id ): array {
 		if ( ! function_exists( 'pll_get_term_translations' ) ) {
@@ -268,6 +268,8 @@ if ( ! function_exists( 'dli_get_page_selectors' ) ) {
 	/**
 	 * Ritorna la lista di elementi del selettore in base alla lingua della pagina.
 	 * Se la pagina non ha traduzione non c'è il selettore (richiesta esplicita, ma discutibile !!).
+	 *
+	 * @return list<array{slug: string, url: string}>
 	 */
 	function dli_get_page_selectors() {
 		global $post;
@@ -352,7 +354,7 @@ if ( ! function_exists( 'dli_get_all_menus_by_lang' ) ) {
 	 * Return all menu locations for the requested language.
 	 *
 	 * @param string $lang Language slug.
-	 * @return array
+	 * @return list<array<string, int>>
 	 */
 	function dli_get_all_menus_by_lang( $lang ) {
 		$items   = array();

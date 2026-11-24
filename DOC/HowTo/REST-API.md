@@ -13,7 +13,7 @@
 | Endpoint | Metodo | File | Funzione |
 |---|---|---|---|
 | `/wp-json/custom/v1/indico-import` | `POST` | `inc/classes/class-indicoimporter.php` | Avvia l'import di eventi da Indico |
-| `/wp-json/custom/v1/iris-patent-import` | `POST` | `inc/classes/class-patentimporter.php` | Avvia l'import di brevetti da IRIS |
+| `/wp-json/custom/v1/iris-patent-import` | `POST` | `inc/classes/class-dli-irispatentimporter.php` | Avvia l'import di brevetti da IRIS |
 
 
 La classe base `DLI_BaseImporter` (`inc/classes/class-base-importer.php`)

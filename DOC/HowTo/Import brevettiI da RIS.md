@@ -26,7 +26,7 @@ l'avvio via HTTP, non la schedulazione.
 
  - **class-patentmanager.php**: Qui c'è il codice per la gestione del post type personalizzato Patent e delle tassonomie associate.
  
- - **class-patentimporter.php**: contiene `DLI_IrisPatentImporter`, che importa i brevetti tramite web service o WP-Cron.
+ - **class-dli-irispatentimporter.php**: contiene `DLI_IrisPatentImporter`, che importa i brevetti tramite web service o WP-Cron.
 
  - **class-dli-labmanager.php**: inizializza il manager dei brevetti `Patent_Manager` e l'importatore `DLI_IrisPatentImporter`.
   

@@ -69,7 +69,7 @@ class DLI_ContentsManager {
 	/**
 	 * Get the distinct deposit years used across published patents.
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
 	public static function dli_get_all_patent_years() {
 		global $wpdb;
@@ -95,7 +95,7 @@ class DLI_ContentsManager {
 	/**
 	 * Get the distinct incorporation years used across published spin-offs.
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
 	public static function dli_get_all_spinoff_years() {
 		global $wpdb;
@@ -121,7 +121,7 @@ class DLI_ContentsManager {
 	/**
 	 * Get the distinct acquisition years used across published technical resources.
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
 	public static function dli_get_all_technical_res_years() {
 		global $wpdb;
@@ -148,7 +148,7 @@ class DLI_ContentsManager {
 	 * Build the breadcrumb steps (Home > ancestors > current page) for a post.
 	 *
 	 * @param WP_Post|null $post Current post, or null for the homepage only.
-	 * @return array List of steps, each with 'label', 'url' and 'class' keys.
+	 * @return list<array<string, string|false>> List of steps, each with 'label', 'url' and 'class' keys.
 	 */
 	public static function build_content_path( $post ) {
 		$steps = array(
@@ -236,7 +236,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the patents archive, applying search/deposit-year/thematic-area filters.
 	 *
-	 * @param array $params Archive request params (paged, per_page, search_string, deposit_year, thematic_area).
+	 * @param array{paged: int, per_page: int|string, search_string: string, deposit_year: array<string>, thematic_area: array<int|string|WP_Error>} $params Archive request params (paged, per_page, search_string, deposit_year, thematic_area).
 	 * @return WP_Query
 	 */
 	public static function get_patent_data_query( $params ) {
@@ -270,7 +270,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the spin-offs archive, applying search/foundation-year/business-sector filters.
 	 *
-	 * @param array $params Archive request params (paged, per_page, search_string, foundation_year, business_sector).
+	 * @param array{paged: int, per_page: int|string, search_string: string, foundation_year: array<string>, business_sector: array<int|string|WP_Error>} $params Archive request params (paged, per_page, search_string, foundation_year, business_sector).
 	 * @return WP_Query
 	 */
 	public static function get_spinoff_data_query( $params ) {
@@ -310,7 +310,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the technical resources archive, applying search/acquisition-year/type filters.
 	 *
-	 * @param array $params Archive request params (paged, per_page, search_string, acquisition_year, type_technical_resource).
+	 * @param array{paged: int, per_page: int|string, search_string: string, acquisition_year?: array<string>|null, type_technical_resource?: array<int>|null} $params Archive request params (paged, per_page, search_string, acquisition_year, type_technical_resource).
 	 * @return WP_Query
 	 */
 	public static function get_technical_resource_data_query( $params ) {
@@ -346,7 +346,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the events archive, ordered by start date, applying the category filter.
 	 *
-	 * @param array $params Archive request params (paged, per_page, selected_categories).
+	 * @param array{paged: int, per_page: int|string, selected_categories: array<int|string>} $params Archive request params (paged, per_page, selected_categories).
 	 * @return WP_Query
 	 */
 	public static function get_event_data_query( $params ) {
@@ -366,7 +366,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the news archive, applying the category filter.
 	 *
-	 * @param array $params Archive request params (paged, per_page, selected_categories).
+	 * @param array{paged: int, per_page: int|string, selected_categories: array<int|string>} $params Archive request params (paged, per_page, selected_categories).
 	 * @return WP_Query
 	 */
 	public static function get_news_data_query( $params ) {
@@ -386,7 +386,7 @@ class DLI_ContentsManager {
 	 * Build the WP_Query for the active (not-archived) projects list, ordered by priority,
 	 * applying the tag filter.
 	 *
-	 * @param array $params Archive request params (paged, per_page, today, tag_level).
+	 * @param array{paged: int, per_page: int|string, today: string, tag_level?: string} $params Archive request params (paged, per_page, today, tag_level).
 	 * @return WP_Query
 	 */
 	public static function get_projects_data_query( $params ) {
@@ -436,7 +436,7 @@ class DLI_ContentsManager {
 	 * Build the WP_Query for the archived projects list, ordered by priority,
 	 * applying the tag filter.
 	 *
-	 * @param array $params Archive request params (paged, per_page, today, tag_level).
+	 * @param array{paged: int, per_page: int|string, today?: string, tag_level?: string} $params Archive request params (paged, per_page, today, tag_level).
 	 * @return WP_Query
 	 */
 	public static function get_archived_projects_data_query( $params ) {
@@ -475,7 +475,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the research activities list, ordered by priority.
 	 *
-	 * @param array $params Archive request params (paged, per_page).
+	 * @param array{paged: int, per_page: int|string} $params Archive request params (paged, per_page).
 	 * @return WP_Query
 	 */
 	public static function get_research_area_data_query( $params ) {
@@ -517,7 +517,7 @@ class DLI_ContentsManager {
 	/**
 	 * Build the WP_Query for the people list, applying the tag filter.
 	 *
-	 * @param array $params Archive request params (paged, per_page, tag_level).
+	 * @param array{paged: int, per_page: int|string, tag_level?: string} $params Archive request params (paged, per_page, tag_level).
 	 * @return WP_Query
 	 */
 	public static function get_people_query( $params ) {
@@ -547,7 +547,7 @@ class DLI_ContentsManager {
 	 * `inc/people-filters.php`): a person with two types searched by one of them appears only under that type.
 	 * The cards template receives the filtered rows and does not apply the type filter again.
 	 *
-	 * @param array $args {
+	 * @param array{selected_structure?: string, selected_level?: string, selected_type?: string, selected_search?: string, posts_per_page?: int, paged?: int} $args {
 	 *     Optional arguments.
 	 *     @type string $selected_structure Selected structure slug ('' for none).
 	 *     @type string $selected_level     Selected tag slug ('' for none).
@@ -556,20 +556,20 @@ class DLI_ContentsManager {
 	 *     @type int    $posts_per_page     People per page (-1 for all).
 	 *     @type int    $paged              Current page.
 	 * }
-	 * @return array {
-	 *     @type array     $people_by_category  People indexed by type ID, for the cards view.
-	 *     @type array     $people_rows         Flat rows {person: WP_Post, category_id: int}, one per person/type pair, for the table view.
-	 *     @type WP_Post[] $categories          Types ordered by priority.
-	 *     @type WP_Term[] $structures          Available structures.
-	 *     @type WP_Term[] $tags                Available tags.
-	 *     @type string    $selected_structure  Applied structure slug.
-	 *     @type string    $selected_level      Applied tag slug.
-	 *     @type string    $selected_type       Applied people-type ID.
-	 *     @type string    $selected_search     Applied search text.
-	 *     @type int       $result_count        Number of unique people that can be rendered.
-	 *     @type int       $current_page        Current page.
-	 *     @type int       $total_pages         Total number of pages.
-	 * }
+	 * @return array{
+	 *     people_by_category: array<int, list<WP_Post>>,
+	 *     people_rows: list<array{person: WP_Post, category_id: int}>,
+	 *     categories: array<WP_Post>,
+	 *     structures: array<WP_Term>,
+	 *     tags: array<WP_Term>,
+	 *     selected_structure: string,
+	 *     selected_level: string,
+	 *     selected_type: string,
+	 *     selected_search: string,
+	 *     result_count: int,
+	 *     current_page: int,
+	 *     total_pages: int
+	 * } Filtered people grouped for cards and flattened for the table, with filter and pagination state.
 	 */
 	public static function get_people_page_data( $args = array() ) {
 		$selected_structure = isset( $args['selected_structure'] ) ? (string) $args['selected_structure'] : '';
@@ -790,7 +790,7 @@ class DLI_ContentsManager {
 	 * Get the homepage main carousel items, either auto-selected (flagged posts) or
 	 * manually curated (configured post IDs), resolved to the current language.
 	 *
-	 * @return array List of item wrappers (see dli_get_post_wrapper()), sorted by the configured order.
+	 * @return list<array<string, string|int|bool|null>> List of item wrappers (see dli_get_post_wrapper()), sorted by the configured order.
 	 */
 	public static function get_carousel_items() {
 		$items           = array();
@@ -849,8 +849,8 @@ class DLI_ContentsManager {
 	/**
 	 * Sort carousel item wrappers in place, most recent order date first.
 	 *
-	 * @param array  $items           Passed by reference: item wrappers to sort.
-	 * @param string $order_date_type One of 'post_date', 'post_modified', 'event_date'.
+	 * @param list<array<string, string|int|bool|null>> $items Passed by reference: item wrappers to sort.
+	 * @param string                                    $order_date_type One of 'post_date', 'post_modified', 'event_date'.
 	 * @return void
 	 */
 	private static function sort_carousel_items_by_order_date_desc( &$items, $order_date_type ) {
@@ -868,8 +868,8 @@ class DLI_ContentsManager {
 	/**
 	 * Resolve a carousel item wrapper's sort timestamp for the given order date type.
 	 *
-	 * @param array  $item            Item wrapper (see dli_get_post_wrapper()).
-	 * @param string $order_date_type One of 'post_date', 'post_modified', 'event_date'.
+	 * @param array<string, string|int|bool|null> $item Item wrapper (see dli_get_post_wrapper()).
+	 * @param string                              $order_date_type One of 'post_date', 'post_modified', 'event_date'.
 	 * @return int Unix timestamp, or PHP_INT_MIN if the date is unavailable/invalid.
 	 */
 	private static function get_carousel_item_order_timestamp( $item, $order_date_type ) {
@@ -915,9 +915,9 @@ class DLI_ContentsManager {
 	 * Filter a list of post types down to those that actually have at least one
 	 * post with the given status.
 	 *
-	 * @param mixed  $post_types  Post type slugs to check; anything but a non-empty array gives an empty result.
+	 * @param mixed  $post_types Post type slugs to check; anything but a non-empty array gives an empty result.
 	 * @param string $post_status Post status to match.
-	 * @return array Subset of $post_types that have at least one matching post.
+	 * @return list<string> Subset of $post_types that have at least one matching post.
 	 */
 	public static function get_post_types_with_results( $post_types, $post_status = 'publish' ) {
 		global $wpdb;
@@ -960,7 +960,7 @@ class DLI_ContentsManager {
 	 * Content types (excluding people types) that have at least one published post,
 	 * used to build the site search's "filter by type" checkboxes.
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
 	public static function get_all_contenttypes_with_results() {
 		$content_types = array_values(
@@ -984,7 +984,7 @@ class DLI_ContentsManager {
 	 * filters for content types with zero matches.
 	 *
 	 * @param string $search_string Search string (may be empty).
-	 * @return array
+	 * @return list<string>
 	 */
 	public static function get_contenttypes_with_search_results( $search_string ) {
 		$content_types = array_values(
@@ -1030,10 +1030,10 @@ class DLI_ContentsManager {
 	 * Build the WP_Query for the site search results, defaulting to all content
 	 * types with results when none are explicitly selected.
 	 *
-	 * @param array    $selected_contents Post type slugs to restrict the search to (empty = all with results).
-	 * @param string   $search_string     Search string (may be empty).
-	 * @param int      $page_size         Results per page.
-	 * @param int|null $paged             Current page number, or null to resolve it from the request.
+	 * @param array<string> $selected_contents Post type slugs to restrict the search to (empty = all with results).
+	 * @param string        $search_string Search string (may be empty).
+	 * @param int           $page_size Results per page.
+	 * @param int|null      $paged Current page number, or null to resolve it from the request.
 	 * @return WP_Query
 	 */
 	public static function main_search_query( $selected_contents, $search_string, $page_size, $paged = null ) {
@@ -1095,7 +1095,7 @@ class DLI_ContentsManager {
 	/**
 	 * Get the homepage sections as a flat key => name list, for use in admin selectors.
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public static function get_hp_section_list() {
 		$result = array();
