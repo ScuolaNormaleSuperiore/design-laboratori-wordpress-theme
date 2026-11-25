@@ -19,15 +19,15 @@ radice del tema.
 
 ## Come si lancia ciascuno
 
-| Cosa | Comando | Tempo indicativo | Nell'hook `pre-commit`? | Requisiti e variabili |
-|---|---|---|---|---|
-| Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | l'intero tema, qualche minuto; l'hook controlla solo i file in staging, meno di un secondo ciascuno | **Sì, solo gli errori** dei file PHP, CSS e SCSS in staging | — |
-| Analisi statica (PHPStan) | `composer run lint:phpstan` | pochi secondi | **Sì**, blocca il commit | — |
-| Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | meno di un secondo | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
-| Test di integrazione | `composer test:integration` | 3–4 minuti, circa 490 test a novembre 2026 (il primo avvio scarica ACF e Polylang) | No | [`integration/README.md`](integration/README.md) |
-| Test E2E | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | circa 10 minuti per l'intera suite (una sola specifica, pochi secondi) | No | [`e2e/README.md`](e2e/README.md) |
-| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | circa 4 minuti | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E è lunga (circa 10 minuti) e si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`), perché la suite E2E supera i 300 secondi |
-| Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | minuti, dipende dal numero di pagine | No | [`report/README.md`](report/README.md) |
+| Cosa | Comando | Nell'hook `pre-commit`? | Requisiti e variabili |
+|---|---|---|---|
+| Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | **Sì, solo gli errori** dei file PHP, CSS e SCSS in staging | — |
+| Analisi statica (PHPStan) | `composer run lint:phpstan` | **Sì**, blocca il commit | — |
+| Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
+| Test di integrazione (oltre 500) | `composer test:integration` | No | [`integration/README.md`](integration/README.md); il primo avvio scarica ACF e Polylang |
+| Test E2E (oltre 60) | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | No | [`e2e/README.md`](e2e/README.md) |
+| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`) perché la suite E2E possa finire |
+| Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
 - **Prima di ogni commit:** l'hook esegue da solo PHPStan (livello 6, intero tema), PHPCS sui file in staging e i test unit, e blocca il commit se uno fallisce. Per PHPCS bloccano solo gli **errori** (gli avvisi non vengono mostrati) e conta ciò che è in staging, non il file su disco.
@@ -47,7 +47,7 @@ o di una release. I comandi, tutti da lanciare dalla radice del tema, sono stati
 |---|---|---|---|
 | Unit | `composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php` | `composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name` | `composer test:unit -- --list-tests` |
 | Integrazione | `composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `vendor/bin/phpunit -c phpunit-integration.xml --list-tests` |
-| E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:44` oppure `composer test:e2e -- -g "wrong nonce"` | `composer test:e2e -- --list` |
+| E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:10` oppure `composer test:e2e -- -g "password-protected"` | `composer test:e2e -- --list` |
 
 Regole utili:
 - Tutto ciò che sta dopo `--` viene passato allo strumento che esegue i test (PHPUnit o Playwright).
@@ -100,7 +100,7 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | Momento | Cosa gira | Blocca? |
 |---|---|---|
 | **Commit** (hook locale, se attivo) | Segreti, guardia l10n (corregge da sola), PHPStan livello 6 sull'intero tema, PHPCS sui file PHP, CSS e SCSS in staging (solo errori), test unit; controllo del messaggio (trailer AI) | Sì, tranne la guardia l10n; `--no-verify` salta tutto |
-| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6) e job `integration` (333 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
+| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6) e job `integration` (oltre 500 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
 | **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | Solo `checks` (e `documentation-check` su `docs/**`) | No |
 | **Pull request verso `dev`** (per esempio Dependabot) | `checks` | No |
 | **Pull request verso `main`** (rilascio da `dev`) | `checks` e `integration`; `documentation-check` se cambia la documentazione | No |

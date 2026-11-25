@@ -2,7 +2,7 @@
 
 I test unit controllano la logica che **non dipende da WordPress**: funzioni pure in PHP e in JavaScript,
 tabelle di configurazione e "test di contratto" sui file del repository (versioni,
-date di rilascio, documentazione per gli agenti AI). Girano in meno di un secondo e non
+date di rilascio, documentazione per gli agenti AI). Non
 richiedono database, sito o plugin. Il hook `pre-commit` li esegue a ogni commit e blocca il commit
 se uno fallisce.
 
@@ -39,7 +39,7 @@ Il codice di uscita è `0` se tutti i test passano, `1` altrimenti.
 
 ### Eseguire un solo test
 
-Ha senso: la suite dura meno di un secondo, ma un solo test rende l'output leggibile quando si sta scrivendo o correggendo
+Ha senso: un solo test rende l'output leggibile quando si sta scrivendo o correggendo
 un test. Comandi provati, dalla radice del tema:
 
 ```sh
@@ -73,7 +73,7 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 | `DLI_Image_Guide_Unit_Test.php` | La guida `DOC/HowTo/Gestione-delle-immagini.md`: esiste, è nel manifest della documentazione, riporta ogni misura e il nome di ogni posizione dell'elenco, dà il peso massimo e non ha riferimenti privati |
 | `DLI_Image_Coverage_Unit_Test.php` | Ogni file del tema che carica o mostra un'immagine (dimensioni, immagine in evidenza, allegati, campi ACF e CMB2) è nell'elenco dei file noti, legato a una posizione dell'elenco dei formati o con un'eccezione motivata; segnala anche i file noti che non mostrano più immagini |
 | `DLI_Captcha_Unit_Test.php` | L’helper CAPTCHA fallisce in modo sicuro quando il plugin opzionale Really Simple CAPTCHA non è disponibile |
-| `DLI_PHPStan_Config_Unit_Test.php` | `phpstan.neon`: ogni file PHP della radice è nei percorsi analizzati, ogni cartella con codice PHP è analizzata o esclusa in modo esplicito e il livello non scende sotto il 5 |
+| `DLI_PHPStan_Config_Unit_Test.php` | `phpstan.neon`: ogni file PHP della radice è nei percorsi analizzati, ogni cartella con codice PHP è analizzata o esclusa in modo esplicito e il livello non scende sotto il 6 |
 | `DLI_Pagination_Unit_Test.php` | La dimensione della pagina chiesta nell'indirizzo (`inc/pagination.php`): solo numeri interi positivi, scelta tra i valori offerti o il predefinito, limite al valore massimo |
 | `DLI_Home_Sections_Unit_Test.php` | Gli helper puri delle sezioni della home (`inc/home-sections.php`): righe salvate rese sicure (sezione, flag, posizione, sfondo, numero di elementi e sottoelementi, livello delle pagine, pagina scelta, modalità e banner scelti), colonne di card e gruppi, tab per lingua, contenuti in evidenza (renderer, colonne, box), titolo della riga nella lingua della pagina |
 | `DLI_Menus_Unit_Test.php` | Gli helper puri dei menu dell'header (`inc/menus.php`): `data-element` dallo slug della pagina nelle due lingue o dal titolo, identificatore del menu a tendina |

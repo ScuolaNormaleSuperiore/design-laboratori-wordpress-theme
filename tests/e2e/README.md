@@ -59,7 +59,7 @@ composer test:e2e:ui        # interfaccia di Playwright
 composer test:e2e -- config-permissions    # una sola specifica (le opzioni dopo --)
 ```
 
-Il sito deve essere acceso in Local. Una corsa dura circa 40 secondi. Dopo la corsa il sito è alla baseline.
+Il sito deve essere acceso in Local. Dopo la corsa il sito è alla baseline.
 
 
 ### Eseguire un solo test
@@ -82,7 +82,7 @@ composer test:e2e:headed -- site-search                                   # con 
 - Il numero di riga (`:44`) è quello che compare nell'errore, ma cambia quando si modifica il file: per un riferimento stabile
   usare il filtro per titolo `-g`.
 - **Anche per un solo test la suite ripristina la baseline prima e dopo** ([`global-setup.js`](global-setup.js) e
-  [`global-teardown.js`](global-teardown.js)): il tempo totale è quello del test più alcuni secondi di ripristino.
+  [`global-teardown.js`](global-teardown.js)).
 - Per saltare il ripristino mentre si fa il debug di una specifica, impostare `DLI_E2E_SKIP_RESET=1`. Il sito resta allora nello stato in cui
   il test lo lascia: prima di una corsa vera ripristinarlo (vedi sotto) o lanciare la suite senza la variabile.
 
@@ -212,7 +212,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 | `home-publications.spec.js` | pubblicazioni della home (configurate nella baseline): il tipo è sottolineato solo su hover e focus; dalla tipologia all'elenco filtrato e pulsante «Tutte le pubblicazioni» (il contenuto delle card è in `DLI_Publication_Home_Cards_Integration_Test`) |
 | `publication-detail.spec.js` | scheda di una pubblicazione: protetta da password (solo modulo, poi contenuto dopo la password) e traduzione inglese (le schede completa e minima sono in `DLI_Publication_Detail_Integration_Test`) |
 
-Sono quaranta test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
+Sono oltre 60 test. Non coprono l'invio riuscito del form dei contatti, che richiede il plugin CAPTCHA e un server di posta. La copertura vera (opzioni condizionali
 delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere.
 
 
@@ -230,7 +230,7 @@ delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere
   lenti su un sito locale), un nuovo tentativo per test.
 
 **Test «flaky».** Con un sito Local su Windows il login a volte non parte (circa 1 su 40-80) oppure il browser
-segnala `net::ERR_NETWORK_CHANGED`. Il nuovo tentativo di Playwright lo assorbe e il test compare come «flaky»
+segnala `net::ERR_NETWORK_CHANGED` o `net::ERR_CONNECTION_REFUSED`. Il nuovo tentativo di Playwright lo assorbe e il test compare come «flaky»
 nel riepilogo: non è un errore del tema, ma se i «flaky» diventano frequenti vale la pena indagare.
 
 

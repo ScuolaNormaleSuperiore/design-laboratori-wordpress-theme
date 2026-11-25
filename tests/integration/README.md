@@ -83,7 +83,7 @@ vendor/bin/phpunit -c phpunit-integration.xml --list-tests                      
 ```
 
 - Con `composer test:integration` gli argomenti dopo `--` arrivano a PHPUnit, ma lo script lancia prima `support/fetch-test-plugins.php`
-  (pochi secondi in più; scarica ACF e Polylang solo al primo avvio). Con `vendor/bin/phpunit -c phpunit-integration.xml` si salta quel
+  (scarica ACF e Polylang solo al primo avvio). Con `vendor/bin/phpunit -c phpunit-integration.xml` si salta quel
   passaggio: usarlo solo se i plugin di test sono già stati preparati.
 - `--filter` accetta un nome intero o una parte, anche nella forma `Classe::metodo`.
 - **Se il filtro non trova nulla**, PHPUnit scrive `No tests executed!` ma esce con codice `0`: guardare sempre il numero di test eseguiti.
@@ -137,6 +137,7 @@ lo script ripiega sul comando `curl` del sistema.
 | `DLI_Home_Video_Integration_Test.php` | La sezione «Video»: URL per riga (valore storico ignorato, indirizzo non web scartato, `dli_sanitize_hp_video_url()`), ID, etichette e pulsanti distinti per istanza e funzione JavaScript unica, ID invariati senza istanza (schede di evento, brevetto e spin-off), sfondo, titolo solo nella lingua della pagina e solo se mostrato |
 | `DLI_Home_Banners_Integration_Test.php` | La sezione «Banner»: modalità automatica (per priorità, numero della riga, 3 di default) e manuale (ordine scelto, traduzione, bozze/cestinati/mancanti scartati, nessuna riempitura), ID unici per istanza, titolo come il Video, scelte del campo con i banner già scelti ma non visibili, nessun N+1 |
 | `DLI_Home_Page_Index_Integration_Test.php` | La sezione «Indice di una pagina» (`dli_get_page_link_group()`, `dli_get_page_index()` e il template): colonne solo per le sottopagine con figli pubblicati e senza password, limiti di colonne e link, pagina assente, bozza, protetta o non pagina senza indice, traduzione della pagina scelta (senza traduzione niente), titolo e nome accessibile, ID unici con due copie della stessa pagina, sfondo bianco, scelte che tengono la pagina già scelta ma non più visibile |
+| `DLI_Home_Section_Titles_Integration_Test.php` | I titoli delle sezioni «Sponsor» e «Carousel» (`hp-sponsor-section.php`, `carousel.php`): la sezione ha sempre il suo `h2`, visibile o nascosto alla vista secondo la scelta «Mostra titolo» della riga |
 | `DLI_Home_Sections_Fields_Integration_Test.php` | I campi di una riga di Sezioni HP: le descrizioni di «Numero massimo di elementi» e «Numero massimo di sottopagine per gruppo» mantengono l'intervallo da 1 a 12 |
 | `DLI_Options_Save_Permissions_Integration_Test.php` | Il salvataggio delle pagine di Configurazione con il gestore di CMB2 (`admin-post.php`) sui veri box del tema: un Editor o un Subscriber non salva anche con un nonce valido, il Super Editor e l'amministratore salvano, le schede Indico, Iris e Altro esistono solo per l'amministratore (`dli_options_can_save_by_capability()`) |
 | `DLI_Home_Presentation_Integration_Test.php` | La sezione «Il laboratorio» (`site-presentation.php`): spaziatura con padding esplicito (`pt-5 pb-5`, senza la classe inesistente `my-12`), titolo e testo, niente stampa a sezione spenta. |
