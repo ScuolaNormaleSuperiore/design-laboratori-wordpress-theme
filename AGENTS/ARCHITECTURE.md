@@ -239,7 +239,9 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 is updated in the same change that adds or alters a check. The CI is the safety net of the
 `pre-commit` hook: the same checks on a clean machine, plus PHP 8.0 (the declared minimum), for
 whoever has not activated the hooks and for pull requests. It is **observational**: a failure
-turns the run red but blocks nothing, and the push is never refused. It runs on push to `dev`,
+turns the run red but blocks nothing, and the push is never refused. The only branch rule is the
+ruleset `Protect main` (no deletion, no force-push of `main`); no check is required, and releases
+reach `main` as a local merge of `dev` that the operator pushes. It runs on push to `dev`,
 `main` and the prefixed branches (`features/**`, `bugfix/**`, `refactor/**`, `docs/**`), on pull
 requests to `dev` and `main`, and on demand. The secret scan, the l10n guard and the check on
 commit-message trailers exist only in the local hooks. Every job of every workflow runs on

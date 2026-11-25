@@ -320,7 +320,7 @@ Expected output (in Italian):
 - A numbered list of the `ERRORE` items first and of the `AVVISO` items after, each with file and line or the command output that proves it, so that the operator can say "correggi il 3".
 - The verdict on a line of its own: `VERDETTO: GO` when there is no `ERRORE` and no `NON ESEGUITO` on a blocking check, otherwise `VERDETTO: NO-GO` with the reasons.
 - The version and release date checked, the baseline tag and the commit hash.
-- The reminder that the pull request `dev` → `main`, the merge and the tag are done by the operator (never push, never tag).
+- The reminder that the merge of `dev` into `main`, the push and the tag are done by the operator (never push, never tag).
 - The outcome of every operator step, in the table (`Esito` and the operator's words in `Dettaglio`).
 - The reminder, in the last line: the AI does not commit, push or write in the repository; filing the items in `AGENTS/ISSUES_TODO.md` and fixing them are separate tasks that the operator asks for after the verdict (they follow the issue template and the `Test-driven workflow` of `AGENTS/AI_BEHAVIOR.md`). The trigger itself changes nothing.
 

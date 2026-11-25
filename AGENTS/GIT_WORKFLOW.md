@@ -18,7 +18,8 @@ branch, commit, or pull-request work.
   - `bugfix/fixContactForm`
   - `refactor/centralizeRendering`
   - `docs/updateArchitecture`
-- Releases reach `main` from `dev` through a pull request.
+- Releases reach `main` from `dev` through a merge of `dev` into `main` that the operator makes locally and pushes; no pull request is required.
+- `main` is protected by the GitHub ruleset `Protect main`: it cannot be deleted or force-pushed. No CI check is required to push or merge.
 
 
 ## Commits
@@ -54,15 +55,16 @@ the exploitable details of an unfixed or recently fixed vulnerability.
 - Before every commit, scan staged files for sensitive data (for example: API keys, tokens, passwords, private keys, auth headers, cookies, personal data). If potential sensitive data is found, stop the commit flow, report only its type and file/path (never its value), and remove, redact, or revoke the data before proceeding. Never commit sensitive data, even with user confirmation.
 - `.githooks/pre-commit` runs five automatic checks, in this order: a secret scan on staged files, an l10n guard, the whole-theme PHPStan analysis at level 6, PHPCS on the staged PHP, CSS and SCSS files (errors only, staged content; `.githooks/check-staged-phpcs.sh`) and the unit test suite (the same one as `composer test:unit`: PHPUnit, then the JavaScript tests with `node --test`). `.githooks/commit-msg` adds a sixth check on the message (AI `Co-Authored-By` trailers). The l10n guard never blocks; every other check blocks the commit on failure, and the first failure stops the run. PHPUnit, PHPStan and PHPCS must be installed (`composer install`), and Node must be on the PATH. The l10n guard adds the missing `defined( 'ABSPATH' ) || exit;` line to staged `languages/*.l10n.php` files (Loco Translate strips it on export) and re-stages them. This automatic change is expected: do not undo it, and mention it in the final summary.
 - OpenSSF Scorecard does not run in pre-commit. Changes to `.github/workflows/scorecard.yml` require full-SHA action pins, least-privilege permissions and no new secrets; its GitHub results are observational.
-- GitHub Actions (`.github/workflows/ci.yml`) re-runs syntax, unit tests, PHPCS on the changed files and PHPStan on a clean machine after every push, and also on PHP 8.0; its `integration` job also runs the integration tests, only on push to `dev` and `main`, on pull requests to `main` and on demand. It is observational: a red run never refuses a push or blocks a merge. The checks are listed in `AGENTS/ARCHITECTURE.md` (*CI (GitHub Actions)*); the secret scan, the l10n guard and the commit-message check stay local only.
+- GitHub Actions (`.github/workflows/ci.yml`) re-runs syntax, unit tests, PHPCS on the changed files and PHPStan on a clean machine after every push, and also on PHP 8.0; its `integration` job also runs the integration tests, only on push to `dev` and `main`, on pull requests to `main` and on demand; the `publiccode` and `actionlint` jobs validate `publiccode.yml` and the workflows. It is observational: a red run never refuses a push or blocks a merge. The checks are listed in `AGENTS/ARCHITECTURE.md` (*CI (GitHub Actions)*); the secret scan, the l10n guard and the commit-message check stay local only.
 - Install once per clone: `git config core.hooksPath .githooks`.
 - Manual fallback: `.githooks/check-staged-secrets.sh` (run it directly against the staged changes).
 
 
 ## Pull Requests
 
-- Open the release PR from `dev` to `main`; open PRs from a prefixed branch to
-  `dev` only when such a branch exists.
+- Releases do not use a pull request (see *Branches*). Open a PR from a prefixed
+  branch to `dev` only when such a branch exists; external contributions arrive as
+  pull requests (see `CONTRIBUTING.md`).
 - Write clear title and summary.
 - Reference public issues by title or number when applicable. Never copy private backlog contents into a commit or PR.
 

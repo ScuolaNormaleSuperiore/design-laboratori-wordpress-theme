@@ -105,12 +105,12 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6), `publiccode`, `actionlint` e job `integration` (oltre 500 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
 | **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | `checks`, `publiccode` e `actionlint` (e `documentation-check` su `docs/**`) | No |
 | **Pull request verso `dev`** (per esempio Dependabot) | `checks`, `publiccode` e `actionlint` | No |
-| **Pull request verso `main`** (rilascio da `dev`) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
-| **Merge su `main`** (push) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
+| **Pull request verso `main`** (per esempio un contributo esterno) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
+| **Rilascio: merge di `dev` su `main`** (push) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
 | **Programmati** | Scorecard ogni lunedì e al cambio di una regola di protezione dei rami; Dependabot, PR mensili verso `dev` (GitHub Actions, Composer, npm, Docker) | No |
 | **Solo a mano** | Test E2E, Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev` e l'avvio manuale di `CI` dalla scheda *Actions* | — |
 
-Non esiste una protezione dei rami (decisione D3): nessun controllo impedisce un push o un merge.
+`main` è protetto dal ruleset di GitHub `Protect main`: non si può cancellare né riscrivere con un force-push. Nessun controllo della CI è obbligatorio: una corsa rossa non impedisce un push o un merge. Il rilascio è il merge di `dev` su `main` fatto in locale e pushato, senza pull request.
 
 
 ## Controlli statici
