@@ -32,6 +32,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.1.3] - 2026-11-25
 
 
+
+
 ## [2.1.2] - 2026-11-25
 ### Modificato
 - Bootstrap Italia aggiornata alla versione 3.0.0-beta.8.
@@ -39,9 +41,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Catalogo del riuso: la documentazione porta al sito della documentazione del tema e la roadmap al testo del changelog.
 ### Corretto
 - Un iframe incollato nel contenuto con una larghezza fissa (grafici, mappe, moduli) non fa più scorrere la pagina di lato sugli schermi stretti.
-
-
-
 
 ## [2.1.1] - 2026-11-23
 ### Modificato
