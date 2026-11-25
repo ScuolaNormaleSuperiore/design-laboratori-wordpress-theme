@@ -36,8 +36,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Catalogo del riuso: la documentazione porta al sito della documentazione del tema e la roadmap al testo del changelog.
 ### Corretto
 - Un iframe incollato nel contenuto con una larghezza fissa (grafici, mappe, moduli) non fa più scorrere la pagina di lato sugli schermi stretti.
-### Sicurezza
-- Import da Indico e IRIS: i messaggi di errore che riportano dati ricevuti dal server remoto vengono ripuliti.
 
 
 

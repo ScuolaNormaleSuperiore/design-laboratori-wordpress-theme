@@ -107,12 +107,14 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$response   = wp_safe_remote_get( $api_url, $parameters );
 		// Verifica di eventuali errori.
 		if ( is_wp_error( $response ) ) {
-			throw new Exception( 'Errore invocando la Indico REST API: ' . esc_html( $response->get_error_message() ) );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Errore invocando la Indico REST API: ' . $response->get_error_message() );
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		if ( 200 !== $code ) {
 			$body = wp_remote_retrieve_body( $response );
-			throw new Exception( 'Errore invocando la Indico REST API. HTTP ' . (int) $code . '. Risposta: ' . esc_html( $body ) );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Errore invocando la Indico REST API. HTTP ' . (int) $code . '. Risposta: ' . $body );
 		}
 		// Recupero i dati da Indico.
 		$resp_body = wp_remote_retrieve_body( $response );
@@ -251,7 +253,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_page, true );
 			if ( is_wp_error( $post_id ) ) {
-				throw new Exception( 'wp_insert_post fallito: ' . esc_html( $post_id->get_error_message() ) );
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+				throw new Exception( 'wp_insert_post fallito: ' . $post_id->get_error_message() );
 			}
 			$updated = false;
 			$this->update_custom_fields( $post_id, $item );
@@ -441,7 +444,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			)
 		);
 		if ( is_wp_error( $response ) ) {
-			throw new Exception( 'Errore nel recupero della pagina evento: ' . esc_html( $response->get_error_message() ) );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Errore nel recupero della pagina evento: ' . $response->get_error_message() );
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		if ( 200 !== $code ) {

@@ -297,14 +297,16 @@ class DLI_BaseImporter {
 	 */
 	protected function decode_external_json_payload( string $body, bool $assoc = false, string $source = 'external' ) {
 		if ( '' === trim( $body ) ) {
-			throw new Exception( 'Risposta ' . esc_html( $source ) . ' vuota.' );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Risposta ' . $source . ' vuota.' );
 		}
 
 		$normalized_body = $this->normalize_json_body( $body );
 		try {
 			return json_decode( $normalized_body, $assoc, 512, JSON_THROW_ON_ERROR );
 		} catch ( JsonException $e ) {
-			throw new Exception( 'Errore decodifica JSON ' . esc_html( $source ) . ': ' . esc_html( $e->getMessage() ) );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Errore decodifica JSON ' . $source . ': ' . $e->getMessage() );
 		}
 	}
 
@@ -447,7 +449,8 @@ class DLI_BaseImporter {
 
 		$new_term = wp_insert_term( $term_name, $taxonomy );
 		if ( is_wp_error( $new_term ) ) {
-			throw new Exception( 'Errore creazione termine tassonomia: ' . esc_html( $new_term->get_error_message() ) );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exception message is not rendered here: it reaches only the JSON of the REST response and the error log.
+			throw new Exception( 'Errore creazione termine tassonomia: ' . $new_term->get_error_message() );
 		}
 
 		return (int) $new_term['term_id'];

@@ -99,9 +99,6 @@ RUN curl -fL -o /tmp/${WP_ARCHIVE} https://wordpress.org/${WP_ARCHIVE} && \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-#Copy utility files
-COPY src/phpinfo.php /var/www/html/phpinfo.php
-
 EXPOSE 80 3306
 
 ######  Start Server Services with the bash shell ######

@@ -111,13 +111,14 @@ class DLI_Base_Importer_Integration_Test extends DLI_Integration_Test_Case {
 	}
 
 	/**
-	 * The WordPress error carried by the message of a term that cannot be created is escaped.
+	 * The WordPress error carried by the message of a term that cannot be created is in the message as it is (the
+	 * message reaches only the JSON of the REST response and the error log).
 	 */
-	public function test_the_term_error_in_the_message_is_escaped() {
+	public function test_the_term_error_in_the_message_is_kept_as_it_is() {
 		add_filter(
 			'pre_insert_term',
 			static function () {
-				return new WP_Error( 'dli_test', '<b>errore</b>' );
+				return new WP_Error( 'dli_test', "L'elemento \"x\" esiste già" );
 			}
 		);
 
@@ -127,35 +128,33 @@ class DLI_Base_Importer_Integration_Test extends DLI_Integration_Test_Case {
 			}
 		);
 
-		$this->assertStringContainsString( '&lt;b&gt;errore&lt;/b&gt;', $message );
-		$this->assertStringNotContainsString( '<b>', $message );
+		$this->assertSame( "Errore creazione termine tassonomia: L'elemento \"x\" esiste già", $message );
 	}
 
 	/**
-	 * The source named in the message of an empty payload is escaped.
+	 * The source named in the message of an empty payload is in the message as it is.
 	 */
-	public function test_the_source_of_an_empty_payload_is_escaped() {
+	public function test_the_source_of_an_empty_payload_is_kept_as_it_is() {
 		$message = $this->exception_message(
 			function () {
-				$this->importer()->decode( '   ', '<i>fonte</i>' );
+				$this->importer()->decode( '   ', "Indico dell'ente" );
 			}
 		);
 
-		$this->assertStringContainsString( '&lt;i&gt;fonte&lt;/i&gt;', $message );
-		$this->assertStringNotContainsString( '<i>', $message );
+		$this->assertSame( "Risposta Indico dell'ente vuota.", $message );
 	}
 
 	/**
-	 * The source and the decoder error in the message of an invalid payload are escaped.
+	 * The source and the decoder error in the message of an invalid payload are in the message as they are.
 	 */
-	public function test_the_message_of_an_invalid_payload_is_escaped() {
+	public function test_the_message_of_an_invalid_payload_is_kept_as_it_is() {
 		$message = $this->exception_message(
 			function () {
-				$this->importer()->decode( '{non valido', '<i>fonte</i>' );
+				$this->importer()->decode( '{non valido', "Indico dell'ente" );
 			}
 		);
 
-		$this->assertStringContainsString( 'Errore decodifica JSON &lt;i&gt;fonte&lt;/i&gt;', $message );
-		$this->assertStringNotContainsString( '<i>', $message );
+		$this->assertStringStartsWith( "Errore decodifica JSON Indico dell'ente: ", $message );
+		$this->assertStringNotContainsString( '&#039;', $message );
 	}
 }

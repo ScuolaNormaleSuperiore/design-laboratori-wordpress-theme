@@ -63,4 +63,14 @@ class DLI_Home_Section_Titles_Integration_Test extends DLI_Integration_Test_Case
 			$this->assert_section_title( $this->render_section( 'carousel', $show_title ), 'carousel-principale-title', $show_title );
 		}
 	}
+
+	/**
+	 * The carousel title names one landmark only: the section and the region inside it must not both point to it,
+	 * or screen readers announce two nested regions with the same name.
+	 */
+	public function test_carousel_title_names_one_landmark() {
+		$html = $this->render_section( 'carousel', 'true' );
+		$this->assertSame( 1, substr_count( $html, 'aria-labelledby="carousel-principale-title"' ), 'One element only is named by the carousel title.' );
+		$this->assertStringContainsString( 'role="region" aria-labelledby="carousel-principale-title"', $html, 'The carousel region keeps its name.' );
+	}
 }

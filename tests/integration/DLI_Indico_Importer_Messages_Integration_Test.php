@@ -6,8 +6,9 @@
  */
 
 /**
- * What comes from the remote server (an HTTP error, a response body) is escaped in the message, which reaches
- * the REST response and the import report.
+ * What comes from the remote server (an HTTP error, a response body) stays as it is in the message. The message
+ * reaches only the JSON of the REST response and the error log, never an HTML page: HTML escaping there would
+ * only turn quotes and apostrophes into entities.
  */
 class DLI_Indico_Importer_Messages_Integration_Test extends DLI_Integration_Test_Case {
 
@@ -64,25 +65,25 @@ class DLI_Indico_Importer_Messages_Integration_Test extends DLI_Integration_Test
 	}
 
 	/**
-	 * The error of a failed request to the Indico API is escaped.
+	 * The error of a failed request to the Indico API is in the message as it is.
 	 */
-	public function test_the_error_of_the_api_request_is_escaped() {
-		$this->answer_http_requests_with( new WP_Error( 'http_request_failed', '<b>errore</b>' ) );
+	public function test_the_error_of_the_api_request_is_kept_as_it_is() {
+		$this->answer_http_requests_with( new WP_Error( 'http_request_failed', "Impossibile risolvere l'host" ) );
 
 		$message = $this->exception_message( 'get_data_to_import', array( $this->conf() ) );
 
-		$this->assertStringContainsString( 'Errore invocando la Indico REST API: &lt;b&gt;errore&lt;/b&gt;', $message );
-		$this->assertStringNotContainsString( '<b>', $message );
+		$this->assertSame( "Errore invocando la Indico REST API: Impossibile risolvere l'host", $message );
 	}
 
 	/**
-	 * The body of a response of the Indico API that is not 200 is escaped.
+	 * The body of a response of the Indico API that is not 200 is in the message as it is, and so in the JSON of
+	 * the REST response.
 	 */
-	public function test_the_body_of_a_failed_api_response_is_escaped() {
+	public function test_the_body_of_a_failed_api_response_is_kept_as_it_is() {
 		$this->answer_http_requests_with(
 			array(
 				'headers'  => array(),
-				'body'     => '<script>alert(1)</script>',
+				'body'     => "{\"error\":\"Categoria non trovata: l'oggetto\"}",
 				'response' => array(
 					'code'    => 500,
 					'message' => 'Internal Server Error',
@@ -93,19 +94,20 @@ class DLI_Indico_Importer_Messages_Integration_Test extends DLI_Integration_Test
 
 		$message = $this->exception_message( 'get_data_to_import', array( $this->conf() ) );
 
-		$this->assertStringContainsString( 'HTTP 500. Risposta: &lt;script&gt;', $message );
-		$this->assertStringNotContainsString( '<script>', $message );
+		$this->assertSame( "Errore invocando la Indico REST API. HTTP 500. Risposta: {\"error\":\"Categoria non trovata: l'oggetto\"}", $message );
+
+		$response = ( new DLI_IndicoImporter() )->send_response( 500, $message, array() );
+		$this->assertSame( $message, $response->get_data()['message'], 'The REST response carries the message without HTML entities.' );
 	}
 
 	/**
-	 * The error of a failed request for the page of an event is escaped.
+	 * The error of a failed request for the page of an event is in the message as it is.
 	 */
-	public function test_the_error_of_the_event_page_request_is_escaped() {
-		$this->answer_http_requests_with( new WP_Error( 'http_request_failed', '<b>errore</b>' ) );
+	public function test_the_error_of_the_event_page_request_is_kept_as_it_is() {
+		$this->answer_http_requests_with( new WP_Error( 'http_request_failed', "Timeout dell'host" ) );
 
 		$message = $this->exception_message( '_get_meta_content', array( self::BASE_URL . '/event/1/', 'og:image' ) );
 
-		$this->assertStringContainsString( 'Errore nel recupero della pagina evento: &lt;b&gt;errore&lt;/b&gt;', $message );
-		$this->assertStringNotContainsString( '<b>', $message );
+		$this->assertSame( "Errore nel recupero della pagina evento: Timeout dell'host", $message );
 	}
 }
