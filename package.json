@@ -51,13 +51,13 @@
     "bootstrap-italia": "3.0.0-beta.8"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0",
-    "clean-css-cli": "^5.4.2",
+    "@playwright/test": "^1.65.1",
+    "clean-css-cli": "^5.6.3",
     "pa11y-ci": "^5.0.0",
     "pa11y-ci-reporter-html": "^9.0.0",
     "playwright": "^1.50.0",
-    "sass": "^1.81.0",
+    "sass": "^1.108.2",
     "uglify-js": "^3.17.4",
-    "vnu-jar": "^26.3.17"
+    "vnu-jar": "^26.11.20"
   }
 }
