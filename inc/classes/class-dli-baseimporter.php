@@ -94,7 +94,7 @@ class DLI_BaseImporter {
 	/**
 	 * Esecuzione dell'import.
 	 *
-	 * @param array $conf Import configuration.
+	 * @param array<string, mixed> $conf Import configuration.
 	 * @return void
 	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
@@ -103,7 +103,7 @@ class DLI_BaseImporter {
 	/**
 	 * Recupera dalla sorgente i dati da importare.
 	 *
-	 * @param array $conf Import configuration.
+	 * @param array<string, mixed> $conf Import configuration.
 	 * @return void
 	 * @phpstan-ignore method.unused (Contract for the derived importers, which define their own method with this name.)
 	 */
@@ -222,6 +222,7 @@ class DLI_BaseImporter {
 	 * Verifica la Basic Authentication e che l'utente sia Amministratore.
 	 *
 	 * @param WP_REST_Request $request Incoming REST request.
+	 * @phpstan-param WP_REST_Request<array<string, mixed>> $request
 	 * @return bool | WP_Error
 	 */
 	public function dli_permission_callback( WP_REST_Request $request ) {
@@ -330,7 +331,7 @@ class DLI_BaseImporter {
 	/**
 	 * Convert JSON UTF-16 surrogate pair into UTF-8.
 	 *
-	 * @param array $matches Regex matches.
+	 * @param string[] $matches Regex matches.
 	 * @return string
 	 */
 	private function decode_surrogate_pair_callback( array $matches ): string {
@@ -374,9 +375,9 @@ class DLI_BaseImporter {
 	/**
 	 * Stampa il report dell'importazione.
 	 *
-	 * @param int    $code    HTTP-like status code to report.
-	 * @param string $message Human-readable result message.
-	 * @param array  $data    Log lines / import result payload.
+	 * @param int                $code    HTTP-like status code to report.
+	 * @param string             $message Human-readable result message.
+	 * @param array<int, string> $data    Log lines / import result payload.
 	 * @return WP_REST_Response
 	 */
 	public function send_response( $code, $message, $data ) {
@@ -404,8 +405,8 @@ class DLI_BaseImporter {
 	/**
 	 * Trim delle stringhe di un array.
 	 *
-	 * @param array $strings Array of strings to trim.
-	 * @return array
+	 * @param string[] $strings Array of strings to trim.
+	 * @return string[]
 	 */
 	public function trim_array( $strings ): array {
 		return array_map( 'trim', $strings );

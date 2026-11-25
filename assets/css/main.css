@@ -10,6 +10,13 @@ html {
 	background-color: white;
 }
 
+/* An iframe pasted in the content with a fixed width (a chart, a map, a form)
+	never gets wider than its column, so the page does not scroll sideways on a
+	narrow screen. Its height stays the one chosen in the editor. */
+iframe {
+	max-width: 100%;
+}
+
 /* STILI PERSONALIZZATI */
 
 /* The visible-arrow carousel places its controls 24px outside the wrapper.

@@ -188,6 +188,7 @@ Il dump è stato fatto con MariaDB 10.11 (quello di Local).
 |---|---|
 | `home.spec.js` | la home si carica (stato inferiore a 400, attributo `lang`) |
 | `home-carousel-reflow.spec.js` | carousel con frecce visibili sulle home IT/EN: controlli dentro lo schermo e nessuno scorrimento orizzontale da 320 a 1280 px, avanzamento con click e ritorno con tastiera. La baseline non ha eventi: il test inserisce nella sola risposta del browser una fixture con lo stesso contenitore/variante del template Eventi, usando CSS e JavaScript reali del tema, senza modificare il database |
+| `content-iframe-reflow.spec.js` | un iframe incollato nel contenuto con larghezza fissa (500 px) non fa scorrere la pagina di lato a 320, 360 e 400 px e resta nella sua colonna; a 1280 px conserva la larghezza scelta. La baseline non ha un contenuto simile: il test inserisce nella sola risposta del browser la colonna di `page.php` con l'iframe, usando il CSS reale del tema, senza modificare il database |
 | `config-permissions.spec.js` | amministratore e Super Editor aprono la pagina Configurazione, l'Editor riceve 403 |
 | `contact-form.spec.js` | il form dei contatti si vede e, senza il plugin CAPTCHA, ha il pulsante disabilitato (i messaggi di un invio forzato, il loro ordine e il nonce controllato per primo sono in `DLI_Contact_Form_Integration_Test`) |
 | `newsletter.spec.js` | pagina newsletter e campi del form |

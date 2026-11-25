@@ -14,6 +14,8 @@
  * Deliberately separate from DLI_BaseImporter (which targets scheduled
  * API/job imports). This class handles one-shot manual file imports
  * executed from the admin UI.
+ *
+ * @phpstan-type DLI_Person_Result array{action: string, log_entry: array{row: int, name: string, email: string, status: string, message: string}}
  */
 class DLI_People_File_Importer {
 
@@ -31,11 +33,11 @@ class DLI_People_File_Importer {
 	 *   - 'action'    string  created|updated|skipped|error
 	 *   - 'log_entry' array   row data for the UI report
 	 *
-	 * @param array  $data        Associative field data for the row.
-	 * @param string $import_mode upsert|solo_nuovi|aggiorna_esistenti|ignora_esistenti.
-	 * @param string $exec_mode   dry_run|commit.
-	 * @param int    $row_num     1-indexed CSV row number (including header).
-	 * @return array
+	 * @param array<string, string> $data        Associative field data for the row.
+	 * @param string                $import_mode upsert|solo_nuovi|aggiorna_esistenti|ignora_esistenti.
+	 * @param string                $exec_mode   dry_run|commit.
+	 * @param int                   $row_num     1-indexed CSV row number (including header).
+	 * @return DLI_Person_Result
 	 */
 	public static function process_row( array $data, $import_mode, $exec_mode, $row_num ) {
 		$display_name = trim( $data['nome'] . ' ' . $data['cognome'] );
@@ -141,11 +143,11 @@ class DLI_People_File_Importer {
 	/**
 	 * Create a new persona post and populate all fields.
 	 *
-	 * @param array  $data        CSV row data.
-	 * @param int    $row_num     Row number for the log entry.
-	 * @param string $display_name Nome Cognome string.
-	 * @param string $email       Email address.
-	 * @return array Result array.
+	 * @param array<string, string> $data        CSV row data.
+	 * @param int                   $row_num     Row number for the log entry.
+	 * @param string                $display_name Nome Cognome string.
+	 * @param string                $email       Email address.
+	 * @return DLI_Person_Result Result array.
 	 */
 	private static function do_create( array $data, $row_num, $display_name, $email ) {
 		$status  = in_array( $data['stato'], self::$allowed_stati, true ) ? $data['stato'] : 'publish';
@@ -174,12 +176,12 @@ class DLI_People_File_Importer {
 	/**
 	 * Update an existing persona post and its fields.
 	 *
-	 * @param int    $post_id     Existing post ID.
-	 * @param array  $data        CSV row data.
-	 * @param int    $row_num     Row number for the log entry.
-	 * @param string $display_name Nome Cognome string.
-	 * @param string $email       Email address.
-	 * @return array Result array.
+	 * @param int                   $post_id     Existing post ID.
+	 * @param array<string, string> $data        CSV row data.
+	 * @param int                   $row_num     Row number for the log entry.
+	 * @param string                $display_name Nome Cognome string.
+	 * @param string                $email       Email address.
+	 * @return DLI_Person_Result Result array.
 	 */
 	private static function do_update( $post_id, array $data, $row_num, $display_name, $email ) {
 		$update_args = array(
@@ -206,8 +208,8 @@ class DLI_People_File_Importer {
 	/**
 	 * Write all ACF scalar, boolean, and relationship fields.
 	 *
-	 * @param int   $post_id Post ID.
-	 * @param array $data    CSV row data.
+	 * @param int                   $post_id Post ID.
+	 * @param array<string, string> $data    CSV row data.
 	 * @return void
 	 */
 	private static function set_custom_fields( $post_id, array $data ) {
@@ -284,7 +286,7 @@ class DLI_People_File_Importer {
 	 *
 	 * Format: nome + cognome, omitting empty parts.
 	 *
-	 * @param array $data CSV row data.
+	 * @param array<string, string> $data CSV row data.
 	 * @return string
 	 */
 	private static function build_post_title( array $data ) {
@@ -322,7 +324,7 @@ class DLI_People_File_Importer {
 	 * @param string $email        Email address.
 	 * @param string $status       OK|ERRORE|SALTATA.
 	 * @param string $message      Human-readable log message.
-	 * @return array
+	 * @return DLI_Person_Result
 	 */
 	private static function make_result( $action, $row_num, $display_name, $email, $status, $message ) {
 		return array(

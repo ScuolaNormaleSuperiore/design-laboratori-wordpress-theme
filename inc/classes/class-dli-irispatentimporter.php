@@ -83,8 +83,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	/**
 	 * Fetch the patents feed from the IRIS web service (Basic Auth over HTTPS).
 	 *
-	 * @param array $conf Import configuration (ws_url, username, password, ...).
-	 * @return array Decoded JSON payload (array of patent objects).
+	 * @param array<string, mixed> $conf Import configuration (ws_url, username, password, ...).
+	 * @return array<mixed> Decoded JSON payload (array of patent objects).
 	 * @throws Exception When the endpoint is not HTTPS, or the request fails/returns an invalid payload.
 	 */
 	public function get_data_to_import( $conf ) {
@@ -136,8 +136,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	/**
 	 * Fetch the IRIS patents feed and import each entry (Italian + English content).
 	 *
-	 * @param array $conf Import configuration (import_type, import_action, ...).
-	 * @return array Human-readable log lines, one per processed item plus a summary footer.
+	 * @param array<string, mixed> $conf Import configuration (import_type, import_action, ...).
+	 * @return array<int, string> Human-readable log lines, one per processed item plus a summary footer.
 	 * @throws Exception When the feed cannot be fetched or its payload is not valid (see get_data_to_import()).
 	 */
 	private function execute_import( $conf = array() ): array {
@@ -243,14 +243,14 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	/**
 	 * Append a log line for one imported item and bump the matching counter.
 	 *
-	 * @param array  $results       Passed by reference: log lines accumulator.
-	 * @param string $item_code     Post ID (and PID) of the imported item, for the log line.
-	 * @param string $item_title    Sanitized item title, for the log line.
-	 * @param bool   $updated       Whether an existing post was updated.
-	 * @param bool   $ignored       Whether an existing post was left untouched.
-	 * @param int    $added_items   Passed by reference: bumped when a new post was created.
-	 * @param int    $updated_items Passed by reference: bumped when an existing post was updated.
-	 * @param int    $ignored_items Passed by reference: bumped when an existing post was ignored.
+	 * @param array<int, string> $results       Passed by reference: log lines accumulator.
+	 * @param string             $item_code     Post ID (and PID) of the imported item, for the log line.
+	 * @param string             $item_title    Sanitized item title, for the log line.
+	 * @param bool               $updated       Whether an existing post was updated.
+	 * @param bool               $ignored       Whether an existing post was left untouched.
+	 * @param int                $added_items   Passed by reference: bumped when a new post was created.
+	 * @param int                $updated_items Passed by reference: bumped when an existing post was updated.
+	 * @param int                $ignored_items Passed by reference: bumped when an existing post was ignored.
 	 * @return void
 	 */
 	private function process_result( &$results, $item_code, $item_title, $updated, $ignored, &$added_items, &$updated_items, &$ignored_items ) {
@@ -278,11 +278,11 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	/**
 	 * Create or update the Italian WordPress patent post for a single IRIS feed item.
 	 *
-	 * @param object $item    Raw feed item (displayValue, abstract, ...).
-	 * @param array  $conf    Import configuration (import_action, ...).
-	 * @param bool   $updated Passed by reference: set to true when an existing post was updated.
-	 * @param bool   $ignored Passed by reference: set to true when an existing post was left untouched.
-	 * @param string $lang    Language slug to assign to the created post.
+	 * @param object               $item    Raw feed item (displayValue, abstract, ...).
+	 * @param array<string, mixed> $conf    Import configuration (import_action, ...).
+	 * @param bool                 $updated Passed by reference: set to true when an existing post was updated.
+	 * @param bool                 $ignored Passed by reference: set to true when an existing post was left untouched.
+	 * @param string               $lang    Language slug to assign to the created post.
 	 * @return int Post ID of the created or matched patent.
 	 * @throws Exception When wp_insert_post() fails.
 	 */
@@ -339,12 +339,12 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 	/**
 	 * Create or update the English translation of an imported patent post, when available.
 	 *
-	 * @param int    $post_id Post ID of the Italian version.
-	 * @param object $item    Raw feed item (displayValue_en, abstract_en, ...).
-	 * @param array  $conf    Import configuration (import_action, ...).
-	 * @param string $lang    Language slug to assign to the created translation.
-	 * @param bool   $updated Set by reference: true when an existing translation was updated.
-	 * @param bool   $ignored Set by reference: true when an existing translation was left untouched.
+	 * @param int                  $post_id Post ID of the Italian version.
+	 * @param object               $item    Raw feed item (displayValue_en, abstract_en, ...).
+	 * @param array<string, mixed> $conf    Import configuration (import_action, ...).
+	 * @param string               $lang    Language slug to assign to the created translation.
+	 * @param bool                 $updated Set by reference: true when an existing translation was updated.
+	 * @param bool                 $ignored Set by reference: true when an existing translation was left untouched.
 	 * @return int Post ID of the created/matched English translation, or 0 when no English title exists.
 	 * @throws Exception When wp_insert_post() fails.
 	 */
@@ -516,8 +516,8 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		}
 
 		// Inventori referenti e non (inventori_referenti, inventori).
-		$inv_ref = array();
-		$inv     = array();
+		$inv_ref   = array();
+		$inv       = array();
 		$owner_set = $this->get_feed_property( $item, 'ownerSet' );
 		if ( is_array( $owner_set ) && count( $owner_set ) > 0 ) {
 			foreach ( $owner_set as $i ) {
@@ -535,7 +535,7 @@ class DLI_IrisPatentImporter extends DLI_BaseImporter {
 		dli_update_field( 'inventori_referenti', $inv_str, $post_id );
 
 		// Titolari (titolari).
-		$tit = array();
+		$tit                      = array();
 		$owner_organization_units = $this->get_feed_property( $item, 'ownerPersonCurrentOrLastInternalOrganizationUnitSet' );
 		if ( is_array( $owner_organization_units ) && count( $owner_organization_units ) > 0 ) {
 			foreach ( $owner_organization_units as $o ) {

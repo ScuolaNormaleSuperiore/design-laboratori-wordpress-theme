@@ -84,8 +84,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	/**
 	 * Fetch the category export JSON payload from the configured Indico instance.
 	 *
-	 * @param array $conf Import configuration (base_url, category, start_date, ...).
-	 * @return array Decoded JSON payload.
+	 * @param array<string, mixed> $conf Import configuration (base_url, category, start_date, ...).
+	 * @return array<mixed> Decoded JSON payload.
 	 * @throws Exception When the URL is invalid or the HTTP request fails/returns a non-200 status.
 	 */
 	private function get_data_to_import( $conf ) {
@@ -124,8 +124,8 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	 * Fetch the Indico events feed and import each entry, one at a time,
 	 * skipping items whose keywords do not match the configured filter.
 	 *
-	 * @param array $conf Import configuration (import_type, keywords, lang, ...).
-	 * @return array Human-readable log lines, one per processed/discarded item plus a summary footer.
+	 * @param array<string, mixed> $conf Import configuration (import_type, keywords, lang, ...).
+	 * @return array<int, string> Human-readable log lines, one per processed/discarded item plus a summary footer.
 	 * @throws Exception When the feed payload is missing a valid "results" key.
 	 */
 	private function execute_import( $conf = array() ): array {
@@ -223,11 +223,11 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	/**
 	 * Create or update the WordPress event post for a single Indico feed item.
 	 *
-	 * @param array  $item     Raw feed item (title, description, url, ...).
-	 * @param array  $conf     Import configuration (post_status, action, base_url, ...).
-	 * @param bool   $updated  Passed by reference: set to true when an existing post was updated.
-	 * @param bool   $ignored  Passed by reference: set to true when an existing post was left untouched.
-	 * @param string $lang     Language slug to assign to the created/updated post.
+	 * @param array<string, mixed> $item     Raw feed item (title, description, url, ...).
+	 * @param array<string, mixed> $conf     Import configuration (post_status, action, base_url, ...).
+	 * @param bool                 $updated  Passed by reference: set to true when an existing post was updated.
+	 * @param bool                 $ignored  Passed by reference: set to true when an existing post was left untouched.
+	 * @param string               $lang     Language slug to assign to the created/updated post.
 	 * @return int Post ID of the created or matched event.
 	 * @throws Exception When wp_insert_post() fails.
 	 */
@@ -296,9 +296,9 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 	/**
 	 * Populate the ACF fields of an event post from a single Indico feed item.
 	 *
-	 * @param int    $post_id Post ID to update.
-	 * @param array  $item    Raw feed item (description, startDate, endDate, url, ...).
-	 * @param string $lang    Unused; kept for call-site symmetry with create_wp_content().
+	 * @param int                  $post_id Post ID to update.
+	 * @param array<string, mixed> $item    Raw feed item (description, startDate, endDate, url, ...).
+	 * @param string               $lang    Unused; kept for call-site symmetry with create_wp_content().
 	 * @return void
 	 */
 	private function update_custom_fields( $post_id, $item, $lang = 'it' ) {
