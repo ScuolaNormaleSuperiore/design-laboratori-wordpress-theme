@@ -5,7 +5,8 @@
  * @package Design_Laboratori_Italia
  */
 
-require_once 'class-base-importer.php';
+// The base class of the importers.
+require_once 'class-dli-baseimporter.php';
 
 define( 'INDICO_API_SUFFIX_CATEGORY', '/export/categ' );
 
@@ -106,14 +107,12 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		$response   = wp_safe_remote_get( $api_url, $parameters );
 		// Verifica di eventuali errori.
 		if ( is_wp_error( $response ) ) {
-			$msg = 'Errore invocando la Indico REST API: ' . $response->get_error_message();
-			throw new Exception( $msg );
+			throw new Exception( 'Errore invocando la Indico REST API: ' . esc_html( $response->get_error_message() ) );
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		if ( 200 !== $code ) {
 			$body = wp_remote_retrieve_body( $response );
-			$msg  = 'Errore invocando la Indico REST API. HTTP ' . $code . '. Risposta: ' . $body;
-			throw new Exception( $msg );
+			throw new Exception( 'Errore invocando la Indico REST API. HTTP ' . (int) $code . '. Risposta: ' . esc_html( $body ) );
 		}
 		// Recupero i dati da Indico.
 		$resp_body = wp_remote_retrieve_body( $response );
@@ -252,7 +251,7 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 		if ( ! $post_id ) {
 			$post_id = wp_insert_post( $new_page, true );
 			if ( is_wp_error( $post_id ) ) {
-				throw new Exception( 'wp_insert_post fallito: ' . $post_id->get_error_message() );
+				throw new Exception( 'wp_insert_post fallito: ' . esc_html( $post_id->get_error_message() ) );
 			}
 			$updated = false;
 			$this->update_custom_fields( $post_id, $item );
@@ -442,11 +441,11 @@ class DLI_IndicoImporter extends DLI_BaseImporter {
 			)
 		);
 		if ( is_wp_error( $response ) ) {
-			throw new Exception( 'Errore nel recupero della pagina evento: ' . $response->get_error_message() );
+			throw new Exception( 'Errore nel recupero della pagina evento: ' . esc_html( $response->get_error_message() ) );
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		if ( 200 !== $code ) {
-			throw new Exception( 'Errore HTTP nel recupero pagina evento: ' . (string) $code );
+			throw new Exception( 'Errore HTTP nel recupero pagina evento: ' . (int) $code );
 		}
 		$html = wp_remote_retrieve_body( $response );
 		if ( '' === trim( (string) $html ) ) {

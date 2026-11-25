@@ -32,7 +32,33 @@ class DLI_Base_Importer_Integration_Test extends DLI_Integration_Test_Case {
 			public function term_id( string $term_name, string $taxonomy ): int {
 				return $this->get_or_create_term_id( $term_name, $taxonomy );
 			}
+
+			/**
+			 * Expose the protected JSON decoder.
+			 *
+			 * @param string $body   Raw response body.
+			 * @param string $source Source name used in the messages.
+			 * @return mixed
+			 */
+			public function decode( string $body, string $source ) {
+				return $this->decode_external_json_payload( $body, true, $source );
+			}
 		};
+	}
+
+	/**
+	 * The message of the exception raised by a callback.
+	 *
+	 * @param callable $callback Code expected to throw.
+	 * @return string
+	 */
+	private function exception_message( callable $callback ) {
+		try {
+			$callback();
+		} catch ( Exception $e ) {
+			return $e->getMessage();
+		}
+		$this->fail( 'An exception was expected.' );
 	}
 
 	/**
@@ -82,5 +108,54 @@ class DLI_Base_Importer_Integration_Test extends DLI_Integration_Test_Case {
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage( 'Errore creazione termine tassonomia' );
 		$this->importer()->term_id( 'Qualcosa', 'tassonomia_inesistente' );
+	}
+
+	/**
+	 * The WordPress error carried by the message of a term that cannot be created is escaped.
+	 */
+	public function test_the_term_error_in_the_message_is_escaped() {
+		add_filter(
+			'pre_insert_term',
+			static function () {
+				return new WP_Error( 'dli_test', '<b>errore</b>' );
+			}
+		);
+
+		$message = $this->exception_message(
+			function () {
+				$this->importer()->term_id( 'Qualcosa', 'post_tag' );
+			}
+		);
+
+		$this->assertStringContainsString( '&lt;b&gt;errore&lt;/b&gt;', $message );
+		$this->assertStringNotContainsString( '<b>', $message );
+	}
+
+	/**
+	 * The source named in the message of an empty payload is escaped.
+	 */
+	public function test_the_source_of_an_empty_payload_is_escaped() {
+		$message = $this->exception_message(
+			function () {
+				$this->importer()->decode( '   ', '<i>fonte</i>' );
+			}
+		);
+
+		$this->assertStringContainsString( '&lt;i&gt;fonte&lt;/i&gt;', $message );
+		$this->assertStringNotContainsString( '<i>', $message );
+	}
+
+	/**
+	 * The source and the decoder error in the message of an invalid payload are escaped.
+	 */
+	public function test_the_message_of_an_invalid_payload_is_escaped() {
+		$message = $this->exception_message(
+			function () {
+				$this->importer()->decode( '{non valido', '<i>fonte</i>' );
+			}
+		);
+
+		$this->assertStringContainsString( 'Errore decodifica JSON &lt;i&gt;fonte&lt;/i&gt;', $message );
+		$this->assertStringNotContainsString( '<i>', $message );
 	}
 }

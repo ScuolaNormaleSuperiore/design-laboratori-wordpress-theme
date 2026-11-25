@@ -1,7 +1,7 @@
 # Manuale Operatore
 
 Versione: 1.1<br>
-Data: 2026-11-23<br>
+Data: 2026-11-25<br>
 Tema: `design-laboratori-wordpress-theme`
 
 ## 1. Scopo del manuale

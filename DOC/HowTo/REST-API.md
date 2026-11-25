@@ -12,11 +12,11 @@
 
 | Endpoint | Metodo | File | Funzione |
 |---|---|---|---|
-| `/wp-json/custom/v1/indico-import` | `POST` | `inc/classes/class-indicoimporter.php` | Avvia l'import di eventi da Indico |
+| `/wp-json/custom/v1/indico-import` | `POST` | `inc/classes/class-dli-indicoimporter.php` | Avvia l'import di eventi da Indico |
 | `/wp-json/custom/v1/iris-patent-import` | `POST` | `inc/classes/class-dli-irispatentimporter.php` | Avvia l'import di brevetti da IRIS |
 
 
-La classe base `DLI_BaseImporter` (`inc/classes/class-base-importer.php`)
+La classe base `DLI_BaseImporter` (`inc/classes/class-dli-baseimporter.php`)
 gestisce la registrazione delle route e il controllo di autenticazione e
 permessi. Gli importatori specifici eseguono l'import e costruiscono la
 risposta. Prima di invocare una route configurare il relativo servizio; la

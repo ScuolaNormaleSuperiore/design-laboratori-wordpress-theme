@@ -18,7 +18,7 @@ define(
 	)
 );
 
-require_once 'class-base-importer.php';
+require_once 'class-dli-baseimporter.php';
 
 /**
  * Imports patents from the IRIS institutional repository web service.

@@ -74,7 +74,7 @@ if ( ! class_exists( 'Banner_Manager' ) ) {
 }
 
 if ( ! class_exists( 'DLI_IndicoImporter' ) ) {
-	include_once 'class-indicoimporter.php';
+	include_once 'class-dli-indicoimporter.php';
 }
 
 if ( ! class_exists( 'DLI_IrisPatentImporter' ) ) {

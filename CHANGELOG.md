@@ -27,6 +27,12 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
 - PHPStan: raggiungere livello 6.
 
+## [2.1.2] - 2026-11-25
+### Modificato
+- Bootstrap Italia aggiornata alla versione 3.0.0-beta.8 (correzioni di accessibilità di elenchi, form, footer e modali).
+### Sicurezza
+- Import da Indico e IRIS: i messaggi di errore che riportano dati ricevuti dal server remoto vengono ripuliti.
+
 ## [2.1.1] - 2026-11-23
 ### Modificato
 - Home: titoli delle sezioni uniformi; «Contenuti in evidenza» mostra il proprio titolo e ha box tutti nello stesso stile.

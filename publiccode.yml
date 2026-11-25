@@ -4,7 +4,7 @@
 
 publiccodeYmlVersion: '0.4.0'
 applicationSuite: WordPress
-softwareVersion: 2.1.1
+softwareVersion: 2.1.2
 categories:
   - website-builder
   - content-management
@@ -141,7 +141,7 @@ name: Design Laboratori Italia
 landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
-releaseDate: '2026-11-23'
+releaseDate: '2026-11-25'
 roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
