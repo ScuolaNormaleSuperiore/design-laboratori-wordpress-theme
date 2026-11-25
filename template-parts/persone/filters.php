@@ -9,9 +9,10 @@
  *
  * @package Design_Laboratori_Italia
  *
- * @var array $args {
+ * @var array{structures?: array<WP_Term>, tags?: array<WP_Term>, categories?: array<WP_Post>, selected_structure?: string, selected_level?: string, selected_type?: string, selected_search?: string, filter_level_enabled?: bool, filter_structure_hidden?: bool, filter_type_hidden?: bool, label_select_level?: string, label_all_levels?: string, result_count?: int, view_toggle?: array{active?: string, chip_url?: string, tabella_url?: string}} $args {
  *     @type WP_Term[] $structures            Strutture disponibili.
  *     @type WP_Term[] $tags                  Tag disponibili.
+ *     @type WP_Post[] $categories            Tipologie di persona (filtro per tipologia).
  *     @type string    $selected_structure    Slug struttura selezionata ('' = nessuna).
  *     @type string    $selected_level        Slug tag selezionato ('' = nessuno).
  *     @type string    $selected_type         ID categoria selezionata ('' = nessuna).

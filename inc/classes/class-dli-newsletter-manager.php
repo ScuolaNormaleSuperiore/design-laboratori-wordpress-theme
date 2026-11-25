@@ -16,7 +16,7 @@ class DLI_Newsletter_Manager {
 	/**
 	 * Validation error messages.
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	private array $errors = array();
 
@@ -65,7 +65,7 @@ class DLI_Newsletter_Manager {
 	/**
 	 * Get the validation error messages.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function get_errors() {
 		return $this->errors;
@@ -74,7 +74,7 @@ class DLI_Newsletter_Manager {
 	/**
 	 * Subscribes a user to the newsletter.
 	 *
-	 * @return array Response with 'code', 'message' and 'body' keys.
+	 * @return array{code: int|string, message: string, body: string} Response with 'code', 'message' and 'body' keys.
 	 * @throws Exception When the Brevo API request fails (caught internally; never propagates).
 	 */
 	public function subscribe_user() {

@@ -10,7 +10,7 @@
  *
  * @package Design_Laboratori_Italia
  *
- * @var array $args {
+ * @var array{page_data?: array<string, mixed>, view_toggle?: array{active?: string, chip_url?: string, tabella_url?: string}} $args {
  *     @type array  $page_data   Struttura dati prodotta da DLI_ContentsManager::get_people_page_data().
  *     @type array  $view_toggle Dati per template-parts/persone/view-toggle (active/chip_url/tabella_url).
  * }

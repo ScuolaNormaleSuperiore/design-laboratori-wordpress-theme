@@ -10,7 +10,7 @@ define( 'PATENT_SORTABLE_FIELD', 'codice_brevetto' );
 /**
  * The manager that setups Patent post types.
  */
-class Patent_Manager {
+class DLI_Patent_Manager {
 	/**
 	 * Constructor of the Manager.
 	 */
@@ -124,8 +124,8 @@ class Patent_Manager {
 	/**
 	 * Add the sortable field column to the patent admin list.
 	 *
-	 * @param array $columns Existing admin list columns.
-	 * @return array
+	 * @param array<string, string> $columns Existing admin list columns, by column key.
+	 * @return array<string, string>
 	 */
 	public function add_custom_admin_columns( $columns ) {
 		// Inserisci una nuova colonna per il meta field PATENT_SORTABLE_FIELD.
@@ -153,8 +153,8 @@ class Patent_Manager {
 	/**
 	 * Mark the sortable field column as sortable in the patent admin list.
 	 *
-	 * @param array $columns Existing sortable columns.
-	 * @return array
+	 * @param array<string, mixed> $columns Existing sortable columns, by column key.
+	 * @return array<string, mixed>
 	 */
 	public function sort_custom_admin_columns( $columns ) {
 		// Rendere la colonna PATENT_SORTABLE_FIELD ordinabile.

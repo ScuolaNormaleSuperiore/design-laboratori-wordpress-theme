@@ -127,7 +127,7 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
   second are in `inc/reserved-area.php` and depend on Configurazione → Area riservata. Covered by
   `DLI_Reserved_Area_Roles_Integration_Test` (what the two roles share, checked once for both with a data provider),
   `DLI_Pending_User_Role_Integration_Test` and `DLI_Reserved_Area_User_Role_Integration_Test` (what is specific to each).
-- `DLI_PolylangManager`: which post types and taxonomies Polylang translates.
+- `DLI_Polylang_Manager` (`class-dli-polylang-manager.php`): which post types and taxonomies Polylang translates.
 - One manager per content type (events, news, patents, people, people types,
   places, projects, publications, research activities, spin-offs, sponsors,
   technical resources, banners, posts, pages).

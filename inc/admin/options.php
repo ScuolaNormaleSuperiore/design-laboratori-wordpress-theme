@@ -7,6 +7,8 @@
 
 /**
  * Hook in and register a metabox to handle a theme options page and adds a menu item.
+ *
+ * @return void
  */
 function dli_register_main_options_metabox() {
 	$prefix = '';
@@ -3521,6 +3523,7 @@ add_action( 'cmb2_admin_init', 'dli_register_reserved_area_options', 20 );
  * CMB2 options pages which share this same display callback.
  *
  * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
+ * @return void
  */
 function dli_options_display_with_tabs( $cmb_options ) {
 	$tabs        = dli_options_page_tabs( $cmb_options );
@@ -3565,7 +3568,7 @@ function dli_options_display_with_tabs( $cmb_options ) {
  *
  * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
  *
- * @return array Array of tab information.
+ * @return array<string, string> Title of each tab, by options page key.
  */
 function dli_options_page_tabs( $cmb_options ) {
 	$tab_group = $cmb_options->cmb->prop( 'tab_group' );

@@ -8,8 +8,8 @@
  *
  * @package Design_Laboratori_Italia
  *
- * @var array $args {
- *     @type array     $people_by_category  Persone indicizzate per ID categoria.
+ * @var array{people_by_category?: array<int, list<WP_Post>>, categories?: array<WP_Post>, hide_icon?: string, show_structure?: bool} $args {
+ *     @type array     $people_by_category  Persone indicizzate per ID categoria (array<int, list<WP_Post>>).
  *     @type WP_Post[] $categories          Categorie (tipologia-persona) ordinate per priorità.
  *     @type string    $hide_icon           'true' per nascondere l'avatar, 'false' per mostrarlo.
  *     @type bool      $show_structure      false per nascondere struttura e livello sotto il nome (default true).

@@ -25,8 +25,8 @@ if ( ! class_exists( 'DLI_Publication_Manager' ) ) {
 	include_once 'class-dli-publication-manager.php';
 }
 
-if ( ! class_exists( 'Patent_Manager' ) ) {
-	include_once 'class-patentmanager.php';
+if ( ! class_exists( 'DLI_Patent_Manager' ) ) {
+	include_once 'class-dli-patent-manager.php';
 }
 
 if ( ! class_exists( 'SpinOff_Manager' ) ) {
@@ -61,8 +61,8 @@ if ( ! class_exists( 'DLI_Page_Manager' ) ) {
 	include_once 'class-dli-page-manager.php';
 }
 
-if ( ! class_exists( 'Polylang_Manager' ) ) {
-	include_once 'class-polylangmanager.php';
+if ( ! class_exists( 'DLI_Polylang_Manager' ) ) {
+	include_once 'class-dli-polylang-manager.php';
 }
 
 if ( ! class_exists( 'Place_Manager' ) ) {
@@ -149,7 +149,7 @@ class DLI_LabManager {
 
 		// Setup dei post type personalizzati e delle tassonomie associate.
 		// Setup di Polylang.
-		$polylang = new Polylang_Manager();
+		$polylang = new DLI_Polylang_Manager();
 		$polylang->setup();
 
 		// Setup dei reuoli e dei permessi.
@@ -173,7 +173,7 @@ class DLI_LabManager {
 		$publm->setup();
 
 		// Setup del post type Brevetto.
-		$pat = new Patent_Manager();
+		$pat = new DLI_Patent_Manager();
 		$pat->setup();
 
 		// Setup del post type Indirizzo di ricerca.

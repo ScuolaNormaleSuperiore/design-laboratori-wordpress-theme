@@ -7,7 +7,7 @@
  *
  * @package Design_Laboratori_Italia
  *
- * @var array $args {
+ * @var array{active?: string, chip_url?: string, tabella_url?: string} $args {
  *     @type string $active      Vista attiva: 'chip'|'tabella'.
  *     @type string $chip_url    URL per passare alla vista Schede, con gli altri filtri già preservati.
  *     @type string $tabella_url URL per passare alla vista Tabella, con gli altri filtri già preservati.

@@ -182,6 +182,8 @@ if ( ! function_exists( 'dli_setup' ) ) :
 	 * Note that this function is hooked into the after_setup_theme hook, which
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
+	 *
+	 * @return void
 	 */
 	function dli_setup() {
 
@@ -222,6 +224,8 @@ add_action( 'after_setup_theme', 'dli_setup' );
 
 /**
  * Enqueue scripts and styles.
+ *
+ * @return void
  */
 function dli_scripts() {
 	$theme_version = wp_get_theme()->get( 'Version' );
@@ -288,10 +292,10 @@ function dli_enqueue_people_filters_script() {
 /**
  * Add CSS classes to menu links when provided by menu args.
  *
- * @param array    $atts Link attributes.
- * @param \WP_Post $item Menu item.
- * @param object   $args Menu arguments.
- * @return array
+ * @param array<string, string> $atts Link attributes.
+ * @param \WP_Post              $item Menu item.
+ * @param object                $args Menu arguments.
+ * @return array<string, string>
  */
 function dli_add_menu_link_class( $atts, $item, $args ) {
 	if ( property_exists( $args, 'link_class' ) ) {
@@ -328,8 +332,8 @@ add_filter( 'pll_cookie_args', 'dli_harden_polylang_cookie' );
 /**
  * Allow SVG upload MIME type.
  *
- * @param array $upload_mimes Allowed upload MIME types.
- * @return array
+ * @param array<string, string> $upload_mimes Allowed upload MIME types, by extension.
+ * @return array<string, string>
  */
 function dli_enable_svg_upload( $upload_mimes ) {
 	$upload_mimes['svg'] = 'image/svg+xml';
