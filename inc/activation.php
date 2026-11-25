@@ -385,13 +385,6 @@ function dli_create_the_pages() {
 		$new_page_it_id = $page_check ? $page_check->ID : 0;
 		// If the IT page doesn't already exist, create it.
 		if ( ! $new_page_it_id ) {
-			if ( isset( $page['content_parent'] ) ) {
-				$parent_page = get_page_by_path( $page['content_parent'][0] );
-				if ( $parent_page ) {
-					$post_parent_id          = intval( $parent_page->ID );
-					$new_page['post_parent'] = $post_parent_id;
-				}
-			}
 			$new_page_it_id = wp_insert_post( $new_page, true );
 			if ( ! is_wp_error( $new_page_it_id ) ) {
 				update_post_meta( $new_page_it_id, '_wp_page_template', $new_content_template );
@@ -427,13 +420,6 @@ function dli_create_the_pages() {
 		$new_page_en_id = $page_check ? $page_check->ID : 0;
 		// If the IT page doesn't already exist, create it.
 		if ( ! $new_page_en_id ) {
-			if ( isset( $page['content_parent'] ) ) {
-				$parent_page = get_page_by_path( $page['content_parent'][1] );
-				if ( $parent_page ) {
-					$post_parent_id          = intval( $parent_page->ID );
-					$new_page['post_parent'] = $post_parent_id;
-				}
-			}
 			$new_page_en_id = wp_insert_post( $new_page, true );
 			if ( ! is_wp_error( $new_page_en_id ) ) {
 				update_post_meta( $new_page_en_id, '_wp_page_template', $new_content_template );

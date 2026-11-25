@@ -5,129 +5,13 @@
  * @package Design_Laboratori_Italia
  */
 
-/**
- * Value object holding the data submitted through the newsletter subscription form.
- */
-class NewsletterData {
-
-	/**
-	 * First name.
-	 *
-	 * @var string
-	 */
-	private string $user_name;
-
-	/**
-	 * Last name.
-	 *
-	 * @var string
-	 */
-	private string $user_surname;
-
-	/**
-	 * Email address.
-	 *
-	 * @var string
-	 */
-	private string $user_mail;
-
-	/**
-	 * Phone number.
-	 *
-	 * @var string
-	 */
-	private string $user_phone;
-
-	/**
-	 * Store the newsletter subscription form data.
-	 *
-	 * @param string $user_name    First name.
-	 * @param string $user_surname Last name.
-	 * @param string $user_mail    Email address.
-	 * @param string $user_phone   Phone number.
-	 */
-	public function __construct( string $user_name, string $user_surname, string $user_mail, string $user_phone ) {
-		$this->user_name    = $user_name;
-		$this->user_surname = $user_surname;
-		$this->user_mail    = $user_mail;
-		$this->user_phone   = $user_phone;
-	}
-
-	/**
-	 * Get the first name.
-	 *
-	 * @return string
-	 */
-	public function get_user_name() {
-		return $this->user_name;
-	}
-	/**
-	 * Get the last name.
-	 *
-	 * @return string
-	 */
-	public function get_user_surname() {
-		return $this->user_surname;
-	}
-	/**
-	 * Get the email address.
-	 *
-	 * @return string
-	 */
-	public function get_user_mail() {
-		return $this->user_mail;
-	}
-	/**
-	 * Get the phone number.
-	 *
-	 * @return string
-	 */
-	public function get_user_phone() {
-		return $this->user_phone;
-	}
-
-	/**
-	 * Set the first name.
-	 *
-	 * @param string $user_name First name.
-	 * @return void
-	 */
-	public function set_name( $user_name ) {
-		$this->user_name = $user_name;
-	}
-	/**
-	 * Set the last name.
-	 *
-	 * @param string $user_surname Last name.
-	 * @return void
-	 */
-	public function set_user_surname( $user_surname ) {
-		$this->user_surname = $user_surname;
-	}
-	/**
-	 * Set the email address.
-	 *
-	 * @param string $user_mail Email address.
-	 * @return void
-	 */
-	public function set_user_mail( $user_mail ) {
-		$this->user_mail = $user_mail;
-	}
-	/**
-	 * Set the phone number.
-	 *
-	 * @param string $user_phone Phone number.
-	 * @return void
-	 */
-	public function set_user_phone( $user_phone ) {
-		$this->user_phone = $user_phone;
-	}
-}
+// The form data handled by the manager.
+require_once __DIR__ . '/class-dli-newsletter-data.php';
 
 /**
  * The Newsletter manager.
  */
-class Newsletter_Manager {
+class DLI_Newsletter_Manager {
 
 	/**
 	 * Validation error messages.
@@ -139,9 +23,9 @@ class Newsletter_Manager {
 	/**
 	 * Submitted form data.
 	 *
-	 * @var NewsletterData
+	 * @var DLI_Newsletter_Data
 	 */
-	private NewsletterData $data;
+	private DLI_Newsletter_Data $data;
 
 	/**
 	 * Constructor of the Manager.
@@ -159,7 +43,7 @@ class Newsletter_Manager {
 	 * @return void
 	 */
 	public function setup( string $user_name, string $user_surname, string $user_mail, string $user_phone ) {
-		$this->data = new NewsletterData( $user_name, $user_surname, $user_mail, $user_phone );
+		$this->data = new DLI_Newsletter_Data( $user_name, $user_surname, $user_mail, $user_phone );
 	}
 
 	/**
@@ -192,7 +76,6 @@ class Newsletter_Manager {
 	 *
 	 * @return array Response with 'code', 'message' and 'body' keys.
 	 * @throws Exception When the Brevo API request fails (caught internally; never propagates).
-	 * @phpstan-ignore throws.unusedType (The exception is thrown in the try block and caught below; PHPCS requires the tag.)
 	 */
 	public function subscribe_user() {
 		$result = array(

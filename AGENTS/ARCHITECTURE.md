@@ -136,7 +136,7 @@ group together), instantiated by `DLI_LabManager::plugin_setup()`.
 - Public email and PEC addresses are sanitized and obfuscated with
   `antispambot()` before template output; the people table omits email data
   entirely when its email column is disabled.
-- `Newsletter_Manager`: Brevo newsletter subscription and validation.
+- `DLI_Newsletter_Manager` (`class-dli-newsletter-manager.php`, with the form data in `DLI_Newsletter_Data`, `class-dli-newsletter-data.php`): Brevo newsletter subscription and validation.
 - Importers: `DLI_BaseImporter` (abstract), `DLI_IndicoImporter` (events),
   `DLI_IrisPatentImporter` (patents); the CSV imports of people and pages are described under Main Files.
 

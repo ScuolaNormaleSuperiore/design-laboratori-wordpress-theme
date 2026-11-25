@@ -11,8 +11,8 @@
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-if ( ! class_exists( 'Newsletter_Manager' ) ) {
-	require_once DLI_THEMA_PATH . '/inc/classes/class-newslettermanager.php';
+if ( ! class_exists( 'DLI_Newsletter_Manager' ) ) {
+	require_once DLI_THEMA_PATH . '/inc/classes/class-dli-newsletter-manager.php';
 }
 
 get_header();
@@ -66,7 +66,7 @@ if ( $dli_form_submission ) {
 
 // Procedura di verifica e sottomissione della sottoscrizione.
 if ( 0 === count( $dli_form_errors ) && true === $dli_form_submission ) {
-	$dli_manager = new Newsletter_Manager();
+	$dli_manager = new DLI_Newsletter_Manager();
 	$dli_manager->setup( $dli_user_name, $dli_user_surname, $dli_user_mail, $dli_user_phone );
 	$dli_manager->validate();
 	$dli_form_errors = $dli_manager->get_errors();

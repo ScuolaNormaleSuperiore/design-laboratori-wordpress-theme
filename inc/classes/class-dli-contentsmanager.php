@@ -57,8 +57,8 @@ class DLI_ContentsManager {
 			$og_data->site_title   = $site_title;
 			$og_data->site_tagline = $site_tagline;
 			$og_data->image        = $item_image;
-			$og_data->img_width    = $img_id && $has_img_data && isset( $img_array[1] ) ? (string) $img_array[1] : '0';
-			$og_data->img_height   = $img_id && $has_img_data && isset( $img_array[2] ) ? (string) $img_array[2] : '0';
+			$og_data->img_width    = $img_id && $has_img_data ? (string) $img_array[1] : '0';
+			$og_data->img_height   = $img_id && $has_img_data ? (string) $img_array[2] : '0';
 			$og_data->img_type     = $img_type;
 			$og_data->domain       = $domain;
 			$og_data->shared_title = $shared_title;

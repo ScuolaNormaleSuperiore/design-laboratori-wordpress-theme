@@ -5,7 +5,7 @@
  * @package Design_Laboratori_Italia
  */
 
-require_once get_template_directory() . '/inc/classes/class-newslettermanager.php';
+require_once get_template_directory() . '/inc/classes/class-dli-newsletter-manager.php';
 
 /**
  * Brevo is intercepted at the WordPress HTTP boundary, so these tests never
@@ -88,7 +88,7 @@ class DLI_Newsletter_Integration_Test extends DLI_Integration_Test_Case {
 	public function test_subscription_is_sent_to_brevo_and_accepted() {
 		add_filter( 'pre_http_request', array( $this, 'accept_brevo_request' ), 10, 3 );
 
-		$manager = new Newsletter_Manager();
+		$manager = new DLI_Newsletter_Manager();
 		$manager->setup( 'Ada', 'Lovelace', 'ada@example.test', '' );
 		$result = $manager->subscribe_user();
 
@@ -113,7 +113,7 @@ class DLI_Newsletter_Integration_Test extends DLI_Integration_Test_Case {
 	public function test_subscription_returns_an_upstream_error() {
 		add_filter( 'pre_http_request', array( $this, 'reject_brevo_request' ), 10, 3 );
 
-		$manager = new Newsletter_Manager();
+		$manager = new DLI_Newsletter_Manager();
 		$manager->setup( 'Ada', 'Lovelace', 'ada@example.test', '' );
 		$result = $manager->subscribe_user();
 
