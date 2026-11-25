@@ -1,5 +1,5 @@
 import BaseComponent from './base-component.js';
-import { isDisabled, getElementFromSelector, reflow } from './util/index.js';
+import { reflow, getElementFromSelector, isDisabled } from './util/index.js';
 import EventHandler from './dom/event-handler.js';
 
 /**

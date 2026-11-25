@@ -1,5 +1,5 @@
 import BaseComponent from './base-component.js';
-import { getElementFromSelector, isVisible, reflow } from './util/index.js';
+import { reflow, getElementFromSelector, isVisible } from './util/index.js';
 import EventHandler from './dom/event-handler.js';
 import SelectorEngine from './dom/selector-engine.js';
 import { isScreenMobile } from './util/device.js';
