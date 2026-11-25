@@ -22,7 +22,7 @@ concurrency:
 jobs:
   checks:
     name: Checks (PHP ${{ matrix.php }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -96,7 +96,7 @@ jobs:
       github.event_name == 'workflow_dispatch'
       || (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'))
       || (github.event_name == 'pull_request' && github.base_ref == 'main')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     services:
       # Throwaway database of this job only, with no password and not reachable from outside the runner.
@@ -159,3 +159,36 @@ jobs:
       # Downloads ACF and Polylang at the pinned versions (support/fetch-test-plugins.php), then runs PHPUnit.
       - name: Integration tests
         run: composer test:integration
+
+  # Check 11: publiccode.yml, the file of the catalogue of Developers Italia, validated with the official
+  # action (it builds its own image). It also checks the remote URLs and the logo and screenshots on the
+  # default branch, so a file added on dev is found only after the merge on main.
+  publiccode:
+    name: publiccode.yml
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate publiccode.yml
+        uses: italia/publiccode-parser-action@f370d239aa3ec57b819909b467ff77679b6dc721 # v1.7.0
+        with:
+          publiccode: publiccode.yml
+
+  # Check 12: actionlint on the workflows (syntax, expressions, contexts and, with shellcheck, the run
+  # scripts), from the official image pinned to a digest: nothing is installed on the runner.
+  actionlint:
+    name: Workflows (actionlint)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Lint the workflows
+        run: docker run --rm -v "$GITHUB_WORKSPACE:/repo" --workdir /repo rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 -color

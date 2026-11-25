@@ -242,7 +242,9 @@ whoever has not activated the hooks and for pull requests. It is **observational
 turns the run red but blocks nothing, and the push is never refused. It runs on push to `dev`,
 `main` and the prefixed branches (`features/**`, `bugfix/**`, `refactor/**`, `docs/**`), on pull
 requests to `dev` and `main`, and on demand. The secret scan, the l10n guard and the check on
-commit-message trailers exist only in the local hooks.
+commit-message trailers exist only in the local hooks. Every job of every workflow runs on
+`ubuntu-24.04`, not `ubuntu-latest`, so the runner changes only on purpose; the unit test
+`DLI_CI_Workflow_Unit_Test` checks it, together with the action pins.
 
 | Check | Command | Scope | PHP | Job |
 |---|---|---|---|---|
@@ -253,6 +255,8 @@ commit-message trailers exist only in the local hooks.
 | PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
 | PHPStan level 6 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
 | Integration tests | `composer test:integration` | whole suite, on WordPress 7.1.4 with ACF 6.8.10 and Polylang 3.9.1 and a throwaway MariaDB service | 8.4 | `integration` |
+| `publiccode.yml` | `italia/publiccode-parser-action` (official action of Developers Italia) | `publiccode.yml`, with its remote URLs and the logo and screenshots on the default branch | — | `publiccode` |
+| Workflow lint | `actionlint` (with shellcheck) from the official `rhysd/actionlint` image pinned to a digest | `.github/workflows/*.yml` | — | `actionlint` |
 
 `composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
 and 8.4 alike. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before

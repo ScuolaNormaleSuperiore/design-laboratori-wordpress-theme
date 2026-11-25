@@ -292,7 +292,7 @@ F. Repository hygiene
 24. Translations: the new translatable strings are in the catalogue and the `.po` files agree with the generated `.mo` and `.l10n.php` files (`AVVISO`; only when `languages/` changed).
 25. The ACF exports in `SETUP/ACF_Custom_Fields/` mirror the field groups registered in PHP (`ERRORE` when `DLI_Acf_Exports_Integration_Test` fails, which check 18 already runs; `AVVISO` when the PHP field groups changed since the baseline and no export file changed with them).
 26. `composer.lock` and `package-lock.json` agree with `composer.json` and `package.json` (BLOCKING when `composer validate --no-check-publish` fails).
-27. `publiccode.yml` validates with `publiccode-parser -path . publiccode.yml` (BLOCKING if it fails, `NON ESEGUITO` if the tool is missing).
+27. `publiccode.yml` validates with `publiccode-parser -path . publiccode.yml` (BLOCKING if it fails). If the tool is missing, the green `publiccode` job of the CI on the same commit counts as the check (it checks the logo and screenshots on the default branch, not the local ones); without either, `NON ESEGUITO`.
 
 G. Security heuristics (`AVVISO`, only on the files changed since the baseline tag)
 28. REST routes without an explicit `permission_callback`; `eval`, `extract` or `unserialize` on untrusted data; state-changing handlers without a nonce or a capability check; output without escaping; direct use of `$_GET`, `$_POST` or `$_REQUEST` without `wp_unslash()` and sanitization. Report file and line; file nothing without the operator's approval.

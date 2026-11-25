@@ -17,7 +17,7 @@ Write code according to official WordPress standards and project-specific conven
 
 ## GitHub Actions supply-chain security
 
-- Keep third-party GitHub Actions pinned to full commit SHAs; retain the human-readable version comment beside each pin.
+- Keep third-party GitHub Actions pinned to full commit SHAs, with the full version beside each pin (`# v1.2.3`, not `# v1`) and the same SHA for the same action in every workflow; run every job on `ubuntu-24.04`. `DLI_CI_Workflow_Unit_Test` checks these rules.
 - Grant workflows only the permissions they need. Do not add repository secrets or personal access tokens to Scorecard without an explicit operator decision.
 - OpenSSF Scorecard is an observational GitHub check, not a replacement for local quality checks or a pre-commit gate. Review material findings before changing repository policy or workflows.
 

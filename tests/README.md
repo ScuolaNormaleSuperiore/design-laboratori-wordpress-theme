@@ -88,6 +88,8 @@ Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete
 | Test unit | `composer test:unit` | 8.0 e 8.4 |
 | PHPCS (solo errori) | `.github/scripts/phpcs-changed.sh`, sui file PHP, CSS e SCSS modificati | 8.4 |
 | PHPStan livello 6 | `composer run lint:phpstan`, sull'intero tema | 8.4 |
+| `publiccode.yml` | Azione ufficiale di Developers Italia (`italia/publiccode-parser-action`): controlla anche gli indirizzi remoti, il logo e gli screenshot sul ramo principale | — |
+| Workflow | actionlint (con shellcheck) dall'immagine ufficiale, fissata per digest, sui file di `.github/workflows/` | — |
 
 La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), con WordPress, ACF e Polylang a versioni fissate; le corse restano osservate nel tempo.
 
@@ -100,11 +102,11 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | Momento | Cosa gira | Blocca? |
 |---|---|---|
 | **Commit** (hook locale, se attivo) | Segreti, guardia l10n (corregge da sola), PHPStan livello 6 sull'intero tema, PHPCS sui file PHP, CSS e SCSS in staging (solo errori), test unit; controllo del messaggio (trailer AI) | Sì, tranne la guardia l10n; `--no-verify` salta tutto |
-| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6) e job `integration` (oltre 500 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
-| **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | Solo `checks` (e `documentation-check` su `docs/**`) | No |
-| **Pull request verso `dev`** (per esempio Dependabot) | `checks` | No |
-| **Pull request verso `main`** (rilascio da `dev`) | `checks` e `integration`; `documentation-check` se cambia la documentazione | No |
-| **Merge su `main`** (push) | `checks` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
+| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6), `publiccode`, `actionlint` e job `integration` (oltre 500 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
+| **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | `checks`, `publiccode` e `actionlint` (e `documentation-check` su `docs/**`) | No |
+| **Pull request verso `dev`** (per esempio Dependabot) | `checks`, `publiccode` e `actionlint` | No |
+| **Pull request verso `main`** (rilascio da `dev`) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
+| **Merge su `main`** (push) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
 | **Programmati** | Scorecard ogni lunedì e al cambio di una regola di protezione dei rami; Dependabot, PR mensili verso `dev` (GitHub Actions, Composer, npm, Docker) | No |
 | **Solo a mano** | Test E2E, Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev` e l'avvio manuale di `CI` dalla scheda *Actions* | — |
 

@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/badge)](https://scorecard.dev/viewer/?uri=github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme)
-[![PHPStan Enabled](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://phpstan.org/)
+[![PHPStan level 6](https://img.shields.io/badge/PHPStan-level%206-brightgreen.svg?style=flat)](https://phpstan.org/)
 [![License](https://img.shields.io/github/license/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme)](LICENSE)
 [![Version](https://img.shields.io/github/v/tag/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme)](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/tags)
 
@@ -174,7 +174,7 @@ I controlli che scattano a ogni commit (segreti, PHPStan livello 6, PHPCS sui fi
 Requisiti, preparazione, opzioni e varianti `:gate` e `:compare` sono descritti nel [punto di ingresso dei controlli](tests/README.md), che rimanda ai README di [test unit](tests/unit/README.md), [integrazione](tests/integration/README.md), [E2E](tests/e2e/README.md), [PHPStan](tests/phpstan/README.md) e [Report](tests/report/README.md). [Test e Report](tests/) sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in [.gitattributes](.gitattributes)).
 
 ## Verifica file publiccode.yml
-Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto.
+Il file ***publiccode.yml*** serve per la pubblicazione del progetto nel [catalogo del riuso](https://catalogo-software.developers.italia.it/software/9f2ec6c8-9eb7-4d73-8d79-577e62308e9a). Per verificare la sua correttezza si può usare questa [procedura](https://github.com/italia/publiccode-parser-go); l'opzione `-path .` controlla i file referenziati (logo, screenshot) nella cartella locale invece che nel repository remoto. La CI lo valida a ogni push con l'azione ufficiale di Developers Italia (job `publiccode`), che invece controlla logo e screenshot sul ramo principale del repository.
 ```
 go install github.com/italia/publiccode-parser-go/v4/publiccode-parser@latest
 cd <root_cartella_tema>

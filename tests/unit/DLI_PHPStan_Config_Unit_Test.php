@@ -77,6 +77,18 @@ class DLI_PHPStan_Config_Unit_Test extends TestCase {
 	}
 
 	/**
+	 * The PHPStan badge of the README shows the level of phpstan.neon.
+	 */
+	public function test_the_readme_badge_shows_the_configured_level() {
+		$this->assertSame( 1, preg_match( '/^  level:\s*(\d+)\s*$/m', $this->neon(), $level ), 'level not found in phpstan.neon' );
+		$readme = file_get_contents( DLI_TEST_THEME_DIR . '/README.md' );
+		$this->assertNotFalse( $readme, 'Cannot read README.md' );
+		$this->assertSame( 1, preg_match( '/\[!\[PHPStan level (\d+)\]\(https:\/\/img\.shields\.io\/badge\/PHPStan-level%20(\d+)-/', $readme, $badge ), 'PHPStan level badge not found in README.md' );
+		$this->assertSame( $level[1], $badge[1], 'The alt text of the PHPStan badge does not match phpstan.neon.' );
+		$this->assertSame( $level[1], $badge[2], 'The PHPStan badge does not match the level of phpstan.neon.' );
+	}
+
+	/**
 	 * Every PHP file in the root of the theme is analyzed.
 	 */
 	public function test_every_root_php_file_is_analyzed() {
