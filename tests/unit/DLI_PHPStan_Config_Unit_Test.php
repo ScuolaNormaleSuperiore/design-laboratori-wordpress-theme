@@ -18,7 +18,7 @@ class DLI_PHPStan_Config_Unit_Test extends TestCase {
 	/**
 	 * Minimum PHPStan level of the project (AGENTS/CODING_STANDARDS.md).
 	 */
-	const MINIMUM_LEVEL = 5;
+	const MINIMUM_LEVEL = 6;
 
 	/**
 	 * Content of phpstan.neon.

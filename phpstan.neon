@@ -6,7 +6,7 @@ parameters:
     - ABSPATH
     - CMB2_VERSION
     - DLI_POST_TYPES_TO_TRANSLATE
-  level: 5
+  level: 6
   parallel:
     maximumNumberOfProcesses: 1
   scanFiles:

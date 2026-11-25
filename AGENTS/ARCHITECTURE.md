@@ -213,10 +213,9 @@ three families: static checks and tests (run with Composer) and Reports (run wit
   CSS and SCSS files (`.githooks/check-staged-phpcs.sh`, errors only, staged content) and
   blocks the commit on any error, including errors that were already in the file.
 - Static analysis: `composer run lint:phpstan` runs the whole theme at the required
-  level 5, set in `phpstan.neon` (the only place where the level is written). It is also
+  level 6, set in `phpstan.neon` (the only place where the level is written). It is also
   the commit gate: `.githooks/pre-commit` runs it through `.githooks/check-phpstan.sh` and
-  blocks the commit on any error. `composer run lint:phpstan:level6` is the non-blocking
-  whole-theme progress check toward level 6.
+  blocks the commit on any error.
 - Unit tests: `composer test:unit` (no WordPress: PHPUnit, then the JavaScript unit tests with `node --test tests/unit/*.test.js`; needs Node on the PATH: 22 or later on Windows, where `cmd` does not expand the pattern and only Node 21+ expands it itself, 18 or later where the shell expands it, as in the CI; also run by `.githooks/pre-commit`). Arguments after `--` reach PHPUnit only.
 - Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook). Run only when unit and integration tests cannot adequately verify the required browser behavior.
@@ -252,7 +251,7 @@ commit-message trailers exist only in the local hooks.
 | Whitespace errors | `git diff --check` | changed PHP, JS, CSS and SCSS files | 8.4 | `checks` |
 | Unit tests | `composer test:unit` (PHPUnit and `node --test`, with the Node of the runner) | whole suite | 8.0, 8.4 | `checks` |
 | PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
-| PHPStan level 5 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
+| PHPStan level 6 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
 | Integration tests | `composer test:integration` | whole suite, on WordPress 7.1.4 with ACF 6.8.10 and Polylang 3.9.1 and a throwaway MariaDB service | 8.4 | `integration` |
 
 `composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0

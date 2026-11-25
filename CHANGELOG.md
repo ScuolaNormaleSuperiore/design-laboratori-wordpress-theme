@@ -25,7 +25,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Controlli periodici di integrità dei dati con avvisi amministrativi (relazioni orfane, date e tassonomie non valide).
 - Import di pubblicazioni da Iris.
 - Sezione Cloud Words in home per l'esplorazione tematica, accessibile e compatibile con Bootstrap Italia.
-- PHPStan: raggiungere livello 6.
 
 
 
@@ -33,6 +32,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.1.2] - 2026-11-25
 ### Modificato
 - Bootstrap Italia aggiornata alla versione 3.0.0-beta.8 (correzioni di accessibilità di elenchi, form, footer e modali).
+- PHPStan: tutto il tema al livello 6, che diventa la soglia del controllo nel commit e nella CI (PHPStan aggiornato alla 2.3.7).
 ### Corretto
 - Un iframe incollato nel contenuto con una larghezza fissa (grafici, mappe, moduli) non fa più scorrere la pagina di lato sugli schermi stretti.
 ### Sicurezza

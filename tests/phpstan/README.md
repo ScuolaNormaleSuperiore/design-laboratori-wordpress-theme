@@ -8,7 +8,7 @@ arrivano da altre parti. Il comando è, dalla radice del tema:
 composer run lint:phpstan
 ```
 
-La configurazione è in [`phpstan.neon`](../../phpstan.neon): livello **4** su tutti i file PHP del tema, ed è un
+La configurazione è in [`phpstan.neon`](../../phpstan.neon): livello **6** su tutti i file PHP del tema, ed è un
 controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../README.md)).
 
 
@@ -62,7 +62,7 @@ controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../REA
 - Niente baseline e niente `ignoreErrors` generici. Le sole eccezioni ammesse sono le costanti dichiarate dinamiche
   in [`../../phpstan.neon`](../../phpstan.neon) (`ABSPATH`, `CMB2_VERSION`, `DLI_POST_TYPES_TO_TRANSLATE`) e le
   annotazioni `@phpstan-ignore <identificatore> (motivo)` sul singolo punto, con il motivo scritto accanto.
-- Il livello non scende sotto il 4 e ogni file PHP del tema deve essere nei percorsi analizzati: lo verifica
+- Il livello non scende sotto il 6 e ogni file PHP del tema deve essere nei percorsi analizzati: lo verifica
   [`../unit/DLI_PHPStan_Config_Unit_Test.php`](../unit/DLI_PHPStan_Config_Unit_Test.php).
 - Quando si aggiorna ACF, Polylang, CMB2 o Really Simple CAPTCHA, controllare che le firme dichiarate qui siano ancora
   quelle vere. La versione di `CMB2_VERSION` in `wordpress-lite-stubs.php` deve essere quella della libreria in
