@@ -1,4 +1,3 @@
-const replace = require('replace-in-file')
 const fs = require('fs')
 const path = require('path')
 
@@ -37,8 +36,15 @@ const configReleaseDateOptions = changelogEntry && {
   to: `releaseDate: '${changelogEntry[1]}'`,
 }
 
+// Replaces `from` with `to` in one file and returns the file in a list, as replace-in-file did
+// (the list holds the file whether or not its content changed). Plain Node: no dependency.
 const replaceInFile = (config) => {
-  return replace.sync(config).map((el) => el.file)
+  const content = fs.readFileSync(config.files, 'utf8')
+  const replaced = content.replace(config.from, config.to)
+  if (replaced !== content) {
+    fs.writeFileSync(config.files, replaced)
+  }
+  return [config.files]
 }
 
 try {
