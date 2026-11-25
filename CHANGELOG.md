@@ -33,6 +33,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ### Modificato
 - Bootstrap Italia aggiornata alla versione 3.0.0-beta.8.
 - PHPStan: tutto il tema al livello 6, che diventa la soglia del controllo nel commit e nella CI (PHPStan aggiornato alla 2.3.7).
+- Catalogo del riuso: la documentazione porta al sito della documentazione del tema e la roadmap al testo del changelog.
 ### Corretto
 - Un iframe incollato nel contenuto con una larghezza fissa (grafici, mappe, moduli) non fa più scorrere la pagina di lato sugli schermi stretti.
 ### Sicurezza

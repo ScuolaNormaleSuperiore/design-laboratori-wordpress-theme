@@ -11,7 +11,7 @@ categories:
 description:
   it:
     documentation: >-
-      https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/DOC/Manuali/manuale-operatore.md
+      https://scuolanormalesuperiore.github.io/design-laboratori-wordpress-theme/
     features:
       - Popolamento automatico del sito (pagine e menu).
       - Sezione per la configurazione del tema e dei contenuti.
@@ -142,7 +142,7 @@ landingURL: 'https://sitofederato.sns.it'
 platforms:
   - web
 releaseDate: '2026-11-25'
-roadmap: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/blob/main/CHANGELOG.md'
+roadmap: 'https://raw.githubusercontent.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/main/CHANGELOG.md'
 softwareType: addon
 url: 'https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme'
 logo: 'https://raw.githubusercontent.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme/main/assets/img/logo_sito_federato.png'
