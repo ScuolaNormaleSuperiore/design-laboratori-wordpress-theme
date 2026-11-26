@@ -25,17 +25,26 @@
       "node --test tests/unit/*.test.js"
     ],
     "test:integration": [
-      "@php tests/integration/support/fetch-test-plugins.php",
-      "phpunit -c phpunit-integration.xml"
+      "Composer\\Config::disableProcessTimeout",
+      "npm run test:integration --"
     ],
+    "env:tests:start": [
+      "Composer\\Config::disableProcessTimeout",
+      "npm run env:tests:start --"
+    ],
+    "env:tests:stop": "npm run env:tests:stop --",
+    "env:tests:destroy": "npm run env:tests:destroy --",
     "test:e2e": "npm run test:e2e --",
     "test:e2e:headed": "npm run test:e2e:headed --",
     "test:e2e:ui": "npm run test:e2e:ui --"
   },
   "scripts-descriptions": {
-    "test:all": "Unit and integration tests in order (stops at the first failing suite; needs the integration setup). The E2E suite is long and is run separately with test:e2e",
+    "test:all": "Unit and integration tests in order (stops at the first failing suite; the integration suite needs Docker Desktop). The E2E suite is long and is run separately with test:e2e",
     "test:unit": "Unit tests, no WordPress: PHPUnit, then the JavaScript tests with node --test (needs Node on the PATH)",
-    "test:integration": "Integration tests (PHPUnit on a real WordPress, dedicated database)",
+    "test:integration": "Integration tests in Docker (wp-env test environment, port 8893; needs Docker Desktop). Extra PHPUnit options after --",
+    "env:tests:start": "Start the wp-env test environment of the integration suite",
+    "env:tests:stop": "Stop the wp-env test environment of the integration suite",
+    "env:tests:destroy": "Remove the wp-env test environment of the integration suite (containers and database)",
     "test:e2e": "Functional tests (Playwright on the E2E site; needs DLI_E2E_SITE_PATH). Extra options after --",
     "test:e2e:headed": "Functional tests with a visible browser",
     "test:e2e:ui": "Functional tests in Playwright UI mode"

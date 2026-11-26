@@ -2,49 +2,53 @@
 /**
  * Bootstrap of the integration test suite.
  *
- * Loads the WordPress test framework (wordpress-develop), then ACF and Polylang
- * from the plugins cache and the theme, before WordPress finishes booting. Run
- * `php tests/integration/support/fetch-test-plugins.php` first (the Composer script does it).
+ * Runs inside the CLI container of the wp-env test environment (`composer test:integration`, see
+ * tests/integration/README.md). Loads the WordPress test framework that wp-env provides (`WP_TESTS_DIR`), with the
+ * configuration in tests/integration/wp-tests-config.php (dedicated database `dli_wordpress_test`), then ACF and
+ * Polylang from the plugins folder of the container (installed by `.wp-env.inttest.json`) and the theme, before
+ * WordPress finishes booting.
  *
  * Environment variables:
- * - WP_TESTS_DIR: `tests/phpunit` folder of wordpress-develop
- *   (default `C:/WordpressDEV/wordpress-develop/tests/phpunit`).
- * - WP_TESTS_CONFIG_FILE_PATH: alternative `wp-tests-config.php`.
- * - DLI_TEST_PLUGINS_DIR: folder with the plugins to load
- *   (default `tests/integration/.cache/plugins`).
+ * - WP_TESTS_DIR: folder of the WordPress test framework (set by wp-env).
+ * - WP_TESTS_CONFIG_FILE_PATH: alternative `wp-tests-config.php` (tests/bin/integration.mjs passes the one of the theme).
+ * - DLI_TEST_DB_HOST, DLI_TEST_DB_USER, DLI_TEST_DB_PASSWORD, DLI_TEST_ABSPATH: see tests/integration/wp-tests-config.php.
  *
  * @package Design_Laboratori_Italia
  */
 
 define( 'DLI_TEST_THEME_DIR', str_replace( '\\', '/', dirname( __DIR__ ) ) );
 
-$dli_tests_dir = getenv( 'WP_TESTS_DIR' );
-if ( false === $dli_tests_dir || '' === $dli_tests_dir ) {
-	$dli_tests_dir = 'C:/WordpressDEV/wordpress-develop/tests/phpunit';
-}
-$dli_tests_dir = rtrim( str_replace( '\\', '/', $dli_tests_dir ), '/' );
+$dli_tests_dir = rtrim( str_replace( '\\', '/', (string) getenv( 'WP_TESTS_DIR' ) ), '/' );
 
-$dli_plugins_dir = getenv( 'DLI_TEST_PLUGINS_DIR' );
-if ( false === $dli_plugins_dir || '' === $dli_plugins_dir ) {
-	$dli_plugins_dir = DLI_TEST_THEME_DIR . '/tests/integration/.cache/plugins';
-}
-define( 'DLI_TEST_PLUGINS_DIR', rtrim( str_replace( '\\', '/', $dli_plugins_dir ), '/' ) );
-
-if ( ! file_exists( $dli_tests_dir . '/includes/functions.php' ) ) {
-	fwrite( STDERR, "WordPress test framework not found in $dli_tests_dir (set WP_TESTS_DIR).\n" );
+if ( '' === $dli_tests_dir || ! file_exists( $dli_tests_dir . '/includes/functions.php' ) ) {
+	fwrite( STDERR, "WordPress test framework not found: run the suite with `composer test:integration` (it runs in the wp-env test environment, see tests/integration/README.md).\n" );
 	exit( 1 );
 }
 
 $dli_config = getenv( 'WP_TESTS_CONFIG_FILE_PATH' );
-if ( false !== $dli_config && '' !== $dli_config ) {
-	define( 'WP_TESTS_CONFIG_FILE_PATH', $dli_config );
+if ( false === $dli_config || '' === $dli_config ) {
+	$dli_config = __DIR__ . '/integration/wp-tests-config.php';
+}
+define( 'WP_TESTS_CONFIG_FILE_PATH', $dli_config );
+
+// Safety net: the framework drops every table of the configured database. Load the configuration first (the
+// framework then skips it, it uses require_once) and refuse any database but the dedicated one.
+if ( ! is_readable( WP_TESTS_CONFIG_FILE_PATH ) ) {
+	fwrite( STDERR, 'Test configuration not found: ' . WP_TESTS_CONFIG_FILE_PATH . "\n" );
+	exit( 1 );
+}
+require_once WP_TESTS_CONFIG_FILE_PATH;
+if ( ! defined( 'DB_NAME' ) || 'dli_wordpress_test' !== DB_NAME ) {
+	fwrite( STDERR, "Refusing to run: DB_NAME must be 'dli_wordpress_test' (the framework empties the database).\n" );
+	exit( 1 );
 }
 
 define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', DLI_TEST_THEME_DIR . '/vendor/yoast/phpunit-polyfills' );
 
 require_once $dli_tests_dir . '/includes/functions.php';
 
-// Plugins that the theme needs to activate (MANDATORY_PLUGINS in config-lab.php).
+// Plugins that the theme needs to activate (MANDATORY_PLUGINS in config-lab.php), installed by .wp-env.inttest.json.
+define( 'DLI_TEST_PLUGINS_DIR', rtrim( ABSPATH, '/' ) . '/wp-content/plugins' );
 define(
 	'DLI_TEST_PLUGIN_FILES',
 	array(
@@ -55,7 +59,7 @@ define(
 
 foreach ( DLI_TEST_PLUGIN_FILES as $dli_plugin_file ) {
 	if ( ! file_exists( DLI_TEST_PLUGINS_DIR . '/' . $dli_plugin_file ) ) {
-		fwrite( STDERR, "Plugin $dli_plugin_file not found in " . DLI_TEST_PLUGINS_DIR . ". Run: php tests/integration/support/fetch-test-plugins.php\n" );
+		fwrite( STDERR, "Plugin $dli_plugin_file not found in " . DLI_TEST_PLUGINS_DIR . ": start the environment again with `composer test:integration` (the plugins are installed by .wp-env.inttest.json).\n" );
 		exit( 1 );
 	}
 }

@@ -10,7 +10,7 @@ Gli strumenti di verifica del tema sono di tre famiglie, con scopi diversi.
 | Famiglia | A cosa risponde | Serve un sito in funzione? | Strumenti | Esito |
 |---|---|---|---|---|
 | **Controlli statici** | Il codice è scritto bene e può rompersi? | No: leggono i sorgenti | PHPCS, PHPStan, `composer audit`, `npm audit` | Elenco di segnalazioni (PHPCS può correggere da solo con `lint:php:fix`, PHPStan no) |
-| **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test. E2E: sì, un sito Local dedicato | PHPUnit, Playwright | Passano o falliscono |
+| **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test in Docker. E2E: sì, un sito Local dedicato | PHPUnit, Playwright | Passano o falliscono |
 | **Report** | Il sito in funzione ha errori, HTML non valido, problemi di accessibilità? | Sì, un sito raggiungibile | Moduli di `tests/report/` | Un risultato HTML e JSON da leggere; `--gate` dà un codice di uscita |
 
 I Controlli statici e i Test si lanciano con **Composer**, i Report con **npm**, sempre dalla
@@ -24,7 +24,7 @@ radice del tema.
 | Stile del codice (PHPCS) | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | **Sì, solo gli errori** dei file PHP, CSS e SCSS in staging | — |
 | Analisi statica (PHPStan) | `composer run lint:phpstan` | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
-| Test di integrazione (oltre 500) | `composer test:integration` | No | [`integration/README.md`](integration/README.md); il primo avvio scarica ACF e Polylang |
+| Test di integrazione (oltre 500) | `composer test:integration` | No | Docker Desktop acceso; [`integration/README.md`](integration/README.md). Il primo avvio scarica le immagini, WordPress, ACF e Polylang |
 | Test E2E (oltre 60) | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | No | [`e2e/README.md`](e2e/README.md) |
 | Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`) perché la suite E2E possa finire |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | No | [`report/README.md`](report/README.md) |
@@ -46,7 +46,7 @@ o di una release. I comandi, tutti da lanciare dalla radice del tema, sono stati
 | Suite | Un solo file | Un solo test | Elencare i test disponibili |
 |---|---|---|---|
 | Unit | `composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php` | `composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name` | `composer test:unit -- --list-tests` |
-| Integrazione | `composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `vendor/bin/phpunit -c phpunit-integration.xml --list-tests` |
+| Integrazione | `composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `composer test:integration -- --list-tests` |
 | E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:10` oppure `composer test:e2e -- -g "password-protected"` | `composer test:e2e -- --list` |
 
 Regole utili:
@@ -91,7 +91,7 @@ Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete
 | `publiccode.yml` | Azione ufficiale di Developers Italia (`italia/publiccode-parser-action`): controlla anche gli indirizzi remoti, il logo e gli screenshot sul ramo principale | — |
 | Workflow | actionlint (con shellcheck) dall'immagine ufficiale, fissata per digest, sui file di `.github/workflows/` | — |
 
-La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), con WordPress, ACF e Polylang a versioni fissate; le corse restano osservate nel tempo.
+La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), nello stesso ambiente Docker che si usa in locale (`.wp-env.inttest.json`: WordPress, PHP, ACF e Polylang a versioni fissate).
 
 Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
 
@@ -102,7 +102,7 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | Momento | Cosa gira | Blocca? |
 |---|---|---|
 | **Commit** (hook locale, se attivo) | Segreti, guardia l10n (corregge da sola), PHPStan livello 6 sull'intero tema, PHPCS sui file PHP, CSS e SCSS in staging (solo errori), test unit; controllo del messaggio (trailer AI) | Sì, tranne la guardia l10n; `--no-verify` salta tutto |
-| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6), `publiccode`, `actionlint` e job `integration` (oltre 500 test su WordPress 7.1.4 con ACF, Polylang e MariaDB); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
+| **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6), `publiccode`, `actionlint` e job `integration` (oltre 500 test in Docker, su WordPress 7.1.4 con ACF e Polylang); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
 | **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | `checks`, `publiccode` e `actionlint` (e `documentation-check` su `docs/**`) | No |
 | **Pull request verso `dev`** (per esempio Dependabot) | `checks`, `publiccode` e `actionlint` | No |
 | **Pull request verso `main`** (per esempio un contributo esterno) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
@@ -132,7 +132,7 @@ come sono fatte le funzioni e le classi usate dal tema.
 Le tre suite hanno ciascuna la propria cartella, configurazione e README:
 
 - **[Unit](unit/README.md)**: funzioni e file del repository, senza WordPress, database o browser.
-- **[Integrazione](integration/README.md)**: WordPress vero, con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
+- **[Integrazione](integration/README.md)**: WordPress vero in Docker (wp-env), con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
 - **[E2E](e2e/README.md)**: Playwright su un sito Local dedicato, che torna a uno stato di partenza prima e dopo ogni corsa.
 
 Scelta del livello: si usa il più basso che dimostra il comportamento. Ciò che dipende da
@@ -158,7 +158,7 @@ una volta con `npm run status:scan:install-browser`.
 |---|---|
 | [unit/](unit/) | Test unit (PHPUnit), con [`bootstrap-unit.php`](bootstrap-unit.php) e [`phpunit.xml`](../phpunit.xml) nella radice |
 | [integration/](integration/) | Test di integrazione (PHPUnit), con [`bootstrap-integration.php`](bootstrap-integration.php) e [`phpunit-integration.xml`](../phpunit-integration.xml) |
-| [integration/support/](integration/support/) | Script di preparazione dei plugin richiesti dai test di integrazione |
+| [integration/support/](integration/support/) | Classe base dei test di integrazione e doppioni dei plugin opzionali |
 | [e2e/](e2e/) | Test E2E (Playwright): [specifiche](e2e/specs/), [supporto](e2e/support/), [baseline](e2e/fixtures/); configurazione in [`../playwright.config.js`](../playwright.config.js) |
 | [report/](report/) | Moduli Report |
 | [phpstan/](phpstan/) | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan: vedi [`phpstan/README.md`](phpstan/README.md) |

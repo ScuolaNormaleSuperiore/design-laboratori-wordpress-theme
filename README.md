@@ -73,7 +73,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Requisiti software
 1. Il CMS WordPress (versione >= 7.1.4).
 2. PHP >= 8.0.
-3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore.
+3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore. Per i test di integrazione serve anche Docker Desktop.
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
@@ -184,7 +184,7 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | | `composer run lint:phpstan` | Analisi statica con [PHPStan](tests/phpstan/README.md), livello 6 |
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
 | Test | `composer test:unit` | [Funzioni pure in PHP e JavaScript, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
-| | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test con ACF e Polylang reali e un database dedicato |
+| | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test in Docker (wp-env) con ACF e Polylang reali e un database dedicato |
 | | `composer test:e2e` | [Browser (Playwright) su un sito Local dedicato](tests/e2e/README.md) |
 | Report | `npm run status:scan -- <url>` | [Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px](tests/report/status-report/README.md) |
 | | `npm run html:scan -- <url>` | [Validità dell'HTML (Nu Html Checker)](tests/report/html-report/README.md) |

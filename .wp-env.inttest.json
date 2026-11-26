@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/wp-env.json",
+	"core": "https://wordpress.org/wordpress-7.1.4.zip",
+	"phpVersion": "8.4",
+	"testsEnvironment": false,
+	"themes": [ "." ],
+	"plugins": [
+		"https://downloads.wordpress.org/plugin/advanced-custom-fields.6.8.12.zip",
+		"https://downloads.wordpress.org/plugin/polylang.3.9.2.zip"
+	],
+	"port": 8893
+}

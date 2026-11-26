@@ -104,25 +104,32 @@ class DLI_PHPStan_Config_Unit_Test extends TestCase {
 	}
 
 	/**
-	 * Every top-level directory that holds PHP files is either analyzed or deliberately excluded.
+	 * Every top-level directory that holds PHP files tracked by Git is either analyzed or deliberately excluded.
+	 *
+	 * Only tracked files count: a local folder ignored by Git (a temporary audit, `dist/`, `build/`) never reaches the
+	 * repository or a release, and must not block a commit.
 	 */
 	public function test_every_directory_with_php_files_is_analyzed_or_excluded() {
 		$paths    = $this->neon_list( 'paths:' );
 		$excluded = $this->neon_list( 'excludePaths:' );
+
+		$output = array();
+		$status = 1;
+		exec( 'git -C ' . escapeshellarg( DLI_TEST_THEME_DIR ) . ' ls-files -- "*.php"', $output, $status );
+		$this->assertSame( 0, $status, 'git ls-files failed: the test needs Git and the repository.' );
+		$this->assertNotEmpty( $output, 'git ls-files found no PHP file.' );
+
 		$unlisted = array();
-		foreach ( glob( DLI_TEST_THEME_DIR . '/*', GLOB_ONLYDIR ) as $dir ) {
-			$name = basename( $dir );
-			if ( $this->is_under( $name, $paths ) || $this->is_under( $name, $excluded ) ) {
-				continue;
+		foreach ( $output as $file ) {
+			$parts = explode( '/', str_replace( '\\', '/', $file ) );
+			if ( count( $parts ) < 2 ) {
+				continue; // A file of the root: checked by test_every_root_php_file_is_analyzed().
 			}
-			$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS ) );
-			foreach ( $iterator as $file ) {
-				if ( 'php' === strtolower( $file->getExtension() ) ) {
-					$unlisted[] = $name;
-					break;
-				}
+			$name = $parts[0];
+			if ( ! $this->is_under( $name, $paths ) && ! $this->is_under( $name, $excluded ) ) {
+				$unlisted[ $name ] = $name;
 			}
 		}
-		$this->assertSame( array(), $unlisted, 'Directories with PHP files that are neither analyzed nor excluded in phpstan.neon: ' . implode( ', ', $unlisted ) );
+		$this->assertSame( array(), array_values( $unlisted ), 'Directories with tracked PHP files that are neither analyzed nor excluded in phpstan.neon: ' . implode( ', ', $unlisted ) );
 	}
 }

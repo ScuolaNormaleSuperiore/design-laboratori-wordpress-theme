@@ -1,56 +1,50 @@
-# Test di integrazione (WordPress reale)
+# Test di integrazione (WordPress reale, in Docker)
 
 I test di integrazione controllano il comportamento che **dipende da WordPress**: hook, ruoli e
 permessi, tipi di contenuto, query, rotte REST, attivazione del tema. Girano con PHPUnit su un
-WordPress vero (la suite di test di `wordpress-develop`), con i plugin **ACF** e **Polylang** reali
-e questo tema attivo, su un database dedicato: il framework ne cancella e ricrea le tabelle
+WordPress vero, con i plugin **ACF** e **Polylang** reali e questo tema attivo, in un ambiente
+**Docker** creato da [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
+(`@wordpress/env`), su un database dedicato: il framework di test ne cancella e ricrea le tabelle
 (prefisso `wptests_`) a ogni esecuzione.
 
-Sono pensati per chi mantiene il tema (Windows e Local). Non girano nell'hook di commit e non
-richiedono un sito, ma richiedono un database di test e `wordpress-develop`. La logica che non
-dipende da WordPress va invece nei [test unit](../unit/README.md).
+Non girano nell'hook di commit. La logica che non dipende da WordPress va invece nei
+[test unit](../unit/README.md).
 
 
 ## Requisiti
 
-- PHP 8.0 o superiore con `mysqli`, `zip` e `openssl`, e Composer (`composer install`).
-- Una copia di `wordpress-develop` (predefinita: `C:/WordpressDEV/wordpress-develop`).
-- Un database **vuoto** usato solo dai test, su MariaDB o MySQL di Local. Mai il database di un sito.
-- Il file `wp-tests-config.php` nella radice di `wordpress-develop`.
+- **Docker Desktop** acceso (o un demone Docker compatibile).
+- Node.js con `npm ci` (installa `@wordpress/env`) e Composer con `composer install` (PHPUnit e le
+  sue dipendenze: il container usa la cartella `vendor/` della copia di lavoro).
+- La porta **8893** libera. Le porte 8890 e 8891 restano al plugin `kk-content-exporter`, così i due
+  progetti possono girare insieme.
+
+Non servono `wordpress-develop`, un database su Local né file di configurazione da preparare a mano.
 
 
-### Preparazione una tantum
+## L'ambiente
 
-1. Creare il database:
+[`../../.wp-env.inttest.json`](../../.wp-env.inttest.json) fissa tutto ciò che entra nell'ambiente, così
+due corse sono uguali su ogni computer e in CI:
 
-   ```sql
-   CREATE DATABASE IF NOT EXISTS dli_wordpress_test
-     CHARACTER SET utf8mb4
-     COLLATE utf8mb4_unicode_ci;
-   ```
+| Cosa | Valore |
+|---|---|
+| WordPress | 7.1.4 (zip di `wordpress.org`), la versione minima dichiarata dal tema |
+| PHP | 8.4 |
+| Plugin | ACF 6.8.12 e Polylang 3.9.2 (zip di `downloads.wordpress.org`) |
+| Tema | la copia di lavoro (`themes: ["."]`) |
+| Porta | 8893 |
 
-   Se l'utente non è `root`: `GRANT ALL PRIVILEGES ON dli_wordpress_test.* TO 'utente'@'localhost';`.
-   La porta si trova in Local, nella scheda Database del sito.
-2. Creare `wp-tests-config.php` partendo da `wp-tests-config-sample.php`, con `DB_NAME` uguale a
-   `dli_wordpress_test`, utente, password, `DB_HOST` con la porta di Local e `$table_prefix = 'wptests_';`.
+Per cambiare una versione si modifica quel file **e** il test unit `DLI_Docker_Tests_Config_Unit_Test`,
+che controlla che i valori restino fissati.
 
-**Per sicurezza** la suite si rifiuta di partire se `DB_NAME` non è `dli_wordpress_test`: il
-framework cancellerebbe le tabelle di qualunque altro database indicato.
+La configurazione del framework di test è [`wp-tests-config.php`](wp-tests-config.php), versionata: usa i
+valori pubblici di wp-env (host `mysql`, utente `root`, password `password`, WordPress in
+`/var/www/html/`), che si possono cambiare con le variabili `DLI_TEST_DB_HOST`, `DLI_TEST_DB_USER`,
+`DLI_TEST_DB_PASSWORD` e `DLI_TEST_ABSPATH`. L'ambiente non contiene dati reali.
 
-
-## Configurazione e variabili d'ambiente
-
-| Variabile | Significato | Valore predefinito |
-|---|---|---|
-| `WP_TESTS_DIR` | cartella `tests/phpunit` di `wordpress-develop` | `C:/WordpressDEV/wordpress-develop/tests/phpunit` |
-| `WP_TESTS_CONFIG_FILE_PATH` | `wp-tests-config.php` alternativo | quello nella radice di `wordpress-develop` |
-| `DLI_TEST_PLUGINS_DIR` | cartella con le cartelle dei plugin da caricare | `tests/integration/.cache/plugins` |
-
-Nessuna è obbligatoria con la configurazione predefinita. Esempio di sostituzione (PowerShell), valido per la sessione corrente:
-
-```
-$env:WP_TESTS_DIR = 'D:/altro/wordpress-develop/tests/phpunit'
-```
+**Per sicurezza** la suite si rifiuta di partire se `DB_NAME` non è `dli_wordpress_test`: il framework
+cancellerebbe le tabelle di qualunque altro database indicato.
 
 
 ## Esecuzione
@@ -61,57 +55,42 @@ Dalla radice del tema:
 composer test:integration
 ```
 
-Il comando lancia prima [`support/fetch-test-plugins.php`](support/fetch-test-plugins.php) (prepara ACF e Polylang, vedi sotto) e poi PHPUnit con
-[`../../phpunit-integration.xml`](../../phpunit-integration.xml).
+Il comando chiama `npm run test:integration`, cioè [`../bin/integration.mjs`](../bin/integration.mjs), che:
 
-Il codice di uscita è `0` se tutto passa, `1` altrimenti. Se manca un requisito la suite si ferma
-subito con un messaggio che dice cosa manca.
+1. controlla che Docker risponda e, se no, si ferma con un messaggio chiaro;
+2. avvia l'ambiente (`wp-env start`; se è già acceso non fa nulla);
+3. crea il database `dli_wordpress_test`, se manca;
+4. lancia PHPUnit con [`../../phpunit-integration.xml`](../../phpunit-integration.xml) nel container `cli`,
+   dalla cartella del tema.
+
+Il codice di uscita è `0` se tutto passa, `1` altrimenti. La prima volta wp-env scarica immagini Docker,
+WordPress e plugin: qualche minuto in più. L'ambiente resta acceso dopo la corsa, così le successive partono
+subito.
+
+| Comando | Cosa fa |
+|---|---|
+| `composer env:tests:start` | accende l'ambiente senza lanciare i test |
+| `composer env:tests:stop` | lo spegne (i dati restano) |
+| `composer env:tests:destroy` | lo cancella del tutto: container e database |
 
 
 ### Eseguire un solo test
 
 Ha senso e funziona: ogni test gira in una transazione che viene annullata alla fine, quindi un test isolato non dipende da
-quelli che lo precedono e non lascia dati nel database di prova. Comandi provati, dalla radice del tema:
+quelli che lo precedono e non lascia dati nel database di prova. Gli argomenti dopo `--` arrivano a PHPUnit. Comandi
+provati, dalla radice del tema:
 
 ```sh
 composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php                       # un solo file
 composer test:integration -- --filter DLI_Content_Managers_Integration_Test                         # una sola classe
 composer test:integration -- --filter test_super_editor_role_exists                                 # un solo test
 composer test:integration -- --filter DLI_Content_Managers_Integration_Test::test_publication_post_type_and_taxonomy_are_registered
-vendor/bin/phpunit -c phpunit-integration.xml --filter test_super_editor_role_exists                # senza passare da Composer
-vendor/bin/phpunit -c phpunit-integration.xml --list-tests                                          # tutti i test, come Classe::metodo
+composer test:integration -- --list-tests                                                           # tutti i test, come Classe::metodo
 ```
 
-- Con `composer test:integration` gli argomenti dopo `--` arrivano a PHPUnit, ma lo script lancia prima `support/fetch-test-plugins.php`
-  (scarica ACF e Polylang solo al primo avvio). Con `vendor/bin/phpunit -c phpunit-integration.xml` si salta quel
-  passaggio: usarlo solo se i plugin di test sono già stati preparati.
 - `--filter` accetta un nome intero o una parte, anche nella forma `Classe::metodo`.
 - **Se il filtro non trova nulla**, PHPUnit scrive `No tests executed!` ma esce con codice `0`: guardare sempre il numero di test eseguiti.
-- Servono gli stessi requisiti della suite completa (database `dli_wordpress_test`, `wordpress-develop`): un solo test non li evita.
-
-
-### Plugin di test
-
-ACF e Polylang si scaricano da `downloads.wordpress.org` **la prima volta** che si lanciano i test, e solo
-se mancano, in `tests/integration/.cache/plugins/` (ignorata da Git, mai nel pacchetto di rilascio). Si
-scarica l'ultima versione stabile; la versione e l'impronta SHA-256 sono registrate in `.versions.json`
-nella stessa cartella. Per aggiornare un plugin si cancella la sua cartella dalla cache.
-
-Per usare una versione precisa (la CI lo fa, per avere corse ripetibili) si fissa con una variabile
-d'ambiente, un numero a punti di due-quattro parti: `DLI_ACF_VERSION` e `DLI_POLYLANG_VERSION`.
-
-```sh
-DLI_ACF_VERSION=6.8.10 DLI_POLYLANG_VERSION=3.9.1 composer test:integration
-```
-
-Con una versione fissata si scarica proprio quella, e una copia in cache di un'altra versione viene
-sostituita; un valore che non è un numero di versione ferma lo script con un errore. Senza variabili
-non cambia nulla. Le funzioni che scelgono l'indirizzo e controllano la cache sono in
-[`support/plugin-versions.php`](support/plugin-versions.php) e sono provate dal test unit
-`DLI_Test_Plugin_Versions_Unit_Test`.
-
-Se PHP non riesce a verificare il certificato (succede se manca il file `cacert.pem` indicato in `php.ini`),
-lo script ripiega sul comando `curl` del sistema.
+- PHPUnit va lanciato sempre attraverso Composer: `vendor/bin/phpunit` sul computer non trova il WordPress di test, che è nel container.
 
 
 ## Cosa copre
@@ -132,7 +111,7 @@ lo script ripiega sul comando `curl` del sistema.
 | `DLI_Base_Importer_Integration_Test.php` | L'assistente dei termini degli importatori (`get_or_create_term_id()`): crea un termine mancante, riusa quello esistente senza duplicarlo, ignora gli spazi, rifiuta nome vuoto o tassonomia sconosciuta; nei messaggi delle eccezioni l'errore di WordPress e il nome della fonte della decodifica JSON restano come sono, senza entità HTML (i messaggi finiscono solo nel JSON della risposta REST e nel log) |
 | `DLI_Indico_Importer_Messages_Integration_Test.php` | I messaggi delle eccezioni dell'importatore Indico: l'errore di una richiesta HTTP fallita, il corpo di una risposta non 200 dell'API e l'errore della richiesta della pagina di un evento restano come sono, anche nel messaggio della risposta REST (virgolette e apostrofi senza entità HTML), senza chiamate di rete (`pre_http_request`) |
 | `DLI_Newsletter_Integration_Test.php` | Client Brevo della newsletter: payload di double opt-in e gestione di risposte accettate o di errore, senza richieste esterne |
-| `DLI_Contact_Form_Integration_Test.php` | Il form dei contatti (`page-templates/contatti.php` mostrato con una richiesta POST simulata, CAPTCHA finto e `wp_mail()` intercettato, senza SMTP): invio riuscito, invio fallito, CAPTCHA o prefisso sbagliati, sfida usata una sola volta (riuso e risposta sbagliata la consumano), nonce sbagliato o assente, campi obbligatori ed e-mail non valida, nessuna intestazione aggiunta con gli a capo nell'indirizzo, copia di ricevuta solo se richiesta, form non utilizzabile senza il plugin CAPTCHA, form non inviato senza messaggi. Dettaglio: nel `wordpress-develop` di prova mancano i file compilati (emoji, stili dei blocchi), quindi il test stacca le azioni di WordPress che li leggono |
+| `DLI_Contact_Form_Integration_Test.php` | Il form dei contatti (`page-templates/contatti.php` mostrato con una richiesta POST simulata, CAPTCHA finto e `wp_mail()` intercettato, senza SMTP): invio riuscito, invio fallito, CAPTCHA o prefisso sbagliati, sfida usata una sola volta (riuso e risposta sbagliata la consumano), nonce sbagliato o assente, campi obbligatori ed e-mail non valida, nessuna intestazione aggiunta con gli a capo nell'indirizzo, copia di ricevuta solo se richiesta, form non utilizzabile senza il plugin CAPTCHA, form non inviato senza messaggi. Dettaglio: il test stacca le azioni di WordPress che leggono i file compilati (emoji, stili dei blocchi), che mancavano nel vecchio ambiente di prova basato su `wordpress-develop` |
 | `DLI_Newsletter_Page_Captcha_Integration_Test.php` | Il CAPTCHA della pagina newsletter (`page-templates/newsletter.php`, CAPTCHA finto e Brevo intercettato): una sfida si usa una volta, anche con risposta sbagliata, e il modulo torna con una sfida nuova |
 | `DLI_Home_Video_Integration_Test.php` | La sezione «Video»: URL per riga (valore storico ignorato, indirizzo non web scartato, `dli_sanitize_hp_video_url()`), ID, etichette e pulsanti distinti per istanza e funzione JavaScript unica, ID invariati senza istanza (schede di evento, brevetto e spin-off), sfondo, titolo solo nella lingua della pagina e solo se mostrato |
 | `DLI_Home_Banners_Integration_Test.php` | La sezione «Banner»: modalità automatica (per priorità, numero della riga, 3 di default) e manuale (ordine scelto, traduzione, bozze/cestinati/mancanti scartati, nessuna riempitura), ID unici per istanza, titolo come il Video, scelte del campo con i banner già scelti ma non visibili, nessun N+1 |
@@ -187,8 +166,9 @@ contenuto e le tassonomie.
 ## Come funziona
 
 - [`phpunit-integration.xml`](../../phpunit-integration.xml) definisce la suite `integration` su questa [cartella](./).
-- [`../bootstrap-integration.php`](../bootstrap-integration.php) controlla `DB_NAME`, sceglie la cartella dei plugin, carica la suite di
-  WordPress e rende attivi ACF, Polylang e il tema (che sta fuori dal WordPress di test).
+- [`../bootstrap-integration.php`](../bootstrap-integration.php) legge la configurazione, si rifiuta di partire se `DB_NAME` non è
+  `dli_wordpress_test`, carica il framework di test che wp-env mette a disposizione (`WP_TESTS_DIR`) e rende attivi ACF e Polylang
+  (dalla cartella dei plugin del container) e il tema.
 - La classe base [`DLI_Integration_Test_Case`](support/class-dli-integration-test-case.php) crea la lingua italiana, di cui Polylang
   ha bisogno per ogni query per lingua, e offre `create_post()` e `set_theme_options()`.
 - Ogni test gira in una transazione annullata alla fine: i dati creati da un test non restano nel database.

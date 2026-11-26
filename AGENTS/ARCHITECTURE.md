@@ -22,7 +22,7 @@ Core runtime features include menu/taxonomy/page initialization and global searc
 - `.github/workflows/ci.yml`: continuous integration (see *CI (GitHub Actions)* under *Quality checks*); `.github/scripts/` holds the scripts it calls.
 - `tests/report/`: Report modules that produce results to read, without assertions (status, html, pa11y); `issues-report/` only stores issue snapshots.
 - `tests/unit/`, `tests/bootstrap-unit.php`, `phpunit.xml`: PHPUnit unit tests (no WordPress). WordPress core stubs for PHPStan are supplied by the `php-stubs/wordpress-stubs` development dependency; `tests/phpstan/` holds local runtime and optional-plugin stubs.
-- `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang; its `support/` folder prepares the required plugins.
+- `tests/integration/`, `tests/bootstrap-integration.php`, `phpunit-integration.xml`: PHPUnit integration tests on a real WordPress with ACF and Polylang, in the wp-env test environment (Docker, `.wp-env.inttest.json`, port 8893), with the configuration `tests/integration/wp-tests-config.php`; `tests/bin/` holds the Node scripts that start the environment and run the suite.
 - `tests/e2e/`, `playwright.config.js`: Playwright functional tests on the dedicated Local site `dli-wp-e2e`, with a database baseline restored before and after each run.
 
 
@@ -218,9 +218,9 @@ three families: static checks and tests (run with Composer) and Reports (run wit
   the commit gate: `.githooks/pre-commit` runs it through `.githooks/check-phpstan.sh` and
   blocks the commit on any error.
 - Unit tests: `composer test:unit` (no WordPress: PHPUnit, then the JavaScript unit tests with `node --test tests/unit/*.test.js`; needs Node on the PATH: 22 or later on Windows, where `cmd` does not expand the pattern and only Node 21+ expands it itself, 18 or later where the shell expands it, as in the CI; also run by `.githooks/pre-commit`). Arguments after `--` reach PHPUnit only.
-- Integration tests: `composer test:integration` (real WordPress, ACF and Polylang; database `dli_wordpress_test`; the first run downloads the plugins into the ignored `tests/integration/.cache/`; not run by the hook).
+- Integration tests: `composer test:integration` (calls `npm run test:integration`, `tests/bin/integration.mjs`: checks that Docker answers, starts the wp-env test environment of `.wp-env.inttest.json` — WordPress 7.1.4, PHP 8.4, ACF 6.8.12, Polylang 3.9.2, port 8893, all pinned and checked by `DLI_Docker_Tests_Config_Unit_Test` — creates the database `dli_wordpress_test` and runs PHPUnit in the `cli` container; arguments after `--` reach PHPUnit; needs Docker Desktop; `composer env:tests:start`, `env:tests:stop` and `env:tests:destroy` manage the environment; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; Playwright on the Local site `dli-wp-e2e`; needs `DLI_E2E_SITE_PATH`; restores the site to its baseline before and after the run; not run by the hook). Run only when unit and integration tests cannot adequately verify the required browser behavior.
-- Unit and integration tests together: `composer test:all` runs the unit and integration suites in this order and stops at the first one that fails; it needs the integration setup (not run by the hook). It does **not** run the E2E suite: run it separately with `composer test:e2e`. `composer.json` sets `config.process-timeout` to 1200 seconds, because Composer's default of 300 seconds would stop the E2E suite before it ends.
+- Unit and integration tests together: `composer test:all` runs the unit and integration suites in this order and stops at the first one that fails; it needs Docker Desktop for the integration suite (not run by the hook). It does **not** run the E2E suite: run it separately with `composer test:e2e`. `composer.json` sets `config.process-timeout` to 1200 seconds, because Composer's default of 300 seconds would stop the E2E suite before it ends.
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.
@@ -257,14 +257,14 @@ commit-message trailers exist only in the local hooks. Every job of every workfl
 | Unit tests | `composer test:unit` (PHPUnit and `node --test`, with the Node of the runner) | whole suite | 8.0, 8.4 | `checks` |
 | PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
 | PHPStan level 6 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
-| Integration tests | `composer test:integration` | whole suite, on WordPress 7.1.4 with ACF 6.8.10 and Polylang 3.9.1 and a throwaway MariaDB service | 8.4 | `integration` |
+| Integration tests | `composer test:integration` | whole suite, in the wp-env test environment of `.wp-env.inttest.json` (WordPress 7.1.4, ACF 6.8.12, Polylang 3.9.2), through `npm run test:integration` | 8.4 | `integration` |
 | `publiccode.yml` | `italia/publiccode-parser-action` (official action of Developers Italia) | `publiccode.yml`, with its remote URLs and the logo and screenshots on the default branch | — | `publiccode` |
 | Workflow lint | `actionlint` (with shellcheck) from the official `rhysd/actionlint` image pinned to a digest | `.github/workflows/*.yml` | — | `actionlint` |
 
 `composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
 and 8.4 alike. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
 the push or the tip of the target branch of a pull request, and without a valid base the files
-of the last commit are checked. The `integration` job runs only on push to `dev` and `main`, on pull requests to `main` and on demand (not on the prefixed branches nor on pull requests to `dev`). WordPress (`wordpress-develop`, tag and commit checked), ACF and Polylang are pinned in the `env` of the job (the plugins through `DLI_ACF_VERSION` and `DLI_POLYLANG_VERSION`, see `tests/integration/README.md`); to update them, change those values on purpose. The job is new: its times and its false failures are being recorded in the private plan before it is considered stable.
+of the last commit are checked. The `integration` job runs only on push to `dev` and `main`, on pull requests to `main` and on demand (not on the prefixed branches nor on pull requests to `dev`). It uses the same Docker environment as a local run: WordPress, PHP, ACF and Polylang are pinned in `.wp-env.inttest.json` (see `tests/integration/README.md`); to update them, change that file and `DLI_Docker_Tests_Config_Unit_Test` on purpose. The environment is always stopped at the end of the job.
 
 
 ## References

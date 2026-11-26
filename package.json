@@ -34,6 +34,10 @@
     "html:compare": "node tests/report/html-report/compare.js",
     "pa11y:scan": "node tests/report/pa11y-report/scan.js",
     "pa11y:scan:gate": "node tests/report/pa11y-report/scan.js --gate",
+    "test:integration": "node tests/bin/integration.mjs",
+    "env:tests:start": "wp-env start --config=.wp-env.inttest.json",
+    "env:tests:stop": "wp-env stop --config=.wp-env.inttest.json",
+    "env:tests:destroy": "wp-env destroy --force --config=.wp-env.inttest.json",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:ui": "playwright test --ui"
@@ -53,6 +57,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
+    "@wordpress/env": "12.1.0",
     "clean-css-cli": "^5.6.3",
     "pa11y-ci": "^5.0.0",
     "pa11y-ci-reporter-html": "^9.0.0",
