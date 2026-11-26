@@ -1634,7 +1634,6 @@ if ( ! function_exists( 'dli_check_mandatory_plugins' ) ) {
 		if ( ! $all_activated ) {
 			$msg = __( 'ATTENZIONE: I seguenti plugin devono essere installati e attivati obbligatoriamente: ', 'design_laboratori_italia' );
 			wp_die( esc_html( $msg . $text_plugins ) );
-			return false;
 		}
 		return true;
 	}

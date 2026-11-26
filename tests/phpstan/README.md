@@ -16,7 +16,7 @@ controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../REA
 
 | Origine | Che cosa fornisce |
 |---|---|
-| `php-stubs/wordpress-stubs` 6.6.2 e `szepeviktor/phpstan-wordpress` 2.0.4 (dipendenze di sviluppo) | Il core di WordPress, con i tipi di ritorno corretti per le sue funzioni |
+| `php-stubs/wordpress-stubs` 7.1.2 e `szepeviktor/phpstan-wordpress` 2.0.4 (dipendenze di sviluppo) | Il core di WordPress, con i tipi di ritorno corretti per le sue funzioni |
 | **I file di questa cartella** | Costanti che dipendono dall'installazione, plugin richiesti od opzionali, librerie incluse nel tema |
 
 ## I file
@@ -46,7 +46,7 @@ controllo che blocca il commit (vedi il [punto di ingresso dei controlli](../REA
    `class.notFound` o `constant.notFound`.
 2. Capire da dove viene il simbolo:
    - del **core di WordPress**: di norma è già negli stub; se manca, può dipendere dalla versione degli stub
-     (6.6.2, la versione minima richiesta dal tema), non da qui;
+     (7.1.2, la più vicina alla versione minima richiesta dal tema, 7.1.4), non da qui;
    - una **costante del tema** definita con un'espressione non costante: `theme-runtime-stubs.php`;
    - una **costante di WordPress** che dipende dall'installazione: `wordpress-runtime-stubs.php`;
    - una funzione o una classe di un **plugin o di una libreria**: il file corrispondente della tabella sopra.

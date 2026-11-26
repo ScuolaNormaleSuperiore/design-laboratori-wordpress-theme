@@ -312,10 +312,6 @@ function dli_build_the_menu( $custom_menu ) {
 		set_theme_mod( 'nav_menu_locations', $locations_primary_arr );
 		update_option( 'menu_check', true );
 	}
-
-	if ( ! $menu || ! isset( $menu->term_id ) ) {
-		return;
-	}
 }
 
 /**

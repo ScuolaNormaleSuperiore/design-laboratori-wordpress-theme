@@ -273,7 +273,7 @@ class DLI_People_File_Importer {
 
 		foreach ( $slugs as $slug ) {
 			$term = get_term_by( 'slug', sanitize_title( $slug ), STRUCTURE_TAXONOMY );
-			if ( $term && ! is_wp_error( $term ) ) {
+			if ( $term instanceof WP_Term ) {
 				$term_ids[] = $term->term_id;
 			}
 		}

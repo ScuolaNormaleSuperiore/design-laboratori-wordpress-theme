@@ -4,7 +4,7 @@ Questa guida prepara un'installazione nuova di Design Laboratori Italia. Prima d
 
 ## Requisiti
 
-Il sito deve usare WordPress 6.6.2 o successivo e PHP 8.0 o successivo. Il tema richiede questi plugin attivi:
+Il sito deve usare WordPress 7.1.4 o successivo e PHP 8.0 o successivo. Il tema richiede questi plugin attivi:
 
 - Advanced Custom Fields;
 - ACF OpenStreetMap Field;

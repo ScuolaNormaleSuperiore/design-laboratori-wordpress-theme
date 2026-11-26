@@ -109,8 +109,8 @@ introduce barriers.
 
 ## Compatibility
 
-- WordPress: minimum 6.6.2 (`style.css`, `phpcs.xml.dist`, `README.md`).
-- PHP: minimum 8.0 (`Requires PHP` in `style.css`); the Docker demo runs PHP 8.3.
+- WordPress: minimum 7.1.4 (`style.css`, `phpcs.xml.dist`, `README.md`, `publiccode.yml`, `DOC/Avvio/Primo-avvio.md`).
+- PHP: minimum 8.0 (`Requires PHP` in `style.css`); the Docker demo runs PHP 8.4.
   Do not use syntax or functions newer than PHP 8.0 (for example enums,
   `readonly` properties, `never` return type) without the operator's approval.
   Functions that WordPress polyfills, such as `str_contains()`, are allowed.
