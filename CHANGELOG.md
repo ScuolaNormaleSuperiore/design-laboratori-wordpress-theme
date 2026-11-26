@@ -30,7 +30,8 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 
 
 ## [2.1.4] - 2026-11-26
-
+### Corretto
+- Corretta e aggiornata la CI e le lbrerie dis viluppo.
 
 ## [2.1.3] - 2026-11-25
 ### Modificato
@@ -38,9 +39,6 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 - Versione minima di PHP: 8.3 (era 8.0).
 ### Refactoring
 - Tolti font inutilizzati: Roboto e Titillium Sans Pro.
-
-
-
 
 ## [2.1.2] - 2026-11-25
 ### Modificato
