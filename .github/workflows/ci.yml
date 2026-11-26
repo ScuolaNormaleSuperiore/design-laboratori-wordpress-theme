@@ -1,7 +1,7 @@
 name: CI
 
-# Safety net of the local pre-commit hook: the same checks on a clean machine, plus PHP 8.0, the
-# declared minimum, and the integration tests, which the hook does not run. Observational: a failure
+# Safety net of the local pre-commit hook: the same checks on a clean machine, plus the declared
+# minimum PHP, and the integration tests, which the hook does not run. Observational: a failure
 # turns the run red but blocks nothing.
 # Checks and triggers are described in AGENTS/ARCHITECTURE.md (CI, GitHub Actions).
 
@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.0', '8.4']
+        php: ['8.3', '8.4']
     env:
       # A push gives the commit before the push, a pull request the tip of its target branch;
       # a manual run gives neither, and the scripts then look at the last commit.

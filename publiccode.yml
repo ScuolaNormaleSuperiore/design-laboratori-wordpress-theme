@@ -127,7 +127,7 @@ dependsOn:
       versionMin: '7.1.4'
     - name: PHP
       optional: false
-      versionMin: '8.0'
+      versionMin: '8.3'
     - name: Advanced Custom Fields
       optional: false
     - name: Polylang

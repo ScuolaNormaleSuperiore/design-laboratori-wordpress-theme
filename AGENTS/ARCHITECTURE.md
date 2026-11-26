@@ -241,7 +241,7 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 
 `.github/workflows/ci.yml` is the source of truth of what runs; this table summarises it and
 is updated in the same change that adds or alters a check. The CI is the safety net of the
-`pre-commit` hook: the same checks on a clean machine, plus PHP 8.0 (the declared minimum), for
+`pre-commit` hook: the same checks on a clean machine, plus the declared minimum PHP, for
 whoever has not activated the hooks and for pull requests. It is **observational**: a failure
 turns the run red but blocks nothing, and the push is never refused. The only branch rule is the
 ruleset `Protect main` (no deletion, no force-push of `main`); no check is required, and releases
@@ -267,8 +267,8 @@ commit-message trailers exist only in the local hooks. Every job of every workfl
 | `publiccode.yml` | `italia/publiccode-parser-action` (official action of Developers Italia) | `publiccode.yml`, with its remote URLs and the logo and screenshots on the default branch | — | `publiccode` |
 | Workflow lint | `actionlint` (with shellcheck) from the official `rhysd/actionlint` image pinned to a digest | `.github/workflows/*.yml` | — | `actionlint` |
 
-`composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
-and 8.4 alike. Playwright sets `forbidOnly` when `CI` is set: an accidental `.only` fails the E2E run instead of silently reducing its coverage. E2E runs remain manual. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
+`config.platform.php` in `composer.json` is the minimum PHP, so the lock file resolves on both
+PHP versions of the matrix. Playwright sets `forbidOnly` when `CI` is set: an accidental `.only` fails the E2E run instead of silently reducing its coverage. E2E runs remain manual. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
 the push or the tip of the target branch of a pull request, and without a valid base the files
 of the last commit are checked. The `integration` job runs only on push to `dev` and `main`, on pull requests to `main` and on demand (not on the prefixed branches nor on pull requests to `dev`). It uses the same Docker environment as a local run: WordPress, PHP, ACF and Polylang are pinned in `.wp-env.inttest.json` (see `tests/integration/README.md`); to update them, change that file and `DLI_Docker_Tests_Config_Unit_Test` on purpose. The environment is always stopped at the end of the job.
 

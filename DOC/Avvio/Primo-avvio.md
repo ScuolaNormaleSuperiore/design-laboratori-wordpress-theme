@@ -4,7 +4,7 @@ Questa guida prepara un'installazione nuova di Design Laboratori Italia. Prima d
 
 ## Requisiti
 
-Il sito deve usare WordPress 7.1.4 o successivo e PHP 8.0 o successivo. Il tema richiede questi plugin attivi:
+Il sito deve avere le versioni di WordPress e PHP indicate nei [requisiti del tema](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme#requisiti-software). Il tema richiede questi plugin attivi:
 
 - Advanced Custom Fields;
 - ACF OpenStreetMap Field;

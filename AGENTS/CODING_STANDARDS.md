@@ -110,11 +110,11 @@ introduce barriers.
 
 ## Compatibility
 
-- WordPress: minimum 7.1.4 (`style.css`, `phpcs.xml.dist`, `README.md`, `publiccode.yml`, `DOC/Avvio/Primo-avvio.md`).
-- PHP: minimum 8.0 (`Requires PHP` in `style.css`); the Docker demo runs PHP 8.4.
-  Do not use syntax or functions newer than PHP 8.0 (for example enums,
-  `readonly` properties, `never` return type) without the operator's approval.
-  Functions that WordPress polyfills, such as `str_contains()`, are allowed.
+- WordPress: the minimum is `Requires at least` in `style.css`, repeated in `phpcs.xml.dist`, `README.md` and `publiccode.yml`.
+- PHP: the minimum is `Requires PHP` in `style.css`, repeated in `README.md`, `publiccode.yml`,
+  `config.platform.php` of `composer.json` and the first PHP of the CI matrix; the Docker demo and
+  the test environments run PHP 8.4. `DLI_Requirements_Unit_Test` keeps these files aligned.
+  Do not use syntax or functions newer than the minimum PHP without the operator's approval.
 - Do not declare or raise a minimum version in `style.css` or `README.md`
   without the operator's confirmation.
 

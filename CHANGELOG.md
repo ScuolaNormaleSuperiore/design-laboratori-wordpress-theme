@@ -32,6 +32,7 @@ TAGS: Aggiunto (Added), Modificato (Changed), Deprecato (Deprecated), Rimosso (R
 ## [2.1.3] - 2026-11-25
 ### Modificato
 - Versione minima di WordPress: 7.1.4 (era 6.6.2); aggiornare WordPress prima del tema.
+- Versione minima di PHP: 8.3 (era 8.0).
 ### Refactoring
 - Tolti font inutilizzati: Roboto e Titillium Sans Pro.
 

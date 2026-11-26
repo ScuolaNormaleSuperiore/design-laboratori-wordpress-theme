@@ -12,7 +12,7 @@ suite di integrazione, non a questa.
 
 ## Requisiti
 
-- PHP 8.0 o superiore (provato su 8.4) e Composer
+- La versione di PHP richiesta dal tema (vedi [Requisiti software](../../README.md#requisiti-software)) e Composer
 - Node sul `PATH`, per i test JavaScript: usano solo `node:test` e `node:assert`, nessun pacchetto npm. Su Windows serve **Node 22 o superiore**: Composer lancia i comandi con `cmd`, che non espande `tests/unit/*.test.js`, e solo Node 21 e successivi espandono il pattern da soli. Su Linux e macOS (anche nella CI) lo espande la shell e basta Node 18
 - Dipendenze di sviluppo: `composer install` (installa PHPUnit 9.6 e `yoast/phpunit-polyfills`, tra le altre)
 
@@ -67,6 +67,7 @@ esempio `vendor/bin/phpunit --filter test_monthname_for_valid_months`.
 | `DLI_Cmb2_Loader_Unit_Test.php` | Come il tema carica CMB2: percorsi di `inc/cmb2.php` ancorati su `__DIR__`, versione dello stub di PHPStan uguale a quella della libreria, nessun `package*.json` o file di lock dentro `inc/vendor/CMB2` |
 | `DLI_Config_Unit_Test.php` | Costanti di `config-lab.php`: lingue, plugin richiesti (ACF e Polylang), contenuti con pagina di elenco |
 | `DLI_Release_Version_Unit_Test.php` | La versione è la stessa in `VERSION.txt`, `style.css`, `package.json`, `publiccode.yml` e nella prima voce di `CHANGELOG.md` |
+| `DLI_Requirements_Unit_Test.php` | Le versioni minime di PHP e WordPress sono le stesse in `style.css`, `composer.json` (`config.platform.php`), `publiccode.yml`, `phpcs.xml.dist`, nei requisiti del `README.md` e come prima versione della matrice della CI; gli altri documenti non ripetono i numeri |
 | `DLI_Release_Date_Unit_Test.php` | `releaseDate` di `publiccode.yml` e la data del Manuale Operatore (`DOC/Manuali/manuale-operatore.md`) coincidono con la data della prima voce di `CHANGELOG.md`; le date sono valide |
 | `DLI_Agents_Docs_Unit_Test.php` | I documenti citati da `AGENTS/AI_BOOTSTRAP.md` esistono (esclusi i file locali ignorati da Git) |
 | `DLI_Image_Guidelines_Unit_Test.php` | L'elenco dei formati delle immagini (`inc/image-guidelines.php`): ogni posizione ha i suoi campi, il minimo non supera il consigliato, le misure seguono il rapporto, il testo dice «consigliato» e «indicative», dà la zona sicura di hero e banner e il peso massimo letto da `DLI_MAX_IMG_FILE_SIZE_MB` |

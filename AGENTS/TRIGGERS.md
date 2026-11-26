@@ -264,7 +264,7 @@ B. Version and dates
 4. The version given by the operator is in `VERSION.txt`, `style.css` (`Version`), `publiccode.yml` (`softwareVersion`), `README.md` and the heading of the new `CHANGELOG.md` section (BLOCKING).
 5. The version is greater than the baseline tag under Semantic Versioning and the tag does not exist yet (BLOCKING).
 6. The release date given by the operator is the one in `CHANGELOG.md`, in `publiccode.yml` (`releaseDate`) and in `README.md` wherever a release date appears (BLOCKING). Run `DLI_Release_Version_Unit_Test` and `DLI_Release_Date_Unit_Test`.
-7. `Requires at least`, `Requires PHP` and `Tested up to` agree across `style.css`, `README.md`, `phpcs.xml.dist` and the PHP versions of the CI matrix, and `config.platform.php` in `composer.json` agrees with the declared minimum (BLOCKING for a mismatch of the declared minimums, `AVVISO` for `Tested up to`).
+7. `Requires at least`, `Requires PHP` and `Tested up to` agree across `style.css`, `README.md`, `phpcs.xml.dist` and the PHP versions of the CI matrix, and `config.platform.php` in `composer.json` agrees with the declared minimum (BLOCKING for a mismatch of the declared minimums, `AVVISO` for `Tested up to`). Run `DLI_Requirements_Unit_Test`, which also covers `publiccode.yml`.
 
 C. Changelog
 8. The section of the new version exists and is dated, and the `[TODO]` section holds no entry that is being released or was already released (BLOCKING).
