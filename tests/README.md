@@ -13,6 +13,16 @@ Gli strumenti di verifica del tema sono di tre famiglie, con scopi diversi.
 | **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test in Docker. E2E: sì, un sito dedicato in Docker | PHPUnit, Playwright | Passano o falliscono |
 | **Report** | Il sito in funzione ha errori, HTML non valido, problemi di accessibilità? | Sì, un sito raggiungibile | Moduli di `tests/report/` | Un risultato HTML e JSON da leggere; `--gate` dà un codice di uscita |
 
+Dove girano i test:
+
+| Suite | Dove gira | Cosa serve |
+|---|---|---|
+| Unit | Sul computer, con PHP e Node.js, senza WordPress | Niente altro |
+| Integrazione | In Docker: PHPUnit nel container `cli` dell'ambiente wp-env di integrazione (`.wp-env.inttest.json`, porta 8893), con il suo database | Docker Desktop acceso |
+| E2E | WordPress in Docker, nell'ambiente wp-env E2E (`.wp-env.e2etest.json`, `http://localhost:8892`); Playwright e Chromium sul computer | Docker Desktop acceso e Chromium di Playwright |
+
+I due ambienti Docker hanno porte diverse e possono restare accesi insieme. Il comando di ogni suite avvia il suo ambiente se è spento e lo lascia acceso alla fine.
+
 I Controlli statici e i Test si lanciano con **Composer**, i Report con **npm**, sempre dalla
 radice del tema.
 
@@ -47,12 +57,13 @@ o di una release. I comandi, tutti da lanciare dalla radice del tema, sono stati
 |---|---|---|---|
 | Unit | `composer test:unit -- tests/unit/DLI_Utils_Unit_Test.php` | `composer test:unit -- --filter test_persona_display_name_joins_first_and_last_name` | `composer test:unit -- --list-tests` |
 | Integrazione | `composer test:integration -- tests/integration/DLI_Environment_Integration_Test.php` | `composer test:integration -- --filter test_super_editor_role_exists` | `composer test:integration -- --list-tests` |
-| E2E | `composer test:e2e -- tests/e2e/specs/admin-login.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:10` oppure `composer test:e2e -- -g "password-protected"` | `composer test:e2e -- --list` |
+| E2E | `composer test:e2e -- tests/e2e/specs/config-permissions.spec.js` | `composer test:e2e -- tests/e2e/specs/contact-form.spec.js:10` oppure `composer test:e2e -- -g "password-protected"` | `composer test:e2e -- --list` |
 
 Regole utili:
 - Tutto ciò che sta dopo `--` viene passato allo strumento che esegue i test (PHPUnit o Playwright).
 - Con PHPUnit, `--filter` accetta un nome intero o una parte (`--filter DLI_Utils_Unit_Test` esegue tutta la classe) e anche la forma `Classe::metodo`.
 - **Se il filtro non trova nulla**, PHPUnit scrive «No tests executed!» ma esce con codice `0`: un errore di battitura sembra un successo. Guardare sempre il numero di test eseguiti. Playwright, nello stesso caso, esce con codice `1`.
+- Anche gli elenchi delle suite di integrazione ed E2E (`--list-tests`, `--list`) passano dall'ambiente Docker: lo avviano se è spento, quindi serve Docker Desktop acceso. L'elenco degli E2E non ripristina la baseline.
 - Un test di integrazione o E2E isolato può passare da solo e fallire dentro la suite (o il contrario) se dipende dallo stato lasciato da un altro: ogni test di integrazione gira in una transazione annullata a fine test, mentre per l'E2E la baseline si ripristina prima e dopo ogni corsa.
 - Il dettaglio di ciascuna suite (altre opzioni, ripetizioni, variabili) è nel suo README: [unit](unit/README.md#eseguire-un-solo-test), [integrazione](integration/README.md#eseguire-un-solo-test), [E2E](e2e/README.md#eseguire-un-solo-test).
 
@@ -91,7 +102,7 @@ Il workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) è la rete
 | `publiccode.yml` | Azione ufficiale di Developers Italia (`italia/publiccode-parser-action`): controlla anche gli indirizzi remoti, il logo e gli screenshot sul ramo principale | — |
 | Workflow | actionlint (con shellcheck) dall'immagine ufficiale, fissata per digest, sui file di `.github/workflows/` | — |
 
-La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), nello stesso ambiente Docker che si usa in locale (`.wp-env.inttest.json`: WordPress, PHP, ACF e Polylang a versioni fissate).
+La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit esistono solo negli hook locali. I test di integrazione girano in CI solo nel job `integration` (push su `dev` e `main`, PR verso `main`, avvio manuale), nello stesso ambiente Docker che si usa in locale (`.wp-env.inttest.json`: WordPress, PHP, ACF e Polylang a versioni fissate). I test E2E girano su GitHub solo con il workflow *E2E tests* ([`functional.yml`](../.github/workflows/functional.yml)), avviato a mano dalla scheda *Actions*, nell'ambiente `.wp-env.e2etest.json`; se un test fallisce, il report di Playwright resta come artefatto per 7 giorni.
 
 Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
 
@@ -160,6 +171,7 @@ una volta con `npm run status:scan:install-browser`.
 | [integration/](integration/) | Test di integrazione (PHPUnit), con [`bootstrap-integration.php`](bootstrap-integration.php) e [`phpunit-integration.xml`](../phpunit-integration.xml) |
 | [integration/support/](integration/support/) | Classe base dei test di integrazione e doppioni dei plugin opzionali |
 | [e2e/](e2e/) | Test E2E (Playwright): [specifiche](e2e/specs/), [supporto](e2e/support/), [baseline](e2e/fixtures/); configurazione in [`../playwright.config.js`](../playwright.config.js) |
+| [bin/](bin/) | Script Node che controllano Docker, avviano gli ambienti wp-env e lanciano le suite di integrazione ([`integration.mjs`](bin/integration.mjs)) ed E2E ([`e2e.mjs`](bin/e2e.mjs)); gli ambienti sono descritti in [`../.wp-env.inttest.json`](../.wp-env.inttest.json) e [`../.wp-env.e2etest.json`](../.wp-env.e2etest.json) |
 | [report/](report/) | Moduli Report |
 | [phpstan/](phpstan/) | Stub locali di WordPress e dei plugin caricati soltanto da PHPStan: vedi [`phpstan/README.md`](phpstan/README.md) |
 
@@ -167,6 +179,6 @@ una volta con `npm run status:scan:install-browser`.
 ## Pacchetto di rilascio
 
 Tutta la cartella [`tests/`](.), [`phpunit.xml`](../phpunit.xml),
-[`phpunit-integration.xml`](../phpunit-integration.xml) e [`playwright.config.js`](../playwright.config.js) sono nel
+[`phpunit-integration.xml`](../phpunit-integration.xml), [`playwright.config.js`](../playwright.config.js) e i due file `.wp-env.*.json` sono nel
 repository clonato ma **non** nel pacchetto zip che GitHub genera per ogni versione
 (`export-ignore` in [`../.gitattributes`](../.gitattributes)).

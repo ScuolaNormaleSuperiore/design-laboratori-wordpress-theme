@@ -94,7 +94,7 @@ composer test:e2e -- tests/e2e/specs/site-search.spec.js --repeat-each=5  # lo r
 composer test:e2e:headed -- site-search                                   # con il browser visibile
 ```
 
-- `--list` non esegue nulla e non ripristina la baseline: è il modo sicuro per controllare che il filtro scelga i test voluti
+- `--list` non esegue nulla e non ripristina la baseline (avvia però l'ambiente, se è spento): è il modo sicuro per controllare che il filtro scelga i test voluti
   (`--list -g "password-protected"`, `--list site-search`). Se non trova nulla scrive `Total: 0 tests` ed esce con codice `1`.
 - Il numero di riga (`:44`) è quello che compare nell'errore, ma cambia quando si modifica il file: per un riferimento stabile
   usare il filtro per titolo `-g`.

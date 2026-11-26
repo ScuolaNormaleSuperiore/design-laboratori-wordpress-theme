@@ -73,7 +73,7 @@ Il progetto nasce da un fork del tema [**Design Scuole Italia**](https://develop
 ## Requisiti software
 1. Il CMS WordPress (versione >= 7.1.4).
 2. PHP >= 8.0.
-3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore. Per i test di integrazione serve anche Docker Desktop.
+3. Per lo sviluppo: [Composer](https://getcomposer.org/), Node.js e npm. Su Windows serve Node.js 22 o superiore per eseguire i test unitari JavaScript; su Linux e macOS è sufficiente Node.js 18 o superiore. Per i test di integrazione ed E2E serve anche Docker Desktop.
 
 ## Dipendenze
 Per il corretto funzionamento del tema è necessario installare i seguenti plugin:
@@ -190,7 +190,9 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | | `npm run html:scan -- <url>` | [Validità dell'HTML (Nu Html Checker)](tests/report/html-report/README.md) |
 | | `npm run pa11y:scan -- <url>` | [Accessibilità WCAG 2 AA a 1280 px e a 320 px](tests/report/pa11y-report/README.md) |
 
-I controlli che scattano a ogni commit (segreti, PHPStan livello 6, PHPCS sui file in staging, test unit, testo del messaggio) sono elencati in [Cosa controlla il commit](tests/README.md#cosa-controlla-il-commit). A ogni push su GitHub il workflow *CI* ripete su una macchina pulita i controlli principali, anche su PHP 8.0, il minimo richiesto dal tema; esegue inoltre i test di integrazione su `dev` e `main`, sulle pull request verso `main` e su avvio manuale. Segnala i problemi ma non blocca né i push né i merge (vedi [Controlli in CI](tests/README.md#controlli-in-ci-github-actions)).
+I controlli che scattano a ogni commit (segreti, PHPStan livello 6, PHPCS sui file in staging, test unit, testo del messaggio) sono elencati in [Cosa controlla il commit](tests/README.md#cosa-controlla-il-commit). A ogni push su GitHub il workflow *CI* ripete su una macchina pulita i controlli principali, anche su PHP 8.0, il minimo richiesto dal tema; esegue inoltre i test di integrazione su `dev` e `main`, sulle pull request verso `main` e su avvio manuale. I test E2E girano su GitHub solo quando si avvia a mano il workflow *E2E tests*. Tutti questi controlli segnalano i problemi ma non bloccano né i push né i merge (vedi [Controlli in CI](tests/README.md#controlli-in-ci-github-actions)).
+
+Unit, PHPStan e PHPCS girano sul computer, con PHP e Node.js. Le suite di integrazione ed E2E avviano da sole un WordPress in Docker con [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/): l'ambiente di integrazione sulla porta 8893 e quello E2E su `http://localhost:8892`, dove il browser di Playwright, che gira sul computer, apre il sito. Non serve preparare un sito a mano.
 
 Requisiti, preparazione, opzioni e varianti `:gate` e `:compare` sono descritti nel [punto di ingresso dei controlli](tests/README.md), che rimanda ai README di [test unit](tests/unit/README.md), [integrazione](tests/integration/README.md), [E2E](tests/e2e/README.md), [PHPStan](tests/phpstan/README.md) e [Report](tests/report/README.md). [Test e Report](tests/) sono nel repository clonato ma **non** nel pacchetto zip scaricato da GitHub per ogni versione (`export-ignore` in [.gitattributes](.gitattributes)).
 
