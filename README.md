@@ -86,6 +86,27 @@ Per il corretto funzionamento del tema è necessario installare i seguenti plugi
 Il tema mostra un avviso quando uno di questi plugin non è installato.
 
 ## Installazione e configurazione del tema
+
+Per generare lo ZIP installabile dalla copia di lavoro locale:
+
+```sh
+npm run theme:package
+```
+
+Il comando crea `dist/design-laboratori-wordpress-theme-<versione>.zip`, con una
+sola cartella `design-laboratori-wordpress-theme/`, caricabile da **Aspetto → Temi →
+Aggiungi tema → Carica tema**. La versione è letta da `style.css`; sono inclusi
+anche i cambiamenti locali non ancora committati. `dist/` è ignorata da Git.
+
+Il pacchetto include template, codice e librerie runtime, asset pronti all'uso,
+traduzioni compilate, licenze e crediti. Conserva gli HTML delle pagine iniziali e
+i quattro CSV scaricabili dagli strumenti di importazione. Esclude test, strumenti
+di sviluppo, documentazione, demo Docker, esportazioni ACF, SCSS, mappe sorgente,
+backup e cataloghi `.po`/`.pot`. I plugin dipendenti si installano separatamente.
+Non ricompila gli asset: prima della creazione aggiornare quelli interessati con i
+comandi di build del progetto. Richiede Node.js e PowerShell su Windows, oppure
+il comando `zip` su Linux/macOS; non richiede pacchetti npm aggiuntivi.
+
 Dopo aver installato WordPress su un server, per installare e configurare il tema **Design laboratori e centri di ricerca** è necessario seguire i seguenti passi:
 
 1. Scaricare il tema ["Design Laboratori Italia"](https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git).

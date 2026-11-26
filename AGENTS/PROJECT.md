@@ -81,6 +81,12 @@ https://sitofederato.sns.it
 
 Unit tests (PHPUnit, no WordPress) live in `tests/unit/` and run with `composer test:unit`; the `pre-commit` hook runs them too. They cover pure helper functions, configuration tables and consistency of the release files (version, release date) and of the AGENTS documents. Integration tests live in `tests/integration/` and run with `composer test:integration` on a real WordPress with ACF and Polylang and a dedicated database; E2E tests live in `tests/e2e/` and run with `composer test:e2e`, driving a browser on the dedicated Local site `dli-wp-e2e`. Neither runs in the `pre-commit` hook. See `Test-driven workflow` in `AI_BEHAVIOR.md`.
 
+## Installable Theme Package
+
+An installable runtime-only theme ZIP can be built with `npm run theme:package`.
+It is written to the Git-ignored `dist/` directory from the current working files;
+see the packaging instructions in `README.md`.
+
 ## Automated Quality Checks (tests/report/)
 
 Three automated scanning modules are available under `tests/report/` (`status-report`, `html-report`, `pa11y-report`); `issues-report/` only stores issue snapshots. Each module produces JSON and HTML reports; `status` and `html` also support a `compare` command to track regressions between runs. Commands and prerequisites are listed in `ARCHITECTURE.md` (*Quality checks*).

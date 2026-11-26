@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",
+    "theme:package": "node SETUP/npm_scripts/package-theme.mjs",
     "lint": "npm run lint:php",
     "lint:php": "composer run lint:php -- .",
     "lint:php:file": "composer run lint:php --",
