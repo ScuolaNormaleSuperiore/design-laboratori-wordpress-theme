@@ -38,9 +38,12 @@
     "env:tests:start": "wp-env start --config=.wp-env.inttest.json",
     "env:tests:stop": "wp-env stop --config=.wp-env.inttest.json",
     "env:tests:destroy": "wp-env destroy --force --config=.wp-env.inttest.json",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed",
-    "test:e2e:ui": "playwright test --ui"
+    "env:start": "wp-env start --config=.wp-env.e2etest.json",
+    "env:stop": "wp-env stop --config=.wp-env.e2etest.json",
+    "env:destroy": "wp-env destroy --force --config=.wp-env.e2etest.json",
+    "test:e2e": "node tests/bin/e2e.mjs",
+    "test:e2e:headed": "node tests/bin/e2e.mjs --headed",
+    "test:e2e:ui": "node tests/bin/e2e.mjs --ui"
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,19 @@
-// Restores the E2E site to the baseline (fixtures/baseline.sql). Used by the
-// global setup and teardown. See tests/e2e/README.md.
-const { execFileSync } = require( 'child_process' );
-const path = require( 'path' );
+// Restores the E2E site to the baseline (fixtures/baseline.sql) in the wp-env E2E
+// environment (.wp-env.e2etest.json). Used by the global setup and teardown. See
+// tests/e2e/README.md.
+const { wp, wpSucceeds, THEME_DIR } = require( './wp' );
+
+// Address of the E2E environment: also the siteurl stored in the baseline.
+const SITE_URL = 'http://localhost:8892';
+
+// Italian translations used by the specs. ACF OpenStreetMap Field has none.
+const LANGUAGE_PLUGINS = [ 'advanced-custom-fields', 'polylang' ];
 
 /**
- * Restore the database of the E2E site.
+ * Restore the database of the E2E site and make Italian its locale.
  *
  * Skipped when DLI_E2E_SKIP_RESET is set (useful while debugging a spec).
- * Needs DLI_E2E_SITE_PATH (folder of the WordPress installation) and `php` on the PATH.
+ * Needs the E2E environment running (tests/bin/e2e.mjs starts it).
  */
 function resetSite() {
 	if ( process.env.DLI_E2E_SKIP_RESET ) {
@@ -15,26 +21,33 @@ function resetSite() {
 		return;
 	}
 
-	const sitePath = process.env.DLI_E2E_SITE_PATH;
-	if ( ! sitePath ) {
-		throw new Error(
-			'DLI_E2E_SITE_PATH is not set: it must be the folder of the WordPress installation of the E2E site ' +
-			'(or set DLI_E2E_SKIP_RESET=1 to skip the reset). See tests/e2e/README.md.'
-		);
-	}
-
-	const script = path.join( __dirname, 'reset-baseline.php' );
-	const baseline = path.join( __dirname, '..', 'fixtures', 'baseline.sql' );
-
 	try {
-		const output = execFileSync( 'php', [ script, sitePath, baseline ], {
-			encoding: 'utf8',
-			stdio: [ 'ignore', 'pipe', 'pipe' ],
-		} );
-		console.log( '[e2e] ' + output.trim() );
+		const siteUrl = wp( [ 'option', 'get', 'siteurl' ] );
+		if ( SITE_URL !== siteUrl ) {
+			throw new Error( 'the site answers with siteurl ' + siteUrl + ', not ' + SITE_URL + '.' );
+		}
+
+		wp( [ 'db', 'import', THEME_DIR + '/tests/e2e/fixtures/baseline.sql' ] );
+		installItalian();
+		wp( [ 'eval-file', THEME_DIR + '/tests/e2e/support/force-italian.php' ] );
+		console.log( '[e2e] E2E site restored to the baseline' );
 	} catch ( error ) {
-		const detail = ( error.stderr || error.message || '' ).toString().trim();
-		throw new Error( 'Reset of the E2E site failed. ' + detail );
+		throw new Error( 'Reset of the E2E site failed: ' + error.message );
+	}
+}
+
+/**
+ * Install the Italian language packs that are missing. They are files, not database
+ * rows: once installed they survive the restore and the next runs.
+ */
+function installItalian() {
+	if ( ! wpSucceeds( [ 'language', 'core', 'is-installed', 'it_IT' ] ) ) {
+		wp( [ 'language', 'core', 'install', 'it_IT' ] );
+	}
+	for ( const plugin of LANGUAGE_PLUGINS ) {
+		if ( ! wpSucceeds( [ 'language', 'plugin', 'is-installed', plugin, 'it_IT' ] ) ) {
+			wp( [ 'language', 'plugin', 'install', plugin, 'it_IT' ] );
+		}
 	}
 }
 

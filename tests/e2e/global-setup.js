@@ -16,7 +16,7 @@ const { getAdminCredentials } = require( './support/auth' );
  */
 async function warmUpAdmin( baseURL ) {
 	const { user, password } = getAdminCredentials();
-	const context = await request.newContext( { baseURL, ignoreHTTPSErrors: true, timeout: 180000 } );
+	const context = await request.newContext( { baseURL, timeout: 180000 } );
 
 	try {
 		await context.get( '/wp-login.php' );

@@ -12,7 +12,7 @@ module.exports = defineConfig( {
 	// One retry absorbs rare browser or network hiccups (e.g. ERR_NETWORK_CHANGED).
 	retries: 1,
 	fullyParallel: false,
-	// Login and an admin page take 4-9 s on a local site: the default 5 s of the
+	// Login and an admin page take several seconds on the test site: the default 5 s of the
 	// assertions is too tight. (The much slower first load after a restore is absorbed by
 	// the warm-up of the global setup.)
 	timeout: 60000,
@@ -22,9 +22,8 @@ module.exports = defineConfig( {
 		[ 'html', { outputFolder: 'tests/e2e/playwright-report', open: 'never' } ],
 	],
 	use: {
-		baseURL: process.env.DLI_E2E_BASE_URL || 'https://dli-wp-e2e.local',
-		// Local sites use a certificate that the browser does not trust.
-		ignoreHTTPSErrors: true,
+		// The wp-env E2E environment (.wp-env.e2etest.json): the baseline stores this address.
+		baseURL: 'http://localhost:8892',
 		// Recording video and trace on every test slows the browser down and made the login
 		// fail now and then: record only when a test is retried.
 		trace: 'on-first-retry',

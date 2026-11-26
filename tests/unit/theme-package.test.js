@@ -38,7 +38,7 @@ test('theme package excludes development material and backups, including inside 
 		'languages/en_US.po', 'languages/en_US.l10n.php.orig',
 		'assets/js/.private.js', 'inc/file.php~',
 	]) assert.equal(isRuntimeFile(file), false, `Unexpected package file: ${file}`);
-	assert.equal(isRuntimeFile('assets/fonts/Roboto/LICENSE.txt'), true);
+	assert.equal(isRuntimeFile('assets/bootstrap-italia/fonts/Roboto_Mono/LICENSE.txt'), true);
 	assert.equal(isRuntimeFile('inc/vendor/TGM-Plugin-Activation/LICENSE.md'), true);
 });
 

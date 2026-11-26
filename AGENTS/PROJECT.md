@@ -79,7 +79,7 @@ https://sitofederato.sns.it
 
 ## Automated Tests (tests/unit/, tests/integration/, tests/e2e/)
 
-Unit tests (PHPUnit, no WordPress) live in `tests/unit/` and run with `composer test:unit`; the `pre-commit` hook runs them too. They cover pure helper functions, configuration tables and consistency of the release files (version, release date) and of the AGENTS documents. Integration tests live in `tests/integration/` and run with `composer test:integration` on a real WordPress with ACF and Polylang and a dedicated database; E2E tests live in `tests/e2e/` and run with `composer test:e2e`, driving a browser on the dedicated Local site `dli-wp-e2e`. Neither runs in the `pre-commit` hook. See `Test-driven workflow` in `AI_BEHAVIOR.md`.
+Unit tests (PHPUnit, no WordPress) live in `tests/unit/` and run with `composer test:unit`; the `pre-commit` hook runs them too. They cover pure helper functions, configuration tables and consistency of the release files (version, release date) and of the AGENTS documents. Integration tests live in `tests/integration/` and run with `composer test:integration` on a real WordPress with ACF and Polylang and a dedicated database; E2E tests live in `tests/e2e/` and run with `composer test:e2e`, driving a browser on a dedicated site in Docker (wp-env E2E environment). Neither runs in the `pre-commit` hook. See `Test-driven workflow` in `AI_BEHAVIOR.md`.
 
 ## Installable Theme Package
 

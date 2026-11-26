@@ -10,7 +10,7 @@ Tutti i comandi si lanciano dalla radice del tema. Non copiare file da archivi Z
    npm install bootstrap-italia@<nuova_versione> --save-exact
    ```
 
-2. In `SETUP/npm_scripts/sync-bootstrap-italia.mjs` portare `expectedVersion` alla stessa versione: lo script del passo 3 si rifiuta di copiare una versione diversa.
+2. In `SETUP/npm_scripts/sync-bootstrap-italia.mjs` portare `expectedVersion` alla stessa versione: lo script del passo 3 si rifiuta di copiare una versione diversa. La sincronizzazione esclude `fonts/Titillium_Sans_Pro/`, rimosso dal tema; i font distribuiti sono Titillium Web, Lora e Roboto Mono.
 
 3. Copiare la libreria nel tema (da `node_modules/bootstrap-italia/dist/` a `assets/bootstrap-italia/`):
 

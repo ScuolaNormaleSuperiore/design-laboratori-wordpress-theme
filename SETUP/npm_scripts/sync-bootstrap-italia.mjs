@@ -5,7 +5,7 @@
 // dopo ogni bump della versione). Stesso approccio già validato nel
 // porting statico bs-playground (scripts/sync-bootstrap-italia.mjs).
 import { cp, mkdir, readFile, rename, rm } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const themeRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -27,7 +27,11 @@ if (packageMetadata.version !== expectedVersion) {
 
 await mkdir(dirname(target), { recursive: true });
 await rm(staging, { recursive: true, force: true });
-await cp(source, staging, { recursive: true });
+// Titillium Sans Pro is not distributed by this theme.
+await cp(source, staging, {
+  recursive: true,
+  filter: (file) => relative(source, file).replaceAll('\\', '/') !== 'fonts/Titillium_Sans_Pro',
+});
 await rm(target, { recursive: true, force: true });
 await rename(staging, target);
 

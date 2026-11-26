@@ -1,56 +1,61 @@
-# Test E2E (browser su un sito dedicato)
+# Test E2E (browser su un sito dedicato, in Docker)
 
 I test E2E controllano il comportamento **come lo vede un utente**: Playwright pilota un browser
-vero su un sito WordPress dedicato (sito Local `dli-wp-e2e`). Sono i più lenti dei tre livelli, quindi
+vero su un sito WordPress dedicato, in un ambiente **Docker** creato da
+[wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) (`@wordpress/env`),
+come i [test di integrazione](../integration/README.md). Sono i più lenti dei tre livelli, quindi
 coprono solo ciò che richiede un browser. Non vanno confusi con i [Report](../report/README.md), che
 fotografano un sito in funzione senza asserzioni.
 
 
 ## Requisiti
 
-- Un sito Local `dli-wp-e2e`: WordPress pulito, con tema, ACF e Polylang collegati in `wp-content`
-  (junction verso la copia di lavoro) e **attivati** (prima i plugin, poi il tema). Permalink salvati una volta.
-- `DB_HOST` nel `wp-config.php` del sito impostato su host e porta del suo MariaDB, per esempio
-  `127.0.0.1:10004` invece di `localhost`, perché lo script di ripristino, lanciato da una shell normale,
-  raggiunga il database. La porta è quella che Local ha assegnato al sito (scheda Database) e può
-  cambiare: va ricontrollata dopo ogni riavvio di Local.
-- Node.js con `npm ci` (rieseguirlo dopo un `git pull` che cambia `package.json` o `package-lock.json`) e PHP con `mysqli` nel `PATH`
-  (lo usa lo script di ripristino; non servono il client `mysql` né WP-CLI).
+- **Docker Desktop** acceso (o un demone Docker compatibile).
+- Node.js con `npm ci` (installa Playwright e `@wordpress/env`; rieseguirlo dopo un `git pull` che cambia
+  `package.json` o `package-lock.json`).
 - Chromium per la versione di Playwright installata, scaricato una volta con `npm run status:scan:install-browser`
   (lo stesso browser dei Report).
+- La porta **8892** libera. La 8893 è dell'ambiente di integrazione, le porte 8890 e 8891 del plugin
+  `kk-content-exporter`: gli ambienti possono girare insieme.
+
+Non servono un sito Local, PHP né WP-CLI sul computer: il ripristino usa il WP-CLI del container.
 
 
-## Configurazione e variabili d'ambiente
+## L'ambiente
+
+[`../../.wp-env.e2etest.json`](../../.wp-env.e2etest.json) fissa tutto ciò che entra nel sito, così due corse
+sono uguali su ogni computer e in CI:
+
+| Cosa | Valore |
+|---|---|
+| WordPress | 7.1.4 (zip di `wordpress.org`), la versione minima dichiarata dal tema |
+| PHP | 8.4 |
+| Plugin | ACF 6.8.12, Polylang 3.9.2 e ACF OpenStreetMap Field 1.6.1 (zip di `downloads.wordpress.org`) |
+| Tema | la copia di lavoro (`themes: ["."]`) |
+| Indirizzo | `http://localhost:8892` |
+| Debug | `WP_DEBUG` e `WP_DEBUG_LOG` attivi, `WP_DEBUG_DISPLAY` spento |
+
+Per cambiare una versione si modifica quel file **e** il test unit `DLI_Docker_Tests_Config_Unit_Test`,
+che controlla che i valori restino fissati (e uguali a quelli dell'ambiente di integrazione).
+
+
+## Variabili d'ambiente
+
+Nessuna è necessaria: i valori predefiniti coincidono con gli utenti di prova qui sotto.
 
 | Variabile | Significato | Valore predefinito |
 |---|---|---|
-| `DLI_E2E_SITE_PATH` | cartella dell'installazione WordPress del sito E2E (quella con `wp-config.php`), per esempio `C:\Users\<utente>\Local Sites\dli-wp-e2e\app\public` | nessuno: **obbligatoria**, salvo si salti il ripristino |
 | `DLI_E2E_SKIP_RESET` | `1` per saltare il ripristino prima e dopo la corsa, per fare il debug di una specifica | non impostata |
-| `DLI_E2E_BASE_URL` | indirizzo del sito E2E | `https://dli-wp-e2e.local` |
 | `DLI_E2E_ADMIN_USER`, `DLI_E2E_ADMIN_PASSWORD` | amministratore | `e2e-admin`, `password` |
 | `DLI_E2E_SUPER_EDITOR_USER`, `DLI_E2E_SUPER_EDITOR_PASSWORD` | Super Editor | `e2e-super-editor`, `password` |
 | `DLI_E2E_EDITOR_USER`, `DLI_E2E_EDITOR_PASSWORD` | Editor | `e2e-editor`, `password` |
 
-`DLI_E2E_SITE_PATH` dipende dalla macchina: va impostata una volta come variabile d'ambiente dell'utente,
-poi si apre un terminale nuovo. Una variabile impostata in un terminale vale solo per quel terminale.
-
-```
-setx DLI_E2E_SITE_PATH "C:\Users\<utente>\Local Sites\dli-wp-e2e\app\public"
-```
-
-Per la sola sessione corrente (PowerShell):
-
-```
-$env:DLI_E2E_SITE_PATH = 'C:\Users\<utente>\Local Sites\dli-wp-e2e\app\public'
-```
-
-Gli altri valori predefiniti coincidono con gli utenti di prova qui sotto: su un sito preparato bene non serve altro.
-
 
 ## Esecuzione
 
-Si lancia con Composer, come le altre suite. Playwright è uno strumento Node.js, quindi ogni script di Composer
-chiama lo script `npm run test:e2e*` con lo stesso nome (si può usare l'uno o l'altro).
+Si lancia con Composer, come le altre suite. Ogni script di Composer chiama lo script `npm run test:e2e*` con lo
+stesso nome (si può usare l'uno o l'altro), cioè [`../bin/e2e.mjs`](../bin/e2e.mjs), che controlla che Docker
+risponda, avvia l'ambiente (se è già acceso non fa nulla) e lancia Playwright.
 
 ```
 composer test:e2e           # senza finestra del browser
@@ -59,7 +64,19 @@ composer test:e2e:ui        # interfaccia di Playwright
 composer test:e2e -- config-permissions    # una sola specifica (le opzioni dopo --)
 ```
 
-Il sito deve essere acceso in Local. Dopo la corsa il sito è alla baseline.
+Dopo la corsa il sito è alla baseline e l'ambiente resta acceso, così le corse successive partono subito. La
+prima volta wp-env scarica immagini Docker, WordPress e plugin, e il ripristino installa le traduzioni italiane
+di WordPress, ACF e Polylang: qualche minuto in più.
+
+| Comando | Cosa fa |
+|---|---|
+| `composer env:start` | accende l'ambiente senza lanciare i test (il sito è su `http://localhost:8892`) |
+| `composer env:stop` | lo spegne (i dati restano) |
+| `composer env:destroy` | lo cancella del tutto: container, database e traduzioni scaricate |
+
+In CI la suite gira con il workflow [`functional.yml`](../../.github/workflows/functional.yml), lanciato a mano dalla
+scheda Actions (Run workflow): stessi comandi, e se un test fallisce il report di Playwright e le tracce restano
+come artefatto per 7 giorni.
 
 
 ### Eseguire un solo test
@@ -98,7 +115,7 @@ composer test:e2e:headed -- site-search                                   # con 
 ## Utenti di prova
 
 La baseline ([`fixtures/baseline.sql`](fixtures/baseline.sql)) contiene questi utenti. La password è la stessa per tutti ed è volutamente
-banale: il sito è un sito di prova locale, non raggiungibile da fuori. **Non riusare mai queste credenziali su
+banale: il sito è un sito di prova in Docker, non raggiungibile da fuori. **Non riusare mai queste credenziali su
 un sito vero.**
 
 | Utente | Password | Ruolo | A cosa serve |
@@ -110,7 +127,8 @@ un sito vero.**
 
 ## Baseline
 
-[`fixtures/baseline.sql`](fixtures/baseline.sql) è un dump del database di `dli-wp-e2e` in uno stato noto: tema, ACF, ACF OpenStreetMap
+[`fixtures/baseline.sql`](fixtures/baseline.sql) è un dump del database del sito E2E in uno stato noto, con l'indirizzo
+`http://localhost:8892` dell'ambiente: tema, ACF, ACF OpenStreetMap
 Field e Polylang attivi, permalink `/%postname%/`, lingue `it` ed `en`, le 42 pagine e le voci di menu create
 dall'attivazione del tema, i tre utenti qui sopra e i contenuti di esempio elencati sotto. Non contiene dati
 personali reali, transient né sessioni. Contiene anche le regole degli indirizzi (`rewrite_rules`) già scritte, con quelle delle pubblicazioni
@@ -151,35 +169,43 @@ in evidenza: i file dei media non sono nel dump, quindi la copertina si prova co
 ### Ripristino automatico
 
 `composer test:e2e` ripristina la baseline **prima e dopo** la corsa ([`global-setup.js`](global-setup.js) e [`global-teardown.js`](global-teardown.js),
-che chiamano [`support/reset.js`](support/reset.js), che lancia [`support/reset-baseline.php`](support/reset-baseline.php)). Lo script PHP legge i dati di
-connessione dal `wp-config.php` del sito (`DLI_E2E_SITE_PATH`), esegue il dump con `mysqli` e cancella e
-ricrea ogni tabella. Dopo ogni ripristino forza italiano (`it_IT`) come lingua WordPress, lingua predefinita Polylang e lingua dei tre utenti E2E: le specifiche amministrative usano quindi stringhe italiane. I casi multilingua visitano esplicitamente `/en/`; non cambiano la lingua di base della suite. Non serve altro che PHP.
+che chiamano [`support/reset.js`](support/reset.js)). Il ripristino usa WP-CLI nel container `cli` dell'ambiente
+([`support/wp.js`](support/wp.js)):
 
-Per sicurezza rifiuta di importare se il database non appartiene al sito della baseline: l'host di `siteurl`
-nel database deve essere quello del dump (`dli-wp-e2e.local`) e il prefisso delle tabelle lo stesso. Quindi
-puntare `DLI_E2E_SITE_PATH` a un sito di sviluppo non lo cancella, e il sito deve chiamarsi `dli-wp-e2e`. Per
-fare il debug di una specifica senza ripristino: `DLI_E2E_SKIP_RESET=1`.
+1. controlla che il sito risponda con `siteurl` `http://localhost:8892`, cioè che sia l'ambiente E2E;
+2. importa la baseline (`wp db import`), che cancella e ricrea ogni tabella;
+3. installa le traduzioni italiane di WordPress, ACF e Polylang, se mancano (sono file, non dati: restano tra
+   un ripristino e l'altro);
+4. forza italiano (`it_IT`) come lingua WordPress, lingua predefinita Polylang e lingua dei tre utenti E2E
+   ([`support/force-italian.php`](support/force-italian.php)): le specifiche amministrative usano quindi stringhe
+   italiane. I casi multilingua visitano esplicitamente `/en/`; non cambiano la lingua di base della suite.
 
-Per ripristinare a mano: `php tests/e2e/support/reset-baseline.php <cartella del sito> tests/e2e/fixtures/baseline.sql`.
+Per fare il debug di una specifica senza ripristino: `DLI_E2E_SKIP_RESET=1`. Per ripristinare a mano basta lanciare
+un test qualsiasi, oppure `npx wp-env run --config=.wp-env.e2etest.json cli -- wp db import
+wp-content/themes/design-laboratori-wordpress-theme/tests/e2e/fixtures/baseline.sql`.
 
 
 ### Rigenerazione
 
-La baseline la rigenerano solo i manutentori, dopo aver preparato il sito nello stato voluto. Servono WP-CLI e
-`mysqldump` (per esempio quelli di Local; mettere nel `PATH` la cartella `bin` del MariaDB di Local):
+La baseline la rigenerano solo i manutentori, dopo aver preparato il sito E2E nello stato voluto (a partire dalla
+baseline attuale). I comandi `wp` qui sotto si lanciano nel container, con
+`npx wp-env run --config=.wp-env.e2etest.json cli -- wp ...`:
 
 1. Cancellare i transient: `wp db query "DELETE FROM wp_options WHERE option_name REGEXP 'transient'"`
    (non scrivere `%` nella query: `cmd.exe` lo espande).
-2. Esportare: `wp db export "<radice del tema>/tests/e2e/fixtures/baseline.sql" --skip-extended-insert --skip-comments`
-   (una riga per record, così una modifica si vede come una piccola differenza; usare barre normali nel percorso).
+2. Esportare: `wp db export wp-content/themes/design-laboratori-wordpress-theme/tests/e2e/fixtures/baseline.sql --skip-extended-insert --skip-comments --skip-dump-date`
+   (una riga per record, così una modifica si vede come una piccola differenza).
 3. Mascherare gli indirizzi dell'ente che il tema scrive nella pagina predefinita della Privacy
    (`protocollo@pec.sns.it`, `dpo@sns.it`, `privacy@sns.it`): sostituire ogni lettera e cifra con `x`, mantenendo
    `@` e i punti, **senza cambiare la lunghezza** (il dump contiene dati serializzati, dove è scritta la
    lunghezza di ogni stringa).
 4. Controllare che il file non contenga nomi, email, indirizzi IP, token o percorsi locali reali e che ogni
    valore serializzato sia ancora leggibile.
+5. Controllare con `git diff` che cambino solo le righe volute: il sito che gira aggiunge da solo transient, cron
+   e i ruoli che il tema registra all'avvio, che non vanno nella baseline.
 
-Il dump è stato fatto con MariaDB 10.11 (quello di Local).
+Il dump è stato fatto con MariaDB 10.11 su un sito Local (`http://dli-wp-e2e.local`) e poi portato all'indirizzo
+`http://localhost:8892` sostituendo il testo (nessuna occorrenza era in un valore serializzato).
 
 
 ## Cosa copre
@@ -220,18 +246,19 @@ delle persone, selettore Schede/Tabella, cambio lingua, manifest) è da scrivere
 
 - [`specs/`](specs/): i file di test (`*.spec.js`).
 - [`support/auth.js`](support/auth.js): gli helper di login (`loginAsAdmin`, `loginAsSuperEditor`, `loginAsEditor`).
-- [`support/reset.js`](support/reset.js) e [`support/reset-baseline.php`](support/reset-baseline.php): il ripristino della baseline.
+- [`support/reset.js`](support/reset.js) e [`support/force-italian.php`](support/force-italian.php): il ripristino della baseline.
+- [`support/wp.js`](support/wp.js): lancia WP-CLI nel container `cli` dell'ambiente E2E.
 - [`global-setup.js`](global-setup.js) e [`global-teardown.js`](global-teardown.js): lanciano il ripristino prima e dopo i test e fanno un login di
   riscaldamento (il primo accesso a `wp-admin` dopo il ripristino è lento).
 - [`fixtures/baseline.sql`](fixtures/baseline.sql): la baseline.
 - `test-results/` e `playwright-report/`: risultati generati, ignorati da Git.
 - La configurazione è in [`../../playwright.config.js`](../../playwright.config.js) (radice del tema): un solo worker perché i test condividono lo
   stesso sito, timeout di 60 s per test e di 15 s per le asserzioni (login e prima pagina di amministrazione sono
-  lenti su un sito locale), un nuovo tentativo per test.
+  lenti sul sito di prova), un nuovo tentativo per test.
 
-**Test «flaky».** Con un sito Local su Windows il login a volte non parte (circa 1 su 40-80) oppure il browser
-segnala `net::ERR_NETWORK_CHANGED` o `net::ERR_CONNECTION_REFUSED`. Il nuovo tentativo di Playwright lo assorbe e il test compare come «flaky»
-nel riepilogo: non è un errore del tema, ma se i «flaky» diventano frequenti vale la pena indagare.
+**Test «flaky».** Su Windows il login a volte non parte oppure il browser segnala `net::ERR_NETWORK_CHANGED` o
+`net::ERR_CONNECTION_REFUSED`. Il nuovo tentativo di Playwright lo assorbe e il test compare come «flaky» nel
+riepilogo: non è un errore del tema, ma se i «flaky» diventano frequenti vale la pena indagare.
 
 
 ## Come aggiungere una specifica

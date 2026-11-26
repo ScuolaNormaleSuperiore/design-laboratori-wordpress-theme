@@ -35,3 +35,4 @@
 /phpunit-integration.xml export-ignore
 /playwright.config.js export-ignore
 /.wp-env.inttest.json export-ignore
+/.wp-env.e2etest.json export-ignore

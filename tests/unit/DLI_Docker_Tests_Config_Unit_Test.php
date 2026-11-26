@@ -102,6 +102,45 @@ class DLI_Docker_Tests_Config_Unit_Test extends TestCase {
 	}
 
 	/**
+	 * The E2E environment has the same WordPress, PHP and plugins as the integration one, plus the map field that
+	 * the baseline has active, on its own port.
+	 */
+	public function test_the_e2e_environment_is_pinned() {
+		$integration = $this->wp_env( '.wp-env.inttest.json' );
+		$e2e         = $this->wp_env( '.wp-env.e2etest.json' );
+
+		$this->assertSame( $integration['core'], $e2e['core'] ?? null );
+		$this->assertSame( self::PHP, $e2e['phpVersion'] ?? null );
+		$this->assertSame( 8892, $e2e['port'] ?? null, 'Port 8892: 8890 and 8891 belong to kk-content-exporter, 8893 to the integration suite.' );
+		$this->assertSame( array( '.' ), $e2e['themes'] ?? null );
+		$this->assertSame(
+			array_merge( $integration['plugins'], array( 'https://downloads.wordpress.org/plugin/acf-openstreetmap-field.1.6.1.zip' ) ),
+			$e2e['plugins'] ?? null
+		);
+		$this->assertTrue( $e2e['config']['WP_DEBUG_LOG'] ?? false, 'PHP errors of the E2E site are written to the log.' );
+	}
+
+	/**
+	 * Playwright, the scripts and the baseline point to the E2E environment, and nothing points to the Local site.
+	 */
+	public function test_the_e2e_suite_runs_in_docker() {
+		$npm      = json_decode( $this->read( 'package.json' ), true );
+		$composer = json_decode( $this->read( 'composer.json' ), true );
+
+		$this->assertSame( 'node tests/bin/e2e.mjs', $npm['scripts']['test:e2e'] ?? null );
+		$this->assertContains( 'npm run test:e2e --', (array) $composer['scripts']['test:e2e'] );
+		$this->assertStringContainsString( "'http://localhost:8892'", $this->read( 'playwright.config.js' ) );
+		$this->assertStringContainsString( "'siteurl','http://localhost:8892'", $this->read( 'tests/e2e/fixtures/baseline.sql' ) );
+
+		foreach ( array( 'playwright.config.js', 'tests/e2e/global-setup.js', 'tests/e2e/support/reset.js', 'tests/bin/e2e.mjs' ) as $file ) {
+			$content = $this->read( $file );
+			$this->assertStringNotContainsString( 'DLI_E2E_SITE_PATH', $content, $file );
+			$this->assertStringNotContainsString( 'dli-wp-e2e.local', $content, $file );
+		}
+		$this->assertFileDoesNotExist( DLI_TEST_THEME_DIR . '/tests/e2e/support/reset-baseline.php' );
+	}
+
+	/**
 	 * No local path or plugin cache of the old setup is left, and its download script is gone.
 	 */
 	public function test_no_local_path_is_left() {

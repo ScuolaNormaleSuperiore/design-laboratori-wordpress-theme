@@ -185,7 +185,7 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 | | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
 | Test | `composer test:unit` | [Funzioni pure in PHP e JavaScript, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
 | | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test in Docker (wp-env) con ACF e Polylang reali e un database dedicato |
-| | `composer test:e2e` | [Browser (Playwright) su un sito Local dedicato](tests/e2e/README.md) |
+| | `composer test:e2e` | [Browser (Playwright) su un sito dedicato in Docker](tests/e2e/README.md) |
 | Report | `npm run status:scan -- <url>` | [Errori HTTP, PHP e JavaScript, risorse non caricate, prestazioni, overflow a 320 px](tests/report/status-report/README.md) |
 | | `npm run html:scan -- <url>` | [Validità dell'HTML (Nu Html Checker)](tests/report/html-report/README.md) |
 | | `npm run pa11y:scan -- <url>` | [Accessibilità WCAG 2 AA a 1280 px e a 320 px](tests/report/pa11y-report/README.md) |

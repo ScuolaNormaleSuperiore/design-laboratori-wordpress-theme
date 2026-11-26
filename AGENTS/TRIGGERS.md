@@ -281,7 +281,7 @@ D. README and documentation
 
 E. Code quality
 17. `php -l` on every first-party PHP file, `composer run lint:php` with zero errors, `composer run lint:phpstan` at the configured level with zero errors (BLOCKING).
-18. `composer test:unit` and `composer test:integration` pass (BLOCKING). The E2E tests are not run by the AI: they are an operator step (step 2d). Report the number of tests and assertions.
+18. `composer test:unit` and `composer test:integration` pass (BLOCKING). The E2E tests are not part of this check: step 2d decides whether they are needed. Report the number of tests and assertions.
 19. `composer audit` and `npm audit --omit=dev`: no high or critical vulnerability (BLOCKING for high or critical, `AVVISO` for the rest).
 20. The last GitHub Actions run on the commit to release is green (`gh run list`, when `gh` is available and authenticated; BLOCKING if red, `NON ESEGUITO` otherwise).
 
@@ -302,13 +302,13 @@ H. Git state
 30. Print the commits after the baseline tag, as material for the human review.
 
 I. Runtime scans and manual checks, done by the human operator (see "Operator steps" below)
-31. Status scan, HTML validity, accessibility scan, E2E tests when indispensable under the test-level policy, and manual checks. The AI does not run them: it asks the operator to run each applicable check and report the result.
+31. Status scan, HTML validity, accessibility scan and manual checks. The AI does not run them: it asks the operator to run each applicable check and report the result. The E2E tests, when indispensable under the test-level policy, follow step 2d.
 
 2. **Operator steps, interactive.** After the automatic checks, run a guided procedure for everything that only the human operator can or should do. Go **one question or one check at a time**: say in Italian what the operator must do (the exact command or page), wait for the answer, record the outcome (`OK`, `ERRORE`, `AVVISO` or `SALTATO`, with the operator's own words), and only then move to the next step. Never put two steps in one message. Honor the control phrases: "stop" / "basta" (end the procedure, report what was done and mark the rest `NON ESEGUITO`), "salta" / "next" (mark `SALTATO`, go on), "indietro" (repeat the previous step). Skip the steps that do not apply and say why. Steps, in this order:
    a. `git fetch origin`, run by the operator (the AI never fetches), so that the comparison of check 29 is current; after the answer, repeat check 29.
    b. **Status scan.** Ask for the base URL of the site to scan, then ask the operator to run `npm run status:scan -- <baseUrl>` (once per machine, `npm run status:scan:install-browser` if Chromium is missing) and to say the result: the verdict, and the number of HTTP errors, PHP errors, JavaScript errors, broken resources, timeouts and pages with horizontal overflow at 320 px. State the result back to the operator in one line. Any HTTP or PHP error is `ERRORE` (blocking); the rest is `AVVISO`.
    c. HTML validity (`npm run html:scan -- <baseUrl>`, needs Java) and accessibility (`npm run pa11y:scan -- <baseUrl>`): ask whether to run them, then one at a time as in step b. Never against a site the operator did not name; they are read-only audits (no form submissions, no login attempts).
-   d. E2E tests: identify whether a release behavior requires a real browser and complete flow because unit and integration tests cannot adequately verify it. Only then ask the operator to run the relevant E2E tests and report the result; otherwise mark this step not needed and give the reason.
+   d. E2E tests: identify whether a release behavior requires a real browser and complete flow because unit and integration tests cannot adequately verify it. Only then run the relevant E2E tests with `composer test:e2e -- <spec>` (wp-env E2E environment, needs Docker Desktop) and report the result; if Docker does not answer, ask the operator to run them and report the result. Otherwise mark this step not needed and give the reason.
    e. Every automatic check marked `NON ESEGUITO` because a tool or a login was missing (`gh`, `publiccode-parser`, Java, `openssl`): one at a time, ask the operator to run the command or to confirm the fact by hand, and record the answer.
    f. Manual smoke test on the staging site, one question per item: the home page, a detail page, the search, the administration login, and one question for each feature or fix in the new changelog section.
    g. Translations: if new translatable strings were added, ask whether the catalogue was updated and compiled (Loco).

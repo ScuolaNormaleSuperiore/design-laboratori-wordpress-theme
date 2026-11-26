@@ -10,7 +10,7 @@ Gli strumenti di verifica del tema sono di tre famiglie, con scopi diversi.
 | Famiglia | A cosa risponde | Serve un sito in funzione? | Strumenti | Esito |
 |---|---|---|---|---|
 | **Controlli statici** | Il codice è scritto bene e può rompersi? | No: leggono i sorgenti | PHPCS, PHPStan, `composer audit`, `npm audit` | Elenco di segnalazioni (PHPCS può correggere da solo con `lint:php:fix`, PHPStan no) |
-| **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test in Docker. E2E: sì, un sito Local dedicato | PHPUnit, Playwright | Passano o falliscono |
+| **Test** | Il codice si comporta come deve? | Unit: no. Integrazione: sì, un WordPress di test in Docker. E2E: sì, un sito dedicato in Docker | PHPUnit, Playwright | Passano o falliscono |
 | **Report** | Il sito in funzione ha errori, HTML non valido, problemi di accessibilità? | Sì, un sito raggiungibile | Moduli di `tests/report/` | Un risultato HTML e JSON da leggere; `--gate` dà un codice di uscita |
 
 I Controlli statici e i Test si lanciano con **Composer**, i Report con **npm**, sempre dalla
@@ -25,8 +25,8 @@ radice del tema.
 | Analisi statica (PHPStan) | `composer run lint:phpstan` | **Sì**, blocca il commit | — |
 | Test unit | `composer test:unit` (`composer test` lancia la stessa suite) | **Sì**, blocca il commit | [`unit/README.md`](unit/README.md) |
 | Test di integrazione (oltre 500) | `composer test:integration` | No | Docker Desktop acceso; [`integration/README.md`](integration/README.md). Il primo avvio scarica le immagini, WordPress, ACF e Polylang |
-| Test E2E (oltre 60) | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | No | [`e2e/README.md`](e2e/README.md) |
-| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: `composer.json` alza il limite a 1200 (`config.process-timeout`) perché la suite E2E possa finire |
+| Test E2E (oltre 60) | `composer test:e2e` (`test:e2e:headed` per vedere il browser, `test:e2e:ui` per l'interfaccia di Playwright) | No | Docker Desktop acceso e Chromium di Playwright; [`e2e/README.md`](e2e/README.md). Il primo avvio scarica le immagini, WordPress, i plugin e le traduzioni italiane |
+| Unit e integrazione insieme | `composer test:all` (unit e integrazione, in quest'ordine; **gli E2E non ci sono**) | No | requisiti delle due suite; si ferma alla prima che fallisce. La suite E2E si lancia a parte con `composer test:e2e`. Composer interrompe ogni comando dopo 300 secondi per impostazione predefinita: gli script lunghi (`test:integration`, `test:e2e`) tolgono il limite con `ComposerConfig::disableProcessTimeout` |
 | Report | `npm run status:scan`, `html:scan`, `pa11y:scan` (con l'URL dopo `--`) | No | [`report/README.md`](report/README.md) |
 
 Quando eseguirli:
@@ -108,7 +108,7 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | **Pull request verso `main`** (per esempio un contributo esterno) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
 | **Rilascio: merge di `dev` su `main`** (push) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
 | **Programmati** | Scorecard ogni lunedì e al cambio di una regola di protezione dei rami; Dependabot, PR mensili verso `dev` (GitHub Actions, Composer, npm, Docker) | No |
-| **Solo a mano** | Test E2E, Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev` e l'avvio manuale di `CI` dalla scheda *Actions* | — |
+| **Solo a mano** | Test E2E (in locale o con il workflow `E2E tests`, `functional.yml`, dalla scheda *Actions*), Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev` e l'avvio manuale di `CI` dalla scheda *Actions* | — |
 
 `main` è protetto dal ruleset di GitHub `Protect main`: non si può cancellare né riscrivere con un force-push. Nessun controllo della CI è obbligatorio: una corsa rossa non impedisce un push o un merge. Il rilascio è il merge di `dev` su `main` fatto in locale e pushato, senza pull request.
 
@@ -133,7 +133,7 @@ Le tre suite hanno ciascuna la propria cartella, configurazione e README:
 
 - **[Unit](unit/README.md)**: funzioni e file del repository, senza WordPress, database o browser.
 - **[Integrazione](integration/README.md)**: WordPress vero in Docker (wp-env), con ACF e Polylang reali e il tema attivo, su un database dedicato che si svuota a ogni esecuzione.
-- **[E2E](e2e/README.md)**: Playwright su un sito Local dedicato, che torna a uno stato di partenza prima e dopo ogni corsa.
+- **[E2E](e2e/README.md)**: Playwright su un sito dedicato in Docker (wp-env), che torna a uno stato di partenza prima e dopo ogni corsa.
 
 Scelta del livello: si usa il più basso che dimostra il comportamento. Ciò che dipende da
 WordPress va in integrazione; il browser serve solo per ciò che lo richiede, perché è il più
