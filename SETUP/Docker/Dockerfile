@@ -15,7 +15,7 @@
 FROM php:8.4-apache@sha256:c6527b06c772a2c3cae648ce58c23a2a12ed2fed41cdfb0619ea64be008cc601
 
 ################# CONFIGURATIONS (define ARG after FROM) #####################
-ARG WP_ARCHIVE=wordpress-7.1.3.tar.gz
+ARG WP_ARCHIVE=wordpress-7.1.5.tar.gz
 ARG DLI_THEME=https://github.com/ScuolaNormaleSuperiore/design-laboratori-wordpress-theme.git
 ARG ADMINER=https://github.com/vrana/adminer/releases/download/v6.1.2/adminer-6.1.2.php
 ARG BASE_PLUGIN_URL=https://downloads.wordpress.org/plugin

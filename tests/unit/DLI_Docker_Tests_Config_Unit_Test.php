@@ -141,6 +141,23 @@ class DLI_Docker_Tests_Config_Unit_Test extends TestCase {
 	}
 
 	/**
+	 * The long Composer scripts are not stopped by Composer's default limit of 300 seconds (there is no global
+	 * config.process-timeout), and the Node scripts run on every Node version the docs allow (18 and later):
+	 * import.meta.dirname exists only from Node 20.11.
+	 */
+	public function test_the_long_scripts_have_no_time_limit_and_run_on_node_18() {
+		$composer = json_decode( $this->read( 'composer.json' ), true );
+
+		foreach ( array( 'test:integration', 'env:tests:start', 'test:e2e', 'test:e2e:headed', 'test:e2e:ui', 'env:start', 'lint:phpstan' ) as $script ) {
+			$this->assertContains( 'Composer\\Config::disableProcessTimeout', (array) ( $composer['scripts'][ $script ] ?? array() ), $script );
+		}
+
+		foreach ( glob( DLI_TEST_THEME_DIR . '/tests/bin/*.mjs' ) as $file ) {
+			$this->assertStringNotContainsString( 'import.meta.dirname', (string) file_get_contents( $file ), basename( $file ) );
+		}
+	}
+
+	/**
 	 * No local path or plugin cache of the old setup is left, and its download script is gone.
 	 */
 	public function test_no_local_path_is_left() {

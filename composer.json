@@ -14,7 +14,10 @@
   "scripts": {
     "lint:php": "phpcs --standard=phpcs.xml.dist",
     "lint:php:fix": "phpcbf --standard=phpcs.xml.dist",
-    "lint:phpstan": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
+    "lint:phpstan": [
+      "Composer\\Config::disableProcessTimeout",
+      "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G"
+    ],
     "test": "@test:unit",
     "test:all": [
       "@test:unit",

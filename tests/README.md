@@ -106,12 +106,20 @@ La scansione dei segreti, la guardia l10n e il controllo del messaggio di commit
 
 Sempre su GitHub, il workflow *Scorecard supply-chain security* (OpenSSF Scorecard, badge in cima al README) esegue un controllo periodico e non bloccante delle pratiche di sicurezza della supply chain del repository. I risultati sono consultabili nella sezione *Security* del repository; non sostituisce i controlli locali. La tabella completa, aggiornata insieme al workflow, è in [`AGENTS/ARCHITECTURE.md`](../AGENTS/ARCHITECTURE.md).
 
+I job indipendenti `composer-audit` e `npm-audit` girano su ogni push e pull request
+previsti dal workflow `CI`, anche quando un altro job fallisce. Controllano i lock
+file senza installare o aggiornare dipendenze. npm include gli strumenti di
+sviluppo, mostra tutte le severità e fallisce con high o critical. Il job `checks`
+valida anche `composer.json` e la coerenza del lock file prima dell'installazione
+e configura esplicitamente Node 24 per i test unitari JavaScript.
+
 ### Cosa gira e quando
 
 Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.githooks/) e i workflow in [`../.github/workflows/`](../.github/workflows/), e questa tabella si aggiorna nello stesso lavoro che li cambia. Salvo dove indicato, in CI un controllo rosso non blocca nulla.
 
 | Momento | Cosa gira | Blocca? |
 |---|---|---|
+| **Ogni esecuzione di CI** (push e PR previsti, avvio manuale) | Audit indipendenti `composer-audit` e `npm-audit`, inclusi gli strumenti di sviluppo; npm fallisce su high o critical | No |
 | **Commit** (hook locale, se attivo) | Segreti, guardia l10n (corregge da sola), PHPStan livello 6 sull'intero tema, PHPCS sui file PHP, CSS e SCSS in staging (solo errori), test unit; controllo del messaggio (trailer AI) | Sì, tranne la guardia l10n; `--no-verify` salta tutto |
 | **Push** su `dev` o `main` | Job `checks` (sintassi su PHP 8.0 e 8.4, conflitti, spazi finali, test unit su 8.0 e 8.4, PHPCS sui file modificati, PHPStan livello 6), `publiccode`, `actionlint` e job `integration` (oltre 500 test in Docker, su WordPress 7.1.4 con ACF e Polylang); se cambiano `DOC/**` o simili, anche `documentation-check` | No |
 | **Push** su `features/**`, `bugfix/**`, `refactor/**`, `docs/**` | `checks`, `publiccode` e `actionlint` (e `documentation-check` su `docs/**`) | No |
@@ -119,7 +127,7 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 | **Pull request verso `main`** (per esempio un contributo esterno) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-check` se cambia la documentazione | No |
 | **Rilascio: merge di `dev` su `main`** (push) | `checks`, `publiccode`, `actionlint` e `integration`; `documentation-pages` (pubblica la documentazione su GitHub Pages, se cambia); Scorecard | No |
 | **Programmati** | Scorecard ogni lunedì e al cambio di una regola di protezione dei rami; Dependabot, PR mensili verso `dev` (GitHub Actions, Composer, npm, Docker) | No |
-| **Solo a mano** | Test E2E (in locale o con il workflow `E2E tests`, `functional.yml`, dalla scheda *Actions*), Report (`status`, `html`, `pa11y`), `composer audit`, `npm audit --omit=dev` e l'avvio manuale di `CI` dalla scheda *Actions* | — |
+| **Solo a mano** | Test E2E (in locale o con il workflow `E2E tests`, `functional.yml`, dalla scheda *Actions*), Report (`status`, `html`, `pa11y`) e l'avvio manuale di `CI` dalla scheda *Actions* | — |
 
 `main` è protetto dal ruleset di GitHub `Protect main`: non si può cancellare né riscrivere con un force-push. Nessun controllo della CI è obbligatorio: una corsa rossa non impedisce un push o un merge. Il rilascio è il merge di `dev` su `main` fatto in locale e pushato, senza pull request.
 
@@ -128,7 +136,7 @@ Vista per momento; la fonte di verità sono gli hook in [`../.githooks/`](../.gi
 
 - `composer run lint:php` verifica lo stile con PHPCS (regole in [`../phpcs.xml.dist`](../phpcs.xml.dist)); `composer run lint:php:fix` corregge da solo ciò che può. Il tema ha ancora molte segnalazioni preesistenti (issue nel backlog): l'hook `pre-commit` esegue PHPCS ([`../.githooks/check-staged-phpcs.sh`](../.githooks/check-staged-phpcs.sh)) sui file in staging e blocca il commit se hanno **errori**, anche preesistenti; chi tocca un file con errori deve quindi correggerli. È una prova decisa il 2026-10-26: se blocca troppo si passa a «nessuna segnalazione nuova rispetto a `HEAD`».
 - `composer run lint:phpstan` analizza il codice con PHPStan (configurazione in [`../phpstan.neon`](../phpstan.neon)).
-- `composer audit` e `npm audit --omit=dev` cercano vulnerabilità note nelle dipendenze.
+- `composer audit --locked` e `npm audit --package-lock-only --include=dev --audit-level=high` cercano vulnerabilità note nelle dipendenze, compresi gli strumenti di sviluppo; gli stessi comandi girano in CI.
 
 La soglia del tema è PHPStan livello 6 sull'intero tema ed è un controllo bloccante
 nell'hook `pre-commit` e nella CI; gli

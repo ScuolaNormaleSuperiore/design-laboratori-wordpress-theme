@@ -282,7 +282,7 @@ D. README and documentation
 E. Code quality
 17. `php -l` on every first-party PHP file, `composer run lint:php` with zero errors, `composer run lint:phpstan` at the configured level with zero errors (BLOCKING).
 18. `composer test:unit` and `composer test:integration` pass (BLOCKING). The E2E tests are not part of this check: step 2d decides whether they are needed. Report the number of tests and assertions.
-19. `composer audit` and `npm audit --omit=dev`: no high or critical vulnerability (BLOCKING for high or critical, `AVVISO` for the rest).
+19. `composer audit --locked` and `npm audit --package-lock-only --include=dev --audit-level=high`: no high or critical vulnerability, including development tools (BLOCKING for high or critical, `AVVISO` for the rest). Use the audit output to distinguish vulnerability findings from registry or network failures.
 20. The last GitHub Actions run on the commit to release is green (`gh run list`, when `gh` is available and authenticated; BLOCKING if red, `NON ESEGUITO` otherwise).
 
 F. Repository hygiene

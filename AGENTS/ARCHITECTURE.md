@@ -221,13 +221,15 @@ three families: static checks and tests (run with Composer) and Reports (run wit
 - Unit tests: `composer test:unit` (no WordPress: PHPUnit, then the JavaScript unit tests with `node --test tests/unit/*.test.js`; needs Node on the PATH: 22 or later on Windows, where `cmd` does not expand the pattern and only Node 21+ expands it itself, 18 or later where the shell expands it, as in the CI; also run by `.githooks/pre-commit`). Arguments after `--` reach PHPUnit only.
 - Integration tests: `composer test:integration` (calls `npm run test:integration`, `tests/bin/integration.mjs`: checks that Docker answers, starts the wp-env test environment of `.wp-env.inttest.json` — WordPress 7.1.4, PHP 8.4, ACF 6.8.12, Polylang 3.9.2, port 8893, all pinned and checked by `DLI_Docker_Tests_Config_Unit_Test` — creates the database `dli_wordpress_test` and runs PHPUnit in the `cli` container; arguments after `--` reach PHPUnit; needs Docker Desktop; `composer env:tests:start`, `env:tests:stop` and `env:tests:destroy` manage the environment; not run by the hook).
 - E2E tests: `composer test:e2e` (also `test:e2e:headed` and `test:e2e:ui`; calls `npm run test:e2e`, `tests/bin/e2e.mjs`: checks that Docker answers, starts the wp-env E2E environment of `.wp-env.e2etest.json` — the same WordPress, PHP and plugins of the integration environment plus ACF OpenStreetMap Field 1.6.1, port 8892, checked by `DLI_Docker_Tests_Config_Unit_Test` — and runs Playwright, whose global setup and teardown restore the baseline with WP-CLI in the `cli` container; arguments after `--` reach Playwright; needs Docker Desktop; `composer env:start`, `env:stop` and `env:destroy` manage the environment; not run by the hook; in CI by hand with `functional.yml`). Run only when unit and integration tests cannot adequately verify the required browser behavior.
-- Unit and integration tests together: `composer test:all` runs the unit and integration suites in this order and stops at the first one that fails; it needs Docker Desktop for the integration suite (not run by the hook). It does **not** run the E2E suite: run it separately with `composer test:e2e`. The long scripts (`test:integration`, `test:e2e*`, `env:tests:start`, `env:start`) call `ComposerConfig::disableProcessTimeout`, because Composer's default of 300 seconds would stop them before they end.
+- Unit and integration tests together: `composer test:all` runs the unit and integration suites in this order and stops at the first one that fails; it needs Docker Desktop for the integration suite (not run by the hook). It does **not** run the E2E suite: run it separately with `composer test:e2e`. The long scripts (`test:integration`, `test:e2e*`, `env:tests:start`, `env:start`, `lint:phpstan`) call `ComposerConfig::disableProcessTimeout`, because Composer's default of 300 seconds would stop them before they end.
 - Runtime scan: `npm run status:scan -- <baseUrl>` (HTTP, PHP and JavaScript
   errors, broken resources, timeouts). Requires Chromium, installed once with
   `npm run status:scan:install-browser`.
 - Accessibility scan (WCAG 2 AA, desktop and 320 px): `npm run pa11y:scan -- <baseUrl>`.
 - HTML validity: `npm run html:scan -- <baseUrl>`; requires Java 8+ on `PATH`.
-- Dependency vulnerabilities: `composer audit` and `npm audit --omit=dev`.
+- Composer validation: `composer validate --no-check-publish` checks the project schema and the consistency of `composer.lock`; Packagist publication metadata is not required. General metadata warnings do not fail validation.
+- Dependency vulnerabilities: `composer audit --locked` and `npm audit --package-lock-only --include=dev --audit-level=high`. Both read the lock files without installing or updating dependencies. The npm audit includes development tools, reports every severity and fails on high or critical findings; no advisory is suppressed. The two audits run as independent CI jobs.
+- Temporary dependency override (2026-11-26): `package.json` overrides `isomorphic-git` to `1.38.6` only under `@wp-playground/storage`, whose version `3.1.66` pins the older library. This fixes the dependency without downgrading the pinned `@wordpress/env` `12.1.0`. Remove the override when upstream storage requires a corrected version and the full npm audit still reports no high or critical findings; update and verify the lock file in the same change.
 - OpenSSF Scorecard runs remotely on GitHub after changes to the default branch, branch-protection changes and on a weekly schedule. It is observational: it does not run locally and does not block commits.
 - `status` and `html` have a `*:gate` variant (exit code 1 on failure) and a
   `*:compare` variant (compares the two most recent reports); `pa11y:scan:gate`
@@ -255,15 +257,18 @@ commit-message trailers exist only in the local hooks. Every job of every workfl
 | PHP syntax | `php -l` | all first-party PHP files | 8.0, 8.4 | `checks` |
 | Conflict markers | `git grep` for `<<<<<<<` and `>>>>>>>` | PHP, JS, CSS and SCSS files | 8.4 | `checks` |
 | Whitespace errors | `git diff --check` | changed PHP, JS, CSS and SCSS files | 8.4 | `checks` |
-| Unit tests | `composer test:unit` (PHPUnit and `node --test`, with the Node of the runner) | whole suite | 8.0, 8.4 | `checks` |
+| Composer validation | `composer validate --no-check-publish` | project schema and lock-file consistency, before installation | 8.0, 8.4 | `checks` |
+| Unit tests | `composer test:unit` (PHPUnit and `node --test`, with Node 24 explicitly configured) | whole suite | 8.0, 8.4 | `checks` |
 | PHPCS (errors only) | `.github/scripts/phpcs-changed.sh` | changed PHP, CSS and SCSS files | 8.4 | `checks` |
 | PHPStan level 6 | `composer run lint:phpstan` | whole theme | 8.4 | `checks` |
+| Composer dependency audit | `composer audit --locked` | all locked Composer dependencies, including development tools | 8.4 | `composer-audit` |
+| npm dependency audit | `npm audit --package-lock-only --include=dev --audit-level=high` | all locked npm dependencies; high and critical findings fail | — | `npm-audit` |
 | Integration tests | `composer test:integration` | whole suite, in the wp-env test environment of `.wp-env.inttest.json` (WordPress 7.1.4, ACF 6.8.12, Polylang 3.9.2), through `npm run test:integration` | 8.4 | `integration` |
 | `publiccode.yml` | `italia/publiccode-parser-action` (official action of Developers Italia) | `publiccode.yml`, with its remote URLs and the logo and screenshots on the default branch | — | `publiccode` |
 | Workflow lint | `actionlint` (with shellcheck) from the official `rhysd/actionlint` image pinned to a digest | `.github/workflows/*.yml` | — | `actionlint` |
 
 `composer.json` declares `config.platform.php` as `8.0.30`, so the lock file resolves on PHP 8.0
-and 8.4 alike. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
+and 8.4 alike. Playwright sets `forbidOnly` when `CI` is set: an accidental `.only` fails the E2E run instead of silently reducing its coverage. E2E runs remain manual. `phpcs-changed.sh [<base>]` is also run by hand: the base is the commit before
 the push or the tip of the target branch of a pull request, and without a valid base the files
 of the last commit are checked. The `integration` job runs only on push to `dev` and `main`, on pull requests to `main` and on demand (not on the prefixed branches nor on pull requests to `dev`). It uses the same Docker environment as a local run: WordPress, PHP, ACF and Polylang are pinned in `.wp-env.inttest.json` (see `tests/integration/README.md`); to update them, change that file and `DLI_Docker_Tests_Config_Unit_Test` on purpose. The environment is always stopped at the end of the job.
 

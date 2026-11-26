@@ -17,6 +17,7 @@ Write code according to official WordPress standards and project-specific conven
 
 ## GitHub Actions supply-chain security
 
+- The CI validates Composer configuration and lock-file consistency before installation, sets Node 24 for JavaScript unit tests, and audits both dependency lock files in independent jobs. npm audits include development tools and fail on high or critical findings; moderate findings stay visible. Playwright forbids focused `.only` tests when `CI` is set.
 - Keep third-party GitHub Actions pinned to full commit SHAs, with the full version beside each pin (`# v1.2.3`, not `# v1`) and the same SHA for the same action in every workflow; run every job on `ubuntu-24.04`. `DLI_CI_Workflow_Unit_Test` checks these rules.
 - Grant workflows only the permissions they need. Do not add repository secrets or personal access tokens to Scorecard without an explicit operator decision.
 - OpenSSF Scorecard is an observational GitHub check, not a replacement for local quality checks or a pre-commit gate. Review material findings before changing repository policy or workflows.
@@ -298,7 +299,8 @@ Pick the checks that match the change, run them, and report which ones could not
 | Behavior that needs WordPress (hooks, roles and permissions, queries, REST routes, content types, theme activation) | `composer test:integration` | Real WordPress with ACF and Polylang on the dedicated database `dli_wordpress_test`, in the wp-env test environment (Docker); needs Docker Desktop; see `tests/integration/README.md` |
 | Behavior that cannot be adequately verified at unit or integration level | `composer test:e2e` | Use only when a real browser and complete flow are indispensable. Playwright in the wp-env E2E environment (Docker), restored to a baseline before and after the run; needs Docker Desktop; see `tests/e2e/README.md` |
 | PHP static analysis | `composer run lint:phpstan` | The whole-theme gate is level 6 and blocks the commit (`.githooks/pre-commit`). Configuration: `phpstan.neon`; WordPress core stubs: `php-stubs/wordpress-stubs`; local runtime and optional-plugin stubs: `tests/phpstan/` |
-| Dependencies | `composer audit` and `npm audit --omit=dev` | Known vulnerabilities in Composer and npm dependencies |
+| Dependency configuration | `composer validate --no-check-publish` | Project schema and Composer lock-file consistency; publication metadata is not required |
+| Dependencies | `composer audit --locked` and `npm audit --package-lock-only --include=dev --audit-level=high` | Known vulnerabilities, including development tools; npm fails on high and critical findings |
 | Changed rendered HTML or JS | `npm run status:scan -- <baseUrl>` | Needs a reachable site and Playwright (`npm run status:scan:install-browser`) |
 | Changed rendered HTML | `npm run html:scan -- <baseUrl>` (`html:scan:gate` fails on errors) | Needs a reachable site, Java 8+, `vnu-jar` and Playwright |
 | Changed templates, styles, scripts, forms | `npm run pa11y:scan -- <baseUrl>` (`pa11y:scan:gate` fails on WCAG errors) | WCAG 2 AA at 1280 px and 320 px; needs a reachable site and Playwright's Chromium; complements manual keyboard checks |

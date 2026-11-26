@@ -11,6 +11,7 @@ Operational rules for AI assistants working on this codebase.
 - Ask clarifying questions only when ambiguity blocks implementation.
 - After meaningful progress, summarize what changed and what remains.
 - Keep quality gates active: security, accessibility, maintainability.
+- CI dependency audits read the lock files without updating dependencies. The npm audit includes development tools, reports all severities and fails on high or critical findings. Do not hide findings with `continue-on-error`, raise the threshold or introduce advisory exceptions merely to obtain a green run; report unresolved findings separately from code-test failures.
 - Break substantial work into clear steps and report milestones after each.
 - Use local file analysis and shell checks to validate changes before reporting
   completion. Preserve decisions and context already established in the

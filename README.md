@@ -169,6 +169,12 @@ Il progetto è pubblicato sul catalogo del riuso di Developers Italia. La home p
 
 ## Sviluppo e verifiche
 
+La CI valida anche la configurazione Composer e il lock file prima di installare le
+dipendenze, usa Node 24 per i test unitari JavaScript ed esegue gli audit Composer
+e npm in job separati. L'audit npm include gli strumenti di sviluppo e segnala un
+fallimento con vulnerabilità high o critical. Nei test E2E su CI, un `.only`
+dimenticato causa un errore; il loro avvio resta manuale.
+
 Dalla radice del tema, installare le dipendenze di sviluppo con:
 
 ```sh
@@ -182,7 +188,8 @@ Gli strumenti di verifica sono di tre famiglie: **Controlli statici** (leggono i
 |---|---|---|
 | Controlli statici | `composer run lint:php` (`lint:php:fix` per le correzioni automatiche) | Stile del codice PHP (standard WordPress). Il hook `pre-commit` lo esegue sui file in staging e blocca il commit se ci sono errori |
 | | `composer run lint:phpstan` | Analisi statica con [PHPStan](tests/phpstan/README.md), livello 6 |
-| | `composer audit`, `npm audit --omit=dev` | Vulnerabilità note delle dipendenze |
+| | `composer validate --no-check-publish` | Validità di `composer.json` e coerenza con `composer.lock` |
+| | `composer audit --locked`, `npm audit --package-lock-only --include=dev --audit-level=high` | Vulnerabilità note, inclusi gli strumenti di sviluppo; npm fallisce con severità high o critical |
 | Test | `composer test:unit` | [Funzioni pure in PHP e JavaScript, configurazioni e coerenza dei file di rilascio](tests/unit/README.md), senza WordPress. Il hook `pre-commit` li esegue a ogni commit |
 | | `composer test:integration` | [Comportamento che dipende da WordPress](tests/integration/README.md), su un WordPress di test in Docker (wp-env) con ACF e Polylang reali e un database dedicato |
 | | `composer test:e2e` | [Browser (Playwright) su un sito dedicato in Docker](tests/e2e/README.md) |

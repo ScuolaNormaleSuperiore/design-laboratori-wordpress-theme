@@ -12,10 +12,11 @@
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { requireDocker } from './docker.mjs';
 
 const require = createRequire( import.meta.url );
-const root = path.resolve( import.meta.dirname, '..', '..' );
+const root = path.resolve( path.dirname( fileURLToPath( import.meta.url ) ), '..', '..' );
 
 /**
  * Path of the executable that a package declares in its `bin` field.

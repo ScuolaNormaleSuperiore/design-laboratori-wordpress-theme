@@ -6,9 +6,14 @@ import { fileURLToPath } from 'node:url';
 
 export const themeSlug = 'design-laboratori-wordpress-theme';
 const themeRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+// Development folders at any depth.
 const developmentDirectories = new Set([
-	'node_modules', 'tests', 'test', 'examples', 'demo', 'docs', 'src', 'types', 'compiled',
+	'node_modules', 'tests', 'test', 'examples', 'demo', 'docs',
 ]);
+// Sources, type definitions and build output of bundled front-end libraries: development only under
+// assets/. A PHP library may keep runtime classes in a folder with one of these names (CMB2 loads its
+// CMB2_Type_* classes from includes/types/), so they are not excluded under inc/.
+const assetSourceDirectories = new Set(['src', 'types', 'compiled']);
 const runtimeDirectories = new Set([
 	'inc', 'page-templates', 'template-parts',
 	'assets/bootstrap-italia', 'assets/css', 'assets/fonts', 'assets/html',
@@ -25,11 +30,25 @@ const csvFiles = new Set([
 	'SETUP/CSV_Import/pages-model.csv',
 ]);
 
+/**
+ * Whether a path is hidden or inside a development folder. Shared by the file filter and the
+ * directory walk, so the two cannot disagree.
+ *
+ * @param {string[]} parts Path segments (forward slashes).
+ * @param {boolean} isDirectory True when the last segment is a folder, not a file.
+ */
+function isExcluded(parts, isDirectory) {
+	const folders = isDirectory ? parts : parts.slice(0, -1);
+	return parts.some((part) => part.startsWith('.'))
+		|| folders.some((part) => developmentDirectories.has(part))
+		|| ('assets' === parts[0] && folders.some((part) => assetSourceDirectories.has(part)));
+}
+
 /** Select runtime files only; paths use forward slashes on every platform. */
 export function isRuntimeFile(relativePath) {
 	const parts = relativePath.split('/');
 	const name = parts.at(-1);
-	if (parts.some((part) => part.startsWith('.') || developmentDirectories.has(part))) {
+	if (isExcluded(parts, false)) {
 		return false;
 	}
 	if (parts.length === 1) {
@@ -53,7 +72,7 @@ export function collectRuntimeFiles(root) {
 			if (entry.isSymbolicLink()) continue;
 			if (entry.isDirectory()) {
 				if ([...runtimeDirectories, 'languages', 'SETUP/CSV_Import'].some((allowed) => allowed === relativePath || allowed.startsWith(`${relativePath}/`) || relativePath.startsWith(`${allowed}/`))) {
-					if (!entry.name.startsWith('.') && !developmentDirectories.has(entry.name)) visit(relativePath);
+					if (!isExcluded(relativePath.split('/'), true)) visit(relativePath);
 				}
 			} else if (entry.isFile() && isRuntimeFile(relativePath)) {
 				files.push(relativePath);
@@ -73,7 +92,7 @@ export function packageTheme(root = themeRoot) {
 		'assets/bootstrap-italia/css/bootstrap-italia.min.css',
 		'assets/bootstrap-italia/js/bootstrap-italia.bundle.min.js',
 		'assets/css/bootstrap-italia-custom.min.css',
-		'inc/vendor/CMB2/init.php']) {
+		'inc/vendor/CMB2/init.php', 'inc/vendor/CMB2/includes/types/CMB2_Type_Text.php']) {
 		if (!files.includes(required)) throw new Error(`File necessario mancante: ${required}`);
 	}
 	const dist = path.join(root, 'dist');

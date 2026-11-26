@@ -68,5 +68,10 @@
     "sass": "^1.108.2",
     "uglify-js": "^3.17.4",
     "vnu-jar": "^26.11.20"
+  },
+  "overrides": {
+    "@wp-playground/storage": {
+      "isomorphic-git": "1.38.6"
+    }
   }
 }

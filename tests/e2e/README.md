@@ -263,6 +263,10 @@ riepilogo: non è un errore del tema, ma se i «flaky» diventano frequenti vale
 
 ## Come aggiungere una specifica
 
+Su CI Playwright imposta `forbidOnly`: una specifica lasciata con `test.only` o
+`test.describe.only` fa fallire la suite, evitando una corsa verde che abbia
+escluso gli altri test. Il workflow E2E continua a essere avviato a mano.
+
 Creare un file nella [cartella delle specifiche](specs/) chiamato `<nome>.spec.js` con `test( ... )` di `@playwright/test`. Per un utente autenticato usare gli helper
 di [`support/auth.js`](support/auth.js). Provare solo ciò che richiede un browser: il resto va nei [test di integrazione](../integration/README.md). Il ripristino
 della baseline avviene da solo; se la specifica richiede dati di esempio, vanno nella baseline (si rigenera come sopra).

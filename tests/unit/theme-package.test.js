@@ -12,6 +12,7 @@ test('theme package includes runtime dependencies, initial pages, CSV downloads 
 	for (const file of [
 		'functions.php', 'index.php', 'style.css', 'screenshot.png', 'LICENSE', 'CREDITS.txt',
 		'inc/vendor/CMB2/init.php', 'inc/vendor/CMB2/includes/CMB2.php',
+		'inc/vendor/CMB2/includes/types/CMB2_Type_Text.php',
 		'inc/vendor/TGM-Plugin-Activation/class-tgm-plugin-activation.php',
 		'assets/html/privacy_it.html', 'assets/html/privacy_en.html',
 		'assets/bootstrap-italia/css/bootstrap-italia.min.css',
@@ -38,8 +39,24 @@ test('theme package excludes development material and backups, including inside 
 		'languages/en_US.po', 'languages/en_US.l10n.php.orig',
 		'assets/js/.private.js', 'inc/file.php~',
 	]) assert.equal(isRuntimeFile(file), false, `Unexpected package file: ${file}`);
+	// Sources and type definitions of a bundled JavaScript library stay out.
+	assert.equal(isRuntimeFile('assets/js/components/perfect-scrollbar-master/src/index.js'), false);
+	assert.equal(isRuntimeFile('assets/js/components/perfect-scrollbar-master/types/perfect-scrollbar.d.ts'), false);
+	// A PHP library may keep runtime classes in a folder with one of those names (CMB2: includes/types/).
+	assert.equal(isRuntimeFile('inc/vendor/CMB2/includes/types/CMB2_Type_Text.php'), true);
 	assert.equal(isRuntimeFile('assets/bootstrap-italia/fonts/Roboto_Mono/LICENSE.txt'), true);
 	assert.equal(isRuntimeFile('inc/vendor/TGM-Plugin-Activation/LICENSE.md'), true);
+});
+
+test('theme package includes every PHP file of inc/ except examples and tests', async () => {
+	const { collectRuntimeFiles } = await script;
+	const root = path.resolve(__dirname, '../..');
+	const files = new Set(collectRuntimeFiles(root));
+	const missing = fs.readdirSync(path.join(root, 'inc'), { recursive: true })
+		.map((file) => `inc/${String(file).split(path.sep).join('/')}`)
+		.filter((file) => file.endsWith('.php') && !/\/(tests?|examples?)(\/|[-.])|example-functions\.php$/.test(file))
+		.filter((file) => !files.has(file));
+	assert.deepEqual(missing, []);
 });
 
 test('an incomplete theme fails before creating an installable package', async () => {

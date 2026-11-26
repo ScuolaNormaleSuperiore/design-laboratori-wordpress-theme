@@ -12,6 +12,8 @@ module.exports = defineConfig( {
 	// One retry absorbs rare browser or network hiccups (e.g. ERR_NETWORK_CHANGED).
 	retries: 1,
 	fullyParallel: false,
+	// Fail CI when a focused test would exclude the rest of the suite.
+	forbidOnly: !! process.env.CI,
 	// Login and an admin page take several seconds on the test site: the default 5 s of the
 	// assertions is too tight. (The much slower first load after a restore is absorbed by
 	// the warm-up of the global setup.)

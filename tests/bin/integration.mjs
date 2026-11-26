@@ -19,10 +19,11 @@
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { requireDocker } from './docker.mjs';
 
 const require = createRequire( import.meta.url );
-const root = path.resolve( import.meta.dirname, '..', '..' );
+const root = path.resolve( path.dirname( fileURLToPath( import.meta.url ) ), '..', '..' );
 // The executable is declared in the `bin` field of the package, which does not export it as a module.
 const wpEnvPackage = require.resolve( '@wordpress/env/package.json' );
 const wpEnv = path.join( path.dirname( wpEnvPackage ), require( wpEnvPackage ).bin[ 'wp-env' ] );
